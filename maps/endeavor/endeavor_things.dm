@@ -60,7 +60,7 @@
 /obj/machinery/photocopier/faxmachine/mail
 	department = "Mailing Room"
 /obj/machinery/photocopier/faxmachine/sec
-	department = "Security"
+	department = DEPT_SECURITY
 /obj/machinery/photocopier/faxmachine/bridge
 	department = "Bridge"
 

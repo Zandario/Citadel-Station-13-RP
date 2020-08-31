@@ -6684,7 +6684,7 @@
 	pixel_y = 22
 	},
 /obj/machinery/photocopier/faxmachine{
-	department = "Security"
+	department = DEPT_SECURITY
 	},
 /turf/simulated/floor/tiled,
 /area/security/briefing_room)

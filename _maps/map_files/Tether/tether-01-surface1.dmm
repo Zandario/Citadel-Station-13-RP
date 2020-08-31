@@ -24411,7 +24411,7 @@
 	dir = 5
 	},
 /obj/machinery/requests_console{
-	department = "Science";
+	department = DEPT_SCIENCE;
 	departmentType = 2;
 	name = "Science Requests Console";
 	pixel_x = 30
@@ -25489,7 +25489,7 @@
 	dir = 4
 	},
 /obj/machinery/requests_console{
-	department = "Science";
+	department = DEPT_SCIENCE;
 	departmentType = 2;
 	name = "Science Requests Console";
 	pixel_x = 30

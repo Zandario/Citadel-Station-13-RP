@@ -20,12 +20,12 @@
 
 /obj/machinery/requests_console/preset/security
 	name = "Security RC"
-	department = "Security"
+	department = DEPT_SECURITY
 	departmentType = RC_ASSIST
 
 /obj/machinery/requests_console/preset/engineering
 	name = "Engineering RC"
-	department = "Engineering"
+	department = DEPT_ENGINEERING
 	departmentType = RC_ASSIST|RC_SUPPLY
 
 /obj/machinery/requests_console/preset/atmos

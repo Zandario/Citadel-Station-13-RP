@@ -35743,7 +35743,7 @@
 /area/rnd/research)
 "bqK" = (
 /obj/machinery/requests_console{
-	department = "Science";
+	department = DEPT_SCIENCE;
 	departmentType = 2;
 	name = "Science Requests Console";
 	pixel_x = -30;
@@ -53498,7 +53498,7 @@
 	},
 /obj/structure/table/glass,
 /obj/machinery/requests_console{
-	department = "Science";
+	department = DEPT_SCIENCE;
 	departmentType = 2;
 	name = "Science Requests Console";
 	pixel_x = 30;
@@ -73630,7 +73630,7 @@
 	pixel_x = 0
 	},
 /obj/machinery/requests_console{
-	department = "Security";
+	department = DEPT_SECURITY;
 	departmentType = 5;
 	pixel_x = 32;
 	pixel_y = 30
@@ -91184,7 +91184,7 @@
 /obj/item/reagent_containers/spray/cleaner,
 /obj/machinery/requests_console{
 	announcementConsole = 0;
-	department = "Engineering";
+	department = DEPT_ENGINEERING;
 	departmentType = 3;
 	name = "Engineering RC";
 	pixel_x = 0;

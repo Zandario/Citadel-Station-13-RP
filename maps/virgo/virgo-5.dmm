@@ -133,7 +133,7 @@
 /area/outpost/research/mixing)
 "ay" = (
 /obj/machinery/requests_console{
-	department = "Science";
+	department = DEPT_SCIENCE;
 	departmentType = 2;
 	name = "Science Requests Console";
 	pixel_x = 30;
@@ -4520,7 +4520,7 @@
 /area/outpost/research/hallway/catwalk)
 "iE" = (
 /obj/machinery/requests_console{
-	department = "Science";
+	department = DEPT_SCIENCE;
 	departmentType = 2;
 	name = "Science Requests Console";
 	pixel_x = 0;

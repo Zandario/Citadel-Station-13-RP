@@ -65,7 +65,7 @@ SUBSYSTEM_DEF(supply)
 /datum/controller/subsystem/supply/fire(resumed)
 	points += max(0, ((world.time - last_fire) / 10) * points_per_second)
 
-//To stop things being sent to CentCom which should not be sent to centcomm. Recursively checks for these types.
+//To stop things being sent to CentCom which should not be sent to centcom. Recursively checks for these types.
 /datum/controller/subsystem/supply/proc/forbidden_atoms_check(atom/A)
 	if(isliving(A))
 		return 1
@@ -75,8 +75,8 @@ SUBSYSTEM_DEF(supply)
 		return 1
 	if(istype(A,/obj/item/radio/beacon))
 		return 1
-	if(istype(A,/obj/item/perfect_tele_beacon))	//VOREStation Addition: Translocator beacons
-		return 1										//VOREStation Addition: Translocator beacons
+	if(istype(A,/obj/item/perfect_tele_beacon))
+		return 1
 
 	for(var/atom/B in A.contents)
 		if(.(B))
@@ -105,10 +105,7 @@ SUBSYSTEM_DEF(supply)
 			var/obj/structure/closet/crate/CR = MA
 			callHook("sell_crate", list(CR, area_shuttle))
 
-			points += CR.points_per_crate
-			if(CR.points_per_crate)
-				base_value = CR.points_per_crate
-			var/find_slip = 1
+			adjust_dept_funds(DEPT_FACTORY, CR.points_per_crate)
 
 			for(var/atom/A in CR)
 				EC.contents[++EC.contents.len] = list(
@@ -149,9 +146,7 @@ SUBSYSTEM_DEF(supply)
 					"error" = "Error: Product was improperly packaged. Payment rendered null under terms of agreement."
 				)
 
-		exported_crates += EC
-		points += EC.value
-		EC.value += base_value
+		adjust_dept_funds(DEPT_FACTORY, EC.value)
 
 		// Duplicate the receipt for the admin-side log
 		var/datum/exported_crate/adm = new()
@@ -261,7 +256,7 @@ SUBSYSTEM_DEF(supply)
 // Will attempt to purchase the specified order, returning TRUE on success, FALSE on failure
 /datum/controller/subsystem/supply/proc/approve_order(var/datum/supply_order/O, var/mob/user)
 	// Not enough points to purchase the crate
-	if(SSsupply.points <= O.object.cost)
+	if(dept_balance(DEPT_FACTORY) <= O.object.cost)
 		return FALSE
 
 	// Based on the current model, there shouldn't be any entries in order_history, requestlist, or shoppinglist, that aren't matched in adm_order_history
@@ -288,7 +283,8 @@ SUBSYSTEM_DEF(supply)
 	adm_order.approved_at = stationdate2text() + " - " + stationtime2text()
 
 	// Deduct cost
-	SSsupply.points -= O.object.cost
+	adjust_dept_funds(DEPT_FACTORY, -O.object.cost)
+
 	return TRUE
 
 // Will deny the specified order. Only useful if the order is currently requested, but available at any status

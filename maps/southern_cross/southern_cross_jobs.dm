@@ -45,7 +45,7 @@ var/const/access_explorer = 43
 /datum/job/captain
 	title = "Station Director"
 	flag = CAPTAIN
-	department = "Command"
+	department = DEPT_COMMAND
 	head_position = 1
 	department_flag = ENGSEC
 	faction = "Station"
@@ -73,7 +73,7 @@ var/const/access_explorer = 43
 /datum/job/pilot
 	title = "Pilot"
 	flag = PILOT
-	department = "Civilian"
+	department = DEPT_CIVILIAN
 	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = 2
@@ -89,7 +89,7 @@ var/const/access_explorer = 43
 /datum/job/explorer
 	title = "Explorer"
 	flag = EXPLORER
-	department = "Civilian"
+	department = DEPT_CIVILIAN
 	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = 4
@@ -110,7 +110,7 @@ var/const/access_explorer = 43
 /datum/job/sar
 	title = "Field Medic"
 	flag = SAR
-	department = "Medical"
+	department = DEPT_MEDICAL
 	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 2

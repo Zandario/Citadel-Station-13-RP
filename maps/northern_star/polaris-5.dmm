@@ -139,7 +139,7 @@
 /area/outpost/research/mixing)
 "az" = (
 /obj/machinery/requests_console{
-	department = "Science";
+	department = DEPT_SCIENCE;
 	departmentType = 2;
 	name = "Science Requests Console";
 	pixel_x = 30;
@@ -4560,7 +4560,7 @@
 /area/outpost/research/xenobiology)
 "iH" = (
 /obj/machinery/requests_console{
-	department = "Science";
+	department = DEPT_SCIENCE;
 	departmentType = 2;
 	name = "Science Requests Console";
 	pixel_x = 0;

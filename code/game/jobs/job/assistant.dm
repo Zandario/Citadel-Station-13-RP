@@ -1,7 +1,7 @@
 /datum/job/assistant
 	title = "Assistant"
 	flag = ASSISTANT
-	department = "Civilian"
+	department = DEPT_CIVILIAN
 	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = -1

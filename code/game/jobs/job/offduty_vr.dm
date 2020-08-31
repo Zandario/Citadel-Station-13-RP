@@ -8,7 +8,7 @@
 	timeoff_factor = -1
 	total_positions = -1
 	faction = "Station"
-	department = "Civilian"
+	department = DEPT_PUBLIC
 	supervisors = "nobody! Enjoy your time off"
 	selection_color = "#9b633e"
 	access = list(access_maint_tunnels)
@@ -21,7 +21,7 @@
 	timeoff_factor = -1
 	total_positions = -1
 	faction = "Station"
-	department = "Cargo"
+	department = DEPT_CARGO
 	supervisors = "nobody! Enjoy your time off"
 	selection_color = "#9b633e"
 	access = list(access_maint_tunnels)
@@ -34,7 +34,7 @@
 	timeoff_factor = -1
 	total_positions = -1
 	faction = "Station"
-	department = "Engineering"
+	department = DEPT_ENGINEERING
 	supervisors = "nobody! Enjoy your time off"
 	selection_color = "#5B4D20"
 	access = list(access_maint_tunnels, access_external_airlocks, access_construction)
@@ -47,7 +47,7 @@
 	timeoff_factor = -1
 	total_positions = -1
 	faction = "Station"
-	department = "Medical"
+	department = DEPT_MEDICAL
 	supervisors = "nobody! Enjoy your time off"
 	selection_color = "#013D3B"
 	access = list(access_maint_tunnels, access_external_airlocks)
@@ -60,7 +60,7 @@
 	timeoff_factor = -1
 	total_positions = -1
 	faction = "Station"
-	department = "Science"
+	department = DEPT_SCIENCE
 	supervisors = "nobody! Enjoy your time off"
 	selection_color = "#633D63"
 	access = list(access_maint_tunnels)
@@ -73,7 +73,7 @@
 	timeoff_factor = -1
 	total_positions = -1
 	faction = "Station"
-	department = "Security"
+	department = DEPT_SECURITY
 	supervisors = "nobody! Enjoy your time off"
 	selection_color = "#601C1C"
 	access = list(access_maint_tunnels)

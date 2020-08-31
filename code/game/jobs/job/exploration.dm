@@ -38,7 +38,7 @@
 /datum/job/pathfinder
 	title = "Pathfinder"
 	flag = PATHFINDER
-	department = "Exploration"
+	department = DEPT_EXPLORATION
 	head_position = 1
 	department_flag = MEDSCI
 	faction = "Station"
@@ -58,7 +58,7 @@
 /datum/job/pilot
 	title = "Pilot"
 	flag = PILOT
-	department = "Exploration"
+	department = DEPT_EXPLORATION
 	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 4
@@ -76,7 +76,7 @@
 /datum/job/explorer
 	title = "Explorer"
 	flag = EXPLORER
-	department = "Exploration"
+	department = DEPT_EXPLORATION
 	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 4
@@ -93,7 +93,7 @@
 /datum/job/sar
 	title = "Field Medic"
 	flag = SAR
-	department = "Exploration"
+	department = DEPT_EXPLORATION
 	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 2
@@ -114,7 +114,7 @@
 	timeoff_factor = -1
 	total_positions = -1
 	faction = "Station"
-	department = "Exploration"
+	department = DEPT_EXPLORATION
 	supervisors = "nobody! Enjoy your time off"
 	selection_color = "#999440"
 	access = list(access_maint_tunnels, access_external_airlocks)

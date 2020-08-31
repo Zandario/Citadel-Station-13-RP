@@ -3,7 +3,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 /datum/job/captain
 	title = "Facility Director"
 	flag = CAPTAIN
-	department = "Command"
+	department = DEPT_COMMAND
 	head_position = 1
 	department_flag = ENGSEC
 	faction = "Station"
@@ -36,7 +36,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 /datum/job/hop
 	title = "Head of Personnel"
 	flag = HOP
-	department = "Command"
+	department = DEPT_COMMAND
 	head_position = 1
 	department_flag = CIVILIAN
 	faction = "Station"
@@ -71,7 +71,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 /datum/job/secretary
 	title = "Command Secretary"
 	flag = BRIDGE
-	department = "Command"
+	department = DEPT_COMMAND
 	head_position = 1
 	department_flag = CIVILIAN
 	faction = "Station"
