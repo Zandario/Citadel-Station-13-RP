@@ -40,7 +40,7 @@
 		"tether2_love" = 1
 	))
 	if(choice)
-		lobby_screens = list(choice)
+		lobby_screens = list("title0")
 
 /datum/map/tether
 	name = "Virgo"
@@ -55,8 +55,8 @@
 
 	zlevel_datum_type = /datum/map_z_level/tether
 
-	lobby_icon = 'icons/misc/title_vr.dmi'
-	lobby_screens = list("tether2_night")
+	lobby_icon = 'icons/misc/title_citadel.dmi'
+	lobby_screens = list("title0")
 	id_hud_icons = 'icons/mob/hud_jobs_vr.dmi'
 
 	holomap_smoosh = list(list(
