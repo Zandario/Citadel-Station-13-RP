@@ -29,8 +29,7 @@
 	var/static/list/field_edit_choices
 
 
-/obj/machinery/computer/med_data/Initialize()
-	..()
+/obj/machinery/computer/med_data/Initialize(mapload)
 	field_edit_questions = list(
 		// General
 		"sex" = "Please select new sex:",
@@ -52,6 +51,7 @@
 		"cdi_d" = "Please summarize current diseases:",
 		"notes" = "Please input new important notes:",
 	)
+
 	field_edit_choices = list(
 		// General
 		"sex" = all_genders_text_list,
@@ -61,6 +61,8 @@
 		"id_gender" = all_genders_text_list,
 		"blood_type" = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"),
 	)
+
+	return ..()
 
 /obj/machinery/computer/med_data/Destroy()
 	active1 = null
@@ -500,8 +502,8 @@
 	icon_state = "laptop"
 	icon_keyboard = "laptop_key"
 	icon_screen = "medlaptop"
-	throwpass = 1 //VOREStation Edit - Really???
-	density = FALSE			//THIS IS A LAPTOP.	--CITADEL EDIT
+	throwpass = TRUE
+	density = FALSE
 
 #undef FIELD
 #undef MED_FIELD
