@@ -8,7 +8,7 @@
 
 	var/temperature_range = 40			// How close will they get to environmental temperature before their body stops changing its heat
 
-	var/vore_active = 0					// If vore behavior is enabled for this mob
+	var/vore_active = FALSE				// If vore behavior is enabled for this mob
 
 	var/vore_capacity = 1				// The capacity (in people) this person can hold
 	var/vore_max_size = RESIZE_HUGE		// The max size this mob will consider eating
@@ -21,7 +21,7 @@
 	var/vore_pounce_falloff = 1			// Success rate falloff per %health of target mob.
 	var/vore_pounce_maxhealth = 80		// Mob will not attempt to pounce targets above this %health
 	var/vore_standing_too = 0			// Can also eat non-stunned mobs
-	var/vore_ignores_undigestable = 1	// Refuse to eat mobs who are undigestable by the prefs toggle.
+	var/vore_ignores_undigestable = FALSE	// If set to true, will refuse to eat mobs who are undigestable by the prefs toggle.
 	var/swallowsound = null				// What noise plays when you succeed in eating the mob.
 
 	var/vore_default_mode = DM_DIGEST	// Default bellymode (DM_DIGEST, DM_HOLD, DM_ABSORB)

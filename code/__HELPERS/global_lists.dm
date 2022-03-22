@@ -113,12 +113,12 @@ GLOBAL_LIST_EMPTY(mannequins)
 	// Circuits
 	initialize_integrated_circuits_list()
 
-	//Recipes
+	// Recipes
 	init_subtypes(/datum/crafting_recipe, GLOB.crafting_recipes)
 
 	var/list/paths
 
-	//Hair - Initialise all /datum/sprite_accessory/hair into an list indexed by hair-style name
+	// Hair - Initialise all /datum/sprite_accessory/hair into an list indexed by hair-style name
 	paths = typesof(/datum/sprite_accessory/hair) - /datum/sprite_accessory/hair
 	hair_styles_list = list()
 	for(var/path in paths)
@@ -138,7 +138,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 				hair_styles_female_list += H.name
 	sortTim(hair_styles_list, /proc/cmp_name_asc, associative = TRUE)
 
-	//Facial Hair - Initialise all /datum/sprite_accessory/facial_hair into an list indexed by facialhair-style name
+	// Facial Hair - Initialise all /datum/sprite_accessory/facial_hair into an list indexed by facialhair-style name
 	paths = typesof(/datum/sprite_accessory/facial_hair) - /datum/sprite_accessory/facial_hair
 	facial_hair_styles_list = list()
 	for(var/path in paths)
@@ -158,7 +158,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 				facial_hair_styles_female_list += H.name
 	sortTim(facial_hair_styles_list, /proc/cmp_name_asc, associative = TRUE)
 
-	//Body markings - Initialise all /datum/sprite_accessory/marking into an list indexed by marking name
+	// Body markings - Initialise all /datum/sprite_accessory/marking into an list indexed by marking name
 	paths = typesof(/datum/sprite_accessory/marking) - /datum/sprite_accessory/marking
 	body_marking_styles_list = list()
 	for(var/path in paths)
@@ -173,14 +173,14 @@ GLOBAL_LIST_EMPTY(mannequins)
 		body_marking_styles_list[M.name] = M
 	sortTim(body_marking_styles_list, /proc/cmp_name_asc, associative = TRUE)
 
-	//List of job. I can't believe this was calculated multiple times per tick!
+	// List of job. I can't believe this was calculated multiple times per tick!
 	paths = typesof(/datum/job)-/datum/job
 	paths -= exclude_jobs
 	for(var/T in paths)
 		var/datum/job/J = new T
 		joblist[J.title] = J
 
-	//Languages and species.
+	// Languages and species.
 	paths = subtypesof(/datum/language)
 	for(var/T in paths)
 		var/datum/language/L = new T
@@ -202,7 +202,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 			continue
 
 		S = new T
-		S.race_key = rkey //Used in mob icon caching.
+		S.race_key = rkey // Used in mob icon caching.
 		GLOB.all_species[S.name] = S
 
 		if(!(S.spawn_flags & SPECIES_IS_RESTRICTED))
@@ -210,7 +210,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 		if(S.spawn_flags & SPECIES_IS_WHITELISTED)
 			GLOB.whitelisted_species += S.name
 
-	//Posters
+	// Posters
 	paths = typesof(/datum/poster) - /datum/poster
 	paths -= typesof(/datum/poster/nanotrasen)
 	for(var/T in paths)
@@ -222,7 +222,13 @@ GLOBAL_LIST_EMPTY(mannequins)
 		var/datum/poster/P = new T
 		NT_poster_designs += P
 
-	return 1
+	// Vore Modes
+	paths = typesof(/datum/digest_mode) - /datum/digest_mode/transform
+	for(var/T in paths)
+		var/datum/digest_mode/DM = new T
+		GLOB.digest_modes[DM.id] = DM
+
+	return TRUE
 
 /* // Uncomment to debug chemical reaction list.
 /client/verb/debug_chemical_list()

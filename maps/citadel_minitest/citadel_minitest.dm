@@ -10,7 +10,7 @@
 
 	#define USING_MAP_DATUM /datum/map/citadel_minitest
 
-	#warning Please uncheck citadel_minitest.dm before committing.
+	#warn Please uncheck Citadel_minitest before committing!
 
 #elif !defined(MAP_OVERRIDE)
 

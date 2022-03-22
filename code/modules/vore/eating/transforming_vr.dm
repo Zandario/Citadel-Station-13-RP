@@ -21,15 +21,15 @@
 /obj/belly/proc/check_hair(var/mob/living/carbon/human/M)
 	var/mob/living/carbon/human/O = owner
 	if(!istype(M) || !istype(O))
-		return 0
+		return FALSE
 
 	if(M.r_hair != O.r_hair || M.g_hair != O.g_hair || M.b_hair != O.b_hair)
-		return 1
+		return TRUE
 	if(M.r_facial != O.r_facial || M.g_facial != O.g_facial || M.b_facial != O.b_facial)
-		return 1
+		return TRUE
 	if(M.h_style != O.h_style || M.f_style != O.f_style)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/belly/proc/change_hair(var/mob/living/carbon/human/M, message=0)
 	var/mob/living/carbon/human/O = owner
@@ -204,11 +204,11 @@
 /obj/belly/proc/check_species(var/mob/living/carbon/human/M)
 	var/mob/living/carbon/human/O = owner
 	if(!istype(M) || !istype(O))
-		return 0
+		return FALSE
 
-	if(M.species != O.species || M.custom_species != O.custom_species)
-		return 1
-	return 0
+	if(M.species.name != O.species.name || M.custom_species != O.custom_species)
+		return TRUE
+	return FALSE
 
 /obj/belly/proc/change_species(var/mob/living/carbon/human/M, message=0, color_action = 0)	//color_action: 0 for default species, 1 to preserve, 2 to transfer from pred
 	var/mob/living/carbon/human/O = owner
@@ -227,7 +227,7 @@
 	if(color_action == 1)
 		M.set_species(O.species.name,0,1,M)
 	else if(color_action == 2)
-		M.set_species(O.species.name,0,1,O)
+		M.species = O.species
 	else
 		M.set_species(O.species.name)
 	M.custom_species = O.custom_species

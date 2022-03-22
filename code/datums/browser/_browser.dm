@@ -26,6 +26,13 @@
 	if (nref)
 		ref = nref
 
+// Allow browser datums to be garbage collected
+/datum/browser/Destroy()
+	close()
+	ref = null
+	user = null
+	. = ..()
+
 /datum/browser/proc/add_head_content(nhead_content)
 	head_content = nhead_content
 
