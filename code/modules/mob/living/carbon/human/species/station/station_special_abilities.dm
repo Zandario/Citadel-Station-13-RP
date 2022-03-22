@@ -441,7 +441,7 @@
 		to_chat(C, "<span class='warning'>You are already draining someone!</span>")
 		return
 
-	C.absorbing_prey = 1
+	C.absorbing_prey = TRUE
 	for(var/stage = 1, stage<=100, stage++) //100 stages.
 		switch(stage)
 			if(1)
@@ -478,7 +478,7 @@
 				T.nutrition = 0 //Completely drained of everything.
 				var/damage_to_be_applied = T.species.total_health //Get their max health.
 				T.apply_damage(damage_to_be_applied, HALLOSS) //Knock em out.
-				C.absorbing_prey = 0
+				C.absorbing_prey = FALSE
 				if(T.isSynthetic())
 					to_chat(C, "<span class='notice'>You have siphoned the power out of [T], causing them to crumple on the floor.</span>")
 					to_chat(T, "<span class='danger'>You feel powerless as all the power in your mechanisms has been drained by [C]!</span>")
@@ -490,7 +490,7 @@
 
 		if(!do_mob(src, T, 50) || G.state != GRAB_NECK) //One drain tick every 5 seconds.
 			to_chat(src, "<span class='warning'>Your draining of [T] has been interrupted!</span>")
-			C.absorbing_prey = 0
+			C.absorbing_prey = FALSE
 			return
 
 /mob/living/carbon/human/proc/succubus_drain_lethal()
@@ -518,7 +518,7 @@
 		to_chat(src, "<span class='warning'>You are already draining someone!</span>")
 		return
 
-	absorbing_prey = 1
+	absorbing_prey = TRUE
 	for(var/stage = 1, stage<=100, stage++) //100 stages.
 		switch(stage)
 			if(1)
@@ -566,7 +566,7 @@
 					T.nutrition = 0 //Completely drained of everything.
 					var/damage_to_be_applied = T.species.total_health //Get their max health.
 					T.apply_damage(damage_to_be_applied, HALLOSS) //Knock em out.
-					absorbing_prey = 0 //Clean this up before we return
+					absorbing_prey = FALSE //Clean this up before we return
 					return
 				if(T.isSynthetic())
 					to_chat(src, "<span class='notice'>You begin to siphon what power remains in [T] and their internal mechanisms.</span>")
@@ -577,7 +577,7 @@
 			if(51 to 98)
 				if(T.stat == DEAD)
 					T.apply_damage(500, OXY) //Bit of fluff.
-					absorbing_prey = 0
+					absorbing_prey = FALSE
 					if(T.isSynthetic())
 						to_chat(src, "<span class='notice'>You have completely drained the power from [T], shutting them down for good.</span>")
 						to_chat(T, "<span class='danger'size='5'>Alarms flare and flash, before they suddenly turn off. And so do you.</span>")
@@ -595,7 +595,7 @@
 					stage = 51
 			if(100) //They shouldn't  survive long enough to get here, but just in case.
 				T.apply_damage(500, OXY) //Kill them.
-				absorbing_prey = 0
+				absorbing_prey = FALSE
 				if(T.isSynthetic())
 					to_chat(src, "<span class='notice'>You have completely drained the power from [T], shutting them down for good.</span>")
 					to_chat(T, "<span class='danger'size='5'>Alarms flare and flash, before they suddenly turn off. And so do you.</span>")
@@ -608,7 +608,7 @@
 
 		if(!do_mob(src, T, 50) || G.state != GRAB_NECK) //One drain tick every 5 seconds.
 			to_chat(src, "<span class='warning'>Your draining of [T] has been interrupted!</span>")
-			absorbing_prey = 0
+			absorbing_prey = FALSE
 			return
 
 /mob/living/carbon/human/proc/slime_feed()
@@ -635,7 +635,7 @@
 		to_chat(C, "<span class='warning'>You are already feeding someone!</span>")
 		return
 
-	C.absorbing_prey = 1
+	C.absorbing_prey = TRUE
 	for(var/stage = 1, stage<=100, stage++) //100 stages.
 		switch(stage)
 			if(1)
@@ -660,7 +660,7 @@
 			if(100)
 				T.nutrition = (T.nutrition + C.nutrition)
 				C.nutrition = 0 //Completely drained of everything.
-				C.absorbing_prey = 0
+				C.absorbing_prey = FALSE
 				to_chat(C, "<span class='danger'>You have completely fed [T] every part of your body!</span>")
 				to_chat(T, "<span class='notice'>You feel quite strong and well fed, as [C] finishes feeding \himself to you!</span>")
 				add_attack_logs(C,T,"Slime fed")
@@ -669,7 +669,7 @@
 
 		if(!do_mob(src, T, 50) || !G.state) //One drain tick every 5 seconds.
 			to_chat(src, "<span class='warning'>Your feeding of [T] has been interrupted!</span>")
-			C.absorbing_prey = 0
+			C.absorbing_prey = FALSE
 			return
 
 /mob/living/carbon/human/proc/succubus_drain_finalize()

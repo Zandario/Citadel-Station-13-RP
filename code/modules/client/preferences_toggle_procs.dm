@@ -360,9 +360,9 @@
 	set desc = "Toggles pain messages."
 
 	if(painmsg)
-		src.painmsg = 0
+		src.painmsg = FALSE
 	else
-		src.painmsg = 1
+		src.painmsg = TRUE
 	to_chat(src,"You will [ (painmsg) ? "now" : "no longer"] see your own pain messages.")
 	feedback_add_details("admin_verb","painmsg") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -410,4 +410,3 @@
 	slurring = 1
 	stuttering = 1
 	jitteriness = 1
-

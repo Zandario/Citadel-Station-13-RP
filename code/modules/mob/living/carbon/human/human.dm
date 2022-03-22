@@ -61,8 +61,7 @@
 	human_mob_list -= src
 	for(var/organ in organs)
 		qdel(organ)
-	QDEL_NULL(nif)	//VOREStation Add
-	QDEL_LIST_NULL(vore_organs) //VOREStation Add
+	QDEL_NULL(nif)
 	return ..()
 
 /mob/living/carbon/human/Stat()

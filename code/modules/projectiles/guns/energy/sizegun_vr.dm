@@ -3,18 +3,18 @@
 //
 
 /obj/item/gun/energy/sizegun
-	name = "size gun" //I have no idea why this was called shrink ray when this increased and decreased size.
+	name = "size gun"
 	desc = "A highly advanced ray gun with a knob on the side to adjust the size you desire. Warning: Do not insert into mouth."
 	icon = 'icons/obj/gun/energy.dmi'
 	icon_state = "sizegun-shrink100" // Someone can probably do better. -Ace
-	item_state = null	//so the human update icon uses the icon_state instead
+	item_state = null	// So the human update icon uses the icon_state instead
 	fire_sound = 'sound/weapons/wave.ogg'
 	charge_cost = 240
 	projectile_type = /obj/item/projectile/beam/sizelaser
 	origin_tech = list(TECH_BLUESPACE = 4)
 	modifystate = "sizegun-shrink"
-	no_pin_required = 1
-	battery_lock = 1
+	no_pin_required = TRUE
+	battery_lock = TRUE
 	var/size_set_to = 1
 	firemodes = list(
 		list(mode_name		= "select size",
@@ -42,8 +42,8 @@
 	set category = "Object"
 	set src in view(1)
 
-	var/size_select = input("Put the desired size (25-200%)", "Set Size", size_set_to*100) as num
-	if(size_select>200 || size_select<25)
+	var/size_select = input("Put the desired size (25-200%)", "Set Size", size_set_to * 100) as num
+	if(size_select > 200 || size_select < 25)
 		to_chat(usr, "<span class='notice'>Invalid size.</span>")
 		return
 	size_set_to = (size_select/100)
@@ -61,7 +61,7 @@
 /obj/item/projectile/beam/sizelaser
 	name = "size beam"
 	icon_state = "xray"
-	nodamage = 1
+	nodamage = TRUE
 	damage = 0
 	check_armour = "laser"
 	var/set_size = 1 //Let's default to 100%
@@ -72,41 +72,30 @@
 
 /obj/item/projectile/beam/sizelaser/on_hit(var/atom/target)
 	var/mob/living/M = target
-	if(!M.permit_sizegun)
-		M.visible_message("<span class='warning'>[src] has no effect on [M].</span>")
+	if(istype(M))
+		M.resize(set_size)
+		to_chat(M, "<font color='blue'> The beam fires into your body, changing your size!</font>")
+		M.updateicon()
 		return
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = M
-		H.resize(set_size, TRUE)
-		H.show_message("<font color=#4F49AF> The beam fires into your body, changing your size!</font>")
-		H.updateicon()
-	else if (istype(target, /mob/living/))
-		var/mob/living/H = M
-		H.resize(set_size, TRUE)
-		H.updateicon()
-	else
-		return 1
-
+	return 1
 
 /obj/item/projectile/beam/sizelaser/shrink
-	set_size = 0.5 //50% of current size
-
+	set_size = 0.5 // 50% of current size
 
 /obj/item/projectile/beam/sizelaser/grow
-	set_size = 2.0 //200% of current size
+	set_size = 2.0 // 200% of current size
 
-
-/obj/item/gun/energy/stripper//Because it can be fun
+/obj/item/gun/energy/stripper // Because it can be fun
 	name = "stripper gun"
 	desc = "A gun designed to remove unnessary layers from people. For external use only!"
 	icon = 'icons/obj/gun/energy.dmi'
-	icon_state = "sizegun-shrink100" // Someone can probably do better. -Ace
-	item_state = null	//so the human update icon uses the icon_state instead
+	icon_state = "sizegun-shrink100" // TODO: Get unique sprite for this to prevent confusion.
+	item_state = null	// So the human update icon uses the icon_state instead
 	fire_sound = 'sound/weapons/wave.ogg'
 	charge_cost = 240
 	projectile_type = /obj/item/projectile/bullet/stripper
 	origin_tech = list(TECH_BLUESPACE = 4)
 	modifystate = "sizegun-shrink"
-	no_pin_required = 1
-	battery_lock = 1
+	no_pin_required = TRUE
+	battery_lock = TRUE
 	firemodes = list()

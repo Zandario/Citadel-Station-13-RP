@@ -1,11 +1,11 @@
-#define VORE_VERSION	2	//This is a Define so you don't have to worry about magic numbers.
+#define VORE_VERSION 2	// This is a Define so you don't have to worry about magic numbers.
 
 //
 // Overrides/additions to stock defines go here, as well as hooks. Sort them by
 // the object they are overriding. So all /mob/living together, etc.
 //
 /datum/configuration_legacy
-	var/items_survive_digestion = TRUE		//For configuring if the important_items survive digestion
+	var/items_survive_digestion = TRUE	// For configuring if the important_items survive digestion
 
 //
 // The datum type bolted onto normal preferences datums for storing Virgo stuff
@@ -21,10 +21,11 @@
 	return FALSE
 
 /datum/vore_preferences
-	//Actual preferences
+	// Actual preferences
 	var/digestable = FALSE
 	var/devourable = FALSE
 	var/feeding = FALSE
+	var/absorbable = TRUE
 	var/digest_leave_remains = FALSE
 	var/allowmobvore = FALSE
 	var/list/belly_prefs = list()
@@ -38,7 +39,7 @@
 	var/permit_size_pickup = TRUE
 	var/permit_stripped = FALSE
 
-	//Mechanically required
+	// Mechanically required
 	var/path
 	var/slot
 	var/client/client
@@ -53,7 +54,7 @@
 //
 //	Check if an object is capable of eating things, based on vore_organs
 //
-/proc/is_vore_predator(var/mob/living/O)
+/proc/is_vore_predator(mob/living/O)
 	if(istype(O,/mob/living))
 		if(O.vore_organs.len > 0)
 			return TRUE
@@ -70,29 +71,31 @@
 //
 // Save/Load Vore Preferences
 //
-/datum/vore_preferences/proc/load_path(ckey,slot,filename="character",ext="json")
-	if(!ckey || !slot)	return
+/datum/vore_preferences/proc/load_path(ckey, slot, filename="character", ext="json")
+	if(!ckey || !slot)
+		return
 	path = "data/player_saves/[copytext(ckey,1,2)]/[ckey]/vore/[filename][slot].[ext]"
 
 
 /datum/vore_preferences/proc/load_vore()
 	if(!client || !client_ckey)
-		return FALSE //No client, how can we save?
+		return FALSE // No client, how can we save?
 	if(!client.prefs || !client.prefs.default_slot)
-		return FALSE //Need to know what character to load!
+		return FALSE // Need to know what character to load!
 
 	slot = client.prefs.default_slot
 
 	load_path(client_ckey,slot)
 
-	if(!path) return FALSE //Path couldn't be set?
-	if(!fexists(path)) //Never saved before
-		save_vore() //Make the file first
+	if(!path)
+		return FALSE // Path couldn't be set?
+	if(!fexists(path)) // Never saved before
+		save_vore() // Make the file first
 		return TRUE
 
 	var/list/json_from_file = json_decode(file2text(path))
 	if(!json_from_file)
-		return FALSE //My concern grows
+		return FALSE // My concern grows
 
 	var/version = json_from_file["version"]
 	json_from_file = patch_version(json_from_file,version)
@@ -120,6 +123,8 @@
 		devourable = TRUE
 	if(isnull(feeding))
 		feeding = TRUE
+	if(isnull(absorbable))
+		absorbable = TRUE
 	if(isnull(digest_leave_remains))
 		digest_leave_remains = FALSE
 	if(isnull(allowmobvore))
@@ -144,13 +149,15 @@
 	return TRUE
 
 /datum/vore_preferences/proc/save_vore()
-	if(!path)				return FALSE
+	if(!path)
+		return FALSE
 
-	var/version = VORE_VERSION	//For "good times" use in the future
+	var/version = VORE_VERSION	// For "good times" use in the future
 	var/list/settings_list = list(
 			"version"				= version,
 			"digestable"			= digestable,
 			"devourable"			= devourable,
+			"absorbable"			= absorbable,
 			"feeding"				= feeding,
 			"digest_leave_remains"	= digest_leave_remains,
 			"allowmobvore"			= allowmobvore,

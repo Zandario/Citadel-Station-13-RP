@@ -11,7 +11,7 @@
 	var/weight_vr = 137		// bodyweight of character (pounds, because I'm not doing the math again -Spades)
 	var/weight_gain = 100	// Weight gain rate.
 	var/weight_loss = 50	// Weight loss rate.
-	var/fuzzy = 0			// Preference toggle for sharp/fuzzy icon. Default sharp.
+	var/fuzzy = FALSE		// Preference toggle for sharp/fuzzy icon. Default sharp.
 
 // Definition of the stuff for Sizing
 /datum/category_item/player_setup_item/vore/size
@@ -68,7 +68,7 @@
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["toggle_fuzzy"])
-		pref.fuzzy = pref.fuzzy ? 0 : 1;
+		pref.fuzzy = pref.fuzzy ? FALSE : TRUE;
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["weight"])

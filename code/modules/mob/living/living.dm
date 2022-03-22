@@ -38,6 +38,8 @@
 	if(buckled)
 		buckled.unbuckle_mob(src, TRUE)
 	qdel(selected_image)
+	QDEL_NULL(vorePanel)
+	QDEL_LIST_NULL(vore_organs)
 	return ..()
 
 //mob verbs are faster than object verbs. See mob/verb/examine.
