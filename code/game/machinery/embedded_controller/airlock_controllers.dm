@@ -11,9 +11,9 @@
 	var/tag_interior_sensor
 	var/tag_airlock_mech_sensor
 	var/tag_shuttle_mech_sensor
-	var/tag_secure = 0
+	var/tag_secure = FALSE
 	var/list/dummy_terminals = list()
-	var/cycle_to_external_air = 0
+	var/cycle_to_external_air = FALSE
 	valid_actions = list("cycle_ext", "cycle_int", "force_ext", "force_int", "abort", "purge", "secure")
 	layer = ABOVE_WINDOW_LAYER
 
@@ -49,7 +49,7 @@
 //Airlock controller for airlock control - most airlocks on the station use this
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller
 	name = "Airlock Controller"
-	tag_secure = 1
+	tag_secure = TRUE
 	valid_actions = list("cycle_ext", "cycle_int", "force_ext", "force_int", "abort")
 
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller/ui_data(mob/user)
@@ -67,7 +67,7 @@
 	icon_state = "access_control_standby"
 
 	name = "Access Controller"
-	tag_secure = 1
+	tag_secure = TRUE
 	valid_actions = list("cycle_ext_door", "cycle_int_door", "force_ext", "force_int")
 
 

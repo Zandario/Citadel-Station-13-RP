@@ -11,8 +11,8 @@ GLOBAL_LIST_EMPTY(smeses)
 	name = "power storage unit"
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit."
 	icon_state = "smes"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = USE_POWER_OFF
 	circuit = /obj/item/circuitboard/smes
 
@@ -243,40 +243,40 @@ GLOBAL_LIST_EMPTY(smeses)
 /obj/machinery/power/smes/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(W.is_screwdriver())
 		if(!open_hatch)
-			open_hatch = 1
+			open_hatch = TRUE
 			to_chat(user, "<span class='notice'>You open the maintenance hatch of [src].</span>")
 			playsound(src, W.usesound, 50, 1)
-			return 0
+			return FALSE
 		else
-			open_hatch = 0
+			open_hatch = FALSE
 			to_chat(user, "<span class='notice'>You close the maintenance hatch of [src].</span>")
 			playsound(src, W.usesound, 50, 1)
-			return 0
+			return FALSE
 
 	if (!open_hatch)
 		to_chat(user, "<span class='warning'>You need to open access hatch on [src] first!</span>")
-		return 0
+		return FALSE
 
 	if(istype(W, /obj/item/stack/cable_coil) && !terminal && !building_terminal)
-		building_terminal = 1
+		building_terminal = TRUE
 		var/obj/item/stack/cable_coil/CC = W
 		if (CC.get_amount() < 10)
 			to_chat(user, "<span class='warning'>You need more cables.</span>")
-			building_terminal = 0
-			return 0
+			building_terminal = FALSE
+			return FALSE
 		if (make_terminal(user))
-			building_terminal = 0
-			return 0
-		building_terminal = 0
+			building_terminal = FALSE
+			return FALSE
+		building_terminal = FALSE
 		CC.use(10)
 		user.visible_message(\
 				"<span class='notice'>[user.name] has added cables to the [src].</span>",\
 				"<span class='notice'>You added cables to the [src].</span>")
 		stat = 0
-		return 0
+		return FALSE
 
 	else if(W.is_wirecutter() && terminal && !building_terminal)
-		building_terminal = 1
+		building_terminal = TRUE
 		var/turf/tempTDir = terminal.loc
 		if (istype(tempTDir))
 			if(!tempTDir.is_plating())
@@ -289,17 +289,17 @@ GLOBAL_LIST_EMPTY(smeses)
 						var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 						s.set_up(5, 1, src)
 						s.start()
-						building_terminal = 0
+						building_terminal = FALSE
 						if(usr.stunned)
-							return 0
+							return FALSE
 					new /obj/item/stack/cable_coil(loc,10)
 					user.visible_message(\
 						"<span class='notice'>[user.name] cut the cables and dismantled the power terminal.</span>",\
 						"<span class='notice'>You cut the cables and dismantle the power terminal.</span>")
 					qdel(terminal)
-		building_terminal = 0
-		return 0
-	return 1
+		building_terminal = FALSE
+		return FALSE
+	return TRUE
 
 /obj/machinery/power/smes/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -374,58 +374,6 @@ GLOBAL_LIST_EMPTY(smeses)
 			if(.)
 				output_level = clamp(target, 0, output_level_max)
 
-/*
-/obj/machinery/power/smes/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-
-	if(stat & BROKEN)
-		return
-
-	// this is the data which will be sent to the ui
-	var/data[0]
-	data["nameTag"] = name_tag
-	data["storedCapacity"] = round(100.0*charge/capacity, 0.1)
-	data["storedCapacityAbs"] = round(charge/(1000*60), 0.1)
-	data["storedCapacityMax"] = round(capacity/(1000*60))
-	data["charging"] = inputting
-	data["chargeMode"] = input_attempt
-	data["chargeLevel"] = round(input_level/1000, 0.1)
-	data["chargeMax"] = round(input_level_max/1000)
-	if (terminal && terminal.powernet)
-		data["chargeLoad"] = round(terminal.powernet.avail/1000, 0.1)
-	else
-		data["chargeLoad"] = 0
-	data["outputOnline"] = output_attempt
-	data["outputLevel"] = round(output_level/1000, 0.1)
-	data["outputMax"] = round(output_level_max/1000)
-	data["outputLoad"] = round(output_used/1000, 0.1)
-
-	if(outputting)
-		data["outputting"] = 2			// smes is outputting
-	else if(!outputting && output_attempt)
-		data["outputting"] = 1			// smes is online but not outputting because it's charge level is too low
-	else
-		data["outputting"] = 0			// smes is not outputting
-
-	// update the ui if it exists, returns null if no ui is passed/found
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "smes.tmpl", "SMES Unit", 540, 380)
-		// when the ui is first opened this is the data it will use
-		ui.set_initial_data(data)
-		// open the new ui window
-		ui.open()
-		// auto update every Master Controller tick
-		ui.set_auto_update(1)
-
-/obj/machinery/power/smes/buildable/main/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-
-	if (!ui)
-		ui = new(user, src, ui_key, "smesmain.tmpl", "SMES Unit", 540, 405)
-		ui.set_auto_update(1)
-	..()
-*/
 /obj/machinery/power/smes/proc/getTerminalPower()
 	if (terminal && terminal.powernet)//checks if the SMES has a terminal, and if that terminal has a powernet.
 		. = round(terminal.powernet.avail, 0.1)
@@ -434,43 +382,9 @@ GLOBAL_LIST_EMPTY(smeses)
 	return .
 
 /obj/machinery/power/smes/proc/Percentage()
+	if(!capacity)
+		return FALSE
 	return round(100.0*charge/capacity, 0.1)
-
-/obj/machinery/power/smes/Topic(href, href_list)
-	if(..())
-		return 1
-
-	if( href_list["cmode"] )
-		inputting(!input_attempt)
-		update_icon()
-
-	else if( href_list["online"] )
-		outputting(!output_attempt)
-		update_icon()
-	else if( href_list["input"] )
-		switch( href_list["input"] )
-			if("min")
-				input_level = 0
-			if("max")
-				input_level = input_level_max
-			if("set")
-				input_level = (input(usr, "Enter new input level (0-[input_level_max/1000] kW)", "SMES Input Power Control", input_level/1000) as num) * 1000
-		input_level = max(0, min(input_level_max, input_level))	// clamp to range
-
-	else if( href_list["output"] )
-		switch( href_list["output"] )
-			if("min")
-				output_level = 0
-			if("max")
-				output_level = output_level_max
-			if("set")
-				output_level = (input(usr, "Enter new output level (0-[output_level_max/1000] kW)", "SMES Output Power Control", output_level/1000) as num) * 1000
-		output_level = max(0, min(output_level_max, output_level))	// clamp to range
-
-	investigate_log("input/output; <font color='[input_level>output_level?"green":"red"][input_level]/[output_level]</font> | Output-mode: [output_attempt?"<font color='green'>on</font>":"<font color='red'>off</font>"] | Input-mode: [input_attempt?"<font color='green'>auto</font>":"<font color='red'>off</font>"] by [usr.key]","singulo")
-	log_game("SMES([x],[y],[z]) [key_name(usr)] changed settings: I:[input_level]([input_attempt]), O:[output_level]([output_attempt])")
-	return 1
-
 
 /obj/machinery/power/smes/proc/ion_act()
 	if(src.z in GLOB.using_map.station_levels)
@@ -548,4 +462,3 @@ GLOBAL_LIST_EMPTY(smeses)
 	charge = 2e6
 	input_level = 100000
 	output_level = 200000
-

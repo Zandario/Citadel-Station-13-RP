@@ -30,6 +30,11 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 #define MAINT	 0x8	// Under maintenance.
 #define EMPED	 0x10	// Temporary broken by EMP pulse.
 
+// Remote control states
+#define RCON_NO		1
+#define RCON_AUTO	2
+#define RCON_YES	3
+
 // Used by firelocks
 #define FIREDOOR_OPEN 1
 #define FIREDOOR_CLOSED 2
@@ -141,6 +146,10 @@ var/list/restricted_camera_networks = list(NETWORK_ERT,NETWORK_MERCENARY,"Secret
 #define SUPERMATTER_DANGER 4		// Integrity < 50%
 #define SUPERMATTER_EMERGENCY 5		// Integrity < 25%
 #define SUPERMATTER_DELAMINATING 6	// Pretty obvious.
+
+#define MACHINE_NOT_ELECTRIFIED 0
+#define MACHINE_ELECTRIFIED_PERMANENT -1
+#define MACHINE_DEFAULT_ELECTRIFY_TIME 30
 
 //wIP - PORT ALL OF THESE TO SUBSYSTEMS AND GET RID OF THE WHOLE LIST PROCESS THING
 // Fancy-pants START/STOP_PROCESSING() macros that lets us custom define what the list is.

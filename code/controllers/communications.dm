@@ -356,7 +356,7 @@ var/global/datum/controller/radio/radio_controller
 /datum/signal
 	var/obj/source
 
-	var/transmission_method = 0 //unused at the moment
+	var/transmission_method = TRANSMISSION_WIRE //unused at the moment
 	//0 = wire
 	//1 = radio transmission
 	//2 = subspace transmission

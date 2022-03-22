@@ -65,13 +65,29 @@
 		return
 
 	update_icon()
+	handle_leaking()
 	return
 
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/set_leaking(var/new_leaking) // They already process, no need for manual processing toggles.
+	if(new_leaking && !leaking)
+		leaking = TRUE
+		if(parent)
+			parent.leaks |= src
+			if(parent.network)
+				parent.network.leaks |= src
+	else if (!new_leaking && leaking)
+		leaking = FALSE
+		if(parent)
+			parent.leaks -= src
+			if(parent.network)
+				parent.network.leaks -= src
 
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/process(delta_time)
 	if(!parent)
 		..()
 	else
+		if(leaking)
+			parent.mingle_with_turf(loc, volume)
 		var/datum/gas_mixture/pipe_air = return_air()
 		if(istype(loc, /turf/simulated/))
 			var/turf/simulated/location_as_turf = loc
@@ -179,4 +195,5 @@
 		return
 
 	update_icon()
+	handle_leaking()
 	return

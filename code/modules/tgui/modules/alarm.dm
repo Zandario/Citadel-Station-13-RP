@@ -11,7 +11,7 @@
 /datum/tgui_module/alarm_monitor/all
 /datum/tgui_module/alarm_monitor/all/New()
 	..()
-	alarm_handlers = SSalarm.all_handlers
+	alarm_handlers = SSalarms.all_handlers
 
 // Subtype for glasses_state
 /datum/tgui_module/alarm_monitor/all/glasses
@@ -20,12 +20,12 @@
 
 /datum/tgui_module/alarm_monitor/all/robot
 /datum/tgui_module/alarm_monitor/all/robot/ui_state(mob/user)
-	return GLOB.tgui_self_state
+	return GLOB.self_state
 
 /datum/tgui_module/alarm_monitor/engineering
 /datum/tgui_module/alarm_monitor/engineering/New()
 	..()
-	alarm_handlers = list(atmosphere_alarm, fire_alarm, power_alarm)
+	alarm_handlers = list(SSalarms.atmosphere_alarm, SSalarms.fire_alarm, SSalarms.power_alarm)
 
 // Subtype for glasses_state
 /datum/tgui_module/alarm_monitor/engineering/glasses
@@ -44,7 +44,7 @@
 /datum/tgui_module/alarm_monitor/security
 /datum/tgui_module/alarm_monitor/security/New()
 	..()
-	alarm_handlers = list(camera_alarm, motion_alarm)
+	alarm_handlers = list(SSalarms.camera_alarm, SSalarms.motion_alarm)
 
 // Subtype for glasses_state
 /datum/tgui_module/alarm_monitor/security/glasses
@@ -84,9 +84,8 @@
 	var/z = get_z(ui_host())
 	for(var/datum/alarm_handler/AH in alarm_handlers)
 		if(AH.has_major_alarms(z))
-			return 1
-
-	return 0
+			return TRUE
+	return FALSE
 
 /datum/tgui_module/alarm_monitor/proc/minor_alarms()
 	var/z = get_z(ui_host())
@@ -112,7 +111,7 @@
 				return
 
 			usr.switch_to_camera(C)
-			return 1
+			return TRUE
 
 /datum/tgui_module/alarm_monitor/ui_data(mob/user)
 	var/list/data = list()

@@ -2,7 +2,7 @@
 	name = "Atmospherics Control"
 	tgui_id = "AtmosControl"
 	var/obj/access = new()
-	var/emagged = 0
+	var/emagged = FALSE
 	var/ui_ref
 	var/list/monitored_alarms = list()
 
@@ -13,7 +13,7 @@
 
 	if(monitored_alarm_ids)
 		for(var/obj/machinery/alarm/alarm in machines)
-			if(alarm.alarm_id && alarm.alarm_id in monitored_alarm_ids)
+			if(alarm.alarm_id && (alarm.alarm_id in monitored_alarm_ids))
 				monitored_alarms += alarm
 		// machines may not yet be ordered at this point
 		monitored_alarms = dd_sortedObjectList(monitored_alarms)
@@ -104,6 +104,7 @@
 	return user && (isAI(user) || atmos_control.access.allowed(user) || atmos_control.emagged || air_alarm.rcon_setting == RCON_YES || (air_alarm.alarm_area.atmosalm && air_alarm.rcon_setting == RCON_AUTO) || (access_ce in user.GetAccess()))
 
 /datum/ui_state/air_alarm_remote/Destroy()
+	. = ..()
 	atmos_control = null
 	air_alarm = null
 
@@ -112,4 +113,4 @@
 
 /datum/tgui_module/atmos_control/robot
 /datum/tgui_module/atmos_control/robot/ui_state(mob/user)
-	return GLOB.tgui_self_state
+	return GLOB.self_state

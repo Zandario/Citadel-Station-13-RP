@@ -7,8 +7,8 @@
 	icon = 'icons/obj/machines/algae_vr.dmi'
 	icon_state = "algae-off"
 	circuit = /obj/item/circuitboard/algae_farm
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	power_channel = EQUIP
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 100		// Minimal lights to keep algae alive
@@ -65,7 +65,7 @@
 			last_power_draw = idle_power_usage
 		else
 			last_power_draw = 0
-		return 0
+		return FALSE
 
 	last_power_draw = active_power_usage
 
@@ -122,7 +122,7 @@
 		icon_state = "algae-full"
 	else
 		icon_state = "algae-on"
-	return 1
+	return TRUE
 
 /obj/machinery/atmospherics/binary/algae_farm/attackby(obj/item/W as obj, mob/user as mob)
 	add_fingerprint(user)
@@ -140,8 +140,8 @@
 
 /obj/machinery/atmospherics/binary/algae_farm/attack_hand(mob/user)
 	if(..())
-		return 1
-	nano_ui_interact(user)
+		return TRUE
+	ui_interact(user)
 
 /obj/machinery/atmospherics/binary/algae_farm/RefreshParts()
 	..()
@@ -166,7 +166,13 @@
 
 	moles_per_tick = initial(moles_per_tick) + (manip_rating**2 - 1)
 
-/obj/machinery/atmospherics/binary/algae_farm/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/nanoui/master_ui = null, var/datum/topic_state/state = default_state)
+/obj/machinery/atmospherics/binary/algae_farm/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AlgaeFarm", name)
+		ui.open()
+
+/obj/machinery/atmospherics/binary/algae_farm/ui_data(mob/user)
 	var/data[0]
 	data["panelOpen"] = panel_open
 
@@ -199,41 +205,28 @@
 			"percent" = air2.total_moles ? round((air2.gas[output_gas] / air2.total_moles) * 100) : 0,
 			"moles" = round(air2.gas[output_gas], 0.01))
 
-	// update the ui if it exists, returns null if no ui is passed/found
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "algae_farm_vr.tmpl", "Algae Farm Control Panel", 500, 600)
-		ui.set_initial_data(data)
-		ui.set_auto_update(TRUE)
-		ui.open()
+	return data
 
-/obj/machinery/atmospherics/binary/algae_farm/Topic(href, href_list)
+/obj/machinery/atmospherics/binary/algae_farm/ui_act(action, params)
 	if(..())
-		return 1
-	usr.set_machine(src)
+		return TRUE
 	add_fingerprint(usr)
 
-	// Queue management can be done even while busy
-	if(href_list["activate"])
-		update_use_power(USE_POWER_ACTIVE)
-		update_icon()
-		updateUsrDialog()
-		return
+	switch(action)
+		if("toggle")
+			if(use_power == USE_POWER_IDLE)
+				update_use_power(USE_POWER_ACTIVE)
+			else
+				update_use_power(USE_POWER_IDLE)
+			update_icon()
+			. = TRUE
 
-	if(href_list["deactivate"])
-		update_use_power(USE_POWER_IDLE)
-		update_icon()
-		updateUsrDialog()
-		return
-
-	if(href_list["ejectMaterial"])
-		var/matName = href_list["ejectMaterial"]
-		if(!(matName in stored_material))
-			return
-		eject_materials(matName, 0)
-		updateUsrDialog()
-		return
-
+		if("ejectMaterial")
+			var/matName = params["mat"]
+			if(!(matName in stored_material))
+				return
+			eject_materials(matName, 0)
+			. = TRUE
 
 // TODO - These should be replaced with materials datum.
 
@@ -257,7 +250,7 @@
 // Attept to load materials.  Returns 0 if item wasn't a stack of materials, otherwise 1 (even if failed to load)
 /obj/machinery/atmospherics/binary/algae_farm/proc/try_load_materials(var/mob/user, var/obj/item/stack/material/S)
 	if(!istype(S))
-		return 0
+		return FALSE
 	if(!(S.material.name in stored_material))
 		to_chat(user, "<span class='warning'>\The [src] doesn't accept [material_display_name(S.material)]!</span>")
 		return 1
@@ -272,7 +265,7 @@
 		updateUsrDialog()
 	else
 		to_chat(user, "<span class='warning'>\The [src] cannot hold more [S.name].</span>")
-	return 1
+	return TRUE
 
 /datum/material/algae
 	name = MATERIAL_ALGAE

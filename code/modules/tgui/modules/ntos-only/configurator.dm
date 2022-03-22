@@ -39,7 +39,7 @@
 
 /datum/tgui_module/computer_configurator/ui_act(action, params)
 	if(..())
-		return
+		return TRUE
 	switch(action)
 		if("PC_toggle_component")
 			var/obj/item/computer_hardware/H = movable.find_hardware_by_name(params["name"])

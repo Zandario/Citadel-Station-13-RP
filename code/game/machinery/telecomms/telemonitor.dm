@@ -1,6 +1,3 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
-
-
 /*
 	Telecomms monitor tracks the overall trafficing of a telecommunications network
 	and displays a heirarchy of linked machines.
@@ -18,7 +15,7 @@
 
 	var/network = "NULL"		// the network to probe
 
-	var/list/temp = null				// temporary feedback messages
+	var/list/temp = null		// temporary feedback messages
 
 /obj/machinery/computer/telecomms/monitor/ui_data(mob/user)
 	var/list/data = list()
@@ -119,10 +116,10 @@
 /obj/machinery/computer/telecomms/monitor/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
-		emagged = 1
+		emagged = TRUE
 		to_chat(user, "<span class='notice'>You you disable the security protocols</span>")
 		src.updateUsrDialog()
-		return 1
+		return TRUE
 
 /obj/machinery/computer/telecomms/monitor/proc/set_temp(var/text, var/color = "average")
 	temp = list("color" = color, "text" = text)

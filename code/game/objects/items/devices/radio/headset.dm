@@ -5,16 +5,16 @@
 	icon_state = "headset"
 	item_state = null	// To remove the radio's state
 	matter = list(DEFAULT_WALL_MATERIAL = 75)
-	subspace_transmission = 1
-	canhear_range = 0	// Can't hear headsets from very far away
+	subspace_transmission = TRUE
+	canhear_range = FALSE	// Can't hear headsets from very far away
 	slot_flags = SLOT_EARS
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/mob/species/teshari/ears.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/ears.dmi'
 		)
 
-	var/translate_binary = 0
-	var/translate_hive = 0
+	var/translate_binary = FALSE
+	var/translate_hive = FALSE
 	var/ear_protection = 0	// Flashbang Protection... I know.
 	var/obj/item/encryptionkey/keyslot1 = null
 	var/obj/item/encryptionkey/keyslot2 = null
@@ -85,19 +85,19 @@
 
 /obj/item/radio/headset/syndicate
 	origin_tech = list(TECH_ILLEGAL = 3)
-	syndie = 1
+	syndie = TRUE
 	ks1type = /obj/item/encryptionkey/syndicate
 
 /obj/item/radio/headset/syndicate/alt
 	icon_state = "syndie_headset"
 	item_state = "headset"
 	origin_tech = list(TECH_ILLEGAL = 3)
-	syndie = 1
+	syndie = TRUE
 	ks1type = /obj/item/encryptionkey/syndicate
 
 /obj/item/radio/headset/raider
 	origin_tech = list(TECH_ILLEGAL = 2)
-	syndie = 1
+	syndie = TRUE
 	ks1type = /obj/item/encryptionkey/raider
 
 /obj/item/radio/headset/raider/Initialize(mapload)
@@ -107,7 +107,7 @@
 /obj/item/radio/headset/trader
 	name = "trade headset"
 	origin_tech = list(TECH_ILLEGAL = 2)
-	syndie = 1
+	syndie = TRUE
 	adhoc_fallback = TRUE
 	ks1type = /obj/item/encryptionkey/trader
 
@@ -322,8 +322,8 @@
 	name = "emergency response team radio headset"
 	desc = "The headset of the boss's boss."
 	icon_state = "com_headset"
-	centComm = 1
-//	freerange = 1
+	centComm = TRUE
+//	freerange = TRUE
 	ks2type = /obj/item/encryptionkey/ert
 
 /obj/item/radio/headset/ert/alt
@@ -331,7 +331,7 @@
 	desc = "The headset of the boss's boss."
 	icon_state = "com_headset_alt"
 	ear_protection = 2
-//	freerange = 1
+//	freerange = TRUE
 	ks2type = /obj/item/encryptionkey/ert
 
 /obj/item/radio/headset/omni		//Only for the admin intercoms
@@ -350,7 +350,7 @@
 	icon_state = "radio"
 	item_state = "headset"
 	var/mmiowner = null
-	var/radio_enabled = 1
+	var/radio_enabled = TRUE
 
 /obj/item/radio/headset/mmi_radio/receive_range(freq, level)
 	if (!radio_enabled || istype(src.loc.loc, /mob/living/silicon) || istype(src.loc.loc, /obj/item/organ/internal))
@@ -414,11 +414,11 @@
 	return
 
 
-/obj/item/radio/headset/proc/recalculateChannels(var/setDescription = 0)
+/obj/item/radio/headset/recalculateChannels(var/setDescription = 0)
 	src.channels = list()
-	src.translate_binary = 0
-	src.translate_hive = 0
-	src.syndie = 0
+	src.translate_binary = FALSE
+	src.translate_hive = FALSE
+	src.syndie = FALSE
 
 	if(keyslot1)
 		for(var/ch_name in keyslot1.channels)
@@ -428,13 +428,13 @@
 			src.channels[ch_name] = keyslot1.channels[ch_name]
 
 		if(keyslot1.translate_binary)
-			src.translate_binary = 1
+			src.translate_binary = TRUE
 
 		if(keyslot1.translate_hive)
-			src.translate_hive = 1
+			src.translate_hive = TRUE
 
 		if(keyslot1.syndie)
-			src.syndie = 1
+			src.syndie = TRUE
 
 	if(keyslot2)
 		for(var/ch_name in keyslot2.channels)
@@ -444,13 +444,13 @@
 			src.channels[ch_name] = keyslot2.channels[ch_name]
 
 		if(keyslot2.translate_binary)
-			src.translate_binary = 1
+			src.translate_binary = TRUE
 
 		if(keyslot2.translate_hive)
-			src.translate_hive = 1
+			src.translate_hive = TRUE
 
 		if(keyslot2.syndie)
-			src.syndie = 1
+			src.syndie = TRUE
 
 
 	for (var/ch_name in channels)
@@ -476,7 +476,7 @@
 	desc = "The headset of the boss's boss."
 	icon_state = "cent_headset"
 	item_state = "headset"
-	centComm = 1
+	centComm = TRUE
 	ks2type = /obj/item/encryptionkey/ert
 
 /obj/item/radio/headset/centcom/alt
@@ -488,7 +488,7 @@
 	name = "\improper NT radio headset"
 	desc = "The headset of a Nanotrasen corporate employee."
 	icon_state = "nt_headset"
-	centComm = 1
+	centComm = TRUE
 	ks2type = /obj/item/encryptionkey/ert
 
 /obj/item/radio/headset

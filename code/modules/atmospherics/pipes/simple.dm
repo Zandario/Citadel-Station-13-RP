@@ -147,6 +147,7 @@
 	var/turf/T = loc
 	if(level == 1 && !T.is_plating()) hide(1)
 	update_icon()
+	handle_leaking()
 
 /obj/machinery/atmospherics/pipe/simple/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
@@ -160,8 +161,15 @@
 		node2 = null
 
 	update_icon()
+	handle_leaking()
 
 	return null
+
+/obj/machinery/atmospherics/pipe/simple/handle_leaking()
+	if(node1 && node2)
+		set_leaking(FALSE)
+	else
+		set_leaking(TRUE)
 
 /obj/machinery/atmospherics/pipe/simple/visible
 	icon_state = "intact"

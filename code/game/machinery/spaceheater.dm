@@ -1,13 +1,13 @@
 /obj/machinery/space_heater
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "sheater0"
 	name = "space heater"
 	desc = "Made by Space Amish using traditional space techniques, this heater is guaranteed not to set the station on fire."
 	var/obj/item/cell/cell
 	var/cell_type = /obj/item/cell/high
-	var/on = 0
+	var/on = FALSE
 	var/set_temperature = T0C + 20	//K
 	var/heating_power = 40000
 
@@ -39,8 +39,8 @@
 
 /obj/machinery/space_heater/powered()
 	if(cell && cell.charge)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/machinery/space_heater/emp_act(severity)
 	if(stat & (BROKEN|NOPOWER))
@@ -87,75 +87,74 @@
 	interact(user)
 
 /obj/machinery/space_heater/interact(mob/user as mob)
-
 	if(panel_open)
-
-		var/dat
-		dat = "Power cell: "
-		if(cell)
-			dat += "<A href='byond://?src=\ref[src];op=cellremove'>Installed</A><BR>"
-		else
-			dat += "<A href='byond://?src=\ref[src];op=cellinstall'>Removed</A><BR>"
-
-		dat += "Power Level: [cell ? round(cell.percent(),1) : 0]%<BR><BR>"
-
-		dat += "Set Temperature: "
-
-		dat += "<A href='?src=\ref[src];op=temp;val=-5'>-</A>"
-
-		dat += " [set_temperature]K ([set_temperature-T0C]&deg;C)"
-		dat += "<A href='?src=\ref[src];op=temp;val=5'>+</A><BR>"
-
-		user.set_machine(src)
-		user << browse("<HEAD><TITLE>Space Heater Control Panel</TITLE></HEAD><TT>[dat]</TT>", "window=spaceheater")
-		onclose(user, "spaceheater")
+		ui_interact(user)
 	else
 		on = !on
 		user.visible_message("<span class='notice'>[user] switches [on ? "on" : "off"] the [src].</span>","<span class='notice'>You switch [on ? "on" : "off"] the [src].</span>")
 		update_icon()
 	return
 
+/obj/machinery/space_heater/ui_state(mob/user)
+	return GLOB.physical_state
 
-/obj/machinery/space_heater/Topic(href, href_list)
-	if(usr.stat)
-		return
-	if((in_range(src, usr) && istype(src.loc, /turf)) || (istype(usr, /mob/living/silicon)))
-		usr.set_machine(src)
+/obj/machinery/space_heater/ui_status(mob/user)
+	if(!panel_open)
+		return UI_CLOSE
+	return ..()
 
-		switch(href_list["op"])
+/obj/machinery/space_heater/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "SpaceHeater", name)
+		ui.open()
 
-			if("temp")
-				var/value = text2num(href_list["val"])
+/obj/machinery/space_heater/ui_data(mob/user)
+	var/list/data = list()
 
-				// limit to 0-90 degC
-				set_temperature = clamp(set_temperature + value, T0C, T0C + 90)
+	data["cell"] = !!cell
+	data["power"] = round(cell?.percent(), 1)
+	data["temp"] = set_temperature
+	data["minTemp"] = T0C
+	data["maxTemp"] = T0C + 90
 
-			if("cellremove")
-				if(panel_open && cell && !usr.get_active_hand())
-					usr.visible_message("<span class='notice'>\The [usr] removes \the [cell] from \the [src].</span>", "<span class='notice'>You remove \the [cell] from \the [src].</span>")
-					cell.update_icon()
-					usr.put_in_hands(cell)
-					cell.add_fingerprint(usr)
-					cell = null
+	return data
+
+/obj/machinery/space_heater/ui_act(action, params)
+	if(..())
+		return TRUE
+
+	if(!panel_open)
+		return FALSE
+
+	switch(action)
+		if("temp")
+			// limit to 0-90 degC
+			set_temperature = clamp(text2num(params["newtemp"]), T0C, T0C + 90)
+			. = TRUE
+
+		if("cellremove")
+			if(cell && !usr.get_active_hand())
+				usr.visible_message("<span class='notice'>[usr] removes [cell] from [src].</span>", "<span class='notice'>You remove [cell] from [src].</span>")
+				cell.update_icon()
+				usr.put_in_hands(cell)
+				cell.add_fingerprint(usr)
+				cell = null
+				power_change()
+				. = TRUE
+
+
+		if("cellinstall")
+			if(!cell)
+				var/obj/item/cell/C = usr.get_active_hand()
+				if(istype(C))
+					usr.drop_item()
+					cell = C
+					C.loc = src
+					C.add_fingerprint(usr)
 					power_change()
-
-
-			if("cellinstall")
-				if(panel_open && !cell)
-					var/obj/item/cell/C = usr.get_active_hand()
-					if(istype(C))
-						usr.drop_item()
-						cell = C
-						C.loc = src
-						C.add_fingerprint(usr)
-						power_change()
-						usr.visible_message("<span class='notice'>[usr] inserts \the [C] into \the [src].</span>", "<span class='notice'>You insert \the [C] into \the [src].</span>")
-
-		updateDialog()
-	else
-		usr << browse(null, "window=spaceheater")
-		usr.unset_machine()
-	return
+					usr.visible_message("<span class='notice'>[usr] inserts \the [C] into \the [src].</span>", "<span class='notice'>You insert \the [C] into \the [src].</span>")
+				. = TRUE
 
 /obj/machinery/space_heater/process(delta_time)
 	if(on)
@@ -186,7 +185,7 @@
 
 				env.merge(removed)
 		else
-			on = 0
+			on = FALSE
 			power_change()
 			update_icon()
 
@@ -199,8 +198,8 @@
 	desc = "A massive machine that can either add or remove thermal energy from the surrounding environment. Must be secured onto a powered wire node to function."
 	icon = 'icons/obj/machines/thermoregulator_vr.dmi'
 	icon_state = "lasergen"
-	density = 1
-	anchored = 0
+	density = TRUE
+	anchored = FALSE
 
 	use_power = USE_POWER_OFF //is powered directly from cables
 	active_power_usage = 150 KILOWATTS  //BIG POWER
@@ -208,12 +207,12 @@
 
 	circuit = /obj/item/circuitboard/thermoregulator
 
-	var/on = 0
+	var/on = FALSE
 	var/target_temp = T20C
 	var/mode = MODE_IDLE
 
-/obj/machinery/power/thermoregulator/Initialize()
-	.=..()
+/obj/machinery/power/thermoregulator/Initialize(mapload, newdir)
+	. = ..()
 	default_apply_parts()
 
 /obj/machinery/power/thermoregulator/examine(mob/user)
@@ -310,7 +309,7 @@
 				overlays += "lasergen-cool"
 
 /obj/machinery/power/thermoregulator/proc/turn_off()
-	on = 0
+	on = FALSE
 	change_mode(MODE_IDLE)
 	update_icon()
 
@@ -322,7 +321,7 @@
 
 /obj/machinery/power/thermoregulator/emp_act(severity)
 	if(!on)
-		on = 1
+		on = TRUE
 	target_temp += rand(0, 1000)
 	update_icon()
 	..(severity)

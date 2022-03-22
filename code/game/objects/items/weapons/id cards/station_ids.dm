@@ -17,8 +17,7 @@
 	var/dna_hash = "\[UNSET\]"
 	var/fingerprint_hash = "\[UNSET\]"
 	var/sex = "\[UNSET\]"
-	var/icon/front
-	var/icon/side
+	var/front
 
 	var/primary_color = rgb(0,0,0) // Obtained by eyedroppering the stripe in the middle of the card
 	var/secondary_color = rgb(0,0,0) // Likewise for the oval in the top-left corner
@@ -35,28 +34,31 @@
 
 /obj/item/card/id/examine(mob/user)
 	. = ..()
-	show(user)
+	if(in_range(user, src))
+		ui_interact(user) //Not chat related
+	else
+		. += "<span class='warning'>It is too far away to read.</span>"
 
 /obj/item/card/id/proc/prevent_tracking()
-	return 0
+	return FALSE
 
-/obj/item/card/id/proc/show(mob/user as mob)
-	if(front && side)
-		user << browse_rsc(front, "front.png")
-		user << browse_rsc(side, "side.png")
-	var/datum/browser/popup = new(user, "idcard", name, 600, 250)
-	popup.set_content(dat())
-	popup.open()
-	return
+/obj/item/card/id/ui_state(mob/user)
+	return GLOB.deep_inventory_state
+
+/obj/item/card/id/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "IDCard", name)
+		ui.open()
 
 /obj/item/card/id/update_name()
-	. = ..()
 	name = "[src.registered_name]'s ID Card ([src.assignment])"
 
 /obj/item/card/id/proc/set_id_photo(var/mob/M)
-	var/icon/charicon = cached_character_icon(M)
-	front = icon(charicon,dir = SOUTH)
-	side = icon(charicon,dir = WEST)
+	COMPILE_OVERLAYS(M)
+	SSoverlays.queue -= M
+	var/icon/F = getFlatIcon(M, defdir = SOUTH, no_anim = TRUE)
+	front = "'data:image/png;base64,[icon2base64(F)]'"
 
 /mob/proc/set_id_info(var/obj/item/card/id/id_card)
 	id_card.age = 0
@@ -73,24 +75,25 @@
 /mob/living/carbon/human/set_id_info(var/obj/item/card/id/id_card)
 	..()
 	id_card.age = age
+	id_card.sex = capitalize(name_gender())
 
-/obj/item/card/id/proc/dat()
-	var/dat = ("<table><tr><td>")
-	dat += text("Name: []</A><BR>", registered_name)
-	dat += text("Sex: []</A><BR>\n", sex)
-	dat += text("Age: []</A><BR>\n", age)
-	dat += text("Rank: []</A><BR>\n", assignment)
-	dat += text("Fingerprint: []</A><BR>\n", fingerprint_hash)
-	dat += text("Blood Type: []<BR>\n", blood_type)
-	dat += text("DNA Hash: []<BR><BR>\n", dna_hash)
-	if(front && side)
-		dat +="<td align = center valign = top>Photo:<br><img src=front.png height=80 width=80 border=4><img src=side.png height=80 width=80 border=4></td>"
-	dat += "</tr></table>"
-	return dat
+/obj/item/card/id/ui_data(mob/user)
+	var/list/data = list()
+
+	data["registered_name"] = registered_name
+	data["sex"] = sex
+	data["age"] = age
+	data["assignment"] = assignment
+	data["fingerprint_hash"] = fingerprint_hash
+	data["blood_type"] = blood_type
+	data["dna_hash"] = dna_hash
+	data["photo_front"] = front
+
+	return data
 
 /obj/item/card/id/attack_self(mob/user as mob)
-	user.visible_message("\The [user] shows you: [icon2html(thing = src, target = world)] [src.name]. The assignment on the card: [src.assignment]",\
-		"You flash your ID card: [icon2html(thing = src, target = user)] [src.name]. The assignment on the card: [src.assignment]")
+	user.visible_message("\The [user] shows you: [icon2html(src)] [src.name]. The assignment on the card: [src.assignment]",\
+		"You flash your ID card: [icon2html(src)] [src.name]. The assignment on the card: [src.assignment]")
 
 	src.add_fingerprint(user)
 	return
@@ -106,7 +109,7 @@
 	set category = "Object"
 	set src in usr
 
-	to_chat(usr, "[icon2html(thing = src, target = usr)] [src.name]: The current assignment on the card is [src.assignment].")
+	to_chat(usr, "[icon2html(src)] [src.name]: The current assignment on the card is [src.assignment].")
 	to_chat(usr, "The blood type on the card is [blood_type].")
 	to_chat(usr, "The DNA hash on the card is [dna_hash].")
 	to_chat(usr, "The fingerprint hash on the card is [fingerprint_hash].")

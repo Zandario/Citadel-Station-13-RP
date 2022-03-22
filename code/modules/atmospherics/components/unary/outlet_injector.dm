@@ -111,7 +111,7 @@
 
 /obj/machinery/atmospherics/unary/outlet_injector/ui_act(action, params)
 	if(..())
-		return
+		return TRUE
 
 	switch(action)
 		if("power")
@@ -147,7 +147,7 @@
 		return 0
 
 	var/datum/signal/signal = new
-	signal.transmission_method = 1 //radio signal
+	signal.transmission_method = TRANSMISSION_RADIO //radio signal
 	signal.source = src
 
 	signal.data = list(

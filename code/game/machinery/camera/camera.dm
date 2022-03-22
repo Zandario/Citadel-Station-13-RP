@@ -13,9 +13,9 @@
 	var/c_tag = null
 	var/c_tag_order = 999
 	var/status = 1
-	anchored = 1.0
-	var/invuln = 0
-	var/bugged = 0
+	anchored = TRUE
+	var/invuln = FALSE
+	var/bugged = FALSE
 	var/obj/item/camera_assembly/assembly = null
 
 	var/toughness = 5 //sorta fragile
@@ -28,11 +28,11 @@
 	var/view_range = 7
 	var/short_range = 2
 
-	var/light_disabled = 0
-	var/alarm_on = 0
-	var/busy = 0
+	var/light_disabled = FALSE
+	var/alarm_on = FALSE
+	var/busy = FALSE
 
-	var/on_open_network = 0
+	var/on_open_network = FALSE
 
 	var/affected_by_emp_until = 0
 
@@ -61,12 +61,11 @@
 			log_world("[src.name] in [get_area(src)]has errored. [src.network?"Empty network list":"Null network list"]")
 		ASSERT(src.network)
 		ASSERT(src.network.len > 0)
-	// VOREStation Edit Start - Make mapping with cameras easier
+	// Make mapping with cameras easier
 	if(!c_tag)
 		var/area/A = get_area(src)
 		c_tag = "[A ? A.name : "Unknown"] #[rand(111,999)]"
 	return ..()
-	// VOREStation Edit End
 
 /obj/machinery/camera/Destroy()
 	deactivate(null, 0) //kick anyone viewing out
@@ -301,14 +300,14 @@
 		icon_state = initial(icon_state)
 
 /obj/machinery/camera/proc/triggerCameraAlarm(var/duration = 0)
-	alarm_on = 1
+	alarm_on = TRUE
 	SSalarms.camera_alarm.triggerAlarm(loc, src, duration)
 
 /obj/machinery/camera/proc/cancelCameraAlarm()
 	if(wires.is_cut(WIRE_CAM_ALARM))
 		return
 
-	alarm_on = 0
+	alarm_on = FALSE
 	SSalarms.camera_alarm.clearAlarm(loc, src)
 
 //if false, then the camera is listed as DEACTIVATED and cannot be used
@@ -364,22 +363,22 @@
 /obj/machinery/camera/proc/weld(var/obj/item/weldingtool/WT, var/mob/user)
 
 	if(busy)
-		return 0
+		return FALSE
 	if(!WT.isOn())
-		return 0
+		return FALSE
 
 	// Do after stuff here
 	to_chat(user, "<span class='notice'>You start to weld [src]..</span>")
 	playsound(src.loc, WT.usesound, 50, 1)
 	WT.eyecheck(user)
-	busy = 1
+	busy = TRUE
 	if(do_after(user, 100 * WT.toolspeed))
-		busy = 0
+		busy = FALSE
 		if(!WT.isOn())
-			return 0
-		return 1
-	busy = 0
-	return 0
+			return FALSE
+		return TRUE
+	busy = FALSE
+	return FALSE
 
 /obj/machinery/camera/interact(mob/living/user as mob)
 	if(!panel_open || istype(user, /mob/living/silicon/ai))
@@ -437,7 +436,7 @@
 		network.Cut()
 		update_coverage(1)
 
-/obj/machinery/camera/proc/nano_structure()
+/obj/machinery/camera/proc/tgui_structure()
 	var/cam[0]
 	cam["name"] = sanitize(c_tag)
 	cam["deact"] = !can_use()

@@ -12,10 +12,10 @@
 	var/obj/machinery/telecomms/server/SelectedServer
 	circuit = /obj/item/circuitboard/comm_server
 
-	var/network = "NULL"		// the network to probe
-	var/list/temp = null				// temporary feedback messages
+	var/network = "NULL"	// the network to probe
+	var/list/temp = null	// temporary feedback messages
 
-	var/universal_translate = 0 // set to 1 if it can translate nonhuman speech
+	var/universal_translate = FALSE // set to TRUE if it can translate nonhuman speech
 
 	req_access = list(access_tcomsat)
 
@@ -144,10 +144,10 @@
 /obj/machinery/computer/telecomms/server/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
-		emagged = 1
+		emagged = TRUE
 		to_chat(user, "<span class='notice'>You you disable the security protocols</span>")
 		src.updateUsrDialog()
-		return 1
+		return TRUE
 
 /obj/machinery/computer/telecomms/server/proc/set_temp(var/text, var/color = "average")
 	temp = list("color" = color, "text" = text)

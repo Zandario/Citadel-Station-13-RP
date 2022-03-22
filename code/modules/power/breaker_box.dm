@@ -12,8 +12,8 @@
 	//directwired = 0
 	var/icon_state_on = "bbox_on"
 	var/icon_state_off = "bbox_off"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	circuit = /obj/item/circuitboard/breakerbox
 	var/on = 0
 	var/busy = 0
@@ -26,7 +26,7 @@
 	for(var/obj/structure/cable/C in loc)
 		qdel(C)
 	. = ..()
-	for(var/datum/nano_module/rcon/R in world)
+	for(var/datum/tgui_module/rcon/R in world)
 		R.FindDevices()
 
 /obj/machinery/power/breakerbox/Initialize(mapload)
@@ -62,15 +62,15 @@
 		to_chat(user, "<font color='red'>System is busy. Please wait until current operation is finished before changing power settings.</font>")
 		return
 
-	busy = 1
+	busy = TRUE
 	to_chat(user, "<font color='green'>Updating power settings...</font>")
 	if(do_after(user, 50))
 		set_state(!on)
 		to_chat(user, "<font color='green'>Update Completed. New setting:[on ? "on": "off"]</font>")
-		update_locked = 1
+		update_locked = TRUE
 		spawn(600)
-			update_locked = 0
-	busy = 0
+			update_locked = FALSE
+	busy = FALSE
 
 
 /obj/machinery/power/breakerbox/attack_hand(mob/user)
@@ -82,7 +82,7 @@
 		to_chat(user, "<font color='red'>System is busy. Please wait until current operation is finished before changing power settings.</font>")
 		return
 
-	busy = 1
+	busy = TRUE
 	for(var/mob/O in viewers(user))
 		O.show_message(text("<font color='red'>[user] started reprogramming [src]!</font>"), 1)
 
@@ -91,10 +91,10 @@
 		user.visible_message(\
 		"<span class='notice'>[user.name] [on ? "enabled" : "disabled"] the breaker box!</span>",\
 		"<span class='notice'>You [on ? "enabled" : "disabled"] the breaker box!</span>")
-		update_locked = 1
+		update_locked = TRUE
 		spawn(600)
-			update_locked = 0
-	busy = 0
+			update_locked = FALSE
+	busy = FALSE
 
 /obj/machinery/power/breakerbox/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(istype(W, /obj/item/multitool))
@@ -150,9 +150,9 @@
 /obj/machinery/power/breakerbox/proc/auto_toggle()
 	if(!update_locked)
 		set_state(!on)
-		update_locked = 1
+		update_locked = TRUE
 		spawn(600)
-			update_locked = 0
+			update_locked = FALSE
 
 /obj/machinery/power/breakerbox/process(delta_time)
-	return 1
+	return TRUE

@@ -7,8 +7,8 @@
 	desc = "An industrial U-Stor-It Storage unit designed to accomodate all kinds of space suits. Its on-board equipment also allows the user to decontaminate the contents through a UV-ray purging cycle. There's a warning label dangling from the control pad, reading \"STRICTLY NO BIOLOGICALS IN THE CONFINES OF THE UNIT\"."
 	icon = 'icons/obj/suitstorage.dmi'
 	icon_state = "suitstorage000000100" //order is: [has helmet][has suit][has human][is open][is locked][is UV cycling][is powered][is dirty/broken] [is superUVcycling]
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/mob/living/carbon/human/OCCUPANT = null
 	var/obj/item/clothing/suit/space/suit_stored = null
 	var/suit_stored_TYPE = null
@@ -18,14 +18,14 @@
 	var/mask_stored_TYPE = null //Erro's idea on standarising SSUs whle keeping creation of other SSU types easy: Make a child SSU, name it something then set the TYPE vars to your desired suit output. New() should take it from there by itself.
 	var/obj/item/clothing/shoes/boots_stored = null
 	var/boots_stored_TYPE = null
-	var/isopen = 0
-	var/islocked = 0
-	var/isUV = 0
-	var/ispowered = 1 //starts powered
-	var/isbroken = 0
-	var/issuperUV = 0
-	var/panelopen = 0
-	var/safetieson = 1
+	var/isopen = FALSE
+	var/islocked = FALSE
+	var/isUV = FALSE
+	var/ispowered = TRUE //starts powered
+	var/isbroken = FALSE
+	var/issuperUV = FALSE
+	var/panelopen = FALSE
+	var/safetieson = TRUE
 	var/cycletime_left = 0
 
 
@@ -42,27 +42,27 @@
 		boots_stored = new boots_stored_TYPE(src)
 
 /obj/machinery/suit_storage_unit/update_icon()
-	var/hashelmet = 0
-	var/hassuit = 0
-	var/hashuman = 0
+	var/hashelmet = FALSE
+	var/hassuit = FALSE
+	var/hashuman = FALSE
 	if(helmet_stored)
-		hashelmet = 1
+		hashelmet = TRUE
 	if(suit_stored)
-		hassuit = 1
+		hassuit = TRUE
 	if(OCCUPANT)
-		hashuman = 1
+		hashuman = TRUE
 	icon_state = text("suitstorage[][][][][][][][][]", hashelmet, hassuit, hashuman, isopen, islocked, isUV, ispowered, isbroken, issuperUV)
 
 /obj/machinery/suit_storage_unit/power_change()
 	..()
 	if(!(stat & NOPOWER))
-		ispowered = 1
+		ispowered = TRUE
 		update_icon()
 	else
 		spawn(rand(0, 15))
-			ispowered = 0
-			islocked = 0
-			isopen = 1
+			ispowered = FALSE
+			islocked = FALSE
+			isopen = TRUE
 			dump_everything()
 			update_icon()
 
@@ -83,7 +83,7 @@
 	if(stat & NOPOWER)
 		return
 	if(!user.IsAdvancedToolUser())
-		return 0
+		return FALSE
 	ui_interact(user)
 
 /obj/machinery/suit_storage_unit/ui_state(mob/user)
@@ -174,7 +174,7 @@
 
 
 /obj/machinery/suit_storage_unit/proc/toggleUV(mob/user as mob)
-//	var/protected = 0
+//	var/protected = FALSE
 //	var/mob/living/carbon/human/H = user
 	if(!panelopen)
 		return
@@ -183,7 +183,7 @@
 		if(H.gloves)
 			var/obj/item/clothing/gloves/G = H.gloves
 			if(istype(G,/obj/item/clothing/gloves/yellow))
-				protected = 1
+				protected = TRUE
 
 	if(!protected)
 		playsound(src.loc, "sparks", 75, 1, -1)
@@ -192,15 +192,15 @@
 	else  //welp, the guy is protected, we can continue
 		if(issuperUV)
 			to_chat(user, "You slide the dial back towards \"185nm\".")
-			issuperUV = 0
+			issuperUV = FALSE
 		else
 			to_chat(user, "You crank the dial all the way up to \"15nm\".")
-			issuperUV = 1
+			issuperUV = TRUE
 		return
 
 
 /obj/machinery/suit_storage_unit/proc/togglesafeties(mob/user as mob)
-//	var/protected = 0
+//	var/protected = FALSE
 //	var/mob/living/carbon/human/H = user
 	if(!panelopen) //Needed check due to bugs
 		return
@@ -209,7 +209,7 @@
 		if(H.gloves)
 			var/obj/item/clothing/gloves/G = H.gloves
 			if(istype(G,/obj/item/clothing/gloves/yellow))
-				protected = 1
+				protected = TRUE
 
 	if(!protected)
 		playsound(src.loc, "sparks", 75, 1, -1)
@@ -255,7 +255,7 @@
 		return
 
 /obj/machinery/suit_storage_unit/proc/dump_everything()
-	islocked = 0 //locks go free
+	islocked = FALSE //locks go free
 	if(suit_stored)
 		suit_stored.loc = src.loc
 		suit_stored = null
@@ -305,9 +305,9 @@
 		return
 	to_chat(user, "You start the Unit's cauterisation cycle.")
 	cycletime_left = 20
-	isUV = 1
+	isUV = TRUE
 	if(OCCUPANT && !islocked)
-		islocked = 1 //Let's lock it for good measure
+		islocked = TRUE //Let's lock it for good measure
 	update_icon()
 	updateUsrDialog()
 
@@ -346,11 +346,11 @@
 				if(boots_stored)
 					boots_stored = null
 				visible_message("<font color='red'>With a loud whining noise, the Suit Storage Unit's door grinds open. Puffs of ashen smoke come out of its chamber.</font>", 3)
-				isbroken = 1
-				isopen = 1
-				islocked = 0
+				isbroken = TRUE
+				isopen = TRUE
+				islocked = FALSE
 				eject_occupant(OCCUPANT) //Mixing up these two lines causes bug. DO NOT DO IT.
-			isUV = 0 //Cycle ends
+			isUV = FALSE //Cycle ends
 	update_icon()
 	updateUsrDialog()
 	return
@@ -362,7 +362,7 @@
 			suit_stored.clean_blood()
 		if(mask_stored)
 			mask_stored.clean_blood()
-		isUV = 0 //Cycle ends
+		isUV = FALSE //Cycle ends
 		update_icon()
 		updateUsrDialog()
 
@@ -405,7 +405,7 @@
 	OCCUPANT.loc = src.loc
 	OCCUPANT = null
 	if(!isopen)
-		isopen = 1
+		isopen = TRUE
 	update_icon()
 	return
 
@@ -446,9 +446,9 @@
 		usr.client.perspective = EYE_PERSPECTIVE
 		usr.client.eye = src
 		usr.loc = src
-//		usr.metabslow = 1
+//		usr.metabslow = TRUE
 		OCCUPANT = usr
-		isopen = 0 //Close the thing after the guy gets inside
+		isopen = FALSE //Close the thing after the guy gets inside
 		update_icon()
 
 //		for(var/obj/O in src)
@@ -493,7 +493,7 @@
 				M.client.eye = src
 			M.loc = src
 			OCCUPANT = M
-			isopen = 0 //close ittt
+			isopen = FALSE //close ittt
 
 			//for(var/obj/O in src)
 			//	O.loc = src.loc

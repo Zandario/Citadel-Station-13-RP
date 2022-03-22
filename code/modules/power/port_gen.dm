@@ -4,11 +4,12 @@
 	desc = "A portable generator for emergency backup power"
 	icon = 'icons/obj/power.dmi'
 	icon_state = "portgen0"
-	density = 1
-	anchored = 0
+	density = TRUE
+	anchored = FALSE
 	use_power = USE_POWER_OFF
+	interact_offline = TRUE
 
-	var/active = 0
+	var/active = FALSE
 	var/power_gen = 5000
 	var/recent_fault = 0
 	var/power_output = 1
@@ -17,7 +18,7 @@
 	return (stat & (BROKEN|EMPED))
 
 /obj/machinery/power/port_gen/proc/HasFuel() //Placeholder for fuel check.
-	return 1
+	return TRUE
 
 /obj/machinery/power/port_gen/proc/UseFuel() //Placeholder for fuel use.
 	return
@@ -28,18 +29,27 @@
 /obj/machinery/power/port_gen/proc/handleInactive()
 	return
 
+/obj/machinery/power/port_gen/proc/TogglePower()
+	if(active)
+		active = FALSE
+		icon_state = "[initial(icon_state)]"
+		// soundloop.stop()
+	else if(HasFuel())
+		active = TRUE
+		icon_state = "[initial(icon_state)]on"
+		// soundloop.start()
+
 /obj/machinery/power/port_gen/process(delta_time)
 	if(active && HasFuel() && !IsBroken() && anchored && powernet)
 		add_avail(power_gen * power_output)
 		UseFuel()
-		src.updateDialog()
 	else
-		active = 0
+		active = FALSE
 		icon_state = initial(icon_state)
 		handleInactive()
 
 /obj/machinery/power/powered()
-	return 1 //doesn't require an external power source
+	return TRUE //doesn't require an external power source
 
 /obj/machinery/power/port_gen/attack_hand(mob/user as mob)
 	if(..())
@@ -85,12 +95,6 @@
 /obj/machinery/power/port_gen/proc/explode()
 	explosion(src.loc, -1, 3, 5, -1)
 	qdel(src)
-
-/obj/machinery/power/port_gen/proc/TogglePower()
-	if(active)
-		active = FALSE
-	else if(HasFuel())
-		active = TRUE
 
 #define TEMPERATURE_DIVISOR 40
 #define TEMPERATURE_CHANGE_MAX 20
@@ -182,7 +186,7 @@
 
 	//HasFuel() should guarantee us that there is enough fuel left, so no need to check that
 	//the only thing we need to worry about is if we are going to rollover to the next sheet
-	if (needed_sheets > sheet_left)
+	if(needed_sheets > sheet_left)
 		sheets--
 		sheet_left = (1 + sheet_left) - needed_sheets
 	else
@@ -200,7 +204,7 @@
 		cooling in order to get more power out.
 	*/
 	var/datum/gas_mixture/environment = loc.return_air()
-	if (environment)
+	if(environment)
 		var/ratio = min(environment.return_pressure()/ONE_ATMOSPHERE, 1)
 		var/ambient = environment.temperature - T20C
 		lower_limit += ambient*ratio
@@ -210,9 +214,9 @@
 
 	//calculate the temperature increase
 	var/bias = 0
-	if (temperature < lower_limit)
+	if(temperature < lower_limit)
 		bias = min(round((average - temperature)/TEMPERATURE_DIVISOR, 1), TEMPERATURE_CHANGE_MAX)
-	else if (temperature > upper_limit)
+	else if(temperature > upper_limit)
 		bias = max(round((temperature - average)/TEMPERATURE_DIVISOR, 1), -TEMPERATURE_CHANGE_MAX)
 
 	//limit temperature increase so that it cannot raise temperature above upper_limit,
@@ -221,31 +225,31 @@
 	var/dec_limit = min(temperature - lower_limit, 0)
 	temperature += between(dec_limit, rand(-7 + bias, 7 + bias), inc_limit)
 
-	if (temperature > max_temperature)
+	if(temperature > max_temperature)
 		overheat()
-	else if (overheating > 0)
+	else if(overheating > 0)
 		overheating--
 
 /obj/machinery/power/port_gen/pacman/handleInactive()
 	var/cooling_temperature = 20
 	var/datum/gas_mixture/environment = loc.return_air()
-	if (environment)
+	if(environment)
 		var/ratio = min(environment.return_pressure()/ONE_ATMOSPHERE, 1)
 		var/ambient = environment.temperature - T20C
 		cooling_temperature += ambient*ratio
 
-	if (temperature > cooling_temperature)
+	if(temperature > cooling_temperature)
 		var/temp_loss = (temperature - cooling_temperature)/TEMPERATURE_DIVISOR
 		temp_loss = between(2, round(temp_loss, 1), TEMPERATURE_CHANGE_MAX)
 		temperature = max(temperature - temp_loss, cooling_temperature)
-		src.updateDialog()
+		updateDialog()
 
 	if(overheating)
 		overheating--
 
 /obj/machinery/power/port_gen/pacman/proc/overheat()
 	overheating++
-	if (overheating > 60)
+	if(overheating > 60)
 		explode()
 
 /obj/machinery/power/port_gen/pacman/explode()
@@ -254,7 +258,7 @@
 	//1 mol = 10 u? I dunno. 1 mol of carbon is definitely bigger than a pill
 	var/phoron = (sheets+sheet_left)*20
 	var/datum/gas_mixture/environment = loc.return_air()
-	if (environment)
+	if(environment)
 		environment.adjust_gas_temp(/datum/gas/phoron, phoron/10, temperature + T0C)
 
 	sheets = 0
@@ -262,10 +266,10 @@
 	..()
 
 /obj/machinery/power/port_gen/pacman/emag_act(var/remaining_charges, var/mob/user)
-	if (active && prob(25))
+	if(active && prob(25))
 		explode() //if they're foolish enough to emag while it's running
 
-	if (!emagged)
+	if(!emagged)
 		emagged = 1
 		return 1
 
@@ -302,12 +306,17 @@
 
 /obj/machinery/power/port_gen/pacman/attack_hand(mob/user as mob)
 	..()
-	if (!anchored)
+	if(!anchored)
 		return
-	nano_ui_interact(user)
+	ui_interact(user)
 
 /obj/machinery/power/port_gen/pacman/attack_ai(mob/user as mob)
 	ui_interact(user)
+
+/obj/machinery/power/port_gen/ui_status(mob/user, datum/ui_state/state)
+	if(IsBroken())
+		return UI_CLOSE
+	return ..()
 
 /obj/machinery/power/port_gen/pacman/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -348,7 +357,7 @@
 
 /obj/machinery/power/port_gen/pacman/ui_act(action, params)
 	if(..())
-		return
+		return TRUE
 
 	add_fingerprint(usr)
 	switch(action)
@@ -370,93 +379,6 @@
 			if(power_output < max_power_output || (emagged && power_output < round(max_power_output * 2.5)))
 				power_output++
 				. = TRUE
-/*
-/obj/machinery/power/port_gen/pacman/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	if(IsBroken())
-		return
-
-	var/data[0]
-	data["active"] = active
-	if(istype(user, /mob/living/silicon/ai))
-		data["is_ai"] = 1
-	else if(istype(user, /mob/living/silicon/robot) && !Adjacent(user))
-		data["is_ai"] = 1
-	else
-		data["is_ai"] = 0
-	data["output_set"] = power_output
-	data["output_max"] = max_power_output
-	data["output_safe"] = max_safe_output
-	data["output_watts"] = power_output * power_gen
-	data["temperature_current"] = src.temperature
-	data["temperature_max"] = src.max_temperature
-	data["temperature_overheat"] = overheating
-	// 1 sheet = 1000cm3?
-	data["fuel_stored"] = round((sheets * 1000) + (sheet_left * 1000))
-	data["fuel_capacity"] = round(max_sheets * 1000, 0.1)
-	data["fuel_usage"] = active ? round((power_output / time_per_sheet) * 1000) : 0
-	data["fuel_type"] = sheet_name
-
-
-
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "pacman.tmpl", src.name, 500, 560)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
-
-*/
-/*
-/obj/machinery/power/port_gen/pacman/interact(mob/user)
-	if (get_dist(src, user) > 1 )
-		if (!istype(user, /mob/living/silicon/ai))
-			user.unset_machine()
-			user << browse(null, "window=port_gen"
-			return
-
-	user.set_machine(src)
-
-	var/dat = text("<b>[name]</b><br>")
-	if (active)
-		dat += text("Generator: <A href='?src=\ref[src];action=disable'>On</A><br>")
-	else
-		dat += text("Generator: <A href='?src=\ref[src];action=enable'>Off</A><br>")
-	dat += text("[capitalize(sheet_name)]: [sheets] - <A href='?src=\ref[src];action=eject'>Eject</A><br>")
-	var/stack_percent = round(sheet_left * 100, 1)
-	dat += text("Current stack: [stack_percent]% <br>")
-	dat += text("Power output: <A href='?src=\ref[src];action=lower_power'>-</A> [power_gen * power_output] Watts<A href='?src=\ref[src];action=higher_power'>+</A><br>")
-	dat += text("Power current: [(powernet == null ? "Unconnected" : "[avail()]")]<br>")
-
-	var/tempstr = "Temperature: [temperature]&deg;C<br>"
-	dat += (overheating)? "<span class='danger'>[tempstr]</span>" : tempstr
-	dat += "<br><A href='?src=\ref[src];action=close'>Close</A>"
-	user << browse("[dat]", "window=port_gen")
-	onclose(user, "port_gen")
-*/
-
-/obj/machinery/power/port_gen/pacman/Topic(href, href_list)
-	if(..())
-		return
-
-	src.add_fingerprint(usr)
-	if(href_list["action"])
-		if(href_list["action"] == "enable")
-			if(!active && HasFuel() && !IsBroken())
-				active = 1
-				icon_state = "portgen1"
-		if(href_list["action"] == "disable")
-			if (active)
-				active = 0
-				icon_state = "portgen0"
-		if(href_list["action"] == "eject")
-			if(!active)
-				DropFuel()
-		if(href_list["action"] == "lower_power")
-			if (power_output > 1)
-				power_output--
-		if (href_list["action"] == "higher_power")
-			if (power_output < max_power_output || (emagged && power_output < round(max_power_output*2.5)))
-				power_output++
 
 /obj/machinery/power/port_gen/pacman/super
 	name = "S.U.P.E.R.P.A.C.M.A.N.-type Portable Generator"
@@ -469,7 +391,7 @@
 
 /obj/machinery/power/port_gen/pacman/super/UseFuel()
 	//produces a tiny amount of radiation when in use
-	if (prob(2*power_output))
+	if(prob(2*power_output))
 		SSradiation.radiate(src, 4)
 	..()
 
@@ -503,7 +425,7 @@
 	explosion(src.loc, 3, 6, 12, 16, 1)
 	qdel(src)
 
-//VORE RTG engines
+// RTG engines
 // Radioisotope Thermoelectric Generator (RTG)
 // Simple power generator that would replace "magic SMES" on various derelicts.
 /obj/machinery/power/rtg

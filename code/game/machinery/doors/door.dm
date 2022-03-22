@@ -15,20 +15,20 @@
 	var/closed_layer = DOOR_CLOSED_LAYER
 
 	var/visible = 1
-	var/p_open = 0//[bool]is the door open?
-	var/operating = 0//[bool]Is the door opening or closing?
-	var/autoclose = 0//[bool]should the door close automaticly
-	var/glass = 0
-	var/normalspeed = 1
-	var/heat_proof = 0 // For glass airlocks/opacity firedoors
+	var/p_open = FALSE		// Is the door open?
+	var/operating = FALSE	// Is the door opening or closing?
+	var/autoclose = FALSE	// Should the door close automaticly?
+	var/glass = FALSE		// Does the door have glass?
+	var/normalspeed = TRUE	// Should the door open at normal speed?
+	var/heat_proof = FALSE	// For glass airlocks/opacity firedoors
 	var/air_properties_vary_with_direction = 0
 	var/maxhealth = 300
 	var/health
 	var/destroy_hits = 10 //How many strong hits it takes to destroy the door
 	var/min_force = 10 //minimum amount of force needed to damage the door with a melee weapon
 	var/hitsound = 'sound/weapons/smash.ogg' //sound door makes when hit with a weapon
-	var/repairing = 0
-	var/block_air_zones = 1 //If set, air zones cannot merge across the door even when it is opened.
+	var/repairing = FALSE
+	var/block_air_zones = TRUE //If TRUE, air zones cannot merge across the door even when it is opened.
 	var/close_door_at = 0 //When to automatically close the door, if possible
 
 	//Multi-tile doors

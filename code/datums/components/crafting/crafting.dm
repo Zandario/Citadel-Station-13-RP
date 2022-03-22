@@ -393,7 +393,7 @@
 
 /datum/component/personal_crafting/ui_act(action, params)
 	if(..())
-		return
+		return TRUE
 	switch(action)
 		if("make")
 			var/mob/user = usr

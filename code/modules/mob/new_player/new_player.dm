@@ -1,20 +1,20 @@
 /mob/new_player
-	var/ready = 0
-	var/spawning = 0			// Referenced when you want to delete the new_player later on in the code.
+	var/ready = FALSE
+	var/spawning = FALSE			// Referenced when you want to delete the new_player later on in the code.
 	var/totalPlayers = 0		// Player counts for the Lobby tab
 	var/totalPlayersReady = 0
-	var/show_hidden_jobs = 0	// Show jobs that are set to "Never" in preferences
+	var/show_hidden_jobs = FALSE	// Show jobs that are set to "Never" in preferences
 	var/datum/browser/panel
 	var/age_gate_result
-	universal_speak = 1
+	universal_speak = TRUE
 
 	invisibility = 101
 
-	density = 0
+	density = FALSE
 	stat = 2
-	canmove = 0
+	canmove = FALSE
 
-	anchored = 1	// Don't get pushed around
+	anchored = TRUE	// Don't get pushed around
 
 /mob/new_player/Initialize(mapload)
 	GLOB.mob_list += src
@@ -48,14 +48,14 @@
 		establish_db_connection()
 
 		if(dbcon.IsConnected())
-			var/isadmin = 0
+			var/isadmin = FALSE
 			if(src.client && src.client.holder)
-				isadmin = 1
+				isadmin = TRUE
 			var/DBQuery/query = dbcon.NewQuery("SELECT id FROM erro_poll_question WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM erro_poll_vote WHERE ckey = \"[ckey]\") AND id NOT IN (SELECT pollid FROM erro_poll_textreply WHERE ckey = \"[ckey]\")")
 			query.Execute()
-			var/newpoll = 0
+			var/newpoll = FALSE
 			while(query.NextRow())
-				newpoll = 1
+				newpoll = TRUE
 				break
 
 			if(newpoll)
@@ -172,10 +172,10 @@
 
 /mob/new_player/Topic(href, href_list[])
 	if(src != usr)
-		return 0
+		return FALSE
 
 	if(!client)
-		return 0
+		return FALSE
 
 	//don't let people get to this unless they are specifically not verified
 	if(href_list["Month"] && !client.is_preference_enabled(/datum/client_preference/debug/age_verified))
@@ -219,17 +219,18 @@
 	if(!verifyage())
 		return
 
-	if(!client)	return 0
+	if(!client)
+		return FALSE
 
 	if(href_list["show_preferences"])
 		client.prefs.ShowChoices(src)
-		return 1
+		return TRUE
 
 	if(href_list["ready"])
 		if(!SSticker || SSticker.current_state <= GAME_STATE_PREGAME)	// Make sure we don't ready up after the round has started
 			ready = text2num(href_list["ready"])
 		else
-			ready = 0
+			ready = FALSE
 
 	if(href_list["refresh"])
 		//src << browse(null, "window=playersetup")	// Closes the player setup window
@@ -237,11 +238,13 @@
 		new_player_panel_proc()
 
 	if(href_list["observe"])
-		if(!client.is_preference_enabled(/datum/client_preference/debug/age_verified)) return
+		if(!client.is_preference_enabled(/datum/client_preference/debug/age_verified))
+			return
 		var/alert_time = SSticker?.current_state <= GAME_STATE_SETTING_UP ? 1 : round(config_legacy.respawn_time/10/60)
 
 		if(alert(src,"Are you sure you wish to observe? You will have to wait up to [alert_time] minute\s before being able to spawn into the game!","Player Setup","Yes","No") == "Yes")
-			if(!client)	return 1
+			if(!client)
+				return TRUE
 
 			// Make a new mannequin quickly, and allow the observer to take the appearance
 			var/mob/living/carbon/human/dummy/mannequin = new()
@@ -250,11 +253,11 @@
 			observer.moveToNullspace()	// Let's not stay in our doomed mannequin
 			qdel(mannequin)
 
-			spawning = 1
+			spawning = TRUE
 			if(client.media)
 				client.media.stop_music() // MAD JAMS cant last forever yo
 
-			observer.started_as_observer = 1
+			observer.started_as_observer = TRUE
 			close_spawn_windows()
 			var/obj/O = locate("landmark*Observer-Start")
 			if(istype(O))
@@ -276,7 +279,7 @@
 			observer.set_respawn_timer(time_till_respawn())	// Will keep their existing time if any, or return 0 and pass 0 into set_respawn_timer which will use the defaults
 			qdel(src)
 
-			return 1
+			return TRUE
 
 	if(href_list["late_join"])
 
@@ -295,7 +298,7 @@
 			if (config_legacy.usealienwhitelist)
 				if(!is_alien_whitelisted(src, client.prefs.species))
 					src << alert("You are currently not whitelisted to Play [client.prefs.species].")
-					return 0
+					return FALSE
 */
 		LateChoices()
 
@@ -320,12 +323,12 @@
 /*
 		if(!is_alien_whitelisted(src, GLOB.all_species[client.prefs.species]))
 			src << alert("You are currently not whitelisted to play [client.prefs.species].")
-			return 0
+			return FALSE
 */
 		var/datum/species/S = GLOB.all_species[client.prefs.species]
 		if(!(S.spawn_flags & SPECIES_CAN_JOIN))
 			src << alert("Your current species, [client.prefs.species], is not available for play on the station.")
-			return 0
+			return FALSE
 
 		AttemptLateSpawn(href_list["SelectedJob"],client.prefs.spawnpoint)
 		return
@@ -334,13 +337,13 @@
 		establish_db_connection()
 		if(!dbcon.IsConnected())
 			return
-		var/voted = 0
+		var/voted = FALSE
 
 		//First check if the person has not voted yet.
 		var/DBQuery/query = dbcon.NewQuery("SELECT * FROM erro_privacy WHERE ckey='[src.ckey]'")
 		query.Execute()
 		while(query.NextRow())
-			voted = 1
+			voted = TRUE
 			break
 
 		//This is a safety switch, so only valid options pass through
@@ -476,31 +479,39 @@
 
 /mob/new_player/proc/IsJobAvailable(rank)
 	var/datum/job/job = job_master.GetJob(rank)
-	if(!job)	return 0
-	if(!job.is_position_available()) return 0
-	if(jobban_isbanned(src,rank))	return 0
-	if(!job.player_old_enough(src.client))	return 0
-	if(!is_job_whitelisted(src,rank))	return 0
-	if(!job.player_has_enough_pto(src.client)) return 0
-	return 1
+	if(!job)
+		return FALSE
+	if(!job.is_position_available())
+		return FALSE
+	if(jobban_isbanned(src,rank))
+		return FALSE
+	if(!job.player_old_enough(src.client))
+		return FALSE
+	if(!is_job_whitelisted(src,rank))
+		return FALSE
+	if(!job.player_has_enough_pto(src.client))
+		return FALSE
+	return TRUE
 
 
 /mob/new_player/proc/AttemptLateSpawn(rank, spawning_at)
-	if(!client.is_preference_enabled(/datum/client_preference/debug/age_verified)) return
+	if(!client.is_preference_enabled(/datum/client_preference/debug/age_verified))
+		return
 	if (src != usr)
-		return 0
+		return FALSE
 	if(SSticker.current_state != GAME_STATE_PLAYING)
 		to_chat(usr, "<font color='red'>The round is either not ready, or has already finished...</font>")
-		return 0
+		return FALSE
 	if(!config_legacy.enter_allowed)
 		to_chat(usr, "<span class='notice'>There is an administrative lock on entering the game!</span>")
-		return 0
+		return FALSE
 	if(!IsJobAvailable(rank))
 		src << alert("[rank] is not available. Please try another.")
-		return 0
-	if(!attempt_vr(src,"spawn_checks_vr",list())) return 0
+		return FALSE
+	if(!attempt_vr(src,"spawn_checks_vr",list()))
+		return FALSE
 	if(!client)
-		return 0
+		return FALSE
 
 	//Find our spawning point.
 	var/list/join_props = job_master.LateSpawn(client, rank)
@@ -509,9 +520,9 @@
 	var/announce_channel = join_props["channel"] || "Common"
 
 	if(!T || !join_message)
-		return 0
+		return FALSE
 
-	spawning = 1
+	spawning = TRUE
 	close_spawn_windows()
 
 	job_master.AssignRole(src, rank, 1)
@@ -686,7 +697,6 @@
 	// Do the initial caching of the player's body icons.
 	new_character.force_update_limbs()
 	new_character.update_icons_body()
-	new_character.update_eyes()
 
 	new_character.key = key		//Manually transfer the key to log them in
 

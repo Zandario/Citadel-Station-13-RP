@@ -1,11 +1,11 @@
 /obj/machinery/embedded_controller
 	name = "Embedded Controller"
-	anchored = 1
+	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	var/datum/computer/file/embedded_program/program	//the currently executing program
 	var/list/valid_actions = list()
-	var/on = 1
+	var/on = TRUE
 
 /obj/machinery/embedded_controller/Initialize()
 	if(ispath(program))
@@ -18,7 +18,7 @@
 	return ..()
 
 /obj/machinery/embedded_controller/proc/post_signal(datum/signal/signal, comm_line)
-	return 0
+	return FALSE
 
 /obj/machinery/embedded_controller/receive_signal(datum/signal/signal, receive_method, receive_param)
 	if(!signal || signal.encryption) return
@@ -50,7 +50,7 @@
 
 /obj/machinery/embedded_controller/attack_hand(mob/user as mob)
 	if(!user.IsAdvancedToolUser())
-		return 0
+		return FALSE
 
 	ui_interact(user)
 
@@ -67,8 +67,8 @@
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "airlock_control_standby"
 	power_channel = ENVIRON
-	density = 0
-	unacidable = 1
+	density = FALSE
+	unacidable = TRUE
 
 	var/id_tag
 	//var/radio_power_use = 50 //power used to xmit signals

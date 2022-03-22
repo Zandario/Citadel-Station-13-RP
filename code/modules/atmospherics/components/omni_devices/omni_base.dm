@@ -3,7 +3,7 @@
 //--------------------------------------------
 /obj/machinery/atmospherics/omni
 	name = "omni device"
-	icon = 'icons/atmos/omni_devices_vr.dmi' //VOREStation Edit - New Icon
+	icon = 'icons/atmos/omni_devices_vr.dmi'
 	icon_state = "base"
 	use_power = USE_POWER_IDLE
 	initialize_directions = 0
@@ -70,8 +70,8 @@
 		update_use_power(USE_POWER_OFF)
 
 	if((stat & (NOPOWER|BROKEN)) || !use_power)
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /obj/machinery/atmospherics/omni/power_change()
 	var/old_stat = stat
@@ -109,7 +109,7 @@
 		return
 
 	src.add_fingerprint(usr)
-	nano_ui_interact(user)
+	ui_interact(user)
 	return
 
 /obj/machinery/atmospherics/omni/proc/build_icons()
@@ -234,7 +234,7 @@
 			break
 
 	if(new_network.normal_members.Find(src))
-		return 0
+		return FALSE
 
 	new_network.normal_members += src
 
@@ -286,7 +286,7 @@
 		if(P.network == old_network)
 			P.network = new_network
 
-	return 1
+	return TRUE
 
 /obj/machinery/atmospherics/omni/return_network_air(datum/pipe_network/reference)
 	var/list/results = list()

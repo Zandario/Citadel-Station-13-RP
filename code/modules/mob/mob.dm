@@ -660,6 +660,9 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 /mob/proc/get_gender()
 	return gender
 
+/mob/proc/name_gender()
+	return gender
+
 /mob/proc/get_visible_gender()
 	return gender
 

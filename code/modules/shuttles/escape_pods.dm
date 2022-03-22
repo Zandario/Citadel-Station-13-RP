@@ -27,18 +27,18 @@
 
 /datum/shuttle/autodock/ferry/escape_pod/can_launch()
 	if(arming_controller && !arming_controller.armed)	// Must be armed
-		return 0
+		return FALSE
 	if(location)
-		return 0	// It's a one-way trip.
+		return FALSE	// It's a one-way trip.
 	return ..()
 
 /datum/shuttle/autodock/ferry/escape_pod/can_force()
 	if (arming_controller.eject_time && world.time < arming_controller.eject_time + 50)
-		return 0	// Dont allow force launching until 5 seconds after the arming controller has reached it's countdown
+		return FALSE	// Dont allow force launching until 5 seconds after the arming controller has reached it's countdown
 	return ..()
 
 /datum/shuttle/autodock/ferry/escape_pod/can_cancel()
-	return 0
+	return FALSE
 
 
 // This controller goes on the escape pod itself
@@ -46,6 +46,7 @@
 	name = "escape pod controller"
 	program = /datum/computer/file/embedded_program/docking/simple
 	var/datum/shuttle/autodock/ferry/escape_pod/pod
+	valid_actions = list("toggle_override", "force_door")
 
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/ui_data(mob/user)
 	var/datum/computer/file/embedded_program/docking/simple/docking_program = program // Cast to proper type

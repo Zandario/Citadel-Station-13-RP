@@ -15,8 +15,8 @@
 	name = "Air Vent"
 	desc = "Has a valve and pump attached to it"
 	use_power = USE_POWER_OFF
-	idle_power_usage = 150		//internal circuitry, friction losses and stuff
-	power_rating = 30000			//7500 W ~ 10 HP //VOREStation Edit - 30000 W
+	idle_power_usage = 150		// Internal circuitry, friction losses and stuff
+	power_rating = 30000		// 7500 W ~ 10 HP //VOREStation Edit - 30000 W
 
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY //connects to regular and supply pipes
 
@@ -58,7 +58,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/aux
 	icon_state = "map_vent_aux"
 	icon_connect_type = "-aux"
-	connect_types = CONNECT_TYPE_AUX //connects to aux pipes
+	connect_types = CONNECT_TYPE_AUX // Connects to aux pipes
 
 /obj/machinery/atmospherics/unary/vent_pump/siphon
 	pump_direction = 0
@@ -115,13 +115,13 @@
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/aux
 	icon_state = "map_vent_aux"
 	icon_connect_type = "-aux"
-	connect_types = CONNECT_TYPE_AUX //connects to aux pipes
+	connect_types = CONNECT_TYPE_AUX // Connects to aux pipes
 
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/Initialize(mapload)
 	. = ..()
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP + 800
 
-// VOREStation Edit Start - Wall mounted vents
+// Wall mounted vents
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/wall_mounted
 	name = "Wall Mounted Air Vent"
 
@@ -131,9 +131,6 @@
 	if(isnull(T))
 		return ..()
 	return T.return_air()
-
-// VOREStation Edit End
-
 /obj/machinery/atmospherics/unary/vent_pump/engine
 	name = "Engine Core Vent"
 	power_channel = ENVIRON
@@ -188,26 +185,26 @@
 /obj/machinery/atmospherics/unary/vent_pump/proc/can_pump()
 	if(stat & (NOPOWER|BROKEN))
 		//soundloop.stop()
-		return 0
+		return FALSE
 	if(!use_power)
 		//soundloop.stop()
-		return 0
+		return FALSE
 	if(welded)
 		//soundloop.stop()
-		return 0
+		return FALSE
 	//soundloop.start()
-	return 1
+	return TRUE
 
 /obj/machinery/atmospherics/unary/vent_pump/process(delta_time)
 	..()
 
 	if (hibernate)
-		return 1
+		return TRUE
 
 	if (!node)
 		update_use_power(USE_POWER_OFF)
 	if(!can_pump())
-		return 0
+		return FALSE
 
 	var/datum/gas_mixture/environment = return_air() // VOREStation Edit - Use our own proc
 
@@ -235,7 +232,7 @@
 		if(network)
 			network.update = 1
 
-	return 1
+	return TRUE
 
 /obj/machinery/atmospherics/unary/vent_pump/proc/get_pressure_delta(datum/gas_mixture/environment)
 	var/pressure_delta = DEFAULT_PRESSURE_DELTA
@@ -256,10 +253,10 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/proc/broadcast_status()
 	if(!radio_connection)
-		return 0
+		return FALSE
 
 	var/datum/signal/signal = new
-	signal.transmission_method = 1 //radio signal
+	signal.transmission_method = TRANSMISSION_RADIO //radio signal
 	signal.source = src
 
 	signal.data = list(
@@ -285,7 +282,7 @@
 
 	radio_connection.post_signal(src, signal, radio_filter_out)
 
-	return 1
+	return TRUE
 
 
 /obj/machinery/atmospherics/unary/vent_pump/atmos_init()
@@ -370,6 +367,12 @@
 			ONE_ATMOSPHERE*50
 		)
 
+	if("reset_external_pressure" in signal.data)
+		external_pressure_bound = ONE_ATMOSPHERE
+
+	if("reset_internal_pressure" in signal.data)
+		internal_pressure_bound = 0
+
 	if(signal.data["init"] != null)
 		name = signal.data["init"]
 		return
@@ -391,7 +394,8 @@
 		if (WT.remove_fuel(0,user))
 			to_chat(user, "<span class='notice'>Now welding the vent.</span>")
 			if(do_after(user, 20 * WT.toolspeed))
-				if(!src || !WT.isOn()) return
+				if(!src || !WT.isOn())
+					return
 				playsound(src.loc, WT.usesound, 50, 1)
 				if(!welded)
 					user.visible_message("<span class='notice'>\The [user] welds the vent shut.</span>", "<span class='notice'>You weld the vent shut.</span>", "You hear welding.")
@@ -405,7 +409,7 @@
 				to_chat(user, "<span class='notice'>The welding tool needs to be on to start this task.</span>")
 		else
 			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
-			return 1
+			return TRUE
 	else
 		..()
 
@@ -426,11 +430,11 @@
 		return ..()
 	if (!(stat & NOPOWER) && use_power)
 		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], turn it off first.</span>")
-		return 1
+		return TRUE
 	var/turf/T = src.loc
 	if (node && node.level==1 && isturf(T) && !T.is_plating())
 		to_chat(user, "<span class='warning'>You must remove the plating first.</span>")
-		return 1
+		return TRUE
 	if(unsafe_pressure())
 		to_chat(user, "<span class='warning'>You feel a gust of air blowing in your face as you try to unwrench [src]. Maybe you should reconsider..</span>")
 	add_fingerprint(user)

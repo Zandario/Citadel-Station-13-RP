@@ -43,8 +43,8 @@
 	desc = "A strangely translucent and iridescent crystal. <font color='red'>You get headaches just from looking at it.</font>"
 	icon = 'icons/obj/engine.dmi'
 	icon_state = "darkmatter"
-	density = 1
-	anchored = 0
+	density = TRUE
+	anchored = FALSE
 	light_range = 4
 
 	var/gasefficency = 0.25
@@ -141,7 +141,7 @@
 		return
 	var/datum/gas_mixture/air = T.return_air()
 	if(!air)
-		return 0
+		return FALSE
 	return round((air.total_moles / air.group_multiplier) / 23.1, 0.01)
 
 
@@ -149,9 +149,9 @@
 /obj/machinery/power/supermatter/proc/explode()
 	message_admins("Supermatter exploded at ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
 	log_game("SUPERMATTER([x],[y],[z]) Exploded. Power:[power], Oxygen:[oxygen], Damage:[damage], Integrity:[get_integrity()]")
-	anchored = 1
-	grav_pulling = 1
-	exploded = 1
+	anchored = TRUE
+	grav_pulling = TRUE
+	exploded = TRUE
 	var/turf/TS = get_turf(src)		// The turf supermatter is on. SM being in a locker, mecha, or other container shouldn't block it's effects that way.
 	if(!TS)
 		return
@@ -332,7 +332,7 @@
 		//Release reaction gasses
 		var/heat_capacity = removed.heat_capacity()
 		removed.adjust_multi(/datum/gas/phoron, max(device_energy / PHORON_RELEASE_MODIFIER, 0), \
-		                     /datum/gas/oxygen, max((device_energy + removed.temperature - T0C) / OXYGEN_RELEASE_MODIFIER, 0))
+							 /datum/gas/oxygen, max((device_energy + removed.temperature - T0C) / OXYGEN_RELEASE_MODIFIER, 0))
 
 		var/thermal_power = THERMAL_RELEASE_MODIFIER * device_energy
 		if (debug)
@@ -355,13 +355,13 @@
 
 	power -= (power/DECAY_FACTOR)**3		//energy losses due to radiation
 
-	return 1
+	return TRUE
 
 
 /obj/machinery/power/supermatter/bullet_act(var/obj/item/projectile/Proj)
 	var/turf/L = loc
 	if(!istype(L))		// We don't run process() when we are in space
-		return 0	// This stops people from being able to really power up the supermatter
+		return FALSE	// This stops people from being able to really power up the supermatter
 				// Then bring it inside to explode instantly upon landing on a valid turf.
 
 	var/added_energy
@@ -395,7 +395,6 @@
 
 	Consume(user)
 
-
 /obj/machinery/power/supermatter/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -420,32 +419,6 @@
 	data["detonating"] = grav_pulling
 
 	return data
-
-/*
-// This is purely informational UI that may be accessed by AIs or robots
-/obj/machinery/power/supermatter/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/data[0]
-
-	data["integrity_percentage"] = round(get_integrity())
-	var/datum/gas_mixture/env = null
-	if(!istype(src.loc, /turf/space))
-		env = src.loc.return_air()
-
-	if(!env)
-		data["ambient_temp"] = 0
-		data["ambient_pressure"] = 0
-	else
-		data["ambient_temp"] = round(env.temperature)
-		data["ambient_pressure"] = round(env.return_pressure())
-	data["detonating"] = grav_pulling
-
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "supermatter_crystal.tmpl", "Supermatter Crystal", 500, 300)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
-*/
 
 /obj/machinery/power/supermatter/attackby(obj/item/W as obj, mob/living/user as mob)
 	user.visible_message("<span class=\"warning\">\The [user] touches \a [W] to \the [src] as a silence fills the room...</span>",\

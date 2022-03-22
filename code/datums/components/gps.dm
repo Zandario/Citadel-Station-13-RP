@@ -133,7 +133,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 
 /datum/component/gps/item/ui_act(action, params)
 	if(..())
-		return
+		return TRUE
 	switch(action)
 		if("rename")
 			var/atom/parentasatom = parent

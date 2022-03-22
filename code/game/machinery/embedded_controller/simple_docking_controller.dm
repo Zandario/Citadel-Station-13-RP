@@ -90,7 +90,7 @@
 
 //are we ready for docking?
 /datum/computer/file/embedded_program/docking/simple/ready_for_docking()
-	return 1	//don't need to do anything
+	return TRUE	//don't need to do anything
 
 //we are docked, open the doors or whatever.
 /datum/computer/file/embedded_program/docking/simple/finish_docking()

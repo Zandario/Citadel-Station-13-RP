@@ -455,7 +455,7 @@
 	if(istype(loc, /obj/item/rig/protean))
 		var/obj/item/rig/protean/prig = loc
 		to_chat(src, "You attempt to interface with the [prig].")
-		prig.nano_ui_interact(src, nano_state = interactive_state)
+		prig.ui_interact()
 	else
 		to_chat(src, "You are not in RIG form.")
 

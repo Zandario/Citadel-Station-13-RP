@@ -23,17 +23,17 @@
 		to_chat(usr, "Your module is not installed in a hardsuit.")
 		return
 
-	module.holder.nano_ui_interact(usr, nano_state = contained_state)
+	module.holder.ui_interact(usr, custom_state = GLOB.contained_state)
 
 /obj/item/rig_module/ai_container
 
 	name = "IIS module"
 	desc = "An integrated intelligence system module suitable for most hardsuits."
 	icon_state = "IIS"
-	toggleable = 1
-	usable = 1
-	disruptive = 0
-	activates_on_touch = 1
+	toggleable = TRUE
+	usable = TRUE
+	disruptive = FALSE
+	activates_on_touch = TRUE
 
 	engage_string = "Eject AI"
 	activate_string = "Enable Core Transfer"
@@ -89,7 +89,7 @@
 
 		// Terminal interaction only works with an intellicarded AI.
 		if(!istype(card))
-			return 0
+			return FALSE
 
 		// Since we've explicitly checked for three types, this should be safe.
 		input_device.attackby(card,user)
@@ -101,7 +101,7 @@
 		else
 			eject_ai()
 		update_verb_holder()
-		return 1
+		return TRUE
 
 	if(istype(input_device,/obj/item/aicard))
 		// We are carding the AI in our suit.
@@ -114,9 +114,9 @@
 		else
 			// You're using an empty card on an empty suit, idiot.
 			if(!target_ai)
-				return 0
+				return FALSE
 			integrate_ai(input_device,user)
-		return 1
+		return TRUE
 
 	// Okay, it wasn't a terminal being touched, check for all the simple insertions.
 	if(input_device.type in list(/obj/item/paicard, /obj/item/mmi, /obj/item/mmi/digital/posibrain))
@@ -128,30 +128,30 @@
 				eject_ai()
 		else
 			integrate_ai(input_device,user)
-		return 1
+		return TRUE
 
-	return 0
+	return FALSE
 
 /obj/item/rig_module/ai_container/engage(atom/target)
 
 	if(!..())
-		return 0
+		return FALSE
 
 	var/mob/living/carbon/human/H = holder.wearer
 
 	if(!target)
 		if(ai_card)
 			if(istype(ai_card,/obj/item/aicard))
-				ai_card.nano_ui_interact(H, state = deep_inventory_state)
+				ai_card.ui_interact(H)
 			else
 				eject_ai(H)
 		update_verb_holder()
-		return 1
+		return TRUE
 
 	if(accepts_item(target,H))
-		return 1
+		return TRUE
 
-	return 0
+	return FALSE
 
 /obj/item/rig_module/ai_container/removed()
 	eject_ai()
@@ -164,7 +164,7 @@
 			if(integrated_ai && !integrated_ai.stat)
 				if(user)
 					to_chat(user, "<span class='danger'>You cannot eject your currently stored AI. Purge it manually.</span>")
-				return 0
+				return FALSE
 			to_chat(user, "<span class='danger'>You purge the previous AI from your Integrated Intelligence System, freeing it for use.</span>")
 			if(integrated_ai)
 				integrated_ai.ghostize()
@@ -201,9 +201,9 @@
 					if(target_card.grab_ai(ai_mob, user))
 						source_card.clear()
 					else
-						return 0
+						return FALSE
 				else
-					return 0
+					return FALSE
 			else
 				user.drop_from_inventory(ai)
 				ai.forceMove(src)
@@ -228,9 +228,9 @@
 	name = "datajack module"
 	desc = "A simple induction datalink module."
 	icon_state = "datajack"
-	toggleable = 1
-	activates_on_touch = 1
-	usable = 0
+	toggleable = TRUE
+	activates_on_touch = TRUE
+	usable = FALSE
 
 	activate_string = "Enable Datajack"
 	deactivate_string = "Disable Datajack"
@@ -246,13 +246,13 @@
 /obj/item/rig_module/datajack/engage(atom/target)
 
 	if(!..())
-		return 0
+		return FALSE
 
 	if(target)
 		var/mob/living/carbon/human/H = holder.wearer
 		if(!accepts_item(target,H))
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 /obj/item/rig_module/datajack/accepts_item(var/obj/item/input_device, var/mob/living/user)
 
@@ -267,7 +267,7 @@
 				to_chat(user, "<span class='warning'>The disk is corrupt. It is useless to you.</span>")
 		else
 			to_chat(user, "<span class='warning'>The disk is blank. It is useless to you.</span>")
-		return 1
+		return TRUE
 
 	// I fucking hate R&D code. This typecheck spam would be totally unnecessary in a sane setup.
 	else if(istype(input_device,/obj/machinery))
@@ -290,37 +290,37 @@
 				to_chat(user, "<font color=#4F49AF>Download successful; local and remote repositories synchronized.</font>")
 			else
 				to_chat(user, "<span class='warning'>Scan complete. There is nothing useful stored on this terminal.</span>")
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/item/rig_module/datajack/proc/load_data(var/incoming_data)
 
 	if(islist(incoming_data))
 		for(var/entry in incoming_data)
 			load_data(entry)
-		return 1
+		return TRUE
 
 	if(istype(incoming_data, /datum/tech))
 		var/data_found
 		var/datum/tech/new_data = incoming_data
 		for(var/datum/tech/current_data in stored_research)
 			if(current_data.id == new_data.id)
-				data_found = 1
+				data_found = TRUE
 				if(current_data.level < new_data.level)
 					current_data.level = new_data.level
 				break
 		if(!data_found)
 			stored_research += incoming_data
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/item/rig_module/electrowarfare_suite
 
 	name = "electrowarfare module"
 	desc = "A bewilderingly complex bundle of fiber optics and chips."
 	icon_state = "ewar"
-	toggleable = 1
-	usable = 0
+	toggleable = TRUE
+	usable = FALSE
 
 	activate_string = "Enable Countermeasures"
 	deactivate_string = "Disable Countermeasures"
@@ -350,9 +350,9 @@
 	name = "hardsuit power sink"
 	desc = "An heavy-duty power sink."
 	icon_state = "powersink"
-	toggleable = 1
-	activates_on_touch = 1
-	disruptive = 0
+	toggleable = TRUE
+	activates_on_touch = TRUE
+	disruptive = FALSE
 
 	activate_string = "Enable Power Sink"
 	deactivate_string = "Disable Power Sink"
@@ -382,23 +382,23 @@
 /obj/item/rig_module/power_sink/engage(atom/target)
 
 	if(!..())
-		return 0
+		return FALSE
 
 	//Target wasn't supplied or we're already draining.
 	if(interfaced_with)
-		return 0
+		return FALSE
 
 	if(!target)
-		return 1
+		return TRUE
 
 	// Are we close enough?
 	var/mob/living/carbon/human/H = holder.wearer
 	if(!target.Adjacent(H))
-		return 0
+		return FALSE
 
 	// Is it a valid power source?
 	if(target.drain_power(1) <= 0)
-		return 0
+		return FALSE
 
 	to_chat(H, "<span class = 'danger'>You begin draining power from [target]!</span>")
 	interfaced_with = target
@@ -407,14 +407,14 @@
 	holder.spark_system.start()
 	playsound(H.loc, 'sound/effects/sparks2.ogg', 50, 1)
 
-	return 1
+	return TRUE
 
 /obj/item/rig_module/power_sink/accepts_item(var/obj/item/input_device, var/mob/living/user)
 	var/can_drain = input_device.drain_power(1)
 	if(can_drain > 0)
 		engage(input_device)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/item/rig_module/power_sink/process(delta_time)
 
@@ -426,7 +426,7 @@
 		H = holder.wearer
 
 	if(!H || !istype(H))
-		return 0
+		return FALSE
 
 	holder.spark_system.start()
 	playsound(H.loc, 'sound/effects/sparks2.ogg', 50, 1)
@@ -479,8 +479,8 @@
 /obj/item/rig_module/emp_shielding
 	name = "\improper EMP dissipation module"
 	desc = "A bewilderingly complex bundle of fiber optics and chips."
-	toggleable = 1
-	usable = 0
+	toggleable = TRUE
+	usable = FALSE
 
 	activate_string = "Enable active EMP shielding"
 	deactivate_string = "Disable active EMP shielding"

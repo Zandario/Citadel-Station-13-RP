@@ -1,6 +1,3 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
-
-
 /*
 
 	All telecommunications interactions:
@@ -119,11 +116,11 @@
 	// Toggle on/off getting signals from the station or the current Z level
 	if(src.listening_level == STATION_Z) // equals the station
 		src.listening_level = position.z
-		return 1
+		return TRUE
 	else if(position.z == TELECOMM_Z)
 		src.listening_level = STATION_Z
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 // Returns a multitool from a user depending on their mobtype.
 
@@ -374,8 +371,8 @@
 
 /obj/machinery/telecomms/proc/canAccess(var/mob/user)
 	if(issilicon(user) || in_range(user, src))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/machinery/telecomms/proc/set_temp(var/text, var/color = "average")
 	temp = list("color" = color, "text" = text)

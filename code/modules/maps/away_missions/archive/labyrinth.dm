@@ -81,8 +81,8 @@
 	desc = "This wall tile seems loose. Try pushing on it."
 	icon_state = ""
 //	mineral = "cultspecial"
-	density = 1
-	opacity = 1
+	density = TRUE
+	opacity = TRUE
 */
 
 /obj/machinery/door/airlock/vault/temple
@@ -92,11 +92,11 @@
 /obj/machinery/door/airlock/vault/temple/Initialize()
 	. = ..()
 	if(prob(33))
-		safe = 0
+		safe = FALSE
 	if(prob(33))
-		locked = 1
+		locked = TRUE
 	if(prob(50))
-		secured_wires = 0
+		secured_wires = FALSE
 
 /obj/mecha/combat/honker/cluwne // What have I done?
 	desc = "Mechanized Assault Device for Juggernaughting Against Clown Killers. You've only heard legends about this exosuit..."

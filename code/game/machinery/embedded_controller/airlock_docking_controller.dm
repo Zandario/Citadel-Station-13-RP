@@ -12,7 +12,7 @@
 	var/datum/computer/file/embedded_program/airlock/docking/airlock_program
 	var/datum/computer/file/embedded_program/docking/airlock/docking_program
 	var/display_name		// For mappers to override docking_program.display_name (how would it show up on docking monitoring program)
-	tag_secure = 1
+	tag_secure = TRUE
 	valid_actions = list("cycle_ext", "cycle_int", "force_ext", "force_int", "abort", "toggle_override")
 
 /obj/machinery/embedded_controller/radio/airlock/docking_port/Initialize()

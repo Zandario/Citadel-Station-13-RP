@@ -8,6 +8,8 @@ var/global/list/datum/pipe_network/pipe_networks = list()	// TODO - Move into SS
 	var/list/datum/pipeline/line_members = list()
 		//membership roster to go through for updates and what not
 
+	var/list/leaks = list()
+
 	var/update = 1
 	//var/datum/gas_mixture/air_transient = null
 
@@ -56,6 +58,7 @@ var/global/list/datum/pipe_network/pipe_networks = list()	// TODO - Move into SS
 
 	line_members |= giver.line_members
 
+	leaks |= giver.leaks
 
 	for(var/obj/machinery/atmospherics/normal_member in giver.normal_members)
 		normal_member.reassign_network(giver, src)

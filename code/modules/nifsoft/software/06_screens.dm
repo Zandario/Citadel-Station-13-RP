@@ -30,19 +30,19 @@
 	access = access_engine
 	cost = 625
 	p_drain = 0.025
-	var/datum/nano_module/alarm_monitor/engineering/arscreen
+	var/datum/tgui_module/alarm_monitor/engineering/nif/tgarscreen
 
 /datum/nifsoft/alarmmonitor/New()
 	..()
-	arscreen = new(nif)
+	tgarscreen = new(nif)
 
 /datum/nifsoft/alarmmonitor/Destroy()
-		QDEL_NULL(arscreen)
+		QDEL_NULL(tgarscreen)
 		return ..()
 
 /datum/nifsoft/alarmmonitor/activate()
 	if((. = ..()))
-		arscreen.nano_ui_interact(nif.human,"main",null,1,nif_state)
+		tgarscreen.ui_interact(nif.human)
 		return TRUE
 
 /datum/nifsoft/alarmmonitor/stat_text()

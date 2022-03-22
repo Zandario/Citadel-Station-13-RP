@@ -6,8 +6,8 @@
 	desc = "A generic vending machine."
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "generic"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
 	var/icon_vend //Icon_state when vending
 	var/icon_deny //Icon_state when denying access
@@ -18,13 +18,14 @@
 	var/vend_power_usage = 150 //actuators and stuff
 
 	// Vending-related
-	var/active = 1 //No sales pitches if off!
-	var/vend_ready = 1 //Are we ready to vend?? Is it time??
+	var/active = TRUE //No sales pitches if off!
+	var/vend_ready = TRUE //Are we ready to vend?? Is it time??
 	var/vend_delay = 10 //How long does it take to vend?
 	var/categories = CAT_NORMAL // Bitmask of cats we're currently showing
 	var/datum/stored_item/vending_product/currently_vending = null // What we're requesting payment for right now
+	var/tmp/actively_vending = null // Used to allow TGUI to display normal items in-progress being vended
 	var/status_message = "" // Status screen messages like "insufficient funds", displayed in NanoUI
-	var/status_error = 0 // Set to 1 if status_message is an error
+	var/status_error = FALSE // Set to TRUE if status_message is an error
 
 	/*
 		Variables used to initialize the product list
@@ -34,7 +35,7 @@
 	var/list/products	= list() // For each, use the following pattern:
 	var/list/contraband	= list() // list(/type/path = amount,/type/path2 = amount2)
 	var/list/premium 	= list() // No specified amount = only one in stock
-	var/list/prices     = list() // Prices for each item, list(/type/path = price), items not in the list don't have a price.
+	var/list/prices 	= list() // Prices for each item, list(/type/path = price), items not in the list don't have a price.
 
 	// List of vending_product items available.
 	var/list/product_records = list()
@@ -48,18 +49,18 @@
 
 	// Stuff relating vocalizations
 	var/list/slogan_list = list()
-	var/shut_up = 1 //Stop spouting those godawful pitches!
+	var/shut_up = TRUE //Stop spouting those godawful pitches!
 	var/vend_reply //Thank you for shopping!
 	var/last_reply = 0
 	var/last_slogan = 0 //When did we last pitch?
 	var/slogan_delay = 6000 //How long until we can pitch again?
 
 	// Things that can go wrong
-	emagged = 0 //Ignores if somebody doesn't have card access to that machine.
+	emagged = FALSE //Ignores if somebody doesn't have card access to that machine.
 	var/seconds_electrified = 0 //Shock customers like an airlock.
-	var/shoot_inventory = 0 //Fire items at customers! We're broken!
+	var/shoot_inventory = FALSE //Fire items at customers! We're broken!
 
-	var/scan_id = 1
+	var/scan_id = TRUE
 	var/obj/item/coin/coin
 	var/datum/wires/vending/wires = null
 
@@ -151,25 +152,25 @@
 
 	if(currently_vending && vendor_account && !vendor_account.suspended)
 		var/paid = 0
-		var/handled = 0
+		var/handled = FALSE
 
 		if(I) //for IDs and PDAs and wallets with IDs
 			paid = pay_with_card(I,W)
-			handled = 1
+			handled = TRUE
 		else if(istype(W, /obj/item/spacecash/ewallet))
 			var/obj/item/spacecash/ewallet/C = W
 			paid = pay_with_ewallet(C)
-			handled = 1
+			handled = TRUE
 		else if(istype(W, /obj/item/spacecash))
 			var/obj/item/spacecash/C = W
 			paid = pay_with_cash(C, user)
-			handled = 1
+			handled = TRUE
 
 		if(paid)
 			vend(currently_vending, usr)
 			return
 		else if(handled)
-			SSnanoui.update_uis(src)
+			SStgui.update_uis(src)
 			return // don't smack that machine with your 2 thalers
 
 	if(I || istype(W, /obj/item/spacecash))
@@ -179,11 +180,13 @@
 		panel_open = !panel_open
 		to_chat(user, "You [panel_open ? "open" : "close"] the maintenance panel.")
 		playsound(src, W.usesound, 50, 1)
-		overlays.Cut()
 		if(panel_open)
-			overlays += image(icon, "[initial(icon_state)]-panel")
+			wires.Interact(user)
+			add_overlay("[initial(icon_state)]-panel")
+		else
+			cut_overlay("[initial(icon_state)]-panel")
 
-		SSnanoui.update_uis(src)  // Speaker switch is on the main UI, not wires UI
+		SStgui.update_uis(src)  // Speaker switch is on the main UI, not wires UI
 		return
 	else if(istype(W, /obj/item/multitool) || W.is_wirecutter())
 		if(panel_open)
@@ -195,7 +198,7 @@
 		coin = W
 		categories |= CAT_COIN
 		to_chat(user, "<span class='notice'>You insert \the [W] into \the [src].</span>")
-		SSnanoui.update_uis(src)
+		SStgui.update_uis(src)
 		return
 	else if(W.is_wrench())
 		playsound(src, W.usesound, 100, 1)
@@ -228,7 +231,7 @@
 		// This is not a status display message, since it's something the character
 		// themselves is meant to see BEFORE putting the money in
 		to_chat(user, "[icon2html(thing = cashmoney, target = user)] <span class='warning'>That is not enough money.</span>")
-		return 0
+		return FALSE
 
 	if(istype(cashmoney, /obj/item/spacecash))
 
@@ -243,30 +246,30 @@
 
 	// Vending machines have no idea who paid with cash
 	credit_purchase("(cash)")
-	return 1
+	return TRUE
 
 /**
  * Scan a chargecard and deduct payment from it.
  *
- * Takes payment for whatever is the currently_vending item. Returns 1 if
- * successful, 0 if failed.
+ * Takes payment for whatever is the currently_vending item. Returns TRUE if
+ * successful, FALSE if failed.
  */
 /obj/machinery/vending/proc/pay_with_ewallet(var/obj/item/spacecash/ewallet/wallet)
 	visible_message("<span class='info'>\The [usr] swipes \the [wallet] through \the [src].</span>")
 	if(currently_vending.price > wallet.worth)
 		status_message = "Insufficient funds on chargecard."
 		status_error = 1
-		return 0
+		return FALSE
 	else
 		wallet.worth -= currently_vending.price
 		credit_purchase("[wallet.owner_name] (chargecard)")
-		return 1
+		return TRUE
 
 /**
  * Scan a card and attempt to transfer payment from associated account.
  *
- * Takes payment for whatever is the currently_vending item. Returns 1 if
- * successful, 0 if failed
+ * Takes payment for whatever is the currently_vending item. Returns TRUE if
+ * successful, FALSE if failed
  */
 /obj/machinery/vending/proc/pay_with_card(var/obj/item/card/id/I, var/obj/item/ID_container)
 	if(I==ID_container || ID_container == null)
@@ -277,12 +280,12 @@
 	if(!customer_account)
 		status_message = "Error: Unable to access account. Please contact technical support if problem persists."
 		status_error = 1
-		return 0
+		return FALSE
 
 	if(customer_account.suspended)
 		status_message = "Unable to access account: account suspended."
 		status_error = 1
-		return 0
+		return FALSE
 
 	// Have the customer punch in the PIN before checking if there's enough money. Prevents people from figuring out acct is
 	// empty at high security levels
@@ -293,12 +296,12 @@
 		if(!customer_account)
 			status_message = "Unable to access account: incorrect credentials."
 			status_error = 1
-			return 0
+			return FALSE
 
 	if(currently_vending.price > customer_account.money)
 		status_message = "Insufficient funds in account."
 		status_error = 1
-		return 0
+		return FALSE
 	else
 		// Okay to move the money at this point
 
@@ -322,7 +325,7 @@
 		// that purchases made with stolen/borrowed card will look like the card
 		// owner made them
 		credit_purchase(customer_account.owner_name)
-		return 1
+		return TRUE
 
 /**
  *  Add money for current purchase to the vendor account.
@@ -341,6 +344,9 @@
 	T.time = stationtime2text()
 	vendor_account.transaction_log.Add(T)
 
+/obj/machinery/vending/attack_ghost(mob/user)
+	return attack_hand(user)
+
 /obj/machinery/vending/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
@@ -353,24 +359,23 @@
 			return
 
 	wires.Interact(user)
-	nano_ui_interact(user)
+	ui_interact(user)
 
-/**
- *  Display the NanoUI window for the vending machine.
- *
- *  See NanoUI documentation for details.
- */
-/obj/machinery/vending/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	user.set_machine(src)
+/obj/machinery/vending/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Vending", name)
+		ui.open()
 
+/obj/machinery/vending/ui_data(mob/user)
 	var/list/data = list()
 	if(currently_vending)
 		data["mode"] = 1
 		data["product"] = currently_vending.item_name
 		data["price"] = currently_vending.price
-		data["message_err"] = 0
 		data["message"] = status_message
 		data["message_err"] = status_error
+		data["products"] = null
 	else
 		data["mode"] = 0
 		var/list/listed_products = list()
@@ -392,26 +397,34 @@
 
 	if(coin)
 		data["coin"] = coin.name
+	else
+		data["coin"] = FALSE
+
+	if(actively_vending)
+		data["actively_vending"] = actively_vending
+	else
+		data["actively_vending"] = null
 
 	if(panel_open)
 		data["panel"] = 1
-		data["speaker"] = shut_up ? 0 : 1
+		data["speaker"] = shut_up ? FALSE : TRUE
 	else
 		data["panel"] = 0
 
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "vending_machine.tmpl", name, 440, 600)
-		ui.set_initial_data(data)
-		ui.open()
+	return data
 
-/obj/machinery/vending/Topic(href, href_list)
+/obj/machinery/vending/ui_act(action, params)
 	if(stat & (BROKEN|NOPOWER))
 		return
 	if(!IsAdminGhost(usr) && (usr.stat || usr.restrained()))
 		return
+	if(..())
+		return TRUE
 
-	if(href_list["remove_coin"] && !istype(usr,/mob/living/silicon))
+	if(action == "remove_coin")
+		if(issilicon(usr))
+			return FALSE
+
 		if(!coin)
 			to_chat(usr, "There is no coin in this machine.")
 			return
@@ -419,19 +432,27 @@
 		coin.forceMove(src.loc)
 		if(!usr.get_active_hand())
 			usr.put_in_hands(coin)
-		to_chat(usr, "<span class='notice'>You remove \the [coin] from \the [src]</span>")
+
+		to_chat(usr, "<span class='notice'>You remove \the [coin] from \the [src].</span>")
 		coin = null
 		categories &= ~CAT_COIN
+		return TRUE
 
-	if(IsAdminGhost(usr) || (usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
-		if((href_list["vend"]) && (vend_ready) && (!currently_vending))
-			if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
+	if(!usr.contents.Find(src) && (!in_range(src, usr) && isturf(loc)))
+		return FALSE
+
+	. = TRUE
+	switch(action)
+		if("vend")
+			if(!vend_ready || currently_vending)
+				return
+			if(!allowed(usr) && !emagged && scan_id)
 				to_chat(usr, "<span class='warning'>Access denied.</span>")	//Unless emagged of course
 				flick(icon_deny,src)
 				playsound(src.loc, 'sound/machines/deniedbeep.ogg', 50, 0)
 				return
 
-			var/key = text2num(href_list["vend"])
+			var/key = text2num(params["vend"])
 			var/datum/stored_item/vending_product/R = product_records[key]
 
 			// This should not happen unless the request from NanoUI was bad
@@ -440,7 +461,7 @@
 
 			if((R.price <= 0) || IsAdminGhost(usr))
 				vend(R, usr)
-			else if(istype(usr,/mob/living/silicon)) //If the item is not free, provide feedback if a synth is trying to buy something.
+			else if(issilicon(usr)) //If the item is not free, provide feedback if a synth is trying to buy something.
 				to_chat(usr, "<span class='danger'>Lawed unit recognized.  Lawed units cannot complete this transaction.  Purchase canceled.</span>")
 				return
 			else
@@ -452,14 +473,13 @@
 					status_message = "Please swipe a card or insert cash to pay for the item."
 					status_error = 0
 
-		else if(href_list["cancelpurchase"])
+		if("cancelpurchase")
 			currently_vending = null
 
-		else if((href_list["togglevoice"]) && (panel_open))
+		if("togglevoice")
+			if(!panel_open)
+				return FALSE
 			shut_up = !shut_up
-
-		add_fingerprint(usr)
-		SSnanoui.update_uis(src)
 
 /obj/machinery/vending/proc/vend(datum/stored_item/vending_product/R, mob/user)
 	if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
@@ -467,10 +487,11 @@
 		flick(icon_deny,src)
 		playsound(src.loc, 'sound/machines/deniedbeep.ogg', 50, 0)
 		return
-	vend_ready = 0 //One thing at a time!!
+	vend_ready = FALSE //One thing at a time!!
+	actively_vending = R.item_name
 	status_message = "Vending..."
 	status_error = 0
-	SSnanoui.update_uis(src)
+	SStgui.update_uis(src)
 
 	if(R.category & CAT_COIN)
 		if(!coin)
@@ -510,11 +531,12 @@
 
 		status_message = ""
 		status_error = 0
-		vend_ready = 1
+		vend_ready = TRUE
+		actively_vending = null
 		currently_vending = null
-		SSnanoui.update_uis(src)
+		SStgui.update_uis(src)
 
-	return 1
+	return TRUE
 
 /obj/machinery/vending/proc/do_logging(datum/stored_item/vending_product/R, mob/user, var/vending = 0)
 	if(user.GetIdCard())
@@ -568,7 +590,7 @@
 	if(has_logs)
 		do_logging(R, user)
 
-	SSnanoui.update_uis(src)
+	SStgui.update_uis(src)
 
 /obj/machinery/vending/process(delta_time)
 	if(stat & (BROKEN|NOPOWER))
@@ -629,7 +651,7 @@
 	var/obj/throw_item = null
 	var/mob/living/target = locate() in view(7,src)
 	if(!target)
-		return 0
+		return FALSE
 
 	for(var/datum/stored_item/vending_product/R in product_records)
 		throw_item = R.get_product(loc)
@@ -637,11 +659,11 @@
 			continue
 		break
 	if(!throw_item)
-		return 0
+		return FALSE
 	spawn(0)
 		throw_item.throw_at(target, 16, 3, src)
 	visible_message("<span class='warning'>\The [src] launches \a [throw_item] at \the [target]!</span>")
-	return 1
+	return TRUE
 
 /*
  * Vending machine types
@@ -780,8 +802,8 @@
 /obj/machinery/vending/cola
 	name = "Robust Softdrinks"
 	desc = "A softdrink vendor provided by Robust Industries, LLC."
-	icon_state = "Cola_Machine" //VOREStation Edit
-	icon_vend = "Cola_Machine-purchase" //VOREStation Edit
+	icon_state = "Cola_Machine"
+	icon_vend = "Cola_Machine-purchase"
 	product_slogans = "Robust Softdrinks: More robust than a toolbox to the head!"
 	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space."
 	products = list(/obj/item/reagent_containers/food/drinks/cans/battery = 10,
@@ -929,7 +951,7 @@
 	name = "Airlock NanoMed"
 	desc = "Wall-mounted Medical Equipment dispenser. This limited-use version dispenses antitoxins with mild painkillers for surface EVAs."
 	icon_state = "wallmed"
-	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
+	density = FALSE // It is wall-mounted
 	products = list(/obj/item/reagent_containers/pill/airlock = 20)
 	contraband = list(/obj/item/reagent_containers/pill/tox = 2)
 	req_log_access = access_cmo
@@ -940,7 +962,7 @@
 	desc = "A wall-mounted version of the NanoMed, containing only vital first aid equipment."
 	icon_state = "wallmed"
 	icon_deny = "wallmed-deny"
-	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
+	density = FALSE // It is wall-mounted
 	products = list(/obj/item/reagent_containers/hypospray/autoinjector = 5,/obj/item/reagent_containers/syringe/antitoxin = 3,/obj/item/stack/medical/bruise_pack = 3,
 					/obj/item/stack/medical/ointment =3,/obj/item/healthanalyzer = 3)
 	contraband = list(/obj/item/reagent_containers/pill/tox = 3)
