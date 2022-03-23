@@ -300,13 +300,11 @@
 	icon_state ="booksmoke"
 	desc = "This book is overflowing with the dank arts."
 
-/obj/item/spellbook/oneuse/smoke/recoil(mob/user as mob)
+/obj/item/spellbook/oneuse/smoke/recoil(mob/living/user as mob)
 	..()
 	to_chat(user, "<span class='caution'>Your stomach rumbles...</span>")
 	if(user.nutrition)
-		user.nutrition -= 200
-		if(user.nutrition <= 0)
-			user.nutrition = 0
+		user.adjust_nutrition(-200)
 
 /obj/item/spellbook/oneuse/blind
 	spell = /spell/targeted/genetic/blind

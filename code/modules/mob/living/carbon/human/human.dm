@@ -1154,6 +1154,7 @@
 		species.remove_inherent_verbs(src)
 		species.remove_inherent_spells(src)
 		holder_type = null
+		hunger_rate = initial(hunger_rate)
 
 	species = GLOB.all_species[new_species]
 
@@ -1189,14 +1190,12 @@
 
 	//icon_state = lowertext(species.name) //Necessary?
 
-	//VOREStation Edit start: swap places of those two procs
 	species.handle_post_spawn(src)
 
 	species.create_organs(src)
-	//VOREStation Edit end: swap places of those two procs
-
 
 	maxHealth = species.total_health
+	hunger_rate = species.hunger_factor
 
 	if(LAZYLEN(descriptors))
 		descriptors = null

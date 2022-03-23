@@ -34,6 +34,8 @@ var/datum/species/shapeshifter/promethean/prometheans
 	secondary_langs = list(LANGUAGE_SOL_COMMON)	// For some reason, having this as their species language does not allow it to be chosen.
 	assisted_langs = list(LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)	// Prometheans are weird, let's just assume they can use basically any language.
 
+	//blood_name = "gelatinous ooze"
+
 	breath_type = null
 	poison_type = null
 
@@ -121,12 +123,13 @@ var/datum/species/shapeshifter/promethean/prometheans
 		)
 
 	valid_transform_species = list(
-		"Human", "Unathi", "Tajara", "Skrell",
-		"Diona", "Teshari", "Monkey","Sergal",
-		"Akula","Nevrean","Highlander Zorren",
-		"Flatland Zorren", "Vulpkanin", "Vasilissan",
-		"Rapala", "Neaera", "Stok", "Farwa", "Sobaka",
-		"Wolpin", "Saru", "Sparra")
+		SPECIES_HUMAN, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_SKRELL,
+		SPECIES_DIONA, SPECIES_TESHARI, SPECIES_MONKEY, SPECIES_SERGAL,
+		SPECIES_AKULA, SPECIES_NEVREAN, SPECIES_ZORREN_HIGH,
+		SPECIES_ZORREN_FLAT, SPECIES_VULPKANIN, SPECIES_VASILISSAN,
+		SPECIES_RAPALA, SPECIES_MONKEY_SKRELL, SPECIES_MONKEY_UNATHI,
+		SPECIES_MONKEY_TAJ, SPECIES_MONKEY_AKULA, SPECIES_MONKEY_VULPKANIN,
+		SPECIES_MONKEY_SERGAL, SPECIES_MONKEY_NEVREAN)
 
 	active_regen_mult = 0.66 //As of writing, original was 1 (good)
 	heal_rate = 0.35
@@ -200,7 +203,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 		t_she = "They are"
 	else if(H.identifying_gender == NEUTER)
 		t_she = "It is"
-	else if(H.identifying_gender == HERM) //VOREStation Edit
+	else if(H.identifying_gender == HERM)
 		t_she = "Shi is"
 
 	switch(stored_shock_by_ref["\ref[H]"])

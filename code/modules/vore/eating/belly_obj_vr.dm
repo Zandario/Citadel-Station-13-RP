@@ -18,6 +18,7 @@
 	var/vore_verb = "ingest"				// Verb for eating with this in messages
 	var/human_prey_swallow_time = 100		// Time in deciseconds to swallow /mob/living/carbon/human
 	var/nonhuman_prey_swallow_time = 30		// Time in deciseconds to swallow anything else
+	var/nutrition_percent = 100				// Nutritional percentage per tick in digestion mode
 	var/emote_time = 60 SECONDS				// How long between stomach emotes at prey
 	var/digest_brute = 2					// Brute damage per tick in digestion mode
 	var/digest_burn = 2						// Burn damage per tick in digestion mode
@@ -482,10 +483,10 @@
 	if(!digested)
 		items_preserved |= item
 	else
-		owner.nutrition += (5 * digested)
+		owner.adjust_nutrition((nutrition_percent / 100) * 5 * digested)
 		if(isrobot(owner))
 			var/mob/living/silicon/robot/R = owner
-			R.cell.charge += (50 * digested)
+			R.cell.charge += ((nutrition_percent / 100) * 50 * digested)
 	return digested
 
 //Determine where items should fall out of us into.

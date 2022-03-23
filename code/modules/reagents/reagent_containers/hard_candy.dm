@@ -43,7 +43,7 @@
 /obj/item/reagent_containers/hard_candy/attack_self(mob/user as mob)
 	return
 
-/obj/item/reagent_containers/hard_candy/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/reagent_containers/hard_candy/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
 	if(reagents && !reagents.total_volume)
 		to_chat(user, "<span class='danger'>None of [src] left!</span>")
 		user.drop_from_inventory(src)

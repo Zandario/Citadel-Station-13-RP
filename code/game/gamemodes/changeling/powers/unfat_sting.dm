@@ -10,10 +10,11 @@
 	set desc = "Sting target"
 
 	var/mob/living/carbon/T = changeling_sting(5,/mob/proc/changeling_unfat_sting)
-	if(!T)	return 0
+	if(!T)
+		return FALSE
 	add_attack_logs(src,T,"Unfat sting (changeling)")
 	to_chat(T, "<span class='danger'>you feel a small prick as stomach churns violently and you become to feel skinnier.</span>")
 	T.overeatduration = 0
-	T.nutrition -= 100
+	T.adjust_nutrition(-100)
 	feedback_add_details("changeling_powers","US")
-	return 1
+	return TRUE

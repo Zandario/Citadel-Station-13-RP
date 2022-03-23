@@ -24,14 +24,14 @@
 			sleep(25)
 
 /datum/effect_system/grav_pull/proc/do_pull()
-	// Following is adapted from supermatter and singulo code
+	//following is adapted from supermatter and singulo code
 	if(defer_powernet_rebuild != 2)
 		defer_powernet_rebuild = 1
 
 	// Let's just make this one loop.
 	for(var/X in orange(pull_radius, location))
 		// Movable atoms only
-		if(!ismovableatom(X) || istype(X, /obj/effect/overlay))
+		if(!ismovable(X) || istype(X, /obj/effect/overlay))
 			continue
 
 		if(ishuman(X))
@@ -41,10 +41,10 @@
 				if(M.magpulse)
 					step_towards(H, location) //step just once with magboots
 					continue
-			step_towards(H, location) // Step twice
+			step_towards(H, location) //step twice
 			step_towards(H, location)
 		else
-			if(break_windows && istype(X, /obj/structure/window)) // Shatter windows
+			if(break_windows && istype(X, /obj/structure/window)) //shatter windows
 				var/obj/structure/window/W = X
 				W.ex_act(2.0)
 
@@ -53,21 +53,11 @@
 				if(O.anchored)
 					if(!pull_anchored)
 						continue // Don't pull anchored stuff unless configured
-					step_towards(X, location) // Step just once if anchored
+					step_towards(X, location)  // step just once if anchored
 					continue
 
 			step_towards(X, location) // Step twice
 			step_towards(X, location)
-
-			else if(istype(X,/mob/living/carbon/human))
-				var/mob/living/carbon/human/H = X
-				if(istype(H.shoes,/obj/item/clothing/shoes/magboots))
-					var/obj/item/clothing/shoes/magboots/M = H.shoes
-					if(M.magpulse)
-						step_towards(H, location) // Step just once with magboots
-						continue
-				step_towards(H, location) // Step twice
-				step_towards(H, location)
 
 	if(defer_powernet_rebuild != 2)
 		defer_powernet_rebuild = 0

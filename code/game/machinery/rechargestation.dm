@@ -107,10 +107,9 @@
 				H.adjustBrainLoss(-(rand(1,3)))
 
 			// Also recharge their internal battery.
-			if(H.isSynthetic() && H.nutrition < 450)
-				var/needed = clamp(450 - H.nutrition, 0, 20)
-				var/drained = cell.use(needed * SYNTHETIC_NUTRITION_CHARGE_RATE)
-				H.nutrition += drained / SYNTHETIC_NUTRITION_CHARGE_RATE
+			if(H.isSynthetic() && H.nutrition < MAX_NUTRITION)
+				H.nutrition = min(H.nutrition+10, MAX_NUTRITION)
+				cell.use(7000/450*10)
 
 			// And clear up radiation
 			if(H.radiation > 0)

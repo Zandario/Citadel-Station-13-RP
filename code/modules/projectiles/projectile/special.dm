@@ -197,16 +197,15 @@
 	light_color = "#FFFFFF"
 
 /obj/item/projectile/energy/florayield/on_hit(var/atom/target, var/blocked = 0)
-	var/mob/M = target
+	var/mob/living/M = target
 	if(ishuman(target)) //These rays make plantmen fat.
 		var/mob/living/carbon/human/H = M
 		if((H.species.flags & IS_PLANT) && (M.nutrition < 500))
-			M.nutrition += 30
+			M.adjust_nutrition(30)
 	else if (istype(target, /mob/living/carbon/))
 		M.show_message("<font color=#4F49AF>The radiation beam dissipates harmlessly through your body.</font>")
 	else
-		return 1
-
+		return TRUE
 
 /obj/item/projectile/beam/mindflayer
 	name = "flayer ray"

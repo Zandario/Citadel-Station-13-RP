@@ -1,11 +1,5 @@
 // Process the predator's effects upon the contents of its belly (i.e digestion/transformation etc)
 /obj/belly/proc/process_belly(times_fired, wait) //Passed by controller
-	//robot stuff
-	var/maxnutrition = 1000000 //previously this was uncapped, normal nutrition is i think 0-1000. 1 million should be a fine cap
-	/* Lets not gimp vore-synths any more than other people
-	if(owner.isSynthetic())
-		maxnutrition = 450
-	*/
 	if((times_fired < next_process) || !contents.len)
 		recent_sound = FALSE
 		return SSBELLIES_IGNORED
@@ -179,14 +173,14 @@
 /obj/belly/proc/handle_digesting_item(obj/item/I)
 	var/did_an_item = FALSE
 	// We always contaminate IDs.
-	if(contaminates || istype(I, /obj/item/weapon/card/id))
+	if(contaminates || istype(I, /obj/item/card/id))
 		I.gurgle_contaminate(src, contamination_flavor, contamination_color)
 
 	switch(item_digest_mode)
 		if(IM_HOLD)
 			items_preserved |= I
 		if(IM_DIGEST_FOOD)
-			if(istype(I,/obj/item/weapon/reagent_containers/food) || istype(I, /obj/item/organ))
+			if(istype(I,/obj/item/reagent_containers/food) || istype(I, /obj/item/organ))
 				did_an_item = digest_item(I)
 			else
 				items_preserved |= I
@@ -217,20 +211,17 @@
 	digestion_death(M)
 	if(!ishuman(owner))
 		owner.update_icons()
-	if(compensation == 0) // Slightly sloppy way at making sure certain mobs don't give ZERO nutrition (fish and so on)
-		compensation = 21 // This reads as 20*4.5 due to the calculations afterward, making the backup nutrition value 94.5 per mob. Not op compared to regular prey.
-	if(compensation > 0)
-		if(isrobot(owner))
-			var/mob/living/silicon/robot/R = owner
-			R.cell.charge += 25*compensation
-		else
-			owner.nutrition += (nutrition_percent / 100)*4.5*compensation
+	if(isrobot(owner))
+		var/mob/living/silicon/robot/R = owner
+		R.cell.charge += (nutrition_percent / 100) * compensation * 25
+	else
+		owner.adjust_nutrition((nutrition_percent / 100) * compensation * 4.5)
 
 /obj/belly/proc/steal_nutrition(mob/living/L)
 	if(L.nutrition >= 100)
 		var/oldnutrition = (L.nutrition * 0.05)
 		L.nutrition = (L.nutrition * 0.95)
-		owner.nutrition += oldnutrition
+		owner.adjust_nutrition(oldnutrition)
 
 /obj/belly/proc/updateVRPanels()
 	for(var/mob/living/M in contents)
@@ -238,3 +229,5 @@
 			M.updateVRPanel()
 	if(owner.client)
 		owner.updateVRPanel()
+	if(isanimal(owner))
+		owner.update_icon()

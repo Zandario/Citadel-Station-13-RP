@@ -4,9 +4,9 @@
 
 // Ye default implementation.
 /obj/item/proc/digest_act(atom/movable/item_storage = null)
-	if(istype(item_storage, /obj/item/device/dogborg/sleeper))
+	if(istype(item_storage, /obj/item/dogborg/sleeper))
 		for(var/obj/item/O in contents)
-			if(istype(O, /obj/item/weapon/storage/internal)) //Dump contents from dummy pockets.
+			if(istype(O, /obj/item/storage/internal)) //Dump contents from dummy pockets.
 				for(var/obj/item/SO in O)
 					if(item_storage)
 						SO.forceMove(item_storage)

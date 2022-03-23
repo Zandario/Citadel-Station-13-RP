@@ -353,7 +353,7 @@
 
 	var/delay_length = round(active_regen_delay * species.active_regen_mult)
 	if(do_after(src,delay_length))
-		nutrition -= 200
+		adjust_nutrition(-200)
 
 		for(var/obj/item/organ/I in internal_organs)
 			if(I.robotic >= ORGAN_ROBOT) // No free robofix.
@@ -396,7 +396,7 @@
 		active_regen = FALSE
 	else
 		to_chat(src, "<span class='critical'>Your regeneration is interrupted!</span>")
-		nutrition -= 75
+		adjust_nutrition(-75)
 		active_regen = FALSE
 
 /mob/living/carbon/human/proc/get_charge(var/mob/living/carbon/human/H)

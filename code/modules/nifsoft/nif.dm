@@ -392,7 +392,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 		return FALSE
 
 	//Was enough, reduce and return.
-	human.nutrition -= use_charge
+	human.adjust_nutrition(-use_charge)
 	return TRUE
 
 //Install a piece of software

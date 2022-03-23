@@ -51,15 +51,15 @@
 		to_chat(user, "<span class='warning'>The weight machine is already in use by somebody else.</span>")
 		return
 	else
-		being_used = 1
+		being_used = TRUE
 		playsound(src.loc, 'sound/effects/weightlifter.ogg', 50, 1)
 		user.setDir(SOUTH)
 		flick("[icon_state]_[weight]", src)
 		if(do_after(user, 20 + (weight * 10)))
 			playsound(src.loc, 'sound/effects/weightdrop.ogg', 25, 1)
-			user.nutrition -= weight * 10
+			user.adjust_nutrition(weight * -10)
 			to_chat(user, "<span class='notice'>You lift the weights [qualifiers[weight]].</span>")
-			being_used = 0
+			being_used = FALSE
 		else
 			to_chat(user, "<span class='notice'>Against your previous judgement, perhaps working out is not for you.</span>")
-			being_used = 0
+			being_used = FALSE

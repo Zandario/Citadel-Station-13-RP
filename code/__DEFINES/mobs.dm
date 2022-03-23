@@ -435,6 +435,8 @@
 #define EXAMINE_SKIPLEGS			0x0080
 #define EXAMINE_SKIPFEET			0x0100
 
+#define MAX_NUTRITION	5000
+
 //Protean organs
 #define O_ORCH		"orchestrator"
 #define O_FACT		"refactory"

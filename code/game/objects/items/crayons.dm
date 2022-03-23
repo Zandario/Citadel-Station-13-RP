@@ -94,7 +94,7 @@
 					qdel(src)
 	return
 
-/obj/item/pen/crayon/attack(mob/M as mob, mob/user as mob)
+/obj/item/pen/crayon/attack(mob/living/M as mob, mob/living/user as mob)
 	if(M == user)
 		to_chat(user, "You take a bite of the crayon and swallow it.")
 		user.nutrition += 1
@@ -102,7 +102,7 @@
 		if(uses)
 			uses -= 5
 			if(uses <= 0)
-				to_chat(user,"<span class='warning'>You ate your crayon!</span>")
+				to_chat(user, "<span class='warning'>You ate your crayon!</span>")
 				qdel(src)
 	else
 		..()
@@ -180,7 +180,7 @@
 	shadeColour = input(user, "Please select the shade colour.", "Marker colour") as color
 	return
 
-/obj/item/pen/crayon/marker/attack(mob/M as mob, mob/user as mob)
+/obj/item/pen/crayon/marker/attack(mob/living/M as mob, mob/living/user as mob)
 	if(M == user)
 		to_chat(user, "You take a bite of the marker and swallow it.")
 		user.nutrition += 1
@@ -241,7 +241,7 @@
 					qdel(src)
 	return
 
-/obj/item/pen/crayon/chalk/attack(mob/M as mob, mob/user as mob)
+/obj/item/pen/crayon/chalk/attack(mob/living/M as mob, mob/living/user as mob)
 	if(M == user)
 		to_chat(user, "You take a bite of the chalk and swallow it.")
 		user.nutrition += 1
