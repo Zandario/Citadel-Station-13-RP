@@ -84,7 +84,7 @@
 		SPECIES_HUMAN,
 		SPECIES_SKRELL,
 		SPECIES_UNATHI,
-		SPECIES_TAJ,
+		SPECIES_TAJARA,
 		SPECIES_TESHARI,
 		SPECIES_AKULA,
 		SPECIES_ALRAUNE,
@@ -114,7 +114,7 @@
 		SPECIES_HUMAN,
 		SPECIES_SKRELL,
 		SPECIES_UNATHI,
-		SPECIES_TAJ,
+		SPECIES_TAJARA,
 		SPECIES_TESHARI,
 		SPECIES_AKULA,
 		SPECIES_ALRAUNE,
@@ -155,7 +155,7 @@
 /obj/item/clothing/suit/space/void/autolok
 	sprite_sheets = list(
 		SPECIES_HUMAN			= 'icons/mob/spacesuit_vr.dmi',
-		SPECIES_TAJ 			= 'icons/mob/species/tajaran/suit_vr.dmi',
+		SPECIES_TAJARA 			= 'icons/mob/species/tajaran/suit_vr.dmi',
 		SPECIES_SKRELL 			= 'icons/mob/species/skrell/suit_vr.dmi',
 		SPECIES_UNATHI 			= 'icons/mob/species/unathi/suit_vr.dmi',
 		SPECIES_XENOHYBRID 		= 'icons/mob/species/unathi/suit_vr.dmi',
@@ -167,7 +167,7 @@
 		SPECIES_TESHARI			= 'icons/mob/species/teshari/suit.dmi'
 		)
 	sprite_sheets_obj = list(
-		SPECIES_TAJ			= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_TAJARA			= 'icons/obj/clothing/suits_vr.dmi',
 		SPECIES_SKRELL			= 'icons/obj/clothing/suits_vr.dmi',
 		SPECIES_UNATHI			= 'icons/obj/clothing/suits_vr.dmi',
 		SPECIES_XENOHYBRID		= 'icons/obj/clothing/suits_vr.dmi',
@@ -234,7 +234,7 @@
 /obj/item/clothing/head/helmet/space/void/autolok
 	sprite_sheets = list(
 		SPECIES_HUMAN			= 'icons/mob/head_vr.dmi',
-		SPECIES_TAJ 			= 'icons/mob/species/tajaran/helmet_vr.dmi',
+		SPECIES_TAJARA 			= 'icons/mob/species/tajaran/helmet_vr.dmi',
 		SPECIES_SKRELL 			= 'icons/mob/species/skrell/helmet_vr.dmi',
 		SPECIES_UNATHI 			= 'icons/mob/species/unathi/helmet_vr.dmi',
 		SPECIES_XENOHYBRID 		= 'icons/mob/species/unathi/helmet_vr.dmi',
@@ -246,7 +246,7 @@
 		SPECIES_TESHARI			= 'icons/mob/species/teshari/head.dmi'
 		)
 	sprite_sheets_obj = list(
-		SPECIES_TAJ 			= 'icons/obj/clothing/hats_vr.dmi',
+		SPECIES_TAJARA 			= 'icons/obj/clothing/hats_vr.dmi',
 		SPECIES_SKRELL			= 'icons/obj/clothing/hats_vr.dmi',
 		SPECIES_UNATHI			= 'icons/obj/clothing/hats_vr.dmi',
 		SPECIES_XENOHYBRID		= 'icons/obj/clothing/hats_vr.dmi',

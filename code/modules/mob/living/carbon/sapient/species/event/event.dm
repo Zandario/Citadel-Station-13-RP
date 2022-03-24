@@ -64,7 +64,7 @@ Variables you may want to make use of are:
 /datum/species/event1 //Essentially, by default a 'better' human.
 	name = SPECIES_EVENT1
 	name_plural = SPECIES_EVENT1
-	primitive_form = SPECIES_MONKEY
+	primitive_form = SPECIES_HUMAN_MONKEY
 	unarmed_types = list(/datum/unarmed_attack/stomp/event1, /datum/unarmed_attack/kick/event1, /datum/unarmed_attack/punch/event1, /datum/unarmed_attack/bite/event1)
 	blurb = "We're not quite sure where these things came from. Are you?"
 	num_alternate_languages = 3

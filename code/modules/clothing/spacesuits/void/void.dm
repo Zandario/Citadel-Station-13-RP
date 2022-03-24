@@ -16,13 +16,13 @@
 	species_restricted = list("Human", "Promethean", "Alraune")
 	sprite_sheets_refit = list(
 		SPECIES_UNATHI = 'icons/mob/species/unathi/helmet.dmi',
-		SPECIES_TAJ = 'icons/mob/species/tajaran/helmet.dmi',
+		SPECIES_TAJARA = 'icons/mob/species/tajaran/helmet.dmi',
 		SPECIES_SKRELL = 'icons/mob/species/skrell/helmet.dmi'
 		//Teshari have a general sprite sheet defined in modules/clothing/clothing.dm
 		)
 	sprite_sheets_obj = list(
 		SPECIES_UNATHI = 'icons/obj/clothing/species/unathi/hats.dmi',
-		SPECIES_TAJ = 'icons/obj/clothing/species/tajaran/hats.dmi',
+		SPECIES_TAJARA = 'icons/obj/clothing/species/tajaran/hats.dmi',
 		SPECIES_SKRELL = 'icons/obj/clothing/species/skrell/hats.dmi',
 		SPECIES_TESHARI = 'icons/obj/clothing/species/teshari/hats.dmi',
 		SPECIES_VOX = 'icons/obj/clothing/species/vox/hats.dmi'
@@ -46,12 +46,12 @@
 	species_restricted = list("Human", SPECIES_SKRELL, "Promethean")
 	sprite_sheets_refit = list(
 		SPECIES_UNATHI = 'icons/mob/species/unathi/suit.dmi',
-		SPECIES_TAJ = 'icons/mob/species/tajaran/suit.dmi',
+		SPECIES_TAJARA = 'icons/mob/species/tajaran/suit.dmi',
 		SPECIES_SKRELL = 'icons/mob/species/skrell/suit.dmi'
 		//Teshari have a general sprite sheet defined in modules/clothing/clothing.dm
 		)
 	sprite_sheets_obj = list(
-		SPECIES_TAJ				= 'icons/obj/clothing/species/tajaran/suits.dmi',
+		SPECIES_TAJARA				= 'icons/obj/clothing/species/tajaran/suits.dmi',
 		SPECIES_SKRELL			= 'icons/obj/clothing/species/skrell/suits.dmi',
 		SPECIES_UNATHI			= 'icons/obj/clothing/species/unathi/suits.dmi',
 		SPECIES_TESHARI			= 'icons/obj/clothing/species/teshari/suits.dmi',

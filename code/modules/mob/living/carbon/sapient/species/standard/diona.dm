@@ -25,7 +25,7 @@
 	min_age = 18
 	max_age = 300
 
-	economic_modifier = 4
+	economic_power = 4
 
 	blurb = "Commonly referred to (erroneously) as 'plant people', the Dionaea are a strange space-dwelling collective \
 	species hailing from Epsilon Ursae Minoris. Each 'diona' is a cluster of numerous cat-sized organisms called nymphs; \

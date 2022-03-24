@@ -1,7 +1,7 @@
 /datum/species/human
 	name = SPECIES_HUMAN
 	name_plural = "Humans"
-	primitive_form = SPECIES_MONKEY
+	primitive_form = SPECIES_HUMAN_MONKEY
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite)
 	blurb = "Humanity originated in the Sol system, and over the last five centuries has spread \
 	colonies across a wide swathe of space. They hold a wide range of forms and creeds.<br/><br/> \
@@ -18,7 +18,7 @@
 	min_age = 18
 	max_age = 130
 
-	economic_modifier = 10
+	economic_power = 10
 
 	health_hud_intensity = 1.5
 
@@ -80,7 +80,7 @@
 	min_age = 18
 	max_age = 260
 
-	economic_modifier = 10
+	economic_power = 10
 
 	blurb = "A heavily reptillian species, Unathi hail from the \
 	Uuosa-Eso system, which roughly translates to 'burning mother'.<br/><br/>Coming from a harsh, inhospitable \
@@ -175,7 +175,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)
 
 /datum/species/tajaran
-	name = SPECIES_TAJ
+	name = SPECIES_TAJARA
 	name_plural = "Tajaran"
 	icobase = 'icons/mob/human_races/r_tajaran_vr.dmi'
 	deform = 'icons/mob/human_races/r_def_tajaran_vr.dmi'
@@ -199,7 +199,7 @@
 	min_age = 18
 	max_age = 80
 
-	economic_modifier = 10
+	economic_power = 10
 
 	blurb = "The Tajaran are a mammalian species resembling roughly felines, hailing from Meralar in the Rarkajar system. \
 	While reaching to the stars independently from outside influences, the humans engaged them in peaceful trade contact \
@@ -295,7 +295,7 @@
 	min_age = 18
 	max_age = 130
 
-	economic_modifier = 10
+	economic_power = 10
 
 	darksight = 4
 	flash_mod = 1.2
@@ -373,7 +373,7 @@
 
 	minimum_breath_pressure = 20 //have fun with underpressures. any higher than this and they'll be even less suitible for life on the station
 
-	economic_modifier = 3
+	economic_power = 3
 
 	min_age = 18
 	max_age = 90

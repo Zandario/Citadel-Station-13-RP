@@ -4,7 +4,7 @@
 
 /mob/living/carbon/human/tajaran/Initialize(var/new_loc)
 	h_style = "Tajaran Ears"
-	return ..(new_loc, SPECIES_TAJ)
+	return ..(new_loc, SPECIES_TAJARA)
 
 /mob/living/carbon/human/unathi/Initialize(var/new_loc)
 	h_style = "Unathi Horns"
@@ -28,7 +28,7 @@
 	return ..(new_loc, SPECIES_ZADDAT)
 
 /mob/living/carbon/human/monkey/Initialize(var/new_loc)
-	return ..(new_loc, SPECIES_MONKEY)
+	return ..(new_loc, SPECIES_HUMAN_MONKEY)
 
 /mob/living/carbon/human/farwa/Initialize(var/new_loc)
 	return ..(new_loc, SPECIES_MONKEY_TAJ)

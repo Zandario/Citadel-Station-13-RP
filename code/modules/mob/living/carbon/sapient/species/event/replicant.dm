@@ -5,7 +5,7 @@
 /datum/species/shapeshifter/replicant
 	name = SPECIES_REPLICANT
 	name_plural = "Replicants"
-	primitive_form = SPECIES_MONKEY
+	primitive_form = SPECIES_HUMAN_MONKEY
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	blurb = "The remnants of some lost or dead race's research. These seem relatively normal."
 	num_alternate_languages = 3
@@ -41,7 +41,7 @@
 	spawn_flags = SPECIES_IS_RESTRICTED
 	appearance_flags = HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_HAIR_COLOR | HAS_UNDERWEAR
 
-	valid_transform_species = list(SPECIES_HUMAN, SPECIES_HUMAN_VATBORN, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_SKRELL, SPECIES_DIONA, SPECIES_TESHARI, SPECIES_MONKEY, SPECIES_VOX)
+	valid_transform_species = list(SPECIES_HUMAN, SPECIES_HUMAN_VATBORN, SPECIES_UNATHI, SPECIES_TAJARA, SPECIES_SKRELL, SPECIES_DIONA, SPECIES_TESHARI, SPECIES_HUMAN_MONKEY, SPECIES_VOX)
 
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/shapeshifter_select_shape,

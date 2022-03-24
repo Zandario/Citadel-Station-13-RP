@@ -1,0 +1,80 @@
+// Keep section in alphabetical order please. <3 - Zandario
+
+// Public Species
+#define SPECIES_AKULA "Akula"
+#define SPECIES_ALRAUNE "Alraune"
+#define SPECIES_APIDAEN "Apidaen"
+#define SPECIES_AURIL "Auril"
+#define SPECIES_CUSTOM "Custom Species"
+#define SPECIES_DIONA "Diona"
+#define SPECIES_DREMACHIR "Dremachir"
+#define SPECIES_HUMAN "Human"
+#define SPECIES_HUMAN_VATBORN "Vatborn"
+#define SPECIES_NEVREAN "Nevrean"
+#define SPECIES_PROMETHEAN "Promethean"
+#define SPECIES_RAPALA "Rapala"
+#define SPECIES_SERGAL "Sergal"
+#define SPECIES_SKRELL "Skrell"
+#define SPECIES_TAJARA "Tajara"
+#define SPECIES_TESHARI "Teshari"
+#define SPECIES_UNATHI "Unathi"
+#define SPECIES_VASILISSAN "Vasilissan"
+#define SPECIES_VETALA_PALE "Pale Vetalan"
+#define SPECIES_VETALA_RUDDY "Ruddy Vetalan"
+#define SPECIES_VOX "Vox"
+#define SPECIES_VULPKANIN "Vulpkanin"
+#define SPECIES_ZADDAT "Zaddat"
+#define SPECIES_ZORREN_FLAT "Flatland Zorren"
+#define SPECIES_ZORREN_HIGH "Highlander Zorren"
+
+// Monkey and alien monkeys
+#define SPECIES_AKULA_MONKEY "Sobaka"
+#define SPECIES_HUMAN_MONKEY "Monkey"
+#define SPECIES_NEVREAN_MONKEY "Sparra"
+#define SPECIES_SERGAL_MONKEY "Saru"
+#define SPECIES_SKRELL_MONKEY "Neaera"
+#define SPECIES_TAJARA_MONKEY "Farwa"
+#define SPECIES_UNATHI_MONKEY "Stok"
+#define SPECIES_VULPKANIN_MONKEY "Wolpin"
+
+// Virtual Reality
+#define SPECIES_VR "Virtual Reality Avatar"
+#define SPECIES_DIONA_VR "Virtual Reality Diona"
+#define SPECIES_HUMAN_VR "Virtual Reality Human"
+#define SPECIES_MONKEY_VR "Virtual Reality Monkey"
+#define SPECIES_SKELETON_VR "Virtual Reality Skeleton"
+#define SPECIES_SKRELL_VR "Virtual Reality Skrell"
+#define SPECIES_TAJ_VR "Virtual Reality Tajara"
+#define SPECIES_TESHARI_VR "Virtual Reality Teshari"
+#define SPECIES_UNATHI_VR "Virtual Reality Unathi"
+#define SPECIES_VOX_VR "Virtual Reality Vox"
+
+// Ayyylmaos
+#define SPECIES_XENO "Xenomorph"
+#define SPECIES_XENO_DRONE "Xenomorph Drone"
+#define SPECIES_XENO_HUNTER "Xenomorph Hunter"
+#define SPECIES_XENO_QUEEN "Xenomorph Queen"
+#define SPECIES_XENO_SENTINEL "Xenomorph Sentinel"
+
+// Misc species. Mostly unused but might as well be complete
+#define SPECIES_EVENT1 "X Occursus"
+#define SPECIES_EVENT2 "X Anomalous"
+#define SPECIES_EVENT3 "X Unowas"
+#define SPECIES_GOLEM "Golem"
+#define SPECIES_SHADOW "Shadow"
+#define SPECIES_SKELETON "Skeleton"
+#define SPECIES_WEREBEAST "Werebeast"
+
+// Replicant types. Currently only used for alien pods and events
+#define SPECIES_REPLICANT "Replicant"
+#define SPECIES_REPLICANT_ALPHA "Alpha Replicant"
+#define SPECIES_REPLICANT_BETA "Beta Replicant"
+
+// Whitelisted Species
+#define SPECIES_ADHERENT "Adherent"
+#define SPECIES_PLASMAMAN "Phoronoid"
+#define SPECIES_PROTEAN "Protean"
+#define SPECIES_SHADEKIN "Shadekin"
+#define SPECIES_SHADEKIN_CREW "Black-Eyed Shadekin"
+#define SPECIES_XENOCHIMERA "Xenochimera"
+#define SPECIES_XENOHYBRID "Xenomorph Hybrid"

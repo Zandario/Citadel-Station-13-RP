@@ -3,9 +3,6 @@
 	name_plural = "Vox"
 	icobase = 'icons/mob/human_races/r_vox_old.dmi'
 	deform = 'icons/mob/human_races/r_def_vox_old.dmi'
-	default_language = LANGUAGE_VOX
-	language = LANGUAGE_GALCOM
-	species_language = LANGUAGE_VOX
 	num_alternate_languages = 1
 	assisted_langs = list(LANGUAGE_ROOTGLOBAL)
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick,  /datum/unarmed_attack/claws/strong, /datum/unarmed_attack/bite/strong)
@@ -17,6 +14,11 @@
 	smell.<br/><br/>Most humans will never meet a Vox raider, instead learning of this insular species through \
 	dealing with their traders and merchants; those that do rarely enjoy the experience."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/vox)
+
+	language = LANGUAGE_GALCOM
+	name_language = LANGUAGE_VOX
+	default_language = LANGUAGE_VOX
+	species_language = LANGUAGE_VOX
 
 //	taste_sensitivity = TASTE_DULL
 

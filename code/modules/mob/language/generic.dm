@@ -21,6 +21,7 @@
 /datum/language/noise/can_speak_special(var/mob/speaker)
 	return TRUE	//Audible emotes
 
+
 // 'basic' language; spoken by default.
 /datum/language/common
 	name = LANGUAGE_GALCOM

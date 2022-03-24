@@ -54,7 +54,6 @@ proc/random_hair_style(gender, species = SPECIES_HUMAN)
 
 proc/random_facial_hair_style(gender, species = SPECIES_HUMAN)
 	var/f_style = "Shaved"
-
 	var/list/valid_facialhairstyles = list()
 	for(var/facialhairstyle in facial_hair_styles_list)
 		var/datum/sprite_accessory/S = facial_hair_styles_list[facialhairstyle]
@@ -69,29 +68,16 @@ proc/random_facial_hair_style(gender, species = SPECIES_HUMAN)
 
 	if(valid_facialhairstyles.len)
 		f_style = pick(valid_facialhairstyles)
-
 		return f_style
 
-proc/sanitize_name(name, species = SPECIES_HUMAN)
-	var/datum/species/current_species
-	if(species)
-		current_species = GLOB.all_species[species]
-
-	return current_species ? current_species.sanitize_name(name) : sanitizeName(name, MAX_NAME_LEN)
-
 proc/random_name(gender, species = SPECIES_HUMAN)
-
-	var/datum/species/current_species
 	if(species)
-		current_species = GLOB.all_species[species]
-
-	if(!current_species || current_species.name_language == null)
-		if(gender==FEMALE)
-			return capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
-		else
-			return capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
-	else
-		return current_species.get_random_name(gender)
+		var/datum/species/current_species = GLOB.all_species[species]
+		if(current_species)
+			var/decl/cultural_info/current_culture = SSculture.get_culture(current_species.default_cultural_info[TAG_CULTURE])
+			if(current_culture)
+				return current_culture.get_random_name(gender)
+	return capitalize(pick(gender == FEMALE ? first_names_female : first_names_male)) + " " + capitalize(pick(last_names))
 
 proc/random_skin_tone()
 	switch(pick(60;"caucasian", 15;"afroamerican", 10;"african", 10;"latino", 5;"albino"))

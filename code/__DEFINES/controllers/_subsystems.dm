@@ -98,7 +98,8 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define INIT_ORDER_INPUT			100
 #define INIT_ORDER_SOUNDS			95
 #define INIT_ORDER_JOBS				85
-#define INIT_ORDER_VIS				80
+#define INIT_ORDER_CULTURE			80
+#define INIT_ORDER_VIS				75
 #define INIT_ORDER_GARBAGE			70
 #define INIT_ORDER_SERVER_MAINT		65
 #define INIT_ORDER_TIMER			60
@@ -128,8 +129,8 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define INIT_ORDER_AI				-22
 #define INIT_ORDER_OPENSPACE		-50
 #define INIT_ORDER_PERSISTENCE		-95
-#define INIT_ORDER_ICON_SMOOTHING		-99
-#define INIT_ORDER_CHAT				-100 //Should be last to ensure chat remains smooth during init.
+#define INIT_ORDER_ICON_SMOOTHING	-99
+#define INIT_ORDER_CHAT				-100 // Should be last to ensure chat remains smooth during init.
 
 // Subsystem fire priority, from lowest to highest priority
 // If the subsystem isn't listed here it's either DEFAULT or PROCESS (if it's a processing subsystem child)

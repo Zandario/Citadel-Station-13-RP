@@ -1,5 +1,5 @@
 /datum/species/monkey
-	name = SPECIES_MONKEY
+	name = SPECIES_HUMAN_MONKEY
 	name_plural = "Monkeys"
 	blurb = "Ook."
 
@@ -74,7 +74,7 @@
 	icobase = 'icons/mob/human_races/monkeys/r_farwa.dmi'
 	deform = 'icons/mob/human_races/monkeys/r_farwa.dmi'
 
-	greater_form = SPECIES_TAJ
+	greater_form = SPECIES_TAJARA
 	default_language = "Farwa"
 	flesh_color = "#AFA59E"
 	base_color = "#333333"

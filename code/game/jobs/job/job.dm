@@ -3,46 +3,46 @@
 	// The name of the job
 	var/title = "NOPE"
 	// Job access. The use of minimal_access or access is determined by a config setting: config.jobs_have_minimal_access
-	var/list/minimal_access = list()		// Useful for servers which prefer to only have access given to the places a job absolutely needs (Larger server population)
-	var/list/access = list()				// Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
-	var/flag = 0 							// Bitflags for the job
+	var/list/minimal_access = list()	// Useful for servers which prefer to only have access given to the places a job absolutely needs (Larger server population)
+	var/list/access = list()			// Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
+	var/flag = 0						// Bitflags for the job
 	var/department_flag = 0
-	var/faction = "None"					// Players will be allowed to spawn in as jobs that are set to "Station"
-	var/total_positions = 0					// How many players can be this job
-	var/spawn_positions = 0					// How many players can spawn in as this job
-	var/current_positions = 0				// How many players have this job
-	var/supervisors = null					// Supervisors, who this person answers to directly
+	var/faction = "None"				// Players will be allowed to spawn in as jobs that are set to "Station"
+	var/total_positions = 0				// How many players can be this job
+	var/spawn_positions = 0				// How many players can spawn in as this job
+	var/current_positions = 0			// How many players have this job
+	var/supervisors = null				// Supervisors, who this person answers to directly
 	/// Type of ID that the player will have. This is banned. Use outfits, this is only kept in for legacy.
 	var/idtype = /obj/item/card/id
-	var/selection_color = COLOR_WHITE		// Selection screen color
-	var/list/alt_titles = null				// List of alternate titles; There is no need for an alt-title datum for the base job title.
-	var/req_admin_notify					// If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
-	var/minimal_player_age = 0				// If you have use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
-	var/list/departments = list()			// List of departments this job belongs to, if any. The first one on the list will be the 'primary' department.
-	var/sorting_order = 0					// Used for sorting jobs so boss jobs go above regular ones, and their boss's boss is above that. Higher numbers = higher in sorting.
-	var/departments_managed = null			// Is this a management position?  If yes, list of departments managed.  Otherwise null.
-	var/department_accounts = null			// Which department accounts should people with this position be given the pin for?
-	var/assignable = TRUE					// Should it show up on things like the ID computer?
+	var/selection_color = COLOR_WHITE	// Selection screen color
+	var/list/alt_titles = null			// List of alternate titles; There is no need for an alt-title datum for the base job title.
+	var/req_admin_notify				// If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
+	var/minimal_player_age = 0			// If you have use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
+	var/list/departments = list()		// List of departments this job belongs to, if any. The first one on the list will be the 'primary' department.
+	var/sorting_order = 0				// Used for sorting jobs so boss jobs go above regular ones, and their boss's boss is above that. Higher numbers = higher in sorting.
+	var/departments_managed = null		// Is this a management position?  If yes, list of departments managed.  Otherwise null.
+	var/department_accounts = null		// Which department accounts should people with this position be given the pin for?
+	var/assignable = TRUE				// Should it show up on things like the ID computer?
 	var/minimum_character_age = 0
 	var/ideal_character_age = 30
-	var/has_headset = TRUE					//Do people with this job need to be given headsets and told how to use them?  E.g. Cyborgs don't.
+	var/has_headset = TRUE				//Do people with this job need to be given headsets and told how to use them?  E.g. Cyborgs don't.
 
-	var/account_allowed = 1					// Does this job type come with a station account?
-	var/economic_modifier = 2				// With how much does this job modify the initial account amount?
+	var/account_allowed = TRUE			// Does this job type come with a station account?
+	var/economic_power = 2				// With how much does this job modify the initial account amount?
 
-	var/outfit_type							// What outfit datum does this job use in its default title?
+	var/outfit_type						// What outfit datum does this job use in its default title?
 
-	var/offmap_spawn = FALSE				// Do we require weird and special spawning and datacore handling?
-	var/mob_type = JOB_CARBON				// Bitflags representing mob type this job spawns
+	var/offmap_spawn = FALSE			// Do we require weird and special spawning and datacore handling?
+	var/mob_type = JOB_CARBON			// Bitflags representing mob type this job spawns
 
 	// Description of the job's role and minimum responsibilities.
 	var/job_description = "This Job doesn't have a description! Please report it!"
 
 	// Requires a ckey to be whitelisted in jobwhitelist.txt
-	var/whitelist_only = 0
+	var/whitelist_only = FALSE
 
 	// Does not display this job on the occupation setup screen
-	var/latejoin_only = 0
+	var/latejoin_only = FALSE
 
 	// Every hour playing this role gains this much time off. (Can be negative for off duty jobs!)
 	var/timeoff_factor = 3
@@ -62,7 +62,7 @@
 	if(!outfit)
 		return FALSE
 	. = outfit.equip(H, title, alt_title)
-	return 1
+	return TRUE
 
 /datum/job/proc/get_outfit(var/mob/living/carbon/human/H, var/alt_title)
 	if(alt_title && alt_titles)
@@ -76,17 +76,30 @@
 	if(!account_allowed || (H.mind && H.mind.initial_account))
 		return
 
-	var/income = 1
-	if(H.client)
-		switch(H.client.prefs.economic_status)
-			if(CLASS_UPPER)		income = 1.30
-			if(CLASS_UPMID)		income = 1.15
-			if(CLASS_MIDDLE)	income = 1
-			if(CLASS_LOWMID)	income = 0.75
-			if(CLASS_LOWER)		income = 0.50
+	// Calculate our pay and apply all relevant modifiers.
+	var/money_amount = rand(75, 100) * economic_power
 
-	// Give them an account in the station database
-	var/money_amount = (rand(15,40) + rand(15,40)) * income * economic_modifier * ECO_MODIFIER //VOREStation Edit - Smoothed peaks, ECO_MODIFIER rather than per-species ones.
+	// Get an average economic power for our cultures.
+	var/culture_mod = 0
+	var/culture_count = 0
+	for(var/token in H.cultural_info)
+		var/decl/cultural_info/culture = H.get_cultural_value(token)
+		if(culture && !isnull(culture.economic_power))
+			culture_count++
+			culture_mod += culture.economic_power
+	if(culture_count)
+		culture_mod /= culture_count
+	money_amount *= culture_mod
+
+	// Apply other mods.
+	money_amount *= GLOB.using_map.salary_modifier
+	//money_amount *= 1 + 2 * H.get_skill_value(SKILL_FINANCE)/(SKILL_MAX - SKILL_MIN)
+	money_amount = round(money_amount)
+
+	if(money_amount <= 0)
+		return // You are somehow too poor for an account.
+
+	//give them an account in the station database
 	var/datum/money_account/M = create_account(H.real_name, money_amount, null, offmap_spawn)
 	if(H.mind)
 		var/remembered_info = ""
@@ -193,4 +206,3 @@
 			H.equip_to_slot_or_del(new /obj/item/storage/backpack/messenger(H), slot_back)
 		if(6)
 			H.equip_to_slot_or_del(new /obj/item/storage/backpack/rig(H), slot_back)
-
