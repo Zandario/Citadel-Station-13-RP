@@ -295,12 +295,37 @@
 #define SPECIES_VOX				"Vox"
 #define SPECIES_ZADDAT			"Zaddat"
 #define SPECIES_ADHERENT		"Adherent"
+#define SPECIES_AKULA			"Akula"
+#define SPECIES_ALRAUNE			"Alraune"
+#define SPECIES_NEVREAN			"Nevrean"
+#define SPECIES_PROTEAN			"Protean"
+#define SPECIES_RAPALA			"Rapala"
+#define SPECIES_SERGAL			"Sergal"
+#define SPECIES_SHADEKIN_CREW	"Black-Eyed Shadekin"
+#define SPECIES_VASILISSAN		"Vasilissan"
+#define SPECIES_VULPKANIN		"Vulpkanin"
+#define SPECIES_XENOCHIMERA		"Xenochimera"
+#define SPECIES_XENOHYBRID		"Xenomorph Hybrid"
+#define SPECIES_ZORREN_FLAT		"Flatland Zorren"
+#define SPECIES_ZORREN_HIGH		"Highlander Zorren"
+#define SPECIES_CUSTOM			"Custom Species"
+#define SPECIES_PLASMAMAN		"Phoronoid"
+#define SPECIES_APIDAEN			"Apidaen"
+#define SPECIES_VETALA_RUDDY	"Ruddy Vetalan"
+#define SPECIES_VETALA_PALE		"Pale Vetalan"
+#define SPECIES_AURIL			"Auril"
+#define SPECIES_DREMACHIR		"Dremachir"
+#define SPECIES_ADHERENT		"Adherent"
 
 // Monkey and alien monkeys.
 #define SPECIES_MONKEY			"Monkey"
 #define SPECIES_MONKEY_TAJ		"Farwa"
 #define SPECIES_MONKEY_SKRELL	"Neaera"
 #define SPECIES_MONKEY_UNATHI	"Stok"
+#define SPECIES_MONKEY_AKULA		"Sobaka"
+#define SPECIES_MONKEY_NEVREAN		"Sparra"
+#define SPECIES_MONKEY_SERGAL		"Saru"
+#define SPECIES_MONKEY_VULPKANIN	"Wolpin"
 
 // Virtual Reality IDs.
 #define SPECIES_VR				"Virtual Reality Avatar"
@@ -333,6 +358,10 @@
 #define SPECIES_REPLICANT		"Replicant"
 #define SPECIES_REPLICANT_ALPHA	"Alpha Replicant"
 #define SPECIES_REPLICANT_BETA	"Beta Replicant"
+
+//event species
+#define SPECIES_WEREBEAST		"Werebeast"
+#define SPECIES_SHADEKIN		"Shadekin"
 
 // Used to seperate simple animals by ""intelligence"".
 #define SA_PLANT	1
@@ -444,34 +473,3 @@
 
 //Apidean organs
 #define H_STOMACH "honey stomach"
-
-//species defines
-#define SPECIES_AKULA			"Akula"
-#define SPECIES_ALRAUNE			"Alraune"
-#define SPECIES_NEVREAN			"Nevrean"
-#define SPECIES_PROTEAN			"Protean"
-#define SPECIES_RAPALA			"Rapala"
-#define SPECIES_SERGAL			"Sergal"
-#define SPECIES_SHADEKIN_CREW   "Black-Eyed Shadekin"
-#define SPECIES_VASILISSAN		"Vasilissan"
-#define SPECIES_VULPKANIN		"Vulpkanin"
-#define SPECIES_XENOCHIMERA		"Xenochimera"
-#define SPECIES_XENOHYBRID		"Xenomorph Hybrid"
-#define SPECIES_ZORREN_FLAT		"Flatland Zorren"
-#define SPECIES_ZORREN_HIGH		"Highlander Zorren"
-#define SPECIES_CUSTOM			"Custom Species"
-#define SPECIES_PLASMAMAN		"Phoronoid"
-#define SPECIES_APIDAEN			"Apidaen"
-#define SPECIES_VETALA_RUDDY	"Ruddy Vetalan"
-#define SPECIES_VETALA_PALE		"Pale Vetalan"
-#define SPECIES_AURIL			"Auril"
-#define SPECIES_DREMACHIR		"Dremachir"
-//#define SPECIES_ADHERENT		"Adherent" //leaving this in in case I need it, delete if not needed - Papalus
-//monkey species
-#define SPECIES_MONKEY_AKULA		"Sobaka"
-#define SPECIES_MONKEY_NEVREAN		"Sparra"
-#define SPECIES_MONKEY_SERGAL		"Saru"
-#define SPECIES_MONKEY_VULPKANIN	"Wolpin"
-//event species
-#define SPECIES_WEREBEAST			"Werebeast"
-#define SPECIES_SHADEKIN			"Shadekin"
