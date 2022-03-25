@@ -11,15 +11,15 @@
 
 /datum/category_item/player_setup_item/vore/nif/load_character(var/savefile/S)
 	var/path
-	S["nif_path"]		>> path
-	S["nif_id"]			>> pref.nif_id
-	S["nif_durability"]	>> pref.nif_durability
-	S["nif_savedata"]	>> pref.nif_savedata
+	READ_FILE(S["nif_path"], path)
+	READ_FILE(S["nif_id"], pref.nif_id)
+	READ_FILE(S["nif_durability"], pref.nif_durability)
+	READ_FILE(S["nif_savedata"], pref.nif_savedata)
 
 /datum/category_item/player_setup_item/vore/nif/save_character(var/savefile/S)
-	S["nif_id"]			<< pref.nif_id
-	S["nif_durability"]	<< pref.nif_durability
-	S["nif_savedata"]	<< pref.nif_savedata
+	WRITE_FILE(S["nif_id"], pref.nif_id)
+	WRITE_FILE(S["nif_durability"], pref.nif_durability)
+	WRITE_FILE(S["nif_savedata"], pref.nif_savedata)
 
 /datum/category_item/player_setup_item/vore/nif/sanitize_character()
 	if(pref.nif_id)

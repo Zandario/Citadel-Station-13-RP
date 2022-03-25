@@ -120,7 +120,7 @@
 
 //*Phoronoid
 /datum/gear/xeno/phoronoid
-	whitelisted = SPECIES_PLASMAMAN
+	whitelisted = SPECIES_PHORONOID
 
 /datum/gear/xeno/phoronoid/accessories
 	slot = slot_tie

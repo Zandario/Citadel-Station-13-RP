@@ -289,6 +289,8 @@
 #define SA_ROBOTIC	3
 #define SA_HUMANOID	4
 
+#define MOB_FACTION_NEUTRAL "neutral"
+
 // More refined version of SA_* ""intelligence"" seperators.
 // Now includes bitflags, so to target two classes you just do 'MOB_CLASS_ANIMAL|MOB_CLASS_HUMANOID'
 #define MOB_CLASS_NONE 			NONE	// Default value, and used to invert for _ALL.

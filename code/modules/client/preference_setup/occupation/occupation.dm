@@ -12,40 +12,40 @@
 	sort_order = 1
 
 /datum/category_item/player_setup_item/occupation/load_character(var/savefile/S)
-	S["alternate_option"]	>> pref.alternate_option
-	S["job_civilian_high"]	>> pref.job_civilian_high
-	S["job_civilian_med"]	>> pref.job_civilian_med
-	S["job_civilian_low"]	>> pref.job_civilian_low
-	S["job_medsci_high"]	>> pref.job_medsci_high
-	S["job_medsci_med"]		>> pref.job_medsci_med
-	S["job_medsci_low"]		>> pref.job_medsci_low
-	S["job_engsec_high"]	>> pref.job_engsec_high
-	S["job_engsec_med"]		>> pref.job_engsec_med
-	S["job_engsec_low"]		>> pref.job_engsec_low
-	//VOREStation Add
-	S["job_talon_low"]		>> pref.job_talon_low
-	S["job_talon_med"]		>> pref.job_talon_med
-	S["job_talon_high"]		>> pref.job_talon_high
-	//VOREStation Add End
-	S["player_alt_titles"]	>> pref.player_alt_titles
+	READ_FILE(S["alternate_option"], pref.alternate_option)
+	READ_FILE(S["job_civilian_high"], pref.job_civilian_high)
+	READ_FILE(S["job_civilian_med"], pref.job_civilian_med)
+	READ_FILE(S["job_civilian_low"], pref.job_civilian_low)
+	READ_FILE(S["job_medsci_high"], pref.job_medsci_high)
+	READ_FILE(S["job_medsci_med"], pref.job_medsci_med)
+	READ_FILE(S["job_medsci_low"], pref.job_medsci_low)
+	READ_FILE(S["job_engsec_high"], pref.job_engsec_high)
+	READ_FILE(S["job_engsec_med"], pref.job_engsec_med)
+	READ_FILE(S["job_engsec_low"], pref.job_engsec_low)
+	// Talon
+	READ_FILE(S["job_talon_low"], pref.job_talon_low)
+	READ_FILE(S["job_talon_med"], pref.job_talon_med)
+	READ_FILE(S["job_talon_high"], pref.job_talon_high)
+
+	READ_FILE(S["player_alt_titles"], pref.player_alt_titles)
 
 /datum/category_item/player_setup_item/occupation/save_character(var/savefile/S)
-	S["alternate_option"]	<< pref.alternate_option
-	S["job_civilian_high"]	<< pref.job_civilian_high
-	S["job_civilian_med"]	<< pref.job_civilian_med
-	S["job_civilian_low"]	<< pref.job_civilian_low
-	S["job_medsci_high"]	<< pref.job_medsci_high
-	S["job_medsci_med"]		<< pref.job_medsci_med
-	S["job_medsci_low"]		<< pref.job_medsci_low
-	S["job_engsec_high"]	<< pref.job_engsec_high
-	S["job_engsec_med"]		<< pref.job_engsec_med
-	S["job_engsec_low"]		<< pref.job_engsec_low
-	//VOREStation Add
-	S["job_talon_low"]		<< pref.job_talon_low
-	S["job_talon_med"]		<< pref.job_talon_med
-	S["job_talon_high"]		<< pref.job_talon_high
-	//VOREStation Add End
-	S["player_alt_titles"]	<< pref.player_alt_titles
+	WRITE_FILE(S["alternate_option"], pref.alternate_option)
+	WRITE_FILE(S["job_civilian_high"], pref.job_civilian_high)
+	WRITE_FILE(S["job_civilian_med"], pref.job_civilian_med)
+	WRITE_FILE(S["job_civilian_low"], pref.job_civilian_low)
+	WRITE_FILE(S["job_medsci_high"], pref.job_medsci_high)
+	WRITE_FILE(S["job_medsci_med"], pref.job_medsci_med)
+	WRITE_FILE(S["job_medsci_low"], pref.job_medsci_low)
+	WRITE_FILE(S["job_engsec_high"], pref.job_engsec_high)
+	WRITE_FILE(S["job_engsec_med"], pref.job_engsec_med)
+	WRITE_FILE(S["job_engsec_low"], pref.job_engsec_low)
+	// Talon
+	WRITE_FILE(S["job_talon_low"], pref.job_talon_low)
+	WRITE_FILE(S["job_talon_med"], pref.job_talon_med)
+	WRITE_FILE(S["job_talon_high"], pref.job_talon_high)
+
+	WRITE_FILE(S["player_alt_titles"], pref.player_alt_titles)
 
 /datum/category_item/player_setup_item/occupation/sanitize_character()
 	pref.alternate_option	= sanitize_integer(pref.alternate_option, 0, 2, initial(pref.alternate_option))
@@ -58,11 +58,11 @@
 	pref.job_engsec_high	= sanitize_integer(pref.job_engsec_high, 0, 65535, initial(pref.job_engsec_high))
 	pref.job_engsec_med 	= sanitize_integer(pref.job_engsec_med, 0, 65535, initial(pref.job_engsec_med))
 	pref.job_engsec_low 	= sanitize_integer(pref.job_engsec_low, 0, 65535, initial(pref.job_engsec_low))
-	//VOREStation Add
+	// Talon
 	pref.job_talon_high		= sanitize_integer(pref.job_talon_high, 0, 65535, initial(pref.job_talon_high))
 	pref.job_talon_med 		= sanitize_integer(pref.job_talon_med, 0, 65535, initial(pref.job_talon_med))
 	pref.job_talon_low 		= sanitize_integer(pref.job_talon_low, 0, 65535, initial(pref.job_talon_low))
-	//VOREStation Add End
+
 	if(!(pref.player_alt_titles)) pref.player_alt_titles = new()
 
 	if(!job_master)

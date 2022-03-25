@@ -23,8 +23,9 @@
 // Clumsy folks can't take the mask off themselves.
 /obj/item/clothing/mask/muzzle/attack_hand(mob/living/user as mob)
 	if(user.wear_mask == src && !user.IsAdvancedToolUser())
-		return 0
+		return FALSE
 	..()
+
 /obj/item/clothing/mask/surgical
 	name = "sterile mask"
 	desc = "A sterile mask designed to help prevent the spread of diseases."

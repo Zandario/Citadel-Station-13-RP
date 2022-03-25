@@ -3,91 +3,90 @@
 GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences
-	//doohickeys for savefiles
+	// Doohickeys for savefiles
 	var/path
-	var/default_slot = 1				//Holder so it doesn't default to slot 1, rather the last one used
+	var/default_slot = 1 // Holder so it doesn't default to slot 1, rather the last one used
 	var/savefile_version = 0
 
-	//non-preference stuff
+	// Non-preference stuff
 	var/warns = 0
 	var/muted = 0
 	var/last_ip
 	var/last_id
 
-	//Cooldowns for saving/loading. These are four are all separate due to loading code calling these one after another
+	// Cooldowns for saving/loading. These are four are all separate due to loading code calling these one after another
 	var/saveprefcooldown
 	var/loadprefcooldown
 	var/savecharcooldown
 	var/loadcharcooldown
 
-	//game-preferences
+	// Game-preferences
 	var/tgui_fancy = TRUE
 	var/tgui_lock = TRUE
-	var/lastchangelog = ""				//Saved changlog filesize to detect if there was a change
-	var/ooccolor = "#010000"			//Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color
-	var/be_special = 0					//Special role selection
-	/// Event role prefs flag
+	var/lastchangelog = "" // Saved changlog filesize to detect if there was a change
+	var/ooccolor = "#010000" // Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color
+	var/be_special = 0 // Special role selection
+	// Event role prefs flag
 	var/be_event_role = NONE
 	var/UI_style = "Midnight"
 	var/UI_style_color = "#ffffff"
 	var/UI_style_alpha = 255
-	var/tooltipstyle = "Midnight"		//Style for popup tooltips
+	var/tooltipstyle = "Midnight" //Style for popup tooltips
 	var/client_fps = 0
 
-	//character preferences
-	var/real_name						//our character's name
-	var/be_random_name = 0				//whether we are a random name every round
-	var/nickname						//our character's nickname
-	var/age = 30						//age of character
-	var/spawnpoint = "Arrivals Shuttle" //where this character will spawn (0-2).
-	var/b_type = "A+"					//blood type (not-chooseable)
-	var/backbag = 2						//backpack type
-	var/pdachoice = 1					//PDA type
-	var/h_style = "Bald"				//Hair type
-	var/r_hair = 0						//Hair color
-	var/g_hair = 0						//Hair color
-	var/b_hair = 0						//Hair color
-	var/grad_style = "None"				//Gradient style
-	var/r_grad = 0						//Gradient color
-	var/g_grad = 0						//Gradient color
-	var/b_grad = 0						//Gradient color
-	var/grad_wingstyle = "None"			//Gradient style
-	var/f_style = "Shaved"				//Face hair type
-	var/r_facial = 0					//Face hair color
-	var/g_facial = 0					//Face hair color
-	var/b_facial = 0					//Face hair color
-	var/s_tone = 0						//Skin tone
-	var/r_skin = 238					//Skin color // Vorestation edit, so color multi sprites can aren't BLACK AS THE VOID by default.
-	var/g_skin = 206					//Skin color // Vorestation edit, so color multi sprites can aren't BLACK AS THE VOID by default.
-	var/b_skin = 179					//Skin color // Vorestation edit, so color multi sprites can aren't BLACK AS THE VOID by default.
-	var/s_base = ""						//For Adherent
-	var/r_eyes = 0						//Eye color
-	var/g_eyes = 0						//Eye color
-	var/b_eyes = 0						//Eye color
-	var/species = SPECIES_HUMAN         //Species datum to use.
-	var/species_preview                 //Used for the species selection window.
-	var/list/alternate_languages = list() //Secondary language(s)
-	var/list/language_prefixes = list() //Kanguage prefix keys
-	var/list/gear						//Left in for Legacy reasons, will no longer save.
-	var/list/gear_list = list()			//Custom/fluff item loadouts.
-	var/gear_slot = 1					//The current gear save slot
-	var/list/traits						//Traits which modifier characters for better or worse (mostly worse).
-	var/synth_color	= 0					//Lets normally uncolorable synth parts be colorable.
-	var/r_synth							//Used with synth_color to color synth parts that normaly can't be colored.
-	var/g_synth							//Same as above
-	var/b_synth							//Same as above
-	var/synth_markings = 1				//Enable/disable markings on synth parts. //VOREStation Edit - 1 by default
+	// Character preferences
+	var/real_name						// Our character's name
+	var/be_random_name = 0				// Whether we are a random name every round
+	var/nickname						// Our character's nickname
+	var/age = 30						// Age of character
+	var/spawnpoint = "Arrivals Shuttle" // Where this character will spawn (0-2).
+	var/b_type = "A+"					// Blood type (not-chooseable)
+	var/backbag = 2						// Backpack type
+	var/pdachoice = 1					// PDA type
+	var/h_style = "Bald"				// Hair type
+	var/r_hair = 0						// Hair color
+	var/g_hair = 0						// Hair color
+	var/b_hair = 0						// Hair color
+	var/grad_style = "None"				// Gradient style
+	var/r_grad = 0						// Gradient color
+	var/g_grad = 0						// Gradient color
+	var/b_grad = 0						// Gradient color
+	var/grad_wingstyle = "None"			// Gradient style
+	var/f_style = "Shaved"				// Face hair type
+	var/r_facial = 0					// Face hair color
+	var/g_facial = 0					// Face hair color
+	var/b_facial = 0					// Face hair color
+	var/s_tone = 0						// Skin tone
+	var/r_skin = 238					// Skin color
+	var/g_skin = 206					// Skin color
+	var/b_skin = 179					// Skin color
+	var/s_base = ""						// For Adherent
+	var/r_eyes = 0						// Eye color
+	var/g_eyes = 0						// Eye color
+	var/b_eyes = 0						// Eye color
+	var/species = SPECIES_HUMAN			// Species datum to use.
+	var/list/alternate_languages = list() // Secondary language(s)
+	var/list/language_prefixes = list() // Language prefix keys
+	var/list/gear						// Left in for Legacy reasons, will no longer save.
+	var/list/gear_list = list()			// Custom/fluff item loadouts.
+	var/gear_slot = 1					// The current gear save slot
+	var/list/traits						// Traits which modifier characters for better or worse (mostly worse).
+	var/synth_color	= 0					// Lets normally uncolorable synth parts be colorable.
+	var/r_synth							// Used with synth_color to color synth parts that normaly can't be colored.
+	var/g_synth							// Same as above
+	var/b_synth							// Same as above
+	var/synth_markings = 1				// Enable/disable markings on synth parts. //VOREStation Edit - 1 by default
 
-		//Some faction information.
-	var/home_system = "Unset"           //System of birth.
-	var/citizenship = "None"            //Current home system.
-	var/faction = "None"                //General associated faction.
-	var/religion = "None"               //Religious association.
-	var/antag_faction = "None"			//Antag associated faction.
-	var/antag_vis = "Hidden"			//How visible antag association is to others.
+	// Some faction information.
+	var/home_system = "Unset"			// System of birth.
+	var/citizenship = "None"			// Current home system.
+	var/faction = "None"				// General associated faction.
+	var/religion = "None"				// Religious association.
+	var/antag_faction = "None"			// Antag associated faction.
+	var/antag_vis = "Hidden"			// How visible antag association is to others.
 
-		//Mob preview
-	var/list/char_render_holders		//Should only be a key-value list of north/south/east/west = atom/movable/screen.
+	// Mob preview
+	var/list/char_render_holders		// Should only be a key-value list of north/south/east/west = atom/movable/screen.
 	var/static/list/preview_screen_locs = list(
 		"1" = "character_preview_map:2,7",
 		"2" = "character_preview_map:2,5",
@@ -96,7 +95,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		"BG" = "character_preview_map:1,1 to 3,8"
 	)
 
-		//Jobs, uses bitflags
+	// Jobs, uses bitflags
 	var/job_civilian_high = 0
 	var/job_civilian_med = 0
 	var/job_civilian_low = 0
@@ -113,15 +112,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/job_talon_med = 0
 	var/job_talon_low = 0
 
-	//Keeps track of preferrence for not getting any wanted jobs
+	// Keeps track of preferrence for not getting any wanted jobs
 	var/alternate_option = 1
 
 	var/used_skillpoints = 0
 	var/skill_specialization = null
 	var/list/skills = list() // skills can range from 0 to 3
 
-	// maps each organ to either null(intact), "cyborg" or "amputated"
-	// will probably not be able to do this for head and torso ;)
+	// Maps each organ to either null(intact), "cyborg" or "amputated"
+	// Will probably not be able to do this for head and torso ;)
 	var/list/organ_data = list()
 	var/list/rlimb_data = list()
 	var/regen_limbs = 0 //set to 1 when altering limb states. fix for prosthetic > normal changes not working on preview.
@@ -134,6 +133,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/list/body_descriptors = list()
 
+	var/memory = ""
 	var/med_record = ""
 	var/sec_record = ""
 	var/gen_record = ""
@@ -163,11 +163,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/lastnews // Hash of last seen lobby news content.
 
-	var/show_in_directory = 1	//TFF 5/8/19 - show in Character Directory
-	var/directory_tag = "Unset" //Sorting tag to use in character directory
-	var/directory_erptag = "Unset"	//ditto, but for non-vore scenes
-	var/directory_ad = ""		//Advertisement stuff to show in character directory.
-	var/sensorpref = 5			//TFF 5/8/19 - set character's suit sensor level
+	var/show_in_directory = TRUE
+	var/directory_tag = "Unset" // Sorting tag to use in character directory
+	var/directory_erptag = "Unset" // Ditto, but for non-vore scenes
+	var/directory_ad = "" // Advertisement stuff to show in character directory.
+	var/sensorpref = 5 // Set character's suit sensor level
 
 	// Should we automatically fit the viewport?
 	var/auto_fit_viewport = TRUE
@@ -193,7 +193,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(load_character())
 					return
 
-	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key) // give them default keybinds and update their movement keys
+	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key) // Give them default keybinds and update their movement keys
 	C?.update_movement_keys(src)
 
 /datum/preferences/Destroy()
@@ -215,13 +215,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(SKILL_BASIC)
 				used_skillpoints += 1 * multiplier
 			if(SKILL_ADEPT)
-				// secondary skills cost less
+				// Secondary skills cost less
 				if(S.secondary)
 					used_skillpoints += 1 * multiplier
 				else
 					used_skillpoints += 3 * multiplier
 			if(SKILL_EXPERT)
-				// secondary skills cost less
+				// Secondary skills cost less
 				if(S.secondary)
 					used_skillpoints += 3 * multiplier
 				else
@@ -232,10 +232,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /proc/CalculateSkillClass(points, age)
 	if(points <= 0) return "Unconfigured"
-	// skill classes describe how your character compares in total points
+	// Skill classes describe how your character compares in total points
 	points -= min(round((age - 20) / 2.5), 4) // every 2.5 years after 20, one extra skillpoint
 	if(age > 30)
-		points -= round((age - 30) / 5) // every 5 years after 30, one extra skillpoint
+		points -= round((age - 30) / 5) // Every 5 years after 30, one extra skillpoint
 	switch(points)
 		if(-1000 to 3)
 			return "Terrifying"
@@ -354,7 +354,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	else if(href_list["reload"])
 		load_preferences()
 		load_character()
-		attempt_vr(client.prefs_vr,"load_vore","") //VOREStation Edit
+		attempt_vr(client.prefs_vr,"load_vore","")
 		sanitize_preferences()
 	else if(href_list["load"])
 		if(!IsGuestKey(usr.key))
@@ -362,7 +362,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			return 1
 	else if(href_list["changeslot"])
 		load_character(text2num(href_list["changeslot"]))
-		attempt_vr(client.prefs_vr,"load_vore","") //VOREStation Edit
+		attempt_vr(client.prefs_vr,"load_vore","")
 		sanitize_preferences()
 		close_load_dialog(usr)
 	else if(href_list["resetslot"])
@@ -396,12 +396,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	character.set_species(species)
 	// Special Case: This references variables owned by two different datums, so do it here.
 	if(be_random_name)
-		real_name = random_name(identifying_gender,species)
+		var/decl/cultural_info/culture = cultural_info[TAG_CULTURE]
+		if(culture)
+			real_name = culture.get_random_name(identifying_gender)
 
 	// Ask the preferences datums to apply their own settings to the new mob
 	player_setup.copy_to_mob(character)
 
-	// VOREStation Edit - Sync up all their organs and species one final time
+	// Sync up all their organs and species one final time
 	character.force_update_organs()
 //	character.s_base = s_base //doesn't work, fuck me
 
@@ -411,6 +413,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		character.update_mutations()
 		character.update_underwear()
 		character.update_hair()
+
+	for(var/token in cultural_info)
+		character.set_cultural_value(token, cultural_info[token], defer_language_update = TRUE)
+	character.update_languages()
+	for(var/lang in alternate_languages)
+		character.add_language(lang)
 
 	if(LAZYLEN(character.descriptors))
 		for(var/entry in body_descriptors)

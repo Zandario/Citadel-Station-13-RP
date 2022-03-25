@@ -3,13 +3,16 @@
 /obj/item/organ/internal/brain/adherent
 	name = "mentality matrix"
 	desc = "The self-contained, self-supporting internal 'brain' of an Adherent unit."
-	icon = 'icons/mob/human_races/adherent/organs.dmi'
+	icon = 'icons/mob/human_races/species/adherent/organs.dmi'
 	icon_state = "brain"
 	robotic = ORGAN_ROBOT
 	organ_tag = O_BRAIN
 	robotic = ORGAN_CRYSTAL
+	action_button_name = "Reset Ident"
+	var/next_rename
+	var/rename_delay = 15 MINUTES
 
-/*
+
 /obj/item/organ/internal/brain/adherent/attack_self(var/mob/user)
 	. = ..()
 	if(.)
@@ -30,11 +33,11 @@
 				owner.real_name = "[newname] [res]"
 				if(owner.mind)
 					owner.mind.name = owner.real_name
-				owner.SetName(owner.real_name)
+				owner.real_name = newname
 				to_chat(user, "<span class='notice'>You are now designated <b>[owner.real_name]</b>.</span>")
-*/
+
 /obj/item/organ/internal/powered
-	icon = 'icons/mob/human_races/adherent/organs.dmi'
+	icon = 'icons/mob/human_races/species/adherent/organs.dmi'
 	var/maintenance_cost = 0.5
 	var/base_action_state
 	var/active = FALSE

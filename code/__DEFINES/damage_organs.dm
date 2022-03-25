@@ -13,6 +13,8 @@
 #define CUT       "cut"
 #define BRUISE    "bruise"
 #define PIERCE    "pierce"
+#define LASER     "laser"
+#define SHATTER   "shatter"
 
 #define STUN      "stun"
 #define WEAKEN    "weaken"
@@ -65,3 +67,14 @@
 #define INFECTION_LEVEL_TWO   500
 #define INFECTION_LEVEL_THREE 1000
 #define INFECTION_LEVEL_MAX   1500
+
+// Organ flag defines.
+#define ORGAN_FLAG_CAN_AMPUTATE   FLAG(0) // The organ can be amputated.
+#define ORGAN_FLAG_CAN_BREAK      FLAG(1) // The organ can be broken.
+#define ORGAN_FLAG_CAN_GRASP      FLAG(2) // The organ contributes to grasping.
+#define ORGAN_FLAG_CAN_STAND      FLAG(3) // The organ contributes to standing.
+#define ORGAN_FLAG_HAS_TENDON     FLAG(4) // The organ can have its tendon cut.
+#define ORGAN_FLAG_FINGERPRINT    FLAG(5) // The organ has a fingerprint.
+#define ORGAN_FLAG_GENDERED_ICON  FLAG(6) // The icon state for this organ appends _m/_f.
+#define ORGAN_FLAG_HEALS_OVERKILL FLAG(7) // The organ heals from overkill damage.
+#define ORGAN_FLAG_DEFORMED       FLAG(8) // The organ is permanently disfigured.

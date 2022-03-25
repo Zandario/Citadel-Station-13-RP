@@ -3,8 +3,8 @@
 #define NEGATIVE_MODE 3
 
 /datum/preferences
-	var/custom_species	// Custom species name, can't be changed due to it having been used in savefiles already.
-	var/custom_base		// What to base the custom species on
+	var/custom_species // Custom species name, can't be changed due to it having been used in savefiles already.
+	var/custom_base // What to base the custom species on
 	var/blood_color = "#A10808"
 
 	var/custom_say = null
@@ -12,7 +12,7 @@
 	var/custom_ask = null
 	var/custom_exclaim = null
 
-	var/list/pos_traits	= list()	// What traits they've selected for their custom species
+	var/list/pos_traits	= list() // What traits they've selected for their custom species
 	var/list/neu_traits = list()
 	var/list/neg_traits = list()
 
@@ -26,38 +26,38 @@
 	sort_order = 7
 
 /datum/category_item/player_setup_item/vore/traits/load_character(var/savefile/S)
-	S["custom_species"]	>> pref.custom_species
-	S["custom_base"]	>> pref.custom_base
-	S["pos_traits"]		>> pref.pos_traits
-	S["neu_traits"]		>> pref.neu_traits
-	S["neg_traits"]		>> pref.neg_traits
-	S["blood_color"]	>> pref.blood_color
+	READ_FILE(S["custom_species"], pref.custom_species)
+	READ_FILE(S["custom_base"], pref.custom_base)
+	READ_FILE(S["pos_traits"], pref.pos_traits)
+	READ_FILE(S["neu_traits"], pref.neu_traits)
+	READ_FILE(S["neg_traits"], pref.neg_traits)
+	READ_FILE(S["blood_color"], pref.blood_color)
 
-	S["traits_cheating"]>> pref.traits_cheating
-	S["max_traits"]		>> pref.max_traits
-	S["trait_points"]	>> pref.starting_trait_points
+	READ_FILE(S["traits_cheating"], pref.traits_cheating)
+	READ_FILE(S["max_traits"], pref.max_traits)
+	READ_FILE(S["trait_points"], pref.starting_trait_points)
 
-	S["custom_say"]		>> pref.custom_say
-	S["custom_whisper"]	>> pref.custom_whisper
-	S["custom_ask"]		>> pref.custom_ask
-	S["custom_exclaim"]	>> pref.custom_exclaim
+	READ_FILE(S["custom_say"], pref.custom_say)
+	READ_FILE(S["custom_whisper"], pref.custom_whisper)
+	READ_FILE(S["custom_ask"], pref.custom_ask)
+	READ_FILE(S["custom_exclaim"], pref.custom_exclaim)
 
 /datum/category_item/player_setup_item/vore/traits/save_character(var/savefile/S)
-	S["custom_species"]	<< pref.custom_species
-	S["custom_base"]	<< pref.custom_base
-	S["pos_traits"]		<< pref.pos_traits
-	S["neu_traits"]		<< pref.neu_traits
-	S["neg_traits"]		<< pref.neg_traits
-	S["blood_color"]	<< pref.blood_color
+	WRITE_FILE(S["custom_species"], pref.custom_species)
+	WRITE_FILE(S["custom_base"], pref.custom_base)
+	WRITE_FILE(S["pos_traits"], pref.pos_traits)
+	WRITE_FILE(S["neu_traits"], pref.neu_traits)
+	WRITE_FILE(S["neg_traits"], pref.neg_traits)
+	WRITE_FILE(S["blood_color"], pref.blood_color)
 
-	S["traits_cheating"]<< pref.traits_cheating
-	S["max_traits"]		<< pref.max_traits
-	S["trait_points"]	<< pref.starting_trait_points
+	WRITE_FILE(S["traits_cheating"], pref.traits_cheating)
+	WRITE_FILE(S["max_traits"], pref.max_traits)
+	WRITE_FILE(S["trait_points"], pref.starting_trait_points)
 
-	S["custom_say"]		<< pref.custom_say
-	S["custom_whisper"]	<< pref.custom_whisper
-	S["custom_ask"]		<< pref.custom_ask
-	S["custom_exclaim"]	<< pref.custom_exclaim
+	WRITE_FILE(S["custom_say"], pref.custom_say)
+	WRITE_FILE(S["custom_whisper"], pref.custom_whisper)
+	WRITE_FILE(S["custom_ask"], pref.custom_ask)
+	WRITE_FILE(S["custom_exclaim"], pref.custom_exclaim)
 
 /datum/category_item/player_setup_item/vore/traits/sanitize_character()
 	if(!pref.pos_traits) pref.pos_traits = list()

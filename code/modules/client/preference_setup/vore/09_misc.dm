@@ -5,18 +5,18 @@
 	sort_order = 9
 
 /datum/category_item/player_setup_item/vore/misc/load_character(var/savefile/S)
-	S["show_in_directory"]		>> pref.show_in_directory
-	S["directory_tag"]			>> pref.directory_tag
-	S["directory_erptag"]			>> pref.directory_erptag
-	S["directory_ad"]			>> pref.directory_ad
-	S["sensorpref"]				>> pref.sensorpref	//TFF 5/8/19 - add sensor pref setting to load after saved
+	READ_FILE(S["show_in_directory"], pref.show_in_directory)
+	READ_FILE(S["directory_tag"], pref.directory_tag)
+	READ_FILE(S["directory_erptag"], pref.directory_erptag)
+	READ_FILE(S["directory_ad"], pref.directory_ad)
+	READ_FILE(S["sensorpref"], pref.sensorpref)
 
 /datum/category_item/player_setup_item/vore/misc/save_character(var/savefile/S)
-	S["show_in_directory"]		<< pref.show_in_directory
-	S["directory_tag"]			<< pref.directory_tag
-	S["directory_erptag"]			<< pref.directory_erptag
-	S["directory_ad"]			<< pref.directory_ad
-	S["sensorpref"]				<< pref.sensorpref	//TFF 5/8/19 - add sensor pref setting to be saveable
+	WRITE_FILE(S["show_in_directory"], pref.show_in_directory)
+	WRITE_FILE(S["directory_tag"], pref.directory_tag)
+	WRITE_FILE(S["directory_erptag"], pref.directory_erptag)
+	WRITE_FILE(S["directory_ad"], pref.directory_ad)
+	WRITE_FILE(S["sensorpref"], pref.sensorpref)
 
 //TFF 5/8/19 - add new datum category to allow for setting multiple settings when this is selected in the loadout.
 /datum/category_item/player_setup_item/vore/misc/copy_to_mob(var/mob/living/carbon/human/character)
@@ -25,10 +25,10 @@
 	character.sensorpref = pref.sensorpref
 
 /datum/category_item/player_setup_item/vore/misc/sanitize_character()
-	pref.show_in_directory		= sanitize_integer(pref.show_in_directory, 0, 1, initial(pref.show_in_directory))
-	pref.directory_tag			= sanitize_inlist(pref.directory_tag, GLOB.char_directory_tags, initial(pref.directory_tag))
-	pref.directory_erptag			= sanitize_inlist(pref.directory_erptag, GLOB.char_directory_erptags, initial(pref.directory_erptag))
-	pref.sensorpref				= sanitize_integer(pref.sensorpref, 1, sensorpreflist.len, initial(pref.sensorpref))	//TFF - 5/8/19 - add santisation for sensor prefs
+	pref.show_in_directory = sanitize_integer(pref.show_in_directory, 0, 1, initial(pref.show_in_directory))
+	pref.directory_tag = sanitize_inlist(pref.directory_tag, GLOB.char_directory_tags, initial(pref.directory_tag))
+	pref.directory_erptag = sanitize_inlist(pref.directory_erptag, GLOB.char_directory_erptags, initial(pref.directory_erptag))
+	pref.sensorpref = sanitize_integer(pref.sensorpref, 1, sensorpreflist.len, initial(pref.sensorpref))	//TFF - 5/8/19 - add santisation for sensor prefs
 
 /datum/category_item/player_setup_item/vore/misc/content(var/mob/user)
 	. += "<br>"

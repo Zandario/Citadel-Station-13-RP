@@ -36,7 +36,7 @@
 			if(!H.can_inject(user, FALSE, L.zone_sel.selecting, pierce_material))
 				to_chat(user, "<span class='notice'>\The [src] can't be applied through such a thick material!</span>")
 				return
-			
+
 			if(affecting.open)// you cant place Bandaids on open surgeries, why chemical patches.
 				to_chat(user, "<span class='notice'>The [affecting.name] is cut open, you'll need more than a bandage!</span>")
 				return

@@ -37,76 +37,76 @@
 	sort_order = 1
 
 /datum/category_item/player_setup_item/vore/ears/load_character(var/savefile/S)
-	S["ear_style"]		>> pref.ear_style
-	S["r_ears"]			>> pref.r_ears
-	S["g_ears"]			>> pref.g_ears
-	S["b_ears"]			>> pref.b_ears
-	S["r_ears2"]		>> pref.r_ears2
-	S["g_ears2"]		>> pref.g_ears2
-	S["b_ears2"]		>> pref.b_ears2
-	S["tail_style"]		>> pref.tail_style
-	S["r_tail"]			>> pref.r_tail
-	S["g_tail"]			>> pref.g_tail
-	S["b_tail"]			>> pref.b_tail
-	S["r_tail2"]		>> pref.r_tail2
-	S["g_tail2"]		>> pref.g_tail2
-	S["b_tail2"]		>> pref.b_tail2
-	S["wing_style"]		>> pref.wing_style
-	S["r_wing"]			>> pref.r_wing
-	S["g_wing"]			>> pref.g_wing
-	S["b_wing"]			>> pref.b_wing
-	S["r_wing2"]		>> pref.r_wing2
-	S["g_wing2"]		>> pref.g_wing2
-	S["b_wing2"]		>> pref.b_wing2
-	S["r_gradwing"]		>> pref.r_gradwing
-	S["g_gradwing"]		>> pref.g_gradwing
-	S["b_gradwing"]		>> pref.b_gradwing
+	READ_FILE(S["ear_style"], pref.ear_style)
+	READ_FILE(S["r_ears"], pref.r_ears)
+	READ_FILE(S["g_ears"], pref.g_ears)
+	READ_FILE(S["b_ears"], pref.b_ears)
+	READ_FILE(S["r_ears2"], pref.r_ears2)
+	READ_FILE(S["g_ears2"], pref.g_ears2)
+	READ_FILE(S["b_ears2"], pref.b_ears2)
+	READ_FILE(S["tail_style"], pref.tail_style)
+	READ_FILE(S["r_tail"], pref.r_tail)
+	READ_FILE(S["g_tail"], pref.g_tail)
+	READ_FILE(S["b_tail"], pref.b_tail)
+	READ_FILE(S["r_tail2"], pref.r_tail2)
+	READ_FILE(S["g_tail2"], pref.g_tail2)
+	READ_FILE(S["b_tail2"], pref.b_tail2)
+	READ_FILE(S["wing_style"], pref.wing_style)
+	READ_FILE(S["r_wing"], pref.r_wing)
+	READ_FILE(S["g_wing"], pref.g_wing)
+	READ_FILE(S["b_wing"], pref.b_wing)
+	READ_FILE(S["r_wing2"], pref.r_wing2)
+	READ_FILE(S["g_wing2"], pref.g_wing2)
+	READ_FILE(S["b_wing2"], pref.b_wing2)
+	READ_FILE(S["r_gradwing"], pref.r_gradwing)
+	READ_FILE(S["g_gradwing"], pref.g_gradwing)
+	READ_FILE(S["b_gradwing"], pref.b_gradwing)
 
 /datum/category_item/player_setup_item/vore/ears/save_character(var/savefile/S)
-	S["ear_style"]		<< pref.ear_style
-	S["r_ears"]			<< pref.r_ears
-	S["g_ears"]			<< pref.g_ears
-	S["b_ears"]			<< pref.b_ears
-	S["r_ears2"]		<< pref.r_ears2
-	S["g_ears2"]		<< pref.g_ears2
-	S["b_ears2"]		<< pref.b_ears2
-	S["tail_style"]		<< pref.tail_style
-	S["r_tail"]			<< pref.r_tail
-	S["g_tail"]			<< pref.g_tail
-	S["b_tail"]			<< pref.b_tail
-	S["r_tail2"]		<< pref.r_tail2
-	S["g_tail2"]		<< pref.g_tail2
-	S["b_tail2"]		<< pref.b_tail2
-	S["wing_style"]		<< pref.wing_style
-	S["r_wing"]			<< pref.r_wing
-	S["g_wing"]			<< pref.g_wing
-	S["b_wing"]			<< pref.b_wing
-	S["r_wing2"]		<< pref.r_wing2
-	S["g_wing2"]		<< pref.g_wing2
-	S["b_wing2"]		<< pref.b_wing2
-	S["r_gradwing"]		<< pref.r_gradwing
-	S["g_gradwing"]		<< pref.g_gradwing
-	S["b_gradwing"]		<< pref.b_gradwing
+	WRITE_FILE(S["ear_style"], pref.ear_style)
+	WRITE_FILE(S["r_ears"], pref.r_ears)
+	WRITE_FILE(S["g_ears"], pref.g_ears)
+	WRITE_FILE(S["b_ears"], pref.b_ears)
+	WRITE_FILE(S["r_ears2"], pref.r_ears2)
+	WRITE_FILE(S["g_ears2"], pref.g_ears2)
+	WRITE_FILE(S["b_ears2"], pref.b_ears2)
+	WRITE_FILE(S["tail_style"], pref.tail_style)
+	WRITE_FILE(S["r_tail"], pref.r_tail)
+	WRITE_FILE(S["g_tail"], pref.g_tail)
+	WRITE_FILE(S["b_tail"], pref.b_tail)
+	WRITE_FILE(S["r_tail2"], pref.r_tail2)
+	WRITE_FILE(S["g_tail2"], pref.g_tail2)
+	WRITE_FILE(S["b_tail2"], pref.b_tail2)
+	WRITE_FILE(S["wing_style"], pref.wing_style)
+	WRITE_FILE(S["r_wing"], pref.r_wing)
+	WRITE_FILE(S["g_wing"], pref.g_wing)
+	WRITE_FILE(S["b_wing"], pref.b_wing)
+	WRITE_FILE(S["r_wing2"], pref.r_wing2)
+	WRITE_FILE(S["g_wing2"], pref.g_wing2)
+	WRITE_FILE(S["b_wing2"], pref.b_wing2)
+	WRITE_FILE(S["r_gradwing"], pref.r_gradwing)
+	WRITE_FILE(S["g_gradwing"], pref.g_gradwing)
+	WRITE_FILE(S["b_gradwing"], pref.b_gradwing)
 
 /datum/category_item/player_setup_item/vore/ears/sanitize_character()
-	pref.r_ears		= sanitize_integer(pref.r_ears, 0, 255, initial(pref.r_ears))
-	pref.g_ears		= sanitize_integer(pref.g_ears, 0, 255, initial(pref.g_ears))
-	pref.b_ears		= sanitize_integer(pref.b_ears, 0, 255, initial(pref.b_ears))
-	pref.r_ears2	= sanitize_integer(pref.r_ears2, 0, 255, initial(pref.r_ears2))
-	pref.g_ears2	= sanitize_integer(pref.g_ears2, 0, 255, initial(pref.g_ears2))
-	pref.b_ears2	= sanitize_integer(pref.b_ears2, 0, 255, initial(pref.b_ears2))
-	pref.r_tail		= sanitize_integer(pref.r_tail, 0, 255, initial(pref.r_tail))
-	pref.g_tail		= sanitize_integer(pref.g_tail, 0, 255, initial(pref.g_tail))
-	pref.b_tail		= sanitize_integer(pref.b_tail, 0, 255, initial(pref.b_tail))
-	pref.r_tail2	= sanitize_integer(pref.r_tail2, 0, 255, initial(pref.r_tail2))
-	pref.g_tail2	= sanitize_integer(pref.g_tail2, 0, 255, initial(pref.g_tail2))
-	pref.b_tail2	= sanitize_integer(pref.b_tail2, 0, 255, initial(pref.b_tail2))
-	pref.r_wing		= sanitize_integer(pref.r_wing, 0, 255, initial(pref.r_wing))
-	pref.g_wing		= sanitize_integer(pref.g_wing, 0, 255, initial(pref.g_wing))
-	pref.b_wing		= sanitize_integer(pref.b_wing, 0, 255, initial(pref.b_wing))
-	pref.r_wing2	= sanitize_integer(pref.r_wing2, 0, 255, initial(pref.r_wing2))
-	pref.g_wing2	= sanitize_integer(pref.g_wing2, 0, 255, initial(pref.g_wing2))
-	pref.b_wing2	= sanitize_integer(pref.b_wing2, 0, 255, initial(pref.b_wing2))
+	pref.r_ears = sanitize_integer(pref.r_ears, 0, 255, initial(pref.r_ears))
+	pref.g_ears = sanitize_integer(pref.g_ears, 0, 255, initial(pref.g_ears))
+	pref.b_ears = sanitize_integer(pref.b_ears, 0, 255, initial(pref.b_ears))
+	pref.r_ears2 = sanitize_integer(pref.r_ears2, 0, 255, initial(pref.r_ears2))
+	pref.g_ears2 = sanitize_integer(pref.g_ears2, 0, 255, initial(pref.g_ears2))
+	pref.b_ears2 = sanitize_integer(pref.b_ears2, 0, 255, initial(pref.b_ears2))
+	pref.r_tail = sanitize_integer(pref.r_tail, 0, 255, initial(pref.r_tail))
+	pref.g_tail = sanitize_integer(pref.g_tail, 0, 255, initial(pref.g_tail))
+	pref.b_tail = sanitize_integer(pref.b_tail, 0, 255, initial(pref.b_tail))
+	pref.r_tail2 = sanitize_integer(pref.r_tail2, 0, 255, initial(pref.r_tail2))
+	pref.g_tail2 = sanitize_integer(pref.g_tail2, 0, 255, initial(pref.g_tail2))
+	pref.b_tail2 = sanitize_integer(pref.b_tail2, 0, 255, initial(pref.b_tail2))
+	pref.r_wing = sanitize_integer(pref.r_wing, 0, 255, initial(pref.r_wing))
+	pref.g_wing = sanitize_integer(pref.g_wing, 0, 255, initial(pref.g_wing))
+	pref.b_wing = sanitize_integer(pref.b_wing, 0, 255, initial(pref.b_wing))
+	pref.r_wing2 = sanitize_integer(pref.r_wing2, 0, 255, initial(pref.r_wing2))
+	pref.g_wing2 = sanitize_integer(pref.g_wing2, 0, 255, initial(pref.g_wing2))
+	pref.b_wing2 = sanitize_integer(pref.b_wing2, 0, 255, initial(pref.b_wing2))
 	pref.r_gradwing = sanitize_integer(pref.r_gradwing, 0, 255, initial(pref.r_gradwing))
 	pref.g_gradwing = sanitize_integer(pref.g_gradwing, 0, 255, initial(pref.g_gradwing))
 	pref.b_gradwing = sanitize_integer(pref.b_gradwing, 0, 255, initial(pref.b_gradwing))
@@ -127,30 +127,30 @@
 			pref.wing_style = initial(pref.wing_style)
 
 /datum/category_item/player_setup_item/vore/ears/copy_to_mob(var/mob/living/carbon/human/character)
-	character.ear_style			= ear_styles_list[pref.ear_style]
-	character.r_ears			= pref.r_ears
-	character.b_ears			= pref.b_ears
-	character.g_ears			= pref.g_ears
-	character.r_ears2			= pref.r_ears2
-	character.b_ears2			= pref.b_ears2
-	character.g_ears2			= pref.g_ears2
-	character.tail_style		= tail_styles_list[pref.tail_style]
-	character.r_tail			= pref.r_tail
-	character.b_tail			= pref.b_tail
-	character.g_tail			= pref.g_tail
-	character.r_tail2			= pref.r_tail2
-	character.b_tail2			= pref.b_tail2
-	character.g_tail2			= pref.g_tail2
-	character.wing_style		= wing_styles_list[pref.wing_style]
-	character.r_wing			= pref.r_wing
-	character.b_wing			= pref.b_wing
-	character.g_wing			= pref.g_wing
-	character.r_wing2			= pref.r_wing2
-	character.b_wing2			= pref.b_wing2
-	character.g_wing2			= pref.g_wing2
-	character.r_gradwing		= pref.r_gradwing
-	character.g_gradwing		= pref.g_gradwing
-	character.b_gradwing		= pref.b_gradwing
+	character.ear_style = ear_styles_list[pref.ear_style]
+	character.r_ears = pref.r_ears
+	character.b_ears = pref.b_ears
+	character.g_ears = pref.g_ears
+	character.r_ears2 = pref.r_ears2
+	character.b_ears2 = pref.b_ears2
+	character.g_ears2 = pref.g_ears2
+	character.tail_style = tail_styles_list[pref.tail_style]
+	character.r_tail = pref.r_tail
+	character.b_tail = pref.b_tail
+	character.g_tail = pref.g_tail
+	character.r_tail2 = pref.r_tail2
+	character.b_tail2 = pref.b_tail2
+	character.g_tail2 = pref.g_tail2
+	character.wing_style = wing_styles_list[pref.wing_style]
+	character.r_wing = pref.r_wing
+	character.b_wing = pref.b_wing
+	character.g_wing = pref.g_wing
+	character.r_wing2 = pref.r_wing2
+	character.b_wing2 = pref.b_wing2
+	character.g_wing2 = pref.g_wing2
+	character.r_gradwing = pref.r_gradwing
+	character.g_gradwing = pref.g_gradwing
+	character.b_gradwing = pref.b_gradwing
 
 
 

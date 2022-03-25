@@ -5,16 +5,16 @@ var/global/list/uplink_locations = list("PDA", "Headset", "None")
 	sort_order = 1
 
 /datum/category_item/player_setup_item/antagonism/basic/load_character(var/savefile/S)
-	S["uplinklocation"] >> pref.uplinklocation
-	S["exploit_record"] >> pref.exploit_record
-	S["antag_faction"]	>> pref.antag_faction
-	S["antag_vis"]		>> pref.antag_vis
+	from_file(S["uplinklocation"], pref.uplinklocation)
+	from_file(S["exploit_record"], pref.exploit_record)
+	from_file(S["antag_faction"],  pref.antag_faction)
+	from_file(S["antag_vis"],      pref.antag_vis)
 
 /datum/category_item/player_setup_item/antagonism/basic/save_character(var/savefile/S)
-	S["uplinklocation"] << pref.uplinklocation
-	S["exploit_record"] << pref.exploit_record
-	S["antag_faction"]	<< pref.antag_faction
-	S["antag_vis"]		<< pref.antag_vis
+	to_file(S["uplinklocation"], pref.uplinklocation)
+	to_file(S["exploit_record"], pref.exploit_record)
+	to_file(S["antag_faction"],  pref.antag_faction)
+	to_file(S["antag_vis"],      pref.antag_vis)
 
 /datum/category_item/player_setup_item/antagonism/basic/sanitize_character()
 	pref.uplinklocation	= sanitize_inlist(pref.uplinklocation, uplink_locations, initial(pref.uplinklocation))
@@ -24,8 +24,8 @@ var/global/list/uplink_locations = list("PDA", "Headset", "None")
 // Moved from /datum/preferences/proc/copy_to()
 /datum/category_item/player_setup_item/antagonism/basic/copy_to_mob(var/mob/living/carbon/human/character)
 	character.exploit_record = pref.exploit_record
-	character.antag_faction = pref.antag_faction
-	character.antag_vis = pref.antag_vis
+	//character.antag_faction = pref.antag_faction
+	//character.antag_vis = pref.antag_vis
 
 /datum/category_item/player_setup_item/antagonism/basic/content(var/mob/user)
 	. += "Faction: <a href='?src=\ref[src];antagfaction=1'>[pref.antag_faction]</a><br/>"

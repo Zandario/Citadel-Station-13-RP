@@ -1,5 +1,5 @@
 /datum/language/ling
-	name = LANGUAGE_CHANGELING
+	name = LANGUAGE_CHANGELING_GLOBAL
 	desc = "Although they are normally wary and suspicious of each other, changelings can commune over a distance."
 	speech_verb = "says"
 	colour = "changeling"
@@ -15,7 +15,7 @@
 		..(speaker,message)
 
 /datum/language/corticalborer
-	name = "Cortical Link"
+	name = LANGUAGE_BORER_GLOBAL
 	desc = "Cortical borers possess a strange link between their tiny minds."
 	speech_verb = "sings"
 	ask_verb = "sings"
@@ -98,7 +98,7 @@
 	flags = RESTRICTED | HIVEMIND
 
 /datum/language/xenocommon
-	name = "Xenomorph"
+	name = LANGUAGE_XENO
 	colour = "alien"
 	desc = "The common tongue of the xenomorphs."
 	speech_verb = "hisses"
@@ -110,7 +110,7 @@
 	syllables = list("sss","sSs","SSS")
 
 /datum/language/xenos
-	name = "Hivemind"
+	name = LANGUAGE_XENO_HIVE
 	desc = "Xenomorphs have the strange ability to commune over a psychic hivemind."
 	speech_verb = "hisses"
 	ask_verb = "hisses"
@@ -124,11 +124,10 @@
 
 	var/mob/living/carbon/M = other
 	if(!istype(M))
-		return 1
+		return TRUE
 	if(locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs)
-		return 1
-
-	return 0
+		return TRUE
+	return FALSE
 
 /datum/language/swarmbot
 	name = LANGUAGE_SWARMBOT

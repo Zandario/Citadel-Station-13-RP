@@ -23,13 +23,13 @@ var/global/list/special_roles = list( //keep synced with the defines BE_* in set
 	sort_order = 2
 
 /datum/category_item/player_setup_item/antagonism/candidacy/load_character(var/savefile/S)
-	S["be_special"]	>> pref.be_special
-	S["be_event_role"] >> pref.be_event_role
+	from_file(S["be_special"],    pref.be_special)
+	from_file(S["be_event_role"], pref.be_event_role)
 
 
 /datum/category_item/player_setup_item/antagonism/candidacy/save_character(var/savefile/S)
-	S["be_special"]	<< pref.be_special
-	S["be_event_role"] << pref.be_event_role
+	to_file(S["be_special"], pref.be_special)
+	to_file(S["be_event_role"], pref.be_event_role)
 
 /datum/category_item/player_setup_item/antagonism/candidacy/sanitize_character()
 	pref.be_special	= sanitize_integer(pref.be_special, 0, 65535, initial(pref.be_special))

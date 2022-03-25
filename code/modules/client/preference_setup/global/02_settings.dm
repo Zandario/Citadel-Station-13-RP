@@ -7,18 +7,18 @@
 	sort_order = 2
 
 /datum/category_item/player_setup_item/player_global/settings/load_preferences(var/savefile/S)
-	S["lastchangelog"]        >> pref.lastchangelog
-	S["lastnews"]             >> pref.lastnews
-	S["default_slot"]	      >> pref.default_slot
-	S["preferences"]          >> pref.preferences_enabled
-	S["preferences_disabled"] >> pref.preferences_disabled
+	READ_FILE(S["lastchangelog"], pref.lastchangelog)
+	READ_FILE(S["lastnews"], pref.lastnews)
+	READ_FILE(S["default_slot"], pref.default_slot)
+	READ_FILE(S["preferences"], pref.preferences_enabled)
+	READ_FILE(S["preferences_disabled"], pref.preferences_disabled)
 
 /datum/category_item/player_setup_item/player_global/settings/save_preferences(var/savefile/S)
-	S["lastchangelog"]        << pref.lastchangelog
-	S["lastnews"]             << pref.lastnews
-	S["default_slot"]         << pref.default_slot
-	S["preferences"]          << pref.preferences_enabled
-	S["preferences_disabled"] << pref.preferences_disabled
+	WRITE_FILE(S["lastchangelog"], pref.lastchangelog)
+	WRITE_FILE(S["lastnews"], pref.lastnews)
+	WRITE_FILE(S["default_slot"], pref.default_slot)
+	WRITE_FILE(S["preferences"], pref.preferences_enabled)
+	WRITE_FILE(S["preferences_disabled"], pref.preferences_disabled)
 
 /datum/category_item/player_setup_item/player_global/settings/sanitize_preferences()
 	// Ensure our preferences are lists.
@@ -48,9 +48,9 @@
 		if(!(key in client_preference_keys))
 			pref.preferences_disabled -= key
 
-	pref.lastchangelog	= sanitize_text(pref.lastchangelog, initial(pref.lastchangelog))
-	pref.lastnews		= sanitize_text(pref.lastnews, initial(pref.lastnews))
-	pref.default_slot	= sanitize_integer(pref.default_slot, 1, config_legacy.character_slots, initial(pref.default_slot))
+	pref.lastchangelog = sanitize_text(pref.lastchangelog, initial(pref.lastchangelog))
+	pref.lastnews = sanitize_text(pref.lastnews, initial(pref.lastnews))
+	pref.default_slot = sanitize_integer(pref.default_slot, 1, config_legacy.character_slots, initial(pref.default_slot))
 
 /datum/category_item/player_setup_item/player_global/settings/content(var/mob/user)
 	. = list()

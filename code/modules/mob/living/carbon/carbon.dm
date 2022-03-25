@@ -44,7 +44,8 @@
 	..()
 
 /mob/living/carbon/attack_hand(mob/M as mob)
-	if(!istype(M, /mob/living/carbon)) return
+	if(!istype(M, /mob/living/carbon))
+		return
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
@@ -53,17 +54,17 @@
 		if(temp && !temp.is_usable())
 			to_chat(H, "<font color='red'>You can't use your [temp.name]</font>")
 			return
-
 	return
 
 /mob/living/carbon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null, var/stun = 1)
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 	if(def_zone == "l_hand" || def_zone == "r_hand") //Diona (And any other potential plant people) hands don't get shocked.
 		if(species.flags & IS_PLANT)
-			return 0
+			return FALSE
 	shock_damage *= siemens_coeff
 	if (shock_damage<1)
-		return 0
+		return FALSE
 
 	src.apply_damage(shock_damage, BURN, def_zone, used_weapon="Electrocution")
 	playsound(loc, "sparks", 50, 1, -1)
@@ -225,7 +226,7 @@
 			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
 /mob/living/carbon/proc/eyecheck()
-	return 0
+	return FALSE
 
 /mob/living/carbon/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /atom/movable/screen/fullscreen/flash)
 	if(eyecheck() < intensity || override_blindness_check)
@@ -249,18 +250,19 @@
 
 /mob/living/carbon/can_use_hands()
 	if(handcuffed)
-		return 0
+		return FALSE
 	if(buckled && ! istype(buckled, /obj/structure/bed/chair)) // buckling does not restrict hands
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /mob/living/carbon/restrained()
 	if (handcuffed)
-		return 1
+		return TRUE
 	return
 
 /mob/living/carbon/u_equip(obj/item/W as obj)
-	if(!W)	return 0
+	if(!W)
+		return FALSE
 
 	else if (W == handcuffed)
 		handcuffed = null
@@ -320,12 +322,12 @@
 
 /mob/living/carbon/slip(var/slipped_on,stun_duration=8)
 	if(buckled)
-		return 0
+		return FALSE
 	stop_pulling()
 	to_chat(src, "<span class='warning'>You slipped on [slipped_on]!</span>")
 	playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
 	Weaken(FLOOR(stun_duration/2, 1))
-	return 1
+	return TRUE
 
 /mob/living/carbon/proc/add_chemical_effect(var/effect, var/magnitude = 1)
 	if(effect in chem_effects)
@@ -340,17 +342,12 @@
 		else
 			return GLOB.all_languages[LANGUAGE_GIBBERISH]
 
-	if(!species)
-		return null
-
-	return species.default_language ? GLOB.all_languages[species.default_language] : null
-
 /mob/living/carbon/proc/should_have_organ(var/organ_check)
-	return 0
+	return FALSE
 
 /mob/living/carbon/can_feel_pain(var/check_organ)
 	if(isSynthetic())
-		return 0
+		return FALSE
 	return !(species.flags & NO_PAIN)
 
 /mob/living/carbon/needs_to_breathe()

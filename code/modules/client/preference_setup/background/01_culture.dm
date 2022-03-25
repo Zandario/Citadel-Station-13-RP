@@ -1,5 +1,5 @@
 #define GET_ALLOWED_VALUES(write_to, check_key) \
-	var/datum/species/S = all_species[pref.species]; \
+	var/datum/species/S = GLOB.all_species[pref.species]; \
 	if(!S) { \
 		write_to = list(); \
 	} else if(S.force_cultural_info[check_key]) { \
@@ -42,12 +42,12 @@
 /datum/category_item/player_setup_item/background/culture/load_character(var/savefile/S)
 	for(var/token in tokens)
 		var/load_val
-		from_file(S[token], load_val)
+		READ_FILE(S[token], load_val)
 		pref.cultural_info[token] = load_val
 
 /datum/category_item/player_setup_item/background/culture/save_character(var/savefile/S)
 	for(var/token in tokens)
-		to_file(S[token], pref.cultural_info[token])
+		WRITE_FILE(S[token], pref.cultural_info[token])
 
 /datum/category_item/player_setup_item/background/culture/content()
 	. = list()

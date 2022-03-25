@@ -72,7 +72,7 @@
 
 // Whitelisted Species
 #define SPECIES_ADHERENT "Adherent"
-#define SPECIES_PLASMAMAN "Phoronoid"
+#define SPECIES_PHORONOID "Phoronoid"
 #define SPECIES_PROTEAN "Protean"
 #define SPECIES_SHADEKIN "Shadekin"
 #define SPECIES_SHADEKIN_CREW "Black-Eyed Shadekin"

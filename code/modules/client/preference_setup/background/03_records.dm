@@ -1,24 +1,19 @@
-/datum/preferences
-	var/med_record = ""
-	var/sec_record = ""
-	var/gen_record = ""
-	var/memory = ""
 
 /datum/category_item/player_setup_item/background/records
 	name = "Records"
 	sort_order = 3
 
 /datum/category_item/player_setup_item/background/records/load_character(var/savefile/S)
-	from_file(S["med_record"],pref.med_record)
-	from_file(S["sec_record"],pref.sec_record)
-	from_file(S["gen_record"],pref.gen_record)
-	from_file(S["memory"],pref.memory)
+	READ_FILE(S["med_record"], pref.med_record)
+	READ_FILE(S["sec_record"], pref.sec_record)
+	READ_FILE(S["gen_record"], pref.gen_record)
+	READ_FILE(S["memory"], pref.memory)
 
 /datum/category_item/player_setup_item/background/records/save_character(var/savefile/S)
-	to_file(S["med_record"],pref.med_record)
-	to_file(S["sec_record"],pref.sec_record)
-	to_file(S["gen_record"],pref.gen_record)
-	to_file(S["memory"],pref.memory)
+	WRITE_FILE(S["med_record"], pref.med_record)
+	WRITE_FILE(S["sec_record"], pref.sec_record)
+	WRITE_FILE(S["gen_record"], pref.gen_record)
+	WRITE_FILE(S["memory"], pref.memory)
 
 /datum/category_item/player_setup_item/background/records/content(var/mob/user)
 	. = list()

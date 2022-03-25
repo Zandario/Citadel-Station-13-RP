@@ -8,109 +8,110 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 /datum/category_item/player_setup_item/physical/body
 	name = "Body"
-	sort_order = 3
+	sort_order = 2
+	var/hide_species
 
 /datum/category_item/player_setup_item/physical/body/load_character(var/savefile/S)
-	from_file(S["species"], pref.species)
-	from_file(S["hair_red"], pref.r_hair)
-	from_file(S["hair_green"], pref.g_hair)
-	from_file(S["hair_blue"], pref.b_hair)
-	from_file(S["grad_red"], pref.r_grad)
-	from_file(S["grad_green"], pref.g_grad)
-	from_file(S["grad_blue"], pref.b_grad)
-	from_file(S["facial_red"], pref.r_facial)
-	from_file(S["facial_green"], pref.g_facial)
-	from_file(S["facial_blue"], pref.b_facial)
-	from_file(S["skin_tone"], pref.s_tone)
-	from_file(S["skin_red"], pref.r_skin)
-	from_file(S["skin_green"], pref.g_skin)
-	Sfrom_file(["skin_blue"], pref.b_skin)
-	from_file(S["hair_style_name"], pref.h_style)
-	from_file(S["facial_style_name"], pref.f_style)
-	from_file(S["grad_style_name"], pref.grad_style)
-	from_file(S["grad_wingstyle_name"], pref.grad_wingstyle)
-	from_file(S["eyes_red"], pref.r_eyes)
-	from_file(S["eyes_green"], pref.g_eyes)
-	from_file(S["eyes_blue"], pref.b_eyes)
-	from_file(S["b_type"],> pref.b_type)
-	from_file(S["disabilities"], pref.disabilities)
-	from_file(S["mirror"], pref.mirror)
-	from_file(S["organ_data"], pref.organ_data)
-	from_file(S["rlimb_data"], pref.rlimb_data)
-	from_file(S["body_markings"], pref.body_markings)
-	from_file(S["synth_color"], pref.synth_color)
-	from_file(S["synth_red"], pref.r_synth)
-	from_file(S["synth_green"], pref.g_synth)
-	from_file(S["synth_blue"], pref.b_synth)
-	from_file(S["synth_markings"], pref.synth_markings)
-	from_file(S["bgstate"], pref.bgstate)
-	from_file(S["body_descriptors"], pref.body_descriptors)
-	from_file(S["s_base"], pref.s_base)
+	READ_FILE(S["species"], pref.species)
+	READ_FILE(S["hair_red"], pref.r_hair)
+	READ_FILE(S["hair_green"], pref.g_hair)
+	READ_FILE(S["hair_blue"], pref.b_hair)
+	READ_FILE(S["grad_red"], pref.r_grad)
+	READ_FILE(S["grad_green"], pref.g_grad)
+	READ_FILE(S["grad_blue"], pref.b_grad)
+	READ_FILE(S["facial_red"], pref.r_facial)
+	READ_FILE(S["facial_green"], pref.g_facial)
+	READ_FILE(S["facial_blue"], pref.b_facial)
+	READ_FILE(S["skin_tone"], pref.s_tone)
+	READ_FILE(S["skin_red"], pref.r_skin)
+	READ_FILE(S["skin_green"], pref.g_skin)
+	READ_FILE(S["skin_blue"], pref.b_skin)
+	READ_FILE(S["hair_style_name"], pref.h_style)
+	READ_FILE(S["facial_style_name"], pref.f_style)
+	READ_FILE(S["grad_style_name"], pref.grad_style)
+	READ_FILE(S["grad_wingstyle_name"], pref.grad_wingstyle)
+	READ_FILE(S["eyes_red"], pref.r_eyes)
+	READ_FILE(S["eyes_green"], pref.g_eyes)
+	READ_FILE(S["eyes_blue"], pref.b_eyes)
+	READ_FILE(S["b_type"], pref.b_type)
+	READ_FILE(S["disabilities"], pref.disabilities)
+	READ_FILE(S["mirror"], pref.mirror)
+	READ_FILE(S["organ_data"], pref.organ_data)
+	READ_FILE(S["rlimb_data"], pref.rlimb_data)
+	READ_FILE(S["body_markings"], pref.body_markings)
+	READ_FILE(S["synth_color"], pref.synth_color)
+	READ_FILE(S["synth_red"], pref.r_synth)
+	READ_FILE(S["synth_green"], pref.g_synth)
+	READ_FILE(S["synth_blue"], pref.b_synth)
+	READ_FILE(S["synth_markings"], pref.synth_markings)
+	READ_FILE(S["bgstate"], pref.bgstate)
+	READ_FILE(S["body_descriptors"], pref.body_descriptors)
+	READ_FILE(S["s_base"], pref.s_base)
 	pref.regen_limbs = 1
 
 /datum/category_item/player_setup_item/physical/body/save_character(var/savefile/S)
-	to_file(S["species"], pref.species)
-	to_file(S["hair_red"], pref.r_hair)
-	to_file(S["hair_green"], pref.g_hair)
-	to_file(S["hair_blue"], pref.b_hair)
-	to_file(S["grad_red"], pref.r_grad)
-	to_file(S["grad_green"], pref.g_grad)
-	to_file(S["grad_blue"], pref.b_grad)
-	to_file(S["facial_red"], pref.r_facial)
-	to_file(S["facial_green"], pref.g_facial)
-	to_file(S["facial_blue"], pref.b_facial)
-	to_file(S["skin_tone"], pref.s_tone)
-	to_file(S["skin_red"], pref.r_skin)
-	to_file(S["skin_green"], pref.g_skin)
-	to_file(S["skin_blue"], pref.b_skin)
-	to_file(S["hair_style_name"], pref.h_style)
-	to_file(S["facial_style_name"], pref.f_style)
-	to_file(S["grad_style_name"], pref.grad_style)
-	to_file(S["grad_wingstyle_name"], pref.grad_wingstyle)
-	to_file(S["eyes_red"], pref.r_eyes)
-	to_file(S["eyes_green"], pref.g_eyes)
-	to_file(S["eyes_blue"], pref.b_eyes)
-	to_file(S["b_type"], pref.b_type)
-	to_file(S["disabilities"], pref.disabilities)
-	to_file(S["mirror"], pref.mirror)
-	to_file(S["organ_data"], pref.organ_data)
-	to_file(S["rlimb_data"], pref.rlimb_data)
-	to_file(S["body_markings"], pref.body_markings)
-	to_file(S["synth_color"], pref.synth_color)
-	to_file(S["synth_red"], pref.r_synth)
-	to_file(S["synth_green"], pref.g_synth)
-	to_file(S["synth_blue"], pref.b_synth)
-	to_file(S["synth_markings"], pref.synth_markings)
-	to_file(S["bgstate"], pref.bgstate)
-	to_file(S["body_descriptors"], pref.body_descriptors)
-	to_file(S["s_base"], pref.s_base)
+	WRITE_FILE(S["species"], pref.species)
+	WRITE_FILE(S["hair_red"], pref.r_hair)
+	WRITE_FILE(S["hair_green"], pref.g_hair)
+	WRITE_FILE(S["hair_blue"], pref.b_hair)
+	WRITE_FILE(S["grad_red"], pref.r_grad)
+	WRITE_FILE(S["grad_green"], pref.g_grad)
+	WRITE_FILE(S["grad_blue"], pref.b_grad)
+	WRITE_FILE(S["facial_red"], pref.r_facial)
+	WRITE_FILE(S["facial_green"], pref.g_facial)
+	WRITE_FILE(S["facial_blue"], pref.b_facial)
+	WRITE_FILE(S["skin_tone"], pref.s_tone)
+	WRITE_FILE(S["skin_red"], pref.r_skin)
+	WRITE_FILE(S["skin_green"], pref.g_skin)
+	WRITE_FILE(S["skin_blue"], pref.b_skin)
+	WRITE_FILE(S["hair_style_name"], pref.h_style)
+	WRITE_FILE(S["facial_style_name"], pref.f_style)
+	WRITE_FILE(S["grad_style_name"], pref.grad_style)
+	WRITE_FILE(S["grad_wingstyle_name"], pref.grad_wingstyle)
+	WRITE_FILE(S["eyes_red"], pref.r_eyes)
+	WRITE_FILE(S["eyes_green"], pref.g_eyes)
+	WRITE_FILE(S["eyes_blue"], pref.b_eyes)
+	WRITE_FILE(S["b_type"], pref.b_type)
+	WRITE_FILE(S["disabilities"], pref.disabilities)
+	WRITE_FILE(S["mirror"], pref.mirror)
+	WRITE_FILE(S["organ_data"], pref.organ_data)
+	WRITE_FILE(S["rlimb_data"], pref.rlimb_data)
+	WRITE_FILE(S["body_markings"], pref.body_markings)
+	WRITE_FILE(S["synth_color"], pref.synth_color)
+	WRITE_FILE(S["synth_red"], pref.r_synth)
+	WRITE_FILE(S["synth_green"], pref.g_synth)
+	WRITE_FILE(S["synth_blue"], pref.b_synth)
+	WRITE_FILE(S["synth_markings"], pref.synth_markings)
+	WRITE_FILE(S["bgstate"], pref.bgstate)
+	WRITE_FILE(S["body_descriptors"], pref.body_descriptors)
+	WRITE_FILE(S["s_base"], pref.s_base)
 
 /datum/category_item/player_setup_item/physical/body/sanitize_character(var/savefile/S)
-	pref.r_hair			= sanitize_integer(pref.r_hair, 0, 255, initial(pref.r_hair))
-	pref.g_hair			= sanitize_integer(pref.g_hair, 0, 255, initial(pref.g_hair))
-	pref.b_hair			= sanitize_integer(pref.b_hair, 0, 255, initial(pref.b_hair))
-	pref.r_grad			= sanitize_integer(pref.r_grad, 0, 255, initial(pref.r_grad))
-	pref.g_grad			= sanitize_integer(pref.g_grad, 0, 255, initial(pref.g_grad))
-	pref.b_grad			= sanitize_integer(pref.b_grad, 0, 255, initial(pref.b_grad))
-	pref.r_facial		= sanitize_integer(pref.r_facial, 0, 255, initial(pref.r_facial))
-	pref.g_facial		= sanitize_integer(pref.g_facial, 0, 255, initial(pref.g_facial))
-	pref.b_facial		= sanitize_integer(pref.b_facial, 0, 255, initial(pref.b_facial))
-	pref.s_tone			= sanitize_integer(pref.s_tone, -185, 34, initial(pref.s_tone))
-	pref.r_skin			= sanitize_integer(pref.r_skin, 0, 255, initial(pref.r_skin))
-	pref.g_skin			= sanitize_integer(pref.g_skin, 0, 255, initial(pref.g_skin))
-	pref.b_skin			= sanitize_integer(pref.b_skin, 0, 255, initial(pref.b_skin))
-	pref.h_style		= sanitize_inlist(pref.h_style, hair_styles_list, initial(pref.h_style))
-	pref.f_style		= sanitize_inlist(pref.f_style, facial_hair_styles_list, initial(pref.f_style))
-	pref.grad_style		= sanitize_inlist(pref.grad_style, GLOB.hair_gradients, initial(pref.grad_style))
-	pref.grad_wingstyle	= sanitize_inlist(pref.grad_wingstyle, GLOB.hair_gradients, initial(pref.grad_wingstyle))
-	pref.r_eyes			= sanitize_integer(pref.r_eyes, 0, 255, initial(pref.r_eyes))
-	pref.g_eyes			= sanitize_integer(pref.g_eyes, 0, 255, initial(pref.g_eyes))
-	pref.b_eyes			= sanitize_integer(pref.b_eyes, 0, 255, initial(pref.b_eyes))
-	pref.b_type			= sanitize_text(pref.b_type, initial(pref.b_type))
+	pref.r_hair = sanitize_integer(pref.r_hair, 0, 255, initial(pref.r_hair))
+	pref.g_hair = sanitize_integer(pref.g_hair, 0, 255, initial(pref.g_hair))
+	pref.b_hair = sanitize_integer(pref.b_hair, 0, 255, initial(pref.b_hair))
+	pref.r_grad = sanitize_integer(pref.r_grad, 0, 255, initial(pref.r_grad))
+	pref.g_grad = sanitize_integer(pref.g_grad, 0, 255, initial(pref.g_grad))
+	pref.b_grad = sanitize_integer(pref.b_grad, 0, 255, initial(pref.b_grad))
+	pref.r_facial = sanitize_integer(pref.r_facial, 0, 255, initial(pref.r_facial))
+	pref.g_facial = sanitize_integer(pref.g_facial, 0, 255, initial(pref.g_facial))
+	pref.b_facial = sanitize_integer(pref.b_facial, 0, 255, initial(pref.b_facial))
+	pref.s_tone = sanitize_integer(pref.s_tone, -185, 34, initial(pref.s_tone))
+	pref.r_skin = sanitize_integer(pref.r_skin, 0, 255, initial(pref.r_skin))
+	pref.g_skin = sanitize_integer(pref.g_skin, 0, 255, initial(pref.g_skin))
+	pref.b_skin = sanitize_integer(pref.b_skin, 0, 255, initial(pref.b_skin))
+	pref.h_style = sanitize_inlist(pref.h_style, hair_styles_list, initial(pref.h_style))
+	pref.f_style = sanitize_inlist(pref.f_style, facial_hair_styles_list, initial(pref.f_style))
+	pref.grad_style = sanitize_inlist(pref.grad_style, GLOB.hair_gradients, initial(pref.grad_style))
+	pref.grad_wingstyle = sanitize_inlist(pref.grad_wingstyle, GLOB.hair_gradients, initial(pref.grad_wingstyle))
+	pref.r_eyes = sanitize_integer(pref.r_eyes, 0, 255, initial(pref.r_eyes))
+	pref.g_eyes = sanitize_integer(pref.g_eyes, 0, 255, initial(pref.g_eyes))
+	pref.b_eyes = sanitize_integer(pref.b_eyes, 0, 255, initial(pref.b_eyes))
+	pref.b_type = sanitize_text(pref.b_type, initial(pref.b_type))
 	if(pref.mirror == null)
 		pref.mirror = TRUE
 
-	if(!pref.species || !(pref.species in playable_species))
+	if(!pref.species || !(pref.species in GLOB.playable_species))
 		pref.species = SPECIES_HUMAN
 
 	pref.disabilities	= sanitize_integer(pref.disabilities, 0, 65535, initial(pref.disabilities))
@@ -124,36 +125,36 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 // Moved from /datum/preferences/proc/copy_to()
 /datum/category_item/player_setup_item/physical/body/copy_to_mob(var/mob/living/carbon/human/character)
 	// Copy basic values
-	character.r_eyes		 = pref.r_eyes
-	character.g_eyes		 = pref.g_eyes
-	character.b_eyes		 = pref.b_eyes
-	character.r_hair		 = pref.r_hair
-	character.g_hair		 = pref.g_hair
-	character.b_hair		 = pref.b_hair
-	character.r_grad		 = pref.r_grad
-	character.g_grad		 = pref.g_grad
-	character.b_grad		 = pref.b_grad
-	character.r_gradwing	 = pref.r_gradwing
-	character.g_gradwing	 = pref.g_gradwing
-	character.b_gradwing	 = pref.b_gradwing
-	character.r_facial		 = pref.r_facial
-	character.g_facial		 = pref.g_facial
-	character.b_facial		 = pref.b_facial
-	character.r_skin		 = pref.r_skin
-	character.g_skin		 = pref.g_skin
-	character.b_skin		 =pref.b_skin
-	character.s_tone		 = pref.s_tone
-	character.h_style		 = pref.h_style
-	character.f_style		 = pref.f_style
-	character.grad_style	 = pref.grad_style
+	character.r_eyes = pref.r_eyes
+	character.g_eyes = pref.g_eyes
+	character.b_eyes = pref.b_eyes
+	character.r_hair = pref.r_hair
+	character.g_hair = pref.g_hair
+	character.b_hair = pref.b_hair
+	character.r_grad = pref.r_grad
+	character.g_grad = pref.g_grad
+	character.b_grad = pref.b_grad
+	character.r_gradwing = pref.r_gradwing
+	character.g_gradwing = pref.g_gradwing
+	character.b_gradwing = pref.b_gradwing
+	character.r_facial = pref.r_facial
+	character.g_facial = pref.g_facial
+	character.b_facial = pref.b_facial
+	character.r_skin = pref.r_skin
+	character.g_skin = pref.g_skin
+	character.b_skin =pref.b_skin
+	character.s_tone = pref.s_tone
+	character.h_style = pref.h_style
+	character.f_style = pref.f_style
+	character.grad_style = pref.grad_style
 	character.grad_wingstyle = pref.grad_wingstyle
-	character.b_type		 = pref.b_type
-	character.synth_color 	 = pref.synth_color
-	character.r_synth		 = pref.r_synth
-	character.g_synth		 = pref.g_synth
-	character.b_synth		 = pref.b_synth
+	character.b_type = pref.b_type
+	character.synth_color = pref.synth_color
+	character.r_synth = pref.r_synth
+	character.g_synth = pref.g_synth
+	character.b_synth = pref.b_synth
 	character.synth_markings = pref.synth_markings
-	character.s_base		 = pref.s_base
+	character.s_base = pref.s_base
 
 	// Destroy/cyborgize organs and limbs.
 	character.synthetic = null
@@ -425,11 +426,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			return TOPIC_HANDLED
 
 	else if(href_list["set_species"])
-
 		var/list/species_to_pick = list()
-		for(var/species in playable_species)
-			if(!check_rights(R_ADMIN, 0) && config.usealienwhitelist)
-				var/datum/species/current_species = all_species[species]
+		for(var/species in GLOB.playable_species)
+			if(!check_rights(R_ADMIN, 0) && config_legacy.usealienwhitelist)
+				var/datum/species/current_species = GLOB.all_species[species]
 				if(!(current_species.spawn_flags & SPECIES_CAN_JOIN))
 					continue
 				else if((current_species.spawn_flags & SPECIES_IS_WHITELISTED) && !is_alien_whitelisted(preference_mob(),current_species))
@@ -437,7 +437,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			species_to_pick += species
 
 		var/choice = input("Select a species to play as.") as null|anything in species_to_pick
-		if(!choice || !(choice in all_species))
+		if(!choice || !(choice in GLOB.all_species))
 			return
 
 		var/datum/species/setting_species
@@ -451,11 +451,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			return TOPIC_NOACTION
 
 		var/prev_species = pref.species
-		pref.species = href_list["set_species"]
+		pref.species = choice
 		if(prev_species != pref.species)
 			if(!(pref.biological_gender in mob_species.genders))
 				pref.set_biological_gender(mob_species.genders[1])
-			pref.custom_species = null //VOREStation Edit - This is cleared on species changes
+			pref.custom_species = null // This is cleared on species changes
 
 			//grab one of the valid hair styles for the newly chosen species
 			var/list/valid_hairstyles = pref.get_valid_hairstyles()
@@ -487,6 +487,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			var/min_age = get_min_age()
 			var/max_age = get_max_age()
 			pref.age = max(min(pref.age, max_age), min_age)
+
+			pref.cultural_info = mob_species.default_cultural_info.Copy()
 
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
@@ -932,7 +934,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	return ..()
 
-/datum/category_item/player_setup_item/general/body/proc/reset_limbs()
+/datum/category_item/player_setup_item/physical/body/proc/reset_limbs()
 
 	for(var/organ in pref.organ_data)
 		pref.organ_data[organ] = null
@@ -947,10 +949,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	pref.regen_limbs = 1
 
 	// Sanitize the name so that there aren't any numbers sticking around.
-	pref.real_name          = sanitize_name(pref.real_name, pref.species)
+	pref.real_name          = sanitizeName(pref.real_name, pref.species)
 	if(!pref.real_name)
 		pref.real_name      = random_name(pref.identifying_gender, pref.species)
 
+/*
 /datum/category_item/player_setup_item/general/body/proc/SetSpecies(mob/user)
 	if(!pref.species_preview || !(pref.species_preview in GLOB.all_species))
 		pref.species_preview = SPECIES_HUMAN
@@ -1024,3 +1027,4 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	dat += "</center></body>"
 
 	user << browse(dat, "window=species;size=700x400")
+*/
