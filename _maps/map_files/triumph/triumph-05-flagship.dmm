@@ -2971,7 +2971,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/obj/machinery/shower{
+/obj/structure/hygiene/shower{
 	dir = 1
 	},
 /obj/effect/floor_decal/corner_techfloor_grid{
@@ -3278,7 +3278,7 @@
 	},
 /area/centcom/control)
 "fJ" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	pixel_y = 16
 	},
 /obj/effect/floor_decal/industrial/warning{
@@ -3438,7 +3438,7 @@
 /area/centcom/control)
 "ga" = (
 /obj/structure/curtain/open/shower,
-/obj/machinery/shower{
+/obj/structure/hygiene/shower{
 	dir = 1
 	},
 /obj/effect/floor_decal/industrial/warning,
@@ -3818,7 +3818,7 @@
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
 	},
-/obj/structure/sink/kitchen{
+/obj/structure/hygiene/sink/kitchen{
 	pixel_y = 28
 	},
 /obj/machinery/button/remote/blast_door{
@@ -4137,7 +4137,7 @@
 	},
 /area/centcom/control)
 "hH" = (
-/obj/structure/toilet,
+/obj/structure/hygiene/toilet,
 /turf/unsimulated/floor{
 	dir = 5;
 	icon_state = "vault"
@@ -6106,7 +6106,7 @@
 	},
 /area/centcom/medical)
 "ls" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	dir = 4;
 	pixel_x = 11
 	},
@@ -6741,7 +6741,7 @@
 /turf/unsimulated/floor/steel,
 /area/centcom/security)
 "mx" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	dir = 8;
 	pixel_x = -12;
 	pixel_y = 2
@@ -6971,7 +6971,7 @@
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
 "mS" = (
-/obj/machinery/shower{
+/obj/structure/hygiene/shower{
 	dir = 4
 	},
 /obj/effect/floor_decal/industrial/warning{
@@ -7186,7 +7186,7 @@
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
 "np" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	dir = 8;
 	pixel_x = -12;
 	pixel_y = 2
@@ -8897,7 +8897,7 @@
 	},
 /area/centcom/medical)
 "qv" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	dir = 4;
 	pixel_x = 11
 	},
@@ -9727,7 +9727,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 4
 	},
-/obj/machinery/shower{
+/obj/structure/hygiene/shower{
 	pixel_y = 13
 	},
 /turf/unsimulated/floor{
@@ -10023,7 +10023,7 @@
 	},
 /area/centcom/bathroom)
 "sQ" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	dir = 4;
 	pixel_x = 11
 	},
@@ -10553,7 +10553,7 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 4
 	},
-/obj/machinery/shower{
+/obj/structure/hygiene/shower{
 	dir = 1
 	},
 /turf/unsimulated/floor{
@@ -11378,7 +11378,7 @@
 /turf/unsimulated/floor/steel,
 /area/centcom/main_hall)
 "vK" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	dir = 8;
 	pixel_x = -12;
 	pixel_y = 2
@@ -11419,7 +11419,7 @@
 	},
 /area/centcom/bathroom)
 "vO" = (
-/obj/structure/toilet{
+/obj/structure/hygiene/toilet{
 	dir = 8
 	},
 /turf/unsimulated/floor/steel{
@@ -11805,7 +11805,7 @@
 	},
 /area/centcom/restaurant)
 "wq" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	dir = 8;
 	pixel_x = -12;
 	pixel_y = 2
@@ -12394,7 +12394,7 @@
 	},
 /area/centcom/restaurant)
 "xp" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	dir = 8;
 	pixel_x = -12;
 	pixel_y = 2
@@ -14602,7 +14602,7 @@
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
 	},
-/obj/structure/sink/kitchen{
+/obj/structure/hygiene/sink/kitchen{
 	pixel_y = 28
 	},
 /turf/unsimulated/floor/steel{
@@ -15157,7 +15157,7 @@
 	},
 /area/centcom/living)
 "BU" = (
-/obj/structure/toilet{
+/obj/structure/hygiene/toilet{
 	dir = 4
 	},
 /turf/unsimulated/floor{
@@ -15178,7 +15178,7 @@
 	},
 /area/centcom/security)
 "BX" = (
-/obj/structure/urinal{
+/obj/structure/hygiene/urinal{
 	pixel_y = 31
 	},
 /turf/unsimulated/floor{
@@ -15187,7 +15187,7 @@
 /area/centcom/security)
 "BY" = (
 /obj/structure/curtain/open/shower,
-/obj/machinery/shower{
+/obj/structure/hygiene/shower{
 	pixel_y = 13
 	},
 /turf/unsimulated/floor{
@@ -15332,7 +15332,7 @@
 	},
 /area/centcom/security)
 "Cs" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	dir = 4;
 	pixel_x = 11
 	},
@@ -15342,7 +15342,7 @@
 /area/centcom/security)
 "Ct" = (
 /obj/structure/curtain/open/shower,
-/obj/machinery/shower{
+/obj/structure/hygiene/shower{
 	dir = 1
 	},
 /turf/unsimulated/floor{
@@ -15724,7 +15724,7 @@
 	},
 /area/centcom/command)
 "Da" = (
-/obj/structure/toilet,
+/obj/structure/hygiene/toilet,
 /turf/unsimulated/floor{
 	icon_state = "freezer"
 	},
@@ -15906,7 +15906,7 @@
 	},
 /area/centcom/living)
 "Dw" = (
-/obj/structure/urinal{
+/obj/structure/hygiene/urinal{
 	pixel_y = 30
 	},
 /turf/unsimulated/floor{
@@ -15914,7 +15914,7 @@
 	},
 /area/centcom/bathroom)
 "Dx" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	dir = 8;
 	pixel_x = -12;
 	pixel_y = 2
@@ -15934,7 +15934,7 @@
 	},
 /area/centcom/bathroom)
 "Dz" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	dir = 4;
 	pixel_x = 11
 	},

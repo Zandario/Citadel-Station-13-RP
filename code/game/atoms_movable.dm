@@ -9,6 +9,8 @@
 	var/moving_diagonally = 0
 	/// attempt to resume grab after moving instead of before. This is what atom/movable is pulling us during move-from-pulling.
 	var/atom/movable/moving_from_pull
+	/// If true, can't get wet.
+	var/waterproof = TRUE
 	/// Direction of our last move.
 	var/last_move = NONE
 	/// Which direction we're drifting

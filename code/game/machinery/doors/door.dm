@@ -6,18 +6,18 @@
 	desc = "It opens and closes."
 	icon = 'icons/obj/doors/Doorint.dmi'
 	icon_state = "door1"
-	anchored = 1
-	opacity = 1
-	density = 1
+	anchored = TRUE
+	opacity = TRUE
+	density = TRUE
 	can_atmos_pass = ATMOS_PASS_DENSITY
 	layer = DOOR_OPEN_LAYER
 	var/open_layer = DOOR_OPEN_LAYER
 	var/closed_layer = DOOR_CLOSED_LAYER
 
 	var/visible = 1
-	var/p_open = 0//[bool]is the door open?
-	var/operating = 0//[bool]Is the door opening or closing?
-	var/autoclose = 0//[bool]should the door close automaticly
+	var/p_open = FALSE // [bool]is the door open?
+	var/operating = FALSE // [bool]Is the door opening or closing?
+	var/autoclose = FALSE // [bool]should the door close automaticly
 	var/glass = 0
 	var/normalspeed = 1
 	var/heat_proof = 0 // For glass airlocks/opacity firedoors
@@ -521,3 +521,6 @@
 
 	icon = 'icons/turf/stomach_vr.dmi'
 	icon_state = "fleshclosed"
+
+/obj/machinery/door/CanFluidPass(var/coming_from)
+	return !density

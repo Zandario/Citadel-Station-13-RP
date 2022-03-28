@@ -89,7 +89,7 @@
 /turf/template_noop,
 /area/template_noop)
 "ax" = (
-/obj/machinery/shower{
+/obj/structure/hygiene/shower{
 	dir = 4;
 	icon_state = "shower";
 	pixel_x = 5;
@@ -105,7 +105,7 @@
 /turf/simulated/floor/tiled/hydro,
 /area/submap/Rockybase)
 "az" = (
-/obj/machinery/shower{
+/obj/structure/hygiene/shower{
 	dir = 8;
 	icon_state = "shower";
 	pixel_x = -5;
@@ -266,7 +266,7 @@
 /turf/simulated/floor/tiled,
 /area/submap/Rockybase)
 "aY" = (
-/obj/machinery/shower{
+/obj/structure/hygiene/shower{
 	dir = 4;
 	icon_state = "shower";
 	pixel_x = 5;
@@ -276,7 +276,7 @@
 /turf/simulated/floor/tiled/hydro,
 /area/submap/Rockybase)
 "aZ" = (
-/obj/machinery/shower{
+/obj/structure/hygiene/shower{
 	dir = 8;
 	icon_state = "shower";
 	pixel_x = -5;
@@ -351,7 +351,7 @@
 /turf/simulated/floor/tiled,
 /area/submap/Rockybase)
 "bj" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	dir = 4;
 	icon_state = "sink";
 	pixel_x = 11;
@@ -364,7 +364,7 @@
 /turf/simulated/floor/tiled,
 /area/submap/Rockybase)
 "bk" = (
-/obj/machinery/shower{
+/obj/structure/hygiene/shower{
 	dir = 8;
 	icon_state = "shower";
 	pixel_x = -5;
@@ -740,7 +740,7 @@
 /turf/simulated/floor/tiled,
 /area/submap/Rockybase)
 "cx" = (
-/obj/structure/toilet{
+/obj/structure/hygiene/toilet{
 	dir = 4
 	},
 /obj/machinery/light/small{
@@ -749,7 +749,7 @@
 /turf/simulated/floor/tiled/hydro,
 /area/submap/Rockybase)
 "cy" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	dir = 4;
 	icon_state = "sink";
 	pixel_x = 11;
@@ -1005,7 +1005,7 @@
 /turf/simulated/floor/tiled,
 /area/submap/Rockybase)
 "dk" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	dir = 4;
 	icon_state = "sink";
 	pixel_x = 11;

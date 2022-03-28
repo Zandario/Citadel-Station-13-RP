@@ -132,6 +132,9 @@
 /obj/structure/girder/blob_act()
 	dismantle()
 
+/obj/structure/girder/CanFluidPass(var/coming_from)
+	return TRUE
+
 /obj/structure/girder/proc/reset_girder()
 	name = "[girder_material.display_name] [initial(name)]"
 	anchored = 1
@@ -411,4 +414,3 @@
 			to_chat(user, span("notice", "You deconstruct \the [src]."))
 			qdel(src)
 			return TRUE
-

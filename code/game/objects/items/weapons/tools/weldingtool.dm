@@ -9,6 +9,7 @@
 	item_state = "welder"
 	slot_flags = SLOT_BELT
 	tool_behaviour = TOOL_WELDER
+	waterproof = FALSE
 
 	//Amount of OUCH when it's thrown
 	force = 3.0
@@ -117,10 +118,14 @@
 	..()
 	return
 
+/obj/item/weldingtool/water_act()
+	if(welding && !waterproof)
+		setWelding(0)
+
 /obj/item/weldingtool/process(delta_time)
 	if(welding)
 		++burned_fuel_for
-		if(burned_fuel_for >= WELDER_FUEL_BURN_INTERVAL)
+		if((!waterproof && submerged()) || burned_fuel_for >= WELDER_FUEL_BURN_INTERVAL)
 			remove_fuel(1)
 		if(get_fuel() < 1)
 			setWelding(0)
@@ -257,7 +262,13 @@
 //Sets the welding state of the welding tool. If you see W.welding = 1 anywhere, please change it to W.setWelding(1)
 //so that the welding tool updates accordingly
 /obj/item/weldingtool/proc/setWelding(var/set_welding, var/mob/M)
-	if(!status)	return
+	if(!status)
+		return
+
+	if(!welding && !waterproof && submerged())
+		if(M)
+			to_chat(M, "<span class='warning'>You cannot light \the [src] underwater.</span>")
+		return
 
 	var/turf/T = get_turf(src)
 	//If we're turning it on

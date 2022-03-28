@@ -347,8 +347,22 @@
 	color_mult = 1
 	wikilink="https://citadel-station.net/wikiRP/index.php?title=Skrell"
 
-/datum/species/skrell/can_breathe_water()
-	return TRUE
+	has_organ = list(
+		BP_HEART =    /obj/item/organ/internal/heart,
+		BP_LUNGS =    /obj/item/organ/internal/lungs/skrell,
+		BP_LIVER =    /obj/item/organ/internal/liver,
+		BP_KIDNEYS =  /obj/item/organ/internal/kidneys,
+		BP_BRAIN =    /obj/item/organ/internal/brain,
+		BP_EYES =     /obj/item/organ/internal/eyes
+		)
+
+/datum/species/skrell/water_act(var/mob/living/carbon/human/H, var/depth)
+	..()
+	if(depth >= 40)
+		if(H.getHalLoss())
+			H.adjustHalLoss(-5)
+			if(prob(5)) // Might be too spammy.
+				to_chat(H, "<span class='notice'>The water ripples gently over your skin in a soothing balm.</span>")
 
 /datum/species/zaddat
 	name = SPECIES_ZADDAT
@@ -582,8 +596,23 @@
 	base_color = "#777777"
 	blood_color = "#1D2CBF"
 
-/datum/species/akula/can_breathe_water()
-	return TRUE // Surprise, SHERKS.
+	has_organ = list(
+		BP_HEART =    /obj/item/organ/internal/heart,
+		BP_LUNGS =    /obj/item/organ/internal/lungs/akula,
+		BP_LIVER =    /obj/item/organ/internal/liver,
+		BP_KIDNEYS =  /obj/item/organ/internal/kidneys,
+		BP_BRAIN =    /obj/item/organ/internal/brain,
+		BP_EYES =     /obj/item/organ/internal/eyes
+		)
+
+// SUPRISE SHARKS
+/datum/species/akula/water_act(var/mob/living/carbon/human/H, var/depth)
+	..()
+	if(depth >= 40)
+		if(H.getHalLoss())
+			H.adjustHalLoss(-5)
+			if(prob(5)) // Might be too spammy.
+				to_chat(H, "<span class='notice'>The water ripples gently over your skin in a soothing balm.</span>")
 
 /datum/species/nevrean
 	name = SPECIES_NEVREAN
@@ -920,4 +949,3 @@
 
 /datum/species/shadekin/can_breathe_water()
 	return TRUE	//they dont quite breathe
-

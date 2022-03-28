@@ -224,3 +224,6 @@
 
 /obj/proc/plunger_act(obj/item/plunger/P, mob/living/user, reinforced)
 	return
+
+/obj/is_fluid_pushable(var/amt)
+	return ..() && w_class <= round(amt/20)

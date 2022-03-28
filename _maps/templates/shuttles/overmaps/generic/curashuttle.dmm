@@ -471,7 +471,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/shield_gen{
-	
+
 	},
 /obj/structure/curtain/black,
 /turf/simulated/floor/tiled,
@@ -531,7 +531,7 @@
 /turf/simulated/floor/tiled/white,
 /area/shuttle/curabitur/curashuttle/med)
 "ba" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	dir = 4;
 	icon_state = "sink";
 	pixel_x = 12;

@@ -20,6 +20,7 @@
 /turf/simulated/Initialize(mapload)
 	. = ..()
 	levelupdate()
+	fluid_update()
 	// HOOK FOR MOB/FREELOOK SYSTEM
 	updateVisibility(src)
 
@@ -40,6 +41,17 @@
 		if(wet_overlay)
 			cut_overlay(wet_overlay)
 			wet_overlay = null
+
+/turf/simulated/proc/unwet_floor(var/check_very_wet = TRUE)
+	if(check_very_wet && wet >= 2)
+		wet--
+		addtimer(CALLBACK(src,/turf/simulated/proc/unwet_floor), 8 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE|TIMER_NO_HASH_WAIT|TIMER_OVERRIDE)
+		return
+
+	wet = 0
+	if(wet_overlay)
+		overlays -= wet_overlay
+		wet_overlay = null
 
 /turf/simulated/proc/freeze_floor()
 	if(!wet) // Water is required for it to freeze.

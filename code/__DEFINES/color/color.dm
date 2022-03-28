@@ -57,6 +57,8 @@
 #define COLOR_ASTEROID_ROCK				"#735555"
 #define COLOR_FLOORTILE_GRAY			"#8D8B8B"
 
+#define COLOR_OCEAN						"#99f5ff" // Used by fluid system.
+
 ///INTERFACE
 #define COLOR_INPUT_DISABLED			"#F0F0F0"
 #define COLOR_INPUT_ENABLED				"#D3B5B5"

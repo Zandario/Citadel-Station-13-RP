@@ -4,6 +4,7 @@
 	desc = "Cats really don't like these things."
 	plane = DECAL_PLANE
 	layer = ABOVE_UTILITY
+	footstep_type = FOOTSTEP_CATWALK
 	icon = 'icons/turf/catwalks.dmi'
 	icon_state = "catwalk"
 	density = 0

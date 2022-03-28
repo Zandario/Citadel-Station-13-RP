@@ -588,7 +588,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/triumph/surfacebase/mining_main/refinery)
 "bK" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	pixel_y = 22
 	},
 /obj/structure/mirror{
@@ -736,7 +736,7 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/fitness)
 "ck" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	dir = 8;
 	pixel_x = -12;
 	pixel_y = 2
@@ -1217,7 +1217,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/primary/starboard)
 "dL" = (
-/obj/structure/toilet{
+/obj/structure/hygiene/toilet{
 	pixel_y = 10
 	},
 /turf/simulated/floor/tiled/white,
@@ -1735,7 +1735,7 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_10)
 "ff" = (
-/obj/structure/sink/kitchen{
+/obj/structure/hygiene/sink/kitchen{
 	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/dark,
@@ -2180,7 +2180,7 @@
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 5
 	},
-/obj/structure/sink/kitchen{
+/obj/structure/hygiene/sink/kitchen{
 	dir = 8;
 	name = "sink";
 	pixel_x = 13
@@ -3654,7 +3654,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/maintenance/dormitory)
 "kf" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	dir = 8;
 	pixel_x = -12;
 	pixel_y = 2
@@ -3678,7 +3678,7 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/warehouse)
 "km" = (
-/obj/machinery/shower{
+/obj/structure/hygiene/shower{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
@@ -4254,7 +4254,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/shuttle/mining_ship/general)
 "lZ" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	pixel_y = 22
 	},
 /obj/structure/mirror{
@@ -4312,7 +4312,7 @@
 /turf/simulated/floor/carpet/sblucarpet,
 /area/quartermaster/foyer)
 "mj" = (
-/obj/structure/sink/kitchen{
+/obj/structure/hygiene/sink/kitchen{
 	dir = 8;
 	name = "sink";
 	pixel_x = 13
@@ -4626,7 +4626,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 10
 	},
-/obj/machinery/shower{
+/obj/structure/hygiene/shower{
 	dir = 1
 	},
 /obj/structure/window/reinforced{
@@ -5402,7 +5402,7 @@
 /turf/simulated/floor/plating,
 /area/crew_quarters/recreation_area)
 "oV" = (
-/obj/machinery/shower{
+/obj/structure/hygiene/shower{
 	dir = 8
 	},
 /obj/machinery/light/small{
@@ -5529,7 +5529,7 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals10,
-/obj/machinery/shower{
+/obj/structure/hygiene/shower{
 	dir = 4
 	},
 /obj/machinery/light/small{
@@ -5857,7 +5857,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/bar/lower)
 "qi" = (
-/obj/structure/toilet{
+/obj/structure/hygiene/toilet{
 	dir = 1
 	},
 /obj/machinery/light/small{
@@ -6947,7 +6947,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/triumph/surfacebase/mining_main/refinery)
 "th" = (
-/obj/structure/toilet{
+/obj/structure/hygiene/toilet{
 	dir = 1
 	},
 /obj/machinery/light/small{
@@ -7438,7 +7438,7 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/sleep/Dorm_1)
 "uu" = (
-/obj/structure/toilet{
+/obj/structure/hygiene/toilet{
 	dir = 1
 	},
 /obj/machinery/light/small,
@@ -8177,7 +8177,7 @@
 /turf/simulated/floor/tiled,
 /area/maintenance/bar/lower)
 "wF" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	pixel_y = 22
 	},
 /turf/simulated/floor/tiled/white,
@@ -8327,7 +8327,7 @@
 /turf/simulated/floor/wood,
 /area/quartermaster/qm)
 "xg" = (
-/obj/machinery/shower{
+/obj/structure/hygiene/shower{
 	dir = 4
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals10{
@@ -9316,7 +9316,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/hallway/primary/port)
 "zW" = (
-/obj/machinery/shower{
+/obj/structure/hygiene/shower{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
@@ -9484,7 +9484,7 @@
 /turf/simulated/floor/tiled,
 /area/crew_quarters/bar)
 "Az" = (
-/obj/structure/sink/kitchen{
+/obj/structure/hygiene/sink/kitchen{
 	dir = 4;
 	pixel_x = -11
 	},
@@ -9521,7 +9521,7 @@
 /turf/simulated/floor/plating,
 /area/station/stairs_two)
 "AD" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	pixel_y = 22
 	},
 /obj/structure/mirror{
@@ -9581,7 +9581,7 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/recreation_area)
 "AM" = (
-/obj/structure/toilet{
+/obj/structure/hygiene/toilet{
 	pixel_y = 10
 	},
 /turf/simulated/floor/tiled/white,
@@ -9643,7 +9643,7 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/recreation_area_hallway)
 "AY" = (
-/obj/machinery/shower{
+/obj/structure/hygiene/shower{
 	pixel_y = 8
 	},
 /turf/simulated/floor/tiled/white,
@@ -10477,7 +10477,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/bar/lower)
 "Dy" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	dir = 8;
 	pixel_x = -12;
 	pixel_y = 2
@@ -10791,7 +10791,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 10
 	},
-/obj/machinery/shower{
+/obj/structure/hygiene/shower{
 	dir = 1
 	},
 /obj/structure/window/reinforced{
@@ -11647,7 +11647,7 @@
 /turf/simulated/floor/wood,
 /area/station/stairs_two)
 "GP" = (
-/obj/structure/toilet{
+/obj/structure/hygiene/toilet{
 	pixel_y = 10
 	},
 /turf/simulated/floor/tiled/white,
@@ -11983,7 +11983,7 @@
 /turf/simulated/floor/tiled/steel/airless,
 /area/shuttle/mining_ship/general)
 "HL" = (
-/obj/structure/toilet{
+/obj/structure/hygiene/toilet{
 	pixel_y = 10
 	},
 /turf/simulated/floor/tiled/white,
@@ -14912,7 +14912,7 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_8)
 "QP" = (
-/obj/structure/toilet{
+/obj/structure/hygiene/toilet{
 	pixel_y = 10
 	},
 /obj/machinery/light/small{
@@ -15169,7 +15169,7 @@
 /turf/simulated/floor/tiled,
 /area/triumph/surfacebase/mining_main/refinery)
 "RA" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	pixel_y = 22
 	},
 /obj/structure/mirror{
@@ -15558,7 +15558,7 @@
 /turf/simulated/floor/wood,
 /area/vacant/vacant_shop)
 "SD" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	dir = 8;
 	pixel_x = -12;
 	pixel_y = 2
@@ -15856,7 +15856,7 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/warehouse)
 "Tp" = (
-/obj/structure/sink/kitchen{
+/obj/structure/hygiene/sink/kitchen{
 	dir = 8;
 	name = "sink";
 	pixel_x = 13
@@ -16044,7 +16044,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 10
 	},
-/obj/machinery/shower{
+/obj/structure/hygiene/shower{
 	dir = 1
 	},
 /obj/structure/window/reinforced{
@@ -17288,7 +17288,7 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/storage)
 "Xc" = (
-/obj/structure/toilet{
+/obj/structure/hygiene/toilet{
 	dir = 1
 	},
 /obj/machinery/light/small,
@@ -18371,7 +18371,7 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals10,
-/obj/machinery/shower{
+/obj/structure/hygiene/shower{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,

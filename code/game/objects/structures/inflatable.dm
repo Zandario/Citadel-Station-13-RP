@@ -25,9 +25,9 @@
 /obj/structure/inflatable
 	name = "inflatable wall"
 	desc = "An inflated membrane. Do not puncture."
-	density = 1
-	anchored = 1
-	opacity = 0
+	density = TRUE
+	anchored = TRUE
+	opacity = FALSE
 	can_atmos_pass = ATMOS_PASS_DENSITY
 
 	icon = 'icons/obj/inflatable.dmi'
@@ -137,14 +137,17 @@
 		spawn(1) puncture()
 	else
 		user.visible_message("<span class='danger'>[user] [attack_verb] at [src]!</span>")
-	return 1
+	return TRUE
 
 /obj/structure/inflatable/take_damage(var/damage)
 	health -= damage
 	if(health <= 0)
 		visible_message("<span class='danger'>The [src] deflates!</span>")
 		spawn(1) puncture()
-	return 1
+	return TRUE
+
+/obj/structure/inflatable/CanFluidPass(var/coming_from)
+	return !density
 
 /obj/item/inflatable/door/
 	name = "inflatable door"
@@ -155,14 +158,14 @@
 
 /obj/structure/inflatable/door //Based on mineral door code
 	name = "inflatable door"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	opacity = 0
 
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "door_closed"
 
-	var/state = 0 //closed, 1 == open
+	var/state = FALSE //closed, TRUE == open
 	var/isSwitchingStates = 0
 
 /obj/structure/inflatable/door/attack_ai(mob/user as mob) //those aren't machinery, they're just big fucking slabs of a mineral

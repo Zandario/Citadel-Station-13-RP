@@ -11,7 +11,7 @@ var/image/no_ceiling_image = null
 	no_ceiling_image.plane = PLANE_MESONS
 
 /turf/simulated/floor/update_icon(var/update_neighbors)
-
+	..()
 	if(lava)
 		return
 

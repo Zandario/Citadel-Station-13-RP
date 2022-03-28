@@ -13,11 +13,25 @@
 	var/list/other_connections
 	var/list/blend_objects = newlist() // Objects which to blend with
 	var/list/noblend_objects = newlist() //Objects to avoid blending with (such as children of listed blend objects.
+	var/footstep_type
 
 /obj/structure/Destroy()
-	if(parts)
-		new parts(loc)
+	var/turf/T = get_turf(src)
+	if(T && parts)
+		new parts(T)
 	. = ..()
+	if(istype(T))
+		T.fluid_update()
+
+/obj/structure/Initialize(mapload)
+	. = ..()
+	if(!CanFluidPass())
+		fluid_update()
+
+/obj/structure/Move()
+	. = ..()
+	if(. && !CanFluidPass())
+		fluid_update()
 
 /obj/structure/attack_hand(mob/user)
 	if(breakable)

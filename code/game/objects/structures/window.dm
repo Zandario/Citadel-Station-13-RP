@@ -1,7 +1,7 @@
 /obj/structure/window
 	name = "window"
 	desc = "A window."
-	icon = 'icons/obj/structures_vr.dmi' // VOREStation Edit - New icons
+	icon = 'icons/obj/structures_vr.dmi'
 	density = 1
 	can_atmos_pass = ATMOS_PASS_DENSITY
 	w_class = ITEMSIZE_NORMAL
@@ -55,6 +55,9 @@
 			. += "<span class='notice'>It is covered in silicate.</span>"
 		else
 			. += "<span class='notice'>There is a thick layer of silicate covering it.</span>"
+
+/obj/structure/window/CanFluidPass(var/coming_from)
+	return (!is_fulltile() && coming_from != dir)
 
 /obj/structure/window/take_damage(var/damage = 0,  var/sound_effect = 1)
 	var/initialhealth = health
@@ -722,4 +725,3 @@
 			qdel(src)
 			return TRUE
 	return FALSE
-

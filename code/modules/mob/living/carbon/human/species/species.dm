@@ -47,6 +47,7 @@
 	var/active_regen_mult = 1								// Multiplier for 'Regenerate' power speed, in human_powers.dm
 
 	var/taste_sensitivity = TASTE_NORMAL					// How sensitive the species is to minute tastes.
+	var/silent_steps
 
 	var/min_age = 18
 	var/max_age = 70
@@ -110,6 +111,7 @@
 	var/breath_type = /datum/gas/oxygen								// Non-oxygen gas breathed, if any.
 	var/poison_type = /datum/gas/phoron								// Poisonous air.
 	var/exhale_type = /datum/gas/carbon_dioxide						// Exhaled gas type.
+	var/water_breather = FALSE
 
 	var/body_temperature = 310.15							// Species will try to stabilize at this temperature. (also affects temperature processing)
 
@@ -493,7 +495,7 @@ GLOBAL_LIST_INIT(species_oxygen_tank_by_gas, list(
 
 // Called when lying down on a water tile.
 /datum/species/proc/can_breathe_water()
-	return FALSE
+	return water_breather
 
 // Impliments different trails for species depending on if they're wearing shoes.
 /datum/species/proc/get_move_trail(var/mob/living/carbon/human/H)

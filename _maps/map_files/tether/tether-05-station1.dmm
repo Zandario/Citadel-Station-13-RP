@@ -4770,7 +4770,7 @@
 "ajl" = (
 /obj/structure/curtain/open/shower,
 /obj/item/soap/nanotrasen,
-/obj/machinery/shower{
+/obj/structure/hygiene/shower{
 	pixel_y = 16
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals10{
@@ -7152,7 +7152,7 @@
 /turf/simulated/floor/tiled,
 /area/engineering/workshop)
 "aoQ" = (
-/obj/structure/toilet{
+/obj/structure/hygiene/toilet{
 	dir = 4
 	},
 /obj/machinery/light/small{
@@ -7227,7 +7227,7 @@
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/backup)
 "aoY" = (
-/obj/structure/toilet{
+/obj/structure/hygiene/toilet{
 	dir = 4
 	},
 /obj/machinery/light/small{
@@ -7251,7 +7251,7 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/sleep/engi_wash)
 "apa" = (
-/obj/structure/toilet{
+/obj/structure/hygiene/toilet{
 	dir = 4
 	},
 /obj/machinery/light/small{
@@ -7296,7 +7296,7 @@
 /turf/simulated/floor/carpet,
 /area/maintenance/abandonedlibrary)
 "ape" = (
-/obj/structure/toilet{
+/obj/structure/hygiene/toilet{
 	dir = 4
 	},
 /obj/machinery/light/small{
@@ -7325,7 +7325,7 @@
 /turf/simulated/floor,
 /area/engineering/break_room)
 "aph" = (
-/obj/structure/toilet{
+/obj/structure/hygiene/toilet{
 	dir = 4
 	},
 /obj/machinery/light/small{
@@ -12119,7 +12119,7 @@
 	dir = 4;
 	pixel_x = 28
 	},
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	dir = 4;
 	pixel_x = 11
 	},
@@ -13575,7 +13575,7 @@
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
 "aEB" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	dir = 4;
 	pixel_x = 11
 	},
@@ -13697,7 +13697,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 10
 	},
-/obj/machinery/shower{
+/obj/structure/hygiene/shower{
 	dir = 1
 	},
 /obj/structure/window/reinforced{
@@ -13719,7 +13719,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 10
 	},
-/obj/machinery/shower{
+/obj/structure/hygiene/shower{
 	dir = 1
 	},
 /obj/structure/window/reinforced{
@@ -14037,7 +14037,7 @@
 	dir = 4;
 	pixel_x = 28
 	},
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	dir = 4;
 	pixel_x = 11
 	},
@@ -17022,7 +17022,7 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
 "brX" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	dir = 4;
 	pixel_x = 11
 	},
@@ -17084,7 +17084,7 @@
 /turf/simulated/floor/tiled,
 /area/security/checkpoint/science)
 "bvs" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	dir = 4;
 	pixel_x = 11
 	},
@@ -25251,7 +25251,7 @@
 /turf/simulated/floor/wood,
 /area/tether/exploration/crew)
 "tWZ" = (
-/obj/structure/sink{
+/obj/structure/hygiene/sink{
 	dir = 8;
 	pixel_x = -13
 	},
@@ -26021,7 +26021,7 @@
 /area/security/customs)
 "vFq" = (
 /obj/effect/floor_decal/spline/fancy,
-/obj/structure/sink/puddle{
+/obj/structure/hygiene/sink/puddle{
 	pixel_y = 3
 	},
 /obj/structure/flora/ausbushes/reedbush{
