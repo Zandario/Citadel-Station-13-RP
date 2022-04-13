@@ -16,7 +16,7 @@
 
 	var/turf/T = get_turf(usr)
 	if(!T || !(T.z in GLOB.using_map.player_levels))
-		to_chat(usr, "<span class='warning'><b>Unable to establish a connection</b>: You're too far away from the station!</span>")
+		to_chat(usr, SPAN_WARNING("<b>Unable to establish a connection</b>: You're too far away from the station!"))
 		return FALSE
 
 	switch(action)
