@@ -27,6 +27,7 @@
 	var/picture_state		// icon_state of alert picture, if not displaying text/numbers
 	var/list/obj/machinery/targets
 	var/timetoset = 0		// Used to set releasetime upon starting the timer
+	var/timer_duration = 0
 
 	maptext_height = 26
 	maptext_width = 32
