@@ -14,7 +14,7 @@
 	light_power = 0.5
 	light_color = "#FF0D00"
 	impact_sounds = list(BULLET_IMPACT_MEAT = SOUNDS_LASER_MEAT, BULLET_IMPACT_METAL = SOUNDS_LASER_METAL)
-	
+
 	muzzle_type = /obj/effect/projectile/muzzle/laser
 	tracer_type = /obj/effect/projectile/tracer/laser
 	impact_type = /obj/effect/projectile/impact/laser
@@ -214,10 +214,9 @@
 	name = "stun beam"
 	icon_state = "stun"
 	fire_sound = 'sound/weapons/Taser.ogg'
-	nodamage = 1
 	taser_effect = 1
 	agony = 40
-	damage_type = HALLOSS
+	damage_type = STUN
 	light_color = "#FFFFFF"
 
 	combustion = FALSE
@@ -225,6 +224,13 @@
 	muzzle_type = /obj/effect/projectile/muzzle/stun
 	tracer_type = /obj/effect/projectile/tracer/stun
 	impact_type = /obj/effect/projectile/impact/stun
+
+/obj/item/projectile/beam/stun/shock
+	name = "shock beam"
+	damage_type = ELECTROCUTE
+	damage = 10
+	agony = 50
+	fire_sound='sound/weapons/pulse.ogg'
 
 /obj/item/projectile/beam/stun/weak
 	name = "weak stun beam"
@@ -244,7 +250,7 @@
 	nodamage = 1
 	taser_effect = 1
 	agony = 30
-	damage_type = HALLOSS
+	damage_type = PAIN
 	light_color = "#FFFFFF"
 
 	combustion = FALSE

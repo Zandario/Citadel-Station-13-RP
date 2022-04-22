@@ -254,7 +254,7 @@
 /spell/targeted/chimera/hatch_pop/cast(list/targets, mob/user = usr)
 	var/mob/living/carbon/human/H = user
 
-	var/braindamage = (H.brainloss * 0.6) //Can only heal half brain damage.
+	var/braindamage = (H.getBrainLoss() * 0.6) //Can only heal half brain damage.
 
 	H.revive()
 	LAZYREMOVE(H.mutations, HUSK)

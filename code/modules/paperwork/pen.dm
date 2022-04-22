@@ -170,7 +170,7 @@
 	edge = 1
 	w_class = active_w_class
 	playsound(src, 'sound/weapons/saberon.ogg', 15, 1)
-	damtype = SEARING
+	damtype = FIRE
 	catchable = FALSE
 
 	attack_verb |= list(\

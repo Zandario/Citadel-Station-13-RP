@@ -154,7 +154,7 @@ datum/unarmed_attack/holopugilism/unarmed_override(var/mob/living/carbon/human/u
 	if(armor_soak >= damage)
 		return TRUE
 
-	target.apply_damage(damage, HALLOSS, affecting, armor_block, armor_soak)
+	target.apply_damage(damage, PAIN, affecting, armor_block, armor_soak)
 	if(damage >= 9)
 		target.visible_message("<font color='red'><B>[user] has weakened [target]!</B></font>")
 		target.apply_effect(4, WEAKEN, armor_block)
@@ -261,7 +261,7 @@ datum/unarmed_attack/holopugilism/unarmed_override(var/mob/living/carbon/human/u
 	return
 //VOREStation Add End
 /obj/item/holo
-	damtype = HALLOSS
+	damtype = PAIN
 	no_attack_log = 1
 
 /obj/item/holo/esword

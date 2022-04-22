@@ -164,7 +164,7 @@
 	icon_state = "adv_saw"
 	item_state = "saw3"
 	hitsound = 'sound/weapons/emitter2.ogg'
-	damtype = SEARING
+	damtype = FIRE
 	w_class = ITEMSIZE_LARGE
 	origin_tech = list(TECH_BIO = 4, TECH_MATERIAL = 6, TECH_MAGNET = 6)
 	matter = list(DEFAULT_WALL_MATERIAL = 12500)

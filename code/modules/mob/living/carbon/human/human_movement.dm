@@ -29,8 +29,8 @@
 
 	if(can_feel_pain())
 		if(!(CE_SPEEDBOOST in chem_effects)) //Hyperzine stops pain slowdown
-			if(halloss >= 10)
-				tally += (halloss / 10) //halloss shouldn't slow you down if you can't even feel it
+			if(getHalLoss() >= 10)
+				tally += (getHalLoss() / 10) //halloss shouldn't slow you down if you can't even feel it
 
 	var/hungry = (500 - nutrition)/5 // So overeat would be 100 and default level would be 80
 	if (hungry >= 70)

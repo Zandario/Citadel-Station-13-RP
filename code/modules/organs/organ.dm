@@ -430,7 +430,7 @@ var/list/organ_cache = list()
 		return
 
 /obj/item/organ/proc/organ_can_feel_pain()
-	if(species.flags & NO_PAIN)
+	if(species || (species.flags & NO_PAIN))
 		return 0
 	if(status & ORGAN_DESTROYED)
 		return 0
@@ -500,8 +500,10 @@ var/list/organ_cache = list()
 
 /obj/item/organ/proc/refresh_action_button()
 	return action
+
 /obj/item/organ/proc/can_recover()
 	return (max_damage > 0) && !(status & ORGAN_DEAD)
+
 /obj/item/organ/proc/heal_damage_a(amount)
 	if (can_recover())
 		damage = between(0, damage - round(amount, 0.1), max_damage)

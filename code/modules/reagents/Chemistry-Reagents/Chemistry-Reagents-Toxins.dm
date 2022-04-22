@@ -512,7 +512,7 @@
 	if(prob(50))
 		M.adjustToxLoss(0.5 * removed)
 	if(prob(50))
-		M.apply_effect(4, AGONY, 0)
+		M.apply_effect(4, PAIN, 0)
 		if(prob(20))
 			to_chat(M,"<span class='danger'>You feel like your insides are burning!</span>")
 		else if(prob(20))
@@ -533,7 +533,7 @@
 	if(alien == IS_DIONA)
 		return
 	if(alien == IS_SLIME)
-		M.apply_effect(5, AGONY, 0)
+		M.apply_effect(5, PAIN, 0)
 		M.adjustToxLoss(3 * removed)
 		if(prob(10))
 			to_chat(M, "<span class='warning'>Your cellular mass hardens for a moment.</span>")

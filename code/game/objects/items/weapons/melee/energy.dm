@@ -207,7 +207,7 @@
 
 /obj/item/melee/energy/axe/activate(mob/living/user)
 	..()
-	damtype = SEARING
+	damtype = FIRE
 	to_chat(user, "<span class='notice'>\The [src] is now energised.</span>")
 
 /obj/item/melee/energy/axe/deactivate(mob/living/user)

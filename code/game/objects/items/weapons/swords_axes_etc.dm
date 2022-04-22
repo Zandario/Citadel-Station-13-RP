@@ -106,7 +106,7 @@
 		var/old_attack_verb = attack_verb
 		var/old_force = force
 		if(user.a_intent != INTENT_HARM)
-			damtype = HALLOSS
+			damtype = PAIN
 			attack_verb = list("suppressed")
 			force = on_pain_force
 		. = ..()
@@ -207,7 +207,7 @@
 	desc = "A training sword made of wood and shaped like a katana."
 	icon_state = "bokken"
 	slot_flags = SLOT_BELT | SLOT_BACK
-	damtype = HALLOSS
+	damtype = PAIN
 	force = 5
 	throwforce = 5
 	attack_verb = list("whacked", "smacked", "struck")

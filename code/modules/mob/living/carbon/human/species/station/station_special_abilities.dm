@@ -108,7 +108,7 @@
 
 	//Modify and record values (half nutrition and braindamage)
 	var/old_nutrition = nutrition * 0.5
-	var/braindamage = (brainloss * 0.5) //Can only heal half brain damage.
+	var/braindamage = (getBrainLoss() * 0.5) //Can only heal half brain damage.
 
 	//I did have special snowflake code, but this is easier.
 	revive()
@@ -477,7 +477,7 @@
 				C.nutrition = (C.nutrition + T.nutrition)
 				T.nutrition = 0 //Completely drained of everything.
 				var/damage_to_be_applied = T.species.total_health //Get their max health.
-				T.apply_damage(damage_to_be_applied, HALLOSS) //Knock em out.
+				T.apply_damage(damage_to_be_applied, PAIN) //Knock em out.
 				C.absorbing_prey = 0
 				if(T.isSynthetic())
 					to_chat(C, "<span class='notice'>You have siphoned the power out of [T], causing them to crumple on the floor.</span>")
@@ -565,7 +565,7 @@
 					nutrition = (nutrition + T.nutrition)
 					T.nutrition = 0 //Completely drained of everything.
 					var/damage_to_be_applied = T.species.total_health //Get their max health.
-					T.apply_damage(damage_to_be_applied, HALLOSS) //Knock em out.
+					T.apply_damage(damage_to_be_applied, PAIN) //Knock em out.
 					absorbing_prey = 0 //Clean this up before we return
 					return
 				if(T.isSynthetic())

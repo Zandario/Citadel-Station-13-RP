@@ -1,14 +1,46 @@
-// Damage things. TODO: Merge these down to reduce on defines.
-// Way to waste perfectly good damage-type names (BRUTE) on this... If you were really worried about case sensitivity, you could have just used lowertext(damagetype) in the proc.
-#define BRUTE     "brute"
-#define BURN      "fire"
-#define TOX       "tox"
-#define OXY       "oxy"
-#define CLONE     "clone"
-#define HALLOSS   "halloss"
+/*ALL DEFINES RELATED TO COMBAT GO HERE*/
+
+//Damage and status effect defines
+
+//Damage defines //TODO: merge these down to reduce on defines
+/// Physical fracturing and warping of the material.
+#define BRUTE "brute"
+/// Scorching and charring of the material.
+#define BURN "burn"
+/// Poisng. Mostly caused by reagents.
+#define TOX "tox"
+/// Suffocation.
+#define OXY "oxy"
+/// How painful is this?
+#define PAIN "pain"
+/// Cellular degredation. Rare and difficult to treat.
+#define CLONE "clone"
+/// Electric Shocks. Maybe you should've worn insuls.
 #define ELECTROCUTE "electrocute"
-#define BIOACID   "bioacid"
-#define SEARING   "searing"
+
+//Damage flag defines //
+/// Involves a melee attack or a thrown object.
+#define MELEE "melee"
+/// Involves a solid projectile.
+#define BULLET "bullet"
+/// Involves a laser.
+#define LASER "laser"
+/// Involves an EMP or energy-based projectile.
+#define ENERGY "energy"
+/// Involves a shockwave, usually from an explosion.
+#define BOMB "bomb"
+/// Involved in checking wheter a disease can infect or spread. Also involved in xeno neurotoxin.
+#define BIO "bio"
+/// Involves fire or temperature extremes.
+#define FIRE "fire"
+/// Involves corrosive substances.
+#define ACID "acid"
+/// Involved in checking the likelyhood of applying a wound to a mob.
+#define WOUND "wound"
+/// Involves being eaten
+#define CONSUME "consume"
+
+// Damage things. //TODO: Merge these down to reduce on defines.
 
 #define CUT       "cut"
 #define BRUISE    "bruise"
@@ -18,7 +50,6 @@
 #define WEAKEN    "weaken"
 #define PARALYZE  "paralize"
 #define IRRADIATE "irradiate"
-#define AGONY     "agony"     // Added in PAIN!
 #define SLUR      "slur"
 #define STUTTER   "stutter"
 #define EYE_BLUR  "eye_blur"

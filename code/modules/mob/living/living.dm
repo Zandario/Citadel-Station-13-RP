@@ -103,7 +103,7 @@ default behaviour is:
 		health = 100
 		stat = CONSCIOUS
 	else
-		health = getMaxHealth() - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
+		health = getMaxHealth() - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - getHalLoss()
 
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
@@ -258,64 +258,33 @@ default behaviour is:
 	fireloss = min(max(fireloss + amount, 0),(getMaxHealth()*2))
 	updatehealth()
 
-/mob/living/proc/getCloneLoss()
-	return cloneloss
-
-/mob/living/proc/adjustCloneLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-
-	if(amount > 0)
-		for(var/datum/modifier/M in modifiers)
-			if(!isnull(M.incoming_damage_percent))
-				amount *= M.incoming_damage_percent
-			if(!isnull(M.incoming_clone_damage_percent))
-				amount *= M.incoming_clone_damage_percent
-	else if(amount < 0)
-		for(var/datum/modifier/M in modifiers)
-			if(!isnull(M.incoming_healing_percent))
-				amount *= M.incoming_healing_percent
-
-	cloneloss = min(max(cloneloss + amount, 0),(getMaxHealth()*2))
-	updatehealth()
-
-/mob/living/proc/setCloneLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	cloneloss = amount
 
 /mob/living/proc/getBrainLoss()
-	return brainloss
+	return 0
 
 /mob/living/proc/adjustBrainLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	brainloss = min(max(brainloss + amount, 0),(getMaxHealth()*2))
+	return 0
 
 /mob/living/proc/setBrainLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	brainloss = amount
+	return 0
+
+/mob/living/proc/getCloneLoss()
+	return
+
+/mob/living/proc/setCloneLoss(var/amount)
+	return
+
+/mob/living/proc/adjustCloneLoss(var/amount)
+	return
 
 /mob/living/proc/getHalLoss()
-	return halloss
+	return 0
 
 /mob/living/proc/adjustHalLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	if(amount > 0)
-		for(var/datum/modifier/M in modifiers)
-			if(!isnull(M.incoming_damage_percent))
-				amount *= M.incoming_damage_percent
-			if(!isnull(M.incoming_hal_damage_percent))
-				amount *= M.incoming_hal_damage_percent
-			if(!isnull(M.disable_duration_percent))
-				amount *= M.incoming_hal_damage_percent
-	else if(amount < 0)
-		for(var/datum/modifier/M in modifiers)
-			if(!isnull(M.incoming_healing_percent))
-				amount *= M.incoming_healing_percent
-	halloss = min(max(halloss + amount, 0),(getMaxHealth()*2))
-	updatehealth()
+	adjustBruteLoss(amount * 0.5)
 
 /mob/living/proc/setHalLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	halloss = amount
+	adjustBruteLoss((amount * 0.5)-getBruteLoss())
 
 // Use this to get a mob's max health whenever possible.  Reading maxHealth directly will give inaccurate results if any modifiers exist.
 /mob/living/proc/getMaxHealth()

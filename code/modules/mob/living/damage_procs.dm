@@ -26,7 +26,7 @@
 			if(COLD_RESISTANCE in mutations)
 				damage = 0
 			adjustFireLoss(damage * blocked)
-		if(SEARING)
+		if(FIRE)
 			apply_damage(damage / 3, BURN, def_zone, blocked, soaked, used_weapon, sharp, edge)
 			apply_damage(damage / 3 * 2, BRUTE, def_zone, blocked, soaked, used_weapon, sharp, edge)
 		if(TOX)
@@ -35,11 +35,11 @@
 			adjustOxyLoss(damage * blocked)
 		if(CLONE)
 			adjustCloneLoss(damage * blocked)
-		if(HALLOSS)
+		if(PAIN)
 			adjustHalLoss(damage * blocked)
 		if(ELECTROCUTE)
 			electrocute_act(damage, used_weapon, 1.0, def_zone)
-		if(BIOACID)
+		if(ACID)
 			if(isSynthetic())
 				adjustFireLoss(damage * blocked)
 			else
@@ -57,7 +57,7 @@
 	if(tox)		apply_damage(tox, TOX, def_zone, blocked)
 	if(oxy)		apply_damage(oxy, OXY, def_zone, blocked)
 	if(clone)	apply_damage(clone, CLONE, def_zone, blocked)
-	if(halloss) apply_damage(halloss, HALLOSS, def_zone, blocked)
+	if(halloss) apply_damage(halloss, PAIN, def_zone, blocked)
 	return 1
 
 
@@ -76,8 +76,8 @@
 			Weaken(effect * blocked)
 		if(PARALYZE)
 			Paralyse(effect * blocked)
-		if(AGONY)
-			halloss += max((effect * blocked), 0) // Useful for objects that cause "subdual" damage. PAIN!
+		if(PAIN)
+			adjustHalLoss(max((effect * blocked), 0))
 		if(IRRADIATE)
 		/*
 			var/rad_protection = check_protection ? getarmor(null, "rad")/100 : 0
@@ -100,14 +100,24 @@
 /mob/living/proc/apply_effects(var/stun = 0, var/weaken = 0, var/paralyze = 0, var/irradiate = 0, var/stutter = 0, var/eyeblur = 0, var/drowsy = 0, var/agony = 0, var/blocked = 0, var/ignite = 0, var/flammable = 0)
 	if(blocked >= 100)
 		return 0
-	if(stun)		apply_effect(stun, STUN, blocked)
-	if(weaken)		apply_effect(weaken, WEAKEN, blocked)
-	if(paralyze)	apply_effect(paralyze, PARALYZE, blocked)
-	if(irradiate)	apply_effect(irradiate, IRRADIATE, blocked)
-	if(stutter)		apply_effect(stutter, STUTTER, blocked)
-	if(eyeblur)		apply_effect(eyeblur, EYE_BLUR, blocked)
-	if(drowsy)		apply_effect(drowsy, DROWSY, blocked)
-	if(agony)		apply_effect(agony, AGONY, blocked)
-	if(flammable)	adjust_fire_stacks(flammable)
-	if(ignite)		IgniteMob()
+	if(stun)
+		apply_effect(stun, STUN, blocked)
+	if(weaken)
+		apply_effect(weaken, WEAKEN, blocked)
+	if(paralyze)
+		apply_effect(paralyze, PARALYZE, blocked)
+	if(irradiate)
+		apply_effect(irradiate, IRRADIATE, blocked)
+	if(stutter)
+		apply_effect(stutter, STUTTER, blocked)
+	if(eyeblur)
+		apply_effect(eyeblur, EYE_BLUR, blocked)
+	if(drowsy)
+		apply_effect(drowsy, DROWSY, blocked)
+	if(agony)
+		apply_effect(agony, PAIN, blocked)
+	if(flammable)
+		adjust_fire_stacks(flammable)
+	if(ignite)
+		IgniteMob()
 	return 1

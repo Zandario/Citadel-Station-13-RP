@@ -88,10 +88,10 @@
 	agony = 80
 
 /obj/item/projectile/energy/declone
-	name = "declone"
+	name = "decloner beam"
 	icon_state = "declone"
 	fire_sound = 'sound/weapons/pulse3.ogg'
-	nodamage = 1
+	damage = 30
 	damage_type = CLONE
 	irradiate = 40
 	light_range = 2
@@ -137,7 +137,7 @@
 	name = "neurotoxic spit"
 	icon_state = "neurotoxin"
 	damage = 5
-	damage_type = BIOACID
+	damage_type = ACID
 	agony = 80
 	check_armour = "bio"
 	armor_penetration = 25	// It's acid-based
@@ -148,7 +148,7 @@
 	name = "neurotoxic spit"
 	icon_state = "neurotoxin"
 	damage = 20
-	damage_type = BIOACID
+	damage_type = ACID
 	agony = 20
 	check_armour = "bio"
 	armor_penetration = 25	// It's acid-based

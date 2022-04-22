@@ -1047,11 +1047,11 @@
 			if(oxyloss >= (getMaxHealth() * 0.3) && prob(5)) // If oxyloss exceeds 30% of your max health, you can take brain damage.
 				adjustBrainLoss(brainOxPercent * oxyloss)
 
-		if(halloss >= species.total_health)
-			to_chat(src, "<span class='notice'>You're in too much pain to keep going...</span>")
-			src.visible_message("<B>[src]</B> slumps to the ground, too weak to continue fighting.")
+		if(getHalLoss() >= species.total_health)
+			if(!stat)
+				to_chat(src, SPAN_WARNING("[species.halloss_message_self]"))
+				src.visible_message("<B>[src]</B> [species.halloss_message].")
 			Paralyse(10)
-			setHalLoss(species.total_health - 1)
 
 		if(paralysis || sleeping)
 			blinded = 1
@@ -1243,8 +1243,8 @@
 				var/no_damage = 1
 				var/trauma_val = 0 // Used in calculating softcrit/hardcrit indicators.
 				if(!(species.flags & NO_PAIN))
-					trauma_val = max(traumatic_shock,halloss)/species.total_health
-				var/limb_trauma_val = trauma_val*0.3
+					trauma_val = max(traumatic_shock, getHalLoss()) / species.total_health
+				var/limb_trauma_val = trauma_val * 0.3
 				// Collect and apply the images all at once to avoid appearance churn.
 				var/list/health_images = list()
 				for(var/obj/item/organ/external/E in organs)

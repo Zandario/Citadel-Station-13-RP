@@ -286,7 +286,7 @@
 	force = 10
 	throwforce = 3
 	w_class = ITEMSIZE_NORMAL
-	damtype = HALLOSS
+	damtype = PAIN
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined", "chastised", "flayed")
 
 //General use
@@ -1998,7 +1998,7 @@
 	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_melee_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_melee_vr.dmi', slot_back_str = 'icons/vore/custom_items_vr.dmi', slot_wear_suit_str = 'icons/vore/custom_items_vr.dmi')
 	var/active_state = "wolfgirlsword"
 	allowed = list(/obj/item/shield/fluff/wolfgirlshield)
-	damtype = HALLOSS
+	damtype = PAIN
 
 /obj/item/melee/fluffstuff/wolfgirlsword/dropped(var/mob/user)
 	..()

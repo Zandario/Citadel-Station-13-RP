@@ -1,42 +1,44 @@
-//VOREStation Edit - Redone a lot of airlock things:
-/*
-- Specific department maintenance doors
-- Named doors properly according to type
-- Gave them default access levels with the access constants
-- Improper'd all of the names in the new()
-*/
-
 /obj/machinery/door/airlock
 	name = "Airlock"
 	icon = 'icons/obj/doors/Doorint.dmi'
 	icon_state = "door_closed"
 	power_channel = ENVIRON
-
 	explosion_resistance = 10
-	var/aiControlDisabled = 0 //If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
-	var/hackProof = 0 // if 1, this door can't be hacked by the AI
-	var/electrified_until = 0			//World time when the door is no longer electrified. -1 if it is permanently electrified until someone fixes it.
-	var/main_power_lost_until = 0	 	//World time when main power is restored.
-	var/backup_power_lost_until = -1	//World time when backup power is restored.
-	var/has_beeped = 0					//If 1, will not beep on failed closing attempt. Resets when door closes.
+
+	///If  1, AI control is disabled until the AI hacks back in and disables the lock.
+	///If  2, the AI has bypassed the lock.
+	///If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
+	var/aiControlDisabled = 0
+	///If true, this door can't be hacked by the AI
+	var/hackProof = FALSE
+	///World time when the door is no longer electrified. -1 if it is permanently electrified until someone fixes it.
+	var/electrified_until = 0
+	///World time when main power is restored.
+	var/main_power_lost_until = 0
+	///World time when backup power is restored.
+	var/backup_power_lost_until = -1
+	///If true, will not beep on failed closing attempt. Resets when door closes.
+	var/has_beeped = FALSE
 	var/spawnPowerRestoreRunning = 0
 	var/welded = null
 	var/locked = 0
-	var/lights = 1 // bolt lights show by default
-	var/aiDisabledIdScanner = 0
-	var/aiHacking = 0
+	///Do the bolt lights show by default.
+	var/lights = TRUE
+	var/aiDisabledIdScanner = FALSE
+	var/aiHacking = FALSE
 	var/obj/machinery/door/airlock/closeOther = null
 	var/closeOtherId = null
-	var/lockdownbyai = 0
-	autoclose = 1
+	var/lockdownbyai = FALSE
+	autoclose = TRUE
 	var/assembly_type = /obj/structure/door_assembly
 	var/mineral = null
 	var/justzap = 0
-	var/safe = 1
+	var/safe = TRUE
 	normalspeed = 1
 	var/obj/item/airlock_electronics/electronics = null
-	var/hasShocked = 0 //Prevents multiple shocks from happening
-	var/secured_wires = 0
+	///Prevents multiple shocks from happening.
+	var/hasShocked = FALSE
+	var/secured_wires = FALSE
 	var/datum/wires/airlock/wires = null
 
 	var/open_sound_powered = 'sound/machines/door/covert1o.ogg'
@@ -618,7 +620,7 @@ About the new airlock wires panel:
 
 
 
-/obj/machinery/door/airlock/bumpopen(mob/living/user as mob) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
+/obj/machinery/door/airlock/bumpopen(mob/living/user as mob)
 	if(!issilicon(usr))
 		if(src.isElectrified())
 			if(!src.justzap)
@@ -630,16 +632,16 @@ About the new airlock wires panel:
 			else /*if(src.justzap)*/
 				return
 		else if(user.hallucination > 50 && prob(10) && src.operating == 0)
-			to_chat(user, "<span class='danger'>You feel a powerful shock course through your body!</span>")
-			user.halloss += 10
-			user.stunned += 10
+			to_chat(user, SPAN_DANGER("You feel a powerful shock course through your body!"))
+			user.adjustHalLoss(10)
+			user.Stun(10)
 			return
 	..(user)
 
 /obj/machinery/door/airlock/proc/isElectrified()
 	if(src.electrified_until != 0)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/machinery/door/airlock/proc/canAIControl()
 	return ((src.aiControlDisabled!=1) && (!src.isAllPowerLoss()));
@@ -649,7 +651,7 @@ About the new airlock wires panel:
 
 /obj/machinery/door/airlock/proc/arePowerSystemsOn()
 	if (stat & (NOPOWER|BROKEN))
-		return 0
+		return FALSE
 	return (src.main_power_lost_until==0 || src.backup_power_lost_until==0)
 
 /obj/machinery/door/airlock/requiresID()
@@ -657,10 +659,10 @@ About the new airlock wires panel:
 
 /obj/machinery/door/airlock/proc/isAllPowerLoss()
 	if(stat & (NOPOWER|BROKEN))
-		return 1
+		return TRUE
 	if(mainPowerCablesCut() && backupPowerCablesCut())
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/machinery/door/airlock/proc/mainPowerCablesCut()
 	return wires.is_cut(WIRE_MAIN_POWER1) || wires.is_cut(WIRE_MAIN_POWER2)

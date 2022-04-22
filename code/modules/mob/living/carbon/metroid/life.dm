@@ -87,8 +87,8 @@
 		death()
 		return
 
-	if (halloss)
-		halloss = 0
+	if(getHalLoss())
+		setHalLoss(0)
 
 	if(prob(30))
 		adjustOxyLoss(-1)

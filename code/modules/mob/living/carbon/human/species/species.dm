@@ -101,9 +101,13 @@
 	var/remains_type = /obj/effect/decal/remains/xeno
 	var/gibbed_anim = "gibbed-h"
 	var/dusted_anim = "dust-h"
+
 	var/death_sound
 	var/death_message = "seizes up and falls limp, their eyes dead and lifeless..."
-	var/knockout_message = "has been knocked unconscious!"
+	var/knockout_message = "collapses, having been knocked unconscious."
+	var/halloss_message = "slumps over, too weak to continue fighting..."
+	var/halloss_message_self = "The pain is too severe for you to keep going..."
+
 	var/cloning_modifier = /datum/modifier/cloning_sickness
 
 	// Environment tolerance/life processes vars.
