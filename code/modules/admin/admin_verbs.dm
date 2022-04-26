@@ -239,7 +239,7 @@ var/list/admin_verbs_debug = list(
 	/datum/admins/proc/change_time,
 	/client/proc/admin_give_modifier,
 	/client/proc/reload_cards,
-	/client/proc/validate_cardpacks,
+	/client/proc/validate_cards,
 	/client/proc/test_cardpack_distribution,
 	/client/proc/print_cards,
 	/client/proc/simple_DPS
@@ -1097,17 +1097,20 @@ var/list/admin_verbs_event_manager = list(
 	if(!SStrading_card_game.loaded)
 		message_admins("The card subsystem is not currently loaded")
 		return
-	reloadAllCardFiles(SStrading_card_game.card_files, SStrading_card_game.card_directory)
+	SStrading_card_game.reloadAllCardFiles()
 
-/client/proc/validate_cardpacks()
-	set name = "Validate Cardpacks"
+/client/proc/validate_cards()
+	set name = "Validate Cards"
 	set category = "Debug"
 	if(!check_rights(R_DEBUG))
 		return
 	if(!SStrading_card_game.loaded)
 		message_admins("The card subsystem is not currently loaded")
 		return
-	checkCardpacks(SStrading_card_game.card_packs)
+	var/message = SStrading_card_game.checkCardpacks(SStrading_card_game.card_packs)
+	message += SStrading_card_game.checkCardDatums()
+	if(message)
+		message_admins(message)
 
 /client/proc/test_cardpack_distribution()
 	set name = "Test Cardpack Distribution"
@@ -1121,12 +1124,12 @@ var/list/admin_verbs_event_manager = list(
 	var/batchCount = input("How many times should we open it?", "Don't worry, I understand") as null|num
 	var/batchSize = input("How many cards per batch?", "I hope you remember to check the validation") as null|num
 	var/guar = input("Should we use the pack's guaranteed rarity? If so, how many?", "We've all been there. Man you should have seen the old system") as null|num
-	checkCardDistribution(pack, batchSize, batchCount, guar)
+	SStrading_card_game.checkCardDistribution(pack, batchSize, batchCount, guar)
 
 /client/proc/print_cards()
 	set name = "Print Cards"
 	set category = "Debug"
-	printAllCards()
+	SStrading_card_game.printAllCards()
 
 /client/proc/give_spell(mob/T as mob in GLOB.mob_list) // -- Urist
 	set category = "Fun"

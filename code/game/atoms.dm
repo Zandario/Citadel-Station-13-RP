@@ -291,6 +291,10 @@
 	if(should_override)
 		. = override.Join("")
 
+///Used to insert text after the name but before the description in examine()
+/atom/proc/get_name_chaser(mob/user, list/name_chaser = list())
+	return name_chaser
+
 ///Generate the full examine string of this atom (including icon for goonchat)
 /atom/proc/get_examine_string(mob/user, thats = FALSE)
 	return "[icon2html(thing = src, target = user)] [thats? "That's ":""][get_examine_name(user)]"

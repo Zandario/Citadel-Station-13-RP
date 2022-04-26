@@ -38,6 +38,7 @@
 // #include "card_mismatch.dm"
 // #include "chain_pull_through_space.dm"
 // #include "combat.dm"
+#include "card_mismatch.dm"
 #include "component_tests.dm"
 // #include "confusion.dm"
 // #include "emoting.dm"

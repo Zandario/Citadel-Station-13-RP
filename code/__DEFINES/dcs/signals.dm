@@ -116,6 +116,11 @@
 /////////////////
 */
 
+//from base of atom/movable/on_enter_storage(): (datum/component/storage/concrete/master_storage)
+#define COMSIG_STORAGE_ENTERED "storage_entered"
+//from base of atom/movable/on_exit_storage(): (datum/component/storage/concrete/master_storage)
+#define COMSIG_STORAGE_EXITED "storage_exited"
+
 /// Called from orbit component: (atom/movable/orbiter, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
 #define COMSIG_ATOM_ORBIT_BEGIN "atom_orbit_begin"
 /// Called from orbit component: (atom/movable/orbiter, refreshing)
