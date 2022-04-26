@@ -117,3 +117,6 @@ GLOBAL_VAR_INIT(cmp_field, "name")
 
 /proc/cmp_holiday_priority(datum/holiday/A, datum/holiday/B)
 	return A.priority - B.priority
+
+/proc/cmp_num_string_asc(A, B)
+	return text2num(A) - text2num(B)

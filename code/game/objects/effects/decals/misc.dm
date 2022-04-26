@@ -12,3 +12,9 @@
 	density = 0
 	anchored = 1
 	plane = ABOVE_PLANE
+
+/obj/effect/decal/cleanable/wrapping
+	name = "wrapping shreds"
+	desc = "Torn pieces of cardboard and paper, left over from a package."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "paper_shreds"

@@ -227,3 +227,26 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate
 	containername = "DONKsoft Resupply crate"
+
+/datum/supply_pack/randomised/recreation/tcg
+	name = "Big-Ass Booster Pack Pack"
+	//desc = "A bumper load of NT TCG Booster Packs of varying series. Collect them all!"
+	cost = 200
+	contains = list(
+			/obj/random/cardpack
+			)
+	containertype = /obj/structure/closet/crate
+
+//! Super Snowflaked randomizer until we refactor cargo.
+/obj/random/cardpack
+	name = "random cardpack"
+	desc = "Used to spawn a random cardpack."
+	icon = 'icons/obj/tcgmisc.dmi'
+	icon_state = "cardback_nt"
+
+/obj/random/cardpack/item_to_spawn()
+	. = ..()
+	var/cardpacktype
+	for(var/i in 1 to 10)
+		cardpacktype = pick(subtypesof(/obj/item/cardpack))
+		return new cardpacktype(.)

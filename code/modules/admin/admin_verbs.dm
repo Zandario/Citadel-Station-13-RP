@@ -238,6 +238,10 @@ var/list/admin_verbs_debug = list(
 	/datum/admins/proc/change_weather,
 	/datum/admins/proc/change_time,
 	/client/proc/admin_give_modifier,
+	/client/proc/reload_cards,
+	/client/proc/validate_cardpacks,
+	/client/proc/test_cardpack_distribution,
+	/client/proc/print_cards,
 	/client/proc/simple_DPS
 	)
 
@@ -1084,6 +1088,45 @@ var/list/admin_verbs_event_manager = list(
 
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
 	message_admins("<font color=#4F49AF>[key_name_admin(usr)] told everyone to man up and deal with it.</font>", 1)
+
+/client/proc/reload_cards()
+	set name = "Reload Cards"
+	set category = "Debug"
+	if(!check_rights(R_DEBUG))
+		return
+	if(!SStrading_card_game.loaded)
+		message_admins("The card subsystem is not currently loaded")
+		return
+	reloadAllCardFiles(SStrading_card_game.card_files, SStrading_card_game.card_directory)
+
+/client/proc/validate_cardpacks()
+	set name = "Validate Cardpacks"
+	set category = "Debug"
+	if(!check_rights(R_DEBUG))
+		return
+	if(!SStrading_card_game.loaded)
+		message_admins("The card subsystem is not currently loaded")
+		return
+	checkCardpacks(SStrading_card_game.card_packs)
+
+/client/proc/test_cardpack_distribution()
+	set name = "Test Cardpack Distribution"
+	set category = "Debug"
+	if(!check_rights(R_DEBUG))
+		return
+	if(!SStrading_card_game.loaded)
+		message_admins("The card subsystem is not currently loaded")
+		return
+	var/pack = input("Which pack should we test?", "You fucked it didn't you") as null|anything in sortList(SStrading_card_game.card_packs)
+	var/batchCount = input("How many times should we open it?", "Don't worry, I understand") as null|num
+	var/batchSize = input("How many cards per batch?", "I hope you remember to check the validation") as null|num
+	var/guar = input("Should we use the pack's guaranteed rarity? If so, how many?", "We've all been there. Man you should have seen the old system") as null|num
+	checkCardDistribution(pack, batchSize, batchCount, guar)
+
+/client/proc/print_cards()
+	set name = "Print Cards"
+	set category = "Debug"
+	printAllCards()
 
 /client/proc/give_spell(mob/T as mob in GLOB.mob_list) // -- Urist
 	set category = "Fun"
