@@ -10,11 +10,11 @@ GLOBAL_LIST_EMPTY(cached_cards)
 	icon = 'icons/obj/tcg.dmi'
 	icon_state = "runtime"
 	w_class = WEIGHT_CLASS_TINY
-	 //Unique ID, for use in lookups and storage, used to index the global datum list where the rest of the card's info is stored
+	/// Unique ID, for use in lookups and storage, used to index the global datum list where the rest of the card's info is stored
 	var/id = "code"
-	//Used along with the id for lookup
+	/// Used along with the id for lookup
 	var/series = "coderbus"
-	///Is the card flipped?
+	/// Is the card flipped?
 	var/flipped = FALSE
 
 /obj/item/tcgcard/Initialize(mapload, datum_series, datum_id)
@@ -40,7 +40,7 @@ GLOBAL_LIST_EMPTY(cached_cards)
 
 /obj/item/tcgcard/attack_self(mob/user)
 	. = ..()
-	to_chat(user, "<span_class='notice'>You turn the card over.</span>")
+	to_chat(user, SPAN_NOTICE("You turn the card over."))
 	if(!flipped)
 		name = "Trading Card"
 		desc = "It's the back of a trading card... no peeking!"
@@ -111,7 +111,7 @@ GLOBAL_LIST_EMPTY(cached_cards)
 		"epic" = 30,
 		"legendary" = 5)
 
-/obj/item/cardpack/Initialize()
+/obj/item/cardpack/Initialize(mapload)
 	. = ..()
 	transform = matrix(0.4,0,0,0,0.4,0)
 	//Pass by refrance moment
@@ -132,6 +132,24 @@ GLOBAL_LIST_EMPTY(cached_cards)
 /obj/item/cardpack/dropped(mob/user, silent)
 	. = ..()
 	transform = matrix(0.4,0,0,0,0.4,0)
+
+/obj/item/storage/card_binder
+	name = "card binder"
+	desc = "The perfect way to keep your collection of cards safe and valuable."
+	icon = 'icons/obj/tcg.dmi'
+	icon_state = "album"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/inhands/misc/books_lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/misc/books_righthand.dmi'
+		)
+	//resistance_flags = FLAMMABLE
+	w_class = WEIGHT_CLASS_SMALL
+	flags = PREVENT_CONTENTS_EXPLOSION
+
+/obj/item/storage/card_binder/Initialize(mapload)
+	. = ..()
+	can_hold= list(/obj/item/tcgcard)
+	max_storage_space = WEIGHT_CLASS_TINY * 60
 
 /obj/item/cardpack/attack_self(mob/user)
 	. = ..()

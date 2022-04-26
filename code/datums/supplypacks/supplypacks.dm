@@ -58,3 +58,7 @@ var/list/all_supply_groups = list("Atmospherics",
 // Keeping this subtype here for posterity, so it's more apparent that this is the subtype to use if making new randomised packs
 /datum/supply_pack/randomised
 	num_contained = 1
+
+/datum/supply_pack/proc/fill(obj/structure/closet/crate/C)
+	for(var/item in contains)
+		new item(C)
