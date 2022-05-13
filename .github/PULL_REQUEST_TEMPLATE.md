@@ -13,6 +13,7 @@
 :cl:
 add: Added new things
 add: Added more things
+expansion: Expands content of an existing feature
 del: Removed old things
 tweak: tweaked a few things
 balance: rebalanced something

@@ -65,7 +65,7 @@
 	src.interface = interface
 	if(title)
 		src.title = title
-	src.state = src_object.ui_state()
+	src.state = src_object.ui_state(user)
 	src.parent_ui = parent_ui
 	if(parent_ui)
 		parent_ui.children += src
