@@ -1,7 +1,6 @@
 SUBSYSTEM_DEF(turbolifts)
 	name = "Turbolifts"
-	flags = SS_NO_TICK_CHECK
-	wait = 10
+	wait = 1 SECOND
 	var/static/list/moving_lifts = list()
 
 /datum/controller/subsystem/turbolifts/fire(resumed)

@@ -5,9 +5,10 @@
 
 SUBSYSTEM_DEF(persist)
 	name = "Persist"
-	priority = 20
+	//init_order = INIT_ORDER_PERSISTENCE //Not yet
+	priority = FIRE_PRIORITY_PERSISTENCE
 	wait = 15 MINUTES
-	flags = SS_BACKGROUND|SS_NO_INIT|SS_KEEP_TIMING
+	flags = SS_BACKGROUND | SS_NO_INIT | SS_KEEP_TIMING
 	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
 	var/list/currentrun = list()
 

@@ -120,47 +120,66 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 // The numbers just define the ordering, they are meaningless otherwise.
 
 #define INIT_ORDER_FAIL2TOPIC		101
-#define INIT_ORDER_INPUT			100
-#define INIT_ORDER_SOUNDS			95
-#define INIT_ORDER_JOBS				85
+//#define INIT_ORDER_TITLE			100
+#define INIT_ORDER_GARBAGE			99
+#define INIT_ORDER_SQLITE			95
+//#define INIT_ORDER_BLACKBOX		94
+#define INIT_ORDER_SERVER_MAINT		93
+#define INIT_ORDER_INPUT			85
+#define INIT_ORDER_SOUNDS			83
+#define INIT_ORDER_INSTRUMENTS		82
+//#define INIT_ORDER_GREYSCALE		81
 #define INIT_ORDER_VIS				80
-#define INIT_ORDER_GARBAGE			70
-#define INIT_ORDER_SERVER_MAINT		65
-#define INIT_ORDER_TIMER			60
-#define INIT_ORDER_INSTRUMENTS		50
-#define INIT_ORDER_SQLITE			40
-#define INIT_ORDER_CHEMISTRY		35
-#define INIT_ORDER_SKYBOX			30
-#define INIT_ORDER_MAPPING			25
+//#define INIT_ORDER_DISCORD		78
+//#define INIT_ORDER_ACHIEVEMENTS	77
+//#define INIT_ORDER_RESEARCH		75
+//#define INIT_ORDER_STATION		74 //This is high priority because it manipulates a lot of the subsystems that will initialize after it.
+//#define INIT_ORDER_QUIRKS			73
+#define INIT_ORDER_CHEMISTRY		72 //HAS to be before mapping and assets - both create objects, which creates reagents, which relies on lists made in this subsystem. //TODO: Refactor into SSreagents
+#define INIT_ORDER_EVENTS			70
+//#define INIT_ORDER_IDACCESS		66
+#define INIT_ORDER_JOBS				65
+#define INIT_ORDER_AI				56
+//#define INIT_ORDER_AI_MOVEMENT	56 //We need the movement setup
+//#define INIT_ORDER_AI_CONTROLLERS	55 //So the controller can get the ref
+#define INIT_ORDER_TICKER			55
+//#define INIT_ORDER_TCG			55
+#define INIT_ORDER_MAPPING			50
+#define INIT_ORDER_EARLY_ASSETS		48
+#define INIT_ORDER_TIMETRACK		47
+//#define INIT_ORDER_NETWORKS		45
+//#define INIT_ORDER_ECONOMY		40
+//#define INIT_ORDER_OUTPUTS		35
+#define INIT_ORDER_ATOMS			30
+//#define INIT_ORDER_LANGUAGE		25
 #define INIT_ORDER_DECALS			20
+#define INIT_ORDER_MACHINES			20
 #define INIT_ORDER_PLANTS			19
 #define INIT_ORDER_ALARMS			18
-#define INIT_ORDER_ATOMS			15
-#define INIT_ORDER_MACHINES			10
-#define INIT_ORDER_SHUTTLES			3
+//#define INIT_ORDER_SKILLS			15
+#define INIT_ORDER_TIMER			1
 #define INIT_ORDER_DEFAULT			0
-#define INIT_ORDER_LIGHTING			0
 #define INIT_ORDER_AIR				-1
 #define INIT_ORDER_PLANETS			-2
+#define INIT_ORDER_PERSISTENCE		-2
 #define INIT_ORDER_ASSETS			-4
+#define INIT_ORDER_ICON_SMOOTHING	-5
+#define INIT_ORDER_OVERLAY			-6
 #define INIT_ORDER_HOLOMAPS			-5
 #define INIT_ORDER_NIGHTSHIFT		-6
-#define INIT_ORDER_OVERLAY			-7
-#define INIT_ORDER_EVENTS			-8
-#define INIT_ORDER_OVERMAPS			-9
-#define INIT_ORDER_TICKER			-10
-#define INIT_ORDER_XENOARCH			-20
-#define INIT_ORDER_CIRCUIT			-21
-#define INIT_ORDER_AI				-22
-#define INIT_ORDER_OPENSPACE		-50
-#define INIT_ORDER_PERSISTENCE		-95
-#define INIT_ORDER_ICON_SMOOTHING	-99
+#define INIT_ORDER_OVERMAPS			-10
+#define INIT_ORDER_XENOARCH			-15
+#define INIT_ORDER_LIGHTING			-20
+#define INIT_ORDER_SHUTTLES			-21
+#define INIT_ORDER_CIRCUIT			-80
+#define INIT_ORDER_OPENSPACE		-90
 #define INIT_ORDER_CHAT				-100 //Should be last to ensure chat remains smooth during init.
 
 // Subsystem fire priority, from lowest to highest priority
 // If the subsystem isn't listed here it's either DEFAULT or PROCESS (if it's a processing subsystem child)
 
-#define FIRE_PRIORITY_PING			5
+#define FIRE_PRIORITY_PING			10
+#define FIRE_PRIORITY_SERVER_MAINT	10
 #define FIRE_PRIORITY_SHUTTLES		5
 #define FIRE_PRIORITY_NIGHTSHIFT	6
 #define FIRE_PRIORITY_PLANTS		5
@@ -168,27 +187,31 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define FIRE_PRIORITY_VOTE			9
 #define FIRE_PRIORITY_AI			10
 #define FIRE_PRIORITY_VIS			10
-#define FIRE_PRIORITY_SERVER_MAINT	10
+//#define FIRE_PRIORITY_AMBIENCE	10
 #define FIRE_PRIORITY_GARBAGE		15
+#define FIRE_PRIORITY_AIR			20
 #define FIRE_PRIORITY_ALARMS		20
+#define FIRE_PRIORITY_PERSISTENCE	21
 #define FIRE_PRIORITY_CHARSETUP		25
-#define FIRE_PRIORITY_SPACEDRIFT	25
-#define FIRE_PRIORITY_AIRFLOW		30
-#define FIRE_PRIORITY_PARALLAX		30
-#define FIRE_PRIORITY_AIR			35
+#define FIRE_PRIORITY_SPACEDRIFT	30
+#define FIRE_PRIORITY_AIRFLOW		31
+#define FIRE_PRIOTITY_SMOOTHING		35
 #define FIRE_PRIORITY_OBJ			40
 #define FIRE_PRIORITY_PROCESS		45
 #define FIRE_PRIORITY_DEFAULT		50
+#define FIRE_PRIORITY_PARALLAX		65
 #define FIRE_PRIORITY_PLANETS		75
-#define FIRE_PRIORITY_INSTRUMENTS	90
+#define FIRE_PRIORITY_INSTRUMENTS	80
+//#define FIRE_PRIORITY_MOBS		100
 #define FIRE_PRIORITY_MACHINES		100
 #define FIRE_PRIORITY_TGUI			110
 #define FIRE_PRIORITY_PROJECTILES	150
+#define FIRE_PRIORITY_TICKER		200
 #define FIRE_PRIORITY_CHAT			400
 #define FIRE_PRIORITY_OVERLAYS		500
 #define FIRE_PRIORITY_SMOOTHING		500
 #define FIRE_PRIORITY_TIMER			700
-#define FIRE_PRIORITY_INPUT			1000		//never drop input
+#define FIRE_PRIORITY_INPUT			1000 //! This must always always be the max highest priority. Player input must never be lost.
 
 ///Compile all the overlays for an atom from the cache lists
 // |= on overlays is not actually guaranteed to not add same appearances but we're optimistically using it anyway.

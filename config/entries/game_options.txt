@@ -16,7 +16,7 @@ ENGINE_SUBMAP EngineSubmap_Tesla 20
 ENGINE_SUBMAP EngineSubmap_Singulo 20
 
 ## Comment this out if you don't want to use the 'nightshift lighting' subsystem to adjust lights based on ingame time.
-NIGHTSHIFTS_ENABLED
+ENABLE_NIGHT_SHIFTS
 
 ## The descriptions of each alert status.
 ALERT_DESC_GREEN All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced.

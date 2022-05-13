@@ -1,7 +1,7 @@
 SUBSYSTEM_DEF(openspace)
 	name = "Open Space"
 	init_order = INIT_ORDER_OPENSPACE
-	wait = 10
+	wait = 1 SECOND
 
 	var/static/list/turfs_to_process = list()		// List of turfs queued for update.
 

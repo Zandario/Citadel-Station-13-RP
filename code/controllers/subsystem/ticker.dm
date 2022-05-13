@@ -2,6 +2,7 @@ SUBSYSTEM_DEF(ticker)
 	name = "Ticker"
 	wait = 20
 	init_order = INIT_ORDER_TICKER
+	priority = FIRE_PRIORITY_TICKER
 	runlevels = RUNLEVEL_LOBBY | RUNLEVEL_SETUP | RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 	/// Current state of the game
 	var/static/current_state = GAME_STATE_INIT

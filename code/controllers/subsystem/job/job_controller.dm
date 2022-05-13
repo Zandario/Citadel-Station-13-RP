@@ -294,7 +294,7 @@ var/global/datum/controller/occupations/job_master
 		// Hand out random jobs to the people who didn't get any in the last check
 		// Also makes sure that they got their preference correct
 		for(var/mob/new_player/player in unassigned)
-			if(player.client.prefs.alternate_option == GET_RANDOM_JOB)
+			if(player.client.prefs.alternate_option == BERANDOMJOB)
 				GiveRandomJob(player)
 		/*
 		Old job system
@@ -320,13 +320,13 @@ var/global/datum/controller/occupations/job_master
 
 		// For those who wanted to be assistant if their preferences were filled, here you go.
 		for(var/mob/new_player/player in unassigned)
-			if(player.client.prefs.alternate_option == BE_ASSISTANT)
+			if(player.client.prefs.alternate_option == BEOVERFLOW)
 				Debug("AC2 Assistant located, Player: [player]")
 				AssignRole(player, USELESS_JOB) //VOREStation Edit - Visitor not Assistant
 
 		//For ones returning to lobby
 		for(var/mob/new_player/player in unassigned)
-			if(player.client.prefs.alternate_option == RETURN_TO_LOBBY)
+			if(player.client.prefs.alternate_option == RETURNTOLOBBY)
 				player.ready = 0
 				player.new_player_panel_proc()
 				unassigned -= player

@@ -9,7 +9,7 @@
 /datum/config_entry/flag/allow_holidays
 	config_entry_value = TRUE
 
-/datum/config_entry/flag/nightshifts_enabled
+/datum/config_entry/flag/enable_night_shifts
 	config_entry_value = TRUE
 
 /datum/config_entry/string/alert_desc_green
@@ -17,7 +17,7 @@
 
 /datum/config_entry/string/alert_desc_blue_upto
 	config_entry_value = "The station has received reliable information about possible hostile activity in the local area. Security staff may have weapons visible. Privacy laws are still in effect."
-	
+
 /datum/config_entry/string/alert_desc_blue_downto
 	config_entry_value = "Code Blue procedures are now in effect: The immediate threat has passed. Security staff may not have weapons drawn, but may still have weapons visible. Privacy laws are once again fully enforced."
 

@@ -36,32 +36,34 @@
 /// SS_BACKGROUND has its own priority bracket
 #define SS_BACKGROUND 4
 
-/// subsystem does not tick check, and should not run unless there is enough time (or its running behind (unless background))
-#define SS_NO_TICK_CHECK 8
-
 /** Treat wait as a tick count, not DS, run every wait ticks. */
-/// (also forces it to run first in the tick, above even SS_NO_TICK_CHECK subsystems)
+/// (also forces it to run first in the tick (unless SS_BACKGROUND))
 /// (implies all runlevels because of how it works)
-/// (overrides SS_BACKGROUND)
 /// This is designed for basically anything that works as a mini-mc (like SStimer)
-#define SS_TICKER 16
+#define SS_TICKER 8
 
 /** keep the subsystem's timing on point by firing early if it fired late last fire because of lag */
 /// ie: if a 20ds subsystem fires say 5 ds late due to lag or what not, its next fire would be in 15ds, not 20ds.
-#define SS_KEEP_TIMING 32
+#define SS_KEEP_TIMING 16
 
 /** Calculate its next fire after its fired. */
 /// (IE: if a 5ds wait SS takes 2ds to run, its next fire should be 5ds away, not 3ds like it normally would be)
 /// This flag overrides SS_KEEP_TIMING
-#define SS_POST_FIRE_TIMING 64
+#define SS_POST_FIRE_TIMING 32
 
 //! SUBSYSTEM STATES
-#define SS_IDLE 0		/// aint doing shit.
-#define SS_QUEUED 1		/// queued to run
-#define SS_RUNNING 2	/// actively running
-#define SS_PAUSED 3		/// paused by mc_tick_check
-#define SS_SLEEPING 4	/// fire() slept.
-#define SS_PAUSING 5 	/// in the middle of pausing
+/// Ain't doing shit chief.
+#define SS_IDLE 0
+/// Aueued to run.
+#define SS_QUEUED 1
+/// Actively running.
+#define SS_RUNNING 2
+/// Paused by mc_tick_check.
+#define SS_PAUSED 3
+/// fire() slept.
+#define SS_SLEEPING 4
+/// In the middle of pausing.
+#define SS_PAUSING 5
 
 #define SUBSYSTEM_DEF(X) GLOBAL_REAL(SS##X, /datum/controller/subsystem/##X);\
 /datum/controller/subsystem/##X/New(){\
