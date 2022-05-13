@@ -11,7 +11,7 @@
 
 /datum/event/meteor_wave/get_skybox_image()
 	var/image/res = image('icons/skybox/rockbox.dmi', "rockbox")
-	res.color = COLOR_ASTEROID_ROCK
+	res.color = COLOR_BROWN_ROCK
 	res.appearance_flags = RESET_COLOR
 	return res
 
