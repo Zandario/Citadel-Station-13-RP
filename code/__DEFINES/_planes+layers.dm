@@ -143,6 +143,7 @@ What is the naming convention for planes or layers?
 
 #define PLANE_AUGMENTED				40 //Augmented-reality plane
 
+///--------------- FULLSCREEN IMAGES ------------
 #define FULLSCREEN_PLANE 90
 #define OBFUSCATION_LAYER 19.9
 #define FLASH_LAYER 20
@@ -153,7 +154,7 @@ What is the naming convention for planes or layers?
 #define CURSE_LAYER 20.5
 #define FULLSCREEN_RENDER_TARGET "FULLSCREEN_PLANE"
 
-//Client UI HUD stuff
+//-------------------- HUD ---------------------
 #define PLANE_PLAYER_HUD		95	//The character's UI is on this plane
 	#define LAYER_HUD_UNDER		1	//Under the HUD items
 	#define LAYER_HUD_BASE		2	//The HUD items themselves
@@ -161,6 +162,15 @@ What is the naming convention for planes or layers?
 	#define LAYER_HUD_ABOVE		4	//Things that reside above items (highlights)
 #define PLANE_PLAYER_HUD_ITEMS	96	//Separate layer with which to apply colorblindness
 #define PLANE_PLAYER_HUD_ABOVE	97	//Things above the player hud
+
+/// Plane of the "splash" icon used that shows on the lobby screen. Nothing should ever be above this.
+#define SPLASHSCREEN_PLANE 9999
+	#define LOBBY_BACKGROUND_LAYER 3
+	#define LOBBY_BUTTON_LAYER 4
+#define SPLASHSCREEN_RENDER_TARGET "SPLASHSCREEN_PLANE"
+
+/// Cinematics are "below" the splash screen
+#define CINEMATIC_LAYER -1
 
 #define PLANE_ADMIN3			99	//Purely for shenanigans (above HUD)
 

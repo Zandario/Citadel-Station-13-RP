@@ -20,6 +20,15 @@ $include entries/hub.txt
 # Which explicitly disables LOG_TWITTER, as well as locking it.
 # There are various options which are hard-locked for security reasons.
 
+## Chat Announce Options
+## Various messages to be sent to game chats
+## Uncommenting these will enable them, by default they will be broadcast to Game chat channels on TGS3 or non-admin channels on TGS4
+## If using TGS4, the string option can be set as a chat channel tag to limit the message to channels of that tag type (case-sensitive)
+## i.e. CHAT_ANNOUNCE_NEW_GAME chat_channel_tag
+
+## Send a message with the station name starting a new game
+#CHAT_ANNOUNCE_NEW_GAME
+
 ## Uncomment to enable minimap generation
 MINIMAPS_ENABLED
 
@@ -53,3 +62,23 @@ TAGLINE <br><small><a href='https://discord.gg/citadelstation'>Roleplay focused 
 ## This should be disabled (through `CACHE_ASSETS 0`) on development,
 ## but enabled on production (the default).
 CACHE_ASSETS 0
+
+##Note: all population caps can be used with each other if desired.
+
+## Uncomment for 'soft' population caps, players will be warned while joining if the living crew exceeds the listed number.
+#SOFT_POPCAP 100
+
+## Message for soft cap
+SOFT_POPCAP_MESSAGE Be warned that the server is currently serving a high number of users, consider using alternative game servers.
+
+## Uncomment for 'hard' population caps, players will not be allowed to spawn if the living crew exceeds the listed number, though they may still observe or wait for the living crew to decrease in size.
+#HARD_POPCAP 150
+
+## Message for hard cap
+HARD_POPCAP_MESSAGE The server is currently serving a high number of users, You cannot currently join. You may wait for the number of living crew to decline, observe, or find alternative servers.
+
+## Uncomment for 'extreme' population caps, players will not be allowed to join the server if living crew exceeds the listed number.
+#EXTREME_POPCAP 200
+
+## Message for extreme cap
+EXTREME_POPCAP_MESSAGE The server is currently serving a high number of users, find alternative servers.

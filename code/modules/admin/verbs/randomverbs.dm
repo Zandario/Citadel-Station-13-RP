@@ -932,26 +932,26 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		to_chat(usr, "Nope you can't do this, the game's already started. This only works before rounds!")
 		return
 
-	if(SSticker.random_players)
-		SSticker.random_players = 0
-		message_admins("Admin [key_name_admin(usr)] has disabled \"Everyone is Special\" mode.", 1)
-		to_chat(usr, "Disabled.")
+	var/frn = CONFIG_GET(flag/force_random_names)
+	if(frn)
+		CONFIG_SET(flag/force_random_names, FALSE)
+		message_admins("Admin [key_name_admin(usr)] has disabled \"Everyone is Special\" mode.")
+		to_chat(usr, "Disabled.", confidential = TRUE)
 		return
 
-
-	var/notifyplayers = alert(src, "Do you want to notify the players?", "Options", "Yes", "No", "Cancel")
+	var/notifyplayers = tgui_alert(usr, "Do you want to notify the players?", "Options", list("Yes", "No", "Cancel"))
 	if(notifyplayers == "Cancel")
 		return
 
 	log_admin("Admin [key_name(src)] has forced the players to have random appearances.")
-	message_admins("Admin [key_name_admin(usr)] has forced the players to have random appearances.", 1)
+	message_admins("Admin [key_name_admin(usr)] has forced the players to have random appearances.")
 
 	if(notifyplayers == "Yes")
-		to_chat(world, "<font color=#4F49AF><b>Admin [usr.key] has forced the players to have completely random identities!</font></b>")
+		to_chat(world, SPAN_ADMINNOTICE("Admin [usr.key] has forced the players to have completely random identities!"), confidential = TRUE)
 
-	to_chat(usr, "<i>Remember: you can always disable the randomness by using the verb again, assuming the round hasn't started yet</i>.")
+	to_chat(usr, "<i>Remember: you can always disable the randomness by using the verb again, assuming the round hasn't started yet</i>.", confidential = TRUE)
 
-	SSticker.random_players = 1
+	CONFIG_SET(flag/force_random_names, TRUE)
 	feedback_add_details("admin_verb","MER") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 

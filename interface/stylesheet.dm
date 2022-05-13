@@ -52,10 +52,10 @@ em						{font-style: normal;font-weight: bold;}
 .pm  .other				{color: #0000ff;}
 
 /* Admin: Channels */
-.mod_channel			{color: #735638;	font-weight: bold;}
-.mod_channel .admin		{color: #b82e00;	font-weight: bold;}
+.modsay					{color: #735638;	font-weight: bold;}
+.modsay .admin			{color: #b82e00;	font-weight: bold;}
 .admin_channel			{color: #9611D4;	font-weight: bold;}
-.event_channel			{color: #cc3399;	font-weight: bold;}
+.eventsay			{color: #cc3399;	font-weight: bold;}
 
 //* Radio: Misc *//
 .deadsay				{color: #530FAD;}

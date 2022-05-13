@@ -121,8 +121,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			hsrc = holder
 		if("usr")
 			hsrc = mob
-		if("prefs")
-			return prefs.process_link(usr,href_list)
 		if("vars")
 			return view_var_Topic(href,href_list,hsrc)
 
@@ -224,7 +222,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
-	//fps = prefs.clientfps //(prefs.clientfps < 0) ? RECOMMENDED_FPS : prefs.clientfps
 
 	var/full_version = "[byond_version].[byond_build ? byond_build : "xxx"]"
 	log_access("Login: [key_name(src)] from [address ? address : "localhost"]-[computer_id] || BYOND v[full_version]")
@@ -634,7 +631,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(ab) //Citadel edit, things with stuff.
 		return
 
-	if (prefs.hotkeys)
+	if (hotkeys)
 		// If hotkey mode is enabled, then clicking the map will automatically
 		// unfocus the text bar. This removes the red color from the text bar
 		// so that the visual focus indicator matches reality.
@@ -835,3 +832,11 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	window_flash(src)
 	src << browse(message,"window=dropmessage;size=480x360;can_close=1")
 	qdel(src)
+
+/client/verb/stop_client_sounds()
+	set name = "Stop Sounds"
+	set category = "OOC"
+	set desc = "Stop Current Sounds"
+	SEND_SOUND(usr, sound(null))
+	tgui_panel?.stop_music()
+	//SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Stop Self Sounds"))

@@ -50,7 +50,7 @@
 	if(IsAdminGhost(user))		// admin AI interact
 		AdminAIInteract(user)
 		return
-	if(user.client && user.client.inquisitive_ghost)
+	if(user.client.prefs.read_preference(/datum/preference/toggle/inquisitive_ghost))
 		user.examinate(src)
 
 // defaults to just attack_ai

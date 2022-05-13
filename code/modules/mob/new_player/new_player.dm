@@ -223,8 +223,11 @@
 	if(!client)	return 0
 
 	if(href_list["show_preferences"])
-		client.prefs.ShowChoices(src)
-		return 1
+		var/datum/preferences/preferences = client.prefs
+		preferences.current_window = PREFERENCE_TAB_GAME_PREFERENCES
+		preferences.update_static_data(usr)
+		preferences.ui_interact(usr)
+		return TRUE
 
 	if(href_list["ready"])
 		if(!SSticker || SSticker.current_state <= GAME_STATE_PREGAME)	// Make sure we don't ready up after the round has started
@@ -242,7 +245,8 @@
 		var/alert_time = SSticker?.current_state <= GAME_STATE_SETTING_UP ? 1 : round(config_legacy.respawn_time/10/60)
 
 		if(alert(src,"Are you sure you wish to observe? You will have to wait up to [alert_time] minute\s before being able to spawn into the game!","Player Setup","Yes","No") == "Yes")
-			if(!client)	return 1
+			if(!client)
+				return TRUE
 
 			// Make a new mannequin quickly, and allow the observer to take the appearance
 			var/mob/living/carbon/human/dummy/mannequin = new()

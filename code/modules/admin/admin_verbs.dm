@@ -10,8 +10,6 @@ var/list/admin_verbs_default = list(
 	/client/proc/cmd_check_new_players,	//allows us to see every new player
 //	/client/proc/check_antagonists,		//shows all antags,
 //	/client/proc/cmd_mod_say,
-//	/client/proc/deadchat				//toggles deadchat on/off,
-//	/client/proc/toggle_ahelp_sound,
 	)
 
 var/list/admin_verbs_admin = list(
@@ -63,8 +61,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/manage_silicon_laws,	// Allows viewing and editing silicon laws. ,
 	/client/proc/check_antagonists,
 	/client/proc/admin_memo,			//admin memo system. show/delete/write. +SERVER needed to delete admin memos of others,
-	/client/proc/dsay,					//talk in deadchat using our ckey/fakekey,
-//	/client/proc/toggle_hear_deadcast,	//toggles whether we hear deadchat,
 	/client/proc/investigate_show,		//various admintools for investigation. Such as a singulo grief-log,
 	/client/proc/secrets,
 	/datum/admins/proc/toggleooc,		//toggles ooc on/off for everyone,
@@ -266,7 +262,6 @@ var/list/admin_verbs_hideable = list(
 	/datum/admins/proc/toggleenter,
 	/datum/admins/proc/toggleguests,
 	/datum/admins/proc/announce,
-	/client/proc/colorooc,
 	/client/proc/admin_ghost,
 	/client/proc/toggle_view_range,
 	/client/proc/cmd_admin_subtle_message,
@@ -590,20 +585,6 @@ var/list/admin_verbs_event_manager = list(
 	if (holder)
 		holder.Secrets()
 	feedback_add_details("admin_verb","S") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
-
-/client/proc/colorooc()
-	set category = "Fun"
-	set name = "OOC Text Color"
-	if(!holder)	return
-	var/response = alert(src, "Please choose a distinct color that is easy to read and doesn't mix with all the other chat and radio frequency colors.", "Change own OOC color", "Pick new color", "Reset to default", "Cancel")
-	if(response == "Pick new color")
-		prefs.ooccolor = input(src, "Please select your OOC colour.", "OOC colour") as color
-	else if(response == "Reset to default")
-		prefs.ooccolor = initial(prefs.ooccolor)
-	SScharacter_setup.queue_preferences_save(prefs)
-
-	feedback_add_details("admin_verb","OC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
 /client/proc/findStealthKey(txt)

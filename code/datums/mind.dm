@@ -74,10 +74,38 @@
 	//used to store what traits the player had picked out in their preferences before joining, in text form.
 	var/list/traits = list()
 
-/datum/mind/New(var/key)
-	src.key = key
+/datum/mind/New(_key)
+	key = _key
 
-	..()
+/datum/mind/Destroy()
+	SSticker.minds -= src
+	set_current(null)
+	return ..()
+
+
+/datum/mind/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if(NAMEOF(src, assigned_role))
+			set_assigned_role(var_value)
+			. = TRUE
+	if(!isnull(.))
+		datum_flags |= DF_VAR_EDITED
+		return
+	return ..()
+
+
+/datum/mind/proc/set_current(mob/new_current)
+	if(new_current && QDELETED(new_current))
+		CRASH("Tried to set a mind's current var to a qdeleted mob, what the fuck")
+	if(current)
+		UnregisterSignal(src, COMSIG_PARENT_QDELETING)
+	current = new_current
+	if(current)
+		RegisterSignal(src, COMSIG_PARENT_QDELETING, .proc/clear_current)
+
+/datum/mind/proc/clear_current(datum/source)
+	SIGNAL_HANDLER
+	set_current(null)
 
 /datum/mind/proc/transfer_to(mob/living/new_character)
 	if(!istype(new_character))

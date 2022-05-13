@@ -6,6 +6,18 @@
 	config_entry_value = 180
 	min_val = 0
 
+/datum/config_entry/flag/irc_announce_new_game
+	deprecated_by = /datum/config_entry/string/chat_announce_new_game
+
+/datum/config_entry/flag/irc_announce_new_game/DeprecationUpdate(value)
+	return "" //default broadcast
+
+/datum/config_entry/string/chat_announce_new_game
+	default = null
+
+/datum/config_entry/string/chat_new_game_notifications
+	default = null
+
 /datum/config_entry/number/lobby_gamemode_vote_delay
 	config_entry_value = 120
 	min_val = -1		//-1 for disabled

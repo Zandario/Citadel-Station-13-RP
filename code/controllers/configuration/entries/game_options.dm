@@ -47,3 +47,5 @@
 
 /datum/config_entry/string/alert_desc_delta
 	config_entry_value = "The station is under immediate threat of imminent destruction! All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
+
+/datum/config_entry/flag/force_random_names

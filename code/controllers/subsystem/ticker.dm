@@ -22,7 +22,7 @@ SUBSYSTEM_DEF(ticker)
 	/// Force round end
 	var/force_ending = FALSE
 
-	var/timeLeft						//pregame timer
+	var/timeLeft //pregame timer
 	var/start_at
 
 	var/hide_mode = 0
@@ -82,12 +82,14 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/on_mc_init_finish()
 	send2irc("Server lobby is loaded and open at byond://[config_legacy.serverurl ? config_legacy.serverurl : (config_legacy.server ? config_legacy.server : "[world.address]:[world.port]")]")
-	to_chat(world, "<span class='boldnotice'>Welcome to the pregame lobby!</span>")
+	to_chat(world, SPAN_BOLDNOTICE("Welcome to [station_name()]!"))
 	to_chat(world, "Please set up your character and select ready. The round will start in [CONFIG_GET(number/lobby_countdown)] seconds.")
+	send2chat("New round starting on [SSmapping.config.map_name]!", CONFIG_GET(string/chat_announce_new_game))
 	SEND_SOUND(world, sound('sound/misc/server-ready.ogg', volume = 100))
 	current_state = GAME_STATE_PREGAME
 	if(Master.initializations_finished_with_no_players_logged_in)
 		start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
+	SEND_SIGNAL(src, COMSIG_TICKER_ENTER_PREGAME)
 	fire()
 
 /datum/controller/subsystem/ticker/proc/process_pregame()
@@ -99,6 +101,7 @@ SUBSYSTEM_DEF(ticker)
 		return
 	timeLeft -= wait
 	if(timeLeft <= 0)
+		SEND_SIGNAL(src, COMSIG_TICKER_ENTER_SETTING_UP)
 		current_state = GAME_STATE_SETTING_UP
 		Master.SetRunLevel(RUNLEVEL_SETUP)
 		if(start_immediately)
@@ -383,8 +386,10 @@ SUBSYSTEM_DEF(ticker)
 	//Otherwise if its a verb it will continue on afterwards.
 	sleep(300)
 
-	if(cinematic)	qdel(cinematic)		//end the cinematic
-	if(temp_buckle)	qdel(temp_buckle)	//release everybody
+	if(cinematic)
+		qdel(cinematic)		//end the cinematic
+	if(temp_buckle)
+		qdel(temp_buckle)	//release everybody
 	return
 
 
@@ -397,13 +402,11 @@ SUBSYSTEM_DEF(ticker)
 			else if(!player.mind.assigned_role)
 				continue
 			else
-				//VOREStation Edit Start
 				var/mob/living/carbon/human/new_char = player.create_character()
 				if(new_char)
 					qdel(player)
 				if(istype(new_char) && !(new_char.mind.assigned_role=="Cyborg"))
 					data_core.manifest_inject(new_char)
-				//VOREStation Edit End
 
 
 /datum/controller/subsystem/ticker/proc/collect_minds()

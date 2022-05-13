@@ -1,3 +1,8 @@
+
+// Ready states at roundstart for mob/dead/new_player
+#define PLAYER_NOT_READY 0
+#define PLAYER_READY_TO_PLAY 1
+
 // /mob/var/stat things.
 #define CONSCIOUS   0
 #define UNCONSCIOUS 1

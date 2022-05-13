@@ -14,6 +14,9 @@ SUBSYSTEM_DEF(atoms)
 
 	var/list/BadInitializeCalls = list()
 
+	/// Atoms that will be deleted once the subsystem is initialized
+	var/list/queued_deletions = list()
+
 /datum/controller/subsystem/atoms/Initialize(timeofday)
 	//GLOB.fire_overlay.appearance_flags = RESET_COLOR
 	//setupGenetics() //to set the mutations' sequence
@@ -58,6 +61,13 @@ SUBSYSTEM_DEF(atoms)
 		testing("Late initialized [late_loaders.len] atoms")
 		late_loaders.Cut()
 
+	for (var/queued_deletion in queued_deletions)
+		qdel(queued_deletion)
+
+	testing("[queued_deletions.len] atoms were queued for deletion.")
+	queued_deletions.Cut()
+
+/// Init this specific atom
 /datum/controller/subsystem/atoms/proc/InitAtom(atom/A, list/arguments)
 	var/the_type = A.type
 	if(QDELING(A))
@@ -144,6 +154,14 @@ SUBSYSTEM_DEF(atoms)
 			. += "- Qdel'd in New()\n"
 		if(fails & BAD_INIT_SLEPT)
 			. += "- Slept during Initialize()\n"
+
+/// Prepares an atom to be deleted once the atoms SS is initialized.
+/datum/controller/subsystem/atoms/proc/prepare_deletion(atom/target)
+	if (initialized == INITIALIZATION_INNEW_REGULAR)
+		// Atoms SS has already completed, just kill it now.
+		qdel(target)
+	else
+		queued_deletions += WEAKREF(target)
 
 /datum/controller/subsystem/atoms/Shutdown()
 	var/initlog = InitLog()

@@ -431,36 +431,49 @@ GLOBAL_LIST_EMPTY(PDAs)
 	. = ..()
 	GLOB.PDAs += src
 	sortTim(GLOB.PDAs, cmp = /proc/cmp_name_asc)
+
 	if(default_cartridge)
 		cartridge = new default_cartridge(src)
 	new /obj/item/pen(src)
-	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
-		var/pdachoice = H.pdachoice
-		switch(pdachoice)
-			if(1) icon = 'icons/obj/pda.dmi'
-			if(2) icon = 'icons/obj/pda_slim.dmi'
-			if(3) icon = 'icons/obj/pda_old.dmi'
-			if(4) icon = 'icons/obj/pda_rugged.dmi'
-			if(5) icon = 'icons/obj/pda_minimal.dmi'
-			if(6) icon = 'icons/obj/pda_holo.dmi'
-			if(7)
-				icon = 'icons/obj/pda_wrist.dmi'
-				item_state = icon_state
-				item_icons = list(
-					slot_belt_str = 'icons/mob/pda_wrist.dmi',
-					slot_wear_id_str = 'icons/mob/pda_wrist.dmi',
-					slot_gloves_str = 'icons/mob/pda_wrist.dmi'
-				)
-				desc = "A portable microcomputer by Thinktronic Systems, LTD. This model is a wrist-bound version."
-				slot_flags = SLOT_ID | SLOT_BELT | SLOT_GLOVES
-				sprite_sheets = list(
-				SPECIES_TESHARI = 'icons/mob/species/teshari/pda_wrist.dmi',
-				SPECIES_VR_TESHARI = 'icons/mob/species/teshari/pda_wrist.dmi',
-				)
-			else
-				icon = 'icons/obj/pda_old.dmi'
-				log_debug("Invalid switch for PDA, defaulting to old PDA icons. [pdachoice] chosen.")
+
+	update_appearance()
+
+/obj/item/pda/equipped(mob/user, slot)
+	. = ..()
+	if(!equipped)
+		if(user.client)
+			background_color = user.client.prefs.read_preference(/datum/preference/color/pda_color)
+			switch(user.client.prefs.read_preference(/datum/preference/choiced/pda_style))
+				if(1)
+					icon = 'icons/obj/pda.dmi'
+				if(2)
+					icon = 'icons/obj/pda_slim.dmi'
+				if(3)
+					icon = 'icons/obj/pda_old.dmi'
+				if(4)
+					icon = 'icons/obj/pda_rugged.dmi'
+				if(5)
+					icon = 'icons/obj/pda_minimal.dmi'
+				if(6)
+					icon = 'icons/obj/pda_holo.dmi'
+				if(7)
+					icon = 'icons/obj/pda_wrist.dmi'
+					item_state = icon_state
+					item_icons = list(
+						slot_belt_str = 'icons/mob/pda_wrist.dmi',
+						slot_wear_id_str = 'icons/mob/pda_wrist.dmi',
+						slot_gloves_str = 'icons/mob/pda_wrist.dmi'
+					)
+					desc = "A portable microcomputer by Thinktronic Systems, LTD. This model is a wrist-bound version."
+					slot_flags = SLOT_ID | SLOT_BELT | SLOT_GLOVES
+					sprite_sheets = list(
+					SPECIES_TESHARI = 'icons/mob/species/teshari/pda_wrist.dmi',
+					SPECIES_VR_TESHARI = 'icons/mob/species/teshari/pda_wrist.dmi',
+					)
+				else
+					icon = 'icons/obj/pda_old.dmi'
+					log_debug("Invalid switch for PDA, defaulting to old PDA icons. [pdachoice] chosen.")
+			equipped = TRUE
 
 
 /obj/item/pda/proc/can_use()

@@ -287,11 +287,15 @@ GLOBAL_DATUM_INIT(global_hud, /datum/global_hud, new)
 
 
 /datum/hud/proc/instantiate()
-	if(!ismob(mymob)) return 0
-	if(!mymob.client) return 0
-	ui_style = ui_style2icon(mymob.client.prefs.UI_style)
-	ui_color = mymob.client.prefs.UI_style_color
-	ui_alpha = mymob.client.prefs.UI_style_alpha
+	if(!ismob(mymob))
+		return FALSE
+	if(!mymob.client)
+		return FALSE
+	if(!ui_style)
+		// will fall back to the default if any of these are null
+		ui_style = ui_style2icon(mymob.client?.prefs?.read_preference(/datum/preference/choiced/ui_style))
+		ui_color = ui_style2icon(mymob.client?.prefs?.read_preference(/datum/preference/choiced/ui_color))
+		ui_alpha = ui_style2icon(mymob.client?.prefs?.read_preference(/datum/preference/choiced/ui_alpha))
 
 	if(ishuman(mymob))
 		human_hud(ui_style, ui_color, ui_alpha, mymob) // Pass the player the UI style chosen in preferences

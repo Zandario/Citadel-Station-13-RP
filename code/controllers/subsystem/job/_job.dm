@@ -85,6 +85,7 @@ SUBSYSTEM_DEF(job)
 	return name_occupations[rank]
 
 /datum/controller/subsystem/job/proc/get_job_type(jobtype)
+	RETURN_TYPE(/datum/job)
 	if(!occupations.len)
 		setup_occupations()
 	return type_occupations[jobtype]
