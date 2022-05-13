@@ -799,7 +799,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Blank pAI alert"
 	set desc = "Flash an indicator light on available blank pAI devices for a smidgen of hope."
 
-	if(usr.client.prefs?.be_special & BE_PAI)
+	if(usr.client.prefs?.be_special & ROLE_PAI)
 		var/count = 0
 		for(var/obj/item/paicard/p in GLOB.all_pai_cards)
 			var/obj/item/paicard/PP = p

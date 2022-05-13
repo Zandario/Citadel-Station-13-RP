@@ -29,7 +29,7 @@
 		if(jobban_isbanned(O, "AI") && jobban_isbanned(O, "Cyborg"))
 			continue
 		if(O.client)
-			if(O.client.prefs.be_special & BE_AI)
+			if(O.client.prefs.be_special & ROLE_AI)
 				question(O.client)
 
 /obj/item/mmi/digital/posibrain/proc/question(var/client/C)
@@ -42,7 +42,7 @@
 		if(response == "Yes")
 			transfer_personality(C.mob)
 		else if (response == "Never for this round")
-			C.prefs.be_special ^= BE_AI
+			C.prefs.be_special ^= ROLE_AI
 
 
 /obj/item/mmi/digital/posibrain/transfer_identity(var/mob/living/carbon/H)

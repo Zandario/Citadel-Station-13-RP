@@ -67,14 +67,14 @@
 	role_name = SPECIES_PROMETHEAN
 	question = "Someone is requesting a soul for a promethean.  Would you like to play as one?"
 	query_sound = 'sound/effects/slime_squish.ogg'
-	be_special_flag = BE_ALIEN
+	be_special_flag = ROLE_ALIEN
 	cutoff_number = 1
 
 /datum/ghost_query/posi_brain
 	role_name = "Positronic Intelligence"
 	question = "Someone has activated a Positronic Brain.  Would you like to play as one?"
 	query_sound = 'sound/machines/boobeebeep.ogg'
-	be_special_flag = BE_AI
+	be_special_flag = ROLE_AI
 	check_bans = list("AI", "Cyborg")
 	cutoff_number = 1
 
@@ -82,7 +82,7 @@
 	role_name = "Drone Intelligence"
 	question = "Someone has activated a Drone AI Chipset.  Would you like to play as one?"
 	query_sound = 'sound/machines/boobeebeep.ogg'
-	be_special_flag = BE_AI
+	be_special_flag = ROLE_AI
 	check_bans = list("AI", "Cyborg")
 	cutoff_number = 1
 
@@ -90,7 +90,7 @@
 /datum/ghost_query/apprentice
 	role_name = "Technomancer Apprentice"
 	question = "A Technomancer is requesting an Apprentice to help them on their adventure to the facility.  Would you like to play as the Apprentice?"
-	be_special_flag = BE_WIZARD
+	be_special_flag = ROLE_WIZARD
 	check_bans = list("Syndicate", "wizard")
 	cutoff_number = 1
 
@@ -98,26 +98,26 @@
 	role_name = "Alien"
 	question = "An Alien has just been created on the facility.  Would you like to play as them?"
 	query_sound = 'sound/voice/hiss5.ogg'
-	be_special_flag = BE_ALIEN
+	be_special_flag = ROLE_ALIEN
 
 /datum/ghost_query/blob
 	role_name = "Blob"
 	question = "A rapidly expanding Blob has just appeared on the facility.  Would you like to play as it?"
-	be_special_flag = BE_ALIEN
+	be_special_flag = ROLE_ALIEN
 	cutoff_number = 1
 	wait_time = 10 SECONDS
 
 /datum/ghost_query/syndicate_drone
 	role_name = "Mercenary Drone"
 	question = "A team of dubious mercenaries have purchased a powerful drone, and they are attempting to activate it.  Would you like to play as the drone?"
-	be_special_flag = BE_AI
+	be_special_flag = ROLE_AI
 	check_bans = list("AI", "Cyborg", "Syndicate")
 	cutoff_number = 1
 
 /datum/ghost_query/borer
 	role_name = "Cortical Borer"
 	question = "A cortical borer has just been created on the facility.  Would you like to play as them?"
-	be_special_flag = BE_ALIEN
+	be_special_flag = ROLE_ALIEN
 	check_bans = list("Syndicate", "Borer")
 	cutoff_number = 1
 
@@ -125,14 +125,14 @@
 /datum/ghost_query/lost_drone
 	role_name = "Lost Drone"
 	question = "A lost drone onboard has been discovered by a crewmember and they are attempting to reactivate it.  Would you like to play as the drone?"
-	//be_special_flag = BE_AI	//VOREStation Removal: Positronic role is never used because intended purpose is unfitting, so remove the check
+	//be_special_flag = ROLE_AI	//VOREStation Removal: Positronic role is never used because intended purpose is unfitting, so remove the check
 	check_bans = list("AI", "Cyborg")
 	cutoff_number = 1
 
 /datum/ghost_query/gravekeeper_drone
 	role_name = "Gravekeeper Drone"
 	question = "A gravekeeper drone is about to reactivate and tend to its gravesite. Would you like to play as the drone?"
-	be_special_flag = BE_AI
+	be_special_flag = ROLE_AI
 	check_bans = list("AI", "Cyborg")
 	cutoff_number = 1
 

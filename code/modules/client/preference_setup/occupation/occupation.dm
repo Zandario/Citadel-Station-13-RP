@@ -215,11 +215,11 @@
 	. += "</center></table><center>"
 
 	switch(pref.alternate_option)
-		if(GET_RANDOM_JOB)
+		if(BERANDOMJOB)
 			. += "<u><a href='?src=\ref[src];job_alternative=1'>Get random job if preferences unavailable</a></u>"
-		if(BE_ASSISTANT)
+		if(BEOVERFLOW)
 			. += "<u><a href='?src=\ref[src];job_alternative=1'>Be assistant if preference unavailable</a></u>"
-		if(RETURN_TO_LOBBY)
+		if(RETURNTOLOBBY)
 			. += "<u><a href='?src=\ref[src];job_alternative=1'>Return to lobby if preference unavailable</a></u>"
 
 	. += "<a href='?src=\ref[src];reset_jobs=1'>\[Reset\]</a></center>"
@@ -232,9 +232,9 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["job_alternative"])
-		if(pref.alternate_option == GET_RANDOM_JOB || pref.alternate_option == BE_ASSISTANT)
+		if(pref.alternate_option == BERANDOMJOB || pref.alternate_option == BEOVERFLOW)
 			pref.alternate_option += 1
-		else if(pref.alternate_option == RETURN_TO_LOBBY)
+		else if(pref.alternate_option == RETURNTOLOBBY)
 			pref.alternate_option = 0
 		return TOPIC_REFRESH
 

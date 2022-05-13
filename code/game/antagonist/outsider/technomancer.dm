@@ -2,7 +2,7 @@ var/datum/antagonist/technomancer/technomancers
 
 /datum/antagonist/technomancer
 	id = MODE_TECHNOMANCER
-	role_type = BE_WIZARD
+	role_type = ROLE_WIZARD
 	role_text = "Technomancer"
 	role_text_plural = "Technomancers"
 	bantype = "wizard"

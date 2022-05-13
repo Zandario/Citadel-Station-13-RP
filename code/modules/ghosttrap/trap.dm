@@ -17,7 +17,7 @@ proc/populate_ghost_traps()
 /datum/ghosttrap
 	var/object = "positronic brain"
 	var/list/ban_checks = list("AI","Cyborg")
-	var/pref_check = BE_AI
+	var/pref_check = ROLE_AI
 	var/ghost_trap_message = "They are occupying a positronic brain now."
 	var/ghost_trap_role = "Positronic Brain"
 
@@ -102,7 +102,7 @@ proc/populate_ghost_traps()
 /datum/ghosttrap/plant
 	object = "living plant"
 	ban_checks = list("Dionaea")
-	pref_check = BE_PLANT
+	pref_check = ROLE_PLANT
 	ghost_trap_message = "They are occupying a living plant now."
 	ghost_trap_role = "Plant"
 

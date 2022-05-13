@@ -312,7 +312,7 @@ var/list/mob_hat_cache = list()
 		if(jobban_isbanned(O, "Cyborg"))
 			continue
 		if(O.client)
-			if(O.client.prefs.be_special & BE_PAI)
+			if(O.client.prefs.be_special & ROLE_PAI)
 				question(O.client)
 
 /mob/living/silicon/robot/drone/proc/question(var/client/C)
@@ -324,7 +324,7 @@ var/list/mob_hat_cache = list()
 		if(response == "Yes")
 			transfer_personality(C)
 		else if (response == "Never for this round")
-			C.prefs.be_special ^= BE_PAI
+			C.prefs.be_special ^= ROLE_PAI
 
 /mob/living/silicon/robot/drone/proc/transfer_personality(var/client/player)
 

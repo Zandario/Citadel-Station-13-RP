@@ -22,7 +22,7 @@
 		if(!O.MayRespawn())
 			continue
 		if(O.client)
-			if(O.client.prefs.be_special & BE_ALIEN)
+			if(O.client.prefs.be_special & ROLE_ALIEN)
 				question(O.client)
 
 /obj/item/slime_cube/proc/question(var/client/C)
@@ -37,7 +37,7 @@
 		if(response == "Yes")
 			transfer_personality(C.mob)
 		else if(response == "Never for this round")
-			C.prefs.be_special ^= BE_ALIEN
+			C.prefs.be_special ^= ROLE_ALIEN
 
 /obj/item/slime_cube/proc/reset_search() //We give the players sixty seconds to decide, then reset the timer.
 	icon_state = "slime cube"

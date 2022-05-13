@@ -1392,17 +1392,14 @@ obj/machinery/power/apc/proc/autoset(var/cur_state, var/on)
 	nightshift_lights = on
 	update_nightshift()
 
-/obj/machinery/power/apc/proc/update_nightshift()
-	var/new_state = nightshift_lights
-
-	switch(nightshift_setting)
-		if(NIGHTSHIFT_NEVER)
-			new_state = FALSE
-		if(NIGHTSHIFT_ALWAYS)
-			new_state = TRUE
-
-	for(var/obj/machinery/light/L in area)
-		L.nightshift_mode(new_state)
+/obj/machinery/power/apc/proc/set_nightshift(on)
+	set waitfor = FALSE
+	nightshift_lights = on
+	for(var/obj/machinery/light/night_light in area)
+		if(night_light.nightshift_allowed)
+			night_light.nightshift_enabled = nightshift_lights
+			night_light.update(FALSE)
 		CHECK_TICK
+
 
 #undef APC_UPDATE_ICON_COOLDOWN

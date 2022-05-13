@@ -5,7 +5,7 @@ var/datum/antagonist/traitor/infiltrator/infiltrators
 // Inherits most of its vars from the base datum.
 /datum/antagonist/traitor/infiltrator
 	id = MODE_INFILTRATOR
-	role_type = BE_TRAITOR
+	role_type = ROLE_TRAITOR
 	antag_indicator = "synd"
 	antaghud_indicator = "infiltrator"
 	role_text = "Infiltrator"

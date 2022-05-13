@@ -1,7 +1,7 @@
 var/datum/antagonist/mutineer/mutineers
 
 /datum/antagonist/mutineer
-	role_type = BE_MUTINEER
+	role_type = ROLE_MUTINEER
 	role_text = "Mutineer"
 	role_text_plural = "Mutineers"
 	id = MODE_MUTINEER
@@ -46,7 +46,7 @@ var/datum/antagonist/mutineer/mutineers
 	proc/get_head_mutineer_candidates()
 		var/list/candidates[0]
 		for(var/mob/mutineer in player_list)
-			if(mutineer.client.prefs.be_special & BE_MUTINEER)
+			if(mutineer.client.prefs.be_special & ROLE_MUTINEER)
 				for(var/job in command_positions - "Facility Director")
 					if(mutineer.mind && mutineer.mind.assigned_role == job)
 						candidates.Add(mutineer.mind)

@@ -2,7 +2,7 @@ var/datum/antagonist/trader/traders
 
 /datum/antagonist/trader
 	id = MODE_TRADE
-	role_type = BE_OPERATIVE
+	role_type = ROLE_OPERATIVE
 	role_text = "Trader"
 	role_text_plural = "Traders"
 	welcome_text = "As a crewmember of the Beruang, you answer to your manager and international laws of space."

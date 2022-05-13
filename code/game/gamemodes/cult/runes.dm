@@ -468,7 +468,7 @@ var/list/sacrificed = list()
 				if(!O.client)	continue
 				if(!O.MayRespawn()) continue
 				if(O.mind && O.mind.current && O.mind.current.stat != DEAD)	continue
-				if(!(O.client.prefs.be_special & BE_CULTIST)) continue
+				if(!(O.client.prefs.be_special & ROLE_CULTIST)) continue
 				ghost = O
 				break
 			if(!ghost)
