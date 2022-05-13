@@ -268,7 +268,7 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 
 /datum/weather/virgo3b/rain/process_effects()
 	..()
-	for(var/mob/living/L in living_mob_list)
+	for(var/mob/living/L in GLOB.living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(L)
 			if(!T.outdoors)
@@ -321,7 +321,7 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 
 /datum/weather/virgo3b/storm/process_effects()
 	..()
-	for(var/mob/living/L in living_mob_list)
+	for(var/mob/living/L in GLOB.living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(L)
 			if(!T.outdoors)
@@ -381,7 +381,7 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 
 /datum/weather/virgo3b/hail/process_effects()
 	..()
-	for(var/humie in human_mob_list)
+	for(var/humie in GLOB.human_list)
 		var/mob/living/carbon/human/H = humie
 		if(H.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(H)
@@ -477,7 +477,7 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 
 /datum/weather/virgo3b/ash_storm/process_effects()
 	..()
-	for(var/thing in living_mob_list)
+	for(var/thing in GLOB.living_mob_list)
 		var/mob/living/L = thing
 		if(L.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(L)
@@ -514,7 +514,7 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 
 /datum/weather/virgo3b/fallout/process_effects()
 	..()
-	for(var/thing in living_mob_list)
+	for(var/thing in GLOB.living_mob_list)
 		var/mob/living/L = thing
 		if(L.z in holder.our_planet.expected_z_levels)
 			irradiate_nearby_turf(L)
@@ -535,4 +535,3 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 		return
 	if(T.outdoors)
 		SSradiation.radiate(T, rand(fallout_rad_low, fallout_rad_high))
-

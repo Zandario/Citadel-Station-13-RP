@@ -125,7 +125,7 @@
 		return
 
 	if(!M)
-		M = input("Direct narrate to whom?", "Active Players") as null|anything in player_list
+		M = input("Direct narrate to whom?", "Active Players") as null|anything in GLOB.player_list
 
 	if(!M)
 		return
@@ -437,7 +437,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	//Well you're not reloading their job or they never had one.
 	if(!charjob)
-		var/pickjob = input(src,"Pick a job to assign them (or none).","Job Select","-No Job-") as null|anything in joblist + "-No Job-"
+		var/pickjob = input(src,"Pick a job to assign them (or none).","Job Select","-No Job-") as null|anything in GLOB.joblist + "-No Job-"
 		if(!pickjob)
 			return
 		if(pickjob != "-No Job-")
@@ -737,7 +737,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	switch(alert("How would you like to ban someone today?", "Manual Ban", "Key List", "Enter Manually", "Cancel"))
 		if("Key List")
 			var/list/keys = list()
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOB.player_list)
 				keys += M.client
 			var/selection = input("Please, select a player!", "Admin Jumping", null, null) as null|anything in keys
 			if(!selection)
@@ -972,7 +972,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		message_admins("Admin [key_name_admin(usr)] has disabled random events.", 1)
 	feedback_add_details("admin_verb","TRE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/despawn_player(var/mob/M in living_mob_list)
+/client/proc/despawn_player(var/mob/M in GLOB.living_mob_list)
 	set name = "Cryo Player"
 	set category = "Admin"
 	set desc = "Removes a player from the round as if they'd cryo'd."
@@ -1055,4 +1055,3 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	message_admins(msg)
 	admin_ticket_log(M, msg)
 	feedback_add_details("admin_verb","ICS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-

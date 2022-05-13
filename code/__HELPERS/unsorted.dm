@@ -327,45 +327,36 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 
 
-///Generalised helper proc for letting mobs rename themselves. Used to be clname() and ainame()
-/mob/proc/rename_self(var/role, var/allow_numbers=0)
-	spawn(0)
-		var/oldname = real_name
+/// Generalised helper proc for letting mobs rename themselves. Used to be clname() and ainame()
+/mob/proc/apply_pref_name(preference_type, client/C)
+	if(!C)
+		C = client
+	var/oldname = real_name
+	var/newname
+	var/loop = 1
+	var/safety = 0
+	var/random = CONFIG_GET(flag/force_random_names) || (C ? is_banned_from(C.ckey, "Appearance") : FALSE)
 
-		var/time_passed = world.time
-		var/newname
+	while(loop && safety < 5)
+		if(!safety && !random)
+			newname = C?.prefs?.read_preference(preference_type)
+		else
+			var/datum/preference/preference = GLOB.preference_entries[preference_type]
+			newname = preference.create_informed_default_value(C.prefs)
 
-		for(var/i=1,i<=3,i++)	//we get 3 attempts to pick a suitable name.
-			newname = input(src,"You are \a [role]. Would you like to change your name to something else?", "Name change",oldname) as text
-			if((world.time-time_passed)>3000)
-				return	//took too long
-			newname = sanitizeName(newname, ,allow_numbers)	//returns null if the name doesn't meet some basic requirements. Tidies up a few other things like bad-characters.
-
-			for(var/mob/living/M in player_list)
-				if(M == src)
-					continue
-				if(!newname || M.real_name == newname)
-					newname = null
-					break
-			if(newname)
-				break	//That's a suitable name!
-			to_chat(src, "Sorry, that [role]-name wasn't appropriate, please try another. It's possibly too long/short, has bad characters or is already taken.")
-
-		if(!newname)	//we'll stick with the oldname then
-			return
-
-		if(cmptext("ai",role))
-			if(isAI(src))
-				var/mob/living/silicon/ai/A = src
-				oldname = null//don't bother with the records update crap
-				//to_chat(world, "<b>[newname] is the AI!</b>")
-				//world << sound('sound/AI/newAI.ogg')
-				// Set eyeobj name
-				A.SetName(newname)
-
-
+		for(var/mob/living/M in GLOB.player_list)
+			if(M == src)
+				continue
+			if(!newname || M.real_name == newname)
+				newname = null
+				loop++ // name is already taken so we roll again
+				break
+		loop--
+		safety++
+	if(newname)
 		fully_replace_character_name(oldname,newname)
-
+		return TRUE
+	return FALSE
 
 ///Picks a string of symbols to display as the law number for hacked or ion laws
 /proc/ionnum()
@@ -375,7 +366,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/freeborg()
 	var/select = null
 	var/list/borgs = list()
-	for (var/mob/living/silicon/robot/A in player_list)
+	for (var/mob/living/silicon/robot/A in GLOB.player_list)
 		if (A.stat == 2 || A.connected_ai || A.scrambledcodes || istype(A,/mob/living/silicon/robot/drone))
 			continue
 		var/name = "[A.real_name] ([A.modtype] [A.braintype])"
@@ -388,7 +379,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 ///When a borg is activated, it can choose which AI it wants to be slaved to
 /proc/active_ais()
 	. = list()
-	for(var/mob/living/silicon/ai/A in living_mob_list)
+	for(var/mob/living/silicon/ai/A in GLOB.living_mob_list)
 		if(A.stat == DEAD)
 			continue
 		if(A.control_disabled == 1)

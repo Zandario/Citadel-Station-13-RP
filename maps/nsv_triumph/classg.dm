@@ -150,7 +150,7 @@ var/datum/planet/classg/planet_classg = null
 
 /datum/weather/classg/fallout/process_effects()
 	..()
-	for(var/thing in living_mob_list)
+	for(var/thing in GLOB.living_mob_list)
 		var/mob/living/L = thing
 		if(L.z in holder.our_planet.expected_z_levels)
 			irradiate_nearby_turf(L)

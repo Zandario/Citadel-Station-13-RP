@@ -129,13 +129,13 @@ var/global/list/narsie_list = list()
 	spawn(0)
 		step(src, movement_dir)
 		narsiefloor(get_turf(loc))
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if(M.client)
 				M.see_narsie(src,movement_dir)
 	spawn(10)
 		step(src, movement_dir)
 		narsiefloor(get_turf(loc))
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if(M.client)
 				M.see_narsie(src,movement_dir)
 	return 1
@@ -287,7 +287,7 @@ var/global/list/narsie_list = list()
 		acquire(pick(cultists))
 		return
 		//If there was living cultists, it picks one to follow.
-	for(var/mob/living/carbon/human/food in living_mob_list)
+	for(var/mob/living/carbon/human/food in GLOB.living_mob_list)
 		if(food.stat)
 			continue
 		var/turf/pos = get_turf(food)
@@ -298,7 +298,7 @@ var/global/list/narsie_list = list()
 		acquire(pick(cultists))
 		return
 		//no living cultists, pick a living human instead.
-	for(var/mob/observer/dead/ghost in player_list)
+	for(var/mob/observer/dead/ghost in GLOB.player_list)
 		if(!ghost.client)
 			continue
 		var/turf/pos = get_turf(ghost)

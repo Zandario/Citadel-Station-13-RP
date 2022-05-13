@@ -104,7 +104,7 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 
 /datum/atom_hud/alternate_appearance/basic/silicons/New()
 	..()
-	for(var/mob in silicon_mob_list)
+	for(var/mob in GLOB.silicon_list)
 		if(mobShouldSee(mob))
 			add_hud_to(mob)
 
@@ -118,7 +118,7 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 
 /datum/atom_hud/alternate_appearance/basic/observers/New()
 	..()
-	for(var/mob in dead_mob_list)
+	for(var/mob in GLOB.dead_mob_list)
 		if(mobShouldSee(mob))
 			add_hud_to(mob)
 
@@ -129,7 +129,7 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 
 /datum/atom_hud/alternate_appearance/basic/noncult/New()
 	..()
-	for(var/mob in player_list)
+	for(var/mob in GLOB.player_list)
 		if(mobShouldSee(mob))
 			add_hud_to(mob)
 
@@ -142,7 +142,7 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 
 /datum/atom_hud/alternate_appearance/basic/cult/New()
 	..()
-	for(var/mob in player_list)
+	for(var/mob in GLOB.player_list)
 		if(mobShouldSee(mob))
 			add_hud_to(mob)
 

@@ -4,8 +4,8 @@
  *
  * Adds to global lists
  * * GLOB.mob_list
- * * dead_mob_list - if mob is dead
- * * living_mob_list - if the mob is alive
+ * * GLOB.dead_mob_list - if mob is dead
+ * * GLOB.living_mob_list - if the mob is alive
  *
  * Other stuff:
  * * Sets the mob focus to itself
@@ -17,9 +17,9 @@
 	GLOB.mob_list += src
 	set_focus(src)
 	if(stat == DEAD)
-		dead_mob_list += src
+		GLOB.dead_mob_list += src
 	else
-		living_mob_list += src
+		GLOB.living_mob_list += src
 	prepare_huds()
 	for(var/v in GLOB.active_alternate_appearances)
 		if(!v)
@@ -36,8 +36,8 @@
  *
  * Removes mob from the following global lists
  * * GLOB.mob_list
- * * dead_mob_list
- * * living_mob_list
+ * * GLOB.dead_mob_list
+ * * GLOB.living_mob_list
  *
  * Unsets the focus var
  *
@@ -55,8 +55,8 @@
  */
 /mob/Destroy()//This makes sure that mobs with GLOB.clients/keys are not just deleted from the game.
 	GLOB.mob_list -= src
-	dead_mob_list -= src
-	living_mob_list -= src
+	GLOB.dead_mob_list -= src
+	GLOB.living_mob_list -= src
 	unset_machine()
 	if(hud_used)
 		QDEL_NULL(hud_used)

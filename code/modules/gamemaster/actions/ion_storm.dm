@@ -9,12 +9,12 @@
 /datum/gm_action/ionstorm/set_up()
 	length = rand(length, length * 10)
 //		command_alert("The station has entered an ion storm.  Monitor all electronic equipment for malfunctions", "Anomaly Alert")
-	for (var/mob/living/carbon/human/player in player_list)
+	for (var/mob/living/carbon/human/player in GLOB.player_list)
 		if(	!player.mind || player_is_antag(player.mind, only_offstation_roles = 1) || player.client.inactivity > MinutesToTicks(10))
 			continue
 		players += player.real_name
 
-	for (var/mob/living/silicon/ai/target in silicon_mob_list)
+	for (var/mob/living/silicon/ai/target in GLOB.silicon_list)
 		var/law = target.generate_ion_law()
 		to_chat(target, "<font color='red'><b>You have detected a change in your laws information:</b></font>")
 		to_chat(target, law)

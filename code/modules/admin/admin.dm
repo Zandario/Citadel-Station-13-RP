@@ -13,7 +13,7 @@ var/global/floorIsLava = 0
 
 /proc/msg_admin_attack(var/text) //Toggleable Attack Messages
 	var/rendered = "<span class='log_message><span class='prefix'>ATTACK:</span> <span class='message'>[text]</span></span>"
-	for(var/client/C in admins)
+	for(var/client/C in GLOB.admins)
 		if((R_ADMIN|R_MOD) & C.holder.rights)
 			if(C.is_preference_enabled(/datum/client_preference/mod/show_attack_logs))
 				var/msg = rendered
@@ -1265,7 +1265,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 		to_chat(usr, "Error: you are not an admin!")
 		return
 
-	var/mob/living/carbon/human/M = input("Select mob.", "Select mob.") as null|anything in human_mob_list
+	var/mob/living/carbon/human/M = input("Select mob.", "Select mob.") as null|anything in GLOB.human_list
 	if(!M) return
 
 	show_skill_window(usr, M)
@@ -1533,12 +1533,12 @@ datum/admins/var/obj/item/paper/admin/faxreply // var to hold fax replies in
 		to_chat(src.owner, "<span class='notice'>Message reply to transmitted successfully.</span>")
 		if(P.sender) // sent as a reply
 			log_admin("[key_name(src.owner)] replied to a fax message from [key_name(P.sender)]")
-			for(var/client/C in admins)
+			for(var/client/C in GLOB.admins)
 				if((R_ADMIN | R_MOD) & C.holder.rights)
 					to_chat(C, "<span class='admin'><span class='prefix'>FAX LOG:</span>[key_name_admin(src.owner)] replied to a fax message from [key_name_admin(P.sender)] (<a href='?_src_=holder;AdminFaxView=\ref[rcvdcopy]'>VIEW</a>)</span>")
 		else
 			log_admin("[key_name(src.owner)] has sent a fax message to [destination.department]")
-			for(var/client/C in admins)
+			for(var/client/C in GLOB.admins)
 				if((R_ADMIN | R_MOD) & C.holder.rights)
 					to_chat(C, "<span class='admin'><span class='prefix'>FAX LOG:</span>[key_name_admin(src.owner)] has sent a fax message to [destination.department] (<a href='?_src_=holder;AdminFaxView=\ref[rcvdcopy]'>VIEW</a>)</span>")
 

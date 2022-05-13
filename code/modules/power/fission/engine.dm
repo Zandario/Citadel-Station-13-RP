@@ -425,7 +425,7 @@
 		if(announce)
 			var/sound = sound('sound/effects/nuclear_meltdown.ogg')
 			if(!off_station)
-				for(var/mob/M in player_list)
+				for(var/mob/M in GLOB.player_list)
 					SEND_SOUND(M,sound)
 			spawn(1 SECONDS)
 				radio.autosay("DANGER! FISSION CORE HAS BREACHED!", "Nuclear Monitor")
@@ -438,7 +438,7 @@
 		// Give the alarm time to play. Then... FLASH! AH-AH!
 		spawn(15 SECONDS)
 			SSradiation.z_radiate(locate(1, 1, L.z), rad_power * BREACH_RADIATION_MULTIPLIER, 1)
-			for(var/mob/living/mob in living_mob_list)
+			for(var/mob/living/mob in GLOB.living_mob_list)
 				var/turf/T = get_turf(mob)
 				if(T && (L.z == T.z))
 					var/root_distance = sqrt(1 / (get_dist(mob, src) + 1))

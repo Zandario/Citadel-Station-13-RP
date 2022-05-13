@@ -1,7 +1,5 @@
 // This file holds things required for remote borg control by an AI.
 
-GLOBAL_LIST_EMPTY(available_ai_shells)
-
 /mob/living/silicon/robot
 	var/shell = FALSE
 	var/deployed = FALSE

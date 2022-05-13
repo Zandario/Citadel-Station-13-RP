@@ -54,7 +54,7 @@
 	log = FALSE
 
 /datum/world_topic/playing/Run(list/input)
-	return length(player_list)
+	return length(GLOB.player_list)
 
 /datum/world_topic/pr_announce
 	keyword = "announce"

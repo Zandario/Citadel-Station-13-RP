@@ -242,7 +242,7 @@ proc/FindNameFromID(var/mob/living/carbon/human/H)
 		return C.registered_name
 
 proc/get_all_job_icons() //For all existing HUD icons
-	return joblist + list("Prisoner")
+	return GLOB.joblist + list("Prisoner")
 
 /obj/proc/GetJobName() //Used in secHUD icon generation
 	var/obj/item/card/id/I = GetID()

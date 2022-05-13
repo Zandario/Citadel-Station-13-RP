@@ -49,7 +49,7 @@
 	var/hudmode = null
 
 /mob/living/silicon/Initialize(mapload)
-	silicon_mob_list |= src
+	GLOB.silicon_list |= src
 	. = ..()
 	add_language(LANGUAGE_GALCOM)
 	set_default_language(GLOB.all_languages[LANGUAGE_GALCOM])
@@ -57,7 +57,7 @@
 	init_subsystems()
 
 /mob/living/silicon/Destroy()
-	silicon_mob_list -= src
+	GLOB.silicon_list -= src
 	for(var/datum/alarm_handler/AH in SSalarms.all_handlers)
 		AH.unregister_alarm(src)
 	return ..()

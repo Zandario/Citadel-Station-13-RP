@@ -3,7 +3,6 @@
 	departments = list(DEPARTMENT_SECURITY)
 	chaotic = 60
 	length = 20 MINUTES
-	var/list/drones_list = list()
 
 /datum/gm_action/rogue_drone/start()
 	..()
@@ -21,7 +20,7 @@
 		num = rand(2,6)
 	for(var/i=0, i<num, i++)
 		var/mob/living/simple_mob/mechanical/combat_drone/event/D = new(get_turf(pick(possible_spawns)))
-		drones_list.Add(D)
+		GLOB.drones_list.Add(D)
 
 /datum/gm_action/rogue_drone/announce()
 	var/msg
@@ -44,7 +43,7 @@
 
 /datum/gm_action/rogue_drone/end()
 	var/num_recovered = 0
-	for(var/mob/living/simple_mob/mechanical/combat_drone/D in drones_list)
+	for(var/mob/living/simple_mob/mechanical/combat_drone/D in GLOB.drones_list)
 		var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread()
 		sparks.set_up(3, 0, D.loc)
 		sparks.start()
@@ -54,7 +53,7 @@
 		qdel(D)
 		num_recovered++
 
-	if(num_recovered > drones_list.len * 0.75)
+	if(num_recovered > GLOB.drones_list.len * 0.75)
 		command_announcement.Announce("The drones that were malfunctioning have been recovered safely.", "Rogue drone alert")
 	else
 		command_announcement.Announce("We're disappointed at the loss of the drones, but the survivors have been recovered.", "Rogue drone alert")

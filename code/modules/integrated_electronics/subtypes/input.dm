@@ -518,10 +518,10 @@
 
 /obj/item/integrated_circuit/input/microphone/Initialize(mapload)
 	. = ..()
-	listening_objects |= src
+	GLOB.listening_objects |= src
 
 /obj/item/integrated_circuit/input/microphone/Destroy()
-	listening_objects -= src
+	GLOB.listening_objects -= src
 	return ..()
 
 /obj/item/integrated_circuit/input/microphone/hear_talk(mob/living/M, msg, var/verb="says", datum/language/speaking=null)

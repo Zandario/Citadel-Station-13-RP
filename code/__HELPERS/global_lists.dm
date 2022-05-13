@@ -1,35 +1,5 @@
 //? BEHOLD THE LIST OF GLOBAL LISTS ?//
 
-/// List of all clients whom are admins
-var/list/admins = list()
-
-//Since it didn't really belong in any other category, I'm putting this here
-//This is for procs to replace all the goddamn 'in world's that are chilling around the code
-
-/// List of all mobs **with clients attached**. Excludes /mob/new_player
-var/global/list/player_list = list()
-/// List of all human mobs and sub-types, including clientless.
-var/global/list/human_mob_list = list()
-/// List of all silicon mobs, including clientless.
-var/global/list/silicon_mob_list = list()
-/// List of all AIs, including clientless.
-var/global/list/ai_list = list()
-/// List of all alive mobs, including clientless. Excludes /mob/new_player
-var/global/list/living_mob_list = list()
-/// List of all dead mobs, including clientless. Excludes /mob/new_player
-var/global/list/dead_mob_list = list()
-/// List of all objects which care about receiving messages (communicators, radios, etc)
-var/global/list/listening_objects = list()
-
-/// Index for all cables, so that powernets don't have to look through the entire world all the time.
-var/global/list/cable_list = list()
-/// List of all medical sideeffects types by thier names.
-var/global/list/side_effects = list()
-/// List of all mechs. Used by hostile mobs target tracking.
-var/global/list/mechas_list = list()
-/// List of all jobstypes, minus borg and AI
-var/global/list/joblist = list()
-
 #define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER,HERM)
 #define all_genders_text_list list("Male","Female","Plural","Neuter","Herm")
 
@@ -201,7 +171,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 	paths -= exclude_jobs
 	for(var/T in paths)
 		var/datum/job/J = new T
-		joblist[J.title] = J
+		GLOB.joblist[J.title] = J
 
 	if(!length(GLOB.species_meta))	// yeah i hate it too but hey
 		initialize_static_species_cache()

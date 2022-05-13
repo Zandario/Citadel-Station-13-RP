@@ -390,11 +390,11 @@
 						answer = text2num(answer)
 
 					if(field == "rank")
-						if(answer in joblist)
+						if(answer in GLOB.joblist)
 							active1.fields["real_rank"] = answer
 
 					if(field == "criminal")
-						for(var/mob/living/carbon/human/H in player_list)
+						for(var/mob/living/carbon/human/H in GLOB.player_list)
 							H.update_hud_sec_status()
 
 					if(istype(active2) && (field in active2.fields))

@@ -157,7 +157,7 @@
 		return
 	for(var/z in GetConnectedZlevels(TS.z))
 		SSradiation.z_radiate(locate(1, 1, z), DETONATION_RADS, 1)
-	for(var/mob/living/mob in living_mob_list)
+	for(var/mob/living/mob in GLOB.living_mob_list)
 		var/turf/T = get_turf(mob)
 		if(T && (loc.z == T.z))
 			if(istype(mob, /mob/living/carbon/human))
@@ -209,7 +209,7 @@
 		//Public alerts
 		if((damage > emergency_point) && !public_alert)
 			GLOB.global_announcer.autosay("WARNING: SUPERMATTER CRYSTAL DELAMINATION IMMINENT!", "Supermatter Monitor")
-			for(var/mob/M in player_list) // VOREStation Edit - Rykka adds SM Delam alarm
+			for(var/mob/M in GLOB.player_list) // VOREStation Edit - Rykka adds SM Delam alarm
 				if(!istype(M,/mob/new_player) && !isdeaf(M)) // VOREStation Edit - Rykka adds SM Delam alarm
 					SEND_SOUND(M, message_sound) // VOREStation Edit - Rykka adds SM Delam alarm
 			admin_chat_message(message = "SUPERMATTER DELAMINATING!", color = "#FF2222") //VOREStation Add
@@ -217,7 +217,7 @@
 			log_game("SUPERMATTER([x],[y],[z]) Emergency PUBLIC announcement. Power:[power], Oxygen:[oxygen], Damage:[damage], Integrity:[get_integrity()]")
 		else if((damage > emergency_point) && public_alert)
 			GLOB.global_announcer.autosay("DANGER: SUPERMATTER CRYSTAL DEGRADATION IN PROGRESS! INTEGRITY AT [integrity]%", "Supermatter Monitor")
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOB.player_list)
 				if(!istype(M,/mob/new_player) && !isdeaf(M))
 					SEND_SOUND(M, sound('sound/ambience/engine_alert2.ogg'))
 		else if(safe_warned && public_alert)

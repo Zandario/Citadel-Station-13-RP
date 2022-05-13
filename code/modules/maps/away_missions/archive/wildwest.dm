@@ -90,7 +90,7 @@
 			if("Peace")
 				to_chat(user, "<B>Whatever alien sentience that the Wish Granter possesses is satisfied with your wish. There is a distant wailing as the last of the Faithless begin to die, then silence.</B>")
 				to_chat(user, "You feel as if you just narrowly avoided a terrible fate...")
-				for(var/mob/living/simple_mob/faithless/F in living_mob_list)
+				for(var/mob/living/simple_mob/faithless/F in GLOB.living_mob_list)
 					F.health = -10
 					F.set_stat(DEAD)
 					F.icon_state = "faithless_dead"
@@ -154,8 +154,8 @@
 
 	spawn(rand(800,1200))
 		if(C.stat == DEAD)
-			dead_mob_list -= C
-			living_mob_list += C
+			GLOB.dead_mob_list -= C
+			GLOB.living_mob_list += C
 		C.set_stat(CONSCIOUS)
 		C.tod = null
 		C.setToxLoss(0)

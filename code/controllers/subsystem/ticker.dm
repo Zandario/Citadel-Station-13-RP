@@ -304,12 +304,12 @@ SUBSYSTEM_DEF(ticker)
 	var/obj/structure/bed/temp_buckle = new(src)
 	//Incredibly hackish. It creates a bed within the gameticker (lol) to stop mobs running around
 	if(station_missed)
-		for(var/mob/living/M in living_mob_list)
+		for(var/mob/living/M in GLOB.living_mob_list)
 			M.buckled = temp_buckle				//buckles the mob so it can't do anything
 			if(M.client)
 				M.client.screen += cinematic	//show every client the cinematic
 	else	//nuke kills everyone on z-level 1 to prevent "hurr-durr I survived"
-		for(var/mob/living/M in living_mob_list)
+		for(var/mob/living/M in GLOB.living_mob_list)
 			M.buckled = temp_buckle
 			if(M.client)
 				M.client.screen += cinematic
@@ -376,7 +376,7 @@ SUBSYSTEM_DEF(ticker)
 					flick("station_explode_fade_red", cinematic)
 					SEND_SOUND(world, sound('sound/effects/explosionfar.ogg'))
 					cinematic.icon_state = "summary_selfdes"
-			for(var/mob/living/M in living_mob_list)
+			for(var/mob/living/M in GLOB.living_mob_list)
 				if(M.loc.z in GLOB.using_map.station_levels)
 					M.death()//No mercy
 	//If its actually the end of the round, wait for it to end.
@@ -389,7 +389,7 @@ SUBSYSTEM_DEF(ticker)
 
 
 /datum/controller/subsystem/ticker/proc/create_characters()
-	for(var/mob/new_player/player in player_list)
+	for(var/mob/new_player/player in GLOB.player_list)
 		if(player && player.ready && player.mind)
 			if(player.mind.assigned_role=="AI")
 				player.close_spawn_windows()
@@ -407,14 +407,14 @@ SUBSYSTEM_DEF(ticker)
 
 
 /datum/controller/subsystem/ticker/proc/collect_minds()
-	for(var/mob/living/player in player_list)
+	for(var/mob/living/player in GLOB.player_list)
 		if(player.mind)
 			minds += player.mind
 
 
 /datum/controller/subsystem/ticker/proc/equip_characters()
 	var/captainless=1
-	for(var/mob/living/carbon/human/player in player_list)
+	for(var/mob/living/carbon/human/player in GLOB.player_list)
 		if(player && player.mind && player.mind.assigned_role)
 			if(player.mind.assigned_role == "Facility Director")
 				captainless=0
@@ -424,7 +424,7 @@ SUBSYSTEM_DEF(ticker)
 				//equip_custom_items(player)	//VOREStation Removal
 				//player.apply_traits() //VOREStation Removal
 	if(captainless)
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if(!istype(M,/mob/new_player))
 				to_chat(M, "Facility Directorship not forced on anyone.")
 
@@ -491,7 +491,7 @@ SUBSYSTEM_DEF(ticker)
 		var/datum/callback/cb = I
 		cb.InvokeAsync()
 	LAZYCLEARLIST(round_end_events)
-	for(var/mob/Player in player_list)
+	for(var/mob/Player in GLOB.player_list)
 		if(Player.mind && !isnewplayer(Player))
 			if(Player.stat != DEAD)
 				var/turf/playerTurf = get_turf(Player)

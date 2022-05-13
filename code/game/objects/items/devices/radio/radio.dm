@@ -82,7 +82,7 @@ GLOBAL_LIST_INIT(default_medbay_channels, list(
 	. = ..()
 	wires = new(src)
 	internal_channels = GLOB.default_internal_channels.Copy()
-	listening_objects += src
+	GLOB.listening_objects += src
 	if(frequency < RADIO_LOW_FREQ || frequency > RADIO_HIGH_FREQ)
 		frequency = sanitize_frequency(frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
 	set_frequency(frequency)
@@ -132,7 +132,7 @@ GLOBAL_LIST_INIT(default_medbay_channels, list(
 /obj/item/radio/Destroy()
 	qdel(wires)
 	wires = null
-	listening_objects -= src
+	GLOB.listening_objects -= src
 	if(radio_controller)
 		radio_controller.remove_object(src, frequency)
 		for (var/ch_name in channels)

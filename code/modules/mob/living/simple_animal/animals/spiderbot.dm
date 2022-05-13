@@ -81,7 +81,7 @@
 		if(!B.brainmob.key)
 			var/ghost_can_reenter = 0
 			if(B.brainmob.mind)
-				for(var/mob/observer/dead/G in player_list)
+				for(var/mob/observer/dead/G in GLOB.player_list)
 					if(G.can_reenter_corpse && G.mind == B.brainmob.mind)
 						ghost_can_reenter = 1
 						break
@@ -216,8 +216,8 @@
 
 /mob/living/simple_mob/spiderbot/death()
 
-	living_mob_list -= src
-	dead_mob_list += src
+	GLOB.living_mob_list -= src
+	GLOB.dead_mob_list += src
 
 	if(camera)
 		camera.status = 0

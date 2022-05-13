@@ -93,27 +93,41 @@ proc/random_name(gender, species = SPECIES_HUMAN)
 	else
 		return current_species.get_random_name(gender)
 
-proc/random_skin_tone()
-	switch(pick(60;"caucasian", 15;"afroamerican", 10;"african", 10;"latino", 5;"albino"))
-		if("caucasian")		. = -10
-		if("afroamerican")	. = -115
-		if("african")		. = -165
-		if("latino")		. = -55
-		if("albino")		. = 34
-		else				. = rand(-185,34)
-	return min(max( .+rand(-25, 25), -185),34)
+/proc/random_skin_tone()
+	return pick(GLOB.skin_tones)
 
-proc/skintone2racedescription(tone)
-	switch (tone)
-		if(30 to INFINITY)		return "albino"
-		if(20 to 30)			return "pale"
-		if(5 to 15)				return "light skinned"
-		if(-10 to 5)			return "white"
-		if(-25 to -10)			return "tan"
-		if(-45 to -25)			return "darker skinned"
-		if(-65 to -45)			return "brown"
-		if(-INFINITY to -65)	return "black"
-		else					return "unknown"
+GLOBAL_LIST_INIT(skin_tones, sortList(list(
+	"albino",
+	"caucasian1",
+	"caucasian2",
+	"caucasian3",
+	"latino",
+	"mediterranean",
+	"asian1",
+	"asian2",
+	"arab",
+	"indian",
+	"african1",
+	"african2"
+	)))
+
+GLOBAL_LIST_INIT(skin_tone_names, list(
+	"african1" = "Medium brown",
+	"african2" = "Dark brown",
+	"albino" = "Albino",
+	"arab" = "Light brown",
+	"asian1" = "Ivory",
+	"asian2" = "Beige",
+	"caucasian1" = "Porcelain",
+	"caucasian2" = "Light peach",
+	"caucasian3" = "Peach",
+	"indian" = "Brown",
+	"latino" = "Light beige",
+	"mediterranean" = "Olive",
+))
+
+/// An assoc list of species IDs to type paths
+GLOBAL_LIST_EMPTY(species_list)
 
 proc/age2agedescription(age)
 	switch(age)

@@ -110,7 +110,7 @@
 
 	O.add_ai_verbs()
 
-	O.rename_self("ai",1)
+	O.apply_pref_name("ai",1)
 	spawn(0)	// Mobs still instantly del themselves, thus we need to spawn or O will never be returned
 		qdel(src)
 	return O
@@ -305,6 +305,3 @@
 
 	//Not in here? Must be untested!
 	return 0
-
-
-

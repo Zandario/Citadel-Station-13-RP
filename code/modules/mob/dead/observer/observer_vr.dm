@@ -3,7 +3,7 @@
 	set name = "Join Into Soulcatcher"
 	set desc = "Select a player with a working NIF + Soulcatcher NIFSoft to join into it."
 
-	var/list/filtered_list = player_list.Copy()
+	var/list/filtered_list = GLOB.player_list.Copy()
 	for(var/i in filtered_list)
 		var/mob/living/carbon/human/H = i
 		if(!istype(H))

@@ -267,3 +267,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define FROGENITE_TRAIT "frogenite"
 #define FERVEATIUM_TRAIT "ferveatium"
 */
+
+/// This human wants to see the color of their glasses, for some reason
+////#define TRAIT_SEE_GLASS_COLORS "see_glass_colors"

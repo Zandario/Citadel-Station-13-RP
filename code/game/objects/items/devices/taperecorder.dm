@@ -24,13 +24,13 @@
 	if(ispath(mytape))
 		mytape = new mytape(src)
 		update_icon()
-	listening_objects += src
+	GLOB.listening_objects += src
 
 /obj/item/tape_recorder/empty
 	mytape = null
 
 /obj/item/tape_recorder/Destroy()
-	listening_objects -= src
+	GLOB.listening_objects -= src
 	if(mytape)
 		qdel(mytape)
 		mytape = null

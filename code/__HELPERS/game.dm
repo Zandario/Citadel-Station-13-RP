@@ -47,8 +47,8 @@
 
 /** Checks if any living humans are in a given area. */
 /proc/area_is_occupied(var/area/myarea)
-	// Testing suggests looping over human_mob_list is quicker than looping over area contents
-	for(var/mob/living/carbon/human/H in human_mob_list)
+	// Testing suggests looping over GLOB.human_list is quicker than looping over area contents
+	for(var/mob/living/carbon/human/H in GLOB.human_list)
 		if(H.stat >= DEAD) //Conditions for exclusion here, like if disconnected people start blocking it.
 			continue
 		var/area/A = get_area(H)
@@ -270,8 +270,8 @@
 
 
 	// Try to find all the players who can hear the message
-	for(var/i = 1; i <= player_list.len; i++)
-		var/mob/M = player_list[i]
+	for(var/i = 1; i <= GLOB.player_list.len; i++)
+		var/mob/M = GLOB.player_list[i]
 		if(M)
 			var/turf/ear = get_turf(M)
 			if(ear)
@@ -300,10 +300,10 @@
 			hearturfs |= get_turf(thing)
 
 	//A list of every mob with a client
-	for(var/mob in player_list)
+	for(var/mob in GLOB.player_list)
 		if(!ismob(mob))
-			player_list -= mob
-			crash_with("There is a null or non-mob reference inside player_list ([mob]).")
+			GLOB.player_list -= mob
+			crash_with("There is a null or non-mob reference inside GLOB.player_list ([mob]).")
 			continue
 		if(get_turf(mob) in hearturfs)
 			mobs |= mob
@@ -320,7 +320,7 @@
 						mobs |= M
 
 	//For objects below the top level who still want to hear
-	for(var/obj in listening_objects)
+	for(var/obj in GLOB.listening_objects)
 		if(get_turf(obj) in hearturfs)
 			objs |= obj
 
@@ -411,7 +411,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
 	var/i = 0
 	while(candidates.len <= 0 && i < 5)
-		for(var/mob/observer/dead/G in player_list)
+		for(var/mob/observer/dead/G in GLOB.player_list)
 			if(((G.client.inactivity/10)/60) <= buffer + i) // the most active players are more likely to become an alien
 				if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
 					candidates += G.key
@@ -425,7 +425,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
 	var/i = 0
 	while(candidates.len <= 0 && i < 5)
-		for(var/mob/observer/dead/G in player_list)
+		for(var/mob/observer/dead/G in GLOB.player_list)
 			if(G.client.prefs.be_special & ROLE_ALIEN)
 				if(((G.client.inactivity/10)/60) <= ALIEN_SELECT_AFK_BUFFER + i) // the most active players are more likely to become an alien
 					if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
@@ -617,10 +617,14 @@ datum/projectile_data
 /proc/SecondsToTicks(var/seconds)
 	return seconds * 10
 
-/proc/window_flash(var/client_or_usr)
-	if (!client_or_usr)
+/proc/window_flash(client/C, ignorepref = FALSE)
+	if(ismob(C))
+		var/mob/M = C
+		if(M.client)
+			C = M.client
+	if(!C || (!C.prefs.read_preference(/datum/preference/toggle/window_flashing) && !ignorepref))
 		return
-	winset(client_or_usr, "mainwindow", "flash=5")
+	winset(C, "mainwindow", "flash=5")
 
 // used for the multiz camera console stolen from vorestatiobn
 /proc/get_bbox_of_atoms(list/atoms)

@@ -248,7 +248,7 @@
 	removeVerb(/obj/mecha/verb/disconnect_from_port)
 	log_message("[src.name] created.")
 	loc.Entered(src)
-	mechas_list += src //global mech list
+	GLOB.mech_list += src //global mech list
 
 /obj/mecha/Exit(atom/movable/O)
 	if(O in cargo)
@@ -333,7 +333,7 @@
 	QDEL_NULL(spark_system)
 	QDEL_NULL(minihud)
 
-	mechas_list -= src //global mech list
+	GLOB.mech_list -= src //global mech list
 	. = ..()
 
 ////////////////////////

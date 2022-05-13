@@ -32,7 +32,7 @@
 
 	// Find another AI-controlled mob in the same faction if possible.
 	var/mob/living/first_friend
-	for(var/mob/living/L in living_mob_list)
+	for(var/mob/living/L in GLOB.living_mob_list)
 		if(L.faction == holder.faction && L.ai_holder)
 			first_friend = L
 			break
@@ -112,4 +112,3 @@
 	ai_log("help_requested() : Help requested by [friend], going to go to friend.", AI_LOG_INFO)
 	set_follow(friend, 10 SECONDS)
 	ai_log("help_requested() : Exiting.", AI_LOG_DEBUG)
-

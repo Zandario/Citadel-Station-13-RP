@@ -21,10 +21,12 @@
 		flat_list[flat_list[i]] = TRUE
 	return flat_list
 
-/proc/assoc_list_strip_value_inplace(list/input)
-	for(var/i in 1 to length(input))
-		input[input[i]] = null
-	return input
+/// Turns an associative list into a flat list of keys
+/proc/assoc_to_keys(list/input)
+	var/list/keys = list()
+	for(var/key in input)
+		keys += key
+	return keys
 
 /proc/deep_list2params(list/deep_list)
 	var/list/L = list()

@@ -100,8 +100,8 @@
 // /mob/living/carbon/human/dummy/mannequin/Initialize()
 // 	. = ..()
 // 	GLOB.mob_list -= src
-// 	living_mob_list -= src
-// 	dead_mob_list -= src
+// 	GLOB.living_mob_list -= src
+// 	GLOB.dead_mob_list -= src
 // 	delete_inventory()
 
 //Fashion Mannequins
@@ -117,8 +117,8 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy/mannequin)
 	name = "Wooden Mannequin"
 	real_name = "Wooden Mannequin"
 	GLOB.mob_list -= src
-	living_mob_list -= src
-	dead_mob_list -= src
+	GLOB.living_mob_list -= src
+	GLOB.dead_mob_list -= src
 	weight = rand(100,175)
 	gender = pick(MALE,FEMALE,NEUTER)
 	delete_inventory()
@@ -148,8 +148,8 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy/mannequin)
 	name = "Plastic Mannequin"
 	real_name = "Plastic Mannequin"
 	GLOB.mob_list -= src
-	living_mob_list -= src
-	dead_mob_list -= src
+	GLOB.living_mob_list -= src
+	GLOB.dead_mob_list -= src
 	weight = rand(76,175)
 	gender = pick(MALE,FEMALE,NEUTER)
 	change_skin_color(255, 255, 255)
@@ -178,8 +178,8 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy/mannequin)
 	name = "Wooden Mannequin"
 	real_name = "Wooden Mannequin"
 	GLOB.mob_list -= src
-	living_mob_list -= src
-	dead_mob_list -= src
+	GLOB.living_mob_list -= src
+	GLOB.dead_mob_list -= src
 	weight = rand(76,175)
 	gender = pick(MALE,NEUTER)
 	delete_inventory()
@@ -210,8 +210,8 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy/mannequin)
 	name = "Wooden Mannequin"
 	real_name = "Wooden Mannequin"
 	GLOB.mob_list -= src
-	living_mob_list -= src
-	dead_mob_list -= src
+	GLOB.living_mob_list -= src
+	GLOB.dead_mob_list -= src
 	weight = rand(76,175)
 	gender = pick(FEMALE,NEUTER)
 	delete_inventory()
@@ -239,8 +239,8 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy/mannequin)
 	name = "Wooden Mannequin"
 	real_name = "Wooden Mannequin"
 	GLOB.mob_list -= src
-	living_mob_list -= src
-	dead_mob_list -= src
+	GLOB.living_mob_list -= src
+	GLOB.dead_mob_list -= src
 	weight = rand(76,175)
 	gender = pick(MALE,FEMALE,NEUTER)
 	delete_inventory()
@@ -268,8 +268,8 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy/mannequin)
 	name = "Wooden Mannequin"
 	real_name = "Wooden Mannequin"
 	GLOB.mob_list -= src
-	living_mob_list -= src
-	dead_mob_list -= src
+	GLOB.living_mob_list -= src
+	GLOB.dead_mob_list -= src
 	weight = rand(76,175)
 	gender = pick(MALE,FEMALE,NEUTER)
 	delete_inventory()
