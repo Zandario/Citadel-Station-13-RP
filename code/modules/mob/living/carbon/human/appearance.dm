@@ -187,7 +187,7 @@
 	for(var/datum/species/S in all_static_species_meta())
 		var/current_species_name = S.name
 
-		if(check_whitelist && config_legacy.usealienwhitelist && !check_rights(R_ADMIN, 0, src)) //If we're using the whitelist, make sure to check it!
+		if(check_whitelist && CONFIG_GET(flag/usealienwhitelist) && !check_rights(R_ADMIN, 0, src)) //If we're using the whitelist, make sure to check it!
 			if(!(S.spawn_flags & SPECIES_CAN_JOIN))
 				continue
 			if(whitelist.len && !(current_species_name in whitelist))

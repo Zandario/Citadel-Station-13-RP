@@ -237,11 +237,13 @@
 		new_player_panel_proc()
 
 	if(href_list["observe"])
-		if(!client.is_preference_enabled(/datum/client_preference/debug/age_verified)) return
-		var/alert_time = SSticker?.current_state <= GAME_STATE_SETTING_UP ? 1 : round(config_legacy.respawn_time/10/60)
+		if(!client.is_preference_enabled(/datum/client_preference/debug/age_verified))
+			return
+		var/alert_time = SSticker?.current_state <= GAME_STATE_SETTING_UP ? 1 : round(CONFIG_GET(number/respawn_time)/10/60)
 
 		if(alert(src,"Are you sure you wish to observe? You will have to wait up to [alert_time] minute\s before being able to spawn into the game!","Player Setup","Yes","No") == "Yes")
-			if(!client)	return 1
+			if(!client)
+				return TRUE
 
 			// Make a new mannequin quickly, and allow the observer to take the appearance
 			var/mob/living/carbon/human/dummy/mannequin = new()
@@ -269,30 +271,30 @@
 				client.prefs.real_name = random_name(client.prefs.identifying_gender)
 			observer.real_name = client.prefs.real_name
 			observer.name = observer.real_name
-			if(!client.holder && !config_legacy.antag_hud_allowed)			// For new ghosts we remove the verb from even showing up if it's not allowed.
-				observer.verbs -= /mob/observer/dead/verb/toggle_antagHUD	// Poor guys, don't know what they are missing!
+			if(!client.holder && !CONFIG_GET(flag/antag_hud_allowed)) // For new ghosts we remove the verb from even showing up if it's not allowed.
+				observer.verbs -= /mob/observer/dead/verb/toggle_antagHUD // Poor guys, don't know what they are missing!
 			observer.key = key
 			observer.client?.holder?.update_stealth_ghost()
 			observer.set_respawn_timer(time_till_respawn())	// Will keep their existing time if any, or return 0 and pass 0 into set_respawn_timer which will use the defaults
 			qdel(src)
 
-			return 1
+			return TRUE
 
 	if(href_list["late_join"])
 
 		if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING)
-			to_chat(usr, "<font color='red'>The round is either not ready, or has already finished...</font>")
+			to_chat(usr, SPAN_WARNING("The round is either not ready, or has already finished..."))
 			return
 
 		var/time_till_respawn = time_till_respawn()
 		if(time_till_respawn == -1)	// Special case, never allowed to respawn
-			to_chat(usr, "<span class='warning'>Respawning is not allowed!</span>")
+			to_chat(usr, SPAN_WARNING("Respawning is not allowed!"))
 		else if(time_till_respawn)	// Nonzero time to respawn
-			to_chat(usr, "<span class='warning'>You can't respawn yet! You need to wait another [round(time_till_respawn/10/60, 0.1)] minutes.</span>")
+			to_chat(usr, SPAN_WARNING("You can't respawn yet! You need to wait another [round(time_till_respawn/10/60, 0.1)] minutes."))
 			return
 /*
 		if(client.prefs.species != SPECIES_HUMAN && !check_rights(R_ADMIN, 0))
-			if (config_legacy.usealienwhitelist)
+			if (CONFIG_GET(flag/usealienwhitelist))
 				if(!is_alien_whitelisted(src, client.prefs.species))
 					src << alert("You are currently not whitelisted to Play [client.prefs.species].")
 					return 0
@@ -751,12 +753,12 @@
 
 	//No Flavor Text
 	if (config_legacy.require_flavor && client && client.prefs && client.prefs.flavor_texts && !client.prefs.flavor_texts["general"])
-		to_chat(src,"<span class='warning'>Please set your general flavor text to give a basic description of your character. Set it using the 'Set Flavor text' button on the 'General' tab in character setup, and choosing 'General' category.</span>")
+		to_chat(src, SPAN_WARNING("Please set your general flavor text to give a basic description of your character. Set it using the 'Set Flavor text' button on the 'General' tab in character setup, and choosing 'General' category."))
 		pass = FALSE
 
 	//No OOC notes
-	if (config_legacy.allow_Metadata && client && client.prefs && (isnull(client.prefs.metadata) || length(client.prefs.metadata) < 15))
-		to_chat(src,"<span class='warning'>Please set informative OOC notes related to ERP preferences. Set them using the 'OOC Notes' button on the 'General' tab in character setup.</span>")
+	if(CONFIG_GET(flag/allow_metadata) && client && client.prefs && (isnull(client.prefs.metadata) || length(client.prefs.metadata) < 15))
+		to_chat(src, SPAN_WARNING("Please set informative OOC notes related to ERP preferences. Set them using the 'OOC Notes' button on the 'General' tab in character setup."))
 		pass = FALSE
 
 	//Are they on the VERBOTEN LIST?

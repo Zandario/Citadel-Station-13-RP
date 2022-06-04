@@ -21,7 +21,7 @@ SUBSYSTEM_DEF(ticker)
 	/// Force round end
 	var/force_ending = FALSE
 
-	var/timeLeft						//pregame timer
+	var/timeLeft //pregame timer
 	var/start_at
 
 	var/hide_mode = 0
@@ -32,23 +32,32 @@ SUBSYSTEM_DEF(ticker)
 
 	var/list/datum/mind/minds = list()//The people in the game. Used for objective tracking.
 
-	var/Bible_icon_state	// icon_state the chaplain has chosen for his bible
-	var/Bible_item_state	// item_state the chaplain has chosen for his bible
-	var/Bible_name			// name of the bible
+	/// icon_state the chaplain has chosen for his bible
+	var/Bible_icon_state
+	/// item_state the chaplain has chosen for his bible
+	var/Bible_item_state
+	/// name of the bible
+	var/Bible_name
 	var/Bible_deity_name
 
-	var/random_players = 0 	// if set to nonzero, ALL players who latejoin or declare-ready join will have random appearances/genders
+	/// if set to nonzero, ALL players who latejoin or declare-ready join will have random appearances/genders
+	var/random_players = 0
 
-	var/list/syndicate_coalition = list() // list of traitor-compatible factions
-	var/list/factions = list()			  // list of all factions
-	var/list/availablefactions = list()	  // list of factions with openings
+	/// list of traitor-compatible factions
+	var/list/syndicate_coalition = list()
+	/// list of all factions
+	var/list/factions = list()
+	/// list of factions with openings
+	var/list/availablefactions = list()
 
-	var/triai = 0//Global holder for Triumvirate
+	/// Global holder for Triumvirate
+	var/triai = 0
 
-	var/round_end_announced = 0 // Spam Prevention. Announce round end only once.
+	/// Spam Prevention. Announce round end only once.
+	var/round_end_announced = 0
 
-	//station_explosion used to be a variable for every mob's hud. Which was a waste!
-	//Now we have a general cinematic centrally held within the gameticker....far more efficient!
+	/// station_explosion used to be a variable for every mob's hud. Which was a waste!
+	/// Now we have a general cinematic centrally held within the gameticker....far more efficient!
 	var/atom/movable/screen/cinematic = null
 
 	var/static/round_start_time
@@ -429,7 +438,7 @@ SUBSYSTEM_DEF(ticker)
 
 	var/game_finished = 0
 	var/mode_finished = 0
-	if (config_legacy.continous_rounds)
+	if(CONFIG_GET(flag/continous_rounds))
 		game_finished = (SSemergencyshuttle.returned() || mode.station_was_nuked)
 		mode_finished = (!post_game && mode.check_finished())
 	else

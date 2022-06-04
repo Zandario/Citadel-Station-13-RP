@@ -280,7 +280,7 @@
 
 //! ## Flags
 	/// Various specific features.
-	var/flags = 0
+	var/flags = NONE
 	/// Appearance/display related features.
 	var/species_appearance_flags = 0
 	/// Flags that specify who can spawn as this species

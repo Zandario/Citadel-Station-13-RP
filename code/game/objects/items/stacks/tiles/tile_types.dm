@@ -36,7 +36,7 @@
 	throwforce = 1.0
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = NONE
 	origin_tech = list(TECH_BIO = 1)
 	no_variants = FALSE
 	drop_sound = 'sound/items/drop/herb.ogg'
@@ -77,7 +77,7 @@ var/global/list/datum/stack_recipe/grass_recipes = list( \
 	throwforce = 1.0
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = NONE
 	no_variants = FALSE
 	drop_sound = 'sound/items/drop/wooden.ogg'
 	pickup_sound = 'sound/items/pickup/wooden.ogg'
@@ -108,7 +108,7 @@ var/global/list/datum/stack_recipe/grass_recipes = list( \
 	throwforce = 1.0
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = NONE
 	no_variants = FALSE
 	drop_sound = 'sound/items/drop/cloth.ogg'
 	pickup_sound = 'sound/items/pickup/cloth.ogg'
@@ -253,7 +253,7 @@ var/global/list/datum/stack_recipe/grass_recipes = list( \
 	throwforce = 1.0
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = NONE
 	no_variants = FALSE
 
 /obj/item/stack/tile/wmarble
@@ -265,7 +265,7 @@ var/global/list/datum/stack_recipe/grass_recipes = list( \
 	throwforce = 15.0
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = NONE
 	no_variants = FALSE
 
 /obj/item/stack/tile/bmarble
@@ -277,7 +277,7 @@ var/global/list/datum/stack_recipe/grass_recipes = list( \
 	throwforce = 15.0
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = NONE
 	no_variants = FALSE
 
 /obj/item/stack/tile/roofing
@@ -303,7 +303,7 @@ var/global/list/datum/stack_recipe/grass_recipes = list( \
 	throwforce = 10.0
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = NONE
 	no_variants = FALSE
 
 /obj/item/stack/tile/silencium
@@ -315,7 +315,7 @@ var/global/list/datum/stack_recipe/grass_recipes = list( \
 	throwforce = 10.0
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = NONE
 	no_variants = FALSE
 
 /obj/item/stack/tile/plasteel
@@ -326,7 +326,7 @@ var/global/list/datum/stack_recipe/grass_recipes = list( \
 	throwforce = 15.0
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = NONE
 	no_variants = FALSE
 
 /obj/item/stack/tile/durasteel
@@ -337,7 +337,7 @@ var/global/list/datum/stack_recipe/grass_recipes = list( \
 	throwforce = 15.0
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = NONE
 	no_variants = FALSE
 
 /obj/item/stack/tile/silver
@@ -348,7 +348,7 @@ var/global/list/datum/stack_recipe/grass_recipes = list( \
 	throwforce = 15.0
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = NONE
 	no_variants = FALSE
 
 /obj/item/stack/tile/gold
@@ -359,7 +359,7 @@ var/global/list/datum/stack_recipe/grass_recipes = list( \
 	throwforce = 15.0
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = NONE
 	no_variants = FALSE
 
 /obj/item/stack/tile/phoron
@@ -370,7 +370,7 @@ var/global/list/datum/stack_recipe/grass_recipes = list( \
 	throwforce = 15.0
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = NONE
 	no_variants = FALSE
 
 /obj/item/stack/tile/uranium
@@ -381,7 +381,7 @@ var/global/list/datum/stack_recipe/grass_recipes = list( \
 	throwforce = 15.0
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = NONE
 	no_variants = FALSE
 
 /obj/item/stack/tile/diamond
@@ -392,7 +392,7 @@ var/global/list/datum/stack_recipe/grass_recipes = list( \
 	throwforce = 15.0
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = NONE
 	no_variants = FALSE
 
 /obj/item/stack/tile/brass
@@ -403,7 +403,7 @@ var/global/list/datum/stack_recipe/grass_recipes = list( \
 	throwforce = 15.0
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = NONE
 	no_variants = FALSE
 
 /obj/item/stack/tile/wax
@@ -414,7 +414,7 @@ var/global/list/datum/stack_recipe/grass_recipes = list( \
 	throwforce = 1
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = NONE
 	no_variants = FALSE
 
 /obj/item/stack/tile/honeycomb
@@ -425,5 +425,5 @@ var/global/list/datum/stack_recipe/grass_recipes = list( \
 	throwforce = 1
 	throw_speed = 5
 	throw_range = 20
-	flags = 0
+	flags = NONE
 	no_variants = FALSE

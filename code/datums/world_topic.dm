@@ -277,25 +277,25 @@
 	keyword = "jsonrevision"
 
 /datum/world_topic/jsonrevision/Run(list/input, addr)
-    var/datum/getrev/revdata = GLOB.revdata
-    var/list/data = list(
-        "date" = copytext(revdata.date, 1, 11),
-        "dd_version" = world.byond_version,
-        "dd_build" = world.byond_build,
-        "dm_version" = DM_VERSION,
-        "dm_build" = DM_BUILD,
-        "revision" = revdata.commit,
-        "testmerge_base_url" = "[CONFIG_GET(string/githuburl)]/pull/"
-    )
-    if (revdata.testmerge.len)
-        for (var/datum/tgs_revision_information/test_merge/TM in revdata.testmerge)
-            data["testmerges"] += list(list(
-                "id" = TM.number,
-                "desc" = TM.title,
-                "author" = TM.author
-            ))
+	var/datum/getrev/revdata = GLOB.revdata
+	var/list/data = list(
+		"date" = copytext(revdata.date, 1, 11),
+		"dd_version" = world.byond_version,
+		"dd_build" = world.byond_build,
+		"dm_version" = DM_VERSION,
+		"dm_build" = DM_BUILD,
+		"revision" = revdata.commit,
+		"testmerge_base_url" = "[CONFIG_GET(string/githuburl)]/pull/"
+	)
+	if (revdata.testmerge.len)
+		for (var/datum/tgs_revision_information/test_merge/TM in revdata.testmerge)
+			data["testmerges"] += list(list(
+				"id" = TM.number,
+				"desc" = TM.title,
+				"author" = TM.author
+			))
 
-    return json_encode(data)
+	return json_encode(data)
 
 /datum/world_topic/status
 	keyword = "status"
@@ -308,39 +308,40 @@
 	. = list()
 	.["version"] = game_version
 	.["mode"] = master_mode
-	.["respawn"] = config_legacy.abandon_allowed
+	.["respawn"] = config ? !CONFIG_GET(flag/norespawn) : FALSE
 	.["enter"] = config_legacy.enter_allowed
-	.["vote"] = config_legacy.allow_vote_mode
-	.["ai"] = config_legacy.allow_ai
-	.["host"] = host || null
+	.["vote"] = CONFIG_GET(flag/allow_vote_mode)
+	.["ai"] = CONFIG_GET(flag/allow_ai)
+	.["host"] = world.host ? world.host : null
 	.["round_id"] = GLOB.round_id
 	.["players"] = GLOB.clients.len
 	.["revision"] = GLOB.revdata.commit
 	.["revision_date"] = GLOB.revdata.date
+	.["hub"] = GLOB.hub_visibility
 
 	var/list/adm = get_admin_counts()
 	var/list/presentmins = adm["present"]
 	var/list/afkmins = adm["afk"]
 	.["admins"] = presentmins.len + afkmins.len //equivalent to the info gotten from adminwho
-	//.["gamestate"] = SSticker.current_state
+	.["gamestate"] = SSticker.current_state
 
-	//.["map_name"] = SSmapping.config?.map_name || "Loading..."
+	.["map_name"] = SSmapping.config?.map_name || "Loading..."
 
-	//if(key_valid)
-		//.["active_players"] = get_active_player_count()
-		/*
-		if(SSticker.HasRoundStarted())
-			.["real_mode"] = SSticker.mode.name
-			// Key-authed callers may know the truth behind the "secret"
-		*/
+	// if(key_valid)
+	// 	.["active_players"] = get_active_player_count()
+
+	// 	if(SSticker.HasRoundStarted())
+	// 		.["real_mode"] = SSticker.mode.name
+	// 		// Key-authed callers may know the truth behind the "secret"
+
 
 	.["security_level"] = get_security_level()
 //	.["round_duration"] = SSticker ? round((world.time-SSticker.SSticker.round_start_time)/10) : 0
-//	// Amount of world's ticks in seconds, useful for calculating round duration
+	// Amount of world's ticks in seconds, useful for calculating round duration
 	.["stationtime"] = stationtime2text()
 	.["roundduration"] = roundduration2text()
 
-	//Time dilation stats.
+//! ##Time dilation stats.
 	.["time_dilation_current"] = SStime_track.time_dilation_current
 	.["time_dilation_avg"] = SStime_track.time_dilation_avg
 	.["time_dilation_avg_slow"] = SStime_track.time_dilation_avg_slow

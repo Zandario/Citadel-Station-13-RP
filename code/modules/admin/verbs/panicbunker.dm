@@ -8,13 +8,13 @@ GLOBAL_LIST_EMPTY(bunker_passthrough)
 		return
 
 	if(!CONFIG_GET(flag/sql_enabled))
-		to_chat(usr, "<span class='adminnotice'>The Database is not enabled!</span>")
+		to_chat(usr, SPAN_ADMINNOTICE("The Database is not enabled!"))
 		return
 
-	config_legacy.panic_bunker = (!config_legacy.panic_bunker)
+	CONFIG_SET(flag/panic_bunker, !CONFIG_GET(flag/panic_bunker))
 
-	log_and_message_admins("[key_name(usr)] has toggled the Panic Bunker, it is now [(config_legacy.panic_bunker?"on":"off")]")
-	if (config_legacy.panic_bunker && (!dbcon || !dbcon.IsConnected()))
+	log_and_message_admins("[key_name(usr)] has toggled the Panic Bunker, it is now [(CONFIG_GET(flag/panic_bunker)?"on":"off")]")
+	if(CONFIG_GET(flag/panic_bunker) && (!dbcon || !dbcon.IsConnected()))
 		message_admins("The Database is not connected! Panic bunker will not work until the connection is reestablished.")
 	feedback_add_details("admin_verb","PANIC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -54,10 +54,10 @@ GLOBAL_LIST_EMPTY(bunker_passthrough)
 	if(!check_rights(R_ADMIN))
 		return
 
-	config_legacy.paranoia_logging = (!config_legacy.paranoia_logging)
+	CONFIG_SET(flag/paranoia_logging, !CONFIG_GET(flag/paranoia_logging))
 
-	log_and_message_admins("[key_name(usr)] has toggled Paranoia Logging, it is now [(config_legacy.paranoia_logging?"on":"off")]")
-	if (config_legacy.paranoia_logging && (!dbcon || !dbcon.IsConnected()))
+	log_and_message_admins("[key_name(usr)] has toggled Paranoia Logging, it is now [(CONFIG_GET(flag/paranoia_logging) ? "on" : "off")]")
+	if (CONFIG_GET(flag/paranoia_logging) && (!dbcon || !dbcon.IsConnected()))
 		message_admins("The Database is not connected! Paranoia logging will not be able to give 'player age' (time since first connection) warnings, only Byond account warnings.")
 	feedback_add_details("admin_verb","PARLOG") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 

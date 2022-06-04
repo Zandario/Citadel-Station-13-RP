@@ -174,13 +174,13 @@
 		to_chat(src, "<span class='info'>Adminhelps are also sent to IRC. If no admins are available in game try anyway and an admin on IRC may see it and respond.</span>")
 	msg = "<b>Current Admins ([num_admins_online]):</b>\n" + msg
 
-	if(config_legacy.show_mods)
+	if(CONFIG_GET(flag/show_mods))
 		msg += "\n<b> Current Moderators ([num_mods_online]):</b>\n" + modmsg
 
-	if(config_legacy.show_devs)
+	if(CONFIG_GET(flag/show_devs))
 		msg += "\n<b> Current Developers ([num_devs_online]):</b>\n" + devmsg
 
-	if(config_legacy.show_event_managers)
+	if(CONFIG_GET(flag/show_event_managers))
 		msg += "\n<b> Current Event Managers ([num_event_managers_online]):</b>\n" + eventMmsg
 
 	to_chat(src, msg)

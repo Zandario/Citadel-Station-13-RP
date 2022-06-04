@@ -70,25 +70,25 @@
 		if(equip_type)
 			if(equip_type == EQUIP_HULL)
 				chassis.hull_equipment -= src
-				listclearnulls(chassis.hull_equipment)
+				list_clear_nulls(chassis.hull_equipment)
 			if(equip_type == EQUIP_WEAPON)
 				chassis.weapon_equipment -= src
-				listclearnulls(chassis.weapon_equipment)
+				list_clear_nulls(chassis.weapon_equipment)
 			if(equip_type == EQUIP_UTILITY)
 				chassis.utility_equipment -= src
-				listclearnulls(chassis.utility_equipment)
+				list_clear_nulls(chassis.utility_equipment)
 			if(equip_type == EQUIP_SPECIAL)
 				chassis.special_equipment -= src
-				listclearnulls(chassis.special_equipment)
+				list_clear_nulls(chassis.special_equipment)
 			if(equip_type == EQUIP_MICRO_UTILITY)
 				chassis.micro_utility_equipment -= src
-				listclearnulls(chassis.micro_utility_equipment)
+				list_clear_nulls(chassis.micro_utility_equipment)
 			if(equip_type == EQUIP_MICRO_WEAPON)
 				chassis.micro_weapon_equipment -= src
-				listclearnulls(chassis.micro_weapon_equipment)
+				list_clear_nulls(chassis.micro_weapon_equipment)
 		chassis.universal_equipment -= src
 		chassis.equipment -= src
-		listclearnulls(chassis.equipment)
+		list_clear_nulls(chassis.equipment)
 		if(chassis.selected == src)
 			chassis.selected = null
 		src.update_chassis_page()

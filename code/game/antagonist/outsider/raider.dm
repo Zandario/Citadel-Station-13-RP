@@ -151,7 +151,7 @@ var/datum/antagonist/raider/raiders
 	var/win_msg = ""
 
 	//No objectives, go straight to the feedback.
-	if(config_legacy.objectives_disabled || !global_objectives.len)
+	if(CONFIG_GET(flag/objectives_disabled) || !global_objectives.len)
 		return
 
 	var/success = global_objectives.len

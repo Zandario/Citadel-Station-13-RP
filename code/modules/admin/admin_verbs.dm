@@ -179,9 +179,6 @@ var/list/admin_verbs_server = list(
 	/client/proc/cmd_admin_delete, // Delete an instance/object/mob/etc,
 	/client/proc/cmd_debug_del_all,
 	/client/proc/cmd_admin_clear_mobs,
-	/datum/admins/proc/adrev,
-	/datum/admins/proc/adspawn,
-	/datum/admins/proc/adjump,
 	/datum/admins/proc/toggle_aliens,
 	/datum/admins/proc/toggle_space_ninja,
 	/client/proc/toggle_random_events,
@@ -312,9 +309,6 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/everyone_random,
 	/client/proc/reload_configuration,
 	/datum/admins/proc/toggleAI,
-	/datum/admins/proc/adrev,
-	/datum/admins/proc/adspawn,
-	/datum/admins/proc/adjump,
 	/client/proc/restart_controller,
 	/client/proc/cmd_admin_list_open_jobs,
 	/client/proc/callproc,
@@ -426,8 +420,8 @@ var/list/admin_verbs_event_manager = list(
 		if(holder.rights & R_SERVER)		verbs += admin_verbs_server
 		if(holder.rights & R_DEBUG)
 			verbs += admin_verbs_debug
-			if(config_legacy.debugparanoid && !(holder.rights & R_ADMIN))
-				verbs.Remove(admin_verbs_paranoid_debug)			//Right now it's just callproc but we can easily add others later on.
+			if(CONFIG_GET(flag/debug_paranoid) && !(holder.rights & R_ADMIN))
+				verbs.Remove(admin_verbs_paranoid_debug) //Right now it's just callproc but we can easily add others later on.
 		if(holder.rights & R_POSSESS)		verbs += admin_verbs_possess
 		if(holder.rights & R_PERMISSIONS)	verbs += admin_verbs_permissions
 		if(holder.rights & R_STEALTH)		verbs += /client/proc/stealth
@@ -1035,30 +1029,24 @@ var/list/admin_verbs_event_manager = list(
 /client/proc/toggleghostwriters()
 	set name = "Toggle ghost writers"
 	set category = "Server"
-	if(!holder)	return
-	if(config)
-		if(config_legacy.cult_ghostwriter)
-			config_legacy.cult_ghostwriter = 0
-			to_chat(src, "<b>Disallowed ghost writers.</b>")
-			message_admins("Admin [key_name_admin(usr)] has disabled ghost writers.", 1)
-		else
-			config_legacy.cult_ghostwriter = 1
-			to_chat(src, "<b>Enabled ghost writers.</b>")
-			message_admins("Admin [key_name_admin(usr)] has enabled ghost writers.", 1)
+	if(!holder)
+		return
+	if(!config)
+		return
+	CONFIG_SET(flag/cult_ghostwriter, !CONFIG_GET(flag/cult_ghostwriter))
+	to_chat(src, SPAN_BOLDANNOUNCE("[CONFIG_GET(flag/cult_ghostwriter) ? "Enabled" : "Disallowed"] ghost writers."))
+	message_admins("Admin [key_name_admin(usr)] has [CONFIG_GET(flag/cult_ghostwriter) ? "enabled" : "disallowed"] ghost writers.")
 
 /client/proc/toggledrones()
 	set name = "Toggle maintenance drones"
 	set category = "Server"
-	if(!holder)	return
-	if(config)
-		if(config_legacy.allow_drone_spawn)
-			config_legacy.allow_drone_spawn = 0
-			to_chat(src, "<b>Disallowed maint drones.</b>")
-			message_admins("Admin [key_name_admin(usr)] has disabled maint drones.", 1)
-		else
-			config_legacy.allow_drone_spawn = 1
-			to_chat(src, "<b>Enabled maint drones.</b>")
-			message_admins("Admin [key_name_admin(usr)] has enabled maint drones.", 1)
+	if(!holder)
+		return
+	if(!config)
+		return
+	CONFIG_SET(flag/allow_drone_spawn, !CONFIG_GET(flag/allow_drone_spawn))
+	to_chat(src, SPAN_BOLDANNOUNCE("[CONFIG_GET(flag/allow_drone_spawn) ? "Enabled" : "Disabled"] maint drones."))
+	message_admins("Admin [key_name_admin(usr)] has [CONFIG_GET(flag/allow_drone_spawn) ? "enabled" : "disabled"] maint drones.")
 
 /client/proc/man_up(mob/T as mob in GLOB.mob_list)
 	set category = "Fun"

@@ -101,8 +101,8 @@
 	return
 
 
-/datum/game_mode/proc/forge_meme_objectives(var/datum/mind/meme, var/datum/mind/first_host)
-	if (config_legacy.objectives_disabled)
+/datum/game_mode/proc/forge_meme_objectives(datum/mind/meme, datum/mind/first_host)
+	if(CONFIG_GET(flag/objectives_disabled))
 		return
 
 	// meme always needs to attune X hosts
@@ -122,16 +122,16 @@
 
 	return
 
-/datum/game_mode/proc/greet_meme(var/datum/mind/meme, var/you_are=1)
+/datum/game_mode/proc/greet_meme(datum/mind/meme, you_are = TRUE)
 	if (you_are)
-		to_chat(meme.current, "<span class='danger'>You are a meme!</span>")
+		to_chat(meme.current, SPAN_DANGER("You are a meme!"))
 	show_objectives(meme)
 	return
 
 /datum/game_mode/meme/check_finished()
 	var/memes_alive = 0
 	for(var/datum/mind/meme in memes)
-		if(!istype(meme.current,/mob/living))
+		if(!istype(meme.current, /mob/living))
 			continue
 		if(meme.current.stat==2)
 			continue

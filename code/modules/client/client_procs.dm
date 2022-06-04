@@ -141,9 +141,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 //This stops files larger than UPLOAD_LIMIT being sent from client to server via input(), client.Import() etc.
 /client/AllowUpload(filename, filelength)
 	if(filelength > UPLOAD_LIMIT)
-		to_chat(src, "<font color='red'>Error: AllowUpload(): File Upload too large. Upload Limit: [UPLOAD_LIMIT/1024]KiB.</font>")
-		return 0
-	return 1
+		to_chat(src, SPAN_WARNING("Error: AllowUpload(): File Upload too large. Upload Limit: [UPLOAD_LIMIT/1024]KiB."))
+		return FALSE
+	return TRUE
 
 
 	///////////
@@ -158,12 +158,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(connection != "seeker" && connection != "web")//Invalid connection type.
 		return null
 
-	if(!config_legacy.guests_allowed && IsGuestKey(key))
-		alert(src,"This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.","Guest","OK")
+	if(!CONFIG_GET(flag/guest_ban) && IsGuestKey(key))
+		alert(src, "This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.","Guest","OK")
 		del(src)
 		return
 
-	to_chat(src, "<font color='red'>If the title screen is black, resources are still downloading. Please be patient until the title screen appears.</font>")
+	to_chat(src, SPAN_BOLDANNOUNCE("If the title screen is black, resources are still downloading. Please be patient until the title screen appears."))
 
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
@@ -270,7 +270,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		stack_trace("mob login didn't put in perspective")
 
 	if(log_client_to_db() == "BUNKER_DROPPED")
-		disconnect_with_message("Disconnected by bunker: [config_legacy.panic_bunker_message]")
+		disconnect_with_message("Disconnected by bunker: [CONFIG_GET(string/panic_bunker_message)]")
 		return FALSE
 
 	if (byond_version >= 512)
@@ -385,7 +385,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	hook_vr("client_new",list(src))
 
-	if(config_legacy.paranoia_logging)
+	if(CONFIG_GET(flag/paranoia_logging))
 		if(isnum(player_age) && player_age == -1)
 			log_and_message_admins("PARANOIA: [key_name(src)] has connected here for the first time.")
 		if(isnum(account_age) && account_age <= 2)
@@ -524,14 +524,14 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	var/sql_admin_rank = sql_sanitize_text(admin_rank)
 
 	//Panic bunker code
-	if ((player_age == -1) && !(ckey in GLOB.bunker_passthrough)) //first connection
-		if (config_legacy.panic_bunker && !holder && !deadmin_holder)
-			log_adminwarn("Failed Login: [key] - New account attempting to connect during panic bunker")
-			message_admins("<span class='adminnotice'>Failed Login: [key] - New account attempting to connect during panic bunker</span>")
-			to_chat(src, config_legacy.panic_bunker_message)
+	if((player_age == -1) && !(ckey in GLOB.bunker_passthrough)) //first connection
+		if(CONFIG_GET(flag/panic_bunker) && !holder && !deadmin_holder)
+			// log_adminwarn("Failed Login: [key] - New account attempting to connect during panic bunker")
+			message_admins(SPAN_ADMINNOTICE("Failed Login: [key] - New account attempting to connect during panic bunker"))
+			to_chat(src, CONFIG_GET(string/panic_bunker_message))
 			return "BUNKER_DROPPED"
 	if(player_age == -1)
-		player_age = 0		//math requires this to not be -1.
+		player_age = 0 //math requires this to not be -1.
 
 	if(config_legacy.ip_reputation)
 		if(config_legacy.ipr_allow_existing && player_age >= config_legacy.ipr_minimum_age)
@@ -539,7 +539,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		else if(update_ip_reputation()) //It is set now
 			if(ip_reputation >= config_legacy.ipr_bad_score) //It's bad
 				//Log it
-				if(config_legacy.paranoia_logging) //We don't block, but we want paranoia log messages
+				if(CONFIG_GET(flag/paranoia_logging)) //We don't block, but we want paranoia log messages
 					log_and_message_admins("[key] at [address] has bad IP reputation: [ip_reputation]. Will be kicked if enabled in config.")
 				else //We just log it
 					log_admin("[key] at [address] has bad IP reputation: [ip_reputation]. Will be kicked if enabled in config.")

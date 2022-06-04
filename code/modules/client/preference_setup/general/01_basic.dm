@@ -42,8 +42,8 @@ datum/preferences/proc/set_biological_gender(var/gender)
 	pref.be_random_name     = sanitize_integer(pref.be_random_name, 0, 1, initial(pref.be_random_name))
 
 // Moved from /datum/preferences/proc/copy_to()
-/datum/category_item/player_setup_item/general/basic/copy_to_mob(var/mob/living/carbon/human/character)
-	if(config_legacy.humans_need_surnames)
+/datum/category_item/player_setup_item/general/basic/copy_to_mob(mob/living/carbon/human/character)
+	if(CONFIG_GET(flag/humans_need_surnames))
 		var/firstspace = findtext(pref.real_name, " ")
 		var/name_length = length(pref.real_name)
 		if(!firstspace)	//we need a surname
@@ -75,7 +75,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 	. += "<b>Pronouns:</b> <a href='?src=\ref[src];id_gender=1'><b>[gender2text(pref.identifying_gender)]</b></a><br>"
 	. += "<b>Age:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a><br>"
 	. += "<b>Spawn Point</b>: <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
-	if(config_legacy.allow_Metadata)
+	if(CONFIG_GET(flag/allow_metadata))
 		. += "<b>OOC Notes:</b> <a href='?src=\ref[src];metadata=1'> Edit </a><br>"
 	. = jointext(.,null)
 

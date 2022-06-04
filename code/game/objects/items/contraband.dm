@@ -14,7 +14,7 @@
 	starts_with = list(/obj/item/reagent_containers/pill/zoom = 7)
 
 /obj/item/reagent_containers/glass/beaker/vial/random
-	flags = 0
+	flags = NONE
 	var/list/random_reagent_list = list(list("water" = 15) = 1, list("cleaner" = 15) = 1)
 
 /obj/item/reagent_containers/glass/beaker/vial/random/toxin

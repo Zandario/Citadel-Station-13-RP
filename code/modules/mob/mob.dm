@@ -449,7 +449,7 @@
 	return
 */
 
-/mob/proc/set_respawn_timer(var/time)
+/mob/proc/set_respawn_timer(time)
 	// Try to figure out what time to use
 
 	// Special cases, can never respawn
@@ -457,7 +457,7 @@
 		time = -1
 	else if(!config_legacy.abandon_allowed)
 		time = -1
-	else if(!config_legacy.respawn)
+	else if(CONFIG_GET(flag/norespawn))
 		time = -1
 
 	// Special case for observing before game start
@@ -466,7 +466,7 @@
 
 	// Wasn't given a time, use the config time
 	else if(!time)
-		time = config_legacy.respawn_time
+		time = CONFIG_GET(number/respawn_time)
 
 	var/keytouse = ckey
 	// Try harder to find a key to use
@@ -478,7 +478,7 @@
 	GLOB.respawn_timers[keytouse] = world.time + time
 
 /mob/observer/dead/set_respawn_timer()
-	if(config_legacy.antag_hud_restricted && has_enabled_antagHUD)
+	if(CONFIG_GET(flag/antag_hud_restricted) && has_enabled_antagHUD)
 		..(-1)
 	else
 		return 	// Don't set it, no need
@@ -506,22 +506,24 @@
 			return
 
 	// Beyond this point, you're going to respawn
-	to_chat(usr, config_legacy.respawn_message)
+	log_game("[key_name(usr)] used the respawn button.")
+
+	to_chat(usr, SPAN_BOLDNOTICE("Please roleplay correctly!"))
 
 	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
+		log_game("[key_name(usr)] AM failed due to disconnect.")
 		return
 	client.screen.Cut()
 	client.mob.reload_rendering()
 	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
+		log_game("[key_name(usr)] AM failed due to disconnect.")
 		return
 
 	announce_ghost_joinleave(client, 0)
 
 	var/mob/new_player/M = new /mob/new_player()
 	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
+		log_game("[key_name(usr)] AM failed due to disconnect.")
 		qdel(M)
 		return
 

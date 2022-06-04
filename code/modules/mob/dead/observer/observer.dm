@@ -205,8 +205,8 @@ Works together with spawning an observer, noted above.
 			B.update()
 		if(ghost.client)
 			ghost.client.time_died_as_mouse = ghost.timeofdeath
-		if(ghost.client && !ghost.client.holder && !config_legacy.antag_hud_allowed)		// For new ghosts we remove the verb from even showing up if it's not allowed.
-			ghost.verbs -= /mob/observer/dead/verb/toggle_antagHUD	// Poor guys, don't know what they are missing!
+		if(ghost.client && !ghost.client.holder && !CONFIG_GET(flag/antag_hud_allowed)) // For new ghosts we remove the verb from even showing up if it's not allowed.
+			ghost.verbs -= /mob/observer/dead/verb/toggle_antagHUD // Poor guys, don't know what they are missing!
 		ghost.client?.holder?.update_stealth_ghost()
 		return ghost
 
@@ -301,24 +301,24 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		get_atom_hud(DATA_HUD_MEDICAL).add_hud_to(src)
 	else
 		get_atom_hud(DATA_HUD_MEDICAL).remove_hud_from(src)
-	to_chat(src,"<font color=#4F49AF><B>Medical HUD [medHUD ? "Enabled" : "Disabled"]</B></font>")
+	to_chat(src, SPAN_BOLDNOTICE("Medical HUD [medHUD ? "Enabled" : "Disabled"]"))
 
 /mob/observer/dead/verb/toggle_antagHUD()
 	set category = "Ghost"
 	set name = "Toggle AntagHUD"
 	set desc = "Toggles AntagHUD allowing you to see who is the antagonist"
 
-	if(!config_legacy.antag_hud_allowed && !client.holder)
-		to_chat(src, "<font color='red'>Admins have disabled this for this round.</font>")
+	if(!CONFIG_GET(flag/antag_hud_allowed) && !client.holder)
+		to_chat(src, SPAN_WARNING("Admins have disabled this for this round."))
 		return
 	if(jobban_isbanned(src, "AntagHUD"))
-		to_chat(src, "<font color='red'><B>You have been banned from using this feature</B></font>")
+		to_chat(src, SPAN_BOLDANNOUNCE("You have been banned from using this feature"))
 		return
-	if(config_legacy.antag_hud_restricted && !has_enabled_antagHUD && !client.holder)
+	if(CONFIG_GET(flag/antag_hud_restricted) && !has_enabled_antagHUD && !client.holder)
 		var/response = alert(src, "If you turn this on, you will not be able to take any part in the round.","Are you sure you want to turn this feature on?","Yes","No")
 		if(response == "No") return
 		can_reenter_corpse = FALSE
-		set_respawn_timer(-1)	// Foreeeever
+		set_respawn_timer(-1) // Foreeeever
 	if(!has_enabled_antagHUD && !client.holder)
 		has_enabled_antagHUD = TRUE
 
@@ -328,7 +328,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		H.add_hud_to(src)
 	else
 		H.remove_hud_from(src)
-	to_chat(src,"<font color=#4F49AF><B>AntagHUD [antagHUD ? "Enabled" : "Disabled"]</B></font>")
+	to_chat(src, SPAN_BOLDNOTICE("AntagHUD [antagHUD ? "Enabled" : "Disabled"]"))
 
 /mob/observer/dead/proc/dead_tele(var/area/A in GLOB.sortedAreas)
 	set category = "Ghost"
@@ -474,8 +474,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Become mouse"
 	set category = "Ghost"
 
-	if(config_legacy.disable_player_mice)
-		to_chat(src, "<span class='warning'>Spawning as a mouse is currently disabled.</span>")
+	if(CONFIG_GET(flag/disable_player_mice))
+		to_chat(src, SPAN_WARNING("Spawning as a mouse is currently disabled."))
 		return
 
 	if(!MayRespawn(1))
@@ -483,18 +483,19 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/turf/T = get_turf(src)
 	if(!T || (T.z in GLOB.using_map.admin_levels))
-		to_chat(src, "<span class='warning'>You may not spawn as a mouse on this Z-level.</span>")
+		to_chat(src, SPAN_WARNING("You may not spawn as a mouse on this Z-level."))
 		return
 
 	var/timedifference = world.time - client.time_died_as_mouse
 	if(client.time_died_as_mouse && timedifference <= mouse_respawn_time * 600)
 		var/timedifference_text
 		timedifference_text = time2text(mouse_respawn_time * 600 - timedifference,"mm:ss")
-		to_chat(src, "<span class='warning'>You may only spawn again as a mouse more than [mouse_respawn_time] minutes after your death. You have [timedifference_text] left.</span>")
+		to_chat(src, SPAN_WARNING("You may only spawn again as a mouse more than [mouse_respawn_time] minutes after your death. You have [timedifference_text] left."))
 		return
 
 	var/response = alert(src, "Are you -sure- you want to become a mouse?","Are you sure you want to squeek?","Squeek!","Nope!")
-	if(response != "Squeek!") return  //Hit the wrong key...again.
+	if(response != "Squeek!")
+		return //Hit the wrong key...again.
 
 
 	//find a viable mouse candidate
@@ -508,15 +509,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		vent_found = pick(found_vents)
 		host = new /mob/living/simple_mob/animal/passive/mouse(vent_found)
 	else
-		to_chat(src, "<span class='warning'>Unable to find any unwelded vents to spawn mice at.</span>")
+		to_chat(src, SPAN_WARNING("Unable to find any unwelded vents to spawn mice at."))
 
 	if(host)
-		if(config_legacy.uneducated_mice)
-			host.universal_understand = 0
+		if(CONFIG_GET(flag/disable_player_mice))
+			host.universal_understand = FALSE
 		announce_ghost_joinleave(src, 0, "They are now a mouse.")
 		host.ckey = src.ckey
 		host.add_ventcrawl(vent_found)
-		to_chat(host, "<span class='info'>You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent.</span>")
+		to_chat(host, SPAN_INFO("You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent."))
 
 /mob/observer/dead/verb/view_manfiest()
 	set name = "Show Crew Manifest"
@@ -544,23 +545,24 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Write in blood"
 	set desc = "If the round is sufficiently spooky, write a short message in blood on the floor or a wall. Remember, no IC in OOC or OOC in IC."
 
-	if(!(config_legacy.cult_ghostwriter))
-		to_chat(src, "<font color='red'>That verb is not currently permitted.</font>")
+	if(!CONFIG_GET(flag/cult_ghostwriter))
+		to_chat(src, SPAN_WARNING("That verb is not currently permitted."))
 		return
 
 	if (!src.stat)
 		return
 
 	if (usr != src)
-		return 0 //something is terribly wrong
+		return FALSE //something is terribly wrong
 
 	var/ghosts_can_write
 	if(SSticker.mode.name == "cult")
-		if(cult.current_antagonists.len > config_legacy.cult_ghostwriter_req_cultists)
-			ghosts_can_write = 1
+		if(cult.current_antagonists.len > CONFIG_GET(number/cult_ghostwriter_req_cultists))
+			ghosts_can_write = TRUE
 
-	if(!ghosts_can_write && !check_rights(R_ADMIN, 0)) //Let's allow for admins to write in blood for events and the such.
-		to_chat(src, "<font color='red'>The veil is not thin enough for you to do that.</font>")
+	// Let's allow for admins to write in blood for events and the such.
+	if(!ghosts_can_write && !check_rights(R_ADMIN, 0))
+		to_chat(src, SPAN_WARNING("The veil is not thin enough for you to do that."))
 		return
 
 	var/list/choices = list()
@@ -569,7 +571,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			choices += B
 
 	if(!choices.len)
-		to_chat(src, "<span class = 'warning'>There is no blood to use nearby.</span>")
+		to_chat(src, SPAN_WARNING("There is no blood to use nearby."))
 		return
 
 	var/obj/effect/decal/cleanable/blood/choice = input(src,"What blood would you like to use?") in null|choices
@@ -710,18 +712,18 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	plane_holder.set_vis(VIS_FULLBRIGHT, !seedarkness) //Inversion, because "not seeing" the darkness is "seeing" the lighting plane master.
 	plane_holder.set_vis(VIS_GHOSTS, ghostvision)
 
-/mob/observer/dead/MayRespawn(var/feedback = 0)
+/mob/observer/dead/MayRespawn(feedback = FALSE)
 	if(!client)
-		return 0
+		return FALSE
 	if(mind && mind.current && mind.current.stat != DEAD && can_reenter_corpse)
 		if(feedback)
-			to_chat(src, "<span class='warning'>Your non-dead body prevent you from respawning.</span>")
-		return 0
-	if(config_legacy.antag_hud_restricted && has_enabled_antagHUD == 1)
+			to_chat(src, SPAN_BOLDANNOUNCE("Your non-dead body prevent you from respawning."))
+		return FALSE
+	if(CONFIG_GET(flag/antag_hud_restricted) && has_enabled_antagHUD == 1)
 		if(feedback)
-			to_chat(src, "<span class='warning'>antagHUD restrictions prevent you from respawning.</span>")
-		return 0
-	return 1
+			to_chat(src, SPAN_BOLDANNOUNCE("antagHUD restrictions prevent you from respawning."))
+		return FALSE
+	return TRUE
 
 /atom/proc/extra_ghost_link()
 	return

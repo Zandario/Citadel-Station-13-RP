@@ -178,16 +178,16 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	if(init_sss)
 		init_subtypes(/datum/controller/subsystem, subsystems)
 
-	to_chat(world, "<span class='boldannounce'>Initializing subsystems...</span>")
+	to_chat(world, SPAN_BOLDANNOUNCE("Initializing subsystems..."))
 
 	// Sort subsystems by init_order, so they initialize in the correct order.
 	sortTim(subsystems, /proc/cmp_subsystem_init)
 
 	var/start_timeofday = REALTIMEOFDAY
 	// Initialize subsystems.
-	current_ticklimit = config_legacy.tick_limit_mc_init
-	for (var/datum/controller/subsystem/SS in subsystems)
-		if (SS.subsystem_flags & SS_NO_INIT)
+	current_ticklimit = CONFIG_GET(number/tick_limit_mc_init)
+	for(var/datum/controller/subsystem/SS in subsystems)
+		if(SS.subsystem_flags & SS_NO_INIT)
 			continue
 		SS.Initialize(REALTIMEOFDAY)
 		CHECK_TICK
@@ -195,7 +195,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	var/time = (REALTIMEOFDAY - start_timeofday) / 10
 
 	var/msg = "Initializations complete within [time] second[time == 1 ? "" : "s"]!"
-	to_chat(world, "<span class='boldannounce'>[msg]</span>")
+	to_chat(world, SPAN_BOLDANNOUNCE("[msg]"))
 	log_world(msg)
 
 	if (!current_runlevel)
@@ -206,7 +206,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 	// Set world options.
 
-	world.fps = config_legacy.fps
+	world.fps = CONFIG_GET(number/fps)
 
 	var/initialized_tod = REALTIMEOFDAY
 	if(sleep_offline_after_initializations)

@@ -828,9 +828,9 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	set category = "Server"
 	set desc="Toggle traitor scaling"
 	set name="Toggle Traitor Scaling"
-	config_legacy.traitor_scaling = !config_legacy.traitor_scaling
-	log_admin("[key_name(usr)] toggled Traitor Scaling to [config_legacy.traitor_scaling].")
-	message_admins("[key_name_admin(usr)] toggled Traitor Scaling [config_legacy.traitor_scaling ? "on" : "off"].", 1)
+	CONFIG_SET(flag/traitor_scaling, !CONFIG_GET(flag/traitor_scaling))
+	log_admin("[key_name(usr)] toggled Traitor Scaling to [CONFIG_GET(flag/traitor_scaling)].")
+	message_admins("[key_name_admin(usr)] toggled Traitor Scaling [CONFIG_GET(flag/traitor_scaling) ? "on" : "off"].", 1)
 	feedback_add_details("admin_verb","TTS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/startnow()
@@ -861,7 +861,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	else
 		to_chat(world, "<B>New players may now enter the game.</B>")
 	log_admin("[key_name(usr)] toggled new player game entering.")
-	message_admins("<font color=#4F49AF>[key_name_admin(usr)] toggled new player game entering.</font>", 1)
+	message_admins(SPAN_ADMINNOTICE("[key_name_admin(usr)] toggled new player game entering."), 1)
 	world.update_status()
 	feedback_add_details("admin_verb","TE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -869,11 +869,11 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	set category = "Server"
 	set desc="People can't be AI"
 	set name="Toggle AI"
-	config_legacy.allow_ai = !( config_legacy.allow_ai )
-	if (!( config_legacy.allow_ai ))
-		to_chat(world, "<B>The AI job is no longer chooseable.</B>")
+	CONFIG_SET(flag/allow_ai, !CONFIG_GET(flag/allow_ai))
+	if(!CONFIG_GET(flag/allow_ai))
+		to_chat(world, SPAN_BOLD("The AI job is no longer chooseable."), confidential = TRUE)
 	else
-		to_chat(world, "<B>The AI job is chooseable now.</B>")
+		to_chat(world, SPAN_BOLD("The AI job is chooseable now."), confidential = TRUE)
 	log_admin("[key_name(usr)] toggled AI allowed.")
 	world.update_status()
 	feedback_add_details("admin_verb","TAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -882,12 +882,12 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	set category = "Server"
 	set desc = "Respawn basically"
 	set name = "Toggle Respawn"
-	config_legacy.abandon_allowed = !(config_legacy.abandon_allowed)
-	if(config_legacy.abandon_allowed)
-		to_chat(world, "<B>Returning to menu as a ghost is now allowed.</B>")
+	CONFIG_SET(flag/norespawn, !CONFIG_GET(flag/norespawn))
+	if(!CONFIG_GET(flag/norespawn))
+		to_chat(world, SPAN_BOLD("You may now respawn."), confidential = TRUE)
 	else
-		to_chat(world, "<B>Returning to menu as a ghost is no longer allowed :(</B>")
-	message_admins("<font color=#4F49AF>[key_name_admin(usr)] toggled respawn to [config_legacy.abandon_allowed ? "On" : "Off"].</font>", 1)
+		to_chat(world, SPAN_BOLD("You may no longer respawn :("), confidential = TRUE)
+	message_admins(SPAN_ADMINNOTICE("[key_name_admin(usr)] toggled respawn to [config_legacy.abandon_allowed ? "On" : "Off"]."))
 	log_admin("[key_name(usr)] toggled respawn to [config_legacy.abandon_allowed ? "On" : "Off"].")
 	world.update_status()
 	feedback_add_details("admin_verb","TR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -944,40 +944,13 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 			log_admin("[key_name(usr)] set the pre-game delay to [DisplayTimeText(newtime)].")
 //		SSblackbox.record_feedback("tally", "admin_verb", 1, "Delay Game Start") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/adjump()
-	set category = "Server"
-	set desc="Toggle admin jumping"
-	set name="Toggle Jump"
-	config_legacy.allow_admin_jump = !(config_legacy.allow_admin_jump)
-	message_admins("<font color=#4F49AF>Toggled admin jumping to [config_legacy.allow_admin_jump].</font>")
-	feedback_add_details("admin_verb","TJ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/datum/admins/proc/adspawn()
-	set category = "Server"
-	set desc="Toggle admin spawning"
-	set name="Toggle Spawn"
-	config_legacy.allow_admin_spawning = !(config_legacy.allow_admin_spawning)
-	message_admins("<font color=#4F49AF>Toggled admin item spawning to [config_legacy.allow_admin_spawning].</font>")
-	feedback_add_details("admin_verb","TAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/datum/admins/proc/adrev()
-	set category = "Server"
-	set desc="Toggle admin revives"
-	set name="Toggle Revive"
-	config_legacy.allow_admin_rev = !(config_legacy.allow_admin_rev)
-	message_admins("<font color=#4F49AF>Toggled reviving to [config_legacy.allow_admin_rev].</font>")
-	feedback_add_details("admin_verb","TAR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 /datum/admins/proc/unprison(var/mob/M in GLOB.mob_list)
 	set category = "Admin"
 	set name = "Unprison"
 	if (M.z == 2)
-		if (config_legacy.allow_admin_jump)
-			M.forceMove(SSjob.GetLatejoinSpawnpoint(faction = JOB_FACTION_STATION))
-			message_admins("[key_name_admin(usr)] has unprisoned [key_name_admin(M)]", 1)
-			log_admin("[key_name(usr)] has unprisoned [key_name(M)]")
-		else
-			alert("Admin jumping disabled")
+		M.forceMove(SSjob.GetLatejoinSpawnpoint(faction = JOB_FACTION_STATION))
+		message_admins("[key_name_admin(usr)] has unprisoned [key_name_admin(M)]", 1)
+		log_admin("[key_name(usr)] has unprisoned [key_name(M)]")
 	else
 		alert("[M.name] is not prisoned.")
 	feedback_add_details("admin_verb","UP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -1215,13 +1188,10 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	set category = "Server"
 	set desc="Guests can't enter"
 	set name="Toggle guests"
-	config_legacy.guests_allowed = !(config_legacy.guests_allowed)
-	if (!(config_legacy.guests_allowed))
-		to_chat(world, "<B>Guests may no longer enter the game.</B>")
-	else
-		to_chat(world, "<B>Guests may now enter the game.</B>")
-	log_admin("[key_name(usr)] toggled guests game entering [config_legacy.guests_allowed?"":"dis"]allowed.")
-	message_admins("<font color=#4F49AF>[key_name_admin(usr)] toggled guests game entering [config_legacy.guests_allowed?"":"dis"]allowed.</font>", 1)
+	CONFIG_SET(flag/guest_ban, !CONFIG_GET(flag/guest_ban))
+	to_chat(world, SPAN_BOLD("Guests may no[CONFIG_GET(flag/guest_ban) ? "w" : " longer"] enter the game."))
+	log_admin("[key_name(usr)] toggled guests game entering [CONFIG_GET(flag/guest_ban) ? "" : "dis"]allowed.")
+	message_admins(SPAN_ADMINNOTICE("[key_name_admin(usr)] toggled guests game entering [CONFIG_GET(flag/guest_ban) ? "" : "dis"]allowed."))
 	feedback_add_details("admin_verb","TGU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/output_ai_laws()

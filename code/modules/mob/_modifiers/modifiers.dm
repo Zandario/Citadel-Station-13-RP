@@ -25,7 +25,7 @@
 	/// If true, attempts to add a second instance of this type will refresh expire_at instead.
 	var/stacks = MODIFIER_STACK_FORBID
 	/// Flags for the modifier, see mobs.dm defines for more details.
-	var/flags = 0
+	var/flags = NONE
 
 	/// If set, the mob possessing the modifier will glow in this color.  Not implemented yet.
 	var/light_color = null

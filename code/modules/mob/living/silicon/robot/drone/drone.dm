@@ -191,8 +191,8 @@ var/list/mob_hat_cache = list()
 		var/datum/gender/TU = gender_datums[user.get_visible_gender()]
 		if(stat == 2)
 
-			if(!config_legacy.allow_drone_spawn || emagged || health < -35) //It's dead, Dave.
-				to_chat(user, "<span class='danger'>The interface is fried, and a distressing burned smell wafts from the robot's interior. You're not rebooting this one.</span>")
+			if(!CONFIG_GET(flag/allow_drone_spawn) || emagged || health < -35) //It's dead, Dave.
+				to_chat(user, SPAN_DANGER("The interface is fried, and a distressing burned smell wafts from the robot's interior. You're not rebooting this one."))
 				return
 
 			if(!allowed(usr))
@@ -203,7 +203,7 @@ var/list/mob_hat_cache = list()
 			var/drones = 0
 			for(var/mob/living/silicon/robot/drone/D in player_list)
 				drones++
-			if(drones < config_legacy.max_maint_drones)
+			if(drones < CONFIG_GET(number/max_maint_drones))
 				request_player()
 			return
 

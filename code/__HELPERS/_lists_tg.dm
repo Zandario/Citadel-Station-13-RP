@@ -1,13 +1,14 @@
+/**
+ * Removes any null entries from the list
+ * Returns TRUE if the list had nulls, FALSE otherwise
+ */
+/proc/list_clear_nulls(list/list_to_clear)
+	var/start_len = list_to_clear.len
+	var/list/new_list = new(start_len)
+	list_to_clear -= new_list
+	return list_to_clear.len < start_len
 
-//Removes any null entries from the list
-//Returns TRUE if the list had nulls, FALSE otherwise
-/proc/listclearnulls(list/L)
-	var/start_len = L.len
-	var/list/N = new(start_len)
-	L -= N
-	return L.len < start_len
-
-/*
+/**
  * Returns list containing all the entries from first list that are not present in second.
  * If skiprep = 1, repeated elements are treated as one.
  * If either of arguments is not a list, returns null
@@ -24,7 +25,7 @@
 		result = first - second
 	return result
 
-/*
+/**
  * Returns list containing entries that are in either list but not both.
  * If skipref = 1, repeated elements are treated as one.
  * If either of arguments is not a list, returns null
@@ -45,10 +46,10 @@
 		pos--
 	L.Insert(pos+1, thing)
 
-/*
-Two lists may be different (A!=B) even if they have the same elements.
-This actually tests if they have the same entries and values.
-*/
+/**
+ * Two lists may be different (A!=B) even if they have the same elements.
+ * This actually tests if they have the same entries and values.
+ */
 /proc/same_entries(var/list/first, var/list/second)
 	if(!islist(first) || !islist(second))
 		return 0
@@ -60,20 +61,20 @@ This actually tests if they have the same entries and values.
 	return 1
 
 
-//for sorting clients or mobs by ckey
+/// For sorting clients or mobs by ckey
 /proc/sortKey(list/L, order=1)
 	return sortTim(L, order >= 0 ? /proc/cmp_ckey_asc : /proc/cmp_ckey_dsc)
 
-//Specifically for record datums in a list.
+/// Specifically for record datums in a list.
 /proc/sortRecord(list/L, field = "name", order = 1)
 	GLOB.cmp_field = field
 	return sortTim(L, order >= 0 ? /proc/cmp_records_asc : /proc/cmp_records_dsc)
 
-//any value in a list
+/// Any value in a list
 /proc/sortList(list/L, cmp=/proc/cmp_text_asc)
 	return sortTim(L.Copy(), cmp)
 
-//uses sortList() but uses the var's name specifically. This should probably be using mergeAtom() instead
+/// Uses sortList() but uses the var's name specifically. This should probably be using mergeAtom() instead
 /proc/sortNames(list/L, order=1)
 	return sortTim(L, order >= 0 ? /proc/cmp_name_asc : /proc/cmp_name_dsc)
 

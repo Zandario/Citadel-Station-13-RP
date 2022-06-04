@@ -632,7 +632,7 @@
 			to_chat(usr, "<span class='adminlog warning'>You do not have the appropriate permissions to add job bans!</span>")
 			return
 
-		if(check_rights(R_MOD,0) && !check_rights(R_ADMIN,0) && !config_legacy.mods_can_job_tempban) // If mod and tempban disabled
+		if(check_rights(R_MOD,0) && !check_rights(R_ADMIN,0) && !CONFIG_GET(flag/mods_can_job_tempban)) // If mod and tempban disabled
 			to_chat(usr, "<span class='adminlog warning'>Mod jobbanning is disabled!</span>")
 			return
 
@@ -730,8 +730,8 @@
 					var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
 					if(!mins)
 						return
-					if(check_rights(R_MOD, 0) && !check_rights(R_BAN, 0) && mins > config_legacy.mod_job_tempban_max)
-						to_chat(usr, "<span class='adminlog warning'> Moderators can only job tempban up to [config_legacy.mod_job_tempban_max] minutes!</span>")
+					if(check_rights(R_MOD, 0) && !check_rights(R_BAN, 0) && mins > CONFIG_GET(number/mod_job_tempban_max))
+						to_chat(usr, "<span class='adminlog warning'> Moderators can only job tempban up to [CONFIG_GET(number/mod_job_tempban_max)] minutes!</span>")
 						return
 					var/reason = sanitize(input(usr,"Reason?","Please State Reason","") as text|null)
 					if(!reason)
@@ -845,7 +845,7 @@
 			to_chat(usr, "<span class='warning'>You do not have the appropriate permissions to add bans!</span>")
 			return
 
-		if(check_rights(R_MOD,0) && !check_rights(R_ADMIN, 0) && !config_legacy.mods_can_job_tempban) // If mod and tempban disabled
+		if(check_rights(R_MOD,0) && !check_rights(R_ADMIN, 0) && !CONFIG_GET(flag/mods_can_job_tempban)) // If mod and tempban disabled
 			to_chat(usr, "<span class='warning'>Mod jobbanning is disabled!</span>")
 			return
 
@@ -859,8 +859,8 @@
 				var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
 				if(!mins)
 					return
-				if(check_rights(R_MOD, 0) && !check_rights(R_BAN, 0) && mins > config_legacy.mod_tempban_max)
-					to_chat(usr, "<span class='warning'>Moderators can only job tempban up to [config_legacy.mod_tempban_max] minutes!</span>")
+				if(check_rights(R_MOD, 0) && !check_rights(R_BAN, 0) && mins > CONFIG_GET(number/mod_tempban_max))
+					to_chat(usr, SPAN_WARNING("Moderators can only job tempban up to [CONFIG_GET(number/mod_tempban_max)] minutes!"))
 					return
 				if(mins >= 525600) mins = 525599
 				var/reason = sanitize(input(usr,"Reason?","reason","Griefer") as text|null)
@@ -1169,12 +1169,9 @@
 			to_chat(usr, "This can only be used on instances of type /mob/living")
 			return
 
-		if(config_legacy.allow_admin_rev)
-			L.revive()
-			message_admins("<font color='red'>Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!</font>", 1)
-			log_admin("[key_name(usr)] healed / Rrvived [key_name(L)]")
-		else
-			to_chat(usr, "Admin Rejuvinates have been disabled")
+		L.revive()
+		message_admins("<font color='red'>Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!</font>", 1)
+		log_admin("[key_name(usr)] healed / Rrvived [key_name(L)]")
 
 	else if(href_list["makeai"])
 		if(!check_rights(R_SPAWN))	return
@@ -1580,12 +1577,8 @@
 		if(!check_rights(R_SPAWN))	return
 		return create_mob(usr)
 
-	else if(href_list["object_list"])			//this is the laggiest thing ever
+	else if(href_list["object_list"]) //this is the laggiest thing ever
 		if(!check_rights(R_SPAWN))	return
-
-		if(!config_legacy.allow_admin_spawning)
-			to_chat(usr, "Spawning of items is not allowed.")
-			return
 
 		var/atom/loc = usr.loc
 

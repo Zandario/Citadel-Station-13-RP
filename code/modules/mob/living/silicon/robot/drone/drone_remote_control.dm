@@ -1,12 +1,10 @@
-/mob/living/silicon/ai
-	var/mob/living/silicon/robot/drone/controlling_drone
+/mob/living/silicon/ai/var/mob/living/silicon/robot/drone/controlling_drone
 
-/mob/living/silicon/robot/drone
-	var/mob/living/silicon/ai/controlling_ai
+/mob/living/silicon/robot/drone/var/mob/living/silicon/ai/controlling_ai
 
-/mob/living/silicon/robot/drone/attack_ai(var/mob/living/silicon/ai/user)
+/mob/living/silicon/robot/drone/attack_ai(mob/living/silicon/ai/user)
 
-	if(!istype(user) || controlling_ai || !config_legacy.allow_drone_spawn || !config_legacy.allow_ai_drones)
+	if(!istype(user) || controlling_ai || !CONFIG_GET(flag/allow_drone_spawn) || !config_legacy.allow_ai_drones)
 		return
 
 	if(client || key)
@@ -33,9 +31,9 @@
 	updatename()
 	to_chat(src, "<span class='notice'><b>You have shunted your primary control loop into \a [initial(name)].</b> Use the <b>Release Control</b> verb to return to your core.</span>")
 
-/obj/machinery/drone_fabricator/attack_ai(var/mob/living/silicon/ai/user as mob)
+/obj/machinery/drone_fabricator/attack_ai(mob/living/silicon/ai/user as mob)
 
-	if(!istype(user) || user.controlling_drone || !config_legacy.allow_drone_spawn || !config_legacy.allow_ai_drones)
+	if(!istype(user) || user.controlling_drone || !CONFIG_GET(flag/allow_drone_spawn) || !config_legacy.allow_ai_drones)
 		return
 
 	if(stat & NOPOWER)
@@ -50,8 +48,8 @@
 		to_chat(user, "<span class='warning'>\The [src] is not ready to produce a new drone.</span>")
 		return
 
-	if(count_drones() >= config_legacy.max_maint_drones)
-		to_chat(user, "<span class='warning'>The drone control subsystems are tasked to capacity; they cannot support any more drones.</span>")
+	if(count_drones() >= CONFIG_GET(number/max_maint_drones))
+		to_chat(user, SPAN_WARNING("The drone control subsystems are tasked to capacity; they cannot support any more drones."))
 		return
 
 	var/mob/living/silicon/robot/drone/new_drone = create_drone()

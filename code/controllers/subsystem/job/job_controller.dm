@@ -549,8 +549,8 @@ var/global/datum/controller/occupations/job_master
 		return H
 
 	proc/LoadJobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
-		if(!config_legacy.load_jobs_from_txt)
-			return 0
+		if(!CONFIG_GET(flag/load_jobs_from_txt))
+			return FALSE
 
 		var/list/jobEntries = world.file2list(jobsfile)
 

@@ -1,4 +1,4 @@
-/datum/antagonist/proc/can_become_antag(var/datum/mind/player, var/ignore_role)
+/datum/antagonist/proc/can_become_antag(datum/mind/player, ignore_role)
 	if(player.current)
 		if(jobban_isbanned(player.current, bantype))
 			return FALSE
@@ -8,7 +8,7 @@
 	if(!ignore_role)
 		if(player.assigned_role in restricted_jobs)
 			return FALSE
-		if(config_legacy.protect_roles_from_antagonist && (player.assigned_role in protected_jobs))
+		if(CONFIG_GET(flag/protect_roles_from_antagonist) && (player.assigned_role in protected_jobs))
 			return FALSE
 	return TRUE
 

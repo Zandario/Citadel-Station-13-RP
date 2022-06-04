@@ -86,7 +86,7 @@
 	S.cd = "/"
 	if(!slot)	slot = default_slot
 	if(slot != SAVE_RESET) // SAVE_RESET will reset the slot as though it does not exist, but keep the current slot for saving purposes.
-		slot = sanitize_integer(slot, 1, config_legacy.character_slots, initial(default_slot))
+		slot = sanitize_integer(slot, 1, CONFIG_GET(number/character_slots), initial(default_slot))
 		if(slot != default_slot)
 			default_slot = slot
 			S["default_slot"] << slot
@@ -119,24 +119,28 @@
 	return 1
 
 /datum/preferences/proc/overwrite_character(slot)
-	if(!path)				return 0
-	if(!fexists(path))		return 0
+	if(!path)
+		return FALSE
+	if(!fexists(path))
+		return FALSE
 	var/savefile/S = new /savefile(path)
-	if(!S)					return 0
-	if(!slot)	slot = default_slot
+	if(!S)
+		return FALSE
+	if(!slot)
+		slot = default_slot
 	if(slot != SAVE_RESET)
-		slot = sanitize_integer(slot, 1, config_legacy.character_slots, initial(default_slot))
+		slot = sanitize_integer(slot, 1, CONFIG_GET(number/character_slots), initial(default_slot))
 		if(slot != default_slot)
 			default_slot = slot
 			S["default_slot"] << slot
 	else
 		S["default_slot"] << default_slot
 
-	return 1
+	return TRUE
 
 /datum/preferences/proc/sanitize_preferences()
 	player_setup.sanitize_setup()
-	return 1
+	return TRUE
 
 #undef SAVEFILE_VERSION_MAX
 #undef SAVEFILE_VERSION_MIN

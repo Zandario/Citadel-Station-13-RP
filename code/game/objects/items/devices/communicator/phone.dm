@@ -268,16 +268,18 @@
 			mob.show_message(rendered)
 	..()
 
-// Verb: join_as_voice()
-// Parameters: None
-// Description: Allows ghosts to call communicators, if they meet all the requirements.
+/**
+ * Verb: join_as_voice()
+ * Parameters: None
+ * Description: Allows ghosts to call communicators, if they meet all the requirements.
+ */
 /mob/observer/dead/verb/join_as_voice()
 	set category = "Ghost"
 	set name = "Call Communicator"
 	set desc = "If there is a communicator available, send a request to speak through it.  This will reset your respawn timer, if someone picks up."
 
 	if(SSticker.current_state < GAME_STATE_PLAYING)
-		to_chat(src, "<span class='danger'>The game hasn't started yet!</span>")
+		to_chat(src, SPAN_DANGER("The game hasn't started yet!"))
 		return
 
 	if (!src.stat)
@@ -291,19 +293,19 @@
 	if(confirm == "No")
 		return
 
-	if(config_legacy.antag_hud_restricted && has_enabled_antagHUD == 1)
-		to_chat(src, "<span class='danger'>You have used the antagHUD and cannot respawn or use communicators!</span>")
+	if(CONFIG_GET(flag/antag_hud_restricted) && has_enabled_antagHUD)
+		to_chat(src, SPAN_DANGER("You have used the antagHUD and cannot respawn or use communicators!"))
 		return
 
 	for(var/mob/living/L in GLOB.mob_list) //Simple check so you don't have dead people calling.
 		if(src.client.prefs.real_name == L.real_name)
-			to_chat(src, "<span class='danger'>Your identity is already present in the game world.  Please load in a different character first.</span>")
+			to_chat(src, SPAN_DANGER("Your identity is already present in the game world.  Please load in a different character first."))
 			return
 
 	var/obj/machinery/exonet_node/E = get_exonet_node()
 	if(!E || !E.on || !E.allow_external_communicators)
-		to_chat(src, "<span class='danger'>The Exonet node at telecommunications is down at the moment, or is actively blocking you, \
-		so your call can't go through.</span>")
+		to_chat(src, SPAN_DANGER("The Exonet node at telecommunications is down at the moment, or is actively blocking you, \
+		so your call can't go through."))
 		return
 
 	var/list/choices = list()
@@ -313,7 +315,7 @@
 		choices.Add(comm)
 
 	if(!choices.len)
-		to_chat(src , "<span class='danger'>There are no available communicators, sorry.</span>")
+		to_chat(src , SPAN_DANGER("There are no available communicators, sorry."))
 		return
 
 	var/choice = input(src,"Send a voice request to whom?") as null|anything in choices

@@ -30,31 +30,31 @@
 			fdel(TORFILE)
 			var/savefile/F = new(TORFILE)
 			for( var/line in rawlist )
-				if(!line)	continue
+				if(!line)
+					continue
 				if( copytext(line,1,12) == "ExitAddress" )
 					var/cleaned = copytext(line,13,length(line)-19)
-					if(!cleaned)	continue
+					if(!cleaned)
+						continue
 					F[cleaned] << 1
 			F["last_update"] << world.realtime
 			log_misc("ToR data updated!")
-			if(usr)	to_chat(usr, "ToRban updated.")
+			if(usr)
+				to_chat(usr, "ToRban updated.")
 		log_misc("ToR data update aborted: no data.")
 
 /client/proc/ToRban(task in list("update","toggle","show","remove","remove all","find"))
 	set name = "ToRban"
 	set category = "Server"
-	if(!holder)	return
+	if(!holder)
+		return
 	switch(task)
 		if("update")
 			ToRban_update()
 		if("toggle")
 			if(config)
-				if(config_legacy.ToRban)
-					config_legacy.ToRban = 0
-					message_admins("<font color='red'>ToR banning disabled.</font>")
-				else
-					config_legacy.ToRban = 1
-					message_admins("<font colot='green'>ToR banning enabled.</font>")
+				CONFIG_SET(flag/tor_ban, !CONFIG_GET(flag/tor_ban))
+				message_admins(SPAN_ADMINNOTICE("ToR banning [CONFIG_GET(flag/tor_ban) ? "disabled" : "enabled"]."))
 		if("show")
 			var/savefile/F = new(TORFILE)
 			var/dat
@@ -67,19 +67,19 @@
 			src << browse(dat,"window=ToRban_show")
 		if("remove")
 			var/savefile/F = new(TORFILE)
-			var/choice = input(src,"Please select an IP address to remove from the ToR banlist:","Remove ToR ban",null) as null|anything in F.dir
+			var/choice = input(src, "Please select an IP address to remove from the ToR banlist:", "Remove ToR ban", null) as null|anything in F.dir
 			if(choice)
 				F.dir.Remove(choice)
-				to_chat(src, "<b>Address removed</b>")
+				to_chat(src, SPAN_BOLD("Address removed."))
 		if("remove all")
-			to_chat(src, "<b>[TORFILE] was [fdel(TORFILE)?"":"not "]removed.</b>")
+			to_chat(src, SPAN_BOLD("[TORFILE] was [fdel(TORFILE)?"":"not "]removed."))
 		if("find")
 			var/input = input(src,"Please input an IP address to search for:","Find ToR ban",null) as null|text
 			if(input)
 				if(ToRban_isbanned(input))
-					to_chat(src, "<font color='green'><b>Address is a known ToR address</b></font>")
+					to_chat(src, SPAN_GREENANNOUNCE("Address is a known ToR address"))
 				else
-					to_chat(src, "<font color='red'><b>Address is not a known ToR address</b></font>")
+					to_chat(src, SPAN_BOLDANNOUNCE("Address is not a known ToR address"))
 	return
 
 #undef TORFILE

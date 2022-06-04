@@ -62,7 +62,7 @@
 
 	printing = TRUE
 	var/elapsed = world.time - time_last_drone
-	drone_progress = round((elapsed/config_legacy.drone_build_time)*100)
+	drone_progress = round(elapsed / CONFIG_GET(number/drone_build_time) * 100)
 
 	if(drone_progress >= 100)
 		visible_message("\The [src] voices a strident beep, indicating a drone chassis is prepared.")
@@ -71,7 +71,7 @@
 
 /obj/machinery/drone_fabricator/examine(mob/user)
 	. = ..()
-	if(produce_drones && drone_progress >= 100 && istype(user,/mob/observer/dead) && config_legacy.allow_drone_spawn && count_drones() < config_legacy.max_maint_drones)
+	if(produce_drones && drone_progress >= 100 && istype(user,/mob/observer/dead) && CONFIG_GET(flag/allow_drone_spawn) && count_drones() < CONFIG_GET(number/max_maint_drones))
 		. += "<BR><B>A drone is prepared. Select 'Join As Drone' from the Ghost tab to spawn as a maintenance drone.</B>"
 
 /obj/machinery/drone_fabricator/proc/create_drone(var/client/player)
@@ -79,7 +79,7 @@
 	if(machine_stat & NOPOWER)
 		return
 
-	if(!produce_drones || !config_legacy.allow_drone_spawn || count_drones() >= config_legacy.max_maint_drones)
+	if(!produce_drones || !CONFIG_GET(flag/allow_drone_spawn) || count_drones() >= CONFIG_GET(number/max_maint_drones))
 		return
 
 	if(player && !istype(player.mob,/mob/observer/dead))
@@ -106,11 +106,11 @@
 	set desc = "If there is a powered, enabled fabricator in the game world with a prepared chassis, join as a maintenance drone."
 
 	if(SSticker.current_state < GAME_STATE_PLAYING)
-		to_chat(src, "<span class='danger'>The game hasn't started yet!</span>")
+		to_chat(src, SPAN_USERDANGER("The game hasn't started yet!"))
 		return
 
-	if(!(config_legacy.allow_drone_spawn))
-		to_chat(src, "<span class='danger'>That verb is not currently permitted.</span>")
+	if(!CONFIG_GET(flag/allow_drone_spawn))
+		to_chat(src, SPAN_USERDANGER("That verb is not currently permitted."))
 		return
 
 	if (!src.stat)
@@ -120,7 +120,7 @@
 		return 0 //something is terribly wrong
 
 	if(jobban_isbanned(src,"Cyborg"))
-		to_chat(usr, "<span class='danger'>You are banned from playing synthetics and cannot spawn as a drone.</span>")
+		to_chat(usr, SPAN_USERDANGER("You are banned from playing synthetics and cannot spawn as a drone."))
 		return
 
 	if(!MayRespawn(1))

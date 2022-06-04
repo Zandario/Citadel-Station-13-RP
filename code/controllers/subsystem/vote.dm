@@ -78,7 +78,7 @@ SUBSYSTEM_DEF(vote)
 		if(votes > greatest_votes)
 			greatest_votes = votes
 
-	if(!config_legacy.vote_no_default && choices.len) // Default-vote for everyone who didn't vote
+	if(!CONFIG_GET(flag/vote_no_default) && choices.len) // Default-vote for everyone who didn't vote
 		var/non_voters = (GLOB.clients.len - total_votes)
 		if(non_voters > 0)
 			if(mode == VOTE_RESTART)
@@ -173,7 +173,7 @@ SUBSYSTEM_DEF(vote)
 
 /datum/controller/subsystem/vote/proc/submit_vote(ckey, newVote)
 	if(mode)
-		if(config_legacy.vote_no_dead && usr.stat == DEAD && !usr.client.holder)
+		if(CONFIG_GET(flag/vote_no_dead) && usr.stat == DEAD && !usr.client.holder)
 			return
 		if(current_votes[ckey])
 			choices[choices[current_votes[ckey]]]--
@@ -183,12 +183,12 @@ SUBSYSTEM_DEF(vote)
 		else
 			current_votes[ckey] = null
 
-/datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key, automatic = FALSE, time = config_legacy.vote_period)
+/datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key, automatic = FALSE, time = CONFIG_GET(number/vote_period))
 	if(!mode)
 		if(started_time != null && !(check_rights(R_ADMIN) || automatic))
-			var/next_allowed_time = (started_time + config_legacy.vote_delay)
+			var/next_allowed_time = (started_time + CONFIG_GET(number/vote_delay))
 			if(next_allowed_time > world.time)
-				return 0
+				return FALSE
 
 		reset()
 
@@ -217,8 +217,8 @@ SUBSYSTEM_DEF(vote)
 				question = "Your PDA beeps with a message from Central. Would you like an additional hour to finish ongoing projects?"
 				choices.Add("Initiate Crew Transfer", "Extend the Shift")
 			if(VOTE_ADD_ANTAGONIST)
-				if(!config_legacy.allow_extra_antags || SSticker.current_state >= GAME_STATE_SETTING_UP)
-					return 0
+				if(!CONFIG_GET(flag/allow_extra_antags) || SSticker.current_state >= GAME_STATE_SETTING_UP)
+					return FALSE
 				for(var/antag_type in GLOB.all_antag_types)
 					var/datum/antagonist/antag = GLOB.all_antag_types[antag_type]
 					if(!(antag.id in additional_antag_types) && antag.is_votable())
@@ -246,11 +246,11 @@ SUBSYSTEM_DEF(vote)
 
 		log_vote(text)
 
-		to_chat(world, "<span class='infoplain'><font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes.\nYou have [config_legacy.vote_period / 10] seconds to vote.</font>")
+		to_chat(world, "<span class='infoplain'><font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes.\nYou have [CONFIG_GET(number/vote_period) / 10] seconds to vote.</font>")
 		if(vote_type == VOTE_CREW_TRANSFER || vote_type == VOTE_GAMEMODE || vote_type == VOTE_CUSTOM)
 			SEND_SOUND(world, sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3))
 
-		time_remaining = round(config_legacy.vote_period / 10)
+		time_remaining = round(CONFIG_GET(number/vote_period) / 10)
 		return 1
 	return 0
 
@@ -294,31 +294,31 @@ SUBSYSTEM_DEF(vote)
 			. += "(<a href='?src=\ref[src];vote=cancel'>Cancel Vote</a>) "
 	else
 		. += "<h2>Start a vote:</h2><hr><ul><li>"
-		if(admin || config_legacy.allow_vote_restart)
+		if(admin || CONFIG_GET(flag/allow_vote_restart))
 			. += "<a href='?src=\ref[src];vote=restart'>Restart</a>"
 		else
 			. += "<font color='grey'>Restart (Disallowed)</font>"
 		. += "</li><li>"
 
-		if(admin || config_legacy.allow_vote_restart)
+		if(admin || CONFIG_GET(flag/allow_vote_restart))
 			. += "<a href='?src=\ref[src];vote=crew_transfer'>Crew Transfer</a>"
 		else
 			. += "<font color='grey'>Crew Transfer (Disallowed)</font>"
 
 		if(admin)
-			. += "\t(<a href='?src=\ref[src];vote=toggle_restart'>[config_legacy.allow_vote_restart ? "Allowed" : "Disallowed"]</a>)"
+			. += "\t(<a href='?src=\ref[src];vote=toggle_restart'>[CONFIG_GET(flag/allow_vote_restart) ? "Allowed" : "Disallowed"]</a>)"
 		. += "</li><li>"
 
-		if(admin || config_legacy.allow_vote_mode)
+		if(admin || CONFIG_GET(flag/allow_vote_mode))
 			. += "<a href='?src=\ref[src];vote=gamemode'>GameMode</a>"
 		else
 			. += "<font color='grey'>GameMode (Disallowed)</font>"
 
 		if(admin)
-			. += "\t(<a href='?src=\ref[src];vote=toggle_gamemode'>[config_legacy.allow_vote_mode ? "Allowed" : "Disallowed"]</a>)"
+			. += "\t(<a href='?src=\ref[src];vote=toggle_gamemode'>[CONFIG_GET(flag/allow_vote_mode) ? "Allowed" : "Disallowed"]</a>)"
 		. += "</li><li>"
 
-		if(!antag_add_failed && config_legacy.allow_extra_antags)
+		if(!antag_add_failed && CONFIG_GET(flag/allow_extra_antags))
 			. += "<a href='?src=\ref[src];vote=add_antagonist'>Add Antagonist Type</a>"
 		else
 			. += "<font color='grey'>Add Antagonist (Disallowed)</font>"
@@ -343,22 +343,22 @@ SUBSYSTEM_DEF(vote)
 				reset()
 		if("toggle_restart")
 			if(usr.client.holder)
-				config_legacy.allow_vote_restart = !config_legacy.allow_vote_restart
+				CONFIG_SET(flag/allow_vote_restart, !CONFIG_GET(flag/allow_vote_restart))
 		if("toggle_gamemode")
 			if(usr.client.holder)
-				config_legacy.allow_vote_mode = !config_legacy.allow_vote_mode
+				CONFIG_SET(flag/allow_vote_mode, !CONFIG_GET(flag/allow_vote_mode))
 
 		if(VOTE_RESTART)
-			if(config_legacy.allow_vote_restart || usr.client.holder)
+			if(CONFIG_GET(flag/allow_vote_restart) || usr.client.holder)
 				initiate_vote(VOTE_RESTART, usr.key)
 		if(VOTE_GAMEMODE)
-			if(config_legacy.allow_vote_mode || usr.client.holder)
+			if(CONFIG_GET(flag/allow_vote_mode) || usr.client.holder)
 				initiate_vote(VOTE_GAMEMODE, usr.key)
 		if(VOTE_CREW_TRANSFER)
-			if(config_legacy.allow_vote_restart || usr.client.holder)
+			if(CONFIG_GET(flag/allow_vote_restart) || usr.client.holder)
 				initiate_vote(VOTE_CREW_TRANSFER, usr.key)
 		if(VOTE_ADD_ANTAGONIST)
-			if(config_legacy.allow_extra_antags || usr.client.holder)
+			if(CONFIG_GET(flag/allow_extra_antags) || usr.client.holder)
 				initiate_vote(VOTE_ADD_ANTAGONIST, usr.key)
 		if(VOTE_CUSTOM)
 			if(usr.client.holder)

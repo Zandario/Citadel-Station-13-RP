@@ -114,7 +114,7 @@ var/global/list/additional_antag_types = list()
 				return
 
 /datum/game_mode/proc/announce() //to be called when round starts
-	to_chat(world, "<B>The current game mode is [capitalize(name)]!</B>") 
+	to_chat(world, "<B>The current game mode is [capitalize(name)]!</B>")
 	to_chat(world, "<B>The current engine is [GLOB.used_engine]!</B>")//Actually, why not expand this....
 	if(round_description) to_chat(world, "[round_description]")
 	if(round_autoantag) to_chat(world, "Antagonists will be added to the round automagically as needed.")
@@ -263,16 +263,16 @@ var/global/list/additional_antag_types = list()
 
 /datum/game_mode/proc/check_finished()
 	if(SSemergencyshuttle.returned() || station_was_nuked)
-		return 1
+		return TRUE
 	if(end_on_antag_death && antag_templates && antag_templates.len)
 		for(var/datum/antagonist/antag in antag_templates)
 			if(!antag.antags_are_dead())
-				return 0
-		if(config_legacy.continous_rounds)
-			SSemergencyshuttle.auto_recall = 0
-			return 0
-		return 1
-	return 0
+				return FALSE
+		if(CONFIG_GET(flag/continous_rounds))
+			SSemergencyshuttle.auto_recall = FALSE
+			return FALSE
+		return TRUE
+	return FALSE
 
 /datum/game_mode/proc/cleanup()	//This is called when the round has ended but not the game, if any cleanup would be necessary in that case.
 	return
@@ -298,7 +298,7 @@ var/global/list/additional_antag_types = list()
 	var/escaped_total = 0
 	var/escaped_on_shuttle = 0
 
-	var/list/area/escape_locations = list(/area/shuttle/escape/centcom, /area/shuttle/escape_pod1/centcom, 
+	var/list/area/escape_locations = list(/area/shuttle/escape/centcom, /area/shuttle/escape_pod1/centcom,
 		/area/shuttle/escape_pod2/centcom, /area/shuttle/escape_pod3/centcom, /area/shuttle/escape_pod5/centcom,
 		/area/shuttle/escape,/area/centcom/terminal)
 
@@ -412,7 +412,7 @@ var/global/list/additional_antag_types = list()
 
 /datum/game_mode/proc/create_antagonists()
 
-	if(!config_legacy.traitor_scaling)
+	if(!CONFIG_GET(flag/traitor_scaling))
 		antag_scaling_coeff = 0
 
 	if(antag_tags && antag_tags.len)
