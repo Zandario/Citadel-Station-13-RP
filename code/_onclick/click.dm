@@ -168,16 +168,16 @@
 			trigger_aiming(TARGET_CAN_CLICK)
 	return 1
 
-/mob/proc/setClickCooldown(var/timeout)
+/mob/proc/setClickCooldown(timeout)
 	next_move = max(world.time + timeout, next_move)
 
 /mob/proc/canClick()
-	if(config_legacy.no_click_cooldown || next_move <= world.time)
-		return 1
-	return 0
+	if(CONFIG_GET(flag/no_click_cooldown) || next_move <= world.time)
+		return TRUE
+	return FALSE
 
-// Default behavior: ignore double clicks, the second click that makes the doubleclick call already calls for a normal click
-/mob/proc/DblClickOn(var/atom/A, var/params)
+/// Default behavior: ignore double clicks, the second click that makes the doubleclick call already calls for a normal click
+/mob/proc/DblClickOn(atom/A, params)
 	return
 
 /*

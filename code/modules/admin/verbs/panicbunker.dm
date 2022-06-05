@@ -68,9 +68,9 @@ GLOBAL_LIST_EMPTY(bunker_passthrough)
 	if(!check_rights(R_ADMIN))
 		return
 
-	config_legacy.ip_reputation = (!config_legacy.ip_reputation)
+	CONFIG_SET(flag/ip_reputation, !CONFIG_GET(flag/ip_reputation))
 
-	log_and_message_admins("[key_name(usr)] has toggled IP reputation checks, it is now [(config_legacy.ip_reputation?"on":"off")].")
-	if (config_legacy.ip_reputation && (!dbcon || !dbcon.IsConnected()))
+	log_and_message_admins("[key_name(usr)] has toggled IP reputation checks, it is now [(CONFIG_GET(flag/ip_reputation) ? "on" : "off")].")
+	if(CONFIG_GET(flag/ip_reputation) && (!dbcon || !dbcon.IsConnected()))
 		message_admins("The database is not connected! IP reputation logging will not be able to allow existing players to bypass the reputation checks (if that is enabled).")
 	feedback_add_details("admin_verb","IPREP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

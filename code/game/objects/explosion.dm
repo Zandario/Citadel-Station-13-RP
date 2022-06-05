@@ -1,7 +1,7 @@
 //TODO: Flash range does nothing currently
 
 proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = UP|DOWN, shaped)
-	var/multi_z_scalar = config_legacy.multi_z_explosion_scalar
+	var/multi_z_scalar = CONFIG_GET(number/multi_z_explosion_scalar)
 	spawn(0)
 		var/start = world.timeofday
 		epicenter = get_turf(epicenter)
@@ -83,26 +83,23 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 		var/x0 = epicenter.x
 		var/y0 = epicenter.y
 		var/z0 = epicenter.z
-		if(config_legacy.use_recursive_explosions)
-			var/power = devastation_range * 2 + heavy_impact_range + light_impact_range //The ranges add up, ie light 14 includes both heavy 7 and devestation 3. So this calculation means devestation counts for 4, heavy for 2 and light for 1 power, giving us a cap of 27 power.
-			explosion_rec(epicenter, power, shaped)
-		else
-			for(var/turf/T in trange(max_range, epicenter))
-				var/dist = sqrt((T.x - x0)**2 + (T.y - y0)**2)
 
-				if(dist < devastation_range)		dist = 1
-				else if(dist < heavy_impact_range)	dist = 2
-				else if(dist < light_impact_range)	dist = 3
-				else								continue
+		for(var/turf/T in trange(max_range, epicenter))
+			var/dist = sqrt((T.x - x0)**2 + (T.y - y0)**2)
 
-				if(!T)
-					T = locate(x0,y0,z0)
-				for(var/atom/movable/AM as anything in T.contents)	//bypass type checking since only atom/movable can be contained by turfs anyway
-					if(AM.flags & AF_ABSTRACT)
-						continue
-					AM.ex_act(dist)
+			if(dist < devastation_range)		dist = 1
+			else if(dist < heavy_impact_range)	dist = 2
+			else if(dist < light_impact_range)	dist = 3
+			else								continue
 
-				T.ex_act(dist)
+			if(!T)
+				T = locate(x0,y0,z0)
+			for(var/atom/movable/AM as anything in T.contents)	//bypass type checking since only atom/movable can be contained by turfs anyway
+				if(AM.flags & AF_ABSTRACT)
+					continue
+				AM.ex_act(dist)
+
+			T.ex_act(dist)
 
 		var/took = (world.timeofday-start)/10
 		//You need to press the DebugGame verb to see these now....they were getting annoying and we've collected a fair bit of data. Just -test- changes  to explosion code using this please so we can compare

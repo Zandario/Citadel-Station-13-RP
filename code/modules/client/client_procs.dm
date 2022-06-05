@@ -533,11 +533,11 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(player_age == -1)
 		player_age = 0 //math requires this to not be -1.
 
-	if(config_legacy.ip_reputation)
-		if(config_legacy.ipr_allow_existing && player_age >= config_legacy.ipr_minimum_age)
+	if(CONFIG_GET(flag/ip_reputation))
+		if(CONFIG_GET(flag/ipr_allow_existing) && player_age >= CONFIG_GET(number/ipr_minimum_age))
 			log_admin("Skipping IP reputation check on [key] with [address] because of player age")
 		else if(update_ip_reputation()) //It is set now
-			if(ip_reputation >= config_legacy.ipr_bad_score) //It's bad
+			if(ip_reputation >= CONFIG_GET(number/ipr_bad_score)) //It's bad
 				//Log it
 				if(CONFIG_GET(flag/paranoia_logging)) //We don't block, but we want paranoia log messages
 					log_and_message_admins("[key] at [address] has bad IP reputation: [ip_reputation]. Will be kicked if enabled in config.")
@@ -545,12 +545,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 					log_admin("[key] at [address] has bad IP reputation: [ip_reputation]. Will be kicked if enabled in config.")
 
 				//Take action if required
-				if(config_legacy.ipr_block_bad_ips && config_legacy.ipr_allow_existing) //We allow players of an age, but you don't meet it
-					disconnect_with_message("Sorry, we only allow VPN/Proxy/Tor usage for players who have spent at least [config_legacy.ipr_minimum_age] days on the server. If you are unable to use the internet without your VPN/Proxy/Tor, please contact an admin out-of-game to let them know so we can accommodate this.")
-					return 0
-				else if(config_legacy.ipr_block_bad_ips) //We don't allow players of any particular age
+				if(CONFIG_GET(flag/ipr_block_bad_ips) && CONFIG_GET(flag/ipr_allow_existing)) //We allow players of an age, but you don't meet it
+					disconnect_with_message("Sorry, we only allow VPN/Proxy/Tor usage for players who have spent at least [CONFIG_GET(number/ipr_minimum_age)] days on the server. If you are unable to use the internet without your VPN/Proxy/Tor, please contact an admin out-of-game to let them know so we can accommodate this.")
+					return FALSE
+				else if(CONFIG_GET(flag/ipr_block_bad_ips)) //We don't allow players of any particular age
 					disconnect_with_message("Sorry, we do not accept connections from users via VPN/Proxy/Tor connections. If you believe this is in error, contact an admin out-of-game.")
-					return 0
+					return FALSE
 		else
 			log_admin("Couldn't perform IP check on [key] with [address]")
 
@@ -783,7 +783,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 //You're welcome to replace this proc with your own that does your own cool stuff.
 //Just set the client's ip_reputation var and make sure it makes sense with your config settings (higher numbers are worse results)
 /client/proc/update_ip_reputation()
-	var/request = "http://check.getipintel.net/check.php?ip=[address]&contact=[config_legacy.ipr_email]"
+	var/request = "http://check.getipintel.net/check.php?ip=[address]&contact=[GET_CONFIG(string/ipr_email)]"
 	var/http[] = world.Export(request)
 
 	/* Debug
@@ -799,7 +799,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	//429 is rate limit exceeded
 	if(text2num(http["STATUS"]) == 429)
 		log_and_message_admins("getipintel.net reports HTTP status 429. IP reputation checking is now disabled. If you see this, let a developer know.")
-		config_legacy.ip_reputation = FALSE
+		CONFIG_SET(flag/ip_reputation, FALSE)
 		return FALSE
 
 	var/content = file2text(http["CONTENT"]) //world.Export actually returns a file object in CONTENT
@@ -830,7 +830,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 		log_and_message_admins(ipr_error)
 		if(fatal)
-			config_legacy.ip_reputation = FALSE
+			CONFIG_SET(flag/ip_reputation, FALSE)
 			log_and_message_admins("With this error, IP reputation checking is disabled for this shift. Let a developer know.")
 		return FALSE
 

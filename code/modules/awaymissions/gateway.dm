@@ -3,15 +3,15 @@
 	desc = "A mysterious gateway built by unknown hands.  It allows for faster than light travel to far-flung locations and even alternate realities."
 	icon = 'icons/obj/machines/gateway.dmi'
 	icon_state = "off"
-	density = 1
-	anchored = 1
-	var/active = 0
+	density = TRUE
+	anchored = TRUE
+	var/active = FALSE
 
 
 /obj/machinery/gateway/Initialize(mapload)
 	update_icon()
 	if(dir == SOUTH)
-		density = 0
+		density = FALSE
 	. = ..()
 
 /obj/machinery/gateway/update_icon()
@@ -22,21 +22,23 @@
 
 
 
-//this is da important part wot makes things go
+//this is da important part wot makes things go brr
 /obj/machinery/gateway/centerstation
-	density = 1
+	density = TRUE
 	icon_state = "offcenter"
 	use_power = USE_POWER_IDLE
 
-	//warping vars
+//! ## Warping Vars
 	var/list/linked = list()
-	var/ready = 0				//have we got all the parts for a gateway?
-	var/wait = 0				//this just grabs world.time at world start
+	/// Have we got all the parts for a gateway?
+	var/ready = FALSE
+	/// This just grabs world.time at world start
+	var/wait = 0
 	var/obj/machinery/gateway/centeraway/awaygate = null
 
 /obj/machinery/gateway/centerstation/Initialize(mapload)
 	update_icon()
-	wait = world.time + config_legacy.gateway_delay	//+ thirty minutes default
+	wait = world.time + CONFIG_GET(number/gateway_delay) //+ 1 Hour Default
 	awaygate = locate(/obj/machinery/gateway/centeraway)
 	. = ..()
 	density = TRUE
@@ -68,32 +70,35 @@
 			continue
 
 		//this is only done if we fail to find a part
-		ready = 0
+		ready = FALSE
 		toggleoff()
 		break
 
 	if(linked.len == 8)
-		ready = 1
+		ready = TRUE
 
 
 /obj/machinery/gateway/centerstation/proc/toggleon(mob/user as mob)
-	if(!ready)			return
-	if(linked.len != 8)	return
-	if(!powered())		return
+	if(!ready)
+		return
+	if(linked.len != 8)
+		return
+	if(!powered())
+		return
 	if(!awaygate)
-		to_chat(user, "<span class='notice'>Error: No destination found. Please program gateway.</span>")
+		to_chat(user, SPAN_NOTICE("Error: No destination found. Please program gateway."))
 		return
 	if(world.time < wait)
-		to_chat(user, "<span class='notice'>Error: Warpspace triangulation in progress. Estimated time to completion: [round(((wait - world.time) / 10) / 60)] minutes.</span>")
+		to_chat(user, SPAN_NOTICE("Error: Warpspace triangulation in progress. Estimated time to completion: [round(((wait - world.time) / 10) / 60)] minutes."))
 		return
 	if(!awaygate.calibrated && !LAZYLEN(awaydestinations))
 		to_chat(user, SPAN_NOTICE("Error: Destination gate uncalibrated. Gateway unsafe to use without far-end calibration update."))
 		return
 
 	for(var/obj/machinery/gateway/G in linked)
-		G.active = 1
+		G.active = TRUE
 		G.update_icon()
-	active = 1
+	active = TRUE
 	update_icon()
 
 

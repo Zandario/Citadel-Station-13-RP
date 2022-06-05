@@ -401,18 +401,20 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	char_render_holders = null
 
 /datum/preferences/proc/process_link(mob/user, list/href_list)
-	if(!user)	return
+	if(!user)
+		return
 
-	if(!istype(user, /mob/new_player))	return
+	if(!istype(user, /mob/new_player))
+		return
 
 	if(href_list["preference"] == "open_whitelist_forum")
-		if(config_legacy.forumurl)
-			user << link(config_legacy.forumurl)
+		if(CONFIG_GET(string/string/forumurl))
+			user << link(CONFIG_GET(string/string/forumurl))
 		else
-			to_chat(user, "<span class='danger'>The forum URL is not set in the server configuration.</span>")
+			to_chat(user, SPAN_DANGER("The forum URL is not set in the server configuration."))
 			return
 	ShowChoices(usr)
-	return 1
+	return TRUE
 
 /datum/preferences/Topic(href, list/href_list)
 	if(..())

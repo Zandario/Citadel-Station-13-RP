@@ -89,18 +89,18 @@
 /mob/living/carbon/brain/handle_regular_UI_updates()	//TODO: comment out the unused bits >_>
 	updatehealth()
 
-	if(stat == DEAD)	//DEAD. BROWN BREAD. SWIMMING WITH THE SPESS CARP
-		blinded = 1
-		silent = 0
-	else				//ALIVE. LIGHTS ARE ON
-		if( !container && (health < config_legacy.health_threshold_dead || ((world.time - timeofhostdeath) > config_legacy.revival_brain_life)) )
+	if(stat == DEAD) //DEAD. BROWN BREAD. SWIMMING WITH THE SPESS CARP
+		blinded = TRUE
+		silent = FALSE
+	else //ALIVE. LIGHTS ARE ON
+		if(!container && (health < CONFIG_GET(number/health_threshold_dead) || ((world.time - timeofhostdeath) > CONFIG_GET(number/revival_brain_life))))
 			death()
-			blinded = 1
-			silent = 0
-			return 1
+			blinded = TRUE
+			silent = FALSE
+			return TRUE
 
 		//Handling EMP effect in the Life(), it's made VERY simply, and has some additional effects handled elsewhere
-		if(emp_damage)			//This is pretty much a damage type only used by MMIs, dished out by the emp_act
+		if(emp_damage) //This is pretty much a damage type only used by MMIs, dished out by the emp_act
 			if(!(container && istype(container, /obj/item/mmi)))
 				emp_damage = 0
 			else

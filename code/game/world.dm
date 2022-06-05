@@ -53,9 +53,9 @@ GLOBAL_LIST(topic_status_cache)
 
 	config_legacy.post_load()
 
-	if(config && config_legacy.server_name != null && config_legacy.server_suffix && world.port > 0)
+	if(config && CONFIG_GET(string/servername) != null && CONFIG_GET(flag/server_suffix) && world.port > 0)
 		// dumb and hardcoded but I don't care~
-		config_legacy.server_name += " #[(world.port % 1000) / 100]"
+		CONFIG_SET(string/servername, CONFIG_GET(string/servername) += " #[(world.port % 1000) / 100]")
 
 
 	GLOB.timezoneOffset = get_timezone_offset()
@@ -345,7 +345,7 @@ GLOBAL_REAL_VAR(world_log_redirected) = FALSE
 	return 1
 
 /world/proc/load_mods()
-	if(config_legacy.admin_legacy_system)
+	if(CONFIG_GET(flag/admin_legacy_system))
 		var/text = file2text("config/moderators.txt")
 		if (!text)
 			log_world("Failed to load config/moderators.txt")
@@ -366,16 +366,16 @@ GLOBAL_REAL_VAR(world_log_redirected) = FALSE
 				D.associate(GLOB.directory[ckey])
 
 /world/proc/load_mentors()
-	if(config_legacy.admin_legacy_system)
+	if(CONFIG_GET(flag/admin_legacy_system))
 		var/text = file2text("config/mentors.txt")
 		if (!text)
 			log_world("Failed to load config/mentors.txt")
 		else
 			var/list/lines = splittext(text, "\n")
 			for(var/line in lines)
-				if (!line)
+				if(!line)
 					continue
-				if (copytext(line, 1, 2) == ";")
+				if(copytext(line, 1, 2) == ";")
 					continue
 
 				var/title = "Mentor"
@@ -392,7 +392,7 @@ GLOBAL_REAL_VAR(world_log_redirected) = FALSE
 		return
 
 	// ---Hub title---
-	var/servername = config_legacy?.server_name
+	var/servername = CONFIG_GET(string/servername)
 	var/stationname = station_name()
 	var/defaultstation = GLOB.using_map ? GLOB.using_map.station_name : stationname
 	if(servername || stationname != defaultstation)
@@ -516,8 +516,8 @@ proc/establish_old_db_connection()
 
 #undef FAILED_DB_CONNECTION_CUTOFF
 
-/world/proc/update_hub_visibility(new_value)					//CITADEL PROC: TG's method of changing visibility
-	if(new_value)				//I'm lazy so this is how I wrap it to a bool number
+/world/proc/update_hub_visibility(new_value) //CITADEL PROC: TG's method of changing visibility
+	if(new_value) //I'm lazy so this is how I wrap it to a bool number
 		new_value = TRUE
 	else
 		new_value = FALSE

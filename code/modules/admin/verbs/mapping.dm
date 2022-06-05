@@ -151,7 +151,6 @@ var/list/debug_verbs = list (
 		/client/proc/startSinglo,
 		/client/proc/set_server_fps, //allows you to set the ticklag.
 		/client/proc/cmd_admin_grantfullaccess,
-		/client/proc/kaboom,
 		/client/proc/cmd_admin_areatest,
 		#ifdef TESTING
 		/client/proc/see_dirty_varedits,

@@ -82,7 +82,7 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 	var/last_time = last_event_time[EM]
 	if(last_time)
 		var/time_passed = world.time - last_time
-		var/weight_modifier = max(0, round((config_legacy.expected_round_length - time_passed) / 300))
+		var/weight_modifier = max(0, round((CONFIG_GET(number/expected_round_length) - time_passed) / 300))
 		weight = weight - weight_modifier
 
 	return weight

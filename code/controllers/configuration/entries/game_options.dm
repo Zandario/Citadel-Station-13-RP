@@ -98,7 +98,6 @@
 /// SSinitialization throttling.
 /datum/config_entry/number/tick_limit_mc_init
 	default = TICK_LIMIT_MC_INIT_DEFAULT
-	integer = TRUE
 	min_val = 0
 
 /// Do we enforce surnames?
@@ -149,19 +148,16 @@
 /// Sets the minimum number of cultists needed for ghosts to write in blood.
 /datum/config_entry/number/cult_ghostwriter_req_cultists
 	default = 6
-	integer = TRUE
 	min_val = 0
 
 /// The number of available character slots.
 /datum/config_entry/number/character_slots
 	default = 10
-	integer = TRUE
 	min_val = 1
 
 /// The number of loadout slots per character.
 /datum/config_entry/number/loadout_slots
 	default = 3
-	integer = TRUE
 	min_val = 1
 
 /// Allow ghosts to become drones.
@@ -171,13 +167,11 @@
 /// The number drones that can spawn.
 /datum/config_entry/number/max_maint_drones
 	default = 5
-	integer = TRUE
 	min_val = 1
 
 /// A drone will become available every X minutes since last drone spawn. Default is 2 minutes.
 /datum/config_entry/number/drone_build_time
 	default = 2 MINUTES
-	integer = TRUE
 	min_val = 0
 
 /// Disable mouse spawns for ghosts.
@@ -186,4 +180,89 @@
 
 /// Prevent newly-spawned mice from understanding human speech.
 /datum/config_entry/flag/disable_player_mice
+	default = TRUE
+
+/// Forbid admins from posssessing the singularity.
+/datum/config_entry/flag/forbid_singulo_possession
+	default = FALSE
+
+/datum/config_entry/flag/no_click_cooldown
+	default = FALSE
+
+
+//! ## These modify the run/walk speed of all mobs before the mob-specific modifiers are applied.
+
+/datum/config_entry/number/run_speed
+	default = 2
+	integer = FALSE
+	min_val = 0
+
+/datum/config_entry/number/walk_speed
+	default = 5
+	integer = FALSE
+	min_val = 0
+
+//! ##Mob specific modifiers. NOTE: These will affect different mob types in different ways
+
+/datum/config_entry/number/human_delay
+	default = 0
+	integer = FALSE
+	min_val = 0
+
+/datum/config_entry/number/robot_delay
+	default = 0
+	integer = FALSE
+	min_val = 0
+
+/datum/config_entry/number/monkey_delay
+	default = 0
+	integer = FALSE
+	min_val = 0
+
+/datum/config_entry/number/alien_delay
+	default = 0
+	integer = FALSE
+	min_val = 0
+
+/datum/config_entry/number/slime_delay
+	default = 0
+	integer = FALSE
+	min_val = 0
+
+/datum/config_entry/number/animal_delay
+	default = 0
+	integer = FALSE
+	min_val = 0
+
+/// Volume of footstep sound effects.  Range: 1-100, Set to 0 to disable footstep sounds.
+/datum/config_entry/number/footstep_volume
+	default = 60
+	max_val = 100
+	min_val = 0
+
+/**
+ * Configure how fast explosion strength diminishes when travelling up/down z levels.
+ * All explosion distances are multiplied by this each time they go up/down z-levels.
+ */
+/datum/config_entry/number/multi_z_explosion_scalar
+	default = 0.5
+	integer = FALSE
+	min_val = 0
+
+/// Do assistants get maint access?
+/datum/config_entry/flag/assistant_maint
+	default = TRUE
+
+/// How long the gateway takes before it activates. Default is half an hour.
+/datum/config_entry/number/gateway_delay
+	default = 1 HOUR
+	min_val = 0
+
+
+/// Set to let ghosts interact with certain things. Example: spin chairs
+/datum/config_entry/flag/ghost_interaction
+	default = FALSE
+
+/// Set to allow people to respawn.
+/datum/config_entry/flag/abandon_allowed
 	default = TRUE

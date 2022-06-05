@@ -17,15 +17,15 @@
 	health = getMaxHealth() - getOxyLoss() - getToxLoss() - getCloneLoss() - total_burn - total_brute
 
 	//TODO: fix husking
-	if( ((getMaxHealth() - total_burn) < config_legacy.health_threshold_dead) && stat == DEAD)
+	if( ((getMaxHealth() - total_burn) < CONFIG_GET(number/health_threshold_dead)) && stat == DEAD)
 		ChangeToHusk()
 
 	if(old != health)
 		update_hud_med_all()
 
-/mob/living/carbon/human/adjustBrainLoss(var/amount)
-
-	if(status_flags & GODMODE)	return 0	//godmode
+/mob/living/carbon/human/adjustBrainLoss(amount)
+	if(status_flags & GODMODE)
+		return FALSE //! godmode
 
 	if(should_have_organ("brain"))
 		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name["brain"]

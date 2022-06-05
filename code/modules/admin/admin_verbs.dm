@@ -555,7 +555,7 @@ var/list/admin_verbs_event_manager = list(
 	set name = "Display Job bans"
 	set category = "Admin"
 	if(holder)
-		if(config_legacy.ban_legacy_system)
+		if(CONFIG_GET(flag/ban_legacy_system))
 			holder.Jobbans()
 		else
 			holder.DB_ban_panel()
@@ -566,7 +566,7 @@ var/list/admin_verbs_event_manager = list(
 	set name = "Unban Panel"
 	set category = "Admin"
 	if(holder)
-		if(config_legacy.ban_legacy_system)
+		if(CONFIG_GET(flag/ban_legacy_system))
 			holder.unbanpanel()
 		else
 			holder.DB_ban_panel()

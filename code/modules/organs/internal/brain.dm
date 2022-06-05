@@ -81,7 +81,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 
 /obj/item/organ/internal/brain/Initialize(mapload, ...)
 	. = ..()
-	health = config_legacy.default_brain_health
+	health = CONFIG_GET(number/default_brain_health)
 	//! Time vars measure things in ticks. Life tick happens every ~2 seconds, therefore dividing by 20
 	defib_timer = ((CONFIG_GET(number/defib_timer) MINUTES) / 20)
 	addtimer(CALLBACK(src, .proc/clear_brainmob_hud), 15)

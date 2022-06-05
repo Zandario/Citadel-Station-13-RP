@@ -164,7 +164,7 @@
 /datum/world_topic/jsonstatus/Run(list/input, addr)
 	. = list()
 	.["mode"] = master_mode
-	// .["round_id"] = null // GLOB.round_id
+	.["round_id"] = GLOB.round_id
 	.["players"] = GLOB.clients.len
 	var/list/adm = get_admin_counts()
 	var/list/presentmins = adm["present"]
@@ -306,10 +306,10 @@
 			return GLOB.topic_status_cache
 		GLOB.topic_status_lastcache = world.time + 5
 	. = list()
-	.["version"] = game_version
+	.["version"] = GLOB.game_version
 	.["mode"] = master_mode
 	.["respawn"] = config ? !CONFIG_GET(flag/norespawn) : FALSE
-	.["enter"] = config_legacy.enter_allowed
+	.["enter"] = GLOB.enter_allowed
 	.["vote"] = CONFIG_GET(flag/allow_vote_mode)
 	.["ai"] = CONFIG_GET(flag/allow_ai)
 	.["host"] = world.host ? world.host : null

@@ -11,12 +11,22 @@
 	var/list/maplist
 	var/datum/map_config/defaultmap
 
+	/// Allowed modes.
+	var/list/modes = list()
+	/// Allowed mode names.
+	var/list/mode_names = list()
+	/// Votable modes.
+	var/list/votable_modes = list()
+	/// Relative probability of each mode.
+	var/list/probabilities = list()
+	/// Overrides for how many players readied up a gamemode needs to start.
+	var/list/player_requirements = list()
+	/// Overrides for how many players readied up a secret gamemode needs to start.
+	var/list/player_requirements_secret = list()
+
 	/*
-	var/list/modes			// allowed modes
 	var/list/gamemode_cache
-	var/list/votable_modes		// votable modes
 	var/list/storyteller_cache
-	var/list/mode_names
 	var/list/mode_reports
 	var/list/mode_false_report_weight
 	*/
@@ -43,9 +53,10 @@
 		CRASH("/datum/controller/configuration/Load() called more than once!")
 	InitEntries()
 	// LoadModes()
+	LoadModesLegacy()
 	// storyteller_cache = typecacheof(/datum/dynamic_storyteller, TRUE)
 	if(fexists("[directory]/config.txt") && LoadEntries("config.txt") <= 1)
-		var/list/legacy_configs = list("legacy/game_options.txt", "legacy/dbconfig.txt")
+		var/list/legacy_configs = list("legacy/dbconfig.txt")
 		for(var/I in legacy_configs)
 			if(fexists("[directory]/[I]"))
 				log_config("No $include directives found in config.txt! Loading legacy [legacy_configs.Join("/")] files...")
@@ -244,7 +255,27 @@
 		return
 	return E.ValidateAndSet("[new_val]")
 
-/*
+
+/datum/controller/configuration/proc/LoadModesLegacy()
+	var/list/L = subtypesof(/datum/game_mode)
+	for (var/T in L)
+		// I wish I didn't have to instance the game modes in order to look up
+		// their information, but it is the only way (at least that I know of).
+		var/datum/game_mode/M = new T()
+		if (M.config_tag)
+			gamemode_cache[M.config_tag] = M // So we don't instantiate them repeatedly.
+			if(!(M.config_tag in modes))		// ensure each mode is added only once
+				log_misc("Adding game mode [M.name] ([M.config_tag]) to configuration.")
+				modes += M.config_tag
+				mode_names[M.config_tag] = M.name
+				probabilities[M.config_tag] = M.probability
+				player_requirements[M.config_tag] = M.required_players
+				player_requirements_secret[M.config_tag] = M.required_players_secret
+				if (M.votable)
+					src.votable_modes += M.config_tag
+	src.votable_modes += "secret"
+
+
 /datum/controller/configuration/proc/LoadModes()
 	gamemode_cache = typecacheof(/datum/game_mode, TRUE)
 	modes = list()
@@ -252,7 +283,7 @@
 	mode_reports = list()
 	mode_false_report_weight = list()
 	votable_modes = list()
-	var/list/probabilities = Get(/datum/config_entry/keyed_list/probability)
+	var/list/probabilities = CONFIG_GET(keyed_list/probability)
 	for(var/T in gamemode_cache)
 		// I wish I didn't have to instance the game modes in order to look up
 		// their information, but it is the only way (at least that I know of).
@@ -272,7 +303,7 @@
 					votable_modes += M.config_tag
 		qdel(M)
 	votable_modes += "secret"
-*/
+
 
 /datum/controller/configuration/proc/LoadMOTD()
 	motd = file2text("[directory]/motd.txt")

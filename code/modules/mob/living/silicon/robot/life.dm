@@ -80,7 +80,7 @@
 		Paralyse(3)
 		AdjustSleeping(-1)
 
-	if(health < config_legacy.health_threshold_dead && src.stat != 2) //die only once
+	if(health < CONFIG_GET(number/health_threshold_dead) && src.stat != 2) //die only once
 		death()
 
 	if (src.stat != 2) //Alive.
@@ -201,7 +201,7 @@
 						src.healths.icon_state = "health3"
 					if(0 to 50)
 						src.healths.icon_state = "health4"
-					if(config_legacy.health_threshold_dead to 0)
+					if(CONFIG_GET(number/health_threshold_dead) to 0)
 						src.healths.icon_state = "health5"
 					else
 						src.healths.icon_state = "health6"

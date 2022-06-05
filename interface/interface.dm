@@ -1,42 +1,41 @@
-//Please use mob or src (not usr) in these procs. This way they can be called in the same fashion as procs.
+/// Please use mob or src (not usr) in these procs. This way they can be called in the same fashion as procs.
 /client/verb/wiki(query as text)
 	set name = "wiki"
 	set desc = "Type what you want to know about.  This will open the wiki on your web browser."
-	set category = "OOC"
-	if(config_legacy.wikiurl)
-		if(query)
-			if(config_legacy.wikisearchurl)
-				var/output = replacetext(config_legacy.wikisearchurl, "%s", url_encode(query))
-				src << link(output)
-			else
-				to_chat(src, SPAN_WARNING("The wiki search URL is not set in the server configuration."))
-		else
-			src << link(config_legacy.wikiurl)
+	set hidden = TRUE
+	var/wikiurl = CONFIG_GET(string/wikiurl)
+	if(wikiurl)
+		if(query && CONFIG_GET(string/wikisearchurl))
+			var/output = replacetext(CONFIG_GET(string/wikisearchurl), "%s", url_encode(query))
+			src << link(output)
+		else if(query != null)
+			src << link(wikiurl)
 	else
-		to_chat(src, SPAN_WARNING("The wiki URL is not set in the server configuration."))
+		to_chat(src, SPAN_DANGER("The wiki URL is not set in the server configuration."))
 		return
 
 /client/verb/forum()
 	set name = "forum"
 	set desc = "Visit the forum."
-	set hidden = 1
-	if( config_legacy.forumurl )
-		if(alert("This will open the forum in your browser. Are you sure?",,"Yes","No")=="No")
+	set hidden = TRUE
+	var/forumurl = CONFIG_GET(string/forumurl)
+	if(forumurl)
+		if(tgui_alert(src, "This will open the forum in your browser. Are you sure?",, list("Yes","No"))!="Yes")
 			return
-		src << link(config_legacy.forumurl)
+		src << link(forumurl)
 	else
-		to_chat(src, SPAN_WARNING("The forum URL is not set in the server configuration."))
-		return
+		to_chat(src, SPAN_DANGER("The forum URL is not set in the server configuration."))
+	return
 
 /client/verb/rules()
 	set name = "Rules"
 	set desc = "Show Server Rules."
-	set hidden = 1
+	set hidden = TRUE
 
-	if(config_legacy.rulesurl)
-		if(alert("This will open the rules in your browser. Are you sure?",,"Yes","No")=="No")
+	if(CONFIG_GET(string/rulesurl))
+		if(tgui_alert(usr, "This will open the rules in your browser. Are you sure?",, list("Yes","No"))!="Yes")
 			return
-		src << link(config_legacy.rulesurl)
+		src << link(CONFIG_GET(string/rulesurl))
 	else
 		to_chat(src, SPAN_DANGER("The rules URL is not set in the server configuration."))
 	return
@@ -44,12 +43,12 @@
 /client/verb/map()
 	set name = "Map"
 	set desc = "See the map."
-	set hidden = 1
+	set hidden = TRUE
 
-	if(config_legacy.mapurl)
-		if(alert("This will open the map in your browser. Are you sure?",,"Yes","No")=="No")
+	if(CONFIG_GET(string/mapurl))
+		if(tgui_alert(usr, "This will open the map in your browser. Are you sure?",, list("Yes","No"))!="Yes")
 			return
-		src << link(config_legacy.mapurl)
+		src << link(CONFIG_GET(string/mapurl))
 	else
 		to_chat(src, SPAN_DANGER("The map URL is not set in the server configuration."))
 	return
@@ -57,10 +56,10 @@
 /client/verb/github()
 	set name = "GitHub"
 	set desc = "Visit the GitHub"
-	set hidden = 1
+	set hidden = TRUE
 
 	if(CONFIG_GET(string/githuburl))
-		if(alert("This will open the GitHub in your browser. Are you sure?",,"Yes","No")=="No")
+		if(tgui_alert(usr, "This will open the GitHub in your browser. Are you sure?",, list("Yes","No"))!="Yes")
 			return
 		src << link(CONFIG_GET(string/githuburl))
 	else

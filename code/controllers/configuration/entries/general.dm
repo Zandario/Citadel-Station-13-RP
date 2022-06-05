@@ -1,3 +1,15 @@
+//! ## Server Info
+
+/// Server name (for world name / status).
+/datum/config_entry/string/servername
+
+/// Generate numeric suffix based on server port.
+/datum/config_entry/flag/server_suffix
+	default = FALSE
+
+/datum/config_entry/string/server
+/datum/config_entry/string/serverurl
+
 /datum/config_entry/flag/minimaps_enabled
 	default = TRUE
 
@@ -63,7 +75,6 @@
 /// ERT can only be called by admins
 /datum/config_entry/flag/ert_admin_call_only
 	default = TRUE
-
 
 /// Allow votes to change mode
 /datum/config_entry/flag/allow_vote_mode
@@ -155,3 +166,38 @@
 /// Enables automuting/spam prevention.
 /datum/config_entry/flag/automute_on
 	default = FALSE
+
+//! ## USER IP Stuff
+/// Should we query IPs to get scores? Generates HTTP traffic to an API service.
+/datum/config_entry/flag/ip_reputation
+	default = FALSE
+
+/// Left null because you MUST specify one otherwise you're making the internet worse.
+/datum/config_entry/string/ipr_email
+	default = null
+
+/// Should we block anyone who meets the minimum score below? Otherwise we just log it (If paranoia logging is on, visibly in chat).
+/datum/config_entry/flag/ipr_block_bad_ips
+	default = FALSE
+
+/// The API returns a value between 0 and 1 (inclusive), with 1 being 'definitely VPN/Tor/Proxy'. Values equal/above this var are considered bad.
+/datum/config_entry/number/ipr_bad_score
+	default = 1
+	integer = FALSE
+	max_val = 1
+	min_val = 0
+
+/// Should we allow known players to use VPNs/Proxies? If the player is already banned then obviously they still can't connect.
+/datum/config_entry/flag/ipr_allow_existing
+	default = FALSE
+
+/datum/config_entry/number/ipr_minimum_age
+	default = 5 // In days.
+	integer = FALSE
+	min_val = 0
+
+/// API key for ipqualityscore.com
+/datum/config_entry/string/ipqualityscore_apikey
+	default = ""
+
+/datum/config_entry/string/python_path

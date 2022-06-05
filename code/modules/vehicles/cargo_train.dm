@@ -365,24 +365,29 @@
 // more engines increases this limit by car_limit per
 // engine.
 //-------------------------------------------------------
-/obj/vehicle/train/engine/update_car(var/train_length, var/active_engines)
+/obj/vehicle/train/engine/update_car(train_length, active_engines)
 	src.train_length = train_length
 	src.active_engines = active_engines
 
-	//Update move delay
+	// Update move delay
 	if(!is_train_head() || !on)
-		move_delay = initial(move_delay)		//so that engines that have been turned off don't lag behind
+		// So that engines that have been turned off don't lag behind
+		move_delay = initial(move_delay)
 	else
-		move_delay = max(0, (-car_limit * active_engines) + train_length - active_engines)	//limits base overweight so you cant overspeed trains
-		move_delay *= (1 / max(1, active_engines)) * 2 										//overweight penalty (scaled by the number of engines)
-		move_delay += config_legacy.run_speed 														//base reference speed
-		move_delay *= speed_mod																//makes cargo trains 10% slower than running when not overweight
+		// Limits base overweight so you cant overspeed trains
+		move_delay = max(0, (-car_limit * active_engines) + train_length - active_engines)
+		// Overweight penalty (scaled by the number of engines)
+		move_delay *= (1 / max(1, active_engines)) * 2
+		// Base reference speed
+		move_delay += CONFIG_GET(number/run_speed)
+		// Makes cargo trains 10% slower than running when not overweight
+		move_delay *= speed_mod
 
-/obj/vehicle/train/trolley/update_car(var/train_length, var/active_engines)
+/obj/vehicle/train/trolley/update_car(train_length, active_engines)
 	src.train_length = train_length
 	src.active_engines = active_engines
 
 	if(!lead && !tow)
-		anchored = 0
+		anchored = FALSE
 	else
-		anchored = 1
+		anchored = TRUE

@@ -30,7 +30,6 @@ var/list/hit_appends	= list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
 // var/const/company_short	= "NT"
 // var/const/star_name		= "Vir"
 // var/const/starsys_name	= "Vir"
-var/const/game_version	= "Citadel Station RP"
 var/game_year			= (text2num(time2text(world.realtime, "YYYY")) + 544)
 
 var/master_mode       = "extended" // "extended"

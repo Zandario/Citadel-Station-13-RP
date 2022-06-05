@@ -855,11 +855,8 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	set category = "Server"
 	set desc="People can't enter"
 	set name="Toggle Entering"
-	config_legacy.enter_allowed = !(config_legacy.enter_allowed)
-	if (!(config_legacy.enter_allowed))
-		to_chat(world, "<B>New players may no longer enter the game.</B>")
-	else
-		to_chat(world, "<B>New players may now enter the game.</B>")
+	GLOB.enter_allowed = !GLOB.enter_allowed
+	to_chat(world, SPAN_BOLD("New players may [GLOB.enter_allowed ? "now" : "no longer"] enter the game."))
 	log_admin("[key_name(usr)] toggled new player game entering.")
 	message_admins(SPAN_ADMINNOTICE("[key_name_admin(usr)] toggled new player game entering."), 1)
 	world.update_status()
@@ -883,12 +880,9 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	set desc = "Respawn basically"
 	set name = "Toggle Respawn"
 	CONFIG_SET(flag/norespawn, !CONFIG_GET(flag/norespawn))
-	if(!CONFIG_GET(flag/norespawn))
-		to_chat(world, SPAN_BOLD("You may now respawn."), confidential = TRUE)
-	else
-		to_chat(world, SPAN_BOLD("You may no longer respawn :("), confidential = TRUE)
-	message_admins(SPAN_ADMINNOTICE("[key_name_admin(usr)] toggled respawn to [config_legacy.abandon_allowed ? "On" : "Off"]."))
-	log_admin("[key_name(usr)] toggled respawn to [config_legacy.abandon_allowed ? "On" : "Off"].")
+	to_chat(world, SPAN_BOLD("You may [CONFIG_GET(flag/abandon_allowed) ? "now" : "no longer"] respawn."), confidential = TRUE)
+	message_admins(SPAN_ADMINNOTICE("[key_name_admin(usr)] toggled respawn to [CONFIG_GET(flag/abandon_allowed) ? "On" : "Off"]."))
+	log_admin("[key_name(usr)] toggled respawn to [CONFIG_GET(flag/abandon_allowed) ? "On" : "Off"].")
 	world.update_status()
 	feedback_add_details("admin_verb","TR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -896,18 +890,18 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	set category = "Server"
 	set desc="Toggle alien mobs"
 	set name="Toggle Aliens"
-	config_legacy.aliens_allowed = !config_legacy.aliens_allowed
-	log_admin("[key_name(usr)] toggled Aliens to [config_legacy.aliens_allowed].")
-	message_admins("[key_name_admin(usr)] toggled Aliens [config_legacy.aliens_allowed ? "on" : "off"].", 1)
+	CONFIG_SET(flag/aliens_allowed, !CONFIG_GET(flag/aliens_allowed))
+	log_admin("[key_name(usr)] toggled Aliens to [CONFIG_GET(flag/aliens_allowed)].")
+	message_admins("[key_name_admin(usr)] toggled Aliens [CONFIG_GET(flag/aliens_allowed) ? "on" : "off"].", 1)
 	feedback_add_details("admin_verb","TA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggle_space_ninja()
 	set category = "Server"
 	set desc="Toggle space ninjas spawning."
 	set name="Toggle Space Ninjas"
-	config_legacy.ninjas_allowed = !config_legacy.ninjas_allowed
-	log_admin("[key_name(usr)] toggled Space Ninjas to [config_legacy.ninjas_allowed].")
-	message_admins("[key_name_admin(usr)] toggled Space Ninjas [config_legacy.ninjas_allowed ? "on" : "off"].", 1)
+	CONFIG_SET(flag/ninjas_allowed, !CONFIG_GET(flag/ninjas_allowed))
+	log_admin("[key_name(usr)] toggled Space Ninjas to [CONFIG_GET(flag/ninjas_allowed)].")
+	message_admins("[key_name_admin(usr)] toggled Space Ninjas [CONFIG_GET(flag/ninjas_allowed) ? "on" : "off"].", 1)
 	feedback_add_details("admin_verb","TSN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/delay_end()
@@ -1170,19 +1164,6 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	usr << browse(out, "window=edit_mode[src]")
 	feedback_add_details("admin_verb","SGM")
 
-
-/datum/admins/proc/toggletintedweldhelmets()
-	set category = "Debug"
-	set desc="Reduces view range when wearing welding helmets"
-	set name="Toggle tinted welding helmets."
-	config_legacy.welder_vision = !( config_legacy.welder_vision )
-	if (config_legacy.welder_vision)
-		to_chat(world, "<B>Reduced welder vision has been enabled!</B>")
-	else
-		to_chat(world, "<B>Reduced welder vision has been disabled!</B>")
-	log_admin("[key_name(usr)] toggled welder vision.")
-	message_admins("[key_name_admin(usr)] toggled welder vision.", 1)
-	feedback_add_details("admin_verb","TTWH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggleguests()
 	set category = "Server"

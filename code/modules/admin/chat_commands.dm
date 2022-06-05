@@ -23,23 +23,8 @@
 	var/last_irc_check = 0
 
 /datum/tgs_chat_command/irccheck/Run(datum/tgs_chat_user/sender, params)
-	var/rtod = REALTIMEOFDAY
-	if(rtod - last_irc_check < IRC_STATUS_THROTTLE)
-		return
-	last_irc_check = rtod
-	var/server = null		//CONFIG_GET(string/server)
-	//return "[round_id ? "Round #[round_id]: " : ""][clients.len] players on [SSmapping.config_legacy.map_name], Mode: [master_mode]; Round [SSticker.HasRoundStarted() ? (SSticker.IsRoundInProgress() ? "Active" : "Finishing") : "Starting"] -- [server ? server : "[world.internet_address]:[world.port]"]"
-	var/current_state
-	switch(SSticker.current_state)
-		if(GAME_STATE_PREGAME)
-			current_state = "pregame"
-		if(GAME_STATE_SETTING_UP)
-			current_state = "starting"
-		if(GAME_STATE_PLAYING)
-			current_state = "active"
-		if(GAME_STATE_FINISHED)
-			current_state = "finishing"
-	return "[GLOB.clients.len] players on [GLOB.using_map.name], Mode: [master_mode]; round [current_state] -- Duration [roundduration2text()] -- [server ? server : "[world.internet_address]:[world.port]"]"
+	var/server = CONFIG_GET(string/server)
+	return "[GLOB.round_id ? "Round #[GLOB.round_id]: " : ""][GLOB.clients.len] players on [SSmapping.config.map_name], Mode: [master_mode]; Round [SSticker.HasRoundStarted() ? (SSticker.IsRoundInProgress() ? "Active" : "Finishing") : "Starting"] -- [server ? server : "[world.internet_address]:[world.port]"]"
 
 /datum/tgs_chat_command/ahelp
 	name = "ahelp"

@@ -152,31 +152,31 @@
 				if(null,"") return
 				if("*New Rank*")
 					new_rank = input("Please input a new rank", "New custom rank", null, null) as null|text
-					if(config_legacy.admin_legacy_system)
+					if(CONFIG_GET(flag/admin_legacy_system))
 						new_rank = ckeyEx(new_rank)
 					if(!new_rank)
 						to_chat(usr, "<font color='red'>Error: Topic 'editrights': Invalid rank</font>")
 						return
-					if(config_legacy.admin_legacy_system)
+					if(CONFIG_GET(flag/admin_legacy_system))
 						if(admin_ranks.len)
 							if(new_rank in admin_ranks)
-								rights = admin_ranks[new_rank]		//we typed a rank which already exists, use its rights
+								rights = admin_ranks[new_rank] //we typed a rank which already exists, use its rights
 							else
-								admin_ranks[new_rank] = 0			//add the new rank to admin_ranks
+								admin_ranks[new_rank] = 0 //add the new rank to admin_ranks
 				else
-					if(config_legacy.admin_legacy_system)
+					if(CONFIG_GET(flag/admin_legacy_system))
 						new_rank = ckeyEx(new_rank)
-						rights = admin_ranks[new_rank]				//we input an existing rank, use its rights
+						rights = admin_ranks[new_rank] //we input an existing rank, use its rights
 
 			if(D)
-				D.disassociate()								//remove adminverbs and unlink from client
-				D.rank = new_rank								//update the rank
-				D.rights = rights								//update the rights based on admin_ranks (default: 0)
+				D.disassociate()  //remove adminverbs and unlink from client
+				D.rank = new_rank //update the rank
+				D.rights = rights //update the rights based on admin_ranks (default: 0)
 			else
 				D = new /datum/admins(new_rank, rights, adm_ckey)
 
-			var/client/C = GLOB.directory[adm_ckey]						//find the client with the specified ckey (if they are logged in)
-			D.associate(C)											//link up with the client and add verbs
+			var/client/C = GLOB.directory[adm_ckey] //find the client with the specified ckey (if they are logged in)
+			D.associate(C) //link up with the client and add verbs
 
 			message_admins("[key_name_admin(usr)] edited the admin rank of [adm_ckey] to [new_rank]")
 			log_admin("[key_name(usr)] edited the admin rank of [adm_ckey] to [new_rank]")
@@ -185,7 +185,7 @@
 		else if(task == "permissions")
 			if(!D)	return
 			var/list/permissionlist = list()
-			for(var/i=1, i<=R_MAXPERMISSION, i<<=1)		//that <<= is shorthand for i = i << 1. Which is a left bitshift
+			for(var/i=1, i<=R_MAXPERMISSION, i<<=1) //that <<= is shorthand for i = i << 1. Which is a left bitshift
 				permissionlist[rights2text(i)] = i
 			var/new_permission = input("Select a permission to turn on/off", "Permission toggle", null, null) as null|anything in permissionlist
 			if(!new_permission)	return
@@ -724,7 +724,7 @@
 					if(!check_rights(R_MOD,0) && !check_rights(R_BAN, 0))
 						to_chat(usr, "<span class='adminlog warning'> You cannot issue temporary job-bans!</span>")
 						return
-					if(config_legacy.ban_legacy_system)
+					if(CONFIG_GET(flag/ban_legacy_system))
 						to_chat(usr, "<span class='adminlog warning'>Your server is using the legacy banning system, which does not support temporary job bans. Consider upgrading. Aborting ban.</span>")
 						return
 					var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
@@ -783,8 +783,8 @@
 		//Unbanning joblist
 		//all jobs in joblist are banned already OR we didn't give a reason (implying they shouldn't be banned)
 		if(joblist.len) //at least 1 banned job exists in joblist so we have stuff to unban.
-			if(!config_legacy.ban_legacy_system)
-				to_chat(usr, "<span class='adminlog'>Unfortunately, database based unbanning cannot be done through this panel</span>")
+			if(!CONFIG_GET(flag/ban_legacy_system))
+				to_chat(usr, SPAN_ADMINNOTICE("Unfortunately, database based unbanning cannot be done through this panel"))
 				DB_ban_panel(M.ckey)
 				return
 			var/msg
@@ -869,17 +869,17 @@
 				AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
 				ban_unban_log_save("[usr.client.ckey] has banned [M.ckey]. - Reason: [reason] - This will be removed in [mins] minutes.")
 				notes_add(M.ckey,"[usr.client.ckey] has banned [M.ckey]. - Reason: [reason] - This will be removed in [mins] minutes.",usr)
-				to_chat(M, "<font color='red'><BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG></font>")
-				to_chat(M, "<font color='red'>This is a temporary ban, it will be removed in [mins] minutes.</font>")
+				to_chat(M, SPAN_BOLDANNOUNCE("You have been banned by [usr.client.ckey].\nReason: [reason]."))
+				to_chat(M, SPAN_USERDANGER("This is a temporary ban, it will be removed in [mins] minutes."))
 				feedback_inc("ban_tmp",1)
 				DB_ban_record(BANTYPE_TEMP, M, mins, reason)
 				feedback_inc("ban_tmp_mins",mins)
-				if(config_legacy.banappeals)
-					to_chat(M, "<font color='red'>To try to resolve this matter head to [config_legacy.banappeals]</font>")
+				if(CONFIG_GET(string/banappeals))
+					to_chat(M, SPAN_USERDANGER("To try to resolve this matter head to [CONFIG_GET(string/banappeals)]"))
 				else
-					to_chat(M, "<font color='red'>No ban appeals URL has been set.</font>")
+					to_chat(M, SPAN_DANGER("No ban appeals URL has been set."))
 				log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
-				message_admins("<font color=#4F49AF>[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.</font>")
+				message_admins(SPAN_ADMINNOTICE("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes."))
 				var/datum/admin_help/AH = M.client ? M.client.current_ticket : null
 				if(AH)
 					AH.Resolve()
@@ -896,16 +896,16 @@
 						AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0, M.lastKnownIP)
 					if("No")
 						AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0)
-				to_chat(M, "<font color='red'><BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG></font>")
-				to_chat(M, "<font color='red'>This is a permanent ban.</font>")
-				if(config_legacy.banappeals)
-					to_chat(M, "<font color='red'>To try to resolve this matter head to [config_legacy.banappeals]</font>")
+				to_chat(M, SPAN_BOLDANNOUNCE("You have been banned by [usr.client.ckey].\nReason: [reason]."))
+				to_chat(M, SPAN_USERDANGER("This is a permanent ban."))
+				if(CONFIG_GET(string/banappeals))
+					to_chat(M, SPAN_USERDANGER("To try to resolve this matter head to [CONFIG_GET(string/banappeals)]"))
 				else
-					to_chat(M, "<font color='red'>No ban appeals URL has been set.</font>")
+					to_chat(M, SPAN_DANGER("No ban appeals URL has been set."))
 				ban_unban_log_save("[usr.client.ckey] has permabanned [M.ckey]. - Reason: [reason] - This is a permanent ban.")
 				notes_add(M.ckey,"[usr.client.ckey] has permabanned [M.ckey]. - Reason: [reason] - This is a permanent ban.",usr)
 				log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
-				message_admins("<font color=#4F49AF>[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.</font>")
+				message_admins(SPAN_ADMINNOTICE("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban."))
 				feedback_inc("ban_perma",1)
 				DB_ban_record(BANTYPE_PERMA, M, -1, reason)
 				var/datum/admin_help/AH = M.client ? M.client.current_ticket : null

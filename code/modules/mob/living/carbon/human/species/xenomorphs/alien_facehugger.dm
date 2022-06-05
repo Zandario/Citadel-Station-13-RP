@@ -47,7 +47,7 @@ var/const/MAX_ACTIVE_TIME = 400
 //Bypasses the config check because it's completely blocking spawn.
 /*
 /obj/item/clothing/mask/facehugger/Initialize(mapload)
-	if(config_legacy.aliens_allowed)
+	if(CONFIG_GET(flag/aliens_allowed))
 		return ..()
 	else
 		return INITIALIZE_HINT_QDEL
@@ -309,7 +309,7 @@ var/const/MAX_ACTIVE_TIME = 400
 	Attach(M)
 
 /mob/living/simple_mob/animal/space/alien/facehugger/Initialize(mapload)
-	if(config_legacy.aliens_allowed)
+	if(CONFIG_GET(flag/aliens_allowed))
 		return ..()
 	else
 		return INITIALIZE_HINT_QDEL

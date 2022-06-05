@@ -313,11 +313,11 @@
 				to_chat(usr, "<span class='notice'>There is a character that already exists with the same name - <b>[C.real_name]</b>, please join with a different one, or use Quit the Round with the previous character.</span>")
 				return
 */
-		if(!config_legacy.enter_allowed)
-			to_chat(usr, "<span class='notice'>There is an administrative lock on entering the game!</span>")
+		if(!GLOB.enter_allowed)
+			to_chat(usr, SPAN_NOTICE("There is an administrative lock on entering the game!"))
 			return
 		else if(SSticker && SSticker.mode && SSticker.mode.explosion_in_progress)
-			to_chat(usr, "<span class='danger'>The station is currently exploding. Joining would go poorly.</span>")
+			to_chat(usr, SPAN_NOTICE("The station is currently exploding. Joining would go poorly."))
 			return
 /*
 		if(!is_alien_whitelisted(src, GLOB.species_meta[client.prefs.species]))
@@ -490,19 +490,20 @@
 /mob/new_player/proc/AttemptLateSpawn(rank, spawning_at)
 	if(!client.is_preference_enabled(/datum/client_preference/debug/age_verified)) return
 	if (src != usr)
-		return 0
+		return FALSE
 	if(SSticker.current_state != GAME_STATE_PLAYING)
 		to_chat(usr, "<font color='red'>The round is either not ready, or has already finished...</font>")
-		return 0
-	if(!config_legacy.enter_allowed)
-		to_chat(usr, "<span class='notice'>There is an administrative lock on entering the game!</span>")
-		return 0
+		return FALSE
+	if(!GLOB.enter_allowed)
+		to_chat(usr, SPAN_NOTICE("There is an administrative lock on entering the game!"))
+		return FALSE
 	if(!IsJobAvailable(rank))
 		src << alert("[rank] is not available. Please try another.")
-		return 0
-	if(!attempt_vr(src,"spawn_checks_vr",list())) return 0
+		return FALSE
+	if(!attempt_vr(src,"spawn_checks_vr",list()))
+		return FALSE
 	if(!client)
-		return 0
+		return FALSE
 
 	//Find our spawning point.
 	var/list/join_props = job_master.LateSpawn(client, rank)

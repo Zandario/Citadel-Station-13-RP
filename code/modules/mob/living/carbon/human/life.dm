@@ -395,20 +395,20 @@
 		return
 
 	if(suiciding)
-		failed_last_breath = 1
+		failed_last_breath = TRUE
 		adjustOxyLoss(2)//If you are suiciding, you should die a little bit faster
 		oxygen_alert = max(oxygen_alert, 1)
 		suiciding --
-		return 0
+		return FALSE
 
 	if(does_not_breathe)
-		failed_last_breath = 0
+		failed_last_breath = FALSE
 		adjustOxyLoss(-5)
 		return
 
 	if(!breath || (breath.total_moles == 0))
-		failed_last_breath = 1
-		if(health > config_legacy.health_threshold_crit)
+		failed_last_breath = TRUE
+		if(health > CONFIG_GET(health_threshold_crit))
 			adjustOxyLoss(HUMAN_MAX_OXYLOSS)
 		else
 			adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
@@ -420,7 +420,7 @@
 
 		oxygen_alert = max(oxygen_alert, 1)
 
-		return 0
+		return FALSE
 
 	var/safe_pressure_min = species.minimum_breath_pressure // Minimum safe partial pressure of breathable gas in kPa
 
@@ -1015,25 +1015,26 @@
 	if(skip_some_updates())
 		return FALSE
 
-	if(status_flags & GODMODE)	return 0
+	if(status_flags & GODMODE)
+		return FALSE
 
 	//SSD check, if a logged player is awake put them back to sleep!
 	if(species.get_ssd(src) && !client && !teleop)
 		Sleeping(2)
-	if(stat == DEAD)	//DEAD. BROWN BREAD. SWIMMING WITH THE SPESS CARP
-		blinded = 1
-		silent = 0
-	else				//ALIVE. LIGHTS ARE ON
+	if(stat == DEAD) //DEAD. BROWN BREAD. SWIMMING WITH THE SPESS CARP
+		blinded = TRUE
+		silent = FALSE
+	else //ALIVE. LIGHTS ARE ON
 		updatehealth()	//TODO
 
-		if(health <= config_legacy.health_threshold_dead || (should_have_organ("brain") && !has_brain()))
+		if(health <= CONFIG_GET(number/health_threshold_dead) || (should_have_organ("brain") && !has_brain()))
 			death()
-			blinded = 1
-			silent = 0
-			return 1
+			blinded = TRUE
+			silent = FALSE
+			return TRUE
 
 		//UNCONSCIOUS. NO-ONE IS HOME
-		if((getOxyLoss() > (species.total_health/2)) || (health <= config_legacy.health_threshold_crit))
+		if((getOxyLoss() > (species.total_health / 2)) || (health <= CONFIG_GET(health_threshold_crit)))
 			Paralyse(3)
 
 		if(hallucination)
@@ -1397,28 +1398,28 @@
 		else
 			clear_fullscreen("high")
 
-		if(config_legacy.welder_vision)
-			var/found_welder
-			if(species.short_sighted)
-				found_welder = 1
-			else
-				if(istype(glasses, /obj/item/clothing/glasses/welding))
-					var/obj/item/clothing/glasses/welding/O = glasses
-					if(!O.up)
-						found_welder = 1
-				if(!found_welder && nif && nif.flag_check(NIF_V_UVFILTER,NIF_FLAGS_VISION))	found_welder = 1
-				if(!found_welder && istype(head, /obj/item/clothing/head/welding))
-					var/obj/item/clothing/head/welding/O = head
-					if(!O.up)
-						found_welder = 1
-				if(!found_welder && istype(back, /obj/item/rig))
-					var/obj/item/rig/O = back
-					if(O.helmet && O.helmet == head && (O.helmet.body_parts_covered & EYES))
-						if((O.offline && O.offline_vision_restriction == 1) || (!O.offline && O.vision_restriction == 1))
-							found_welder = 1
-				if(absorbed) found_welder = 1
-			if(found_welder)
-				client.screen |= GLOB.global_hud.darkMask
+		var/found_welder
+		if(species.short_sighted)
+			found_welder = TRUE
+		else
+			if(istype(glasses, /obj/item/clothing/glasses/welding))
+				var/obj/item/clothing/glasses/welding/O = glasses
+				if(!O.up)
+					found_welder = TRUE
+			if(!found_welder && nif && nif.flag_check(NIF_V_UVFILTER, NIF_FLAGS_VISION))
+				found_welder = TRUE
+			if(!found_welder && istype(head, /obj/item/clothing/head/welding))
+				var/obj/item/clothing/head/welding/O = head
+				if(!O.up)
+					found_welder = TRUE
+			if(!found_welder && istype(back, /obj/item/rig))
+				var/obj/item/rig/O = back
+				if(O.helmet && O.helmet == head && (O.helmet.body_parts_covered & EYES))
+					if((O.offline && O.offline_vision_restriction == TRUE) || (!O.offline && O.vision_restriction == TRUE))
+						found_welder = TRUE
+			if(absorbed) found_welder = TRUE
+		if(found_welder)
+			client.screen |= GLOB.global_hud.darkMask
 
 /mob/living/carbon/human/handle_vision()
 	if(stat == DEAD)
@@ -1626,12 +1627,12 @@
 	if(status_flags & GODMODE)	return 0	//godmode
 	if(!can_feel_pain()) return
 
-	if(health < config_legacy.health_threshold_softcrit)// health 0 makes you immediately collapse
+	if(health < CONFIG_GET(number/health_threshold_softcrit))// health 0 makes you immediately collapse
 		shock_stage = max(shock_stage, 61)
 
 	if(traumatic_shock >= 80)
 		shock_stage += 1
-	else if(health < config_legacy.health_threshold_softcrit)
+	else if(health < CONFIG_GET(number/health_threshold_softcrit))
 		shock_stage = max(shock_stage, 61)
 	else
 		shock_stage = min(shock_stage, 160)

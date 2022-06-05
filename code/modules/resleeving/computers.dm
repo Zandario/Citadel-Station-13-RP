@@ -343,7 +343,7 @@
 						temp = "Error: Growpod malfunction."
 
 					//Disabled in config_legacy.
-					else if(!config_legacy.revival_cloning)
+					else if(!GET_CONFIG(flag/revival_cloning))
 						temp = "Error: Unable to initiate growing cycle."
 
 					//Do the cloning!

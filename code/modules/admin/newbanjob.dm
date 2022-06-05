@@ -219,8 +219,8 @@ var/savefile/Banlistjob
 	if(AddBanjob(ckey, computerid, reason, usr.ckey, 0, 0, job))
 		to_chat(M, "<font color='red'><BIG><B>You have been banned from [job] by [usr.client.ckey].\nReason: [reason].</B></BIG></font>")
 		to_chat(M, "<font color='red'>This is a permanent ban.</font>")
-		if(config_legacy.banappeals)
-			to_chat(M, "<font color='red'>To try to resolve this matter head to [config_legacy.banappeals]</font>")
+		if(CONFIG_GET(string/banappeals))
+			to_chat(M, "<font color='red'>To try to resolve this matter head to [CONFIG_GET(string/banappeals)]</font>")
 		else
 			to_chat(M, "<font color='red'>No ban appeals URL has been set.</font>")
 		log_admin("[usr.client.ckey] has banned from [job] [ckey].\nReason: [reason]\nThis is a permanent ban.")
@@ -229,8 +229,8 @@ var/savefile/Banlistjob
 	if(AddBanjob(ckey, computerid, reason, usr.ckey, 1, mins, job))
 		to_chat(M, "<font color='red'><BIG><B>You have been jobbanned from [job] by [usr.client.ckey].\nReason: [reason].</B></BIG></font>")
 		to_chat(M, "<font color='red'>This is a temporary ban, it will be removed in [mins] minutes.</font>")
-		if(config_legacy.banappeals)
-			to_chat(M, "<font color='red'>To try to resolve this matter head to [config_legacy.banappeals]</font>")
+		if(CONFIG_GET(string/banappeals))
+			to_chat(M, "<font color='red'>To try to resolve this matter head to [CONFIG_GET(string/banappeals)]</font>")
 		else
 			to_chat(M, "<font color='red'>No ban appeals URL has been set.</font>")
 		log_admin("[usr.client.ckey] has jobbanned from [job] [ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")

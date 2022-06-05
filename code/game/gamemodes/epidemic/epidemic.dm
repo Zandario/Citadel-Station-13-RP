@@ -174,7 +174,7 @@
 		sleep(10)
 		to_chat(world, "<span class='notice'><b>[i]..</b></span>")
 	sleep(10)
-	enter_allowed = 0
+	GLOB.enter_allowed = 0
 	if(SSticker)
 		SSticker.station_explosion_cinematic(0,null)
 		if(SSticker.mode)

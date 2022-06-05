@@ -284,10 +284,10 @@
 	H.updatehealth()
 
 	if(H.isSynthetic())
-		if(H.health + H.getOxyLoss() + H.getToxLoss() <= config_legacy.health_threshold_dead)
+		if(H.health + H.getOxyLoss() + H.getToxLoss() <= CONFIG_GET(number/health_threshold_dead))
 			return "buzzes, \"Resuscitation failed - Severe damage detected. Begin manual repair before further attempts futile.\""
 
-	else if(H.health + H.getOxyLoss() <= config_legacy.health_threshold_dead || (HUSK in H.mutations) || !H.can_defib)
+	else if(H.health + H.getOxyLoss() <= CONFIG_GET(number/health_threshold_dead) || (HUSK in H.mutations) || !H.can_defib)
 		// TODO: REFACTOR DEFIBS AND HEALTH
 		return "buzzes, \"Resuscitation failed - Severe tissue damage makes recovery of patient impossible via defibrillator. Further attempts futile.\""
 
@@ -423,7 +423,7 @@
 	H.apply_damage(burn_damage_amt, BURN, BP_TORSO)
 
 	//set oxyloss so that the patient is just barely in crit, if possible
-	var/barely_in_crit = config_legacy.health_threshold_crit - 1
+	var/barely_in_crit = CONFIG_GET(number/health_threshold_crit) - 1
 	var/adjust_health = barely_in_crit - H.health //need to increase health by this much
 	H.adjustOxyLoss(-adjust_health)
 

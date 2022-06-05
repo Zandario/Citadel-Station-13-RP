@@ -138,10 +138,10 @@ var/global/list/map_count = list()
 
 // Unused for basic map.
 /datum/random_map/proc/generate_map()
-	return 1
+	return TRUE
 
 /datum/random_map/proc/check_map_sanity()
-	return 1
+	return TRUE
 
 /datum/random_map/proc/set_origins(var/tx, var/ty, var/tz)
 	origin_x = tx ? tx : 1

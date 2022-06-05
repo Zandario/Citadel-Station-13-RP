@@ -274,11 +274,11 @@
 	var/eye_icon_location = 'icons/mob/human_face.dmi'
 
 /obj/item/organ/external/head/Initialize(mapload)
-	if(config_legacy.allow_headgibs)
+	if(CONFIG_GET(flag/allow_headgibs)) //Brain Blast!
 		cannot_gib = FALSE
 	return ..()
 
-/obj/item/organ/external/head/robotize(var/company, var/skip_prosthetics, var/keep_organs)
+/obj/item/organ/external/head/robotize(company, skip_prosthetics, keep_organs)
 	return ..(company, skip_prosthetics, 1)
 
 /obj/item/organ/external/head/removed()
