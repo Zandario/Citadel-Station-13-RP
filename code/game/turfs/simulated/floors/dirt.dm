@@ -3,7 +3,7 @@
 	desc = "Quite dirty!"
 	icon_state = "dirt-dark"
 	edge_blending_priority = 2
-	initial_flooring = /decl/flooring/outdoors/dirt
+	initial_flooring = /datum/flooring/outdoors/dirt
 	baseturfs = /turf/baseturf_bottom
 
 /turf/simulated/floor/outdoors/dirtlight
@@ -11,5 +11,5 @@
 	desc = "Quite dirty!"
 	icon_state = "dirt-light"
 	edge_blending_priority = 2
-	initial_flooring = /decl/flooring/outdoors/dirt
+	initial_flooring = /datum/flooring/outdoors/dirt
 	baseturfs = /turf/baseturf_bottom

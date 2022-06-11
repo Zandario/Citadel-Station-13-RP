@@ -98,7 +98,7 @@
 	outdoors = 1
 	base_icon_state = "asteroid"
 	baseturfs = /turf/simulated/mineral/floor/lavaland
-	initial_flooring = /decl/flooring/outdoors/lavaland
+	initial_flooring = /datum/flooring/outdoors/lavaland
 
 /turf/simulated/floor/tiled/steel_dirty/lavaland/exterior
 	outdoors = 1
