@@ -20,5 +20,5 @@
 #define SMOOTH_BLACKLIST 3
 /// Use a whitelist and a blacklist at the same time. atom smoothing only
 #define SMOOTH_GREYLIST 4
-#define isCardinal(x)			(x == NORTH || x == SOUTH || x == EAST || x == WEST)
-#define isDiagonal(x)			(x == NORTHEAST || x == SOUTHEAST || x == NORTHWEST || x == SOUTHWEST)
+#define isCardinal(x) (x == NORTH || x == SOUTH || x == EAST || x == WEST)
+#define isDiagonal(x) (x == NORTHEAST || x == SOUTHEAST || x == NORTHWEST || x == SOUTHWEST)

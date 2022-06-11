@@ -5,22 +5,24 @@ var/list/flooring_types
 	for (var/flooring_path in typesof(/datum/flooring))
 		flooring_types["[flooring_path]"] = new flooring_path
 
-/proc/get_flooring_data(var/flooring_path)
+/proc/get_flooring_data(flooring_path)
 	if(!flooring_types)
 		flooring_types = list()
 	if(!flooring_types["[flooring_path]"])
 		flooring_types["[flooring_path]"] = new flooring_path
 	return flooring_types["[flooring_path]"]
 
-// State values:
-// [icon_base]: initial base icon_state without edges or corners.
-// if has_base_range is set, append 0-has_base_range ie.
-//   [icon_base][has_base_range]
-// [icon_base]_broken: damaged overlay.
-// if has_damage_range is set, append 0-damage_range for state ie.
-//   [icon_base]_broken[has_damage_range]
-// [icon_base]_edges: directional overlays for edges.
-// [icon_base]_corners: directional overlays for non-edge corners.
+/**
+ * State values:
+ * [icon_base]: initial base icon_state without edges or corners.
+ * if has_base_range is set, append 0-has_base_range ie.
+ *   [icon_base][has_base_range]
+ * [icon_base]_broken: damaged overlay.
+ * if has_damage_range is set, append 0-damage_range for state ie.
+ *   [icon_base]_broken[has_damage_range]
+ * [icon_base]_edges: directional overlays for edges.
+ * [icon_base]_corners: directional overlays for non-edge corners.
+ */
 
 /datum/flooring
 	var/name = "floor"
@@ -35,87 +37,33 @@ var/list/flooring_types
 	var/apply_thermal_conductivity
 	var/apply_heat_capacity
 
-	var/build_type      // Unbuildable if not set. Must be /obj/item/stack.
-	var/build_cost = 1  // Stack units.
-	var/build_time = 0  // BYOND ticks.
+	/// Path of the tile that this floor drops
+	var/stack_type     // Unbuildable if not set. Must be /obj/item/stack.
+	var/build_cost = 1 // Stack units.
+	var/build_time = 0 // BYOND ticks.
 
 	var/descriptor = "tiles"
 	var/flags
 	var/can_paint
 	var/list/footstep_sounds = list() // key=species name, value = list of soundss
 	var/is_plating = FALSE
-	var/list/flooring_cache = list() // Cached overlays for our edges and corners and junk
+	/// Cached overlays for our edges and corners and junk.
+	var/list/flooring_cache = list()
 
 	//Plating types, can be overridden
 	var/plating_type = null
 
-	//Resistance is subtracted from all incoming damage
-	//var/resistance = RESISTANCE_FRAGILE
-
-	//Damage the floor can take before being destroyed
-	//var/health = 50
-
-	//var/removal_time = WORKTIME_FAST * 0.75
-
-	//Flooring Icon vars
+	/// If true, all smoothing logic is entirely skipped.
 	var/smooth_nothing = FALSE //True/false only, optimisation
-	//If true, all smoothing logic is entirely skipped
 
-	//The rest of these x_smooth vars use one of the following options
-	//SMOOTH_NONE: Ignore all of type
-	//SMOOTH_ALL: Smooth with all of type
-	//SMOOTH_WHITELIST: Ignore all except types on this list
-	//SMOOTH_BLACKLIST: Smooth with all except types on this list
-	//SMOOTH_GREYLIST: Objects only: Use both lists
+	var/smoothing_flags = NONE
+	var/list/smoothing_groups = list()
+	var/list/canSmoothWith = list()
 
-	//How we smooth with other flooring
-	var/floor_smooth = SMOOTH_NONE
-	var/list/flooring_whitelist = list() //Smooth with nothing except the contents of this list
-	var/list/flooring_blacklist = list() //Smooth with everything except the contents of this list
-
-	//How we smooth with walls
-	var/wall_smooth = SMOOTH_NONE
-	//There are no lists for walls at this time
-
-	//How we smooth with space and openspace tiles
-	var/space_smooth = SMOOTH_NONE
-	//There are no lists for spaces
-
-	/*
-	How we smooth with movable atoms
-	These are checked after the above turf based smoothing has been handled
-	SMOOTH_ALL or SMOOTH_NONE are treated the same here. Both of those will just ignore atoms
-	Using the white/blacklists will override what the turfs concluded, to force or deny smoothing
-
-	Movable atom lists are much more complex, to account for many possibilities
-	Each entry in a list, is itself a list consisting of three items:
-		Type: The typepath to allow/deny. This will be checked against istype, so all subtypes are included
-		Priority: Used when items in two opposite lists conflict. The one with the highest priority wins out.
-		Vars: An associative list of variables (varnames in text) and desired values
-			Code will look for the desired vars on the target item and only call it a match if all desired values match
-			This can be used, for example, to check that objects are dense and anchored
-			there are no safety checks on this, it will probably throw runtimes if you make typos
-
-	Common example:
-	Don't smooth with dense anchored objects except airlocks
-
-	smooth_movable_atom = SMOOTH_GREYLIST
-	movable_atom_blacklist = list(
-		list(/obj, list("density" = TRUE, "anchored" = TRUE), 1)
-		)
-	movable_atom_whitelist = list(
-	list(/obj/machinery/door/airlock, list(), 2)
-	)
-
-	*/
-	var/smooth_movable_atom = SMOOTH_NONE
-	var/list/movable_atom_whitelist = list()
-	var/list/movable_atom_blacklist = list()
-
-/datum/flooring/proc/get_plating_type(var/turf/T)
+/datum/flooring/proc/get_plating_type(turf/T)
 	return plating_type
 
-/datum/flooring/proc/get_flooring_overlay(var/cache_key, var/icon_base, var/icon_dir = 0, var/layer = BUILTIN_DECAL_LAYER)
+/datum/flooring/proc/get_flooring_overlay(cache_key, icon_base, icon_dir = NORTH, layer = BUILTIN_DECAL_LAYER)
 	if(!flooring_cache[cache_key])
 		var/image/I = image(icon = icon, icon_state = icon_base, dir = icon_dir)
 		I.layer = layer
@@ -123,11 +71,11 @@ var/list/flooring_types
 	return flooring_cache[cache_key]
 
 /datum/flooring/proc/drop_product(atom/A)
-	if(ispath(build_type, /obj/item/stack))
-		new build_type(A, build_cost)
+	if(ispath(stack_type, /obj/item/stack))
+		new stack_type(A, build_cost)
 	else
 		for(var/i in 1 to min(build_cost, 50))
-			new build_type(A)
+			new stack_type(A)
 
 /datum/flooring/grass
 	name = "grass"
@@ -137,7 +85,7 @@ var/list/flooring_types
 	has_base_range = 3
 	damage_temperature = T0C+80
 	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
-	build_type = /obj/item/stack/tile/grass
+	stack_type = /obj/item/stack/tile/grass
 
 /datum/flooring/asteroid
 	name = "coarse sand"
@@ -145,7 +93,7 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/asteroid.dmi'
 	icon_base = "asteroid"
 	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
-	build_type = null
+	stack_type = null
 
 /datum/flooring/snow
 	name = "snow"
@@ -189,7 +137,7 @@ var/list/flooring_types
 	desc = "Imported and comfy."
 	icon = 'icons/turf/flooring/carpet.dmi'
 	icon_base = "carpet"
-	build_type = /obj/item/stack/tile/carpet
+	stack_type = /obj/item/stack/tile/carpet
 	damage_temperature = T0C+200
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN
 	footstep_sounds = list("human" = list(
@@ -202,58 +150,58 @@ var/list/flooring_types
 /datum/flooring/carpet/bcarpet
 	name = "black carpet"
 	icon_base = "bcarpet"
-	build_type = /obj/item/stack/tile/carpet/bcarpet
+	stack_type = /obj/item/stack/tile/carpet/bcarpet
 
 /datum/flooring/carpet/blucarpet
 	name = "blue carpet"
 	icon_base = "blucarpet"
-	build_type = /obj/item/stack/tile/carpet/blucarpet
+	stack_type = /obj/item/stack/tile/carpet/blucarpet
 
 /datum/flooring/carpet/turcarpet
 	name = "tur carpet"
 	icon_base = "turcarpet"
-	build_type = /obj/item/stack/tile/carpet/turcarpet
+	stack_type = /obj/item/stack/tile/carpet/turcarpet
 
 /datum/flooring/carpet/sblucarpet
 	name = "silver blue carpet"
 	icon_base = "sblucarpet"
-	build_type = /obj/item/stack/tile/carpet/sblucarpet
+	stack_type = /obj/item/stack/tile/carpet/sblucarpet
 
 /datum/flooring/carpet/gaycarpet
 	name = "clown carpet"
 	icon_base = "gaycarpet"
-	build_type = /obj/item/stack/tile/carpet/gaycarpet
+	stack_type = /obj/item/stack/tile/carpet/gaycarpet
 
 /datum/flooring/carpet/purcarpet
 	name = "purple carpet"
 	icon_base = "purcarpet"
-	build_type = /obj/item/stack/tile/carpet/purcarpet
+	stack_type = /obj/item/stack/tile/carpet/purcarpet
 
 /datum/flooring/carpet/oracarpet
 	name = "orange carpet"
 	icon_base = "oracarpet"
-	build_type = /obj/item/stack/tile/carpet/oracarpet
+	stack_type = /obj/item/stack/tile/carpet/oracarpet
 
 /datum/flooring/carpet/tealcarpet
 	name = "teal carpet"
 	icon_base = "tealcarpet"
-	build_type = /obj/item/stack/tile/carpet/teal
+	stack_type = /obj/item/stack/tile/carpet/teal
 
 /datum/flooring/carpet/arcadecarpet
 	name = "arcade carpet"
 	icon_base = "arcade"
-	build_type = /obj/item/stack/tile/carpet/arcadecarpet
+	stack_type = /obj/item/stack/tile/carpet/arcadecarpet
 
 /datum/flooring/tiling
 	name = "floor"
 	desc = "Scuffed from the passage of countless greyshirts."
-	icon = 'icons/turf/flooring/tiles_vr.dmi' // More ERIS Sprites... For now...
+	icon = 'icons/turf/flooring/tiles_vr.dmi'
 	icon_base = "tiled"
 	has_damage_range = 2
 	damage_temperature = T0C+1400
 	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN
-	build_type = /obj/item/stack/tile/floor
-	can_paint = 1
+	stack_type = /obj/item/stack/tile/floor
+	can_paint = TRUE
 	footstep_sounds = list("human" = list(
 		'sound/effects/footstep/floor1.ogg',
 		'sound/effects/footstep/floor2.ogg',
@@ -265,18 +213,18 @@ var/list/flooring_types
 	desc = "Scuffed from the passage of countless greyshirts."
 	icon = 'icons/turf/flooring/techfloor_vr.dmi'
 	icon_base = "techfloor_gray"
-	build_type = /obj/item/stack/tile/floor/techgrey
+	stack_type = /obj/item/stack/tile/floor/techgrey
 	can_paint = null
 
 /datum/flooring/tiling/tech/grid
 	icon_base = "techfloor_grid"
-	build_type = /obj/item/stack/tile/floor/techgrid
+	stack_type = /obj/item/stack/tile/floor/techgrid
 
 /datum/flooring/tiling/new_tile
 	name = "floor"
 	icon_base = "tile_full"
 	flags = TURF_CAN_BREAK | TURF_CAN_BURN | TURF_IS_FRAGILE
-	build_type = null
+	stack_type = null
 
 /datum/flooring/tiling/new_tile/cargo_one
 	icon_base = "cargo_one_full"
@@ -307,8 +255,8 @@ var/list/flooring_types
 	desc = "It's like the 2390's all over again."
 	icon = 'icons/turf/flooring/linoleum.dmi'
 	icon_base = "lino"
-	can_paint = 1
-	build_type = /obj/item/stack/tile/linoleum
+	can_paint = TRUE
+	stack_type = /obj/item/stack/tile/linoleum
 	flags = TURF_REMOVE_SCREWDRIVER
 
 /datum/flooring/tiling/red
@@ -316,37 +264,37 @@ var/list/flooring_types
 	icon_base = "white"
 	has_damage_range = null
 	flags = TURF_REMOVE_CROWBAR
-	build_type = /obj/item/stack/tile/floor/red
+	stack_type = /obj/item/stack/tile/floor/red
 
 /datum/flooring/tiling/steel
 	name = "floor"
 	icon_base = "steel"
-	build_type = /obj/item/stack/tile/floor/steel
+	stack_type = /obj/item/stack/tile/floor/steel
 
 /datum/flooring/tiling/steel_dirty
 	name = "floor"
 	icon_base = "steel_dirty"
-	build_type = /obj/item/stack/tile/floor/steel_dirty
+	stack_type = /obj/item/stack/tile/floor/steel_dirty
 
 /datum/flooring/tiling/asteroidfloor
 	name = "floor"
 	icon_base = "asteroidfloor"
 	has_damage_range = null
 	flags = TURF_REMOVE_CROWBAR
-	build_type = /obj/item/stack/tile/floor/steel
+	stack_type = /obj/item/stack/tile/floor/steel
 
 /datum/flooring/tiling/white
 	name = "floor"
 	desc = "How sterile."
 	icon_base = "white"
-	build_type = /obj/item/stack/tile/floor/white
+	stack_type = /obj/item/stack/tile/floor/white
 
 /datum/flooring/tiling/yellow
 	name = "floor"
 	icon_base = "white"
 	has_damage_range = null
 	flags = TURF_REMOVE_CROWBAR
-	build_type = /obj/item/stack/tile/floor/yellow
+	stack_type = /obj/item/stack/tile/floor/yellow
 
 /datum/flooring/tiling/dark
 	name = "floor"
@@ -354,30 +302,30 @@ var/list/flooring_types
 	icon_base = "dark"
 	has_damage_range = null
 	flags = TURF_REMOVE_CROWBAR
-	build_type = /obj/item/stack/tile/floor/dark
+	stack_type = /obj/item/stack/tile/floor/dark
 
 /datum/flooring/tiling/hydro
 	name = "floor"
 	icon_base = "hydrofloor"
-	build_type = /obj/item/stack/tile/floor/steel
+	stack_type = /obj/item/stack/tile/floor/steel
 
 /datum/flooring/tiling/neutral
 	name = "floor"
 	icon_base = "neutral"
-	build_type = /obj/item/stack/tile/floor/steel
+	stack_type = /obj/item/stack/tile/floor/steel
 
 /datum/flooring/tiling/freezer
 	name = "floor"
 	desc = "Don't slip."
 	icon_base = "freezer"
-	build_type = /obj/item/stack/tile/floor/freezer
+	stack_type = /obj/item/stack/tile/floor/freezer
 
 /datum/flooring/wmarble
 	name = "marble floor"
 	desc = "Very regal white marble flooring."
 	icon = 'icons/turf/flooring/misc.dmi'
 	icon_base = "lightmarble"
-	build_type = /obj/item/stack/tile/wmarble
+	stack_type = /obj/item/stack/tile/wmarble
 	flags = TURF_REMOVE_CROWBAR
 
 /datum/flooring/bmarble
@@ -385,7 +333,7 @@ var/list/flooring_types
 	desc = "Very regal black marble flooring."
 	icon = 'icons/turf/flooring/misc.dmi'
 	icon_base = "darkmarble"
-	build_type = /obj/item/stack/tile/bmarble
+	stack_type = /obj/item/stack/tile/bmarble
 	flags = TURF_REMOVE_CROWBAR
 
 /datum/flooring/bananium
@@ -393,7 +341,7 @@ var/list/flooring_types
 	desc = "Have you ever seen a clown frown?"
 	icon = 'icons/turf/flooring/misc.dmi'
 	icon_base = "bananium"
-	build_type = /obj/item/stack/tile/bananium
+	stack_type = /obj/item/stack/tile/bananium
 	flags = TURF_REMOVE_CROWBAR
 
 /datum/flooring/silencium
@@ -401,7 +349,7 @@ var/list/flooring_types
 	desc = "Surprisingly, doesn't mask your footsteps."
 	icon = 'icons/turf/flooring/misc.dmi'
 	icon_base = "silencium"
-	build_type = /obj/item/stack/tile/silencium
+	stack_type = /obj/item/stack/tile/silencium
 	flags = TURF_REMOVE_CROWBAR
 
 /datum/flooring/silencium
@@ -409,7 +357,7 @@ var/list/flooring_types
 	desc = "Surprisingly, doesn't mask your footsteps."
 	icon = 'icons/turf/flooring/misc.dmi'
 	icon_base = "silencium"
-	build_type = /obj/item/stack/tile/silencium
+	stack_type = /obj/item/stack/tile/silencium
 	flags = TURF_REMOVE_CROWBAR
 
 /datum/flooring/plasteel
@@ -417,7 +365,7 @@ var/list/flooring_types
 	desc = "Sturdy metal flooring. Almost certainly a waste."
 	icon = 'icons/turf/flooring/misc.dmi'
 	icon_base = "plasteel"
-	build_type = /obj/item/stack/tile/plasteel
+	stack_type = /obj/item/stack/tile/plasteel
 	flags = TURF_REMOVE_CROWBAR
 
 /datum/flooring/durasteel
@@ -425,7 +373,7 @@ var/list/flooring_types
 	desc = "Incredibly sturdy metal flooring. Definitely a waste."
 	icon = 'icons/turf/flooring/misc.dmi'
 	icon_base = "durasteel"
-	build_type = /obj/item/stack/tile/durasteel
+	stack_type = /obj/item/stack/tile/durasteel
 	flags = TURF_REMOVE_CROWBAR
 
 /datum/flooring/silver
@@ -433,7 +381,7 @@ var/list/flooring_types
 	desc = "This opulent flooring reminds you of the ocean. Almost certainly a waste."
 	icon = 'icons/turf/flooring/misc.dmi'
 	icon_base = "silver"
-	build_type = /obj/item/stack/tile/silver
+	stack_type = /obj/item/stack/tile/silver
 	flags = TURF_REMOVE_CROWBAR
 
 /datum/flooring/gold
@@ -441,7 +389,7 @@ var/list/flooring_types
 	desc = "This richly tooled flooring makes you feel powerful."
 	icon = 'icons/turf/flooring/misc.dmi'
 	icon_base = "gold"
-	build_type = /obj/item/stack/tile/gold
+	stack_type = /obj/item/stack/tile/gold
 	flags = TURF_REMOVE_CROWBAR
 
 /datum/flooring/phoron
@@ -449,7 +397,7 @@ var/list/flooring_types
 	desc = "Although stable for now, this solid phoron flooring radiates danger."
 	icon = 'icons/turf/flooring/misc.dmi'
 	icon_base = "phoron"
-	build_type = /obj/item/stack/tile/phoron
+	stack_type = /obj/item/stack/tile/phoron
 	flags = TURF_REMOVE_CROWBAR
 
 /datum/flooring/uranium
@@ -457,7 +405,7 @@ var/list/flooring_types
 	desc = "This flooring literally radiates danger."
 	icon = 'icons/turf/flooring/misc.dmi'
 	icon_base = "uranium"
-	build_type = /obj/item/stack/tile/uranium
+	stack_type = /obj/item/stack/tile/uranium
 	flags = TURF_REMOVE_CROWBAR
 
 /datum/flooring/diamond
@@ -465,7 +413,7 @@ var/list/flooring_types
 	desc = "This flooring proves that you are a king among peasants. It's virtually impossible to scuff."
 	icon = 'icons/turf/flooring/misc.dmi'
 	icon_base = "diamond"
-	build_type = /obj/item/stack/tile/diamond
+	stack_type = /obj/item/stack/tile/diamond
 	flags = TURF_REMOVE_CROWBAR
 
 /datum/flooring/brass
@@ -473,7 +421,7 @@ var/list/flooring_types
 	desc = "There's something strange about this tile. If you listen closely, it sounds like it's ticking."
 	icon = 'icons/turf/flooring/misc.dmi'
 	icon_base = "clockwork_floor"
-	build_type = /obj/item/stack/tile/brass
+	stack_type = /obj/item/stack/tile/brass
 	flags = TURF_REMOVE_CROWBAR
 
 /datum/flooring/wood
@@ -484,7 +432,7 @@ var/list/flooring_types
 	has_damage_range = 6
 	damage_temperature = T0C+200
 	descriptor = "planks"
-	build_type = /obj/item/stack/tile/wood
+	stack_type = /obj/item/stack/tile/wood
 	flags = TURF_CAN_BREAK | TURF_IS_FRAGILE | TURF_REMOVE_SCREWDRIVER
 	footstep_sounds = list("human" = list(
 		'sound/effects/footstep/wood1.ogg',
@@ -498,7 +446,7 @@ var/list/flooring_types
 	desc = "Polished alien wood planks."
 	icon = 'icons/turf/flooring/wood.dmi'
 	icon_base = "sifwood"
-	build_type = /obj/item/stack/tile/wood/sif
+	stack_type = /obj/item/stack/tile/wood/sif
 
 /datum/flooring/reinforced
 	name = "reinforced floor"
@@ -506,20 +454,20 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_base = "reinforced"
 	flags = TURF_REMOVE_WRENCH | TURF_ACID_IMMUNE
-	build_type = /obj/item/stack/rods
+	stack_type = /obj/item/stack/rods
 	build_cost = 2
 	build_time = 30
 	apply_thermal_conductivity = 0.025
 	apply_heat_capacity = 325000
-	can_paint = 1
+	can_paint = TRUE
 
 /datum/flooring/reinforced/circuit
 	name = "processing strata"
 	icon = 'icons/turf/flooring/circuit.dmi'
 	icon_base = "bcircuit"
-	build_type = null
+	stack_type = null
 	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK | TURF_REMOVE_CROWBAR
-	can_paint = 1
+	can_paint = TRUE
 
 /datum/flooring/reinforced/circuit/green
 	name = "processing strata"
@@ -530,7 +478,7 @@ var/list/flooring_types
 	desc = "Unsettling whispers waver from the surface..."
 	icon = 'icons/turf/flooring/cult.dmi'
 	icon_base = "cult"
-	build_type = null
+	stack_type = null
 	has_damage_range = 6
 	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK
 	can_paint = null
@@ -641,7 +589,7 @@ var/list/flooring_types
 	desc = "There's something off about this tile."
 	icon = 'icons/turf/flooring/plating_vr.dmi'
 	icon_base = "plating"
-	build_type = null
+	stack_type = null
 	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK
 	can_paint = null
 
@@ -651,7 +599,7 @@ var/list/flooring_types
 	icon = 'icons/turf/flooring/misc.dmi'
 	icon_base = "wax"
 	damage_temperature = T0C+200
-	build_type = /obj/item/stack/tile/wax
+	stack_type = /obj/item/stack/tile/wax
 	flags = TURF_REMOVE_CROWBAR
 
 /datum/flooring/honeycomb
@@ -661,5 +609,5 @@ var/list/flooring_types
 	icon_base = "honeycomb"
 	has_damage_range = 6
 	damage_temperature = T0C+200
-	build_type = /obj/item/stack/tile/honeycomb
+	stack_type = /obj/item/stack/tile/honeycomb
 	flags = TURF_CAN_BREAK | TURF_IS_FRAGILE | TURF_REMOVE_SCREWDRIVER

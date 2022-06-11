@@ -80,9 +80,9 @@
 			var/datum/flooring/use_flooring
 			for(var/flooring_type in flooring_types)
 				var/datum/flooring/F = flooring_types[flooring_type]
-				if(!F.build_type)
+				if(!F.stack_type)
 					continue
-				if((S.type == F.build_type) || (S.build_type == F.build_type))
+				if((S.type == F.stack_type) || (S.build_type == F.stack_type))
 					use_flooring = F
 					break
 			if(!use_flooring)
@@ -149,7 +149,7 @@
 	return 0
 
 /turf/simulated/floor/proc/try_replace_tile(obj/item/stack/tile/T as obj, mob/user as mob)
-	if(T.type == flooring.build_type)
+	if(T.type == flooring.stack_type)
 		return
 	var/obj/item/W = user.is_holding_item_of_type(/obj/item)
 	if(!try_deconstruct_tile(W, user))

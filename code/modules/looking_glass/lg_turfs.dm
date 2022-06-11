@@ -3,7 +3,7 @@
 	desc = "Too expensive to replace. Don't break it!"
 	icon = 'icons/turf/flooring/lg_origin.dmi'
 	icon_base = "origin"
-	build_type = null
+	stack_type = null
 	damage_temperature = T0C+200
 
 

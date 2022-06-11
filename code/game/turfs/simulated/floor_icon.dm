@@ -279,7 +279,7 @@ var/list/flooring_cache = list()
 
 	return is_linked
 
-/turf/simulated/floor/proc/get_flooring_overlay(var/cache_key, var/icon_base, var/icon_dir = 0)
+/turf/simulated/floor/proc/get_flooring_overlay(cache_key, icon_base, icon_dir = 0)
 	if(!flooring_cache[cache_key])
 		var/image/I = image(icon = flooring.icon, icon_state = icon_base, dir = icon_dir)
 		I.layer = layer
