@@ -1,21 +1,18 @@
-/mob/living/carbon/slime/Life()
-	set invisibility = 0
-	set background = 1
-
-	if (src.transforming)
+/mob/living/carbon/slime/BiologicalLife(seconds, times_fired)
+	if((. = ..()))
 		return
 
-	..()
+	if(stat == DEAD)
+		return
 
-	if(stat != DEAD)
-		handle_nutrition()
+	handle_nutrition()
 
-		if (!client)
-			handle_targets()
-			if (!AIproc)
-				spawn()
-					handle_AI()
-			handle_speech_and_mood()
+	if (!client)
+		handle_targets()
+		if (!AIproc)
+			spawn()
+				handle_AI()
+		handle_speech_and_mood()
 
 /mob/living/carbon/slime/handle_environment(datum/gas_mixture/environment)
 	if(!environment)
@@ -28,8 +25,9 @@
 		//environment_heat_capacity = loc:heat_capacity
 		var/turf/heat_turf = get_turf(src)
 		loc_temp = heat_turf.temperature
-	else if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
-		loc_temp = loc:air_contents.temperature
+	else if(istype(loc, /obj/machinery/atmospherics/component/unary/cryo_cell))
+		var/obj/machinery/atmospherics/component/unary/cryo_cell/C = loc
+		loc_temp = C.air_contents.temperature
 	else
 		loc_temp = environment.temperature
 
@@ -76,7 +74,7 @@
 
 	return //TODO: DEFERRED
 
-/mob/living/carbon/slime/handle_regular_status_updates()
+/mob/living/carbon/slime/handle_regular_UI_updates()
 
 	src.blinded = null
 
@@ -102,18 +100,18 @@
 	else
 		if (src.paralysis || src.stunned || src.weakened || (status_flags & FAKEDEATH)) //Stunned etc.
 			if (src.stunned > 0)
-				src.stat = 0
+				src.set_stat(CONSCIOUS)
 			if (src.weakened > 0)
 				src.lying = 0
-				src.stat = 0
+				src.set_stat(CONSCIOUS)
 			if (src.paralysis > 0)
 				src.blinded = 0
 				src.lying = 0
-				src.stat = 0
+				src.set_stat(CONSCIOUS)
 
 		else
 			src.lying = 0
-			src.stat = 0
+			src.set_stat(CONSCIOUS)
 
 	if (src.stuttering) src.stuttering = 0
 
@@ -121,7 +119,8 @@
 		SetBlinded(0)
 		src.blinded = 1
 
-	if (src.ear_deaf > 0) src.ear_deaf = 0
+	if (src.ear_deaf > 0)
+		src.ear_deaf = 0
 	if (src.ear_damage < 25)
 		src.ear_damage = 0
 
@@ -213,7 +212,7 @@
 
 				if(istype(L, /mob/living/carbon/human) && dna) //Ignore slime(wo)men
 					var/mob/living/carbon/human/H = L
-					if(H.species.name == "Promethean")
+					if(H.species.name == SPECIES_PROMETHEAN)
 						continue
 
 				if(!L.canmove) // Only one slime can latch on at a time.
@@ -255,13 +254,13 @@
 			if (holding_still)
 				holding_still = max(holding_still - 1 - hungry, 0)
 			else if(canmove && isturf(loc) && prob(50))
-				step(src, pick(cardinal))
+				step(src, pick(GLOB.cardinal))
 
 		else
 			if (holding_still)
 				holding_still = max(holding_still - 1, 0)
 			else if(canmove && isturf(loc) && prob(33))
-				step(src, pick(cardinal))
+				step(src, pick(GLOB.cardinal))
 
 /mob/living/carbon/slime/proc/handle_AI()  // the master AI process
 

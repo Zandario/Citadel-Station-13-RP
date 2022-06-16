@@ -9,7 +9,7 @@
 	var/list/searchedby	= list()// Characters that have searched this trashpile, with values of searched time.
 	var/mob/living/hider		// A simple animal that might be hiding in the pile
 
-	var/obj/structure/mob_spawner/mouse_nest/mouse_nest = null
+	var/obj/structure/mob_spawner/pest_nest/pest_nest = null
 
 	var/chance_alpha	= 79	// Alpha list is junk items and normal random stuff.
 	var/chance_beta		= 20	// Beta list is actually maybe some useful illegal items. If it's not alpha or gamma, it's beta.
@@ -29,7 +29,7 @@
 
 	var/global/list/allocated_gamma = list()
 
-/obj/structure/trash_pile/Initialize()
+/obj/structure/trash_pile/Initialize(mapload)
 	. = ..()
 	icon_state = pick(
 		"pile1",
@@ -43,11 +43,11 @@
 		"boxfort",
 		"trashbag",
 		"brokecomp")
-	mouse_nest = new(src)
+	pest_nest = new(src)
 
 /obj/structure/trash_pile/Destroy()
-	qdel(mouse_nest)
-	mouse_nest = null
+	qdel(pest_nest)
+	pest_nest = null
 	return ..()
 
 /obj/structure/trash_pile/attackby(obj/item/W as obj, mob/user as mob)
@@ -138,7 +138,7 @@
 					prob(4);/obj/item/clothing/shoes/black,
 					prob(4);/obj/item/clothing/shoes/black,
 					prob(4);/obj/item/clothing/shoes/laceup,
-					prob(4);/obj/item/clothing/shoes/leather,
+					prob(4);/obj/item/clothing/shoes/laceup/brown,
 					prob(4);/obj/item/clothing/suit/storage/hazardvest,
 					prob(4);/obj/item/clothing/under/color/grey,
 					prob(4);/obj/item/caution,
@@ -164,7 +164,7 @@
 					prob(3);/obj/item/pda,
 					prob(3);/obj/item/radio/headset,
 					prob(3);/obj/item/camera_assembly,
-					prob(3);/obj/item/caution/cone,
+					prob(3);/obj/item/clothing/head/cone,
 					prob(3);/obj/item/cell/high,
 					prob(3);/obj/item/spacecash/c10,
 					prob(3);/obj/item/spacecash/c20,
@@ -212,17 +212,19 @@
 					prob(1);/obj/item/spacecash/c100,
 					prob(1);/obj/item/spacecash/c50,
 					prob(1);/obj/item/storage/backpack/dufflebag/syndie,
-					prob(1);/obj/item/storage/box/cups)
+					prob(1);/obj/item/storage/box/cups,
+					prob(1);/obj/item/gun/energy/stripper,
+					prob(1);/obj/item/pizzavoucher)
 
 	var/obj/item/I = new path()
 	return I
 
 /obj/structure/trash_pile/proc/produce_beta_item()
-	var/path = pick(prob(10);/obj/item/disk/nifsoft/compliance, //Citadel Override probability, 3.6%
-					prob(6);/obj/item/storage/pill_bottle/tramadol,
+	var/path = pick(prob(6);/obj/item/storage/pill_bottle/tramadol,
 					prob(4);/obj/item/storage/pill_bottle/happy,
 					prob(4);/obj/item/storage/pill_bottle/zoom,
 					prob(4);/obj/item/gun/energy/sizegun,
+					prob(4);/obj/item/gun/energy/stripper,
 					prob(3);/obj/item/material/butterfly,
 					prob(3);/obj/item/material/butterfly/switchblade,
 					prob(3);/obj/item/clothing/gloves/knuckledusters,
@@ -233,21 +235,18 @@
 					prob(2);/obj/item/storage/pill_bottle/antitox,
 					prob(2);/obj/item/storage/pill_bottle/kelotane,
 					prob(2);/obj/item/handcuffs/fuzzy,
-				//	prob(2);/obj/item/legcuffs,
 					prob(2);/obj/item/storage/box/syndie_kit/spy,
 					prob(2);/obj/item/grenade/anti_photon,
-					prob(2);/obj/item/nif/bad, //Citadel Override probability, 0.7%
-					prob(2);/obj/item/bodysnatcher, //Citadel Override probability, 0.7%
+					prob(1);/obj/item/nif/bad,
 					prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
-					prob(1);/obj/item/clothing/head/helmet/medieval/crusader, //Citadel Addition
-					prob(1);/obj/item/clothing/suit/armor/medieval/crusader/dark, //Citadel Addition
-				//	prob(1);/obj/item/nif/bad, // VORECode default probability, 0.2%
+					prob(1);/obj/item/clothing/head/helmet/medieval/crusader,
+					prob(1);/obj/item/clothing/suit/armor/medieval/crusader/dark,
 					prob(1);/obj/item/radio_jammer,
-					prob(1);/obj/item/sleevemate,
-				//	prob(1);/obj/item/bodysnatcher, //VORECode default probability, 0.2%
+					// prob(1);/obj/item/sleevemate,
+					// prob(1);/obj/item/bodysnatcher,
 					prob(1);/obj/item/beartrap,
 					prob(1);/obj/item/cell/hyper/empty,
-				//	prob(1);/obj/item/disk/nifsoft/compliance, //VORECode default probability, 0.2%
+					prob(1);/obj/item/disk/nifsoft/compliance,
 					prob(1);/obj/item/material/knife/tacknife,
 					prob(1);/obj/item/clothing/accessory/storage/brown_vest,
 					prob(1);/obj/item/clothing/accessory/storage/black_vest,
@@ -274,9 +273,9 @@
 	else
 		return produce_beta_item()
 
-/obj/structure/mob_spawner/mouse_nest
+/obj/structure/mob_spawner/pest_nest
 	name = "trash"
-	desc = "A small heap of trash, perfect for mice to nest in."
+	desc = "A small heap of trash, perfect for vermin to nest in."
 	icon = 'icons/obj/trash_piles.dmi'
 	icon_state = "randompile"
 	spawn_types = list(/mob/living/simple_mob/animal/passive/mouse)
@@ -284,8 +283,8 @@
 	destructible = 1
 	spawn_delay = 1 HOUR
 
-/obj/structure/mob_spawner/mouse_nest/New()
-	..()
+/obj/structure/mob_spawner/pest_nest/Initialize(mapload)
+	. = ..()
 	last_spawn = rand(world.time - spawn_delay, world.time)
 	icon_state = pick(
 		"pile1",
@@ -300,11 +299,11 @@
 		"trashbag",
 		"brokecomp")
 
-/obj/structure/mob_spawner/mouse_nest/do_spawn(var/mob_path)
+/obj/structure/mob_spawner/pest_nest/do_spawn(var/mob_path)
 	. = ..()
 	var/atom/A = get_holder_at_turf_level(src)
 	A.visible_message("[.] crawls out of \the [src].")
 
-/obj/structure/mob_spawner/mouse_nest/get_death_report(var/mob/living/L)
+/obj/structure/mob_spawner/pest_nest/get_death_report(var/mob/living/L)
 	..()
 	last_spawn = rand(world.time - spawn_delay, world.time)

@@ -2,14 +2,20 @@
 //			Shade
 ////////////////////////////
 
+/datum/category_item/catalogue/fauna/construct/shade
+	name = "%#ERROR#%"
+	desc = "%ERROR% SCAN DATA REDACTED. RETURN SCANNER TO A \
+	CENTRAL ADMINISTRATOR FOR IMMEDIATE MAINTENANCE. %ERROR%"
+	value = CATALOGUER_REWARD_TRIVIAL
+
 /mob/living/simple_mob/construct/shade
 	name = "Shade"
 	real_name = "Shade"
 	desc = "A bound spirit"
-	icon = 'icons/mob/mob.dmi'
 	icon_state = "shade"
 	icon_living = "shade"
 	icon_dead = "shade_dead"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/construct/shade)
 
 	response_help  = "puts their hand through"
 	response_disarm = "flails at"
@@ -30,6 +36,8 @@
 
 	loot_list = list(/obj/item/ectoplasm = 100)
 
+	ai_holder_type = /datum/ai_holder/simple_mob/melee
+
 /mob/living/simple_mob/construct/shade/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/soulstone))
 		var/obj/item/soulstone/S = O;
@@ -46,3 +54,11 @@
 	ghostize()
 	qdel(src)
 	return
+
+//Lavaland Shades
+/mob/living/simple_mob/construct/shade/surt
+	name = "Lingering Shade"
+	real_name = "Lingering Shade"
+	desc = "This spirit was bound to this planet ages ago. Its masters have long since passed, and the war it served in has been forgotten. The energies binding it remain."
+
+	heat_resist = 1

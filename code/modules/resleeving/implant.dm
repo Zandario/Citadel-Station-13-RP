@@ -7,11 +7,11 @@
 /obj/item/implant/backup
 	name = "backup implant"
 	desc = "A mindstate backup implant that occasionally stores a copy of one's mind on a central server for backup purposes."
-	catalogue_data = list(///datum/category_item/catalogue/information/organization/khi,
+	catalogue_data = list(///datum/category_item/catalogue/information/organization/vey_med,
 						/datum/category_item/catalogue/technology/resleeving)
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "backup_implant"
-//CITADEL CHANGE - ALTERING IMPLANT DATA
+
 /obj/item/implant/backup/get_data()
 	var/dat = {"
 <b>Implant Specifications:</b><BR>
@@ -24,23 +24,21 @@
 <b>Special Features:</b> Allows the restoration of employees within an eight hour period.<BR>
 <b>Integrity:</b> Sturdy, weak against acidic compounds."}
 	return dat
-//END OF CITADEL CHANGE
+
 /obj/item/implant/backup/Destroy()
 	SStranscore.implants -= src
 	return ..()
 
 /obj/item/implant/backup/post_implant(var/mob/living/carbon/human/H)
 	if(istype(H))
-		ENABLE_BITFIELD(H.hud_updateflag, BACKUP_HUD)
 		SStranscore.implants |= src
-
 		return 1
 
 //New, modern implanter instead of old style implanter.
 /obj/item/backup_implanter
 	name = "backup implanter"
-	desc = "After discovering that Nanotrasen was just re-using the same implanters over and over again on organics, leading to cross-contamination, Kitsuhana Heavy industries designed this self-cleaning model. Holds four backup implants at a time."
-	catalogue_data = list(///datum/category_item/catalogue/information/organization/khi,
+	desc = "After discovering that Nanotrasen was just re-using the same implanters over and over again on organics, leading to cross-contamination, Vey-Med designed this self-cleaning model. Holds four backup implants at a time."
+	catalogue_data = list(///datum/category_item/catalogue/information/organization/vey_med,
 						/datum/category_item/catalogue/technology/resleeving)
 	icon = 'icons/obj/device_alt.dmi'
 	icon_state = "bimplant"
@@ -48,12 +46,12 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEMSIZE_SMALL
-	matter = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 2000)
-	var/obj/item/implant/backup/list/imps = list()
+	matter = list(MAT_STEEL = 2000, MAT_GLASS = 2000)
+	var/list/obj/item/implant/backup/imps = list()
 	var/max_implants = 4 //Iconstates need to exist due to the update proc!
 
-/obj/item/backup_implanter/New()
-	..()
+/obj/item/backup_implanter/Initialize(mapload)
+	. = ..()
 	for(var/i = 1 to max_implants)
 		var/obj/item/implant/backup/imp = new(src)
 		imps |= imp
@@ -120,10 +118,9 @@
 	desc = "A case containing a backup implant."
 	icon_state = "implantcase-b"
 
-/obj/item/implantcase/backup/New()
+/obj/item/implantcase/backup/Initialize(mapload)
 	src.imp = new /obj/item/implant/backup(src)
-	..()
-	return
+	return ..()
 
 //The box of backup implants
 /obj/item/storage/box/backup_kit
@@ -132,14 +129,14 @@
 	icon_state = "implant"
 	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 
-/obj/item/storage/box/backup_kit/New()
-	..()
+/obj/item/storage/box/backup_kit/PopulateContents()
 	for(var/i = 1 to 7)
 		new /obj/item/implantcase/backup(src)
 	new /obj/item/implanter(src)
+
 /* CITADEL CHANGE - Removes this useless shit
 //Purely for fluff
 /obj/item/implant/backup/full
-	name = "khi backup implant"
-	desc = "A normal KHI wireless cortical stack with neutrino and QE transmission for constant-stream consciousness upload."
+	name = "vey-med backup implant"
+	desc = "A normal Vey-Med wireless cortical stack with neutrino and QE transmission for constant-stream consciousness upload."
 END OF CITADEL CHANGE */

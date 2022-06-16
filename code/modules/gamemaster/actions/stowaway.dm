@@ -1,6 +1,6 @@
 /datum/gm_action/stowaway
 	name = "stowaway pod"
-	departments = list(ROLE_EVERYONE, ROLE_SECURITY)
+	departments = list(DEPARTMENT_EVERYONE, DEPARTMENT_SECURITY)
 	chaotic = 10
 	observers_used = TRUE
 	var/area/target_area	// Chosen target area
@@ -72,9 +72,9 @@
 	say_dead_object("A <span class='notice'>[HP.occupant_type]</span> pod is now available in \the [target_area].", HP)
 
 /datum/gm_action/stowaway/get_weight()
-	return -20 + (metric.count_people_in_department(ROLE_SECURITY) * 15 + metric.count_people_in_department(ROLE_SYNTHETIC) * 5 + metric.count_people_in_department(ROLE_EVERYONE) * 1)
+	return -20 + (metric.count_people_in_department(DEPARTMENT_SECURITY) * 15 + metric.count_people_in_department(DEPARTMENT_SYNTHETIC) * 5 + metric.count_people_in_department(DEPARTMENT_EVERYONE) * 1)
 
 /datum/gm_action/stowaway/announce()
 	spawn(rand(15 MINUTES, 30 MINUTES))
-		if(prob(20) && severity >= EVENT_LEVEL_MODERATE && atc && !atc.squelched)
-			atc.msg("Attention civilian vessels in [GLOB.using_map.starsys_name] shipping lanes, caution is advised as [pick("an unidentified vessel", "a known criminal's vessel", "a derelict vessel")] has been detected passing multiple local stations.")
+		if(prob(20) && severity >= EVENT_LEVEL_MODERATE && GLOB.lore_atc && !GLOB.lore_atc.squelched)
+			GLOB.lore_atc.msg("Attention civilian vessels in [GLOB.using_map.starsys_name] shipping lanes, caution is advised as [pick("an unidentified vessel", "a known criminal's vessel", "a derelict vessel")] has been detected passing multiple local stations.")

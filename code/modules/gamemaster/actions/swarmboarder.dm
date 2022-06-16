@@ -1,6 +1,6 @@
 /datum/gm_action/swarm_boarder
 	name = "swarmer shell"
-	departments = list(ROLE_EVERYONE, ROLE_SECURITY, ROLE_ENGINEERING)
+	departments = list(DEPARTMENT_EVERYONE, DEPARTMENT_SECURITY, DEPARTMENT_ENGINEERING)
 	chaotic = 30
 	observers_used = TRUE
 	var/area/target_area	// Chosen target area
@@ -67,9 +67,9 @@
 	new swarmertype(target_turf)
 
 /datum/gm_action/swarm_boarder/get_weight()
-	return -60 + (metric.count_people_in_department(ROLE_SECURITY) * 20 + metric.count_people_in_department(ROLE_SYNTHETIC) * 5 + metric.count_people_in_department(ROLE_EVERYONE) * 1)
+	return -60 + (metric.count_people_in_department(DEPARTMENT_SECURITY) * 20 + metric.count_people_in_department(DEPARTMENT_SYNTHETIC) * 5 + metric.count_people_in_department(DEPARTMENT_EVERYONE) * 1)
 
 /datum/gm_action/swarm_boarder/announce()
 	spawn(rand(5 MINUTES, 15 MINUTES))
-		if(prob(80) && severity >= EVENT_LEVEL_MODERATE && atc && !atc.squelched)
-			atc.msg("Attention civilian vessels in [GLOB.using_map.starsys_name] shipping lanes, caution is advised as [pick("an unidentified vessel", "a known criminal's vessel", "a derelict vessel")] has been detected passing multiple local stations.")
+		if(prob(80) && severity >= EVENT_LEVEL_MODERATE && GLOB.lore_atc && !GLOB.lore_atc.squelched)
+			GLOB.lore_atc.msg("Attention civilian vessels in [GLOB.using_map.starsys_name] shipping lanes, caution is advised as [pick("an unidentified vessel", "a known criminal's vessel", "a derelict vessel")] has been detected passing multiple local stations.")

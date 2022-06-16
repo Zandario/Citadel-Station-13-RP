@@ -50,12 +50,14 @@ nanoui is used to open and update nano browser uis
 	// set to 1 to update the ui automatically every master_controller tick
 	var/is_auto_updating = 0
 	// the current status/visibility of the ui
-	var/status = STATUS_INTERACTIVE
+	var/status = UI_INTERACTIVE
 
 	// Relationship between a master interface and its children. Used in update_status
 	var/datum/nanoui/master_ui
 	var/list/datum/nanoui/children = list()
 	var/datum/topic_state/state = null
+
+	var/static/datum/asset/simple/namespaced/nanoui/nano_asset
 
  /**
   * Create a new nanoui instance.
@@ -71,7 +73,9 @@ nanoui is used to open and update nano browser uis
   *
   * @return /nanoui new nanoui object
   */
-/datum/nanoui/New(nuser, nsrc_object, nui_key, ntemplate_filename, ntitle = 0, nwidth = 0, nheight = 0, var/atom/nref = null, var/datum/nanoui/master_ui = null, var/datum/topic_state/state = default_state)
+/datum/nanoui/New(mob/nuser, nsrc_object, nui_key, ntemplate_filename, ntitle = 0, nwidth = 0, nheight = 0, var/atom/nref = null, var/datum/nanoui/master_ui = null, var/datum/topic_state/state = default_state)
+	if(!istype(nano_asset))
+		nano_asset = get_asset_datum(/datum/asset/simple/namespaced/nanoui)
 	user = nuser
 	src_object = nsrc_object
 	ui_key = nui_key
@@ -95,6 +99,8 @@ nanoui is used to open and update nano browser uis
 		ref = nref
 
 	add_common_assets()
+	if (nuser?.client)
+		nano_asset.send(nuser.client) //ship it
 
  /**
   * Use this proc to add assets which are common to (and required by) all nano uis
@@ -111,7 +117,6 @@ nanoui is used to open and update nano browser uis
 	add_script("nano_base_callbacks.js") // The NanoBaseCallbacks JS, this is used to set up (before and after update) callbacks which are common to all UIs
 	add_script("nano_base_helpers.js") // The NanoBaseHelpers JS, this is used to set up template helpers which are common to all UIs
 	add_stylesheet("shared.css") // this CSS sheet is common to all UIs
-	add_stylesheet("shared_vr.css") // VOREStation Add
 	add_stylesheet("icons.css") // this CSS sheet is common to all UIs
 
  /**
@@ -124,7 +129,7 @@ nanoui is used to open and update nano browser uis
   */
 /datum/nanoui/proc/set_status(state, push_update)
 	if (state != status) // Only update if it is different
-		if (status == STATUS_DISABLED)
+		if (status == UI_DISABLED)
 			status = state
 			if (push_update)
 				update()
@@ -147,7 +152,7 @@ nanoui is used to open and update nano browser uis
 		new_status = min(new_status, master_ui.status)
 
 	set_status(new_status, push_update)
-	if(new_status == STATUS_CLOSE)
+	if(new_status == UI_CLOSE)
 		close()
 
  /**
@@ -333,18 +338,17 @@ nanoui is used to open and update nano browser uis
   * @return string HTML for the UI
   */
 /datum/nanoui/proc/get_html()
-
 	// before the UI opens, add the layout files based on the layout key
 	add_stylesheet("layout_[layout_key].css")
 	add_template("layout", "layout_[layout_key].tmpl")
 
 	var/head_content = ""
 
-	for (var/filename in scripts)
-		head_content += "<script type='text/javascript' src='[filename]'></script> "
+	for(var/filename in scripts)
+		head_content += "<script type='text/javascript' src='[SSassets.transport.get_asset_url(filename)]'></script>"
 
-	for (var/filename in stylesheets)
-		head_content += "<link rel='stylesheet' type='text/css' href='[filename]'> "
+	for(var/filename in stylesheets)
+		head_content += "<link rel='stylesheet' type='text/css' href='[SSassets.transport.get_asset_url(filename)]'>"
 
 	var/template_data_json = "{}" // An empty JSON object
 	if (templates.len > 0)
@@ -357,18 +361,16 @@ nanoui is used to open and update nano browser uis
 	var/url_parameters_json = json_encode(list("src" = "\ref[src]"))
 
 	return {"
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<head>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+		<meta http-equiv='X-UA-Compatible' content='IE=edge'>
 		<script type='text/javascript'>
-			function receiveUpdateData(jsonString)
-			{
+			function receiveUpdateData(jsonString) {
 				// We need both jQuery and NanoStateManager to be able to recieve data
 				// At the moment any data received before those libraries are loaded will be lost
-				if (typeof NanoStateManager != 'undefined' && typeof jQuery != 'undefined')
-				{
+				if (typeof NanoStateManager != 'undefined' && typeof jQuery != 'undefined') {
 					NanoStateManager.receiveUpdateData(jsonString);
 				}
 				//else
@@ -411,7 +413,7 @@ nanoui is used to open and update nano browser uis
 	if (width && height)
 		window_size = "size=[width]x[height];"
 	update_status(0)
-	if(status == STATUS_CLOSE)
+	if(status == UI_CLOSE)
 		return
 
 	user << browse(get_html(), "window=[window_id];[window_size][window_options]")
@@ -467,7 +469,7 @@ nanoui is used to open and update nano browser uis
   */
 /datum/nanoui/proc/push_data(data, force_push = 0)
 	update_status(0)
-	if (status == STATUS_DISABLED && !force_push)
+	if (status == UI_DISABLED && !force_push)
 		return // Cannot update UI, no visibility
 
 	var/list/send_data = get_send_data(data)
@@ -477,14 +479,14 @@ nanoui is used to open and update nano browser uis
 
  /**
   * This Topic() proc is called whenever a user clicks on a link within a Nano UI
-  * If the UI status is currently STATUS_INTERACTIVE then call the src_object Topic()
+  * If the UI status is currently UI_INTERACTIVE then call the src_object Topic()
   * If the src_object Topic() returns 1 (true) then update all UIs attached to src_object
   *
   * @return nothing
   */
 /datum/nanoui/Topic(href, href_list)
 	update_status(0) // update the status
-	if (status != STATUS_INTERACTIVE || user != usr) // If UI is not interactive or usr calling Topic is not the UI user
+	if (status != UI_INTERACTIVE || user != usr) // If UI is not interactive or usr calling Topic is not the UI user
 		return
 
 	// This is used to toggle the nano map ui
@@ -524,4 +526,4 @@ nanoui is used to open and update nano browser uis
   * @return nothing
   */
 /datum/nanoui/proc/update(var/force_open = 0)
-	src_object.ui_interact(user, ui_key, src, force_open, master_ui, state)
+	src_object.nano_ui_interact(user, ui_key, src, force_open, master_ui, state)

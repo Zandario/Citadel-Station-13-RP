@@ -9,31 +9,33 @@
  *			worldtime2text
  */
 
-// Returns an integer given a hexadecimal number string as input.
-/proc/hex2num(hex)
-	if (!istext(hex))
-		return
-
-	var/num   = 0
-	var/power = 1
-	var/i     = length(hex)
-
-	while (i)
-		var/char = text2ascii(hex, i)
-		switch(char)
-			if(48)                                  // 0 -- do nothing
-			if(49 to 57) num += (char - 48) * power // 1-9
-			if(97,  65)  num += power * 10          // A
-			if(98,  66)  num += power * 11          // B
-			if(99,  67)  num += power * 12          // C
-			if(100, 68)  num += power * 13          // D
-			if(101, 69)  num += power * 14          // E
-			if(102, 70)  num += power * 15          // F
+//Returns an integer given a hex input, supports negative values "-ff"
+//skips preceding invalid characters
+//breaks when hittin invalid characters thereafter
+// If safe=TRUE, returns null on incorrect input strings instead of CRASHing
+/proc/hex2num(hex, safe=FALSE)
+	. = 0
+	var/place = 1
+	for(var/i in length(hex) to 1 step -1)
+		var/num = text2ascii(hex, i)
+		switch(num)
+			if(48 to 57)
+				num -= 48	//0-9
+			if(97 to 102)
+				num -= 87	//a-f
+			if(65 to 70)
+				num -= 55	//A-F
+			if(45)
+				return . * -1 // -
 			else
-				return
-		power *= 16
-		i--
-	return num
+				if(safe)
+					return null
+				else
+					CRASH("Malformed hex number")
+
+		. += num * place
+		place *= 16
+
 
 // Returns the hex value of a number given a value assumed to be a base-ten value
 /proc/num2hex(num, padlength)
@@ -56,10 +58,6 @@
 		num_list += text2num(x)
 	return num_list
 
-// Splits the text of a file at seperator and returns them in a list.
-/proc/file2list(filename, seperator="\n")
-	return splittext(return_file_text(filename),seperator)
-
 // Turns a direction into text
 /proc/num2dir(direction)
 	switch (direction)
@@ -70,8 +68,8 @@
 		else
 			log_world("UNKNOWN DIRECTION: [direction]")
 
-//Splits the text of a file at seperator and returns them in a list.
-//returns an empty list if the file doesn't exist
+/// Splits the text of a file at seperator and returns them in a list.
+/// Returns an empty list if the file doesn't exist
 /world/proc/file2list(filename, seperator="\n", trim = TRUE)
 	if (trim)
 		return splittext(trim(file2text(filename)),seperator)
@@ -257,9 +255,9 @@
 		switch(child)
 			if(/datum)
 				return null
-			if(/obj || /mob)
+			if(/obj, /mob)
 				return /atom/movable
-			if(/area || /turf)
+			if(/area, /turf)
 				return /atom
 			else
 				return /datum
@@ -285,6 +283,37 @@
 			return "turf"
 		else //regex everything else (works for /proc too)
 			return lowertext(replacetext("[the_type]", "[type2parent(the_type)]/", ""))
+
+/// Return html to load a url.
+/// for use inside of browse() calls to html assets that might be loaded on a cdn.
+/proc/url2htmlloader(url)
+	return {"<html><head><meta http-equiv="refresh" content="0;URL='[url]'"/></head><body onLoad="parent.location='[url]'"></body></html>"}
+
+// Converts a string into ascii then converts it into hexadecimal.
+/proc/strtohex(str)
+	if(!istext(str)||!str)
+		return
+	var/r
+	var/c
+	for(var/i = 1 to length(str))
+		c= text2ascii(str,i)
+		r+= num2hex(c)
+	return r
+
+// Decodes hexadecimal ascii into a raw byte string.
+// If safe=TRUE, returns null on incorrect input strings instead of CRASHing
+/proc/hextostr(str, safe=FALSE)
+	if(!istext(str)||!str)
+		return
+	var/r
+	var/c
+	for(var/i = 1 to length(str)/2)
+		c = hex2num(copytext(str,i*2-1,i*2+1), safe)
+		if(isnull(c))
+			return null
+		r += ascii2text(c)
+	return r
+
 
 //This is a weird one:
 //It returns a list of all var names found in the string
@@ -328,4 +357,3 @@
 	if(delim_pos == 0)
 		return strtype
 	return copytext(strtype, delim_pos)
-

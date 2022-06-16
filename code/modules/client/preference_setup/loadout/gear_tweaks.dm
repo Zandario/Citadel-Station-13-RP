@@ -38,7 +38,48 @@
 /datum/gear_tweak/color/tweak_item(var/obj/item/I, var/metadata)
 	if(valid_colors && !(metadata in valid_colors))
 		return
-	I.color = metadata
+	if(!metadata || (metadata == "#ffffff"))
+		return
+	if(istype(I))
+		I.add_atom_colour(metadata, FIXED_COLOUR_PRIORITY)
+	else
+		I.color = metadata		// fuck off underwear
+
+GLOBAL_DATUM_INIT(gear_tweak_free_matrix_recolor, /datum/gear_tweak/matrix_recolor, new)
+
+/datum/gear_tweak/matrix_recolor
+
+/datum/gear_tweak/matrix_recolor/get_contents(var/metadata)
+	if(islist(metadata) && length(metadata))
+		return "Matrix Recolor: [english_list(metadata)]"
+	return "Matrix Recolor"
+
+/datum/gear_tweak/matrix_recolor/get_default()
+	return null
+
+/datum/gear_tweak/matrix_recolor/get_metadata(user, metadata)
+	var/list/returned = color_matrix_picker(user, "Pick a color matrix for this item", "Matrix Recolor", "Ok", "Erase", "Cancel", TRUE, 10 MINUTES, islist(metadata) && metadata)
+	var/list/L = returned["matrix"]
+	if(returned["button"] == 3)
+		return metadata
+	if((returned["button"] == 2) || !islist(L) || !ISINRANGE(L.len, 9, 20))
+		return list()
+	var/identity = TRUE
+	var/static/list/ones = list(1, 5, 9)
+	for(var/i in 1 to L.len)
+		if(L[i] != ((i in ones)? 1 : 0))
+			identity = FALSE
+			break
+	return identity? list() : L
+
+/datum/gear_tweak/matrix_recolor/tweak_item(obj/item/I, metadata)
+	. = ..()
+	if(!islist(metadata) || (length(metadata) < 12))
+		return
+	if(istype(I))
+		I.add_atom_colour(metadata, FIXED_COLOUR_PRIORITY)
+	else
+		I.color = metadata		// fuck off underwear
 
 /*
 * Path adjustment
@@ -140,6 +181,75 @@
 	else
 		. = valid_reagents[metadata]
 	I.reagents.add_reagent(., I.reagents.get_free_space())
+
+//Custom name and desciption code
+//note to devs downstream: where 'gear_tweaks = list(gear_tweak_free_color_choice)' was used before for color selection
+//in the loadout, now 'gear_tweaks += gear_tweak_free_color_choice' will need to be used, otherwise the item will not
+// be able to be given a custom name or description
+/*
+Custom Name
+*/
+
+var/datum/gear_tweak/custom_name/gear_tweak_free_name = new()
+
+/datum/gear_tweak/custom_name
+	var/list/valid_custom_names
+
+/datum/gear_tweak/custom_name/New(var/list/valid_custom_names)
+	src.valid_custom_names = valid_custom_names
+	..()
+
+/datum/gear_tweak/custom_name/get_contents(var/metadata)
+	return "Name: [metadata]"
+
+/datum/gear_tweak/custom_name/get_default()
+	return ""
+
+/datum/gear_tweak/custom_name/get_metadata(var/user, var/metadata)
+	if(jobban_isbanned(user, "Custom loadout"))
+		to_chat(user, WARNING("You are banned from using custom loadout names/descriptions."))
+		return
+	if(valid_custom_names)
+		return input(user, "Choose an item name.", "Character Preference", metadata) as null|anything in valid_custom_names
+	return sanitize(input(user, "Choose the item's name. Leave it blank to use the default name.", "Item Name", metadata) as text|null, MAX_LNAME_LEN, extra = 0)
+
+/datum/gear_tweak/custom_name/tweak_item(var/obj/item/I, var/metadata)
+	if(!metadata)
+		return I.name
+	I.name = metadata
+
+/*
+Custom Description
+*/
+var/datum/gear_tweak/custom_desc/gear_tweak_free_desc = new()
+
+/datum/gear_tweak/custom_desc
+	var/list/valid_custom_desc
+
+/datum/gear_tweak/custom_desc/New(var/list/valid_custom_desc)
+	src.valid_custom_desc = valid_custom_desc
+	..()
+
+/datum/gear_tweak/custom_desc/get_contents(var/metadata)
+	return "Description: [metadata]"
+
+/datum/gear_tweak/custom_desc/get_default()
+	return ""
+
+/datum/gear_tweak/custom_desc/get_metadata(var/user, var/metadata)
+	if(jobban_isbanned(user, "Custom loadout"))
+		to_chat(user, WARNING("You are banned from using custom loadout names/descriptions."))
+		return
+	if(valid_custom_desc)
+		return input(user, "Choose an item description.", "Character Preference", metadata) as null|anything in valid_custom_desc
+	return sanitize(input(user, "Choose the item's description. Leave it blank to use the default description.", "Item Description", metadata) as message|null, extra = 0)
+
+/datum/gear_tweak/custom_desc/tweak_item(var/obj/item/I, var/metadata)
+	if(!metadata)
+		return I.desc
+	I.desc = metadata
+
+//end of custom description
 
 
 /datum/gear_tweak/tablet
@@ -439,3 +549,18 @@
 		var/t = ValidTeslaLinks[metadata[7]]
 		I.tesla_link = new t(I)
 	I.update_verbs()
+
+/datum/gear_tweak/collar_tag/get_contents(var/metadata)
+	return "Tag: [metadata]"
+
+/datum/gear_tweak/collar_tag/get_default()
+	return ""
+
+/datum/gear_tweak/collar_tag/get_metadata(var/user, var/metadata)
+	return sanitize( input(user, "Choose the tag text", "Character Preference", metadata) as text , MAX_NAME_LEN )
+
+/datum/gear_tweak/collar_tag/tweak_item(var/obj/item/clothing/accessory/collar/C, var/metadata)
+	if(metadata == "")
+		return ..()
+	else
+		C.initialize_tag(metadata)

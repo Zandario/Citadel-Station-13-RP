@@ -27,7 +27,7 @@
 	. += "<a href='?src=[REF(src)];togglesustainhold=1'>Sustain indefinitely last held note</a>: [full_sustain_held_note? "Enabled" : "Disabled"].<br>"
 	. += "</div>"
 
-/datum/song/ui_interact(mob/user)
+/datum/song/nano_ui_interact(mob/user)
 	var/list/dat = list()
 
 	dat += instrument_status_ui()
@@ -82,7 +82,6 @@
 
 	var/datum/browser/popup = new(user, "instrument", parent?.name || "instrument", 700, 500)
 	popup.set_content(dat.Join(""))
-	popup.set_title_image(user.browse_rsc_icon(parent.icon, parent.icon_state))
 	popup.open()
 
 /datum/song/proc/ParseSong(text)
@@ -110,7 +109,7 @@
 		updateDialog(usr)		// make sure updates when complete
 
 /datum/song/Topic(href, href_list)
-	if(usr.default_can_use_topic(parent) < STATUS_UPDATE)
+	if(usr.default_can_use_topic(parent) < UI_UPDATE)
 		usr << browse(null, "window=instrument")
 		usr.unset_machine()
 		return

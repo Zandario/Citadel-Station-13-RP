@@ -30,8 +30,6 @@
 	var/log_runtime = 0					// logs world.log to a file
 	var/log_world_output = 0			// log world.log << messages
 	var/log_topic = TRUE
-	var/sql_enabled = 0					// for sql switching
-	var/allow_admin_ooccolor = 0		// Allows admins with relevant permissions to have their own ooc colour
 	var/allow_vote_restart = 0 			// allow votes to restart
 	var/ert_admin_call_only = 0
 	var/allow_vote_mode = 0				// allow votes to change mode
@@ -74,7 +72,11 @@
 	var/allow_ai_shells = FALSE			// allow AIs to enter and leave special borg shells at will, and for those shells to be buildable.
 	var/give_free_ai_shell = FALSE		// allows a specific spawner object to instantiate a premade AI Shell
 	var/hostedby = null
+
 	var/respawn = 1
+	var/static/respawn_time = 3000		// time before a dead player is allowed to respawn (in ds, though the config file asks for minutes, and it's converted below)
+	var/static/respawn_message = "<span class='notice'><B>Make sure to play a different character, and please roleplay correctly!</B></span>"
+
 	var/guest_jobban = 1
 	var/usewhitelist = 0
 	var/kick_inactive = 0				//force disconnect for inactive players after this many minutes, if non-0
@@ -113,6 +115,14 @@
 	var/panic_bunker_message = "Sorry, this server is not accepting connections from never seen before players."
 	var/paranoia_logging = 0
 
+	var/ip_reputation = FALSE		//Should we query IPs to get scores? Generates HTTP traffic to an API service.
+	var/ipr_email					//Left null because you MUST specify one otherwise you're making the internet worse.
+	var/ipr_block_bad_ips = FALSE	//Should we block anyone who meets the minimum score below? Otherwise we just log it (If paranoia logging is on, visibly in chat).
+	var/ipr_bad_score = 1			//The API returns a value between 0 and 1 (inclusive), with 1 being 'definitely VPN/Tor/Proxy'. Values equal/above this var are considered bad.
+	var/ipr_allow_existing = FALSE 	//Should we allow known players to use VPNs/Proxies? If the player is already banned then obviously they still can't connect.
+	var/ipr_minimum_age = 5
+	var/ipqualityscore_apikey //API key for ipqualityscore.com
+
 	var/serverurl
 	var/server
 	var/banappeals
@@ -121,20 +131,6 @@
 	var/forumurl
 	var/rulesurl
 	var/mapurl
-
-	//Alert level description
-	var/alert_desc_green = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
-	var/alert_desc_yellow_upto = "A minor security emergency has developed. Security personnel are to report to their supervisor for orders and may have weapons visible on their person. Privacy laws are still enforced."
-	var/alert_desc_yellow_downto = "Code yellow procedures are now in effect. Security personnel are to report to their supervisor for orders and may have weapons visible on their person. Privacy laws are still enforced."
-	var/alert_desc_violet_upto = "A major medical emergency has developed. Medical personnel are required to report to their supervisor for orders, and non-medical personnel are required to obey all relevant instructions from medical staff."
-	var/alert_desc_violet_downto = "Code violet procedures are now in effect; Medical personnel are required to report to their supervisor for orders, and non-medical personnel are required to obey relevant instructions from medical staff."
-	var/alert_desc_orange_upto = "A major engineering emergency has developed. Engineering personnel are required to report to their supervisor for orders, and non-engineering personnel are required to evacuate any affected areas and obey relevant instructions from engineering staff."
-	var/alert_desc_orange_downto = "Code orange procedures are now in effect; Engineering personnel are required to report to their supervisor for orders, and non-engineering personnel are required to evacuate any affected areas and obey relevant instructions from engineering staff."
-	var/alert_desc_blue_upto = "A major security emergency has developed. Security personnel are to report to their supervisor for orders, are permitted to search staff and facilities, and may have weapons visible on their person."
-	var/alert_desc_blue_downto = "Code blue procedures are now in effect. Security personnel are to report to their supervisor for orders, are permitted to search staff and facilities, and may have weapons visible on their person."
-	var/alert_desc_red_upto = "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised."
-	var/alert_desc_red_downto = "The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
-	var/alert_desc_delta = "The station's self-destruct mechanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
 
 	var/forbid_singulo_possession = 0
 
@@ -229,7 +225,7 @@
 	var/dooc_allowed = 1
 	var/dsay_allowed = 1
 
-	var/starlight = 0	// Whether space turfs have ambient light or not
+	var/static/starlight = 0	// Whether space turfs have ambient light or not
 
 	var/list/ert_species = list(SPECIES_HUMAN)
 
@@ -242,7 +238,7 @@
 	var/show_human_death_message = 1
 
 	var/radiation_decay_rate = 1 //How much radiation is reduced by each tick
-	var/radiation_resistance_multiplier = 8.5 //VOREstation edit
+	var/radiation_resistance_multiplier = 8.5
 	var/radiation_lower_limit = 0.35 //If the radiation level for a turf would be below this, ignore it.
 
 	var/comms_key = "default_password"
@@ -255,6 +251,7 @@
 	var/autostart_solars = FALSE // If true, specifically mapped in solar control computers will set themselves up when the round starts.
 
 	var/list/gamemode_cache = list()
+
 
 /datum/configuration_legacy/New()
 	var/list/L = subtypesof(/datum/game_mode)
@@ -276,7 +273,7 @@
 	src.votable_modes += "secret"
 
 /datum/configuration_legacy/proc/load(filename, type = "config") //the type can also be game_options, in which case it uses a different switch. not making it separate to not copypaste code - Urist
-	var/list/Lines = file2list(filename)
+	var/list/Lines = world.file2list(filename)
 
 	for(var/t in Lines)
 		if(!t)	continue
@@ -335,9 +332,6 @@
 				if ("log_access")
 					config_legacy.log_access = 1
 
-				if ("sql_enabled")
-					config_legacy.sql_enabled = 1
-
 				if ("log_say")
 					config_legacy.log_say = 1
 
@@ -391,9 +385,6 @@
 
 				if ("no_click_cooldown")
 					config_legacy.no_click_cooldown = 1
-
-				if("allow_admin_ooccolor")
-					config_legacy.allow_admin_ooccolor = 1
 
 				if ("allow_vote_restart")
 					config_legacy.allow_vote_restart = 1
@@ -451,6 +442,13 @@
 
 				if ("norespawn")
 					config_legacy.respawn = 0
+
+				if ("respawn_time")
+					var/raw_minutes = text2num(value)
+					config_legacy.respawn_time = raw_minutes MINUTES
+
+				if ("respawn_message")
+					config_legacy.respawn_message = value
 
 				if ("servername")
 					config_legacy.server_name = value
@@ -600,24 +598,6 @@
 
 				if("load_jobs_from_txt")
 					load_jobs_from_txt = 1
-
-				if("alert_red_upto")
-					config_legacy.alert_desc_red_upto = value
-
-				if("alert_red_downto")
-					config_legacy.alert_desc_red_downto = value
-
-				if("alert_blue_downto")
-					config_legacy.alert_desc_blue_downto = value
-
-				if("alert_blue_upto")
-					config_legacy.alert_desc_blue_upto = value
-
-				if("alert_green")
-					config_legacy.alert_desc_green = value
-
-				if("alert_delta")
-					config_legacy.alert_desc_delta = value
 
 				if("forbid_singulo_possession")
 					forbid_singulo_possession = 1
@@ -778,10 +758,6 @@
 					config_legacy.event_delay_upper[EVENT_LEVEL_MODERATE] = MinutesToTicks(values[2])
 					config_legacy.event_delay_upper[EVENT_LEVEL_MAJOR] = MinutesToTicks(values[3])
 
-				if("starlight")
-					value = text2num(value)
-					config_legacy.starlight = value >= 0 ? value : 0
-
 				if("ert_species")
 					config_legacy.ert_species = splittext(value, ";")
 					if(!config_legacy.ert_species.len)
@@ -809,6 +785,24 @@
 
 				if ("paranoia_logging")
 					config_legacy.paranoia_logging = 1
+
+				if("ip_reputation")
+					config_legacy.ip_reputation = 1
+
+				if("ipr_email")
+					config_legacy.ipr_email = value
+
+				if("ipr_block_bad_ips")
+					config_legacy.ipr_block_bad_ips = 1
+
+				if("ipr_bad_score")
+					config_legacy.ipr_bad_score = text2num(value)
+
+				if("ipr_allow_existing")
+					config_legacy.ipr_allow_existing = 1
+
+				if("ipr_minimum_age")
+					config_legacy.ipr_minimum_age = text2num(value)
 
 				if("minute_click_limit")
 					config_legacy.minute_click_limit = text2num(value)
@@ -899,7 +893,7 @@
 					log_misc("Unknown setting in configuration: '[name]'")
 
 /datum/configuration_legacy/proc/loadsql(filename)  // -- TLE
-	var/list/Lines = file2list(filename)
+	var/list/Lines = world.file2list(filename)
 	for(var/t in Lines)
 		if(!t)	continue
 
@@ -945,7 +939,7 @@
 				log_misc("Unknown setting in configuration: '[name]'")
 
 /datum/configuration_legacy/proc/loadforumsql(filename)  // -- TLE
-	var/list/Lines = file2list(filename)
+	var/list/Lines = world.file2list(filename)
 	for(var/t in Lines)
 		if(!t)	continue
 

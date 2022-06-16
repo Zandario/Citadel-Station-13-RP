@@ -2,6 +2,32 @@
 //		Base Construct
 ////////////////////////////
 
+/datum/category_item/catalogue/fauna/construct
+	name = "Constructs"
+	desc = "Although much of the information behind these occult constructs \
+	is presumably still classified, NanoTrasen's general briefings have confirmed \
+	several key facts. Constructs are animate obsidian statues imbued with strong \
+	paracausal energies. They are considered extremely dangerous, and evidence of \
+	constructs necessitates immediate notification of the PMD."
+	value = CATALOGUER_REWARD_TRIVIAL
+	unlocked_by_any = list(/datum/category_item/catalogue/fauna/construct)
+
+// Obtained by scanning all Constructs.
+/datum/category_item/catalogue/fauna/all_X
+	name = "Collection - Constructs"
+	desc = "You have scanned a large array of different types of Construct, \
+	and therefore you have been granted a large sum of points, through this \
+	entry."
+	value = CATALOGUER_REWARD_HARD
+	unlocked_by_all = list(
+		/datum/category_item/catalogue/fauna/construct/artificer,
+		/datum/category_item/catalogue/fauna/construct/harvester,
+		/datum/category_item/catalogue/fauna/construct/juggernaut,
+		/datum/category_item/catalogue/fauna/construct/proteon,
+		/datum/category_item/catalogue/fauna/construct/shade,
+		/datum/category_item/catalogue/fauna/construct/wraith
+		)
+
 /mob/living/simple_mob/construct
 	name = "Construct"
 	real_name = "Construct"
@@ -20,6 +46,7 @@
 	response_help  = "thinks better of touching"
 	response_disarm = "flailed at"
 	response_harm   = "punched"
+	icon = 'icons/mob/cult.dmi'
 
 	hovering = TRUE
 	softfall = TRUE //Beings made of Hellmarble and powered by the tears of the damned are not concerned with mortal things such as 'gravity'.
@@ -62,6 +89,8 @@
 	var/list/construct_spells = list()
 //	var/do_glow = TRUE
 
+	ai_holder_type = /datum/ai_holder/simple_mob/melee
+
 /mob/living/simple_mob/construct/place_spell_in_hand(var/path)
 	if(!path || !ispath(path))
 		return 0
@@ -97,8 +126,8 @@
 /mob/living/simple_mob/construct/cultify()
 	return
 
-/mob/living/simple_mob/construct/New()
-	..()
+/mob/living/simple_mob/construct/Initialize(mapload)
+	. = ..()
 	name = text("[initial(name)] ([rand(1, 1000)])")
 	real_name = name
 	for(var/spell in construct_spells)
@@ -134,7 +163,7 @@
 
 /mob/living/simple_mob/construct/examine(mob/user)
 	..(user)
-	var/msg = "<span cass='info'>*---------*\nThis is \icon[src] \a <EM>[src]</EM>!\n"
+	var/msg = "<span cass='info'>This is [icon2html(thing = src, target = user)] \a <EM>[src]</EM>!\n"
 	if (src.health < src.getMaxHealth())
 		msg += "<span class='warning'>"
 		if (src.health >= src.getMaxHealth()/2)
@@ -142,22 +171,20 @@
 		else
 			msg += "<B>It looks severely dented!</B>\n"
 		msg += "</span>"
-	msg += "*---------*</span>"
 
-	user << msg
+	to_chat(user, msg)
 
 //Constructs levitate, can fall from a shuttle with no harm, and are piloted by either damned spirits or some otherworldly entity. Let 'em float in space.
 /mob/living/simple_mob/construct/Process_Spacemove()
 	return 1
 
-/*
-// Glowing Procs
+
+//Glowing Procs
 /mob/living/simple_mob/construct/proc/add_glow()
 	var/image/eye_glow = image(icon,"glow-[icon_state]")
-	eye_glow.plane = PLANE_LIGHTING_ABOVE
+	eye_glow.plane = ABOVE_LIGHTING_PLANE
 	overlays += eye_glow
 	set_light(2, -2, l_color = "#FFFFFF")
 
 /mob/living/simple_mob/construct/proc/remove_glow()
 	overlays.Cut()
-*/

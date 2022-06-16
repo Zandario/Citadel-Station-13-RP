@@ -4,6 +4,8 @@ GLOBAL_PROTECT(log_directory)
 /// General game log for anything that doesn't fit elsewhere
 GLOBAL_VAR(world_game_log)
 GLOBAL_PROTECT(world_game_log)
+GLOBAL_VAR(world_asset_log)
+GLOBAL_PROTECT(world_asset_log)
 /// Runtimes go in here
 GLOBAL_VAR(world_runtime_log)
 GLOBAL_PROTECT(world_runtime_log)
@@ -28,13 +30,16 @@ GLOBAL_PROTECT(world_map_error_log)
 /// datum/controller/subsystem logging in general
 GLOBAL_VAR(subsystem_log)
 GLOBAL_PROTECT(subsystem_log)
-
-/////Picture logging
+GLOBAL_VAR(tgui_log)
+GLOBAL_PROTECT(tgui_log)
+/// Picture logging
 GLOBAL_VAR(picture_log_directory)
 GLOBAL_PROTECT(picture_log_directory)
-
 GLOBAL_VAR_INIT(picture_logging_id, 1)
 GLOBAL_PROTECT(picture_logging_id)
 GLOBAL_VAR(picture_logging_prefix)
 GLOBAL_PROTECT(picture_logging_prefix)
-/////
+/// Log associated with [/proc/log_suspicious_login()]
+/// Intended to hold all logins that failed due to suspicious circumstances such as ban detection, CID randomisation etc.
+GLOBAL_VAR(world_suspicious_login_log)
+GLOBAL_PROTECT(world_suspicious_login_log)

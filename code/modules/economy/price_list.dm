@@ -114,6 +114,9 @@
 /datum/reagent/ethanol/rum
 	price_tag = 5
 
+/datum/reagent/ethanol/whiterum
+	price_tag = 5
+
 /datum/reagent/ethanol/tequilla
 	price_tag = 5
 
@@ -204,10 +207,10 @@
 /datum/reagent/ethanol/booger
 	price_tag = 4
 
-/datum/reagent/ethanol/brave_bull
+/datum/reagent/ethanol/coffee/brave_bull
 	price_tag = 4
 
-/datum/reagent/ethanol/changeling_sting
+/datum/reagent/ethanol/changelingsting
 	price_tag = 4
 
 /datum/reagent/ethanol/martini
@@ -300,7 +303,7 @@
 /datum/reagent/ethanol/syndicatebomb
 	price_tag = 4
 
-/datum/reagent/ethanol/tequillasunrise
+/datum/reagent/ethanol/tequilla_sunrise
 	price_tag = 4
 
 /datum/reagent/ethanol/threemileisland
@@ -989,9 +992,8 @@
 /obj/item/reagent_containers/food/snacks/dionaroast
 	price_tag = 25
 
-/obj/item/pizzabox
-	get_item_cost()
-		return get_item_cost(pizza)
+/obj/item/pizzabox/get_item_cost()
+	return get_item_cost(pizza)
 
 
 //***************//

@@ -1,5 +1,4 @@
 //Smocks
-
 /obj/item/clothing/under/teshari
 	icon = 'icons/obj/clothing/species/teshari/uniform.dmi'
 	icon_state = "tesh_smock_grey"
@@ -47,12 +46,28 @@
 	name = "small command smock"
 	icon_state = "tesh_smock_captain"
 
+/obj/item/clothing/under/teshari/smock/blackutilitysmock
+	name = "black utility smock"
+	icon_state = "teshari_blackutility_com"
+
+/obj/item/clothing/under/teshari/smock/greydress
+	name = "small grey dress"
+	icon_state = "teshari_greydress"
+
+/obj/item/clothing/under/teshari/smock/blackutility
+	name = "Teshari utility uniform"
+	icon_state = "teshari_blackutility"
+
+/obj/item/clothing/under/teshari/smock/bluegreydress
+	name = "small blue and grey dress"
+	icon_state = "teshari_bluegreydress"
+
 //Dresses
 
 /obj/item/clothing/under/teshari/dresssmock/command
 	name = "small command dress"
 	icon = 'icons/obj/clothing/species/teshari/uniform.dmi'
-	icon_override = 'icons/mob/species/teshari/teshari_uniform.dmi'
+	icon_override = 'icons/mob/clothing/species/teshari/teshari_uniform.dmi'
 	icon_state = "tesh_dress_cap"
 	item_state = "tesh_dress_cap"
 
@@ -76,14 +91,68 @@
 	icon_state = "tesh_dress_medical"
 	item_state = "tesh_dress_medical"
 
+// Worksuits
+/obj/item/clothing/under/teshari/undercoat/standard/worksuit/
+	name = "small black and red worksuit"
+	icon_state = "teshari_black_red_worksuit"
+	item_state = "teshari_black_red_worksuit"
+	desc = "A small worksuit designed for a Teshari"
+
+/obj/item/clothing/under/teshari/undercoat/standard/worksuit/blackpurple
+	name = "small black and purple worksuit"
+	icon_state = "teshari_black_purple_worksuit"
+	item_state = "teshari_black_purple_worksuit"
+
+/obj/item/clothing/under/teshari/undercoat/standard/worksuit/blackorange
+	name = "small black and orange worksuit"
+	icon_state = "teshari_black_orange_worksuit"
+	item_state = "teshari_black_orange_worksuit"
+
+/obj/item/clothing/under/teshari/undercoat/standard/worksuit/blackblue
+	name = "small black and blue worksuit"
+	icon_state = "teshari_black_blue_worksuit"
+	item_state = "teshari_black_blue_worksuit"
+
+/obj/item/clothing/under/teshari/undercoat/standard/worksuit/blackgreen
+	name = "small black and greeen worksuit"
+	icon_state = "teshari_black_green_worksuit"
+	item_state = "teshari_black_green_worksuit"
+
+/obj/item/clothing/under/teshari/undercoat/standard/worksuit/whitered
+	name = "small white and red worksuit"
+	icon_state = "teshari_white_red_worksuit"
+	item_state = "teshari_white_red_worksuit"
+
+/obj/item/clothing/under/teshari/undercoat/standard/worksuit/whitepurple
+	name = "small white and purple worksuit"
+	icon_state = "teshari_white_purple_worksuit"
+	item_state = "teshari_white_purple_worksuit"
+
+/obj/item/clothing/under/teshari/undercoat/standard/worksuit/whiteorange
+	name = "small white and orange worksuit"
+	icon_state = "teshari_white_orange_worksuit"
+	item_state = "teshari_white_orange_worksuit"
+
+/obj/item/clothing/under/teshari/undercoat/standard/worksuit/whiteblue
+	name = "small white and blue worksuit"
+	icon_state = "teshari_white_blue_worksuit"
+	item_state = "teshari_white_blue_worksuit"
+
+/obj/item/clothing/under/teshari/undercoat/standard/worksuit/whitegreen
+	name = "small white and green worksuit"
+	icon_state = "teshari_white_green_worksuit"
+	item_state = "teshari_white_green_worksuit"
+
+
+
 
 //Standard Undercoats
 
 /obj/item/clothing/under/teshari/undercoat
 	name = "Undercoat"
 	desc =  "A Teshari traditional garb, with a modern twist! Made of micro and nanofibres to make it light and billowy, perfect for going fast and stylishly!"
-	icon = 'icons/mob/species/teshari/teshari_uniform.dmi'
-	icon_override = 'icons/mob/species/teshari/teshari_uniform.dmi'
+	icon = 'icons/mob/clothing/species/teshari/teshari_uniform.dmi'
+	icon_override = 'icons/mob/clothing/species/teshari/teshari_uniform.dmi'
 	icon_state = "tesh_uniform_bo"
 	item_state = "tesh_uniform_bo"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
@@ -206,8 +275,8 @@
 //Job Undercoats
 
 /obj/item/clothing/under/teshari/undercoat/jobs/
-	icon = 'icons/mob/species/teshari/deptjacket.dmi'
-	icon_override = 'icons/mob/species/teshari/deptjacket.dmi'
+	icon = 'icons/mob/clothing/species/teshari/deptjacket.dmi'
+	icon_override = 'icons/mob/clothing/species/teshari/deptjacket.dmi'
 
 /obj/item/clothing/under/teshari/undercoat/jobs/cap
 	name = "facility director undercoat"
@@ -222,7 +291,7 @@
 	item_state = "tesh_uniform_hop"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/ce
-	name = "cheif engineer undercoat"
+	name = "chief engineer undercoat"
 	desc = "A traditional Teshari garb made for the Chief Engineer"
 	icon_state = "tesh_uniform_ce"
 	item_state = "tesh_uniform_ce"

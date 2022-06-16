@@ -90,7 +90,7 @@
 		//	step_to(holder, A)
 			if(holder.IMove(get_step_to(holder, A)) == MOVEMENT_FAILED)
 				ai_log("walk_path() : Failed to move, attempting breakthrough.", AI_LOG_INFO)
-				breakthrough(A) // We failed to move, time to smash things.
+				INVOKE_ASYNC(src, .proc/breakthrough, A)
 			return
 
 		if(move_once() == FALSE) // Start walking the path.
@@ -147,7 +147,7 @@
 				return
 
 			var/moving_to = 0 // Apparently this is required or it always picks 4, according to the previous developer for simplemob AI.
-			moving_to = pick(cardinal)
+			moving_to = pick(GLOB.cardinal)
 			holder.setDir(moving_to)
 			holder.IMove(get_step(holder,moving_to))
 			wander_delay = base_wander_delay

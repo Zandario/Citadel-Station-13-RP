@@ -21,8 +21,8 @@
 	name = T_BOARD("medical records console")
 	build_path = /obj/machinery/computer/med_data
 
-/obj/item/circuitboard/med_data/laptop
-	name = T_BOARD("medical records laptop")
+/obj/item/circuitboard/med_data/pcu
+	name = T_BOARD("medical records PCU")
 	build_path = /obj/machinery/computer/med_data/laptop
 
 /obj/item/circuitboard/scan_consolenew
@@ -52,8 +52,8 @@
 	name = T_BOARD("security records console")
 	build_path = /obj/machinery/computer/secure_data
 
-/obj/item/circuitboard/skills
-	name = T_BOARD("employment records console")
+/obj/item/circuitboard/skills/pcu
+	name = T_BOARD("employment records PCU")
 	build_path = /obj/machinery/computer/skills
 
 /obj/item/circuitboard/stationalert_engineering
@@ -91,6 +91,11 @@
 	build_path = /obj/machinery/computer/cloning
 	origin_tech = list(TECH_DATA = 3, TECH_BIO = 3)
 
+/obj/item/circuitboard/arcade/amputation
+	name = T_BOARD("mediborg's amputation adventure")
+	build_path = /obj/machinery/computer/arcade/amputation
+	origin_tech = list(TECH_DATA = 1)
+
 /obj/item/circuitboard/arcade/battle
 	name = T_BOARD("battle arcade machine")
 	build_path = /obj/machinery/computer/arcade/battle
@@ -101,6 +106,10 @@
 	build_path = /obj/machinery/computer/arcade/orion_trail
 	origin_tech = list(TECH_DATA = 1)
 
+/obj/item/circuitboard/arcade/clawmachine
+	name = T_BOARD("grab-a-gift arcade machine")
+	build_path = /obj/machinery/computer/arcade/clawmachine
+	origin_tech = list(TECH_DATA = 1)
 /obj/item/circuitboard/turbine_control
 	name = T_BOARD("turbine control console")
 	build_path = /obj/machinery/computer/turbine_computer
@@ -177,6 +186,26 @@
 	build_path = /obj/machinery/computer/aifixer
 	origin_tech = list(TECH_DATA = 3, TECH_BIO = 2)
 
+/obj/item/circuitboard/helm
+	name = T_BOARD("helm control console")
+	build_path = /obj/machinery/computer/ship/helm
+
+/obj/item/circuitboard/engine
+	name = T_BOARD("engine control console")
+	build_path = /obj/machinery/computer/ship/engines
+
+/obj/item/circuitboard/nav
+	name = T_BOARD("navigation console")
+	build_path = /obj/machinery/computer/ship/navigation
+
+/obj/item/circuitboard/nav/tele
+	name = T_BOARD("navigation telescreen")
+	build_path = /obj/machinery/computer/ship/navigation/telescreen
+
+/obj/item/circuitboard/sensors
+	name = T_BOARD("sensors console")
+	build_path = /obj/machinery/computer/ship/sensors
+
 /obj/item/circuitboard/area_atmos
 	name = T_BOARD("area air control console")
 	build_path = /obj/machinery/computer/area_atmos
@@ -198,3 +227,8 @@
 	build_path = /obj/machinery/computer/shutoff_monitor
 	origin_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4)
 */
+
+/obj/item/circuitboard/stockexchange
+	name = T_BOARD("stock exchange console")
+	build_path = /obj/machinery/computer/stockexchange
+	origin_tech = list(TECH_DATA = 2, TECH_MAGNET = 1)

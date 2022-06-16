@@ -23,6 +23,9 @@
 
 	var/motd
 
+	/// If the configuration is loaded
+	var/loaded = FALSE
+
 /datum/controller/configuration/proc/admin_reload()
 	if(IsAdminAdvancedProcCall())
 		return
@@ -39,12 +42,10 @@
 	if(entries)
 		CRASH("/datum/controller/configuration/Load() called more than once!")
 	InitEntries()
-	/*
-	LoadModes()
-	storyteller_cache = typecacheof(/datum/dynamic_storyteller, TRUE)
-	*/
+	// LoadModes()
+	// storyteller_cache = typecacheof(/datum/dynamic_storyteller, TRUE)
 	if(fexists("[directory]/config.txt") && LoadEntries("config.txt") <= 1)
-		var/list/legacy_configs = list("game_options.txt", "dbconfig.txt", "comms.txt")
+		var/list/legacy_configs = list("legacy/game_options.txt", "legacy/dbconfig.txt")
 		for(var/I in legacy_configs)
 			if(fexists("[directory]/[I]"))
 				log_config("No $include directives found in config.txt! Loading legacy [legacy_configs.Join("/")] files...")
@@ -53,6 +54,11 @@
 				break
 	loadmaplist(CONFIG_MAPS_FILE)
 	LoadMOTD()
+
+	loaded = TRUE
+
+	if (Master)
+		Master.OnConfigLoad()
 
 /datum/controller/configuration/proc/full_wipe()
 	if(IsAdminAdvancedProcCall())
@@ -108,7 +114,9 @@
 	var/list/lines = world.file2list("[directory]/[filename]")
 	var/list/_entries = entries
 	var/list/postload_required = list()
+	var/linenumber = 0
 	for(var/L in lines)
+		linenumber++
 		L = trim(L)
 		if(!L)
 			continue
@@ -136,15 +144,25 @@
 
 		if(entry == "$include")
 			if(!value)
-				log_config("Warning: Invalid $include directive: [value]")
+				log_config("LINE [linenumber]: Warning: Invalid $include directive: [value]")
 			else
 				LoadEntries(value, stack)
 				++.
 			continue
 
+		// Reset directive, used for setting a config value back to defaults. Useful for string list config types
+		if (entry == "$reset")
+			var/datum/config_entry/resetee = _entries[lowertext(value)]
+			if (!value || !resetee)
+				log_config("Warning: invalid $reset directive: [value]")
+				continue
+			resetee.set_default()
+			log_config("Reset configured value for [value] to original defaults")
+			continue
+
 		var/datum/config_entry/E = _entries[entry]
 		if(!E)
-			log_config("Unknown setting in configuration: '[entry]'")
+			log_config("LINE [linenumber]: Unknown setting in configuration: '[entry]'")
 			continue
 
 		if(lockthis)
@@ -154,7 +172,7 @@
 			var/datum/config_entry/new_ver = entries_by_type[E.deprecated_by]
 			var/new_value = E.DeprecationUpdate(value)
 			var/good_update = istext(new_value)
-			log_config("Entry [entry] is deprecated and will be removed soon. Migrate to [new_ver.name]![good_update ? " Suggested new value is: [new_value]" : ""]")
+			log_config("LINE [linenumber]: Entry [entry] is deprecated and will be removed soon. Migrate to [new_ver.name]![good_update ? " Suggested new value is: [new_value]" : ""]")
 			if(!warned_deprecated_configs)
 				addtimer(CALLBACK(GLOBAL_PROC, /proc/message_admins, "This server is using deprecated configuration settings. Please check the logs and update accordingly."), 0)
 				warned_deprecated_configs = TRUE
@@ -166,10 +184,10 @@
 
 		var/validated = E.ValidateAndSet(value, TRUE)
 		if(!validated)
-			log_config("Failed to validate setting \"[value]\" for [entry]")
+			log_config("LINE [linenumber]: Failed to validate setting \"[value]\" for [entry]")
 		else
 			if(E.modified && !E.dupes_allowed)
-				log_config("Duplicate setting for [entry] ([value], [E.resident_file]) detected! Using latest.")
+				log_config("LINE [linenumber]: Duplicate setting for [entry] ([value], [E.resident_file]) detected! Using latest.")
 		if(E.postload_required)
 			postload_required[E] = TRUE
 
@@ -198,7 +216,7 @@
 
 /datum/controller/configuration/proc/Get(entry_type)
 	var/datum/config_entry/E = GetEntryDatum(entry_type)
-	if((E.protection & CONFIG_ENTRY_HIDDEN) && IsAdminAdvancedProcCall() && GLOB.LastAdminCalledProc == "Get" && GLOB.LastAdminCalledTargetRef == "[REF(src)]")
+	if(E && (E.protection & CONFIG_ENTRY_HIDDEN) && IsAdminAdvancedProcCall() && GLOB.LastAdminCalledProc == "Get" && GLOB.LastAdminCalledTargetRef == "[REF(src)]")
 		log_admin_private("Config access of [entry_type] attempted by [key_name(usr)]")
 		return
 	return E.config_entry_value
@@ -397,7 +415,7 @@
 	var/list/probabilities = Get(/datum/config_entry/keyed_list/probability)
 	var/list/min_pop = Get(/datum/config_entry/keyed_list/min_pop)
 	var/list/max_pop = Get(/datum/config_entry/keyed_list/max_pop)
-	for(var/T in (gamemode_cache - SSSSticker.mode.type))
+	for(var/T in (gamemode_cache - SSticker.mode.type))
 		var/datum/game_mode/M = new T()
 		if(!(M.config_tag in modes))
 			qdel(M)

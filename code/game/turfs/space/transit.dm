@@ -1,93 +1,65 @@
 /turf/space/transit
-	keep_sprite = TRUE
+	dir = SOUTH
 	can_build_into_floor = FALSE
-	var/pushdirection // push things that get caught in the transit tile this direction
+	var/pushdirection	// Push things that get caught in the transit tile this direction
 
-//Overwrite because we dont want people building rods in space.
+/turf/space/transit/Initialize(mapload)
+	. = ..()
+	icon_state = "speedspace_ew_[get_trasnit_state(src)]"
+	var/matrix/M = matrix()
+	M.Turn(get_transit_angle(src))
+	transform = M
+
+// Overwrite because we dont want people building rods in space.
 /turf/space/transit/attackby(obj/O as obj, mob/user as mob)
 	return
 
-//generates a list used to randomize transit animations so they aren't in lockstep
-/turf/space/transit/proc/get_cross_shift_list(var/size)
-	var/list/result = list()
-
-	result += rand(0, 14)
-	for(var/i in 2 to size)
-		var/shifts = list(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14)
-		shifts -= result[i - 1] //consecutive shifts should not be equal
-		if(i == size)
-			shifts -= result[1] //because shift list is a ring buffer
-		result += pick(shifts)
-
-	return result
-
-//------------------------
-
-/turf/space/transit/north // moving to the north
+/turf/space/transit/north	// Moving to the north
+	dir = NORTH
 	icon_state = "arrow-north"
-	pushdirection = SOUTH  // south because the space tile is scrolling south
-	var/static/list/phase_shift_by_x
+	pushdirection = SOUTH	// South because the space tile is scrolling south
 
-/turf/space/transit/north/Initialize(mapload)
-	. = ..()
-	if(!phase_shift_by_x)
-		phase_shift_by_x = get_cross_shift_list(15)
-
-	var/x_shift = phase_shift_by_x[src.x % (phase_shift_by_x.len - 1) + 1]
-	var/transit_state = (world.maxy - src.y + x_shift)%15 + 1
-
-	icon_state = "speedspace_ns_[transit_state]"
-//------------------------
-
-/turf/space/transit/south // moving to the south
+/turf/space/transit/south	// Moving to the south
+	dir = SOUTH
 	icon_state = "arrow-south"
-	pushdirection = SOUTH  // south because the space tile is scrolling south
-	var/static/list/phase_shift_by_x
+	pushdirection = NORTH	// north because the space tile is scrolling north
 
-/turf/space/transit/south/Initialize(mapload)
-	. = ..()
-	if(!phase_shift_by_x)
-		phase_shift_by_x = get_cross_shift_list(15)
-
-	var/x_shift = phase_shift_by_x[src.x % (phase_shift_by_x.len - 1) + 1]
-	var/transit_state = (world.maxy - src.y + x_shift)%15 + 1
-
-	var/icon/I = new(icon, "speedspace_ns_[transit_state]")
-	I.Flip(SOUTH)
-	icon = I
-//------------------------
-
-/turf/space/transit/east // moving to the east
+/turf/space/transit/east	// Moving to the east
+	dir = EAST
 	icon_state = "arrow-east"
 	pushdirection = WEST
-	var/static/list/phase_shift_by_y
 
-/turf/space/transit/east/Initialize(mapload)
-	. = ..()
-	if(!phase_shift_by_y)
-		phase_shift_by_y = get_cross_shift_list(15)
-
-	var/y_shift = phase_shift_by_y[src.y % (phase_shift_by_y.len - 1) + 1]
-	var/transit_state = (world.maxx - src.x + y_shift)%15 + 1
-
-	icon_state = "speedspace_ew_[transit_state]"
-//------------------------
-
-/turf/space/transit/west // moving to the west
+/turf/space/transit/west	// Moving to the west
+	dir = WEST
 	icon_state = "arrow-west"
 	pushdirection = WEST
-	var/static/list/phase_shift_by_y
 
-/turf/space/transit/west/Initialize(mapload)
-	. = ..()
-	if(!phase_shift_by_y)
-		phase_shift_by_y = get_cross_shift_list(15)
+//-----------------------
 
-	var/y_shift = phase_shift_by_y[src.y % (phase_shift_by_y.len - 1) + 1]
-	var/transit_state = (world.maxx - src.x + y_shift)%15 + 1
 
-	var/icon/I = new(icon, "speedspace_ew_[transit_state]")
-	I.Flip(WEST)
-	icon = I
+/proc/get_trasnit_state(turf/T)
+	var/p = 9
+	. = 1
+	switch(T.dir)
+		if(NORTH)
+			. = ((-p*T.x+T.y) % 15) + 1
+			if(. < 1)
+				. += 15
+		if(EAST)
+			. = ((T.x+p*T.y) % 15) + 1
+		if(WEST)
+			. = ((T.x-p*T.y) % 15) + 1
+			if(. < 1)
+				. += 15
+		else
+			. = ((p*T.x+T.y) % 15) + 1
 
-//------------------------
+/proc/get_transit_angle(turf/T)
+	. = 0
+	switch(T.dir)
+		if(NORTH)
+			. = 180
+		if(EAST)
+			. = 90
+		if(WEST)
+			. = -90

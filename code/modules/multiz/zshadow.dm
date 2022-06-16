@@ -16,29 +16,30 @@
 /mob/zshadow/can_fall()
 	return FALSE
 
-/mob/zshadow/New(var/mob/L)
-	if(!istype(L))
-		qdel(src)
-		return
-	owner = L
-	sync_icon(L)
+/mob/zshadow/Initialize(mapload, mob/attach)
+	. = ..()
+	owner = attach
+	sync_icon(attach)
 
 /mob/zshadow/Destroy()
-	owner.shadow = null
-	owner = null
+	if(owner)
+		if(owner.shadow == src)
+			owner.shadow = null
+		owner = null
 	..() //But we don't return because the hint is wrong
 	return QDEL_HINT_QUEUE
 
 /mob/Destroy()
-	QDEL_NULL(shadow)
-	. = ..()
+	if(shadow)
+		QDEL_NULL(shadow)
+	return ..()
 
-/mob/zshadow/examine(mob/user, distance, infix, suffix)
+/mob/zshadow/examine(mob/user)
 	if(!owner)
 	 	// The only time we should have a null owner is if we are in nullspace. Help figure out why we were examined.
 		stack_trace("[src] ([type]) @ [log_info_line()] was examined by [user] @ [global.log_info_line(user)]")
 		return
-	return owner.examine(user, distance, infix, suffix)
+	return owner.examine(user)
 
 // Relay some stuff they hear
 /mob/zshadow/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "", var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
@@ -71,18 +72,19 @@
 
 /mob/living/proc/check_shadow()
 	var/mob/M = src
-	if(isturf(M.loc))
-		var/turf/simulated/open/OS = GetAbove(src)
-		while(OS && istype(OS))
-			if(!M.shadow)
-				M.shadow = new /mob/zshadow(M)
-			M.shadow.forceMove(OS)
-			M = M.shadow
-			OS = GetAbove(M)
+	if(!isturf(M.loc))
+		if(M.shadow)
+			QDEL_NULL(M.shadow)
+		return
+	var/turf/simulated/open/OS = GetAbove(M)
+	while(istype(OS))
+		if(!M.shadow)
+			M.shadow = new /mob/zshadow(OS, M)
+		M = M.shadow
+		OS = OS.Above()
 	// The topmost level does not need a shadow!
 	if(M.shadow)
-		qdel(M.shadow)
-		M.shadow = null
+		QDEL_NULL(M.shadow)
 
 //
 // Handle cases where the owner mob might have changed its icon or overlays.
@@ -106,15 +108,15 @@
 		shadow.setDir(new_dir)
 
 // Transfer messages about what we are doing to upstairs
-/mob/visible_message(var/message, var/self_message, var/blind_message)
+/mob/visible_message(var/message, var/self_message, var/blind_message, range)
 	. = ..()
 	if(shadow)
-		shadow.visible_message(message, self_message, blind_message)
+		shadow.visible_message(message, self_message, blind_message, range)
 
 /mob/zshadow/set_typing_indicator(var/state)
 	if(!typing_indicator)
 		typing_indicator = new
-		typing_indicator.icon = 'icons/mob/talk_vr.dmi' // Looks better on the right with job icons. //VOREStation Edit - talk_vr.dmi instead of talk.dmi for right-side icons
+		typing_indicator.icon = 'icons/mob/talk_vr.dmi'
 		typing_indicator.icon_state = "typing"
 	if(state && !typing)
 		overlays += typing_indicator

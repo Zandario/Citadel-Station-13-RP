@@ -30,11 +30,11 @@
 	melee_damage_lower = 1
 	melee_damage_upper = 2
 
-/mob/living/simple_mob/hostile/blob/spore/New(var/newloc, var/obj/structure/blob/factory/my_factory)
+/mob/living/simple_mob/hostile/blob/spore/Initialize(mapload, obj/structure/blob/factory/my_factory)
 	if(istype(my_factory))
 		factory = my_factory
 		factory.spores += src
-	..(newloc)
+	return ..(mapload)
 
 /mob/living/simple_mob/hostile/blob/spore/Destroy()
 	if(factory)
@@ -70,7 +70,7 @@
 		color = initial(color)//looks better.
 		overlays += blob_head_overlay
 
-/mob/living/simple_mob/hostile/blob/spore/Life()
+/mob/living/simple_mob/hostile/blob/spore/Life(seconds, times_fired)
 	if(can_infest && !is_infesting && isturf(src.loc))
 		for(var/mob/living/carbon/human/H in view(src,1))
 			if(H.stat != DEAD) // We want zombies.

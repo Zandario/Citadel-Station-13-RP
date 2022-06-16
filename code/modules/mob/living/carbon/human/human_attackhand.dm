@@ -1,5 +1,5 @@
 /mob/living/carbon/human/proc/get_unarmed_attack(var/mob/living/carbon/human/target, var/hit_zone)
-	// VOREStation Edit - Begin
+
 	if(nif && nif.flag_check(NIF_C_HARDCLAWS,NIF_FLAGS_COMBAT)){return unarmed_hardclaws}
 	if(src.default_attack && src.default_attack.is_usable(src, target, hit_zone))
 		if(pulling_punches)
@@ -7,7 +7,7 @@
 			if(soft_type)
 				return soft_type
 		return src.default_attack
-	// VOREStation Edit - End
+
 	if(src.gloves)
 		var/obj/item/clothing/gloves/G = src.gloves
 		if(istype(G) && G.special_attack && G.special_attack.is_usable(src, target, hit_zone))
@@ -62,10 +62,10 @@
 	switch(M.a_intent)
 		if(INTENT_HELP)
 
-			// VOREStation Edit - Begin
+
 			if (istype(H) && attempt_to_scoop(H))
 				return 0;
-			// VOREStation Edit - End
+
 			if(istype(H) && health < config_legacy.health_threshold_crit)
 				if(!H.check_has_mouth())
 					to_chat(H, "<span class='danger'>You don't have a mouth, you cannot perform CPR!</span>")
@@ -126,9 +126,7 @@
 
 			H.do_attack_animation(src)
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			//VORESTATION EDIT
 			visible_message("<span class='warning'>[M] has grabbed [src] [(M.zone_sel.selecting == BP_L_HAND || M.zone_sel.selecting == BP_R_HAND)? "by [(gender==FEMALE)? "her" : ((gender==MALE)? "his": "their")] hands": "passively"]!</span>")
-			//VORESTATION END END
 
 			return TRUE
 
@@ -216,7 +214,7 @@
 						attack_message = "[H] attempted to strike [src], but missed!"
 					else
 						attack_message = "[H] attempted to strike [src], but [TT.he] rolled out of the way!"
-						src.setDir(pick(cardinal))
+						src.setDir(pick(GLOB.cardinal))
 					miss_type = 1
 
 			if(!miss_type && block)
@@ -433,4 +431,68 @@
 		else
 			user.visible_message("\The [user] stops applying pressure to [src]'s [organ.name]!", "You stop applying pressure to [src]'s [organ.name]!")
 
-	return TRUE 
+	return TRUE
+
+/mob/living/carbon/human
+	var/datum/unarmed_attack/default_attack
+
+/mob/living/carbon/human/verb/check_attacks()
+	set name = "Check Attacks"
+	set category = "IC"
+	set src = usr
+
+	var/dat = "<b><font size = 5>Known Attacks</font></b><br/><br/>"
+
+	for(var/datum/unarmed_attack/u_attack in species.unarmed_attacks)
+		dat += "<b>Primarily [u_attack.attack_name] </b><br/><br/><br/>"
+
+	src << browse(dat, "window=checkattack")
+	return
+
+/mob/living/carbon/human/check_attacks()
+	var/dat = "<b><font size = 5>Known Attacks</font></b><br/><br/>"
+
+	if(default_attack)
+		dat += "Current default attack: [default_attack.attack_name] - <a href='byond://?src=\ref[src];default_attk=reset_attk'>reset</a><br/><br/>"
+
+	for(var/datum/unarmed_attack/u_attack in species.unarmed_attacks)
+		if(u_attack == default_attack)
+			dat += "<b>Primarily [u_attack.attack_name]</b> - default - <a href='byond://?src=\ref[src];default_attk=reset_attk'>reset</a><br/><br/><br/>"
+		else
+			dat += "<b>Primarily [u_attack.attack_name]</b> - <a href='byond://?src=\ref[src];default_attk=\ref[u_attack]'>set default</a><br/><br/><br/>"
+
+	src << browse(dat, "window=checkattack")
+
+/mob/living/carbon/human/Topic(href, href_list)
+	if(href_list["default_attk"])
+		if(href_list["default_attk"] == "reset_attk")
+			set_default_attack(null)
+		else
+			var/datum/unarmed_attack/u_attack = locate(href_list["default_attk"])
+			if(u_attack && (u_attack in species.unarmed_attacks))
+				set_default_attack(u_attack)
+		check_attacks()
+		return 1
+	else
+		return ..()
+
+/mob/living/carbon/human/proc/set_default_attack(var/datum/unarmed_attack/u_attack)
+	default_attack = u_attack
+
+/datum/unarmed_attack
+	var/attack_name = "fist"
+
+/datum/unarmed_attack
+	bite/attack_name = "bite"
+	bite/sharp/attack_name = "sharp bite"
+	bite/strong/attack_name = "strong bite"
+	punch/attack_name = "punch"
+	kick/attack_name = "kick"
+	stomp/attack_name = "stomp"
+	stomp/weak/attack_name = "weak stomp"
+	light_strike/attack_name = "light hit"
+	diona attack_name = "tendrils"
+	claws/attack_name = "claws"
+	claws/strong/attack_name = "strong claws"
+	slime_glomp/attack_name = "glomp"
+	bite/sharp/numbing/attack_name = "numbing bite"

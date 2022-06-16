@@ -1,4 +1,4 @@
-#if DM_VERSION > 513
+#if DM_VERSION > 514
 #error Remie said that lummox was adding a way to get a lists
 #error contents via list.values, if that is true remove this
 #error otherwise, update the version and bug lummox
@@ -58,3 +58,9 @@
 	else
 		used_key_list[input_key] = 1
 	return input_key
+
+// Return a list of the values in an assoc list (including null)
+/proc/list_values(var/list/L)
+	. = list()
+	for(var/e in L)
+		. += L[e]

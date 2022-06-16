@@ -6,7 +6,7 @@ var/list/command_cartridges = list(
 	/obj/item/cartridge/rd,
 	/obj/item/cartridge/cmo,
 	/obj/item/cartridge/head,
-	/obj/item/cartridge/lawyer // Internal Affaris,
+	/obj/item/cartridge/lawyer	// Internal Affaris,
 	)
 
 var/list/security_cartridges = list(
@@ -33,7 +33,7 @@ var/list/research_cartridges = list(
 	)
 
 var/list/cargo_cartridges = list(
-	/obj/item/cartridge/quartermaster, // This also covers cargo-techs, apparently,
+	/obj/item/cartridge/quartermaster,	// This also covers cargo-techs, apparently, for some reason
 	/obj/item/cartridge/miner,
 	/obj/item/cartridge/hop
 	)
@@ -51,6 +51,8 @@ var/list/civilian_cartridges = list(
 	icon_state = "cart"
 	item_state = "electronic"
 	w_class = ITEMSIZE_TINY
+	drop_sound = 'sound/items/drop/component.ogg'
+	pickup_sound = 'sound/items/pickup/component.ogg'
 
 	var/obj/item/integated_radio/radio = null
 	var/access_security = 0
@@ -62,7 +64,7 @@ var/list/civilian_cartridges = list(
 	var/access_janitor = 0
 //	var/access_flora = 0
 	var/access_reagent_scanner = 0
-	var/access_remote_door = 0 // Control some blast doors remotely!!
+	var/access_remote_door = 0	// Control some blast doors remotely!!
 	var/remote_door_id = ""
 	var/access_status_display = 0
 	var/access_quartermaster = 0
@@ -71,11 +73,11 @@ var/list/civilian_cartridges = list(
 	var/charges = 0
 	var/mode = null
 	var/menu
-	var/datum/data/record/active1 = null //General
-	var/datum/data/record/active2 = null //Medical
-	var/datum/data/record/active3 = null //Security
-	var/selected_sensor = null // Power Sensor
-	var/message1	// used for status_displays
+	var/datum/data/record/active1 = null	// General
+	var/datum/data/record/active2 = null	// Medical
+	var/datum/data/record/active3 = null	// Security
+	var/selected_sensor = null	// Power Sensor
+	var/message1	// Used for status_displays
 	var/message2
 	var/list/stored_data = list()
 
@@ -109,7 +111,7 @@ var/list/civilian_cartridges = list(
 	icon_state = "cart-s"
 	access_security = 1
 
-/obj/item/cartridge/security/Initialize()
+/obj/item/cartridge/security/Initialize(mapload)
 	radio = new /obj/item/integated_radio/beepsky(src)
 	. = ..()
 
@@ -165,7 +167,7 @@ var/list/civilian_cartridges = list(
 	access_reagent_scanner = 1
 	access_atmos = 1
 
-/obj/item/cartridge/signal/Initialize()
+/obj/item/cartridge/signal/Initialize(mapload)
     radio = new /obj/item/integated_radio/signal(src)
     . = ..()
 
@@ -199,7 +201,7 @@ var/list/civilian_cartridges = list(
 	access_status_display = 1
 	access_security = 1
 
-/obj/item/cartridge/hos/Initialize()
+/obj/item/cartridge/hos/Initialize(mapload)
 	radio = new /obj/item/integated_radio/beepsky(src)
 	. = ..()
 
@@ -224,7 +226,7 @@ var/list/civilian_cartridges = list(
 	access_reagent_scanner = 1
 	access_atmos = 1
 
-/obj/item/cartridge/rd/Initialize()
+/obj/item/cartridge/rd/Initialize(mapload)
 	radio = new /obj/item/integated_radio/signal(src)
 	. = ..()
 
@@ -246,7 +248,7 @@ var/list/civilian_cartridges = list(
 	icon_state = "cart"
 	access_remote_door = 1
 	access_detonate_pda = 1
-	remote_door_id = "smindicate" //Make sure this matches the syndicate shuttle's shield/door id!!	//don't ask about the name, testing.
+	remote_door_id = "smindicate"	// Make sure this matches the syndicate shuttle's shield/door id!!	// Don't ask about the name, testing.
 	charges = 4
 
 /obj/item/cartridge/proc/post_status(var/command, var/data1, var/data2)
@@ -310,7 +312,7 @@ var/list/civilian_cartridges = list(
 		var/list/sensors = list()
 		var/obj/machinery/power/sensor/MS = null
 
-		for(var/obj/machinery/power/sensor/S in machines)
+		for(var/obj/machinery/power/sensor/S in GLOB.machines)
 			sensors.Add(list(list("name_tag" = S.name_tag)))
 			if(S.name_tag == selected_sensor)
 				MS = S
@@ -425,7 +427,7 @@ var/list/civilian_cartridges = list(
 
 	if(mode==47)
 		var/supplyData[0]
-		var/datum/shuttle/ferry/supply/shuttle = SSsupply.shuttle
+		var/datum/shuttle/autodock/ferry/supply/shuttle = SSsupply.shuttle
 		if (shuttle)
 			supplyData["shuttle_moving"] = shuttle.has_arrive_time()
 			supplyData["shuttle_eta"] = shuttle.eta_minutes()
@@ -462,7 +464,7 @@ var/list/civilian_cartridges = list(
 
 
 
-	/* 	Janitor Supplies Locator  (Mode: 49)      */
+	/*		Janitor Supplies Locator (Mode: 49)		*/
 	if(mode==49)
 		var/JaniData[0]
 		var/turf/cl = get_turf(src)
@@ -497,7 +499,7 @@ var/list/civilian_cartridges = list(
 			BucketData[++BucketData.len] = list("x" = 0, "y" = 0, dir=null, status = null)
 
 		var/CbotData[0]
-		for(var/mob/living/bot/cleanbot/B in mob_list)
+		for(var/mob/living/bot/cleanbot/B in GLOB.mob_list)
 			var/turf/bl = get_turf(B)
 			if(bl)
 				if(bl.z != cl.z)

@@ -4,9 +4,11 @@
 
 #define NUM_E 2.71828183
 
-#define M_PI						(3.14159265)
-#define INFINITY				(1.#INF)	//closer then enough
+#define SQRT_2 1.414214
 
+#define M_PI						(3.14159265)
+///closer then enough
+#define INFINITY				(1.#INF)
 #define SHORT_REAL_LIMIT 16777216
 
 //"fancy" math for calculating time in ms from tick_usage percentage and the length of ticks
@@ -217,5 +219,3 @@
 #define NORM(x, y) (sqrt(SQUAREDNORM(x,y)))
 #define ISPOWEROFTWO(x) ((x & (x - 1)) == 0)
 #define ROUNDUPTOPOWEROFTWO(x) (2 ** -round(-log(2,x)))
-
-#define DEFAULT(a, b) (a? a : b)

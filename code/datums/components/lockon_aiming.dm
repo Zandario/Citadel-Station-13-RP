@@ -101,7 +101,7 @@
 		refresh_visuals()
 
 /datum/component/lockon_aiming/proc/lock(atom/A, refresh_vis = TRUE)
-	LAZYOR(locked_weakrefs, WEAKREF(A))
+	LAZYDISTINCTADD(locked_weakrefs, WEAKREF(A))
 	if(refresh_vis)
 		refresh_visuals()
 
@@ -116,7 +116,7 @@
 		return
 	LAZYREMOVE(immune_weakrefs, A.weak_reference)
 
-/datum/component/lockon_aiming/process()
+/datum/component/lockon_aiming/process(delta_time)
 	if(update_disabled)
 		return
 	if(!last_location)

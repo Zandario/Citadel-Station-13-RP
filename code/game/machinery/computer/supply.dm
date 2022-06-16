@@ -15,6 +15,13 @@
 	var/menu_tab = 0
 	var/list/expanded_packs = list()
 
+/obj/machinery/computer/supplycomp/attackby(I, user)
+	if(istype(I, /obj/item/engineering_voucher))
+		var/obj/item/engineering_voucher/voucher = I
+		voucher.redeem(user)
+	. = ..()
+
+
 // Supply control console
 /obj/machinery/computer/supplycomp/control
 	name = "supply control console"
@@ -34,7 +41,7 @@
 	if(!allowed(user))
 		return
 	user.set_machine(src)
-	ui_interact(user)
+	nano_ui_interact(user)
 	return
 
 /obj/machinery/computer/supplycomp/emag_act(var/remaining_charges, var/mob/user)
@@ -44,17 +51,14 @@
 		req_access = list()
 		return 1
 
-
-
-
-/obj/machinery/computer/supplycomp/ui_interact(mob/user, ui_key = "supply_records", var/datum/nanoui/ui = null, var/force_open = 1, var/key_state = null)
+/obj/machinery/computer/supplycomp/nano_ui_interact(mob/user, ui_key = "supply_records", var/datum/nanoui/ui = null, var/force_open = 1, var/key_state = null)
 	var/data[0]
 	var/shuttle_status[0]	// Supply shuttle status
 	var/pack_list[0]		// List of supply packs within the active_category
 	var/orders[0]
 	var/receipts[0]
 
-	var/datum/shuttle/ferry/supply/shuttle = SSsupply.shuttle
+	var/datum/shuttle/autodock/ferry/supply/shuttle = SSsupply.shuttle
 	if(shuttle)
 		if(shuttle.has_arrive_time())
 			shuttle_status["location"] = "In transit"
@@ -64,8 +68,8 @@
 		else
 			shuttle_status["time"] = 0
 			if(shuttle.at_station())
-				if(shuttle.docking_controller)
-					switch(shuttle.docking_controller.get_docking_status())
+				if(shuttle.shuttle_docking_controller)
+					switch(shuttle.shuttle_docking_controller.get_docking_status())
 						if("docked")
 							shuttle_status["location"] = "Docked"
 							shuttle_status["mode"] = SUP_SHUTTLE_DOCKED
@@ -114,8 +118,8 @@
 					"name" = P.name,
 					"cost" = P.cost,
 					"contraband" = P.contraband,
-					"manifest" = uniqueList(P.manifest),
-					"random" = P.num_contained,
+					"manifest" = P.flattened_nanoui_manifest(),
+					"random" = P.is_random(),
 					"expand" = 0,
 					"ref" = "\ref[P]"
 				)
@@ -190,7 +194,7 @@
 	if(!SSsupply)
 		log_world("## ERROR: The supply_controller datum is missing.")
 		return
-	var/datum/shuttle/ferry/supply/shuttle = SSsupply.shuttle
+	var/datum/shuttle/autodock/ferry/supply/shuttle = SSsupply.shuttle
 	if (!shuttle)
 		log_world("## ERROR: The supply shuttle datum is missing.")
 		return
@@ -259,8 +263,7 @@
 			reqform.info += "REASON: [reason]<br>"
 			reqform.info += "SUPPLY CRATE TYPE: [S.name]<br>"
 			reqform.info += "ACCESS RESTRICTION: [get_access_desc(S.access)]<br>"
-			reqform.info += "CONTENTS:<br>"
-			reqform.info +=  S.get_html_manifest()
+			reqform.info +=  S.get_html_manifest().Join("")
 			reqform.info += "<hr>"
 			reqform.info += "STAMP BELOW TO APPROVE THIS REQUISITION:<br>"
 

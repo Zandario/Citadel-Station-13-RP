@@ -2,16 +2,24 @@
 //		Juggernaut
 ////////////////////////////
 
+/datum/category_item/catalogue/fauna/construct/juggernaut
+	name = "Constructs - Juggernaut"
+	desc = "An absolute behemoth, the Juggernaut is feared by \
+	many, and revered by some. Imposing, heavily armored, and powerful, \
+	the Juggernaut relies only on its massive hands to do damage - they \
+	are usually more than sufficient. The statue's thick armor makes it \
+	immensely resilient. Direct combat with a Juggernaut is not advised."
+	value = CATALOGUER_REWARD_HARD
+
 /mob/living/simple_mob/construct/juggernaut
 	name = "Juggernaut"
 	real_name = "Juggernaut"
 	construct_type = "juggernaut"
 	desc = "A possessed suit of armour driven by the will of the restless dead"
-	icon = 'icons/mob/mob.dmi'
 	icon_state = "behemoth"
 	icon_living = "behemoth"
-	maxHealth = 300
-	health = 300
+	maxHealth = 200
+	health = 200
 	response_harm   = "harmlessly punches"
 	harm_intent_damage = 0
 	melee_damage_lower = 30
@@ -20,11 +28,14 @@
 	attacktext = list("smashed their armoured gauntlet into")
 	friendly = list("pats")
 	mob_size = MOB_HUGE
+	catalogue_data = list(/datum/category_item/catalogue/fauna/construct/juggernaut)
 
 
 	movement_cooldown = 6 //Not super fast, but it might catch up to someone in armor who got punched once or twice.
 
 //	environment_smash = 2	// Whatever this gets renamed to, Juggernauts need to break things
+
+	ai_holder_type = /datum/ai_holder/simple_mob/destructive
 
 
 	attack_sound = 'sound/weapons/heavysmash.ogg'
@@ -44,9 +55,9 @@
 				"bio" = 100,
 				"rad" = 100)
 
-/mob/living/simple_mob/construct/juggernaut/Life()
-	weakened = 0
-	..()
+/mob/living/simple_mob/construct/juggernaut/Life(seconds, times_fired)
+	SetWeakened(0)
+	return ..()
 
 /mob/living/simple_mob/construct/juggernaut/bullet_act(var/obj/item/projectile/P)
 	var/reflectchance = 80 - round(P.damage/3)
@@ -97,8 +108,8 @@
 	name = "Behemoth"
 	real_name = "Behemoth"
 	desc = "The pinnacle of occult technology, Behemoths are nothing shy of both an Immovable Object, and Unstoppable Force."
-	maxHealth = 750
-	health = 750
+	maxHealth = 600
+	health = 600
 	speak_emote = list("rumbles")
 	melee_damage_lower = 50
 	melee_damage_upper = 50

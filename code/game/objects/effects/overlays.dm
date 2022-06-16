@@ -37,7 +37,7 @@
 
 /obj/effect/overlay/bluespacify
 	name = "Bluespace"
-	icon = 'icons/turf/space_vr.dmi' //VOREStation Edit
+	icon = 'icons/turf/space.dmi'
 	icon_state = "bluespacify"
 	plane = ABOVE_PLANE
 
@@ -51,8 +51,8 @@
 	layer = ABOVE_MOB_LAYER
 	mouse_opacity = 0
 
-/obj/effect/overlay/wallrot/New()
-	..()
+/obj/effect/overlay/wallrot/Initialize(mapload)
+	. = ..()
 	pixel_x += rand(-10, 10)
 	pixel_y += rand(-10, 10)
 
@@ -78,10 +78,28 @@
 	mouse_opacity = 0 //Don't block underlying tile interactions
 
 /obj/effect/overlay/snow/floor/edges
+	icon = 'icons/turf/snow.dmi'
 	icon_state = "snow_edges"
 
 /obj/effect/overlay/snow/floor/surround
+	icon = 'icons/turf/snow.dmi'
 	icon_state = "snow_surround"
+
+/obj/effect/overlay/snow/floor/edges_new
+	icon = 'icons/turf/snow_new.dmi'
+	icon_state = "snow_edges"
+
+/obj/effect/overlay/snow/floor/surround_new
+	icon = 'icons/turf/snow_new.dmi'
+	icon_state = "snow_surround"
+
+/obj/effect/overlay/snow/floor/grav_edges
+	icon = 'icons/turf/snow_new.dmi'
+	icon_state = "gravsnow_edges"
+
+/obj/effect/overlay/snow/floor/grav_surround
+	icon = 'icons/turf/snow_new.dmi'
+	icon_state = "gravsnow_surround"
 
 /obj/effect/overlay/snow/airlock
 	icon_state = "snowairlock"
@@ -106,6 +124,15 @@
 	desc = "An energy ball."
 	icon = 'icons/obj/tesla_engine/energy_ball.dmi'
 	icon_state = "energy_ball"
-	plane = PLANE_LIGHTING_ABOVE
+	plane = ABOVE_LIGHTING_PLANE
 	pixel_x = -32
 	pixel_y = -32
+
+/obj/effect/overlay/vis
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	anchored = TRUE
+	vis_flags = VIS_INHERIT_DIR
+	///When detected to be unused it gets set to world.time, after a while it gets removed
+	var/unused = 0
+	///overlays which go unused for this amount of time get cleaned up
+	var/cache_expiration = 2 MINUTES

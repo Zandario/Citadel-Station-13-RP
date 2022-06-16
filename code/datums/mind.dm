@@ -1,42 +1,40 @@
-/*	Note from Carnie:
-		The way datum/mind stuff works has been changed a lot.
-		Minds now represent IC characters rather than following a client around constantly.
-
-	Guidelines for using minds properly:
-
-	-	Never mind.transfer_to(ghost). The var/current and var/original of a mind must always be of type mob/living!
-		ghost.mind is however used as a reference to the ghost's corpse
-
-	-	When creating a new mob for an existing IC character (e.g. cloning a dead guy or borging a brain of a human)
-		the existing mind of the old mob should be transfered to the new mob like so:
-
-			mind.transfer_to(new_mob)
-
-	-	You must not assign key= or ckey= after transfer_to() since the transfer_to transfers the client for you.
-		By setting key or ckey explicitly after transfering the mind with transfer_to you will cause bugs like DCing
-		the player.
-
-	-	IMPORTANT NOTE 2, if you want a player to become a ghost, use mob.ghostize() It does all the hard work for you.
-
-	-	When creating a new mob which will be a new IC character (e.g. putting a shade in a construct or randomly selecting
-		a ghost to become a xeno during an event). Simply assign the key or ckey like you've always done.
-
-			new_mob.key = key
-
-		The Login proc will handle making a new mob for that mobtype (including setting up stuff like mind.name). Simple!
-		However if you want that mind to have any special properties like being a traitor etc you will have to do that
-		yourself.
-
-*/
+/**
+ *!	Note from Carnie:
+ * 	The way datum/mind stuff works has been changed a lot.
+ * 	Minds now represent IC characters rather than following a client around constantly.
+ *
+ *? Guidelines for using minds properly:
+ * -	Never mind.transfer_to(ghost). The var/current and var/original of a mind must always be of type mob/living!
+ * 	ghost.mind is however used as a reference to the ghost's corpse
+ *
+ * -	When creating a new mob for an existing IC character (e.g. cloning a dead guy or borging a brain of a human)
+ * 	the existing mind of the old mob should be transfered to the new mob like so: mind.transfer_to(new_mob)
+ *
+ * -	You must not assign key= or ckey= after transfer_to() since the transfer_to transfers the client for you.
+ * 	By setting key or ckey explicitly after transfering the mind with transfer_to you will cause bugs like DCing
+ * 	the player.
+ *
+ * -	IMPORTANT NOTE 2, if you want a player to become a ghost, use mob.ghostize() It does all the hard work for you.
+ *
+ * -	When creating a new mob which will be a new IC character (e.g. putting a shade in a construct or randomly selecting
+ * 	a ghost to become a xeno during an event). Simply assign the key or ckey like you've always done.
+ * 	new_mob.key = key
+ *
+ * 	The Login proc will handle making a new mob for that mobtype (including setting up stuff like mind.name). Simple!
+ * 	However if you want that mind to have any special properties like being a traitor etc you will have to do that
+ * 	yourself.
+ */
 
 /datum/mind
 	var/key
-	var/name				//replaces mob/var/original_name
+	/// Replaces mob/var/original_name
+	var/name
 	var/mob/living/current
 	var/mob/living/original	//TODO: remove.not used in any meaningful way ~Carn. First I'll need to tweak the way silicon-mobs handle minds.
-	var/active = 0
+	var/active = FALSE
 
 	var/memory
+	var/list/learned_recipes
 
 	var/assigned_role
 	var/special_role
@@ -48,27 +46,33 @@
 	var/list/datum/objective/objectives = list()
 	var/list/datum/objective/special_verbs = list()
 
-	var/has_been_rev = 0//Tracks if this mind has been a rev or not
+	/// Tracks if this mind has been a rev or not.
+	var/has_been_rev = 0
 
-	var/datum/faction/faction 			//associated faction
-	var/datum/changeling/changeling		//changeling holder
+	/// Associated faction.
+	var/datum/faction/faction
+	/// Changeling holder.
+	var/datum/changeling/changeling
+
+	/// Is this person a chaplain or admin role allowed to use bibles.
+	var/isholy = FALSE
 
 	var/rev_cooldown = 0
 	var/tcrystals = 0
 
-	// the world.time since the mob has been brigged, or -1 if not at all
+	/// The world.time since the mob has been brigged, or -1 if not at all.
 	var/brigged_since = -1
 
-	//put this here for easier tracking ingame
+	/// Put this here for easier tracking ingame.
 	var/datum/money_account/initial_account
 
-	//used for antag tcrystal trading, more info in code\game\objects\items\telecrystals.dm
+	/// Used for antag tcrystal trading, more info in code\game\objects\items\telecrystals.dm
 	var/accept_tcrystals = 0
 
-	//used for optional self-objectives that antagonists can give themselves, which are displayed at the end of the round.
+	/// Used for optional self-objectives that antagonists can give themselves, which are displayed at the end of the round.
 	var/ambitions
 
-	//used to store what traits the player had picked out in their preferences before joining, in text form.
+	/// Used to store what traits the player had picked out in their preferences before joining, in text form.
 	var/list/traits = list()
 
 /datum/mind/New(var/key)
@@ -96,7 +100,9 @@
 		new_character.make_changeling()
 
 	if(active)
-		new_character.key = key		//now transfer the key to link the client to our new body
+		new_character.key = key //now transfer the key to link the client to our new body
+	// if(new_character.client) //TODO: Eye Contact
+	// 	LAZYCLEARLIST(new_character.client.recent_examines)
 
 /datum/mind/proc/store_memory(new_text)
 	if((length(memory) + length(new_text)) <= MAX_MESSAGE_LEN)
@@ -128,8 +134,8 @@
 	out += "Assigned role: [assigned_role]. <a href='?src=\ref[src];role_edit=1'>Edit</a><br>"
 	out += "<hr>"
 	out += "Factions and special roles:<br><table>"
-	for(var/antag_type in all_antag_types)
-		var/datum/antagonist/antag = all_antag_types[antag_type]
+	for(var/antag_type in GLOB.all_antag_types)
+		var/datum/antagonist/antag = GLOB.all_antag_types[antag_type]
 		out += "[antag.get_panel_entry(src)]"
 	out += "</table><hr>"
 	out += "<b>Objectives</b></br>"
@@ -157,7 +163,7 @@
 	if(!check_rights(R_ADMIN))	return
 
 	if(href_list["add_antagonist"])
-		var/datum/antagonist/antag = all_antag_types[href_list["add_antagonist"]]
+		var/datum/antagonist/antag = GLOB.all_antag_types[href_list["add_antagonist"]]
 		if(antag)
 			if(antag.add_antagonist(src, 1, 1, 0, 1, 1)) // Ignore equipment and role type for this.
 				log_admin("[key_name_admin(usr)] made [key_name(src)] into a [antag.role_text].")
@@ -165,19 +171,19 @@
 				to_chat(usr, "<span class='warning'>[src] could not be made into a [antag.role_text]!</span>")
 
 	else if(href_list["remove_antagonist"])
-		var/datum/antagonist/antag = all_antag_types[href_list["remove_antagonist"]]
+		var/datum/antagonist/antag = GLOB.all_antag_types[href_list["remove_antagonist"]]
 		if(antag) antag.remove_antagonist(src)
 
 	else if(href_list["equip_antagonist"])
-		var/datum/antagonist/antag = all_antag_types[href_list["equip_antagonist"]]
+		var/datum/antagonist/antag = GLOB.all_antag_types[href_list["equip_antagonist"]]
 		if(antag) antag.equip(src.current)
 
 	else if(href_list["unequip_antagonist"])
-		var/datum/antagonist/antag = all_antag_types[href_list["unequip_antagonist"]]
+		var/datum/antagonist/antag = GLOB.all_antag_types[href_list["unequip_antagonist"]]
 		if(antag) antag.unequip(src.current)
 
 	else if(href_list["move_antag_to_spawn"])
-		var/datum/antagonist/antag = all_antag_types[href_list["move_antag_to_spawn"]]
+		var/datum/antagonist/antag = GLOB.all_antag_types[href_list["move_antag_to_spawn"]]
 		if(antag) antag.place_mob(src.current)
 
 	else if (href_list["role_edit"])
@@ -336,8 +342,6 @@
 	else if(href_list["implant"])
 		var/mob/living/carbon/human/H = current
 
-		ENABLE_BITFIELD(H.hud_updateflag, IMPLOYAL_HUD)   // updates that players HUD images so secHUD's pick up they are implanted or not.
-
 		switch(href_list["implant"])
 			if("remove")
 				for(var/obj/item/implant/loyalty/I in H.contents)
@@ -351,9 +355,9 @@
 				to_chat(H, "<span class='danger'><font size =3>You somehow have become the recepient of a loyalty transplant, and it just activated!</font></span>")
 				H.implant_loyalty(override = TRUE)
 				log_admin("[key_name_admin(usr)] has loyalty implanted [current].")
-			else
+		H.update_hud_sec_implants()
 	else if (href_list["silicon"])
-		ENABLE_BITFIELD(current.hud_updateflag, SPECIALROLE_HUD)
+		current.update_hud_antag()
 		switch(href_list["silicon"])
 
 			if("unemag")
@@ -411,7 +415,7 @@
 
 	else if (href_list["obj_announce"])
 		var/obj_count = 1
-		to_chat(current, "<font color='blue'>Your current objectives:</font>")
+		to_chat(current, "<font color=#4F49AF>Your current objectives:</font>")
 		for(var/datum/objective/objective in objectives)
 			to_chat(current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 			obj_count++
@@ -482,7 +486,7 @@
 		return 0
 
 //Initialisation procs
-/mob/living/proc/mind_initialize()
+/mob/proc/mind_initialize()
 	if(mind)
 		mind.key = key
 	else
@@ -502,7 +506,7 @@
 /mob/living/carbon/human/mind_initialize()
 	..()
 	if(!mind.assigned_role)
-		mind.assigned_role = USELESS_JOB	//defualt //VOREStation Edit - Visitor not Assistant
+		mind.assigned_role = USELESS_JOB
 
 //slime
 /mob/living/simple_mob/slime/mind_initialize()

@@ -1,5 +1,6 @@
 //Dat AI vore yo
-#define HOLO_ORIGINAL_COLOR null //Original hologram color: "#7db4e1"
+///Original hologram color: "#7db4e1"
+#define HOLO_ORIGINAL_COLOR null
 #define HOLO_HARDLIGHT_COLOR "#d97de0"
 #define HOLO_ORIGINAL_ALPHA 120
 #define HOLO_HARDLIGHT_ALPHA 200
@@ -74,37 +75,24 @@
 		return //Probably cancelled
 
 	if(!istype(prey))
-		to_chat(usr, "<span class='warning'>Invalid mob choice!</span>")
+		to_chat(usr, SPAN_WARNING("Invalid mob choice!"))
 		return
 
 	hologram.visible_message("[hologram] starts engulfing [prey] in hardlight holograms!")
-	to_chat(src, "<span class='notice'>You begin engulfing [prey] in hardlight holograms.</span>") //Can't be part of the above, because the above is from the hologram.
+	to_chat(src, SPAN_NOTICE("You begin engulfing [prey] in hardlight holograms.")) //Can't be part of the above, because the above is from the hologram.
 	if(do_after(user=eyeobj,delay=50,target=prey,needhand=0) && holo && hologram && !hologram.bellied) //Didn't move and still projecting and effect exists and no other bellied people
 		hologram.get_prey(prey)
 
-/*	Can't, lets them examine things in camera blackout areas
-//I basically have to do this, you know?
-/mob/living/silicon/ai/examinate(atom/A as mob|obj|turf in view(eyeobj))
-	set name = "Examine"
-	set category = "IC"
-
-	A.examine(src)
-*/
-
-/mob/living/AIShiftClick(var/mob/user) //Shift-click as AI overridden on mobs to examine.
+/mob/living/AIShiftClick(mob/user) //Shift-click as AI overridden on mobs to examine.
 	if(user.client)
-		src.examine(user)
-	return
+		var/list/result = examine(user)
+		to_chat(src, "<blockquote class='info'>[result.Join("\n")]</blockquote>")
 
 //This can go here with all the references.
 /obj/effect/overlay/aiholo/examine(mob/user)
-	. = ..(user)
-
-	var/msg = "\n"
+	. = ..()
 
 	//If you need an ooc_notes copy paste, this is NOT the one to use.
 	var/ooc_notes = master.ooc_notes
 	if(ooc_notes)
-		msg += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[master];ooc_notes=1'>\[View\]</a>\n"
-
-	user << msg
+		. += SPAN_BOLDNOTICE("OOC Notes: <a href='?src=\ref[master];ooc_notes=1'>\[View\]</a>\n")

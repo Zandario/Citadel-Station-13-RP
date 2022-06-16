@@ -33,7 +33,7 @@
 	S["fuzzy"]				<< pref.fuzzy
 
 /datum/category_item/player_setup_item/vore/size/sanitize_character()
-	pref.weight_vr			= sanitize_integer(pref.weight_vr, WEIGHT_MIN, WEIGHT_MAX, initial(pref.weight_vr))
+	pref.weight_vr			= isnum(pref.weight_vr) ? round(clamp(pref.weight_vr, WEIGHT_MIN, WEIGHT_MAX)) : initial(pref.weight_vr)
 	pref.weight_gain		= sanitize_integer(pref.weight_gain, WEIGHT_CHANGE_MIN, WEIGHT_CHANGE_MAX, initial(pref.weight_gain))
 	pref.weight_loss		= sanitize_integer(pref.weight_loss, WEIGHT_CHANGE_MIN, WEIGHT_CHANGE_MAX, initial(pref.weight_loss))
 	pref.fuzzy				= sanitize_integer(pref.fuzzy, 0, 1, initial(pref.fuzzy))
@@ -45,7 +45,6 @@
 	character.weight_gain		= pref.weight_gain
 	character.weight_loss		= pref.weight_loss
 	character.fuzzy				= pref.fuzzy
-	character.appearance_flags	-= pref.fuzzy*PIXEL_SCALE
 	character.resize(pref.size_multiplier, animate = FALSE)
 
 /datum/category_item/player_setup_item/vore/size/content(var/mob/user)
@@ -70,7 +69,7 @@
 
 	else if(href_list["toggle_fuzzy"])
 		pref.fuzzy = pref.fuzzy ? 0 : 1;
-		return TOPIC_REFRESH
+		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["weight"])
 		var/new_weight = input(user, "Choose your character's relative body weight.\n\

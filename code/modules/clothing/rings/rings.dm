@@ -52,8 +52,8 @@
 	flags = OPENCONTAINER
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 4)
 
-/obj/item/clothing/gloves/ring/reagent/New()
-	..()
+/obj/item/clothing/gloves/ring/reagent/Initialize(mapload)
+	. = ..()
 	create_reagents(15)
 
 /obj/item/clothing/gloves/ring/reagent/equipped(var/mob/living/carbon/human/H)
@@ -75,8 +75,8 @@
 	icon_state = "material"
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
-/obj/item/clothing/gloves/ring/reagent/sleepy/New()
-	..()
+/obj/item/clothing/gloves/ring/reagent/sleepy/Initialize(mapload)
+	. = ..()
 	reagents.add_reagent("chloralhydrate", 15) // Less than a sleepy-pen, but still enough to knock someone out
 
 /////////////////////////////////////////
@@ -109,3 +109,21 @@
 /obj/item/clothing/gloves/ring/seal/signet/proc/change_name(var/signet_name = "Unknown")
 	name = "[signet_name]'s signet ring"
 	desc = "A signet ring belonging to [signet_name], for when you're too sophisticated to sign letters."
+
+
+/obj/item/clothing/gloves/ring/wedding
+	name = "golden wedding ring"
+	desc = "For showing your devotion to another person. It has a golden glimmer to it."
+	icon_state = "wedring_g"
+	item_state = "wedring_g"
+	var/partnername = ""
+
+/obj/item/clothing/gloves/ring/wedding/attack_self(mob/user)
+	partnername = copytext(sanitize(input(user, "Would you like to change the holoengraving on the ring?", "Name your spouse", "Bae") as null|text),1,MAX_NAME_LEN)
+	name = "[initial(name)] - [partnername]"
+
+/obj/item/clothing/gloves/ring/wedding/silver
+	name = "silver wedding ring"
+	desc = "For showing your devotion to another person. It has a silver glimmer to it."
+	icon_state = "wedring_s"
+	item_state = "wedring_s"

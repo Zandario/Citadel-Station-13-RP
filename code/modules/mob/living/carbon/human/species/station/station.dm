@@ -5,8 +5,8 @@
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite)
 	blurb = "Humanity originated in the Sol system, and over the last five centuries has spread \
 	colonies across a wide swathe of space. They hold a wide range of forms and creeds.<br/><br/> \
-	While the central Sol government maintains control of its far-flung people, powerful corporate \
-	interests, rampant cyber and bio-augmentation and secretive factions make life on most human \
+	While the Orion Confederation government represents humanity at large, on the Frontier powerful corporate \
+	interests, rampant cyber and bio-augmentation initiatives, and secretive factions make life on most human \
 	worlds tumultous at best."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/humans)
 	num_alternate_languages = 3
@@ -15,7 +15,6 @@
 	name_language = null // Use the first-name last-name generator rather than a language scrambler
 	assisted_langs = list(LANGUAGE_EAL, LANGUAGE_SKRELLIAN, LANGUAGE_SKRELLIANFAR, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
 
-	min_age = 17
 	max_age = 130
 
 	economic_modifier = 10
@@ -23,7 +22,7 @@
 	health_hud_intensity = 1.5
 
 	spawn_flags = SPECIES_CAN_JOIN
-	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_TONE | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
+	species_appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_TONE | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
 
 	has_organ = list(
 		O_HEART =		/obj/item/organ/internal/heart,
@@ -42,16 +41,23 @@
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/tie_hair)
 
+	color_mult = 1
+	icobase = 'icons/mob/human_races/r_human_vr.dmi'
+	deform = 'icons/mob/human_races/r_def_human_vr.dmi'
+	species_appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
+	base_color = "#EECEB3"
+	wikilink="https://citadel-station.net/wikiRP/index.php?title=Race:_Humanity"
+
 /datum/species/human/get_bodytype(var/mob/living/carbon/human/H)
 	return SPECIES_HUMAN
 
 /datum/species/unathi
 	name = SPECIES_UNATHI
-	name_plural = "Unathi"
-	icobase = 'icons/mob/human_races/r_lizard.dmi'
-	deform = 'icons/mob/human_races/r_def_lizard.dmi'
+	name_plural = SPECIES_UNATHI
+	icobase = 'icons/mob/human_races/r_lizard_vr.dmi'
+	deform = 'icons/mob/human_races/r_def_lizard_vr.dmi'
 	tail = "sogtail"
-	tail_animation = 'icons/mob/species/unathi/tail.dmi'
+	tail_animation = 'icons/mob/clothing/species/unathi/tail_vr.dmi'
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	primitive_form = SPECIES_MONKEY_UNATHI
 	ambiguous_genders = TRUE
@@ -70,7 +76,6 @@
 	species_language = LANGUAGE_UNATHI
 	health_hud_intensity = 2.5
 
-	min_age = 32
 	max_age = 260
 
 	economic_modifier = 10
@@ -102,8 +107,8 @@
 
 	body_temperature = T20C
 
-	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
-	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+	spawn_flags = SPECIES_CAN_JOIN //Species_can_join is the only spawn flag all the races get, so that none of them will be whitelist only if whitelist is enabled.
+	species_appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	flesh_color = "#34AF10"
 	blood_color = "#b3cbc3"
@@ -153,9 +158,14 @@
 		"Your scales bristle against the cold."
 		)
 
-	descriptors = list(
-		/datum/mob_descriptor/height = 2,
-		/datum/mob_descriptor/build = 2
+	descriptors = list()
+
+	color_mult = 1
+	gluttonous = 0
+	wikilink="https://citadel-station.net/wikiRP/index.php?title=Unathi"
+	inherent_verbs = list(
+		/mob/living/proc/shred_limb,
+		/mob/living/carbon/human/proc/tie_hair
 		)
 
 /datum/species/unathi/equip_survival_gear(var/mob/living/carbon/human/H)
@@ -165,10 +175,10 @@
 /datum/species/tajaran
 	name = SPECIES_TAJ
 	name_plural = "Tajaran"
-	icobase = 'icons/mob/human_races/r_tajaran.dmi'
-	deform = 'icons/mob/human_races/r_def_tajaran.dmi'
+	icobase = 'icons/mob/human_races/r_tajaran_vr.dmi'
+	deform = 'icons/mob/human_races/r_def_tajaran_vr.dmi'
 	tail = "tajtail"
-	tail_animation = 'icons/mob/species/tajaran/tail.dmi'
+	tail_animation = 'icons/mob/clothing/species/tajaran/tail_vr.dmi'
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	darksight = 8
 	slowdown = -0.5
@@ -177,14 +187,13 @@
 	burn_mod =  1.15
 	flash_mod = 1.1
 	metabolic_rate = 1.1
-	gluttonous = 1
+	gluttonous = 0
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_SIIK, LANGUAGE_AKHANI, LANGUAGE_ALAI)
 	name_language = LANGUAGE_SIIK
 	species_language = LANGUAGE_SIIK
 	health_hud_intensity = 2.5
 
-	min_age = 17
 	max_age = 80
 
 	economic_modifier = 10
@@ -216,8 +225,8 @@
 
 	primitive_form = SPECIES_MONKEY_TAJ
 
-	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
-	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+	spawn_flags = SPECIES_CAN_JOIN
+	species_appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	flesh_color = "#AFA59E"
 	base_color = "#333333"
@@ -226,7 +235,7 @@
 
 	move_trail = /obj/effect/decal/cleanable/blood/tracks/paw
 
-	heat_discomfort_level = 292
+	heat_discomfort_level = 295 //Prevents heat discomfort spam at 20c
 	heat_discomfort_strings = list(
 		"Your fur prickles in the heat.",
 		"You feel uncomfortably warm.",
@@ -247,15 +256,22 @@
 		O_INTESTINE =	/obj/item/organ/internal/intestine
 		)
 
+	color_mult = 1
+	wikilink="https://citadel-station.net/wikiRP/index.php?title=Race:_Tajarans"
+	inherent_verbs = list(
+		/mob/living/proc/shred_limb,
+		/mob/living/carbon/human/proc/tie_hair
+		)
+
 /datum/species/tajaran/equip_survival_gear(var/mob/living/carbon/human/H)
 	..()
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)
 
 /datum/species/skrell
 	name = SPECIES_SKRELL
-	name_plural = "Skrell"
-	icobase = 'icons/mob/human_races/r_skrell.dmi'
-	deform = 'icons/mob/human_races/r_def_skrell.dmi'
+	name_plural = SPECIES_SKRELL
+	icobase = 'icons/mob/human_races/r_skrell_vr.dmi'
+	deform = 'icons/mob/human_races/r_def_skrell_vr.dmi'
 	primitive_form = SPECIES_MONKEY_SKRELL
 	unarmed_types = list(/datum/unarmed_attack/punch)
 	blurb = "An amphibious species, Skrell come from the star system known as Qerr'Vallis, which translates to 'Star of \
@@ -268,12 +284,11 @@
 	secondary_langs = list(LANGUAGE_SKRELLIAN, LANGUAGE_SCHECHI)
 	name_language = LANGUAGE_SKRELLIAN
 	species_language = LANGUAGE_SKRELLIAN
-	assisted_langs = list(LANGUAGE_EAL, LANGUAGE_TERMINUS, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
+	assisted_langs = list(LANGUAGE_EAL, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
 	health_hud_intensity = 2
 
 	water_movement = -3
 
-	min_age = 19
 	max_age = 130
 
 	economic_modifier = 10
@@ -286,8 +301,8 @@
 
 	ambiguous_genders = TRUE
 
-	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
-	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR
+	spawn_flags = SPECIES_CAN_JOIN
+	species_appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR
 
 	flesh_color = "#8CD7A3"
 	blood_color = "#1D2CBF"
@@ -309,7 +324,7 @@
 	breath_heat_level_2 = 500	//Default 450
 	breath_heat_level_3 = 1350	//Default 1250
 
-	reagent_tag = IS_SKRELL
+	reagent_tag = null
 
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
@@ -325,12 +340,15 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)
 
+	color_mult = 1
+	wikilink="https://citadel-station.net/wikiRP/index.php?title=Skrell"
+
 /datum/species/skrell/can_breathe_water()
 	return TRUE
 
 /datum/species/zaddat
 	name = SPECIES_ZADDAT
-	name_plural = "Zaddat"
+	name_plural = SPECIES_ZADDAT
 	icobase = 'icons/mob/human_races/r_zaddat.dmi'
 	deform = 'icons/mob/human_races/r_zaddat.dmi'
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch)
@@ -340,7 +358,7 @@
 	flash_mod = 2
 	flash_burn = 15 //flashing a zaddat probably counts as police brutality
 	metabolic_rate = 0.7 //did u know if your ancestors starved ur body will actually start in starvation mode?
-	gluttonous = 1
+	gluttonous = 0
 	taste_sensitivity = TASTE_SENSITIVE
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_ZADDAT, LANGUAGE_UNATHI)
@@ -353,10 +371,9 @@
 
 	economic_modifier = 3
 
-	min_age = 16
 	max_age = 90
 
-	blurb = "The Zaddat are an Unathi client race only recently introduced to SolGov space. Having evolved on \
+	blurb = "The Zaddat are an Unathi client race only recently introduced to OriCon space. Having evolved on \
 	the high-pressure and post-apocalyptic world of Xohok, Zaddat require an environmental suit called a Shroud \
 	to survive in usual planetary and station atmospheres. Despite these restrictions, worsening conditions on \
 	Xohok and the blessing of the Moghes Hegemony have lead the Zaddat to enter human space in search of work \
@@ -372,8 +389,8 @@
 
 	genders = list(FEMALE, PLURAL) //females are polyp-producing, infertile females and males are nigh-identical
 
-	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
-	appearance_flags = null
+	spawn_flags = SPECIES_CAN_JOIN
+	species_appearance_flags = null
 
 	flesh_color = "#AFA59E"
 	base_color = "#e2e4a6"
@@ -405,10 +422,9 @@
 	O_INTESTINE =/obj/item/organ/internal/intestine
 	)
 
-	descriptors = list(
-		/datum/mob_descriptor/height = 0,
-		/datum/mob_descriptor/build = -1
-		)
+	descriptors = list()
+	// no wiki link exists for Zaddat yet
+
 /datum/species/zaddat/equip_survival_gear(var/mob/living/carbon/human/H)
 	..()
 	if(H.wear_suit) //get rid of job labcoats so they don't stop us from equipping the Shroud
@@ -420,6 +436,12 @@
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/zaddat/(H), slot_wear_mask) // mask has to come first or Shroud helmet will get in the way
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/space/void/zaddat/(H), slot_wear_suit)
+
+	var/obj/item/storage/toolbox/lunchbox/survival/zaddat/L = new(get_turf(H))
+	if(H.backbag == 1)
+		H.equip_to_slot_or_del(L, slot_r_hand)
+	else
+		H.equip_to_slot_or_del(L, slot_in_backpack)
 
 /datum/species/zaddat/handle_environment_special(var/mob/living/carbon/human/H)
 
@@ -439,167 +461,448 @@
 		if(!(K in covered))
 			H.apply_damage(light_amount/4, BURN, K, 0, 0, "Abnormal growths")
 
+//Diona moved to their own file
 
-/datum/species/diona
-	name = SPECIES_DIONA
-	name_plural = "Dionaea"
-	icobase = 'icons/mob/human_races/r_diona.dmi'
-	deform = 'icons/mob/human_races/r_def_plant.dmi'
-	language = LANGUAGE_ROOTLOCAL
-	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/diona)
-	//primitive_form = "Nymph"
-	slowdown = 5
-	snow_movement = -2 	//Ignore light snow
-	water_movement = -4	//Ignore shallow water
-	rarity_value = 3
-	hud_type = /datum/hud_data/diona
-	siemens_coefficient = 0.3
-	show_ssd = "completely quiescent"
-	health_hud_intensity = 2.5
-	item_slowdown_mod = 0.1
+/datum/species/sergal
+	name = SPECIES_SERGAL
+	name_plural = "Naramadi"
+	icobase = 'icons/mob/human_races/r_sergal.dmi'
+	deform = 'icons/mob/human_races/r_def_sergal.dmi'
+	tail = "tail"
+	icobase_tail = 1
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
+	slowdown      = -0.25
+	snow_movement = -1 // Ignores light snow
+	//darksight = 8
+	//slowdown = -0.5
+	//brute_mod = 1.15
+	//burn_mod =  1.15
+	//gluttonous = 1
+	hunger_factor = 0.1 // By math should be half of the Teshari Nutrition drain
+	num_alternate_languages = 3
+	secondary_langs = list(LANGUAGE_SAGARU)
+	name_language = LANGUAGE_SAGARU
+	color_mult = 1
 
-	num_alternate_languages = 2
-	name_language = LANGUAGE_ROOTLOCAL
-	species_language = LANGUAGE_ROOTLOCAL
-	secondary_langs = list(LANGUAGE_ROOTGLOBAL)
-	assisted_langs = list(LANGUAGE_VOX)	// Diona are weird, let's just assume they can use basically any language.
-	min_age = 1
-	max_age = 300
+	max_age = 120
 
-	economic_modifier = 4
+	blurb = "The Naramadi (Plural of Naramad) are a species of bipedal, furred mammalians originating from the Verkihar Major system. \
+	They share a border with the Unathi, granting both of the species a history of war. \
+	Naramadi Ascendancy's location also brings forth a constant danger of Hivebot Fleets attacks, leaving the Empire in a state of constant Defense."
 
-	blurb = "Commonly referred to (erroneously) as 'plant people', the Dionaea are a strange space-dwelling collective \
-	species hailing from Epsilon Ursae Minoris. Each 'diona' is a cluster of numerous cat-sized organisms called nymphs; \
-	there is no effective upper limit to the number that can fuse in gestalt, and reports exist	of the Epsilon Ursae \
-	Minoris primary being ringed with a cloud of singing space-station-sized entities.<br/><br/>The Dionaea coexist peacefully with \
-	all known species, especially the Skrell. Their communal mind makes them slow to react, and they have difficulty understanding \
-	even the simplest concepts of other minds. Their alien physiology allows them survive happily off a diet of nothing but light, \
-	water and other radiation."
-	catalogue_data = list(/datum/category_item/catalogue/fauna/dionaea)
+	wikilink=""
 
-	has_organ = list(
-		O_NUTRIENT = /obj/item/organ/internal/diona/nutrients,
-		O_STRATA =   /obj/item/organ/internal/diona/strata,
-		O_BRAIN = /obj/item/organ/internal/brain/cephalon,
-		O_RESPONSE = /obj/item/organ/internal/diona/node,
-		O_GBLADDER = /obj/item/organ/internal/diona/bladder,
-		O_POLYP =    /obj/item/organ/internal/diona/polyp,
-		O_ANCHOR =   /obj/item/organ/internal/diona/ligament
+	catalogue_data = list(/datum/category_item/catalogue/fauna/sergal)
+
+	primitive_form = SPECIES_MONKEY_SERGAL
+
+	spawn_flags = SPECIES_CAN_JOIN
+	species_appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+	inherent_verbs = list(
+		/mob/living/proc/shred_limb,
+		/mob/living/carbon/human/proc/tie_hair
+		)
+
+	flesh_color = "#AFA59E"
+	base_color = "#777777"
+
+	heat_discomfort_strings = list(
+		"Your fur prickles in the heat.",
+		"You feel uncomfortably warm.",
+		"Your overheated skin itches."
 		)
 
 	has_limbs = list(
-		BP_TORSO =  list("path" = /obj/item/organ/external/diona/chest),
-		BP_GROIN =  list("path" = /obj/item/organ/external/diona/groin),
-		BP_HEAD =   list("path" = /obj/item/organ/external/head/no_eyes/diona),
-		BP_L_ARM =  list("path" = /obj/item/organ/external/diona/arm),
-		BP_R_ARM =  list("path" = /obj/item/organ/external/diona/arm/right),
-		BP_L_LEG =  list("path" = /obj/item/organ/external/diona/leg),
-		BP_R_LEG =  list("path" = /obj/item/organ/external/diona/leg/right),
-		BP_L_HAND = list("path" = /obj/item/organ/external/diona/hand),
-		BP_R_HAND = list("path" = /obj/item/organ/external/diona/hand/right),
-		BP_L_FOOT = list("path" = /obj/item/organ/external/diona/foot),
-		BP_R_FOOT = list("path" = /obj/item/organ/external/diona/foot/right)
+		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
+		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head/vr/sergal),
+		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
+		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right),
+		BP_L_LEG =  list("path" = /obj/item/organ/external/leg),
+		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right),
+		BP_L_HAND = list("path" = /obj/item/organ/external/hand),
+		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right),
+		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
+		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)
 
+/datum/species/akula
+	name = SPECIES_AKULA
+	name_plural = SPECIES_AKULA //It's singular and plural. English is weird.
+	icobase = 'icons/mob/human_races/r_akula.dmi'
+	deform = 'icons/mob/human_races/r_def_akula.dmi'
+	tail = "tail"
+	icobase_tail = 1
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
+	//darksight = 8
+	//slowdown = -0.5
+	//brute_mod = 1.15
+	//burn_mod =  1.15
+	//gluttonous = 1
+	water_movement = -4
+	num_alternate_languages = 3
+	secondary_langs = list(LANGUAGE_SKRELLIAN)
+	name_language = LANGUAGE_SKRELLIAN
+	color_mult = 1
+	assisted_langs = list(LANGUAGE_EAL, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
 	inherent_verbs = list(
-		/mob/living/carbon/human/proc/diona_split_nymph,
-		/mob/living/carbon/human/proc/regenerate
+		/mob/living/proc/shred_limb,
+		/mob/living/carbon/human/proc/tie_hair
 		)
+
+	max_age = 80
+
+	blurb = "The Akula are a species of amphibious humanoids like the Skrell, but have an appearance very similar to that of a shark. \
+	They were first discovered as a primitive race of underwater dwelling tribal creatures by the Skrell. At first they were not believed \
+	to be noteworthy, but the Akula proved to be such swift and clever learners that the Skrell reclassified them as sentients. Allegedly, \
+	the Akula were also the first sentient life that the Skrell had ever encountered beside themselves, and thus the two species became swift \
+	allies over the next few hundred years. With the help of Skrellean technology, the Akula had their genome modified to be capable of \
+	surviving in open air for long periods of time. However, Akula even today still require a high humidity environment to avoid drying out \
+	after a few days, which would make life on an arid world like Virgo-Prime nearly impossible if it were not for Skrellean technology to aid them."
+
+	wikilink="https://citadel-station.net/wikiRP/index.php?title=Akula"
+
+	catalogue_data = list(/datum/category_item/catalogue/fauna/akula)
+
+	primitive_form = SPECIES_MONKEY_AKULA
+
+	spawn_flags = SPECIES_CAN_JOIN
+	species_appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+
+	flesh_color = "#AFA59E"
+	base_color = "#777777"
+	blood_color = "#1D2CBF"
+
+/datum/species/akula/can_breathe_water()
+	return TRUE // Surprise, SHERKS.
+
+/datum/species/nevrean
+	name = SPECIES_NEVREAN
+	name_plural = "Nevreans"
+	icobase = 'icons/mob/human_races/r_nevrean.dmi'
+	deform = 'icons/mob/human_races/r_def_nevrean.dmi'
+	tail = "tail"
+	icobase_tail = 1
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
+	//darksight = 8
+	//slowdown = -0.5
+	//brute_mod = 1.15
+	//burn_mod =  1.15
+	//gluttonous = 1
+	num_alternate_languages = 3
+	secondary_langs = list(LANGUAGE_BIRDSONG)
+	name_language = LANGUAGE_BIRDSONG
+	color_mult = 1
+	inherent_verbs = list(
+		/mob/living/proc/shred_limb,
+		/mob/living/proc/flying_toggle,
+		/mob/living/proc/start_wings_hovering,
+		/mob/living/carbon/human/proc/tie_hair
+		)
+
+	max_age = 80
+
+	blurb = "Nevreans are a race of avian and dinosaur-like creatures living on Tal. They belong to a group of races that hails from Eltus, \
+	in the Vilous system. Unlike sergals whom they share a star system with, their species is a very peaceful one. They possess remarkable \
+	intelligence and very skillful hands that are put use for constructing precision instruments, but tire-out fast when repeatedly working \
+	over and over again. Consequently, they struggle to make copies of same things. Both genders have a voice that echoes a lot. Their natural \
+	tone oscillates between tenor and soprano. They are excessively noisy when they quarrel in their native language."
+
+	wikilink=""
+
+	catalogue_data = list(/datum/category_item/catalogue/fauna/nevrean)
+
+	primitive_form = SPECIES_MONKEY_NEVREAN
+
+	spawn_flags = SPECIES_CAN_JOIN
+	species_appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+
+	flesh_color = "#AFA59E"
+	base_color = "#333333"
+
+	heat_discomfort_strings = list(
+		"Your fur prickles in the heat.",
+		"You feel uncomfortably warm.",
+		"Your overheated skin itches."
+		)
+
+/datum/species/hi_zoxxen
+	name = SPECIES_ZORREN_HIGH
+	name_plural = "Zorren"
+	icobase = 'icons/mob/human_races/r_fox_vr.dmi'
+	deform = 'icons/mob/human_races/r_def_fox.dmi'
+	tail = "tail"
+	icobase_tail = 1
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
+	num_alternate_languages = 3
+	secondary_langs = list(LANGUAGE_TERMINUS)
+	name_language = LANGUAGE_TERMINUS
+	inherent_verbs = list(/mob/living/carbon/human/proc/lick_wounds)
+
+	max_age = 80
+
+	blurb = "The fox-like Zorren are native to Virgo-Prime, however there are two distinct varieties of Zorren one with large ears and shorter fur, \
+	and the other with longer fur that is a bit more vibrant. The long-eared, short-furred Zorren have come to be known as Flatland Zorren as that \
+	is where most of their settlements are located. The Flatland Zorren are somewhat tribal and shamanistic as they have only recently started to be \
+	hired by the Trans-Stellar Corporations. The other variety of Zorren are known as Highland Zorren as they frequently settle in hilly and/or \
+	mountainous areas, they have a differing societal structure than the Flatland Zorren having a more feudal social structure, like the Flatland Zorren, \
+	the Highland Zorren have also only recently been hired by the Trans-Stellar Corporations, but thanks to the different social structure they seem to \
+	have adjusted better to their new lives. Though similar fox-like beings have been seen they are different than the Zorren."
+	wikilink="https://citadel-station.net/wikiRP/index.php?title=Zorren"
+
+	catalogue_data = list(/datum/category_item/catalogue/fauna/zorren,
+						/datum/category_item/catalogue/fauna/highzorren)
+
+	//primitive_form = "" //We don't have fox-monkey sprites.
+
+	spawn_flags = SPECIES_CAN_JOIN
+	species_appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+	flesh_color = "#AFA59E"
+	base_color = "#333333"
+	blood_color = "#240bc4"
+	color_mult = 1
+
+	heat_discomfort_strings = list(
+		"Your fur prickles in the heat.",
+		"You feel uncomfortably warm.",
+		"Your overheated skin itches."
+		)
+	inherent_verbs = list(
+		/mob/living/proc/shred_limb,
+		/mob/living/carbon/human/proc/tie_hair
+		)
+
+/datum/species/fl_zorren
+	name = SPECIES_ZORREN_FLAT
+	name_plural = "Zorren"
+	icobase = 'icons/mob/human_races/r_fennec_vr.dmi'
+	deform = 'icons/mob/human_races/r_def_fennec.dmi'
+	tail = "tail"
+	icobase_tail = 1
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
+	num_alternate_languages = 3
+	secondary_langs = list(LANGUAGE_TERMINUS)
+	name_language = LANGUAGE_TERMINUS
+	inherent_verbs = list(/mob/living/carbon/human/proc/lick_wounds)
+
+	max_age = 80
+
+	blurb = "The fox-like Zorren are native to Virgo-Prime, however there are two distinct varieties of Zorren one with large ears and shorter fur, \
+	and the other with longer fur that is a bit more vibrant. The long-eared, short-furred Zorren have come to be known as Flatland Zorren as that is \
+	where most of their settlements are located. The Flatland Zorren are somewhat tribal and shamanistic as they have only recently started to be \
+	hired by the Trans-Stellar Corporations. The other variety of Zorren are known as Highland Zorren as they frequently settle in hilly and/or \
+	mountainous areas, they have a differing societal structure than the Flatland Zorren having a more feudal social structure, like the Flatland Zorren, \
+	the Highland Zorren have also only recently been hired by the Trans-Stellar Corporations, but thanks to the different social structure they \
+	seem to have adjusted better to their new lives. Though similar fox-like beings have been seen they are different than the Zorren."
+	wikilink="https://citadel-station.net/wikiRP/index.php?title=Zorren"
+
+	catalogue_data = list(/datum/category_item/catalogue/fauna/zorren,
+						/datum/category_item/catalogue/fauna/flatzorren)
+
+	//primitive_form = "" //We don't have fennec-monkey sprites.
+	spawn_flags = SPECIES_CAN_JOIN
+	species_appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+
+	flesh_color = "#AFA59E"
+	base_color = "#333333"
+	blood_color = "#240bc4"
+	color_mult = 1
+	inherent_verbs = list(
+		/mob/living/proc/shred_limb,
+		/mob/living/carbon/human/proc/tie_hair
+		)
+
+	heat_discomfort_strings = list(
+		"Your fur prickles in the heat.",
+		"You feel uncomfortably warm.",
+		"Your overheated skin itches."
+		)
+
+/datum/species/vulpkanin
+	name = SPECIES_VULPKANIN
+	name_plural = SPECIES_VULPKANIN
+	icobase = 'icons/mob/human_races/r_vulpkanin.dmi'
+	deform = 'icons/mob/human_races/r_vulpkanin.dmi'
+//	path = /mob/living/carbon/human/vulpkanin
+//	default_language = "Sol Common"
+	secondary_langs = list(LANGUAGE_CANILUNZT)
+	name_language = LANGUAGE_CANILUNZT
+	primitive_form = SPECIES_MONKEY_VULPKANIN
+	tail = "vulptail"
+	tail_animation = 'icons/mob/clothing/species/vulpkanin/tail.dmi' // probably need more than just one of each, but w/e
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
+	darksight = 5 //worse than cats, but better than lizards. -- Poojawa
+//	gluttonous = 1
+	num_alternate_languages = 3
+	color_mult = 1
+	inherent_verbs = list(
+		/mob/living/proc/shred_limb,
+		/mob/living/carbon/human/proc/tie_hair
+		)
+
+	blurb = "Vulpkanin are a species of sharp-witted canine-pideds residing on the planet Altam just barely within the \
+	dual-star Vazzend system. Their politically de-centralized society and independent natures have led them to become a species and \
+	culture both feared and respected for their scientific breakthroughs. Discovery, loyalty, and utilitarianism dominates their lifestyles \
+	to the degree it can cause conflict with more rigorous and strict authorities. They speak a guttural language known as 'Canilunzt' \
+    which has a heavy emphasis on utilizing tail positioning and ear twitches to communicate intent."
+
+	wikilink=""
+
+	catalogue_data = list(/datum/category_item/catalogue/fauna/vulpkanin)
+
+	primitive_form = SPECIES_MONKEY_VULPKANIN
+
+	spawn_flags = SPECIES_CAN_JOIN
+	species_appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+
+	flesh_color = "#966464"
+	base_color = "#B43214"
+
+	max_age = 80
+
+/datum/species/harpy
+	name = SPECIES_RAPALA
+	name_plural = "Rapalans"
+	icobase = 'icons/mob/human_races/r_harpy_vr.dmi'
+	deform = 'icons/mob/human_races/r_def_harpy_vr.dmi'
+	tail = "tail"
+	icobase_tail = 1
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite)
+	num_alternate_languages = 3
+	secondary_langs = list(LANGUAGE_BIRDSONG)
+	name_language = null
+	color_mult = 1
+	inherent_verbs = list(
+		/mob/living/proc/flying_toggle,
+		/mob/living/proc/start_wings_hovering,
+		/mob/living/carbon/human/proc/tie_hair
+		)
+
+	max_age = 80
+
+	base_color = "#EECEB3"
+
+	blurb = "An Avian species, coming from a distant planet, the Rapalas are the very proud race.\
+	Sol researchers have commented on them having a very close resemblance to the mythical race called 'Harpies',\
+	who are known for having massive winged arms and talons as feet. They've been clocked at speeds of over 35 miler per hour chasing the planet's many fish-like fauna.\
+	The Rapalan's home-world 'Verita' is a strangely habitable gas giant, while no physical earth exists, there are fertile floating islands orbiting around the planet from past asteroid activity."
+
+	wikilink=""
+
+	catalogue_data = list(/datum/category_item/catalogue/fauna/rapala)
+
+	spawn_flags = SPECIES_CAN_JOIN
+	species_appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+
+
+	heat_discomfort_strings = list(
+		"Your feathers prickle in the heat.",
+		"You feel uncomfortably warm.",
+		"Your overheated skin itches."
+		)
+
+/datum/species/crew_shadekin
+	name = SPECIES_SHADEKIN_CREW
+	name_plural = SPECIES_SHADEKIN_CREW
+	icobase = 'icons/mob/human_races/r_shadekin_vr.dmi'
+	deform = 'icons/mob/human_races/r_shadekin_vr.dmi'
+	tail = "tail"
+	blurb = "Very little is known about these creatures. They appear to be largely mammalian in appearance. \
+	Seemingly very rare to encounter, there have been widespread myths of these creatures the galaxy over, \
+	but next to no verifiable evidence to their existence. However, they have recently been more verifiably \
+	documented in the Virgo system, following a mining bombardment of Virgo 3. The crew of NSB Adephagia have \
+	taken to calling these creatures 'Shadekin', and the name has generally stuck and spread. "		//TODO: Something more fitting for black-eyes	//CIT ADDENDUM: since we're not really on the tether anymore we'll need a bullshit reason as to why we have shadekin on a ship
+	wikilink = "https://citadel-station.net/wikiRP/index.php?title=Race:_Shadekin"
+
+	language = LANGUAGE_SHADEKIN
+	name_language = LANGUAGE_SHADEKIN
+	species_language = LANGUAGE_SHADEKIN
+	secondary_langs = list(LANGUAGE_SHADEKIN)
+	num_alternate_languages = 3
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
+	rarity_value = 5	//INTERDIMENSIONAL FLUFFERS
+
+	siemens_coefficient = 0	//completely shockproof (this is no longer the case on virgo, feel free to change if it needs rebalancing)
+	darksight = 10	//best darksight around
+
+	slowdown = 0.5	//as slow as unathi
+	item_slowdown_mod = 1.5	//they're not as fit as them, though, slowed down more by heavy gear
+
+	total_health = 75	//fragile
+	brute_mod = 1.25 // Frail
+	burn_mod = 1.25	// Furry
+	blood_volume = 500	//slightly less blood than human baseline
+	hunger_factor = 0.2	//gets hungrier faster than human baseline
 
 	warning_low_pressure = 50
 	hazard_low_pressure = -1
 
-	cold_level_1 = 50
+	warning_high_pressure = 300
+	hazard_high_pressure = INFINITY
+
+	cold_level_1 = -1	//Immune to cold
 	cold_level_2 = -1
 	cold_level_3 = -1
 
-	heat_level_1 = 2000
-	heat_level_2 = 3000
-	heat_level_3 = 4000
+	heat_level_1 = 850	//Resistant to heat
+	heat_level_2 = 1000
+	heat_level_3 = 1150
 
-	body_temperature = T0C + 15		//make the plant people have a bit lower body temperature, why not
+	flags =  NO_SCAN | NO_MINOR_CUT | CONTAMINATION_IMMUNE	//shadekin biology is still unknown to the universe (unless some bullshit lore says otherwise); CitadelRP: Now able to walk over shards of glass like regular shadekins
+	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE
 
-	flags = NO_SCAN | IS_PLANT | NO_PAIN | NO_SLIP | NO_MINOR_CUT
-	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
+	reagent_tag = IS_SHADEKIN // for shadekin-unique chem interactions
 
-	blood_color = "#004400"
-	flesh_color = "#907E4A"
+	flesh_color = "#FFC896"
+	blood_color = "#A10808"
+	base_color = "#f0f0f0"
+	color_mult = 1
 
-	reagent_tag = IS_DIONA
+	inherent_verbs = list(/mob/living/proc/shred_limb)
 
-	genders = list(PLURAL)
+	has_glowing_eyes = TRUE
 
-/datum/species/diona/can_understand(var/mob/other)
-	var/mob/living/carbon/alien/diona/D = other
-	if(istype(D))
-		return 1
-	return 0
+	male_cough_sounds = null
+	female_cough_sounds = null
+	male_sneeze_sound = null
+	female_sneeze_sound = null
 
-/datum/species/diona/equip_survival_gear(var/mob/living/carbon/human/H)
-	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/flashlight/flare(H), slot_r_hand)
-	else
-		H.equip_to_slot_or_del(new /obj/item/flashlight/flare(H.back), slot_in_backpack)
+	speech_bubble_appearance = "ghost"
 
-/datum/species/diona/handle_post_spawn(var/mob/living/carbon/human/H)
-	H.gender = NEUTER
-	return ..()
+	genders = list(MALE, FEMALE, PLURAL, NEUTER, HERM)	//fuck it. shadekins with titties
 
-/datum/species/diona/handle_death(var/mob/living/carbon/human/H)
+	breath_type = null	//they don't breathe
+	poison_type = null
 
-	var/mob/living/carbon/alien/diona/S = new(get_turf(H))
+	species_appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_SKIN_COLOR | HAS_UNDERWEAR
 
-	if(H.mind)
-		H.mind.transfer_to(S)
+	has_organ = list(
+		O_HEART =		/obj/item/organ/internal/heart,
+		O_VOICE = 		/obj/item/organ/internal/voicebox,
+		O_LIVER =		/obj/item/organ/internal/liver,
+		O_KIDNEYS =		/obj/item/organ/internal/kidneys,
+		O_BRAIN =		/obj/item/organ/internal/brain,
+		O_EYES =		/obj/item/organ/internal/eyes,
+		O_STOMACH =		/obj/item/organ/internal/stomach,
+		O_INTESTINE =	/obj/item/organ/internal/intestine
+		)
 
-	if(H.isSynthetic())
-		H.visible_message("<span class='danger'>\The [H] collapses into parts, revealing a solitary diona nymph at the core.</span>")
+	has_limbs = list(
+		BP_TORSO =  list("path" = /obj/item/organ/external/chest/crewkin),
+		BP_GROIN =  list("path" = /obj/item/organ/external/groin/crewkin),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head/vr/crewkin),
+		BP_L_ARM =  list("path" = /obj/item/organ/external/arm/crewkin),
+		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right/crewkin),
+		BP_L_LEG =  list("path" = /obj/item/organ/external/leg/crewkin),
+		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right/crewkin),
+		BP_L_HAND = list("path" = /obj/item/organ/external/hand/crewkin),
+		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right/crewkin),
+		BP_L_FOOT = list("path" = /obj/item/organ/external/foot/crewkin),
+		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right/crewkin)
+		)
 
-		H.species = GLOB.all_species[SPECIES_HUMAN] // This is hard-set to default the body to a normal FBP, without changing anything.
+/datum/species/shadekin/get_bodytype()
+	return SPECIES_SHADEKIN
 
-		for(var/obj/item/organ/internal/diona/Org in H.internal_organs) // Remove Nymph organs.
-			qdel(Org)
-
-		// Purge the diona verbs.
-		H.verbs -= /mob/living/carbon/human/proc/diona_split_nymph
-		H.verbs -= /mob/living/carbon/human/proc/regenerate
-
-		return
-
-	for(var/mob/living/carbon/alien/diona/D in H.contents)
-		if(D.client)
-			D.forceMove(get_turf(H))
-		else
-			qdel(D)
-
-	H.visible_message("<span class='danger'>\The [H] splits apart with a wet slithering noise!</span>")
-
-/datum/species/diona/handle_environment_special(var/mob/living/carbon/human/H)
-	if(H.inStasisNow())
-		return
-
-	var/obj/item/organ/internal/diona/node/light_organ = locate() in H.internal_organs
-
-	if(light_organ && !light_organ.is_broken())
-		var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing
-		if(isturf(H.loc)) //else, there's considered to be no light
-			var/turf/T = H.loc
-			light_amount = T.get_lumcount() * 10
-		H.nutrition += light_amount
-		H.shock_stage -= light_amount
-
-		if(H.nutrition > 450)
-			H.nutrition = 450
-		if(light_amount >= 3) //if there's enough light, heal
-			H.adjustBruteLoss(-(round(light_amount/2)))
-			H.adjustFireLoss(-(round(light_amount/2)))
-			H.adjustToxLoss(-(light_amount))
-			H.adjustOxyLoss(-(light_amount))
-			//TODO: heal wounds, heal broken limbs.
-
-	else if(H.nutrition < 200)
-		H.take_overall_damage(2,0)
-
-		//traumatic_shock is updated every tick, incrementing that is pointless - shock_stage is the counter.
-		//Not that it matters much for diona, who have NO_PAIN.
-		H.shock_stage++
+/datum/species/shadekin/can_breathe_water()
+	return TRUE	//they dont quite breathe

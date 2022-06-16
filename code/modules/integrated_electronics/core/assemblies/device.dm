@@ -1,15 +1,19 @@
 /obj/item/assembly/electronic_assembly
 	name = "electronic device"
-	desc = "It's a case for building electronics with. It can be attached to other small devices."
+	desc = "It's a case for building electronics with.  It can be attached to other small devices."
 	icon_state = "setup_device"
 	var/opened = 0
 
 	var/obj/item/electronic_assembly/device/EA
 
-/obj/item/assembly/electronic_assembly/New()
+/obj/item/assembly/electronic_assembly/Initialize(mapload)
+	. = ..()
 	EA = new(src)
 	EA.holder = src
-	..()
+
+/obj/item/assembly/electronic_assembly/Destroy()
+	QDEL_NULL(EA)
+	return ..()
 
 /obj/item/assembly/electronic_assembly/attackby(obj/item/I as obj, mob/user as mob)
 	if (I.is_crowbar())
@@ -41,14 +45,14 @@
 
 /obj/item/assembly/electronic_assembly/pulsed(var/radio = 0)						//Called when another assembly acts on this one, var/radio will determine where it came from for wire calcs
 	if(EA)
-		for(var/obj/item/integrated_circuit/built_in/device_input/I in EA.contents)
+		for(var/obj/item/integrated_circuit/built_in/device_input/I in EA.assembly_components)
 			I.do_work()
 		return
 
 /obj/item/assembly/electronic_assembly/examine(mob/user)
-	.=..(user, 1)
+	. = ..()
 	if(EA)
-		for(var/obj/item/integrated_circuit/IC in EA.contents)
+		for(var/obj/item/integrated_circuit/IC in EA.assembly_components)
 			IC.external_examine(user)
 
 /obj/item/assembly/electronic_assembly/verb/toggle()
@@ -69,16 +73,14 @@
 	max_components = IC_COMPONENTS_BASE * 3/4
 	max_complexity = IC_COMPLEXITY_BASE * 3/4
 
-
-/obj/item/electronic_assembly/device/New()
-	..()
+/obj/item/electronic_assembly/device/Initialize(mapload)
+	. = ..()
 	var/obj/item/integrated_circuit/built_in/device_input/input = new(src)
 	var/obj/item/integrated_circuit/built_in/device_output/output = new(src)
 	input.assembly = src
 	output.assembly = src
 
 /obj/item/electronic_assembly/device/check_interactivity(mob/user)
-	if(!CanInteract(user, state = deep_inventory_state))
+	if(!CanInteract(user, state = GLOB.deep_inventory_state))
 		return 0
 	return 1
-

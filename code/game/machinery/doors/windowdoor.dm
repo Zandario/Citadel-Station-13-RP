@@ -16,13 +16,12 @@
 	explosion_resistance = 5
 	air_properties_vary_with_direction = 1
 
-/obj/machinery/door/window/New()
-	..()
+/obj/machinery/door/window/Initialize(mapload)
+	. = ..()
 	update_nearby_tiles()
 	if (src.req_access && src.req_access.len)
 		src.icon_state = "[src.icon_state]"
 		src.base_state = src.icon_state
-	return
 
 /obj/machinery/door/window/update_icon()
 	if(density)
@@ -88,18 +87,21 @@
 		addtimer(CALLBACK(src, .proc/close), check_access(null)? 50 : 20)
 
 /obj/machinery/door/window/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return TRUE
 	if(get_dir(mover, loc) == turn(dir, 180)) //Make sure looking at appropriate border
 		return !density
 	return TRUE
 
-/obj/machinery/door/window/CanZASPass(turf/T, is_zone)
-	if(get_dir(T, loc) == turn(dir, 180))
-		if(is_zone) // No merging allowed.
-			return ATMOS_PASS_NO
-		return ..() // Air can flow if open (density == FALSE).
-	return ATMOS_PASS_YES // Windoors don't block if not facing the right way.
+/obj/machinery/door/window/CanAtmosPass(turf/T, d)
+	if(d != dir)
+		return ATMOS_PASS_NOT_BLOCKED
+	return density? ATMOS_PASS_AIR_BLOCKED : ATMOS_PASS_ZONE_BLOCKED
+
+//used in the AStar algorithm to determinate if the turf the door is on is passable
+/obj/machinery/door/window/CanAStarPass(obj/item/card/id/ID, to_dir)
+	return !density || (dir != to_dir) || (check_access(ID) && inoperable())
 
 /obj/machinery/door/window/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
@@ -268,7 +270,7 @@
 			return
 
 
-	src.add_fingerprint(user)
+	src.add_fingerprint(user, 0, I)
 
 	if (src.allowed(user))
 		if (src.density)
