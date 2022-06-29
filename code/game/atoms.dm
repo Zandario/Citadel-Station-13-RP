@@ -1,11 +1,26 @@
 /**
  * The base type for nearly all physical objects in SS13
-
+ *
  * Lots and lots of functionality lives here, although in general we are striving to move
  * as much as possible to the components/elements system
  */
 /atom
 	layer = TURF_LAYER
+	appearance_flags = TILE_BOUND|LONG_GLIDE
+
+//! ## FLAGS
+	/// Atom flags.
+	var/flags = NONE
+	/// Intearaction flags.
+	var/interaction_flags_atom = NONE
+
+	/// Pass flags.
+	var/pass_flags = NONE
+	/// pass_flags that we are. If any of this matches a pass_flag on a moving thing, by default, we let them through.
+	// var/pass_flags_self = NONE //TODO: Implement this. @Zandario
+
+
+//! ## GENERIC VARS
 	var/level = 2
 
 	/// Default pixel x shifting for the atom's icon.
@@ -14,14 +29,9 @@
 	var/base_pixel_y = 0
 	/// Used for changing icon states for different base sprites.
 	var/base_icon_state
-	/// Atom flags.
-	var/flags = NONE
-	/// Intearaction flags.
-	var/interaction_flags_atom = NONE
+
 	/// Holder for the last time we have been bumped.
 	var/last_bumped = 0
-	/// Pass flags.
-	var/pass_flags = NONE
 	/// If true, you can throw things past this atom.
 	var/throwpass = FALSE
 	/// The higher the germ level, the more germ on the atom.
@@ -42,11 +52,13 @@
 	 */
 	var/list/atom_colours
 
+
 //! ## HUDs
 	/// This atom's HUD (med/sec, etc) images. Associative list.
 	var/list/image/hud_list = null
 	/// HUD images that this atom can provide.
 	var/list/hud_possible
+
 
 //! ## TG Smoothing
 	/// Icon-smoothing behavior.
@@ -66,11 +78,26 @@
 	/// List of smoothing groups this atom can smooth with. If this is null and atom is smooth, it smooths only with itself.
 	var/list/canSmoothWith = null
 
+
+//! ## Overlays
+	/// vis overlays managed by SSvis_overlays to automaticaly turn them like other overlays.
+	var/list/managed_vis_overlays
+	/// Overlays managed by [update_overlays][/atom/proc/update_overlays] to prevent removing overlays that weren't added by the same proc.
+	/// Single items are stored on their own, not in a list.
+	var/list/managed_overlays
+
+	/// Our local copy of (non-priority) overlays without byond magic. Use procs in SSoverlays to manipulate.
+	var/list/our_overlays
+	/// Overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
+	var/list/priority_overlays
+
+
 //! ## Chemistry
 	var/datum/reagents/reagents = null
 
 	//? replaced by OPENCONTAINER flags and atom/proc/is_open_container()
-	//var/chem_is_open_container = 0
+	//var/chem_is_open_container = FALSE
+
 
 //! ## Detective Work
 	/// Used for the duplicate data points kept in the scanners.
@@ -90,29 +117,13 @@
 	/// Shows up under a UV light.
 	var/fluorescent
 
-//! ## Overlays
-	/// vis overlays managed by SSvis_overlays to automaticaly turn them like other overlays.
-	var/list/managed_vis_overlays
-	/// Overlays managed by [update_overlays][/atom/proc/update_overlays] to prevent removing overlays that weren't added by the same proc.
-	/// Single items are stored on their own, not in a list.
-	var/list/managed_overlays
 
-	/// Our local copy of (non-priority) overlays without byond magic. Use procs in SSoverlays to manipulate.
-	var/list/our_overlays
-	/// Overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
-	var/list/priority_overlays
-
-/*		new overlay system
-	/// a very temporary list of overlays to remove
-	var/list/remove_overlays
-	/// a very temporary list of overlays to add
-	var/list/add_overlays
-*/
 //! ## Layers
 	/// Base layer - defaults to layer.
 	var/base_layer
 	/// Relative layer - position this atom should be in within things of the same base layer. defaults to 0.
 	var/relative_layer = 0
+
 
 /**
  * Called when an atom is created in byond (built in engine proc)
@@ -125,8 +136,8 @@
  * We also generate a tag here if the DF_USE_TAG flag is set on the atom
  */
 /atom/New(loc, ...)
-	//atom creation method that preloads variables at creation
-	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
+	// atom creation method that preloads variables at creation.
+	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path)) // In case the instanciated atom is creating other atoms in New()
 		world.preloader_load(src)
 
 	if(datum_flags & DF_USE_TAG)
@@ -136,7 +147,7 @@
 	if(do_initialize != INITIALIZATION_INSSATOMS)
 		args[1] = do_initialize == INITIALIZATION_INNEW_MAPLOAD
 		if(SSatoms.InitAtom(src, args))
-			//we were deleted
+			// We were deleted.
 			return
 
 /**
@@ -194,10 +205,10 @@
 	if(light_power && light_range)
 		update_light()
 
-	if (length(smoothing_groups))
+	if(length(smoothing_groups))
 		sortTim(smoothing_groups) //In case it's not properly ordered, let's avoid duplicate entries with the same values.
 		SET_BITFLAG_LIST(smoothing_groups)
-	if (length(canSmoothWith))
+	if(length(canSmoothWith))
 		sortTim(canSmoothWith)
 		if(canSmoothWith[length(canSmoothWith)] > MAX_S_TURF) //If the last element is higher than the maximum turf-only value, then it must scan turf contents for smoothing targets.
 			smoothing_flags |= SMOOTH_OBJ
@@ -206,6 +217,8 @@
 	if(opacity && isturf(loc))
 		var/turf/T = loc
 		T.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guranteed to be on afterwards anyways.
+
+	ComponentInitialize()
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -222,6 +235,10 @@
  */
 /atom/proc/LateInitialize()
 	set waitfor = FALSE
+
+/// Put your [AddComponent] calls here
+/atom/proc/ComponentInitialize()
+	return
 
 /**
  * Top level of the destroy chain for most atoms
@@ -261,7 +278,7 @@
 /// Return flags that should be added to the viewer's sight var.
 // Otherwise return a negative number to indicate that the view should be cancelled.
 /atom/proc/check_eye(user as mob)
-	if (istype(user, /mob/living/silicon/ai)) // WHYYYY
+	if(istype(user, /mob/living/silicon/ai)) // WHYYYY
 		return 0
 	return -1
 
@@ -298,7 +315,7 @@
 		return TRUE
 	return FALSE
 
-/*
+/**
  *	atom/proc/search_contents_for(path,list/filter_path=null)
  * Recursevly searches all atom contens (including contents contents and so on).
  *
@@ -307,7 +324,7 @@
  *
  * RETURNS: list of found atoms
  */
-/atom/proc/search_contents_for(path,list/filter_path=null)
+/atom/proc/search_contents_for(path, list/filter_path=null)
 	var/list/found = list()
 	for(var/atom/A in src)
 		if(istype(A, path))
@@ -467,7 +484,7 @@
 			cut_overlay(managed_overlays)
 			managed_overlays = null
 		if(length(new_overlays))
-			if (length(new_overlays) == 1)
+			if(length(new_overlays) == 1)
 				managed_overlays = new_overlays[1]
 			else
 				managed_overlays = new_overlays
@@ -542,16 +559,16 @@
 /atom/proc/add_hiddenprint(mob/living/M as mob)
 	if(isnull(M)) return
 	if(isnull(M.key)) return
-	if (ishuman(M))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if (!istype(H.dna, /datum/dna))
+		if(!istype(H.dna, /datum/dna))
 			return 0
-		if (H.gloves)
+		if(H.gloves)
 			if(src.fingerprintslast != H.key)
 				src.fingerprintshidden += text("\[[time_stamp()]\] (Wearing gloves). Real name: [], Key: []",H.real_name, H.key)
 				src.fingerprintslast = H.key
 			return 0
-		if (!( src.fingerprints ))
+		if(!( src.fingerprints ))
 			if(src.fingerprintslast != H.key)
 				src.fingerprintshidden += text("\[[time_stamp()]\] Real name: [], Key: []",H.real_name, H.key)
 				src.fingerprintslast = H.key
@@ -571,7 +588,7 @@
 		return
 	if(istype(tool) && (tool.flags & NOPRINT))
 		return
-	if (ishuman(M))
+	if(ishuman(M))
 		//Add the list if it does not exist.
 		if(!fingerprintshidden)
 			fingerprintshidden = list()
@@ -580,21 +597,21 @@
 		add_fibers(M)
 
 		//He has no prints!
-		if (mFingerprints in M.mutations)
+		if(mFingerprints in M.mutations)
 			if(fingerprintslast != M.key)
 				fingerprintshidden += "[time_stamp()]: [key_name(M)] (No fingerprints mutation)"
 				fingerprintslast = M.key
 			return 0		//Now, lets get to the dirty work.
 		//First, make sure their DNA makes sense.
 		var/mob/living/carbon/human/H = M
-		if (!istype(H.dna, /datum/dna) || !H.dna.uni_identity || (length(H.dna.uni_identity) != 32))
+		if(!istype(H.dna, /datum/dna) || !H.dna.uni_identity || (length(H.dna.uni_identity) != 32))
 			if(!istype(H.dna, /datum/dna))
 				H.dna = new /datum/dna(null)
 				H.dna.real_name = H.real_name
 		H.check_dna()
 
 		//Now, deal with gloves.
-		if (H.gloves && H.gloves != src)
+		if(H.gloves && H.gloves != src)
 			if(fingerprintslast != H.key)
 				fingerprintshidden += "[time_stamp()]: [key_name(H)] (Wearing [H.gloves])"
 				fingerprintslast = H.key
@@ -705,7 +722,7 @@
 	if(!blood_color)
 		blood_color = "#A10808"
 	if(istype(M))
-		if (!istype(M.dna, /datum/dna))
+		if(!istype(M.dna, /datum/dna))
 			M.dna = new /datum/dna(null)
 			M.dna.real_name = M.real_name
 		M.check_dna()

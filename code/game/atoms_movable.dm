@@ -1,6 +1,8 @@
 /atom/movable
 	layer = OBJ_LAYER
+	glide_size = 8
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
+
 	/// Whatever we're pulling.
 	var/atom/movable/pulling
 	/// If false makes [CanPass][/atom/proc/CanPass] call [CanPassThrough][/atom/movable/proc/CanPassThrough] on this type instead of using default behaviour
