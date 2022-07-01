@@ -391,7 +391,7 @@ var/list/name_to_material
 	explosion_resistance = 10
 	icon_base = "hull"
 	icon_reinf = "reinf_mesh"
-	icon_colour = "#666677"
+	icon_colour = "#666666"
 
 /datum/material/steel/hull/place_sheet(var/turf/target) //Deconstructed into normal steel sheets.
 	new /obj/item/stack/material/steel(target)
@@ -423,7 +423,7 @@ var/list/name_to_material
 	melting_point = 6000
 	icon_base = "solid"
 	icon_reinf = "reinf_over"
-	icon_colour = "#777777"
+	icon_colour = "#666666"
 	explosion_resistance = 25
 	hardness = 80
 	weight = 23
@@ -665,7 +665,7 @@ var/list/name_to_material
 /datum/material/tritium
 	name = "tritium"
 	stack_type = /obj/item/stack/material/tritium
-	icon_colour = "#777777"
+	icon_colour = "#666666"
 	stack_origin_tech = list(TECH_MATERIAL = 5)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"

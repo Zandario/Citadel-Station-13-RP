@@ -109,7 +109,7 @@
 	if(do_after(src, cleantime))
 		if(istype(loc, /turf/simulated))
 			var/turf/simulated/f = loc
-			f.dirt = FALSE
+			f.dirt = 0
 		if(!D)
 			return
 		qdel(D)

@@ -47,10 +47,10 @@
 #define SPACE_PLANE				-95
 /// Reserved for use in space/parallax.
 #define PARALLAX_PLANE			-90
-	/// Everything layering below.
-	#define PARALLAX_VIS_LAYER_BELOW			-10000
-	/// Everything layering above.
-	#define PARALLAX_VIS_LAYER_ABOVE			10000
+/// Everything layering below.
+#define PARALLAX_VIS_LAYER_BELOW			-10000
+/// Everything layering above.
+#define PARALLAX_VIS_LAYER_ABOVE			10000
 
 /// For the Looking Glass holodecks.
 #define PLANE_LOOKINGGLASS		-77
@@ -66,32 +66,32 @@
 
 //! ## PLATING PLANES
 #define PLATING_PLANE		-44
-	/// Under objects, even when planeswapped.
-	#define DISPOSAL_LAYER		2.1
-	/// Under objects, even when planeswapped.
-	#define PIPES_LAYER			2.2
-	/// Under objects, even when planeswapped.
-	#define WIRES_LAYER			2.3
-	/// Pipe-like atmos machinery that goes on the floor, like filters.
-	#define ATMOS_LAYER			2.4
-	/// Above stuff like pipes and wires.
-	#define ABOVE_UTILITY		2.5
+/// Under objects, even when planeswapped.
+#define DISPOSAL_LAYER		2.1
+/// Under objects, even when planeswapped.
+#define PIPES_LAYER			2.2
+/// Under objects, even when planeswapped.
+#define WIRES_LAYER			2.3
+/// Pipe-like atmos machinery that goes on the floor, like filters.
+#define ATMOS_LAYER			2.4
+/// Above stuff like pipes and wires.
+#define ABOVE_UTILITY		2.5
 
 
 //! ## TURF PLANES
 #define TURF_PLANE			-45
-	/// The 'bottom' of water tiles.
-	#define WATER_FLOOR_LAYER	2.0
-	/// For floors that automatically add decal overlays.
-	#define BUILTIN_DECAL_LAYER 2.01
-	/// For intentionally placed floor decal overlays.
-	#define MAPPER_DECAL_LAYER	2.02
-	/// Anything on this layer will render under the water layer.
-	#define UNDERWATER_LAYER	2.5
-	/// Layer for water overlays.
-	#define WATER_LAYER			3.0
-	/// Snow and wallmounted/floormounted equipment.
-	#define ABOVE_TURF_LAYER	3.1
+/// The 'bottom' of water tiles.
+#define WATER_FLOOR_LAYER	2.0
+/// For floors that automatically add decal overlays.
+#define BUILTIN_DECAL_LAYER 2.01
+/// For intentionally placed floor decal overlays.
+#define MAPPER_DECAL_LAYER	2.02
+/// Anything on this layer will render under the water layer.
+#define UNDERWATER_LAYER	2.5
+/// Layer for water overlays.
+#define WATER_LAYER			3.0
+/// Snow and wallmounted/floormounted equipment.
+#define ABOVE_TURF_LAYER	3.1
 
 //! ## DECAL PLANES
 /// Permanent decals.
@@ -104,37 +104,37 @@
 
 //! ## OBJ PLANES
 #define OBJ_PLANE				-35
-	/// Layer for stairs.
-	#define STAIRS_LAYER			2.5
-	/// Layer at which mobs hide to be under things like tables.
-	#define HIDING_LAYER			2.6
-	/// Under all objects if opened. 2.7 due to tables being at 2.6
-	#define DOOR_OPEN_LAYER			2.7
-	/// Just under stuff that wants to be slightly below common objects.
-	#define TABLE_LAYER				2.8
-	#define PROJECTILE_HIT_THRESHOLD_LAYER 2.8
-	/// Things that want to be slightly below common objects.
-	#define UNDER_JUNK_LAYER		2.9
-	//! Turf/Obj layer boundary
-	/// Things that want to be slightly above common objects.
-	#define ABOVE_JUNK_LAYER		3.1
-	/// Doors when closed.
-	#define DOOR_CLOSED_LAYER		3.1
-	/// Windows.
-	#define WINDOW_LAYER			3.2
-	/// Ontop of a window.
-	#define ON_WINDOW_LAYER			3.3
-	/// Above full tile windows so wall items are clickable.
-	#define ABOVE_WINDOW_LAYER		3.4
-	#define MID_LANDMARK_LAYER		3.5
+/// Layer for stairs.
+#define STAIRS_LAYER			2.5
+/// Layer at which mobs hide to be under things like tables.
+#define HIDING_LAYER			2.6
+/// Under all objects if opened. 2.7 due to tables being at 2.6
+#define DOOR_OPEN_LAYER			2.7
+/// Just under stuff that wants to be slightly below common objects.
+#define TABLE_LAYER				2.8
+#define PROJECTILE_HIT_THRESHOLD_LAYER 2.8
+/// Things that want to be slightly below common objects.
+#define UNDER_JUNK_LAYER		2.9
+//! Turf/Obj layer boundary
+/// Things that want to be slightly above common objects.
+#define ABOVE_JUNK_LAYER		3.1
+/// Doors when closed.
+#define DOOR_CLOSED_LAYER		3.1
+/// Windows.
+#define WINDOW_LAYER			3.2
+/// Ontop of a window.
+#define ON_WINDOW_LAYER			3.3
+/// Above full tile windows so wall items are clickable.
+#define ABOVE_WINDOW_LAYER		3.4
+#define MID_LANDMARK_LAYER		3.5
 
 
 //! ## MOB PLANES
 #define MOB_PLANE				-25
-	/// Should be converted to plane swaps.
-	#define BELOW_MOB_LAYER			3.9
-	/// Should be converted to plane swaps.
-	#define ABOVE_MOB_LAYER			4.1
+/// Should be converted to plane swaps.
+#define BELOW_MOB_LAYER			3.9
+/// Should be converted to plane swaps.
+#define ABOVE_MOB_LAYER			4.1
 
 /// Invisible things plane.
 #define CLOAKED_PLANE			-15
@@ -159,10 +159,10 @@
 
 	//#define FLY_LAYER			5	//For easy recordkeeping; this is a byond define.
 
-	/// Above lighting, but below obfuscation. For in-game HUD effects. (whereas SCREEN_LAYER is for abstract/OOC things like inventory slots)
-	#define HUD_LAYER				20
-	/// Mob HUD/effects layer.
-	#define SCREEN_LAYER			22
+/// Above lighting, but below obfuscation. For in-game HUD effects. (whereas SCREEN_LAYER is for abstract/OOC things like inventory slots)
+#define HUD_LAYER				20
+/// Mob HUD/effects layer.
+#define SCREEN_LAYER			22
 
 /// Status Indicators that show over mobs' heads when certain things like stuns affect them.
 #define PLANE_STATUS			2
@@ -175,15 +175,15 @@
 //! ## LIGHTING PLANES
 /// Where the lighting (and darkness) lives. (ignoring all other higher planes)
 #define LIGHTING_PLANE			5
-	#define LIGHTBULB_LAYER			0
-	#define LIGHTING_LAYER			1
-	#define ABOVE_LIGHTING_LAYER	2
+#define LIGHTBULB_LAYER			0
+#define LIGHTING_LAYER			1
+#define ABOVE_LIGHTING_LAYER	2
 
 /// For glowy eyes etc. that shouldn't be affected by darkness.
 #define ABOVE_LIGHTING_PLANE	6
-	#define EYE_GLOW_LAYER			1
-	#define BEAM_PROJECTILE_LAYER	2
-	#define SUPERMATTER_WALL_LAYER	3
+#define EYE_GLOW_LAYER			1
+#define BEAM_PROJECTILE_LAYER	2
+#define SUPERMATTER_WALL_LAYER	3
 
 #define SONAR_PLANE				8
 
@@ -202,27 +202,27 @@
 
 //! ## FULLSCREEN PLANES
 #define FULLSCREEN_PLANE		90
-	#define OBFUSCATION_LAYER		19.9
-	#define FLASH_LAYER				20
-	#define FULLSCREEN_LAYER		20.1
-	#define UI_DAMAGE_LAYER			20.2
-	#define BLIND_LAYER				20.3
-	#define CRIT_LAYER				20.4
-	#define CURSE_LAYER				20.5
+#define OBFUSCATION_LAYER		19.9
+#define FLASH_LAYER				20
+#define FULLSCREEN_LAYER		20.1
+#define UI_DAMAGE_LAYER			20.2
+#define BLIND_LAYER				20.3
+#define CRIT_LAYER				20.4
+#define CURSE_LAYER				20.5
 #define FULLSCREEN_RENDER_TARGET "FULLSCREEN_PLANE"
 
 
 //! ## CLIENT UI HUD
 /// The character's UI is on this plane.
 #define PLANE_PLAYER_HUD	95
-	/// Under the HUD items.
-	#define LAYER_HUD_UNDER		1
-	/// The HUD items themselves.
-	#define LAYER_HUD_BASE		2
-	/// Things sitting on HUD items. (largely irrelevant because PLANE_PLAYER_HUD_ITEMS)
-	#define LAYER_HUD_ITEM		3
-	/// Things that reside above items. (highlights)
-	#define LAYER_HUD_ABOVE		4
+/// Under the HUD items.
+#define LAYER_HUD_UNDER		1
+/// The HUD items themselves.
+#define LAYER_HUD_BASE		2
+/// Things sitting on HUD items. (largely irrelevant because PLANE_PLAYER_HUD_ITEMS)
+#define LAYER_HUD_ITEM		3
+/// Things that reside above items. (highlights)
+#define LAYER_HUD_ABOVE		4
 
 /// Separate layer with which to apply colorblindness.
 #define PLANE_PLAYER_HUD_ITEMS	96

@@ -210,6 +210,7 @@
 #include "code\__HELPERS\sanitize_values.dm"
 #include "code\__HELPERS\shell.dm"
 #include "code\__HELPERS\storage.dm"
+#include "code\__HELPERS\string_assoc_lists.dm"
 #include "code\__HELPERS\text.dm"
 #include "code\__HELPERS\time.dm"
 #include "code\__HELPERS\turfs.dm"

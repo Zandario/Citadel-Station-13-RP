@@ -60,23 +60,32 @@ DEFINE_BITFIELD(smoothing_junction, list(
 #define DEFAULT_UNDERLAY_ICON 'icons/turf/floors.dmi'
 #define DEFAULT_UNDERLAY_ICON_STATE "plating"
 
-/**SMOOTHING GROUPS
+/**
+ *! SMOOTHING GROUPS
+ *
  * Groups of things to smooth with.
  * * Contained in the `list/smoothing_groups` variable.
  * * Matched with the `list/canSmoothWith` variable to check whether smoothing is possible or not.
  */
 
-///Not any different from the number itself, but kept this way in case someone wants to expand it by adding stuff before it.
+
+/// Not any different from the number itself, but kept this way in case someone wants to expand it by adding stuff before it.
 #define S_TURF(num) ((24 * 0) + num)
 /* /turf only */
 
-// empty for now
+#define SMOOTH_GROUP_TURF_SIM S_TURF(0) ///turf/simulated
+
+
+#define SMOOTH_GROUP_TURF_UNSIM S_TURF(20) ///turf/unsimulated
+
 ///Always match this value with the one above it.
-#define MAX_S_TURF S_TURF(0)
+#define MAX_S_TURF SMOOTH_GROUP_TURF_UNSIM
+
+
 #define S_OBJ(num) (MAX_S_TURF + 1 + num)
 /* /obj included */
 
-///obj/structure/sandbag
-#define SMOOTH_GROUP_SANDBAGS S_OBJ(0)
+#define SMOOTH_GROUP_WALLS S_OBJ(0) ///turf/simulated/wall
+#define SMOOTH_GROUP_SANDBAGS S_OBJ(1) ///obj/structure/sandbag
 ///Always match this value with the one above it.
 #define MAX_S_OBJ SMOOTH_GROUP_SANDBAGS
