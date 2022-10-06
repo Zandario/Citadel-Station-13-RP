@@ -1021,7 +1021,7 @@
 	var/signlang = FALSE
 	if(M && msg)
 		if(speaking)
-			if(!((speaking.flags & NONVERBAL) || (speaking.flags & SIGNLANG)))
+			if(!((speaking.flags & LANGUAGE_FLAG_NONVERBAL) || (speaking.flags & LANGUAGE_FLAG_SIGNLANG)))
 				signlang = FALSE
 				msg = speaking.scramble(msg, my_langs)
 			else

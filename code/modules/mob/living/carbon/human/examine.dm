@@ -294,7 +294,7 @@
 		. += SPAN_WARNING("[T.He] appears to have commited suicide...  There is no hope of recovery.")
 
 
-//! I hate this. Though it's better than what it was before. -Zandario
+//! I hate this. Though it's better than what it was before. @Zandario
 	var/message = FALSE
 	var/weight_examine = round(weight)
 	if(show_pudge()) //Some clothing or equipment can hide this.

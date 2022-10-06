@@ -170,7 +170,7 @@
 	set category = "Abilities"
 	diona_split_into_nymphs(5)	// Separate proc to void argments being supplied when used as a verb
 
-/mob/living/carbon/human/proc/diona_split_into_nymphs(var/number_of_resulting_nymphs)
+/mob/living/carbon/human/proc/diona_split_into_nymphs(number_of_resulting_nymphs)
 	var/turf/T = get_turf(src)
 
 	var/mob/living/carbon/alien/diona/S = new(T)
@@ -188,13 +188,13 @@
 	for(var/mob/living/carbon/alien/diona/D in src)
 		nymphs++
 		D.forceMove(T)
-		transfer_languages(src, D, WHITELISTED|RESTRICTED)
+		transfer_languages(src, D, LANGUAGE_FLAG_RESTRICTED)
 		D.setDir(pick(NORTH, SOUTH, EAST, WEST))
 
 	if(nymphs < number_of_resulting_nymphs)
 		for(var/i in nymphs to (number_of_resulting_nymphs - 1))
 			var/mob/M = new /mob/living/carbon/alien/diona(T)
-			transfer_languages(src, M, WHITELISTED|RESTRICTED)
+			transfer_languages(src, M, LANGUAGE_FLAG_RESTRICTED)
 			M.setDir(pick(NORTH, SOUTH, EAST, WEST))
 
 

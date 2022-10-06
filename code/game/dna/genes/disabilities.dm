@@ -5,7 +5,7 @@
 //
 // Gene is always activated.
 /////////////////////
-//TODO: Rewrite this crap from scratch, this is horrible. -Zandario
+//TODO:@Zandario - Rewrite this crap from scratch, this is horrible.
 /datum/gene/disability
 	name = "DISABILITY"
 
@@ -47,7 +47,7 @@
 	else
 		testing("[name] has no deactivation message.")
 
-// Note: Doesn't seem to do squat, at the moment. // For at LEAST 4 years. -Zandario
+// Note: Doesn't seem to do squat, at the moment. // For at LEAST 4 years. @Zandario
 /datum/gene/disability/hallucinate
 	name="Hallucinate"
 	activation_message="Your mind says 'Hello'."

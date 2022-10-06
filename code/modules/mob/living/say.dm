@@ -206,8 +206,8 @@ var/list/channel_to_radio_key = new
 	if(speaking && speaking == GLOB.all_languages["Noise"])
 		message = copytext_char(message,2)
 
-	//HIVEMIND languages always send to all people with that language
-	if(speaking && (speaking.flags & HIVEMIND))
+	//LANGUAGE_FLAG_HIVEMIND languages always send to all people with that language
+	if(speaking && (speaking.flags & LANGUAGE_FLAG_HIVEMIND))
 		speaking.broadcast(src,trim(message))
 		return 1
 
@@ -216,7 +216,7 @@ var/list/channel_to_radio_key = new
 		return
 
 	//Self explanatory.
-	if(is_muzzled() && !(speaking && (speaking.flags & SIGNLANG)))
+	if(is_muzzled() && !(speaking && (speaking.flags & LANGUAGE_FLAG_SIGNLANG)))
 		to_chat(src, "<span class='danger'>You're muzzled and cannot speak!</span>")
 		return
 
@@ -247,7 +247,7 @@ var/list/channel_to_radio_key = new
 		w_not_heard = "[speaking.speech_verb] something [w_adverb]"
 
 	//For speech disorders (hulk, slurring, stuttering)
-	if(!(speaking && (speaking.flags & NO_STUTTER || speaking.flags & SIGNLANG)))
+	if(!(speaking && (speaking.flags & LANGUAGE_FLAG_NO_STUTTER || speaking.flags & LANGUAGE_FLAG_SIGNLANG)))
 		var/list/message_data = list(message, verb, whispering)
 		if(handle_speech_problems(message_data))
 			message = message_data[1]
@@ -286,7 +286,7 @@ var/list/channel_to_radio_key = new
 		if(speaking)
 			message_range = speaking.get_talkinto_msg_range(message)
 		var/msg
-		if(!speaking || !(speaking.flags & NO_TALK_MSG))
+		if(!speaking || !(speaking.flags & LANGUAGE_FLAG_NO_TALK_MSG))
 			msg = "<span class='notice'>\The [src] talks into \the [used_radios[1]]</span>"
 		for(var/mob/living/M in hearers(7, src))
 			if((M != src) && msg)
@@ -315,11 +315,11 @@ var/list/channel_to_radio_key = new
 
 	//Handle nonverbal and sign languages here
 	if (speaking)
-		if (speaking.flags & SIGNLANG)
+		if (speaking.flags & LANGUAGE_FLAG_SIGNLANG)
 			log_say("(SIGN) [message]", src)
 			return say_signlang(message, pick(speaking.signlang_verb), speaking)
 
-		if (speaking.flags & NONVERBAL)
+		if (speaking.flags & LANGUAGE_FLAG_NONVERBAL)
 			if (prob(30))
 				src.custom_emote(1, "[pick(speaking.signlang_verb)].")
 

@@ -1,4 +1,4 @@
-//TODO: Organize this file into more appropriate files. -Zandario
+//TODO:@Zandario - Organize this file into more appropriate files.
 
 /obj/item/phone
 	name = "red phone"

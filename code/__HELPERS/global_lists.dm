@@ -220,7 +220,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 
 	for (var/language_name in GLOB.all_languages)
 		var/datum/language/L = GLOB.all_languages[language_name]
-		if(!(L.flags & NONGLOBAL))
+		if(!(L.flags & LANGUAGE_FLAG_NONGLOBAL))
 			GLOB.language_keys[L.key] = L
 
 	for(var/datum/species/S as anything in all_static_species_meta())

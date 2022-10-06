@@ -247,7 +247,7 @@
 	var/limb_icon
 	/// Used for if the mob can drop limbs. Overrides the icon cache key, so it doesn't keep remaking the icon needlessly.
 	var/limb_icon_key
-	
+
 	///Does the simple mob drop organs when butchered?
 	butchery_drops_organs = FALSE
 
@@ -385,7 +385,7 @@
 	return verb
 
 
-//TODO: This needs to be phased out for a newer butchering system. Though I am too scared to undo all our custom stuff. -Zandario
+//TODO: This needs to be phased out for a newer butchering system. Though I am too scared to undo all our custom stuff. @Zandario
 // Harvest an animal's delicious byproducts
 /mob/living/simple_mob/harvest(mob/user)
 	var/actual_meat_amount = pick(0, meat_amount)

@@ -13,7 +13,7 @@
 /**
  * !It is important to note that these are not only used for the name of the species.
  * !They are also used as ID Tags for various otther things, such as character saves!
- * -Zandario
+ * @Zandario
  * TODO: give rest of species ids so we don't need to do this. ^
  */
 #define SPECIES_ADHERENT "Adherent"

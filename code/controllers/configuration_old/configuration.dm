@@ -76,7 +76,6 @@
 	var/static/respawn_message = "<span class='notice'><B>Make sure to play a different character, and please roleplay correctly!</B></span>"
 
 	var/guest_jobban = 1
-	var/usewhitelist = 0
 	var/kick_inactive = 0				//force disconnect for inactive players after this many minutes, if non-0
 	var/show_mods = 0
 	var/show_devs = 0
@@ -103,7 +102,6 @@
 	var/disable_player_mice = 0
 	var/uneducated_mice = 0 //Set to 1 to prevent newly-spawned mice from understanding human speech
 
-	var/usealienwhitelist = 0
 	var/limitalienplayers = 0
 	var/alien_to_human_ratio = 0.5
 	var/allow_extra_antags = 0
@@ -505,9 +503,6 @@
 				if ("disable_respawn")
 					config_legacy.abandon_allowed = 0
 
-				if ("usewhitelist")
-					config_legacy.usewhitelist = 1
-
 				if ("feature_object_spell_system")
 					config_legacy.feature_object_spell_system = 1
 
@@ -644,9 +639,6 @@
 
 				if("automute_on")
 					automute_on = 1
-
-				if("usealienwhitelist")
-					usealienwhitelist = 1
 
 				if("alien_player_ratio")
 					limitalienplayers = 1

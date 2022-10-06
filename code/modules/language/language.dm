@@ -1,9 +1,8 @@
 #define SCRAMBLE_CACHE_LEN 20
 
-/*
-	Datum based languages. Easily editable and modular.
-*/
-
+/**
+ * Datum based languages. Easily editable and modular.
+ */
 /datum/language
 	/// abstract type
 	var/abstract_type = /datum/language
@@ -22,14 +21,14 @@
 	var/exclaim_verb = "exclaims"
 	/// Optional. When not specified speech_verb + quietly/softly is used instead.
 	var/whisper_verb
-	/// list of emotes that might be displayed if this language has NONVERBAL or SIGNLANG flags
+	/// list of emotes that might be displayed if this language has LANGUAGE_FLAG_NONVERBAL or LANGUAGE_FLAG_SIGNLANG flags
 	var/signlang_verb = list("signs", "gestures")
 	/// CSS style to use for strings in this language.
 	var/colour = "body"
 	/// Character used to speak in language eg. :o for Unathi.
 	var/key = "x"
 	/// Various language flags.
-	var/flags = 0
+	var/flags = NONE
 	/// If set, non-native speakers will have trouble speaking.
 	var/native
 	/// Used when scrambling text for a non-speaker.
@@ -147,7 +146,7 @@
 	// if you yell, you'll be heard from two tiles over instead of one
 	return (copytext_char(message, length_char(message)) == "!") ? 2 : 1
 
-/datum/language/proc/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
+/datum/language/proc/broadcast(mob/living/speaker, message, speaker_mask)
 	log_say("(HIVE) [message]", speaker)
 
 	if(!speaker_mask) speaker_mask = speaker.name
@@ -156,24 +155,24 @@
 	for(var/mob/player in player_list)
 		player.hear_broadcast(src, speaker, speaker_mask, message)
 
-/mob/proc/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
+/mob/proc/hear_broadcast(datum/language/language, mob/speaker, speaker_name, message)
 	if((language in languages) && language.check_special_condition(src))
 		var/msg = "<i><span class='game say'>[language.name], <span class='name'>[speaker_name]</span> [message]</span></i>"
 		to_chat(src, msg)
 
-/mob/new_player/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
+/mob/new_player/hear_broadcast(datum/language/language, mob/speaker, speaker_name, message)
 	return
 
-/mob/observer/dead/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
+/mob/observer/dead/hear_broadcast(datum/language/language, mob/speaker, speaker_name, message)
 	if(speaker.name == speaker_name || antagHUD)
 		to_chat(src, "<i><span class='game say'>[language.name], <span class='name'>[speaker_name]</span> ([ghost_follow_link(speaker, src)]) [message]</span></i>")
 	else
 		to_chat(src, "<i><span class='game say'>[language.name], <span class='name'>[speaker_name]</span> [message]</span></i>")
 
-/datum/language/proc/check_special_condition(var/mob/other)
+/datum/language/proc/check_special_condition(mob/other)
 	return 1
 
-/datum/language/proc/get_spoken_verb(var/msg_end)
+/datum/language/proc/get_spoken_verb(msg_end)
 	switch(msg_end)
 		if("!")
 			return pick(exclaim_verb)
@@ -181,12 +180,12 @@
 			return pick(ask_verb)
 	return pick(speech_verb)
 
-/datum/language/proc/can_speak_special(var/mob/speaker)
+/datum/language/proc/can_speak_special(mob/speaker)
 	. = TRUE
 	if(name != "Noise")	// Audible Emotes
 		if(ishuman(speaker))
 			var/mob/living/carbon/human/H = speaker
-			if(H.species.has_organ[O_VOICE] && !(flags & SIGNLANG) && !(flags & NONVERBAL)) // Does the species need a voicebox? Is the language even spoken?
+			if(H.species.has_organ[O_VOICE] && !(flags & LANGUAGE_FLAG_SIGNLANG) && !(flags & LANGUAGE_FLAG_NONVERBAL)) // Does the species need a voicebox? Is the language even spoken?
 				var/obj/item/organ/internal/voicebox/vocal = H.internal_organs_by_name[O_VOICE]
 				if(!vocal || vocal.is_broken() || vocal.mute)
 					return FALSE
@@ -198,8 +197,9 @@
 					if(!vox.is_broken() && (src in vox.assists_languages))
 						. = TRUE
 
-// Language handling.
-/mob/proc/add_language(var/language)
+//! ## Language handling.
+
+/mob/proc/add_language(language)
 
 	var/datum/language/new_language = GLOB.all_languages[language]
 
@@ -209,7 +209,7 @@
 	languages.Add(new_language)
 	return 1
 
-/mob/proc/remove_language(var/rem_language)
+/mob/proc/remove_language(rem_language)
 	var/datum/language/L = GLOB.all_languages[rem_language]
 	. = (L in languages)
 	languages.Remove(L)
@@ -236,7 +236,7 @@
 	if(speaking.can_speak_special(src))
 		if(universal_speak)
 			return 1
-		if(speaking && (speaking.flags & INNATE))
+		if(speaking && (speaking.flags & LANGUAGE_FLAG_INNATE))
 			return 1
 		if(speaking in src.languages)
 			return 1
@@ -263,7 +263,7 @@
 	var/dat = "<b><font size = 5>Known Languages</font></b><br/><br/>"
 
 	for(var/datum/language/L in languages)
-		if(!(L.flags & NONGLOBAL))
+		if(!(L.flags & LANGUAGE_FLAG_NONGLOBAL))
 			dat += "<b>[L.name] ([get_language_prefix()][L.key])</b><br/>[L.desc]<br/><br/>"
 
 	src << browse(dat, "window=checklanguage")
@@ -276,7 +276,7 @@
 		dat += "Current default language: [default_language] - <a href='byond://?src=\ref[src];default_lang=reset'>reset</a><br/><br/>"
 
 	for(var/datum/language/L in languages)
-		if(!(L.flags & NONGLOBAL))
+		if(!(L.flags & LANGUAGE_FLAG_NONGLOBAL))
 			if(L == default_language)
 				dat += "<b>[L.name] ([get_language_prefix()][L.key])</b> - default - <a href='byond://?src=\ref[src];default_lang=reset'>reset</a><br/>[L.desc]<br/><br/>"
 			else if (can_speak(L))
@@ -302,7 +302,7 @@
 	else
 		return ..()
 
-/proc/transfer_languages(var/mob/source, var/mob/target, var/except_flags)
+/proc/transfer_languages(mob/source, mob/target, except_flags)
 	for(var/datum/language/L in source.languages)
 		if(L.flags & except_flags)
 			continue

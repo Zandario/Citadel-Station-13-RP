@@ -5,7 +5,7 @@
 	colour = "changeling"
 	key = "g"
 	machine_understands = 0
-	flags = RESTRICTED | HIVEMIND
+	flags = LANGUAGE_FLAG_RESTRICTED | LANGUAGE_FLAG_HIVEMIND
 
 /datum/language/ling/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
 
@@ -23,7 +23,7 @@
 	colour = "alien"
 	key = "" //!! THIS DOES NOT HAVE A LANGUAGE KEY IF YOU SOMEHOW MIRACULOUSLY GET ANTAGS WORKING ON RP BEFORE WE TRANSITION TO SS14 IN LIKE 2025 PUT ONE IN.
 	machine_understands = 0
-	flags = RESTRICTED | HIVEMIND
+	flags = LANGUAGE_FLAG_RESTRICTED | LANGUAGE_FLAG_HIVEMIND
 
 /datum/language/corticalborer/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
 
@@ -47,7 +47,6 @@
 	exclaim_verb = "SHRIEKS"
 	colour = "vox"
 	key = "5"
-	flags = WHITELISTED
 	syllables = list("ti","ti","ti","hi","hi","ki","ki","ki","ki","ya","ta","ha","ka","ya","chi","cha","kah", \
 	"SKRE","AHK","EHK","RAWK","KRA","AAA","EEE","KI","II","KRI","KA")
 	machine_understands = 0
@@ -75,7 +74,7 @@
 	exclaim_verb = "chants"
 	colour = "cult"
 	key = "f"
-	flags = RESTRICTED
+	flags = LANGUAGE_FLAG_RESTRICTED
 	space_chance = 100
 	machine_understands = 0
 	syllables = list("ire","ego","nahlizet","certum","veri","jatkaa","mgar","balaq", "karazet", "geeri", \
@@ -95,7 +94,7 @@
 	colour = "cult"
 	key = "y"
 	machine_understands = 0
-	flags = RESTRICTED | HIVEMIND
+	flags = LANGUAGE_FLAG_RESTRICTED | LANGUAGE_FLAG_HIVEMIND
 
 /datum/language/xenocommon
 	name = SPECIES_XENO
@@ -106,7 +105,7 @@
 	exclaim_verb = "hisses"
 	key = "u"
 	machine_understands = 0
-	flags = RESTRICTED
+	flags = LANGUAGE_FLAG_RESTRICTED
 	syllables = list("sss","sSs","SSS")
 
 /datum/language/xenos
@@ -118,7 +117,7 @@
 	colour = "alien"
 	machine_understands = 0
 	key = "x"
-	flags = RESTRICTED | HIVEMIND
+	flags = LANGUAGE_FLAG_RESTRICTED | LANGUAGE_FLAG_HIVEMIND
 
 /datum/language/xenos/check_special_condition(var/mob/other)
 
@@ -139,7 +138,7 @@
 	colour = "changeling"
 	key = "_"
 	machine_understands = 0
-	flags = NO_STUTTER | RESTRICTED
+	flags = LANGUAGE_FLAG_NO_STUTTER | LANGUAGE_FLAG_RESTRICTED
 	syllables = list("^", "v", "-", ".", "~")
 	space_chance = 60
 
@@ -163,7 +162,7 @@
 	colour = "deadsay"
 	key = "r"
 	machine_understands = 0
-	flags = RESTRICTED
+	flags = LANGUAGE_FLAG_RESTRICTED
 	syllables = list("rus","zem","ave","groz","ski","ska","ven","konst","pol","lin","svy",
 	"danya","da","mied","zan","das","krem","myka","cyka","blyat","to","st","no","na","ni",
 	"ko","ne","en","po","ra","li","on","byl","cto","eni","ost","ol","ego","ver","stv","pro")
@@ -177,5 +176,5 @@
 	exclaim_verb = "shouts"
 	colour = "warning"
 	key = "]"
-	flags = RESTRICTED
+	flags = LANGUAGE_FLAG_RESTRICTED
 	syllables = list("chan","ange","thi","se")

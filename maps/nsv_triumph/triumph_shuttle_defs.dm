@@ -35,9 +35,10 @@
 	landmark_station = "supply_dock"
 	docking_controller_tag = "supply_shuttle"
 	flags = SHUTTLE_FLAGS_PROCESS|SHUTTLE_FLAGS_SUPPLY
-/*
+
 //////////////////////////////////////////////////////////////
-// TODO - Zandario/Enzo - Get these compatible
+// TODO:@Zandario - Get these compatible
+/*
 // Trade Ship
 /datum/shuttle/autodock/multi/trade
 	name = "Trade"

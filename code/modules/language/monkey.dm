@@ -6,7 +6,7 @@
 	exclaim_verb = "screeches"
 	key = "6"
 	syllables = list("ook","eek")
-	flags = RESTRICTED
+	flags = LANGUAGE_FLAG_RESTRICTED
 	machine_understands = 0
 
 /datum/language/skrell/monkey
@@ -14,7 +14,7 @@
 	desc = "Squik squik squik."
 	key = "8"
 	syllables = list("hiss","gronk")
-	flags = RESTRICTED
+	flags = LANGUAGE_FLAG_RESTRICTED
 	machine_understands = 0
 
 /datum/language/unathi/monkey
@@ -22,7 +22,7 @@
 	desc = "Hiss hiss hiss."
 	key = "7"
 	syllables = list("squick","croak")
-	flags = RESTRICTED
+	flags = LANGUAGE_FLAG_RESTRICTED
 	machine_understands = 0
 
 /datum/language/tajaran/monkey
@@ -30,7 +30,7 @@
 	desc = "Meow meow meow."
 	key = "9"
 	syllables = list("meow","mew")
-	flags = RESTRICTED
+	flags = LANGUAGE_FLAG_RESTRICTED
 	machine_understands = 0
 
 /datum/language/corgi
@@ -40,7 +40,7 @@
 	ask_verb = "woofs"
 	exclaim_verb = "howls"
 	key = "n"
-	flags = RESTRICTED
+	flags = LANGUAGE_FLAG_RESTRICTED
 	machine_understands = 0
 	space_chance = 100
 	syllables = list("bark", "woof", "bowwow", "yap", "arf")
@@ -52,7 +52,7 @@
 	ask_verb = "mrowls"
 	exclaim_verb = "yowls"
 	key = "c"
-	flags = RESTRICTED
+	flags = LANGUAGE_FLAG_RESTRICTED
 	machine_understands = 0
 	space_chance = 100
 	syllables = list("meow", "mrowl", "purr", "meow", "meow", "meow")
@@ -64,7 +64,7 @@
 	ask_verb = "squeaks"
 	exclaim_verb = "squeaks"
 	key = "m"
-	flags = RESTRICTED
+	flags = LANGUAGE_FLAG_RESTRICTED
 	machine_understands = 0
 	space_chance = 100
 	syllables = list("squeak")	// , "gripes", "oi", "meow")
@@ -76,7 +76,7 @@
 	ask_verb = "tweets"
 	exclaim_verb = "squawks"
 	key = "m"
-	flags = RESTRICTED
+	flags = LANGUAGE_FLAG_RESTRICTED
 	machine_understands = 0
 	space_chance = 100
 	syllables = list("chirp", "squawk", "tweet")

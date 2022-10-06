@@ -433,7 +433,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		else
 			return TOPIC_NOACTION
 
-		if(((!(setting_species.spawn_flags & SPECIES_CAN_JOIN)) || (!is_alien_whitelisted(preference_mob(),setting_species))) && !check_rights(R_ADMIN, 0) && !(setting_species.spawn_flags & SPECIES_WHITELIST_SELECTABLE))
+		if(((!(setting_species.spawn_flags & SPECIES_CAN_JOIN)) || (!is_species_whitelisted(preference_mob(),setting_species))) && !check_rights(R_ADMIN, 0) && !(setting_species.spawn_flags & SPECIES_WHITELIST_SELECTABLE))
 			return TOPIC_NOACTION
 
 		var/prev_species = pref.species
@@ -996,7 +996,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	if(!(current_species.spawn_flags & SPECIES_CAN_JOIN))
 		restricted = 2
-	else if(!is_alien_whitelisted(preference_mob(),current_species))
+	else if(!is_species_whitelisted(preference_mob(),current_species))
 		restricted = 1
 
 	if(restricted)

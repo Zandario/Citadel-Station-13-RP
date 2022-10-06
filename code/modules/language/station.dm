@@ -7,7 +7,7 @@
 	colour = "soghun"
 	key = "q"
 	machine_understands = 0
-	flags = RESTRICTED
+	flags = LANGUAGE_FLAG_RESTRICTED
 	syllables = list("hs","zt","kr","st","sh")
 
 /datum/language/diona_local/get_random_name()
@@ -20,7 +20,7 @@
 	desc = "A complex language known instinctively by Dionaea, 'spoken' by emitting modulated radio waves. This version uses low frequency waves for slow communication at long ranges."
 	key = "w"
 	machine_understands = 0
-	flags = RESTRICTED | HIVEMIND
+	flags = LANGUAGE_FLAG_RESTRICTED | LANGUAGE_FLAG_HIVEMIND
 
 /datum/language/unathi
 	name = LANGUAGE_UNATHI
@@ -77,7 +77,6 @@
 	exclaim_verb = "wails"
 	colour = "akhani"
 	key = "h"
-	flags = WHITELISTED
 	syllables = list("mrr","rr","marr","tar","ahk","ket","hal","kah","dra","nal","kra","vah","dar","hrar", "eh",
 	"ara","ka","zar","mah","ner","zir","mur","hai","raz","ni","ri","nar","njar","jir","ri","ahn","kha","sir",
 	"kar","yar","kzar","rha","hrar","err","fer","rir","rar","yarr","arr","ii'r","jar","kur","ran","rii","ii",
@@ -90,7 +89,7 @@
 	signlang_verb = list("gestures with their hands", "gestures with their ears and tail", "gestures with their ears, tail and hands")
 	colour = "tajaran"
 	key = "l"
-	flags = WHITELISTED | SIGNLANG | NO_STUTTER | NONVERBAL
+	flags = LANGUAGE_FLAG_SIGNLANG | LANGUAGE_FLAG_NO_STUTTER | LANGUAGE_FLAG_NONVERBAL
 
 /datum/language/tajsign/can_speak_special(var/mob/speaker)	// TODO: If ever we make external organs assist languages, convert this over to the new format
 	var/list/allowed_species = list(SPECIES_TAJ, SPECIES_TESHARI)	// Need a tail and ears and such to use this.
@@ -118,16 +117,16 @@
 	syllables = list("qr","qrr","xuq","qil","quum","xuqm","vol","xrim","zaoo","qu-uu","qix","qoo","zix")
 
 /datum/language/akula
-    name = LANGUAGE_AKULA
-    desc = "The language of the Akula consists of a wildly melodic combination of hard and soft consonants working in flowing conjuncture with one another."
-    speech_verb = "cants"
-    ask_verb = "inflects"
-    exclaim_verb = "shouts"
-    whisper_verb = "murmurs"
-    colour = "akula"
-    key = "a"
-    space_chance = 80
-    syllables = list("ko'lakou","hiki","iloko'o","o'e","kekahi","olelo","keia","'ekahi","loaa","no'ka'mea","ia","ka'mea","ko'ino", "kela", "ma", "keia", "hai aku", "paani", "hopena", "heluhelu", "mai'o", "ke'awa", "a'hiki", "nui", "maanei", "ki'eki'e", "no'ke'aha'mai", "no'i", "malamalama", "keia'ano", "ka'hale", "pono", "ki'i", "holoholona", "wahi", "makuahine", "kokoke", "makuakāne", "kekahi", "lawe", "wahi", "mahope'iho'o", "ma'popo'eka")
+	name = LANGUAGE_AKULA
+	desc = "The language of the Akula consists of a wildly melodic combination of hard and soft consonants working in flowing conjuncture with one another."
+	speech_verb = "cants"
+	ask_verb = "inflects"
+	exclaim_verb = "shouts"
+	whisper_verb = "murmurs"
+	colour = "akula"
+	key = "a"
+	space_chance = 80
+	syllables = list("ko'lakou","hiki","iloko'o","o'e","kekahi","olelo","keia","'ekahi","loaa","no'ka'mea","ia","ka'mea","ko'ino", "kela", "ma", "keia", "hai aku", "paani", "hopena", "heluhelu", "mai'o", "ke'awa", "a'hiki", "nui", "maanei", "ki'eki'e", "no'ke'aha'mai", "no'i", "malamalama", "keia'ano", "ka'hale", "pono", "ki'i", "holoholona", "wahi", "makuahine", "kokoke", "makuakāne", "kekahi", "lawe", "wahi", "mahope'iho'o", "ma'popo'eka")
 
 /datum/language/skrellfar
 	name = LANGUAGE_SKRELLIANFAR
@@ -139,7 +138,6 @@
 	colour = "skrellfar"
 	key = "p"
 	space_chance = 30
-	flags = WHITELISTED
 	syllables = list("qr","qrr","xuq","qil","quum","xuqm","vol","xrim","zaoo","qu-uu","qix","qoo","zix", "...", "oo", "q", "nq", "x", "xq", "ll", "...", "...", "...") //should sound like there's holes in it
 
 /datum/language/skrell/get_random_name(var/gender)
@@ -175,7 +173,7 @@
 	exclaim_verb = "whistles loudly"
 	colour = "changeling"
 	key = "6"
-	flags = NO_STUTTER
+	flags = LANGUAGE_FLAG_NO_STUTTER
 	syllables = list("beep","beep","beep","beep","beep","boop","boop","boop","bop","bop","dee","dee","doo","doo","hiss","hss","buzz","buzz","bzz","ksssh","keey","wurr","wahh","tzzz","shh","shk")
 	space_chance = 10
 
@@ -276,9 +274,11 @@
 	exclaim_verb = "rasps"
 	colour = "bug"
 	key = "x"
-	syllables = list("vaur","uyek","uyit","avek","sc'theth","k'ztak","teth","wre'ge","lii","dra'","zo'","ra'","kax'","zz","vh","ik","ak",
-    "uhk","zir","sc'orth","sc'er","thc'yek","th'zirk","th'esk","k'ayek","ka'mil","sc'","ik'yir","yol","kig","k'zit","'","'","zrk","krg","isk'yet","na'k",
-    "sc'azz","th'sc","nil","n'ahk","sc'yeth","aur'sk","iy'it","azzg","a'","i'","o'","u'","a","i","o","u","zz","kr","ak","nrk","tzzk","bz","xic'","k'lax'","histh")
+	syllables = list(
+		"vaur","uyek","uyit","avek","sc'theth","k'ztak","teth","wre'ge","lii","dra'","zo'","ra'","kax'","zz","vh","ik","ak",
+		"uhk","zir","sc'orth","sc'er","thc'yek","th'zirk","th'esk","k'ayek","ka'mil","sc'","ik'yir","yol","kig","k'zit","'","'","zrk","krg","isk'yet","na'k",
+		"sc'azz","th'sc","nil","n'ahk","sc'yeth","aur'sk","iy'it","azzg","a'","i'","o'","u'","a","i","o","u","zz","kr","ak","nrk","tzzk","bz","xic'","k'lax'","histh",
+	)
 
 /datum/language/shadekin
 	name = LANGUAGE_SHADEKIN
@@ -289,7 +289,7 @@
 	colour = "changeling"
 	key = "m"
 	machine_understands = FALSE
-	flags = WHITELISTED | HIVEMIND
+	flags = LANGUAGE_FLAG_HIVEMIND
 
 /datum/language/slavic
 	name = LANGUAGE_SLAVIC
@@ -300,7 +300,7 @@
 		"rus", "zem", "ave", "groz", "ski", "ska", "ven", "konst", "pol", "lin", "svy",
 		"danya", "da", "mied", "zan", "das", "krem", "myka", "to", "st", "no", "na", "ni",
 		"ko", "ne", "en", "po", "ra", "li", "on", "byl", "cto", "eni", "ost", "ol", "ego",
-		"ver", "stv", "pro"
+		"ver", "stv", "pro",
 	)
 
 /datum/language/bones
@@ -413,10 +413,9 @@
 	exclaim_verb = "peals"
 	colour = "adherent"
 	key = "p"
-	flags = WHITELISTED
 	syllables = list("\[Ab\]", "\[Bb\]", "\[Cb\]", "\[Db\]", "\[Eb\]", "\[Fb\]",
 		"\[Gb\]", "\[A#\]", "\[B#\]", "\[C#\]", "\[D#\]", "\[E#\]", "\[F#\]",
 		"\[G#\]", "\[A\]", "\[B\]", "\[C\]", "\[D\]", "\[E\]", "\[F\]", "\[G\]",
-		"\[harmonic\]", "\[disharmonic\]", "\[choral\]"
+		"\[harmonic\]", "\[disharmonic\]", "\[choral\]",
 	)
 	space_chance = 0

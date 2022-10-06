@@ -293,8 +293,8 @@
 			return
 /*
 		if(client.prefs.species != SPECIES_HUMAN && !check_rights(R_ADMIN, 0))
-			if (config_legacy.usealienwhitelist)
-				if(!is_alien_whitelisted(src, client.prefs.species))
+			if (config_legacy.usespecieswhitelist)
+				if(!is_species_whitelisted(src, client.prefs.species))
 					src << alert("You are currently not whitelisted to Play [client.prefs.species].")
 					return 0
 */
@@ -319,7 +319,7 @@
 			to_chat(usr, "<span class='danger'>The station is currently exploding. Joining would go poorly.</span>")
 			return
 /*
-		if(!is_alien_whitelisted(src, GLOB.species_meta[client.prefs.species]))
+		if(!is_species_whitelisted(src, GLOB.species_meta[client.prefs.species]))
 			src << alert("You are currently not whitelisted to play [client.prefs.species].")
 			return 0
 */
@@ -634,7 +634,7 @@
 
 	if(chosen_species && use_species_name)
 		// Have to recheck admin due to no usr at roundstart. Latejoins are fine though.
-		if(is_alien_whitelisted(chosen_species))
+		if(is_species_whitelisted(chosen_species))
 			new_character = new(T, species_type_by_name(use_species_name))
 
 	if(!new_character)
@@ -685,7 +685,7 @@
 	for(var/lang in client.prefs.alternate_languages)
 		var/datum/language/chosen_language = GLOB.all_languages[lang]
 		if(chosen_language)
-			if(is_lang_whitelisted(src,chosen_language) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
+			if(new_character.species && (chosen_language.name in new_character.species.secondary_langs))
 				new_character.add_language(lang)
 	// And uncomment this, too.
 	//new_character.dna.UpdateSE()
@@ -728,7 +728,7 @@
 	if(!chosen_species)
 		return SPECIES_HUMAN
 
-	if(is_alien_whitelisted(chosen_species))
+	if(is_species_whitelisted(chosen_species))
 		return chosen_species.name
 
 	return SPECIES_HUMAN
@@ -778,7 +778,7 @@
 		to_chat(src, SPAN_WARNING("You have not set your scale yet.  Do this on the Species Customization tab in character setup."))
 
 	//Can they play?
-	if(!is_alien_whitelisted(src, client.prefs.character_static_species_meta()) && !check_rights(R_ADMIN, 0))
+	if(!is_species_whitelisted(src, client.prefs.character_static_species_meta()) && !check_rights(R_ADMIN, 0))
 		pass = FALSE
 		to_chat(src,"<span class='warning'>You are not allowed to spawn in as this species.</span>")
 
