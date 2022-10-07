@@ -6,24 +6,23 @@
 	name = "Clothing"
 	sort_order = 4
 
-/datum/category_item/player_setup_item/general/equipment/load_character(var/savefile/S)
-	S["all_underwear"] >> pref.all_underwear
-	S["all_underwear_metadata"] >> pref.all_underwear_metadata
-	S["backbag"]	>> pref.backbag
-	S["pdachoice"]	>> pref.pdachoice
-	S["communicator_visibility"]	>> pref.communicator_visibility
-	S["ringtone"]	>> pref.ringtone
+/datum/category_item/player_setup_item/general/equipment/load_character(savefile/S)
+	from_file(S["all_underwear"], pref.all_underwear)
+	from_file(S["all_underwear_metadata"], pref.all_underwear_metadata)
+	from_file(S["backbag"], pref.backbag)
+	from_file(S["pdachoice"], pref.pdachoice)
+	from_file(S["communicator_visibility"], pref.communicator_visibility)
+	from_file(S["ringtone"], pref.ringtone)
 
-/datum/category_item/player_setup_item/general/equipment/save_character(var/savefile/S)
-	S["all_underwear"] << pref.all_underwear
-	S["all_underwear_metadata"] << pref.all_underwear_metadata
-	S["backbag"]	<< pref.backbag
-	S["pdachoice"]	<< pref.pdachoice
-	S["communicator_visibility"]	<< pref.communicator_visibility
-	S["ringtone"]	<< pref.ringtone
+/datum/category_item/player_setup_item/general/equipment/save_character(savefile/S)
+	to_file(S["all_underwear"], pref.all_underwear)
+	to_file(S["all_underwear_metadata"], pref.all_underwear_metadata)
+	to_file(S["backbag"], pref.backbag)
+	to_file(S["pdachoice"], pref.pdachoice)
+	to_file(S["communicator_visibility"], pref.communicator_visibility)
+	to_file(S["ringtone"], pref.ringtone)
 
-// Moved from /datum/preferences/proc/copy_to()
-/datum/category_item/player_setup_item/general/equipment/copy_to_mob(var/mob/living/carbon/human/character)
+/datum/category_item/player_setup_item/general/equipment/copy_to_mob(mob/living/carbon/human/character)
 	character.all_underwear.Cut()
 	character.all_underwear_metadata.Cut()
 
@@ -73,9 +72,10 @@
 	for(var/underwear_metadata in pref.all_underwear_metadata)
 		if(!(underwear_metadata in pref.all_underwear))
 			pref.all_underwear_metadata -= underwear_metadata
-	pref.backbag	= sanitize_integer(pref.backbag, 1, backbaglist.len, initial(pref.backbag))
-	pref.pdachoice	= sanitize_integer(pref.pdachoice, 1, pdachoicelist.len, initial(pref.pdachoice))
-	pref.ringtone	= sanitize(pref.ringtone, 20)
+
+	pref.backbag   = sanitize_integer(pref.backbag, 1, backbaglist.len, initial(pref.backbag))
+	pref.pdachoice = sanitize_integer(pref.pdachoice, 1, pdachoicelist.len, initial(pref.pdachoice))
+	pref.ringtone  = sanitize(pref.ringtone, 20)
 
 /datum/category_item/player_setup_item/general/equipment/content()
 	. = list()
@@ -96,7 +96,7 @@
 
 	return jointext(.,null)
 
-/datum/category_item/player_setup_item/general/equipment/proc/get_metadata(var/underwear_category, var/datum/gear_tweak/gt)
+/datum/category_item/player_setup_item/general/equipment/proc/get_metadata(underwear_category, datum/gear_tweak/gt)
 	var/metadata = pref.all_underwear_metadata[underwear_category]
 	if(!metadata)
 		metadata = list()
@@ -108,20 +108,20 @@
 		metadata["[gt]"] = tweak_data
 	return tweak_data
 
-/datum/category_item/player_setup_item/general/equipment/proc/set_metadata(var/underwear_category, var/datum/gear_tweak/gt, var/new_metadata)
+/datum/category_item/player_setup_item/general/equipment/proc/set_metadata(underwear_category, datum/gear_tweak/gt, new_metadata)
 	var/list/metadata = pref.all_underwear_metadata[underwear_category]
 	metadata["[gt]"] = new_metadata
 
 
-/datum/category_item/player_setup_item/general/equipment/OnTopic(var/href,var/list/href_list, var/mob/user)
+/datum/category_item/player_setup_item/general/equipment/OnTopic(href, list/href_list, mob/user)
 	if(href_list["change_backpack"])
-		var/new_backbag = input(user, "Choose your character's style of bag:", "Character Preference", backbaglist[pref.backbag]) as null|anything in backbaglist
+		var/new_backbag = tgui_input_list(user, "Choose your character's style of bag:", "Character Preference", backbaglist, backbaglist[pref.backbag])
 		if(!isnull(new_backbag) && CanUseTopic(user))
 			pref.backbag = backbaglist.Find(new_backbag)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["change_pda"])
-		var/new_pdachoice = input(user, "Choose your character's style of PDA:", "Character Preference", pdachoicelist[pref.pdachoice]) as null|anything in pdachoicelist
+		var/new_pdachoice = tgui_input_list(user, "Choose your character's style of PDA:", "Character Preference", pdachoicelist, pdachoicelist[pref.pdachoice])
 		if(!isnull(new_pdachoice) && CanUseTopic(user))
 			pref.pdachoice = pdachoicelist.Find(new_pdachoice)
 			return TOPIC_REFRESH
@@ -130,7 +130,7 @@
 		var/datum/category_group/underwear/UWC = GLOB.global_underwear.categories_by_name[href_list["change_underwear"]]
 		if(!UWC)
 			return
-		var/datum/category_item/underwear/selected_underwear = input(user, "Choose underwear:", "Character Preference", pref.all_underwear[UWC.name]) as null|anything in UWC.items
+		var/datum/category_item/underwear/selected_underwear = tgui_input_list(user, "Choose underwear:", "Character Preference", UWC.items, pref.all_underwear[UWC.name])
 		if(selected_underwear && CanUseTopic(user))
 			pref.all_underwear[UWC.name] = selected_underwear.name
 		return TOPIC_REFRESH_UPDATE_PREVIEW
@@ -152,7 +152,7 @@
 			return TOPIC_REFRESH
 	else if(href_list["set_ringtone"])
 		if(CanUseTopic(user))
-			pref.ringtone = sanitize(input(user, "Please enter a new ringtone.", "Character Preference") as null|text, 20)
+			pref.ringtone = sanitize(tgui_input_text(user, "Choose your character's name:", "Character Name", pref.ringtone, 20))
 			return TOPIC_REFRESH
 
 	return ..()

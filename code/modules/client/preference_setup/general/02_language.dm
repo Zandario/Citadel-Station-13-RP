@@ -2,16 +2,17 @@
 	name = "Language"
 	sort_order = 2
 
-/datum/category_item/player_setup_item/general/language/load_character(var/savefile/S)
-	S["language"]			>> pref.alternate_languages
-	S["language_prefixes"]	>> pref.language_prefixes
+/datum/category_item/player_setup_item/general/language/load_character(savefile/S)
+	from_file(S["language"], pref.alternate_languages)
+	from_file(S["language_prefixes"], pref.language_prefixes)
 
-/datum/category_item/player_setup_item/general/language/save_character(var/savefile/S)
-	S["language"]			<< pref.alternate_languages
-	S["language_prefixes"]	<< pref.language_prefixes
+/datum/category_item/player_setup_item/general/language/save_character(savefile/S)
+	to_file(S["language"], pref.alternate_languages)
+	to_file(S["language_prefixes"], pref.language_prefixes)
 
 /datum/category_item/player_setup_item/general/language/sanitize_character()
-	if(!islist(pref.alternate_languages))	pref.alternate_languages = list()
+	if(!islist(pref.alternate_languages))
+		pref.alternate_languages = list()
 	if(pref.species)
 		var/datum/species/S = pref.character_static_species_meta()
 		if(S && pref.alternate_languages.len > S.num_alternate_languages)
@@ -40,7 +41,7 @@
 	. += "<b>Language Keys</b><br>"
 	. += " [jointext(pref.language_prefixes, " ")] <a href='?src=\ref[src];change_prefix=1'>Change</a> <a href='?src=\ref[src];reset_prefix=1'>Reset</a><br>"
 
-/datum/category_item/player_setup_item/general/language/OnTopic(var/href,var/list/href_list, var/mob/user)
+/datum/category_item/player_setup_item/general/language/OnTopic(href, list/href_list, mob/user)
 	if(href_list["remove_language"])
 		var/index = text2num(href_list["remove_language"])
 		pref.alternate_languages.Cut(index, index+1)
@@ -48,7 +49,7 @@
 	else if(href_list["add_language"])
 		var/datum/species/S = pref.character_static_species_meta()
 		if(pref.alternate_languages.len >= S.num_alternate_languages)
-			alert(user, "You have already selected the maximum number of alternate languages for this species!")
+			tgui_alert_async(user, "You have already selected the maximum number of alternate languages for this species!")
 		else
 			var/list/available_languages = S.secondary_langs.Copy()
 			for(var/L in GLOB.all_languages)
@@ -62,34 +63,40 @@
 			available_languages -= pref.alternate_languages
 
 			if(!available_languages.len)
-				alert(user, "There are no additional languages available to select.")
+				tgui_alert_async(user, "There are no additional languages available to select.")
 			else
-				var/new_lang = input(user, "Select an additional language", "Character Generation", null) as null|anything in available_languages
+				var/new_lang = tgui_input_list(user, "Select an additional language", "Character Generation", available_languages)
 				if(new_lang && pref.alternate_languages.len < S.num_alternate_languages)
-					pref.alternate_languages |= new_lang
+					var/datum/language/chosen_lang = GLOB.all_languages[new_lang]
+					if(istype(chosen_lang))
+						var/choice = tgui_alert(usr, "[chosen_lang.desc]",chosen_lang.name, list("Take","Cancel"))
+						if(choice != "Cancel" && pref.alternate_languages.len < S.num_alternate_languages)
+							pref.alternate_languages |= new_lang
 					return TOPIC_REFRESH
 
 	else if(href_list["change_prefix"])
 		var/char
 		var/keys[0]
 		do
-			char = input("Enter a single special character.\nYou may re-select the same characters.\nThe following characters are already in use by radio: ; : .\nThe following characters are already in use by special say commands: ! * ^", "Enter Character - [3 - keys.len] remaining") as null|text
+			char = tgui_input_text(usr, "Enter a single special character.\nYou may re-select the same characters.\nThe following characters are already in use by radio: ; : .\nThe following characters are already in use by special say commands: ! * ^", "Enter Character - [3 - keys.len] remaining")
 			if(char)
 				if(length(char) > 1)
-					alert(user, "Only single characters allowed.", "Error", "Ok")
+					tgui_alert_async(user, "Only single characters allowed.", "Error")
 				else if(char in list(";", ":", "."))
-					alert(user, "Radio character. Rejected.", "Error", "Ok")
-				else if(char in list("!","*", "^"))
-					alert(user, "Say character. Rejected.", "Error", "Ok")
+					tgui_alert_async(user, "Radio character. Rejected.", "Error")
+				else if(char in list("!","*","^","-"))
+					tgui_alert_async(user, "Say character. Rejected.", "Error")
 				else if(contains_az09(char))
-					alert(user, "Non-special character. Rejected.", "Error", "Ok")
+					tgui_alert_async(user, "Non-special character. Rejected.", "Error")
 				else
 					keys.Add(char)
+
 		while(char && keys.len < 3)
 
 		if(keys.len == 3)
 			pref.language_prefixes = keys
 			return TOPIC_REFRESH
+
 	else if(href_list["reset_prefix"])
 		pref.language_prefixes = config_legacy.language_prefixes.Copy()
 		return TOPIC_REFRESH
