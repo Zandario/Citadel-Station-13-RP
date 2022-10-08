@@ -3,7 +3,7 @@
 	sort_order = 3
 	category_item_type = /datum/category_item/player_setup_item/occupation
 
-/datum/category_group/player_setup_category/occupation_preferences/content(var/mob/user)
+/datum/category_group/player_setup_category/occupation_preferences/content(mob/user)
 	for(var/datum/category_item/player_setup_item/PI in items)
 		. += "[PI.content(user)]<br>"
 
@@ -11,53 +11,55 @@
 	name = "Occupation"
 	sort_order = 1
 
-/datum/category_item/player_setup_item/occupation/load_character(var/savefile/S)
-	S["alternate_option"]	>> pref.alternate_option
-	S["job_civilian_high"]	>> pref.job_civilian_high
-	S["job_civilian_med"]	>> pref.job_civilian_med
-	S["job_civilian_low"]	>> pref.job_civilian_low
-	S["job_medsci_high"]	>> pref.job_medsci_high
-	S["job_medsci_med"]		>> pref.job_medsci_med
-	S["job_medsci_low"]		>> pref.job_medsci_low
-	S["job_engsec_high"]	>> pref.job_engsec_high
-	S["job_engsec_med"]		>> pref.job_engsec_med
-	S["job_engsec_low"]		>> pref.job_engsec_low
-	S["job_talon_low"]		>> pref.job_talon_low
-	S["job_talon_med"]		>> pref.job_talon_med
-	S["job_talon_high"]		>> pref.job_talon_high
-	S["player_alt_titles"]	>> pref.player_alt_titles
+/datum/category_item/player_setup_item/occupation/load_character(savefile/S)
+	READ_FILE(S["alternate_option"], pref.alternate_option)
+	READ_FILE(S["job_civilian_high"], pref.job_civilian_high)
+	READ_FILE(S["job_civilian_med"], pref.job_civilian_med)
+	READ_FILE(S["job_civilian_low"], pref.job_civilian_low)
+	READ_FILE(S["job_medsci_high"], pref.job_medsci_high)
+	READ_FILE(S["job_medsci_med"], pref.job_medsci_med)
+	READ_FILE(S["job_medsci_low"], pref.job_medsci_low)
+	READ_FILE(S["job_engsec_high"], pref.job_engsec_high)
+	READ_FILE(S["job_engsec_med"], pref.job_engsec_med)
+	READ_FILE(S["job_engsec_low"], pref.job_engsec_low)
+	READ_FILE(S["job_talon_low"], pref.job_talon_low)
+	READ_FILE(S["job_talon_med"], pref.job_talon_med)
+	READ_FILE(S["job_talon_high"], pref.job_talon_high)
+	READ_FILE(S["player_alt_titles"], pref.player_alt_titles)
 
-/datum/category_item/player_setup_item/occupation/save_character(var/savefile/S)
-	S["alternate_option"]	<< pref.alternate_option
-	S["job_civilian_high"]	<< pref.job_civilian_high
-	S["job_civilian_med"]	<< pref.job_civilian_med
-	S["job_civilian_low"]	<< pref.job_civilian_low
-	S["job_medsci_high"]	<< pref.job_medsci_high
-	S["job_medsci_med"]		<< pref.job_medsci_med
-	S["job_medsci_low"]		<< pref.job_medsci_low
-	S["job_engsec_high"]	<< pref.job_engsec_high
-	S["job_engsec_med"]		<< pref.job_engsec_med
-	S["job_engsec_low"]		<< pref.job_engsec_low
-	S["job_talon_low"]		<< pref.job_talon_low
-	S["job_talon_med"]		<< pref.job_talon_med
-	S["job_talon_high"]		<< pref.job_talon_high
-	S["player_alt_titles"]	<< pref.player_alt_titles
+/datum/category_item/player_setup_item/occupation/save_character(savefile/S)
+	WRITE_FILE(S["alternate_option"], pref.alternate_option)
+	WRITE_FILE(S["job_civilian_high"], pref.job_civilian_high)
+	WRITE_FILE(S["job_civilian_med"], pref.job_civilian_med)
+	WRITE_FILE(S["job_civilian_low"], pref.job_civilian_low)
+	WRITE_FILE(S["job_medsci_high"], pref.job_medsci_high)
+	WRITE_FILE(S["job_medsci_med"], pref.job_medsci_med)
+	WRITE_FILE(S["job_medsci_low"], pref.job_medsci_low)
+	WRITE_FILE(S["job_engsec_high"], pref.job_engsec_high)
+	WRITE_FILE(S["job_engsec_med"], pref.job_engsec_med)
+	WRITE_FILE(S["job_engsec_low"], pref.job_engsec_low)
+	WRITE_FILE(S["job_talon_low"], pref.job_talon_low)
+	WRITE_FILE(S["job_talon_med"], pref.job_talon_med)
+	WRITE_FILE(S["job_talon_high"], pref.job_talon_high)
+	WRITE_FILE(S["player_alt_titles"], pref.player_alt_titles)
 
 /datum/category_item/player_setup_item/occupation/sanitize_character()
-	pref.alternate_option	= sanitize_integer(pref.alternate_option, 0, 2, initial(pref.alternate_option))
-	pref.job_civilian_high	= sanitize_integer(pref.job_civilian_high, 0, 65535, initial(pref.job_civilian_high))
-	pref.job_civilian_med	= sanitize_integer(pref.job_civilian_med, 0, 65535, initial(pref.job_civilian_med))
-	pref.job_civilian_low	= sanitize_integer(pref.job_civilian_low, 0, 65535, initial(pref.job_civilian_low))
-	pref.job_medsci_high	= sanitize_integer(pref.job_medsci_high, 0, 65535, initial(pref.job_medsci_high))
-	pref.job_medsci_med		= sanitize_integer(pref.job_medsci_med, 0, 65535, initial(pref.job_medsci_med))
-	pref.job_medsci_low		= sanitize_integer(pref.job_medsci_low, 0, 65535, initial(pref.job_medsci_low))
-	pref.job_engsec_high	= sanitize_integer(pref.job_engsec_high, 0, 65535, initial(pref.job_engsec_high))
-	pref.job_engsec_med 	= sanitize_integer(pref.job_engsec_med, 0, 65535, initial(pref.job_engsec_med))
-	pref.job_engsec_low 	= sanitize_integer(pref.job_engsec_low, 0, 65535, initial(pref.job_engsec_low))
-	pref.job_talon_high		= sanitize_integer(pref.job_talon_high, 0, 65535, initial(pref.job_talon_high))
-	pref.job_talon_med 		= sanitize_integer(pref.job_talon_med, 0, 65535, initial(pref.job_talon_med))
-	pref.job_talon_low 		= sanitize_integer(pref.job_talon_low, 0, 65535, initial(pref.job_talon_low))
-	if(!(pref.player_alt_titles)) pref.player_alt_titles = new()
+	pref.alternate_option  = sanitize_integer(pref.alternate_option, 0, 2, initial(pref.alternate_option))
+	pref.job_civilian_high = sanitize_integer(pref.job_civilian_high, 0, 65535, initial(pref.job_civilian_high))
+	pref.job_civilian_med  = sanitize_integer(pref.job_civilian_med, 0, 65535, initial(pref.job_civilian_med))
+	pref.job_civilian_low  = sanitize_integer(pref.job_civilian_low, 0, 65535, initial(pref.job_civilian_low))
+	pref.job_medsci_high   = sanitize_integer(pref.job_medsci_high, 0, 65535, initial(pref.job_medsci_high))
+	pref.job_medsci_med    = sanitize_integer(pref.job_medsci_med, 0, 65535, initial(pref.job_medsci_med))
+	pref.job_medsci_low    = sanitize_integer(pref.job_medsci_low, 0, 65535, initial(pref.job_medsci_low))
+	pref.job_engsec_high   = sanitize_integer(pref.job_engsec_high, 0, 65535, initial(pref.job_engsec_high))
+	pref.job_engsec_med    = sanitize_integer(pref.job_engsec_med, 0, 65535, initial(pref.job_engsec_med))
+	pref.job_engsec_low    = sanitize_integer(pref.job_engsec_low, 0, 65535, initial(pref.job_engsec_low))
+	pref.job_talon_high    = sanitize_integer(pref.job_talon_high, 0, 65535, initial(pref.job_talon_high))
+	pref.job_talon_med     = sanitize_integer(pref.job_talon_med, 0, 65535, initial(pref.job_talon_med))
+	pref.job_talon_low     = sanitize_integer(pref.job_talon_low, 0, 65535, initial(pref.job_talon_low))
+
+	if(!(pref.player_alt_titles))
+		pref.player_alt_titles = new()
 
 	if(!job_master)
 		return
@@ -119,13 +121,13 @@
 
 
 		if(make_new_column)
-/*******
+/*
 			if((index < limit) && (lastJob != null))
 				//If the cells were broken up by a job in the splitJob list then it will fill in the rest of the cells with
 				//the last job's selection color and blank buttons that do nothing. Creating a rather nice effect.
 				for(var/i = 0, i < (limit - index), i++)
 					. += "<tr bgcolor='[lastJob.selection_color]'><td width='60%' align='right'>//>&nbsp</a></td><td><a>&nbsp</a></td></tr>"
-*******/
+*/
 			. += "</table></td><td width='20%' valign='top'><table width='100%' cellpadding='1' cellspacing='0'>"
 			index = 0
 		last_department = current_department
@@ -311,8 +313,8 @@
 	pref.job_engsec_high = 0
 	pref.job_talon_high = 0
 
-// Level is equal to the desired new level of the job. So for a value of 4, we want to disable the job.
-/datum/category_item/player_setup_item/occupation/proc/SetJobDepartment(var/datum/job/job, var/level)
+/// Level is equal to the desired new level of the job. So for a value of 4, we want to disable the job.
+/datum/category_item/player_setup_item/occupation/proc/SetJobDepartment(datum/job/job, level)
 	if(!job || !level)
 		return 0
 
@@ -378,7 +380,7 @@
 /datum/preferences/proc/GetPlayerAltTitle(datum/job/job)
 	return (job.title in player_alt_titles) ? player_alt_titles[job.title] : job.title
 
-/datum/preferences/proc/GetJobDepartment(var/datum/job/job, var/level)
+/datum/preferences/proc/GetJobDepartment(datum/job/job, level)
 	if(!job || !level)	return 0
 	switch(job.department_flag)
 		if(CIVILIAN)

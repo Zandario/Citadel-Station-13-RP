@@ -1,6 +1,10 @@
-var/list/trait_datums = list() // Assoc list using name = instance.  Traits are saved as a list of strings.
-var/list/trait_type_to_ref = list() // Similar to above but uses paths, which is more reliable but more risky to save.
-var/list/trait_categories = list() // The categories available for the trait menu.
+
+/// Assoc list using name = instance.  Traits are saved as a list of strings.
+var/list/trait_datums = list()
+/// Similar to above but uses paths, which is more reliable but more risky to save.
+var/list/trait_type_to_ref = list()
+/// The categories available for the trait menu.
+var/list/trait_categories = list()
 
 /hook/startup/proc/populate_trait_list()
 
@@ -29,11 +33,11 @@ var/list/trait_categories = list() // The categories available for the trait men
 	name = "Quirks"	sort_order = 1
 	var/current_tab = "Physical"
 
-/datum/category_item/player_setup_item/traits/load_character(var/savefile/S)
-	S["traits"] >> pref.traits
+/datum/category_item/player_setup_item/traits/load_character(savefile/S)
+	READ_FILE(S["traits"], pref.traits)
 
-/datum/category_item/player_setup_item/traits/save_character(var/savefile/S)
-	S["traits"] << pref.traits
+/datum/category_item/player_setup_item/traits/save_character(savefile/S)
+	WRITE_FILE(S["traits"], pref.traits)
 
 
 /datum/category_item/player_setup_item/traits/content()
@@ -70,7 +74,7 @@ var/list/trait_categories = list() // The categories available for the trait men
 		else if(ticked)
 			style_class = "linkOn"
 		. += "<tr style='vertical-align:top;'><td width=25%><div align='center'><a style='white-space:normal;' [style_class ? "class='[style_class]' " : ""]href='?src=\ref[src];toggle_trait=[html_encode(T.name)]'>[T.name]</a></div></td>"
-//		. += "<td width = 10% style='vertical-align:top'>[G.cost]</td>"
+		// . += "<td width = 10% style='vertical-align:top'>[G.cost]</td>"
 
 		var/invalidity = T.test_for_invalidity(src)
 		var/conflicts = T.test_for_trait_conflict(pref.traits)
@@ -82,11 +86,11 @@ var/list/trait_categories = list() // The categories available for the trait men
 
 		. += "<td width = 75%><font size=2><i>[T.desc]</i>\
 		[invalid ? "<font color='#FF0000'><br>Cannot take trait.  Reason: [invalid]</font>":""]</font></td></tr>"
-//		if(ticked)
-//			. += "<tr><td colspan=3>"
-//			for(var/datum/gear_tweak/tweak in G.gear_tweaks)
-//				. += " <a href='?src=\ref[src];gear=[G.display_name];tweak=\ref[tweak]'>[tweak.get_contents(get_tweak_metadata(G, tweak))]</a>"
-//			. += "</td></tr>"
+		// if(ticked)
+		// 	. += "<tr><td colspan=3>"
+		// 	for(var/datum/gear_tweak/tweak in G.gear_tweaks)
+		// 		. += " <a href='?src=\ref[src];gear=[G.display_name];tweak=\ref[tweak]'>[tweak.get_contents(get_tweak_metadata(G, tweak))]</a>"
+		// 	. += "</td></tr>"
 	. += "</table>"
 	. = jointext(., null)
 
@@ -101,19 +105,19 @@ var/list/trait_categories = list() // The categories available for the trait men
 
 	for(var/trait_name in pref.traits)
 		if(!trait_datums[trait_name])
-			to_chat(preference_mob, "<span class='warning'>You cannot have more than one of trait: [trait_name]</span>")
+			to_chat(preference_mob, SPAN_WARNING("You cannot have more than one of trait: [trait_name]"))
 			pref.traits -= trait_name
 		else
 			var/datum/trait/T = trait_datums[trait_name]
 			var/invalidity = T.test_for_invalidity(src)
 			if(invalidity)
 				pref.traits -= trait_name
-				to_chat(preference_mob, "<span class='warning'>You cannot take the [trait_name] trait.  Reason: [invalidity]</span>")
+				to_chat(preference_mob, SPAN_WARNING("You cannot take the [trait_name] trait.  Reason: [invalidity]"))
 
 			var/conflicts = T.test_for_trait_conflict(pref.traits)
 			if(conflicts)
 				pref.traits -= trait_name
-				to_chat(preference_mob, "<span class='warning'>The [trait_name] trait is mutually exclusive with [conflicts].</span>")
+				to_chat(preference_mob, SPAN_WARNING("The [trait_name] trait is mutually exclusive with [conflicts]."))
 
 /datum/category_item/player_setup_item/traits/OnTopic(href, href_list, user)
 	if(href_list["toggle_trait"])
@@ -123,12 +127,12 @@ var/list/trait_categories = list() // The categories available for the trait men
 		else
 			var/invalidity = T.test_for_invalidity(src)
 			if(invalidity)
-				to_chat(user, "<span class='warning'>You cannot take the [T.name] trait.  Reason: [invalidity]</span>")
+				to_chat(user, SPAN_WARNING("You cannot take the [T.name] trait.  Reason: [invalidity]"))
 				return TOPIC_NOACTION
 
 			var/conflicts = T.test_for_trait_conflict(pref.traits)
 			if(conflicts)
-				to_chat(user, "<span class='warning'>The [T.name] trait is mutually exclusive with [conflicts].</span>")
+				to_chat(user, SPAN_WARNING("The [T.name] trait is mutually exclusive with [conflicts]."))
 				return TOPIC_NOACTION
 
 			pref.traits += T.name
@@ -140,24 +144,32 @@ var/list/trait_categories = list() // The categories available for the trait men
 
 
 /datum/trait
-	var/name = null							// Name to show on UI
-	var/desc = null							// Description of what it does, also shown on UI.
-	var/list/mutually_exclusive = list()	// List of trait types which cannot be taken alongside this trait.
-	var/category = null						// What section to place this trait inside.
+	/// Name to show on UI
+	var/name = null
+	/// Description of what it does, also shown on UI.
+	var/desc = null
+	/// List of trait types which cannot be taken alongside this trait.
+	var/list/mutually_exclusive = list()
+	/// What section to place this trait inside.
+	var/category = null
 
-// Applies effects to the newly spawned mob.
-/datum/trait/proc/apply_trait_post_spawn(var/mob/living/L)
+/// Applies effects to the newly spawned mob.
+/datum/trait/proc/apply_trait_post_spawn(mob/living/L)
 	return
 
-// Used to forbid a trait based on certain criteria (e.g. if they are an FBP).
-// It receives the player_setup_item datum since some reasons for being invalid depend on the currently loaded preferences.
-// Returns a string explaining why the trait is invalid.  Returns null if valid.
-/datum/trait/proc/test_for_invalidity(var/datum/category_item/player_setup_item/traits/setup)
+/**
+ * Used to forbid a trait based on certain criteria (e.g. if they are an FBP).
+ * It receives the player_setup_item datum since some reasons for being invalid depend on the currently loaded preferences.
+ * Returns a string explaining why the trait is invalid.  Returns null if valid.
+ */
+/datum/trait/proc/test_for_invalidity(datum/category_item/player_setup_item/traits/setup)
 	return null
 
-// Checks mutually_exclusive.  current_traits needs to be a list of strings.
-// Returns null if everything is well, similar to the above proc.  Otherwise returns an english_list() of conflicting traits.
-/datum/trait/proc/test_for_trait_conflict(var/list/current_traits)
+/**
+ * Checks mutually_exclusive.  current_traits needs to be a list of strings.
+ * Returns null if everything is well, similar to the above proc.  Otherwise returns an english_list() of conflicting traits.
+ */
+/datum/trait/proc/test_for_trait_conflict(list/current_traits)
 	var/list/conflicts = list()
 	var/result
 
@@ -172,17 +184,21 @@ var/list/trait_categories = list() // The categories available for the trait men
 
 	return result
 
-// Similar to above, but uses the above two procs, in one place.
-// Returns TRUE is everything is well.
-/datum/trait/proc/validate(var/list/current_traits, var/datum/category_item/player_setup_item/traits/setup)
+/**
+ * Similar to above, but uses the above two procs, in one place.
+ * Returns TRUE is everything is well.
+ */
+/datum/trait/proc/validate(list/current_traits, datum/category_item/player_setup_item/traits/setup)
 	if(test_for_invalidity(setup))
 		return FALSE
 	if(test_for_trait_conflict(current_traits))
 		return FALSE
 	return TRUE
 
-// Creates a description, if one doesn't exist.
-// This one is for inheritence, and so doesn't do anything.
+/**
+ * Creates a description, if one doesn't exist.
+ * This one is for inheritence, and so doesn't do anything.
+ */
 /datum/trait/proc/generate_desc()
 	return desc
 

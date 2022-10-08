@@ -7,20 +7,20 @@
 	sort_order = 4
 
 /datum/category_item/player_setup_item/general/equipment/load_character(savefile/S)
-	from_file(S["all_underwear"], pref.all_underwear)
-	from_file(S["all_underwear_metadata"], pref.all_underwear_metadata)
-	from_file(S["backbag"], pref.backbag)
-	from_file(S["pdachoice"], pref.pdachoice)
-	from_file(S["communicator_visibility"], pref.communicator_visibility)
-	from_file(S["ringtone"], pref.ringtone)
+	READ_FILE(S["all_underwear"], pref.all_underwear)
+	READ_FILE(S["all_underwear_metadata"], pref.all_underwear_metadata)
+	READ_FILE(S["backbag"], pref.backbag)
+	READ_FILE(S["pdachoice"], pref.pdachoice)
+	READ_FILE(S["communicator_visibility"], pref.communicator_visibility)
+	READ_FILE(S["ringtone"], pref.ringtone)
 
 /datum/category_item/player_setup_item/general/equipment/save_character(savefile/S)
-	to_file(S["all_underwear"], pref.all_underwear)
-	to_file(S["all_underwear_metadata"], pref.all_underwear_metadata)
-	to_file(S["backbag"], pref.backbag)
-	to_file(S["pdachoice"], pref.pdachoice)
-	to_file(S["communicator_visibility"], pref.communicator_visibility)
-	to_file(S["ringtone"], pref.ringtone)
+	WRITE_FILE(S["all_underwear"], pref.all_underwear)
+	WRITE_FILE(S["all_underwear_metadata"], pref.all_underwear_metadata)
+	WRITE_FILE(S["backbag"], pref.backbag)
+	WRITE_FILE(S["pdachoice"], pref.pdachoice)
+	WRITE_FILE(S["communicator_visibility"], pref.communicator_visibility)
+	WRITE_FILE(S["ringtone"], pref.ringtone)
 
 /datum/category_item/player_setup_item/general/equipment/copy_to_mob(mob/living/carbon/human/character)
 	character.all_underwear.Cut()
@@ -78,23 +78,27 @@
 	pref.ringtone  = sanitize(pref.ringtone, 20)
 
 /datum/category_item/player_setup_item/general/equipment/content()
-	. = list()
-	. += "<b>Equipment:</b><br>"
+	var/html = list()
+	html += "<b>Equipment Preferences</b><hr>"
 	for(var/datum/category_group/underwear/UWC in GLOB.global_underwear.categories)
 		var/item_name = pref.all_underwear[UWC.name] ? pref.all_underwear[UWC.name] : "None"
-		. += "[UWC.name]: <a href='?src=\ref[src];change_underwear=[UWC.name]'><b>[item_name]</b></a>"
+		html += "[UWC.name]: <a href='?src=\ref[src];change_underwear=[UWC.name]'>[item_name]</a>"
 		var/datum/category_item/underwear/UWI = UWC.items_by_name[item_name]
 		if(UWI)
 			for(var/datum/gear_tweak/gt in UWI.tweaks)
-				. += " <a href='?src=\ref[src];underwear=[UWC.name];tweak=\ref[gt]'>[gt.get_contents(get_metadata(UWC.name, gt))]</a>"
+				html += " <a href='?src=\ref[src];underwear=[UWC.name];tweak=\ref[gt]'>[gt.get_contents(get_metadata(UWC.name, gt))]</a>"
 
-		. += "<br>"
-	. += "Backpack Type: <a href='?src=\ref[src];change_backpack=1'><b>[backbaglist[pref.backbag]]</b></a><br>"
-	. += "PDA Type: <a href='?src=\ref[src];change_pda=1'><b>[pdachoicelist[pref.pdachoice]]</b></a><br>"
-	. += "Communicator Visibility: <a href='?src=\ref[src];toggle_comm_visibility=1'><b>[(pref.communicator_visibility) ? "Yes" : "No"]</b></a><br>"
-	. += "Ringtone (leave blank for job default): <a href='?src=\ref[src];set_ringtone=1'><b>[pref.ringtone]</b></a><br>"
+		html += "<br>"
+	html += "Backpack Type: <a href='?src=\ref[src];change_backpack=1'>[backbaglist[pref.backbag]]</a><br>"
+	html += "PDA Type: <a href='?src=\ref[src];change_pda=1'>[pdachoicelist[pref.pdachoice]]</a><br>"
+	html += "Communicator Visibility: <a href='?src=\ref[src];toggle_comm_visibility=1'>[(pref.communicator_visibility) ? "Yes" : "No"]</a><br>"
+	html += "Ringtone: "
+	if(pref.ringtone == initial(pref.ringtone))
+		html += "<a href='?src=\ref[src];set_ringtone=1'>Using Job Default</a><br>"
+	else
+		html += "<a href='?src=\ref[src];set_ringtone=1'>[pref.ringtone]</a> <a href='?src=\ref[src];reset_ringtone=1'>reset</a><br>"
 
-	return jointext(.,null)
+	return jointext(html,null)
 
 /datum/category_item/player_setup_item/general/equipment/proc/get_metadata(underwear_category, datum/gear_tweak/gt)
 	var/metadata = pref.all_underwear_metadata[underwear_category]
@@ -139,20 +143,29 @@
 		var/underwear = href_list["underwear"]
 		if(!(underwear in pref.all_underwear))
 			return TOPIC_NOACTION
+
 		var/datum/gear_tweak/gt = locate(href_list["tweak"])
 		if(!gt)
 			return TOPIC_NOACTION
+
 		var/new_metadata = gt.get_metadata(usr, get_metadata(underwear, gt))
 		if(new_metadata)
 			set_metadata(underwear, gt, new_metadata)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
+
 	else if(href_list["toggle_comm_visibility"])
 		if(CanUseTopic(user))
 			pref.communicator_visibility = !pref.communicator_visibility
 			return TOPIC_REFRESH
+
 	else if(href_list["set_ringtone"])
 		if(CanUseTopic(user))
 			pref.ringtone = sanitize(tgui_input_text(user, "Choose your character's name:", "Character Name", pref.ringtone, 20))
+			return TOPIC_REFRESH
+
+	else if(href_list["reset_ringtone"])
+		if(CanUseTopic(user))
+			pref.ringtone = initial(pref.ringtone)
 			return TOPIC_REFRESH
 
 	return ..()

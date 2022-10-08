@@ -1,29 +1,32 @@
-// This file has been UNTICKED on purpose, as it is not in use.
+// This file has been UNTICKED on purpose, as it is not in use. // That was until we found out this is required for Employment Records. @Zandario
 
 /datum/category_item/player_setup_item/skills
 	name = "Skills"
 	sort_order = 1
 
-/datum/category_item/player_setup_item/skills/load_character(var/savefile/S)
-	S["skills"]					>> pref.skills
-	S["used_skillpoints"]		>> pref.used_skillpoints
-	S["skill_specialization"]	>> pref.skill_specialization
+/datum/category_item/player_setup_item/skills/load_character(savefile/S)
+	READ_FILE(S["skills"], pref.skills)
+	READ_FILE(S["used_skillpoints"], pref.used_skillpoints)
+	READ_FILE(S["skill_specialization"], pref.skill_specialization)
 
-/datum/category_item/player_setup_item/skills/save_character(var/savefile/S)
-	S["skills"]					<< pref.skills
-	S["used_skillpoints"]		<< pref.used_skillpoints
-	S["skill_specialization"]	<< pref.skill_specialization
+/datum/category_item/player_setup_item/skills/save_character(savefile/S)
+	WRITE_FILE(S["skills"], pref.skills)
+	WRITE_FILE(S["used_skillpoints"], pref.used_skillpoints)
+	WRITE_FILE(S["skill_specialization"], pref.skill_specialization)
 
 /datum/category_item/player_setup_item/skills/sanitize_character()
-	if(SKILLS == null)				setup_skills()
-	if(!pref.skills)				pref.skills = list()
-	if(!pref.skills.len)			pref.ZeroSkills()
-	if(pref.used_skillpoints < 0)	pref.used_skillpoints = 0
+	if(SKILLS == null)
+		setup_skills()
+	if(!pref.skills)
+		pref.skills = list()
+	if(!pref.skills.len)
+		pref.ZeroSkills()
+	if (pref.used_skillpoints < 0)
+		pref.used_skillpoints = 0
 
-// Moved from /datum/preferences/proc/copy_to()
-/datum/category_item/player_setup_item/skills/copy_to_mob(var/mob/living/carbon/human/character)
-	character.skills			= pref.skills
-	character.used_skillpoints	= pref.used_skillpoints
+/datum/category_item/player_setup_item/skills/copy_to_mob(mob/living/carbon/human/character)
+	character.skills           = pref.skills
+	character.used_skillpoints = pref.used_skillpoints
 
 /datum/category_item/player_setup_item/skills/content()
 	. = list()
@@ -50,7 +53,7 @@
 	. += "</table>"
 	. = jointext(.,null)
 
-/datum/category_item/player_setup_item/proc/skill_to_button(var/skill, var/level_name, var/current_level, var/selection_level)
+/datum/category_item/player_setup_item/proc/skill_to_button(skill, level_name, current_level, selection_level)
 	if(current_level == selection_level)
 		return "<th><span class='linkOn'>[level_name]</span></th>"
 	return "<th><a href='?src=\ref[src];setskill=\ref[skill];newvalue=[selection_level]'>[level_name]</a></th>"

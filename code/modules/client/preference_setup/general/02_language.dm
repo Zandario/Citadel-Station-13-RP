@@ -3,12 +3,12 @@
 	sort_order = 2
 
 /datum/category_item/player_setup_item/general/language/load_character(savefile/S)
-	from_file(S["language"], pref.alternate_languages)
-	from_file(S["language_prefixes"], pref.language_prefixes)
+	READ_FILE(S["language"], pref.alternate_languages)
+	READ_FILE(S["language_prefixes"], pref.language_prefixes)
 
 /datum/category_item/player_setup_item/general/language/save_character(savefile/S)
-	to_file(S["language"], pref.alternate_languages)
-	to_file(S["language_prefixes"], pref.language_prefixes)
+	WRITE_FILE(S["language"], pref.alternate_languages)
+	WRITE_FILE(S["language_prefixes"], pref.language_prefixes)
 
 /datum/category_item/player_setup_item/general/language/sanitize_character()
 	if(!islist(pref.alternate_languages))

@@ -5,16 +5,16 @@ var/global/list/uplink_locations = list("PDA", "Headset", "None")
 	sort_order = 1
 
 /datum/category_item/player_setup_item/antagonism/basic/load_character(savefile/S)
-	from_file(S["uplinklocation"], pref.uplinklocation)
-	from_file(S["exploit_record"], pref.exploit_record)
-	from_file(S["antag_faction"], pref.antag_faction)
-	from_file(S["antag_vis"], pref.antag_vis)
+	READ_FILE(S["uplinklocation"], pref.uplinklocation)
+	READ_FILE(S["exploit_record"], pref.exploit_record)
+	READ_FILE(S["antag_faction"], pref.antag_faction)
+	READ_FILE(S["antag_vis"], pref.antag_vis)
 
 /datum/category_item/player_setup_item/antagonism/basic/save_character(savefile/S)
-	to_file(S["uplinklocation"], pref.uplinklocation)
-	to_file(S["exploit_record"], pref.exploit_record)
-	to_file(S["antag_faction"], pref.antag_faction)
-	to_file(S["antag_vis"], pref.antag_vis)
+	WRITE_FILE(S["uplinklocation"], pref.uplinklocation)
+	WRITE_FILE(S["exploit_record"], pref.exploit_record)
+	WRITE_FILE(S["antag_faction"], pref.antag_faction)
+	WRITE_FILE(S["antag_vis"], pref.antag_vis)
 
 /datum/category_item/player_setup_item/antagonism/basic/sanitize_character()
 	pref.uplinklocation	= sanitize_inlist(pref.uplinklocation, uplink_locations, initial(pref.uplinklocation))
@@ -56,7 +56,7 @@ var/global/list/uplink_locations = list("PDA", "Headset", "None")
 		if(!choice || !CanUseTopic(user))
 			return TOPIC_NOACTION
 		if(choice == "Other")
-			var/raw_choice = sanitize(tgui_input_text(user, "Please enter a faction.", "Character Preference", null, MAX_NAME_LEN), MAX_NAME_LEN)
+			var/raw_choice = sanitize(tgui_input_text(user, "Please enter a faction.", "Character Preference", pref.antag_faction))
 			if(raw_choice)
 				pref.antag_faction = raw_choice
 		else

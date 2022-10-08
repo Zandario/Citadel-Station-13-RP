@@ -7,12 +7,12 @@
 	sort_order = 3
 
 /datum/category_item/player_setup_item/player_global/media/load_preferences(savefile/S)
-	from_file(S["media_volume"], pref.media_volume)
-	from_file(S["media_player"], pref.media_player)
+	READ_FILE(S["media_volume"], pref.media_volume)
+	READ_FILE(S["media_player"], pref.media_player)
 
 /datum/category_item/player_setup_item/player_global/media/save_preferences(savefile/S)
-	to_file(S["media_volume"], pref.media_volume)
-	to_file(S["media_player"], pref.media_player)
+	WRITE_FILE(S["media_volume"], pref.media_volume)
+	WRITE_FILE(S["media_player"], pref.media_player)
 
 /datum/category_item/player_setup_item/player_global/media/sanitize_preferences()
 	pref.media_volume = isnum(pref.media_volume) ? pref.media_volume : initial(pref.media_volume)

@@ -7,18 +7,18 @@
 	sort_order = 4
 
 /datum/category_item/player_setup_item/player_global/settings/load_preferences(savefile/S)
-	from_file(S["lastchangelog"], pref.lastchangelog)
-	from_file(S["lastnews"], pref.lastnews)
-	from_file(S["default_slot"], pref.default_slot)
-	from_file(S["preferences"], pref.preferences_enabled)
-	from_file(S["preferences_disabled"], pref.preferences_disabled)
+	READ_FILE(S["lastchangelog"], pref.lastchangelog)
+	READ_FILE(S["lastnews"], pref.lastnews)
+	READ_FILE(S["default_slot"], pref.default_slot)
+	READ_FILE(S["preferences"], pref.preferences_enabled)
+	READ_FILE(S["preferences_disabled"], pref.preferences_disabled)
 
 /datum/category_item/player_setup_item/player_global/settings/save_preferences(savefile/S)
-	to_file(S["lastchangelog"], pref.lastchangelog)
-	to_file(S["lastnews"], pref.lastnews)
-	to_file(S["default_slot"], pref.default_slot)
-	to_file(S["preferences"], pref.preferences_enabled)
-	to_file(S["preferences_disabled"], pref.preferences_disabled)
+	WRITE_FILE(S["lastchangelog"], pref.lastchangelog)
+	WRITE_FILE(S["lastnews"], pref.lastnews)
+	WRITE_FILE(S["default_slot"], pref.default_slot)
+	WRITE_FILE(S["preferences"], pref.preferences_enabled)
+	WRITE_FILE(S["preferences_disabled"], pref.preferences_disabled)
 
 /datum/category_item/player_setup_item/player_global/settings/sanitize_preferences()
 	// Ensure our preferences are lists.

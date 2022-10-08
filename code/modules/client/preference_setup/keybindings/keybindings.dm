@@ -30,7 +30,7 @@
 	sort_order = 1
 
 /datum/category_item/player_setup_item/keybinding/hotkey_mode/load_preferences(savefile/S)
-	S["hotkeys"] >> pref.hotkeys
+	READ_FILE(S["hotkeys"], pref.hotkeys)
 
 /datum/category_item/player_setup_item/keybinding/hotkey_mode/save_preferences(savefile/S)
 	WRITE_FILE(S["hotkeys"], pref.hotkeys)
