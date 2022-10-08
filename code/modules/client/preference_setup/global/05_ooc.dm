@@ -16,8 +16,8 @@
 	. += "<b>OOC Preferences</b><hr>"
 	. += "Ignored Players:<br>"
 	for(var/ignored_player in pref.ignored_players)
-		. += " - [ignored_player] - <a href='?src=\ref[src];unignore_player=[ignored_player]'>Unignore Player</a><br>"
-	. += " - <a href='?src=\ref[src];ignore_player=1'>Ignore Another Player</a><br>"
+		. += "- [ignored_player] - <a href='?src=\ref[src];unignore_player=[ignored_player]'>Unignore Player</a><br>"
+	. += "- <a href='?src=\ref[src];ignore_player=1'>Ignore Another Player</a><br>"
 
 /datum/category_item/player_setup_item/player_global/ooc/OnTopic(href, list/href_list, mob/user)
 	if(href_list["unignore_player"])

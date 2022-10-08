@@ -58,7 +58,7 @@ var/datum/antagonist/deathsquad/deathsquad
 		id.icon_state = "centcom"
 	create_radio(DTH_FREQ, player)
 
-/datum/antagonist/deathsquad/update_antag_mob(var/datum/mind/player)
+/datum/antagonist/deathsquad/update_antag_mob(datum/mind/player)
 
 	..()
 

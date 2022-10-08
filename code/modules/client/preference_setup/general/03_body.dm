@@ -227,19 +227,15 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	. = list()
 
 	var/datum/species/mob_species = pref.character_static_species_meta()
-	. += "<table><tr style='vertical-align:top'><td><b>Body</b> "
-	. += "(<a href='?src=\ref[src];random=1'>&reg;</A>)"
-	. += "<br>"
+	. += "<table><tr style='vertical-align:top'><td><b>Body Preferences</b> "
+	. += "<a href='?src=\ref[src];random=1'>&reg;</a>"
+	. += "<hr>"
 	. += "Species: <a href='?src=\ref[src];show_species=1'>[pref.species]</a><br>"
 	. += "Blood Type: <a href='?src=\ref[src];blood_type=1'>[pref.b_type]</a><br>"
-	if(has_flag(mob_species, HAS_SKIN_TONE))
-		. += "Skin Tone: <a href='?src=\ref[src];skin_tone=1'>[-pref.s_tone + 35]/220</a><br>"
-	if(has_flag(mob_species, HAS_BASE_SKIN_COLOR))
-		. += "Base Colour: <a href='?src=\ref[src];base_skin=1'>[pref.s_base]</a><br>"
-	. += "Needs Glasses: <a href='?src=\ref[src];disabilities=[NEARSIGHTED]'><b>[pref.disabilities & NEARSIGHTED ? "Yes" : "No"]</b></a><br>"
+	. += "Needs Glasses: <a href='?src=\ref[src];disabilities=[NEARSIGHTED]'>[pref.disabilities & NEARSIGHTED ? "Yes" : "No"]</a><br>"
+	. += "Respawn Method: <a href='?src=\ref[src];mirror=1'>[pref.mirror ? "Mirror" : "Off-Site Cloning"]</a><br>"
 	. += "Limbs: <a href='?src=\ref[src];limbs=1'>Adjust</a> <a href='?src=\ref[src];reset_limbs=1'>Reset</a><br>"
 	. += "Internal Organs: <a href='?src=\ref[src];organs=1'>Adjust</a><br>"
-	. += "Respawn Method: <a href='?src=\ref[src];mirror=1'><b>[pref.mirror ? "Mirror" : "Off-Site Cloning"]</b></a><br>"
 
 	//display limbs below
 	var/ind = 0
@@ -294,49 +290,49 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		if(status == "cyborg")
 			++ind
 			if(ind > 1)
-				. += ", "
+				. += ", <br>"
 			var/datum/robolimb/R
 			if(pref.rlimb_data[name] && GLOB.all_robolimbs[pref.rlimb_data[name]])
 				R = GLOB.all_robolimbs[pref.rlimb_data[name]]
 			else
 				R = GLOB.basic_robolimb
-			. += "\t[R.company] [organ_name] prosthesis"
+			. += "<nobr>\t[R.company] [organ_name] prosthesis"
 		else if(status == "amputated")
 			++ind
 			if(ind > 1)
-				. += ", "
-			. += "\tAmputated [organ_name]"
+				. += ", <br>"
+			. += "<nobr>\tAmputated [organ_name]"
 		else if(status == "mechanical")
 			++ind
 			if(ind > 1)
-				. += ", "
+				. += ", <br>"
 			switch(organ_name)
 				if ("brain")
-					. += "\tPositronic [organ_name]"
+					. += "<nobr>\tPositronic [organ_name]"
 				else
-					. += "\tSynthetic [organ_name]"
+					. += "<nobr>\tSynthetic [organ_name]"
 		else if(status == "digital")
 			++ind
 			if(ind > 1)
-				. += ", "
-			. += "\tDigital [organ_name]"
+				. += ", <br>"
+			. += "<nobr>\tDigital [organ_name]"
 		else if(status == "assisted")
 			++ind
 			if(ind > 1)
-				. += ", "
+				. += ", <br>"
 			switch(organ_name)
 				if("heart")
-					. += "\tPacemaker-assisted [organ_name]"
+					. += "<nobr>\tPacemaker-assisted [organ_name]"
 				if("lungs")
-					. += "\tAssisted [organ_name]"
+					. += "<nobr>\tAssisted [organ_name]"
 				if("voicebox") //on adding voiceboxes for speaking skrell/similar replacements
-					. += "\tSurgically altered [organ_name]"
+					. += "<nobr>\tSurgically altered [organ_name]"
 				if("eyes")
-					. += "\tRetinal overlayed [organ_name]"
+					. += "<nobr>\tRetinal overlayed [organ_name]"
 				if("brain")
-					. += "\tAssisted-interface [organ_name]"
+					. += "<nobr>\tAssisted-interface [organ_name]"
 				else
-					. += "\tMechanically assisted [organ_name]"
+					. += "<nobr>\tMechanically assisted [organ_name]"
 	if(!ind)
 		. += "\[...\]<br><br>"
 	else
@@ -349,10 +345,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			. += "<tr><td><b>[capitalize(descriptor.chargen_label)]:</b></td><td>[descriptor.get_standalone_value_descriptor(pref.body_descriptors[entry])]</td><td><a href='?src=\ref[src];change_descriptor=[entry]'>Change</a><br/></td></tr>"
 		. += "</table><br>"
 
-	. += "</td><td><b>Preview</b><br>"
-	. += "<br><a href='?src=\ref[src];cycle_bg=1'>Cycle background</a>"
-	. += "<br><a href='?src=\ref[src];toggle_preview_value=[EQUIP_PREVIEW_LOADOUT]'>[pref.equip_preview_mob & EQUIP_PREVIEW_LOADOUT ? "Hide loadout" : "Show loadout"]</a>"
-	. += "<br><a href='?src=\ref[src];toggle_preview_value=[EQUIP_PREVIEW_JOB]'>[pref.equip_preview_mob & EQUIP_PREVIEW_JOB ? "Hide job gear" : "Show job gear"]</a>"
+	. += "</td><td><b>Preview</b><hr>"
+	. += "<br><nobr><a href='?src=\ref[src];cycle_bg=1'>Cycle background</a>"
+	. += "<br><nobr><a href='?src=\ref[src];toggle_preview_value=[EQUIP_PREVIEW_LOADOUT]'>[pref.equip_preview_mob & EQUIP_PREVIEW_LOADOUT ? "Hide loadout" : "Show loadout"]</a>"
+	. += "<br><nobr><a href='?src=\ref[src];toggle_preview_value=[EQUIP_PREVIEW_JOB]'>[pref.equip_preview_mob & EQUIP_PREVIEW_JOB ? "Hide job gear" : "Show job gear"]</a>"
 	. += "</td></tr></table>"
 
 	. += "<b>Hair</b><br>"
@@ -377,6 +373,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		. += "<br><b>Body Color</b><br>"
 		. += "<a href='?src=\ref[src];skin_color=1'>Change Color</a> [color_square(pref.r_skin, pref.g_skin, pref.b_skin)]<br>"
 
+	if(has_flag(mob_species, HAS_BASE_SKIN_COLOR))
+		. += "Base Colour: <a href='?src=\ref[src];base_skin=1'>[pref.s_base]</a><br>"
+
+	if(has_flag(mob_species, HAS_SKIN_TONE))
+		. += "Skin Tone: <a href='?src=\ref[src];skin_tone=1'>[-pref.s_tone + 35]/220</a><br>"
+
 	. += "<br><a href='?src=\ref[src];marking_style=1'>Body Markings +</a><br>"
 	. += "<table>"
 	for(var/M in pref.body_markings)
@@ -398,7 +400,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	var/datum/species/mob_species = pref.character_static_species_meta()
 
 	if(href_list["random"])
-		pref.randomize_appearance_and_body_for()
+		pref.randomize_appearance_and_body_for(mob_species)
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["change_descriptor"])

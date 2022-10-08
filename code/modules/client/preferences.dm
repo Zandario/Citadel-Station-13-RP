@@ -32,7 +32,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	/// Event role prefs flag.
 	var/be_event_role = NONE
 	var/UI_style = UI_STYLE_DEFAULT
-	var/UI_style_color = "#ffffff"
+	var/UI_style_color = "#FFFFFF"
 	var/UI_style_alpha = 255
 	/// Style for popup tooltips.
 	var/tooltipstyle = "Midnight"

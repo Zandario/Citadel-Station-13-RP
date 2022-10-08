@@ -21,25 +21,28 @@
 		pref.language_prefixes = config_legacy.language_prefixes.Copy()
 
 /datum/category_item/player_setup_item/general/language/content()
-	. += "<b>Languages</b><br>"
+	var/html = list()
+	html += "<b>Language Preferences</b><hr>"
 	var/datum/species/S = pref.character_static_species_meta()
 	if(S.language)
-		. += "- [S.language]<br>"
+		html += "- [S.language]<br>"
 	if(S.default_language && S.default_language != S.language)
-		. += "- [S.default_language]<br>"
+		html += "- [S.default_language]<br>"
 	if(S.num_alternate_languages)
 		if(pref.alternate_languages.len)
 			for(var/i = 1 to pref.alternate_languages.len)
 				var/lang = pref.alternate_languages[i]
-				. += "- [lang] - <a href='?src=\ref[src];remove_language=[i]'>remove</a><br>"
+				html += "- [lang] - <a href='?src=\ref[src];remove_language=[i]'>remove</a><br>"
 
 		if(pref.alternate_languages.len < S.num_alternate_languages)
-			. += "- <a href='?src=\ref[src];add_language=1'>add</a> ([S.num_alternate_languages - pref.alternate_languages.len] remaining)<br>"
+			html += "- <a href='?src=\ref[src];add_language=1'>add</a> ([S.num_alternate_languages - pref.alternate_languages.len] remaining)<br>"
 	else
-		. += "- [pref.species] cannot choose secondary languages.<br>"
+		html += "- [pref.species] cannot choose secondary languages.<br>"
 
-	. += "<b>Language Keys</b><br>"
-	. += " [jointext(pref.language_prefixes, " ")] <a href='?src=\ref[src];change_prefix=1'>Change</a> <a href='?src=\ref[src];reset_prefix=1'>Reset</a><br>"
+	html += "Language Keys:<br>"
+	html += " [jointext(pref.language_prefixes, " ")] <a href='?src=\ref[src];change_prefix=1'>Change</a> <a href='?src=\ref[src];reset_prefix=1'>Reset</a><br>"
+
+	return jointext(html,null)
 
 /datum/category_item/player_setup_item/general/language/OnTopic(href, list/href_list, mob/user)
 	if(href_list["remove_language"])

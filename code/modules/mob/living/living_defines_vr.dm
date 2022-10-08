@@ -1,5 +1,4 @@
-/mob
-	var/muffled = 0 					// Used by muffling belly
+/mob/var/muffled = 0 // Used by muffling belly
 
 /mob/living
 	var/ooc_notes = null
@@ -10,4 +9,3 @@
 	var/custom_ask = null
 	var/custom_exclaim = null
 	var/custom_whisper = null
-

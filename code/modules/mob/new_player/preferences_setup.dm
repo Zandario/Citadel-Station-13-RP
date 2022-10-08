@@ -1,6 +1,6 @@
 /datum/preferences
 	//The mob should have a gender you want before running this proc. Will run fine without H
-/datum/preferences/proc/randomize_appearance_and_body_for(var/mob/living/carbon/human/H)
+/datum/preferences/proc/randomize_appearance_and_body_for(mob/target)
 	var/datum/species/current_species = name_static_species_meta(species) || get_static_species_meta(/datum/species/human)
 	set_biological_gender(pick(current_species.genders))
 
@@ -33,8 +33,9 @@
 	pdachoice = rand(1, 7)
 	age = rand(current_species.min_age, current_species.max_age)
 	b_type = RANDOM_BLOOD_TYPE
-	if(H)
-		copy_to(H,1)
+	sensorpref = rand(1,5)
+	if(ishuman(target))
+		copy_to(target, 1)
 
 
 /datum/preferences/proc/randomize_hair_color(var/target = "hair")
@@ -263,10 +264,6 @@
 	COMPILE_OVERLAYS(mannequin)
 
 	update_character_previews(new /mutable_appearance(mannequin))
-
-//TFF 5/8/19 - add randomised sensor setting for random button clicking
-/datum/preferences/randomize_appearance_and_body_for(var/mob/living/carbon/human/H)
-	sensorpref = rand(1,5)
 
 /datum/preferences/proc/get_valid_hairstyles()
 	var/list/valid_hairstyles = list()
