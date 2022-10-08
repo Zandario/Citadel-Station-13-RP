@@ -16,9 +16,12 @@
  * * timeout - The timeout of the textbox, after which the modal will close and qdel itself. Set to zero for no timeout.
  */
 /proc/tgui_input_text(mob/user, message = "", title = "Text Input", default, max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = TRUE, timeout = 0)
-	if (!user)
+	if (istext(user))
+		stack_trace("tgui_input_text() received text for user instead of mob")
+		return
+	if(!user)
 		user = usr
-	if (!istype(user))
+	if(!istype(user))
 		if (istype(user, /client))
 			var/client/client = user
 			user = client.mob
@@ -26,60 +29,24 @@
 			return
 	// Client does NOT have tgui_input on: Returns regular input
 	// if(!user.client.prefs.read_preference(/datum/preference/toggle/tgui_input))
-	// 	if(encode)
-	// 		if(multiline)
-	// 			return stripped_multiline_input(user, message, title, default, max_length)
-	// 		else
-	// 			return stripped_input(user, message, title, default, max_length)
-	// 	else
-	// 		if(multiline)
-	// 			return input(user, message, title, default) as message|null
-	// 		else
-	// 			return input(user, message, title, default) as text|null
+	if(!user.client.prefs.tgui_input_mode)
+		if(encode)
+			if(multiline)
+				return stripped_multiline_input(user, message, title, default, max_length)
+			else
+				return stripped_input(user, message, title, default, max_length)
+		else
+			if(multiline)
+				return input(user, message, title, default) as message|null
+			else
+				return input(user, message, title, default) as text|null
+
 	var/datum/tgui_input_text/text_input = new(user, message, title, default, max_length, multiline, encode, timeout)
 	text_input.ui_interact(user)
 	text_input.wait()
 	if (text_input)
 		. = text_input.entry
 		qdel(text_input)
-
-/**
- * Creates an asynchronous TGUI text input window with an associated callback.
- *
- * This proc should be used to create text inputs that invoke a callback with the user's entry.
- * Arguments:
- * * user - The user to show the text input to.
- * * message - The content of the text input, shown in the body of the TGUI window.
- * * title - The title of the text input modal, shown on the top of the TGUI window.
- * * default - The default (or current) value, shown as a placeholder.
- * * max_length - Specifies a max length for input.
- * * multiline -  Bool that determines if the input box is much larger. Good for large messages, laws, etc.
- * * encode - If toggled, input is filtered via html_encode. Setting this to FALSE gives raw input.
- * * callback - The callback to be invoked when a choice is made.
- */
-/proc/tgui_input_text_async(mob/user, message = "", title = "Text Input", default, max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = TRUE, datum/callback/callback, timeout = 60 SECONDS)
-	if (!user)
-		user = usr
-	if (!istype(user))
-		if (istype(user, /client))
-			var/client/client = user
-			user = client.mob
-		else
-			return
-	// Client does NOT have tgui_input on: Returns regular input
-	// if(!user.client.prefs.read_preference(/datum/preference/toggle/tgui_input))
-	// 	if(encode)
-	// 		if(multiline)
-	// 			return stripped_multiline_input(user, message, title, default, max_length)
-	// 		else
-	// 			return stripped_input(user, message, title, default, max_length)
-	// 	else
-	// 		if(multiline)
-	// 			return input(user, message, title, default) as message|null
-	// 		else
-	// 			return input(user, message, title, default) as text|null
-	var/datum/tgui_input_text/async/text_input = new(user, message, title, default, max_length, multiline, encode, callback, timeout)
-	text_input.ui_interact(user)
 
 /**
  * # tgui_input_text
@@ -148,19 +115,21 @@
 	return GLOB.always_state
 
 /datum/tgui_input_text/ui_static_data(mob/user)
-	. = list()
-	.["large_buttons"] = FALSE//user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_large)
-	.["max_length"] = max_length
-	.["message"] = message
-	.["multiline"] = multiline
-	.["placeholder"] = default // Default is a reserved keyword
-	.["swapped_buttons"] = FALSE//user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_swapped)
-	.["title"] = title
+	var/list/data = list()
+	data["large_buttons"]   = usr.client.prefs.tgui_large_buttons  //user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_large)
+	data["max_length"]      = max_length
+	data["message"]         = message
+	data["multiline"]       = multiline
+	data["placeholder"]     = default // Default is a reserved keyword
+	data["swapped_buttons"] = !usr.client.prefs.tgui_swapped_buttons  //user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_swapped)
+	data["title"]           = title
+	return data
 
 /datum/tgui_input_text/ui_data(mob/user)
-	. = list()
+	var/list/data = list()
 	if(timeout)
-		.["timeout"] = CLAMP01((timeout - (world.time - start_time) - 1 SECONDS) / (timeout - 1 SECONDS))
+		data["timeout"] = CLAMP01((timeout - (world.time - start_time) - 1 SECONDS) / (timeout - 1 SECONDS))
+	return data
 
 /datum/tgui_input_text/ui_act(action, list/params)
 	. = ..()
@@ -168,11 +137,10 @@
 		return
 	switch(action)
 		if("submit")
-			if(max_length)
-				if(length(params["entry"]) > max_length)
-					CRASH("[usr] typed a text string longer than the max length")
-				if(encode && (length(html_encode(params["entry"])) > max_length))
-					to_chat(usr, SPAN_NOTICE("Input uses special characters, thus reducing the maximum length."))
+			if(length(params["entry"]) > max_length)
+				CRASH("[usr] typed a text string longer than the max length")
+			if(encode && (length(html_encode(params["entry"])) > max_length))
+				to_chat(usr, SPAN_NOTICE("Input uses special characters, thus reducing the maximum length."))
 			set_entry(params["entry"])
 			closed = TRUE
 			SStgui.close_uis(src)
@@ -186,6 +154,36 @@
 	if(!isnull(entry))
 		var/converted_entry = encode ? html_encode(entry) : entry
 		src.entry = trim(converted_entry, max_length)
+
+/**
+ * Creates an asynchronous TGUI text input window with an associated callback.
+ *
+ * This proc should be used to create text inputs that invoke a callback with the user's entry.
+ * Arguments:
+ * * user - The user to show the text input to.
+ * * message - The content of the text input, shown in the body of the TGUI window.
+ * * title - The title of the text input modal, shown on the top of the TGUI window.
+ * * default - The default (or current) value, shown as a placeholder.
+ * * max_length - Specifies a max length for input.
+ * * multiline -  Bool that determines if the input box is much larger. Good for large messages, laws, etc.
+ * * encode - If toggled, input is filtered via html_encode. Setting this to FALSE gives raw input.
+ * * callback - The callback to be invoked when a choice is made.
+ */
+/proc/tgui_input_text_async(mob/user, message = "", title = "Text Input", default, max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = TRUE, datum/callback/callback, timeout = 60 SECONDS)
+	if (istext(user))
+		stack_trace("tgui_input_text_async() received text for user instead of mob")
+		return
+	if(!user)
+		user = usr
+	if(!istype(user))
+		if (istype(user, /client))
+			var/client/client = user
+			user = client.mob
+		else
+			return
+
+	var/datum/tgui_input_text/async/text_input = new(user, message, title, default, max_length, multiline, encode, callback, timeout)
+	text_input.ui_interact(user)
 
 /**
  * # async tgui_input_text

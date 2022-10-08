@@ -9,10 +9,12 @@
  *			worldtime2text
  */
 
-//Returns an integer given a hex input, supports negative values "-ff"
-//skips preceding invalid characters
-//breaks when hittin invalid characters thereafter
-// If safe=TRUE, returns null on incorrect input strings instead of CRASHing
+/**
+ * Returns an integer given a hex input, supports negative values "-ff"
+ * skips preceding invalid characters
+ * breaks when hittin invalid characters thereafter
+ *  If safe=TRUE, returns null on incorrect input strings instead of CRASHing
+ */
 /proc/hex2num(hex, safe=FALSE)
 	. = 0
 	var/place = 1
@@ -37,7 +39,7 @@
 		place *= 16
 
 
-// Returns the hex value of a number given a value assumed to be a base-ten value
+/// Returns the hex value of a number given a value assumed to be a base-ten value
 /proc/num2hex(num, padlength)
 	var/global/list/hexdigits = list("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F")
 

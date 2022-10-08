@@ -23,8 +23,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/loadcharcooldown
 
 //! ## Game Preferences
-	var/tgui_fancy = TRUE
-	var/tgui_lock = TRUE
 	/// Saved changlog filesize to detect if there was a change.
 	var/lastchangelog = ""
 	/// Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color.
@@ -39,6 +37,41 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	/// Style for popup tooltips.
 	var/tooltipstyle = "Midnight"
 	var/client_fps = 0
+
+//! ## TGUI Preferences
+	/**
+	 *! Enable fancy TGUI.
+	 * Makes TGUI windows look better, at the cost of compatibility.
+	 */
+	var/tgui_fancy = TRUE
+
+	/**
+	 *! Input: Enable TGUI.
+	 * Renders input boxes in TGUI.
+	 * Disable for byond input boxes.
+	 */
+	var/tgui_input_mode = TRUE
+
+	/**
+	 *! Input: Larger buttons.
+	 * Makes TGUI buttons less traditional, more functional.
+	 */
+	var/tgui_large_buttons = TRUE
+
+	/**
+	 *! Input: Swap Submit/Cancel buttons.
+	 * Makes TGUI buttons less traditional, more functional.
+	 *
+	 * (Submit/Cancel) vs (Cancel/Submit)
+	 */
+	var/tgui_swapped_buttons = FALSE
+
+	/**
+	 *! Lock TGUI to main monitor.
+	 * Locks TGUI windows to your main monitor.
+	 */
+	var/tgui_lock = TRUE
+
 
 //! ## Character Preferences
 	/// Our character's name

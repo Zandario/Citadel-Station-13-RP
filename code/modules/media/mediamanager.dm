@@ -155,7 +155,7 @@
 /datum/media_manager/proc/stop_music()
 	push_music("", 0, 1)
 
-/datum/media_manager/proc/update_volume(var/value)
+/datum/media_manager/proc/update_volume(value)
 	volume = value
 	send_update()
 

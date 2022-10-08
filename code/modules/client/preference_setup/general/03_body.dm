@@ -45,7 +45,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	from_file(S["bgstate"], pref.bgstate)
 	from_file(S["body_descriptors"], pref.body_descriptors)
 	from_file(S["s_base"], pref.s_base)
-	pref.regen_limbs = 1
+	pref.regen_limbs = TRUE
 
 /datum/category_item/player_setup_item/general/body/save_character(savefile/S)
 	to_file(S["species"], pref.species)

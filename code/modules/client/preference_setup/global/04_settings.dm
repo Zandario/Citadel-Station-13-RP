@@ -4,21 +4,21 @@
 
 /datum/category_item/player_setup_item/player_global/settings
 	name = "Settings"
-	sort_order = 2
+	sort_order = 4
 
-/datum/category_item/player_setup_item/player_global/settings/load_preferences(var/savefile/S)
-	S["lastchangelog"]        >> pref.lastchangelog
-	S["lastnews"]             >> pref.lastnews
-	S["default_slot"]	      >> pref.default_slot
-	S["preferences"]          >> pref.preferences_enabled
-	S["preferences_disabled"] >> pref.preferences_disabled
+/datum/category_item/player_setup_item/player_global/settings/load_preferences(savefile/S)
+	from_file(S["lastchangelog"], pref.lastchangelog)
+	from_file(S["lastnews"], pref.lastnews)
+	from_file(S["default_slot"], pref.default_slot)
+	from_file(S["preferences"], pref.preferences_enabled)
+	from_file(S["preferences_disabled"], pref.preferences_disabled)
 
-/datum/category_item/player_setup_item/player_global/settings/save_preferences(var/savefile/S)
-	S["lastchangelog"]        << pref.lastchangelog
-	S["lastnews"]             << pref.lastnews
-	S["default_slot"]         << pref.default_slot
-	S["preferences"]          << pref.preferences_enabled
-	S["preferences_disabled"] << pref.preferences_disabled
+/datum/category_item/player_setup_item/player_global/settings/save_preferences(savefile/S)
+	to_file(S["lastchangelog"], pref.lastchangelog)
+	to_file(S["lastnews"], pref.lastnews)
+	to_file(S["default_slot"], pref.default_slot)
+	to_file(S["preferences"], pref.preferences_enabled)
+	to_file(S["preferences_disabled"], pref.preferences_disabled)
 
 /datum/category_item/player_setup_item/player_global/settings/sanitize_preferences()
 	// Ensure our preferences are lists.
@@ -48,13 +48,13 @@
 		if(!(key in client_preference_keys))
 			pref.preferences_disabled -= key
 
-	pref.lastchangelog	= sanitize_text(pref.lastchangelog, initial(pref.lastchangelog))
-	pref.lastnews		= sanitize_text(pref.lastnews, initial(pref.lastnews))
-	pref.default_slot	= sanitize_integer(pref.default_slot, 1, config_legacy.character_slots, initial(pref.default_slot))
+	pref.lastchangelog = sanitize_text(pref.lastchangelog, initial(pref.lastchangelog))
+	pref.lastnews      = sanitize_text(pref.lastnews, initial(pref.lastnews))
+	pref.default_slot  = sanitize_integer(pref.default_slot, 1, config_legacy.character_slots, initial(pref.default_slot))
 
-/datum/category_item/player_setup_item/player_global/settings/content(var/mob/user)
+/datum/category_item/player_setup_item/player_global/settings/content(mob/user)
 	. = list()
-	. += "<b>Preferences</b><br>"
+	. += "<b>General Preferences</b><hr>"
 	. += "<table>"
 	var/mob/pref_mob = preference_mob()
 	for(var/cp in get_client_preferences())
@@ -66,64 +66,64 @@
 		if(pref_mob.is_preference_enabled(client_pref.key))
 			. += "<td><span class='linkOn'><b>[client_pref.enabled_description]</b></span></td> <td><a href='?src=\ref[src];toggle_off=[client_pref.key]'>[client_pref.disabled_description]</a></td>"
 		else
-			. += "<td><a  href='?src=\ref[src];toggle_on=[client_pref.key]'>[client_pref.enabled_description]</a></td> <td><span class='linkOn'><b>[client_pref.disabled_description]</b></span></td>"
+			. += "<td><a href='?src=\ref[src];toggle_on=[client_pref.key]'>[client_pref.enabled_description]</a></td> <td><span class='linkOn'><b>[client_pref.disabled_description]</b></span></td>"
 		. += "</tr>"
 
 	. += "</table>"
 	return jointext(., "")
 
-/datum/category_item/player_setup_item/player_global/settings/OnTopic(var/href,var/list/href_list, var/mob/user)
+/datum/category_item/player_setup_item/player_global/settings/OnTopic(href, list/href_list, mob/user)
 	var/mob/pref_mob = preference_mob()
-	if(href_list["toggle_on"])
+	if (href_list["toggle_on"])
 		. = pref_mob.set_preference(href_list["toggle_on"], TRUE)
 	else if(href_list["toggle_off"])
 		. = pref_mob.set_preference(href_list["toggle_off"], FALSE)
-	if(.)
+	if (.)
 		return TOPIC_REFRESH
 
 	return ..()
 
-/client/proc/is_preference_enabled(var/preference)
+/client/proc/is_preference_enabled(preference)
 	var/datum/client_preference/cp = get_client_preference(preference)
 	return cp && (cp.key in prefs.preferences_enabled)
 
-/client/proc/set_preference(var/preference, var/set_preference)
+/client/proc/set_preference(preference, set_preference)
 	var/datum/client_preference/cp = get_client_preference(preference)
 	if(!cp)
 		return FALSE
 	preference = cp.key
 
-	if(set_preference && !(preference in prefs.preferences_enabled))
+	if (set_preference && !(preference in prefs.preferences_enabled))
 		return toggle_preference(cp)
 	else if(!set_preference && (preference in prefs.preferences_enabled))
 		return toggle_preference(cp)
 
-/client/proc/toggle_preference(var/preference, var/set_preference)
+/client/proc/toggle_preference(preference, set_preference)
 	var/datum/client_preference/cp = get_client_preference(preference)
 	if(!cp)
 		return FALSE
 	preference = cp.key
 
 	var/enabled
-	if(preference in prefs.preferences_disabled)
+	if (preference in prefs.preferences_disabled)
 		prefs.preferences_enabled  |= preference
 		prefs.preferences_disabled -= preference
 		enabled = TRUE
 		. = TRUE
-	else if(preference in prefs.preferences_enabled)
+	else if (preference in prefs.preferences_enabled)
 		prefs.preferences_enabled  -= preference
 		prefs.preferences_disabled |= preference
 		enabled = FALSE
 		. = TRUE
-	if(.)
+	if (.)
 		cp.toggled(mob, enabled)
 
-/mob/proc/is_preference_enabled(var/preference)
+/mob/proc/is_preference_enabled(preference)
 	if(!client)
 		return FALSE
 	return client.is_preference_enabled(preference)
 
-/mob/proc/set_preference(var/preference, var/set_preference)
+/mob/proc/set_preference(preference, set_preference)
 	if(!client)
 		return FALSE
 	if(!client.prefs)

@@ -16,7 +16,7 @@
 
 		prefs.ignored_players |= key_to_ignore
 		SScharacter_setup.queue_preferences_save(prefs)
-		to_chat(usr, "<span class='notice'>Now ignoring <b>[key_to_ignore]</b>.</span>")
+		to_chat(usr, SPAN_NOTICE("Now ignoring <b>[key_to_ignore]</b>."))
 
 /client/verb/unignore(key_to_unignore as text)
 	set name = "Unignore"

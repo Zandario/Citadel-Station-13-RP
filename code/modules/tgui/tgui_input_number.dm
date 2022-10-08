@@ -16,9 +16,9 @@
  * * round_value - whether the inputted number is rounded down into an integer.
  */
 /proc/tgui_input_number(mob/user, message, title = "Number Input", default = 0, max_value = 10000, min_value = 0, timeout = 0, round_value = TRUE)
-	if (!user)
+	if(!user)
 		user = usr
-	if (!istype(user))
+	if(!istype(user))
 		if (istype(user, /client))
 			var/client/client = user
 			user = client.mob
@@ -26,46 +26,15 @@
 			return
 	// Client does NOT have tgui_input on: Returns regular input
 	// if(!user.client.prefs.read_preference(/datum/preference/toggle/tgui_input))
-	// 	var/input_number = input(user, message, title, default) as null|num
-	// 	return clamp(round_value ? round(input_number) : input_number, min_value, max_value)
+	if(!user.client.prefs.tgui_input_mode)
+		var/input_number = input(user, message, title, default) as null|num
+		return clamp(round_value ? round(input_number) : input_number, min_value, max_value)
 	var/datum/tgui_input_number/number_input = new(user, message, title, default, max_value, min_value, timeout, round_value)
 	number_input.ui_interact(user)
 	number_input.wait()
 	if (number_input)
 		. = number_input.entry
 		qdel(number_input)
-
-/**
- * Creates an asynchronous TGUI number input window with an associated callback.
- *
- * This proc should be used to create number inputs that invoke a callback with the user's entry.
- *
- * Arguments:
- * * user - The user to show the number input to.
- * * message - The content of the number input, shown in the body of the TGUI window.
- * * title - The title of the number input modal, shown on the top of the TGUI window.
- * * default - The default (or current) value, shown as a placeholder. Users can press refresh with this.
- * * max_value - Specifies a maximum value. If none is set, any number can be entered. Pressing "max" defaults to 1000.
- * * min_value - Specifies a minimum value. Often 0.
- * * callback - The callback to be invoked when a choice is made.
- * * timeout - The timeout of the number input, after which the modal will close and qdel itself. Set to zero for no timeout.
- * * round_value - whether the inputted number is rounded down into an integer.
- */
-/proc/tgui_input_number_async(mob/user, message, title = "Number Input", default = 0, max_value = 10000, min_value = 0, datum/callback/callback, timeout = 60 SECONDS, round_value = TRUE)
-	if (!user)
-		user = usr
-	if (!istype(user))
-		if (istype(user, /client))
-			var/client/client = user
-			user = client.mob
-		else
-			return
-	// Client does NOT have tgui_input on: Returns regular input
-	// if(!user.client.prefs.read_preference(/datum/preference/toggle/tgui_input))
-	// 	var/input_number = input(user, message, title, default) as null|num
-	// 	return clamp(round_value ? round(input_number) : input_number, min_value, max_value)
-	var/datum/tgui_input_number/async/number_input = new(user, message, title, default, max_value, min_value, callback, timeout, round_value)
-	number_input.ui_interact(user)
 
 /**
  * # tgui_input_number
@@ -144,19 +113,21 @@
 	return GLOB.always_state
 
 /datum/tgui_input_number/ui_static_data(mob/user)
-	. = list()
-	.["init_value"] = default // Default is a reserved keyword
-	.["large_buttons"] = FALSE//user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_large)
-	.["max_value"] = max_value
-	.["message"] = message
-	.["min_value"] = min_value
-	.["swapped_buttons"] = FALSE//user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_swapped)
-	.["title"] = title
+	var/list/data = list()
+	data["init_value"]      = default // Default is a reserved keyword
+	data["large_buttons"]   = user.client.prefs.tgui_large_buttons  //user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_large)
+	data["max_value"]       = max_value
+	data["message"]         = message
+	data["min_value"]       = min_value
+	data["swapped_buttons"] = !user.client.prefs.tgui_swapped_buttons  //user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_swapped)
+	data["title"]           = title
+	return data
 
 /datum/tgui_input_number/ui_data(mob/user)
-	. = list()
+	var/list/data = list()
 	if(timeout)
-		.["timeout"] = CLAMP01((timeout - (world.time - start_time) - 1 SECONDS) / (timeout - 1 SECONDS))
+		data["timeout"] = CLAMP01((timeout - (world.time - start_time) - 1 SECONDS) / (timeout - 1 SECONDS))
+	return data
 
 /datum/tgui_input_number/ui_act(action, list/params)
 	. = ..()
@@ -182,6 +153,38 @@
 
 /datum/tgui_input_number/proc/set_entry(entry)
 		src.entry = entry
+
+/**
+ * Creates an asynchronous TGUI number input window with an associated callback.
+ *
+ * This proc should be used to create number inputs that invoke a callback with the user's entry.
+ *
+ * Arguments:
+ * * user - The user to show the number input to.
+ * * message - The content of the number input, shown in the body of the TGUI window.
+ * * title - The title of the number input modal, shown on the top of the TGUI window.
+ * * default - The default (or current) value, shown as a placeholder. Users can press refresh with this.
+ * * max_value - Specifies a maximum value. If none is set, any number can be entered. Pressing "max" defaults to 1000.
+ * * min_value - Specifies a minimum value. Often 0.
+ * * callback - The callback to be invoked when a choice is made.
+ * * timeout - The timeout of the number input, after which the modal will close and qdel itself. Set to zero for no timeout.
+ * * round_value - whether the inputted number is rounded down into an integer.
+ */
+/proc/tgui_input_number_async(mob/user, message, title = "Number Input", default = 0, max_value = 10000, min_value = 0, datum/callback/callback, timeout = 60 SECONDS, round_value = TRUE)
+	if (istext(user))
+		stack_trace("tgui_input_num_async() received text for user instead of mob")
+		return
+	if(!user)
+		user = usr
+	if(!istype(user))
+		if (istype(user, /client))
+			var/client/client = user
+			user = client.mob
+		else
+			return
+
+	var/datum/tgui_input_number/async/input = new(user, message, title, default, callback, timeout)
+	input.ui_interact(user)
 
 /**
  * # async tgui_input_number

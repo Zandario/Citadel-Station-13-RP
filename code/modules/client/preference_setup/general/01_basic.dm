@@ -81,7 +81,7 @@
 
 /datum/category_item/player_setup_item/general/basic/OnTopic(href, list/href_list, mob/user)
 	if(href_list["rename"])
-		var/raw_name = tgui_input_text(user, "Choose your character's name:", "Character Name")
+		var/raw_name = tgui_input_text(user, "Choose your character's name:", "Character Name", pref.real_name)
 		if (!isnull(raw_name) && CanUseTopic(user))
 			var/new_name = sanitize_name(raw_name, pref.species, is_FBP())
 			if(new_name)

@@ -6,46 +6,46 @@
 
 // Define a place to save appearance in character setup
 /datum/preferences
-	var/ear_style    // Type of selected ear style
-	var/r_ears = 30  // Ear color.
-	var/g_ears = 30  // Ear color
-	var/b_ears = 30  // Ear color
-	var/r_ears2 = 30 // Ear extra color.
-	var/g_ears2 = 30 // Ear extra color
-	var/b_ears2 = 30 // Ear extra color
-	var/r_ears3 = 30 // Ear tertiary color.
-	var/g_ears3 = 30 // Ear tertiary color
-	var/b_ears3 = 30 // Ear tertiary color
-	var/horn_style    // Type of selected horn style
-	var/r_horn = 30  // Horn color.
-	var/g_horn = 30  // Horn color
-	var/b_horn = 30  // Horn color
-	var/r_horn2 = 30 // Horn extra color.
-	var/g_horn2 = 30 // Horn extra color
-	var/b_horn2 = 30 // Horn extra color
-	var/r_horn3 = 30 // Horn tertiary color.
-	var/g_horn3 = 30 // Horn tertiary color
-	var/b_horn3 = 30 // Horn tertiary color
-	var/tail_style   // Type of selected tail style
-	var/r_tail = 30  // Tail/Taur color
-	var/g_tail = 30  // Tail/Taur color
-	var/b_tail = 30  // Tail/Taur color
-	var/r_tail2 = 30 // For extra overlay.
-	var/g_tail2 = 30 // For extra overlay.
-	var/b_tail2 = 30 // For extra overlay.
-	var/r_tail3 = 30 // For tertiary overlay.
-	var/g_tail3 = 30 // For tertiary overlay.
-	var/b_tail3 = 30 // For tertiary overlay.
-	var/wing_style   // Type of selected wing style
-	var/r_wing = 30  // Wing color
-	var/g_wing = 30  // Wing color
-	var/b_wing = 30  // Wing color
-	var/r_wing2 = 30 // Wing extra color
-	var/g_wing2 = 30 // Wing extra color
-	var/b_wing2 = 30 // Wing extra color
-	var/r_wing3 = 30 // Wing tertiary color
-	var/g_wing3 = 30 // Wing tertiary color
-	var/b_wing3 = 30 // Wing tertiary color
+	var/ear_style        // Type of selected ear style
+	var/r_ears     = 30  // Ear color.
+	var/g_ears     = 30  // Ear color
+	var/b_ears     = 30  // Ear color
+	var/r_ears2    = 30  // Ear extra color.
+	var/g_ears2    = 30  // Ear extra color
+	var/b_ears2    = 30  // Ear extra color
+	var/r_ears3    = 30  // Ear tertiary color.
+	var/g_ears3    = 30  // Ear tertiary color
+	var/b_ears3    = 30  // Ear tertiary color
+	var/horn_style       // Type of selected horn style
+	var/r_horn     = 30  // Horn color.
+	var/g_horn     = 30  // Horn color
+	var/b_horn     = 30  // Horn color
+	var/r_horn2    = 30  // Horn extra color.
+	var/g_horn2    = 30  // Horn extra color
+	var/b_horn2    = 30  // Horn extra color
+	var/r_horn3    = 30  // Horn tertiary color.
+	var/g_horn3    = 30  // Horn tertiary color
+	var/b_horn3    = 30  // Horn tertiary color
+	var/tail_style       // Type of selected tail style
+	var/r_tail     = 30  // Tail/Taur color
+	var/g_tail     = 30  // Tail/Taur color
+	var/b_tail     = 30  // Tail/Taur color
+	var/r_tail2    = 30  // For extra overlay.
+	var/g_tail2    = 30  // For extra overlay.
+	var/b_tail2    = 30  // For extra overlay.
+	var/r_tail3    = 30  // For tertiary overlay.
+	var/g_tail3    = 30  // For tertiary overlay.
+	var/b_tail3    = 30  // For tertiary overlay.
+	var/wing_style       // Type of selected wing style
+	var/r_wing     = 30  // Wing color
+	var/g_wing     = 30  // Wing color
+	var/b_wing     = 30  // Wing color
+	var/r_wing2    = 30  // Wing extra color
+	var/g_wing2    = 30  // Wing extra color
+	var/b_wing2    = 30  // Wing extra color
+	var/r_wing3    = 30  // Wing tertiary color
+	var/g_wing3    = 30  // Wing tertiary color
+	var/b_wing3    = 30  // Wing tertiary color
 	var/r_gradwing = 30
 	var/g_gradwing = 30
 	var/b_gradwing = 30
