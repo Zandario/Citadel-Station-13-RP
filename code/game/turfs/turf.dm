@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(station_turfs)
+
 /// Any floor or wall. What makes up the station and the rest of the map.
 /turf
 	icon = 'icons/turf/floors.dmi'
@@ -84,26 +86,39 @@
  * Turf Initialize
  *
  * Doesn't call parent, see [/atom/proc/Initialize]
+ * Please note, space tiles do not run this code.
+ * This is done because it's called so often that any extra code just slows things down too much.
+ * If you add something relevant here add it there too.
  */
 /turf/Initialize(mapload)
 	SHOULD_CALL_PARENT(FALSE)
-	if(flags & INITIALIZED)
+	if (flags & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags |= INITIALIZED
 
-	// by default, vis_contents is inherited from the turf that was here before
-	vis_contents.len = 0
+	// By default, vis_contents is inherited from the turf that was here before.
+	vis_contents.Cut()
 
 	assemble_baseturfs()
 
-	//atom color stuff
-	if(color)
-		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
+	levelupdate()
 
-/*
-	if (canSmoothWith)
-		canSmoothWith = typelist("canSmoothWith", canSmoothWith)
-*/
+	if (length(smoothing_groups))
+		// In case it's not properly ordered, let's avoid duplicate entries with the same values.
+		sortTim(smoothing_groups)
+		SET_BITFLAG_LIST(smoothing_groups)
+	if (length(canSmoothWith))
+		sortTim(canSmoothWith)
+		// If the last element is higher than the maximum turf-only value, then it must scan turf contents for smoothing targets.
+		if(canSmoothWith[length(canSmoothWith)] > MAX_S_TURF)
+			smoothing_flags |= SMOOTH_OBJ
+		SET_BITFLAG_LIST(canSmoothWith)
+	if (smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		QUEUE_SMOOTH(src)
+
+	// Atom color stuff.
+	if (color)
+		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 
 	for(var/atom/movable/AM in src)
 		Entered(AM)
@@ -118,8 +133,9 @@
 	if (opacity)
 		has_opaque_atom = TRUE
 
-	//Pathfinding related
-	if(movement_cost && pathweight == 1)	// This updates pathweight automatically.
+	// Pathfinding related.
+	// This updates pathweight automatically.
+	if (movement_cost && pathweight == 1)
 		pathweight = movement_cost
 
 	return INITIALIZE_HINT_NORMAL
@@ -150,6 +166,8 @@
 	flags &= ~INITIALIZED
 	// requires_activation = FALSE
 	..()
+
+	vis_contents.Cut()
 
 /turf/ex_act(severity)
 	return 0
