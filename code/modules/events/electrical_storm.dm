@@ -9,7 +9,7 @@
 /datum/event/electrical_storm/get_skybox_image()
 	if(!lightning_color)
 		lightning_color = pick("#ffd98c", "#ebc7ff", "#bdfcff", "#bdd2ff", "#b0ffca", "#ff8178", "#ad74cc")
-	var/image/res = image('icons/skybox/electrobox.dmi', "lightning")
+	var/image/res = image('icons/screen/parallax/skybox/electrobox.dmi', "lightning")
 	res.color = lightning_color
 	res.appearance_flags = RESET_COLOR
 	res.blend_mode = BLEND_ADD

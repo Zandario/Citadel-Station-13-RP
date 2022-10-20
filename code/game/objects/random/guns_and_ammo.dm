@@ -154,7 +154,7 @@
 /obj/random/ammo
 	name = "Random Ammunition"
 	desc = "This is random security ammunition."
-	icon = 'icons/obj/ammo.dmi'
+	icon = 'icons/obj/item/ammo.dmi'
 	icon_state = "45-10"
 
 /obj/random/ammo/item_to_spawn()

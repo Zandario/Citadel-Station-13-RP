@@ -18,7 +18,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////
 /obj/machinery/door_timer
 	name = "Door Timer"
-	icon = 'icons/obj/status_display.dmi'
+	icon = 'icons/obj/machinery/status_display.dmi'
 	icon_state = "frame"
 	desc = "A remote control for a door."
 	req_access = list(access_brig)
@@ -193,7 +193,7 @@
 	if(maptext)
 		maptext = ""
 	cut_overlays()
-	add_overlay(mutable_appearance('icons/obj/status_display.dmi', state))
+	add_overlay(mutable_appearance('icons/obj/machinery/status_display.dmi', state))
 
 //Checks to see if there's 1 line or 2, adds text-icons-numbers/letters over display
 // Stolen from status_display

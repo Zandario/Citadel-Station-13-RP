@@ -2,7 +2,7 @@
 
 /obj/structure/holosign
 	name = "holo sign"
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	anchored = TRUE
 	var/obj/item/holosign_creator/projector
 	var/health = 10
@@ -35,7 +35,7 @@
 /obj/structure/holosign/wetsign
 	name = "wet floor sign"
 	desc = "The words flicker as if they mean nothing."
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	icon_state = "holosign"
 
 /obj/structure/holosign/barrier/combifan
@@ -47,6 +47,3 @@
 	CanAtmosPass = ATMOS_PASS_AIR_BLOCKED
 	layer = ABOVE_TURF_LAYER
 	alpha = 150
-
-
-

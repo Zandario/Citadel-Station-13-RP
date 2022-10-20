@@ -63,7 +63,7 @@
 
 /datum/action/innate/mecha
 	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUNNED | AB_CHECK_ALIVE
-	button_icon = 'icons/effects/actions_mecha.dmi'
+	button_icon = 'icons/obj/effect/actions_mecha.dmi'
 	var/obj/mecha/chassis
 
 /datum/action/innate/mecha/Grant(mob/living/L, obj/mecha/M)

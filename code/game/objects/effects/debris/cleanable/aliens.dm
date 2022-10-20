@@ -1,7 +1,7 @@
 /obj/effect/debris/cleanable/blood/xeno
 	name = "xeno blood"
 	desc = "It's green and acidic. It looks like... <i>blood?</i>"
-	icon = 'icons/effects/blood.dmi'
+	icon = 'icons/obj/effect/blood.dmi'
 	basecolor = "#05EE05"
 
 /obj/effect/debris/cleanable/blood/gibs/xeno

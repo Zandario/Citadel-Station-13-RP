@@ -55,7 +55,7 @@ How they spawn stuff is decided by behaviour vars, which are explained below
 		animation.name = "conjure"
 		animation.density = 0
 		animation.anchored = 1
-		animation.icon = 'icons/effects/effects.dmi'
+		animation.icon = 'icons/obj/effect/effects.dmi'
 		animation.plane = OBJ_PLANE
 		animation.layer = ABOVE_JUNK_LAYER
 		animation.master = summoned_object

@@ -82,7 +82,7 @@
 /obj/random/underdark
 	name = "random underdark loot"
 	desc = "Random loot for Underdark."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "spickaxe"
 
 /obj/random/underdark/item_to_spawn()
@@ -98,7 +98,7 @@
 /obj/random/multiple/underdark/miningdrills
 	name = "random underdark mining tool loot"
 	desc = "Random mining tool loot for Underdark."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "spickaxe"
 
 /obj/random/multiple/underdark/miningdrills/item_to_spawn()

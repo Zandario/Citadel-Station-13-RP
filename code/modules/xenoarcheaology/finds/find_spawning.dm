@@ -388,7 +388,7 @@
 			//humanoid remains
 			apply_prefix = 0
 			item_type = "humanoid [pick("remains","skeleton")]"
-			icon = 'icons/effects/blood.dmi'
+			icon = 'icons/obj/effect/blood.dmi'
 			icon_state = "remains"
 			additional_desc = pick("They appear almost human.",\
 			"They are contorted in a most gruesome way.",\
@@ -418,7 +418,7 @@
 			//xenos remains
 			apply_prefix = 0
 			item_type = "alien [pick("remains","skeleton")]"
-			icon = 'icons/effects/blood.dmi'
+			icon = 'icons/obj/effect/blood.dmi'
 			icon_state = "remainsxeno"
 			additional_desc = pick("It looks vaguely reptilian, but with more teeth.",\
 			"They are faintly unsettling.",\

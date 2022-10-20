@@ -4,7 +4,7 @@
 /obj/structure/mob_spawner
 	name = "mob spawner"
 	desc = "This shouldn't be seen, yell at a dev."
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	icon_state = "rift"
 	anchored = 1
 

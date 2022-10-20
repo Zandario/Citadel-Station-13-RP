@@ -11,7 +11,7 @@
 *******/
 /obj/item/camera_film
 	name = "film cartridge"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	desc = "A camera film cartridge. Insert it into a camera to reload it."
 	icon_state = "film"
 	item_state = "camera"
@@ -25,7 +25,7 @@ var/global/photo_count = 0
 
 /obj/item/photo
 	name = "photo"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "photo"
 	item_state = "paper"
 	w_class = ITEMSIZE_SMALL
@@ -86,7 +86,7 @@ var/global/photo_count = 0
 **************/
 /obj/item/storage/photo_album
 	name = "Photo album"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "album"
 	item_state = "briefcase"
 	can_hold = list(/obj/item/photo)
@@ -106,7 +106,7 @@ var/global/photo_count = 0
 *********/
 /obj/item/camera
 	name = "camera"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	desc = "A polaroid camera. 10 photos left."
 	icon_state = "camera"
 	item_state = "camera"
@@ -158,7 +158,7 @@ var/global/photo_count = 0
 
 	//Bigger icon base to capture those icons that were shifted to the next tile
 	//i.e. pretty much all wall-mounted machinery
-	var/icon/res = icon('icons/effects/96x96.dmi', "")
+	var/icon/res = icon('icons/obj/effect/96x96.dmi', "")
 	res.Scale(size*32, size*32)
 	// Initialize the photograph to black.
 	res.Blend("#000", ICON_OVERLAY)
@@ -272,7 +272,7 @@ var/global/photo_count = 0
 
 	var/icon/small_img = icon(photoimage)
 	var/icon/tiny_img = icon(photoimage)
-	var/icon/ic = icon('icons/obj/items.dmi',"photo")
+	var/icon/ic = icon('icons/obj/item/items.dmi',"photo")
 	var/icon/pc = icon('icons/obj/bureaucracy.dmi', "photo")
 	small_img.Scale(8, 8)
 	tiny_img.Scale(4, 4)

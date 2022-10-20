@@ -16,7 +16,7 @@
 /obj/random/trash //Mostly remains and cleanable decals. Stuff a janitor could clean up
 	name = "random trash"
 	desc = "This is some random trash."
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	icon_state = "greenglow"
 
 /obj/random/trash/item_to_spawn()
@@ -99,7 +99,7 @@
 	name = "Random Humanoid Remains"
 	desc = "This is a random pile of remains."
 	spawn_nothing_percentage = 15
-	icon = 'icons/effects/blood.dmi'
+	icon = 'icons/obj/effect/blood.dmi'
 	icon_state = "remains"
 
 /obj/random/humanoidremains/item_to_spawn()

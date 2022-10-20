@@ -78,6 +78,6 @@
 /obj/item/tracker_electronics
 
 	name = "tracker electronics"
-	icon = 'icons/obj/doors/door_assembly.dmi'
+	icon = 'icons/obj/machinery/doors/door_assembly.dmi'
 	icon_state = "door_electronics"
 	w_class = ITEMSIZE_SMALL

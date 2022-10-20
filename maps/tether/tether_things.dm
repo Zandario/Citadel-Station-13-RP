@@ -82,7 +82,7 @@
 		teleport_y = src.y
 
 /obj/effect/step_trigger/teleporter/to_underdark
-	icon = 'icons/obj/structures/stairs_64x64.dmi'
+	icon = 'icons/obj/structure/stairs_64x64.dmi'
 	icon_state = ""
 	invisibility = 0
 /obj/effect/step_trigger/teleporter/to_underdark/Initialize(mapload)
@@ -95,7 +95,7 @@
 			teleport_z = Z.z
 
 /obj/effect/step_trigger/teleporter/from_underdark
-	icon = 'icons/obj/structures/stairs_64x64.dmi'
+	icon = 'icons/obj/structure/stairs_64x64.dmi'
 	icon_state = ""
 	invisibility = 0
 /obj/effect/step_trigger/teleporter/from_underdark/Initialize(mapload)
@@ -126,4 +126,3 @@
 // Our map is small, if the supermatter is ejected lets not have it just blow up somewhere else
 /obj/machinery/power/supermatter/touch_map_edge()
 	qdel(src)
-

@@ -196,12 +196,12 @@
 	color = "#0000ff"
 
 /atom/movable/screen/fullscreen/tiled/noise
-	icon = 'icons/effects/static.dmi'
+	icon = 'icons/obj/effect/static.dmi'
 	icon_state = "1 light"
 	layer = FULLSCREEN_LAYER
 
 /atom/movable/screen/fullscreen/tiled/scanline
-	icon = 'icons/effects/static.dmi'
+	icon = 'icons/obj/effect/static.dmi'
 	icon_state = "scanlines"
 	alpha = 50
 	layer = FULLSCREEN_LAYER

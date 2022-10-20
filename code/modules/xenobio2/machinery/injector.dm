@@ -11,7 +11,7 @@
 	density = 1
 	anchored = 1
 	use_power = USE_POWER_IDLE
-	icon = 'icons/obj/biogenerator.dmi'
+	icon = 'icons/obj/machinery/biogenerator.dmi'
 	icon_state = "biogen-work"
 	var/mob/living/occupant
 	var/obj/item/reagent_containers/glass/beaker

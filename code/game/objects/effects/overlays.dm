@@ -6,7 +6,7 @@
 /// Not actually a projectile, just an effect.
 /obj/effect/overlay/beam
 	name="beam"
-	icon='icons/effects/beam.dmi'
+	icon='icons/obj/effect/beam.dmi'
 	icon_state="b_beam"
 	var/tmp/atom/BeamSource
 
@@ -47,7 +47,7 @@
 /obj/effect/overlay/wallrot
 	name = "wallrot"
 	desc = "Ick..."
-	icon = 'icons/effects/wallrot.dmi'
+	icon = 'icons/obj/effect/wallrot.dmi'
 	anchored = 1
 	density = 1
 	plane = MOB_PLANE
@@ -125,7 +125,7 @@
 /obj/effect/overlay/energy_ball
 	name = "energy ball"
 	desc = "An energy ball."
-	icon = 'icons/obj/tesla_engine/energy_ball.dmi'
+	icon = 'icons/obj/machinery/power/tesla_engine/energy_ball.dmi'
 	icon_state = "energy_ball"
 	plane = ABOVE_LIGHTING_PLANE
 	pixel_x = -32

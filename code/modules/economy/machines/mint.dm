@@ -339,7 +339,7 @@
 
 /obj/machinery/coinbank
 	name = "\improper Coin Bank"
-	icon = 'icons/obj/vending.dmi'
+	icon = 'icons/obj/machinery/vending.dmi'
 	icon_state = "coinvend"
 	density = 1
 	anchored = 1

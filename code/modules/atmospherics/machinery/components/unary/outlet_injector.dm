@@ -3,7 +3,7 @@
 //When it receives the "inject" signal, it will try to pump it's entire contents into the environment regardless of pressure, using power.
 
 /obj/machinery/atmospherics/component/unary/outlet_injector
-	icon = 'icons/atmos/injector.dmi'
+	icon = 'icons/obj/atmospherics/injector.dmi'
 	icon_state = "map_injector"
 	pipe_state = "injector"
 

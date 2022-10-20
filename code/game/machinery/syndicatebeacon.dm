@@ -72,7 +72,7 @@
 /obj/machinery/power/singularity_beacon
 	name = "ominous beacon"
 	desc = "This looks suspicious..."
-	icon = 'icons/obj/singularity.dmi'
+	icon = 'icons/obj/machinery/power/singularity.dmi'
 	icon_state = "beacon"
 
 	anchored = FALSE

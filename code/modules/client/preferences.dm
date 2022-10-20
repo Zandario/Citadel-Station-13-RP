@@ -369,7 +369,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(!BG)
 		BG = new
 		BG.plane = TURF_PLANE
-		BG.icon = 'icons/effects/setup_backgrounds_vr.dmi'
+		BG.icon = 'icons/obj/effect/setup_backgrounds_vr.dmi'
 		BG.pref = src
 		LAZYSET(char_render_holders, "BG", BG)
 		client.screen |= BG

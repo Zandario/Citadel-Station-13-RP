@@ -40,7 +40,7 @@
 	to_chat(H, "<font color=#4F49AF><b>You are now nearly invisible to normal detection.</b></font>")
 	H.alpha = 5
 
-	anim(get_turf(H), H, 'icons/effects/effects.dmi', "electricity",null,20,null)
+	anim(get_turf(H), H, 'icons/obj/effect/effects.dmi', "electricity",null,20,null)
 
 	H.visible_message("[H.name] vanishes into thin air!")
 
@@ -54,7 +54,7 @@
 	to_chat(H, "<span class='danger'>You are now visible.</span>")
 
 	anim(get_turf(H), H,'icons/mob/mob.dmi',,"uncloak",,H.dir)
-	anim(get_turf(H), H, 'icons/effects/effects.dmi', "electricity",null,20,null)
+	anim(get_turf(H), H, 'icons/obj/effect/effects.dmi', "electricity",null,20,null)
 	H.alpha = initial(H.alpha)
 
 	for(var/mob/O in oviewers(H))

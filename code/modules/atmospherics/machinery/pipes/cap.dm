@@ -4,7 +4,7 @@
 /obj/machinery/atmospherics/pipe/cap
 	name = "pipe endcap"
 	desc = "An endcap for pipes"
-	icon = 'icons/atmos/pipes.dmi'
+	icon = 'icons/obj/atmospherics/pipes.dmi'
 	icon_state = ""
 	level = 2
 

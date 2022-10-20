@@ -3,7 +3,7 @@
 /obj/item/toy/tennis
 	name = "tennis ball"
 	desc = "A classical tennis ball. It appears to have faint bite marks scattered all over its surface."
-	icon = 'icons/obj/balls.dmi'
+	icon = 'icons/obj/item/toy/balls.dmi'
 	icon_state = "tennis_classic"
 	item_icons = list(
 		SLOT_ID_LEFT_HAND = 'icons/mob/inhands/balls_left.dmi',

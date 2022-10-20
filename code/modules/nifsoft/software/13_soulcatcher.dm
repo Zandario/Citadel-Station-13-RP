@@ -509,7 +509,7 @@
 //A projected AR soul thing
 /mob/observer/eye/ar_soul
 	plane = PLANE_AUGMENTED
-	icon = 'icons/obj/machines/ar_elements.dmi'
+	icon = 'icons/obj/machinery/ar_elements.dmi'
 	icon_state = "beacon"
 	var/mob/living/carbon/human/parent_human
 
@@ -532,7 +532,7 @@
 		brainmob.client.prefs.dress_preview_mob(dummy)
 		dummy.regenerate_icons()
 		var/image/alpha_mask = new
-		alpha_mask.icon = 'icons/effects/effects.dmi'
+		alpha_mask.icon = 'icons/obj/effect/effects.dmi'
 		alpha_mask.icon_state = "scanline"
 		alpha_mask.layer = FLY_LAYER
 		alpha_mask.blend_mode = BLEND_SUBTRACT

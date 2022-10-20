@@ -745,7 +745,7 @@ GLOBAL_LIST_INIT(default_medbay_channels, list(
 	listening = FALSE
 
 /obj/item/radio/phone
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "red_phone"
 	anchored = FALSE
 	broadcasting = FALSE

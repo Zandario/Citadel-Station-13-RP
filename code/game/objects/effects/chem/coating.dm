@@ -3,7 +3,7 @@
  */
 
 /obj/effect/debris/cleanable/chemcoating
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	icon_state = "dirt"
 
 /obj/effect/debris/cleanable/chemcoating/Initialize(mapload)

@@ -8,7 +8,7 @@
 /obj/structure/bonfire
 	name = "bonfire"
 	desc = "For grilling, broiling, charring, smoking, heating, roasting, toasting, simmering, searing, melting, and occasionally burning things."
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structure/structures.dmi'
 	icon_state = "bonfire"
 	density = FALSE
 	anchored = TRUE
@@ -62,7 +62,7 @@
 				buckle_allowed = TRUE
 				buckle_flags |= BUCKLING_REQUIRES_RESTRAINTS
 				to_chat(user, SPAN_NOTICE("You add a rod to \the [src]."))
-				var/mutable_appearance/rod_underlay = mutable_appearance('icons/obj/structures.dmi', "bonfire_rod")
+				var/mutable_appearance/rod_underlay = mutable_appearance('icons/obj/structure/structures.dmi', "bonfire_rod")
 				rod_underlay.pixel_y = 16
 				rod_underlay.appearance_flags = RESET_COLOR|PIXEL_SCALE|TILE_BOUND
 				underlays += rod_underlay
@@ -267,7 +267,7 @@
 /obj/structure/fireplace //more like a space heater than a bonfire. A cozier alternative to both.
 	name = "fireplace"
 	desc = "The sound of the crackling hearth reminds you of home."
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structure/structures.dmi'
 	icon_state = "fireplace"
 	density = TRUE
 	anchored = TRUE
@@ -327,7 +327,7 @@
 		qdel(consumed_fuel) // Don't know, don't care.
 		return FALSE
 
-	
+
 	if(consumed_fuel.use(1))
 		if(istype(consumed_fuel, /obj/item/stack/material/log))
 			next_fuel_consumption = world.time + 10 MINUTES

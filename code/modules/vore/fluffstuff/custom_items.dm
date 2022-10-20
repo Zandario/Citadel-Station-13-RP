@@ -1677,7 +1677,7 @@
 /obj/item/fluff/injector //Injectors. Custom item used to explain wild changes in a mob's body or chemistry.
 	name = "Injector"
 	desc = "Some type of injector."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "dnainjector"
 
 /obj/item/fluff/injector/monkey

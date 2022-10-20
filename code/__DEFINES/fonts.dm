@@ -21,5 +21,8 @@
 ////GLOBAL_LIST_INIT(pda_styles, sort_list(list(MONO, VT, ORBITRON, SHARE)))
 
 /// Emoji icon set
-#define EMOJI_SET 'icons/ui_icons/emoji/emoji.dmi'
-#define EMOJI32_SET 'icons/ui_icons/emoji/emoji32.dmi'
+#define CHAT_EMOJI_SET 'icons/assets/chat/emoji.dmi'
+#define CHAT_EMOJI32_SET 'icons/assets/chat/emoji32.dmi'
+
+/// Chat Tag icon set
+#define CHAT_TAG_SET 'icons/assets/chat/tags.dmi'

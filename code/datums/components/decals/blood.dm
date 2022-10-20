@@ -10,7 +10,7 @@
 /datum/component/decal/blood/generate_appearance(_icon, _icon_state, _dir, _layer, _color)
 	var/obj/item/I = parent
 	if(!_icon)
-		_icon = 'icons/effects/blood.dmi'
+		_icon = 'icons/obj/effect/blood.dmi'
 	if(!_icon_state)
 		_icon_state = "itemblood"
 	var/icon = initial(I.icon)

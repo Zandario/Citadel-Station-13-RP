@@ -27,7 +27,7 @@
 	var/icon/west = getFlatIcon(N, WEST, no_anim = no_anim)
 	qdel(N)
 	//Starts with a blank icon because of byond bugs.
-	var/icon/full = icon('icons/system/blank_32x32.dmi', "")
+	var/icon/full = icon('icons/screen/rendering/blank_32x32.dmi', "")
 	full.Insert(north, dir = NORTH)
 	full.Insert(south, dir = SOUTH)
 	full.Insert(east, dir = EAST)
@@ -45,7 +45,7 @@
 
 /proc/getFlatIcon_new_actual(image/A, defdir, no_anim, deficon, start)
 	// start with blank image
-	var/static/icon/template = icon('icons/system/blank_32x32.dmi', "")
+	var/static/icon/template = icon('icons/screen/rendering/blank_32x32.dmi', "")
 
 	#define BLANK icon(template)
 
@@ -286,7 +286,7 @@
 // Creates a single icon from a given /atom or /image.  Only the first argument is required.
 /proc/getFlatIcon_old(image/A, defdir, deficon, defstate, defblend, start = TRUE, no_anim = FALSE)
 	//Define... defines.
-	var/static/icon/flat_template = icon('icons/effects/effects.dmi', "nothing")
+	var/static/icon/flat_template = icon('icons/obj/effect/effects.dmi', "nothing")
 
 	#define BLANK icon(flat_template)
 	#define SET_SELF(SETVAR) do { \

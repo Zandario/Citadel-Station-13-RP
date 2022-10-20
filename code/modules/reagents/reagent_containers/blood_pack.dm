@@ -18,7 +18,7 @@
 	var/base_name = " "
 	desc = "Holds liquids used for transfusion."
 	var/base_desc = " "
-	icon = 'icons/obj/bloodpack.dmi'
+	icon = 'icons/obj/item/bloodpack.dmi'
 	icon_state = "empty"
 	item_state = "bloodpack_empty"
 	drop_sound = 'sound/items/drop/food.ogg'

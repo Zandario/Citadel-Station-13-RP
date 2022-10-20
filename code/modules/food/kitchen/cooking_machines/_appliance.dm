@@ -8,7 +8,7 @@
 /obj/machinery/appliance
 	name = "cooker"
 	desc = "You shouldn't be seeing this!"
-	icon = 'icons/obj/cooking_machines.dmi'
+	icon = 'icons/obj/machinery/cooking_machines.dmi'
 	var/appliancetype = 0
 	density = 1
 	anchored = 1

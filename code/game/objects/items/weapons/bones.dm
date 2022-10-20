@@ -2,7 +2,7 @@
 /obj/item/bone
 	name = "bone"
 	desc = "A non-descript bone. It's so old and worn you can barely tell which part of the body it's from."
-	icon = 'icons/obj/bones.dmi'
+	icon = 'icons/obj/item/bones.dmi'
 	icon_state = "bone"
 	force = 5
 	throw_force = 6

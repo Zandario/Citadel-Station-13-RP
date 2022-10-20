@@ -338,7 +338,7 @@
 	damage = 0
 	nodamage = TRUE
 	hitsound = 'sound/items/bikehorn.ogg'
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "banana"
 	range = 200
 

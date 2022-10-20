@@ -3,7 +3,7 @@
 /obj/effect/map_effect
 	anchored = TRUE
 	invisibility = 99 // So a badmin can go view these by changing their see_invisible.
-	icon = 'icons/effects/map_effects.dmi'
+	icon = 'icons/obj/effect/map_effects.dmi'
 
 	// Below vars concern check_for_player_proximity() and is used to not waste effort if nobody is around to appreciate the effects.
 	var/always_run = FALSE				// If true, the game will not try to suppress this from firing if nobody is around to see it.

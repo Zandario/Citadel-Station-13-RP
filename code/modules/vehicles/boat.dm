@@ -31,7 +31,7 @@
 /obj/vehicle/ridden/boat/dragon
 	name = "dragon boat"
 	desc = "It's a large wooden boat, carved to have a nordic-looking dragon on the front. Looks like it'll hold five people. Oars not included."
-	icon = 'icons/obj/64x32.dmi'
+	icon = 'icons/obj/vehicle/64x32.dmi'
 	icon_state = "dragon_boat"
 	integrity = 250
 	max_integrity = 250

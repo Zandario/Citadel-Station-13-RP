@@ -47,7 +47,7 @@ GLOBAL_DATUM_INIT(global_hud, /datum/global_hud, new)
 /datum/global_hud/New()
 	//static overlay effect for cameras and the like
 	whitense = new /atom/movable/screen/global_screen()
-	whitense.icon = 'icons/effects/static.dmi'
+	whitense.icon = 'icons/obj/effect/static.dmi'
 	whitense.icon_state = "1 light"
 
 	//darksight 'hanger' for attached icons

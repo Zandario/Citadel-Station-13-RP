@@ -3,7 +3,7 @@
 /obj/structure/prop
 	name = "something"
 	desc = "My description is broken, bug a developer."
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structure/structures.dmi'
 	icon_state = "safe"
 	density = TRUE
 	anchored = TRUE

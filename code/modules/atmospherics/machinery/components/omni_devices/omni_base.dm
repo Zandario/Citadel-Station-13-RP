@@ -3,7 +3,7 @@
 //--------------------------------------------
 /obj/machinery/atmospherics/component/quaternary
 	name = "omni device"
-	icon = 'icons/atmos/omni_devices_vr.dmi'
+	icon = 'icons/obj/atmospherics/omni_devices_vr.dmi'
 	icon_state = "base"
 	use_power = USE_POWER_IDLE
 	initialize_directions = 0

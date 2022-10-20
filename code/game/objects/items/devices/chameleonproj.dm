@@ -47,7 +47,7 @@
 		active_dummy = null
 		to_chat(usr, "<span class='notice'>You deactivate the [src].</span>")
 		var/obj/effect/overlay/T = new /obj/effect/overlay(get_turf(src))
-		T.icon = 'icons/effects/effects.dmi'
+		T.icon = 'icons/obj/effect/effects.dmi'
 		flick("emppulse",T)
 		spawn(8) qdel(T)
 	else
@@ -59,7 +59,7 @@
 		qdel(O)
 		to_chat(usr, "<span class='notice'>You activate the [src].</span>")
 		var/obj/effect/overlay/T = new/obj/effect/overlay(get_turf(src))
-		T.icon = 'icons/effects/effects.dmi'
+		T.icon = 'icons/obj/effect/effects.dmi'
 		flick("emppulse",T)
 		spawn(8) qdel(T)
 

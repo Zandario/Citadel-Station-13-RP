@@ -1,7 +1,7 @@
 // Making this separate from /obj/landmark until that mess can be dealt with
 /obj/effect/shuttle_landmark
 	name = "Nav Point"
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	icon_state = "energynet"
 	anchored = 1
 	unacidable = 1

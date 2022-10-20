@@ -6,7 +6,7 @@
 // Allows the Eye to stream these chunks and know what it can and cannot see.
 
 /datum/obfuscation
-	var/icon = 'icons/effects/cameravis.dmi'
+	var/icon = 'icons/obj/effect/cameravis.dmi'
 	var/icon_state = "black"
 
 /datum/chunk

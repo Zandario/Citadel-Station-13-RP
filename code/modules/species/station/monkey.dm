@@ -115,7 +115,7 @@
 	name_plural = SPECIES_MONKEY_AKULA
 	icobase = 'icons/mob/species/monkey/body_sobaka.dmi'
 	deform  = 'icons/mob/species/monkey/body_sobaka.dmi'
-	tail = null //The tail is part of its body due to tail using the "icons/effects/species.dmi" file. It must be null, or they'll have a chimp tail.
+	tail = null //The tail is part of its body due to tail using the "icons/obj/effect/species.dmi" file. It must be null, or they'll have a chimp tail.
 	greater_form = SPECIES_AKULA
 	default_language = LANGUAGE_SKRELLIAN //Closest we have.
 

@@ -185,7 +185,7 @@
 
 /datum/weather
 	var/name = "weather base"
-	var/icon = 'icons/effects/weather.dmi'
+	var/icon = 'icons/obj/effect/weather.dmi'
 	/// Icon to apply to turf undergoing weather.
 	var/icon_state = null
 	/// Temperature to apply when at noon.
@@ -325,7 +325,7 @@
 
 /// All this does is hold the weather icon.
 /atom/movable/weather_visuals
-	icon = 'icons/effects/weather.dmi'
+	icon = 'icons/obj/effect/weather.dmi'
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	plane = PLANE_PLANETLIGHTING
 

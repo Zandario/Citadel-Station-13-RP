@@ -248,7 +248,7 @@
 	//This inherits from the robot cryo, so synths can be properly cryo'd.  If a non-synth enters and is cryo'd, ..() is called and it'll still work.
 	name = "Airlock of Wonders"
 	desc = "An airlock that isn't an airlock, and shouldn't exist.  Yell at a coder/mapper."
-	icon = 'icons/obj/doors/Doorint.dmi'
+	icon = 'icons/obj/machinery/doors/Doorint.dmi'
 	icon_state = "door_open"
 	base_icon_state = "door_open"
 	occupied_icon_state = "door_closed"
@@ -280,7 +280,7 @@
 /obj/machinery/cryopod/robot/door/gateway
 	name = "Gateway"
 	desc = "The gateway you might've came in from.  You could leave the colony easily using this."
-	icon = 'icons/obj/machines/gateway.dmi'
+	icon = 'icons/obj/machinery/gateway.dmi'
 	icon_state = "offcenter"
 	base_icon_state = "offcenter"
 	occupied_icon_state = "oncenter"
@@ -696,7 +696,7 @@
 /obj/machinery/cryopod/robot/door/gateway
 	name = "public teleporter"
 	desc = "The short-range teleporter you might've came in from. You could leave easily using this."
-	icon = 'icons/obj/machines/teleporter.dmi'
+	icon = 'icons/obj/machinery/teleporter.dmi'
 	icon_state = "pad_idle"
 	base_icon_state = "pad"
 	occupied_icon_state = "pad_active"

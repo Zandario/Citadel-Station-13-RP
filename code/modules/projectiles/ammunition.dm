@@ -1,7 +1,7 @@
 /obj/item/ammo_casing
 	name = "bullet casing"
 	desc = "A bullet casing."
-	icon = 'icons/obj/ammo.dmi'
+	icon = 'icons/obj/item/ammo.dmi'
 	icon_state = "s-casing"
 	slot_flags = SLOT_BELT | SLOT_EARS
 	throw_force = 1
@@ -62,7 +62,7 @@
 	name = "magazine"
 	desc = "A magazine for some kind of gun."
 	icon_state = ".357"
-	icon = 'icons/obj/ammo.dmi'
+	icon = 'icons/obj/item/ammo.dmi'
 	slot_flags = SLOT_BELT
 	item_state = "syringe_kit"
 	matter = list(MAT_STEEL = 500)

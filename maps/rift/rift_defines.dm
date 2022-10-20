@@ -44,8 +44,7 @@
 		Z_LEVEL_WEST_DEEP,
 		Z_LEVEL_WEST_CAVERN)
 
-	lobby_icon = 'icons/misc/title_vr.dmi'
-	lobby_screens = list("title1", "title2", "title3", "title4", "title5", "title6", "title7", "title8", "bnny")
+	lobby_screens = list("title1", "title2", "title3", "title4", "title5", "title6", "title7", "bnny")
 
 	admin_levels = list()
 	sealed_levels = list()
@@ -320,4 +319,3 @@
 	z = Z_LEVEL_MISC
 	name = "Orbital Relay"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
-

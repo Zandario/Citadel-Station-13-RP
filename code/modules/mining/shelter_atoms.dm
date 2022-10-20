@@ -192,7 +192,7 @@
 /obj/item/gps/computer
 	name = "pod computer"
 	icon_state = "pod_computer"
-	icon = 'icons/obj/survival_pod_comp.dmi'
+	icon = 'icons/obj/machinery/survival_pod_comp.dmi'
 	anchored = TRUE
 	density = TRUE
 	pixel_y = -32
@@ -226,7 +226,7 @@
 	name = "survival pod storage"
 	desc = "A heated storage unit."
 	icon_state = "donkvendor"
-	icon = 'icons/obj/survival_pod_vend.dmi'
+	icon = 'icons/obj/machinery/survival_pod_vend.dmi'
 	icon_on = "donkvendor"
 	icon_off = "donkvendor"
 	light_range = 5

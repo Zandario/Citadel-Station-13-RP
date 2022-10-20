@@ -1,5 +1,5 @@
 /obj/machinery/atmospherics/tvalve
-	icon = 'icons/atmos/tvalve.dmi'
+	icon = 'icons/obj/atmospherics/tvalve.dmi'
 	icon_state = "map_tvalve0"
 	construction_type = /obj/item/pipe/trinary/flippable
 	pipe_state = "mtvalve"
@@ -255,7 +255,7 @@
 /obj/machinery/atmospherics/tvalve/digital		// can be controlled by AI
 	name = "digital switching valve"
 	desc = "A digitally controlled valve."
-	icon = 'icons/atmos/digital_tvalve.dmi'
+	icon = 'icons/obj/atmospherics/digital_tvalve.dmi'
 	pipe_state = "dtvalve"
 
 	var/frequency = 0

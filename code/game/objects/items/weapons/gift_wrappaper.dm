@@ -10,7 +10,7 @@
 /obj/item/a_gift
 	name = "gift"
 	desc = "PRESENTS!!!! eek!"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "gift1"
 	item_state = "gift1"
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
@@ -198,7 +198,7 @@
 /obj/item/wrapping_paper
 	name = "wrapping paper"
 	desc = "You can use this to wrap items in."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "wrap_paper"
 	var/amount = 20.0
 	drop_sound = 'sound/items/drop/wrapper.ogg'

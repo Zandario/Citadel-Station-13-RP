@@ -14,7 +14,7 @@
 	density = FALSE
 	opacity = FALSE
 
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	move_resist = INFINITY
 	obj_flags = NONE
 	vis_flags = VIS_INHERIT_PLANE

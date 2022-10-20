@@ -5,7 +5,7 @@
 /obj/item/autopsy_scanner
 	name = "biopsy scanner"
 	desc = "Extracts information on wounds."
-	icon = 'icons/obj/autopsy_scanner.dmi'
+	icon = 'icons/obj/item/autopsy_scanner.dmi'
 	icon_state = ""
 	item_state = "autopsy_scanner"
 	w_class = ITEMSIZE_SMALL

@@ -26,7 +26,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/flame/match
 	name = "match"
 	desc = "A simple match stick, used for lighting fine smokables."
-	icon = 'icons/obj/cigarettes.dmi'
+	icon = 'icons/obj/item/smoking.dmi'
 	icon_state = "match_unlit"
 	var/burnt = 0
 	var/smoketime = 5
@@ -520,7 +520,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/rollingpaper
 	name = "rolling paper"
 	desc = "A small, thin piece of easily flammable paper, commonly used for rolling and smoking various dried plants."
-	icon = 'icons/obj/cigarettes.dmi'
+	icon = 'icons/obj/item/smoking.dmi'
 	w_class = ITEMSIZE_TINY
 	icon_state = "cig paper"
 
@@ -543,7 +543,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/rollingblunt
 	name = "blunt paper"
 	desc = "A small, thin piece of tobacco-based paper, commonly used for rolling and smoking various dried plants."
-	icon = 'icons/obj/cigarettes.dmi'
+	icon = 'icons/obj/item/smoking.dmi'
 	w_class = ITEMSIZE_TINY
 	icon_state = "blunt paper"
 
@@ -570,7 +570,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/flame/lighter
 	name = "cheap lighter"
 	desc = "A cheap-as-free lighter."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "lighter-g"
 	item_state = "lighter-g"
 	w_class = ITEMSIZE_TINY

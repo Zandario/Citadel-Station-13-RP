@@ -446,7 +446,7 @@
 		effects -= A
 
 /obj/effect/constructing_effect
-	icon = 'icons/effects/effects_rcd.dmi'
+	icon = 'icons/obj/effect/effects_rcd.dmi'
 	icon_state = ""
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER

@@ -116,7 +116,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 	blend_mode = BLEND_ADD
 
-	icon = 'icons/effects/fire.dmi'
+	icon = 'icons/obj/effect/fire.dmi'
 	icon_state = "1"
 	light_color = "#ED9200"
 	layer = TURF_LAYER

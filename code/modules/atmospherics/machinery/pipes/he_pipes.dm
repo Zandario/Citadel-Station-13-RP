@@ -2,7 +2,7 @@
 // Heat Exchanging Pipes - Behave like simple pipes
 //
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging
-	icon = 'icons/atmos/heat.dmi'
+	icon = 'icons/obj/atmospherics/heat.dmi'
 	icon_state = "intact"
 	pipe_icon = "hepipe"
 	color = "#404040"
@@ -125,7 +125,7 @@
 // Heat Exchange Junction - Interfaces HE pipes to normal pipes
 //
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction
-	icon = 'icons/atmos/junction.dmi'
+	icon = 'icons/obj/atmospherics/junction.dmi'
 	icon_state = "intact"
 	pipe_icon = "hejunction"
 	level = 2

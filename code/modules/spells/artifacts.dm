@@ -56,7 +56,7 @@
 /obj/effect/rend
 	name = "tear in the fabric of reality"
 	desc = "You should run now."
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	icon_state = "rift"
 	density = TRUE
 	anchored = TRUE
@@ -117,7 +117,7 @@
 /obj/singularity/wizard
 	name = "tear in the fabric of reality"
 	desc = "This isn't right."
-	icon = 'icons/effects/224x224.dmi'
+	icon = 'icons/obj/effect/224x224.dmi'
 	icon_state = "reality"
 	pixel_x = -96
 	pixel_y = -96

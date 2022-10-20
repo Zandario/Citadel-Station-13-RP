@@ -1,5 +1,5 @@
 /obj/structure
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structure/structures.dmi'
 	w_class = ITEMSIZE_NO_CONTAINER
 
 	var/climbable

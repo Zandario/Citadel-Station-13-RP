@@ -4,7 +4,7 @@
 	desc = "A wide shield, which has the property to block incoming projectiles but allow outgoing projectiles to pass it.  \
 	Slower moving objects are not blocked, so people can walk in and out of the barrier, and things can be thrown into and out \
 	of it."
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	icon_state = "directional_shield"
 	density = FALSE // People can move pass these shields.
 	opacity = FALSE

@@ -2,7 +2,7 @@
 	name = "handcuffs"
 	desc = "Use this to keep prisoners in line."
 	gender = PLURAL
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "handcuff"
 	slot_flags = SLOT_BELT
 	throw_force = 5
@@ -213,7 +213,7 @@ var/last_chew = 0
 	name = "legcuffs"
 	desc = "Use this to keep prisoners in line."
 	gender = PLURAL
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "legcuff"
 	throw_force = 0
 	w_class = ITEMSIZE_NORMAL
@@ -295,7 +295,7 @@ var/last_chew = 0
 /obj/item/handcuffs/legcuffs/fuzzy
 	name = "fuzzy legcuffs"
 	desc = "Use this to keep... 'prisoners' in line."
-	icon = 'icons/obj/items_vr.dmi'
+	icon = 'icons/obj/item/items_vr.dmi'
 	icon_state = "fuzzylegcuff"
 	breakouttime = 30 //3sec
 

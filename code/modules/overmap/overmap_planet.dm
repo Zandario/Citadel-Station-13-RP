@@ -10,7 +10,7 @@
 	var/surface_color = "#304A35"
 	var/water_color = "#436499"
 	var/has_rings = FALSE // set to true to get rings
-	var/icecaps = null // Iconstate in icons/skybox/planet.dmi for the planet's icecaps
+	var/icecaps = null // Iconstate in icons/screen/parallax/skybox/planet.dmi for the planet's icecaps
 	var/ice_color = "E6F2F6"
 	var/ring_color
 	var/skybox_offset_x = 0
@@ -20,7 +20,7 @@
 	. = ..()
 
 /obj/effect/overmap/visitable/planet/get_skybox_representation()
-	var/image/skybox_image = image('icons/skybox/planet.dmi', "")
+	var/image/skybox_image = image('icons/screen/parallax/skybox/planet.dmi', "")
 
 	skybox_image.overlays += get_base_image()
 
@@ -28,20 +28,20 @@
 //		skybox_image.overlays += theme.get_planet_image_extra()
 
 	if(mountain_color)
-		var/image/mountains = image('icons/skybox/planet.dmi', "mountains")
+		var/image/mountains = image('icons/screen/parallax/skybox/planet.dmi', "mountains")
 		mountains.color = mountain_color
 		mountains.appearance_flags = PIXEL_SCALE
 		skybox_image.overlays += mountains
 
 	if(water_color)
-		var/image/water = image('icons/skybox/planet.dmi', "water")
+		var/image/water = image('icons/screen/parallax/skybox/planet.dmi', "water")
 		water.color = water_color
 		water.appearance_flags = PIXEL_SCALE
 //		water.transform = water.transform.Turn(rand(0,360))
 		skybox_image.overlays += water
 
 	if(icecaps)
-		var/image/ice = image('icons/skybox/planet.dmi', icecaps)
+		var/image/ice = image('icons/screen/parallax/skybox/planet.dmi', icecaps)
 		ice.color = ice_color
 		ice.appearance_flags = PIXEL_SCALE
 		skybox_image.overlays += ice
@@ -52,26 +52,26 @@
 		if(!atmo_color)
 			atmo_color = COLOR_WHITE
 
-		var/image/clouds = image('icons/skybox/planet.dmi', "weak_clouds")
+		var/image/clouds = image('icons/screen/parallax/skybox/planet.dmi', "weak_clouds")
 
 		if(water_color)
-			clouds.overlays += image('icons/skybox/planet.dmi', "clouds")
+			clouds.overlays += image('icons/screen/parallax/skybox/planet.dmi', "clouds")
 
 		clouds.color = atmo_color
 		skybox_image.overlays += clouds
 
-		var/image/atmo = image('icons/skybox/planet.dmi', "atmoring")
+		var/image/atmo = image('icons/screen/parallax/skybox/planet.dmi', "atmoring")
 		skybox_image.underlays += atmo
 
-	var/image/shadow = image('icons/skybox/planet.dmi', "shadow")
+	var/image/shadow = image('icons/screen/parallax/skybox/planet.dmi', "shadow")
 	shadow.blend_mode = BLEND_MULTIPLY
 	skybox_image.overlays += shadow
 
-	var/image/light = image('icons/skybox/planet.dmi', "lightrim")
+	var/image/light = image('icons/screen/parallax/skybox/planet.dmi', "lightrim")
 	skybox_image.overlays += light
 
 	if(has_rings)
-		var/image/rings = image('icons/skybox/planet_rings.dmi')
+		var/image/rings = image('icons/screen/parallax/skybox/planet_rings.dmi')
 		rings.icon_state = pick("sparse", "dense")
 		if(!ring_color)
 			rings.color = pick("#f0fcff", "#dcc4ad", "#d1dcad", "#adb8dc")
@@ -87,7 +87,7 @@
 	return skybox_image
 
 /obj/effect/overmap/visitable/planet/proc/get_base_image()
-	var/image/base = image('icons/skybox/planet.dmi', "base")
+	var/image/base = image('icons/screen/parallax/skybox/planet.dmi', "base")
 	base.color = get_surface_color()
 	return base
 

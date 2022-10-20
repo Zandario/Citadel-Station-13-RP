@@ -592,7 +592,7 @@ var/const/cyberbeast_monitor_styles= "blank=cyber_blank;\
 
 /obj/item/disk/limb/eggnerdltd
 	company = "Eggnerd Prototyping Ltd."
-	icon = 'icons/obj/items_vr.dmi'
+	icon = 'icons/obj/item/items_vr.dmi'
 	icon_state = "verkdisk"
 
 //Brass Variant of Eggnerd
@@ -605,7 +605,7 @@ var/const/cyberbeast_monitor_styles= "blank=cyber_blank;\
 
 /obj/item/disk/limb/vulkanwrks
 	company = "Vulcan Brassworks Inc."
-	icon = 'icons/obj/items_vr.dmi'
+	icon = 'icons/obj/item/items_vr.dmi'
 	icon_state = "datadisk2"
 
 
@@ -635,7 +635,7 @@ var/const/cyberbeast_monitor_styles= "blank=cyber_blank;\
 
 /obj/item/disk/limb/eggnerdltdred
 	company = "Eggnerd Prototyping Ltd. (Red)"
-	icon = 'icons/obj/items_vr.dmi'
+	icon = 'icons/obj/item/items_vr.dmi'
 	icon_state = "verkdisk"
 
 

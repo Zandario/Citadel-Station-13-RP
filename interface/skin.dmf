@@ -194,7 +194,7 @@ window "mainwindow"
 		anchor2 = none
 		is-default = true
 		saved-params = "pos;size;is-minimized;is-maximized"
-		icon = 'icons\\CS13.png'
+		icon = 'icons\\assets\\common\\CS13.png'
 		macro = "default"
 		menu = "menu"
 	elem "split"
@@ -457,4 +457,3 @@ window "statwindow"
 		anchor1 = 0,0
 		anchor2 = 100,100
 		saved-params = ""
-

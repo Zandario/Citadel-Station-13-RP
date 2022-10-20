@@ -1,7 +1,7 @@
 /obj/machinery/door/window
 	name = "interior door"
 	desc = "A strong door."
-	icon = 'icons/obj/doors/windoor.dmi'
+	icon = 'icons/obj/machinery/doors/windoor.dmi'
 	icon_state = "left"
 	pass_flags_self = ATOM_PASS_GLASS
 	var/base_state = "left"
@@ -281,7 +281,7 @@
 
 /obj/machinery/door/window/brigdoor
 	name = "secure door"
-	icon = 'icons/obj/doors/windoor.dmi'
+	icon = 'icons/obj/machinery/doors/windoor.dmi'
 	icon_state = "leftsecure"
 	base_state = "leftsecure"
 	req_access = list(access_security)

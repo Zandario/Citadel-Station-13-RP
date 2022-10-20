@@ -24,7 +24,7 @@ GLOBAL_LIST_EMPTY(all_beam_points)
 	var/beam_destruction_sound = null // Optional sound played when a beam is destroyed.
 
 	// Beam datum arguments.
-	var/beam_icon = 'icons/effects/beam.dmi' // Icon file to use for beam visuals.
+	var/beam_icon = 'icons/obj/effect/beam.dmi' // Icon file to use for beam visuals.
 	var/beam_icon_state = "b_beam" // Icon state to use for visuals.
 	var/beam_time = INFINITY // How long the beam lasts. By default it will last forever until destroyed.
 	var/beam_max_distance = 10 // If the beam is farther than this, it will be destroyed. Make sure it's higher than seek_range.

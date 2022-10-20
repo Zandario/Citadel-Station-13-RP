@@ -2137,7 +2137,7 @@
 //For all species tails. Includes haircolored tails.
 /datum/sprite_accessory/tail/special
 	name = "Blank tail. Do not select."
-	icon = 'icons/effects/species_tails_vr.dmi'
+	icon = 'icons/obj/effect/species_tails_vr.dmi'
 
 
 

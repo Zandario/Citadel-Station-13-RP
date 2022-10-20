@@ -300,7 +300,7 @@
 /obj/machinery/recharge_station/ghost_pod_recharger
 	name = "drone pod"
 	desc = "This is a pod which used to contain a drone... Or maybe it still does?"
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structure/structures.dmi'
 
 /obj/machinery/recharge_station/ghost_pod_recharger/update_icon()
 	..()

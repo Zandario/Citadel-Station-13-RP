@@ -34,7 +34,7 @@
 
 /obj/effect/temp_visual/explosion
 	name = "explosion"
-	icon = 'icons/effects/96x96.dmi'
+	icon = 'icons/obj/effect/96x96.dmi'
 	icon_state = "explosion"
 	pixel_x = -32
 	pixel_y = -32

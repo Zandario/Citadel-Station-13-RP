@@ -1,7 +1,7 @@
 /obj/item/energy_net
 	name = "energy net"
 	desc = "It's a net made of green energy."
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	icon_state = "energynet"
 	throw_force = 0
 	force = 0
@@ -34,7 +34,7 @@
 /obj/effect/energy_net
 	name = "energy net"
 	desc = "It's a net made of green energy."
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	icon_state = "energynet"
 
 	density = TRUE

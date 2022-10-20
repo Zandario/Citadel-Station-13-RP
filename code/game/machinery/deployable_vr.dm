@@ -1,7 +1,7 @@
 /obj/structure/barricade/cutout
 	name = "stand-up figure"
 	desc = "Some sort of wooden stand-up figure..."
-	icon = 'icons/obj/cardboard_cutout.dmi'
+	icon = 'icons/obj/structure/cardboard_cutout.dmi'
 	icon_state = "cutout_basic"
 
 	maxhealth = 15 //Weaker than normal barricade
@@ -169,7 +169,7 @@
 /obj/random/cutout //Random wooden standup figure
 	name = "random wooden figure"
 	desc = "This is a random wooden figure."
-	icon = 'icons/obj/cardboard_cutout.dmi'
+	icon = 'icons/obj/structure/cardboard_cutout.dmi'
 	icon_state = "cutout_random"
 	spawn_nothing_percentage = 80 //Only spawns 20% of the time to avoid being predictable
 

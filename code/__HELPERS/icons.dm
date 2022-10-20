@@ -753,7 +753,7 @@ world
 	var/icon/flat_icon = safety ? A : new(A)//Has to be a new icon to not constantly change the same icon.
 	// flat_icon.ColorTone(rgb(125,180,225))//Let's make it bluish.
 	// flat_icon.ChangeOpacity(0.5)//Make it half transparent.
-	var/icon/alpha_mask = new('icons/effects/effects.dmi', "scanline")//Scanline effect.
+	var/icon/alpha_mask = new('icons/obj/effect/effects.dmi', "scanline")//Scanline effect.
 	flat_icon.AddAlphaMask(alpha_mask)//Finally, let's mix in a distortion effect.
 	return flat_icon
 
@@ -761,7 +761,7 @@ world
 	var/icon/flat_icon = safety? A : new(A)
 	flat_icon.SetIntensity(0.75, 1, 0.75)
 	flat_icon.ChangeOpacity(0.7)
-	var/icon/alpha_mask = new('icons/effects/effects.dmi', "scanlineslow")//Scanline effect.
+	var/icon/alpha_mask = new('icons/obj/effect/effects.dmi', "scanlineslow")//Scanline effect.
 	flat_icon.AddAlphaMask(alpha_mask)//Finally, let's mix in a distortion effect.
 	return flat_icon
 
@@ -771,7 +771,7 @@ world
 	var/icon/flat_icon = safety ? A : new(A)
 	flat_icon.Blend(rgb(255,255,255))
 	flat_icon.BecomeAlphaMask()
-	var/icon/static_icon = icon('icons/effects/effects.dmi', "static_base")
+	var/icon/static_icon = icon('icons/obj/effect/effects.dmi', "static_base")
 	static_icon.AddAlphaMask(flat_icon)
 	return static_icon
 
@@ -781,7 +781,7 @@ world
 	var/icon/flat_icon = safety ? A : new(A)
 	flat_icon.Blend(rgb(255,255,255))
 	flat_icon.BecomeAlphaMask()
-	var/icon/blank_icon = new/icon('icons/effects/effects.dmi', "blank_base")
+	var/icon/blank_icon = new/icon('icons/obj/effect/effects.dmi', "blank_base")
 	blank_icon.AddAlphaMask(flat_icon)
 	return blank_icon
 
@@ -874,7 +874,7 @@ GLOBAL_LIST_EMPTY(friendly_animal_types)
 			body.equipOutfit(outfit_override,visualsOnly = TRUE)
 
 
-		var/icon/out_icon = icon('icons/effects/effects.dmi', "nothing")
+		var/icon/out_icon = icon('icons/obj/effect/effects.dmi', "nothing")
 		for(var/D in showDirs)
 			body.setDir(D)
 			COMPILE_OVERLAYS(body)

@@ -17,7 +17,7 @@
 
 	if(first_range > 1)
 		var/obj/effect/overlay/pulse = new /obj/effect/overlay(epicenter)
-		pulse.icon = 'icons/effects/effects.dmi'
+		pulse.icon = 'icons/obj/effect/effects.dmi'
 		pulse.icon_state = "emppulse"
 		pulse.name = "emp pulse"
 		pulse.anchored = 1

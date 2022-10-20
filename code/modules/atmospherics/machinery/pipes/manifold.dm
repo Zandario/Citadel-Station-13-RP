@@ -2,7 +2,7 @@
 // Manifold Pipes - Three way "T" joints
 //
 /obj/machinery/atmospherics/pipe/manifold
-	icon = 'icons/atmos/manifold.dmi'
+	icon = 'icons/obj/atmospherics/manifold.dmi'
 	icon_state = ""
 	name = "pipe manifold"
 	desc = "A manifold composed of regular pipes"

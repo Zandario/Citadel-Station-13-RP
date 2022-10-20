@@ -1,5 +1,5 @@
 /obj/machinery/atmospherics/valve
-	icon = 'icons/atmos/valve.dmi'
+	icon = 'icons/obj/atmospherics/valve.dmi'
 	icon_state = "map_valve0"
 	construction_type = /obj/item/pipe/binary
 	pipe_state = "mvalve"
@@ -220,7 +220,7 @@
 /obj/machinery/atmospherics/valve/digital		// can be controlled by AI
 	name = "digital valve"
 	desc = "A digitally controlled valve."
-	icon = 'icons/atmos/digital_valve.dmi'
+	icon = 'icons/obj/atmospherics/digital_valve.dmi'
 	pipe_state = "dvalve"
 
 	var/frequency = 0

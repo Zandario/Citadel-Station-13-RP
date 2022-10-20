@@ -44,7 +44,7 @@
 		wet = wet_val
 		if(wet_overlay)
 			cut_overlay(wet_overlay)
-		wet_overlay = image('icons/effects/water.dmi', icon_state = "wet_floor")
+		wet_overlay = image('icons/obj/effect/water.dmi', icon_state = "wet_floor")
 		add_overlay(wet_overlay)
 		sleep(800)
 		if(wet == 2)

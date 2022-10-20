@@ -4,7 +4,7 @@
 
 /obj/structure/ladder_assembly
 	name = "ladder assembly"
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structure/structures.dmi'
 	icon_state = "ladder00"
 	density = 0
 	opacity = 0

@@ -1,6 +1,6 @@
 /obj/machinery/robotic_fabricator //Does this stille even need to exist?
 	name = "robotic fabricator"
-	icon = 'icons/obj/machines/fabricators/robotics.dmi'
+	icon = 'icons/obj/machinery/fabricators/robotics.dmi'
 	icon_state = "mechfab"
 	density = TRUE
 	anchored = TRUE

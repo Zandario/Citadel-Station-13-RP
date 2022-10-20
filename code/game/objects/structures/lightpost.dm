@@ -1,7 +1,7 @@
 /obj/structure/lightpost
 	name = "lightpost"
 	desc = "A homely lightpost."
-	icon = 'icons/obj/32x64.dmi'
+	icon = 'icons/obj/structure/32x64.dmi'
 	icon_state = "lightpost"
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER

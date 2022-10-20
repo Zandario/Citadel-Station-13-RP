@@ -10,7 +10,7 @@
 
 	level = 1
 
-	icon = 'icons/atmos/heat_pump.dmi'
+	icon = 'icons/obj/atmospherics/heat_pump.dmi'
 	icon_state = "map_off"
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "pump"

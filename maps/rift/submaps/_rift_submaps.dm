@@ -304,7 +304,7 @@
 
 /turf/unsimulated/wall/seperator //to block vision between transit zones
 	name = ""
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	icon_state = "1"
 
 /obj/effect/step_trigger/zlevel_fall //Don't ever use this, only use subtypes.Define a new var/static/target_z on each

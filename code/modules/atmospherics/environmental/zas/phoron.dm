@@ -1,4 +1,4 @@
-var/image/contamination_overlay = image('icons/effects/contamination.dmi')
+var/image/contamination_overlay = image('icons/obj/effect/contamination.dmi')
 
 /obj
 	var/contaminated = 0

@@ -1,7 +1,7 @@
 /obj/machinery/transportpod
 	name = "Ballistic Transportation Pod"
 	desc = "A fast transit ballistic pod used to get from one place to the next. Batteries not included!"
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structure/structures.dmi'
 	icon_state = "borg_pod_opened"
 
 	density = TRUE

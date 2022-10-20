@@ -2,7 +2,7 @@
 	name = "pathogenic incubator"
 	density = 1
 	anchored = 1
-	icon = 'icons/obj/virology.dmi'
+	icon = 'icons/obj/machinery/virology.dmi'
 	icon_state = "incubator"
 	var/obj/item/virusdish/dish
 	var/obj/item/reagent_containers/glass/beaker = null

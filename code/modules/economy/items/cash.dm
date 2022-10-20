@@ -2,7 +2,7 @@
 	name = "0 Thaler"
 	desc = "It's worth 0 Thalers."
 	gender = PLURAL
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "spacecash1"
 	opacity = 0
 	density = 0
@@ -47,14 +47,14 @@
 		while(sum >= i && num < 50)
 			sum -= i
 			num++
-			var/image/banknote = image('icons/obj/items.dmi', "spacecash[i]")
+			var/image/banknote = image('icons/obj/item/items.dmi', "spacecash[i]")
 			var/matrix/M = matrix()
 			M.Translate(rand(-6, 6), rand(-4, 8))
 			M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))
 			banknote.transform = M
 			src.overlays += banknote
 	if(num == 0) // Less than one thaler, let's just make it look like 1 for ease
-		var/image/banknote = image('icons/obj/items.dmi', "spacecash1")
+		var/image/banknote = image('icons/obj/item/items.dmi', "spacecash1")
 		var/matrix/M = matrix()
 		M.Translate(rand(-6, 6), rand(-4, 8))
 		M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))

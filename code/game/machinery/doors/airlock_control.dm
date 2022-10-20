@@ -146,7 +146,7 @@
 	return ..()
 
 /obj/machinery/airlock_sensor
-	icon = 'icons/obj/airlock_machines.dmi'
+	icon = 'icons/obj/machinery/airlock_machines.dmi'
 	icon_state = "airlock_sensor_off"
 	name = "airlock sensor"
 	desc = "Sends atmospheric readings to a nearby controller."
@@ -231,7 +231,7 @@
 	return T.return_air()
 
 /obj/machinery/access_button
-	icon = 'icons/obj/airlock_machines.dmi'
+	icon = 'icons/obj/machinery/airlock_machines.dmi'
 	icon_state = "access_button_standby"
 	name = "access button"
 

@@ -46,7 +46,7 @@
 	var/turf/current = get_turf(src)
 	spawn()
 		explosion(current, 1, 2, 4, 8, 0) //Was previously 2,4,6,10. Way too big.
-	anim(get_step(current,SOUTHWEST),, 'icons/effects/96x96.dmi',, "explosion")
+	anim(get_step(current,SOUTHWEST),, 'icons/obj/effect/96x96.dmi',, "explosion")
 	new /obj/structure/meteorite(current)
 
 	var/datum/planet/impacted

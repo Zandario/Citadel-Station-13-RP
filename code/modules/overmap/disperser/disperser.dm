@@ -4,7 +4,7 @@
 /obj/machinery/disperser
 	name = "abstract parent for disperser"
 	desc = "You should never see one of these, bap your mappers."
-	icon = 'icons/obj/disperser.dmi'
+	icon = 'icons/obj/machinery/disperser.dmi'
 	idle_power_usage = 200
 	density = TRUE
 	anchored = TRUE

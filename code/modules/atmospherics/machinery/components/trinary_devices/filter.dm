@@ -1,5 +1,5 @@
 /obj/machinery/atmospherics/component/trinary/atmos_filter
-	icon = 'icons/atmos/filter.dmi'
+	icon = 'icons/obj/atmospherics/filter.dmi'
 	icon_state = "map"
 	construction_type = /obj/item/pipe/trinary/flippable
 	pipe_state = "filter"

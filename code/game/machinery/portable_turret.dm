@@ -35,7 +35,7 @@
 /obj/machinery/porta_turret
 	name = "turret"
 	catalogue_data = list(/datum/category_item/catalogue/technology/turret)
-	icon = 'icons/obj/turrets.dmi'
+	icon = 'icons/obj/machinery/turrets.dmi'
 	icon_state = "turret_cover_normal"
 	anchored = TRUE
 
@@ -973,7 +973,7 @@
 
 /obj/machinery/porta_turret_construct
 	name = "turret frame"
-	icon = 'icons/obj/turrets.dmi'
+	icon = 'icons/obj/machinery/turrets.dmi'
 	icon_state = "turret_frame"
 	density = TRUE
 
@@ -1168,7 +1168,7 @@
 	return
 
 /atom/movable/porta_turret_cover
-	icon = 'icons/obj/turrets.dmi'
+	icon = 'icons/obj/machinery/turrets.dmi'
 
 #undef TURRET_PRIORITY_TARGET
 #undef TURRET_SECONDARY_TARGET

@@ -1,7 +1,7 @@
 #define SYRINGE_CAPPED 10
 
 /obj/item/reagent_containers/syringe
-	icon = 'icons/goonstation/objects/syringe_vr.dmi'
+	icon = 'icons/goonstation/syringe.dmi'
 	mode = SYRINGE_CAPPED //Override
 	var/used = FALSE
 	var/dirtiness = 0

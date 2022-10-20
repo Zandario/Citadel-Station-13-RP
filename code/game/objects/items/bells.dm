@@ -1,7 +1,7 @@
 /obj/item/deskbell
 	name = "desk bell"
 	desc = "An annoying bell. Ring for service."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "deskbell"
 	force = 2
 	throw_force = 2

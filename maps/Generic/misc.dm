@@ -95,7 +95,7 @@
 /obj/structure/HonkMother
 	name = "The Honk Mother"
 	desc = "A monolithic effigy of the legendary Honk Mother, adorned with dazzling rainbow bananium."
-	icon = 'icons/effects/160x160.dmi'
+	icon = 'icons/obj/effect/160x160.dmi'
 	pixel_x = -64
 
 /obj/structure/HonkMother/Apex

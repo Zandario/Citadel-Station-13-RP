@@ -4,7 +4,7 @@
 /obj/machinery/vending
 	name = "Vendomat"
 	desc = "A generic vending machine."
-	icon = 'icons/obj/vending.dmi'
+	icon = 'icons/obj/machinery/vending.dmi'
 	icon_state = "generic"
 	anchored = TRUE
 	density = TRUE
@@ -2616,7 +2616,7 @@
 /obj/machinery/vending/glukoz
 	name = "Glukoz Pharmavenda"
 	desc = "An illicit injector vendor stocked and maintained by the allegedly defunct pharmaceuticals company Glukoz Ltd."
-	icon = 'icons/obj/vending.dmi'
+	icon = 'icons/obj/machinery/vending.dmi'
 	icon_state = "rxvendor"
 	icon_vend = "rxvendor"
 	product_slogans = "Glukoz Pharmavenda, voted top street pharmaceuticals vendor, 2519!"

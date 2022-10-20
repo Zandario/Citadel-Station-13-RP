@@ -2,7 +2,7 @@
 /obj/effect/spider
 	name = "web"
 	desc = "it's stringy and sticky"
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	anchored = 1
 	density = 0
 	var/health = 15
@@ -287,7 +287,7 @@
 /obj/effect/debris/cleanable/spiderling_remains
 	name = "spiderling remains"
 	desc = "Green squishy mess."
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	icon_state = "greenshatter"
 
 /obj/effect/spider/cocoon

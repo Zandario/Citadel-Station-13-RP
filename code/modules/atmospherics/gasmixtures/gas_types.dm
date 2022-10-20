@@ -58,7 +58,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 		if(initial(gas.moles_visible) != null)
 			.[gas_path] = new /list(FACTOR_GAS_VISIBLE_MAX)
 			for(var/i in 1 to FACTOR_GAS_VISIBLE_MAX)
-				var/image/I = image('icons/effects/atmospherics.dmi', icon_state = initial(gas.gas_overlay), layer = FLOAT_LAYER + i)
+				var/image/I = image('icons/obj/effect/atmospherics.dmi', icon_state = initial(gas.gas_overlay), layer = FLOAT_LAYER + i)
 				I.plane = FLOAT_PLANE
 				I.alpha = i * 255 / FACTOR_GAS_VISIBLE_MAX
 				I.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -142,7 +142,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 // Visual overlay
 /*
 /obj/effect/overlay/gas
-	icon = 'icons/effects/atmospherics.dmi'
+	icon = 'icons/obj/effect/atmospherics.dmi'
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	anchored = TRUE  // should only appear in vis_contents, but to be safe
 	layer = FLY_LAYER
@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 	var/specific_heat = 0
 	/// Textual name
 	var/name = "Unnamed Gas"
-	/// icon_state in icons/effects/atmospherics.dmi
+	/// icon_state in icons/obj/effect/atmospherics.dmi
 	var/gas_overlay = ""
 	/// How many moles is required to make this gas visible
 	var/moles_visible
@@ -186,7 +186,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 	var/gas_flags
 
 	var/gas_reagent_id //What is the ID of the reagent we want to apply
-	var/gas_reagent_amount = 0//How much of the reagent is applied 
+	var/gas_reagent_amount = 0//How much of the reagent is applied
 	//For a gas that makes up 21% of the atmos you need to be above 1.39, for it to instill any reagents, for lower percentages the number needs to be higher,and viceversa
 
 /datum/gas/oxygen
@@ -379,7 +379,7 @@ GLOBAL_LIST_INIT(meta_gas_reagent_amount, meta_gas_reagent_amount_list())
 	toxicity = 15*/
 	gas_overlay = "chlorine"
 	moles_visible = 1
-	
+
 	gas_reagent_id = "sacid"
 	gas_reagent_amount = 10
 

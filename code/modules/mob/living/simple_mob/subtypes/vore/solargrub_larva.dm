@@ -137,8 +137,8 @@ var/global/list/grub_machine_overlays = list()
 
 /mob/living/simple_mob/animal/solargrub_larva/proc/generate_machine_effect(var/obj/machinery/M)
 	var/icon/I = new /icon(M.icon, M.icon_state)
-	I.Blend(new /icon('icons/effects/blood.dmi', rgb(255,255,255)),ICON_ADD)
-	I.Blend(new /icon('icons/effects/alert.dmi', "_red"),ICON_MULTIPLY)
+	I.Blend(new /icon('icons/obj/effect/blood.dmi', rgb(255,255,255)),ICON_ADD)
+	I.Blend(new /icon('icons/obj/effect/alert.dmi', "_red"),ICON_MULTIPLY)
 	grub_machine_overlays[M.type] = I
 
 /mob/living/simple_mob/animal/solargrub_larva/proc/eject_from_machine(var/obj/machinery/M)

@@ -170,7 +170,7 @@
 /obj/effect/forcefield/cult
 	desc = "That eerie looking obstacle seems to have been pulled from another dimension through sheer force"
 	name = "Juggerwall"
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	icon_state = "m_shield_cult"
 	light_color = "#B40000"
 	light_range = 2

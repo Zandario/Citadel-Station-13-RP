@@ -5,7 +5,7 @@
 	opacity = 0
 	autoclose = 0
 	glass = 1
-	icon = 'icons/obj/doors/doorlift.dmi'
+	icon = 'icons/obj/machinery/doors/doorlift.dmi'
 
 	var/datum/turbolift/lift
 	var/datum/turbolift_floor/floor

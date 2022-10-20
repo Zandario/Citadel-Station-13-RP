@@ -10,7 +10,7 @@
 	var/next_meteor_upper = 20
 
 /datum/event/meteor_wave/get_skybox_image()
-	var/image/res = image('icons/skybox/rockbox.dmi', "rockbox")
+	var/image/res = image('icons/screen/parallax/skybox/rockbox.dmi', "rockbox")
 	res.color = COLOR_ASTEROID_ROCK
 	res.appearance_flags = RESET_COLOR
 	return res

@@ -3,7 +3,7 @@
 	desc = "A specialised, complex scanner for gleaning information on all manner of small things."
 	anchored = TRUE
 	density = TRUE
-	icon = 'icons/obj/virology.dmi'
+	icon = 'icons/obj/machinery/virology.dmi'
 	icon_state = "analyser"
 
 	use_power = USE_POWER_IDLE			//1 = idle, 2 = active

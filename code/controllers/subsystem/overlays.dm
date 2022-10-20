@@ -51,7 +51,7 @@ SUBSYSTEM_DEF(overlays)
 				\n What follows is a printout of all existing overlays at the time of the overflow \n[text_lays]")
 			atom_to_compile.overlays.Cut()
 			//Let them know they fucked up
-			atom_to_compile.add_overlay(mutable_appearance('icons/testing/greyscale_error.dmi'))
+			atom_to_compile.add_overlay(mutable_appearance('icons/debug/greyscale_error.dmi'))
 			continue
 		if(mc_check)
 			if(MC_TICK_CHECK)

@@ -13,7 +13,7 @@
 /obj/machinery/door/firedoor
 	name = "\improper Emergency Shutter"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas."
-	icon = 'icons/obj/doors/DoorHazard.dmi'
+	icon = 'icons/obj/machinery/doors/DoorHazard.dmi'
 	icon_state = "door_open"
 	req_one_access = list(access_eva)	//access_atmospherics, access_engine_equip)
 	opacity = 0
@@ -465,7 +465,7 @@
 
 /obj/machinery/door/firedoor/border_only
 /*
-	icon = 'icons/obj/doors/edge_Doorfire.dmi'
+	icon = 'icons/obj/machinery/doors/edge_Doorfire.dmi'
 	glass = 1 //There is a glass window so you can see through the door
 			  //This is needed due to BYOND limitations in controlling visibility
 	heat_proof = 1
@@ -506,13 +506,13 @@
 	return ..() || (dir != to_dir)
 
 /obj/machinery/door/firedoor/multi_tile
-	icon = 'icons/obj/doors/DoorHazard2x1.dmi'
+	icon = 'icons/obj/machinery/doors/DoorHazard2x1.dmi'
 	width = 2
 
 /obj/machinery/door/firedoor/glass
 	name = "\improper Emergency Glass Shutter"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas. This one has a resilient glass window, allowing you to see the danger."
-	icon = 'icons/obj/doors/DoorHazardGlass.dmi'
+	icon = 'icons/obj/machinery/doors/DoorHazardGlass.dmi'
 	icon_state = "door_open"
 	glass = 1
 
@@ -520,7 +520,7 @@
 /obj/machinery/door/firedoor/glass/hidden
 	name = "\improper Emergency Shutter System"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas. This model fits flush with the walls, and has a panel in the floor for maintenance."
-	icon = 'icons/obj/doors/DoorHazardHidden.dmi'
+	icon = 'icons/obj/machinery/doors/DoorHazardHidden.dmi'
 	plane = TURF_PLANE
 
 /obj/machinery/door/firedoor/glass/hidden/open()
@@ -534,4 +534,4 @@
 /obj/machinery/door/firedoor/glass/hidden/steel
 	name = "\improper Emergency Shutter System"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas. This model fits flush with the walls, and has a panel in the floor for maintenance."
-	icon = 'icons/obj/doors/DoorHazardHidden_steel.dmi'
+	icon = 'icons/obj/machinery/doors/DoorHazardHidden_steel.dmi'

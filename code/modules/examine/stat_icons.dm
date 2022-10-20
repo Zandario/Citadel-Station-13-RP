@@ -18,8 +18,8 @@ var/global/list/description_icons = list(
 	"multitool" = image(icon='icons/obj/device.dmi',icon_state="multitool"),
 	"cable coil" = image(icon='icons/obj/power.dmi',icon_state="coil"),
 
-	"metal sheet" = image(icon='icons/obj/items.dmi',icon_state="sheet-metal"),
-	"plasteel sheet" = image(icon='icons/obj/items.dmi',icon_state="sheet-plasteel"),
+	"metal sheet" = image(icon='icons/obj/item/items.dmi',icon_state="sheet-metal"),
+	"plasteel sheet" = image(icon='icons/obj/item/items.dmi',icon_state="sheet-plasteel"),
 
 	"air tank" = image(icon='icons/obj/tank.dmi',icon_state="oxygen"),
 	"connector" = image(icon='icons/obj/pipes.dmi',icon_state="connector"),

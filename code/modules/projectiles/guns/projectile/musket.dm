@@ -62,7 +62,7 @@
 /obj/item/reagent_containers/glass/powder_horn
 	name = "powder horn"
 	desc = "An ivory container for gunpowder."
-	icon = 'icons/obj/ammo.dmi'
+	icon = 'icons/obj/item/ammo.dmi'
 	icon_state = "powderhorn"
 	w_class = ITEMSIZE_NORMAL
 	slot_flags = SLOT_BELT
@@ -107,7 +107,7 @@
 	w_class = ITEMSIZE_NORMAL
 	one_handed_penalty = 0
 
-/obj/item/gun/projectile/musket/pistol/brass 
+/obj/item/gun/projectile/musket/pistol/brass
 	name = "brass wheelock"
 	desc = "A brass black powder pistol with a strange gear like firing mechanism. You are not quite certain how it actually works though."
 	icon_state = "flintlock-brass"

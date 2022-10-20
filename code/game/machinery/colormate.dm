@@ -5,7 +5,7 @@
 /obj/machinery/gear_painter
 	name = "Color Mate"
 	desc = "A machine to give your apparel a fresh new color!"
-	icon = 'icons/obj/vending.dmi'
+	icon = 'icons/obj/machinery/vending.dmi'
 	icon_state = "colormate"
 	density = TRUE
 	anchored = TRUE

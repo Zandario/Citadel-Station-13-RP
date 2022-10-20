@@ -1,6 +1,6 @@
 /obj/item/banner
 	name = "banner"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "banner"
 	desc = "A banner that's invisible because it shouldn't exist."
 

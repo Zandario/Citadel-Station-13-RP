@@ -1,6 +1,6 @@
 //temporary visual effects
 /obj/effect/temp_visual
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	icon_state = "nothing"
 	anchored = TRUE
 	layer = ABOVE_MOB_LAYER
@@ -35,4 +35,3 @@
 	if(setDir)
 		dir = setDir
 	return ..()
-

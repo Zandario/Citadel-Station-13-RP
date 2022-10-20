@@ -119,7 +119,7 @@
 	return ..()
 
 /mob/living/simple_mob/mechanical/mecha/proc/deflect_sprite()
-	var/image/deflect_image = image('icons/effects/effects.dmi', "deflect_static")
+	var/image/deflect_image = image('icons/obj/effect/effects.dmi', "deflect_static")
 	add_overlay(deflect_image)
 	sleep(1 SECOND)
 	cut_overlay(deflect_image)

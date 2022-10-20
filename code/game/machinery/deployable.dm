@@ -8,7 +8,7 @@ Barricades
 /obj/structure/barricade
 	name = "barricade"
 	desc = "This space is blocked off by a barricade."
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structure/structures.dmi'
 	icon_state = "barricade"
 	pass_flags_self = ATOM_PASS_TABLE
 	anchored = TRUE

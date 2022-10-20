@@ -2914,7 +2914,7 @@
 /area/centcom/simulated/evac)
 "iS" = (
 /obj/structure/memorial{
-	icon = 'icons/obj/structures_vr.dmi';
+	icon = 'icons/obj/structure/structures_vr.dmi';
 	icon_state = "memorial-l"
 	},
 /turf/unsimulated/floor/steel{
@@ -10303,7 +10303,7 @@
 /area/space)
 "NZ" = (
 /obj/structure/memorial{
-	icon = 'icons/obj/structures_vr.dmi';
+	icon = 'icons/obj/structure/structures_vr.dmi';
 	icon_state = "memorial-r"
 	},
 /turf/unsimulated/floor/steel{

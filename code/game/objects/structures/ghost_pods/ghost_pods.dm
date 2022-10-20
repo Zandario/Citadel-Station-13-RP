@@ -2,7 +2,7 @@
 /obj/structure/ghost_pod
 	name = "Base Ghost Pod"
 	desc = "If you can read me, someone don goofed."
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structure/structures.dmi'
 	var/ghost_query_type = null
 	var/icon_state_opened = null	// Icon to switch to when 'used'.
 	var/used = FALSE

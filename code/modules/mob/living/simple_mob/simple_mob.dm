@@ -51,7 +51,7 @@
 	/// If true, adds an overlay over the lighting plane for [icon_state]-eyes.
 	var/has_eye_glow = FALSE
 	///Just the default, played like the weapon attack anim
-	attack_icon = 'icons/effects/effects.dmi'
+	attack_icon = 'icons/obj/effect/effects.dmi'
 	///Just the default
 	attack_icon_state = "slash"
 
@@ -247,7 +247,7 @@
 	var/limb_icon
 	/// Used for if the mob can drop limbs. Overrides the icon cache key, so it doesn't keep remaking the icon needlessly.
 	var/limb_icon_key
-	
+
 	///Does the simple mob drop organs when butchered?
 	butchery_drops_organs = FALSE
 

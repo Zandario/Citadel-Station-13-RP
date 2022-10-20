@@ -1,7 +1,7 @@
 /obj/item/radio/headset/speak_n_rock
     name = "\improper 'NT'-brand headphones"
     desc = "A set of open-backed headphones emblazened with a corporate logo. Connects to radio networks. Warranty void if used underwater."
-    icon = 'icons/obj/items.dmi'    // Radios set their own icons, so have to re-set this here.
+    icon = 'icons/obj/item/items.dmi'    // Radios set their own icons, so have to re-set this here.
 
     icon_state = "headphones_off"
     item_state_slots = list(SLOT_ID_RIGHT_HAND = "headphones", SLOT_ID_LEFT_HAND = "headphones")

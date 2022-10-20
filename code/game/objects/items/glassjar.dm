@@ -1,7 +1,7 @@
 /obj/item/glass_jar
 	name = "glass jar"
 	desc = "A small empty jar."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "jar"
 	w_class = ITEMSIZE_SMALL
 	matter = list(MAT_GLASS = 200)

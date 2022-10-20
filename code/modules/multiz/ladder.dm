@@ -2,7 +2,7 @@
 	name = "ladder"
 	desc = "A ladder. You can climb it up and down."
 	icon_state = "ladder01"
-	icon = 'icons/obj/structures/multiz.dmi'
+	icon = 'icons/obj/structure/multiz.dmi'
 	density = 0
 	opacity = 0
 	anchored = 1

@@ -336,7 +336,7 @@
 /obj/item/reagent_containers/glass/cooler_bottle
 	desc = "A bottle for a water-cooler."
 	name = "water-cooler bottle"
-	icon = 'icons/obj/vending.dmi'
+	icon = 'icons/obj/machinery/vending.dmi'
 	icon_state = "water_cooler_bottle"
 	matter = list(MAT_GLASS = 2000)
 	w_class = ITEMSIZE_NORMAL

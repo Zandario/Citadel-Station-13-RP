@@ -3,7 +3,7 @@
 /obj/structure/stairs
 	name = "Stairs"
 	desc = "Stairs leading to another deck.  Not too useful if the gravity goes out."
-	icon = 'icons/obj/structures/multiz.dmi'
+	icon = 'icons/obj/structure/multiz.dmi'
 	icon_state = "stair"
 	opacity = 0
 	density = 0
@@ -382,7 +382,7 @@
 // Mapping pieces, placed at the bottommost part of the stairs
 /obj/structure/stairs/spawner
 	name = "Stairs spawner"
-	icon = 'icons/obj/structures/stairs_64x64.dmi'
+	icon = 'icons/obj/structure/stairs_64x64.dmi'
 	icon_state = ""
 
 /obj/structure/stairs/spawner/Initialize(mapload)

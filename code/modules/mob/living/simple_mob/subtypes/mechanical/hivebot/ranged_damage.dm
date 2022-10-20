@@ -72,7 +72,7 @@
 
 /obj/item/projectile/fire
 	name = "ember"
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	icon_state = "explosion_particle"
 	modifier_type_to_apply = /datum/modifier/fire
 	modifier_duration = 6 SECONDS // About 15 damage per stack, as Life() ticks every two seconds.

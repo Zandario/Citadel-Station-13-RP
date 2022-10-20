@@ -19,7 +19,7 @@
 	density = TRUE
 	anchored = TRUE
 
-	icon = 'icons/obj/fence.dmi'
+	icon = 'icons/obj/structure/fence.dmi'
 	icon_state = "straight"
 
 	var/cuttable = TRUE

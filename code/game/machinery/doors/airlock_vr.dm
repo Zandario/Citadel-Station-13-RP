@@ -5,7 +5,7 @@
 	name = "hybrid airlock"
 	desc = "You're fairly sure this is a door."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_airlock)
-	icon = 'icons/obj/doors/Dooralien_blue.dmi'
+	icon = 'icons/obj/machinery/doors/Dooralien_blue.dmi'
 	explosion_resistance = 20
 	secured_wires = TRUE
 	hackProof = TRUE
@@ -23,12 +23,12 @@
 
 /obj/machinery/door/airlock/glass_security/polarized
 	name = "Electrochromic Security Airlock"
-	icon_tinted = 'icons/obj/doors/Doorsectinted_vr.dmi'
+	icon_tinted = 'icons/obj/machinery/doors/Doorsectinted_vr.dmi'
 
 /obj/machinery/door/airlock/glass_medical/polarized
 	name = "Electrochromic Medical Airlock"
-	icon_tinted = 'icons/obj/doors/doormedtinted_vr.dmi'
+	icon_tinted = 'icons/obj/machinery/doors/doormedtinted_vr.dmi'
 
 /obj/machinery/door/airlock/glass_command/polarized
 	name = "Electrochormic Command Airlock"
-	icon_tinted = 'icons/obj/doors/Doorcomtinted_vr.dmi'
+	icon_tinted = 'icons/obj/machinery/doors/Doorcomtinted_vr.dmi'

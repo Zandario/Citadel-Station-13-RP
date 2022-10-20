@@ -48,7 +48,7 @@
 
 // Draws an individual segment of the box.
 /obj/item/cataloguer/proc/draw_line(atom/A, line_dir, line_pixel_x, line_pixel_y, client/C)
-	var/image/line = image(icon = 'icons/effects/effects.dmi', loc = A, icon_state = "stripes", dir = line_dir)
+	var/image/line = image(icon = 'icons/obj/effect/effects.dmi', loc = A, icon_state = "stripes", dir = line_dir)
 	line.pixel_x = line_pixel_x
 	line.pixel_y = line_pixel_y
 	line.plane = FULLSCREEN_PLANE // It's technically a HUD element but it doesn't need to show above item slots.

@@ -1,7 +1,7 @@
 /obj/machinery/power/tesla_coil
 	name = "tesla coil"
 	desc = "For the union!"
-	icon = 'icons/obj/tesla_engine/tesla_coil.dmi'
+	icon = 'icons/obj/machinery/power/tesla_engine/tesla_coil.dmi'
 	icon_state = "coil0"
 	anchored = FALSE
 	density = TRUE
@@ -98,7 +98,7 @@
 /obj/machinery/power/grounding_rod
 	name = "grounding rod"
 	desc = "Keep an area from being fried from Edison's Bane."
-	icon = 'icons/obj/tesla_engine/tesla_coil.dmi'
+	icon = 'icons/obj/machinery/power/tesla_engine/tesla_coil.dmi'
 	icon_state = "grounding_rod0"
 	anchored = FALSE
 	density = TRUE

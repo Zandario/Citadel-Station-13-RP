@@ -244,7 +244,7 @@
 		to_chat(user, "<span class='notice'>\The [src] is already powering up!</span>")
 		return 0
 	var/turf/target_turf = get_turf(A)
-	var/beameffect = user.Beam(target_turf,icon_state="sat_beam",icon='icons/effects/beam.dmi',time=31, maxdistance=10,beam_type=/obj/effect/ebeam,beam_sleep_time=3)
+	var/beameffect = user.Beam(target_turf,icon_state="sat_beam",icon='icons/obj/effect/beam.dmi',time=31, maxdistance=10,beam_type=/obj/effect/ebeam,beam_sleep_time=3)
 	if(beameffect)
 		user.visible_message("<span class='cult'>[user] aims \the [src] at \the [A].</span>")
 	if(power_supply && power_supply.charge >= charge_cost) //Do a delay for pointblanking too.
@@ -272,7 +272,7 @@
 
 	var/turf/target_turf = get_turf(A)
 
-	var/beameffect = user.Beam(target_turf,icon_state="sat_beam",icon='icons/effects/beam.dmi',time=31, maxdistance=10,beam_type=/obj/effect/ebeam,beam_sleep_time=3)
+	var/beameffect = user.Beam(target_turf,icon_state="sat_beam",icon='icons/obj/effect/beam.dmi',time=31, maxdistance=10,beam_type=/obj/effect/ebeam,beam_sleep_time=3)
 
 	if(beameffect)
 		user.visible_message("<span class='cult'>[user] aims \the [src] at \the [A].</span>")

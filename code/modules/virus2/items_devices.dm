@@ -36,7 +36,7 @@
 
 /obj/item/virusdish
 	name = "virus dish"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "implantcase-b"
 	var/datum/disease2/disease/virus2 = null
 	var/growth = 0
@@ -80,7 +80,7 @@
 
 /obj/item/ruinedvirusdish
 	name = "ruined virus sample"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "implantcase-b"
 	desc = "The bacteria in the dish are completely dead."
 

@@ -1,5 +1,5 @@
 /obj/machinery/atmospherics/component/trinary/mixer
-	icon = 'icons/atmos/mixer.dmi'
+	icon = 'icons/obj/atmospherics/mixer.dmi'
 	icon_state = "map"
 	construction_type = /obj/item/pipe/trinary/flippable
 	pipe_state = "mixer"

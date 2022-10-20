@@ -234,6 +234,6 @@
 /obj/item/skub
 	name = "skub"
 	desc = "A standard jar of skub."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "skub"
 	attack_verb = list("skubbed")

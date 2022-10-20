@@ -226,7 +226,7 @@
 	mannequin.delete_inventory(TRUE)
 	update_preview_mob(mannequin)
 
-	preview_icon = icon('icons/effects/effects.dmi', "nothing")
+	preview_icon = icon('icons/obj/effect/effects.dmi', "nothing")
 	preview_icon.Scale(48+32, 16+32)
 
 	mannequin.dir = NORTH

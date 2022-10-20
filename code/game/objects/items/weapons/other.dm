@@ -3,7 +3,7 @@
 /obj/item/phone
 	name = "red phone"
 	desc = "Should anything ever go wrong..."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "red_phone"
 	force = 3.0
 	throw_force = 2.0
@@ -16,7 +16,7 @@
 /obj/item/rsp
 	name = "\improper Rapid-Seed-Producer (RSP)"
 	desc = "A device used to rapidly deploy seeds."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "rcd"
 	opacity = 0
 	density = 0
@@ -29,7 +29,7 @@
 	name = "soap"
 	desc = "A cheap bar of soap. Doesn't smell."
 	gender = PLURAL
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "soap"
 	flags = NOCONDUCT
 	w_class = ITEMSIZE_SMALL
@@ -56,7 +56,7 @@
 /obj/item/bikehorn
 	name = "bike horn"
 	desc = "A horn off of a bicycle."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "bike_horn"
 	item_state = "bike_horn"
 	throw_force = 3
@@ -99,7 +99,7 @@
 /obj/item/c_tube
 	name = "cardboard tube"
 	desc = "A tube... of cardboard."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "c_tube"
 	throw_force = 1
 	w_class = ITEMSIZE_SMALL
@@ -242,7 +242,7 @@
 
 /obj/item/disk
 	name = "disk"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	drop_sound = 'sound/items/drop/disk.ogg'
 	pickup_sound =  'sound/items/pickup/disk.ogg'
 
@@ -256,7 +256,7 @@
 /*
 /obj/item/game_kit
 	name = "Gaming Kit"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "game_kit"
 	var/selected = null
 	var/board_stat = null
@@ -269,7 +269,7 @@
 /obj/item/gift
 	name = "gift"
 	desc = "A wrapped item."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "gift3"
 	var/size = 3.0
 	var/obj/item/gift = null
@@ -432,7 +432,7 @@
 /obj/item/cigarpacket
 	name = "Pete's Cuban Cigars"
 	desc = "The most robust cigars on the planet."
-	icon = 'icons/obj/cigarettes.dmi'
+	icon = 'icons/obj/item/storage/cigarettes.dmi'
 	icon_state = "cigarpacket"
 	item_state = "cigarpacket"
 	w_class = ITEMSIZE_TINY

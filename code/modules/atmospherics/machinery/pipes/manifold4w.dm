@@ -2,7 +2,7 @@
 // 4-Way Manifold Pipes - 4 way "cross" junction
 //
 /obj/machinery/atmospherics/pipe/manifold4w
-	icon = 'icons/atmos/manifold.dmi'
+	icon = 'icons/obj/atmospherics/manifold.dmi'
 	icon_state = ""
 	name = "4-way pipe manifold"
 	desc = "A manifold composed of regular pipes"

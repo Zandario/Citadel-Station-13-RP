@@ -192,7 +192,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 /obj/machinery/door/firedoor/glass/talon/hidden
 	name = "\improper Emergency Shutter System"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas. This model fits flush with the walls, and has a panel in the floor for maintenance."
-	icon = 'icons/obj/doors/DoorHazardHidden.dmi'
+	icon = 'icons/obj/machinery/doors/DoorHazardHidden.dmi'
 
 /obj/machinery/camera/network/talon
 	network = list(NETWORK_TALON_SHIP)

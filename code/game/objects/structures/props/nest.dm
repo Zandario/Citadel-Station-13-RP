@@ -1,7 +1,7 @@
 /obj/structure/prop/nest
 	name = "diyaab den"
 	desc = "A den of some creature."
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structure/structures.dmi'
 	icon_state = "bonfire"
 	density = TRUE
 	anchored = TRUE

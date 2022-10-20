@@ -63,7 +63,7 @@
 		var/mob/living/carbon/human/M = target
 		if(M.health < M.maxHealth)
 			var/obj/effect/overlay/pulse = new /obj/effect/overlay(get_turf(M))
-			pulse.icon = 'icons/effects/effects.dmi'
+			pulse.icon = 'icons/obj/effect/effects.dmi'
 			pulse.icon_state = "heal"
 			pulse.name = "heal"
 			pulse.anchored = 1

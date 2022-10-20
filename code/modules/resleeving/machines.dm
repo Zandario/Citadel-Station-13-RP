@@ -180,7 +180,7 @@
 	desc = "A rapid fabricator for synthetic bodies."
 	catalogue_data = list(///datum/category_item/catalogue/information/organization/vey_med,
 						/datum/category_item/catalogue/technology/resleeving)
-	icon = 'icons/obj/machines/synthpod.dmi'
+	icon = 'icons/obj/machinery/synthpod.dmi'
 	icon_state = "pod_0"
 	circuit = /obj/item/circuitboard/transhuman_synthprinter
 	density = 1
@@ -402,7 +402,7 @@
 		// /datum/category_item/catalogue/information/organization/vey_med,
 		/datum/category_item/catalogue/technology/resleeving,
 	)
-	icon = 'icons/obj/machines/implantchair.dmi'
+	icon = 'icons/obj/machinery/implantchair.dmi'
 	icon_state = "implantchair"
 	circuit = /obj/item/circuitboard/transhuman_resleever
 	density = TRUE

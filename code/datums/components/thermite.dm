@@ -35,7 +35,7 @@
 			burn_require = 30
 
 	var/turf/master = parent
-	overlay = mutable_appearance('icons/effects/effects.dmi', "thermite")
+	overlay = mutable_appearance('icons/obj/effect/effects.dmi', "thermite")
 	master.add_overlay(overlay)
 
 	RegisterSignal(parent, COMSIG_COMPONENT_CLEAN_ACT, .proc/clean_react)

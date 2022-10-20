@@ -22,7 +22,7 @@
 /obj/effect/phase_shift
 	name = "rift"
 	desc = "There was a maniac here a moment ago..."
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	icon_state = "rift"
 
 /obj/effect/phase_shift/ex_act()

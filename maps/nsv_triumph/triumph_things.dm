@@ -27,7 +27,7 @@
 // shuttle departure cryo doors that turn into ordinary airlock doors at round end
 /obj/machinery/cryopod/robot/door/shuttle
 	name = "\improper Shuttle Station"
-	icon = 'icons/obj/doors/Doorextglass.dmi'
+	icon = 'icons/obj/machinery/doors/Doorextglass.dmi'
 	icon_state = "door_closed"
 	CanAtmosPass = ATMOS_PASS_AIR_BLOCKED
 	base_icon_state = "door_closed"

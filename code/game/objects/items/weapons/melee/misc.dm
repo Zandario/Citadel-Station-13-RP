@@ -35,7 +35,7 @@
 /obj/item/melee/umbrella
 	name = "umbrella"
 	desc = "To keep the rain off you. Use with caution on windy days."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "umbrella_closed"
 	addblends = "umbrella_closed_a"
 	slot_flags = SLOT_BELT

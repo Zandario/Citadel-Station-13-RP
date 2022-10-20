@@ -92,7 +92,7 @@
 // Tram departure cryo doors that turn into ordinary airlock doors at round end
 /obj/machinery/cryopod/robot/door/shuttle/rift
 	name = "\improper Shuttle Station"
-	icon = 'icons/obj/doors/Doorextglass.dmi'
+	icon = 'icons/obj/machinery/doors/Doorextglass.dmi'
 	icon_state = "door_closed"
 	CanAtmosPass = ATMOS_PASS_AIR_BLOCKED
 	base_icon_state = "door_closed"
@@ -415,7 +415,7 @@
 	layer = ABOVE_WINDOW_LAYER
 
 /obj/effect/step_trigger/teleporter/to_rift_wcavern
-	icon = 'icons/obj/structures/stairs_64x64.dmi'
+	icon = 'icons/obj/structure/stairs_64x64.dmi'
 	icon_state = ""
 	invisibility = 0
 /obj/effect/step_trigger/teleporter/to_rift_wcavern/Initialize()
@@ -428,7 +428,7 @@
 			teleport_z = Z.z
 
 /obj/effect/step_trigger/teleporter/from_rift_wcavern
-	icon = 'icons/obj/structures/stairs_64x64.dmi'
+	icon = 'icons/obj/structure/stairs_64x64.dmi'
 	icon_state = ""
 	invisibility = 0
 /obj/effect/step_trigger/teleporter/from_rift_wcavern/Initialize()
@@ -521,4 +521,3 @@
 		/mob/living/simple_mob/animal/passive/woolie = 3,
 		/mob/living/simple_mob/animal/passive/furnacegrub
 	)
-

@@ -66,7 +66,7 @@
 	if(invisibility != INVISIBILITY_MAXIMUM)
 		invisibility = INVISIBILITY_MAXIMUM
 		density = 0
-		anim(target = src, a_icon = 'icons/effects/effects.dmi', a_icon_state = "breakdoor", sleeptime = 10)
+		anim(target = src, a_icon = 'icons/obj/effect/effects.dmi', a_icon_state = "breakdoor", sleeptime = 10)
 		qdel(src)
 
 /obj/machinery/door/firedoor/cultify()

@@ -116,7 +116,7 @@
 /obj/item/toy/blink
 	name = "electronic blink toy game"
 	desc = "Blink.  Blink.  Blink. Ages 8 and up."
-	icon = 'icons/obj/machines/teleporter.dmi'
+	icon = 'icons/obj/machinery/teleporter.dmi'
 	icon_state = "beacon"
 	item_state = "signaler"
 
@@ -1317,7 +1317,7 @@
 /obj/item/toy/bouquet
 	name = "bouquet"
 	desc = "A lovely bouquet of flowers. Smells nice!"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "bouquet"
 	w_class = ITEMSIZE_SMALL
 
@@ -1582,7 +1582,7 @@
 
 /obj/item/chess
 	name = "Chess Piece"
-	icon = 'icons/obj/chess.dmi'
+	icon = 'icons/obj/item/chess.dmi'
 	icon_state = "w-queen"
 	desc = "Some sort of novelty chess piece."
 

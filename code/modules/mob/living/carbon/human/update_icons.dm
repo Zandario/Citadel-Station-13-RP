@@ -322,7 +322,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(!blood_DNA && !feet_blood_DNA)
 		return
 
-	var/image/both = image(icon = 'icons/effects/effects.dmi', icon_state = "nothing", layer = BODY_LAYER+BLOOD_LAYER)
+	var/image/both = image(icon = 'icons/obj/effect/effects.dmi', icon_state = "nothing", layer = BODY_LAYER+BLOOD_LAYER)
 
 	//Bloody hands
 	if(blood_DNA)
@@ -342,7 +342,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 /mob/living/carbon/human/proc/BloodyMouth()
 
-	var/image/both = image(icon = 'icons/effects/effects.dmi', icon_state = "nothing", layer = BODY_LAYER+BLOOD_LAYER)
+	var/image/both = image(icon = 'icons/obj/effect/effects.dmi', icon_state = "nothing", layer = BODY_LAYER+BLOOD_LAYER)
 
 	//"lol", said the scorpion, "lmao"
 	var/image/bloodsies	= image(icon = species.get_blood_mask(src), icon_state = "redwings", layer = BODY_LAYER+BLOOD_LAYER)
@@ -507,7 +507,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(MUTATION_FAT in mutations)
 		fat = "fat"
 
-	var/image/standing	= image(icon = 'icons/effects/genetics.dmi', layer = BODY_LAYER+MUTATIONS_LAYER)
+	var/image/standing	= image(icon = 'icons/obj/effect/genetics.dmi', layer = BODY_LAYER+MUTATIONS_LAYER)
 	var/g = gender == FEMALE ? "f" : "m"
 
 	for(var/datum/gene/gene in dna_genes)
@@ -913,13 +913,13 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		//generate a new one
 		var/species_tail_anim = species.get_tail_animation(src)
 		if(!species_tail_anim && species.icobase_tail) species_tail_anim = species.icobase // Allow override of file for non-animated tails
-		if(!species_tail_anim) species_tail_anim = 'icons/effects/species.dmi'
+		if(!species_tail_anim) species_tail_anim = 'icons/obj/effect/species.dmi'
 		tail_icon = new/icon(species_tail_anim)
 		tail_icon.Blend(rgb(r_skin, g_skin, b_skin), species.color_mult ? ICON_MULTIPLY : ICON_ADD)
 		// The following will not work with animated tails.
 		var/use_species_tail = species.get_tail_hair(src)
 		if(use_species_tail)
-			var/icon/hair_icon = icon('icons/effects/species.dmi', "[species.get_tail(src)]_[use_species_tail]_s") // Suffix icon state string with '_s' to compensate for diff in .dmi b/w us & Polaris. //TODO: No.
+			var/icon/hair_icon = icon('icons/obj/effect/species.dmi', "[species.get_tail(src)]_[use_species_tail]_s") // Suffix icon state string with '_s' to compensate for diff in .dmi b/w us & Polaris. //TODO: No.
 			hair_icon.Blend(rgb(r_hair, g_hair, b_hair), species.color_mult ? ICON_MULTIPLY : ICON_ADD) // Check for species color_mult
 			tail_icon.Blend(hair_icon, ICON_OVERLAY)
 		GLOB.tail_icon_cache[icon_key] = tail_icon

@@ -1,7 +1,7 @@
 /obj/machinery/shield
 	name = "Emergency energy shield"
 	desc = "An energy shield used to contain hull breaches."
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	icon_state = "shield-old"
 	density = 1
 	opacity = 0

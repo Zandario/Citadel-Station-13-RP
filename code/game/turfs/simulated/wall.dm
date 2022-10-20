@@ -247,7 +247,7 @@
 	var/obj/effect/overlay/O = new/obj/effect/overlay( src )
 	O.name = "Thermite"
 	O.desc = "Looks hot."
-	O.icon = 'icons/effects/fire.dmi'
+	O.icon = 'icons/obj/effect/fire.dmi'
 	O.icon_state = "2"
 	O.anchored = 1
 	O.density = 1

@@ -1,6 +1,6 @@
 /obj/effect/water
 	name = "water"
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	icon_state = "extinguish"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	pass_flags = ATOM_PASS_TABLE | ATOM_PASS_GRILLE | ATOM_PASS_BLOB
@@ -48,5 +48,5 @@
 //Used by spraybottles.
 /obj/effect/water/chempuff
 	name = "chemicals"
-	icon = 'icons/obj/chempuff.dmi'
+	icon = 'icons/obj/effect/chempuff.dmi'
 	icon_state = ""

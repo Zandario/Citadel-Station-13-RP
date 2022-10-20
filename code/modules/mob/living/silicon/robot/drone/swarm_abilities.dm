@@ -37,7 +37,7 @@
 /obj/effect/forcefield/swarm
 	desc = "A pocket of strange energy."
 	name = "Null-Field"
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	icon_state = "shield-old"
 	invisibility = 0
 

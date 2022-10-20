@@ -769,7 +769,7 @@
 /obj/item/ammo_magazine/s44
 	name = "speedloader (.44)"
 	icon_state = "44"
-	icon = 'icons/obj/ammo.dmi'
+	icon = 'icons/obj/item/ammo.dmi'
 	ammo_type = /obj/item/ammo_casing/a44
 	matter = list(MAT_STEEL = 1260) //metal costs are very roughly based around 1 .45 casing = 75 metal
 	caliber = ".44"

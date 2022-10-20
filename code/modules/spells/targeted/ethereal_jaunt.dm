@@ -70,7 +70,7 @@
 
 /obj/effect/dummy/spell_jaunt
 	name = "water"
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	icon_state = "nothing"
 	var/canmove = 1
 	var/reappearing = 0

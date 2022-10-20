@@ -1,19 +1,19 @@
 var/list/gurgled_overlays = list(
-								"green" = image('icons/effects/sludgeoverlay_vr.dmi', icon_state = "green"),
-								"white" = image('icons/effects/sludgeoverlay_vr.dmi', icon_state = "white"),
-								"black" = image('icons/effects/sludgeoverlay_vr.dmi', icon_state = "black"),
-								"grey" = image('icons/effects/sludgeoverlay_vr.dmi', icon_state = "grey"),
-								"yellow" = image('icons/effects/sludgeoverlay_vr.dmi', icon_state = "yellow"),
-								"red" = image('icons/effects/sludgeoverlay_vr.dmi', icon_state = "red"),
-								"blue" = image('icons/effects/sludgeoverlay_vr.dmi', icon_state = "blue"),
-								"orange" = image('icons/effects/sludgeoverlay_vr.dmi', icon_state = "orange"),
-								"purple" = image('icons/effects/sludgeoverlay_vr.dmi', icon_state = "purple"),
-								"lime" = image('icons/effects/sludgeoverlay_vr.dmi', icon_state = "lime"),
-								"brown" = image('icons/effects/sludgeoverlay_vr.dmi', icon_state = "brown"),
-								"darkred" = image('icons/effects/sludgeoverlay_vr.dmi', icon_state = "darkred"),
-								"cyan" = image('icons/effects/sludgeoverlay_vr.dmi', icon_state = "cyan"),
-								"beige" = image('icons/effects/sludgeoverlay_vr.dmi', icon_state = "beige"),
-								"pink" = image('icons/effects/sludgeoverlay_vr.dmi', icon_state = "pink")
+								"green" = image('icons/obj/effect/sludgeoverlay_vr.dmi', icon_state = "green"),
+								"white" = image('icons/obj/effect/sludgeoverlay_vr.dmi', icon_state = "white"),
+								"black" = image('icons/obj/effect/sludgeoverlay_vr.dmi', icon_state = "black"),
+								"grey" = image('icons/obj/effect/sludgeoverlay_vr.dmi', icon_state = "grey"),
+								"yellow" = image('icons/obj/effect/sludgeoverlay_vr.dmi', icon_state = "yellow"),
+								"red" = image('icons/obj/effect/sludgeoverlay_vr.dmi', icon_state = "red"),
+								"blue" = image('icons/obj/effect/sludgeoverlay_vr.dmi', icon_state = "blue"),
+								"orange" = image('icons/obj/effect/sludgeoverlay_vr.dmi', icon_state = "orange"),
+								"purple" = image('icons/obj/effect/sludgeoverlay_vr.dmi', icon_state = "purple"),
+								"lime" = image('icons/obj/effect/sludgeoverlay_vr.dmi', icon_state = "lime"),
+								"brown" = image('icons/obj/effect/sludgeoverlay_vr.dmi', icon_state = "brown"),
+								"darkred" = image('icons/obj/effect/sludgeoverlay_vr.dmi', icon_state = "darkred"),
+								"cyan" = image('icons/obj/effect/sludgeoverlay_vr.dmi', icon_state = "cyan"),
+								"beige" = image('icons/obj/effect/sludgeoverlay_vr.dmi', icon_state = "beige"),
+								"pink" = image('icons/obj/effect/sludgeoverlay_vr.dmi', icon_state = "pink")
 								)
 
 /obj/item

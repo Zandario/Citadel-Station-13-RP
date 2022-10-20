@@ -10,7 +10,7 @@
 // Alert status
 // And arbitrary messages set by comms computer
 /obj/machinery/status_display
-	icon = 'icons/obj/status_display.dmi'
+	icon = 'icons/obj/machinery/status_display.dmi'
 	icon_state = "frame"
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
@@ -186,7 +186,7 @@
 	remove_display()
 	if(!picture || picture_state != state)
 		picture_state = state
-		picture = image('icons/obj/status_display.dmi', icon_state=picture_state)
+		picture = image('icons/obj/machinery/status_display.dmi', icon_state=picture_state)
 	overlays |= picture
 
 /obj/machinery/status_display/proc/update_display(line1, line2)

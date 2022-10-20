@@ -1,6 +1,6 @@
 /obj/item/dnalockingchip
 	name = "DNA Chip Lock"
-	icon = 'icons/obj/ammo.dmi'
+	icon = 'icons/obj/item/ammo.dmi'
 	icon_state = "dnalockchip"
 	desc = "A state of the art technological chip that can be installed in a firearm. It allows the user to store their DNA and lock the gun's use from unwanted users."
 	w_class = ITEMSIZE_TINY

@@ -668,7 +668,7 @@
 /obj/item/storage/trinketbox
 	name = "trinket box"
 	desc = "A box that can hold small trinkets, such as a ring."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "trinketbox"
 	var/open = 0
 	storage_slots = 1

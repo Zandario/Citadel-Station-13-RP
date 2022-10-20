@@ -18,7 +18,7 @@
 	max_targets = 0
 
 	overlay = 1
-	overlay_icon = 'icons/effects/effects.dmi'
+	overlay_icon = 'icons/obj/effect/effects.dmi'
 	overlay_icon_state = "rune_teleport"
 	overlay_lifespan = 0
 

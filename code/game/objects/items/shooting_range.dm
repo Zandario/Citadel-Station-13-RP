@@ -91,7 +91,7 @@
 		var/obj/bmark = new
 		bmark.pixel_x = p_x
 		bmark.pixel_y = p_y
-		bmark.icon = 'icons/effects/effects.dmi'
+		bmark.icon = 'icons/obj/effect/effects.dmi'
 		bmark.icon_state = "scorch"
 
 		if(decaltype == 1)

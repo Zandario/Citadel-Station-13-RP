@@ -39,7 +39,7 @@
 				atoms.Add(A)
 
 		atoms = sort_atoms_by_layer(atoms)
-		var/icon/cap = icon('icons/effects/96x96.dmi', "")
+		var/icon/cap = icon('icons/obj/effect/96x96.dmi', "")
 		cap.Scale(range*32, range*32)
 		cap.Blend("#000", ICON_OVERLAY)
 		for(var/atom/A in atoms)

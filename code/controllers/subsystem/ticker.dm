@@ -294,7 +294,7 @@ SUBSYSTEM_DEF(ticker)
 
 	//initialise our cinematic screen object
 	cinematic = new(src)
-	cinematic.icon = 'icons/effects/station_explosion.dmi'
+	cinematic.icon = 'icons/obj/effect/station_explosion.dmi'
 	cinematic.icon_state = "station_intact"
 	cinematic.layer = 100
 	cinematic.plane = PLANE_PLAYER_HUD

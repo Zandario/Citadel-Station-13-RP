@@ -19,7 +19,7 @@
 /datum/event/cult/get_skybox_image()
 	if(!cloud_hueshift)
 		cloud_hueshift = color_matrix_rotate_hue(rand(-3, 3) * 15)
-	var/image/res = image('icons/skybox/cult.dmi', "narsie")
+	var/image/res = image('icons/screen/parallax/skybox/cult.dmi', "narsie")
 	res.color = cloud_hueshift
 	res.appearance_flags = RESET_COLOR
 	res.blend_mode = BLEND_ADD

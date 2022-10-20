@@ -429,7 +429,7 @@
 /obj/item/storage/box/matches
 	name = "matchbox"
 	desc = "A small box of 'Space-Proof' premium matches."
-	icon = 'icons/obj/cigarettes.dmi'
+	icon = 'icons/obj/item/storage/cigarettes.dmi'
 	icon_state = "matchbox"
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_BELT
@@ -683,7 +683,7 @@
 /obj/item/storage/box/foamdart
 	name = "box of foam darts"
 	desc = "It has a picture of some foam darts on it."
-	icon = 'icons/obj/ammo.dmi'
+	icon = 'icons/obj/item/ammo.dmi'
 	icon_state = "foambox"
 	item_state_slots = list(SLOT_ID_RIGHT_HAND = "syringe_kit", SLOT_ID_LEFT_HAND = "syringe_kit")
 	starts_with = list(/obj/item/ammo_casing/foam = 20)

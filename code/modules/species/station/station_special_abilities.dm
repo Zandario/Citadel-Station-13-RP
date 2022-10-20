@@ -222,7 +222,7 @@
 									halimage = image('icons/turf/space.dmi',target,"[rand(1,25)]",TURF_LAYER)
 								if(2)
 									//to_chat(src, "Fire")
-									halimage = image('icons/effects/fire.dmi',target,"1",TURF_LAYER)
+									halimage = image('icons/obj/effect/fire.dmi',target,"1",TURF_LAYER)
 								if(3)
 									//to_chat(src, "C4")
 									halimage = image('icons/obj/assemblies.dmi',target,"plastic-explosive2",OBJ_LAYER+0.01)

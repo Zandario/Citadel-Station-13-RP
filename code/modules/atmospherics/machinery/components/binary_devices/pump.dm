@@ -13,7 +13,7 @@ Thus, the two variables affect pump operation are set in New():
 */
 
 /obj/machinery/atmospherics/component/binary/pump
-	icon = 'icons/atmos/pump.dmi'
+	icon = 'icons/obj/atmospherics/pump.dmi'
 	icon_state = "map_off"
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "pump"

@@ -4,7 +4,7 @@
 	anchored = 1
 	CanAtmosPass = ATMOS_PASS_DENSITY
 
-	icon = 'icons/obj/doors/material_doors.dmi'
+	icon = 'icons/obj/machinery/doors/material_doors.dmi'
 	icon_state = "metal"
 
 	var/datum/material/material

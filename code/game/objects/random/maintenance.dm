@@ -1,7 +1,7 @@
 /obj/random/maintenance //Clutter and loot for maintenance and away missions
 	name = "random maintenance item"
 	desc = "This is a random maintenance item."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "gift1"
 
 /obj/random/maintenance/item_to_spawn()
@@ -25,7 +25,7 @@ Individual items to add to the maintenance list should go here, if you add
 something, make sure it's not in one of the other lists.*/
 	name = "random clean maintenance item"
 	desc = "This is a random clean maintenance item."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "gift1"
 
 /obj/random/maintenance/clean/item_to_spawn()
@@ -113,7 +113,7 @@ something, make sure it's not in one of the other lists.*/
 /*Maintenance loot list. This one is for around security areas*/
 	name = "random security maintenance item"
 	desc = "This is a random security maintenance item."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "gift1"
 
 /obj/random/maintenance/security/item_to_spawn()
@@ -170,7 +170,7 @@ something, make sure it's not in one of the other lists.*/
 /*Maintenance loot list. This one is for around medical areas*/
 	name = "random medical maintenance item"
 	desc = "This is a random medical maintenance item."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "gift1"
 
 /obj/random/maintenance/medical/item_to_spawn()
@@ -210,7 +210,7 @@ something, make sure it's not in one of the other lists.*/
 /*Maintenance loot list. This one is for around medical areas*/
 	name = "random engineering maintenance item"
 	desc = "This is a random engineering maintenance item."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "gift1"
 
 /obj/random/maintenance/engineering/item_to_spawn()
@@ -248,7 +248,7 @@ something, make sure it's not in one of the other lists.*/
 /*Maintenance loot list. This one is for around medical areas*/
 	name = "random research maintenance item"
 	desc = "This is a random research maintenance item."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "gift1"
 
 /obj/random/maintenance/research/item_to_spawn()
@@ -280,7 +280,7 @@ something, make sure it's not in one of the other lists.*/
 /*Maintenance loot list. This one is for around cargo areas*/
 	name = "random cargo maintenance item"
 	desc = "This is a random cargo maintenance item."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "gift1"
 
 /obj/random/maintenance/cargo/item_to_spawn()

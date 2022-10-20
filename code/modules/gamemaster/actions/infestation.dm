@@ -27,7 +27,7 @@
 /datum/gm_action/infestation/get_skybox_image()
 	var/color1 = color_matrix_multiply(color_matrix_rotate_hue(rand(-3, 3) * 15), rgba_auto_greyscale_matrix("#8888ff"))
 	var/color2 = color_matrix_multiply(color_matrix_rotate_hue(rand(-3, 3) * 15), rgba_auto_greyscale_matrix("#88ff88"))
-	var/image/res = image('icons/skybox/caelus.dmi', "aurora")
+	var/image/res = image('icons/screen/parallax/skybox/caelus.dmi', "aurora")
 	res.appearance_flags = RESET_COLOR
 	res.blend_mode = BLEND_ADD
 	animate_color_shift(res, color1, color2, 1080 * 0.5, 1080 * 0.5)

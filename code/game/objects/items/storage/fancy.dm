@@ -102,7 +102,7 @@
 /obj/item/storage/fancy/crayons
 	name = "box of crayons"
 	desc = "A box of crayons for all your rune drawing needs."
-	icon = 'icons/obj/crayons.dmi'
+	icon = 'icons/obj/item/crayons.dmi'
 	icon_state = "crayonbox"
 	w_class = ITEMSIZE_SMALL
 	icon_type = "crayon"
@@ -126,7 +126,7 @@
 	var/mutable_appearance/ma = new(src)
 	ma.overlays = list()
 	for(var/obj/item/pen/crayon/crayon in contents)
-		ma.overlays += image('icons/obj/crayons.dmi',crayon.colourName)
+		ma.overlays += image('icons/obj/item/crayons.dmi',crayon.colourName)
 	appearance = ma
 
 /obj/item/storage/fancy/crayons/attackby(obj/item/W as obj, mob/user as mob)
@@ -143,7 +143,7 @@
 /obj/item/storage/fancy/markers
 	name = "box of markers"
 	desc = "A very professional looking box of permanent markers."
-	icon = 'icons/obj/crayons.dmi'
+	icon = 'icons/obj/item/crayons.dmi'
 	icon_state = "markerbox"
 	w_class = ITEMSIZE_SMALL
 	icon_type = "marker"
@@ -168,7 +168,7 @@
 	var/mutable_appearance/ma = new(src)
 	ma.overlays = list()
 	for(var/obj/item/pen/crayon/marker/marker in contents)
-		ma.overlays += image('icons/obj/crayons.dmi',"m"+marker.colourName)
+		ma.overlays += image('icons/obj/item/crayons.dmi',"m"+marker.colourName)
 	appearance = ma
 
 /obj/item/storage/fancy/markers/attackby(obj/item/W as obj, mob/user as mob)
@@ -185,7 +185,7 @@
 /obj/item/storage/fancy/chalk
 	name = "box of ritual chalk"
 	desc = "A box of chalk for all your ritual needs."
-	icon = 'icons/obj/crayons.dmi'
+	icon = 'icons/obj/item/crayons.dmi'
 	icon_state = "chalkbox"
 	w_class = ITEMSIZE_SMALL
 	icon_type = "chalk"
@@ -207,7 +207,7 @@
 	var/mutable_appearance/ma = new(src)
 	ma.overlays = list()
 	for(var/obj/item/pen/crayon/chalk/chalk in contents)
-		ma.overlays += image('icons/obj/crayons.dmi',"c"+chalk.colourName)
+		ma.overlays += image('icons/obj/item/crayons.dmi',"c"+chalk.colourName)
 	appearance = ma
 
 /*
@@ -231,7 +231,7 @@
 /obj/item/storage/fancy/cigarettes
 	name = "\improper pack of Trans-Stellar Duty-frees"
 	desc = "A ubiquitous brand of cigarettes, found in every major spacefaring corporation in the universe. As mild and flavorless as it gets."
-	icon = 'icons/obj/cigarettes.dmi'
+	icon = 'icons/obj/item/storage/cigarettes.dmi'
 	icon_state = "cigpacket"
 	item_state_slots = list(SLOT_ID_RIGHT_HAND = "cigpacket", SLOT_ID_LEFT_HAND = "cigpacket")
 	w_class = ITEMSIZE_TINY
@@ -348,7 +348,7 @@
 	name = "cigar case"
 	desc = "A case for holding your cigars when you are not smoking them."
 	icon_state = "cigarcase"
-	icon = 'icons/obj/cigarettes.dmi'
+	icon = 'icons/obj/item/storage/cigarettes.dmi'
 	w_class = ITEMSIZE_TINY
 	throw_force = 2
 	slot_flags = SLOT_BELT
@@ -377,7 +377,7 @@
 	name = "rolling paper pack"
 	desc = "A small cardboard pack containing several folded rolling papers."
 	icon_state = "paperbox"
-	icon = 'icons/obj/cigarettes.dmi'
+	icon = 'icons/obj/item/storage/cigarettes.dmi'
 	w_class = ITEMSIZE_TINY
 	throw_force = 2
 	slot_flags = SLOT_BELT
@@ -389,7 +389,7 @@
 	name = "blunt paper pack"
 	desc = "A small cardboard pack containing a few tabacco-based blunt papers."
 	icon_state = "bluntbox"
-	icon = 'icons/obj/cigarettes.dmi'
+	icon = 'icons/obj/item/storage/cigarettes.dmi'
 	w_class = ITEMSIZE_TINY
 	throw_force = 2
 	slot_flags = SLOT_BELT

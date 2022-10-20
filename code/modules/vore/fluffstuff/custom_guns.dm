@@ -538,7 +538,7 @@ END OF CITADEL CHANGES */
 //--------------- StG-60 ----------------
 /obj/item/ammo_magazine/m792
 	name = "box mag (7.92x33mm Kurz)"
-	icon = 'icons/obj/ammo_vr.dmi'
+	icon = 'icons/obj/item/ammo_vr.dmi'
 	icon_state = "stg_30rnd"
 	caliber = "7.92x33mm"
 	ammo_type = /obj/item/ammo_casing/a792
@@ -557,7 +557,7 @@ END OF CITADEL CHANGES */
 //------------- Battlerifle -------------
 /obj/item/ammo_magazine/m95
 	name = "box mag (9.5x40mm)"
-	icon = 'icons/obj/ammo_vr.dmi'
+	icon = 'icons/obj/item/ammo_vr.dmi'
 	icon_state = "battlerifle"
 	caliber = "9.5x40mm"
 	ammo_type = /obj/item/ammo_casing/a95
@@ -580,7 +580,7 @@ END OF CITADEL CHANGES */
 //---------------- PDW ------------------
 /obj/item/ammo_magazine/m9mml
 	name = "\improper SMG magazine (9mm)"
-	icon = 'icons/obj/ammo_vr.dmi'
+	icon = 'icons/obj/item/ammo_vr.dmi'
 	icon_state = "smg"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
@@ -615,7 +615,7 @@ END OF CITADEL CHANGES */
 /obj/item/ammo_magazine/s357/stun
 	name = "speedloader (.357 stun)"
 	desc = "A speedloader for .357 revolvers."
-	icon = 'icons/obj/ammo_vr.dmi'
+	icon = 'icons/obj/item/ammo_vr.dmi'
 	icon_state = "s357"
 	caliber = ".357"
 	ammo_type = /obj/item/ammo_casing/a357/stun
@@ -624,14 +624,14 @@ END OF CITADEL CHANGES */
 /obj/item/ammo_casing/a357/stun
 	desc = "A .357 stun bullet casing."
 	caliber = ".357"
-	icon = 'icons/obj/ammo_vr.dmi'
+	icon = 'icons/obj/item/ammo_vr.dmi'
 	icon_state = "stun357"
 	projectile_type = /obj/item/projectile/energy/electrode/stunshot/strong
 
 /obj/item/ammo_magazine/s357/rubber
 	name = "speedloader (.357 rubber)"
 	desc = "A speedloader for .357 revolvers."
-	icon = 'icons/obj/ammo_vr.dmi'
+	icon = 'icons/obj/item/ammo_vr.dmi'
 	icon_state = "r357"
 	caliber = ".357"
 	ammo_type = /obj/item/ammo_casing/a357/rubber
@@ -640,14 +640,14 @@ END OF CITADEL CHANGES */
 /obj/item/ammo_casing/a357/rubber
 	desc = "A .357 rubber bullet casing."
 	caliber = ".357"
-	icon = 'icons/obj/ammo_vr.dmi'
+	icon = 'icons/obj/item/ammo_vr.dmi'
 	icon_state = "rubber357"
 	projectile_type = /obj/item/projectile/bullet/pistol/rubber/strong
 
 /obj/item/ammo_magazine/s357/flash
 	name = "speedloader (.357 flash)"
 	desc = "A speedloader for .357 revolvers."
-	icon = 'icons/obj/ammo_vr.dmi'
+	icon = 'icons/obj/item/ammo_vr.dmi'
 	icon_state = "f357"
 	caliber = ".357"
 	ammo_type = /obj/item/ammo_casing/a357/flash
@@ -655,7 +655,7 @@ END OF CITADEL CHANGES */
 /obj/item/ammo_casing/a357/flash
 	desc = "A .357 flash bullet casing."
 	caliber = ".357"
-	icon = 'icons/obj/ammo_vr.dmi'
+	icon = 'icons/obj/item/ammo_vr.dmi'
 	icon_state = "flash357"
 	projectile_type = /obj/item/projectile/energy/flash/strong
 
@@ -690,7 +690,7 @@ END OF CITADEL CHANGES */
 /obj/item/ammo_magazine/s44
 	name = "speedloader (.44)"
 	desc = "A speedloader for .44 revolvers."
-	icon = 'icons/obj/ammo_vr.dmi'
+	icon = 'icons/obj/item/ammo_vr.dmi'
 	icon_state = "s357"
 	caliber = ".44"
 	matter = list(MAT_STEEL = 1260)

@@ -1,7 +1,7 @@
 /obj/item/material/fishing_net
 	name = "fishing net"
 	desc = "A crude fishing net."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "net"
 	item_state = "net"
 	description_info = "This object can be used to capture certain creatures easily, most commonly fish. \

@@ -2,7 +2,7 @@
 	gender = PLURAL
 	name = "red lipstick"
 	desc = "A generic brand of lipstick."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "lipstick"
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS
@@ -97,7 +97,7 @@
 	desc = "A pristine purple comb made from flexible plastic."
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "purplecomb"
 
 /obj/item/haircomb/attack_self(mob/living/user)
@@ -121,7 +121,7 @@
 	name = "makeover kit"
 	desc = "A tiny case containing a mirror and some contact lenses."
 	w_class = ITEMSIZE_TINY
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "trinketbox"
 	var/list/ui_users = list()
 

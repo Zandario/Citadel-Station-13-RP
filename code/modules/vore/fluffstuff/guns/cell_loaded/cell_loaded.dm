@@ -140,7 +140,7 @@
 /obj/item/ammo_magazine/cell_mag
 	name = "microbattery magazine"
 	desc = "A microbattery holder for a cell-based variable weapon."
-	icon = 'icons/obj/ammo_vr.dmi'
+	icon = 'icons/obj/item/ammo_vr.dmi'
 	icon_state = "cell_mag"
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 5, TECH_MAGNETS = 3)
 	caliber = "nsfw"
@@ -205,7 +205,7 @@
 	name = "\'NSFW\' microbattery - UNKNOWN"
 	desc = "A miniature battery for an energy weapon."
 	//catalogue_data = list(/datum/category_item/catalogue/information/organization/nanotrasen)
-	icon = 'icons/obj/ammo_vr.dmi'
+	icon = 'icons/obj/item/ammo_vr.dmi'
 	icon_state = "nsfw_batt"
 	slot_flags = SLOT_BELT | SLOT_EARS
 	throw_force = 1

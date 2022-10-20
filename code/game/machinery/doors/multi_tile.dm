@@ -64,22 +64,22 @@
 
 /obj/machinery/door/airlock/multi_tile/glass
 	name = "Glass Airlock"
-	icon = 'icons/obj/doors/Door2x1glass.dmi'
+	icon = 'icons/obj/machinery/doors/Door2x1glass.dmi'
 	opacity = 0
 	glass = 1
 	assembly_type = /obj/structure/door_assembly/multi_tile
 
 /obj/machinery/door/airlock/multi_tile/metal
 	name = "Airlock"
-	icon = 'icons/obj/doors/Door2x1metal.dmi'
+	icon = 'icons/obj/machinery/doors/Door2x1metal.dmi'
 	assembly_type = /obj/structure/door_assembly/multi_tile
 
 /obj/machinery/filler_object
 	name = ""
-	icon = 'icons/obj/doors/rapid_pdoor.dmi'
+	icon = 'icons/obj/machinery/doors/rapid_pdoor.dmi'
 	icon_state = ""
 	density = 0
 
 /obj/machinery/door/airlock/multi_tile/metal/mait
-	icon = 'icons/obj/doors/Door2x1_Maint.dmi'
+	icon = 'icons/obj/machinery/doors/Door2x1_Maint.dmi'
 	//req_one_access = list(access_maint_tunnels) //VOREStaiton Edit - Maintenance is open access

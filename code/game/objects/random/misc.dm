@@ -140,7 +140,7 @@
 /obj/random/tech_supply/component
 	name = "random tech component"
 	desc = "This is a random machine component."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "portable_analyzer"
 
 /obj/random/tech_supply/component/nofail
@@ -200,7 +200,7 @@
 /obj/random/medical/lite
 	name = "Random Medicine"
 	desc = "This is a random simple medical item."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "brutepack"
 	spawn_nothing_percentage = 25
 
@@ -233,7 +233,7 @@
 /obj/random/contraband
 	name = "Random Illegal Item"
 	desc = "Hot Stuff."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "purplecomb"
 	spawn_nothing_percentage = 50
 /obj/random/contraband/item_to_spawn()
@@ -259,7 +259,7 @@
 /obj/random/cash
 	name = "random currency"
 	desc = "LOADSAMONEY!"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "spacecash1"
 
 /obj/random/cash/item_to_spawn()
@@ -273,7 +273,7 @@
 /obj/random/soap
 	name = "Random Soap"
 	desc = "This is a random bar of soap."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "soap"
 
 /obj/random/soap/item_to_spawn()
@@ -321,7 +321,7 @@
 /obj/random/material //Random materials for building stuff
 	name = "random material"
 	desc = "This is a random material."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "sheet-metal"
 
 /obj/random/material/item_to_spawn()
@@ -353,7 +353,7 @@
 /obj/random/cigarettes
 	name = "random cigarettes"
 	desc = "This is a cigarette."
-	icon = 'icons/obj/cigarettes.dmi'
+	icon = 'icons/obj/item/storage/cigarettes.dmi'
 	icon_state = "cigpacket"
 
 /obj/random/cigarettes/item_to_spawn()
@@ -833,7 +833,7 @@
 /obj/random/ammo_all
 	name = "Random Ammunition (All)"
 	desc = "This is random ammunition. Spawns all ammo types."
-	icon = 'icons/obj/ammo.dmi'
+	icon = 'icons/obj/item/ammo.dmi'
 	icon_state = "666"
 
 /obj/random/ammo_all/item_to_spawn()
@@ -881,7 +881,7 @@
 /obj/random/cargopod
 	name = "Random Cargo Item"
 	desc = "Hot Stuff."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "purplecomb"
 
 /obj/random/cargopod/item_to_spawn()
@@ -940,7 +940,7 @@
 /obj/random/roguemineloot
 	name = "Random Rogue Mines Item"
 	desc = "Hot Stuff. Hopefully"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "spickaxe"
 	spawn_nothing_percentage = 0
 
@@ -986,7 +986,7 @@
 
 /obj/random/triumph
 	name = "random triumph loot"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "spickaxe"
 
 /obj/random/triumph/item_to_spawn()
@@ -1001,7 +1001,7 @@
 
 /obj/random/multiple/miningdrills
 	name = "random mining tool loot"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "spickaxe"
 
 /obj/random/multiple/miningdrills/item_to_spawn()
@@ -1170,7 +1170,7 @@
 /obj/random/bedsheet
 	name = "random bedsheet"
 	desc = "Used to spawn a random bedsheet."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "sheet"
 
 /obj/random/bedsheet/item_to_spawn()

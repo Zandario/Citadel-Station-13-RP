@@ -201,7 +201,7 @@
 
 /obj/effect/suspension_field
 	name = "energy field"
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	anchored = TRUE
 	density = TRUE
 

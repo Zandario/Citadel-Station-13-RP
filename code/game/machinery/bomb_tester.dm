@@ -5,7 +5,7 @@
 /obj/machinery/bomb_tester
 	name = "explosive effect simulator"
 	desc = "A device that can calculate the potential explosive yield of provided gases."
-	icon = 'icons/obj/machines/bomb_tester_vr.dmi'
+	icon = 'icons/obj/machinery/bomb_tester.dmi'
 	icon_state = "generic"
 	anchored = TRUE
 	density = TRUE

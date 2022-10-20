@@ -13,10 +13,11 @@ GLOBAL_DATUM_INIT(lobby_image, /obj/effect/lobby_image, new)
 			log_world("Lobby screen '[lobby_screen]' did not exist in the icon set [icon].")
 			GLOB.using_map.lobby_screens -= lobby_screen
 
+	// Use whitelisted icon states if they are set, else use all icon states.
 	if(GLOB.using_map.lobby_screens.len)
 		icon_state = pick(GLOB.using_map.lobby_screens)
 	else
-		icon_state = known_icon_states[1]
+		icon_state = pick(known_icon_states)
 	. = ..()
 
 /mob/new_player

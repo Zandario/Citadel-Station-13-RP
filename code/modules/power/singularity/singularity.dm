@@ -139,7 +139,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 				name = "gravitational singularity"
 				desc = "A gravitational singularity."
 				current_size = STAGE_TWO
-				icon = 'icons/effects/96x96.dmi'
+				icon = 'icons/obj/effect/96x96.dmi'
 				icon_state = "singularity_s3"
 				pixel_x = -32
 				pixel_y = -32
@@ -160,7 +160,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 				name = "gravitational singularity"
 				desc = "A gravitational singularity."
 				current_size = STAGE_THREE
-				icon = 'icons/effects/160x160.dmi'
+				icon = 'icons/obj/effect/160x160.dmi'
 				icon_state = "singularity_s5"
 				pixel_x = -64
 				pixel_y = -64
@@ -181,7 +181,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 				name = "gravitational singularity"
 				desc = "A gravitational singularity."
 				current_size = STAGE_FOUR
-				icon = 'icons/effects/224x224.dmi'
+				icon = 'icons/obj/effect/224x224.dmi'
 				icon_state = "singularity_s7"
 				pixel_x = -96
 				pixel_y = -96
@@ -201,7 +201,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 			name = "gravitational singularity"
 			desc = "A gravitational singularity."
 			current_size = STAGE_FIVE
-			icon = 'icons/effects/288x288.dmi'
+			icon = 'icons/obj/effect/288x288.dmi'
 			icon_state = "singularity_s9"
 			pixel_x = -128
 			pixel_y = -128
@@ -219,7 +219,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 			name = "super gravitational singularity"
 			desc = "A gravitational singularity with the properties of supermatter. <b>It has the power to destroy worlds.</b>"
 			current_size = STAGE_SUPER
-			icon = 'icons/effects/352x352.dmi'
+			icon = 'icons/obj/effect/352x352.dmi'
 			icon_state = "singularity_s11"//uh, whoever drew that, you know that black holes are supposed to look dark right? What's this, the clown's singulo?
 			pixel_x = -160
 			pixel_y = -160
@@ -470,13 +470,13 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 		if(STAGE_ONE)
 			overlays += image('icons/obj/singularity.dmi',"chain_s1")
 		if(STAGE_TWO)
-			overlays += image('icons/effects/96x96.dmi',"chain_s3")
+			overlays += image('icons/obj/effect/96x96.dmi',"chain_s3")
 		if(STAGE_THREE)
-			overlays += image('icons/effects/160x160.dmi',"chain_s5")
+			overlays += image('icons/obj/effect/160x160.dmi',"chain_s5")
 		if(STAGE_FOUR)
-			overlays += image('icons/effects/224x224.dmi',"chain_s7")
+			overlays += image('icons/obj/effect/224x224.dmi',"chain_s7")
 		if(STAGE_FIVE)
-			overlays += image('icons/effects/288x288.dmi',"chain_s9")
+			overlays += image('icons/obj/effect/288x288.dmi',"chain_s9")
 
 /obj/singularity/proc/on_release()
 	chained = 0

@@ -2,7 +2,7 @@
 /obj/effect/spresent
 	name = "strange present"
 	desc = "It's a ... present?"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "strangepresent"
 	density = 1
 	anchored = 0
@@ -11,7 +11,7 @@
 /obj/effect/temporary_effect
 	name = "self deleting effect"
 	desc = "How are you examining what which cannot be seen?"
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	invisibility = 0
 	var/time_to_die = 10 SECONDS // Afer which, it will delete itself.
 
@@ -24,7 +24,7 @@
 /obj/effect/temporary_effect/cleave_attack
 	name = "cleaving attack"
 	desc = "Something swinging really wide."
-	icon = 'icons/effects/96x96.dmi'
+	icon = 'icons/obj/effect/96x96.dmi'
 	icon_state = "cleave"
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER
@@ -54,7 +54,7 @@
 	name = "lightning"
 	desc = "How <i>shocked</i> you must be, to see this text. You must have <i>lightning</i> reflexes. \
 	The humor in this description is just so <i>electrifying</i>."
-	icon = 'icons/effects/96x256.dmi'
+	icon = 'icons/obj/effect/96x256.dmi'
 	icon_state = "lightning_strike"
 	plane = ABOVE_LIGHTING_PLANE
 	time_to_die = 1 SECOND
@@ -68,7 +68,7 @@
 
 //Makes a tile fully lit no matter what
 /obj/effect/fullbright
-	icon = 'icons/effects/alphacolors.dmi'
+	icon = 'icons/obj/effect/alphacolors.dmi'
 	icon_state = "white"
 	plane = LIGHTING_PLANE
 	layer = LIGHTING_LAYER

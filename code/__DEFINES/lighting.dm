@@ -13,7 +13,7 @@
 /// greater values will make lighting less precise, but in turn increase performance, VERY SLIGHTLY.
 #define LIGHTING_ROUND_VALUE    (1 / 64)
 /// Icon used for lighting shading effects
-#define LIGHTING_ICON 'icons/effects/lighting_object.dmi'
+#define LIGHTING_ICON 'icons/obj/effect/lighting_object.dmi'
 // If the max of the lighting lumcounts of each spectrum drops below this, disable luminosity on the lighting objects.
 // Set to zero to disable soft lighting. Luminosity changes then work if it's lit at all.
 #define LIGHTING_SOFT_THRESHOLD 0

@@ -53,7 +53,7 @@
 /obj/structure/ghost_role_spawner/demonic_friend
 	name = "Essence of friendship"
 	desc = "Oh boy! Oh boy! A friend!"
-	icon = 'icons/obj/cardboard_cutout.dmi'
+	icon = 'icons/obj/structure/cardboard_cutout.dmi'
 	icon_state = "cutout_basic"
 	role_type = /datum/ghostrole/demonic_friend
 

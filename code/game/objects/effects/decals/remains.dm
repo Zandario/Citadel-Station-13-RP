@@ -1,7 +1,7 @@
 /obj/effect/decal/remains
 	name = "remains"
 	gender = PLURAL
-	icon = 'icons/effects/blood.dmi'
+	icon = 'icons/obj/effect/blood.dmi'
 	icon_state = "remains"
 	anchored = 0
 

@@ -343,7 +343,7 @@
 /obj/item/skateboard_frame
 	name = "skateboard frame"
 	desc = "This roughly shaped board of flexible steel seems like it could be used to travel in style. It's just missing something..."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "skate_assembly0"
 	force = 3.0
 	throw_force = 3.0
@@ -355,7 +355,7 @@
 /obj/item/heavy_skateboard_frame
 	name = "reinforced skateboard frame"
 	desc = "This bulky board of reinforced steel seems like it could be used to travel in radical style. It's just missing something..."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "skate_assembly0"
 	force = 6.0
 	throw_force = 6.0

@@ -54,7 +54,7 @@
 /obj/effect/resonance
 	name = "resonance field"
 	desc = "A resonating field that significantly damages anything inside of it when the field eventually ruptures."
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	icon_state = "shield1"
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER

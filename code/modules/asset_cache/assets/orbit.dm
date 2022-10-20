@@ -1,4 +1,4 @@
 /datum/asset/simple/orbit
 	assets = list(
-		"ghost.png" = 'icons/ui_icons/orbit/ghost.png'
+		"ghost.png" = 'icons/assets/orbit/ghost.png'
 	)

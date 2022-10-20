@@ -1,7 +1,7 @@
 /obj/structure/firedoor_assembly
 	name = "\improper emergency shutter assembly"
 	desc = "It can save lives."
-	icon = 'icons/obj/doors/DoorHazard.dmi'
+	icon = 'icons/obj/machinery/doors/DoorHazard.dmi'
 	icon_state = "door_construction"
 	anchored = 0
 	opacity = 0

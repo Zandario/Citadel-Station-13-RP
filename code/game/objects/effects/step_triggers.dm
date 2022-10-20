@@ -129,7 +129,7 @@
 
 /* Moves things by an offset, useful for 'Bridges'. Uses dir and a distance var to work with maploader direction changes. */
 /obj/effect/step_trigger/teleporter/offset
-	icon = 'icons/effects/effects.dmi'
+	icon = 'icons/obj/effect/effects.dmi'
 	icon_state = "arrow"
 	var/distance = 3
 

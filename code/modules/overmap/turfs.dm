@@ -62,7 +62,7 @@ var/global/list/map_sectors = list()
 		numbers += list("[round(x/10)]","[round(x%10)]")
 
 	for(var/i = 1 to numbers.len)
-		var/image/I = image('icons/effects/numbers.dmi',numbers[i])
+		var/image/I = image('icons/obj/effect/numbers.dmi',numbers[i])
 		I.pixel_x = 5*i - 2
 		I.pixel_y = world.icon_size/2 - 3
 		if(y == 1)

@@ -1,5 +1,5 @@
 /obj/effect/projectile
-	icon = 'icons/effects/projectiles.dmi'
+	icon = 'icons/obj/effect/projectiles.dmi'
 	icon_state = "bolt"
 	plane = ABOVE_PLANE
 	mouse_opacity = 0

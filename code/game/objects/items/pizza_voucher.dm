@@ -1,7 +1,7 @@
 /obj/item/pizzavoucher
 	name = "free pizza voucher"
 	desc = "A pocket-sized plastic slip with a button in the middle. The writing on it seems to have faded."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "pizza_voucher"
 	var/spent = FALSE
 	var/special_delivery = FALSE

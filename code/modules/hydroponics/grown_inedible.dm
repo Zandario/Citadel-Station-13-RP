@@ -52,7 +52,7 @@
 /obj/item/bananapeel
 	name = "banana peel"
 	desc = "A peel from a banana."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/item/items.dmi'
 	icon_state = "banana_peel"
 	flags = NOCONDUCT
 	w_class = ITEMSIZE_SMALL

@@ -85,8 +85,8 @@
 	if(blood_overlay && blood_DNA && (blood_DNA.len >= 1)) //updates blood overlay, if any
 		overlays.Cut()//this might delete other item overlays as well but eeeeeeeh
 		var/icon/I = new /icon(src.icon, src.icon_state)
-		I.Blend(new /icon('icons/effects/blood.dmi', rgb(255,255,255)),ICON_ADD)
-		I.Blend(new /icon('icons/effects/blood.dmi', "itemblood"),ICON_MULTIPLY)
+		I.Blend(new /icon('icons/obj/effect/blood.dmi', rgb(255,255,255)),ICON_ADD)
+		I.Blend(new /icon('icons/obj/effect/blood.dmi', "itemblood"),ICON_MULTIPLY)
 		blood_overlay = I
 		overlays += blood_overlay
 	return

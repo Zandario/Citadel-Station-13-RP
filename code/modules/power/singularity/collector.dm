@@ -4,7 +4,7 @@ var/global/list/rad_collectors = list()
 /obj/machinery/power/rad_collector
 	name = "Radiation Collector Array"
 	desc = "A device which uses Hawking Radiation and phoron to produce power."
-	icon = 'icons/obj/singularity.dmi'
+	icon = 'icons/obj/machinery/power/singularity.dmi'
 	icon_state = "ca"
 	anchored = FALSE
 	density = TRUE
@@ -130,11 +130,11 @@ var/global/list/rad_collectors = list()
 /obj/machinery/power/rad_collector/proc/update_icons()
 	overlays.Cut()
 	if(P)
-		overlays += image('icons/obj/singularity.dmi', "ptank")
+		overlays += image('icons/obj/machinery/power/singularity.dmi', "ptank")
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(active)
-		overlays += image('icons/obj/singularity.dmi', "on")
+		overlays += image('icons/obj/machinery/power/singularity.dmi', "on")
 
 /obj/machinery/power/rad_collector/proc/toggle_power()
 	active = !active

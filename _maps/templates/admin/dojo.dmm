@@ -219,7 +219,7 @@
 /area/ninja_dojo/dojo)
 "aI" = (
 /obj/machinery/door/airlock{
-	icon = 'icons/obj/doors/Dooruranium.dmi'
+	icon = 'icons/obj/machinery/doors/Dooruranium.dmi'
 	},
 /turf/unsimulated/floor{
 	icon_state = "dark"
@@ -227,7 +227,7 @@
 /area/ninja_dojo/dojo)
 "aJ" = (
 /obj/machinery/door/airlock{
-	icon = 'icons/obj/doors/Dooruranium.dmi'
+	icon = 'icons/obj/machinery/doors/Dooruranium.dmi'
 	},
 /obj/map_helper/airlock/door/int_door,
 /turf/unsimulated/floor{
@@ -468,7 +468,7 @@
 /area/shuttle/ninja)
 "bj" = (
 /obj/machinery/door/airlock{
-	icon = 'icons/obj/doors/Dooruranium.dmi'
+	icon = 'icons/obj/machinery/doors/Dooruranium.dmi'
 	},
 /turf/unsimulated/floor{
 	dir = 8;
@@ -608,7 +608,7 @@
 /area/ninja_dojo/dojo)
 "bw" = (
 /turf/unsimulated/wall{
-	icon = 'icons/obj/doors/Dooruranium.dmi';
+	icon = 'icons/obj/machinery/doors/Dooruranium.dmi';
 	icon_state = "door_closed";
 	name = "Sealed Door"
 	},
@@ -737,7 +737,7 @@
 /area/ninja_dojo/dojo)
 "bN" = (
 /obj/machinery/door/airlock{
-	icon = 'icons/obj/doors/Dooruranium.dmi'
+	icon = 'icons/obj/machinery/doors/Dooruranium.dmi'
 	},
 /turf/unsimulated/floor{
 	icon_state = "white"
@@ -887,7 +887,7 @@
 /area/shuttle/ninja)
 "vm" = (
 /obj/machinery/door/airlock{
-	icon = 'icons/obj/doors/Dooruranium.dmi'
+	icon = 'icons/obj/machinery/doors/Dooruranium.dmi'
 	},
 /obj/map_helper/airlock/door/ext_door,
 /turf/unsimulated/floor{

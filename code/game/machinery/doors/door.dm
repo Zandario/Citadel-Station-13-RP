@@ -3,7 +3,7 @@
 /obj/machinery/door
 	name = "Door"
 	desc = "It opens and closes."
-	icon = 'icons/obj/doors/Doorint.dmi'
+	icon = 'icons/obj/machinery/doors/Doorint.dmi'
 	icon_state = "door1"
 	anchored = 1
 	opacity = 1
@@ -507,7 +507,7 @@
 	update_nearby_tiles()
 
 /obj/machinery/door/morgue
-	icon = 'icons/obj/doors/doormorgue.dmi'
+	icon = 'icons/obj/machinery/doors/doormorgue.dmi'
 
 //Flesh Door
 /obj/machinery/door/flesh_door

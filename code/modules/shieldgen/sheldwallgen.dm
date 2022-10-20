@@ -222,7 +222,7 @@
 /obj/machinery/shieldwall
 		name = "Shield"
 		desc = "An energy shield."
-		icon = 'icons/effects/effects.dmi'
+		icon = 'icons/obj/effect/effects.dmi'
 		icon_state = "shieldwall"
 		anchored = 1
 		density = 1

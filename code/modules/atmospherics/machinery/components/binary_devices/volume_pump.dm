@@ -1,5 +1,5 @@
 /obj/machinery/atmospherics/component/binary/pump/high_power
-	icon = 'icons/atmos/volume_pump.dmi'
+	icon = 'icons/obj/atmospherics/volume_pump.dmi'
 	icon_state = "map_off"
 	construction_type = /obj/item/pipe/directional
 	pipe_state = "volumepump"

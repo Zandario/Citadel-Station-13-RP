@@ -46,11 +46,11 @@
 	cam_background.assigned_map = map_name
 	cam_background.del_on_map_removal = FALSE
 
-	var/mutable_appearance/scanlines = mutable_appearance('icons/effects/static.dmi', "scanlines")
+	var/mutable_appearance/scanlines = mutable_appearance('icons/obj/effect/static.dmi', "scanlines")
 	scanlines.alpha = 50
 	scanlines.layer = FULLSCREEN_LAYER
 
-	var/mutable_appearance/noise = mutable_appearance('icons/effects/static.dmi', "1 light")
+	var/mutable_appearance/noise = mutable_appearance('icons/obj/effect/static.dmi', "1 light")
 	noise.layer = FULLSCREEN_LAYER
 
 	cam_foreground = new

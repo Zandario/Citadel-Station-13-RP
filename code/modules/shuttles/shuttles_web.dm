@@ -387,7 +387,7 @@
 /obj/structure/flight_left
 	name = "flight computer meters"
 	desc = "You hope the pilot knows what this does."
-	icon = 'icons/obj/flight_computer.dmi'
+	icon = 'icons/obj/structure/flight_computer.dmi'
 	icon_state = "left"
 	density = TRUE
 	anchored = TRUE
@@ -395,7 +395,7 @@
 /obj/structure/flight_right
 	name = "flight computer panel"
 	desc = "Probably shouldn't open it."
-	icon = 'icons/obj/flight_computer.dmi'
+	icon = 'icons/obj/structure/flight_computer.dmi'
 	icon_state = "right"
 	density = TRUE
 	anchored = TRUE
@@ -437,7 +437,7 @@
 //A sensor for detecting air outside shuttles! Handy, that.
 /obj/machinery/shuttle_sensor
 	name = "environment sensor"
-	icon = 'icons/obj/airlock_machines.dmi'
+	icon = 'icons/obj/machinery/airlock_machines.dmi'
 	icon_state = "airlock_sensor_standby"
 	var/id_tag
 
