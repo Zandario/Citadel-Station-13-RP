@@ -25,7 +25,7 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_TURF_SIM, SMOOTH_GROUP_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_WALLS)
-
+	edge_blending_priority = INFINITY		// let's not have floors render onto us mmkay?
 
 	var/icon/wall_masks = 'icons/turf/wall_masks.dmi'
 	var/damage = 0
@@ -133,12 +133,12 @@
 	take_damage(damage)
 	return
 
-/turf/simulated/wall/hitby(AM as mob|obj, var/speed=THROWFORCE_SPEED_DIVISOR)
-	..()
-	if(ismob(AM))
+/turf/simulated/wall/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
+	. = ..()
+	if(TT.throw_flags & THROW_AT_IS_GENTLE)
 		return
 
-	var/tforce = AM:throwforce * (speed/THROWFORCE_SPEED_DIVISOR)
+	var/tforce = AM.throw_force * TT.get_damage_multiplier()
 	if (tforce < 15)
 		return
 

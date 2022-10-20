@@ -150,7 +150,7 @@
 
 /datum/reagent/nutriment/flour/touch_turf(var/turf/simulated/T)
 	if(!istype(T, /turf/space))
-		new /obj/effect/decal/cleanable/flour(T)
+		new /obj/effect/debris/cleanable/flour(T)
 
 /datum/reagent/nutriment/flour/vitapaste
 	name = "NutriFlour"
@@ -359,7 +359,7 @@ End Citadel Change */
 
 /datum/reagent/nutriment/durian/touch_turf(var/turf/T, var/amount)
 	if(istype(T))
-		var/obj/effect/decal/cleanable/chemcoating/C = new /obj/effect/decal/cleanable/chemcoating(T)
+		var/obj/effect/debris/cleanable/chemcoating/C = new /obj/effect/debris/cleanable/chemcoating(T)
 		C.reagents.add_reagent(id, amount)
 	return ..()
 
@@ -587,7 +587,7 @@ End Citadel Change */
 				if(!safe_thing)
 					safe_thing = H.glasses
 		if(alien == IS_SLIME)
-			for(var/obj/item/clothing/C in H.worn_clothing)
+			for(var/obj/item/clothing/C in H.get_equipped_items())
 				if(C.body_parts_covered & HEAD)
 					head_covered = 1
 				if(C.body_parts_covered & UPPER_TORSO)
@@ -2057,6 +2057,17 @@ End Citadel Change */
 
 	glass_name = "Driver`s Punch"
 	glass_desc = "A fruity punch!"
+	glass_special = list(DRINK_FIZZ)
+
+/datum/reagent/drink/sugarrush
+	name = "Sweet Rush"
+	id = "sugarrush"
+	description = "A favorite drink amongst poor bartenders living in Neo Detroit."
+	taste_description = "sweet bubblegum fizz."
+	color = "#d3785d"
+
+	glass_name = "Sweet Rush"
+	glass_desc = "This looks like it might rot your teeth out."
 	glass_special = list(DRINK_FIZZ)
 
 /datum/reagent/drink/berrycordial
@@ -4541,17 +4552,6 @@ End Citadel Change */
 		M.make_dizzy(24) // Intentionally higher than normal to compensate for it's previous effects.
 	if(dose * strength >= strength * 2.5) // Slurring takes longer. Again, intentional.
 		M.slurring = max(M.slurring, 30)
-
-/datum/reagent/ethanol/sugarrush
-	name = "Sweet Rush"
-	id = "sugarrush"
-	description = "A favorite drink amongst poor bartenders living in Neo Detroit."
-	taste_description = "sweet bubblegum vodka."
-	strength = 30
-	color = "#d3785d"
-
-	glass_name = "Sweet Rush"
-	glass_desc = "This looks like it might rot your teeth out."
 
 /datum/reagent/ethanol/lotus
 	name = "Lotus"

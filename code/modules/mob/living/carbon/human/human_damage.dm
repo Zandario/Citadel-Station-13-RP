@@ -30,7 +30,10 @@
 	if(should_have_organ("brain"))
 		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name["brain"]
 		if(sponge)
-			sponge.take_damage(amount)
+			if(amount > 0)
+				sponge.take_damage(amount)
+			else
+				sponge.heal_damage_i(-amount, can_revive = TRUE)
 			brainloss = sponge.damage
 		else
 			brainloss = 200
@@ -44,7 +47,8 @@
 	if(should_have_organ("brain"))
 		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name["brain"]
 		if(sponge)
-			sponge.damage = min(max(amount, 0),(getMaxHealth()*2))
+			sponge.damage = clamp(amount, 0, sponge.max_damage)
+			sponge.update_health()
 			brainloss = sponge.damage
 		else
 			brainloss = 200
@@ -58,7 +62,7 @@
 	if(should_have_organ("brain"))
 		var/obj/item/organ/internal/brain/sponge = internal_organs_by_name["brain"]
 		if(sponge)
-			brainloss = min(sponge.damage,getMaxHealth()*2)
+			brainloss = sponge.damage
 		else
 			brainloss = 200
 	else
@@ -191,17 +195,17 @@
 	update_hud_med_all()
 
 /mob/living/carbon/human/Stun(amount)
-	if(HULK in mutations)
+	if(MUTATION_HULK in mutations)
 		return
 	..()
 
 /mob/living/carbon/human/Weaken(amount)
-	if(HULK in mutations)
+	if(MUTATION_HULK in mutations)
 		return
 	..()
 
 /mob/living/carbon/human/Paralyse(amount)
-	if(HULK in mutations)
+	if(MUTATION_HULK in mutations)
 		return
 	// Notify our AI if they can now control the suit.
 	if(wearing_rig && !stat && paralysis < amount) //We are passing out right this second.

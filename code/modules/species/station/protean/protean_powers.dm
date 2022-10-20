@@ -48,8 +48,8 @@
 			organs_by_name[choice] = new_eo
 			new_eo.robotize(synthetic ? synthetic.company : null) //Use the base we started with
 			regenerate_icons()
+			visible_message("<B>[src]</B>'s tendrils solidify into a [new_eo].")
 		active_regen = FALSE
-		visible_message("<B>[src]</B>'s tendrils solidify into a [choice].")
 		// nano_outofblob(blob)  No longer needed as we're not going to blob
 		return
 
@@ -59,7 +59,7 @@
 		var/datum/robolimb/M = GLOB.chargen_robolimbs[company]
 		if(!(choice in M.parts))
 			continue
-		if(impersonate_bodytype in M.species_cannot_use)
+		if(impersonate_bodytype_legacy in M.species_cannot_use)
 			continue
 		if(M.whitelisted_to && !(ckey in M.whitelisted_to))
 			continue
@@ -76,7 +76,7 @@
 		return //Lost it meanwhile
 
 	eo.robotize(manu_choice)
-	visible_message("<B>[src]</B>'s [choice] loses its shape, then reforms.")
+	visible_message("<B>[src]</B>'s [eo] subtly contorts.")
 	update_icons_body()
 
 ////
@@ -112,7 +112,7 @@
 			var/datum/robolimb/M = GLOB.chargen_robolimbs[company]
 			if(!(BP_TORSO in M.parts))
 				continue
-			if(impersonate_bodytype in M.species_cannot_use)
+			if(impersonate_bodytype_legacy in M.species_cannot_use)
 				continue
 			if(M.whitelisted_to && !(ckey in M.whitelisted_to))
 				continue
@@ -199,7 +199,7 @@
 		to_chat(src,"<span class='warning'>You don't have a working refactory module!</span>")
 		return
 
-	var/held = get_active_hand()
+	var/held = get_active_held_item()
 	if(!istype(held,/obj/item/stack/material))
 		to_chat(src,"<span class='warning'>You aren't holding a stack of materials in your active hand...!</span>")
 		return
@@ -215,7 +215,7 @@
 		return //Only a few things matter, the rest are best not cluttering the lists.
 
 	var/howmuch = input(src,"How much do you want to store? (0-[matstack.amount])","Select amount") as null|num
-	if(!howmuch || matstack != get_active_hand() || howmuch > matstack.amount)
+	if(!howmuch || matstack != get_active_held_item() || howmuch > matstack.amount)
 		return //Quietly fail
 
 	var/actually_added = refactory.add_stored_material(substance,howmuch*matstack.perunit)
@@ -289,9 +289,11 @@
 		to_chat(src,"<span class='warning'>You must be awake and standing to perform this action!</span>")
 		return
 
-	var/new_species = input("Please select a species to emulate.", "Shapeshifter Body") as null|anything in GLOB.playable_species
+	var/new_species_name = input("Please select a species to emulate.", "Shapeshifter Body") as null|anything in GLOB.playable_species
+	var/datum/species/new_species = name_static_species_meta(new_species_name)
 	if(new_species)
-		impersonate_bodytype = new_species
+		impersonate_bodytype_legacy = new_species
+		impersonate_bodytype = new_species.default_bodytype
 		regenerate_icons() //Expensive, but we need to recrunch all the icons we're wearing
 
 ////

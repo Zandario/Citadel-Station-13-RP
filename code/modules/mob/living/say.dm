@@ -56,7 +56,8 @@ var/list/department_radio_keys = list(
 
 
 var/list/channel_to_radio_key = new
-proc/get_radio_key_from_channel(var/channel)
+
+/proc/get_radio_key_from_channel(channel)
 	var/key = channel_to_radio_key[channel]
 	if(!key)
 		for(var/radio_key in department_radio_keys)
@@ -103,7 +104,7 @@ proc/get_radio_key_from_channel(var/channel)
 		message_data[1] = ""
 		return
 
-	if((HULK in mutations) && health >= 25 && length_char(message))
+	if((MUTATION_HULK in mutations) && health >= 25 && length_char(message))
 		message = "[uppertext(message)]!!!"
 		verb = pick("yells","roars","hollers")
 		whispering = 0
@@ -150,7 +151,7 @@ proc/get_radio_key_from_channel(var/channel)
 	if(client)
 		if(message)
 			client.handle_spam_prevention(MUTE_IC)
-			if((client.prefs.muted & MUTE_IC) || say_disabled)
+			if((client.prefs.muted & MUTE_IC))
 				to_chat(src, "<span class='warning'>You cannot speak in IC (Muted).</span>")
 				return
 
@@ -287,7 +288,7 @@ proc/get_radio_key_from_channel(var/channel)
 		var/msg
 		if(!speaking || !(speaking.flags & NO_TALK_MSG))
 			msg = "<span class='notice'>\The [src] talks into \the [used_radios[1]]</span>"
-		for(var/mob/living/M in hearers(5, src))
+		for(var/mob/living/M in hearers(7, src))
 			if((M != src) && msg)
 				M.show_message(msg)
 			if (speech_sound)
@@ -380,6 +381,10 @@ proc/get_radio_key_from_channel(var/channel)
 					listening[item] = z_speech_bubble
 			listening_obj |= results["objs"]
 		above = above.shadow
+	var/atom/emitter = src
+	if(!isobserver(emitter) || !IsAdminGhost(emitter))
+		emitter.say_overhead(say_emphasis_strip(message), whispering, message_range, speaking)
+
 
 	//Main 'say' and 'whisper' message delivery
 	for(var/mob/M in listening)
@@ -395,12 +400,14 @@ proc/get_radio_key_from_channel(var/channel)
 						SEND_IMAGE(M, I1)
 					M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
 				if(whispering) //Don't even bother with these unless whispering
+
 					if(dst > message_range && dst <= w_scramble_range) //Inside whisper scramble range
 						if(M.client)
 							var/image/I2 = listening[M] || speech_bubble
 							images_to_clients[I2] |= M.client
 							SEND_IMAGE(M, I2)
 						M.hear_say(stars(message), verb, speaking, alt_name, italics, src, speech_sound, sound_vol*0.2)
+
 					if(dst > w_scramble_range && dst <= world.view) //Inside whisper 'visible' range
 						M.show_message("<span class='game say'><span class='name'>[src.name]</span> [w_not_heard].</span>", 2)
 

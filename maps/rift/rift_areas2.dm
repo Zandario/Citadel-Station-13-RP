@@ -247,6 +247,12 @@
 /area/outpost/mining_main/passage
 	name = "\improper Mining Outpost Passage"
 
+/area/outpost/mining_main/outpost
+	name = "\improper Mining Outpost"
+
+/area/outpost/mining_main/outpost/substation
+	name = "\improper Outpost Substation"
+
 // Solars map areas
 /area/tether/outpost/solars_outside
 	name = "\improper Solar Farm"
@@ -360,6 +366,8 @@
 	name = "\improper Xenobiology Cell 5"
 /area/rnd/xenobiology/cell/six
 	name = "\improper Xenobiology Cell 6"
+/area/rnd/xenobiology/cell/seven
+	name = "\improper Xenobiology Cell 7"
 /area/rnd/xenobiology/xenoflora/lab_atmos
 	name = "\improper Xenoflora Atmospherics Lab"
 /area/rnd/breakroom
@@ -711,7 +719,15 @@ Do this eventually. */
 	name = "Western Plains Surface"
 	icon_state = "green"
 
+/area/rift/surfacebase/outside/west/submap_seedzone
+	name = "Western Plains Surface"
+	icon_state = "green"
+
 /area/rift/surfacebase/outside/west_caves
+	name = "Western Plains Caverns"
+	icon_state = "red"
+
+/area/rift/surfacebase/outside/west_caves/submap_seedzone
 	name = "Western Plains Caverns"
 	icon_state = "red"
 
@@ -719,9 +735,18 @@ Do this eventually. */
 	name = "Western Plains Deep Ice"
 	icon_state = "yellow"
 
+/area/rift/surfacebase/outside/west_deep/submap_seedzone
+	name = "Western Plains Deep Ice"
+	icon_state = "yellow"
+
 /area/rift/surfacebase/outside/west_base
 	name = "Western Plains Canyon"
 	icon_state = "blue"
+
+/area/rift/surfacebase/outside/west_base/submap_seedzone
+	name = "Western Plains Canyon"
+	icon_state = "blue"
+
 
 //Trade Pad/Shop
 /area/rift/trade_shop
@@ -791,6 +816,40 @@ Do this eventually. */
 /area/rift/facility/interior/core
 	name = "\improper Lythios Facility -  Reactor Core"
 
+///Asylum Dungeon Areas
+/area/rift/asylum
+	name = "\improper ERROR: Area Not Found"
+
+/area/rift/asylum/cellblock
+
+/area/rift/asylum/common
+
+/area/rift/asylum/janitorial
+
+/area/rift/asylum/mess
+
+/area/rift/asylum/staff
+
+/area/rift/asylum/trash
+
+/area/rift/asylum/medical
+
+/area/rift/asylum/fitness
+
+/area/rift/asylum/halls
+
+/area/rift/asylum/pit
+
+/area/rift/asylum/training
+
+/area/rift/asylum/surgical
+
+/area/rift/asylum/near_death
+
+/area/rift/asylum/science
+
+/area/rift/asylum/command
+
 //Other Lythios outdoor areas
 /area/rift/exterior/nuketown
 	name = "\improper High Yield Explosives Test Site"
@@ -815,3 +874,6 @@ Do this eventually. */
 
 /area/rift/exterior/mineshaft
 	name = "\improper Abandoned Mineshaft"
+
+
+

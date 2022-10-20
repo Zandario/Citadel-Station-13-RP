@@ -5,17 +5,61 @@
 	icon_state = "densecrate"
 	density = 1
 	var/list/starts_with
+	var/storage_capacity = 2 * MOB_LARGE //This is so that someone can't pack hundreds of items in a locker/crate
+							  //then open it in a populated area to crash clients.
 
+
+
+/obj/structure/largecrate/Initialize(mapload)	//Shamelessly copied from closets.dm since the old Initializer didnt seem to function properly - Bloop
+	. = ..()
+	if(mapload)
+		addtimer(CALLBACK(src, .proc/take_contents), 0)
+	PopulateContents()
+	// Closets need to come later because of spawners potentially creating objects during init.
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/structure/largecrate/LateInitialize()
+	. = ..()
+	if(starts_with)
+		create_objects_in_loc(src, starts_with)
+		starts_with = null
+	update_icon()
+
+/obj/structure/largecrate/proc/take_contents()
+	// if(istype(loc, /mob/living))
+	//	return // No collecting mob organs if spawned inside mob
+	// I'll leave this out, if someone dies to this from voring someone who made a closet go yell at a coder to
+	// fix the fact you can build closets inside living people, not try to make it work you numbskulls.
+	var/obj/item/I
+	for(I in src.loc)
+		if(I.density || I.anchored || I == src) continue
+		I.forceMove(src)
+	// adjust locker size to hold all items with 5 units of free store room
+	var/content_size = 0
+	for(I in src.contents)
+		content_size += CEILING(I.w_class/2, 1)
+	if(content_size > storage_capacity-5)
+		storage_capacity = content_size + 5
+
+/**
+ * The proc that fills the closet with its initial contents.
+ */
+/obj/structure/largecrate/proc/PopulateContents()
+	return
+
+/*	/// Doesnt work but im gonna leave this here commented out in case I broke something with the shameless copy pasta from above -Bloop
 /obj/structure/largecrate/Initialize(mapload)
 	. = ..()
 	if(starts_with)
 		create_objects_in_loc(src, starts_with)
 		starts_with = null
 	for(var/obj/I in src.loc)
-		if(I.density || I.anchored || I == src || (I.flags & AF_ABSTRACT))
+		if(I.density || I.anchored || I == src || (I.flags & ATOM_ABSTRACT))
 			continue
 		I.forceMove(src)
 	update_icon()
+
+*/
 
 /obj/structure/largecrate/attack_hand(mob/user as mob)
 	to_chat(user, "<span class='notice'>You need a crowbar to pry this open!</span>")
@@ -29,7 +73,7 @@
 		new /obj/item/stack/material/wood(src)
 
 		for(var/atom/movable/AM in contents)
-			if(!(AM.flags & AF_ABSTRACT))
+			if(!(AM.flags & ATOM_ABSTRACT))
 				AM.forceMove(T)
 
 		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
@@ -151,7 +195,7 @@
 		new /mob/living/simple_mob/animal/passive/bird/parrot/pink_cockatoo(src)
 		var/turf/T = get_turf(src)
 		for(var/atom/movable/AM in contents)
-			if(!(AM.flags & AF_ABSTRACT))
+			if(!(AM.flags & ATOM_ABSTRACT))
 				AM.forceMove(T)
 		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
 							 "<span class='notice'>You pry open \the [src].</span>", \

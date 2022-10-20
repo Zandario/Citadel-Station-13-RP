@@ -245,7 +245,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		playsound(src, 'sound/weapons/punchmiss.ogg', 25, TRUE, -1)
 	return success
 
-/turf/MouseDrop_T(atom/movable/O, mob/user)
+/turf/MouseDroppedOnLegacy(atom/movable/O as mob|obj, mob/user as mob)
 	var/turf/T = get_turf(user)
 	var/area/A = T.loc
 	if((istype(A) && !(A.has_gravity)) || (istype(T,/turf/space)))
@@ -331,7 +331,7 @@ GLOBAL_LIST_EMPTY(station_turfs)
 			var/turf/simulated/T = src
 			T.dirt = 0
 		for(var/obj/effect/O in src)
-			if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
+			if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/debris/cleanable) || istype(O,/obj/effect/overlay))
 				qdel(O)
 	else
 		to_chat(user, SPAN_WARNING("\The [source] is too dry to wash that."))
@@ -340,14 +340,15 @@ GLOBAL_LIST_EMPTY(station_turfs)
 /turf/proc/update_blood_overlays()
 	return
 
-/// Called when turf is hit by a thrown object.
-/turf/hitby(atom/movable/AM, speed)
+// Called when turf is hit by a thrown object
+/turf/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
+	. = ..()
 	if(src.density)
 		spawn(2)
-			step(AM, turn(AM.last_move, 180))
-		if(isliving(AM))
+			step(AM, turn(AM.last_move_dir, 180))
+		if(isliving(AM) && !(TT.throw_flags & THROW_AT_IS_GENTLE))
 			var/mob/living/M = AM
-			M.turf_collision(src, speed)
+			M.turf_collision(src, TT.speed)
 
 /turf/AllowDrop()
 	return TRUE
@@ -413,3 +414,15 @@ GLOBAL_LIST_EMPTY(station_turfs)
 /// We were the the B-side in a turf translation.
 /turf/proc/post_translate_B(turf/A)
 	return
+
+/turf/has_gravity()
+	if(loc.has_gravity(src))
+		return TRUE
+/*
+	else
+		// There's a gravity generator on our z level
+		if(GLOB.gravity_generators["[z]"])
+			//? length check
+			return TRUE
+*/
+	return SSmapping.level_trait(z, ZTRAIT_GRAVITY)

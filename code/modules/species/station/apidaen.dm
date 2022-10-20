@@ -97,31 +97,30 @@
 	var/short_emote_descriptor = list("coaxes", "scoops")
 	var/self_emote_descriptor = list("scoop", "coax", "heave")
 	var/nectar_type = "nectar (honey)"
-	var/mob/organ_owner = null
 	var/gen_cost = 5
 
 /obj/item/organ/internal/honey_stomach/Initialize(mapload)
 	. = ..()
 	create_reagents(usable_volume)
 
-/obj/item/organ/internal/honey_stomach/process(delta_time)
-	if(!owner) return
-	var/obj/item/organ/external/parent = owner.get_organ(parent_organ)
-	var/before_gen
-	if(parent && generated_reagents && organ_owner) //Is it in the chest/an organ, has reagents, and is 'activated'
-		before_gen = reagents.total_volume
-		if(reagents.total_volume < reagents.maximum_volume)
-			if(organ_owner.nutrition >= gen_cost)
-				do_generation()
+/obj/item/organ/internal/honey_stomach/tick_life(dt)
+	. = ..()
+	if(.)
+		return
+
+	var/before_gen = reagents.total_volume
+	if(reagents.total_volume < reagents.maximum_volume)
+		if(owner.nutrition >= gen_cost)
+			do_generation()
 
 	if(reagents)
 		if(reagents.total_volume == reagents.maximum_volume * 0.05)
-			to_chat(organ_owner, SPAN_NOTICE("[pick(empty_message)]"))
+			to_chat(owner, SPAN_NOTICE("[pick(empty_message)]"))
 		else if(reagents.total_volume == reagents.maximum_volume && before_gen < reagents.maximum_volume)
-			to_chat(organ_owner, SPAN_WARNING("[pick(full_message)]"))
+			to_chat(owner, SPAN_WARNING("[pick(full_message)]"))
 
 /obj/item/organ/internal/honey_stomach/proc/do_generation()
-	organ_owner.nutrition -= gen_cost
+	owner.nutrition -= gen_cost
 	for(var/reagent in generated_reagents)
 		reagents.add_reagent(reagent, generated_reagents[reagent])
 
@@ -142,8 +141,7 @@
 			honey_stomach.nectar_type = selection
 		verbs |= /mob/living/carbon/human/proc/nectar_pick
 		verbs -= /mob/living/carbon/human/proc/nectar_select
-		honey_stomach.organ_owner = src
-		honey_stomach.emote_descriptor = list("nectar fresh from [honey_stomach.organ_owner]!", "nectar from [honey_stomach.organ_owner]!")
+		honey_stomach.emote_descriptor = list("nectar fresh from [honey_stomach.owner]!", "nectar from [honey_stomach.owner]!")
 
 	else
 		to_chat(src, SPAN_NOTICE("You lack the organ required to produce nectar."))

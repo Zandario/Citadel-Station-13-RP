@@ -20,7 +20,6 @@
 	density = 1
 	blocks_air = 1
 	can_dirty = FALSE
-	edge_blending_priority = 0
 
 	var/datum/ore/mineral
 	var/sand_dug
@@ -75,19 +74,19 @@
 	can_build_into_floor = TRUE
 
 //Alternative sand floor sprite.
-turf/simulated/mineral/floor/light
+/turf/simulated/mineral/floor/light
 	icon_state = "sand-light"
 	sand_icon_state = "sand-light"
 
-turf/simulated/mineral/floor/light_border
+/turf/simulated/mineral/floor/light_border
 	icon_state = "sand-light-border"
 	sand_icon_state = "sand-light-border"
 
-turf/simulated/mineral/floor/light_nub
+/turf/simulated/mineral/floor/light_nub
 	icon_state = "sand-light-nub"
 	sand_icon_state = "sand-light-nub"
 
-turf/simulated/mineral/floor/light_corner
+/turf/simulated/mineral/floor/light_corner
 	icon_state = "sand-light-corner"
 	sand_icon_state = "sand-light-corner"
 
@@ -108,7 +107,7 @@ turf/simulated/mineral/floor/light_corner
 	reconsider_lights()
 	blocks_air = FALSE
 	can_build_into_floor = TRUE
-	SSplanets.addTurf(src)
+	//SSplanets.addTurf(src)	// Thank you Silicons, this was causing underground areas to have weather effects in them	- Bloop
 	queue_zone_update()
 	QUEUE_SMOOTH(src)
 	QUEUE_SMOOTH_NEIGHBORS(src)
@@ -122,7 +121,7 @@ turf/simulated/mineral/floor/light_corner
 	reconsider_lights()
 	blocks_air = TRUE
 	can_build_into_floor = FALSE
-	SSplanets.removeTurf(src)
+	//SSplanets.removeTurf(src)	// Thank you Silicons, this was causing underground areas to have weather effects in them as well -Bloop
 	queue_zone_update()
 	QUEUE_SMOOTH(src)
 	QUEUE_SMOOTH_NEIGHBORS(src)
@@ -272,7 +271,7 @@ GLOBAL_LIST_EMPTY(mining_overlay_cache)
 
 	if(istype(AM,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = AM
-		var/obj/item/pickaxe/P = H.get_inactive_hand()
+		var/obj/item/pickaxe/P = H.get_inactive_held_item()
 		if(istype(P) && P.active)
 			src.attackby(P, H)
 
@@ -588,7 +587,7 @@ GLOBAL_LIST_EMPTY(mining_overlay_cache)
 		return
 	clear_ore_effects()
 	var/obj/item/ore/O = new mineral.ore (src)
-	if(istype(O))
+	if(geologic_data && istype(O))
 		geologic_data.UpdateNearbyArtifactInfo(src)
 		O.geologic_data = geologic_data
 	return O

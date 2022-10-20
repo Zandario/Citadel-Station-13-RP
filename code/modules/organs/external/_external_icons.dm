@@ -1,4 +1,4 @@
-var/global/list/limb_icon_cache = list()
+GLOBAL_LIST_EMPTY(limb_icon_cache)
 
 /obj/item/organ/external/proc/compile_icon()
 	cut_overlays()
@@ -19,7 +19,7 @@ var/global/list/limb_icon_cache = list()
 			if(human.synth_color)
 				s_col = list(human.r_synth, human.g_synth, human.b_synth)
 			return
-	if(robotic && !(human.species.species_appearance_flags & BASE_SKIN_COLOR))
+	if(robotic && !(human.species.species_appearance_flags & HAS_BASE_SKIN_COLOR))
 		var/datum/robolimb/franchise = GLOB.all_robolimbs[model]
 		if(!(franchise && franchise.skin_tone))
 			return
@@ -120,7 +120,7 @@ var/global/list/limb_icon_cache = list()
 	//Facial hair
 	if(owner.f_style)
 		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[owner.f_style]
-		if(facial_hair_style && (!facial_hair_style.apply_restrictions || (species.get_bodytype(owner) in facial_hair_style.species_allowed)))
+		if(facial_hair_style && (!facial_hair_style.apply_restrictions || (species.get_bodytype_legacy(owner) in facial_hair_style.species_allowed)))
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			if(facial_hair_style.do_colouration)
 				facial_s.Blend(rgb(owner.r_facial, owner.g_facial, owner.b_facial), facial_hair_style.color_blend_mode)
@@ -133,7 +133,7 @@ var/global/list/limb_icon_cache = list()
 		if(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR))
 			if(!(hair_style.flags & HAIR_VERY_SHORT))
 				hair_style = hair_styles_list["Short Hair"]
-		if(hair_style && (!hair_style.apply_restrictions || (species.get_bodytype(owner) in hair_style.species_allowed)))
+		if(hair_style && (!hair_style.apply_restrictions || (species.get_bodytype_legacy(owner) in hair_style.species_allowed)))
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 			var/icon/hair_s_add = new/icon("icon" = hair_style.icon_add, "icon_state" = "[hair_style.icon_state]_s")
 			if(hair_style.do_colouration && islist(h_col) && h_col.len >= 3)
@@ -150,7 +150,7 @@ var/global/list/limb_icon_cache = list()
 		gender = "m"
 
 	if(!force_icon_key)
-		icon_cache_key = "[icon_name]_[species ? species.get_bodytype() : SPECIES_HUMAN]"
+		icon_cache_key = "[icon_name]_[species ? species.get_bodytype_legacy() : SPECIES_HUMAN]"
 	else
 		icon_cache_key = "[icon_name]_[force_icon_key]"
 
@@ -175,7 +175,6 @@ var/global/list/limb_icon_cache = list()
 				mob_icon = new /icon('icons/mob/cyberlimbs/robotic.dmi', "[icon_name][s_base ? "[s_base]" : ""][gender ? "_[gender]" : ""]")
 			else
 				mob_icon = new /icon(species.get_icobase(owner, (status & ORGAN_MUTATED)), "[icon_name][s_base ? "_[s_base]" : ""][gender ? "_[gender]" : ""]")
-				log_qdel("generated a [species] specific [src] with [icon_name] and _[s_base]")
 			apply_colouration(mob_icon)
 
 			//Body markings, actually does not include head this time. Done separately above.
@@ -190,11 +189,11 @@ var/global/list/limb_icon_cache = list()
 
 			if(body_hair && islist(h_col) && h_col.len >= 3)
 				var/cache_key = "[body_hair]-[icon_name]-[h_col[1]][h_col[2]][h_col[3]]"
-				if(!limb_icon_cache[cache_key])
+				if(!GLOB.limb_icon_cache[cache_key])
 					var/icon/I = icon(species.get_icobase(owner), "[icon_name]_[body_hair]")
 					I.Blend(rgb(h_col[1],h_col[2],h_col[3]), ICON_MULTIPLY)
-					limb_icon_cache[cache_key] = I
-				mob_icon.Blend(limb_icon_cache[cache_key], ICON_OVERLAY)
+					GLOB.limb_icon_cache[cache_key] = I
+				mob_icon.Blend(GLOB.limb_icon_cache[cache_key], ICON_OVERLAY)
 
 	if(model)
 		icon_cache_key += "_model_[model]"
@@ -210,11 +209,11 @@ var/global/list/limb_icon_cache = list()
 
 		if(body_hair && islist(h_col) && h_col.len >= 3)
 			var/cache_key = "[body_hair]-[icon_name]-[h_col[1]][h_col[2]][h_col[3]]"
-			if(!limb_icon_cache[cache_key])
+			if(!GLOB.limb_icon_cache[cache_key])
 				var/icon/I = icon(species.get_icobase(owner), "[icon_name]_[body_hair]")
 				I.Blend(rgb(h_col[1],h_col[2],h_col[3]), ICON_MULTIPLY)
-				limb_icon_cache[cache_key] = I
-			mob_icon.Blend(limb_icon_cache[cache_key], ICON_OVERLAY)
+				GLOB.limb_icon_cache[cache_key] = I
+			mob_icon.Blend(GLOB.limb_icon_cache[cache_key], ICON_OVERLAY)
 
 	dir = EAST
 	icon = mob_icon
@@ -224,7 +223,7 @@ var/global/list/limb_icon_cache = list()
 
 	if(transparent)
 		applying.MapColors("#4D4D4D","#969696","#1C1C1C", "#000000")
-		if(species && species.get_bodytype(owner) != SPECIES_HUMAN)
+		if(species && species.get_bodytype_legacy(owner) != SPECIES_HUMAN)
 			applying.SetIntensity(1) // Unathi, Taj and Skrell have -very- dark base icons.
 		else
 			applying.SetIntensity(1) // Makes Prometheans not look like shit with mob coloring.
@@ -281,9 +280,9 @@ var/list/robot_hud_colours = list("#CFCFCF","#AFAFAF","#8F8F8F","#6F6F6F","#4F4F
 	// This looks convoluted, but it's this way to avoid icon proc calls.
 	if(!hud_damage_image)
 		var/cache_key = "dambase-[icon_cache_key]"
-		if(!icon_cache_key || !limb_icon_cache[cache_key])
-			limb_icon_cache[cache_key] = icon(get_icon(), null, SOUTH)
-		var/image/temp = image(limb_icon_cache[cache_key])
+		if(!icon_cache_key || !GLOB.limb_icon_cache[cache_key])
+			GLOB.limb_icon_cache[cache_key] = icon(get_icon(), null, SOUTH)
+		var/image/temp = image(GLOB.limb_icon_cache[cache_key])
 		if((robotic < ORGAN_ROBOT) && species)
 			// Calculate the required colour matrix.
 			var/r = 0.30 * species.health_hud_intensity

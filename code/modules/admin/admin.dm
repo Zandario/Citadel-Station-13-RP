@@ -19,7 +19,7 @@ var/global/floorIsLava = 0
 				var/msg = rendered
 				to_chat(C, msg)
 
-proc/admin_notice(var/message, var/rights)
+/proc/admin_notice(var/message, var/rights)
 	for(var/mob/M in GLOB.mob_list)
 		if(check_rights(rights, 0, M))
 			to_chat(M, message)
@@ -837,9 +837,6 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	set category = "Server"
 	set desc="Start the round RIGHT NOW"
 	set name="Start Now"
-	if(!SSticker)
-		alert("Unable to start the game as it is not set up.")
-		return
 	if(SSticker.current_state == GAME_STATE_PREGAME)
 		SSticker.current_state = GAME_STATE_SETTING_UP
 		Master.SetRunLevel(RUNLEVEL_SETUP)
