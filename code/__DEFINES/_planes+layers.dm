@@ -85,10 +85,13 @@ What is the naming convention for planes or layers?
 	#define WATER_FLOOR_LAYER	2.0
 	///For floors that automatically add decal overlays
 	#define BUILTIN_DECAL_LAYER 2.01
-	///For intentionally placed floor decal overlays
+	///For mapped-in floor decal overlays
 	#define MAPPER_DECAL_LAYER	2.02
+	///
 	///Anything on this layer will render under the water layer.
 	#define UNDERWATER_LAYER	2.5
+	/// TG PORTED LAYER. For turfs with edges.
+	#define EDGED_TURF_LAYER	2.6
 	///Layer for water overlays.
 	#define WATER_LAYER			3.0
 	///Snow and wallmounted/floormounted equipment

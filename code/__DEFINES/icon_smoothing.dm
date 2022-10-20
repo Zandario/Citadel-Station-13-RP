@@ -75,11 +75,14 @@ DEFINE_BITFIELD(smoothing_junction, list(
 #define SMOOTH_GROUP_TURF_OPEN S_TURF(0)
 
 //! Turfs that you can't walk on.
-#define SMOOTH_GROUP_TURF_SOLID S_TURF(20)
-#define SMOOTH_GROUP_WALLS S_TURF(21) ///turf/simulated/wall
+#define SMOOTH_GROUP_CLOSED_TURFS S_TURF(20)
+#define SMOOTH_GROUP_MATERIAL_WALLS S_TURF(21) ///turf/simulated/wall
+#define SMOOTH_GROUP_MINERAL_WALLS S_TURF(22) ///turf/simulated/mineral
+#define SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS S_TURF(23)
+#define SMOOTH_GROUP_SYNDICATE_WALLS S_TURF(24)
 
 ///Always match this value with the one above it.
-#define MAX_S_TURF SMOOTH_GROUP_WALLS
+#define MAX_S_TURF SMOOTH_GROUP_MATERIAL_WALLS
 
 
 #define S_OBJ(num) (MAX_S_TURF + 1 + num)

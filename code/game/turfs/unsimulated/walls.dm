@@ -9,8 +9,8 @@
 	blocks_air = TRUE
 
 	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_TURF_SOLID, SMOOTH_GROUP_WALLS)
-	canSmoothWith = list(SMOOTH_GROUP_WALLS)
+	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_MATERIAL_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_MATERIAL_WALLS)
 
 /turf/unsimulated/wall/fakeglass
 	name = "window"

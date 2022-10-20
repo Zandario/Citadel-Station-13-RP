@@ -15,25 +15,34 @@
 
 /turf/simulated/wall/shull/Initialize(mapload, materialtype, rmaterialtype, girdertype)	//Spaaaace ship.
 	return ..(mapload, MAT_STEELHULL, null, MAT_STEELHULL)
+
 /turf/simulated/wall/rshull/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	return ..(mapload, MAT_STEELHULL, MAT_STEELHULL, MAT_STEELHULL)
+
 /turf/simulated/wall/pshull/Initialize(mapload, materialtype, rmaterialtype, girdertype)	//Spaaaace-er ship.
 	return ..(mapload, MAT_PLASTEELHULL, null, MAT_PLASTEELHULL)
+
 /turf/simulated/wall/rpshull/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	return ..(mapload, MAT_PLASTEELHULL, MAT_PLASTEELHULL, MAT_PLASTEELHULL)
+
 /turf/simulated/wall/dshull/Initialize(mapload, materialtype, rmaterialtype, girdertype)	//Spaaaace-est ship.
 	return ..(mapload, MAT_DURASTEELHULL, null, MAT_DURASTEELHULL)
+
 /turf/simulated/wall/rdshull/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	return ..(mapload, MAT_DURASTEELHULL, MAT_DURASTEELHULL, MAT_DURASTEELHULL)
+
 /turf/simulated/wall/thull/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	return ..(mapload, MAT_TITANIUMHULL, null, MAT_TITANIUMHULL)
+
 /turf/simulated/wall/rthull/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	return ..(mapload, MAT_TITANIUMHULL, MAT_TITANIUMHULL, MAT_TITANIUMHULL)
 
 /turf/simulated/wall/cult
 	icon_state = "cult"
+
 /turf/simulated/wall/cult/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	return ..(mapload,"cult","cult2","cult")
+
 /turf/unsimulated/wall/cult
 	name = "cult wall"
 	desc = "Hideous images dance beneath the surface."
@@ -42,30 +51,43 @@
 
 /turf/simulated/wall/iron/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	return ..(mapload,"iron")
+
 /turf/simulated/wall/uranium/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	return ..(mapload,"uranium")
+
 /turf/simulated/wall/diamond/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	return ..(mapload,"diamond")
+
 /turf/simulated/wall/gold/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	return ..(mapload,"gold")
+
 /turf/simulated/wall/silver/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	return ..(mapload,"silver")
+
 /turf/simulated/wall/lead/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	return ..(mapload,"lead")
+
 /turf/simulated/wall/r_lead/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	return ..(mapload,"lead", "lead")
+
 /turf/simulated/wall/phoron/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	return ..(mapload,"phoron")
+
 /turf/simulated/wall/sandstone/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	return ..(mapload,"sandstone")
+
 /turf/simulated/wall/ironphoron/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	return ..(mapload,"iron","phoron")
+
 /turf/simulated/wall/golddiamond/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	return ..(mapload,"gold","diamond")
+
 /turf/simulated/wall/silvergold/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	return ..(mapload,"silver","gold")
+
 /turf/simulated/wall/sandstonediamond/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	return ..(mapload,"sandstone","diamond")
+
 /turf/simulated/wall/snowbrick/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	return ..(mapload,"packed snow")
 

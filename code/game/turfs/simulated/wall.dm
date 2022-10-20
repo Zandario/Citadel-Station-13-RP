@@ -24,8 +24,8 @@
 	baseturfs = /turf/simulated/floor/plating
 
 	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_TURF_SOLID, SMOOTH_GROUP_WALLS)
-	canSmoothWith = list(SMOOTH_GROUP_WALLS)
+	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_MATERIAL_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_MATERIAL_WALLS)
 	edge_blending_priority = INFINITY // let's not have floors render onto us mmkay?
 
 	var/icon/wall_masks = 'icons/turf/wall_masks.dmi'

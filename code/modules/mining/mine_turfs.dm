@@ -1,25 +1,32 @@
+//! This file makes me want to pull my hair out. @Zandario
 /**********************Mineral deposits**************************/
 /turf/unsimulated/mineral
 	name = "impassable rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock-dark"
-	density = 1
+	density = TRUE
+
 
 /turf/simulated/mineral //wall piece
 	name = "rock"
-	icon = 'icons/turf/walls.dmi'
-	icon_state = "rock"
-	smoothing_flags = SMOOTH_CUSTOM
-	var/sand_icon = 'icons/turf/flooring/asteroid.dmi'
-	var/rock_side_icon_state = "rock_side"
-	var/sand_icon_state = "asteroid"
-	var/rock_icon_state = "rock"
-	var/random_icon = 0
+	icon = 'icons/turf/walls/rock_wall.dmi'
+	icon_state = "rock_wall-0"
+	base_icon_state = "rock_wall"
+
+	layer = EDGED_TURF_LAYER
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
+	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_MINERAL_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_MINERAL_WALLS)
+
 	initial_gas_mix = GAS_STRING_VACUUM
-	opacity = 1
-	density = 1
-	blocks_air = 1
+	opacity = TRUE
+	density = TRUE
+	blocks_air = TRUE
 	can_dirty = FALSE
+	has_resources = TRUE
+
+	var/floor_icon = 'icons/turf/flooring/asteroid.dmi'
+	var/floor_icon_state = "asteroid"
 
 	var/datum/ore/mineral
 	var/sand_dug
@@ -37,32 +44,53 @@
 	var/datum/artifact_find/artifact_find
 	var/ignore_mapgen
 
-	has_resources = 1
+	var/ignore_oregen = FALSE
+	var/ignore_cavegen = FALSE
 
-// Alternative rock wall sprites.
-/turf/simulated/mineral/light
-	icon_state = "rock-light"
-	rock_side_icon_state = "rock_side-light"
-	sand_icon_state = "sand-light"
-	rock_icon_state = "rock-light"
-	random_icon = 1
+/turf/simulated/mineral/Initialize(mapload)
+	. = ..()
+	// Center the icon on the turf.
+	var/matrix/M = new
+	M.Translate(-4, -4)
+	transform = M
+
+	if(prob(20))
+		overlay_detail = "asteroid[rand(0,9)]"
+	if(mineral)
+		if(density)
+			MineralSpread()
+		else
+			UpdateMineral()	// this'll work because we're INITIALIZED
 
 /turf/simulated/mineral/icerock
 	name = "icerock"
-	icon_state = "icerock"
-	rock_side_icon_state = "icerock_side"
-	sand_icon_state = "ice"
-	rock_icon_state = "icerock"
-	random_icon = 1
+	icon = 'icons/turf/walls/mountain_wall.dmi'
+	icon_state = "mountain_wall-0"
+	base_icon_state = "mountain_wall"
+	floor_icon_state = "ice"
 
 /turf/unsimulated/mineral/icerock
 	name = "impassable icerock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "icerock-dark"
-	density = 1
 
-/turf/simulated/mineral/ignore_mapgen
-	ignore_mapgen = 1
+/turf/simulated/mineral/ignore_oregen
+	ignore_oregen = TRUE
+
+/turf/simulated/mineral/floor/ignore_oregen
+	ignore_oregen = TRUE
+
+/turf/simulated/mineral/ignore_cavegen
+	ignore_cavegen = TRUE
+
+/turf/simulated/mineral/floor/ignore_cavegen
+	ignore_cavegen = TRUE
+
+/turf/simulated/mineral/icerock/ignore_cavegen
+	ignore_cavegen = TRUE
+
+/turf/simulated/mineral/icerock/floor/ignore_cavegen
+	ignore_cavegen = TRUE
 
 /turf/simulated/mineral/floor
 	name = "sand"
@@ -76,19 +104,19 @@
 //Alternative sand floor sprite.
 /turf/simulated/mineral/floor/light
 	icon_state = "sand-light"
-	sand_icon_state = "sand-light"
+	floor_icon_state = "sand-light"
 
 /turf/simulated/mineral/floor/light_border
 	icon_state = "sand-light-border"
-	sand_icon_state = "sand-light-border"
+	floor_icon_state = "sand-light-border"
 
 /turf/simulated/mineral/floor/light_nub
 	icon_state = "sand-light-nub"
-	sand_icon_state = "sand-light-nub"
+	floor_icon_state = "sand-light-nub"
 
 /turf/simulated/mineral/floor/light_corner
 	icon_state = "sand-light-corner"
-	sand_icon_state = "sand-light-corner"
+	floor_icon_state = "sand-light-corner"
 
 /turf/simulated/mineral/floor/ignore_mapgen
 	ignore_mapgen = 1
@@ -96,7 +124,7 @@
 /turf/simulated/mineral/floor/icerock
 	name = "ice"
 	icon_state = "ice"
-	sand_icon_state = "ice"
+	floor_icon_state = "ice"
 
 /turf/simulated/mineral/proc/make_floor()
 	if(!density && !opacity)
@@ -108,6 +136,9 @@
 	blocks_air = FALSE
 	can_build_into_floor = TRUE
 	//SSplanets.addTurf(src)	// Thank you Silicons, this was causing underground areas to have weather effects in them	- Bloop
+	smoothing_flags = NONE
+	smoothing_groups = NONE
+	canSmoothWith = NONE
 	queue_zone_update()
 	QUEUE_SMOOTH(src)
 	QUEUE_SMOOTH_NEIGHBORS(src)
@@ -122,6 +153,9 @@
 	blocks_air = TRUE
 	can_build_into_floor = FALSE
 	//SSplanets.removeTurf(src)	// Thank you Silicons, this was causing underground areas to have weather effects in them as well -Bloop
+	smoothing_flags = initial(smoothing_flags)
+	smoothing_groups = initial(smoothing_groups)
+	canSmoothWith = initial(canSmoothWith)
 	queue_zone_update()
 	QUEUE_SMOOTH(src)
 	QUEUE_SMOOTH_NEIGHBORS(src)
@@ -135,18 +169,6 @@
 				O.autoload(R)
 				return
 
-/turf/simulated/mineral/Initialize(mapload)
-	. = ..()
-	if(prob(20))
-		overlay_detail = "asteroid[rand(0,9)]"
-	if(random_icon)
-		dir = pick(GLOB.alldirs)
-	if(mineral)
-		if(density)
-			MineralSpread()
-		else
-			UpdateMineral()	// this'll work because we're INITIALIZED
-
 /* custom smoothing code */
 /turf/simulated/mineral/find_type_in_direction(direction)
 	var/turf/T = get_step(src, direction)
@@ -155,7 +177,6 @@
 	return T.density? ADJ_FOUND : NO_ADJ_FOUND
 
 /turf/simulated/mineral/custom_smooth(dirs)
-	smoothing_junction = dirs
 	update_icon()
 
 /turf/simulated/mineral/update_icon()
@@ -166,21 +187,6 @@
 	if(density)
 		if(mineral)
 			name = "[mineral.display_name] deposit"
-		else
-			name = "rock"
-
-		icon = 'icons/turf/walls.dmi'
-		icon_state = rock_icon_state
-
-		if(!(smoothing_junction & NORTH_JUNCTION))
-			add_overlay(get_cached_rock_border(rock_side_icon_state, NORTH, icon, rock_side_icon_state))
-		if(!(smoothing_junction & SOUTH_JUNCTION))
-			add_overlay(get_cached_rock_border(rock_side_icon_state, SOUTH, icon, rock_side_icon_state))
-		if(!(smoothing_junction & EAST_JUNCTION))
-			add_overlay(get_cached_rock_border(rock_side_icon_state, EAST, icon, rock_side_icon_state))
-		if(!(smoothing_junction & WEST_JUNCTION))
-			add_overlay(get_cached_rock_border(rock_side_icon_state, WEST, icon, rock_side_icon_state))
-
 		if(archaeo_overlay)
 			add_overlay(archaeo_overlay)
 		if(excav_overlay)
@@ -189,8 +195,8 @@
 	//We are a sand floor
 	else
 		name = "sand"
-		icon = sand_icon // So that way we can source from other files.
-		icon_state = sand_icon_state
+		icon = floor_icon // So that way we can source from other files.
+		icon_state = floor_icon_state
 
 		if(sand_dug)
 			add_overlay("dug_overlay")
@@ -200,6 +206,7 @@
 	// ..() has to be last to prevent trampling managed overlays
 	return ..()
 
+//TODO: Remove this here monster, and make the walls have the overlayed textures applied at initialized.
 GLOBAL_LIST_EMPTY(mining_overlay_cache)
 
 /proc/get_cached_rock_border(cache_id, direction, icon_file, icon_state)
