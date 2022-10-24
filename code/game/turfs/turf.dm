@@ -84,6 +84,10 @@
  * Turf Initialize
  *
  * Doesn't call parent, see [/atom/proc/Initialize]
+ *
+ * Please note, space tiles do not run this code.
+ * This is done because it's called so often that any extra code just slows things down too much.
+ * If you add something relevant here add it there too.
  */
 /turf/Initialize(mapload)
 	SHOULD_CALL_PARENT(FALSE)
@@ -91,19 +95,30 @@
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags |= INITIALIZED
 
-	// by default, vis_contents is inherited from the turf that was here before
-	vis_contents.len = 0
+	// By default, vis_contents is inherited from the turf that was here before.
+	vis_contents.Cut()
 
 	assemble_baseturfs()
+
+	levelupdate()
+
+	if(length(smoothing_groups))
+		// In case it's not properly ordered, let's avoid duplicate entries with the same values.
+		tim_sort(smoothing_groups)
+		SET_BITFLAG_LIST(smoothing_groups)
+	if(length(canSmoothWith))
+		tim_sort(canSmoothWith)
+		// If the last element is higher than the maximum turf-only value, then it must scan turf contents for smoothing targets.
+		if(canSmoothWith[length(canSmoothWith)] > MAX_S_TURF)
+			smoothing_flags |= SMOOTH_OBJ
+		SET_BITFLAG_LIST(canSmoothWith)
+	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		QUEUE_SMOOTH(src)
+
 
 	//atom color stuff
 	if(color)
 		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
-
-/*
-	if (canSmoothWith)
-		canSmoothWith = typelist("canSmoothWith", canSmoothWith)
-*/
 
 	for(var/atom/movable/AM in src)
 		Entered(AM)
@@ -150,6 +165,8 @@
 	flags &= ~INITIALIZED
 	// requires_activation = FALSE
 	..()
+
+	vis_contents.Cut()
 
 /turf/ex_act(severity)
 	return 0
