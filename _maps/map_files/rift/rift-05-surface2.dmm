@@ -16522,6 +16522,7 @@
 /obj/random/maintenance/security,
 /obj/random/maintenance/security,
 /obj/random/maintenance/clean,
+/obj/item/clothing/accessory/holster/hip,
 /turf/simulated/floor/plating,
 /area/maintenance/security/upper)
 "mDt" = (
@@ -25815,6 +25816,7 @@
 	pixel_y = 24
 	},
 /obj/random/maintenance/research,
+/obj/item/clothing/accessory/holster/armpit,
 /turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
 "ugf" = (
@@ -40948,8 +40950,8 @@ uIZ
 uIZ
 uIZ
 uIZ
-uIZ
-uIZ
+tVG
+tVG
 oLJ
 oLJ
 oLJ
@@ -40957,9 +40959,9 @@ oLJ
 oLJ
 oLJ
 oLJ
-uIZ
-uIZ
-uIZ
+tVG
+tVG
+tVG
 uIZ
 uIZ
 uIZ
@@ -41142,7 +41144,7 @@ bBF
 bBF
 bBF
 uIZ
-uIZ
+tVG
 oLJ
 oLJ
 oLJ
@@ -41153,7 +41155,7 @@ pBj
 oLJ
 oLJ
 oLJ
-uIZ
+tVG
 uIZ
 uIZ
 uIZ

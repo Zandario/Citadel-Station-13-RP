@@ -14,12 +14,6 @@
 	/// Intearaction flags.
 	var/interaction_flags_atom = NONE
 
-	/// Pass flags.
-	var/pass_flags = NONE
-	/// pass_flags that we are. If any of this matches a pass_flag on a moving thing, by default, we let them through.
-	// var/pass_flags_self = NONE //TODO: Implement this. @Zandario
-
-
 	//! Generic Vars
 	var/level = 2
 
@@ -225,11 +219,11 @@
 	if(light_power && light_range)
 		update_light()
 
-	if(length(smoothing_groups))
-		sortTim(smoothing_groups) //In case it's not properly ordered, let's avoid duplicate entries with the same values.
+	if (length(smoothing_groups))
+		tim_sort(smoothing_groups) //In case it's not properly ordered, let's avoid duplicate entries with the same values.
 		SET_BITFLAG_LIST(smoothing_groups)
-	if(length(canSmoothWith))
-		sortTim(canSmoothWith)
+	if (length(canSmoothWith))
+		tim_sort(canSmoothWith)
 		if(canSmoothWith[length(canSmoothWith)] > MAX_S_TURF) //If the last element is higher than the maximum turf-only value, then it must scan turf contents for smoothing targets.
 			smoothing_flags |= SMOOTH_OBJ
 		SET_BITFLAG_LIST(canSmoothWith)
@@ -995,7 +989,7 @@
 
 /atom/proc/update_filters()
 	filters = null
-	filter_data = sortTim(filter_data, /proc/cmp_filter_data_priority, TRUE)
+	filter_data = tim_sort(filter_data, /proc/cmp_filter_data_priority, TRUE)
 	for(var/f in filter_data)
 		var/list/data = filter_data[f]
 		var/list/arguments = data.Copy()

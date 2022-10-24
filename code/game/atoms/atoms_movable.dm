@@ -3,6 +3,32 @@
 	glide_size = 8
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 
+	// todo: kill this (only used for elcetropacks)
+	var/moved_recently = FALSE
+
+	/// Used to specify the item state for the on-mob overlays.
+	var/item_state = null
+
+	/// If we're cloaked or not.
+	var/cloaked = FALSE
+	/// The image we use for our client to let them see where we are.
+	var/image/cloaked_selfimage
+
+	/// Reference to atom being orbited.
+	var/atom/orbit_target
+
+	/// Movement types, see __DEFINES/flags/movement.dm
+	var/movement_type = GROUND
+	/// The orbiter component of the thing we're orbiting.
+	var/datum/component/orbiter/orbiting
+	/// Used for the calculate_adjacencies proc for icon smoothing.
+	var/can_be_unanchored = FALSE
+
+	//! Intrinsics
+	/// movable flags - see [code/__DEFINES/_flags/atoms.dm]
+	var/movable_flags = NONE
+
+	//! Movement
 	/// Whatever we're pulling.
 	var/atom/movable/pulling
 	/// Who's currently pulling us
@@ -61,6 +87,8 @@
 	var/move_force = MOVE_FORCE_DEFAULT
 	/// our pulling force
 	var/pull_force = PULL_FORCE_DEFAULT
+	/// pull force to resist
+	var/pull_resist = PULL_FORCE_DEFAULT
 
 	var/move_speed = 10
 	var/l_move_time = 1

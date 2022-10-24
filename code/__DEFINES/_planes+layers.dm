@@ -73,22 +73,24 @@
 
 //! PLATING
 #define PLATING_PLANE -44
-	#define DISPOSAL_LAYER 2.10 /// Under objects, even when planeswapped.
-	#define PIPES_LAYER    2.20 /// Under objects, even when planeswapped.
-	#define WIRES_LAYER    2.30 /// Under objects, even when planeswapped.
-	#define ATMOS_LAYER    2.40 /// Pipe-like atmos machinery that goes on the floor, like filters.
-	#define ABOVE_UTILITY  2.50 /// Above stuff like pipes and wires.
+
+#define DISPOSAL_LAYER 2.10 /// Under objects, even when planeswapped.
+#define PIPES_LAYER    2.20 /// Under objects, even when planeswapped.
+#define WIRES_LAYER    2.30 /// Under objects, even when planeswapped.
+#define ATMOS_LAYER    2.40 /// Pipe-like atmos machinery that goes on the floor, like filters.
+#define ABOVE_UTILITY  2.50 /// Above stuff like pipes and wires.
 
 //! TURF
 //? Turfs themselves, most flooring.
 #define TURF_PLANE -45
-	#define WATER_FLOOR_LAYER   2.00 // The 'bottom' of water tiles.
-	#define BUILTIN_DECAL_LAYER 2.01 // For floors that automatically add decal overlays.
-	#define MAPPER_DECAL_LAYER  2.02 // For intentionally placed floor decal overlays.
-	#define UNDERWATER_LAYER    2.50 // Anything on this layer will render under the water layer.
-	//! Turf/Obj layer boundary
-	#define WATER_LAYER         3.00 // Layer for water overlays.
-	#define ABOVE_TURF_LAYER    3.10 // Snow and wallmounted/floormounted equipment.
+
+#define WATER_FLOOR_LAYER   2.00 // The 'bottom' of water tiles.
+#define BUILTIN_DECAL_LAYER 2.01 // For floors that automatically add decal overlays.
+#define MAPPER_DECAL_LAYER  2.02 // For intentionally placed floor decal overlays.
+#define UNDERWATER_LAYER    2.50 // Anything on this layer will render under the water layer.
+//! Turf/Obj layer boundary
+#define WATER_LAYER         3.00 // Layer for water overlays.
+#define ABOVE_TURF_LAYER    3.10 // Snow and wallmounted/floormounted equipment.
 
 // todo: kill all these useless goddamn arbitrary planes and unify things to 3-5 of turf, floor, obj, mob, there is no excuse for this utter charade.
 //! DECALS
@@ -101,20 +103,21 @@
 
 //! OBJS
 #define OBJ_PLANE -35
-	#define DEBRIS_LAYER       2.4 // cleanable debris.
-	#define STAIRS_LAYER       2.5 // Layer for stairs.
-	#define HIDING_LAYER       2.6 // Layer at which mobs hide to be under things like tables.
-	#define DOOR_OPEN_LAYER    2.7 // Under all objects if opened. 2.7 due to tables being at 2.6.
-	#define TABLE_LAYER        2.8 // Just under stuff that wants to be slightly below common objects.
-	#define PROJECTILE_HIT_THRESHOLD_LAYER 2.8
-	#define UNDER_JUNK_LAYER   2.9 // Things that want to be slightly below common objects.
-	//! Turf/Obj layer boundary
-	#define ABOVE_JUNK_LAYER   3.1 // Things that want to be slightly above common objects.
-	#define DOOR_CLOSED_LAYER  3.1 // Doors when closed.
-	#define WINDOW_LAYER       3.2 // Windows.
-	#define ON_WINDOW_LAYER    3.3 // Ontop of a window.
-	#define ABOVE_WINDOW_LAYER 3.4 // Above full tile windows so wall items are clickable.
-	#define MID_LANDMARK_LAYER 3.5
+
+#define DEBRIS_LAYER       2.4 // cleanable debris.
+#define STAIRS_LAYER       2.5 // Layer for stairs.
+#define HIDING_LAYER       2.6 // Layer at which mobs hide to be under things like tables.
+#define DOOR_OPEN_LAYER    2.7 // Under all objects if opened. 2.7 due to tables being at 2.6.
+#define TABLE_LAYER        2.8 // Just under stuff that wants to be slightly below common objects.
+#define PROJECTILE_HIT_THRESHOLD_LAYER 2.8
+#define UNDER_JUNK_LAYER   2.9 // Things that want to be slightly below common objects.
+//! Turf/Obj layer boundary
+#define ABOVE_JUNK_LAYER   3.1 // Things that want to be slightly above common objects.
+#define DOOR_CLOSED_LAYER  3.1 // Doors when closed.
+#define WINDOW_LAYER       3.2 // Windows.
+#define ON_WINDOW_LAYER    3.3 // Ontop of a window.
+#define ABOVE_WINDOW_LAYER 3.4 // Above full tile windows so wall items are clickable.
+#define MID_LANDMARK_LAYER 3.5
 
 
 /**
@@ -123,12 +126,15 @@
 
 //! ## MOB PLANE
 #define MOB_PLANE -25
-	#define BELOW_MOB_LAYER 3.9 //! Should be converted to plane swaps!
-	//! Obj/Mob layer boundary
-	#define ABOVE_MOB_LAYER 4.1 //! Should be converted to plane swaps!
+
+#define BELOW_MOB_LAYER 3.9 //! Should be converted to plane swaps!
+//! Obj/Mob layer boundary
+#define ABOVE_MOB_LAYER 4.1 //! Should be converted to plane swaps!
+
 
 //! INVISIBLE
 #define CLOAKED_PLANE -15
+
 
 //! TOP
 //? In the sense that it's the highest in 'the world' and not a UI element.
@@ -141,17 +147,18 @@
 
 //? BYOND's default value for plane, the "base plane".
 #define PLANE_WORLD 0
+
 //! For easy recordkeeping; these are byond defines.
-	//define FLOAT_LAYER -1
-	//#define AREA_LAYER  1
-	//#define TURF_LAYER  2
-	//#define OBJ_LAYER   3
-	//#define MOB_LAYER   4
-	//#define FLY_LAYER   5
+//define FLOAT_LAYER -1
+//#define AREA_LAYER  1
+//#define TURF_LAYER  2
+//#define OBJ_LAYER   3
+//#define MOB_LAYER   4
+//#define FLY_LAYER   5
 //! Now for our own.
-	//! Above lighting, but below obfuscation.
-	#define HUD_LAYER    20 // For in-game HUD effects. (whereas SCREEN_LAYER is for abstract/OOC things like inventory slots)
-	#define SCREEN_LAYER 22 // Mob HUD/effects layer.
+//! Above lighting, but below obfuscation.
+#define HUD_LAYER    20 // For in-game HUD effects. (whereas SCREEN_LAYER is for abstract/OOC things like inventory slots)
+#define SCREEN_LAYER 22 // Mob HUD/effects layer.
 
 /// Status Indicators that show over mobs' heads when certain things like stuns affect them.
 #define PLANE_STATUS 2
@@ -169,18 +176,22 @@
 
 /// Where the lighting (and darkness) lives. (ignoring all other higher planes)
 #define LIGHTING_PLANE 5
-	#define LIGHTBULB_LAYER      0
-	#define LIGHTING_LAYER       1
-	//! Area/Turf layer boundary
-	#define ABOVE_LIGHTING_LAYER 2
+
+#define LIGHTBULB_LAYER      0
+#define LIGHTING_LAYER       1
+//! Area/Turf layer boundary
+#define ABOVE_LIGHTING_LAYER 2
+
 
 /// For glowy eyes etc. that shouldn't be affected by darkness.
 #define ABOVE_LIGHTING_PLANE 6
-	#define EYE_GLOW_LAYER         1
-	//! Area/Turf layer boundary
-	#define BEAM_PROJECTILE_LAYER  2
-	//! Turf/Obj layer boundary
-	#define SUPERMATTER_WALL_LAYER 3
+
+#define EYE_GLOW_LAYER         1
+//! Area/Turf layer boundary
+#define BEAM_PROJECTILE_LAYER  2
+//! Turf/Obj layer boundary
+#define SUPERMATTER_WALL_LAYER 3
+
 
 #define SONAR_PLANE 8
 
@@ -210,35 +221,41 @@
  */
 
 #define FULLSCREEN_PLANE 90
-	#define OBFUSCATION_LAYER 19.9
-	#define FLASH_LAYER       20
-	#define FULLSCREEN_LAYER  20.1
-	#define UI_DAMAGE_LAYER   20.2
-	#define BLIND_LAYER       20.3
-	#define CRIT_LAYER        20.4
-	#define CURSE_LAYER       20.5
-	#define FULLSCREEN_RENDER_TARGET "FULLSCREEN_PLANE"
+
+#define OBFUSCATION_LAYER 19.9
+#define FLASH_LAYER       20
+#define FULLSCREEN_LAYER  20.1
+#define UI_DAMAGE_LAYER   20.2
+#define BLIND_LAYER       20.3
+#define CRIT_LAYER        20.4
+#define CURSE_LAYER       20.5
+#define FULLSCREEN_RENDER_TARGET "FULLSCREEN_PLANE"
 
 
 //! ## CLIENT UI HUD
 //? The character's UI is on this plane.
 #define PLANE_PLAYER_HUD 95
-	#define LAYER_HUD_UNDER 1 // Under the HUD items.
-	//! Area/Turf layer boundary
-	#define LAYER_HUD_BASE  2 // The HUD items themselves.
-	//! Turf/Obj layer boundary
-	#define LAYER_HUD_ITEM  3 // Things sitting on HUD items. (largely irrelevant because PLANE_PLAYER_HUD_ITEMS)
-	//! Obj/Mob layer boundary
-	#define LAYER_HUD_ABOVE 4 // Things that reside above items. (highlights)
+
+#define LAYER_HUD_UNDER 1 // Under the HUD items.
+//! Area/Turf layer boundary
+#define LAYER_HUD_BASE  2 // The HUD items themselves.
+//! Turf/Obj layer boundary
+#define LAYER_HUD_ITEM  3 // Things sitting on HUD items. (largely irrelevant because PLANE_PLAYER_HUD_ITEMS)
+//! Obj/Mob layer boundary
+#define LAYER_HUD_ABOVE 4 // Things that reside above items. (highlights)
+
 
 /// Separate layer with which to apply colorblindness.
 #define PLANE_PLAYER_HUD_ITEMS 96
 
+
 /// Things above the player hud.
 #define PLANE_PLAYER_HUD_ABOVE 97
 
+
 /// Purely for shenanigans. (above HUD)
 #define PLANE_ADMIN3 99
+
 
 ////////////////////////////////////////////////////
 
