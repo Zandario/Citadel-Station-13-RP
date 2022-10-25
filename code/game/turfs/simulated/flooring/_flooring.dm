@@ -5,23 +5,24 @@ var/list/flooring_types
 	for (var/flooring_path in typesof(/decl/flooring))
 		flooring_types["[flooring_path]"] = new flooring_path
 
-/proc/get_flooring_data(var/flooring_path)
+/proc/get_flooring_data(flooring_path)
 	if(!flooring_types)
 		flooring_types = list()
 	if(!flooring_types["[flooring_path]"])
 		flooring_types["[flooring_path]"] = new flooring_path
 	return flooring_types["[flooring_path]"]
 
-// State values:
-// [icon_base]: initial base icon_state without edges or corners.
-// if has_base_range is set, append 0-has_base_range ie.
-//   [icon_base][has_base_range]
-// [icon_base]_broken: damaged overlay.
-// if has_damage_range is set, append 0-damage_range for state ie.
-//   [icon_base]_broken[has_damage_range]
-// [icon_base]_edges: directional overlays for edges.
-// [icon_base]_corners: directional overlays for non-edge corners.
-
+/**
+ * State values:
+ * [icon_base]: initial base icon_state without edges or corners.
+ * if has_base_range is set, append 0-has_base_range ie.
+ *   [icon_base][has_base_range]
+ * [icon_base]_broken: damaged overlay.
+ * if has_damage_range is set, append 0-damage_range for state ie.
+ *   [icon_base]_broken[has_damage_range]
+ * [icon_base]_edges: directional overlays for edges.
+ * [icon_base]_corners: directional overlays for non-edge corners.
+ */
 /decl/flooring
 	var/name = "floor"
 	var/desc
