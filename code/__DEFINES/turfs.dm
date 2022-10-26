@@ -1,25 +1,21 @@
-#define TURF_REMOVE_CROWBAR     1
-#define TURF_REMOVE_SCREWDRIVER 2
-#define TURF_REMOVE_SHOVEL      4
-#define TURF_REMOVE_WRENCH      8
-#define TURF_CAN_BREAK          16
-#define TURF_CAN_BURN           32
-#define TURF_HAS_EDGES          64
-#define TURF_HAS_CORNERS        128
-#define TURF_IS_FRAGILE         256
-#define TURF_ACID_IMMUNE        512
+//! flooring flags
+#define TURF_REMOVE_CROWBAR     (1<<0) // Remove turf with crowbar.
+#define TURF_REMOVE_SCREWDRIVER (1<<1) // Remove turf with screwdriver.
+#define TURF_REMOVE_SHOVEL      (1<<2) // Remove turf with shovel.
+#define TURF_REMOVE_WRENCH      (1<<3) // Remove turf with wrench.
+#define TURF_CAN_BREAK          (1<<4) // Can break turf.
+#define TURF_CAN_BURN           (1<<5) // Can burn turf.
+#define TURF_HAS_EDGES          (1<<6) // Has edges.
+#define TURF_HAS_CORNERS        (1<<7) // Has corners.
+#define TURF_IS_FRAGILE         (1<<8) // Is fragile.
+#define TURF_ACID_IMMUNE        (1<<9) // Is immune to acid.
 
-//Used for floor/wall smoothing
-///Smooth only with itself
-#define SMOOTH_NONE 0
-///Smooth with all of type
-#define SMOOTH_ALL 1
-///Smooth with a whitelist of subtypes
-#define SMOOTH_WHITELIST 2
-///Smooth with all but a blacklist of subtypes
-#define SMOOTH_BLACKLIST 3
-/// Use a whitelist and a blacklist at the same time. atom smoothing only
-#define SMOOTH_GREYLIST 4
+//! Used for floor/wall smoothing
+#define SMOOTH_NONE      0 // Smooth only with itself.
+#define SMOOTH_ALL       1 // Smooth with all of type.
+#define SMOOTH_WHITELIST 2 // Smooth with a whitelist of subtypes.
+#define SMOOTH_BLACKLIST 3 // Smooth with all but a blacklist of subtypes.
+#define SMOOTH_GREYLIST  4 // Use a whitelist and a blacklist at the same time. atom smoothing only.
 
 // #define IS_CARDINAL(x) ((x & (x - 1)) == 0) // Cardinal using math.
 #define IS_CARDINAL(DIR) (DIR == NORTH || DIR == SOUTH || DIR == EAST || DIR == WEST)

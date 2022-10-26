@@ -1,16 +1,16 @@
-var/list/flooring_types
+GLOBAL_LIST_EMPTY(flooring_types)
 
 /proc/populate_flooring_types()
-	flooring_types = list()
+	GLOB.flooring_types = list()
 	for (var/flooring_path in typesof(/decl/flooring))
-		flooring_types["[flooring_path]"] = new flooring_path
+		GLOB.flooring_types["[flooring_path]"] = new flooring_path
 
 /proc/get_flooring_data(flooring_path)
-	if(!flooring_types)
-		flooring_types = list()
-	if(!flooring_types["[flooring_path]"])
-		flooring_types["[flooring_path]"] = new flooring_path
-	return flooring_types["[flooring_path]"]
+	if(!GLOB.flooring_types)
+		GLOB.flooring_types = list()
+	if(!GLOB.flooring_types["[flooring_path]"])
+		GLOB.flooring_types["[flooring_path]"] = new flooring_path
+	return GLOB.flooring_types["[flooring_path]"]
 
 /**
  * State values:
@@ -36,87 +36,126 @@ var/list/flooring_types
 	var/apply_thermal_conductivity
 	var/apply_heat_capacity
 
-	var/build_type      // Unbuildable if not set. Must be /obj/item/stack.
-	var/build_cost = 1  // Stack units.
-	var/build_time = 0  // BYOND ticks.
+	/// Unbuildable if not set. Must be /obj/item/stack.
+	var/build_type
+	/// Stack units.
+	var/build_cost = 1
+	/// BYOND ticks.
+	var/build_time = 0
 
 	var/descriptor = "tiles"
 	var/flags
 	var/can_paint
-	var/list/footstep_sounds = list() // key=species name, value = list of soundss
+	/// key=species name, value = list of soundss
+	var/list/footstep_sounds = list()
 	var/is_plating = FALSE
-	var/list/flooring_cache = list() // Cached overlays for our edges and corners and junk
+	/// Cached overlays for our edges and corners and junk.
+	var/list/flooring_cache = list()
 
-	//Plating types, can be overridden
+	/// Plating types, can be overridden.
 	var/plating_type = null
 
-	//Resistance is subtracted from all incoming damage
+	/// Resistance is subtracted from all incoming damage.
 	//var/resistance = RESISTANCE_FRAGILE
 
-	//Damage the floor can take before being destroyed
+	/// Damage the floor can take before being destroyed
 	//var/health = 50
 
 	//var/removal_time = WORKTIME_FAST * 0.75
 
-	//Flooring Icon vars
-	var/smooth_nothing = FALSE //True/false only, optimisation
-	//If true, all smoothing logic is entirely skipped
+	//! ## Legacy Smoothing
 
-	//The rest of these x_smooth vars use one of the following options
-	//SMOOTH_NONE: Ignore all of type
-	//SMOOTH_ALL: Smooth with all of type
-	//SMOOTH_WHITELIST: Ignore all except types on this list
-	//SMOOTH_BLACKLIST: Smooth with all except types on this list
-	//SMOOTH_GREYLIST: Objects only: Use both lists
+	/**
+	 * The rest of these x_smooth vars use one of the following options.
+	 * SMOOTH_NONE: Ignore all of type.
+	 * SMOOTH_ALL: Smooth with all of type.
+	 * SMOOTH_WHITELIST: Ignore all except types on this list.
+	 * SMOOTH_BLACKLIST: Smooth with all except types on this list.
+	 * SMOOTH_GREYLIST: Objects only: Use both lists.
+	 */
 
-	//How we smooth with other flooring
+	/// How we smooth with other flooring.
 	var/floor_smooth = SMOOTH_NONE
-	var/list/flooring_whitelist = list() //Smooth with nothing except the contents of this list
-	var/list/flooring_blacklist = list() //Smooth with everything except the contents of this list
+	/// Smooth with nothing except the contents of this list.
+	var/list/flooring_whitelist = list()
+	/// Smooth with everything except the contents of this list.
+	var/list/flooring_blacklist = list()
 
-	//How we smooth with walls
+	/// How we smooth with walls.
 	var/wall_smooth = SMOOTH_NONE
 	//There are no lists for walls at this time
 
-	//How we smooth with space and openspace tiles
+	/// How we smooth with space and openspace tiles
 	var/space_smooth = SMOOTH_NONE
 	//There are no lists for spaces
 
-	/*
-	How we smooth with movable atoms
-	These are checked after the above turf based smoothing has been handled
-	SMOOTH_ALL or SMOOTH_NONE are treated the same here. Both of those will just ignore atoms
-	Using the white/blacklists will override what the turfs concluded, to force or deny smoothing
-
-	Movable atom lists are much more complex, to account for many possibilities
-	Each entry in a list, is itself a list consisting of three items:
-		Type: The typepath to allow/deny. This will be checked against istype, so all subtypes are included
-		Priority: Used when items in two opposite lists conflict. The one with the highest priority wins out.
-		Vars: An associative list of variables (varnames in text) and desired values
-			Code will look for the desired vars on the target item and only call it a match if all desired values match
-			This can be used, for example, to check that objects are dense and anchored
-			there are no safety checks on this, it will probably throw runtimes if you make typos
-
-	Common example:
-	Don't smooth with dense anchored objects except airlocks
-
-	smooth_movable_atom = SMOOTH_GREYLIST
-	movable_atom_blacklist = list(
-		list(/obj, list("density" = TRUE, "anchored" = TRUE), 1)
-		)
-	movable_atom_whitelist = list(
-	list(/obj/machinery/door/airlock, list(), 2)
-	)
-
-	*/
+	/**
+	 * How we smooth with movable atoms
+	 * These are checked after the above turf based smoothing has been handled
+	 * SMOOTH_ALL or SMOOTH_NONE are treated the same here. Both of those will just ignore atoms
+	 * Using the white/blacklists will override what the turfs concluded, to force or deny smoothing
+	 *
+	 * Movable atom lists are much more complex, to account for many possibilities
+	 * Each entry in a list, is itself a list consisting of three items:
+	 * 	Type: The typepath to allow/deny. This will be checked against istype, so all subtypes are included
+	 * 	Priority: Used when items in two opposite lists conflict. The one with the highest priority wins out.
+	 * 	Vars: An associative list of variables (varnames in text) and desired values
+	 * 		Code will look for the desired vars on the target item and only call it a match if all desired values match
+	 * 		This can be used, for example, to check that objects are dense and anchored
+	 * 		there are no safety checks on this, it will probably throw runtimes if you make typos
+	 *
+	 * Common example:
+	 * Don't smooth with dense anchored objects except airlocks
+	 *
+	 * smooth_movable_atom = SMOOTH_GREYLIST
+	 * movable_atom_blacklist = list(
+	 * 	list(/obj, list("density" = TRUE, "anchored" = TRUE), 1)
+	 * 	)
+	 * movable_atom_whitelist = list(
+	 * list(/obj/machinery/door/airlock, list(), 2)
+	 * )
+	 *
+	 */
 	var/smooth_movable_atom = SMOOTH_NONE
 	var/list/movable_atom_whitelist = list()
 	var/list/movable_atom_blacklist = list()
 
-/decl/flooring/proc/get_plating_type(var/turf/T)
+	//! ## Icon Smoothing
+	///
+	/**
+	 * Icon-smoothing behavior.
+	 *! Is SMOOTH_CUSTOM by default since that would be the old system.
+	 */
+	var/smoothing_flags = SMOOTH_CUSTOM
+	/**
+	 * What directions this is currently smoothing with.
+	 * This starts as null for us to know when it's first set, but after that it will hold a 8-bit mask ranging from 0 to 255.
+	 *! IMPORTANT: This uses the smoothing direction flags as defined in icon_smoothing.dm, instead of the BYOND flags.
+	 */
+	var/smoothing_junction = null
+	/// Smoothing variable.
+	var/top_left_corner
+	/// Smoothing variable.
+	var/top_right_corner
+	/// Smoothing variable.
+	var/bottom_left_corner
+	/// Smoothing variable.
+	var/bottom_right_corner
+	/**
+	 * What smoothing groups does this atom belongs to, to match canSmoothWith.
+	 * If null, nobody can smooth with it.
+	 */
+	var/list/smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN)
+	/**
+	 * List of smoothing groups this atom can smooth with.
+	 * If this is null and atom is smooth, it smooths only with itself.
+	 */
+	var/list/canSmoothWith = null
+
+/decl/flooring/proc/get_plating_type(turf/T)
 	return plating_type
 
-/decl/flooring/proc/get_flooring_overlay(var/cache_key, var/icon_base, var/icon_dir = 0, var/layer = BUILTIN_DECAL_LAYER)
+/decl/flooring/proc/get_flooring_overlay(cache_key, icon_base, icon_dir = 0, layer = TURF_DECAL_LAYER)
 	if(!flooring_cache[cache_key])
 		var/image/I = image(icon = icon, icon_state = icon_base, dir = icon_dir)
 		I.layer = layer
@@ -132,13 +171,31 @@ var/list/flooring_types
 
 /decl/flooring/grass
 	name = "grass"
-	desc = "Do they smoke grass out in space, Bowie? Or do they smoke AstroTurf?"
+	desc = "A patch of grass."
 	icon = 'icons/turf/flooring/grass.dmi'
 	icon_base = "grass"
 	has_base_range = 3
 	damage_temperature = T0C+80
 	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
 	build_type = /obj/item/stack/tile/grass
+
+/decl/flooring/smoothgrass
+	name = "grass"
+	desc = "A patch of grass."
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "grass0"
+	base_icon_state = "grass"
+	damage_temperature = T0C+80
+	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
+	build_type = /obj/item/stack/tile/grass
+
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_FLOOR_GRASS)
+	canSmoothWith = list(SMOOTH_GROUP_FLOOR_GRASS, SMOOTH_GROUP_CLOSED_TURFS)
+
+	var/damaged_dmi = 'icons/turf/floors/grass.dmi'
+	var/smooth_icon = 'icons/turf/floors/grass.dmi'
+
 
 /decl/flooring/asteroid
 	name = "coarse sand"
@@ -158,7 +215,8 @@ var/list/flooring_types
 		'sound/effects/footstep/snow2.ogg',
 		'sound/effects/footstep/snow3.ogg',
 		'sound/effects/footstep/snow4.ogg',
-		'sound/effects/footstep/snow5.ogg'))
+		'sound/effects/footstep/snow5.ogg',
+	))
 
 /decl/flooring/snow/gravsnow
 	name = "snowy gravel"
@@ -170,7 +228,8 @@ var/list/flooring_types
 		'sound/effects/footstep/snow2.ogg',
 		'sound/effects/footstep/snow3.ogg',
 		'sound/effects/footstep/snow4.ogg',
-		'sound/effects/footstep/snow5.ogg'))
+		'sound/effects/footstep/snow5.ogg',
+	))
 
 /decl/flooring/snow/snow2
 	name = "snow"
@@ -211,7 +270,8 @@ var/list/flooring_types
 		'sound/effects/footstep/carpet2.ogg',
 		'sound/effects/footstep/carpet3.ogg',
 		'sound/effects/footstep/carpet4.ogg',
-		'sound/effects/footstep/carpet5.ogg'))
+		'sound/effects/footstep/carpet5.ogg',
+	))
 
 /decl/flooring/carpet/bcarpet
 	name = "black carpet"
@@ -273,7 +333,8 @@ var/list/flooring_types
 		'sound/effects/footstep/floor2.ogg',
 		'sound/effects/footstep/floor3.ogg',
 		'sound/effects/footstep/floor4.ogg',
-		'sound/effects/footstep/floor5.ogg'))
+		'sound/effects/footstep/floor5.ogg',
+	))
 
 /decl/flooring/tiling/tech
 	desc = "Scuffed from the passage of countless greyshirts."
