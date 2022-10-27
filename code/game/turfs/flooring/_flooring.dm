@@ -96,7 +96,7 @@ GLOBAL_LIST_EMPTY(flooring_types)
 	 * This starts as null for us to know when it's first set, but after that it will hold a 8-bit mask ranging from 0 to 255.
 	 *! IMPORTANT: This uses the smoothing direction flags as defined in icon_smoothing.dm, instead of the BYOND flags.
 	 */
-	var/smoothing_junction = null
+	var/smoothing_junction
 	/// Smoothing variable.
 	var/top_left_corner
 	/// Smoothing variable.
@@ -109,7 +109,7 @@ GLOBAL_LIST_EMPTY(flooring_types)
 	 * What smoothing groups does this atom belongs to, to match canSmoothWith.
 	 * If null, nobody can smooth with it.
 	 */
-	var/list/smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN)
+	var/list/smoothing_groups = null
 	/**
 	 * List of smoothing groups this atom can smooth with.
 	 * If this is null and atom is smooth, it smooths only with itself.
@@ -143,7 +143,7 @@ GLOBAL_LIST_EMPTY(flooring_types)
 	name = "grass"
 	desc = "A patch of grass."
 	icon = 'icons/turf/floors/grass.dmi'
-	icon_state = "grass-0"
+	icon_state = "grass-255"
 	base_icon_state = "grass"
 	damage_temperature = T0C+80
 	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
@@ -216,66 +216,6 @@ GLOBAL_LIST_EMPTY(flooring_types)
 /decl/flooring/snow/plating/drift
 	base_icon_state = "snowyplayingdrift"
 
-/decl/flooring/carpet
-	name = "carpet"
-	desc = "Imported and comfy."
-	icon = 'icons/turf/flooring/carpet.dmi'
-	base_icon_state = "carpet"
-	build_type = /obj/item/stack/tile/carpet
-	damage_temperature = T0C+200
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/carpet1.ogg',
-		'sound/effects/footstep/carpet2.ogg',
-		'sound/effects/footstep/carpet3.ogg',
-		'sound/effects/footstep/carpet4.ogg',
-		'sound/effects/footstep/carpet5.ogg',
-	))
-
-/decl/flooring/carpet/bcarpet
-	name = "black carpet"
-	base_icon_state = "bcarpet"
-	build_type = /obj/item/stack/tile/carpet/bcarpet
-
-/decl/flooring/carpet/blucarpet
-	name = "blue carpet"
-	base_icon_state = "blucarpet"
-	build_type = /obj/item/stack/tile/carpet/blucarpet
-
-/decl/flooring/carpet/turcarpet
-	name = "tur carpet"
-	base_icon_state = "turcarpet"
-	build_type = /obj/item/stack/tile/carpet/turcarpet
-
-/decl/flooring/carpet/sblucarpet
-	name = "silver blue carpet"
-	base_icon_state = "sblucarpet"
-	build_type = /obj/item/stack/tile/carpet/sblucarpet
-
-/decl/flooring/carpet/gaycarpet
-	name = "clown carpet"
-	base_icon_state = "gaycarpet"
-	build_type = /obj/item/stack/tile/carpet/gaycarpet
-
-/decl/flooring/carpet/purcarpet
-	name = "purple carpet"
-	base_icon_state = "purcarpet"
-	build_type = /obj/item/stack/tile/carpet/purcarpet
-
-/decl/flooring/carpet/oracarpet
-	name = "orange carpet"
-	base_icon_state = "oracarpet"
-	build_type = /obj/item/stack/tile/carpet/oracarpet
-
-/decl/flooring/carpet/tealcarpet
-	name = "teal carpet"
-	base_icon_state = "tealcarpet"
-	build_type = /obj/item/stack/tile/carpet/teal
-
-/decl/flooring/carpet/arcadecarpet
-	name = "arcade carpet"
-	base_icon_state = "arcade"
-	build_type = /obj/item/stack/tile/carpet/arcadecarpet
 
 /decl/flooring/tiling
 	name = "floor"

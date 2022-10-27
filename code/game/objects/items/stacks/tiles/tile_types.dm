@@ -125,36 +125,73 @@ var/global/list/datum/stack_recipe/grass_recipes = list( \
 	singular_name = "black carpet"
 	desc = "A piece of black carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-bcarpet"
+
 /obj/item/stack/tile/carpet/blucarpet
 	name = "blue carpet"
 	singular_name = "blue carpet"
 	desc = "A piece of blue carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-blucarpet"
+
 /obj/item/stack/tile/carpet/turcarpet
 	name = "tur carpet"
 	singular_name = "tur carpet"
 	desc = "A piece of turquoise carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-turcarpet"
+
 /obj/item/stack/tile/carpet/sblucarpet
 	name = "silver-blue carpet"
 	singular_name = "silver-blue carpet"
 	desc = "A piece of silver-blue carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-sblucarpet"
+
 /obj/item/stack/tile/carpet/gaycarpet
 	name = "funny carpet"
 	singular_name = "funny carpet"
 	desc = "A piece of funny carpet. Perfect for clowning around on."
 	icon_state = "tile-gaycarpet"
+
 /obj/item/stack/tile/carpet/purcarpet
 	name = "purple carpet"
 	singular_name = "purple carpet"
 	desc = "A piece of purple carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-purcarpet"
+
 /obj/item/stack/tile/carpet/oracarpet
 	name = "orange carpet"
 	singular_name = "orange carpet"
 	desc = "A piece of orange carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-oracarpet"
+
+/obj/item/stack/tile/carpet/red
+	name = "red carpet"
+	singular_name = "red carpet"
+	desc = "A piece of red carpet. It is the same size as a normal floor tile!"
+	icon_state = "tile-redcarpet"
+
+/obj/item/stack/tile/carpet/royalblack
+	name = "royal black carpet"
+	singular_name = "royal black carpet"
+	desc = "A piece of royal black carpet. It is the same size as a normal floor tile!"
+	icon_state = "tile-royalblackcarpet"
+
+/obj/item/stack/tile/carpet/executive
+	name = "executive carpet"
+	singular_name = "executive carpet"
+	desc = "A piece of executive carpet. It is the same size as a normal floor tile!"
+	icon_state = "tile-executivecarpet"
+
+/obj/item/stack/tile/carpet/stellar
+	name = "stellar carpet"
+	singular_name = "stellar carpet"
+	desc = "A piece of stellar carpet. It is the same size as a normal floor tile!"
+	icon_state = "tile-stellarcarpet"
+
+/obj/item/stack/tile/carpet/donk
+	name = "donk carpet"
+	singular_name = "donk carpet"
+	desc = "A piece of donk carpet. It is the same size as a normal floor tile!"
+	icon_state = "tile-donkcarpet"
+
 /obj/item/stack/tile/carpet/arcadecarpet
 	name = "arcadey carpet"
 	singular_name = "arcadey carpet"
