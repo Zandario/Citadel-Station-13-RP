@@ -21,8 +21,6 @@
 	// and if those adjacent turfs have a lower edge_blending_priority.
 	// this is on /simulated even though only floors give borders because floors can render onto other simulated tiles like openspace.
 	var/edge_blending_priority = 0
-	/// edge icon state, overrides icon_state if set
-	var/edge_icon_state
 
 /turf/simulated/Initialize(mapload)
 	. = ..()

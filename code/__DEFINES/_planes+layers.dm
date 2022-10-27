@@ -67,7 +67,7 @@ What is the naming convention for planes or layers?
 
 //Turf Planes
 // todo: kill these too because frankly, fuck off.
-///Plating
+//! Plating
 #define PLATING_PLANE			-44
 	///Under objects, even when planeswapped
 	#define DISPOSAL_LAYER		2.1
@@ -79,18 +79,18 @@ What is the naming convention for planes or layers?
 	#define ATMOS_LAYER			2.4
 	///Above stuff like pipes and wires
 	#define ABOVE_UTILITY		2.5
-///Turfs themselves, most flooring
-#define TURF_PLANE				-45
+//! Turfs themselves, most flooring
+#define TURF_PLANE -45
 	#define WATER_FLOOR_LAYER        2     // The 'bottom' of water tiles. //TODO: Remove this, this is just TURF_LAYER
+	#define MID_TURF_LAYER           2.02
+	#define HIGH_TURF_LAYER          2.03
 	#define TURF_PLATING_DECAL_LAYER 2.031
-	#define TURF_DECAL_LAYER         2.039  // For floors that automatically add decal overlays.
-	#define MAPPER_DECAL_LAYER       2.02  // For intentionally placed floor decal overlays.
-	///Anything on this layer will render under the water layer.
-	#define UNDERWATER_LAYER	2.5
-	///Layer for water overlays.
-	#define WATER_LAYER			3.0
-	///Snow and wallmounted/floormounted equipment
-	#define ABOVE_TURF_LAYER	3.1
+	#define TURF_DECAL_LAYER         2.039 // For floors that automatically add decal overlays.
+	#define CLOSED_TURF_LAYER        2.05
+	#define UNDERWATER_LAYER         2.5   // Anything on this layer will render under the water layer.
+	#define WATER_LAYER              3.0   // Layer for water overlays.
+	#define ABOVE_TURF_LAYER         3.1   // Snow and wallmounted/floormounted equipment
+
 // todo: kill all these useless goddamn arbitrary planes and unify things to 3-5 of turf, floor, obj, mob, there is no excuse for this utter charade.
 #define DECAL_PLANE				-44
 //Obj planes

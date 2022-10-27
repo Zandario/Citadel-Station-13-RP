@@ -44,8 +44,8 @@
 
 /turf/simulated/floor/holofloor/grass
 	name = "lush grass"
-	icon = 'icons/turf/flooring/grass.dmi'
-	icon_state = "grass0"
+	icon = 'icons/turf/floors/grass.dmi'
+	icon_state = "grass-0"
 	initial_flooring = /decl/flooring/grass
 
 /turf/simulated/floor/holofloor/snow

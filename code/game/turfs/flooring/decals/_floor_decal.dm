@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY(floor_decals)
 	name = "floor decal"
 	icon = 'icons/turf/flooring/decals_vr.dmi'
 	plane = DECAL_PLANE
-	layer = MAPPER_DECAL_LAYER
+	layer = TURF_PLATING_DECAL_LAYER
 	var/supplied_dir
 
 /obj/effect/floor_decal/Initialize(mapload, newdir, newcolour)
@@ -25,12 +25,12 @@ GLOBAL_LIST_EMPTY(floor_decals)
 
 /obj/effect/floor_decal/proc/make_decal_image()
 	var/image/I = image(icon = icon, icon_state = icon_state, dir = dir)
-	I.layer = MAPPER_DECAL_LAYER
+	I.layer = TURF_PLATING_DECAL_LAYER
 	I.color = color
 	I.alpha = alpha
 	return I
 
-/obj/effect/floor_decal/proc/get_cache_key(var/turf/T)
+/obj/effect/floor_decal/proc/get_cache_key(turf/T)
 	return "[alpha]-[color]-[dir]-[icon_state]-[T.layer]"
 
 // This is a separate proc from initialize() to facilitiate its caching and other stuff.  Look into it someday.

@@ -94,10 +94,12 @@
 	return ..()
 
 /turf/simulated/floor/grass
-	name = "grass patch"
-	icon = 'icons/turf/flooring/grass.dmi'
-	icon_state = "grass0"
-	initial_flooring = /decl/flooring/grass
+	name = "grass"
+	desc = "A patch of grass."
+	icon = 'icons/turf/floors/grass.dmi'
+	icon_state = "grass-0"
+	initial_flooring = /decl/flooring/smoothgrass
+
 
 /turf/simulated/floor/tiled
 	name = "floor"

@@ -6,7 +6,6 @@
 	icon_state = "seashallow" // So it shows up in the map editor as water.
 	var/water_state = "water_shallow"
 	var/under_state = "rock"
-	edge_icon_state = "water_shallow"
 	movement_cost = 4
 	outdoors = TRUE
 
