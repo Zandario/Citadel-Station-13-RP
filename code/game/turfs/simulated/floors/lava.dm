@@ -46,7 +46,7 @@
 		STOP_PROCESSING(SSobj, src)
 
 /turf/simulated/floor/outdoors/lava/proc/is_safe()
-	//if anything matching this typecache is found in the lava, we don't burn things
+	// If anything matching this typecache is found in the lava, we don't burn things.
 	var/static/list/lava_safeties_typecache = typecacheof(list(/obj/structure/catwalk))
 	var/list/found_safeties = typecache_filter_list(contents, lava_safeties_typecache)
 	return LAZYLEN(found_safeties)
@@ -71,22 +71,23 @@
 
 		else if(isliving(thing))
 			var/mob/living/L = thing
-			if(L.hovering || L.throwing) // Flying over the lava. We're just gonna pretend convection doesn't exist.
+			// Flying over the lava. We're just gonna pretend convection doesn't exist.
+			if(L.hovering || L.throwing)
 				continue
 			. = TRUE
 			L.lava_act()
 
-// Lava that does nothing at all.
+/// Lava that does nothing at all.
 /turf/simulated/floor/outdoors/lava/harmless/burn_stuff(atom/movable/AM)
 	return FALSE
 
-// Tells AI mobs to not suicide by pathing into lava if it would hurt them.
+/// Tells AI mobs to not suicide by pathing into lava if it would hurt them.
 /turf/simulated/floor/outdoors/lava/is_safe_to_enter(mob/living/L)
 	if(!is_safe() && !L.hovering)
 		return FALSE
 	return ..()
 
-/turf/simulated/floor/outdoors/lava/attackby(obj/item/W as obj, mob/user as mob)
+/turf/simulated/floor/outdoors/lava/attackby(obj/item/W, mob/user)
 	if(!istype(W))
 		return
 	else if(istype(W,/obj/item/stack/rods))

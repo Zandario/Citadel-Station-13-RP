@@ -7,8 +7,36 @@
 
 	var/list/grass_types = list(
 		/obj/structure/flora/ausbushes/sparsegrass,
-		/obj/structure/flora/ausbushes/fullgrass
-		)
+		/obj/structure/flora/ausbushes/fullgrass,
+	)
+
+/// This code here enables people to dig up worms from certain tiles.
+/turf/simulated/floor/outdoors/grass/attackby(obj/item/S, mob/user)
+	if(istype(S, /obj/item/shovel))
+		to_chat(user, SPAN_NOTICE("You begin to dig in \the [src] with your [S]."))
+		if(do_after(user, 4 SECONDS * S.tool_speed))
+			to_chat(user, SPAN_NOTICE("\The [src] has been dug up, a worm pops from the ground."))
+			new /obj/item/reagent_containers/food/snacks/worm(src)
+		else
+			to_chat(user, SPAN_NOTICE("You decide to not finish digging in \the [src]."))
+	else
+		..()
+
+/turf/simulated/floor/outdoors/grass/Initialize(mapload)
+	if(prob(50))
+		icon_state = "[initial(icon_state)]2"
+		//edge_blending_priority++
+
+	if(grass_chance && prob(grass_chance) && !check_density())
+		var/grass_type = pickweight(grass_types)
+		new grass_type(src)
+	. = ..()
+
+/turf/simulated/floor/outdoors/grass/forest
+	name = "thick grass"
+	icon_state = "grass-dark"
+	grass_chance = 80
+	//tree_chance = 20
 
 /datum/category_item/catalogue/flora/sif_grass
 	name = "Sivian Flora - Moss"
@@ -27,8 +55,8 @@
 
 	grass_types = list(
 		/obj/structure/flora/sif/eyes = 1,
-		/obj/structure/flora/sif/tendrils = 10
-		)
+		/obj/structure/flora/sif/tendrils = 10,
+	)
 
 	catalogue_data = list(/datum/category_item/catalogue/flora/sif_grass)
 	catalogue_delay = 2 SECONDS
@@ -37,22 +65,6 @@
 	if(tree_chance && prob(tree_chance) && !check_density())
 		new /obj/structure/flora/tree/sif(src)
 	. = ..()
-
-/turf/simulated/floor/outdoors/grass/Initialize(mapload)
-	if(prob(50))
-		icon_state = "[initial(icon_state)]2"
-		//edge_blending_priority++
-
-	if(grass_chance && prob(grass_chance) && !check_density())
-		var/grass_type = pickweight(grass_types)
-		new grass_type(src)
-	. = ..()
-
-/turf/simulated/floor/outdoors/grass/forest
-	name = "thick grass"
-	icon_state = "grass-dark"
-	grass_chance = 80
-	//tree_chance = 20
 
 /turf/simulated/floor/outdoors/grass/sif/forest
 	name = "thick growth"

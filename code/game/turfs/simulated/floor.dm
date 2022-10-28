@@ -1,6 +1,5 @@
 /turf/simulated/floor
 	name = "plating"
-	desc = "Unfinished flooring."
 	icon = 'icons/turf/flooring/plating_vr.dmi'
 	icon_state = "plating"
 	smoothing_flags = SMOOTH_CUSTOM
@@ -55,6 +54,10 @@
 /turf/simulated/proc/make_indoors()
 	outdoors = FALSE
 	SSplanets.removeTurf(src)
+
+/// Called by weather processes, and maybe technomancers in the future. // Technomancers? Fat chance. @Zandario
+/turf/simulated/floor/proc/chill()
+	return
 
 /turf/simulated/AfterChange(flags, oldType)
 	. = ..()

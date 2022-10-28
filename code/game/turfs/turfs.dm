@@ -62,7 +62,10 @@
 
 	var/list/footstep_sounds = null
 
-	// Outdoors var determines if the game should consider the turf to be 'outdoors', which controls certain things such as weather effects.
+	/**
+	 * Outdoors var determines if the game should consider the turf to be 'outdoors',
+	 * which controls certain things such as weather effects.
+	 */
 	var/outdoors = FALSE
 
 	/// If true, most forms of teleporting to or from this turf tile will fail.
