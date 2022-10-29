@@ -324,3 +324,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TECHNOMANCER_TRAIT "technomancer"
 
 #define CPR_TRAIT "cpr"
+
+/// Trait applied by element
+#define ELEMENT_TRAIT(source) "element_trait_[source]"

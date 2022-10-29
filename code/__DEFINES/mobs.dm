@@ -89,11 +89,6 @@
 /// Set but never checked. Remove this sometime and replace occurences with the appropriate organ code
 #define DISFIGURED  0x4000
 
-#define BORGMESON 0x1
-#define BORGTHERM 0x2
-#define BORGXRAY  0x4
-#define BORGMATERIAL  0x8
-
 /// Backwards compatability
 #define STANCE_ATTACK    11
 /// Ditto

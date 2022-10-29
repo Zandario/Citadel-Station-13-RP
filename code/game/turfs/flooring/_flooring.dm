@@ -1,17 +1,3 @@
-GLOBAL_LIST_EMPTY(flooring_types)
-
-/proc/populate_flooring_types()
-	GLOB.flooring_types = list()
-	for (var/flooring_path in typesof(/decl/flooring))
-		GLOB.flooring_types["[flooring_path]"] = new flooring_path
-
-/proc/get_flooring_data(flooring_path)
-	if(!GLOB.flooring_types)
-		GLOB.flooring_types = list()
-	if(!GLOB.flooring_types["[flooring_path]"])
-		GLOB.flooring_types["[flooring_path]"] = new flooring_path
-	return GLOB.flooring_types["[flooring_path]"]
-
 /**
  * State values:
  * [base_icon_state]: initial base icon_state without edges or corners.
@@ -54,6 +40,9 @@ GLOBAL_LIST_EMPTY(flooring_types)
 	var/list/footstep_sounds = list()
 	var/is_plating = FALSE
 
+	/// Cached overlays for our edges and corners and junk.
+	var/list/flooring_cache = list()
+
 	/// Plating types, can be overridden.
 	var/plating_type = null
 
@@ -69,18 +58,56 @@ GLOBAL_LIST_EMPTY(flooring_types)
 
 	/**
 	 * The rest of these x_smooth vars use one of the following options.
-	 * SMOOTH_NONE: Ignore all of type.
-	 * SMOOTH_ALL: Smooth with all of type.
-	 * SMOOTH_WHITELIST: Ignore all except types on this list.
-	 * SMOOTH_BLACKLIST: Smooth with all except types on this list.
-	 * SMOOTH_GREYLIST: Objects only: Use both lists.
+	 * FLOORING_SMOOTH_NONE: Ignore all of type.
+	 * FLOORING_SMOOTH_ALL: Smooth with all of type.
+	 * FLOORING_SMOOTH_WHITELIST: Ignore all except types on this list.
+	 * FLOORING_SMOOTH_BLACKLIST: Smooth with all except types on this list.
+	 * FLOORING_SMOOTH_GREYLIST: Objects only: Use both lists.
 	 */
 
+	/// How we smooth with other flooring.
+	var/floor_smooth = FLOORING_SMOOTH_NONE
 	/// Smooth with nothing except the contents of this list.
 	var/list/flooring_whitelist = list()
 	/// Smooth with everything except the contents of this list.
 	var/list/flooring_blacklist = list()
 
+	/// How we smooth with walls.
+	var/wall_smooth = FLOORING_SMOOTH_NONE
+	//There are no lists for walls at this time
+
+	/// How we smooth with space and openspace tiles
+	var/space_smooth = FLOORING_SMOOTH_NONE
+	//There are no lists for spaces
+
+	/**
+	 * How we smooth with movable atoms
+	 * These are checked after the above turf based smoothing has been handled
+	 * FLOORING_SMOOTH_ALL or FLOORING_SMOOTH_NONE are treated the same here. Both of those will just ignore atoms
+	 * Using the white/blacklists will override what the turfs concluded, to force or deny smoothing
+	 *
+	 * Movable atom lists are much more complex, to account for many possibilities
+	 * Each entry in a list, is itself a list consisting of three items:
+	 * 	Type: The typepath to allow/deny. This will be checked against istype, so all subtypes are included
+	 * 	Priority: Used when items in two opposite lists conflict. The one with the highest priority wins out.
+	 * 	Vars: An associative list of variables (varnames in text) and desired values
+	 * 		Code will look for the desired vars on the target item and only call it a match if all desired values match
+	 * 		This can be used, for example, to check that objects are dense and anchored
+	 * 		there are no safety checks on this, it will probably throw runtimes if you make typos
+	 *
+	 * Common example:
+	 * Don't smooth with dense anchored objects except airlocks
+	 *
+	 * smooth_movable_atom = FLOORING_SMOOTH_GREYLIST
+	 * movable_atom_blacklist = list(
+	 * 	list(/obj, list("density" = TRUE, "anchored" = TRUE), 1)
+	 * 	)
+	 * movable_atom_whitelist = list(
+	 * list(/obj/machinery/door/airlock, list(), 2)
+	 * )
+	 *
+	 */
+	var/smooth_movable_atom = FLOORING_SMOOTH_NONE
 	var/list/movable_atom_whitelist = list()
 	var/list/movable_atom_blacklist = list()
 
@@ -119,8 +146,29 @@ GLOBAL_LIST_EMPTY(flooring_types)
 	/// Use this to set the X/Y offsets for icons bigger than 32x32.
 	var/turf_translations
 
+GLOBAL_LIST_EMPTY(flooring_types)
+
+/proc/populate_flooring_types()
+	GLOB.flooring_types = list()
+	for (var/flooring_path in typesof(/decl/flooring))
+		GLOB.flooring_types["[flooring_path]"] = new flooring_path
+
+/proc/get_flooring_data(flooring_path)
+	if(!GLOB.flooring_types)
+		GLOB.flooring_types = list()
+	if(!GLOB.flooring_types["[flooring_path]"])
+		GLOB.flooring_types["[flooring_path]"] = new flooring_path
+	return GLOB.flooring_types["[flooring_path]"]
+
 /decl/flooring/proc/get_plating_type(turf/T)
 	return plating_type
+
+/decl/flooring/proc/get_flooring_overlay(cache_key, icon_base, icon_dir = NONE, layer = TURF_DECAL_LAYER)
+	if(!flooring_cache[cache_key])
+		var/image/I = image(icon = icon, icon_state = icon_base, dir = icon_dir)
+		I.layer = layer
+		flooring_cache[cache_key] = I
+	return flooring_cache[cache_key]
 
 /decl/flooring/proc/drop_product(atom/A)
 	if(ispath(build_type, /obj/item/stack))
@@ -128,6 +176,166 @@ GLOBAL_LIST_EMPTY(flooring_types)
 	else
 		for(var/i in 1 to min(build_cost, 50))
 			new build_type(A)
+
+/**
+ * Tests whether this flooring will smooth with the specified turf.
+ * You can override this if you want a flooring to have super special snowflake smoothing behaviour.
+ */
+/decl/flooring/proc/test_link(turf/origin, turf/T, countercheck = FALSE)
+
+	var/is_linked = FALSE
+	if (countercheck)
+		// If this is a countercheck, we skip all of the above, start off with true, and go straight to the atom lists.
+		is_linked = TRUE
+	else if(T)
+
+		// If it's a wall, use the wall_smooth setting.
+		if(istype(T, /turf/simulated/wall))
+			if(wall_smooth == FLOORING_SMOOTH_ALL)
+				is_linked = TRUE
+
+		// If it's space or openspace, use the space_smooth setting.
+		else if(isspaceturf(T) || isopenturf(T))
+			if(space_smooth == FLOORING_SMOOTH_ALL)
+				is_linked = TRUE
+
+		// If we get here then its a normal floor.
+		else if (istype(T, /turf/simulated/floor))
+			var/turf/simulated/floor/t = T
+			// If the floor is the same as us,then we're linked-
+			if (t.flooring?.type == type)
+				is_linked = TRUE
+				/**
+				 * But there's a caveat. To make atom black/whitelists work correctly, we also need to check that
+				 * they smooth with us. Ill call this counterchecking for simplicity.
+				 * This is needed to make both turfs have the correct borders
+				 * To prevent infinite loops we have a countercheck var, which we'll set true
+				 */
+
+				if (smooth_movable_atom != FLOORING_SMOOTH_NONE)
+					//We do the countercheck, passing countercheck as true
+					is_linked = test_link(T, origin, countercheck = TRUE)
+
+			else if (floor_smooth == FLOORING_SMOOTH_ALL)
+				is_linked = TRUE
+
+			else if (floor_smooth != FLOORING_SMOOTH_NONE)
+				// If we get here it must be using a whitelist or blacklist.
+				if (floor_smooth == FLOORING_SMOOTH_WHITELIST)
+					for (var/v in flooring_whitelist)
+						if (istype(t.flooring, v))
+							// Found a match on the list.
+							is_linked = TRUE
+							break
+				else if(floor_smooth == FLOORING_SMOOTH_BLACKLIST)
+					is_linked = TRUE // Default to true for the blacklist, then make it false if a match comes up.
+					for (var/v in flooring_whitelist)
+						if (istype(t.flooring, v))
+							// Found a match on the list.
+							is_linked = FALSE
+							break
+
+	/**
+	 * Alright now we have a preliminary answer about smoothing, however that answer may change with the following...
+	 * Atom lists!
+	 */
+	var/best_priority = -1
+	/**
+	 * A white or blacklist entry will only override smoothing if its priority is higher than this.
+	 * Then this value becomes its priority.
+	 */
+	if(smooth_movable_atom != FLOORING_SMOOTH_NONE)
+		if(smooth_movable_atom == FLOORING_SMOOTH_WHITELIST || smooth_movable_atom == FLOORING_SMOOTH_GREYLIST)
+			for(var/list/v in movable_atom_whitelist)
+				var/d_type = v[1]
+				var/list/d_vars = v[2]
+				var/d_priority = v[3]
+				// Priority is the quickest thing to check first.
+				if(d_priority <= best_priority)
+					continue
+
+				// Ok, now we start testing all the atoms in the target turf.
+				for(var/a in T) // No implicit typecasting here, faster.
+					if(istype(a, d_type))
+						// It's the right type, so we're sure it will have the vars we want.
+
+						var/atom/movable/AM = a
+						/**
+						 * Typecast it to a movable atom.
+						 * Lets make sure its in the way before we consider it.
+						 */
+						if(!AM.is_between_turfs(origin, T))
+							continue
+
+						//! From here on out, we do dangerous stuff that may runtime if the coder screwed up.
+
+
+						var/match = TRUE
+						for (var/d_var in d_vars)
+							// For each variable we want to check.
+							if (AM.vars[d_var] != d_vars[d_var])
+								/**
+								 * We get a var of the same name from the atom's vars list.
+								 * And check if it equals our desired value.
+								 */
+								match = FALSE
+								break // If any var doesn't match the desired value, then this atom is not a match, move on.
+
+
+						if(match)
+							// If we've successfully found an atom which matches a list entry.
+							best_priority = d_priority // This one is king until a higher priority overrides it.
+
+							// And this is a whitelist, so this match forces is_linked to TRUE.
+							is_linked = TRUE
+
+
+		if (smooth_movable_atom == FLOORING_SMOOTH_BLACKLIST || smooth_movable_atom == FLOORING_SMOOTH_GREYLIST)
+			// All of this blacklist code is copypasted from above, with only minor name changes.
+			for (var/list/v in movable_atom_blacklist)
+				var/d_type = v[1]
+				var/list/d_vars = v[2]
+				var/d_priority = v[3]
+				// Priority is the quickest thing to check first.
+				if (d_priority <= best_priority)
+					continue
+
+				// Ok, now we start testing all the atoms in the target turf.
+				for (var/a in T) // No implicit typecasting here, faster.
+
+					if (istype(a, d_type))
+						// It's the right type, so we're sure it will have the vars we want.
+
+						var/atom/movable/AM = a
+						/**
+						 * Typecast it to a movable atom.
+						 * Lets make sure its in the way before we consider it.
+						 */
+						if (!AM.is_between_turfs(origin, T))
+							continue
+
+						//! From here on out, we do dangerous stuff that may runtime if the coder screwed up. Again.
+
+						var/match = TRUE
+						for (var/d_var in d_vars)
+							// For each variable we want to check.
+							if (AM.vars[d_var] != d_vars[d_var])
+								/**
+								 * We get a var of the same name from the atom's vars list.
+								 * And check if it equals our desired value.
+								 */
+								match = FALSE
+								break // If any var doesn't match the desired value, then this atom is not a match, move on.
+
+
+						if (match)
+							// f we've successfully found an atom which matches a list entry.
+							best_priority = d_priority // This one is king until a higher priority overrides it.
+
+							// And this is a blacklist, so this match forces is_linked to FALSE.
+							is_linked = FALSE
+
+	return is_linked
 
 /decl/flooring/grass
 	name = "grass"
@@ -176,6 +384,7 @@ GLOBAL_LIST_EMPTY(flooring_types)
 		'sound/effects/footstep/snow4.ogg',
 		'sound/effects/footstep/snow5.ogg',
 	))
+	flags = TURF_HAS_EDGES
 
 /decl/flooring/snow/gravsnow
 	name = "snowy gravel"
@@ -189,6 +398,7 @@ GLOBAL_LIST_EMPTY(flooring_types)
 		'sound/effects/footstep/snow4.ogg',
 		'sound/effects/footstep/snow5.ogg',
 	))
+	flags = TURF_HAS_EDGES
 
 /decl/flooring/snow/snow2
 	name = "snow"

@@ -11,11 +11,11 @@
 #define TURF_ACID_IMMUNE        (1<<9) // Is immune to acid.
 
 //! Used for floor/wall smoothing
-#define SMOOTH_NONE      0 // Smooth only with itself.
-#define SMOOTH_ALL       1 // Smooth with all of type.
-#define SMOOTH_WHITELIST 2 // Smooth with a whitelist of subtypes.
-#define SMOOTH_BLACKLIST 3 // Smooth with all but a blacklist of subtypes.
-#define SMOOTH_GREYLIST  4 // Use a whitelist and a blacklist at the same time. atom smoothing only.
+#define FLOORING_SMOOTH_NONE      0 // Smooth only with itself.
+#define FLOORING_SMOOTH_ALL       1 // Smooth with all of type.
+#define FLOORING_SMOOTH_WHITELIST 2 // Smooth with a whitelist of subtypes.
+#define FLOORING_SMOOTH_BLACKLIST 3 // Smooth with all but a blacklist of subtypes.
+#define FLOORING_SMOOTH_GREYLIST  4 // Use a whitelist and a blacklist at the same time. atom smoothing only.
 
 // #define IS_CARDINAL(x) ((x & (x - 1)) == 0) // Cardinal using math.
 #define IS_CARDINAL(DIR) (DIR == NORTH || DIR == SOUTH || DIR == EAST || DIR == WEST)

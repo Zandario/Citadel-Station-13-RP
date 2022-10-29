@@ -45,6 +45,8 @@
 ////#define COMSIG_MOB_CLIENT_CHANGE_VIEW "mob_client_change_view"
 /// From base of /mob/proc/reset_perspective() (mob/source)
 ////#define COMSIG_MOB_RESET_PERSPECTIVE "mob_reset_perspective"
+/// from base of /client/proc/set_eye() : (atom/old_eye, atom/new_eye)
+////#define COMSIG_CLIENT_SET_EYE "client_set_eye"
 
 /// From mind/transfer_to. Sent to the receiving mob.
 ////#define COMSIG_MOB_MIND_TRANSFERRED_INTO "mob_mind_transferred_into"
@@ -63,6 +65,9 @@
 
 /// From base of mob/create_mob_hud(): ()
 ////#define COMSIG_MOB_HUD_CREATED "mob_hud_created"
+
+///from base of mob/set_sight(): (new_sight, old_sight)
+////#define COMSIG_MOB_SIGHT_CHANGE "mob_sight_changed"
 
 /// From base of /mob/living/proc/apply_damage(): (damage, damagetype, def_zone)
 ////#define COMSIG_MOB_APPLY_DAMAGE "mob_apply_damage"
