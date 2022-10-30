@@ -9,6 +9,7 @@
 	opacity = 1
 	density = 1
 	CanAtmosPass = ATMOS_PASS_PROC
+	plane = OBJ_PLANE
 	layer = DOOR_OPEN_LAYER
 	var/open_layer = DOOR_OPEN_LAYER
 	var/closed_layer = DOOR_CLOSED_LAYER

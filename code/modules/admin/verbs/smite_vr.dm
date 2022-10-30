@@ -152,7 +152,7 @@ var/darkspace_abduction_z
 			for(var/y = 1 to world.maxy)
 				var/turf/T = locate(x,y,z)
 				T.ChangeTurf(/turf/unsimulated/fake_space)
-				T.plane = -100
+				T.plane = LOWEST_EVER_PLANE
 				areaInstance.contents.Add(T)
 				CHECK_TICK
 		darkspace_abduction_z = z

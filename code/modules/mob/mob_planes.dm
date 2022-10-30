@@ -14,32 +14,28 @@
 	//It'd be nice to lazy init these but some of them are important to just EXIST. Like without ghost planemaster, you can see ghosts. Go figure.
 
 	// 'Utility' planes
-	plane_masters[VIS_FULLBRIGHT] 	= new /atom/movable/screen/plane_master/fullbright						//Lighting system (lighting_overlay objects)
-	plane_masters[VIS_LIGHTING] 	= new /atom/movable/screen/plane_master/lighting							//Lighting system (but different
-	plane_masters[VIS_GHOSTS] 		= new /atom/movable/screen/plane_master/ghosts							//Ghosts!
-	plane_masters[VIS_AI_EYE]		= new /atom/movable/screen/plane_master{plane = PLANE_AI_EYE}			//AI Eye!
+	plane_masters[VIS_FULLBRIGHT] = new /atom/movable/screen/plane_master/fullbright             // Lighting system (lighting_overlay objects)
+	plane_masters[VIS_LIGHTING]   = new /atom/movable/screen/plane_master/lighting               // Lighting system (but different
+	plane_masters[VIS_GHOSTS]     = new /atom/movable/screen/plane_master/ghosts                 // Ghosts!
+	plane_masters[VIS_AI_EYE]     = new /atom/movable/screen/plane_master{plane = PLANE_AI_EYE}  // AI Eye!
 
-	plane_masters[VIS_STATUS]		= new /atom/movable/screen/plane_master{plane = PLANE_STATUS}			//Status indicators that show over mob heads.
+	plane_masters[VIS_STATUS]     = new /atom/movable/screen/plane_master{plane = PLANE_STATUS}  // Status indicators that show over mob heads.
 
-	plane_masters[VIS_ADMIN1] 		= new /atom/movable/screen/plane_master{plane = PLANE_ADMIN1}			//For admin use
-	plane_masters[VIS_ADMIN2] 		= new /atom/movable/screen/plane_master{plane = PLANE_ADMIN2}			//For admin use
-	plane_masters[VIS_ADMIN3] 		= new /atom/movable/screen/plane_master{plane = PLANE_ADMIN3}			//For admin use
-
-	plane_masters[VIS_MESONS]		= new /atom/movable/screen/plane_master{plane = PLANE_MESONS} 			//Meson-specific things like open ceilings.
+	plane_masters[VIS_MESONS]     = new /atom/movable/screen/plane_master{plane = PLANE_MESONS}  // Meson-specific things like open ceilings.
 
 	// Real tangible stuff planes
-	plane_masters[VIS_TURFS]	= new /atom/movable/screen/plane_master/main{plane = TURF_PLANE}
-	plane_masters[VIS_OBJS]		= new /atom/movable/screen/plane_master/main{plane = OBJ_PLANE}
-	plane_masters[VIS_MOBS]		= new /atom/movable/screen/plane_master/main{plane = MOB_PLANE}
-	plane_masters[VIS_CLOAKED]	= new /atom/movable/screen/plane_master/cloaked								//Cloaked atoms!
+	plane_masters[VIS_TURFS]      = new /atom/movable/screen/plane_master/main{plane = TURF_PLANE}
+	plane_masters[VIS_OBJS]       = new /atom/movable/screen/plane_master/main{plane = OBJ_PLANE}
+	plane_masters[VIS_MOBS]       = new /atom/movable/screen/plane_master/main{plane = MOB_PLANE}
+	plane_masters[VIS_CLOAKED]    = new /atom/movable/screen/plane_master/cloaked                 // Cloaked atoms!
 
-	plane_masters[VIS_AUGMENTED]		= new /atom/movable/screen/plane_master/augmented(null, my_mob)					//Augmented reality
+	plane_masters[VIS_AUGMENTED]  = new /atom/movable/screen/plane_master/augmented(null, my_mob) // Augmented reality
 
 	// this code disgusts me but we're stuck with it until we refactor planes :/
 	// i hate baycode
-	plane_masters[VIS_PARALLAX] = new /atom/movable/screen/plane_master/parallax{plane = PARALLAX_PLANE}
-	plane_masters[VIS_SPACE] = new /atom/movable/screen/plane_master/parallax_white{plane = SPACE_PLANE}
-	plane_masters[VIS_SONAR] = new /atom/movable/screen/plane_master{plane = SONAR_PLANE}
+	plane_masters[VIS_PARALLAX]   = new /atom/movable/screen/plane_master/parallax{plane = PARALLAX_PLANE}
+	plane_masters[VIS_SPACE]      = new /atom/movable/screen/plane_master/parallax_white{plane = SPACE_PLANE}
+	plane_masters[VIS_SONAR]      = new /atom/movable/screen/plane_master{plane = SONAR_PLANE}
 
 /datum/plane_holder/Destroy()
 	my_mob = null
@@ -79,7 +75,7 @@
 			set_vis(which = SP, new_alpha = new_alpha)
 */
 
-/datum/plane_holder/proc/set_ao(var/which = null, var/enabled = FALSE)
+/datum/plane_holder/proc/set_ao(which = null, enabled = FALSE)
 	ASSERT(which)
 	var/atom/movable/screen/plane_master/PM = plane_masters[which]
 	if(!PM)
@@ -90,7 +86,7 @@
 		for(var/SP in subplanes)
 			set_ao(SP, enabled)
 
-/datum/plane_holder/proc/alter_values(var/which = null, var/list/values = null)
+/datum/plane_holder/proc/alter_values(which = null, list/values = null)
 	ASSERT(which)
 	var/atom/movable/screen/plane_master/PM = plane_masters[which]
 	if(!PM)
@@ -106,7 +102,7 @@
 ////////////////////
 /atom/movable/screen/plane_master
 	screen_loc = "1,1"
-	plane = -100 //Dodge just in case someone instantiates one of these accidentally, don't end up on 0 with plane_master
+	plane = LOWEST_EVER_PLANE //Dodge just in case someone instantiates one of these accidentally, don't end up on 0 with plane_master
 	appearance_flags = PLANE_MASTER
 	mouse_opacity = 0	//Normally unclickable
 	alpha = 0	//Hidden from view
@@ -114,13 +110,13 @@
 	var/invis_toggle = FALSE
 	var/list/sub_planes
 
-/atom/movable/screen/plane_master/proc/set_desired_alpha(var/new_alpha)
+/atom/movable/screen/plane_master/proc/set_desired_alpha(new_alpha)
 	if(new_alpha != alpha && new_alpha > 0 && new_alpha <= 255)
 		desired_alpha = new_alpha
 		if(alpha) //If we're already visible, update it now.
 			alpha = new_alpha
 
-/atom/movable/screen/plane_master/proc/set_visibility(var/want = FALSE)
+/atom/movable/screen/plane_master/proc/set_visibility(want = FALSE)
 	//Invisibility-managed
 	if(invis_toggle)
 		if(want && invisibility)
@@ -136,12 +132,12 @@
 			alpha = 0
 			mouse_opacity = 0
 
-/atom/movable/screen/plane_master/proc/set_alpha(var/new_alpha = 255)
+/atom/movable/screen/plane_master/proc/set_alpha(new_alpha = 255)
 	if(new_alpha != alpha)
 		new_alpha = sanitize_integer(new_alpha, 0, 255, 255)
 		alpha = new_alpha
 
-/atom/movable/screen/plane_master/proc/set_ambient_occlusion(var/enabled = FALSE)
+/atom/movable/screen/plane_master/proc/set_ambient_occlusion(enabled = FALSE)
 	filters -= AMBIENT_OCCLUSION
 	if(enabled)
 		filters += AMBIENT_OCCLUSION
@@ -178,8 +174,7 @@
 //Cloaked atoms are visible to ghosts (or for other reasons?)
 /atom/movable/screen/plane_master/cloaked
 	plane = CLOAKED_PLANE
-	desired_alpha = 80
-	color = "#0000FF"
+	alpha = 127
 
 ////////////////
 // parallax
