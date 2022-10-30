@@ -42,7 +42,7 @@
 	. = ..()
 	if(taurized)
 		MA.pixel_x = -16
-		MA.layer = TAIL_LAYER + 1	// kick it over tail
+		MA.layer = HUMAN_LAYER_TAIL + 1	// kick it over tail
 
 // todo: accesosries shouldn't be directly done on this proc, use a helper proc to override
 /obj/item/clothing/suit/render_apply_overlays(mutable_appearance/MA, bodytype, inhands, datum/inventory_slot_meta/slot_meta)

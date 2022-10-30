@@ -75,14 +75,13 @@
 #define OVER_OPENSPACE_PLANE  -57
 
 
-// todo: kill these too because frankly, fuck off.
 //! Plating
 #define PLATING_PLANE -44
-	#define DISPOSAL_LAYER 2.1
-	#define PIPES_LAYER    2.2
-	#define WIRES_LAYER    2.3
-	#define ATMOS_LAYER    2.4 // Pipe-like atmos machinery that goes on the floor, like filters.
-	#define ABOVE_UTILITY  2.5 // Above stuff like pipes and wires.
+	#define DISPOSAL_LAYER      2.1
+	#define PIPES_LAYER         2.2
+	#define WIRES_LAYER         2.3
+	#define ATMOS_LAYER         2.4  // Pipe-like atmos machinery that goes on the floor, like filters.
+	#define ABOVE_UTILITY       2.5  // Above stuff like pipes and wires.
 
 
 //! Turfs themselves, most flooring
@@ -102,20 +101,20 @@
 
 //! Obj planes
 #define OBJ_PLANE -35
-	#define DEBRIS_LAYER       2.4 // cleanable debris.
-	#define STAIRS_LAYER       2.5 // Layer for stairs.
-	#define HIDING_LAYER       2.6 // Layer at which mobs hide to be under things like tables.
-	#define DOOR_OPEN_LAYER    2.7 // Under all objects if opened. 2.7 due to tables being at 2.6.
-	#define TABLE_LAYER        2.8 // Just under stuff that wants to be slightly below common objects.
+	#define DEBRIS_LAYER        2.4  // cleanable debris.
+	#define STAIRS_LAYER        2.5  // Layer for stairs.
+	#define HIDING_LAYER        2.6  // Layer at which mobs hide to be under things like tables.
+	#define DOOR_OPEN_LAYER     2.7  // Under all objects if opened. 2.7 due to tables being at 2.6.
+	#define TABLE_LAYER         2.8  // Just under stuff that wants to be slightly below common objects.
 	#define PROJECTILE_HIT_THRESHOLD_LAYER 2.8
-	#define UNDER_JUNK_LAYER   2.9 // Things that want to be slightly below common objects.
+	#define UNDER_JUNK_LAYER    2.9  // Things that want to be slightly below common objects.
 	//? Turf/Obj layer boundary.
-	#define ABOVE_JUNK_LAYER   3.1 // Things that want to be slightly above common objects.
-	#define DOOR_CLOSED_LAYER  3.1 // Doors when closed.
-	#define WINDOW_LAYER       3.2 // Windows.
-	#define ON_WINDOW_LAYER    3.3 // Ontop of a window.
-	#define ABOVE_WINDOW_LAYER 3.4 // Above full tile windows so wall items are clickable
-	#define MID_LANDMARK_LAYER 3.5
+	#define ABOVE_JUNK_LAYER    3.1  // Things that want to be slightly above common objects.
+	#define DOOR_CLOSED_LAYER   3.1  // Doors when closed.
+	#define WINDOW_LAYER        3.2  // Windows.
+	#define ON_WINDOW_LAYER     3.3  // Ontop of a window.
+	#define ABOVE_WINDOW_LAYER  3.4  // Above full tile windows so wall items are clickable
+	#define MID_LANDMARK_LAYER  3.5
 
 
 //! Mob planes
@@ -132,33 +131,30 @@
 #define ABOVE_PLANE -10
 
 ////////////////////////////////////////////////////////////////////////////////////////
-///BYOND's default value for plane, the "base plane"
-#define PLANE_WORLD 0
+#define PLANE_WORLD 0 //BYOND's default value for plane, the "base plane"
 ////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 *! For easy recordkeeping; these are byond defines.
+	 * #define FLOAT_LAYER -1
+	 * #define AREA_LAYER   1
+	 * #define TURF_LAYER   2
+	 * #define OBJ_LAYER    3
+	 * #define MOB_LAYER    4
+	 * #define FLY_LAYER    5
+	 */
 
-	//define FLOAT_LAYER -1 //For easy recordkeeping; this is a byond define
-	//#define AREA_LAYER  1 //For easy recordkeeping; this is a byond define
-	//#define TURF_LAYER  2 //For easy recordkeeping; this is a byond define
-	//#define OBJ_LAYER   3 //For easy recordkeeping; this is a byond define
-	//#define MOB_LAYER   4 //For easy recordkeeping; this is a byond define
-	//#define FLY_LAYER   5 //For easy recordkeeping; this is a byond define
-
-	///Above lighting, but below obfuscation. For in-game HUD effects (whereas SCREEN_LAYER is for abstract/OOC things like inventory slots)
+	// Above lighting, but below obfuscation. For in-game HUD effects (whereas SCREEN_LAYER is for abstract/OOC things like inventory slots)
 	#define HUD_LAYER    20
 	#define SCREEN_LAYER 22 //Mob HUD/effects layer
 
 //! Status Indicators that show over mobs' heads when certain things like stuns affect them.
 #define PLANE_STATUS 2
 
-//! Purely for shenanigans (below lighting)
-#define PLANE_ADMIN1 3
-
 //! Lighting on planets
 #define PLANE_PLANETLIGHTING 4
 
 //! Where the lighting (and darkness) lives (ignoring all other higher planes)
 #define LIGHTING_PLANE 5
-	#define LIGHTBULB_LAYER      0
 	#define LIGHTING_LAYER       1
 	#define ABOVE_LIGHTING_LAYER 2
 
@@ -178,9 +174,6 @@
 
 //! Stuff seen with mesons, like open ceilings. This is 30 for downstreams.
 #define PLANE_MESONS 30
-
-//! Purely for shenanigans (above lighting)
-#define PLANE_ADMIN2 33
 
 //! Augmented-reality plane
 #define PLANE_AUGMENTED 40
@@ -212,8 +205,6 @@
 //! Things above the player hud
 #define PLANE_PLAYER_HUD_ABOVE 97
 
-//! Purely for shenanigans (above HUD)
-#define PLANE_ADMIN3 99
 //////////////////////////
 
 /// Check if a mob can "logically" see an atom plane.
