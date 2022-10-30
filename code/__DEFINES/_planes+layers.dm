@@ -59,6 +59,7 @@
 	#define PARALLAX_LAYER_CENTER         0
 	#define PARALLAX_VIS_LAYER_ABOVE  10000
 
+
 //! For the Looking Glass holodecks
 #define PLANE_LOOKINGGLASS     -77
 #define PLANE_LOOKINGGLASS_IMG -76
@@ -80,8 +81,9 @@
 	#define DISPOSAL_LAYER 2.1
 	#define PIPES_LAYER    2.2
 	#define WIRES_LAYER    2.3
-	#define ATMOS_LAYER    2.4 //Pipe-like atmos machinery that goes on the floor, like filters.
-	#define ABOVE_UTILITY  2.5 //Above stuff like pipes and wires
+	#define ATMOS_LAYER    2.4 // Pipe-like atmos machinery that goes on the floor, like filters.
+	#define ABOVE_UTILITY  2.5 // Above stuff like pipes and wires.
+
 
 //! Turfs themselves, most flooring
 #define TURF_PLANE -45
@@ -89,11 +91,14 @@
 	#define BUILTIN_DECAL_LAYER 2.01 // For floors that automatically add decal overlays.
 	#define MAPPER_DECAL_LAYER  2.02 // For intentionally placed floor decal overlays
 	#define UNDERWATER_LAYER    2.50 // Anything on this layer will render under the water layer.
+	//? Turf/Obj layer boundary.
 	#define WATER_LAYER         3.00 // Layer for water overlays.
 	#define ABOVE_TURF_LAYER    3.10 // Snow and wallmounted/floormounted equipment.
 
+
 // todo: kill all these useless goddamn arbitrary planes and unify things to 3-5 of turf, floor, obj, mob, there is no excuse for this utter charade.
 #define DECAL_PLANE -44
+
 
 //! Obj planes
 #define OBJ_PLANE -35
@@ -104,7 +109,7 @@
 	#define TABLE_LAYER        2.8 // Just under stuff that wants to be slightly below common objects.
 	#define PROJECTILE_HIT_THRESHOLD_LAYER 2.8
 	#define UNDER_JUNK_LAYER   2.9 // Things that want to be slightly below common objects.
-	//!Turf/Obj layer boundary
+	//? Turf/Obj layer boundary.
 	#define ABOVE_JUNK_LAYER   3.1 // Things that want to be slightly above common objects.
 	#define DOOR_CLOSED_LAYER  3.1 // Doors when closed.
 	#define WINDOW_LAYER       3.2 // Windows.
@@ -112,10 +117,13 @@
 	#define ABOVE_WINDOW_LAYER 3.4 // Above full tile windows so wall items are clickable
 	#define MID_LANDMARK_LAYER 3.5
 
+
 //! Mob planes
 #define MOB_PLANE -25
 	#define BELOW_MOB_LAYER 3.9
+	//? Obj/Mob layer boundary.
 	#define ABOVE_MOB_LAYER 4.1
+
 
 //! Invisible things plane
 #define CLOAKED_PLANE -15
@@ -156,9 +164,9 @@
 
 //! For glowy eyes etc. that shouldn't be affected by darkness
 #define ABOVE_LIGHTING_PLANE 6
-	#define EYE_GLOW_LAYER			1
-	#define BEAM_PROJECTILE_LAYER	2
-	#define SUPERMATTER_WALL_LAYER	3
+	#define EYE_GLOW_LAYER         1
+	#define BEAM_PROJECTILE_LAYER  2
+	#define SUPERMATTER_WALL_LAYER 3
 
 #define SONAR_PLANE 8
 
