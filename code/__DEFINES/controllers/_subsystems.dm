@@ -69,46 +69,45 @@ DEFINE_BITFIELD(runlevels, list(
 // Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
 
-#define INIT_ORDER_FAIL2TOPIC		102
-#define INIT_ORDER_DBCORE			101
-#define INIT_ORDER_INPUT			100
-#define INIT_ORDER_SOUNDS			95
-#define INIT_ORDER_JOBS				85
-#define INIT_ORDER_VIS				80
-#define INIT_ORDER_GARBAGE			70
-#define INIT_ORDER_SERVER_MAINT		65
-#define INIT_ORDER_TIMER			60
-#define INIT_ORDER_INSTRUMENTS		50
-#define INIT_ORDER_SQLITE			40
-#define INIT_ORDER_CHEMISTRY		35
-#define INIT_ORDER_SKYBOX			30
-#define INIT_ORDER_MAPPING			25
-#define INIT_ORDER_DECALS			20
-#define INIT_ORDER_PLANTS			19
-#define INIT_ORDER_ALARMS			18
-#define INIT_ORDER_ATOMS			15
-#define INIT_ORDER_MACHINES			10
-#define INIT_ORDER_SHUTTLES			3
-#define INIT_ORDER_DEFAULT			0
-#define INIT_ORDER_LIGHTING			0
-#define INIT_ORDER_AIR				-1
-#define INIT_ORDER_PLANETS			-2
-#define INIT_ORDER_ASSETS			-4
-#define INIT_ORDER_HOLOMAPS			-5
-#define INIT_ORDER_NIGHTSHIFT		-6
-#define INIT_ORDER_OVERLAY			-7
-#define INIT_ORDER_EVENTS			-8
-#define INIT_ORDER_OVERMAPS			-9
-#define INIT_ORDER_TICKER			-10
-#define INIT_ORDER_XENOARCH			-20
-#define INIT_ORDER_CIRCUIT			-21
-#define INIT_ORDER_AI				-22
-#define INIT_ORDER_PERSISTENCE		-95
-#define INIT_ORDER_PATH				-98
-#define INIT_ORDER_ICON_SMOOTHING	-99
-///Should be last to ensure chat remains smooth during init.
-#define INIT_ORDER_CHAT				-100
-#define INIT_ORDER_OPENSPACE		-110
+#define INIT_ORDER_FAIL2TOPIC      102
+#define INIT_ORDER_DBCORE          101
+#define INIT_ORDER_INPUT           100
+#define INIT_ORDER_SOUNDS           95
+#define INIT_ORDER_JOBS             85
+#define INIT_ORDER_VIS              80
+#define INIT_ORDER_GARBAGE          70
+#define INIT_ORDER_SERVER_MAINT     65
+#define INIT_ORDER_TIMER            60
+#define INIT_ORDER_INSTRUMENTS      50
+#define INIT_ORDER_SQLITE           40
+#define INIT_ORDER_CHEMISTRY        35
+#define INIT_ORDER_SKYBOX           30
+#define INIT_ORDER_MAPPING          25
+#define INIT_ORDER_DECALS           20
+#define INIT_ORDER_PLANTS           19
+#define INIT_ORDER_ALARMS           18
+#define INIT_ORDER_ATOMS            15
+#define INIT_ORDER_MACHINES         10
+#define INIT_ORDER_SHUTTLES          3
+#define INIT_ORDER_DEFAULT           0
+#define INIT_ORDER_AIR              -1
+#define INIT_ORDER_PLANETS          -2
+#define INIT_ORDER_ASSETS           -4
+#define INIT_ORDER_HOLOMAPS         -5
+#define INIT_ORDER_NIGHTSHIFT       -6
+#define INIT_ORDER_OVERLAY          -7
+#define INIT_ORDER_EVENTS           -8
+#define INIT_ORDER_OVERMAPS         -9
+#define INIT_ORDER_TICKER          -10
+#define INIT_ORDER_XENOARCH        -20
+#define INIT_ORDER_CIRCUIT         -21
+#define INIT_ORDER_AI              -22
+#define INIT_ORDER_PERSISTENCE     -95
+#define INIT_ORDER_PATH            -98
+#define INIT_ORDER_ICON_SMOOTHING  -99
+#define INIT_ORDER_LIGHTING       -100
+#define INIT_ORDER_OPENSPACE      -110
+#define INIT_ORDER_CHAT           -120  //! Should be last to ensure chat remains smooth during init.
 // Subsystem fire priority, from lowest to highest priority
 // If the subsystem isn't listed here it's either DEFAULT or PROCESS (if it's a processing subsystem child)
 
