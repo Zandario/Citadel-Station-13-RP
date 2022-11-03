@@ -140,7 +140,7 @@
 	name = "\improper Away Mission - Virgo 4 Beach"
 	icon_state = "away"
 	base_turf = /turf/simulated/floor/outdoors/beach/sand //This is what the ground turns into if destroyed/bombed/etc
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	requires_power = 1
 
 /area/tether_away/beach/powershed

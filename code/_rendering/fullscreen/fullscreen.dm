@@ -209,7 +209,8 @@
 /atom/movable/screen/fullscreen/special/lighting_backdrop
 	icon = 'icons/mob/screen_gen.dmi'
 	icon_state = "flash"
-	transform = matrix(200, 0, 0, 0, 200, 0)
+	// transform = matrix(200, 0, 0, 0, 200, 0)
+	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	plane = LIGHTING_PLANE
 	blend_mode = BLEND_OVERLAY
 	show_when_dead = TRUE
@@ -229,6 +230,6 @@
 /atom/movable/screen/fullscreen/special/see_through_darkness
 	icon_state = "nightvision"
 	plane = LIGHTING_PLANE
-	layer = LIGHTING_LAYER
+	layer = LIGHTING_BASE_LAYER
 	blend_mode = BLEND_ADD
 	show_when_dead = TRUE

@@ -116,7 +116,7 @@
 	density = FALSE
 	icon_state = "[base_state]_stump"
 	overlays.Cut() // For the Sif tree and other future glowy trees.
-	set_light(0)
+	kill_light()
 
 /obj/structure/flora/tree/legacy_ex_act(var/severity)
 	adjust_health(-(max_health / severity), TRUE)

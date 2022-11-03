@@ -7,7 +7,7 @@
 	icon = 'icons/turf/outdoors.dmi'
 	icon_state = "lava"
 	edge_blending_priority = 1
-	light_range = 2
+	light_range = 1
 	light_power = 0.75
 	light_color = LIGHT_COLOR_LAVA
 	flags = TURF_HAS_EDGES

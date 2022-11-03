@@ -721,9 +721,9 @@
 		I.plane = ABOVE_LIGHTING_PLANE
 		I.layer = ABOVE_LIGHTING_LAYER
 		overlays += I
-		set_light(0.4, 1.2, 4, 10)
+		kill_light()
 	else
-		set_light(0)
+		kill_light()
 		if(operable())
 			var/image/I = image(icon, src, "[base_icon_state]_idle_overlay")
 			I.plane = ABOVE_LIGHTING_PLANE

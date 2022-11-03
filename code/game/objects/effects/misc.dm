@@ -71,7 +71,7 @@
 	icon = 'icons/effects/alphacolors.dmi'
 	icon_state = "white"
 	plane = LIGHTING_PLANE
-	layer = LIGHTING_LAYER
+	layer = LIGHTING_BASE_LAYER
 	blend_mode = BLEND_ADD
 
 /obj/effect/dummy/lighting_obj

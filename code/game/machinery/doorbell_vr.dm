@@ -25,7 +25,7 @@
 	set_light(2, 0.5, "#33FF33")
 	visible_message("\The [src]'s light flashes.")
 	sleep(30)
-	set_light(0)
+	kill_light()
 	update_icon()
 
 /obj/machinery/doorbell_chime/power_change()

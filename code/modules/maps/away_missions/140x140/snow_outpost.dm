@@ -18,7 +18,7 @@
 /area/awaymission/snow_outpost/outside
 	icon_state = "away1"
 	always_unpowered = 1
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	mobcountmax = 50
 	floracountmax = 300
 	valid_mobs = list(/mob/living/simple_mob/animal/sif/savik, /mob/living/simple_mob/animal/wolf, /mob/living/simple_mob/animal/sif/shantak,
@@ -41,7 +41,7 @@
 	icon_state = "red"
 	requires_power = 1
 	always_unpowered = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 
 /area/awaymission/snow_outpost/outside/nospawn
 	icon_state = "away2"
@@ -50,6 +50,6 @@
 
 /area/awaymission/snow_outpost/powered
 	requires_power = 0
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	icon_state = "away"
 	ambience = list('sound/ambience/chapel/chapel1.ogg', 'sound/ambience/ruins/ruins5.ogg', 'sound/ambience/ruins/ruins1.ogg')  // Rykka was here. <3

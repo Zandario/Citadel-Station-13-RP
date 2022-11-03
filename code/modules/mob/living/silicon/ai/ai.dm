@@ -744,7 +744,7 @@ var/list/ai_verbs_default = list(
 	to_chat(src, "Camera lights [camera_light_on ? "activated" : "deactivated"].")
 	if(!camera_light_on)
 		if(camera)
-			camera.set_light(0)
+			camera.kill_light()
 			camera = null
 	else
 		lightNearbyCamera()
@@ -761,14 +761,14 @@ var/list/ai_verbs_default = list(
 		if(src.camera)
 			var/obj/machinery/camera/camera = near_range_camera(src.eyeobj)
 			if(camera && src.camera != camera)
-				src.camera.set_light(0)
+				src.camera.kill_light()
 				if(!camera.light_disabled)
 					src.camera = camera
 					src.camera.set_light(AI_CAMERA_LUMINOSITY)
 				else
 					src.camera = null
 			else if(isnull(camera))
-				src.camera.set_light(0)
+				src.camera.kill_light()
 				src.camera = null
 		else
 			var/obj/machinery/camera/camera = near_range_camera(src.eyeobj)
@@ -777,7 +777,7 @@ var/list/ai_verbs_default = list(
 				src.camera.set_light(AI_CAMERA_LUMINOSITY)
 		camera_light_on = world.timeofday + 1 * 20 // Update the light every 2 seconds.
 	else if(camera)
-		camera.set_light(0)
+		camera.kill_light()
 		camera = null
 
 /mob/living/silicon/ai/attackby(obj/item/W as obj, mob/user as mob)

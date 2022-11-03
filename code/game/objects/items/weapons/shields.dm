@@ -363,7 +363,7 @@
 		item_state = "[icon_state]_blade"
 		set_light(lrange, lpower, lcolor)
 	else
-		set_light(0)
+		kill_light()
 		item_state = "[icon_state]"
 
 /obj/item/shield/energy/AltClick(mob/living/user)

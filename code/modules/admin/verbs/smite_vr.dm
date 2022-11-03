@@ -136,7 +136,7 @@ var/darkspace_abduction_z
 /area/darkspace_abduction
 	name = "Another Time And Place"
 	requires_power = FALSE
-	dynamic_lighting = FALSE
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /proc/darkspace_abduction(mob/living/target, user)
 	if(darkspace_abduction_z < 0)

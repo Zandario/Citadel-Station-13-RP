@@ -179,8 +179,9 @@ SUBSYSTEM_DEF(planets)
 		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/planets/proc/updateSunlight(var/datum/planet/P)
+/datum/controller/subsystem/planets/proc/updateSunlight(datum/planet/P)
 	// Remove old value from corners
+	/*
 	var/list/sunlit_corners = P.sunlit_corners
 	var/old_lum_r = -P.sun["lum_r"]
 	var/old_lum_g = -P.sun["lum_g"]
@@ -213,6 +214,7 @@ SUBSYSTEM_DEF(planets)
 	P.sun["lum_r"] = lum_r
 	P.sun["lum_g"] = lum_g
 	P.sun["lum_b"] = lum_b
+*/
 
 /datum/controller/subsystem/planets/proc/updateTemp(var/datum/planet/P)
 	//Set new temperatures

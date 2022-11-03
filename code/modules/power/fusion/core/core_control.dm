@@ -183,12 +183,12 @@
 	if(machine_stat & (BROKEN))
 		icon = 'icons/obj/computer.dmi'
 		icon_state = "broken"
-		set_light(0)
+		kill_light()
 
 	if(machine_stat & (NOPOWER))
 		icon = 'icons/obj/computer.dmi'
 		icon_state = "computer"
-		set_light(0)
+		kill_light()
 
 	if(!(machine_stat & (BROKEN|NOPOWER)))
 		icon = initial(icon)

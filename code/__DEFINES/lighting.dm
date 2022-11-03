@@ -6,11 +6,19 @@
 /// Frequency, in 1/10ths of a second, of the lighting process.
 #define LIGHTING_INTERVAL 5
 
-#define MINIMUM_USEFUL_LIGHT_RANGE 1.4
+#define MINIMUM_USEFUL_LIGHT_RANGE 1
 
 #define LIGHTING_FALLOFF    1 // Type of falloff to use for lighting; 1 for circular, 2 for square.
 #define LIGHTING_LAMBERTIAN 0 // Use lambertian shading for light sources.
 #define LIGHTING_HEIGHT     1 // Height off the ground of light sources on the pseudo-z-axis, you should probably leave this alone.
+
+/**
+ *! Lighting Types
+ */
+#define LIGHT_SOFT         1
+#define LIGHT_SOFT_FLICKER 2
+#define LIGHT_DIRECTIONAL  3
+
 
 /**
  * Value used to round lumcounts, values smaller than 1/129 don't matter (if they do, thanks sinking points).

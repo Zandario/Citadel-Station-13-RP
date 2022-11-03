@@ -13,7 +13,7 @@
 
 	var/sun_position = 0 // 0 means midnight, 1 means noon.
 	var/list/sun = list("range","brightness","color","lum_r","lum_g","lum_b")
-	var/list/datum/lighting_corner/sunlit_corners = list()
+	// var/list/datum/lighting_corner/sunlit_corners = list()
 	var/list/expected_z_levels = list()
 
 	var/turf/unsimulated/wall/planetary/planetary_wall_type = /turf/unsimulated/wall/planetary
@@ -66,4 +66,3 @@
 	sun["brightness"] = new_brightness
 	sun["color"] = new_color
 	needs_work |= PLANET_PROCESS_SUN
-

@@ -164,8 +164,14 @@
 	invis_toggle = TRUE
 
 /atom/movable/screen/plane_master/lighting
-	plane = LIGHTING_PLANE
+	name = "Lighting Plane Master"
+	icon = 'icons/mob/screen1.dmi'
+	appearance_flags = NO_CLIENT_COLOR | PLANE_MASTER
+	screen_loc = "CENTER"
 	blend_mode = BLEND_MULTIPLY
+	plane = LIGHTING_PLANE
+	layer = LIGHTING_BASE_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	alpha = 255
 
 /////////////////

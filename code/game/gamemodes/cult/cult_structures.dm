@@ -61,7 +61,7 @@
 			isbroken = 1
 			density = 0
 			icon_state = "[initial(icon_state)]-broken"
-			set_light(0)
+			kill_light()
 
 /obj/structure/cult/pylon/proc/attackpylon(mob/user as mob, var/damage)
 	if(!isbroken)
@@ -77,7 +77,7 @@
 			isbroken = 1
 			density = 0
 			icon_state = "[initial(icon_state)]-broken"
-			set_light(0)
+			kill_light()
 		else
 			to_chat(user, "You hit \the [src]!")
 			playsound(get_turf(src),impact_sound, 75, 1)

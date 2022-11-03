@@ -6,7 +6,9 @@
 	drop_sound = 'sound/items/drop/gloves.ogg'
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
 	w_class = ITEMSIZE_TINY
-	light_color = "#E09D37"
+	light_color = LIGHT_COLOR_FIRE
+	light_type = LIGHT_SOFT_FLICKER
+
 	var/wax = 2000
 	var/icon_type = "candle"
 
@@ -65,7 +67,7 @@
 	if(lit)
 		lit = 0
 		update_icon()
-		set_light(0)
+		kill_light()
 
 /obj/item/flame/candle/small
 	name = "small red candle"

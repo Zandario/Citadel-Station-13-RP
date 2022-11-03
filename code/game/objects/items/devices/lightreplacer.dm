@@ -1,39 +1,37 @@
+/**
+ *! Light Replacer (LR)
+ *
+ *? ABOUT THE DEVICE
+ *    This is a device supposedly to be used by Janitors and Janitor Cyborgs which will
+ *    allow them to easily replace lights. This was mostly designed for Janitor Cyborgs since
+ *    they don't have hands or a way to replace lightbulbs.
+ *
+ *? HOW IT WORKS
+ *    You attack a light fixture with it, if the light fixture is broken it will replace the
+ *    light fixture with a working light; the broken light is then placed on the floor for the
+ *    user to then pickup with a trash bag. If it's empty then it will just place a light in the fixture.
+ *
+ *? HOW TO REFILL THE DEVICE
+ *    It can be manually refilled or by clicking on a storage item containing lights.
+ *    If it's part of a robot module, it will charge when the Robot is inside a Recharge Station.
+ *
+ *? EMAGGED FEATURES
+ *
+ *! NOTICE: The Cyborg cannot use the emagged Light Replacer and the light's explosion was nerfed. It cannot create holes in the station anymore.
+ *
+ * I'm not sure everyone will react the emag's features so please say what your opinions are of it.
+ *
+ * When emagged it will rig every light it replaces, which will explode when the light is on.
+ * This is VERY noticable, even the device's name changes when you emag it so if anyone
+ * examines you when you're holding it in your hand, you will be discovered.
+ * It will also be very obvious who is setting all these lights off, since only Janitor Borgs and Janitors have easy
+ * access to them, and only one of them can emag their device.
+ *
+ * The explosion cannot insta-kill anyone with 30% or more health.
+ */
 
-// Light Replacer (LR)
-//
-// ABOUT THE DEVICE
-//
-// This is a device supposedly to be used by Janitors and Janitor Cyborgs which will
-// allow them to easily replace lights. This was mostly designed for Janitor Cyborgs since
-// they don't have hands or a way to replace lightbulbs.
-//
-// HOW IT WORKS
-//
-// You attack a light fixture with it, if the light fixture is broken it will replace the
-// light fixture with a working light; the broken light is then placed on the floor for the
-// user to then pickup with a trash bag. If it's empty then it will just place a light in the fixture.
-//
-// HOW TO REFILL THE DEVICE
-//
-// It can be manually refilled or by clicking on a storage item containing lights.
-// If it's part of a robot module, it will charge when the Robot is inside a Recharge Station.
-//
-// EMAGGED FEATURES
-//
-// NOTICE: The Cyborg cannot use the emagged Light Replacer and the light's explosion was nerfed. It cannot create holes in the station anymore.
-//
-// I'm not sure everyone will react the emag's features so please say what your opinions are of it.
-//
-// When emagged it will rig every light it replaces, which will explode when the light is on.
-// This is VERY noticable, even the device's name changes when you emag it so if anyone
-// examines you when you're holding it in your hand, you will be discovered.
-// It will also be very obvious who is setting all these lights off, since only Janitor Borgs and Janitors have easy
-// access to them, and only one of them can emag their device.
-//
-// The explosion cannot insta-kill anyone with 30% or more health.
-
-#define LIGHT_OK 0
-#define LIGHT_EMPTY 1
+#define LIGHT_OK     0
+#define LIGHT_EMPTY  1
 #define LIGHT_BROKEN 2
 #define LIGHT_BURNED 3
 
@@ -190,7 +188,7 @@
 			target.status = LIGHT_EMPTY
 			target.update()
 
-		var/obj/item/light/L = new target.light_type()
+		var/obj/item/light/L = new target.bulb_type()
 		target.insert_bulb(L)
 
 /obj/item/lightreplacer/emag_act(var/remaining_charges, var/mob/user)

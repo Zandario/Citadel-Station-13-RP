@@ -183,7 +183,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/smokable/proc/die(var/nomessage = 0)
 	var/turf/T = get_turf(src)
-	set_light(0)
+	kill_light()
 	STOP_PROCESSING(SSobj, src)
 	if (type_butt)
 		var/obj/item/butt = new type_butt(T)
@@ -577,6 +577,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	throw_force = 4
 	slot_flags = SLOT_BELT
 	attack_verb = list("burnt", "singed")
+	light_color = LIGHT_COLOR_FIRE
+	light_type = LIGHT_SOFT_FLICKER
+
 	var/base_state
 
 /obj/item/flame/lighter/zippo
@@ -625,7 +628,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		else
 			user.visible_message("<span class='notice'>[user] quietly shuts off the [src].</span>")
 
-		set_light(0)
+		kill_light()
 		STOP_PROCESSING(SSobj, src)
 	return
 

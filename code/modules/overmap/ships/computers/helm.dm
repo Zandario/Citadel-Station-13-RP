@@ -290,7 +290,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 /obj/machinery/computer/ship/navigation/telescreen/update_icon()
 	if(machine_stat & NOPOWER || machine_stat & BROKEN)
 		icon_state = "tele_off"
-		set_light(0)
+		kill_light()
 	else
 		icon_state = "tele_nav"
 		set_light(light_range_on, light_power_on)

@@ -1,8 +1,4 @@
-/area
-	luminosity           = TRUE
-	var/dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
-
-/area/proc/set_dynamic_lighting(var/new_dynamic_lighting = DYNAMIC_LIGHTING_ENABLED)
+/area/proc/set_dynamic_lighting(new_dynamic_lighting = DYNAMIC_LIGHTING_ENABLED)
 	if (new_dynamic_lighting == dynamic_lighting)
 		return FALSE
 
@@ -17,7 +13,7 @@
 	else
 		add_overlay(/obj/effect/fullbright)
 		for (var/turf/T in src)
-			if (T.lighting_object)
+			if (T.light_obj)
 				T.lighting_clear_overlay()
 
 	return TRUE

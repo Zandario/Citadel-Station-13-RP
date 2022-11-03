@@ -4,6 +4,15 @@
  * A grouping of tiles into a logical space, mostly used by map editors
  */
 /area
+	name = "Unknown"
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "unknown"
+	plane = ABOVE_LIGHTING_PLANE //In case we color them
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
+	luminosity = 1
+	level = null
+
 	/// area flags
 	var/area_flags = NONE
 
@@ -12,14 +21,8 @@
 	var/atmosalm = 0
 	var/poweralm = 1
 	var/party = null
-	level = null
-	name = "Unknown"
-	icon = 'icons/turf/areas.dmi'
-	icon_state = "unknown"
-	plane = ABOVE_LIGHTING_PLANE //In case we color them
-	mouse_opacity = 0
-	var/lightswitch = 1
 
+	var/lightswitch = 1
 	var/eject = null
 
 	var/debug = 0
@@ -112,16 +115,13 @@
 /area/Initialize(mapload)
 	icon_state = ""
 
-	if(requires_power)
-		luminosity = 0
-	else
+	if(!requires_power)
 		power_light = TRUE
 		power_equip = TRUE
 		power_environ = TRUE
 
 		if(dynamic_lighting == DYNAMIC_LIGHTING_FORCED)
 			dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
-			luminosity = 0
 		else if(dynamic_lighting != DYNAMIC_LIGHTING_IFSTARLIGHT)
 			dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	if(dynamic_lighting == DYNAMIC_LIGHTING_IFSTARLIGHT)
@@ -203,11 +203,12 @@
 	A.contents.Add(T)
 	if(old_area)
 		// Handle dynamic lighting update if
-		if(T.dynamic_lighting && old_area.dynamic_lighting != A.dynamic_lighting)
-			if(A.dynamic_lighting)
-				T.lighting_build_overlay()
-			else
-				T.lighting_clear_overlay()
+		#warn Check
+		// if(T.dynamic_lighting && old_area.dynamic_lighting != A.dynamic_lighting)
+		// 	if(A.dynamic_lighting)
+		// 		T.lighting_build_overlay()
+		// 	else
+		// 		T.lighting_clear_overlay()
 		for(var/atom/movable/AM in T)
 			old_area.Exited(AM, A)
 	for(var/atom/movable/AM in T)

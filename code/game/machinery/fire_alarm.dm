@@ -37,15 +37,15 @@ FIRE ALARM
 	cut_overlays()
 
 	if(panel_open)
-		set_light(0)
+		kill_light()
 		return
 
 	if(machine_stat & BROKEN)
 		icon_state = "firex"
-		set_light(0)
+		kill_light()
 	else if(machine_stat & NOPOWER)
 		icon_state = "firep"
-		set_light(0)
+		kill_light()
 	else
 		if(!detecting)
 			icon_state = "fire1"

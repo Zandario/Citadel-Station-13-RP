@@ -1,7 +1,4 @@
 /turf
-	var/dynamic_lighting = TRUE
-	luminosity           = 1
-
 	var/tmp/lighting_corners_initialised = FALSE
 
 	var/tmp/list/datum/light_source/affecting_lights       // List of light sources affecting this turf.
@@ -98,8 +95,10 @@
 	. = ..()
 
 	if (Obj && Obj.opacity)
-		recalc_atom_opacity() // Make sure to do this before reconsider_lights(), incase we're on instant updates.
-		reconsider_lights()
+		blocks_light = TRUE // Make sure to do this before reconsider_lights(), incase we're on instant updates. Guaranteed to be on in this case.
+		force_light_update()
+		// recalc_atom_opacity() // Make sure to do this before reconsider_lights(), incase we're on instant updates.
+		// reconsider_lights()
 
 /turf/proc/change_area(var/area/old_area, var/area/new_area)
 	if(SSlighting.initialized)

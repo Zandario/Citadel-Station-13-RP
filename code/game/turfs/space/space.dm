@@ -57,9 +57,9 @@
 				continue
 			set_light(power)
 			return
-		set_light(0)
+		kill_light()
 	else
-		set_light(0)
+		kill_light()
 
 /turf/space/attackby(obj/item/C as obj, mob/user as mob)
 

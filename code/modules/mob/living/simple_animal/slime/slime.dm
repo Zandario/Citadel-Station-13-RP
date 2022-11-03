@@ -160,7 +160,7 @@
 /mob/living/simple_animal/slime/update_icon()
 	if(stat == DEAD)
 		icon_state = "[icon_state_override ? "[icon_state_override] slime" : "slime"] [is_adult ? "adult" : "baby"] dead"
-		set_light(0)
+		kill_light()
 	else
 		if(incapacitated(INCAPACITATION_DISABLED))
 			icon_state = "[icon_state_override ? "[icon_state_override] slime" : "slime"] [is_adult ? "adult" : "baby"] dead"

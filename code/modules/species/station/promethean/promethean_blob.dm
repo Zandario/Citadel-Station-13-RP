@@ -53,7 +53,7 @@
 	humanform = null
 	vore_organs = null
 	vore_selected = null
-	set_light(0)
+	kill_light()
 	return ..()
 
 /mob/living/carbon/human/Destroy()
@@ -72,7 +72,7 @@
 		rad_glow = clamp(rad_glow,0,250)
 		set_light(max(1,min(5,rad_glow/15)), max(1,min(10,rad_glow/25)), color)
 	else
-		set_light(0)
+		kill_light()
 	update_icon()
 
 	if(!humanform) // If we somehow have a blob with no human, lets just clean up.
@@ -382,7 +382,7 @@
 	playsound(src.loc, "sound/effects/slime_squish.ogg", 15)
 	if(radiation > 0)
 		blob.rad_glow = clamp(radiation,0,250)
-		set_light(0)
+		kill_light()
 		blob.set_light(max(1,min(5,radiation/15)), max(1,min(10,radiation/25)), blob.color)
 		blob.handle_light()
 	if(has_hat)
@@ -478,7 +478,7 @@
 
 	//Get rid of friend blob
 	stored_blob = blob
-	blob.set_light(0)
+	blob.kill_light()
 	blob.moveToNullspace()
 	//qdel(blob)
 
@@ -500,4 +500,3 @@
 	else if(humanform.say_understands(other, speaking))		//So they're speaking something other than promethean or sign, let's just ask our original mob if it understands
 		return TRUE
 	else return FALSE
-

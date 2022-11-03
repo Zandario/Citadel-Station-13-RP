@@ -281,7 +281,7 @@
 
 	if(!radiation)
 		if(species.species_appearance_flags & RADIATION_GLOWS)
-			set_light(0)
+			kill_light()
 	else
 		if(species.species_appearance_flags & RADIATION_GLOWS)
 			var/rad_glow_range = max(1,min(5,radiation/15))

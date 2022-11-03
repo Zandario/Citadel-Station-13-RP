@@ -25,7 +25,7 @@
 /area/turbolift
 	delay_time = 2 SECONDS
 	forced_ambience = list('sound/music/elevator1.ogg', 'sound/music/elevator2.ogg')
-	dynamic_lighting = FALSE //Temporary fix for elevator lighting
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED //Temporary fix for elevator lighting
 
 	requires_power = FALSE
 
@@ -99,7 +99,7 @@
 	icon_state = "vacant_site"
 
 /area/centcom/simulated
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 
 /area/centcom/simulated/terminal
 	name = "\improper Docking Terminal"
@@ -1447,7 +1447,7 @@
 	name = "\improper Tether Elevator"
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "elevator"
-	dynamic_lighting = FALSE
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 	requires_power = FALSE
 
@@ -1459,7 +1459,7 @@
 /area/antag/antag_base
 	name = "\improper Syndicate Outpost"
 	requires_power = 0
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 //Merc shuttle
 /area/shuttle/mercenary
@@ -1591,7 +1591,7 @@
 	name = "Raider Outpost"
 	icon_state = "yellow"
 	requires_power = 0
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	area_flags = AREA_RAD_SHIELDED
 	ambience = AMBIENCE_HIGHSEC
 
@@ -1617,7 +1617,7 @@
 
 /area/ninja_dojo/dojo
 	name = "\improper Clan Dojo"
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/ninja_dojo/start
 	name = "\improper Clan Dojo"
@@ -1634,7 +1634,7 @@
 /area/ninja_dojo/arrivals_dock
 	name = "\improper docked with Tether"
 	icon_state = "shuttle"
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 // Exclude some more areas from the atmos leak event so people don't get trapped when spawning.
 /datum/event/atmos_leak/setup()

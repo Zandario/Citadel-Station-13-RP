@@ -40,7 +40,7 @@
 		..()
 	else
 		overlays.Cut()
-		set_light(0)		// No glow from closed laptops
+		kill_light()		// No glow from closed laptops
 		icon_state = icon_state_closed
 
 /obj/item/modular_computer/laptop/preset

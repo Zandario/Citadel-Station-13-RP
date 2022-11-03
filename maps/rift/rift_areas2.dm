@@ -675,7 +675,7 @@
 /area/antag/antag_base
 	name = "\improper Syndicate Outpost"
 	requires_power = 0
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/shuttle/antag_space/base
 	name = "\improper Syndicate PS - Base"
@@ -874,6 +874,3 @@ Do this eventually. */
 
 /area/rift/exterior/mineshaft
 	name = "\improper Abandoned Mineshaft"
-
-
-

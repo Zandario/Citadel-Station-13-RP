@@ -56,7 +56,7 @@
 	edge = initial(edge)
 	w_class = initial(w_class)
 	update_icon()
-	set_light(0,0)
+	kill_light()
 
 /obj/item/melee/energy/proc/use_charge(var/cost)
 	if(active)

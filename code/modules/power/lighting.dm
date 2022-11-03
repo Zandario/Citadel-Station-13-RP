@@ -4,8 +4,8 @@
 
 
 // status values shared between lighting fixtures and items
-#define LIGHT_OK 0
-#define LIGHT_EMPTY 1
+#define LIGHT_OK     0
+#define LIGHT_EMPTY  1
 #define LIGHT_BROKEN 2
 #define LIGHT_BURNED 3
 ///K - used value for a 60W bulb
@@ -14,12 +14,12 @@
 #define LIGHTING_POWER_FACTOR 2
 ///How much power emergency lights will consume per tick
 #define LIGHT_EMERGENCY_POWER_USE 0.2
-var/global/list/light_type_cache = list()
-/proc/get_light_type_instance(var/light_type)
-	. = light_type_cache[light_type]
+var/global/list/bulb_type_cache = list()
+/proc/get_bulb_type_instance(var/bulb_type)
+	. = bulb_type_cache[bulb_type]
 	if(!.)
-		. = new light_type
-		light_type_cache[light_type] = .
+		. = new bulb_type
+		bulb_type_cache[bulb_type] = .
 
 /obj/machinery/light_construct
 	name = "light fixture frame"
@@ -238,23 +238,34 @@ var/global/list/light_type_cache = list()
 	idle_power_usage = 2
 	active_power_usage = 10
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
-	var/on = 0					// 1 if on, 0 if off
+	/// If we're on or not.
+	var/on = FALSE
 	var/brightness_range
 	var/brightness_power
 	var/brightness_color
-	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
+	/// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
+	var/status = LIGHT_OK
 	var/flickering = 0
-	var/light_type = /obj/item/light/tube		// the type of light item
+	/// The type of light item.
+	var/bulb_type = /obj/item/light/tube
 	var/construct_type = /obj/machinery/light_construct
-	var/switchcount = 0			// count of number of times switched on/off
-								// this is used to calc the probability the light burns out
+	/**
+	 * Count of number of times switched on/off.
+	 * This is used to calc the probability the light burns out.
+	 */
+	var/switchcount = 0
 
-	var/rigged = 0				// true if rigged to explode
-	var/needsound = FALSE		// Flag to prevent playing turn-on sound multiple times, and from playing at roundstart
-	var/shows_alerts = TRUE		// Flag for if this fixture should show alerts.  Make sure icon states exist!
-	var/current_alert = null	// Which alert are we showing right now?
+	/// TRUE if rigged to explode.
+	var/rigged = 0
+	/// Flag to prevent playing turn-on sound multiple times, and from playing at roundstart.
+	var/needsound = FALSE
+	/// Flag for if this fixture should show alerts.  Make sure icon states exist!
+	var/shows_alerts = TRUE
+	/// Which alert are we showing right now?
+	var/current_alert = null
 
-	var/auto_flicker = FALSE // If true, will constantly flicker, so long as someone is around to see it (otherwise its a waste of CPU).
+	/// If TRUE, will constantly flicker, so long as someone is around to see it (otherwise its a waste of CPU).
+	var/auto_flicker = FALSE
 
 	var/obj/item/cell/emergency_light/cell
 	var/start_with_cell = TRUE	// if true, this fixture generates a very weak cell at roundstart
@@ -284,7 +295,7 @@ var/global/list/light_type_cache = list()
 	icon_state = "bulb1"
 	base_state = "bulb"
 	desc = "A small lighting fixture."
-	light_type = /obj/item/light/bulb
+	bulb_type = /obj/item/light/bulb
 	construct_type = /obj/machinery/light_construct/small
 	shows_alerts = FALSE
 
@@ -303,7 +314,7 @@ var/global/list/light_type_cache = list()
 	icon_state = "fairy1"
 	base_state = "fairy"
 	desc = "Soft white lights that flicker and dance to and fro."
-	light_type = /obj/item/light/bulb/fairy
+	bulb_type = /obj/item/light/bulb/fairy
 	construct_type = /obj/machinery/light_construct/fairy
 	shows_alerts = FALSE
 
@@ -314,7 +325,7 @@ var/global/list/light_type_cache = list()
 	plane = OBJ_PLANE
 	layer = OBJ_LAYER
 	desc = "A floor lamp."
-	light_type = /obj/item/light/bulb
+	bulb_type = /obj/item/light/bulb
 	construct_type = /obj/machinery/light_construct/flamp
 	shows_alerts = FALSE
 	var/lamp_shade = 1
@@ -333,14 +344,14 @@ var/global/list/light_type_cache = list()
 	auto_flicker = TRUE
 
 /obj/machinery/light/small/emergency
-	light_type = /obj/item/light/bulb/red
+	bulb_type = /obj/item/light/bulb/red
 
 /obj/machinery/light/small/emergency/flicker
 	auto_flicker = TRUE
 
 /obj/machinery/light/spot
 	name = "spotlight"
-	light_type = /obj/item/light/tube/large
+	bulb_type = /obj/item/light/tube/large
 	shows_alerts = FALSE
 
 /obj/machinery/light/spot/flicker
@@ -364,7 +375,7 @@ var/global/list/light_type_cache = list()
 	else
 		if(start_with_cell && !no_emergency)
 			cell = new/obj/item/cell/emergency_light(src)
-		var/obj/item/light/L = get_light_type_instance(light_type)
+		var/obj/item/light/L = get_bulb_type_instance(bulb_type)
 		update_from_bulb(L)
 		if(prob(L.broken_chance))
 			broken(1)
@@ -458,27 +469,28 @@ var/global/list/light_type_cache = list()
 				switchcount++
 			if(rigged)
 				if(status == LIGHT_OK && trigger)
-
 					log_admin("LOG: Rigged light explosion, last touched by [fingerprintslast]")
 					message_admins("LOG: Rigged light explosion, last touched by [fingerprintslast]")
 
 					explode()
+
 			else if( prob( min(60, switchcount*switchcount*0.01) ) )
 				if(status == LIGHT_OK && trigger)
 					status = LIGHT_BURNED
 					update_icon()
 					on = 0
-					set_light(0)
+					kill_light()
 			else
 				update_use_power(USE_POWER_ACTIVE)
 				set_light(correct_range, correct_power, correct_color)
+
 	else if(has_emergency_power(LIGHT_EMERGENCY_POWER_USE) && !turned_off())
 		update_use_power(USE_POWER_IDLE)
 		emergency_mode = TRUE
 		START_PROCESSING(SSobj, src)
 	else
 		update_use_power(USE_POWER_IDLE)
-		set_light(0)
+		kill_light()
 
 	active_power_usage = ((light_range * light_power) * LIGHTING_POWER_FACTOR)
 
@@ -542,7 +554,7 @@ var/global/list/light_type_cache = list()
 		to_chat(user, "Its backup power charge meter reads [round((cell.charge / cell.maxcharge) * 100, 0.1)]%.")
 
 /obj/machinery/light/proc/get_fitting_name()
-	var/obj/item/light/L = light_type
+	var/obj/item/light/L = bulb_type
 	return initial(L.name)
 
 /obj/machinery/light/proc/update_from_bulb(obj/item/light/L)
@@ -575,7 +587,7 @@ var/global/list/light_type_cache = list()
 		explode()
 
 /obj/machinery/light/proc/remove_bulb()
-	. = new light_type(src.loc, src)
+	. = new bulb_type(src.loc, src)
 
 	switchcount = 0
 	status = LIGHT_EMPTY
@@ -596,7 +608,7 @@ var/global/list/light_type_cache = list()
 		if(status != LIGHT_EMPTY)
 			to_chat(user, "There is a [get_fitting_name()] already inserted.")
 			return
-		if(!istype(W, light_type))
+		if(!istype(W, bulb_type))
 			to_chat(user, "This type of light requires a [get_fitting_name()].")
 			return
 

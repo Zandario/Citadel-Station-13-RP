@@ -13,7 +13,7 @@
 	icon_state = "origin_arrow"
 	initial_flooring = /decl/flooring/looking_glass
 	appearance_flags = TILE_BOUND
-	dynamic_lighting = FALSE
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 	var/center = FALSE
 	var/optional = FALSE

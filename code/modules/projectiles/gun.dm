@@ -119,7 +119,7 @@
 
 /obj/item/gun/proc/toggle_flashlight()
 	if(gun_light)
-		set_light(0)
+		kill_light()
 		gun_light = FALSE
 	else
 		set_light(light_brightness)
@@ -437,7 +437,7 @@
 		if(gun_light)
 			set_light(light_brightness)
 		else
-			set_light(0)
+			kill_light()
 
 // Similar to the above proc, but does not require a user, which is ideal for things like turrets.
 /obj/item/gun/proc/Fire_userless(atom/target)
@@ -511,7 +511,7 @@
 	accuracy = initial(accuracy)	//Reset the gun's accuracy
 
 	if(muzzle_flash)
-		set_light(0)
+		kill_light()
 
 //obtains the next projectile to fire
 /obj/item/gun/proc/consume_next_projectile()

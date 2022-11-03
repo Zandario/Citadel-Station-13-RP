@@ -42,7 +42,7 @@
 	if(src.can_use())
 		GLOB.cameranet.addCamera(src)
 	else
-		src.set_light(0)
+		src.kill_light()
 		GLOB.cameranet.removeCamera(src)
 
 /obj/machinery/camera/Initialize(mapload)

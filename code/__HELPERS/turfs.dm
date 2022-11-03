@@ -139,7 +139,7 @@
 		if(O.flags & ATOM_ABSTRACT)
 			continue
 		O.loc = X
-		O.update_light()
+		O.set_light()
 		// The objects still need to know if their z-level changed.
 		if (z_level_change)
 			O.onTransitZ(Origin.z, X.z)

@@ -18,7 +18,7 @@
 	icon_state = "green"
 	requires_power = 1
 	always_unpowered = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	power_light = 0
 	power_equip = 0
 	power_environ = 0

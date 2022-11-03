@@ -121,7 +121,7 @@
 /area/outpost/engineering/solarsoutside
 	requires_power = 1
 	always_unpowered = 1
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/outpost/engineering/solarsoutside/aft
 	name = "\improper Engineering Outpost Solar Array"

@@ -465,7 +465,7 @@ GLOBAL_LIST_EMPTY(buildholders)
 					log_admin("[key_name(usr)] set light [object] at [AREACOORD(object)] to [holder.buildmode.new_light_range]/[holder.buildmode.new_light_intensity]/[holder.buildmode.new_light_color]")
 			if(pa.Find("right"))
 				if(object)
-					object.set_light(0, 0, "#FFFFFF")
+					object.kill_light()
 					log_admin("[key_name(usr)] reset light [object] at [AREACOORD(object)]")
 		if(9) // AI control
 			if(pa.Find("left"))

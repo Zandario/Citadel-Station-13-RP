@@ -200,7 +200,7 @@
 		var/turf/T = loc
 		if(istype(T))
 			T.hotspot_expose(1000,125)
-		set_light(0.5, 3)
+		kill_light()
 	setDir(ndir)
 	QDEL_IN(src, 20)
 

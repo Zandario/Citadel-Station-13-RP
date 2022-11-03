@@ -53,7 +53,7 @@
 /obj/machinery/holoplant/proc/deactivate()
 	overlays -= plant
 	QDEL_NULL(plant)
-	set_light(0)
+	kill_light()
 	use_power = USE_POWER_OFF
 
 /obj/machinery/holoplant/power_change()
@@ -67,13 +67,13 @@
 	interference = TRUE
 	spawn(0)
 		overlays -= plant
-		set_light(0)
+		kill_light()
 		sleep(rand(2,4))
 		overlays += plant
 		set_light(2)
 		sleep(rand(2,4))
 		overlays -= plant
-		set_light(0)
+		kill_light()
 		sleep(rand(2,4))
 		overlays += plant
 		set_light(2)

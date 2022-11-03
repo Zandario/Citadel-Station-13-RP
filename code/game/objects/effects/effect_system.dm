@@ -91,32 +91,35 @@ steam.start() -- spawns the effect
 
 /obj/effect/particle_effect/sparks
 	name = "sparks"
-	icon = 'icons/effects/effects.dmi'
 	icon_state = "sparks"
+	anchored = TRUE
+	light_power = 1.3
+	light_range = MINIMUM_USEFUL_LIGHT_RANGE
+	light_color = LIGHT_COLOR_FIRE
+	light_type  = LIGHT_SOFT_FLICKER
+
 	var/amount = 6.0
-	anchored = 1.0
-	mouse_opacity = 0
 
 /obj/effect/particle_effect/sparks/Initialize(mapload)
 	. = ..()
-	playsound(src, "sparks", 100, 1)
-	var/turf/T = src.loc
-	if (istype(T, /turf))
-		T.hotspot_expose(1000,100)
-	QDEL_IN(src, 5 SECONDS)
+	flick("sparks", src) // replay the animation
+	playsound(src, "sparks", 100, TRUE)
+	var/turf/T = loc
+	if(isturf(T))
+		T.hotspot_expose(700,5)
+	QDEL_IN(src, 20)
 
 /obj/effect/particle_effect/sparks/Destroy()
-	var/turf/T = src.loc
-	if (istype(T, /turf))
-		T.hotspot_expose(1000,100)
+	var/turf/T = loc
+	if(isturf(T))
+		T.hotspot_expose(700,1)
 	return ..()
 
 /obj/effect/particle_effect/sparks/Move()
 	..()
-	var/turf/T = src.loc
-	if (istype(T, /turf))
-		T.hotspot_expose(1000,100)
-	return
+	var/turf/T = loc
+	if(isturf(T))
+		T.hotspot_expose(700,1)
 
 /datum/effect_system/spark_spread
 	var/total_sparks = 0 // To stop it being spammed and lagging!
@@ -282,9 +285,10 @@ steam.start() -- spawns the effect
 	name = "burning cloud"
 	desc = "A cloud of something that is on fire."
 	color = "#FF9933"
-	light_color = "#FF0000"
-	light_range = 2
 	light_power = 5
+	light_range = LIGHT_RANGE_FIRE
+	light_color = LIGHT_COLOR_FIRE
+	light_type  = LIGHT_SOFT_FLICKER
 
 /obj/effect/particle_effect/smoke/elemental/fire/affect(mob/living/L)
 	L.inflict_heat_damage(strength)

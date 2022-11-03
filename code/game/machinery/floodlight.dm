@@ -51,7 +51,7 @@
 
 /obj/machinery/floodlight/proc/turn_off(loud = FALSE)
 	on = FALSE
-	set_light(0, 0)
+	kill_light()
 	update_icon()
 	if(loud)
 		visible_message("\The [src] shuts down.")
@@ -80,7 +80,7 @@
 
 		cell = null
 		on = FALSE
-		set_light(0)
+		kill_light()
 		to_chat(user, "You remove the power cell")
 		update_icon()
 		return

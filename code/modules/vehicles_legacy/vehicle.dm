@@ -193,7 +193,7 @@
 	if(!mechanical)
 		return FALSE
 	on = 0
-	set_light(0)
+	kill_light()
 	update_icon()
 
 /obj/vehicle_old/emag_act(var/remaining_charges, mob/user as mob)

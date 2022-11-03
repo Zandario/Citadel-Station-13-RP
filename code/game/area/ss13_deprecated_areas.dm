@@ -9,13 +9,13 @@
 
 /area/shuttle/arrival/station
 	icon_state = "shuttle"
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	ambience = AMBIENCE_ARRIVALS
 
 /area/shuttle/escape/station
 	name = "\improper Emergency Shuttle Station"
 	icon_state = "shuttle2"
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/shuttle/escape/centcom
 	name = "\improper Emergency Shuttle CentCom"

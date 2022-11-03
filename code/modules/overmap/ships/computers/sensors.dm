@@ -131,7 +131,7 @@
 		var/sensor_range = round(sensors.range*1.5) + 1
 		linked.set_light(sensor_range + 0.5, 4)
 	else
-		linked.set_light(0)
+		linked.kill_light()
 
 /obj/machinery/shipsensors
 	name = "sensors suite"

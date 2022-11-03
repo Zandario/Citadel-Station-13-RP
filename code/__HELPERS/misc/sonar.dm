@@ -156,5 +156,5 @@
 /obj/structure/cable/make_sonar_image(resolution)
 	return
 
-/atom/movable/lighting_object/make_sonar_image(resolution)
+/atom/movable/light/make_sonar_image(resolution)
 	return

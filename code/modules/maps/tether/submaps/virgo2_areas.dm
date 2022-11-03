@@ -1,7 +1,7 @@
 /area/submap/virgo2
 	name = "Submap Area"
 	icon_state = "submap"
-	dynamic_lighting = FALSE
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/submap/virgo2/spider1
 	name = "POI - spider nest"

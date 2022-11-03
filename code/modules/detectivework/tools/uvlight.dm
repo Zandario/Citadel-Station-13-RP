@@ -25,7 +25,7 @@
 		START_PROCESSING(SSobj, src)
 		icon_state = "uv_on"
 	else
-		set_light(0)
+		kill_light()
 		clear_last_scan()
 		STOP_PROCESSING(SSobj, src)
 		icon_state = "uv_off"

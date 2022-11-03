@@ -97,7 +97,7 @@ The goal here is to create esoteric or niche, specialized machines that follow t
 		set_light(3, 3, "#FFCC00")
 		src.icon_state = "[icon_state]_1"
 	else
-		set_light(0)
+		kill_light()
 		src.icon_state = initial(icon_state)
 
 /obj/structure/broken_pump
@@ -245,7 +245,7 @@ The goal here is to create esoteric or niche, specialized machines that follow t
 		set_light(3, 3, "#FFCC00")
 		src.icon_state = "[icon_state]_1"
 	else
-		set_light(0)
+		kill_light()
 		src.icon_state = initial(icon_state)
 
 /obj/structure/broken_reservoir

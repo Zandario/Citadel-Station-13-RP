@@ -226,7 +226,7 @@
 			var/mob/living/carbon/C = src
 			if(C.species?.species_appearance_flags & RADIATION_GLOWS)
 				return FALSE//When we glow with rads this is handled in handle_mutations_and_radiation()
-		set_light(0)
+		kill_light()
 		return FALSE
 
 /mob/living/proc/handle_darksight()

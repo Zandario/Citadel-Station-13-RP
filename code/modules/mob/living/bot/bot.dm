@@ -383,7 +383,7 @@
 /mob/living/bot/proc/turn_off()
 	on = 0
 	busy = 0 // If ever stuck... reboot!
-	set_light(0)
+	kill_light()
 	update_icons()
 
 /mob/living/bot/proc/explode()

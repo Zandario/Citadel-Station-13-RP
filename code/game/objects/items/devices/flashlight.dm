@@ -81,7 +81,7 @@
 
 	else
 		icon_state = "[initial(icon_state)]"
-		set_light(0)
+		kill_light()
 
 /obj/item/flashlight/examine(mob/user)
 	. = ..()
@@ -295,15 +295,18 @@
 	brightness_on = 8 // Pretty bright.
 	flashlight_power = 0.8
 	flashlight_colour = LIGHT_COLOR_FLARE
+	light_color = LIGHT_COLOR_FLARE
+	light_type = LIGHT_SOFT_FLICKER
 	icon_state = "flare"
 	item_state = "flare"
 	action_button_name = null //just pull it manually, neckbeard.
-	var/fuel = 0
-	var/on_damage = 7
-	var/produce_heat = 1500
 	power_use = 0
 	drop_sound = 'sound/items/drop/gloves.ogg'
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
+
+	var/fuel = 0
+	var/on_damage = 7
+	var/produce_heat = 1500
 
 /obj/item/flashlight/flare/Initialize(mapload)
 	. = ..()

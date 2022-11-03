@@ -45,7 +45,7 @@ GLOBAL_LIST_EMPTY(holoposters)
 	if(machine_stat & NOPOWER)
 		icon_state = "off"
 		examine_addon = "It appears to be powered off."
-		set_light(0)
+		kill_light()
 		return
 	var/new_color = LIGHT_COLOR_HALOGEN
 	if(machine_stat & BROKEN)

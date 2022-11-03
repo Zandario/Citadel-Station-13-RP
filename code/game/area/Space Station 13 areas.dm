@@ -24,7 +24,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "space"
 	requires_power = 1
 	always_unpowered = 1
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	has_gravity = FALSE
 	power_light = 0
 	has_gravity = 0
@@ -122,7 +122,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/shuttle/mining
 	name = "\improper Mining Elevator"
 	music = "music/escape.ogg"
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/shuttle/transport1/centcom
 	icon_state = "shuttle"
@@ -190,7 +190,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/shuttle/trade
 	name = "\improper Trade Station"
 	icon_state = "red"
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/shuttle/thunderdome
 	name = "honk"
@@ -198,7 +198,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/shuttle/research
 	name = "\improper Research Elevator"
 	music = "music/escape.ogg"
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/shuttle/awaymission/home
 	name = "NSB Adephagia (AM)"
@@ -343,7 +343,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/antag/antag_base
 	name = "\improper Syndicate Outpost"
 	requires_power = 0
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 // Antag Space Shuttle.	// Also Known as "ASS"
 /area/shuttle/antag_space
@@ -424,7 +424,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper CentCom"
 	icon_state = "centcom"
 	requires_power = 0
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/centcom/control
 	name = "\improper CentCom Control"
@@ -501,7 +501,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Mercenary Base"
 	icon_state = "syndie-ship"
 	requires_power = 0
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	ambience = AMBIENCE_HIGHSEC
 
 /area/syndicate_mothership/control
@@ -563,7 +563,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Thunderdome"
 	icon_state = "thunder"
 	requires_power = 0
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	sound_env = ARENA
 
 /area/tdome/tdome1
@@ -644,7 +644,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Wizard's Den"
 	icon_state = "yellow"
 	requires_power = 0
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	ambience = AMBIENCE_OTHERWORLDLY
 
 /area/skipjack_station
@@ -1802,7 +1802,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/holodeck
 	name = "\improper Holodeck"
 	icon_state = "Holodeck"
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	sound_env = LARGE_ENCLOSED
 
 /area/holodeck/alphadeck
@@ -2039,7 +2039,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/solar/
 	requires_power = 1
 	always_unpowered = 1
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	ambience = AMBIENCE_SPACE
 
 /area/solar/auxport
@@ -3051,7 +3051,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/shuttle/constructionsite
 	name = "\improper Construction Site Shuttle"
 	icon_state = "yellow"
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/shuttle/constructionsite/station
 	name = "\improper Construction Site Shuttle"
@@ -3219,28 +3219,28 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	ambience = AMBIENCE_AI
 
 /area/AIsatextFS
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	ambience = AMBIENCE_AI
 
 /area/AIsatextAS
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	ambience = AMBIENCE_AI
 
 /area/AIsatextAP
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	ambience = AMBIENCE_AI
 
 /area/NewAIMain
@@ -3273,7 +3273,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Keelin's private beach"
 	icon_state = "yellow"
 	luminosity = 1
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	requires_power = 0
 
 /area/wreck
@@ -3442,7 +3442,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/arrival_sound = 'sound/machines/ding.ogg'
 	var/delay_time = 2 SECONDS
 	forced_ambience = list('sound/music/elevator1.ogg', 'sound/music/elevator2.ogg')
-	dynamic_lighting = FALSE //Temporary fix for elevator lighting
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED //Temporary fix for elevator lighting
 
 	requires_power = FALSE
 

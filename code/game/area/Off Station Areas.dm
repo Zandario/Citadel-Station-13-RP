@@ -164,7 +164,7 @@
 	name = "Class D World"
 	icon_state = "away"
 	requires_power = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 
 /area/class_d/explored
 	name = "Class D World - Explored (E)"
@@ -239,7 +239,7 @@
 	name = "Class G World"
 	icon_state = "away"
 	requires_power = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 
 /area/class_g/explored
 	name = "Class G World - Explored (E)"
@@ -254,7 +254,7 @@
 /area/class_h
 	name = "Class H World"
 	requires_power = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	icon_state = "away"
 
 /area/class_h/POIs/WW_Town
@@ -309,7 +309,7 @@
 	name = "Class M World"
 	icon_state = "away"
 	requires_power = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 
 /area/class_m/inside
 	name = "Class M World - Inside (E)"
@@ -324,7 +324,7 @@
 	name = "Class P World"
 	icon_state = "away"
 	requires_power = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 
 /area/class_p/facility
 	name = "Facility"
@@ -575,7 +575,7 @@
 	name = "Raider Outpost"
 	icon_state = "yellow"
 	requires_power = 0
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	area_flags = AREA_RAD_SHIELDED
 	ambience = AMBIENCE_HIGHSEC
 /area/skipjack_station/transit
@@ -598,7 +598,7 @@
 	ambience = AMBIENCE_HIGHSEC
 /area/ninja_dojo/dojo
 	name = "\improper Clan Dojo"
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 /area/ninja_dojo/start
 	name = "\improper Clan Dojo"
 	icon_state = "shuttlered"
@@ -611,7 +611,7 @@
 /area/ninja_dojo/arrivals_dock
 	name = "\improper docked with Tether"
 	icon_state = "shuttle"
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 
 // Lavaland
@@ -623,7 +623,7 @@
 	name = "Lava Land"
 	icon_state = "away"
 	requires_power = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 
 /area/lavaland/horrors
 	name = "Lava Land - Horrors"
@@ -740,19 +740,19 @@
 	name = "\improper Away Mission - Aerostat Outside"
 	icon_state = "away"
 	requires_power = FALSE
-	dynamic_lighting = FALSE
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/aerostat/inside
 	name = "\improper Away Mission - Aerostat Inside"
 	icon_state = "crew_quarters"
 	requires_power = TRUE
-	dynamic_lighting = TRUE
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	forced_ambience = list('sound/ambience/tension/tension.ogg', 'sound/ambience/tension/argitoth.ogg', 'sound/ambience/tension/burning_terror.ogg')
 
 /area/aerostat/solars
 	name = "\improper Away Mission - Aerostat Solars"
 	icon_state = "crew_quarters"
-	dynamic_lighting = TRUE
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 
 /area/aerostat/surface
 	area_flags = AREA_RAD_SHIELDED
@@ -804,13 +804,11 @@
 /area/awaymission/wwvault
 	name = "\improper Wild West Vault"
 	icon_state = "away3"
-	luminosity = 0
 
 /area/awaymission/wwvaultdoors
 	name = "\improper Wild West Vault Doors"  // this is to keep the vault area being entirely lit because of requires_power
 	icon_state = "away2"
 	requires_power = 0
-	luminosity = 0
 
 /area/awaymission/desert
 	name = "Mars"
@@ -869,7 +867,7 @@
 	name = "Beach"
 	icon_state = "null"
 	luminosity = 1
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	requires_power = 0
 
 /area/awaymission/carpfarm
@@ -895,7 +893,7 @@
 	icon_state = "away1"
 	requires_power = 1
 	always_unpowered = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
@@ -933,7 +931,7 @@
 	icon_state = "green"
 	requires_power = 1
 	always_unpowered = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
@@ -967,7 +965,7 @@
 /area/awaymission/zoo
 	icon_state = "green"
 	requires_power = 0
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	ambience = list('sound/ambience/ambispace.ogg','sound/music/title2.ogg','sound/music/space.ogg','sound/music/main.ogg','sound/music/traitor.ogg')
 
 /area/awaymission/zoo/solars

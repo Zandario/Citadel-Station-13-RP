@@ -326,12 +326,12 @@
 
 	if(panel_open)
 		icon_state = "alarmx"
-		set_light(0)
+		kill_light()
 		//set_light_on(FALSE)
 		return
 	if((machine_stat & (NOPOWER|BROKEN)) || shorted)
 		icon_state = "alarmp"
-		set_light(0)
+		kill_light()
 		//set_light_on(FALSE)
 		return
 

@@ -27,6 +27,9 @@
 	/// The orbiter comopnent if we're being orbited.
 	var/datum/component/orbiter/orbiters
 
+	//! Lighting
+	var/dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+
 	//! Colors
 	/**
 	 * used to store the different colors on an atom
@@ -207,7 +210,7 @@
 		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 
 	if(light_power && light_range)
-		update_light()
+		set_light()
 
 	if (length(smoothing_groups))
 		tim_sort(smoothing_groups) //In case it's not properly ordered, let's avoid duplicate entries with the same values.
@@ -220,7 +223,7 @@
 
 	if(opacity && isturf(loc))
 		var/turf/T = loc
-		T.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guranteed to be on afterwards anyways.
+		T.blocks_light = TRUE // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -262,8 +265,8 @@
 	LAZYCLEARLIST(overlays)
 	LAZYNULL(managed_overlays)
 
-	if(light)
-		QDEL_NULL(light)
+	if(light_obj)
+		QDEL_NULL(light_obj)
 
 	if(smoothing_flags & SMOOTH_QUEUED)
 		SSicon_smooth.remove_from_queues(src)

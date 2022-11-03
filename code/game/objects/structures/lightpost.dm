@@ -25,7 +25,7 @@
 		glow.plane = ABOVE_LIGHTING_PLANE
 		add_overlay(glow)
 	else
-		set_light(0)
+		kill_light()
 
 	if(festive)
 		var/image/bow = image(icon_state = "[icon_state]-festive")

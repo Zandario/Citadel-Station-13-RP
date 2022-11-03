@@ -310,5 +310,5 @@
 	holder.glow_range = initial(holder.glow_range)
 	holder.glow_intensity = initial(holder.glow_intensity)
 	holder.glow_color = initial(holder.glow_color)
-	holder.set_light(0)
+	holder.kill_light()
 	my_kin = null

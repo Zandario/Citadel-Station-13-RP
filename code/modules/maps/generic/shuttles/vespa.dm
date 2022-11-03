@@ -11,7 +11,7 @@
 	name = "\improper Event Ship (Use a Subtype!)"
 	icon_state = "shuttle2"
 	requires_power = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 
 /area/ship/expe/engineering
 	name = "\improper Exp Ship - Engineering"

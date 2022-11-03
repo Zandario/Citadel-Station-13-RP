@@ -53,10 +53,10 @@ In short:
 
 /datum/universal_state/hell/OverlayAndAmbientSet()
 	spawn(0)
-		for(var/datum/lighting_corner/L in world)
-			L.update_lumcount(1, 0, 0)
+		// for(var/datum/lighting_corner/L in world)
+		// 	L.update_lumcount(1, 0, 0)
 		for(var/turf/space/T in world)
-			T.color = "#FF0000"
+			T.light_color = "#FF0000"
 
 /datum/universal_state/hell/proc/MiscSet()
 	for(var/turf/simulated/floor/T in world)

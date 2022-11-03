@@ -1,7 +1,7 @@
 /area/submap/spa
 	name = "\improper Space Spa"
 	requires_power = 0
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 
 
@@ -13,7 +13,7 @@
 /area/submap/admin_upload
 	name = "\improper Unknown Area AU" //Nobody will know what this means if they see it, anyway.
 	requires_power = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	power_equip = FALSE
 	power_environ = FALSE
 	power_light = FALSE
@@ -23,19 +23,19 @@
 /area/submap/admin_upload/lit
 	name = "\improper Unknown Area AU+L"
 	requires_power = 1
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	power_equip = FALSE
 	power_environ = FALSE
 	power_light = FALSE
 /area/submap/admin_upload/powlit
 	name = "\improper Unknown Area AU+PL"
 	requires_power = 0
-	dynamic_lighting = 0
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/submap/admin_upload/AU2
 	name = "\improper Unknown Area A"
 	requires_power = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	power_equip = FALSE
 	power_environ = FALSE
 	power_light = FALSE
@@ -43,7 +43,7 @@
 /area/submap/admin_upload/AU3
 	name = "\improper Unknown Area B"
 	requires_power = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	power_equip = FALSE
 	power_environ = FALSE
 	power_light = FALSE
@@ -51,7 +51,7 @@
 /area/submap/admin_upload/AU4
 	name = "\improper Unknown Area C"
 	requires_power = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	power_equip = FALSE
 	power_environ = FALSE
 	power_light = FALSE
@@ -59,7 +59,7 @@
 /area/submap/admin_upload/AU5
 	name = "\improper Unknown Area D"
 	requires_power = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	power_equip = FALSE
 	power_environ = FALSE
 	power_light = FALSE
@@ -67,7 +67,7 @@
 /area/submap/admin_upload/AU6
 	name = "\improper Unknown Area E"
 	requires_power = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	power_equip = FALSE
 	power_environ = FALSE
 	power_light = FALSE
@@ -75,7 +75,7 @@
 /area/submap/admin_upload/AU7
 	name = "\improper Unknown Area F"
 	requires_power = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	power_equip = FALSE
 	power_environ = FALSE
 	power_light = FALSE
@@ -83,7 +83,7 @@
 /area/submap/admin_upload/AU8
 	name = "\improper Unknown Area G"
 	requires_power = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	power_equip = FALSE
 	power_environ = FALSE
 	power_light = FALSE
@@ -91,7 +91,7 @@
 /area/submap/admin_upload/AU9
 	name = "\improper Unknown Area H"
 	requires_power = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	power_equip = FALSE
 	power_environ = FALSE
 	power_light = FALSE
@@ -99,7 +99,7 @@
 /area/submap/admin_upload/AU10
 	name = "\improper Unknown Area I"
 	requires_power = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	power_equip = FALSE
 	power_environ = FALSE
 	power_light = FALSE
@@ -107,7 +107,7 @@
 /area/submap/admin_upload/AU11
 	name = "\improper Unknown Area J"
 	requires_power = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	power_equip = FALSE
 	power_environ = FALSE
 	power_light = FALSE
@@ -115,7 +115,7 @@
 /area/submap/admin_upload/AU12
 	name = "\improper Unknown Area K"
 	requires_power = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	power_equip = FALSE
 	power_environ = FALSE
 	power_light = FALSE
@@ -123,7 +123,7 @@
 /area/submap/admin_upload/AU13
 	name = "\improper Unknown Area L"
 	requires_power = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	power_equip = FALSE
 	power_environ = FALSE
 	power_light = FALSE
@@ -131,7 +131,7 @@
 /area/submap/admin_upload/AU14
 	name = "\improper Unknown Area M"
 	requires_power = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	power_equip = FALSE
 	power_environ = FALSE
 	power_light = FALSE
@@ -139,7 +139,7 @@
 /area/submap/admin_upload/AU15
 	name = "\improper Unknown Area N"
 	requires_power = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	power_equip = FALSE
 	power_environ = FALSE
 	power_light = FALSE
@@ -147,7 +147,7 @@
 /area/submap/admin_upload/AU16
 	name = "\improper Unknown Area O"
 	requires_power = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	power_equip = FALSE
 	power_environ = FALSE
 	power_light = FALSE
@@ -155,7 +155,7 @@
 /area/submap/admin_upload/lo
 	name = "\improper Unknown Area AA"
 	requires_power = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	lightswitch = 0
 	power_equip = FALSE
 	power_environ = FALSE

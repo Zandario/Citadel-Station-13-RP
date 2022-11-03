@@ -67,7 +67,7 @@
 	else
 		icon_state = normal_icon_state
 		item_state = normal_icon_state
-		set_light(0, 0, l_color = "#000000")
+		kill_light()
 
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc

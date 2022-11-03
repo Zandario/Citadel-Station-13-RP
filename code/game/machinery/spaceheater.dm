@@ -26,7 +26,7 @@
 	if(on)
 		set_light(3, 3, "#FFCC00")
 	else
-		set_light(0)
+		kill_light()
 
 /obj/machinery/space_heater/examine(mob/user)
 	. = ..()

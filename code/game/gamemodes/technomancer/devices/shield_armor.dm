@@ -86,6 +86,6 @@
 	if(active)
 		set_light(2, 1, l_color = "#006AFF")
 	else
-		set_light(0, 0, l_color = "#000000")
+		kill_light()
 	..()
 	return

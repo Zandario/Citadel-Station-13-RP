@@ -208,9 +208,13 @@
  */
 #define LIGHTING_PLANE 5
 
-#define LIGHTBULB_LAYER      0
-#define LIGHTING_LAYER       1
-#define ABOVE_LIGHTING_LAYER 2
+#define LIGHTING_BASE_LAYER     1 //? Base plane layer.
+#define LIGHTING_SHADOW_LAYER   2 //? Base shadow templates.
+#define LIGHTING_WALL_LAYER     3 //? Wall lighting overlays.
+#define LIGHTING_FALLOFF_LAYER  4 //? Light falloff overlay.
+#define LIGHTING_SUBTRACT_LAYER 5 //? Subtractive light layer.
+
+#define ABOVE_LIGHTING_LAYER    6
 
 /**
  *! ABOVE_LIGHTING_PLANE Plane

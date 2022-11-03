@@ -140,7 +140,7 @@
 		underlays += underlay_image
 		set_light(rag.light_range, rag.light_power, rag.light_color)
 	else
-		set_light(0)
+		kill_light()
 
 /obj/item/reagent_containers/food/drinks/bottle/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	var/blocked = ..()

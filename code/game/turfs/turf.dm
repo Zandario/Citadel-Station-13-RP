@@ -4,30 +4,46 @@
 	layer = TURF_LAYER
 	plane = TURF_PLANE
 	luminosity = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	level = 1
 
 	/// turf flags
 	var/turf_flags = NONE
 
-	var/holy = 0
+	var/holy = FALSE
 
-	// Atmospherics / ZAS Environmental
+	/**
+	 *! Lighting
+	 */
+	/// Whether or not this turf occludes light based on turf opacity and contents. See check_blocks_light().
+	var/blocks_light = -1
+	var/lumcount = -1
+	/// Non-assoc list of all lighting overlays applied to this turf.
+	var/list/affecting_lights = list()
+
+	/**
+	 *! Atmospherics / ZAS Environmental
+	 */
 	/// Initial air contents, as a specially formatted gas string.
 	var/initial_gas_mix = GAS_STRING_TURF_DEFAULT
-	// End
 
-	// Properties for airtight tiles (/wall)
+	/**
+	 *! Properties for airtight tiles (/wall)
+	 */
+
 	var/thermal_conductivity = 0.05
 	var/heat_capacity = 1
 
-	// Properties for both
+	/**
+	 *! Properties for both.
+	 */
 	/// Initial turf temperature.
 	var/temperature = T20C
 	/// Does this turf contain air/let air through?
 	var/blocks_air = FALSE
 
 	/**
-	 * Baseturfs
+	 *! Baseturfs
 	 */
 	// baseturfs can be either a list or a single turf type.
 	// In class definition like here it should always be a single type.
@@ -40,7 +56,7 @@
 	// End
 
 	/**
-	 * Automata
+	 *! Automata
 	 */
 	/// acted automata - automata associated to power, act_cross() will be called when something enters us while this is set
 	var/list/acting_automata
@@ -48,7 +64,10 @@
 	/// Icon-smoothing variable to map a diagonal wall corner with a fixed underlay.
 	var/list/fixed_underlay = null
 
-	// General properties.
+	/**
+	 *! General properties.
+	 */
+
 	var/icon_old = null
 	/// How much does it cost to pathfind over this turf?
 	var/pathweight = 1
@@ -62,7 +81,7 @@
 
 	var/list/footstep_sounds = null
 
-	// Outdoors var determines if the game should consider the turf to be 'outdoors', which controls certain things such as weather effects.
+	/// Outdoors var determines if the game should consider the turf to be 'outdoors', which controls certain things such as weather effects.
 	var/outdoors = FALSE
 
 	/// If true, most forms of teleporting to or from this turf tile will fail.
@@ -113,10 +132,10 @@
 		add_overlay(/obj/effect/fullbright)
 
 	if (light_power && light_range)
-		update_light()
+		set_light()
 
 	if (opacity)
-		has_opaque_atom = TRUE
+		blocks_light = TRUE
 
 	//Pathfinding related
 	if(movement_cost && pathweight == 1)	// This updates pathweight automatically.

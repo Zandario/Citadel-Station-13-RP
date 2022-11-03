@@ -83,7 +83,7 @@ GLOBAL_LIST_EMPTY(solargrubs)
 /mob/living/simple_mob/vore/solargrub/BiologicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
-	
+
 	if(stat != CONSCIOUS)
 		return
 
@@ -164,7 +164,7 @@ GLOBAL_LIST_EMPTY(solargrubs)
 
 /mob/living/simple_mob/vore/solargrub/death()
 	src.anchored = 0
-	set_light(0)
+	kill_light()
 	..()
 //	This funny bit is questionable atm
 // /mob/living/simple_mob/vore/solargrub/Destroy()

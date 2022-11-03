@@ -2,14 +2,14 @@
 	icon = 'icons/effects/projectiles.dmi'
 	icon_state = "bolt"
 	plane = ABOVE_PLANE
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/obj/effect/projectile/proc/set_transform(var/matrix/M)
+/obj/effect/projectile/proc/set_transform(matrix/M)
 	if(istype(M))
 		transform = M
 
-/obj/effect/projectile/proc/activate(var/kill_delay = 5)
-	update_light()
+/obj/effect/projectile/proc/activate(kill_delay = 5)
+	set_light()
 	spawn(kill_delay)
 		qdel(src)	//see effect_system.dm - sets loc to null and lets GC handle removing these effects
 

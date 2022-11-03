@@ -58,7 +58,7 @@
 		set_light(3, 5, color)
 	else
 		color = null
-		set_light(0)
+		kill_light()
 
 	if(is_infesting)
 		overlays.Cut()

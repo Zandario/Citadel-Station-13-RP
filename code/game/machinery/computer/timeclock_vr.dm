@@ -46,7 +46,7 @@
 	if(old_stat != machine_stat)
 		update_icon()
 	if(machine_stat & NOPOWER)
-		set_light(0)
+		kill_light()
 	else
 		set_light(light_range_on, light_power_on)
 

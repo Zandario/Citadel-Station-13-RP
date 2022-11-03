@@ -13,7 +13,7 @@
 // Elevator areas.
 /area/turbolift				//Why are we editing the base turbolift here instead of making a new child like area/turbolift/rift/---- ?
 	delay_time = 1 SECONDS
-	dynamic_lighting = FALSE //Temporary fix for elevator lighting
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED //Temporary fix for elevator lighting
 
 /area/turbolift/runder/level2
 	name = "under (level 2)"

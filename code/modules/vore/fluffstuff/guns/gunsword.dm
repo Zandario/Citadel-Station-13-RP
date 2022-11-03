@@ -89,7 +89,7 @@
 	sharp = initial(sharp)
 	edge = initial(edge)
 	w_class = initial(w_class)
-	set_light(0,0)
+	kill_light()
 	attack_verb = list()
 
 

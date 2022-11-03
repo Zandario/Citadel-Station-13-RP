@@ -125,7 +125,7 @@
 				light_range = 4
 		set_light(light_range, 2, light_color)
 	else
-		set_light(0, 0, "#FFFFFF")
+		kill_light()
 
 /obj/machinery/particle_smasher/bullet_act(var/obj/item/projectile/Proj)
 	if(istype(Proj, /obj/item/projectile/beam))

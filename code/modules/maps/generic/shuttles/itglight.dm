@@ -77,7 +77,7 @@
 /area/shuttle/itglightshuttle
 	name = "ITG Shuttlecraft"
 	requires_power = 1
-	dynamic_lighting = 1
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 
 // The 'Dauntless'
 /obj/effect/overmap/visitable/ship/itglight

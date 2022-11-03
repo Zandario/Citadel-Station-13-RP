@@ -59,7 +59,7 @@
 			anchored = 0
 			mode = 0
 			src.visible_message("<span class='notice'>[user] detaches [src] from the cable!</span>")
-			set_light(0)
+			kill_light()
 			playsound(src, I.tool_sound, 50, 1)
 			icon_state = "powersink0"
 
@@ -84,7 +84,7 @@
 		if(2)  //This switch option wasn't originally included. It exists now. --NeoFite
 			src.visible_message("<span class='notice'>[user] deactivates [src]!</span>")
 			mode = 1
-			set_light(0)
+			kill_light()
 			icon_state = "powersink0"
 			STOP_PROCESSING(SSobj, src)
 			STOP_PROCESSING_POWER_OBJECT(src)

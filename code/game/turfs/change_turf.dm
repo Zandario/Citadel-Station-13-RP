@@ -14,7 +14,7 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
 
 /turf/proc/empty(turf_type=/turf/space, baseturf_type, list/ignore_typecache, flags)
 	// Remove all atoms except observers, landmarks, docking ports
-	var/static/list/ignored_atoms = typecacheof(list(/mob/observer, /obj/landmark, /atom/movable/lighting_object, /obj/effect/shuttle_landmark))
+	var/static/list/ignored_atoms = typecacheof(list(/mob/observer, /obj/landmark, /atom/movable/light, /obj/effect/shuttle_landmark))
 	var/list/allowed_contents = typecache_filter_list_reverse(get_all_contents_ignoring(ignore_typecache), ignored_atoms)
 	allowed_contents -= src
 	for(var/i in 1 to allowed_contents.len)
@@ -79,13 +79,13 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
 
 	// store lighting
 	var/old_opacity = opacity
-	var/old_dynamic_lighting = dynamic_lighting
-	var/old_affecting_lights = affecting_lights
-	var/old_lighting_object = lighting_object
-	var/old_lc_topright = lc_topright
-	var/old_lc_topleft = lc_topleft
-	var/old_lc_bottomright = lc_bottomright
-	var/old_lc_bottomleft = lc_bottomleft
+	// var/old_dynamic_lighting = dynamic_lighting
+	// var/old_affecting_lights = affecting_lights
+	// var/old_lighting_object = lighting_object
+	// var/old_lc_topright = lc_topright
+	// var/old_lc_topleft = lc_topleft
+	// var/old_lc_bottomright = lc_bottomright
+	// var/old_lc_bottomleft = lc_bottomleft
 
 	// store/invalidae atmos
 	var/atom/movable/fire/old_fire = fire
@@ -142,26 +142,29 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
 
 	// restore lighting
 	if(SSlighting.initialized)
-		recalc_atom_opacity()
-		lighting_object = old_lighting_object
-		affecting_lights = old_affecting_lights
-		lc_topright = old_lc_topright
-		lc_topleft = old_lc_topleft
-		lc_bottomright = old_lc_bottomright
-		lc_bottomleft = old_lc_bottomleft
-		if (old_opacity != opacity || dynamic_lighting != old_dynamic_lighting)
-			reconsider_lights()
-			updateVisibility(src)
+		if(old_opacity != opacity)
+			for(var/atom/movable/light/L in range(5, src))
+				GLOB.lighting_update_lights |= L
+		// recalc_atom_opacity()
+		// lighting_object = old_lighting_object
+		// affecting_lights = old_affecting_lights
+		// lc_topright = old_lc_topright
+		// lc_topleft = old_lc_topleft
+		// lc_bottomright = old_lc_bottomright
+		// lc_bottomleft = old_lc_bottomleft
+		// if (old_opacity != opacity || dynamic_lighting != old_dynamic_lighting)
+		// 	reconsider_lights()
+		// 	updateVisibility(src)
 
-		if (dynamic_lighting != old_dynamic_lighting)
-			if (IS_DYNAMIC_LIGHTING(src))
-				lighting_build_overlay()
-			else
-				lighting_clear_overlay()
+		// if (dynamic_lighting != old_dynamic_lighting)
+		// 	if (IS_DYNAMIC_LIGHTING(src))
+		// 		lighting_build_overlay()
+		// 	else
+		// 		lighting_clear_overlay()
 
-		// todo: non dynamic lighting space starlight
-		for(var/turf/space/S in RANGE_TURFS(1, src)) //RANGE_TURFS is in code\__HELPERS\game.dm
-			S.update_starlight()
+		// // todo: non dynamic lighting space starlight
+		// for(var/turf/space/S in RANGE_TURFS(1, src)) //RANGE_TURFS is in code\__HELPERS\game.dm
+		// 	S.update_starlight()
 
 	QUEUE_SMOOTH(src)
 	QUEUE_SMOOTH_NEIGHBORS(src)

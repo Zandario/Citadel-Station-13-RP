@@ -29,7 +29,7 @@ Divergence proc, used in mutation to make unique datums.
 	if(traitdat.traits[TRAIT_XENO_BIOLUMESCENT])
 		set_light(traitdat.traits[TRAIT_XENO_GLOW_RANGE], traitdat.traits[TRAIT_XENO_GLOW_STRENGTH], traitdat.traits[TRAIT_XENO_BIO_COLOR])
 	else
-		set_light(0, 0, "#000000")	//Should kill any light that shouldn't be there.
+		kill_light() // Should kill any light that shouldn't be there.
 
 	hostile = traitdat.traits[TRAIT_XENO_HOSTILE]
 

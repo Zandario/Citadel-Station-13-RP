@@ -80,9 +80,11 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 
 /obj/machinery/requests_console/update_icon()
 	if(machine_stat & NOPOWER)
+		kill_light()
 		if(icon_state != "req_comp_off")
 			icon_state = "req_comp_off"
 	else
+		set_light(1.4,0.4,"#34D352")//green light
 		if(icon_state == "req_comp_off")
 			icon_state = "req_comp[newmessagepriority]"
 

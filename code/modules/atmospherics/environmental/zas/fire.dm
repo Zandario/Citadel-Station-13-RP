@@ -145,7 +145,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 /atom/movable/fire/proc/RemoveFire()
 	var/turf/T = loc
 	if (istype(T))
-		set_light(0)
+		kill_light()
 		if(T.fire == src)
 			T.fire = null
 		else

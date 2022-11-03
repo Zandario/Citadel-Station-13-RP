@@ -222,7 +222,7 @@
 	if(light_on)
 		set_light(brightness_on)
 	else
-		set_light(0)
+		kill_light()
 
 /obj/item/kinetic_crusher/update_icon_state()
 	. = ..()
