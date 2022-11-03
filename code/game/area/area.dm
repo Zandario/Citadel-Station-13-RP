@@ -203,7 +203,6 @@
 	A.contents.Add(T)
 	if(old_area)
 		// Handle dynamic lighting update if
-		#warn Check
 		// if(T.dynamic_lighting && old_area.dynamic_lighting != A.dynamic_lighting)
 		// 	if(A.dynamic_lighting)
 		// 		T.lighting_build_overlay()
