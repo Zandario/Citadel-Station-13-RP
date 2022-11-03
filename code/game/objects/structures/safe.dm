@@ -171,7 +171,7 @@ FLOOR SAFES
 	density = 0
 	level = 1	//underfloor
 	plane = TURF_PLANE
-	layer = ABOVE_UTILITY
+	layer = ABOVE_UTILITY_LAYER
 
 /obj/structure/safe/floor/Initialize(mapload)
 	. = ..()

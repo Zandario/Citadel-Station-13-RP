@@ -42,7 +42,7 @@
 			unshow_to(client)
 
 	holding = newimage
-	newimage.plane = PLANE_LOOKINGGLASS_IMG
+	newimage.plane = LOOKINGGLASS_IMG_PLANE
 	newimage.blend_mode = BLEND_MULTIPLY
 	newimage.appearance_flags = RESET_TRANSFORM
 	newimage.mouse_opacity = 0

@@ -62,7 +62,7 @@
 			MA.density = 1
 
 	MA.icon_state = "origin_active"
-	MA.plane = PLANE_LOOKINGGLASS
+	MA.plane = LOOKINGGLASS_PLANE
 	MA.layer = 0
 	appearance = MA
 
@@ -85,4 +85,3 @@
 	animate(src, color = null, time = 3 SECONDS)
 	sleep(3 SECONDS)
 	icon_state = "origin"
-

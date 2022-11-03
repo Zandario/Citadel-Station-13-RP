@@ -83,7 +83,7 @@
  *? For the Looking Glass holodecks.
  */
 #define LOOKINGGLASS_PLANE     -77
-#define PLANE_LOOKINGGLASS_IMG -76
+#define LOOKINGGLASS_IMG_PLANE -76
 
 /**
  *! OPENSPACE_PLANE Planes
