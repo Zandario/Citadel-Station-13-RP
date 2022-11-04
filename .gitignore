@@ -10,7 +10,7 @@
 # Ignore compiled linux libs in the root folder, e.g. librust_g.so
 /*.so
 
-#Ignore compiled files and other files generated during compilation.
+# Ignore compiled files and other files generated during compilation.
 *.mdme
 *.mdme.*
 *.dmb
@@ -21,6 +21,9 @@
 *.int
 *.backup
 ### https://raw.github.com/github/gitignore/cc542de017c606138a87ee4880e5f06b3a306def/Global/Linux.gitignore
+
+# So people can place a DME inside their icons folder and not have to parse the entire repo when looking at DMIs.
+/icons/*.dme
 
 *~
 
