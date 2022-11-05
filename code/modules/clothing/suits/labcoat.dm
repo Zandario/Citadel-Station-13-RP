@@ -1,13 +1,50 @@
 /obj/item/clothing/suit/storage/toggle/labcoat
 	name = "labcoat"
 	desc = "A suit that protects against minor chemical spills."
+
+	icon = 'icons/clothing/suit/labcoat/labcoat.dmi'
 	icon_state = "labcoat"
+	worn_bodytypes = BODYTYPE_DEFAULT | BODYTYPE_TESHARI | BODYTYPE_VOX
+	inhand_default_type = INHAND_DEFAULT_ICON_SUITS
+	worn_render_flags = WORN_RENDER_INHAND_ALLOW_DEFAULT
 	item_state_slots = list(SLOT_ID_RIGHT_HAND = "labcoat", SLOT_ID_LEFT_HAND = "labcoat")
 	blood_overlay_type = "coat"
-	body_parts_covered = UPPER_TORSO|ARMS
-	flags_inv = HIDEHOLSTER
-	allowed = list(/obj/item/analyzer,/obj/item/stack/medical,/obj/item/dnainjector,/obj/item/reagent_containers/dropper,/obj/item/reagent_containers/syringe,/obj/item/reagent_containers/hypospray,/obj/item/healthanalyzer,/obj/item/flashlight/pen,/obj/item/reagent_containers/glass/bottle,/obj/item/reagent_containers/glass/beaker,/obj/item/reagent_containers/pill,/obj/item/storage/pill_bottle,/obj/item/paper)
+
+	body_parts_covered = UPPER_TORSO | ARMS
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 50, rad = 0)
+	allowed = list(
+		/obj/item/analyzer,
+		/obj/item/dnainjector,
+		/obj/item/flashlight/pen,
+		/obj/item/healthanalyzer,
+		/obj/item/paper,
+		/obj/item/reagent_containers/dropper,
+		/obj/item/reagent_containers/glass/beaker,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/hypospray,
+		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/stack/medical,
+		/obj/item/storage/pill_bottle,
+	)
+
+//! Override so I can use the new icon_state name standard. :)
+//TODO: Redo all the suit toggle clothing :) @Zandario
+/obj/item/clothing/suit/storage/toggle/labcoat/ToggleButtons()
+	if(open == 1) // Will check whether icon state is currently set to the "open" or "closed" state and switch it around with a message to the user.
+		open = 0
+		icon_state = "[icon_state]-closed"
+		flags_inv = HIDETIE | HIDEHOLSTER
+		to_chat(usr, "You button up the [src].")
+	else if(open == 0)
+		open = 1
+		icon_state = "[icon_state]-open"
+		flags_inv = HIDEHOLSTER
+		to_chat(usr, "You unbutton the [src].")
+	else //in case some goofy admin switches icon states around without switching the icon_open or icon_closed
+		to_chat(usr, "You attempt to button-up the [src], before promptly realising how silly you are.")
+		return
+	update_worn_icon() // So our overlays update.
 
 /obj/item/clothing/suit/storage/toggle/labcoat/green
 	name = "green labcoat"
@@ -16,19 +53,19 @@
 	item_state_slots = list(SLOT_ID_RIGHT_HAND = "green_labcoat", SLOT_ID_LEFT_HAND = "green_labcoat")
 
 /obj/item/clothing/suit/storage/toggle/labcoat/cmo
-	name = "chief medical officer's labcoat"
+	name = "Chief Medical Officer labcoat"
 	desc = "Bluer than the standard model."
 	icon_state = "labcoat_cmo"
 	item_state_slots = list(SLOT_ID_RIGHT_HAND = "cmo_labcoat", SLOT_ID_LEFT_HAND = "cmo_labcoat")
 
 /obj/item/clothing/suit/storage/toggle/labcoat/cmoalt
-	name = "chief medical officer labcoat"
+	name = "Chief Medical Officer labcoat"
 	desc = "A labcoat with command blue highlights."
 	icon_state = "labcoat_cmoalt"
 	item_state_slots = list(SLOT_ID_RIGHT_HAND = "cmo_labcoat", SLOT_ID_LEFT_HAND = "cmo_labcoat")
 
 /obj/item/clothing/suit/storage/toggle/labcoat/mad
-	name = "The Mad's labcoat"
+	name = "Mad's labcoat"
 	desc = "It makes you look capable of konking someone on the noggin and shooting them into space."
 	icon_state = "labgreen"
 	item_state_slots = list(SLOT_ID_RIGHT_HAND = "green_labcoat", SLOT_ID_LEFT_HAND = "green_labcoat")
@@ -65,10 +102,11 @@
 	item_state_slots = list(SLOT_ID_RIGHT_HAND = "emt_labcoat", SLOT_ID_LEFT_HAND = "emt_labcoat")
 
 /obj/item/clothing/suit/storage/toggle/labcoat/rd
-	name = "Research Director's labcoat"
+	name = "Research Director labcoat"
 	desc = "A flashy labcoat with purple markings. It belongs to the Research Director."
-	icon = 'icons/obj/clothing/suits.dmi'
-	icon_state = "labcoat_rd"
+
+	icon = 'icons/clothing/suit/labcoat/labcoat_rd.dmi'
+	worn_bodytypes = BODYTYPE_DEFAULT | BODYTYPE_TESHARI
 	item_state_slots = list(SLOT_ID_RIGHT_HAND = "science_labcoat", SLOT_ID_LEFT_HAND = "science_labcoat")
 
 /obj/item/clothing/suit/storage/toggle/labcoat/robotics

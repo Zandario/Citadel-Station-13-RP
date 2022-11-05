@@ -35,15 +35,19 @@
 
 //Jackets with buttons, used for labcoats, IA jackets, First Responder jackets, and brown jackets.
 /obj/item/clothing/suit/storage/toggle
-	flags_inv = HIDEHOLSTER
-	var/open = 0	//0 is closed, 1 is open, -1 means it won't be able to toggle
+	flags_inv = HIDETIE | HIDEHOLSTER // By default closed.
 	action_button_name = "Toggle Coat Buttons"
+
+	/// 0 is closed, 1 is open, -1 means it won't be able to toggle.
+	var/open = 0
 
 /obj/item/clothing/suit/storage/toggle/ui_action_click()
 	ToggleButtons()
 
+//TODO: Change the naming standard to be more consistent with our new system. @Zandario
+/// Will check whether icon state is currently set to the "open" or "closed" state and switch it around with a message to the user.
 /obj/item/clothing/suit/storage/toggle/proc/ToggleButtons()
-	if(open == 1) //Will check whether icon state is currently set to the "open" or "closed" state and switch it around with a message to the user
+	if(open == 1)
 		open = 0
 		icon_state = initial(icon_state)
 		flags_inv = HIDETIE|HIDEHOLSTER

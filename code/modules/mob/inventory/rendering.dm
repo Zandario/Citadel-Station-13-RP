@@ -145,11 +145,11 @@
 	/// Only slot_l_hand/slot_r_hand are implemented at the moment. Others to be implemented as needed.
 	var/list/item_icons = list()
 
-	/// Used to override hardcoded clothing dmis in human clothing proc. //TODO: Get rid of this crap -Zandario
+	/// Used to override hardcoded clothing dmis in human clothing proc. //TODO: Get rid of this crap @Zandario
 	var/icon_override = null
 
 	//** These specify item/icon overrides for _species_
-	//TODO Refactor this from the ground up. Too many overrides. -Zandario
+	//TODO Refactor this from the ground up. Too many overrides. @Zandario
 	//! THIS IS NOW BANNED. DO NOT USE THIS OR I WILL PUT A LEMON ON YOUR EYES. ~silicons
 	//! Use the new bodytype system, PLEASE.
 	//! Accessories are currently exempt from the ban, but also accessories need refactored

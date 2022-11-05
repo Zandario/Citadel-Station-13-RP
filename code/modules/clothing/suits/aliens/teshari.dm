@@ -283,14 +283,6 @@
 
 //Misc
 
-/obj/item/clothing/suit/storage/toggle/labcoat/teshari
-	name = "Teshari labcoat"
-	desc = "A small suit that protects against minor chemical spills. This one is a good fit on Teshari."
-	icon = 'icons/mob/clothing/species/teshari/suits.dmi'
-	icon_override = 'icons/mob/clothing/species/teshari/suits.dmi'
-	icon_state = "tesh_labcoat"
-	species_restricted = list(SPECIES_TESHARI)
-
 /obj/item/clothing/suit/storage/toggle/tesharicoat
 	name = "small black coat"
 	desc = "A coat that seems too small to fit a human."

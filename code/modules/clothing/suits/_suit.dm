@@ -1,8 +1,8 @@
 //Suit
 /obj/item/clothing/suit
+	name = "suit"
 	icon = 'icons/obj/clothing/suits.dmi'
 	inhand_default_type = INHAND_DEFAULT_ICON_SUITS
-	name = "suit"
 	var/fire_resist = T0C+100
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	allowed = list(/obj/item/tank/emergency/oxygen)
