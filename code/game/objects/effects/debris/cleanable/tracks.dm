@@ -17,11 +17,11 @@
 var/global/list/image/fluidtrack_cache=list()
 
 /datum/fluidtrack
-	var/direction=0
-	var/basecolor="#A10808"
-	var/wet=0
-	var/fresh=1
-	var/crusty=0
+	var/direction = 0
+	var/basecolor = "#A10808"
+	var/wet = FALSE
+	var/fresh = TRUE
+	var/crusty = FALSE
 	var/image/overlay
 
 /datum/fluidtrack/New(_direction, _color, _wet)
@@ -38,29 +38,30 @@ var/global/list/image/fluidtrack_cache=list()
 
 // Footprints, tire trails...
 /obj/effect/debris/cleanable/blood/tracks
-	amount = 0
-	random_icon_states = null
-	var/dirs=0
-	icon = 'icons/effects/fluidtracks.dmi'
+	icon = 'icons/effects/fluids/fluidtracks.dmi'
 	icon_state = ""
-	var/coming_state="blood1"
-	var/going_state="blood2"
-	var/updatedtracks=0
+	random_icon_states = null
+	amount = 0
 
-	// dir = id in stack
-	var/list/setdirs=list(
-		"1"=0,
-		"2"=0,
-		"4"=0,
-		"8"=0,
-		"16"=0,
-		"32"=0,
-		"64"=0,
-		"128"=0
+	var/dirs = 0
+	var/coming_state = "blood1"
+	var/going_state = "blood2"
+	var/updatedtracks = 0
+
+	/// dir = id in stack
+	var/list/setdirs = list(
+		"1"   = 0,
+		"2"   = 0,
+		"4"   = 0,
+		"8"   = 0,
+		"16"  = 0,
+		"32"  = 0,
+		"64"  = 0,
+		"128" = 0,
 	)
 
-	// List of laid tracks and their colors.
-	var/list/datum/fluidtrack/stack=list()
+	/// List of laid tracks and their colors.
+	var/list/datum/fluidtrack/stack = list()
 
 /**
  * Add tracks to an existing trail.

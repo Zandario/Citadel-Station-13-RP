@@ -44,7 +44,7 @@
 		wet = wet_val
 		if(wet_overlay)
 			cut_overlay(wet_overlay)
-		wet_overlay = image('icons/effects/water.dmi', icon_state = "wet_floor")
+		wet_overlay = image('icons/effects/turf_effects.dmi', icon_state = "wet_floor_static")
 		add_overlay(wet_overlay)
 		sleep(800)
 		if(wet == 2)
@@ -61,7 +61,7 @@
 	if(wet_overlay)
 		cut_overlay(wet_overlay)
 		wet_overlay = null
-	wet_overlay = image('icons/turf/overlays.dmi',src,"snowfloor")
+	wet_overlay = image('icons/effects/turf_effects.dmi', src, "snowfloor")
 	add_overlay(wet_overlay)
 	spawn(5 MINUTES)
 		wet = 0
@@ -74,7 +74,7 @@
 		B.clean_blood()
 	..()
 
-/turf/simulated/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
+/turf/simulated/proc/AddTracks(typepath, bloodDNA, comingdir, goingdir, bloodcolor = "#A10808")
 	var/obj/effect/debris/cleanable/blood/tracks/tracks = locate(typepath) in src
 	if(!tracks)
 		tracks = new typepath(src)

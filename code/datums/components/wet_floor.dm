@@ -2,12 +2,14 @@
 	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
 	can_transfer = TRUE
 	var/highest_strength = TURF_DRY
-	var/lube_flags = NONE			//why do we have this?
-	var/list/time_left_list			//In deciseconds.
-	var/static/mutable_appearance/permafrost_overlay = mutable_appearance('icons/effects/water.dmi', "ice_floor")
-	var/static/mutable_appearance/ice_overlay = mutable_appearance('icons/turf/overlays.dmi', "snowfloor")
-	var/static/mutable_appearance/water_overlay = mutable_appearance('icons/effects/water.dmi', "wet_floor_static")
-	var/static/mutable_appearance/generic_turf_overlay = mutable_appearance('icons/effects/water.dmi', "wet_static")
+	/// Why do we have this?
+	var/lube_flags = NONE
+	/// In deciseconds.
+	var/list/time_left_list
+	var/static/mutable_appearance/ice_overlay = mutable_appearance('icons/effects/turf_effects.dmi', "snowfloor")
+	var/static/mutable_appearance/water_overlay = mutable_appearance('icons/effects/turf_effects.dmi', "wet_floor")
+	var/static/mutable_appearance/permafrost_overlay = mutable_appearance('icons/effects/turf_effects.dmi', "ice_floor")
+	var/static/mutable_appearance/generic_turf_overlay = mutable_appearance('icons/effects/turf_effects.dmi', "wet_static")
 	var/current_overlay
 	var/permanent = FALSE
 	var/last_process = 0
