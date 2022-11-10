@@ -27,6 +27,7 @@ var/list/flooring_types
 	var/desc
 	var/icon
 	var/icon_base
+	var/footstep_type = FOOTSTEP_BLANK
 
 	var/has_base_range
 	var/has_damage_range
@@ -138,6 +139,7 @@ var/list/flooring_types
 	damage_temperature = T0C+80
 	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
 	build_type = /obj/item/stack/tile/grass
+	footstep_type = FOOTSTEP_GRASS
 
 /decl/flooring/asteroid
 	name = "coarse sand"
@@ -152,24 +154,13 @@ var/list/flooring_types
 	desc = "A layer of many tiny bits of frozen water. It's hard to tell how deep it is."
 	icon = 'icons/turf/snow_new.dmi'
 	icon_base = "snow"
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/snow1.ogg',
-		'sound/effects/footstep/snow2.ogg',
-		'sound/effects/footstep/snow3.ogg',
-		'sound/effects/footstep/snow4.ogg',
-		'sound/effects/footstep/snow5.ogg'))
+	footstep_type = FOOTSTEP_SNOW
 
 /decl/flooring/snow/gravsnow
 	name = "snowy gravel"
 	desc = "A layer of coarse ice pebbles and assorted gravel."
 	icon = 'icons/turf/snow_new.dmi'
 	icon_base = "gravsnow"
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/snow1.ogg',
-		'sound/effects/footstep/snow2.ogg',
-		'sound/effects/footstep/snow3.ogg',
-		'sound/effects/footstep/snow4.ogg',
-		'sound/effects/footstep/snow5.ogg'))
 
 /decl/flooring/snow/snow2
 	name = "snow"
@@ -205,12 +196,7 @@ var/list/flooring_types
 	build_type = /obj/item/stack/tile/carpet
 	damage_temperature = T0C+200
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BURN
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/carpet1.ogg',
-		'sound/effects/footstep/carpet2.ogg',
-		'sound/effects/footstep/carpet3.ogg',
-		'sound/effects/footstep/carpet4.ogg',
-		'sound/effects/footstep/carpet5.ogg'))
+	footstep_type = FOOTSTEP_CARPET
 
 /decl/flooring/carpet/bcarpet
 	name = "black carpet"
@@ -267,12 +253,7 @@ var/list/flooring_types
 	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN
 	build_type = /obj/item/stack/tile/floor
 	can_paint = 1
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/floor1.ogg',
-		'sound/effects/footstep/floor2.ogg',
-		'sound/effects/footstep/floor3.ogg',
-		'sound/effects/footstep/floor4.ogg',
-		'sound/effects/footstep/floor5.ogg'))
+	footstep_type = FOOTSTEP_TILES
 
 /decl/flooring/tiling/tech
 	desc = "Scuffed from the passage of countless greyshirts."
@@ -323,6 +304,7 @@ var/list/flooring_types
 	can_paint = 1
 	build_type = /obj/item/stack/tile/linoleum
 	flags = TURF_REMOVE_SCREWDRIVER
+	footstep_type = FOOTSTEP_TILES
 
 /decl/flooring/tiling/red
 	name = "floor"
@@ -499,12 +481,7 @@ var/list/flooring_types
 	descriptor = "planks"
 	build_type = /obj/item/stack/tile/wood
 	flags = TURF_CAN_BREAK | TURF_IS_FRAGILE | TURF_REMOVE_SCREWDRIVER
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/wood1.ogg',
-		'sound/effects/footstep/wood2.ogg',
-		'sound/effects/footstep/wood3.ogg',
-		'sound/effects/footstep/wood4.ogg',
-		'sound/effects/footstep/wood5.ogg'))
+	footstep_type = FOOTSTEP_WOOD
 
 /decl/flooring/wood/sif
 	name = "alien wooden floor"
@@ -525,6 +502,7 @@ var/list/flooring_types
 	apply_thermal_conductivity = 0.025
 	apply_heat_capacity = 325000
 	can_paint = 1
+	footstep_type = FOOTSTEP_PLATING
 
 /decl/flooring/reinforced/circuit
 	name = "processing strata"
@@ -553,43 +531,27 @@ var/list/flooring_types
 	desc = "Soft and ominous."
 	icon = 'icons/turf/flooring/asteroid.dmi'
 	icon_base = "asteroid"
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/asteroid1.ogg',
-		'sound/effects/footstep/asteroid2.ogg',
-		'sound/effects/footstep/asteroid3.ogg',
-		'sound/effects/footstep/asteroid4.ogg'))
+	footstep_type = FOOTSTEP_ASTEROID
 
 /decl/flooring/outdoors/classd
 	name = "irradiated sand"
 	desc = "It literally glows in the dark."
 	icon = 'icons/turf/flooring/asteroid.dmi'
 	icon_base = "asteroid"
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/asteroid1.ogg',
-		'sound/effects/footstep/asteroid2.ogg',
-		'sound/effects/footstep/asteroid3.ogg',
-		'sound/effects/footstep/asteroid4.ogg'))
+	footstep_type = FOOTSTEP_ASTEROID
 
 /decl/flooring/outdoors/dirt
 	name = "dirt"
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "dirt-dark"
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/asteroid1.ogg',
-		'sound/effects/footstep/asteroid2.ogg',
-		'sound/effects/footstep/asteroid3.ogg',
-		'sound/effects/footstep/asteroid4.ogg'))
+	footstep_type = FOOTSTEP_ASTEROID
 
 
 /decl/flooring/outdoors/grass
 	name = "grass"
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "grass"
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/grass1.ogg',
-		'sound/effects/footstep/grass2.ogg',
-		'sound/effects/footstep/grass3.ogg',
-		'sound/effects/footstep/grass4.ogg'))
+	footstep_type = FOOTSTEP_GRASS
 
 /decl/flooring/outdoors/grass/sif
 	name = "growth"
@@ -601,21 +563,13 @@ var/list/flooring_types
 	desc = "Water is wet, gosh, who knew!"
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "seashallow"
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/water1.ogg',
-		'sound/effects/footstep/water2.ogg',
-		'sound/effects/footstep/water3.ogg',
-		'sound/effects/footstep/water4.ogg'))
+	footstep_type = FOOTSTEP_FLUID
 
 /decl/flooring/outdoors/beach
 	name = "beach"
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "sand"
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/asteroid1.ogg',
-		'sound/effects/footstep/asteroid2.ogg',
-		'sound/effects/footstep/asteroid3.ogg',
-		'sound/effects/footstep/asteroid4.ogg'))
+	footstep_type = FOOTSTEP_ASTEROID
 
 /turf/simulated/floor/flesh
 	name = "flesh"
@@ -641,11 +595,8 @@ var/list/flooring_types
 	name = "sand"
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "sand"
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/asteroid1.ogg',
-		'sound/effects/footstep/asteroid2.ogg',
-		'sound/effects/footstep/asteroid3.ogg',
-		'sound/effects/footstep/asteroid4.ogg'))
+	footstep_type = FOOTSTEP_ASTEROID
+
 /turf/simulated/floor/tiled/freezer/cold
 	temperature = T0C - 5
 

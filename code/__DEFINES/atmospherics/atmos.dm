@@ -1,19 +1,19 @@
-// Math constants.
+//! Math constants.
 /// kPa*L/(K*mol).
-#define R_IDEAL_GAS_EQUATION       8.31
+#define R_IDEAL_GAS_EQUATION 8.31
 /// kPa.
-#define ONE_ATMOSPHERE             101.325
+#define ONE_ATMOSPHERE 101.325
 /// (mol^3 * s^3) / (kg^3 * L).
 #define IDEAL_GAS_ENTROPY_CONSTANT 1164
-///    0.0 degrees celcius
-#define T0C  273.15
-///   20.0 degrees celcius
-#define T20C 293.15
-/// -270.3 degrees celcius
-#define TCMB 2.7
-///    -60 degrees celcius
-#define TN60C 213.15
-// Radiation constants.
+
+#define T0C   273.15 //    0.0 degrees celcius
+#define T20C  293.15 //   20.0 degrees celcius
+#define TCMB    2.7  // -270.3 degrees celcius
+#define TN60C 213.15 //    -60 degrees celcius
+
+#define CELCIUS + T0C
+
+//! Radiation constants.
 /// W/(m^2*K^4).
 #define STEFAN_BOLTZMANN_CONSTANT    5.6704e-8
 /// K.
@@ -116,7 +116,7 @@
 #define CARBON_LIFEFORM_FIRE_RESISTANCE (T0C + 200)
 #define CARBON_LIFEFORM_FIRE_DAMAGE     4
 
-// Phoron fire properties.
+//! Phoron fire properties.
 ///400 K - autoignite temperature in tanks and canisters - enclosed environments I guess
 #define PHORON_MINIMUM_BURN_TEMPERATURE    (T0C +  126)
 ///519 K - autoignite temperature in air if that ever gets implemented.

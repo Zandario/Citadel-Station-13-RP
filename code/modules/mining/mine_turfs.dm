@@ -15,6 +15,7 @@
 	var/sand_icon_state = "asteroid"
 	var/rock_icon_state = "rock"
 	var/random_icon = 0
+	footstep_type = FOOTSTEP_ASTEROID
 	initial_gas_mix = GAS_STRING_VACUUM
 	opacity = 1
 	density = 1

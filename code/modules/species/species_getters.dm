@@ -181,3 +181,6 @@
 
 /datum/species/proc/get_examine_name(mob/living/carbon/human/H)
 	return examine_name || name
+
+/datum/species/proc/get_footstep(mob/living/carbon/human/H, footstep_type)
+	return

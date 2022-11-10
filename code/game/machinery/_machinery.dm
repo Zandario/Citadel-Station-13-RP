@@ -501,3 +501,14 @@
 	M.after_deconstruct(src)
 	qdel(src)
 	return 1
+
+// This is really pretty crap and should be overridden for specific machines.
+/obj/machinery/water_act(depth)
+	..()
+	if(!(machine_stat & (NOPOWER | BROKEN)) && !waterproof && (depth > FLUID_DEEP))
+		ex_act(3)
+
+/obj/machinery/Move()
+	. = ..()
+	if(. && !can_fluid_pass())
+		fluid_update()

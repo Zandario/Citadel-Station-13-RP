@@ -1097,3 +1097,26 @@ default behaviour is:
 	. = ..()
 	// since we're shifted up by transforms..
 	. += ((size_multiplier * icon_scale_y) - 1) * 16
+
+/mob/living/can_drown()
+	return TRUE
+
+/mob/living/handle_drowning()
+	if(!can_drown() || !loc.is_flooded(lying))
+		return FALSE
+	if(prob(5))
+		to_chat(src, SPAN_DANGER("You choke and splutter as you inhale water!"))
+	var/turf/T = get_turf(src)
+	T.show_bubbles()
+	return TRUE // Presumably chemical smoke can't be breathed while you're underwater.
+
+/mob/living/water_act(depth)
+	..()
+	#warn Washing
+	// wash_mob(src)
+	for(var/thing in get_equipped_items(TRUE))
+		if(isnull(thing))
+			continue
+		var/atom/movable/A = thing
+		if(!A.waterproof)
+			A.water_act(depth)

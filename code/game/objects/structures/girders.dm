@@ -411,3 +411,6 @@
 			to_chat(user, SPAN_NOTICE("You deconstruct \the [src]."))
 			qdel(src)
 			return TRUE
+
+/obj/structure/girder/can_fluid_pass(coming_from)
+	return TRUE

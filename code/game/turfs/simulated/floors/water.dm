@@ -9,6 +9,7 @@
 	edge_icon_state = "water_shallow"
 	movement_cost = 4
 	outdoors = TRUE
+	footstep_type = FOOTSTEP_FLUID
 
 	can_dirty = FALSE	// It's water
 
@@ -126,10 +127,6 @@
 	if(istype(T))
 		return T.depth
 	return 0
-
-// Use this to have things react to having water applied to them.
-/atom/movable/proc/water_act(amount)
-	return
 
 /mob/living/water_act(amount)
 	adjust_fire_stacks(-amount * 5)

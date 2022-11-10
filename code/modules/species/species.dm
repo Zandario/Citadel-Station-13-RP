@@ -174,6 +174,8 @@
 	var/active_regen_mult = 1
 	/// How sensitive the species is to minute tastes.
 	var/taste_sensitivity = TASTE_NORMAL
+	/// Do we make noise while we walk?
+	var/silent_steps
 
 	/// The minimum age a species is allowed to be played as. For our purposes, this is global.
 	var/min_age = 18
@@ -248,6 +250,8 @@
 	var/poison_type = /datum/gas/phoron
 	/// Exhaled gas type.
 	var/exhale_type = /datum/gas/carbon_dioxide
+	/// Can we breathe in water.
+	var/water_breather = FALSE
 
 	/// Species will try to stabilize at this temperature. (also affects temperature processing)
 	var/body_temperature = 310.15
@@ -733,11 +737,11 @@ GLOBAL_LIST_INIT(species_oxygen_tank_by_gas, list(
 /datum/species/proc/handle_death(var/mob/living/carbon/human/H, gibbed = FALSE) //Handles any species-specific death events (such as dionaea nymph spawns).
 	return
 
-// Only used for alien plasma weeds atm, but could be used for Dionaea later.
+/// Only used for alien plasma weeds atm, but could be used for Dionaea later.
 /datum/species/proc/handle_environment_special(var/mob/living/carbon/human/H)
 	return
 
-// Used to update alien icons for aliens.
+/// Used to update alien icons for aliens.
 /datum/species/proc/handle_login_special(var/mob/living/carbon/human/H)
 	return
 
@@ -745,15 +749,15 @@ GLOBAL_LIST_INIT(species_oxygen_tank_by_gas, list(
 /datum/species/proc/handle_logout_special(var/mob/living/carbon/human/H)
 	return
 
-// Builds the HUD using species-specific icons and usable slots.
+/// Builds the HUD using species-specific icons and usable slots.
 /datum/species/proc/build_hud(var/mob/living/carbon/human/H)
 	return
 
-//Used by xenos understanding larvae and dionaea understanding nymphs.
+/// Used by xenos understanding larvae and dionaea understanding nymphs.
 /datum/species/proc/can_understand(var/mob/other)
 	return
 
-// Called when using the shredding behavior.
+/// Called when using the shredding behavior.
 /datum/species/proc/can_shred(var/mob/living/carbon/human/H, var/ignore_intent)
 
 	if(!ignore_intent && H.a_intent != INTENT_HARM)
@@ -767,7 +771,7 @@ GLOBAL_LIST_INIT(species_oxygen_tank_by_gas, list(
 
 	return 0
 
-// Called in life() when the mob has no client.
+/// Called in life() when the mob has no client.
 /datum/species/proc/handle_npc(var/mob/living/carbon/human/H)
 	if(H.stat == CONSCIOUS && H.ai_holder)
 		if(H.resting)
@@ -775,11 +779,11 @@ GLOBAL_LIST_INIT(species_oxygen_tank_by_gas, list(
 			H.update_canmove()
 	return
 
-// Called when lying down on a water tile.
+/// Called when lying down on a water tile.
 /datum/species/proc/can_breathe_water()
-	return FALSE
+	return water_breather
 
-// Impliments different trails for species depending on if they're wearing shoes.
+/// Impliments different trails for species depending on if they're wearing shoes.
 /datum/species/proc/get_move_trail(var/mob/living/carbon/human/H)
 	if( H.shoes || ( H.wear_suit && (H.wear_suit.body_parts_covered & FEET) ) )
 		return /obj/effect/debris/cleanable/blood/tracks/footprints

@@ -203,5 +203,8 @@
 		add_fingerprint(user)
 	..()
 
-/obj/proc/container_resist(var/mob/living)
+/obj/proc/container_resist(mob/living)
 	return
+
+/obj/is_fluid_pushable(amt)
+	return ..() && w_class <= round(amt/20)

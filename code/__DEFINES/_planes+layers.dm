@@ -102,7 +102,7 @@
 #define TURF_PLANE FLOOR_PLANE // Was -45
 #define BUILTIN_DECAL_LAYER 2.01 // For floors that automatically add decal overlays
 #define MAPPER_DECAL_LAYER  2.02 // For intentionally placed floor decal overlays
-#define FLUID_LAYER         2.25
+#define FLUID_LAYER         2.25 //TODO: Better names for fluid layers
 #define FLUID_AIR_LAYER     2.26
 #define BELOW_FLOOD_LAYER   2.5  // Anything on this layer will render under the water layer.
 // Turf/Obj layer boundary

@@ -4,24 +4,22 @@
 
 	// todo: kill this (only used for elcetropacks)
 	var/moved_recently = FALSE
-
 	/// Used to specify the item state for the on-mob overlays.
 	var/item_state = null
-
 	///If we're cloaked or not.
 	var/cloaked = FALSE
 	/// The image we use for our client to let them see where we are.
 	var/image/cloaked_selfimage
-
 	/// Reference to atom being orbited.
 	var/atom/orbit_target
-
 	/// Movement types, see __DEFINES/flags/movement.dm
 	var/movement_type = GROUND
 	/// The orbiter component of the thing we're orbiting.
 	var/datum/component/orbiter/orbiting
 	///Used for the calculate_adjacencies proc for icon smoothing.
 	var/can_be_unanchored = FALSE
+	/// If true, can't get wet.
+	var/waterproof = TRUE
 
 	//! Intrinsics
 	/// movable flags - see [code/__DEFINES/_flags/atoms.dm]

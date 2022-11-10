@@ -356,3 +356,6 @@
 	dir = SOUTH
 	icon_state = "rightsecure"
 	base_state = "rightsecure"
+
+/obj/machinery/door/window/can_fluid_pass(coming_from)
+	return ((dir in GLOB.cardinal) && coming_from != dir)

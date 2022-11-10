@@ -1235,3 +1235,21 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 
 /mob/CanReachIn(atom/movable/mover, atom/target, obj/item/tool, list/cache)
 	return FALSE
+
+/mob/proc/handle_drowning()
+	return FALSE
+
+/mob/proc/can_drown()
+	return FALSE
+
+/mob/is_fluid_pushable(amt)
+	if(..() && !buckled && (lying || !Check_Shoegrip()) && (amt >= mob_size * (lying ? 5 : 10)))
+		if(!lying)
+			Weaken(1)
+			if(lying && prob(10))
+				to_chat(src, SPAN_DANGER("You are pushed down by the wave!"))
+		return TRUE
+	return FALSE
+
+/mob/proc/get_footstep(footstep_type)
+	return

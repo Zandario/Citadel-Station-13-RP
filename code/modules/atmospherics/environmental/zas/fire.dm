@@ -91,6 +91,9 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 	return 0
 
 /turf/simulated/create_fire(fl)
+	if(submerged())
+		return 1
+
 	if(fire)
 		fire.firelevel = max(fl, fire.firelevel)
 		return 1
@@ -156,7 +159,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 	. = 1
 
 	var/turf/simulated/my_tile = loc
-	if(!istype(my_tile) || !my_tile.zone)
+	if(!istype(my_tile) || !my_tile.zone || my_tile.submerged())
 		qdel(src)
 		return 1
 

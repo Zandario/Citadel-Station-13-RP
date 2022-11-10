@@ -511,3 +511,6 @@
 
 	icon = 'icons/turf/stomach_vr.dmi'
 	icon_state = "fleshclosed"
+
+/obj/machinery/door/can_fluid_pass(coming_from)
+	return !density

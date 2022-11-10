@@ -9,8 +9,30 @@
 
 	var/list/connections
 	var/list/other_connections
-	var/list/blend_objects = newlist() // Objects which to blend with
-	var/list/noblend_objects = newlist() //Objects to avoid blending with (such as children of listed blend objects.
+	/// Objects which to blend with.
+	var/list/blend_objects = newlist()
+	/// Objects to avoid blending with (such as children of listed blend objects.
+	var/list/noblend_objects = newlist()
+	var/footstep_type
+
+/obj/structure/Initialize(mapload)
+	. = ..()
+	if(climbable)
+		verbs += /obj/structure/proc/climb_on
+	if(!can_fluid_pass())
+		fluid_update()
+
+/obj/structure/Destroy()
+	var/turf/T = get_turf(src)
+	// if(T && parts)
+	// 	new parts(T)
+	. = ..()
+	if(istype(T))
+		T.fluid_update()
+
+/obj/structure/Move()
+	if(. && !can_fluid_pass())
+		fluid_update()
 
 /obj/structure/attack_hand(mob/user)
 	if(breakable)
@@ -43,11 +65,6 @@
 				return
 		if(3.0)
 			return
-
-/obj/structure/Initialize(mapload)
-	. = ..()
-	if(climbable)
-		verbs += /obj/structure/proc/climb_on
 
 /obj/structure/proc/climb_on()
 

@@ -25,9 +25,9 @@
 /obj/structure/inflatable
 	name = "inflatable wall"
 	desc = "An inflated membrane. Do not puncture."
-	density = 1
-	anchored = 1
-	opacity = 0
+	density = TRUE
+	anchored = TRUE
+	opacity = FALSE
 	CanAtmosPass = ATMOS_PASS_DENSITY
 
 	icon = 'icons/obj/inflatable.dmi'
@@ -137,14 +137,18 @@
 		spawn(1) puncture()
 	else
 		user.visible_message("<span class='danger'>[user] [attack_verb] at [src]!</span>")
-	return 1
+	return TRUE
 
-/obj/structure/inflatable/take_damage(var/damage)
+/obj/structure/inflatable/take_damage(damage)
 	health -= damage
 	if(health <= 0)
-		visible_message("<span class='danger'>The [src] deflates!</span>")
-		spawn(1) puncture()
-	return 1
+		visible_message(SPAN_DANGER("The [src] deflates!"))
+		spawn(1)
+			puncture()
+	return TRUE
+
+/obj/structure/inflatable/can_fluid_pass(coming_from)
+	return !density
 
 /obj/item/inflatable/door/
 	name = "inflatable door"
@@ -155,9 +159,9 @@
 
 /obj/structure/inflatable/door //Based on mineral door code
 	name = "inflatable door"
-	density = 1
-	anchored = 1
-	opacity = 0
+	density = TRUE
+	anchored = TRUE
+	opacity = FALSE
 
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "door_closed"

@@ -5,6 +5,7 @@
 	gender = PLURAL
 	organ_tag = O_LUNGS
 	parent_organ = BP_TORSO
+	var/has_gills = FALSE
 
 /obj/item/organ/internal/lungs/tick_life(dt)
 	. = ..()
@@ -63,3 +64,6 @@
 		var/mob/living/carbon/human/H = owner
 		if(H.species.blood_color)
 			add_atom_colour(H.species.blood_color, FIXED_COLOUR_PRIORITY)
+
+/obj/item/organ/internal/lungs/proc/can_drown()
+	return (is_broken() || !has_gills)

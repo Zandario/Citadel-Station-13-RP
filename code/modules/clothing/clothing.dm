@@ -149,3 +149,6 @@
 		icon = sprite_sheets_obj[target_species]
 	else
 		icon = initial(icon)
+
+/obj/item/clothing/mask/proc/filters_water()
+	return FALSE

@@ -12,3 +12,7 @@
 	. = ..()
 	if (random_icon_states && length(src.random_icon_states) > 0)
 		icon_state = pick(src.random_icon_states)
+
+/obj/effect/decal/cleanable/water_act(depth)
+	..()
+	qdel(src)

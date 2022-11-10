@@ -809,3 +809,6 @@
 			qdel(src)
 			return TRUE
 	return FALSE
+
+/obj/structure/window/can_fluid_pass(coming_from)
+	return (!is_fulltile() && coming_from != dir)

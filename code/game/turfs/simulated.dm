@@ -28,6 +28,7 @@
 	. = ..()
 	if(mapload)
 		levelupdate()
+		fluid_update()
 	if(outdoors)
 		SSplanets.addTurf(src)
 
@@ -183,3 +184,14 @@
 
 /turf/simulated/floor/plating
 	can_start_dirty = TRUE	// But let maints and decrepit areas have some randomness
+
+/turf/simulated/proc/unwet_floor(check_very_wet = TRUE)
+	if(check_very_wet && wet >= 2)
+		wet--
+		addtimer(CALLBACK(src, /turf/simulated/proc/unwet_floor), 8 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE|TIMER_NO_HASH_WAIT|TIMER_OVERRIDE)
+		return
+
+	wet = FALSE
+	if(wet_overlay)
+		overlays -= wet_overlay
+		wet_overlay = null

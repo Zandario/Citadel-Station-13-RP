@@ -6,6 +6,7 @@
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_state = "steel"
 	initial_flooring = null
+	footstep_type = FOOTSTEP_PLATING
 
 /turf/simulated/floor/fixed/attackby(var/obj/item/C, var/mob/user)
 	if(istype(C, /obj/item/stack) && !istype(C, /obj/item/stack/cable_coil))
@@ -13,11 +14,10 @@
 	return ..()
 
 /turf/simulated/floor/fixed/update_icon()
-	return
+	update_flood_overlay()
 
 /turf/simulated/floor/fixed/is_plating()
-	return 0
+	return FALSE
 
 /turf/simulated/floor/fixed/set_flooring()
 	return
-
