@@ -81,3 +81,9 @@ DEFINE_BITFIELD(smoothing_junction, list(
 #define SMOOTH_GROUP_SANDBAGS S_OBJ(0)
 ///Always match this value with the one above it.
 #define MAX_S_OBJ SMOOTH_GROUP_SANDBAGS
+
+//! Don't question my sanity.
+#define S_EFFECT(num) (MAX_S_OBJ + 1 + num)
+
+#define SMOOTH_GROUP_FLUID S_EFFECT(0)
+#define MAX_S_EFFECT SMOOTH_GROUP_FLUID

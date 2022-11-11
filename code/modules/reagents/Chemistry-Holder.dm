@@ -2,10 +2,15 @@
 #define PROCESS_REACTION_ITER 5
 /datum/reagents
 	var/list/datum/reagent/reagent_list = list()
+	/// Current temp of the holder volume
+	var/chem_temp = 150 //! Doesn't do anything yet. @Zandario
 	var/total_volume = 0
 	var/maximum_volume = 100
 	var/atom/my_atom = null
-	var/reagents_holder_flags
+	var/reagents_holder_flags = NONE
+
+	var/tmp/list/covered_cache = 0
+	var/covered_cache_volume = 0
 
 /datum/reagents/New(var/max = 100, atom/A = null, new_flags = NONE)
 	..()
@@ -495,3 +500,85 @@
 	for(var/datum/reagent/R in cached_reagents)
 		R.on_update (A)
 	update_total()
+
+/// Applies heat to this holder
+/datum/reagents/proc/expose_temperature(temperature, coeff=0.02)
+	if(istype(my_atom,/obj/item/reagent_containers))
+		var/obj/item/reagent_containers/RCs = my_atom
+		if(RCs.flags & NO_REACT) //stasis holders IE cryobeaker
+			return
+	var/temp_delta = (temperature - chem_temp) * coeff
+	if(temp_delta > 0)
+		chem_temp = min(chem_temp + max(temp_delta, 1), temperature)
+	else
+		chem_temp = max(chem_temp + min(temp_delta, -1), temperature)
+	set_temperature(round(chem_temp))
+	handle_reactions()
+
+/** Sets the temperature of this reagent container to a new value.
+ *
+ * Handles setter signals.
+ *
+ * Arguments:
+ * - _temperature: The new temperature value.
+ */
+/datum/reagents/proc/set_temperature(_temperature)
+	if(_temperature == chem_temp)
+		return
+
+	. = chem_temp
+	chem_temp = clamp(_temperature, 0, CHEMICAL_MAXIMUM_TEMPERATURE)
+	// SEND_SIGNAL(src, COMSIG_REAGENTS_TEMP_CHANGE, _temperature, .) //! Not yet.
+
+/// Copies the reagents to the target object
+/datum/reagents/proc/copy_to(obj/target, amount = 1, multiplier = 1, preserve_data = TRUE, no_react = FALSE)
+	var/list/cached_reagents = reagent_list
+	if(!target || !total_volume)
+		return
+
+	var/datum/reagents/target_holder
+	if(istype(target, /datum/reagents))
+		target_holder = target
+	else
+		if(!target.reagents)
+			return
+		target_holder = target.reagents
+
+	if(amount < 0)
+		return
+
+	amount = min(min(amount, total_volume), target_holder.maximum_volume - target_holder.total_volume)
+	var/part = amount / total_volume
+	var/trans_data = null
+	for(var/datum/reagent/reagent as anything in cached_reagents)
+		var/copy_amount = reagent.volume * part
+		if(preserve_data)
+			trans_data = reagent.data
+		target_holder.add_reagent(reagent.type, copy_amount * multiplier, trans_data, /* chem_temp,  reagent.purity, reagent.ph,  no_react = TRUE, ignore_splitting = reagent.chemical_flags & REAGENT_DONOTSPLIT*/)
+
+	if(!no_react)
+		// pass over previous ongoing reactions before handle_reactions is called
+		// transfer_reactions(target_holder) //! Not yet :)
+
+		src.update_total()
+		target_holder.update_total()
+		target_holder.handle_reactions()
+		src.handle_reactions()
+
+	return amount
+
+/datum/reagents/proc/covered_turf()
+	var/list/covered_turfs = list()
+	if (my_atom)
+		covered_turfs += get_turf(my_atom)
+	return covered_turfs
+
+/datum/reagents/proc/cache_covered_turf()
+	covered_cache = covered_turf()
+	covered_cache_volume = total_volume
+
+/datum/reagents/proc/get_filled_percentage()
+	return (total_volume / (maximum_volume * 100))
+
+/datum/reagents/proc/play_mix_sound(mix_sound)
+	playsound(my_atom, mix_sound, 80, TRUE, 3)

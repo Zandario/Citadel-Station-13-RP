@@ -78,3 +78,13 @@ GLOBAL_VAR(string_filename_current_key)
 		return response
 	else
 		CRASH("strings list not found: [STRING_DIRECTORY]/[filepath], index=[key]")
+
+/**
+ * Removes any null entries from the list
+ * Returns TRUE if the list had nulls, FALSE otherwise
+**/
+/proc/list_clear_nulls(list/list_to_clear)
+	var/start_len = list_to_clear.len
+	var/list/new_list = new(start_len)
+	list_to_clear -= new_list
+	return list_to_clear.len < start_len

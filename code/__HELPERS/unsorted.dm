@@ -535,26 +535,6 @@
 	return target
 
 /**
- * returns turf relative to A in given direction at set range
- * result is bounded to map size
- * note range is non-pythagorean
- */
-/proc/get_ranged_target_turf(atom/A, direction, range) //Used for disposal system
-
-	var/x = A.x
-	var/y = A.y
-	if(direction & NORTH)
-		y = min(world.maxy, y + range)
-	if(direction & SOUTH)
-		y = max(1, y - range)
-	if(direction & EAST)
-		x = min(world.maxx, x + range)
-	if(direction & WEST)
-		x = max(1, x - range)
-
-	return locate(x,y,A.z)
-
-/**
  * Returns turf relative to A offset in dx and dy tiles.
  * Bound to map limits.
  */

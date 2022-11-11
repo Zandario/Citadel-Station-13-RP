@@ -178,3 +178,24 @@
 		var/testdir = get_dir(target, origin)
 		return (dir & testdir)
 	return TRUE
+
+/**
+ * returns turf relative to target_atom in given direction at set range
+ * result is bounded to map size
+ * note range is non-pythagorean
+ * used for disposal system
+ */
+/proc/get_ranged_target_turf(atom/target_atom, direction, range)
+
+	var/x = target_atom.x
+	var/y = target_atom.y
+	if(direction & NORTH)
+		y = min(world.maxy, y + range)
+	else if(direction & SOUTH)
+		y = max(1, y - range)
+	if(direction & EAST)
+		x = min(world.maxx, x + range)
+	else if(direction & WEST) //if you have both EAST and WEST in the provided direction, then you're gonna have issues
+		x = max(1, x - range)
+
+	return locate(x,y,target_atom.z)

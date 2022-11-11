@@ -27,6 +27,8 @@
 #define LAZYNULL(L) L = null
 /// Null-safe L.Cut()
 #define LAZYCLEARLIST(L) if(L) L.Cut()
+/// Qdel every item in the list before setting the list to null.
+#define QDEL_LAZYLIST(L) for(var/I in L) qdel(I); L = null;
 /// Null-safe L.Copy()
 #define LAZYCOPY(L) (L? L.Copy() : null)
 /// Reads L or an empty list if L is not a list.  Note: Does NOT assign, L may be an expression.
