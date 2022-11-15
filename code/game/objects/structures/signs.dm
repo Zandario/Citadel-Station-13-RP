@@ -3,8 +3,8 @@
 	anchored = 1
 	opacity = 0
 	density = 0
-	plane = OBJ_PLANE
-	layer = ABOVE_JUNK_LAYER
+	plane = WORLD_PLANE
+	layer = ABOVE_OBJ_LAYER
 	w_class = ITEMSIZE_NORMAL
 
 /obj/structure/sign/legacy_ex_act(severity)

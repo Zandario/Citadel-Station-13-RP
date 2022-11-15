@@ -180,7 +180,7 @@
 	anchored = TRUE
 	density = FALSE
 	opacity = 0
-	plane = MOB_PLANE
+	plane = UPPER_WORLD_PLANE
 	layer = ABOVE_MOB_LAYER
 	//mouse_opacity = 0
 	CanAtmosPass = ATMOS_PASS_AIR_BLOCKED

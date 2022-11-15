@@ -2,14 +2,14 @@
 	name = "curtain"
 	icon = 'icons/obj/curtain.dmi'
 	icon_state = "closed"
-	plane = MOB_PLANE
+	plane = UPPER_WORLD_PLANE
 	layer = ABOVE_MOB_LAYER
 	opacity = 1
 	density = 0
 
 /obj/structure/curtain/open
 	icon_state = "open"
-	plane = OBJ_PLANE
+	plane = WORLD_PLANE
 	layer = 3.3 //3.3 so its above windows, not the same as them. anything below 3.3 puts the curtain beneath the window sprite in current build
 	opacity = 0
 
@@ -29,11 +29,11 @@
 	set_opacity(!opacity)
 	if(opacity)
 		icon_state = "closed"
-		plane = MOB_PLANE
+		plane = UPPER_WORLD_PLANE
 		layer = ABOVE_MOB_LAYER
 	else
 		icon_state = "open"
-		plane = OBJ_PLANE
+		plane = WORLD_PLANE
 		layer = 3.3
 
 /obj/structure/curtain/attackby(obj/item/P, mob/user)

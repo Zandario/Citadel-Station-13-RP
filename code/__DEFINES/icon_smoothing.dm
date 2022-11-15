@@ -71,13 +71,32 @@ DEFINE_BITFIELD(smoothing_junction, list(
 #define S_TURF(num) ((24 * 0) + num)
 /* /turf only */
 
-// empty for now
-///Always match this value with the one above it.
-#define MAX_S_TURF S_TURF(0)
+#define SMOOTH_GROUP_TURF_OPEN S_TURF(0) // /turf/open
+
+#define SMOOTH_GROUP_CLOSED_TURFS S_TURF(50) // /turf/closed
+
+//! Always match this value with the one above it.
+#define MAX_S_TURF SMOOTH_GROUP_CLOSED_TURFS
+
 #define S_OBJ(num) (MAX_S_TURF + 1 + num)
 /* /obj included */
 
-///obj/structure/sandbag
-#define SMOOTH_GROUP_SANDBAGS S_OBJ(0)
-///Always match this value with the one above it.
-#define MAX_S_OBJ SMOOTH_GROUP_SANDBAGS
+#define SMOOTH_GROUP_WALLS S_OBJ(0) // /turf/simulated/wall
+
+#define SMOOTH_GROUP_WINDOW_FULLTILE         S_OBJ(21) // Fulltile windows
+#define SMOOTH_GROUP_WINDOW_FULLTILE_SHUTTLE S_OBJ(24) ///obj/structure/window/reinforced/shuttle
+
+#define SMOOTH_GROUP_LATTICE  S_OBJ(30) ///obj/structure/lattice
+#define SMOOTH_GROUP_CATWALK  S_OBJ(31) ///obj/structure/catwalk
+#define SMOOTH_GROUP_GRILLE   S_OBJ(32) ///obj/structure/grille
+#define SMOOTH_GROUP_LOW_WALL S_OBJ(33) ///obj/structure/low_wall
+
+#define SMOOTH_GROUP_AIRLOCK             S_OBJ(40) ///obj/machinery/door/airlock
+#define SMOOTH_GROUP_SHUTTERS_BLASTDOORS S_OBJ(41) ///obj/machinery/door/poddoor
+
+#define SMOOTH_GROUP_SANDBAGS S_OBJ(50) // /obj/structure/sandbag
+
+#define SMOOTH_GROUP_SHUTTLE_PARTS S_OBJ(66) ///obj/structure/window/reinforced/shuttle, /obj/structure/window/reinforced/plasma/plastitanium, /turf/closed/indestructible/opsglass, /obj/machinery/power/shuttle_engine
+
+//! Always match this value with the one above it.
+#define MAX_S_OBJ SMOOTH_GROUP_SHUTTLE_PARTS

@@ -26,7 +26,7 @@
 	if(!T)
 		return NULLTURF_BORDER
 	return (istype(T) && (material.icon_base == T.material?.icon_base))? ADJ_FOUND : NO_ADJ_FOUND
-
+/*
 /turf/simulated/wall/custom_smooth(dirs)
 	smoothing_junction = dirs
 	update_icon()
@@ -99,3 +99,4 @@
 
 	// ..() has to be last to prevent trampling managed overlays
 	return ..()
+*/

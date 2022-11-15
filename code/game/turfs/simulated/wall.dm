@@ -1,3 +1,4 @@
+// TODO: Recreate the wall material system. @Zandario
 /**
  * **Wall.** Our powerful, generic, material wall system.
  * Surely, *surely*, such a nice, amazing thing wouldn't be entirely shitcode.
@@ -6,19 +7,25 @@
 /turf/simulated/wall
 	name = "wall"
 	desc = "A huge chunk of iron used to separate rooms."
-	icon = 'icons/turf/wall_masks.dmi'
-	icon_state = "generic"
+	icon = 'icons/turf/walls/wall.dmi'
+	icon_state = "wall-0"
+	base_icon_state = "wall"
 	opacity = TRUE
 	density = TRUE
 	blocks_air = TRUE
 //	air_status = AIR_STATUS_BLOCK
-	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
-	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
-	baseturfs = /turf/simulated/floor/plating
-	smoothing_flags = SMOOTH_CUSTOM
-	edge_blending_priority = INFINITY		// let's not have floors render onto us mmkay?
 
-	var/icon/wall_masks = 'icons/turf/wall_masks.dmi'
+	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
+	heat_capacity = 62500 //a little over 5 cm thick , 62500 for 1 m by 2.5 m by 0.25 m iron wall. also indicates the temperature at wich the wall will melt (currently only able to melt with H/E pipes)
+
+	baseturfs = /turf/simulated/floor/plating
+
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_WALLS, SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_AIRLOCK)
+
+	edge_blending_priority = INFINITY // let's not have floors render onto us mmkay?
+
 	var/damage = 0
 	var/damage_overlay = 0
 	/// damage overlays are cached
@@ -38,7 +45,6 @@
 
 /turf/simulated/wall/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..()
-	icon_state = "blank"
 	if(!materialtype)
 		materialtype = MAT_STEEL
 	material = get_material_by_name(materialtype)
@@ -47,16 +53,25 @@
 	girder_material = get_material_by_name(girdertype)
 	if(!isnull(rmaterialtype))
 		reinf_material = get_material_by_name(rmaterialtype)
-	update_material(TRUE)
+	update_material(FALSE)
 	if(material?.radioactivity || reinf_material?.radioactivity || girder_material?.radioactivity)
 		START_PROCESSING(SSturfs, src)
+
+	if(smoothing_flags & SMOOTH_DIAGONAL_CORNERS && fixed_underlay) //Set underlays for the diagonal walls.
+		var/mutable_appearance/underlay_appearance = mutable_appearance(layer = TURF_LAYER, plane = FLOOR_PLANE)
+		if(fixed_underlay["space"])
+			underlay_appearance.icon = 'icons/turf/space.dmi'
+			underlay_appearance.icon_state = SPACE_ICON_STATE(x, y, z)
+			underlay_appearance.plane = SPACE_PLANE
+		else
+			underlay_appearance.icon = fixed_underlay["icon"]
+			underlay_appearance.icon_state = fixed_underlay["icon_state"]
+		fixed_underlay = string_assoc_list(fixed_underlay)
+		underlays += underlay_appearance
 
 /turf/simulated/wall/Destroy()
 	STOP_PROCESSING(SSturfs, src)
 	clear_plants()
-	material = get_material_by_name("placeholder")
-	reinf_material = null
-	girder_material = null
 	return ..()
 
 /turf/simulated/wall/process(delta_time)
@@ -251,7 +266,7 @@
 	O.icon_state = "2"
 	O.anchored = 1
 	O.density = 1
-	O.plane = ABOVE_PLANE
+	O.plane = ABOVE_WORLD_PLANE
 
 	if(girder_material.integrity >= 150 && !girder_material.is_brittle()) //Strong girders will remain in place when a wall is melted.
 		dismantle_wall(1,1)

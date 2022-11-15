@@ -1555,9 +1555,9 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	// . += new /atom/movable/screen/plane_master{plane = PLANE_BUILDMODE}
 
 	//! Real tangible stuff planes
-	. += new /atom/movable/screen/plane_master/main{plane = TURF_PLANE}
-	. += new /atom/movable/screen/plane_master/main{plane = OBJ_PLANE}
-	. += new /atom/movable/screen/plane_master/main{plane = MOB_PLANE}
+	. += new /atom/movable/screen/plane_master/main{plane = FLOOR_PLANE}
+	. += new /atom/movable/screen/plane_master/main{plane = WORLD_PLANE}
+	. += new /atom/movable/screen/plane_master/main{plane = UPPER_WORLD_PLANE}
 	/// Cloaked atoms!
 	// . += new /atom/movable/screen/plane_master/cloaked
 

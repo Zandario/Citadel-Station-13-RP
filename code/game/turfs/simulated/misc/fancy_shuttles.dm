@@ -17,7 +17,7 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 	name = "shuttle wall decorator"
 	icon = 'icons/turf/fancy_shuttles/generic_preview.dmi'
 	icon_state = "walls"
-	plane = TURF_PLANE
+	plane = FLOOR_PLANE
 	layer = ABOVE_TURF_LAYER
 	invisibility = INVISIBILITY_MAXIMUM
 	smoothing_flags = NONE	// don't run default wall/floor behavior
@@ -38,7 +38,7 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 	name = "shuttle floor preview"
 	icon = 'icons/turf/fancy_shuttles/generic_preview.dmi'
 	icon_state = "floors"
-	plane = PLATING_PLANE
+	plane = PLENUM_PLANE
 	layer = ABOVE_TURF_LAYER
 	alpha = 90
 
@@ -50,7 +50,7 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 /turf/simulated/wall/fancy_shuttle
 	icon = 'icons/turf/fancy_shuttles/_fancy_helpers.dmi'
 	icon_state = "hull"
-	wall_masks = 'icons/turf/fancy_shuttles/_fancy_helpers.dmi'
+	// wall_masks = 'icons/turf/fancy_shuttles/_fancy_helpers.dmi'
 	var/mutable_appearance/under_MA
 	var/mutable_appearance/under_EM
 	var/fancy_shuttle_tag

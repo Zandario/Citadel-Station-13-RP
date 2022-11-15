@@ -6,7 +6,7 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal
 	name = "floor decal"
 	icon = 'icons/turf/flooring/decals_vr.dmi'
-	plane = DECAL_PLANE
+	plane = FLOOR_PLANE
 	layer = MAPPER_DECAL_LAYER
 	var/supplied_dir
 
@@ -28,8 +28,8 @@ var/list/floor_decals = list()
 	I.alpha = alpha
 	return I
 
-/obj/effect/floor_decal/proc/get_cache_key(var/turf/T)
-	return "[alpha]-[color]-[dir]-[icon_state]-[T.layer]"
+/obj/effect/floor_decal/proc/get_cache_key(turf/target_turf)
+	return "[alpha]-[color]-[dir]-[icon_state]-[target_turf.layer]"
 
 // This is a separate proc from initialize() to facilitiate its caching and other stuff.  Look into it someday.
 /obj/effect/floor_decal/proc/add_to_turf_decals()

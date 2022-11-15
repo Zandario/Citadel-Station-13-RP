@@ -1,7 +1,7 @@
 /obj/structure/fans/hardlight
 	name = "hardlight shield"
 	desc = "Retains air, allows passage."
-	plane = TURF_PLANE
+	plane = FLOOR_PLANE
 	layer = ABOVE_TURF_LAYER
 	density = FALSE
 	icon = 'icons/effects/effects_vr.dmi'

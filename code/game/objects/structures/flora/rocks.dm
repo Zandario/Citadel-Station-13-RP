@@ -2,7 +2,7 @@
 	name = "rock"
 	desc = "A large rock"
 	density = 1
-	plane = MOB_PLANE // You know what, let's play it safe.
+	plane = UPPER_WORLD_PLANE // You know what, let's play it safe.
 	layer = ABOVE_MOB_LAYER
 	icon = 'icons/obj/flora/rocks.dmi'
 	icon_state = "basalt1"

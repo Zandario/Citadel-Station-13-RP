@@ -8,7 +8,7 @@
 	w_class = ITEMSIZE_SMALL
 	throw_range = 2
 	throw_speed = 1
-	plane = MOB_PLANE
+	plane = UPPER_WORLD_PLANE
 	layer = MOB_LAYER
 	pressure_resistance = 1
 	attack_verb = list("bapped")

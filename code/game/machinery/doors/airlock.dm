@@ -49,6 +49,8 @@
 	// bandaid around a problem
 	var/last_spark = 0
 
+	smoothing_groups = list(SMOOTH_GROUP_AIRLOCK)
+
 /obj/machinery/door/airlock/attack_generic(var/mob/living/user, var/damage)
 	if(machine_stat & (BROKEN|NOPOWER))
 		if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)

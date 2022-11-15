@@ -219,6 +219,6 @@ Class Procs:
 	desc = "WHY can you see this?"
 	icon = null
 	icon_state = null
-	plane = MOB_PLANE
+	plane = UPPER_WORLD_PLANE
 	layer = ABOVE_MOB_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT

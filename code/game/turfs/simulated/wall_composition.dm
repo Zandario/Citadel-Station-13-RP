@@ -8,7 +8,7 @@
 	if(!defer_icon)
 		QUEUE_SMOOTH(src)
 		QUEUE_SMOOTH_NEIGHBORS(src)
-	update_material(TRUE)
+	update_material(FALSE)
 
 /turf/simulated/wall/proc/update_material(defer_icon)
 	if(!material)

@@ -633,7 +633,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	verbs |= /mob/observer/dead/proc/toggle_visibility
 	verbs |= /mob/observer/dead/proc/ghost_whisper
 	to_chat(src,"<font color='purple'>As you are now in the realm of the living, you can whisper to the living with the <b>Spectral Whisper</b> verb, inside the IC tab.</font>")
-	if(plane != PLANE_WORLD)
+	if(plane != BLACKNESS_PLANE)
 		user.visible_message( \
 			"<span class='warning'>\The [user] drags ghost, [src], to our plane of reality!</span>", \
 			"<span class='warning'>You drag [src] to our plane of reality!</span>" \
@@ -670,14 +670,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(src, "You must gather strength before you can turn visible again...")
 		return
 
-	if(plane == PLANE_WORLD)
+	if(plane == BLACKNESS_PLANE)
 		toggled_invisible = world.time
 		visible_message("<span class='emote'>It fades from sight...</span>", "<span class='info'>You are now invisible.</span>")
 	else
 		to_chat(src, "<span class='info'>You are now visible!</span>")
 
-	plane = (plane == PLANE_GHOSTS) ? PLANE_WORLD : PLANE_GHOSTS
-	invisibility = (plane == PLANE_WORLD) ? 0 : INVISIBILITY_OBSERVER
+	plane = (plane == PLANE_GHOSTS) ? BLACKNESS_PLANE : PLANE_GHOSTS
+	invisibility = (plane == BLACKNESS_PLANE) ? 0 : INVISIBILITY_OBSERVER
 
 	// Give the ghost a cult icon which should be visible only to itself
 	toggle_icon("cult")

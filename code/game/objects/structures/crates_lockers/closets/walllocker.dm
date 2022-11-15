@@ -65,7 +65,7 @@
 	anchored = 1
 	store_mobs = 0
 	wall_mounted = 1
-	plane = TURF_PLANE
+	plane = FLOOR_PLANE
 	layer = ABOVE_TURF_LAYER
 
 /obj/structure/closet/walllocker_double/north

@@ -20,7 +20,7 @@
 	icon = 'icons/misc/beach2.dmi'
 	icon_state = "palm1"
 	density = 1
-	plane = MOB_PLANE
+	plane = UPPER_WORLD_PLANE
 	layer = ABOVE_MOB_LAYER
 	anchored = 1
 
@@ -29,7 +29,7 @@
 	icon = 'icons/misc/beach2.dmi'
 	icon_state = "palm2"
 	density = 1
-	plane = MOB_PLANE
+	plane = UPPER_WORLD_PLANE
 	layer = ABOVE_MOB_LAYER
 	anchored = 1
 
@@ -42,7 +42,7 @@
 	name = "Bluespace"
 	icon = 'icons/turf/space.dmi'
 	icon_state = "bluespacify"
-	plane = ABOVE_PLANE
+	plane = ABOVE_WORLD_PLANE
 
 /obj/effect/overlay/wallrot
 	name = "wallrot"
@@ -50,7 +50,7 @@
 	icon = 'icons/effects/wallrot.dmi'
 	anchored = 1
 	density = 1
-	plane = MOB_PLANE
+	plane = UPPER_WORLD_PLANE
 	layer = ABOVE_MOB_LAYER
 	mouse_opacity = 0
 
@@ -76,7 +76,7 @@
 
 /obj/effect/overlay/snow/floor
 	icon_state = "snowfloor"
-	plane = TURF_PLANE
+	plane = FLOOR_PLANE
 	layer = ABOVE_TURF_LAYER
 	mouse_opacity = 0 //Don't block underlying tile interactions
 
@@ -113,13 +113,13 @@
 
 /obj/effect/overlay/snow/wall
 	icon_state = "snowwall"
-	plane = MOB_PLANE
+	plane = UPPER_WORLD_PLANE
 	layer = ABOVE_MOB_LAYER
 
 /obj/effect/overlay/holographic
 	mouse_opacity = FALSE
 	anchored = TRUE
-	plane = ABOVE_PLANE
+	plane = ABOVE_WORLD_PLANE
 
 // Similar to the tesla ball but doesn't actually do anything and is purely visual.
 /obj/effect/overlay/energy_ball

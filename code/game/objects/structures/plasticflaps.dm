@@ -6,7 +6,7 @@
 	density = 0
 	anchored = 1
 	layer = MOB_LAYER
-	plane = MOB_PLANE
+	plane = UPPER_WORLD_PLANE
 	explosion_resistance = 5
 	var/can_pass_lying = TRUE
 	var/list/mobs_can_pass = list(

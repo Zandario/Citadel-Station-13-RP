@@ -5,6 +5,7 @@
  * as much as possible to the components/elements system
  */
 /atom
+	plane = WORLD_PLANE
 	layer = TURF_LAYER
 	var/level = 2
 

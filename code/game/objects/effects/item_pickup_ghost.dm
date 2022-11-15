@@ -1,6 +1,6 @@
 /obj/effect/temporary_effect/item_pickup_ghost
 	anchored = 1
-	plane = MOB_PLANE
+	plane = UPPER_WORLD_PLANE
 	layer = ABOVE_MOB_LAYER
 	mouse_opacity = 0//just in case something dumb happens
 	time_to_die = 0.5 SECONDS

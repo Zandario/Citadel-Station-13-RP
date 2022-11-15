@@ -1,8 +1,6 @@
 /// Any floor or wall. What makes up the station and the rest of the map.
 /turf
 	icon = 'icons/turf/floors.dmi'
-	layer = TURF_LAYER
-	plane = TURF_PLANE
 	luminosity = 1
 	level = 1
 
@@ -96,14 +94,24 @@
 
 	assemble_baseturfs()
 
+	levelupdate()
+
+	if(length(smoothing_groups))
+		// In case it's not properly ordered, let's avoid duplicate entries with the same values.
+		tim_sort(smoothing_groups)
+		SET_BITFLAG_LIST(smoothing_groups)
+	if(length(canSmoothWith))
+		tim_sort(canSmoothWith)
+		// If the last element is higher than the maximum turf-only value, then it must scan turf contents for smoothing targets.
+		if(canSmoothWith[length(canSmoothWith)] > MAX_S_TURF)
+			smoothing_flags |= SMOOTH_OBJ
+		SET_BITFLAG_LIST(canSmoothWith)
+	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
+		QUEUE_SMOOTH(src)
+
 	//atom color stuff
 	if(color)
 		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
-
-/*
-	if (canSmoothWith)
-		canSmoothWith = typelist("canSmoothWith", canSmoothWith)
-*/
 
 	for(var/atom/movable/AM in src)
 		Entered(AM)
@@ -150,6 +158,8 @@
 	flags &= ~INITIALIZED
 	// requires_activation = FALSE
 	..()
+
+	vis_contents.len = 0
 
 /turf/legacy_ex_act(severity)
 	return 0

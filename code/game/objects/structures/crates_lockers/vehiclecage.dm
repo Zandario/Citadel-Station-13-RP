@@ -48,7 +48,7 @@
 	underlays.Cut()
 
 	var/image/framepaint = new(icon = 'icons/obj/storage.dmi', icon_state = "[initial(icon_state)]_a", layer = MOB_LAYER + 1.1)
-	framepaint.plane = MOB_PLANE
+	framepaint.plane = UPPER_WORLD_PLANE
 	framepaint.color = paint_color
 	overlays += framepaint
 

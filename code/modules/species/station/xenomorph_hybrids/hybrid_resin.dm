@@ -270,6 +270,6 @@
 
 	anchored = 1
 	density = 0
-	plane = TURF_PLANE
+	plane = FLOOR_PLANE
 	layer = ABOVE_TURF_LAYER
 	color = "#422649"

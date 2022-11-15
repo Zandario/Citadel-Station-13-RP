@@ -2,10 +2,9 @@
 /obj/structure/flora
 	name = "flora"
 	desc = "A perfectly generic plant."
-
 	anchored = TRUE // Usually, plants don't move. Usually.
-	plane = DECAL_PLANE
-	layer = BELOW_MOB_LAYER
+	plane = WORLD_PLANE
+	layer = FLY_LAYER
 
 	var/randomize_size = FALSE
 	var/max_x_scale = 1.25
@@ -237,7 +236,7 @@
 	icon_state = "hangskele"
 	desc = "It's an anatomical model of a human skeletal system made of plaster."
 
-	plane = OBJ_PLANE
+	plane = WORLD_PLANE
 
 //potted plants credit: Flashkirby
 /obj/structure/flora/pottedplant
@@ -246,7 +245,7 @@
 	icon = 'icons/obj/plants.dmi'
 	icon_state = "plant-01"
 
-	plane = OBJ_PLANE
+	plane = WORLD_PLANE
 
 /obj/structure/flora/pottedplant/large
 	name = "large potted plant"

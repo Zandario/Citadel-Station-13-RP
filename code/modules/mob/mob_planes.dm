@@ -28,9 +28,9 @@
 	plane_masters[VIS_MESONS]		= new /atom/movable/screen/plane_master{plane = PLANE_MESONS} 			//Meson-specific things like open ceilings.
 
 	// Real tangible stuff planes
-	plane_masters[VIS_TURFS]	= new /atom/movable/screen/plane_master/main{plane = TURF_PLANE}
-	plane_masters[VIS_OBJS]		= new /atom/movable/screen/plane_master/main{plane = OBJ_PLANE}
-	plane_masters[VIS_MOBS]		= new /atom/movable/screen/plane_master/main{plane = MOB_PLANE}
+	plane_masters[VIS_TURFS]	= new /atom/movable/screen/plane_master/main{plane = FLOOR_PLANE}
+	plane_masters[VIS_OBJS]		= new /atom/movable/screen/plane_master/main{plane = WORLD_PLANE}
+	plane_masters[VIS_MOBS]		= new /atom/movable/screen/plane_master/main{plane = UPPER_WORLD_PLANE}
 	plane_masters[VIS_CLOAKED]	= new /atom/movable/screen/plane_master/cloaked								//Cloaked atoms!
 
 	plane_masters[VIS_AUGMENTED]		= new /atom/movable/screen/plane_master/augmented(null, my_mob)					//Augmented reality

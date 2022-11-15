@@ -163,7 +163,7 @@
 
 	anchored = 1
 	density = 0
-	plane = TURF_PLANE
+	plane = FLOOR_PLANE
 	layer = ABOVE_TURF_LAYER
 	var/health = 15
 	var/obj/effect/alien/weeds/node/linked_node = null

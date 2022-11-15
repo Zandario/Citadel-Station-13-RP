@@ -19,5 +19,5 @@
 	else
 		status_flags |= HIDING
 		set_base_layer(HIDING_LAYER)
-		plane = OBJ_PLANE
+		plane = WORLD_PLANE
 		to_chat(src,"<span class='notice'>You are now hiding.</span>")

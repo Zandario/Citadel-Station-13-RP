@@ -62,7 +62,7 @@
 	desc = "Somebody should remove that."
 	density = 0
 	anchored = 1
-	plane = OBJ_PLANE
+	plane = WORLD_PLANE
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "cobweb1"
 
@@ -71,7 +71,7 @@
 	desc = "It looks like a melted... something."
 	density = 0
 	anchored = 1
-	plane = OBJ_PLANE
+	plane = WORLD_PLANE
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "molten"
 
@@ -80,7 +80,7 @@
 	desc = "Somebody should remove that."
 	density = 0
 	anchored = 1
-	plane = OBJ_PLANE
+	plane = WORLD_PLANE
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "cobweb2"
 

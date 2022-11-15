@@ -84,7 +84,7 @@
 
 	setDir(direction)
 	if(dir != NORTH)
-		plane = MOB_PLANE
+		plane = UPPER_WORLD_PLANE
 		layer = ABOVE_MOB_LAYER
 	climbable = 0 //flipping tables allows them to be used as makeshift barriers
 	flipped = 1

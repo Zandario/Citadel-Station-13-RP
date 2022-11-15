@@ -38,7 +38,7 @@
 	density = 1
 	opacity = 0
 	anchored = 1
-	plane = TURF_PLANE
+	plane = FLOOR_PLANE
 	layer = ABOVE_TURF_LAYER
 	appearance_flags = PIXEL_SCALE|KEEP_TOGETHER
 

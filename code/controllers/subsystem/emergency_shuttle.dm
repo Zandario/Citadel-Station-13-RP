@@ -244,7 +244,7 @@ SUBSYSTEM_DEF(emergencyshuttle)
 	var/speed = 10
 	var/direction = SOUTH
 	layer = TURF_LAYER
-	plane = TURF_PLANE
+	plane = FLOOR_PLANE
 
 /obj/effect/bgstar/Initialize(mapload)
 	. = ..()
