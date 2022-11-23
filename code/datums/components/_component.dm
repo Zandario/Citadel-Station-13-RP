@@ -1,5 +1,5 @@
 /**
- * # Component
+ * ! Component
  *
  * The component datum
  *

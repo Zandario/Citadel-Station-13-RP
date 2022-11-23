@@ -6,20 +6,27 @@ var/list/gear_datums = list()
 	var/list/gear = list()
 
 /datum/gear
-	/// name used for save/load don't change this or everyone loses it
+	/// Name used for save/load don't change this or everyone loses it.
 	var/name
-	/// what we display our name as. feel free to change this. defaults to name.
+	/// What we display our name as. feel free to change this. defaults to name.
 	var/display_name
-	var/description				  // Description of this gear. If left blank will default to the description of the pathed item.
-	var/path					  // Path to item.
-	var/cost = 1				  // Number of points used. Items in general cost 1 point, storage/armor/gloves/special use costs 2 points.
-	var/slot					  // Slot to equip to.
-	var/list/allowed_roles		  // Roles that can spawn with this item.
-	// todo: remove in favor of uid locks and or just a better system.
-	var/legacy_species_lock				  // Term to check the whitelist for..
+	/// Description of this gear. If left blank will default to the description of the pathed item.
+	var/description
+	/// Path to item.
+	var/path
+	/// Number of points used. Items in general cost 1 point, storage/armor/gloves/special use costs 2 points.
+	var/cost = 1
+	/// Slot to equip to.
+	var/slot
+	/// Roles that can spawn with this item.
+	var/list/allowed_roles
+	/// Term to check the whitelist for...
+	var/legacy_species_lock // TODO: remove in favor of uid locks and or just a better system.
 	var/sort_category = "General"
-	var/list/gear_tweaks = list() // List of datums which will alter the item after it has been spawned.
-	var/exploitable = 0			  // Does it go on the exploitable information list?
+	/// List of datums which will alter the item after it has been spawned.
+	var/list/gear_tweaks = list()
+	/// Does it go on the exploitable information list?
+	var/exploitable = 0
 	var/abstract_type = null
 	var/static/datum/gear_tweak/color/gear_tweak_free_color_choice = new
 	var/list/ckeywhitelist

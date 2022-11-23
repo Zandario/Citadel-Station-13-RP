@@ -1,12 +1,19 @@
-//Welcome to the reskin kits. Use the ones below as a guide to add your own. It's fairly straight foward, and should be relatively fill-in-the-blanks.
-//THIS STUFF NEEDS REFACTORING, MORE OBJECT ORIENTED STUFF - KEV
+/**
+ *! THIS STUFF NEEDS REFACTORING, MORE OBJECT ORIENTED STUFF - @silicons
+ *
+ * Welcome to the reskin kits.
+ * Use the ones below as a guide to add your own.
+ * It's fairly straight foward, and should be relatively fill-in-the-blanks.
+ */
 /obj/item/reskin_kit
-	name = "broken reskin kit"		//These variables are for the kit, not the item!
+	name = "broken reskin kit" //These variables are for the kit, not the item!
 	desc = "CODER MAN BAD"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "box"
-	var/product			//what it makes - TODO: refactor
-	var/fromitem		//Path that it works on
+	///what it makes // TODO: refactor
+	var/product
+	///Path that it works on
+	var/fromitem
 
 /obj/item/reskin_kit/afterattack(obj/O, mob/user)
 	if(istype(O, product)) // Checks what it was used on

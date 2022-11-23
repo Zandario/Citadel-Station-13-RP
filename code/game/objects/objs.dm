@@ -1,29 +1,42 @@
 /obj
-
-	layer = OBJ_LAYER
 	plane = OBJ_PLANE
+	layer = OBJ_LAYER
 	pass_flags_self = ATOM_PASS_OVERHEAD_THROW
 	animate_movement = SLIDE_STEPS
 
 	var/obj_flags = CAN_BE_HIT
-	var/set_obj_flags // ONLY FOR MAPPING: Sets flags from a string list, handled in Initialize. Usage: set_obj_flags = "EMAGGED;!CAN_BE_HIT" to set EMAGGED and clear CAN_BE_HIT.
+	/**
+	 * ONLY FOR MAPPING: Sets flags from a string list, handled in Initialize.
+	 * Usage: set_obj_flags = "EMAGGED;!CAN_BE_HIT" to set EMAGGED and clear CAN_BE_HIT.
+	 */
+	var/set_obj_flags
 
 	//Used to store information about the contents of the object.
 	var/list/matter
-	var/w_class // Size of the object.
-	var/unacidable = 0 //universal "unacidabliness" var, here so you can use it in any obj.
-	var/sharp = 0		// whether this object cuts
-	var/edge = 0		// whether this object is more likely to dismember
-	var/pry = 0			//Used in attackby() to open doors
-	var/in_use = 0 // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
+	/// Size of the object.
+	var/w_class
+	/// Universal "unacidabliness" var, here so you can use it in any obj.
+	var/unacidable = 0
+	/// Whether this object cuts.
+	var/sharp = 0
+	/// Whether this object is more likely to dismember.
+	var/edge = 0
+	/// Used in attackby() to open doors.
+	var/pry = 0
+	/// If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
+	var/in_use = 0
 	var/damtype = "brute"
 	var/armor_penetration = 0
 	var/show_messages
-	var/preserve_item = 0 //whether this object is preserved when its owner goes into cryo-storage, gateway, etc
-	var/can_speak = 0 //For MMIs and admin trickery. If an object has a brainmob in its contents, set this to 1 to allow it to speak.
+	/// Whether this object is preserved when its owner goes into cryo-storage, gateway, etc.
+	var/preserve_item = 0
+	/// For MMIs and admin trickery. If an object has a brainmob in its contents, set this to 1 to allow it to speak.
+	var/can_speak = 0
 
-	var/show_examine = TRUE	// Does this pop up on a mob when the mob is examined?
-	var/register_as_dangerous_object = FALSE // Should this tell its turf that it is dangerous automatically?
+	/// Does this pop up on a mob when the mob is examined?
+	var/show_examine = TRUE
+	/// Should this tell its turf that it is dangerous automatically?
+	var/register_as_dangerous_object = FALSE
 
 	// Access levels, used in modules\jobs\access.dm
 	var/list/req_access
