@@ -1,6 +1,6 @@
 /datum/element/clothing/hud_granter
-	id_arg_index = 2
-	element_flags = ELEMENT_BESPOKE | ELEMENT_DETACH
+	element_flags = ELEMENT_BESPOKE | ELEMENT_DETACH_ON_HOST_DESTROY
+	argument_hash_start_idx = 2
 	/// huds
 	var/list/huds
 	/// relevant slots

@@ -24,5 +24,8 @@
 	},
 	"[scss]": {
 		"editor.rulers": [80]
-	}
+	},
+	"workbench.editorAssociations": {
+		"*.dmi": "dmiEditor.dmiEditor"
+	},
 }

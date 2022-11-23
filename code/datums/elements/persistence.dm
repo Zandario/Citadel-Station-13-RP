@@ -6,7 +6,7 @@
  * WARNING: All atoms recorded are stored to turf! This does not yet support things like loading into inventories. This is mostly for on-floor objects.
  */
 /datum/element/persistence
-	element_flags = ELEMENT_DETACH
+	element_flags = ELEMENT_DETACH_ON_HOST_DESTROY
 
 	/// List of persistent atoms. Associated list to their GUID
 	var/list/atom/objects = list()

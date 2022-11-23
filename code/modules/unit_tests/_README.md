@@ -10,38 +10,37 @@ On their most basic level, when `UNIT_TESTS` is defined, all subtypes of `/datum
 
 1. Find a relevant file.
 
-    All unit test related code is in `code/modules/unit_tests`. If you are adding a new test for a surgery, for example, then you'd open `surgeries.dm`. If a relevant file does not exist, simply create one in this folder, then `#include` it in `_unit_tests.dm`.
+	All unit test related code is in `code/modules/unit_tests`. If you are adding a new test for a surgery, for example, then you'd open `surgeries.dm`. If a relevant file does not exist, simply create one in this folder, then `#include` it in `_unit_tests.dm`.
 
 2. Create the unit test.
 
-    To make a new unit test, you simply need to define a `/datum/unit_test`.
+	To make a new unit test, you simply need to define a `/datum/unit_test`.
 
-    For example, let's suppose that we are creating a test to make sure a proc `square` correctly raises inputs to the power of two. We'd start with first:
+	For example, let's suppose that we are creating a test to make sure a proc `square` correctly raises inputs to the power of two. We'd start with first:
 
-    ```dm
-    /datum/unit_test/square/Run()
-    ```
+	```dm
+	/datum/unit_test/square/Run()
+	```
 
-     This defines our new unit test, `/datum/unit_test/square`. Inside this function, we're then going to run through whatever we want to check. Tests provide a few  assertion functions to make this easy. For now, we're going to use `TEST_ASSERT_EQUAL`.
+	This defines our new unit test, `/datum/unit_test/square`. Inside this function, we're then going to run through whatever we want to check. Tests provide a few assertion functions to make this easy. For now, we're going to use 	`TEST_ASSERT_EQUAL`.
 
-    ```dm
-    /datum/unit_test/square/Run()
-        TEST_ASSERT_EQUAL(square(3), 9, "square(3) did not return 9")
-        TEST_ASSERT_EQUAL(square(4), 16, "square(4) did not return 16")
-    ```
+	```dm
+	/datum/unit_test/square/Run()
+		TEST_ASSERT_EQUAL(square(3), 9, "square(3) did not return 9")
+		TEST_ASSERT_EQUAL(square(4), 16, "square(4) did not return 16")
+	```
 
-    As you can hopefully tell, we're simply checking if the output of `square` matches the output we are expecting. If the test fails, it'll report the error message given as well as whatever the actual output was.
+	As you can hopefully tell, we're simply checking if the output of `square` matches the output we are expecting. If the test fails, it'll report the error message given as well as whatever the actual output was.
 
 3. Run the unit test
 
-    Open `code/_compile_options.dm` and uncomment the following line.
+	Open `code/_compile_options.dm` and uncomment the following line.
 
-    ```dm
-    ///If this is uncommented, we do a single run though of the game setup and tear down process with unit tests in between
-    //#define UNIT_TESTS
-    ```
+	```dm
+	//#define UNIT_TESTS // If this is uncommented, we do a single run though of the game setup and tear down process with unit tests in between.
+	```
 
-    Then, run citadel.dmb in Dream Daemon. Don't bother trying to connect, you won't need to. You'll be able to see the outputs of all the tests. You'll get to see which tests failed and for what reason. If they all pass, you're set!
+	Then, run tgstation.dmb in Dream Daemon. Don't bother trying to connect, you won't need to. You'll be able to see the outputs of all the tests. You'll get to see which tests failed and for what reason. If they all pass, you're set!
 
 ## How to think about tests
 
@@ -53,11 +52,17 @@ Unit tests should also be just that--testing *units* of code. For example, inste
 
 You can find more information about all of these from their respective doc comments, but for a brief overview:
 
-`/datum/unit_test` - The base for all tests to be ran. Subtypes must override `Run()`. `New()` and `Destroy()` can be used for setup and teardown. To fail, use `Fail(reason)`.
+`/datum/unit_test` - The base for all tests to be ran. Subtypes must override `Run()`. `New()` and `Destroy()` can be used for setup and teardown. To fail, use `TEST_FAIL(reason)`.
 
 `/datum/unit_test/proc/allocate(type, ...)` - Allocates an instance of the provided type with the given arguments. Is automatically destroyed when the test is over. Commonly seen in the form of `var/mob/living/carbon/human/human = allocate(/mob/living/carbon/human)`.
 
+`TEST_FAIL(reason)` - Marks a failure at this location, but does not stop the test.
+
 `TEST_ASSERT(assertion, reason)` - Stops the unit test and fails if the assertion is not met. For example: `TEST_ASSERT(powered(), "Machine is not powered")`.
+
+`TEST_ASSERT_NOTNULL(a, message)` - Same as `TEST_ASSERT`, but checks if `!isnull(a)`. For example: `TEST_ASSERT_NOTNULL(myatom, "My atom was never set!")`.
+
+`TEST_ASSERT_NULL(a, message)` - Same as `TEST_ASSERT`, but checks if `isnull(a)`. If not, gives a helpful message showing what `a` was. For example: `TEST_ASSERT_NULL(delme, "Delme was never cleaned up!")`.
 
 `TEST_ASSERT_EQUAL(a, b, message)` - Same as `TEST_ASSERT`, but checks if `a == b`. If not, gives a helpful message showing what both `a` and `b` were. For example: `TEST_ASSERT_EQUAL(2 + 2, 4, "The universe is falling apart before our eyes!")`.
 

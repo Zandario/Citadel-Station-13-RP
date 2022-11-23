@@ -1,6 +1,7 @@
 PROCESSING_SUBSYSTEM_DEF(dcs)
 	name = "Datum Component System"
 	subsystem_flags = SS_NO_INIT
+	wait = 1 SECONDS
 
 	var/list/elements_by_type = list()
 
@@ -22,38 +23,38 @@ PROCESSING_SUBSYSTEM_DEF(dcs)
 		return
 	. = elements_by_type[element_id] = new eletype
 
-/****
-	* Generates an id for bespoke elements when given the argument list
-	* Generating the id here is a bit complex because we need to support named arguments
-	* Named arguments can appear in any order and we need them to appear after ordered arguments
-	* We assume that no one will pass in a named argument with a value of null
-	**/
+/**
+ * Generates an id for bespoke elements when given the argument list
+ * Generating the id here is a bit complex because we need to support named arguments
+ * Named arguments can appear in any order and we need them to appear after ordered arguments
+ * We assume that no one will pass in a named argument with a value of null
+ */
 /datum/controller/subsystem/processing/dcs/proc/GetIdFromArguments(list/arguments)
 	var/datum/element/eletype = arguments[1]
 	var/list/fullid = list("[eletype]")
 	var/list/named_arguments = list()
-	for(var/i in initial(eletype.id_arg_index) to length(arguments))
+
+	for(var/i in initial(eletype.argument_hash_start_idx) to length(arguments))
 		var/key = arguments[i]
-		var/value
+
 		if(istext(key))
-			value = arguments[key]
-		if(!(istext(key) || isnum(key)))
-			if(islist(key)) // CITADEL EDIT
-				key = deep_list2params(key)
+			var/value = arguments[key]
+			if (isnull(value))
+				fullid += key
 			else
-				key = REF(key)
-		key = "[key]" // Key is stringified so numbers dont break things
-		if(!isnull(value))
-			if(!(istext(value) || isnum(value)))
-				if(islist(value)) // CITADEL EDIT
-					value = deep_list2params(value)
-				else
+				if (!istext(value) && !isnum(value))
 					value = REF(value)
-			named_arguments["[key]"] = value
-		else
+				named_arguments[key] = value
+
+			continue
+
+		if (isnum(key))
 			fullid += "[key]"
+		else
+			fullid += REF(key)
 
 	if(length(named_arguments))
-		named_arguments = sortList(named_arguments)
+		named_arguments = tim_sort(named_arguments, /proc/cmp_text_asc)
 		fullid += named_arguments
+
 	return list2params(fullid)
