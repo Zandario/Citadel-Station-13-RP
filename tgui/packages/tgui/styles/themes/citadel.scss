@@ -24,10 +24,10 @@
   // Layouts
   @include meta.load-css('../layouts/Layout.scss');
   @include meta.load-css('../layouts/Window.scss');
-  @include meta.load-css('../layouts/TitleBar.scss', $with: (
-    'background-color': #104264,
-    'shadow-color-core': #170800,
-  ));
+  @include meta.load-css(
+    '../layouts/TitleBar.scss',
+    $with: ('background-color': #104264, 'shadow-color-core': #170800)
+  );
 
   .Layout__content {
     background-image: url('../../assets/bg-citadel.svg');

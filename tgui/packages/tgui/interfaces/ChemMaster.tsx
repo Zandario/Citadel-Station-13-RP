@@ -55,7 +55,7 @@ type AnalyzeData = {
   description: string;
   metaRate: number;
   overD: number;
-}
+};
 
 // TODO: Universal type for assets. @Zandario
 type StyleData = {
@@ -63,7 +63,6 @@ type StyleData = {
   className: string;
   title: string;
 };
-
 
 export const ChemMaster = (props, context) => {
   const { data } = useBackend<ChemMasterData>(context);
@@ -109,7 +108,8 @@ const ChemMasterContent = (props, context) => {
                 content="Eject"
                 onClick={() => act('eject')}
               />
-            </>)
+            </>
+          )
         }>
         {!is_beaker_loaded && (
           <Box color="label" mt="3px" mb="5px">
@@ -204,7 +204,8 @@ const ChemicalBufferEntry = (props, context) => {
               id: chemical.id,
               amount: 1,
               to: transferTo,
-            })}
+            })
+          }
         />
         <Button
           content="5"
@@ -213,7 +214,8 @@ const ChemicalBufferEntry = (props, context) => {
               id: chemical.id,
               amount: 5,
               to: transferTo,
-            })}
+            })
+          }
         />
         <Button
           content="10"
@@ -222,7 +224,8 @@ const ChemicalBufferEntry = (props, context) => {
               id: chemical.id,
               amount: 10,
               to: transferTo,
-            })}
+            })
+          }
         />
         <Button
           content="30"
@@ -231,7 +234,8 @@ const ChemicalBufferEntry = (props, context) => {
               id: chemical.id,
               amount: 30,
               to: transferTo,
-            })}
+            })
+          }
         />
         <Button
           content="60"
@@ -240,7 +244,8 @@ const ChemicalBufferEntry = (props, context) => {
               id: chemical.id,
               amount: 60,
               to: transferTo,
-            })}
+            })
+          }
         />
         <Button
           content="All"
@@ -249,7 +254,8 @@ const ChemicalBufferEntry = (props, context) => {
               id: chemical.id,
               amount: 1000,
               to: transferTo,
-            })}
+            })
+          }
         />
         <Button
           icon="ellipsis-h"
@@ -259,7 +265,8 @@ const ChemicalBufferEntry = (props, context) => {
               id: chemical.id,
               amount: -1,
               to: transferTo,
-            })}
+            })
+          }
         />
         <Button
           icon="question"
@@ -267,7 +274,8 @@ const ChemicalBufferEntry = (props, context) => {
           onClick={() =>
             act('analyze', {
               id: chemical.id,
-            })}
+            })
+          }
         />
       </Table.Cell>
     </Table.Row>
@@ -275,8 +283,8 @@ const ChemicalBufferEntry = (props, context) => {
 };
 
 const PackagingControlsItem = (props) => {
-  const { label, amountUnit, amount, onChangeAmount, onCreate, sideNote }
-    = props;
+  const { label, amountUnit, amount, onChangeAmount, onCreate, sideNote } =
+    props;
   return (
     <LabeledList.Item label={label}>
       <NumberInput
@@ -354,7 +362,8 @@ const PackagingControls = (props, context) => {
               type: 'pill',
               amount: pillAmount,
               volume: 'auto',
-            })}
+            })
+          }
         />
       )}
       {!condi && (
@@ -366,7 +375,8 @@ const PackagingControls = (props, context) => {
               textAlign="center"
               color="transparent"
               onClick={() =>
-                act('change_patch_style', { chosen_patch_style: patch.id })}>
+                act('change_patch_style', { chosen_patch_style: patch.id })
+              }>
               <Box mb={0} mt={1} className={patch.className} />
             </Button>
           ))}
@@ -384,7 +394,8 @@ const PackagingControls = (props, context) => {
               type: 'patch',
               amount: patchAmount,
               volume: 'auto',
-            })}
+            })
+          }
         />
       )}
       {!condi && (
@@ -414,7 +425,8 @@ const PackagingControls = (props, context) => {
               type: 'bottle',
               amount: bottleAmount,
               volume: 'auto',
-            })}
+            })
+          }
         />
       )}
       {!!condi && (
@@ -422,8 +434,11 @@ const PackagingControls = (props, context) => {
           <Button.Checkbox
             onClick={() =>
               act('change_condi_style', {
-                id: auto_condi_style_chosen ? condi_styles[0].id : auto_condi_style,
-              })}
+                id: auto_condi_style_chosen
+                  ? condi_styles[0].id
+                  : auto_condi_style,
+              })
+            }
             checked={auto_condi_style_chosen}
             disabled={!condi_styles.length}>
             Guess from contents
@@ -458,7 +473,8 @@ const PackagingControls = (props, context) => {
               type: 'condiment_bottle',
               amount: bottleAmount,
               volume: 'auto',
-            })}
+            })
+          }
         />
       )}
       {!!condi && (
@@ -473,7 +489,8 @@ const PackagingControls = (props, context) => {
               type: 'condiment_pack',
               amount: packAmount,
               volume: 'auto',
-            })}
+            })
+          }
         />
       )}
     </LabeledList>
@@ -493,7 +510,8 @@ const AnalysisResults = (props, context) => {
           onClick={() =>
             act('goScreen', {
               screen: 'home',
-            })}
+            })
+          }
         />
       }>
       <LabeledList>

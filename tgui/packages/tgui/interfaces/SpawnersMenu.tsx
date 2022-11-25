@@ -39,14 +39,16 @@ export const SpawnersMenu = (props, context) => {
                         onClick={() =>
                           act('jump', {
                             id: spawner.id,
-                          })}
+                          })
+                        }
                       />
                       <Button
                         content="Spawn"
                         onClick={() =>
                           act('spawn', {
                             id: spawner.id,
-                          })}
+                          })
+                        }
                       />
                     </Stack.Item>
                   </Stack>

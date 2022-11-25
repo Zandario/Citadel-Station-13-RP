@@ -33,16 +33,16 @@ export const COLORS = {
   },
   // VOREStation Addition begin
   manifest: {
-    command: "#3333FF",
-    security: "#8e0000",
-    medical: "#006600",
-    engineering: "#b27300",
-    science: "#a65ba6",
-    cargo: "#bb9040",
-    planetside: "#555555",
-    civilian: "#a32800",
-    miscellaneous: "#666666",
-    silicon: "#222222",
+    command: '#3333FF',
+    security: '#8e0000',
+    medical: '#006600',
+    engineering: '#b27300',
+    science: '#a65ba6',
+    cargo: '#bb9040',
+    planetside: '#555555',
+    civilian: '#a32800',
+    miscellaneous: '#666666',
+    silicon: '#222222',
   },
   // VOREStation Addition end
   // Damage type colors
@@ -54,8 +54,8 @@ export const COLORS = {
   },
   // reagent / chemistry related colours
   reagent: {
-    acidicbuffer: "#fbc314",
-    basicbuffer: "#3853a4",
+    acidicbuffer: '#fbc314',
+    basicbuffer: '#3853a4',
   },
 };
 

@@ -1,17 +1,13 @@
-import { useBackend } from "../backend";
-import { Box, Icon, LabeledList, ProgressBar, Section } from "../components";
-import { Window } from "../layouts";
+import { useBackend } from '../backend';
+import { Box, Icon, LabeledList, ProgressBar, Section } from '../components';
+import { Window } from '../layouts';
 import { FullscreenNotice } from './common/FullscreenNotice';
 
 export const AiSupermatter = (props, context) => {
   const { data } = useBackend(context);
 
-  const {
-    integrity_percentage,
-    ambient_temp,
-    ambient_pressure,
-    detonating,
-  } = data;
+  const { integrity_percentage, ambient_temp, ambient_pressure, detonating } =
+    data;
 
   let body = <AiSupermatterContent />;
   if (detonating) {
@@ -19,12 +15,8 @@ export const AiSupermatter = (props, context) => {
   }
 
   return (
-    <Window
-      width={500}
-      height={300}>
-      <Window.Content>
-        {body}
-      </Window.Content>
+    <Window width={500} height={300}>
+      <Window.Content>{body}</Window.Content>
     </Window>
   );
 };
@@ -48,11 +40,7 @@ const AiSupermatterDetonation = (props, context) => (
 const AiSupermatterContent = (props, context) => {
   const { data } = useBackend(context);
 
-  const {
-    integrity_percentage,
-    ambient_temp,
-    ambient_pressure,
-  } = data;
+  const { integrity_percentage, ambient_temp, ambient_pressure } = data;
 
   return (
     <Section title="Status">
@@ -65,7 +53,8 @@ const AiSupermatterContent = (props, context) => {
               good: [90, Infinity],
               average: [25, 90],
               bad: [-Infinity, 25],
-            }} />
+            }}
+          />
         </LabeledList.Item>
         <LabeledList.Item label="Environment Temperature">
           <ProgressBar

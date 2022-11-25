@@ -272,7 +272,7 @@ em {
 }
 
 .looc {
-  color: #6699CC;
+  color: #6699cc;
   font-weight: bold;
 }
 
@@ -314,40 +314,39 @@ em {
 
 //attack logging!
 .log_message {
-  color: #386AFF;
+  color: #386aff;
   font-weight: bold;
 }
 
 /* Debug Logs */
 .debug_error {
-  color:#FF0000;
-  font-weight:bold;
+  color: #ff0000;
+  font-weight: bold;
 }
 
 .debug_warning {
-  color:#FF0000;
+  color: #ff0000;
 }
 
 .debug_info {
 }
 
 .debug_debug {
-  color:#0000FF;
+  color: #0000ff;
 }
 
 .debug_trace {
-  color:#888888;
+  color: #888888;
 }
-
 
 /* cit-specific mentorsay*/
 .mentorsay {
-  color: #E236D8;
+  color: #e236d8;
   font-weight: bold;
 }
 
 .mentorsay_admin {
-  color: #8A2BE2;
+  color: #8a2be2;
   font-weight: bold;
 }
 
@@ -737,17 +736,17 @@ blockquote.purple {
 }
 
 .umbra {
-  color: #5000A0;
+  color: #5000a0;
 }
 
 .umbra_emphasis {
-  color: #5000A0;
+  color: #5000a0;
   font-weight: bold;
   font-style: italic;
 }
 
 .umbra_large {
-  color: #5000A0;
+  color: #5000a0;
   font-weight: bold;
   font-style: italic;
   font-size: 3;
@@ -762,131 +761,131 @@ blockquote.purple {
 /* coggers dosen't exist on tg :( */
 /* from decon_msg: font-size: 185% == font-size 3*/
 .brass {
-  color: #BE8700;
+  color: #be8700;
 }
 
 blockquote.brass {
-  border-color: #BE8700;
+  border-color: #be8700;
 }
 
 .heavy_brass {
-  color: #BE8700;
+  color: #be8700;
   font-weight: bold;
   font-style: italic;
 }
 
 .large_brass {
-  color: #BE8700;
+  color: #be8700;
   font-size: 185%;
- }
+}
 
 .big_brass {
-  color: #BE8700;
+  color: #be8700;
   font-size: 185%;
   font-weight: bold;
   font-style: italic;
 }
 
 .ratvar {
-  color: #BE8700;
+  color: #be8700;
   font-size: 6;
   font-weight: bold;
   font-style: italic;
 }
 
 .alloy {
-  color: #42474D;
+  color: #42474d;
 }
 
 .heavy_alloy {
-  color: #42474D;
+  color: #42474d;
   font-weight: bold;
   font-style: italic;
 }
 
 .nezbere_large {
-  color: #42474D;
+  color: #42474d;
   font-size: 185%;
   font-weight: bold;
   font-style: italic;
 }
 
 .nezbere {
-  color: #42474D;
+  color: #42474d;
   font-weight: bold;
   font-style: italic;
 }
 
 .nezbere_small {
-  color: #42474D;
+  color: #42474d;
 }
 
 .sevtug_large {
-  color: #AF0AAF;
+  color: #af0aaf;
   font-size: 185%;
   font-weight: bold;
   font-style: italic;
 }
 
-.sevtug	{
-  color: #AF0AAF;
+.sevtug {
+  color: #af0aaf;
   font-weight: bold;
   font-style: italic;
 }
 
 .sevtug_small {
-  color: #AF0AAF;
+  color: #af0aaf;
 }
 
 .inathneq_large {
-  color: #1E8CE1;
+  color: #1e8ce1;
   font-size: 185%;
   font-weight: bold;
   font-style: italic;
 }
 
-.inathneq	{
-  color: #1E8CE1;
+.inathneq {
+  color: #1e8ce1;
   font-weight: bold;
   font-style: italic;
 }
 
 .inathneq_small {
-  color: #1E8CE1;
+  color: #1e8ce1;
 }
 
 .nzcrentr_large {
-  color: #DAAA18;
+  color: #daaa18;
   font-size: 185%;
   font-weight: bold;
   font-style: italic;
 }
 
 .nzcrentr {
-  color: #DAAA18;
+  color: #daaa18;
   font-weight: bold;
   font-style: italic;
 }
 
 .nzcrentr_small {
-  color: #DAAA18;
+  color: #daaa18;
 }
 
 .neovgre_large {
-  color: #6E001A;
+  color: #6e001a;
   font-size: 185%;
   font-weight: bold;
   font-style: italic;
 }
 
 .neovgre {
-  color: #6E001A;
+  color: #6e001a;
   font-weight: bold;
   font-style: italic;
 }
 
 .neovgre_small {
-  color: #6E001A;
+  color: #6e001a;
 }
 
 .ghostalert {
@@ -977,8 +976,8 @@ blockquote.brass {
   font-size: 185%;
 }
 
-.yellowtext	{
-  color: #FFCC00;
+.yellowtext {
+  color: #ffcc00;
   font-size: 185%;
 }
 
@@ -1002,7 +1001,7 @@ blockquote.brass {
 
 /*jacq */
 .spooky {
-  color: #FF9100;
+  color: #ff9100;
 }
 
 .hypnophrase {
@@ -1034,7 +1033,7 @@ blockquote.brass {
   }
 }
 
-.velvet	{
+.velvet {
   color: #660015;
   font-weight: bold;
   animation: velvet 5000ms infinite;
@@ -1042,19 +1041,19 @@ blockquote.brass {
 }
 
 @keyframes velvet {
-	0% {
+  0% {
     color: #400020;
   }
-	40% {
-    color: #FF0000;
+  40% {
+    color: #ff0000;
   }
-	50% {
-    color: #FF8888;
+  50% {
+    color: #ff8888;
   }
-	60% {
-    color: #FF0000;
+  60% {
+    color: #ff0000;
   }
-	100% {
+  100% {
     color: #400020;
   }
 }
@@ -1160,34 +1159,32 @@ blockquote.brass {
   color: #543354;
 }
 
-
 .tajaran {
-  color: #803B56;
+  color: #803b56;
 }
 
-
 .tajaran_signlang {
-  color: #941C1C;
+  color: #941c1c;
 }
 
 .akhani {
-  color: #AC398C;
+  color: #ac398c;
 }
 
 .skrell {
-  color: #00B0B3;
+  color: #00b0b3;
 }
 
 .skrellfar {
-  color: #70FCFF;
+  color: #70fcff;
 }
 
 .soghun {
-  color: #228B22;
+  color: #228b22;
 }
 
 .solcom {
-  color: #22228B;
+  color: #22228b;
 }
 
 .changeling {
@@ -1195,29 +1192,29 @@ blockquote.brass {
 }
 
 .sergal {
-  color: #0077FF;
+  color: #0077ff;
 }
 
 .birdsongc {
-  color: #CC9900;
+  color: #cc9900;
 }
 
 .vulpkanin {
-  color: #B97A57;
+  color: #b97a57;
 }
 
 .enochian {
-  color: #848A33;
-  letter-spacing:-1pt;
-  word-spacing:4pt;
-  font-family: 'Lucida Sans Unicode','Lucida Grande', sans-serif;
+  color: #848a33;
+  letter-spacing: -1pt;
+  word-spacing: 4pt;
+  font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
 }
 
 .daemon {
-  color: #5E339E;
-	letter-spacing:-1pt;
-	word-spacing:0pt;
-	font-family: 'Courier New', Courier, monospace;
+  color: #5e339e;
+  letter-spacing: -1pt;
+  word-spacing: 0pt;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .luinimma {
@@ -1226,15 +1223,15 @@ blockquote.brass {
 }
 
 .bug {
-	color: #9e9e39;
+  color: #9e9e39;
 }
 
 .vox {
-  color: #AA00AA;
+  color: #aa00aa;
 }
 
 .zaddat {
-  color: #941C1C;
+  color: #941c1c;
 }
 
 .akula {
@@ -1243,7 +1240,7 @@ blockquote.brass {
 
 .squeakish {
   color: #f54298;
-  font-family: Arial
+  font-family: Arial;
 }
 
 .rough {
@@ -1255,7 +1252,7 @@ blockquote.brass {
 }
 
 .terminus {
-  font-family: 'Times New Roman', Times, serif, sans-serif
+  font-family: 'Times New Roman', Times, serif, sans-serif;
 }
 
 .interface {
