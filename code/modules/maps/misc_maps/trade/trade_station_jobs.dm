@@ -3,13 +3,14 @@
 	name = DEPARTMENT_TRADE
 	short_name = "Beruang"
 	color = "#afccb8"
-	sorting_order = -3
+	sorting_order = 50
 	assignable = FALSE
 	visible = FALSE
 
 /datum/job/trader
 	title = "Trader"
 	flag = TRADER
+	id = JOB_ID_TRADER
 //	department = "Trader"
 	//department_flag = TRADE
 	department_flag = CIVILIAN
@@ -54,8 +55,8 @@
 	l_ear = /obj/item/radio/headset/trader
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/trader_coveralls
-	id_slot = slot_wear_id
+	id_slot = SLOT_ID_WORN_ID
 	id_type = /obj/item/card/id/external/merchant	//created a new ID so merchant can open their doors
-	pda_slot = slot_r_store
+	pda_slot = SLOT_ID_RIGHT_POCKET
 	pda_type = /obj/item/pda/chef //cause I like the look
 	id_pda_assignment = "Trader"

@@ -5,7 +5,7 @@
 /obj/item/reagent_containers/syringe
 	name = "syringe"
 	desc = "A syringe."
-	icon = 'icons/obj/syringe.dmi'
+	icon = 'icons/obj/medical/syringe.dmi'
 	item_state = "syringe_0"
 	icon_state = "0"
 	matter = list(MAT_GLASS = 150)
@@ -27,12 +27,12 @@
 /obj/item/reagent_containers/syringe/on_reagent_change()
 	update_icon()
 
-/obj/item/reagent_containers/syringe/pickup(mob/user)
-	..()
+/obj/item/reagent_containers/syringe/pickup(mob/user, flags, atom/oldLoc)
+	. = ..()
 	update_icon()
 
-/obj/item/reagent_containers/syringe/dropped(mob/user)
-	..()
+/obj/item/reagent_containers/syringe/dropped(mob/user, flags, atom/newLoc)
+	. = ..()
 	update_icon()
 
 /obj/item/reagent_containers/syringe/attack_self(mob/user as mob)
@@ -61,7 +61,7 @@
 		return
 
 	if(user.a_intent == INTENT_HARM && ismob(target))
-		if((CLUMSY in user.mutations) && prob(50))
+		if((MUTATION_CLUMSY in user.mutations) && prob(50))
 			target = user
 		syringestab(target, user)
 		return
@@ -85,7 +85,7 @@
 					if(!T.dna)
 						to_chat(user, "<span class='warning'>You are unable to locate any blood. (To be specific, your target seems to be missing their DNA datum).</span>")
 						return
-					if(NOCLONE in T.mutations) //target done been et, no more blood in him
+					if(MUTATION_NOCLONE in T.mutations) //target done been et, no more blood in him
 						to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
 						return
 
@@ -247,11 +247,8 @@
 		if (target != user && H.getarmor(target_zone, "melee") > 5 && prob(50))
 			for(var/mob/O in viewers(world.view, user))
 				O.show_message(text("<font color='red'><B>[user] tries to stab [target] in \the [hit_area] with [src.name], but the attack is deflected by armor!</B></font>"), 1)
-			user.remove_from_mob(src)
 			qdel(src)
-
 			add_attack_logs(user,target,"Syringe harmclick")
-
 			return
 
 		user.visible_message("<span class='danger'>[user] stabs [target] in \the [hit_area] with [src.name]!</span>")
@@ -262,8 +259,6 @@
 	else
 		user.visible_message("<span class='danger'>[user] stabs [target] with [src.name]!</span>")
 		target.take_organ_damage(3)// 7 is the same as crowbar punch
-
-
 
 	var/syringestab_amount_transferred = rand(0, (reagents.total_volume - 5)) //nerfed by popular demand
 	var/contained = reagents.get_reagents()

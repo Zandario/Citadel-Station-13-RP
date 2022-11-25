@@ -28,7 +28,7 @@ SUBSYSTEM_DEF(air)
 	var/current_step = null
 
 	// Updating zone tiles requires temporary storage location of self-zone-blocked turfs across resumes. Used only by process_tiles_to_update.
-	var/list/selfblock_deferred = null
+	var/list/selfblock_deferred = list()
 
 	// This is used to tell Travis WHERE the edges are.
 	var/list/startup_active_edge_log = list()
@@ -37,6 +37,7 @@ SUBSYSTEM_DEF(air)
 	air_master = src
 
 /datum/controller/subsystem/air/Initialize(timeofday)
+#ifndef FASTBOOT_DISABLE_ZONES
 	report_progress("Processing Geometry...")
 
 	current_cycle = 0
@@ -61,23 +62,25 @@ SUBSYSTEM_DEF(air)
 	// Maps should not have active edges on boot.  If we've got some, log it so it can get fixed.
 	if(active_edges.len)
 		var/list/edge_log = list()
+		var/count = 0
 		for(var/datum/zas_edge/E in active_edges)
-			edge_log += "Active Edge [E] ([E.type])"
+			++count
+			edge_log += "Active Edge  I:[count] [E] ([E.type])"
 			for(var/turf/T in E.connecting_turfs)
 				edge_log += "+--- Connecting Turf [T] ([T.type]) @ [T.x], [T.y], [T.z] ([T.loc])"
 		subsystem_log("Active Edges on ZAS Startup\n" + edge_log.Join("\n"))
 		startup_active_edge_log = edge_log.Copy()
-
-	..()
+#endif
+	return ..()
 
 /datum/controller/subsystem/air/fire(resumed = 0)
 	var/timer
 	if(!resumed)
 		if(LAZYLEN(currentrun) != 0)
-			stack_trace("Currentrun not empty when it should be. [english_list(currentrun)]")
+			stack_trace("Currentrun not empty before processing cycle when it should be. [english_list(currentrun)]")
 		currentrun = list()
 		if(current_step != null)
-			stack_trace("current_step was [current_step] instead of null")
+			stack_trace("current_step before processing cycle was [current_step] instead of null")
 		current_step = SSAIR_TURFS
 		current_cycle++
 
@@ -89,10 +92,10 @@ SUBSYSTEM_DEF(air)
 
 	// Okay, we're done! Woo! Got thru a whole air_master cycle!
 	if(LAZYLEN(currentrun) != 0)
-		stack_trace("Currentrun not empty when it should be. [english_list(currentrun)]")
+		stack_trace("Currentrun not empty after processing cycle when it should be. [english_list(currentrun.Copy(1, min(currentrun.len, 5)))]")
 	currentrun = null
 	if(current_step != SSAIR_DONE)
-		stack_trace("current_step was [current_step] instead of [SSAIR_DONE]")
+		stack_trace("current_step after processing cycle was [current_step] instead of [SSAIR_DONE]")
 	current_step = null
 
 /datum/controller/subsystem/air/proc/process_tiles_to_update(resumed = 0)
@@ -107,8 +110,8 @@ SUBSYSTEM_DEF(air)
 		//have valid zones when the self-zone-blocked turfs update.
 		//This ensures that doorways don't form their own single-turf zones, since doorways are self-zone-blocked and
 		//can merge with an adjacent zone, whereas zones that are formed on adjacent turfs cannot merge with the doorway.
-		if(src.selfblock_deferred != null) // Sanity check to make sure it was not remaining from last cycle somehow.
-			stack_trace("WARNING: SELFBLOCK_DEFFERED WAS NOT NULL. Something went wrong.")
+		if(src.selfblock_deferred.len) // Sanity check to make sure it was not remaining from last cycle somehow.
+			stack_trace("WARNING: SELFBLOCK_DEFFERED WAS NOT EMPTY. Something went wrong.")
 		src.selfblock_deferred = list()
 
 	//cache for sanic speed (lists are references anyways)
@@ -126,9 +129,9 @@ SUBSYSTEM_DEF(air)
 				return
 			else
 				continue
+		T.turf_flags &= ~TURF_ZONE_REBUILD_QUEUED
 		T.update_air_properties()
 		T.post_update_air_properties()
-		T.turf_flags &= ~TURF_ZONE_REBUILD_QUEUED
 		#ifdef ZAS_DEBUG_GRAPHICS
 		T.overlays -= mark
 		#endif
@@ -136,25 +139,24 @@ SUBSYSTEM_DEF(air)
 			return
 
 	if(LAZYLEN(currentrun) != 0)
-		stack_trace("WARNING: Currentrun was not empty when it should be.")
-	currentrun = list()
+		stack_trace("WARNING: Currentrun was not empty after tiles process when it should be.")
+		currentrun = list()
 
 	// Run thru the deferred list and processing them
 	while(selfblock_deferred.len)
 		var/turf/T = selfblock_deferred[selfblock_deferred.len]
 		selfblock_deferred.len--
+		T.turf_flags &= ~TURF_ZONE_REBUILD_QUEUED
 		T.update_air_properties()
 		T.post_update_air_properties()
-		T.turf_flags &= ~TURF_ZONE_REBUILD_QUEUED
 		#ifdef ZAS_DEBUG_GRAPHICS
 		T.overlays -= mark
 		#endif
 		if(MC_TICK_CHECK)
 			return
 
-	if(LAZYLEN(selfblock_deferred) != 0)
-		stack_trace("WARNING: selfblock_deffered was not empty (length [LAZYLEN(selfblock_deferred)])")
-	src.selfblock_deferred = null
+	if(selfblock_deferred.len != 0)
+		stack_trace("WARNING: selfblock_defered was not empty after selfblock tiles process (length [LAZYLEN(selfblock_deferred)])")
 
 /datum/controller/subsystem/air/proc/process_active_edges(resumed = 0)
 	if (!resumed)

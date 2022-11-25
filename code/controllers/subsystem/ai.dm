@@ -21,11 +21,11 @@ SUBSYSTEM_DEF(ai)
 		src.currentrun = processing.Copy()
 		slept_mobs = 0
 		busy_z_levels.Cut()
-		for(var/played_mob in player_list)
+		for(var/played_mob in GLOB.player_list)
 			if(!played_mob || isobserver(played_mob))
 				continue
-			var/mob/pm = played_mob
-			busy_z_levels |= pm.z
+			var/turf/player_turf = get_turf(played_mob)
+			busy_z_levels |= player_turf?.z
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun

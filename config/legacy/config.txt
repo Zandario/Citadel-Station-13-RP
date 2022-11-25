@@ -317,7 +317,7 @@ ALLOW_CULT_GHOSTWRITER
 REQ_CULT_GHOSTWRITER 6
 
 ## Sets the number of available character slots
-CHARACTER_SLOTS 10
+CHARACTER_SLOTS 64
 
 ## Sets the number of loadout slots per character
 LOADOUT_SLOTS 3
@@ -393,9 +393,6 @@ EVENT_CUSTOM_START_MAJOR 80;100
 ## Enables specific procedural map generation, generally for mining, however it is specific to the loaded map.  Uncomment to enable it, however it can
 ## worth it to keep it disabled if you are not hosting an actual server, to speed up start-up time for testing code.
 GENERATE_MAP
-
-## Uncomment to enable organ decay outside of a body or storage item.
-#ORGANS_CAN_DECAY
 
 ## Uncomment to have the changelog file automatically open when a user connects and hasn't seen the latest changelog
 #AGGRESSIVE_CHANGELOG

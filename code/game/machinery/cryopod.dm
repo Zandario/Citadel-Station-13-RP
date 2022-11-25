@@ -11,7 +11,7 @@
 /obj/machinery/computer/cryopod
 	name = "cryogenic oversight console"
 	desc = "An interface between crew and the cryogenic storage oversight systems."
-	icon = 'icons/obj/Cryogenic2.dmi'
+	icon = 'icons/obj/medical/cryogenic2.dmi'
 	icon_state = "cellconsole"
 	circuit = /obj/item/circuitboard/cryopodcontrol
 	density = FALSE
@@ -190,7 +190,7 @@
 
 	name = "cryogenic feed"
 	desc = "A bewildering tangle of machinery and pipes."
-	icon = 'icons/obj/Cryogenic2.dmi'
+	icon = 'icons/obj/medical/cryogenic2.dmi'
 	icon_state = "cryo_rear"
 	anchored = TRUE
 	dir = WEST
@@ -199,7 +199,7 @@
 /obj/machinery/cryopod
 	name = "cryogenic freezer"
 	desc = "A man-sized pod for entering suspended animation."
-	icon = 'icons/obj/Cryogenic2.dmi'
+	icon = 'icons/obj/medical/cryogenic2.dmi'
 	icon_state = "cryopod_0"
 	density = TRUE
 	anchored = TRUE
@@ -406,8 +406,7 @@
 						despawn_occupant(bm, TRUE)
 
 	//Drop all items into the pod.
-	for(var/obj/item/W in to_despawn)
-		to_despawn.drop_from_inventory(W)
+	for(var/obj/item/W in to_despawn.get_equipped_items(TRUE, FALSE))
 		W.forceMove(src)
 
 		if(W.contents.len) //Make sure we catch anything not handled by qdel() on the items.
@@ -464,7 +463,7 @@
 	//Handle job slot/tater cleanup.
 	var/job = to_despawn.mind.assigned_role
 
-	job_master.FreeRole(job)
+	SSjob.FreeRole(job)
 
 	if(to_despawn.mind.objectives.len)
 		qdel(to_despawn.mind.objectives)
@@ -624,7 +623,7 @@
 	if(occupant)
 		name = "[name] ([occupant])"
 
-/obj/machinery/cryopod/MouseDrop_T(mob/target, mob/user)
+/obj/machinery/cryopod/MouseDroppedOnLegacy(mob/target, mob/user)
 	if(user.stat || user.lying || !Adjacent(user) || !target.Adjacent(user))
 		return
 	go_in(target, user)

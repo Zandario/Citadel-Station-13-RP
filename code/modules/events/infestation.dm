@@ -35,7 +35,8 @@
 	return res
 
 /datum/event/infestation/setup()
-	announceWhen = rand(announceWhen, announceWhen + 3)
+	// make sure startWhen doesn't go to 0 or below!
+	announceWhen = rand(2, 5)
 	startWhen = announceWhen - 1
 	endWhen = 30
 
@@ -78,7 +79,7 @@
 			locstring = "hydroponics"
 			spawncount = rand(3,15)
 		if(LOC_ENGINEERING)
-			spawn_area_type = /area/engineering/
+			spawn_area_type = /area/engineering/hallway //To make sure that we don't have roaches suicide bomb the SME
 			locstring = "engineering"
 			spawncount = rand(3,15)
 	if(!locstring)

@@ -434,23 +434,29 @@
 	name = "Away Mission - Trade Port"
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "dark"
-	area_flags = AF_RAD_SHIELDED
+	area_flags = AREA_RAD_SHIELDED
 	requires_power = 1
+	ambience = AMBIENCE_GENERIC
 
 /area/tradeport/facility
 	icon_state = "red"
 
 /area/tradeport/engineering
 	icon_state = "yellow"
+	ambience = AMBIENCE_ENGINEERING
 
 /area/tradeport/commons
 	icon_state = "green"
 
 /area/tradeport/dock
 	icon_state = "blue"
+	ambience = AMBIENCE_HANGAR
+	sound_env = LARGE_ENCLOSED
 
 /area/tradeport/pads
 	icon_state = "purple"
+	ambience = AMBIENCE_HANGAR
+	sound_env = LARGE_ENCLOSED
 
 /area/tradeport/spine
 	name = "\improper Commerce Spine"
@@ -478,9 +484,11 @@
 
 /area/tradeport/medical
 	icon_state = "blue"
+	sound_env = SMALL_ENCLOSED
 
 /area/tradeport/atmospherics
 	icon_state = "yellow"
+	ambience = AMBIENCE_ATMOS
 
 /area/tradeport/exterior
 
@@ -493,7 +501,7 @@
 //////// Mothership areas ////////
 /area/mothership
 	requires_power = 1
-	area_flags = AF_RAD_SHIELDED
+	area_flags = AREA_RAD_SHIELDED
 	icon_state = "blue-red2"
 /area/mothership/breakroom
 	name = "Warship - Breakroom"
@@ -525,7 +533,7 @@
 	name = "Warship - Surgery"
 /area/mothership/vault
 	name = "Warship - Vault"
-	area_flags = AF_RAD_SHIELDED | AF_BLUE_SHIELDED
+	area_flags = AREA_RAD_SHIELDED | AREA_BLUE_SHIELDED
 /area/mothership/teleporter
 	name = "Warship - Teleporter Room"
 /area/mothership/security
@@ -550,7 +558,7 @@
 	name = "Warship - Warden"
 /area/mothership/armory
 	name = "Warship - Armory"
-	area_flags = AF_RAD_SHIELDED | AF_BLUE_SHIELDED
+	area_flags = AREA_RAD_SHIELDED | AREA_BLUE_SHIELDED
 /area/mothership/bridge
 	name = "Warship - Bridge"
 /area/mothership/holodeck
@@ -576,7 +584,7 @@
 	icon_state = "yellow"
 	requires_power = 0
 	dynamic_lighting = 0
-	area_flags = AF_RAD_SHIELDED
+	area_flags = AREA_RAD_SHIELDED
 	ambience = AMBIENCE_HIGHSEC
 /area/skipjack_station/transit
 	name = "transit"
@@ -594,7 +602,7 @@
 	name = "\improper Ninja Base"
 	icon_state = "green"
 	requires_power = 0
-	area_flags = AF_RAD_SHIELDED
+	area_flags = AREA_RAD_SHIELDED
 	ambience = AMBIENCE_HIGHSEC
 /area/ninja_dojo/dojo
 	name = "\improper Clan Dojo"
@@ -617,7 +625,7 @@
 // Lavaland
 /area/shuttle/excursion/lavaland
 	name = "Shuttle Landing Point"
-	area_flags = AF_RAD_SHIELDED
+	area_flags = AREA_RAD_SHIELDED
 
 /area/lavaland
 	name = "Lava Land"
@@ -634,6 +642,9 @@
 /area/lavaland/idleruins
 	name = "Lava Land - Idle Ruins"
 
+/area/lavaland/ashlander_camp
+	name = "Lava Land - Ashlander Camp"
+
 /area/lavaland/bosses
 	name = "Lava Land - Boss"
 	requires_power = 0
@@ -649,10 +660,12 @@
 /area/lavaland/central/explored
 	name = "Lava Land (Center) - Thoroughfare"
 	icon_state = "red"
+	ambience = AMBIENCE_LAVA
 
 /area/lavaland/central/unexplored
 	name = "Lava Land (Center) - Unknown"
 	icon_state = "yellow"
+	ambience = AMBIENCE_LAVA
 
 /area/lavaland/central/transit
 	name = "Lava Land (Center) - Transit"
@@ -661,26 +674,32 @@
 /area/lavaland/north/explored
 	name = "Lava Land (North) - Thoroughfare"
 	icon_state = "red"
+	ambience = AMBIENCE_LAVA
 
 /area/lavaland/north/unexplored
 	name = "Lava Land (North) - Unknown"
 	icon_state = "yellow"
+	ambience = AMBIENCE_LAVA
 
 /area/lavaland/south/explored
 	name = "Lava Land (South) - Thoroughfare"
 	icon_state = "red"
+	ambience = AMBIENCE_LAVA
 
 /area/lavaland/south/unexplored
 	name = "Lava Land (South) - Unknown"
 	icon_state = "yellow"
+	ambience = AMBIENCE_LAVA
 
 /area/lavaland/east/explored
 	name = "Lava Land (East) - Thoroughfare"
 	icon_state = "red"
+	ambience = AMBIENCE_LAVA
 
 /area/lavaland/east/unexplored
 	name = "Lava Land (East) - Unknown"
 	icon_state = "yellow"
+	ambience = AMBIENCE_LAVA
 
 /area/lavaland/east/colony
 	name = "Lava Land (East) - Colony"
@@ -708,10 +727,13 @@
 /area/lavaland/west/explored
 	name = "Lava Land (West) - Thoroughfare"
 	icon_state = "red"
+	ambience = AMBIENCE_LAVA
+
 
 /area/lavaland/west/unexplored
 	name = "Lava Land (West) - Unknown"
 	icon_state = "yellow"
+	ambience = AMBIENCE_LAVA
 
 /area/lavaland/dungeon/exterior
 	name = "Lava Land (Dungeon) - Unknown"
@@ -752,7 +774,7 @@
 	dynamic_lighting = TRUE
 
 /area/aerostat/surface
-	area_flags = AF_RAD_SHIELDED
+	area_flags = AREA_RAD_SHIELDED
 	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg')
 
 /area/aerostat/surface/explored

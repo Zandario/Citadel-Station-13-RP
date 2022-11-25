@@ -13,13 +13,32 @@
 	name = "Misc"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
 
-//Use this template to update the Western Z when POIs are created for it.
-/datum/map_template/rift_lateload/lavaland/on_map_loaded(z)
-	. = ..()
-	seed_submaps(list(Z_LEVEL_LAVALAND), 40, /area/lavaland/central/unexplored, /datum/map_template/submap/level_specific/lavaland)
-	new /datum/random_map/noise/ore/lavaland(null, 1, 1, Z_LEVEL_LAVALAND, 64, 64)         // Create the mining ore distribution map.
-	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_LAVALAND, world.maxx - 4, world.maxy - 4) // Create the lavaland Z-level.
 */
+
+
+/datum/map_template/rift_lateload
+	allow_duplicates = FALSE
+	var/associated_map_datum
+
+/datum/map_template/rift_lateload/on_map_loaded(z)
+	if(!associated_map_datum || !ispath(associated_map_datum))
+		log_game("Extra z-level [src] has no associated map datum")
+		return
+
+	new associated_map_datum(GLOB.using_map, z)
+
+/datum/map_z_level/rift_lateload
+	z = 0
+	flags = MAP_LEVEL_SEALED
+
+/datum/map_z_level/rift_lateload/New(var/datum/map/map, mapZ)
+	if(mapZ && !z)
+		z = mapZ
+	return ..(map)
+
+
+
+
 //////////////////////////////////////////////////////////////////////////////
 /// Away Missions
 
@@ -35,7 +54,7 @@
 /datum/map_z_level/rift_lateload/away_debrisfield
 	name = "Away Mission - Debris Field"
 	z = Z_LEVEL_DEBRISFIELD
-
+	base_turf = /turf/space
 
 /datum/map_template/rift_lateload/away_debrisfield/on_map_loaded(z)
 	. = ..()
@@ -54,6 +73,7 @@
 /datum/map_z_level/rift_lateload/away_piratebase
 	name = "Away Mission - Pirate Base"
 	z = Z_LEVEL_PIRATEBASE
+	base_turf = /turf/space
 
 // lavaland start
 #include "lavaland/_lavaland.dm"
@@ -67,6 +87,7 @@
 /datum/map_z_level/rift_lateload/lavaland
 	name = "Away Mission - Lava Land"
 	z = Z_LEVEL_LAVALAND
+	base_turf = /turf/simulated/mineral/floor/lavaland
 
 /datum/map_template/rift_lateload/lavaland/on_map_loaded(z)
 	. = ..()
@@ -106,6 +127,7 @@
 /datum/map_z_level/rift_lateload/lavaland_east
 	name = "Away Mission - Lava Land (East)"
 	z = Z_LEVEL_LAVALAND_EAST
+	base_turf = /turf/simulated/mineral/floor/lavaland
 
 /datum/map_template/rift_lateload/lavaland_east/on_map_loaded(z)
 	. = ..()
@@ -127,6 +149,7 @@
 /datum/map_z_level/rift_lateload/away_g_world
 	name = "Away Mission - Mining Planet"
 	z = Z_LEVEL_MININGPLANET
+	base_turf = /turf/simulated/mineral/floor/classg
 
 /datum/map_template/rift_lateload/away_g_world/on_map_loaded(z)
 	. = ..()
@@ -151,6 +174,7 @@
 /datum/map_z_level/rift_lateload/away_d_world
 	name = "Away Mission - Rogue Planet"
 	z = Z_LEVEL_UNKNOWN_PLANET
+	base_turf = /turf/simulated/mineral/floor/classd
 
 // Class H Desert Planet Exploration Zone.
 /datum/map_template/rift_lateload/away_h_world
@@ -170,6 +194,7 @@
 /datum/map_z_level/rift_lateload/away_h_world
 	name = "Away Mission - Desert Planet"
 	z = Z_LEVEL_DESERT_PLANET
+	base_turf = /turf/simulated/floor/outdoors/beach/sand/lowdesert
 
 // Gaia Planet Zone.
 /datum/map_template/rift_lateload/away_m_world
@@ -189,6 +214,7 @@
 /datum/map_z_level/rift_lateload/away_m_world
 	name = "Away Mission - Gaia Planet"
 	z = Z_LEVEL_GAIA_PLANET
+	base_turf = /turf/simulated/floor/outdoors/dirt/classm
 
 // Frozen Planet Zone.
 /datum/map_template/rift_lateload/away_p_world
@@ -206,6 +232,7 @@
 /datum/map_z_level/rift_lateload/away_p_world
 	name = "Away Mission - Frozen Planet"
 	z = Z_LEVEL_FROZEN_PLANET
+	base_turf = /turf/simulated/floor/outdoors/ice/classp
 
 // Trade post
 #include "space/trade_port/_tradeport.dm"
@@ -220,9 +247,63 @@
 /datum/map_z_level/rift_lateload/away_tradeport
 	name = "Away Mission - Trade Port"
 	z = Z_LEVEL_TRADEPORT
+	base_turf = /turf/space
 
+
+//////////////////////////////////////////////////////////////////////////////
+//Rogue Mines Stuff
+
+/datum/map_template/rift_lateload/tether_roguemines1
+	name = "Asteroid Belt 1"
+	desc = "Mining, but rogue. Zone 1"
+	mappath = "_maps/map_levels/192x192/roguemining_192x192/rogue_mine1.dmm"
+	associated_map_datum = /datum/map_z_level/rift_lateload/roguemines1
+
+/datum/map_z_level/rift_lateload/roguemines1
+	name = "Belt 1"
+	z = Z_LEVEL_ROGUEMINE_1
+	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+
+/datum/map_template/rift_lateload/tether_roguemines2
+	name = "Asteroid Belt 2"
+	desc = "Mining, but rogue. Zone 2"
+	mappath = "_maps/map_levels/192x192/roguemining_192x192/rogue_mine2.dmm"
+
+	associated_map_datum = /datum/map_z_level/rift_lateload/roguemines2
+
+/datum/map_z_level/rift_lateload/roguemines2
+	name = "Belt 2"
+	z = Z_LEVEL_ROGUEMINE_2
+	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+
+/datum/map_template/rift_lateload/tether_roguemines3
+	name = "Asteroid Belt 3"
+	desc = "Mining, but rogue. Zone 3"
+	mappath = "_maps/map_levels/192x192/roguemining_192x192/rogue_mine3.dmm"
+	associated_map_datum = /datum/map_z_level/rift_lateload/roguemines3
+
+/datum/map_z_level/rift_lateload/roguemines3
+	name = "Belt 3"
+	z = Z_LEVEL_ROGUEMINE_3
+	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+
+
+/datum/map_template/rift_lateload/tether_roguemines4
+	name = "Asteroid Belt 4"
+	desc = "Mining, but rogue. Zone 4"
+	mappath = "_maps/map_levels/192x192/roguemining_192x192/rogue_mine4.dmm"
+	associated_map_datum = /datum/map_z_level/rift_lateload/roguemines1
+
+/datum/map_z_level/rift_lateload/roguemines4
+	name = "Belt 4"
+	z = Z_LEVEL_ROGUEMINE_4
+	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+
+//////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
 // Code Shenanigans for rift lateload maps
+
+/*	// Move to  the top for organzation sake
 /datum/map_template/rift_lateload
 	allow_duplicates = FALSE
 	var/associated_map_datum
@@ -242,6 +323,7 @@
 	if(mapZ && !z)
 		z = mapZ
 	return ..(map)
+*/
 
 /turf/unsimulated/wall/seperator //to block vision between transit zones
 	name = ""

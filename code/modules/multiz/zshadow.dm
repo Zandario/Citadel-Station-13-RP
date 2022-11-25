@@ -16,6 +16,12 @@
 /mob/zshadow/can_fall()
 	return FALSE
 
+/mob/zshadow/check_impact(atom/movable/falling_atom)
+	return FALSE
+
+/mob/zshadow/CheckFall(atom/movable/falling_atom)
+	return FALSE
+
 /mob/zshadow/Initialize(mapload, mob/attach)
 	. = ..()
 	owner = attach
@@ -80,6 +86,7 @@
 	while(istype(OS))
 		if(!M.shadow)
 			M.shadow = new /mob/zshadow(OS, M)
+		M.shadow.forceMove(OS)
 		M = M.shadow
 		OS = OS.Above()
 	// The topmost level does not need a shadow!

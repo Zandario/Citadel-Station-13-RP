@@ -16,6 +16,7 @@
 	blinded = FALSE
 	anchored = TRUE
 	invisibility = INVISIBILITY_OBSERVER
+	SET_APPEARANCE_FLAGS(PIXEL_SCALE | KEEP_TOGETHER)
 	/// Do we set dir on move
 	var/updatedir = TRUE
 	var/can_reenter_corpse
@@ -91,6 +92,8 @@
 	var/last_revive_notification = null // world.time of last notification, used to avoid spamming players from defibs or cloners.
 	/// stealthmin vars
 	var/original_name
+	/// are we a poltergeist and get to do stupid things like move items, throw things, and move chairs?
+	var/is_spooky = FALSE
 
 /mob/observer/dead/Initialize(mapload)
 	var/mob/body = loc
@@ -126,14 +129,14 @@
 				name = body.real_name
 			else
 				if(gender == MALE)
-					name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+					name = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
 				else
-					name = capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
+					name = capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
 
 		mind = body.mind	//we don't transfer the mind but we keep a reference to it.
 
 	if(!T)
-		T = SSjob.GetLatejoinSpawnpoint()
+		T = SSjob.get_latejoin_spawnpoint()
 	forceMove(T)
 
 	for(var/v in GLOB.active_alternate_appearances)
@@ -142,8 +145,8 @@
 		var/datum/atom_hud/alternate_appearance/AA = v
 		AA.onNewMob(src)
 
-	if(!name)							//To prevent nameless ghosts
-		name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+	if(!name) //To prevent nameless ghosts
+		name = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
 	real_name = name
 	return ..()
 
@@ -265,7 +268,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/observer/dead/verb/reenter_corpse()
 	set category = "Ghost"
 	set name = "Re-enter Corpse"
-	if(!client)	return
+	if(!client)
+		return
 	if(!(mind && mind.current && can_reenter_corpse))
 		to_chat(src, "<span class='warning'>You have no body.</span>")
 		return
@@ -536,7 +540,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	src << browse(dat, "window=manifest;size=370x420;can_close=1")
 
 //This is called when a ghost is drag clicked to something.
-/mob/observer/dead/MouseDrop(atom/over)
+/mob/observer/dead/OnMouseDropLegacy(atom/over)
 	if(!usr || !over) return
 	if (isobserver(usr) && usr.client && usr.client.holder && isliving(over))
 		if (usr.client.holder.cmd_ghost_drag(src,over))
@@ -571,7 +575,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	var/list/choices = list()
-	for(var/obj/effect/decal/cleanable/blood/B in view(1,src))
+	for(var/obj/effect/debris/cleanable/blood/B in view(1,src))
 		if(B.amount > 0)
 			choices += B
 
@@ -579,7 +583,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(src, "<span class = 'warning'>There is no blood to use nearby.</span>")
 		return
 
-	var/obj/effect/decal/cleanable/blood/choice = input(src,"What blood would you like to use?") in null|choices
+	var/obj/effect/debris/cleanable/blood/choice = input(src,"What blood would you like to use?") in null|choices
 
 	var/direction = input(src,"Which way?","Tile selection") as anything in list("Here","North","South","East","West")
 	var/turf/simulated/T = src.loc
@@ -596,7 +600,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/doodle_color = (choice.basecolor) ? choice.basecolor : "#A10808"
 
 	var/num_doodles = 0
-	for (var/obj/effect/decal/cleanable/blood/writing/W in T)
+	for (var/obj/effect/debris/cleanable/blood/writing/W in T)
 		num_doodles++
 	if (num_doodles > 4)
 		to_chat(src, "<span class='warning'>There is no space to write on!</span>")
@@ -612,7 +616,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			message += "-"
 			to_chat(src, "<span class='warning'>You ran out of blood to write with!</span>")
 
-		var/obj/effect/decal/cleanable/blood/writing/W = new(T)
+		var/obj/effect/debris/cleanable/blood/writing/W = new(T)
 		W.basecolor = doodle_color
 		W.update_icon()
 		W.message = message
@@ -637,7 +641,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		)
 		toggle_visibility(TRUE)
 	else
-		var/datum/gender/T = gender_datums[user.get_visible_gender()]
+		var/datum/gender/T = GLOB.gender_datums[user.get_visible_gender()]
 		user.visible_message ( \
 			"<span class='warning'>\The [user] just tried to smash [T.his] book into that ghost!  It's not very effective.</span>", \
 			"<span class='warning'>You get the feeling that the ghost can't become any more visible.</span>" \
@@ -685,7 +689,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set desc = "Toggles showing your key in dead chat."
 
 	client.toggle_preference(/datum/client_preference/anonymous_ghost_chat)
-	SScharacter_setup.queue_preferences_save(client.prefs)
+	SScharacters.queue_preferences_save(client.prefs)
 	if(is_preference_enabled(/datum/client_preference/anonymous_ghost_chat))
 		to_chat(src, "<span class='info'>Your key won't be shown when you speak in dead chat.</span>")
 	else
@@ -846,3 +850,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/datum/perspective/P = ..()
 	P.SetSight(SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF)
 	P.SetSeeInvis(SEE_INVISIBLE_OBSERVER)
+
+/mob/dead/observer/canUseTopic(atom/movable/M, be_close=FALSE, no_dexterity=FALSE, no_tk=FALSE)
+	return isAdminGhostAI(usr)

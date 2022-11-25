@@ -84,7 +84,7 @@
 
 		var/mob/playermob
 
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if(M.ckey == banckey)
 				playermob = M
 				break
@@ -376,7 +376,7 @@
 		if(!M.ckey)	//sanity
 			to_chat(usr, "<span class='adminlog'>This mob has no ckey</span>")
 			return
-		if(!job_master)
+		if(!SSjob)
 			to_chat(usr, "<span class='adminlog'>Job Master has not been setup!</span>")
 			return
 
@@ -397,7 +397,7 @@
 		jobs += "<tr align='center' bgcolor='ccccff'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND))]'><a href='?src=\ref[src];jobban3=commanddept;jobban4=\ref[M]'>Command Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND))
 			if(!jobPos)	continue
-			var/datum/job/job = job_master.GetJob(jobPos)
+			var/datum/job/job = SSjob.get_job(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -418,7 +418,7 @@
 		jobs += "<tr bgcolor='ffddf0'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_SECURITY))]'><a href='?src=\ref[src];jobban3=securitydept;jobban4=\ref[M]'>Security Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_SECURITY))
 			if(!jobPos)	continue
-			var/datum/job/job = job_master.GetJob(jobPos)
+			var/datum/job/job = SSjob.get_job(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -439,7 +439,7 @@
 		jobs += "<tr bgcolor='fff5cc'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_ENGINEERING))]'><a href='?src=\ref[src];jobban3=engineeringdept;jobban4=\ref[M]'>Engineering Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_ENGINEERING))
 			if(!jobPos)	continue
-			var/datum/job/job = job_master.GetJob(jobPos)
+			var/datum/job/job = SSjob.get_job(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -460,7 +460,7 @@
 		jobs += "<tr bgcolor='fff5cc'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_CARGO))]'><a href='?src=\ref[src];jobban3=cargodept;jobban4=\ref[M]'>Cargo Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_CARGO))
 			if(!jobPos)	continue
-			var/datum/job/job = job_master.GetJob(jobPos)
+			var/datum/job/job = SSjob.get_job(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -481,7 +481,7 @@
 		jobs += "<tr bgcolor='ffeef0'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_MEDICAL))]'><a href='?src=\ref[src];jobban3=medicaldept;jobban4=\ref[M]'>Medical Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_MEDICAL))
 			if(!jobPos)	continue
-			var/datum/job/job = job_master.GetJob(jobPos)
+			var/datum/job/job = SSjob.get_job(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -502,7 +502,7 @@
 		jobs += "<tr bgcolor='e79fff'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_RESEARCH))]'><a href='?src=\ref[src];jobban3=sciencedept;jobban4=\ref[M]'>Science Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_RESEARCH))
 			if(!jobPos)	continue
-			var/datum/job/job = job_master.GetJob(jobPos)
+			var/datum/job/job = SSjob.get_job(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -522,7 +522,7 @@
 		jobs += "<tr bgcolor='e79fff'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_PLANET))]'><a href='?src=\ref[src];jobban3=sciencedept;jobban4=\ref[M]'>Science Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_PLANET))
 			if(!jobPos)	continue
-			var/datum/job/job = job_master.GetJob(jobPos)
+			var/datum/job/job = SSjob.get_job(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -542,7 +542,7 @@
 		jobs += "<tr bgcolor='dddddd'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_CIVILIAN))]'><a href='?src=\ref[src];jobban3=civiliandept;jobban4=\ref[M]'>Civilian Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_CIVILIAN))
 			if(!jobPos)	continue
-			var/datum/job/job = job_master.GetJob(jobPos)
+			var/datum/job/job = SSjob.get_job(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -569,7 +569,7 @@
 		jobs += "<tr bgcolor='ccffcc'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_SYNTHETIC))+1]'><a href='?src=\ref[src];jobban3=nonhumandept;jobban4=\ref[M]'>Non-human Positions</a></th></tr><tr align='center'>"
 		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_SYNTHETIC))
 			if(!jobPos)	continue
-			var/datum/job/job = job_master.GetJob(jobPos)
+			var/datum/job/job = SSjob.get_job(jobPos)
 			if(!job) continue
 
 			if(jobban_isbanned(M, job.title))
@@ -646,7 +646,7 @@
 				alert("You cannot perform this action. You must be of a higher administrative rank!")
 				return
 
-		if(!job_master)
+		if(!SSjob)
 			to_chat(usr, "<span class='adminlog'>Job Master has not been setup!</span>")
 			return
 
@@ -656,56 +656,56 @@
 			if("commanddept")
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND))
 					if(!jobPos)	continue
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.get_job(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("securitydept")
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_SECURITY))
 					if(!jobPos)	continue
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.get_job(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("engineeringdept")
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_ENGINEERING))
 					if(!jobPos)	continue
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.get_job(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("cargodept")
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_CARGO))
 					if(!jobPos)	continue
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.get_job(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("medicaldept")
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_MEDICAL))
 					if(!jobPos)	continue
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.get_job(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("sciencedept")
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_RESEARCH))
 					if(!jobPos)	continue
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.get_job(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("explorationdept")
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_PLANET))
 					if(!jobPos)	continue
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.get_job(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("civiliandept")
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_CIVILIAN))
 					if(!jobPos)	continue
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.get_job(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("nonhumandept")
 				joblist += "pAI"
 				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_SYNTHETIC))
 					if(!jobPos)	continue
-					var/datum/job/temp = job_master.GetJob(jobPos)
+					var/datum/job/temp = SSjob.get_job(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			else
@@ -1042,8 +1042,8 @@
 		locker.locked = 1
 
 		//strip their stuff and stick it in the crate
-		for(var/obj/item/I in M)
-			M.drop_from_inventory(I, locker)
+		for(var/obj/item/I in M.get_equipped_items(TRUE, TRUE))
+			M.transfer_item_to_loc(I, locker, INV_OP_FORCE)
 
 		//so they black out before warping
 		M.Paralyse(5)
@@ -1053,8 +1053,8 @@
 		M.loc = prison_cell
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/prisoner = M
-			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/prison(prisoner), slot_w_uniform)
-			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), slot_shoes)
+			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/prison(prisoner), SLOT_ID_UNIFORM)
+			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), SLOT_ID_SHOES)
 
 		to_chat(M, "<font color='red'>You have been sent to the prison station!</font>")
 		log_admin("[key_name(usr)] sent [key_name(M)] to the prison station.")
@@ -1074,8 +1074,8 @@
 			to_chat(usr, "This cannot be used on instances of type /mob/living/silicon/ai")
 			return
 
-		for(var/obj/item/I in M)
-			M.drop_from_inventory(I)
+		for(var/obj/item/I in M.get_equipped_items(TRUE, TRUE))
+			M.drop_item_to_ground(I, INV_OP_FORCE)
 
 		M.Paralyse(5)
 		sleep(5)
@@ -1099,8 +1099,8 @@
 			to_chat(usr, "This cannot be used on instances of type /mob/living/silicon/ai")
 			return
 
-		for(var/obj/item/I in M)
-			M.drop_from_inventory(I)
+		for(var/obj/item/I in M.get_equipped_items(TRUE, TRUE))
+			M.drop_item_to_ground(I, INV_OP_FORCE)
 
 		M.Paralyse(5)
 		sleep(5)
@@ -1146,13 +1146,13 @@
 			to_chat(usr, "This cannot be used on instances of type /mob/living/silicon/ai")
 			return
 
-		for(var/obj/item/I in M)
-			M.drop_from_inventory(I)
+		for(var/obj/item/I in M.get_equipped_items(TRUE, TRUE))
+			M.drop_item_to_ground(I, INV_OP_FORCE)
 
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/observer = M
-			observer.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket(observer), slot_w_uniform)
-			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(observer), slot_shoes)
+			observer.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket(observer), SLOT_ID_UNIFORM)
+			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(observer), SLOT_ID_SHOES)
 		M.Paralyse(5)
 		sleep(5)
 		M.loc = pick(tdomeobserve)
@@ -1278,7 +1278,7 @@
 		var/mob/M = locate(href_list["take_question"])
 		if(ismob(M))
 			var/take_msg = "<span class='notice'><b>ADMINHELP</b>: <b>[key_name(usr.client)]</b> is attending to <b>[key_name(M)]'s</b> adminhelp, please don't dogpile them.</span>"
-			for(var/client/X in admins)
+			for(var/client/X in GLOB.admins)
 				if((R_ADMIN|R_MOD|R_EVENT|R_SERVER) & X.holder.rights)
 					to_chat(X, take_msg)
 			to_chat(M, "<span class='notice'><b>Your adminhelp is being attended to by [usr.client]. Thanks for your patience!</b></span>")
@@ -1366,17 +1366,12 @@
 			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
 			return
 
-		H.equip_to_slot_or_del( new /obj/item/reagent_containers/food/snacks/cookie(H), slot_l_hand )
-		if(!(istype(H.l_hand,/obj/item/reagent_containers/food/snacks/cookie)))
-			H.equip_to_slot_or_del( new /obj/item/reagent_containers/food/snacks/cookie(H), slot_r_hand )
-			if(!(istype(H.r_hand,/obj/item/reagent_containers/food/snacks/cookie)))
-				log_admin("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
-				message_admins("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
-				return
-			else
-				H.update_inv_r_hand()//To ensure the icon appears in the HUD
-		else
-			H.update_inv_l_hand()
+		var/obj/item/reagent_containers/food/snacks/cookie/C = new(H)
+		if(!H.put_in_hands_or_del(C))
+			log_admin("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
+			message_admins("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
+			return
+
 		log_admin("[key_name(H)] got their cookie, spawned by [key_name(src.owner)]")
 		message_admins("[key_name(H)] got their cookie, spawned by [key_name(src.owner)]")
 		feedback_inc("admin_cookies_spawned",1)
@@ -1390,17 +1385,12 @@
 			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
 			return
 
-		H.equip_to_slot_or_del( new /obj/item/reagent_containers/food/snacks/dtreat(H), slot_l_hand )
-		if(!(istype(H.l_hand,/obj/item/reagent_containers/food/snacks/dtreat)))
-			H.equip_to_slot_or_del( new /obj/item/reagent_containers/food/snacks/dtreat(H), slot_r_hand )
-			if(!(istype(H.r_hand,/obj/item/reagent_containers/food/snacks/dtreat)))
-				log_admin("[key_name(H)] has their hands full, so they did not receive their treat, spawned by [key_name(src.owner)].")
-				message_admins("[key_name(H)] has their hands full, so they did not receive their treat, spawned by [key_name(src.owner)].")
-				return
-			else
-				H.update_inv_r_hand()//To ensure the icon appears in the HUD
-		else
-			H.update_inv_l_hand()
+		var/obj/item/reagent_containers/food/snacks/dtreat/C = new(H)
+		if(!H.put_in_hands_or_del(C))
+			log_admin("[key_name(H)] has their hands full, so they did not receive their treat, spawned by [key_name(src.owner)].")
+			message_admins("[key_name(H)] has their hands full, so they did not receive their treat, spawned by [key_name(src.owner)].")
+			return
+
 		log_admin("[key_name(H)] got their treat, spawned by [key_name(src.owner)]")
 		message_admins("[key_name(H)] got their treat, spawned by [key_name(src.owner)]")
 		feedback_inc("admin_cookies_spawned",1)
@@ -1651,7 +1641,7 @@
 			if ( !( ishuman(usr) || issmall(usr) ) )
 				to_chat(usr, "Can only spawn in hand when you're a human or a monkey.")
 				where = "onfloor"
-			else if ( usr.get_active_hand() )
+			else if ( usr.get_active_held_item() )
 				to_chat(usr, "Your active hand is full. Spawning on floor.")
 				where = "onfloor"
 
@@ -1907,7 +1897,7 @@
 				to_chat(usr, "[M] is illegal type, must be /mob!")
 				return
 			var/lang2toggle = href_list["lang"]
-			var/datum/language/L = GLOB.all_languages[lang2toggle]
+			var/datum/language/L = SScharacters.resolve_language_name(lang2toggle)
 
 			if(L in M.languages)
 				if(!M.remove_language(lang2toggle))

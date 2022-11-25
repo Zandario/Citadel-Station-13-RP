@@ -4,23 +4,27 @@
 /obj/item/reagent_containers/pill
 	name = "pill"
 	desc = "A pill."
-	icon = 'icons/obj/chemical.dmi'
-	icon_state = null
+	icon = 'icons/obj/medical/chemical.dmi'
+	icon_state = "pill"
+	base_icon_state = "pill"
 	item_state = "pill"
 	drop_sound = 'sound/items/drop/food.ogg'
 	pickup_sound = 'sound/items/pickup/food.ogg'
-
-	var/base_state = "pill"
 
 	possible_transfer_amounts = null
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS
 	volume = 60
 
+	/// When set, we allow automatic naming on init.
+	var/rename_with_volume = FALSE
+
 /obj/item/reagent_containers/pill/Initialize(mapload)
 	. = ..()
 	if(!icon_state)
-		icon_state = "[base_state][rand(1, 4)]" //preset pills only use colour changing or unique icons
+		icon_state = "pill[rand(1,20)]"
+	if(reagents.total_volume && rename_with_volume)
+		name += " ([reagents.total_volume]u)"
 
 /obj/item/reagent_containers/pill/attack(mob/M as mob, mob/user as mob)
 	if(M == user)
@@ -33,9 +37,10 @@
 			if(blocked)
 				to_chat(user, "<span class='warning'>\The [blocked] is in the way!</span>")
 				return
+			if(!user.attempt_void_item_for_installation(src))
+				return
 
 			to_chat(M, "<span class='notice'>You swallow \the [src].</span>")
-			M.drop_from_inventory(src) //icon update
 			if(reagents.total_volume)
 				reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
 			qdel(src)
@@ -57,19 +62,15 @@
 		user.setClickCooldown(user.get_attack_speed(src))
 		if(!do_mob(user, M))
 			return
-
-		user.drop_from_inventory(src) //icon update
+		if(!user.attempt_void_item_for_installation(src))
+			return
 		user.visible_message("<span class='warning'>[user] forces [M] to swallow \the [src].</span>")
-
 		var/contained = reagentlist()
 		add_attack_logs(user,M,"Fed a pill containing [contained]")
-
 		if(reagents && reagents.total_volume)
 			reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
 		qdel(src)
-
 		return 1
-
 	return 0
 
 /obj/item/reagent_containers/pill/afterattack(obj/target, mob/user, proximity)

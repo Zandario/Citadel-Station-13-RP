@@ -31,8 +31,9 @@
 
 /obj/effect/energy_field/Destroy()
 	update_nearby_tiles()
-	my_gen.field.Remove(src)
-	my_gen = null
+	if(my_gen)
+		my_gen.field.Remove(src)
+		my_gen = null
 	var/turf/current_loc = get_turf(src)
 	. = ..()
 	for(var/direction in GLOB.cardinal)
@@ -41,7 +42,7 @@
 			for(var/obj/effect/energy_field/F in T)
 				F.update_icon()
 
-/obj/effect/energy_field/ex_act(var/severity)
+/obj/effect/energy_field/legacy_ex_act(var/severity)
 	adjust_strength(-(4 - severity) * 4)
 
 /obj/effect/energy_field/bullet_act(var/obj/item/projectile/Proj)

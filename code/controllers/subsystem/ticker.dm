@@ -166,6 +166,9 @@ SUBSYSTEM_DEF(ticker)
 		timeLeft = newtime
 
 /datum/controller/subsystem/ticker/proc/setup()
+	to_chat(world, "<span class='boldannounce'>Starting game...</span>")
+	var/init_start = world.timeofday
+
 	//Create and announce mode
 	if(master_mode=="secret")
 		src.hide_mode = 1
@@ -193,10 +196,10 @@ SUBSYSTEM_DEF(ticker)
 		to_chat(world, "<span class='danger'>Serious error in mode setup!</span> Reverting to pregame lobby.") //Uses setup instead of set up due to computational context.
 		return 0
 
-	job_master.ResetOccupations()
+	SSjob.reset_occupations()
 	src.mode.create_antagonists()
 	src.mode.pre_setup()
-	job_master.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
+	SSjob.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
 	if(!src.mode.can_start())
 		to_chat(world, "<B>Unable to start [mode.name].</B> Not enough players readied, [config_legacy.player_requirements[mode.config_tag]] players needed. Reverting to pregame lobby.")
@@ -204,7 +207,7 @@ SUBSYSTEM_DEF(ticker)
 		Master.SetRunLevel(RUNLEVEL_LOBBY)
 		mode.fail_setup()
 		mode = null
-		job_master.ResetOccupations()
+		SSjob.reset_occupations()
 		return 0
 
 	if(hide_mode)
@@ -236,7 +239,9 @@ SUBSYSTEM_DEF(ticker)
 		// type filtered, we cannot risk runtimes
 		L.OnRoundstart()
 
+	log_world("Game start took [(world.timeofday - init_start)/10]s")
 	round_start_time = world.time
+	SSdbcore.SetRoundStart()
 
 	// TODO Dear God Fix This.  Fix all of this. Not just this line, this entire proc. This entire file!
 	spawn(0)//Forking here so we dont have to wait for this to finish
@@ -384,7 +389,16 @@ SUBSYSTEM_DEF(ticker)
 
 
 /datum/controller/subsystem/ticker/proc/create_characters()
-	for(var/mob/new_player/player in player_list)
+	//! TEMPORARY PATCH: putting people in nullspace results in obscene behavior from BYOND
+	//? since we really don't want to kill login ..() without reason, we spawn them at random overflow spawnpoint.
+	var/obj/landmark/spawnpoint/S
+	for(var/faction in SSjob.overflow_spawnpoints)
+		var/list/spawnpoints = SSjob.overflow_spawnpoints[faction]
+		S = SAFEPICK(spawnpoints)
+	if(!S)
+		log_and_message_admins("Unable to get overflow spawnpoint; roundstart is going to lag.")
+	//! END
+	for(var/mob/new_player/player in GLOB.player_list)
 		if(player && player.ready && player.mind)
 			if(player.mind.assigned_role=="AI")
 				player.close_spawn_windows()
@@ -392,7 +406,7 @@ SUBSYSTEM_DEF(ticker)
 			else if(!player.mind.assigned_role)
 				continue
 			else
-				var/mob/living/carbon/human/new_char = player.create_character()
+				var/mob/living/carbon/human/new_char = player.create_character(S)
 				if(new_char)
 					qdel(player)
 				if(istype(new_char) && !(new_char.mind.assigned_role=="Cyborg"))
@@ -400,22 +414,22 @@ SUBSYSTEM_DEF(ticker)
 
 
 /datum/controller/subsystem/ticker/proc/collect_minds()
-	for(var/mob/living/player in player_list)
+	for(var/mob/living/player in GLOB.player_list)
 		if(player.mind)
 			minds += player.mind
 
 
 /datum/controller/subsystem/ticker/proc/equip_characters()
 	var/captainless=1
-	for(var/mob/living/carbon/human/player in player_list)
+	for(var/mob/living/carbon/human/player in GLOB.player_list)
 		if(player && player.mind && player.mind.assigned_role)
 			if(player.mind.assigned_role == "Facility Director")
 				captainless=0
 			if(!player_is_antag(player.mind, only_offstation_roles = 1))
-				job_master.EquipRank(player, player.mind.assigned_role, 0)
+				SSjob.EquipRank(player, player.mind.assigned_role, 0)
 				UpdateFactionList(player)
 	if(captainless)
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if(!istype(M,/mob/new_player))
 				to_chat(M, "Facility Directorship not forced on anyone.")
 
@@ -461,6 +475,7 @@ SUBSYSTEM_DEF(ticker)
 				broadcastmessage += "\n\n<@&[CONFIG_GET(string/chat_reboot_role)]>, the server will reboot shortly!"
 			send2chat(broadcastmessage, CONFIG_GET(string/chat_roundend_notice_tag))
 
+		SSdbcore.SetRoundEnd()
 		SSpersistence.SavePersistence()
 		ready_for_reboot = TRUE
 		standard_reboot()
@@ -486,7 +501,7 @@ SUBSYSTEM_DEF(ticker)
 		var/datum/callback/cb = I
 		cb.InvokeAsync()
 	LAZYCLEARLIST(round_end_events)
-	for(var/mob/Player in player_list)
+	for(var/mob/Player in GLOB.player_list)
 		if(Player.mind && !isnewplayer(Player))
 			if(Player.stat != DEAD)
 				var/turf/playerTurf = get_turf(Player)

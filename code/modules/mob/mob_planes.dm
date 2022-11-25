@@ -11,7 +11,6 @@
 /datum/plane_holder/New(mob/this_guy)
 	ASSERT(ismob(this_guy))
 	my_mob = this_guy
-
 	//It'd be nice to lazy init these but some of them are important to just EXIST. Like without ghost planemaster, you can see ghosts. Go figure.
 
 	// 'Utility' planes
@@ -106,7 +105,7 @@
 // The Plane Master
 ////////////////////
 /atom/movable/screen/plane_master
-	screen_loc = "1,1"
+	screen_loc = "CENTER"
 	plane = -100 //Dodge just in case someone instantiates one of these accidentally, don't end up on 0 with plane_master
 	appearance_flags = PLANE_MASTER
 	mouse_opacity = 0	//Normally unclickable

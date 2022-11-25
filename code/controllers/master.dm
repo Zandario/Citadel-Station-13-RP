@@ -80,7 +80,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 			qdel(Master)
 		else
 			var/list/subsytem_types = subtypesof(/datum/controller/subsystem)
-			sortTim(subsytem_types, /proc/cmp_subsystem_init)
+			tim_sort(subsytem_types, /proc/cmp_subsystem_init)
 			for(var/I in subsytem_types)
 				_subsystems += new I
 		Master = src
@@ -95,7 +95,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 /datum/controller/master/Shutdown()
 	processing = FALSE
-	sortTim(subsystems, /proc/cmp_subsystem_init)
+	tim_sort(subsystems, /proc/cmp_subsystem_init)
 	reverseRange(subsystems)
 	for(var/datum/controller/subsystem/ss in subsystems)
 		log_world("Shutting down [ss.name] subsystem...")
@@ -181,7 +181,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	to_chat(world, "<span class='boldannounce'>Initializing subsystems...</span>")
 
 	// Sort subsystems by init_order, so they initialize in the correct order.
-	sortTim(subsystems, /proc/cmp_subsystem_init)
+	tim_sort(subsystems, /proc/cmp_subsystem_init)
 
 	var/start_timeofday = REALTIMEOFDAY
 	// Initialize subsystems.
@@ -202,7 +202,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		SetRunLevel(RUNLEVEL_LOBBY)
 
 	// Sort subsystems by display setting for easy access.
-	sortTim(subsystems, /proc/cmp_subsystem_display)
+	tim_sort(subsystems, /proc/cmp_subsystem_display)
 
 	// Set world options.
 
@@ -287,9 +287,9 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	queue_tail = null
 	//these sort by lower priorities first to reduce the number of loops needed to add subsequent SS's to the queue
 	//(higher subsystems will be sooner in the queue, adding them later in the loop means we don't have to loop thru them next queue add)
-	sortTim(SStickersubsystems, /proc/cmp_subsystem_priority)
+	tim_sort(SStickersubsystems, /proc/cmp_subsystem_priority)
 	for(var/I in runlevel_sorted_subsystems)
-		sortTim(runlevel_sorted_subsystems, /proc/cmp_subsystem_priority)
+		tim_sort(runlevel_sorted_subsystems, /proc/cmp_subsystem_priority)
 		I += SStickersubsystems
 
 	var/cached_runlevel = current_runlevel
@@ -588,13 +588,11 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	log_world("MC: SoftReset: Finished.")
 	. = 1
 
-
-
 /datum/controller/master/stat_entry()
 	if(!statclick)
 		statclick = new/obj/effect/statclick/debug(null, "Initializing...", src)
 
-	stat("Byond:", "(FPS:[world.fps]) (TickCount:[world.time/world.tick_lag]) (TickDrift:[round(Master.tickdrift,1)]([round((Master.tickdrift/(world.time/world.tick_lag))*100,0.1)]%))")
+	stat("Byond:", "(FPS:[world.fps]) (TickCount:[world.time/world.tick_lag]) (TickDrift:[round(Master.tickdrift,1)]([round((Master.tickdrift/(world.time/world.tick_lag))*100,0.1)]%)) (Internal Tick Usage: [round(MAPTICK_LAST_INTERNAL_TICK_USAGE,0.1)]%)")
 	stat("Master Controller:", statclick.update("(TickRate:[Master.processing]) (Iteration:[Master.iteration])"))
 
 /datum/controller/master/StartLoadingMap()

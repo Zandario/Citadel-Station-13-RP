@@ -54,6 +54,7 @@
 
 /area/rift/surfaceeva
 	name = "\improper Primary Surface EVA"
+	sound_env = SMALL_ENCLOSED
 
 /area/rift/surfaceeva/airlock/main
 	name = "\improper Primary Surface Airlock"
@@ -170,6 +171,7 @@
 	icon_state = "under1"
 /area/rift/surfacebase/outside
 	name = "Outside - Surface"
+	ambience = AMBIENCE_LYTHIOS
 /area/rift/surfacebase/outside/outside1
 	icon_state = "outside1"
 /area/rift/surfacebase/outside/outside2
@@ -247,6 +249,47 @@
 /area/outpost/mining_main/passage
 	name = "\improper Mining Outpost Passage"
 
+/area/outpost/mining_main/outpost
+	name = "\improper Mining Outpost"
+	ambience = AMBIENCE_OUTPOST
+
+/area/outpost/mining_main/outpost/substation
+	name = "\improper Outpost Substation"
+	ambience = AMBIENCE_SUBSTATION
+
+/area/outpost/mining_main/outpost/near_gateway
+	name = "\improper Mining Outpost"
+
+/area/outpost/mining_main/outpost/washrooms
+	name = "\improper Mining Outpost Washrooms"
+
+/area/outpost/mining_main/outpost/recreation
+	name = "\improper Mining Outpost Recreation"
+
+/area/outpost/mining_main/outpost/storage
+	name = "\improper Mining Outpost Storage"
+/area/outpost/mining_main/outpost/airlock/one
+	name = "\improper Mining Outpost Exterior Airlock"
+
+/area/outpost/mining_main/outpost/airlock/two
+	name = "\improper Mining Outpost Exterior Airlock"
+
+/area/outpost/mining_main/outpost/airlock/three
+	name = "\improper Mining Outpost Exterior Airlock"
+
+/area/outpost/mining_main/outpost/maintenance
+	name = "\improper Outpost Maintence"
+	area_flags = AREA_RAD_SHIELDED
+	sound_env = TUNNEL_ENCLOSED
+	turf_initializer = new /datum/turf_initializer/maintenance()
+	ambience = AMBIENCE_MAINTENANCE
+
+/area/outpost/mining_main/outpost/maintenance/south
+	name = "\improper Outpost Maintence South"
+
+/area/outpost/mining_main/outpost/maintenance/north
+	name = "\improper Outpost Maintence North"
+
 // Solars map areas
 /area/tether/outpost/solars_outside
 	name = "\improper Solar Farm"
@@ -308,8 +351,6 @@
 /area/engineering/lower/atmos_eva
 	name = "\improper Engineering Atmos EVA"
 
-/area/gateway/prep_room
-	name = "\improper Gateway Prep Room"
 /area/crew_quarters/locker/laundry_arrival
 	name = "\improper Arrivals Laundry"
 
@@ -360,6 +401,8 @@
 	name = "\improper Xenobiology Cell 5"
 /area/rnd/xenobiology/cell/six
 	name = "\improper Xenobiology Cell 6"
+/area/rnd/xenobiology/cell/seven
+	name = "\improper Xenobiology Cell 7"
 /area/rnd/xenobiology/xenoflora/lab_atmos
 	name = "\improper Xenoflora Atmospherics Lab"
 /area/rnd/breakroom
@@ -641,12 +684,26 @@
 /area/rift/station/fighter_bay
 	icon_state = "blue"
 	name = "\improper Fighter Bay"
+	ambience = AMBIENCE_HANGAR
 
 /area/rift/station/fighter_bay/hangar
 	name = "\improper Fighter Hangar"
 
 /area/rift/station/fighter_bay/maintenance
 	name = "\improper Fighter Bay Maintenance"
+
+//Civilian Garden
+
+/area/rift/station/public_garden
+	icon_state = "green"
+	name = "\improper Public Garden"
+
+/area/rift/station/public_garden/stairwell
+	name = "\improper Public Garden Stairwell"
+
+/area/rift/station/public_garden/gantry
+	name = "\improper Public Garden Gantry"
+
 
 //////////////////////////////////
 
@@ -698,7 +755,15 @@ Do this eventually. */
 	name = "Western Plains Surface"
 	icon_state = "green"
 
+/area/rift/surfacebase/outside/west/submap_seedzone
+	name = "Western Plains Surface"
+	icon_state = "green"
+
 /area/rift/surfacebase/outside/west_caves
+	name = "Western Plains Caverns"
+	icon_state = "red"
+
+/area/rift/surfacebase/outside/west_caves/submap_seedzone
 	name = "Western Plains Caverns"
 	icon_state = "red"
 
@@ -706,9 +771,18 @@ Do this eventually. */
 	name = "Western Plains Deep Ice"
 	icon_state = "yellow"
 
+/area/rift/surfacebase/outside/west_deep/submap_seedzone
+	name = "Western Plains Deep Ice"
+	icon_state = "yellow"
+
 /area/rift/surfacebase/outside/west_base
 	name = "Western Plains Canyon"
 	icon_state = "blue"
+
+/area/rift/surfacebase/outside/west_base/submap_seedzone
+	name = "Western Plains Canyon"
+	icon_state = "blue"
+
 
 //Trade Pad/Shop
 /area/rift/trade_shop
@@ -777,3 +851,65 @@ Do this eventually. */
 
 /area/rift/facility/interior/core
 	name = "\improper Lythios Facility -  Reactor Core"
+
+///Asylum Dungeon Areas
+/area/rift/asylum
+	name = "\improper ERROR: Area Not Found"
+
+/area/rift/asylum/cellblock
+
+/area/rift/asylum/common
+
+/area/rift/asylum/janitorial
+
+/area/rift/asylum/mess
+
+/area/rift/asylum/staff
+
+/area/rift/asylum/trash
+
+/area/rift/asylum/medical
+
+/area/rift/asylum/fitness
+
+/area/rift/asylum/halls
+
+/area/rift/asylum/pit
+
+/area/rift/asylum/training
+
+/area/rift/asylum/surgical
+
+/area/rift/asylum/near_death
+
+/area/rift/asylum/science
+
+/area/rift/asylum/command
+
+//Other Lythios outdoor areas
+/area/rift/exterior/nuketown
+	name = "\improper High Yield Explosives Test Site"
+
+/area/rift/exterior/nuketown/interior
+	name = "\improper Mock Townhouse"
+
+/area/rift/exterior/nuketown/bunker
+	name = "\improper Mock Bomb Shelter"
+
+/area/rift/exterior/bunker
+	name = "\improper Bunker Buster Explosives Test Site - Surface"
+
+/area/rift/exterior/bunker/lower
+	name = "\improper Bunker Buster Explosives Test Site - Lower Level"
+
+/area/rift/exterior/bunker/bottom
+	name = "\improper Bunker Buster Explosives Test Site - Blast Site"
+
+/area/rift/exterior/checkpoint/south
+	name = "\improper Southern Abandoned Checkpoint"
+
+/area/rift/exterior/mineshaft
+	name = "\improper Abandoned Mineshaft"
+
+
+

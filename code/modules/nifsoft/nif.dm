@@ -138,7 +138,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 		should_be_in = brain.parent_organ
 
 	if(istype(H) && !H.nif && H.species && (loc == H.get_organ(should_be_in)))
-		if(!bioadap && (H.species.flags & NO_SCAN)) //NO_SCAN is the default 'too complicated' flag
+		if(!bioadap && (H.species.species_flags & NO_SCAN)) //NO_SCAN is the default 'too complicated' flag
 			return FALSE
 
 		human = H
@@ -663,8 +663,8 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 		"<span class='notice'>You begin installing [src] into [T]'s chest by just stuffing it in.</span>",
 		"There's a wet SQUISH noise.")
 		if(do_mob(user = user, target = T, time = 200, target_zone = BP_TORSO))
-			user.unEquip(src)
-			forceMove(eo)
+			if(!user.attempt_insert_item_for_installation(src, eo))
+				return
 			eo.implants |= src
 			implant(T)
 			playsound(T,'sound/effects/slime_squish.ogg',50,1)
