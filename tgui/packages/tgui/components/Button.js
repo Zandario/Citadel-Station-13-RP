@@ -42,10 +42,10 @@ export const Button = (props) => {
   // A warning about the lowercase onclick
   if (onclick) {
     logger.warn(
-      `Lowercase 'onclick' is not supported on Button and lowercase`
-        + ` prop names are discouraged in general. Please use a camelCase`
-        + `'onClick' instead and read: `
-        + `https://infernojs.org/docs/guides/event-handling`
+      `Lowercase 'onclick' is not supported on Button and lowercase` +
+        ` prop names are discouraged in general. Please use a camelCase` +
+        `'onClick' instead and read: ` +
+        `https://infernojs.org/docs/guides/event-handling`
     );
   }
   rest.onClick = (e) => {
@@ -71,8 +71,8 @@ export const Button = (props) => {
         iconPosition && 'Button--iconPosition--' + iconPosition,
         verticalAlignContent && 'Button--flex',
         verticalAlignContent && fluid && 'Button--flex--fluid',
-        verticalAlignContent
-          && 'Button--verticalAlignContent--' + verticalAlignContent,
+        verticalAlignContent &&
+          'Button--verticalAlignContent--' + verticalAlignContent,
         color && typeof color === 'string'
           ? 'Button--color--' + color
           : 'Button--color--default',
@@ -191,7 +191,8 @@ export class ButtonConfirm extends Component {
         icon={this.state.clickedOnce ? confirmIcon : icon}
         color={this.state.clickedOnce ? confirmColor : color}
         onClick={() =>
-          this.state.clickedOnce ? onClick() : this.setClickedOnce(true)}
+          this.state.clickedOnce ? onClick() : this.setClickedOnce(true)
+        }
         {...rest}
       />
     );

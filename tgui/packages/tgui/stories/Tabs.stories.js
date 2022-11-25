@@ -27,7 +27,8 @@ const Story = (props, context) => {
             setTabProps({
               ...tabProps,
               vertical: !tabProps.vertical,
-            })}
+            })
+          }
         />
         <Button.Checkbox
           inline
@@ -37,7 +38,8 @@ const Story = (props, context) => {
             setTabProps({
               ...tabProps,
               leftSlot: !tabProps.leftSlot,
-            })}
+            })
+          }
         />
         <Button.Checkbox
           inline
@@ -47,7 +49,8 @@ const Story = (props, context) => {
             setTabProps({
               ...tabProps,
               rightSlot: !tabProps.rightSlot,
-            })}
+            })
+          }
         />
         <Button.Checkbox
           inline
@@ -57,7 +60,8 @@ const Story = (props, context) => {
             setTabProps({
               ...tabProps,
               icon: !tabProps.icon,
-            })}
+            })
+          }
         />
         <Button.Checkbox
           inline
@@ -67,7 +71,8 @@ const Story = (props, context) => {
             setTabProps({
               ...tabProps,
               fluid: !tabProps.fluid,
-            })}
+            })
+          }
         />
         <Button.Checkbox
           inline
@@ -77,7 +82,8 @@ const Story = (props, context) => {
             setTabProps({
               ...tabProps,
               centered: !tabProps.centered,
-            })}
+            })
+          }
         />
       </Section>
       <Section fitted>
@@ -110,11 +116,13 @@ const TabsPrefab = (props, context) => {
           icon={tabProps.icon && 'info-circle'}
           leftSlot={
             tabProps.leftSlot && (
-              <Button circular compact color="transparent" icon="times" />)
+              <Button circular compact color="transparent" icon="times" />
+            )
           }
           rightSlot={
             tabProps.rightSlot && (
-              <Button circular compact color="transparent" icon="times" />)
+              <Button circular compact color="transparent" icon="times" />
+            )
           }
           onClick={() => setTabIndex(i)}>
           {text}

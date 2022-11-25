@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-import { clamp, toFixed } from '../../common/math';
+import { clamp, toFixed } from 'common/math';
 import { Component, createRef } from 'inferno';
 
 const isSafeNumber = (value: number) => {

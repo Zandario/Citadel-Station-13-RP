@@ -47,7 +47,8 @@ const Story = (props, context) => {
                 } catch (err) {
                   logger.log(err);
                 }
-              })}>
+              })
+            }>
             Evaluate
           </Button>
         }>

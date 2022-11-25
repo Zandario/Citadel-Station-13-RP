@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-import { BooleanLike, classes, pureComponentHooks } from '../../common/react';
+import { BooleanLike, classes, pureComponentHooks } from 'common/react';
 import { BoxProps, computeBoxClassName, computeBoxProps, unit } from './Box';
 
 export type FlexProps = BoxProps & {
@@ -13,7 +13,7 @@ export type FlexProps = BoxProps & {
   align?: string | BooleanLike;
   justify?: string | BooleanLike;
   inline?: BooleanLike;
- };
+};
 
 export const computeFlexClassName = (props: FlexProps) => {
   return classes([
@@ -52,12 +52,12 @@ export const Flex = (props) => {
 Flex.defaultHooks = pureComponentHooks;
 
 export type FlexItemProps = BoxProps & {
-   grow?: number;
-   order?: number;
-   shrink?: number;
-   basis?: string | BooleanLike;
-   align?: string | BooleanLike;
- };
+  grow?: number;
+  order?: number;
+  shrink?: number;
+  basis?: string | BooleanLike;
+  align?: string | BooleanLike;
+};
 
 export const computeFlexItemClassName = (props: FlexItemProps) => {
   return classes([
@@ -81,12 +81,12 @@ export const computeFlexItemProps = (props: FlexItemProps) => {
   } = props;
   // prettier-ignore
   const computedBasis = basis
-     // IE11: Set basis to specified width if it's known, which fixes certain
-     // bugs when rendering tables inside the flex.
-     ?? props.width
-     // If grow is used, basis should be set to 0 to be consistent with
-     // flex css shorthand `flex: 1`.
-     ?? (grow !== undefined ? 0 : undefined);
+    // IE11: Set basis to specified width if it's known, which fixes certain
+    // bugs when rendering tables inside the flex.
+    ?? props.width
+    // If grow is used, basis should be set to 0 to be consistent with
+    // flex css shorthand `flex: 1`.
+    ?? (grow !== undefined ? 0 : undefined);
   return computeBoxProps({
     style: {
       ...style,

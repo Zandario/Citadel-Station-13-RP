@@ -28,7 +28,8 @@ const Story = (props, context) => {
           <Button
             fluid
             onClick={() =>
-              setDirection(direction === 'column' ? 'row' : 'column')}>
+              setDirection(direction === 'column' ? 'row' : 'column')
+            }>
             {`Flex direction="${direction}"`}
           </Button>
           <Button fluid onClick={() => setGrow(Number(!grow))}>
