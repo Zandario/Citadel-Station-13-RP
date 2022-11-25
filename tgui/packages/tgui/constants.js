@@ -151,126 +151,178 @@ export const RADIO_CHANNELS = [
 
 const GASES = [
   {
-    'id': 'oxygen',
-    'name': 'Oxygen',
-    'label': 'O₂',
-    'color': 'blue',
+    id: 'o2',
+    path: '/datum/gas/oxygen',
+    name: 'Oxygen',
+    label: 'O₂',
+    color: 'blue',
   },
   {
-    'id': 'n2',
-    'name': 'Nitrogen',
-    'label': 'N₂',
-    'color': 'red',
+    id: 'n2',
+    path: '/datum/gas/nitrogen',
+    name: 'Nitrogen',
+    label: 'N₂',
+    color: 'red',
   },
   {
-    'id': 'carbon dioxide',
-    'name': 'Carbon Dioxide',
-    'label': 'CO₂',
-    'color': 'grey',
+    id: 'co2',
+    path: '/datum/gas/carbon_dioxide',
+    name: 'Carbon Dioxide',
+    label: 'CO₂',
+    color: 'grey',
   },
   {
-    'id': 'phoron',
-    'name': 'Phoron',
-    'label': 'Phoron',
-    'color': 'pink',
+    id: 'phoron',
+    path: '/datum/gas/phoron',
+    name: 'Phoron',
+    label: 'Phoron',
+    color: 'pink',
   },
   {
-    'id': 'water_vapor',
-    'name': 'Water Vapor',
-    'label': 'H₂O',
-    'color': 'grey',
+    id: 'water_vapor',
+    path: '/datum/gas/water_vapor',
+    name: 'Water Vapor',
+    label: 'H₂O',
+    color: 'lightsteelblue',
   },
   {
-    'id': 'nob',
-    'name': 'Hyper-noblium',
-    'label': 'Hyper-nob',
-    'color': 'teal',
+    id: 'nob',
+    path: '/datum/gas/hypernoblium',
+    name: 'Hyper-noblium',
+    label: 'Hyper-nob',
+    color: 'teal',
   },
   {
-    'id': 'n2o',
-    'name': 'Nitrous Oxide',
-    'label': 'N₂O',
-    'color': 'red',
+    id: 'n2o',
+    path: '/datum/gas/nitrous_oxide',
+    name: 'Nitrous Oxide',
+    label: 'N₂O',
+    color: 'bisque',
   },
   {
-    'id': 'no2',
-    'name': 'Nitryl',
-    'label': 'NO₂',
-    'color': 'brown',
+    id: 'no2',
+    path: '/datum/gas/nitrium',
+    name: 'Nitrium',
+    label: 'Nitrium',
+    color: 'brown',
   },
   {
-    'id': 'tritium',
-    'name': 'Tritium',
-    'label': 'Tritium',
-    'color': 'green',
+    id: 'tritium',
+    path: '/datum/gas/tritium',
+    name: 'Tritium',
+    label: 'Tritium',
+    color: 'limegreen',
   },
   {
-    'id': 'bz',
-    'name': 'BZ',
-    'label': 'BZ',
-    'color': 'purple',
+    id: 'bz',
+    path: '/datum/gas/bz',
+    name: 'BZ',
+    label: 'BZ',
+    color: 'mediumpurple',
   },
   {
-    'id': 'stim',
-    'name': 'Stimulum',
-    'label': 'Stimulum',
-    'color': 'purple',
+    id: 'pluox',
+    path: '/datum/gas/pluoxium',
+    name: 'Pluoxium',
+    label: 'Pluoxium',
+    color: 'mediumslateblue',
   },
   {
-    'id': 'pluox',
-    'name': 'Pluoxium',
-    'label': 'Pluoxium',
-    'color': 'blue',
+    id: 'miasma',
+    path: '/datum/gas/miasma',
+    name: 'Miasma',
+    label: 'Miasma',
+    color: 'olive',
   },
   {
-    'id': 'miasma',
-    'name': 'Miasma',
-    'label': 'Miasma',
-    'color': 'olive',
+    id: 'Freon',
+    path: '/datum/gas/freon',
+    name: 'Freon',
+    label: 'Freon',
+    color: 'paleturquoise',
   },
   {
-    'id': 'hydrogen',
-    'name': 'Hydrogen',
-    'label': 'H₂',
-    'color': 'white',
+    id: 'hydrogen',
+    path: '/datum/gas/hydrogen',
+    name: 'Hydrogen',
+    label: 'H₂',
+    color: 'white',
   },
   {
-    'id': 'other',
-    'name': 'Other',
-    'label': 'Other',
-    'color': 'white',
+    id: 'healium',
+    path: '/datum/gas/healium',
+    name: 'Healium',
+    label: 'Healium',
+    color: 'salmon',
   },
   {
-    'id': 'pressure',
-    'name': 'Pressure',
-    'label': 'Pressure',
-    'color': 'average',
+    id: 'proto_nitrate',
+    path: '/datum/gas/proto_nitrate',
+    name: 'Proto Nitrate',
+    label: 'Proto-Nitrate',
+    color: 'greenyellow',
   },
   {
-    'id': 'temperature',
-    'name': 'Temperature',
-    'label': 'Temperature',
-    'color': 'yellow',
+    id: 'zauker',
+    path: '/datum/gas/zauker',
+    name: 'Zauker',
+    label: 'Zauker',
+    color: 'darkgreen',
+  },
+  {
+    id: 'halon',
+    path: '/datum/gas/halon',
+    name: 'Halon',
+    label: 'Halon',
+    color: 'purple',
+  },
+  {
+    id: 'helium',
+    path: '/datum/gas/helium',
+    name: 'Helium',
+    label: 'He',
+    color: 'aliceblue',
+  },
+  {
+    id: 'antinoblium',
+    path: '/datum/gas/antinoblium',
+    name: 'Antinoblium',
+    label: 'Anti-Noblium',
+    color: 'maroon',
   },
 ];
 
 export const getGasLabel = (gasId, fallbackValue) => {
   const gasSearchString = String(gasId).toLowerCase();
-  const gas = GASES.find(gas => gas.id === gasSearchString
-    || gas.name.toLowerCase() === gasSearchString);
-  return gas && gas.label
-    || fallbackValue
-    || gasId;
+  // prettier-ignore
+  const gas = GASES.find((gas) => (
+    gas.id === gasSearchString
+      || gas.name.toLowerCase() === gasSearchString
+  ));
+  return (gas && gas.label) || fallbackValue || gasId;
 };
 
-export const getGasColor = gasId => {
+export const getGasColor = (gasId) => {
   const gasSearchString = String(gasId).toLowerCase();
-  const gas = GASES.find(gas => gas.id === gasSearchString
-    || gas.name.toLowerCase() === gasSearchString);
+  // prettier-ignore
+  const gas = GASES.find((gas) => (
+    gas.id === gasSearchString
+      || gas.name.toLowerCase() === gasSearchString
+  ));
   return gas && gas.color;
 };
 
-// VOREStation Addition start
-/** 0.0 Degrees Celsius in Kelvin */
-export const T0C = 273.15;
-// VOREStation Addition end
+export const getGasFromId = (gasId) => {
+  const gasSearchString = String(gasId).toLowerCase();
+  // prettier-ignore
+  const gas = GASES.find((gas) => (
+    gas.id === gasSearchString
+      || gas.name.toLowerCase() === gasSearchString
+  ));
+  return gas;
+};
+
+// Paths need to be exact matches so we dont need to lowercase stuffs.
+export const getGasFromPath = (gasPath) => {
+  return GASES.find((gas) => gasPath === gas.path);
+};
