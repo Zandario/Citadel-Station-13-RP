@@ -153,8 +153,8 @@
 		/area/crew_quarters/sleep/Dorm_3/holo,
 		/area/crew_quarters/sleep/Dorm_5/holo,
 		/area/crew_quarters/sleep/Dorm_7/holo,
-		/area/looking_glass/lg_1,
-		/area/rnd/miscellaneous_lab)
+		/area/rnd/miscellaneous_lab,
+	)
 
 	unit_test_exempt_from_atmos = list(
 		/area/engineering/atmos_intake, // Outside,
@@ -322,4 +322,3 @@
 	z = Z_LEVEL_MISC
 	name = "Orbital Relay"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
-
