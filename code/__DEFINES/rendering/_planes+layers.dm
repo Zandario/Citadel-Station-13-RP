@@ -1,74 +1,43 @@
-/*This file is a list of all preclaimed planes & layers
+/**
+ *! Planes and Layer Defines.
+ *
+ * From stddef.dm, planes & layers built into byond.
+ *
+ * FLOAT_LAYER      = -1
+ * AREA_LAYER       =  1
+ * TURF_LAYER       =  2
+ * OBJ_LAYER        =  3
+ * MOB_LAYER        =  4
+ * FLY_LAYER        =  5
+ * EFFECTS_LAYER    =  5000
+ * TOPDOWN_LAYER    =  10000
+ * BACKGROUND_LAYER =  20000
+ * ------
+ * FLOAT_PLANE      = -32767
+ */
 
-All planes & layers should be given a value here instead of using a magic/arbitrary number.
+#define LOWEST_PLANE         -200
 
-After fiddling with planes and layers for some time, I figured I may as well provide some documentation:
+#define CLICKCATCHER_PLANE   -100
 
-What are planes?
-	Think of Planes as a sort of layer for a layer - if plane X is a larger number than plane Y, the highest number for a layer in X will be below the lowest
-	number for a layer in Y.
-	Planes also have the added bonus of having planesmasters.
+#define SPACE_PLANE           -99
+#define PARALLAX_PLANE        -98
+	#define PARALLAX_VIS_LAYER_BELOW -100 // everything layering below
+	#define PARALLAX_LAYER_CENTER       0
+	#define PARALLAX_VIS_LAYER_ABOVE  100 /// ditto
 
-What are Planesmasters?
-	Planesmasters, when in the sight of a player, will have its appearance properties (for example, colour matrices, alpha, transform, etc)
-	applied to all the other objects in the plane. This is all client sided.
-	Usually you would want to add the planesmaster as an invisible image in the client's screen.
-
-What can I do with Planesmasters?
-	You can: Make certain players not see an entire plane,
-	Make an entire plane have a certain colour matrices,
-	Make an entire plane transform in a certain way,
-	Make players see a plane which is hidden to normal players - I intend to implement this with the antag HUDs for example.
-	Planesmasters can be used as a neater way to deal with client images or potentially to do some neat things
-
-How do planes work?
-	A plane can be any integer from -100 to 100. (If you want more, bug lummox.)
-	All planes above 0, the 'base plane', are visible even when your character cannot 'see' them, for example, the HUD.
-	All planes below 0, the 'base plane', are only visible when a character can see them.
-
-How do I add a plane?
-	Think of where you want the plane to appear, look through the pre-existing planes and find where it is above and where it is below
-	Slot it in in that place, and change the pre-existing planes, making sure no plane shares a number.
-	Add a description with a comment as to what the plane does.
-
-How do I make something a planesmaster?
-	Add the PLANE_MASTER appearance flag to the appearance_flags variable.
-
-What is the naming convention for planes or layers?
-	Make sure to use the name of your object before the _LAYER or _PLANE, eg: [NAME_OF_YOUR_OBJECT HERE]_LAYER or [NAME_OF_YOUR_OBJECT HERE]_PLANE
-	Also, as it's a define, it is standard practice to use capital letters for the variable so people know this.
-
-*/
-
-// TODO: UNFUCK PLANES. HALF OF THESE HAVE NO REASON TO EXIST. WHOEVER ADDED THEM IS AN IDIOT!
-
-//! todo: layers still need to be linear regardless of plane. stuff like projectiles DO CARE.
-
-#define CLICKCATCHER_PLANE		-99
-/// Reserved for use in space/parallax
-#define SPACE_PLANE				-95
-/// Reserved for use in space/parallax
-#define PARALLAX_PLANE			-90
-	/// everything layering below
-#define PARALLAX_VIS_LAYER_BELOW			-100
-	#define PARALLAX_LAYER_CENTER				0
-	/// ditto
-#define PARALLAX_VIS_LAYER_ABOVE			100
-///For the Looking Glass holodecks
-#define PLANE_LOOKINGGLASS		-77
-///For the Looking Glass holodecks
-#define PLANE_LOOKINGGLASS_IMG	-76
 //OPENSPACE_PLANE reserves all planes between OPENSPACE_PLANE_START and OPENSPACE_PLANE_END inclusive
 ///turf/simulated/open will use OPENSPACE_PLANE + z (Valid z's being 2 thru 17)
-#define OPENSPACE_PLANE			-75
-#define OPENSPACE_PLANE_START	-73
-#define OPENSPACE_PLANE_END		-58
-#define OVER_OPENSPACE_PLANE	-57
+#define OPENSPACE_PLANE       -75
+#define OPENSPACE_PLANE_START -73
+#define OPENSPACE_PLANE_END   -58
+#define OVER_OPENSPACE_PLANE  -57
 
 //Turf Planes
-// todo: kill these too because frankly, fuck off.
 ///Plating
 #define PLATING_PLANE			-44
+	#define DISPOSALS_PIPE_LAYER        1.03
+	#define ABOVE_TILE_LAYER            2.05
 	///Under objects, even when planeswapped
 	#define DISPOSAL_LAYER		2.1
 	///Under objects, even when planeswapped

@@ -1,4 +1,4 @@
-// Notification action types
-#define NOTIFY_JUMP "jump"
+//! Notification action types
+#define NOTIFY_JUMP   "jump"
 #define NOTIFY_ATTACK "attack"
-#define NOTIFY_ORBIT "orbit"
+#define NOTIFY_ORBIT  "orbit"

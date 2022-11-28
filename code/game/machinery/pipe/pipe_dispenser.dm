@@ -89,7 +89,7 @@
 				else if(istype(recipe, /datum/pipe_info/disposal))
 					var/datum/pipe_info/disposal/D = recipe
 					var/obj/structure/disposalconstruct/C = new(loc, D.pipe_type, target_dir, 0, D.subtype ? D.subtype : 0)
-					C.update()
+					C.update_appearance()
 					created_object = C
 				else if(istype(recipe, /datum/pipe_info/meter))
 					created_object = new recipe.pipe_type(loc)

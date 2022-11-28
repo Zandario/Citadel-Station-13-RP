@@ -460,17 +460,20 @@
 	if(updates & UPDATE_ICON)
 		. |= update_icon(updates)
 
-/// Updates the name of the atom
+
+/// Updates the name of the atom.
 /atom/proc/update_name(updates=ALL)
 	// SHOULD_CALL_PARENT(TRUE)
 	return SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_NAME, updates)
 
-/// Updates the description of the atom
+
+/// Updates the description of the atom.
 /atom/proc/update_desc(updates=ALL)
 	// SHOULD_CALL_PARENT(TRUE)
 	return SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_DESC, updates)
 
-/// Updates the icon of the atom
+
+/// Updates the icon of the atom.
 /atom/proc/update_icon(updates=ALL)
 	SIGNAL_HANDLER
 	// SHOULD_CALL_PARENT(TRUE)
@@ -500,38 +503,47 @@
 
 	. |= SEND_SIGNAL(src, COMSIG_ATOM_UPDATED_ICON, updates, .)
 
-/// Updates the icon state of the atom
+
+/// Updates the icon state of the atom.
 /atom/proc/update_icon_state()
 	SHOULD_CALL_PARENT(TRUE)
 	return SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_ICON_STATE)
 
-/// Updates the overlays of the atom
+
+/// Updates the overlays of the atom.
 /atom/proc/update_overlays()
 	SHOULD_CALL_PARENT(TRUE)
 	. = list()
 	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_OVERLAYS, .)
 
-// called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
-// see code/modules/mob/mob_movement.dm for more.
+
+/**
+ * Called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
+ * See code/modules/mob/mob_movement.dm for more.
+ */
 /atom/proc/relaymove()
 	return
+
 
 /atom/proc/relaymove_from_contents(mob/user, direction)
 	return relaymove(user, direction)
 
-// Called to set the atom's density and used to add behavior to density changes.
+
+/// Called to set the atom's density and used to add behavior to density changes.
 /atom/proc/set_density(var/new_density)
 	if(density == new_density)
 		return FALSE
 	density = !!new_density // Sanitize to be strictly 0 or 1
 	return TRUE
 
-// Called to set the atom's invisibility and usd to add behavior to invisibility changes.
+
+/// Called to set the atom's invisibility and usd to add behavior to invisibility changes.
 /atom/proc/set_invisibility(var/new_invisibility)
 	if(invisibility == new_invisibility)
 		return FALSE
 	invisibility = new_invisibility
 	return TRUE
+
 
 /**
  * React to being hit by an explosion

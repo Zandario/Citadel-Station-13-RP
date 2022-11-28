@@ -380,10 +380,7 @@
 /obj/machinery/disposal/deliveryChute/interact()
 	return
 
-/obj/machinery/disposal/deliveryChute/update()
-	return
-
-/obj/machinery/disposal/deliveryChute/Bumped(var/atom/movable/AM) //Go straight into the chute
+/obj/machinery/disposal/deliveryChute/Bumped(atom/movable/AM) //Go straight into the chute
 	if(istype(AM, /obj/item/projectile) || istype(AM, /obj/effect) || istype(AM, /obj/mecha))	return
 	switch(dir)
 		if(NORTH)
@@ -424,7 +421,7 @@
 	flush = 0
 	if(mode == 2)	// if was ready,
 		mode = 1	// switch to charging
-	update()
+	update_appearance()
 	return
 
 /obj/machinery/disposal/deliveryChute/attackby(var/obj/item/I, var/mob/user)
@@ -452,9 +449,9 @@
 				to_chat(user, "You sliced the floorweld off the delivery chute.")
 				var/obj/structure/disposalconstruct/C = new (src.loc)
 				C.ptype = 8 // 8 =  Delivery chute
-				C.update()
-				C.anchored = 1
-				C.density = 1
+				C.update_appearance()
+				C.anchored = TRUE
+				C.density = TRUE
 				qdel(src)
 			return
 		else

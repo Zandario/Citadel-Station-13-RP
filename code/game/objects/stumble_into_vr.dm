@@ -28,7 +28,7 @@
 	M.forceMove(src)
 	M.update_perspective()
 	M.stop_flying()
-	update()
+	update_appearance()
 
 /obj/structure/inflatable/stumble_into(mob/living/M)
 	playsound(get_turf(M), "sound/effects/Glasshit.ogg", 25, 1, -1)

@@ -7,15 +7,17 @@
 	desc = "A huge pipe segment used for constructing disposal systems."
 	icon = 'icons/obj/pipes/disposal.dmi'
 	icon_state = "conpipe-s"
-	anchored = 0
-	density = 0
-	pressure_resistance = 5*ONE_ATMOSPHERE
+	anchored = FALSE
+	density = FALSE
+	pressure_resistance = 5 * ONE_ATMOSPHERE
 	matter = list(MAT_STEEL = 1850)
-	level = 2
+	level = ATOM_LEVEL_OVER_TILE
+
 	var/sortType = ""
 	var/ptype = 0
 	var/subtype = 0
-	var/dpdir = 0	// directions as disposalpipe
+	/// Directions as disposalpipe.
+	var/dpdir = 0
 	var/base_state = "pipe-s"
 
 /obj/structure/disposalconstruct/Initialize(mapload, newtype, newdir, flipped, newsubtype)
@@ -36,17 +38,19 @@
 
 	switch(ptype)
 		if(DISPOSAL_PIPE_BIN, DISPOSAL_PIPE_OUTLET, DISPOSAL_PIPE_CHUTE)
-			density = 1
+			density = TRUE
 		if(DISPOSAL_PIPE_SORTER, DISPOSAL_PIPE_SORTER_FLIPPED)
 			subtype = newsubtype
 
 	if(flipped)
 		do_a_flip()
 	else
-		update() // do_a_flip() calls update anyway, so, lazy way of catching unupdated pipe!
+		update_appearance() // do_a_flip() calls update anyway, so, lazy way of catching unupdated pipe!
 
 // update iconstate and dpdir due to dir and type
-/obj/structure/disposalconstruct/proc/update()
+/obj/structure/disposalconstruct/update_icon_state()
+	. = ..()
+
 	var/flip = turn(dir, 180)
 	var/left = turn(dir, 90)
 	var/right = turn(dir, -90)
@@ -92,14 +96,14 @@
 		if(DISPOSAL_PIPE_SORTER_FLIPPED)
 			base_state = "pipe-j2s"
 			dpdir = dir | left | flip
-///// Z-Level stuff
+		/// Z-Level stuff
 		if(DISPOSAL_PIPE_UPWARD)
 			base_state = "pipe-u"
 			dpdir = dir
 		if(DISPOSAL_PIPE_DOWNWARD)
 			base_state = "pipe-d"
 			dpdir = dir
-///// Z-Level stuff
+		/// End of Z-Level stuff
 		if(DISPOSAL_PIPE_TAGGER)
 			base_state = "pipe-tagger"
 			dpdir = dir | flip
@@ -107,14 +111,14 @@
 			base_state = "pipe-tagger-partial"
 			dpdir = dir | flip
 
-///// Z-Level stuff
+	/// Z-Level stuff
 	if(!(ptype in list(DISPOSAL_PIPE_BIN, DISPOSAL_PIPE_OUTLET, DISPOSAL_PIPE_CHUTE, DISPOSAL_PIPE_UPWARD, DISPOSAL_PIPE_DOWNWARD, DISPOSAL_PIPE_TAGGER, DISPOSAL_PIPE_TAGGER_PARTIAL)))
-///// Z-Level stuff
+	/// End of Z-Level stuff
 		icon_state = "con[base_state]"
 	else
 		icon_state = base_state
 
-	if(invisibility)				// if invisible, fade icon
+	if(invisibility) // if invisible, fade icon
 		alpha = 128
 	else
 		alpha = 255
@@ -122,9 +126,9 @@
 
 // hide called by levelupdate if turf intact status changes
 // change visibility status and force update of icon
-/obj/structure/disposalconstruct/hide(var/intact)
+/obj/structure/disposalconstruct/hide(intact)
 	invisibility = (intact && level==1) ? 101: 0	// hide if floor is intact
-	update()
+	update_appearance()
 
 
 // flip and rotate verbs
@@ -141,7 +145,7 @@
 		return
 
 	setDir(turn(dir, -90))
-	update()
+	update_appearance()
 
 /obj/structure/disposalconstruct/verb/flip()
 	set category = "Object"
@@ -168,7 +172,7 @@
 		if(DISPOSAL_PIPE_SORTER_FLIPPED)
 			ptype = DISPOSAL_PIPE_SORTER
 
-	update()
+	update_appearance()
 
 // returns the type path of disposalpipe corresponding to this item dtype
 /obj/structure/disposalconstruct/proc/dpipetype()
@@ -276,7 +280,7 @@
 					return
 			else
 				if(CP)
-					update()
+					update_appearance()
 					var/pdir = CP.dpdir
 					if(istype(CP, /obj/structure/disposalpipe/broken))
 						pdir = CP.dir
@@ -292,7 +296,7 @@
 				density = 1 // We don't want disposal bins or outlets to go density 0
 			to_chat(user, "You attach the [nicetype] to the underfloor.")
 		playsound(loc, I.tool_sound, 100, 1)
-		update()
+		update_appearance()
 
 	else if(istype(I, /obj/item/weldingtool))
 		if(anchored)
@@ -303,24 +307,22 @@
 				if(do_after(user, 20 * W.tool_speed))
 					if(!src || !W.isOn()) return
 					to_chat(user, "The [nicetype] has been welded in place!")
-					update() // TODO: Make this neat
+					update_appearance() // TODO: Make this neat
 					if(ispipe) // Pipe
 
 						var/pipetype = dpipetype()
 						var/obj/structure/disposalpipe/P = new pipetype(src.loc)
 						src.transfer_fingerprints_to(P)
-						P.base_icon_state = base_state
+						P.update_appearance()
 						P.setDir(dir)
 						P.dpdir = dpdir
-						P.updateicon()
 
 						//Needs some special treatment ;)
 						if(ptype==DISPOSAL_PIPE_SORTER || ptype==DISPOSAL_PIPE_SORTER_FLIPPED)
 							var/obj/structure/disposalpipe/sortjunction/SortP = P
 							SortP.sortType = sortType
 							SortP.updatedir()
-							SortP.updatedesc()
-							SortP.updatename()
+							SortP.update_appearance(UPDATE_NAME|UPDATE_DESC)
 
 					else if(ptype==DISPOSAL_PIPE_BIN)
 						var/obj/machinery/disposal/P = new /obj/machinery/disposal(src.loc)
