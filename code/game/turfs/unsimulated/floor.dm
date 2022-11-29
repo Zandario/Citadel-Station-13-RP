@@ -5,7 +5,7 @@
 
 /turf/unsimulated/mask
 	name = "mask"
-	icon = 'icons/turf/walls.dmi'
+	icon = 'icons/turf/walls/walls.dmi'
 	icon_state = "rockvault"
 
 /turf/unsimulated/floor/shuttle_ceiling

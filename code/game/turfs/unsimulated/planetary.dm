@@ -3,7 +3,7 @@
 /turf/unsimulated/wall/planetary
 	name = "railroading"
 	desc = "Choo choo!"
-	icon = 'icons/turf/walls.dmi'
+	icon = 'icons/turf/walls/walls.dmi'
 	icon_state = "riveted"
 	opacity = 1
 	density = 1

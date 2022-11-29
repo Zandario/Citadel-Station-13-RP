@@ -8584,14 +8584,14 @@
 "wY" = (
 /turf/simulated/wall{
 	can_open = 1;
-	icon = 'icons/turf/walls.dmi';
+	icon = 'icons/turf/walls/walls.dmi';
 	icon_state = "riveted"
 	},
 /area/centcom/control)
 "xf" = (
 /turf/simulated/wall{
 	can_open = 1;
-	icon = 'icons/turf/walls.dmi';
+	icon = 'icons/turf/walls/walls.dmi';
 	icon_state = "riveted"
 	},
 /area/centcom/specops)
@@ -8686,7 +8686,7 @@
 "xr" = (
 /turf/simulated/wall{
 	can_open = 1;
-	icon = 'icons/turf/walls.dmi';
+	icon = 'icons/turf/walls/walls.dmi';
 	icon_state = "riveted"
 	},
 /area/centcom/main_hall)

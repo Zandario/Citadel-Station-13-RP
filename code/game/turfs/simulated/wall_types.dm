@@ -27,7 +27,7 @@
 /turf/unsimulated/wall/cult
 	name = "cult wall"
 	desc = "Hideous images dance beneath the surface."
-	icon = 'icons/turf/wall_masks.dmi'
+	icon = 'icons/turf/walls/wall_masks.dmi'
 	icon_state = "cult"
 
 /turf/simulated/wall/iron/Initialize(mapload, materialtype, rmaterialtype, girdertype)
@@ -302,7 +302,7 @@ var/list/flesh_overlay_cache = list()
 /turf/simulated/bone
 	name = "bone wall"
 	desc = "This wall of aging bones is held together by sinew and dried gore. The empty eye sockets stare back at you."
-	icon = 'icons/turf/wall_masks.dmi'
+	icon = 'icons/turf/walls/wall_masks.dmi'
 	icon_state = "bone"
 	opacity = 1
 	density = 1
@@ -321,14 +321,14 @@ var/list/bone_overlay_cache = list()
 	cut_overlays()
 
 	if(density)
-		icon = 'icons/turf/wall_masks.dmi'
+		icon = 'icons/turf/walls/wall_masks.dmi'
 		icon_state = "bone"
 		for(var/direction in GLOB.cardinal)
 			var/turf/T = get_step(src,direction)
 			if(istype(T) && !T.density)
 				var/place_dir = turn(direction, 180)
 				if(!bone_overlay_cache["bone[place_dir]"])
-					bone_overlay_cache["bone[place_dir]"] = image('icons/turf/wall_masks.dmi', "bone", dir = place_dir)
+					bone_overlay_cache["bone[place_dir]"] = image('icons/turf/walls/wall_masks.dmi', "bone", dir = place_dir)
 				add_overlay(bone_overlay_cache["bone[place_dir]"])
 
 	if(update_neighbors)

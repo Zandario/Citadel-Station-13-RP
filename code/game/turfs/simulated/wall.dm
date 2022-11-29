@@ -6,7 +6,7 @@
 /turf/simulated/wall
 	name = "wall"
 	desc = "A huge chunk of iron used to separate rooms."
-	icon = 'icons/turf/wall_masks.dmi'
+	icon = 'icons/turf/walls/wall_masks.dmi'
 	icon_state = "generic"
 	opacity = TRUE
 	density = TRUE
@@ -18,7 +18,7 @@
 	smoothing_flags = SMOOTH_CUSTOM
 	edge_blending_priority = INFINITY		// let's not have floors render onto us mmkay?
 
-	var/icon/wall_masks = 'icons/turf/wall_masks.dmi'
+	var/icon/wall_masks = 'icons/turf/walls/wall_masks.dmi'
 	var/damage = 0
 	var/damage_overlay = 0
 	/// damage overlays are cached

@@ -1,13 +1,13 @@
 /**********************Mineral deposits**************************/
 /turf/unsimulated/mineral
 	name = "impassable rock"
-	icon = 'icons/turf/walls.dmi'
+	icon = 'icons/turf/walls/walls.dmi'
 	icon_state = "rock-dark"
 	density = 1
 
 /turf/simulated/mineral //wall piece
 	name = "rock"
-	icon = 'icons/turf/walls.dmi'
+	icon = 'icons/turf/walls/walls.dmi'
 	icon_state = "rock"
 	smoothing_flags = SMOOTH_CUSTOM
 	var/sand_icon = 'icons/turf/flooring/asteroid.dmi'
@@ -94,7 +94,7 @@
 	initial_gas_mix = GAS_STRING_STP
 /turf/unsimulated/mineral/icerock
 	name = "impassable icerock"
-	icon = 'icons/turf/walls.dmi'
+	icon = 'icons/turf/walls/walls.dmi'
 	icon_state = "icerock-dark"
 	density = 1
 
@@ -209,7 +209,7 @@
 		else
 			name = "rock"
 
-		icon = 'icons/turf/walls.dmi'
+		icon = 'icons/turf/walls/walls.dmi'
 		icon_state = rock_icon_state
 
 		if(!(smoothing_junction & NORTH_JUNCTION))

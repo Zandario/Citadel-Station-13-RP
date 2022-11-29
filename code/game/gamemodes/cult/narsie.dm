@@ -150,7 +150,7 @@ var/global/list/narsie_list = list()
 
 /obj/singularity/narsie/proc/narsiewall(var/turf/T)
 	T.desc = "An opening has been made on that wall, but who can say if what you seek truly lies on the other side?"
-	T.icon = 'icons/turf/walls.dmi'
+	T.icon = 'icons/turf/walls/walls.dmi'
 	T.icon_state = "cult-narsie"
 	T.opacity = 0
 	T.density = 0
