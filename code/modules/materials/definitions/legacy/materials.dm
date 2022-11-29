@@ -2,10 +2,10 @@
 	name = "uranium"
 	stack_type = /obj/item/stack/material/uranium
 	radioactivity = 12
-	icon_base = "stone"
-	icon_reinf = "reinf_stone"
+	base_icon_state = "stone"
+	reinf_icon_state = "reinf_stone"
 	icon_reinf_directionals = TRUE
-	icon_colour = "#007A00"
+	base_color = "#007A00"
 	weight = 22
 	stack_origin_tech = list(TECH_MATERIAL = 5)
 	door_icon_base = "stone"
@@ -13,9 +13,9 @@
 /datum/material/diamond
 	name = "diamond"
 	stack_type = /obj/item/stack/material/diamond
-	flags = MATERIAL_UNMELTABLE
+	material_flags = MATERIAL_UNMELTABLE
 	cut_delay = 60
-	icon_colour = "#00FFE1"
+	base_color = "#00FFE1"
 	opacity = 0.4
 	reflectivity = 0.6
 	conductivity = 1
@@ -27,7 +27,7 @@
 /datum/material/gold
 	name = "gold"
 	stack_type = /obj/item/stack/material/gold
-	icon_colour = "#EDD12F"
+	base_color = "#EDD12F"
 	weight = 24
 	hardness = 40
 	conductivity = 41
@@ -37,12 +37,12 @@
 
 /datum/material/gold/bronze //placeholder for ashtrays
 	name = "bronze"
-	icon_colour = "#EDD12F"
+	base_color = "#EDD12F"
 
 /datum/material/silver
 	name = "silver"
 	stack_type = /obj/item/stack/material/silver
-	icon_colour = "#D1E6E3"
+	base_color = "#D1E6E3"
 	weight = 22
 	hardness = 50
 	conductivity = 63
@@ -53,13 +53,13 @@
 //R-UST port
 /datum/material/supermatter
 	name = "supermatter"
-	icon_colour = "#FFFF00"
+	base_color = "#FFFF00"
 	stack_type = /obj/item/stack/material/supermatter
 	shard_type = SHARD_SHARD
 	radioactivity = 20
 	luminescence = 3
 	ignition_point = PHORON_MINIMUM_BURN_TEMPERATURE
-	icon_base = "stone"
+	base_icon_state = "stone"
 	shard_type = SHARD_SHARD
 	hardness = 30
 	door_icon_base = "stone"
@@ -72,8 +72,8 @@
 	name = "phoron"
 	stack_type = /obj/item/stack/material/phoron
 	ignition_point = PHORON_MINIMUM_BURN_TEMPERATURE
-	icon_base = "stone"
-	icon_colour = "#FC2BC5"
+	base_icon_state = "stone"
+	base_color = "#FC2BC5"
 	shard_type = SHARD_SHARD
 	hardness = 30
 	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_PHORON = 2)
@@ -101,10 +101,10 @@
 /datum/material/stone
 	name = "sandstone"
 	stack_type = /obj/item/stack/material/sandstone
-	icon_base = "stone"
-	icon_reinf = "reinf_stone"
+	base_icon_state = "stone"
+	reinf_icon_state = "reinf_stone"
 	icon_reinf_directionals = TRUE
-	icon_colour = "#D9C179"
+	base_color = "#D9C179"
 	shard_type = SHARD_STONE_PIECE
 	weight = 22
 	hardness = 55
@@ -117,42 +117,20 @@
 
 /datum/material/stone/marble
 	name = "marble"
-	icon_colour = "#AAAAAA"
+	base_color = "#AAAAAA"
 	weight = 26
 	hardness = 30
 	integrity = 201 //hack to stop kitchen benches being flippable, todo: refactor into weight system
 	stack_type = /obj/item/stack/material/marble
 
 
-/datum/material/steel
-	name = MAT_STEEL
-	stack_type = /obj/item/stack/material/steel
-	integrity = 150
-	conductivity = 11 // Assuming this is carbon steel, it would actually be slightly less conductive than iron, but lets ignore that.
-	protectiveness = 10 // 33%
-	icon_base = "solid"
-	icon_reinf = "reinf_over"
-	icon_colour = "#666666"
-
-/datum/material/steel/hull
-	name = MAT_STEELHULL
-	stack_type = /obj/item/stack/material/steel/hull
-	integrity = 250
-	explosion_resistance = 10
-	icon_base = "hull"
-	icon_reinf = "reinf_mesh"
-	icon_colour = "#666677"
-
-/datum/material/steel/hull/place_sheet(var/turf/target) //Deconstructed into normal steel sheets.
-	new /obj/item/stack/material/steel(target)
-
 /datum/material/diona
 	name = "biomass"
-	icon_colour = null
+	base_color = null
 	stack_type = null
 	integrity = 600
-	icon_base = "diona"
-	icon_reinf = "noreinf"
+	base_icon_state = "diona"
+	reinf_icon_state = "noreinf"
 
 /datum/material/diona/place_dismantled_product()
 	return
@@ -160,50 +138,15 @@
 /datum/material/diona/place_dismantled_girder(var/turf/target)
 	spawn_diona_nymph(target)
 
-/datum/material/steel/holographic
-	name = "holo" + MAT_STEEL
-	display_name = MAT_STEEL
-	stack_type = null
-	shard_type = SHARD_NONE
-
-/datum/material/plasteel
-	name = "plasteel"
-	stack_type = /obj/item/stack/material/plasteel
-	integrity = 400
-	melting_point = 6000
-	icon_base = "solid"
-	icon_reinf = "reinf_over"
-	icon_colour = "#777777"
-	explosion_resistance = 25
-	hardness = 80
-	weight = 23
-	protectiveness = 20 // 50%
-	conductivity = 13 // For the purposes of balance.
-	stack_origin_tech = list(TECH_MATERIAL = 2)
-	composite_material = list(MAT_STEEL = SHEET_MATERIAL_AMOUNT, MAT_PLATINUM = SHEET_MATERIAL_AMOUNT) //todo
-	radiation_resistance = 14
-
-/datum/material/plasteel/hull
-	name = MAT_PLASTEELHULL
-	stack_type = /obj/item/stack/material/plasteel/hull
-	integrity = 600
-	icon_base = "hull"
-	icon_reinf = "reinf_mesh"
-	icon_colour = "#777788"
-	explosion_resistance = 40
-
-/datum/material/plasteel/hull/place_sheet(var/turf/target) //Deconstructed into normal plasteel sheets.
-	new /obj/item/stack/material/plasteel(target)
-
 // Very rare alloy that is reflective, should be used sparingly.
 /datum/material/durasteel
 	name = "durasteel"
 	stack_type = /obj/item/stack/material/durasteel
 	integrity = 600
 	melting_point = 7000
-	icon_base = "metal"
-	icon_reinf = "reinf_metal"
-	icon_colour = "#6EA7BE"
+	base_icon_state = "metal"
+	reinf_icon_state = "reinf_metal"
+	base_color = "#6EA7BE"
 	explosion_resistance = 75
 	hardness = 100
 	weight = 28
@@ -214,35 +157,35 @@
 
 /datum/material/durasteel/hull //The 'Hardball' of starship hulls.
 	name = MAT_DURASTEELHULL
-	icon_base = "hull"
-	icon_reinf = "reinf_mesh"
-	icon_colour = "#45829a"
+	base_icon_state = "hull"
+	reinf_icon_state = "reinf_mesh"
+	base_color = "#45829a"
 	explosion_resistance = 90
 	reflectivity = 0.9
 
 /datum/material/durasteel/hull/place_sheet(var/turf/target) //Deconstructed into normal durasteel sheets.
 	new /obj/item/stack/material/durasteel(target)
 
-/datum/material/plasteel/titanium
+/datum/material/solid/metal/plasteel/titanium
 	name = MAT_TITANIUM
 	stack_type = /obj/item/stack/material/titanium
 	conductivity = 2.38
-	icon_base = "metal"
+	base_icon_state = "metal"
 	door_icon_base = "metal"
-	icon_colour = "#D1E6E3"
-	icon_reinf = "reinf_metal"
+	base_color = "#D1E6E3"
+	reinf_icon_state = "reinf_metal"
 
-/datum/material/plasteel/titanium/hull
+/datum/material/solid/metal/plasteel/titanium/hull
 	name = MAT_TITANIUMHULL
 	stack_type = null
-	icon_base = "hull"
-	icon_reinf = "reinf_mesh"
+	base_icon_state = "hull"
+	reinf_icon_state = "reinf_mesh"
 
 /datum/material/glass
 	name = "glass"
 	stack_type = /obj/item/stack/material/glass
-	flags = MATERIAL_BRITTLE
-	icon_colour = "#00E1FF"
+	material_flags = MATERIAL_BRITTLE
+	base_color = "#00E1FF"
 	opacity = 0.3
 	integrity = 100
 	shard_type = SHARD_SHARD
@@ -339,8 +282,8 @@
 	name = "rglass"
 	display_name = "reinforced glass"
 	stack_type = /obj/item/stack/material/glass/reinforced
-	flags = MATERIAL_BRITTLE
-	icon_colour = "#00E1FF"
+	material_flags = MATERIAL_BRITTLE
+	base_color = "#00E1FF"
 	opacity = 0.3
 	integrity = 100
 	shard_type = SHARD_SHARD
@@ -359,9 +302,9 @@
 	name = "borosilicate glass"
 	display_name = "borosilicate glass"
 	stack_type = /obj/item/stack/material/glass/phoronglass
-	flags = MATERIAL_BRITTLE
+	material_flags = MATERIAL_BRITTLE
 	integrity = 100
-	icon_colour = "#FC2BC5"
+	base_color = "#FC2BC5"
 	stack_origin_tech = list(TECH_MATERIAL = 4)
 	window_options = list("One Direction" = 1, "Full Window" = 2)
 	created_window = /obj/structure/window/phoronbasic
@@ -387,10 +330,10 @@
 /datum/material/plastic
 	name = "plastic"
 	stack_type = /obj/item/stack/material/plastic
-	flags = MATERIAL_BRITTLE
-	icon_base = "solid"
-	icon_reinf = "reinf_over"
-	icon_colour = "#CCCCCC"
+	material_flags = MATERIAL_BRITTLE
+	base_icon_state = "solid"
+	reinf_icon_state = "reinf_over"
+	base_color = "#CCCCCC"
 	hardness = 10
 	weight = 12
 	protectiveness = 5 // 20%
@@ -408,7 +351,7 @@
 /datum/material/osmium
 	name = "osmium"
 	stack_type = /obj/item/stack/material/osmium
-	icon_colour = "#9999FF"
+	base_color = "#9999FF"
 	stack_origin_tech = list(TECH_MATERIAL = 5)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
@@ -417,7 +360,7 @@
 /datum/material/tritium
 	name = "tritium"
 	stack_type = /obj/item/stack/material/tritium
-	icon_colour = "#777777"
+	base_color = "#777777"
 	stack_origin_tech = list(TECH_MATERIAL = 5)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
@@ -427,7 +370,7 @@
 /datum/material/deuterium
 	name = "deuterium"
 	stack_type = /obj/item/stack/material/deuterium
-	icon_colour = "#999999"
+	base_color = "#999999"
 	stack_origin_tech = list(TECH_MATERIAL = 3)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
@@ -437,7 +380,7 @@
 /datum/material/mhydrogen
 	name = "mhydrogen"
 	stack_type = /obj/item/stack/material/mhydrogen
-	icon_colour = "#E6C5DE"
+	base_color = "#E6C5DE"
 	stack_origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 6, TECH_MAGNET = 5)
 	conductivity = 100
 	is_fusion_fuel = 1
@@ -445,7 +388,7 @@
 /datum/material/platinum
 	name = "platinum"
 	stack_type = /obj/item/stack/material/platinum
-	icon_colour = "#9999FF"
+	base_color = "#9999FF"
 	weight = 27
 	conductivity = 9.43
 	stack_origin_tech = list(TECH_MATERIAL = 2)
@@ -455,7 +398,7 @@
 /datum/material/iron
 	name = "iron"
 	stack_type = /obj/item/stack/material/iron
-	icon_colour = "#5C5454"
+	base_color = "#5C5454"
 	weight = 22
 	conductivity = 10
 	sheet_singular_name = "ingot"
@@ -464,7 +407,7 @@
 /datum/material/lead
 	name = MAT_LEAD
 	stack_type = /obj/item/stack/material/lead
-	icon_colour = "#273956"
+	base_color = "#273956"
 	weight = 23 // Lead is a bit more dense than silver IRL, and silver has 22 ingame.
 	conductivity = 10
 	sheet_singular_name = "ingot"
@@ -476,10 +419,10 @@
 /datum/material/verdantium
 	name = MAT_VERDANTIUM
 	stack_type = /obj/item/stack/material/verdantium
-	icon_base = "metal"
+	base_icon_state = "metal"
 	door_icon_base = "metal"
-	icon_reinf = "reinf_metal"
-	icon_colour = "#4FE95A"
+	reinf_icon_state = "reinf_metal"
+	base_color = "#4FE95A"
 	integrity = 80
 	protectiveness = 15
 	weight = 15
@@ -497,10 +440,10 @@
 /datum/material/morphium
 	name = MAT_MORPHIUM
 	stack_type = /obj/item/stack/material/morphium
-	icon_base = "metal"
+	base_icon_state = "metal"
 	door_icon_base = "metal"
-	icon_colour = "#37115A"
-	icon_reinf = "reinf_metal"
+	base_color = "#37115A"
+	reinf_icon_state = "reinf_metal"
 	protectiveness = 60
 	integrity = 900
 	conductive = 0
@@ -517,16 +460,16 @@
 /datum/material/morphium/hull
 	name = MAT_MORPHIUMHULL
 	stack_type = /obj/item/stack/material/morphium/hull
-	icon_base = "hull"
-	icon_reinf = "reinf_mesh"
+	base_icon_state = "hull"
+	reinf_icon_state = "reinf_mesh"
 
 /datum/material/valhollide
 	name = MAT_VALHOLLIDE
 	stack_type = /obj/item/stack/material/valhollide
-	icon_base = "stone"
+	base_icon_state = "stone"
 	door_icon_base = "stone"
-	icon_reinf = "reinf_mesh"
-	icon_colour = "##FFF3B2"
+	reinf_icon_state = "reinf_mesh"
+	base_color = "##FFF3B2"
 	protectiveness = 30
 	integrity = 240
 	weight = 30
@@ -547,7 +490,7 @@
 	name = "alienalloy"
 	display_name = "durable alloy"
 	stack_type = null
-	icon_colour = "#6C7364"
+	base_color = "#6C7364"
 	integrity = 1200
 	melting_point = 6000       // Hull plating.
 	explosion_resistance = 200 // Hull plating.
@@ -559,34 +502,34 @@
 /datum/material/alienalloy/elevatorium
 	name = "elevatorium"
 	display_name = "elevator panelling"
-	icon_colour = "#666666"
+	base_color = "#666666"
 
 // Ditto.
 /datum/material/alienalloy/dungeonium
 	name = "dungeonium"
 	display_name = "ultra-durable"
-	icon_base = "dungeon"
-	icon_colour = "#FFFFFF"
+	base_icon_state = "dungeon"
+	base_color = "#FFFFFF"
 
 /datum/material/alienalloy/bedrock
 	name = "bedrock"
 	display_name = "impassable rock"
-	icon_base = "rock"
-	icon_colour = "#FFFFFF"
+	base_icon_state = "rock"
+	base_color = "#FFFFFF"
 
 /datum/material/alienalloy/alium
 	name = "alium"
 	display_name = "alien"
-	icon_base = "alien"
-	icon_colour = "#FFFFFF"
+	base_icon_state = "alien"
+	base_color = "#FFFFFF"
 
 /datum/material/resin
 	name = "resin"
-	icon_colour = "#261438"
-	icon_base = "resin"
+	base_color = "#261438"
+	base_icon_state = "resin"
 	dooropen_noise = 'sound/effects/attackblob.ogg'
 	door_icon_base = "resin"
-	icon_reinf = "reinf_mesh"
+	reinf_icon_state = "reinf_mesh"
 	melting_point = T0C+300
 	sheet_singular_name = "blob"
 	sheet_plural_name = "blobs"
@@ -617,9 +560,9 @@
 /datum/material/wood
 	name = MAT_WOOD
 	stack_type = /obj/item/stack/material/wood
-	icon_colour = "#9c5930"
+	base_color = "#9c5930"
 	integrity = 50
-	icon_base = "wood"
+	base_icon_state = "wood"
 	explosion_resistance = 2
 	shard_type = SHARD_SPLINTER
 	shard_can_repair = 0 // you can't weld splinters back into planks
@@ -639,20 +582,20 @@
 
 /datum/material/wood/log
 	name = MAT_LOG
-	icon_base = "log"
+	base_icon_state = "log"
 	stack_type = /obj/item/stack/material/log
 	sheet_singular_name = null
 	sheet_plural_name = "pile"
 
 /datum/material/wood/log/sif
 	name = MAT_SIFLOG
-	icon_colour = "#0099cc" // Cyan-ish
+	base_color = "#0099cc" // Cyan-ish
 	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2)
 	stack_type = /obj/item/stack/material/log/sif
 
 /datum/material/wood/log/hard
 	name = MAT_HARDLOG
-	icon_colour = "#6f432a"
+	base_color = "#6f432a"
 	stack_type = /obj/item/stack/material/log/hard
 
 /datum/material/wood/holographic
@@ -664,15 +607,15 @@
 /datum/material/wood/sif
 	name = MAT_SIFWOOD
 	stack_type = /obj/item/stack/material/wood/sif
-	icon_colour = "#0099cc" // Cyan-ish
+	base_color = "#0099cc" // Cyan-ish
 	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2) // Alien wood would presumably be more interesting to the analyzer.
 
 /datum/material/wood/hardwood
 	name = MAT_HARDWOOD
 	stack_type = /obj/item/stack/material/wood/hard
-	icon_colour = "#42291a"
-	icon_base = "stone"
-	icon_reinf = "reinf_stone"
+	base_color = "#42291a"
+	base_icon_state = "stone"
+	reinf_icon_state = "reinf_stone"
 	icon_reinf_directionals = TRUE
 	integrity = 65	//a bit stronger than regular wood
 	hardness = 20
@@ -681,11 +624,11 @@
 /datum/material/cardboard
 	name = "cardboard"
 	stack_type = /obj/item/stack/material/cardboard
-	flags = MATERIAL_BRITTLE
+	material_flags = MATERIAL_BRITTLE
 	integrity = 10
-	icon_base = "solid"
-	icon_reinf = "reinf_over"
-	icon_colour = "#AAAAAA"
+	base_icon_state = "solid"
+	reinf_icon_state = "reinf_over"
+	base_color = "#AAAAAA"
 	hardness = 1
 	weight = 1
 	protectiveness = 0 // 0%
@@ -701,10 +644,10 @@
 /datum/material/snow
 	name = MAT_SNOW
 	stack_type = /obj/item/stack/material/snow
-	flags = MATERIAL_BRITTLE
-	icon_base = "solid"
-	icon_reinf = "reinf_over"
-	icon_colour = "#FFFFFF"
+	material_flags = MATERIAL_BRITTLE
+	base_icon_state = "solid"
+	reinf_icon_state = "reinf_over"
+	base_color = "#FFFFFF"
 	integrity = 1
 	hardness = 1
 	weight = 1
@@ -718,12 +661,12 @@
 
 /datum/material/snowbrick //only slightly stronger than snow, used to make igloos mostly
 	name = "packed snow"
-	flags = MATERIAL_BRITTLE
+	material_flags = MATERIAL_BRITTLE
 	stack_type = /obj/item/stack/material/snowbrick
-	icon_base = "stone"
-	icon_reinf = "reinf_stone"
+	base_icon_state = "stone"
+	reinf_icon_state = "reinf_stone"
 	icon_reinf_directionals = TRUE
-	icon_colour = "#D8FDFF"
+	base_color = "#D8FDFF"
 	integrity = 50
 	weight = 2
 	hardness = 2
@@ -742,16 +685,16 @@
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
-	flags = MATERIAL_PADDING
+	material_flags = MATERIAL_PADDING
 	conductive = 0
 	pass_stack_colors = TRUE
 
 /datum/material/cult
 	name = "cult"
 	display_name = "disturbing stone"
-	icon_base = "cult"
-	icon_colour = "#402821"
-	icon_reinf = "reinf_cult"
+	base_icon_state = "cult"
+	base_color = "#402821"
+	reinf_icon_state = "reinf_cult"
 	shard_type = SHARD_STONE_PIECE
 	sheet_singular_name = "brick"
 	sheet_plural_name = "bricks"
@@ -771,11 +714,11 @@
 
 /datum/material/flesh
 	name = "flesh"
-	icon_colour = "#35343a"
-	icon_base = "flesh"
+	base_color = "#35343a"
+	base_icon_state = "flesh"
 	dooropen_noise = 'sound/effects/attackblob.ogg'
 	door_icon_base = "fleshclosed"
-	icon_reinf = "reinf_mesh"
+	reinf_icon_state = "reinf_mesh"
 	melting_point = T0C+300
 	sheet_singular_name = "glob"
 	sheet_plural_name = "globs"
@@ -804,9 +747,9 @@
 
 /datum/material/bone
 	name = "bone"
-	icon_colour = "#e6dfc8"
-	icon_base = "bone"
-	icon_reinf = "reinf_mesh"
+	base_color = "#e6dfc8"
+	base_icon_state = "bone"
+	reinf_icon_state = "reinf_mesh"
 	melting_point = T0C+300
 	sheet_singular_name = "fragment"
 	sheet_plural_name = "fragments"
@@ -830,9 +773,9 @@
 //TODO PLACEHOLDERS:
 /datum/material/leather
 	name = "leather"
-	icon_colour = "#5C4831"
+	base_color = "#5C4831"
 	stack_origin_tech = list(TECH_MATERIAL = 2)
-	flags = MATERIAL_PADDING
+	material_flags = MATERIAL_PADDING
 	ignition_point = T0C+300
 	melting_point = T0C+300
 	protectiveness = 3 // 13%
@@ -842,8 +785,8 @@
 	name = "carpet"
 	display_name = "comfy"
 	use_name = "red upholstery"
-	icon_colour = "#DA020A"
-	flags = MATERIAL_PADDING
+	base_color = "#DA020A"
+	material_flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	sheet_singular_name = "tile"
@@ -853,8 +796,8 @@
 /datum/material/cotton
 	name = "cotton"
 	display_name ="cotton"
-	icon_colour = "#FFFFFF"
-	flags = MATERIAL_PADDING
+	base_color = "#FFFFFF"
+	material_flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
@@ -865,8 +808,8 @@
 	name = "teal"
 	display_name ="teal"
 	use_name = "teal cloth"
-	icon_colour = "#00EAFA"
-	flags = MATERIAL_PADDING
+	base_color = "#00EAFA"
+	material_flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
@@ -876,8 +819,8 @@
 	name = "black"
 	display_name = "black"
 	use_name = "black cloth"
-	icon_colour = "#505050"
-	flags = MATERIAL_PADDING
+	base_color = "#505050"
+	material_flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
@@ -887,8 +830,8 @@
 	name = "green"
 	display_name = "green"
 	use_name = "green cloth"
-	icon_colour = "#01C608"
-	flags = MATERIAL_PADDING
+	base_color = "#01C608"
+	material_flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
@@ -898,8 +841,8 @@
 	name = "purple"
 	display_name = "purple"
 	use_name = "purple cloth"
-	icon_colour = "#9C56C4"
-	flags = MATERIAL_PADDING
+	base_color = "#9C56C4"
+	material_flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
@@ -909,8 +852,8 @@
 	name = "blue"
 	display_name = "blue"
 	use_name = "blue cloth"
-	icon_colour = "#6B6FE3"
-	flags = MATERIAL_PADDING
+	base_color = "#6B6FE3"
+	material_flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
@@ -920,8 +863,8 @@
 	name = "beige"
 	display_name = "beige"
 	use_name = "beige cloth"
-	icon_colour = "#E8E7C8"
-	flags = MATERIAL_PADDING
+	base_color = "#E8E7C8"
+	material_flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
@@ -931,8 +874,8 @@
 	name = "lime"
 	display_name = "lime"
 	use_name = "lime cloth"
-	icon_colour = "#62E36C"
-	flags = MATERIAL_PADDING
+	base_color = "#62E36C"
+	material_flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
@@ -942,10 +885,10 @@
 	name = "foam"
 	display_name = "foam"
 	use_name = "foam"
-	flags = MATERIAL_PADDING
+	material_flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
-	icon_colour = "#ff9900"
+	base_color = "#ff9900"
 	hardness = 1
 	weight = 1
 	protectiveness = 0 // 0%
@@ -958,11 +901,11 @@
 	integrity = 150
 	conductivity = 0 // Weird rubber metal.
 	protectiveness = 10 // 33%
-	icon_colour = "#d6c100"
+	base_color = "#d6c100"
 
 /datum/material/stone/silencium
 	name = "silencium"
-	icon_colour = "#AAAAAA"
+	base_color = "#AAAAAA"
 	weight = 26
 	hardness = 30
 	integrity = 201 //hack to stop kitchen benches being flippable, todo: refactor into weight system
@@ -970,13 +913,13 @@
 
 /datum/material/brass
 	name = "brass"
-	icon_colour = "#CAC955"
+	base_color = "#CAC955"
 	integrity = 150
 	stack_type = /obj/item/stack/material/brass
 
 /datum/material/copper
 	name = "copper"
-	icon_colour = "#b45c13"
+	base_color = "#b45c13"
 	weight = 15
 	hardness = 30
 	conductivity = 35
@@ -986,9 +929,48 @@
 /datum/material/wax
 	name = "wax"
 	stack_type = /obj/item/stack/material/wax
-	icon_colour = "#ebe6ac"
+	base_color = "#ebe6ac"
 	melting_point = T0C+300
 	weight = 1
 	hardness = 20
 	integrity = 100
 	pass_stack_colors = TRUE
+
+/datum/material/algae
+	name = MAT_ALGAE
+	stack_type = /obj/item/stack/material/algae
+	base_color = "#557722"
+	shard_type = SHARD_STONE_PIECE
+	weight = 10
+	hardness = 10
+	sheet_singular_name = "sheet"
+	sheet_plural_name = "sheets"
+
+/obj/item/stack/material/algae
+	name = "algae sheet"
+	icon_state = "sheet-uranium"
+	color = "#557722"
+	default_type = MAT_ALGAE
+
+/obj/item/stack/material/algae/ten
+	amount = 10
+
+/datum/material/carbon
+	name = MAT_CARBON
+	stack_type = /obj/item/stack/material/carbon
+	base_color = "#303030"
+	shard_type = SHARD_SPLINTER
+	weight = 5
+	hardness = 20
+	base_icon_state = "stone"
+	reinf_icon_state = "reinf_stone"
+	icon_reinf_directionals = TRUE
+	door_icon_base = "stone"
+	sheet_singular_name = "sheet"
+	sheet_plural_name = "sheets"
+
+/obj/item/stack/material/carbon
+	name = "carbon sheet"
+	icon_state = "sheet-metal"
+	color = "#303030"
+	default_type = MAT_CARBON

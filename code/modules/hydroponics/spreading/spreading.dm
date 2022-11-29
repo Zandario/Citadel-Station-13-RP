@@ -140,9 +140,9 @@
 			if(EAST)
 				M.Turn(270)
 		src.transform = M
-	var/icon_colour = seed.get_trait(TRAIT_PLANT_COLOUR)
-	if(icon_colour)
-		color = icon_colour
+	var/base_color = seed.get_trait(TRAIT_PLANT_COLOUR)
+	if(base_color)
+		color = base_color
 	// Apply colour and light from seed datum.
 	if(seed.get_trait(TRAIT_BIOLUM))
 		var/clr

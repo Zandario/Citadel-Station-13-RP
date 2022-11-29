@@ -38,6 +38,7 @@ var/list/tape_roll_applications = list()
 	var/crumpled = 0
 	var/tape_dir = 0
 	var/icon_base = "tape"
+	base_icon_state = "tape"
 
 /obj/item/barrier_tape_segment/update_icon()
 	//Possible directional bitflags: 0 (AIRLOCK), 1 (NORTH), 2 (SOUTH), 4 (EAST), 8 (WEST), 3 (VERTICAL), 12 (HORIZONTAL)

@@ -1,5 +1,5 @@
 
-/datum/material/steel/generate_recipes()
+/datum/material/solid/metal/steel/generate_recipes()
 	. = ..()
 	recipes += new/datum/stack_recipe("light switch frame", /obj/item/frame/lightswitch, 2)
 	recipes += new/datum/stack_recipe_list("sofas", list( \

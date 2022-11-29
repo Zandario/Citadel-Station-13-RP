@@ -1,10 +1,10 @@
-/turf/simulated/wall/proc/set_material(datum/material/newmaterial, datum/material/newrmaterial, datum/material/newgmaterial, defer_icon)
-	material = newmaterial
-	reinf_material = newrmaterial
-	if(!newgmaterial)
+/turf/simulated/wall/proc/set_material(datum/material/new_material, datum/material/new_reinf_material, datum/material/new_girder_material, defer_icon)
+	material = new_material
+	reinf_material = new_reinf_material
+	if(!new_girder_material)
 		girder_material = MAT_STEEL
 	else
-		girder_material = newgmaterial
+		girder_material = new_girder_material
 	if(!defer_icon)
 		QUEUE_SMOOTH(src)
 		QUEUE_SMOOTH_NEIGHBORS(src)
@@ -12,6 +12,7 @@
 
 /turf/simulated/wall/proc/update_material(defer_icon)
 	if(!material)
+		stack_trace("update_material() called on [src] with no material set.")
 		return
 
 	if(reinf_material)
@@ -25,12 +26,7 @@
 	if(reinf_material && reinf_material.explosion_resistance > explosion_resistance)
 		explosion_resistance = reinf_material.explosion_resistance
 
-	if(reinf_material)
-		name = "reinforced [material.display_name] wall"
-		desc = "It seems to be a section of hull reinforced with [reinf_material.display_name] and plated with [material.display_name]."
-	else
-		name = "[material.display_name] wall"
-		desc = "It seems to be a section of hull plated with [material.display_name]."
+	update_name()
 
 	SSradiation.resistance_cache.Remove(src)
 	if(!defer_icon)

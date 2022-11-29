@@ -20,6 +20,8 @@
 
 #define ismineralturf(A) istype(A, /turf/simulated/mineral)
 
+#define iswallturf(A) (istype(A, /turf/simulated/wall))
+
 //Objs
 ///override the byond proc because it returns true on children of /atom/movable that aren't objs
 #define isobj(A) istype(A, /obj)

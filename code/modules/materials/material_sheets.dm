@@ -39,7 +39,7 @@
 		origin_tech = material.stack_origin_tech.Copy()
 
 	if(apply_colour)
-		color = material.icon_colour
+		color = material.base_color
 
 	if(!material.conductive)
 		flags |= NOCONDUCT

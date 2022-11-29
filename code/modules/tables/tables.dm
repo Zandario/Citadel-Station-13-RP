@@ -366,13 +366,13 @@ var/list/table_icon_cache = list()
 		// Standard table image
 		if(material)
 			for(var/i = 1 to 4)
-				var/image/I = get_table_image(icon, "[material.icon_base]_[connections[i]]", 1<<(i-1), material.icon_colour, 255 * material.opacity)
+				var/image/I = get_table_image(icon, "[material.base_icon_state]_[connections[i]]", 1<<(i-1), material.base_color, 255 * material.opacity)
 				overlays += I
 
 		// Reinforcements
 		if(reinforced)
 			for(var/i = 1 to 4)
-				var/image/I = get_table_image(icon, "[reinforced.icon_reinf]_[connections[i]]", 1<<(i-1), reinforced.icon_colour, 255 * reinforced.opacity)
+				var/image/I = get_table_image(icon, "[reinforced.reinf_icon_state]_[connections[i]]", 1<<(i-1), reinforced.base_color, 255 * reinforced.opacity)
 				overlays += I
 
 		if(carpeted)
@@ -398,8 +398,8 @@ var/list/table_icon_cache = list()
 
 		icon_state = "flip[type]"
 		if(material)
-			var/image/I = image(icon, "[material.icon_base]_flip[type]")
-			I.color = material.icon_colour
+			var/image/I = image(icon, "[material.base_icon_state]_flip[type]")
+			I.color = material.base_color
 			I.alpha = 255 * material.opacity
 			overlays += I
 			name = "[material.display_name] table"
@@ -407,8 +407,8 @@ var/list/table_icon_cache = list()
 			name = "table frame"
 
 		if(reinforced)
-			var/image/I = image(icon, "[reinforced.icon_reinf]_flip[type]")
-			I.color = reinforced.icon_colour
+			var/image/I = image(icon, "[reinforced.reinf_icon_state]_flip[type]")
+			I.color = reinforced.base_color
 			I.alpha = 255 * reinforced.opacity
 			overlays += I
 

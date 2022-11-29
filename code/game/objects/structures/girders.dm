@@ -51,7 +51,7 @@
 	health = max_health
 	displaced_health = round(max_health/4)
 	if(applies_material_colour)
-		color = girder_material.icon_colour
+		color = girder_material.base_color
 	if(girder_material.products_need_process()) //Am I radioactive or some other? Process me!
 		START_PROCESSING(SSobj, src)
 	else if(datum_flags & DF_ISPROCESSING) //If I happened to be radioactive or s.o. previously, and am not now, stop processing.

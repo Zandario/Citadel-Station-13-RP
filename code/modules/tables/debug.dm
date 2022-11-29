@@ -12,11 +12,10 @@
 	stack_type = /obj/item/stack/material/debug
 	icon_base = "debug"
 	icon_reinf = "rdebug"
-	icon_colour = "#FFFFFF"
+	base_color = "#FFFFFF"
 
 /obj/item/stack/material/debug
 	name = "debugium"
 	icon = 'icons/obj/tables.dmi'
 	icon_state = "debugium"
 	default_type = "debugium"
-

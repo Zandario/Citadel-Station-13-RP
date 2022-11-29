@@ -6,48 +6,61 @@
 /turf/simulated/wall
 	name = "wall"
 	desc = "A huge chunk of iron used to separate rooms."
-	icon = 'icons/turf/walls/wall_masks.dmi'
-	icon_state = "generic"
+	icon = 'icons/turf/walls/solid.dmi'
+	icon_state = "wall-0"
+	base_icon_state = "wall"
 	opacity = TRUE
 	density = TRUE
 	blocks_air = TRUE
 //	air_status = AIR_STATUS_BLOCK
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
-	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
+	heat_capacity = 62500 //a little over 5 cm thick , 62500 for 1 m by 2.5 m by 0.25 m iron wall. also indicates the temperature at wich the wall will melt (currently only able to melt with H/E pipes)
 	baseturfs = /turf/simulated/floor/plating
-	smoothing_flags = SMOOTH_CUSTOM
 	edge_blending_priority = INFINITY		// let's not have floors render onto us mmkay?
 
-	var/icon/wall_masks = 'icons/turf/walls/wall_masks.dmi'
+	// smoothing_flags = SMOOTH_CUSTOM
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_SHUTTERS_BLASTDOORS, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK, SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_LOW_WALL)
+
 	var/damage = 0
 	var/damage_overlay = 0
 	/// damage overlays are cached
 	var/static/list/damage_overlays = generate_wall_damage_overlays()
 	var/active
 	var/can_open = FALSE
-	var/datum/material/girder_material
+
 	var/datum/material/material
+	var/datum/material/girder_material
 	var/datum/material/reinf_material
+
 	var/last_state
 	var/construction_stage
 
-// Walls always hide the stuff below them.
-/turf/simulated/wall/levelupdate()
-	for(var/obj/O in src)
-		O.hide(1)
+	/// Paint color of which the wall has been painted with.
+	var/wall_paint
+	/// Paint color of which the stripe has been painted with. Will not overlay a stripe if no paint is applied
+	var/stripe_paint
+
+	/// Typecache of all objects that we seek out to apply a neighbor stripe overlay
+	var/static/list/neighbor_typecache
 
 /turf/simulated/wall/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..()
-	icon_state = "blank"
+
 	if(!materialtype)
 		materialtype = MAT_STEEL
 	material = get_material_by_name(materialtype)
+
 	if(!girdertype)
 		girdertype = MAT_STEEL
 	girder_material = get_material_by_name(girdertype)
+
 	if(!isnull(rmaterialtype))
 		reinf_material = get_material_by_name(rmaterialtype)
+
 	update_material(TRUE)
+
 	if(material?.radioactivity || reinf_material?.radioactivity || girder_material?.radioactivity)
 		START_PROCESSING(SSturfs, src)
 
@@ -64,8 +77,22 @@
 	if(!radiate())
 		return PROCESS_KILL
 
+// Walls always hide the stuff below them.
+/turf/simulated/wall/levelupdate()
+	for(var/obj/O in src)
+		O.hide(1)
+
 /turf/simulated/wall/proc/get_material()
 	return material
+
+/turf/simulated/wall/update_name()
+	. = ..()
+	if(reinf_material)
+		name = "reinforced [material.solid_name] [material.wall_name]"
+		desc = "It seems to be a section of hull reinforced with [reinf_material.solid_name] and plated with [material.solid_name]."
+	else
+		name = "[material.solid_name] [material.wall_name]"
+		desc = "It seems to be a section of hull plated with [material.solid_name]."
 
 /turf/simulated/wall/bullet_act(var/obj/item/projectile/Proj)
 	if(istype(Proj,/obj/item/projectile/beam))
@@ -237,7 +264,7 @@
 		new/obj/effect/overlay/wallrot(src)
 
 /turf/simulated/wall/proc/can_melt()
-	if(material.flags & MATERIAL_UNMELTABLE)
+	if(material.material_flags & MATERIAL_UNMELTABLE)
 		return 0
 	return 1
 

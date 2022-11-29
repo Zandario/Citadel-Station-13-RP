@@ -78,13 +78,27 @@ var/list/name_to_material
 
 // Material definition and procs follow.
 /datum/material
+	//! Abstract
+	/**
+	 * What the material is indexed by in the SSmaterials.materials list.
+	 * Defaults to the type of the material.
+	 */
+	var/id
+
 	/// Unique name for use in indexing the list.
 	var/name
 	/// Prettier name for display.
 	var/display_name
+	var/solid_name
+	var/gas_name
+	var/liquid_name
 	var/use_name
+	/// Name given to walls of this material.
+	var/wall_name = "wall"
 	/// Various status modifiers.
-	var/flags = 0
+	var/material_flags = NONE
+	///Bitflags that influence how SSmaterials handles this material.
+	var/init_flags = MATERIAL_INIT_MAPLOAD
 	var/sheet_singular_name = "sheet"
 	var/sheet_plural_name = "sheets"
 	var/is_fusion_fuel
@@ -101,21 +115,38 @@ var/list/name_to_material
 	/// Fancy string for barricades/tables/objects exploding.
 	var/destruction_desc = "breaks apart"
 
-	//! Icons
-	/// Colour applied to products of this material.
-	var/icon_colour
-	/// Wall and table base icon tag. See header.
-	var/icon_base = "metal"
-	/// Door base icon tag. See header.
-	var/door_icon_base = "metal"
-	/// Overlay used
-	var/icon_reinf = "reinf_metal"
-	/// Do we have directional reinforced states on walls?
-	var/icon_reinf_directionals = FALSE
-	/// Research level for stacks.
-	var/list/stack_origin_tech = list(TECH_MATERIAL = 1)
+	//! Appearance
+	/// Color applied to products of this material.
+	var/base_color
 	/// Will stacks made from this material pass their colors onto objects?
 	var/pass_stack_colors = FALSE
+	/// Do we have directional reinforced states on walls?
+	var/icon_reinf_directionals = TRUE
+	/// Research level for stacks.
+	var/list/stack_origin_tech = list(TECH_MATERIAL = 1)
+	/// Controls various appearance settings for walls.
+	var/wall_flags = NONE
+	/// Which wall icon types walls of this material type will consider blending with. Assoc list (icon path = TRUE/FALSE)
+	var/list/wall_blend_icons = list()
+
+	//! Icons
+	/// The icon we use for walls for this material.
+	var/base_icon    = 'icons/turf/walls/solid.dmi'
+	/// The icon we use for walls for this material when used to reinforce walls.
+	var/reinf_icon   = 'icons/turf/walls/reinforced_metal.dmi'
+	/// The icon we use for the bottomhalf of walls for this material.
+	var/stripe_icon = 'icons/turf/walls/solid_stripe.dmi'
+	/// The icon we use for walls for this material when it's naturally occurring.
+	var/natural_icon = 'icons/turf/walls/natural.dmi'
+
+	/// The icon we use for doors for this material.
+	var/door_icon_base = 'icons/obj/doors/material_doors.dmi'
+
+	//! Icon States
+	/// The icon_state we use for walls for this material.
+	var/base_icon_state    = "wall"
+	/// Overlay icon_state state used to reinforce walls.
+	var/reinf_icon_state   = "wall"
 
 	//! Attributes
 	/// Delay in ticks when cutting through this wall.
@@ -126,12 +157,18 @@ var/list/name_to_material
 	var/ignition_point
 	/// K, walls will take damage if they're next to a fire hotter than this
 	var/melting_point = 1800
+	/// K, point that material will become a gas.
+	var/boiling_point = 3000 //TODO: Implement
+	/// kJ/kg, enthalpy of vaporization
+	var/latent_heat = 7000 //TODO: Implement
+	/// kg/mol,
+	var/molar_mass = 0.06 //TODO: Implement
 	/// General-use HP value for products.
 	var/integrity = 150
 	/// How well this material works as armor.  Higher numbers are better, diminishing returns applies.
 	var/protectiveness = 10
 	/// Is the material transparent? 0.5< makes transparent walls/doors.
-	var/opacity = 1
+	var/opacity = TRUE
 	/// How reflective to light is the material?  Currently used for laser reflection and defense.
 	var/reflectivity = 0
 	/// Only used by walls currently.
@@ -173,6 +210,25 @@ var/list/name_to_material
 	var/rotting_touch_message = "crumbles under your touch"
 
 
+/**
+ * Handles initializing the material.
+ *
+ * Arugments:
+ * - _id: The ID the material should use. Overrides the existing ID.
+ */
+/datum/material/proc/Initialize(_id, ...)
+	if(_id)
+		id = _id
+	else if(isnull(id))
+		id = type
+
+	// TODO: Implement.
+	// if(texture_layer_icon_state)
+	// 	cached_texture_filter_icon = icon('icons/materials/composite.dmi', texture_layer_icon_state)
+
+	return TRUE
+
+
 // Make sure we have a display name and shard icon even if they aren't explicitly set.
 /datum/material/New()
 	..()
@@ -180,6 +236,8 @@ var/list/name_to_material
 		display_name = name
 	if(!use_name)
 		use_name = display_name
+	if(!solid_name)
+		solid_name = display_name
 	if(!shard_icon)
 		shard_icon = shard_type
 
@@ -290,7 +348,7 @@ var/list/name_to_material
 
 /// Used by walls and weapons to determine if they break or not.
 /datum/material/proc/is_brittle()
-	return !!(flags & MATERIAL_BRITTLE)
+	return !!(material_flags & MATERIAL_BRITTLE)
 
 
 /datum/material/proc/combustion_effect(turf/our_turf, temperature)
