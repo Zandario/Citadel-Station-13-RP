@@ -16,7 +16,7 @@
 					"Telemachus" = "toiletbotsurgeon",
 					"WTOperator" = "sleekcmo",
 					"XI-ALP" = "heavyMed",
-					"Basic" = "Medbot",
+					"Basic" = "Medibot",
 					"Advanced Droid" = "droid-medical",
 					"Needles" = "medicalrobot",
 					"Drone" = "drone-surgery",
@@ -26,8 +26,12 @@
 					"L3P1-D0T" = "Glitterfly-Surgeon",
 					"Miss M" = "miss-medical",
 					"Coffical" = "coffin-Medical",
-					"Coffcue" = "coffin-Rescue"
-
+					"Coffcue" = "coffin-Rescue",
+					"X-88" = "xeightyeight-medical",
+					"Acheron" = "mechoid-Medical",
+					"Shellguard Noble" = "Noble-MED",
+					"ZOOM-BA" = "zoomba-medical",
+					"W02M" = "worm-crisis"
 					)
 
 /obj/item/robot_module/robot/medical/surgeon/Initialize(mapload)
@@ -93,8 +97,8 @@
 
 //Crisis module removed - 5/2/2021
 
-/obj/item/robot_module/robot/medihound
-	name = "MediHound module"
+/obj/item/robot_module/robot/quad_medi
+	name = "MediQuad module"
 	channels = list("Medical" = 1)
 	networks = list(NETWORK_MEDICAL)
 	subsystems = list(/mob/living/silicon/proc/subsystem_crew_monitor)
@@ -103,21 +107,25 @@
 					"Medical Hound" = "medihound",
 					"Dark Medical Hound" = "medihounddark",
 					"Mediborg model V-2" = "vale",
-					"Borgi" = "borgi-medi"
+					"Borgi" = "borgi-medi",
+					"F3-LINE" = "FELI-Medical"
 					)
 
-/obj/item/robot_module/robot/medihound/Initialize(mapload)
+/obj/item/robot_module/robot/quad_medi/Initialize(mapload)
 	. = ..()
 	var/mob/living/silicon/robot/R = loc
 	src.modules += new /obj/item/dogborg/jaws/small(src) //In case a patient is being attacked by carp.
 	src.modules += new /obj/item/dogborg/boop_module(src) //Boop the crew.
 	src.modules += new /obj/item/healthanalyzer(src) // See who's hurt specificially.
+	src.modules += new /obj/item/autopsy_scanner(src)
+	src.modules += new /obj/item/roller_holder(src) // Sometimes you just can't buckle someone to yourself because of taurcode. this is for those times.
+	src.modules += new /obj/item/reagent_scanner/adv(src)
 	src.modules += new /obj/item/reagent_containers/syringe(src) //In case the chemist is nice!
 	src.modules += new /obj/item/reagent_containers/glass/beaker/large(src)//For holding the chemicals when the chemist is nice
 	// src.modules += new /obj/item/sleevemate(src) //Lets them scan people.
 	src.modules += new /obj/item/shockpaddles/robot/hound(src) //Paws of life
 	src.emag 	 = new /obj/item/dogborg/pounce(src) //Pounce
-  
+
 	//New surgery tools + grippers
 	src.modules += new /obj/item/surgical/scalpel/cyborg(src)
 	src.modules += new /obj/item/surgical/hemostat/cyborg(src)
@@ -166,24 +174,20 @@
 	L.charge_costs = list(1000)
 	L.synths = list(medicine)
 	src.modules += K
-	src.modules += L 
-	src.modules += P 
+	src.modules += L
+	src.modules += P
 	// END CITADEL CHANGES
 
-	R.icon = 'icons/mob/widerobot_vr.dmi'
-	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
-	R.ui_style_vr = TRUE
-	R.pixel_x 	 = -16
-	R.old_x  	 = -16
-	R.default_pixel_x = -16
+	R.icon = 'icons/mob/robots_wide.dmi'
+	R.set_base_pixel_x(-16)
 	R.dogborg = TRUE
 	R.wideborg = TRUE
+	R.icon_dimension_x = 64
 	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
-	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
 	R.verbs |= /mob/living/proc/shred_limb
 	R.verbs |= /mob/living/silicon/robot/proc/rest_style
 
 	if(R.client && (R.client.ckey in list("nezuli")))
 		sprites += "Alina"
 		sprites["Alina"] = "alina-med"
-
+		. = ..()

@@ -6,7 +6,7 @@
 	var/datum/geosample/geologic_data
 	var/material
 
-/obj/item/ore/ex_act(severity)
+/obj/item/ore/legacy_ex_act(severity)
 	return
 
 /obj/item/ore/uranium
@@ -58,6 +58,11 @@
 	origin_tech = list(TECH_MATERIAL = 2)
 	material = "phoron"
 
+/obj/item/ore/copper
+	name = "native copper ore"
+	icon_state = "ore_copper"
+	origin_tech = list(TECH_MATERIAL = 2)
+	material = "copper"
 /obj/item/ore/silver
 	name = "native silver ore"
 	icon_state = "ore_silver"
@@ -126,3 +131,10 @@
 		C.sample_item(src, user)
 	else
 		return ..()
+
+//Vaudium
+/obj/item/ore/vaudium
+	name = "raw vaudium"
+	icon_state = "ore_vaudium"
+	material = MAT_VAUDIUM
+	origin_tech = list(TECH_MATERIAL = 7)

@@ -1,4 +1,3 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
 /*
 	The broadcaster sends processed messages to all radio devices in the game. They
@@ -30,7 +29,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	//Linked bluespace radios
 	var/list/linked_radios_weakrefs = list()
 
-/obj/machinery/telecomms/broadcaster/Initialize()
+/obj/machinery/telecomms/broadcaster/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 
@@ -746,7 +745,6 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	if(do_sleep)
 		sleep(rand(10,25))
 
-	//to_world_log("Level: [signal.data["level"]] - Done: [signal.data["done"]]")
+	//TO_WORLD_log("Level: [signal.data["level"]] - Done: [signal.data["done"]]")
 
 	return signal
-

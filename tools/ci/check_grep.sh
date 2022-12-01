@@ -6,6 +6,10 @@ shopt -s globstar
 
 st=0
 
+if git grep -P "\r\n"; then
+    echo "ERROR: CRLF line endings detected. Please stop using the webeditor, and fix it using a desktop Git client."
+	st = 1
+fi;
 if grep -El '^\".+\" = \(.+\)' _maps/**/*.dmm;	then
     echo "ERROR: Non-TGM formatted map detected. Please convert it using Map Merger!"
     st=1
@@ -22,19 +26,24 @@ if grep -P 'pixel_[^xy]' _maps/**/*.dmm;	then
     echo "ERROR: incorrect pixel offset variables detected in maps, please remove them."
     st=1
 fi;
+#    THE BELOW REQUIRES SMART WIRES
 # echo "Checking for cable varedits"
 # if grep -P '/obj/structure/cable(/\w+)+\{' _maps/**/*.dmm;	then
 #     echo "ERROR: vareditted cables detected, please remove them."
 #     st=1
 # fi;
-# if grep -P '\td[1-2] =' _maps/**/*.dmm;	then
-#     echo "ERROR: d1/d2 cable variables detected in maps, please remove them."
-#     st=1
-# fi;
+if grep -P '\td[1-2] =' _maps/**/*.dmm;	then
+    echo "ERROR: d1/d2 cable variables detected in maps, please remove them."
+    st=1
+fi;
 echo "Checking for stacked cables"
 if grep -P '"\w+" = \(\n([^)]+\n)*/obj/structure/cable,\n([^)]+\n)*/obj/structure/cable,\n([^)]+\n)*/area/.+\)' _maps/**/*.dmm;	then
     echo "found multiple cables on the same tile, please remove them."
     st=1
+fi;
+if grep -P '/turf[0-z/_]*,\n/turf' _maps/**/*.dmm; then
+	echo "FATAL: found multiple tiles on one tile, this will result in severe glitches."
+	st=1
 fi;
 if grep -P '^/area/.+[\{]' _maps/**/*.dmm;	then
     echo "ERROR: Vareditted /area path use detected in maps, please replace with proper paths."

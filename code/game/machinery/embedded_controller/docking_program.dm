@@ -6,10 +6,10 @@
 
 #define MODE_NONE			0
 #define MODE_SERVER			1
-#define MODE_CLIENT			2	//The one who initiated the docking, and who can initiate the undocking. The server cannot initiate undocking, and is the one responsible for deciding to accept a docking request and signals when docking and undocking is complete. (Think server == station, client == shuttle)
-
-#define MESSAGE_RESEND_TIME 5	//how long (in seconds) do we wait before resending a message
-
+///The one who initiated the docking, and who can initiate the undocking. The server cannot initiate undocking, and is the one responsible for deciding to accept a docking request and signals when docking and undocking is complete. (Think server == station, client == shuttle)
+#define MODE_CLIENT			2
+///how long (in seconds) do we wait before resending a message
+#define MESSAGE_RESEND_TIME 5
 /*
 	*** STATE TABLE ***
 
@@ -51,7 +51,7 @@
 
 	The purpose of enabling the override is to prevent the docking program from automatically doing things with the docking port when docking or undocking.
 	Maybe the shuttle is full of plamsa/phoron for some reason, and you don't want the door to automatically open, or the airlock to cycle.
-	This means that the prepare_for_docking/undocking and finish_docking/undocking procs don't get called.
+	This means that the prepare_for_docking/undocking and finish_docking/undocking procs don't get called.f
 
 	The docking controller will still check the state of the docking port, and thus prevent the shuttle from launching unless they force the launch (handling forced
 	launches is not the docking controller's responsibility). In this case it is up to the players to manually get the docking port into a good state to undock
@@ -117,7 +117,7 @@
 				if(docking_codes)
 					var/code = signal.data["code"]
 					if(code != docking_codes)
-						log_debug("Controller [id_tag] got request_dock but code:[code] != docking_codes:[docking_codes]")
+						log_debug(SPAN_DEBUG("Controller [id_tag] got request_dock but code:[code] != docking_codes:[docking_codes]"))
 						return
 
 				control_mode = MODE_SERVER
@@ -259,7 +259,7 @@
 	received_confirm = 0
 
 /datum/computer/file/embedded_program/docking/proc/force_undock()
-	//to_world("[id_tag]: forcing undock")
+	//TO_WORLD("[id_tag]: forcing undock")
 	if (tag_target)
 		send_docking_command(tag_target, "dock_error")
 	reset()

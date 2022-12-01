@@ -1,23 +1,10 @@
 ///////////////////////////
 //// Spawning and despawning
-var/global/list/latejoin_talon = list()
-/obj/effect/landmark/talon
-	name = "JoinLateTalon"
-	delete_me = 1
-
-/obj/effect/landmark/talon/New()
-	latejoin_talon += loc // Register this turf as tram latejoin.
-	..()
 
 /datum/spawnpoint/talon
 	display_name = "ITV Talon Cryo"
 	restrict_job = list("Talon Captain", "Talon Pilot", "Talon Engineer", "Talon Doctor", "Talon Guard")
-	msg = "has come out of cryostasis"
 	announce_channel = "Talon"
-
-/datum/spawnpoint/talon/New()
-	..()
-	turfs = latejoin_talon
 
 /obj/machinery/cryopod/talon
 	announce_channel = "Talon"
@@ -32,7 +19,7 @@ var/global/list/latejoin_talon = list()
 	announce_channel = "Talon"
 	on_store_name = "ITV Talon Robotic Storage"
 
-/obj/effect/landmark/map_data/talon
+/obj/landmark/map_data/talon
     height = 2
 
 ///////////////////////////
@@ -70,6 +57,7 @@ var/global/list/latejoin_talon = list()
 	shuttle_type = /datum/shuttle/autodock/overmap/talonboat
 
 // The talon's boat
+
 /datum/shuttle/autodock/overmap/talonboat
 	name = "Talon's boat"
 	current_location = "offmap_spawn_talonboat"
@@ -114,6 +102,7 @@ var/global/list/latejoin_talon = list()
 	shuttle_type = /datum/shuttle/autodock/overmap/talon_lifeboat
 
 // The talon's boat
+
 /datum/shuttle/autodock/overmap/talon_lifeboat
 	name = "Talon lifeboat"
 	current_location = "offmap_spawn_talon_lifeboat"
@@ -122,24 +111,24 @@ var/global/list/latejoin_talon = list()
 	fuel_consumption = 0
 	defer_initialisation = TRUE
 
+
 ///////////////////////////
 //// The Various Machines
 /obj/machinery/telecomms/allinone/talon
 	freq_listening = list(PUB_FREQ, TALON_FREQ)
 
 /obj/item/paper/talon_shields
-	name = "to whatever asshole"
-	info = {"to whatever <b>asshole</b> keeps resetting the shield generator,<br>\
-please stop fucking around before you get us all killed. thanks.<br>\
+	name = "To whatever asshole"
+	info = {"To whatever <b>asshole</b> keeps resetting the shield generator,<br>\
+Please stop fucking around before you get us all killed. thanks.<br>\
 <br>\
-to whoever has to fix this,<br>\
-humanoid lifeforms <b>off</b> so we can get outside unless someone is trying to kill us,<br>\
-atmospheric thing <b>off</b> unless all the air is leaving,<br>\
-hull shield <b>on</b> because it saves a lot of power,<br>\
-the last one <b>on</b> so it covers deck one,<br>\
-radius of 26 is pretty good,<br>\
-adjust input cap so it doesn't fuck the rest of the ship<br>\
-good luck<br>\
+To whoever has to fix this,<br>\
+Radius to <b>60</b> to cover the entire ship.<br>\
+Z-level <b>1</b> so that it can cover both levels.<br>\
+Charge rate <b>0.9</b> so that it can charge decently fast.<br>\
+Max strength between <b>2-10</b> depending on what to expect, from dust to meteors.</br>\
+<b>Max out</b> the Capacitor. Don't question it. Just do it.</br>\
+Good luck<br>\
 <br>\
 <i>Harry Townes</i>"}
 
@@ -171,7 +160,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 	item_state = "tdgreen"
 	assignment = "Talon synthetic"
 
-/obj/item/card/id/synthetic/talon/Initialize()
+/obj/item/card/id/synthetic/talon/Initialize(mapload)
 	. = ..()
 	access = list(access_talon, access_synth)
 
@@ -186,6 +175,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 /obj/machinery/power/apc/talon
 	req_access = list()
 	req_one_access = list(access_talon)
+	alarms_hidden = 1
 
 /obj/machinery/power/apc/talon/hyper
 	cell_type = /obj/item/cell/hyper
@@ -193,6 +183,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 /obj/machinery/alarm/talon
 	req_access = list()
 	req_one_access = list(access_talon)
+	alarms_hidden = 1
 
 /obj/machinery/door/firedoor/glass/talon
 	req_access = list()
@@ -254,10 +245,10 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 /obj/structure/closet/secure_closet/talon_captain
 	name = "talon captain's locker"
 	req_access = list(access_talon)
-	// closet_appearance = /decl/// closet_appearance/secure_closet/talon/captain
+	// closet_appearance = /singleton/// closet_appearance/secure_closet/talon/captain
 
 	starts_with = list(
-		/obj/item/storage/backpack/dufflebag/captain,
+		/obj/item/storage/backpack/dufflebag/captain/talon,
 		/obj/item/clothing/suit/storage/vest,
 		/obj/item/melee/telebaton,
 		/obj/item/flash,
@@ -274,7 +265,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 /obj/structure/closet/secure_closet/talon_guard
 	name = "talon guard's locker"
 	req_access = list(access_talon)
-	// closet_appearance = /decl/// closet_appearance/secure_closet/talon/guard
+	// closet_appearance = /singleton/// closet_appearance/secure_closet/talon/guard
 
 	starts_with = list(
 		/obj/item/clothing/suit/armor/pcarrier/light,
@@ -290,7 +281,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 		/obj/item/storage/belt/security,
 		/obj/item/radio,
 		/obj/item/radio/headset/talon,
-		/obj/item/clothing/accessory/solgov/department/security,
+		/obj/item/clothing/accessory/oricon/department/security,
 		/obj/item/clothing/head/helmet/space/void/refurb/marine/talon,
 		/obj/item/clothing/suit/space/void/refurb/marine/talon,
 		/obj/item/clothing/shoes/magboots,
@@ -303,7 +294,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 /obj/structure/closet/secure_closet/talon_doctor
 	name = "talon doctor's locker"
 	req_access = list(access_talon)
-	// closet_appearance = /decl/// closet_appearance/secure_closet/talon/doctor
+	// closet_appearance = /singleton/// closet_appearance/secure_closet/talon/doctor
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/medical,
@@ -325,7 +316,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 /obj/structure/closet/secure_closet/talon_engineer
 	name = "talon engineer's locker"
 	req_access = list(access_talon)
-	// closet_appearance = /decl/// closet_appearance/secure_closet/talon/engineer
+	// closet_appearance = /singleton/// closet_appearance/secure_closet/talon/engineer
 
 	starts_with = list(
 		/obj/item/clothing/accessory/storage/brown_vest,
@@ -348,7 +339,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 /obj/structure/closet/secure_closet/talon_pilot
 	name = "talon pilot's locker"
 	req_access = list(access_talon)
-	// closet_appearance = /decl/// closet_appearance/secure_closet/talon/pilot
+	// closet_appearance = /singleton/// closet_appearance/secure_closet/talon/pilot
 
 	starts_with = list(
 		/obj/item/material/knife/tacknife/survival,
@@ -360,7 +351,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 		/obj/item/reagent_containers/food/drinks/cans/waterbottle,
 		/obj/item/radio,
 		/obj/item/clothing/under/utility/blue,
-		/obj/item/clothing/accessory/solgov/specialty/pilot,
+		/obj/item/clothing/accessory/oricon/specialty/pilot,
 		/obj/item/clothing/shoes/boots/jackboots,
 		/obj/item/clothing/shoes/boots/jackboots/toeless,
 		/obj/item/radio/headset/talon,
@@ -481,3 +472,46 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 	hard_drive.store_file(new/datum/computer_file/program/camera_monitor/talon_ship())
 	hard_drive.store_file(new/datum/computer_file/program/suit_sensors/talon())
 	hard_drive.store_file(new/datum/computer_file/program/camera_monitor/talon_helmet())
+
+
+// Just in case someone decides to clean up radio.dm and remove this Im going to leave a copy commented out here. Might save someone some trouble later trying to find this. Bloop
+/*
+/obj/item/bluespace_radio/talon_prelinked
+	name = "bluespace radio (talon)"
+	handset = /obj/item/radio/bluespace_handset/linked/talon_prelinked
+
+/obj/item/radio/bluespace_handset/linked/talon_prelinked
+	bs_tx_preload_id = "talon_aio" //Transmit to a receiver
+	bs_rx_preload_id = "talon_aio" //Recveive from a transmitter
+*/
+/*	//Just keeping this here for reference, this would go into the define's folder of a map -Bloop
+	lateload_z_levels = list(
+		list("Offmap Ship - Talon Z1","Offmap Ship - Talon Z2")//I swear to god this better work -Bloop
+	)
+*/
+/*
+// Talon offmap spawn stuff
+/datum/map_template/triumph_lateload/offmap/talon1
+	name = "Offmap Ship - Talon Z1"
+	desc = "Offmap spawn ship, the Talon."
+	mappath = "_maps/map_levels/140x140/talon/talon1.dmm"
+	associated_map_datum = /datum/map_z_level/triumph_lateload/talon1
+
+/datum/map_template/triumph_lateload/offmap/talon2
+	name = "Offmap Ship - Talon Z2"
+	desc = "Offmap spawn ship, the Talon."
+	mappath = "_maps/map_levels/140x140/talon/talon2.dmm"
+	associated_map_datum = /datum/map_z_level/triumph_lateload/talon2
+
+/datum/map_z_level/triumph_lateload/talon1
+	name = "Talon Deck One"
+	flags = MAP_LEVEL_PLAYER
+	base_turf = /turf/space
+	z = Z_LEVEL_TALON1
+
+/datum/map_z_level/triumph_lateload/talon2
+	name = "Talon Deck Two"
+	flags = MAP_LEVEL_PLAYER
+	base_turf = /turf/simulated/open
+	z = Z_LEVEL_TALON2
+*/

@@ -61,9 +61,9 @@
 	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED
 	base_turf = /turf/simulated/mineral/floor/virgo3b
 
-/datum/map_template/tether_lateload/tether_plains/on_map_loaded(z)
-	. = ..()
-	seed_submaps(list(z), 150, /area/tether/outpost/exploration_plains, /datum/map_template/submap/level_specific/plains)
+// /datum/map_template/tether_lateload/tether_plains/on_map_loaded(z)
+// 	. = ..()
+// 	seed_submaps(list(z), 150, /area/tether/outpost/exploration_plains, /datum/map_template/submap/level_specific/plains)
 
 //////////////////////////////////////////////////////////////////////////////
 //Rogue Mines Stuff
@@ -91,6 +91,8 @@
 
 //////////////////////////////////////////////////////////////////////////////
 /// Away Missionsw
+
+// V4
 /datum/map_template/tether_lateload/away_beach
 	name = "Desert Planet - Z1 Beach"
 	desc = "The beach away mission."
@@ -120,9 +122,26 @@
 	name = "Away Mission - Desert Cave"
 	base_turf = /turf/simulated/floor/outdoors/rocks/caves
 
+/datum/map_template/tether_lateload/away_desert
+	name = "Desert Planet - Z3 Desert"
+	desc = "The inland desert of V-4."
+	mappath = "_maps/map_levels/140x140/virgo4_desert.dmm"
+	associated_map_datum = /datum/map_template/submap/level_specific/class_h
+
+/datum/map_template/tether_lateload/away_desert/on_map_loaded(z)
+	. = ..()
+	seed_submaps(list(z), 150, /area/tether_away/beach/desert/unexplored, /datum/map_template/submap/level_specific/class_h)
+
+/datum/map_z_level/tether_lateload/away_desert
+	name = "Away Mission - Desert"
+	base_turf = /turf/simulated/floor/outdoors/beach/sand/lowdesert
+
+
 /obj/effect/step_trigger/zlevel_fall/beach
 	var/static/target_z
 
+
+// Alienship
 /datum/map_template/tether_lateload/away_alienship
 	name = "Alien Ship - Z1 Ship"
 	desc = "The alien ship away mission."
@@ -132,6 +151,8 @@
 /datum/map_z_level/tether_lateload/away_alienship
 	name = "Away Mission - Alien Ship"
 
+
+// V2
 /datum/map_template/tether_lateload/away_aerostat
 	name = "Remmi Aerostat - Z1 Aerostat"
 	desc = "The Virgo 2 Aerostat away mission."
@@ -140,7 +161,7 @@
 
 /datum/map_z_level/tether_lateload/away_aerostat
 	name = "Away Mission - Aerostat"
-	base_turf = /turf/unsimulated/floor/sky/virgo2_sky
+	base_turf = /turf/simulated/floor/sky/virgo2_sky
 
 /datum/map_template/tether_lateload/away_aerostat_surface
 	name = "Remmi Aerostat - Z2 Surface"
@@ -158,6 +179,8 @@
 	name = "Away Mission - Aerostat Surface"
 	base_turf = /turf/simulated/mineral/floor/ignore_mapgen/virgo2
 
+// Debrisfield
+
 /datum/map_template/tether_lateload/away_debrisfield
 	name = "Debris Field - Z1 Space"
 	desc = "The Virgo 3 Debris Field away mission."
@@ -167,10 +190,12 @@
 /datum/map_template/tether_lateload/away_debrisfield/on_map_loaded(z)
 	. = ..()
 	//Commented out until we actually get POIs
-	seed_submaps(list(z), 400, /area/space, /datum/map_template/submap/level_specific/debrisfield)
+	seed_submaps(list(z), 400, /area/space/debrisfield/unexplored, /datum/map_template/submap/level_specific/debrisfield)
 
 /datum/map_z_level/tether_lateload/away_debrisfield
 	name = "Away Mission - Debris Field"
+
+// Fuel Depot
 
 /datum/map_template/tether_lateload/away_fueldepot
 	name = "Fuel Depot - Z1 Space"
@@ -180,6 +205,22 @@
 
 /datum/map_z_level/tether_lateload/away_fueldepot
 	name = "Away Mission - Fuel Depot"
+
+// Class D
+
+/datum/map_template/tether_lateload/away_class_d
+	name = "Class D - Mountains and Rock Plains"
+	desc = "The previously nuked planet Class D away mission"
+	mappath = '_maps/map_levels/140x140/Class_D.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/away_class_d
+
+/datum/map_template/tether_lateload/away_class_d/on_map_loaded(z)
+	. = ..()
+	seed_submaps(list(z), 200, /area/class_d/unexplored, /datum/map_template/submap/level_specific/class_d)
+	new /datum/random_map/noise/ore/classd(null, 1, 1, z, 64, 64)
+
+/datum/map_z_level/tether_lateload/away_class_d
+	name = "Away Mission - Class D"
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Gateway submaps go here

@@ -34,13 +34,10 @@
 /area/submap/debrisfield_vr/tinyshuttle/crew)
 "af" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
+	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/external,
-/obj/effect/map_helper/airlock/door/ext_door,
+/obj/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/monofloor,
 /area/submap/debrisfield_vr/tinyshuttle/crew)
 "ag" = (
@@ -48,7 +45,7 @@
 /turf/simulated/shuttle/plating/airless/carry,
 /area/submap/debrisfield_vr/tinyshuttle/bridge)
 "ah" = (
-/obj/machinery/atmospherics/unary/engine{
+/obj/machinery/atmospherics/component/unary/engine{
 	dir = 8
 	},
 /turf/space,
@@ -60,7 +57,7 @@
 	pixel_x = -4;
 	pixel_y = 8
 	},
-/obj/effect/map_helper/airlock/sensor/ext_sensor,
+/obj/map_helper/airlock/sensor/ext_sensor,
 /turf/simulated/wall/thull,
 /area/submap/debrisfield_vr/tinyshuttle/crew)
 "aj" = (
@@ -84,13 +81,13 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/glass_external/public,
-/obj/effect/map_helper/airlock/door/int_door,
+/obj/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled/monofloor{
 	dir = 4
 	},
 /area/submap/debrisfield_vr/tinyshuttle/crew)
 "am" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+/obj/machinery/atmospherics/component/unary/vent_pump/high_volume{
 	dir = 4;
 	id_tag = "temp"
 	},
@@ -109,8 +106,8 @@
 	pixel_x = 26;
 	pixel_y = 6
 	},
-/obj/effect/map_helper/airlock/atmos/chamber_pump,
-/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/map_helper/airlock/atmos/chamber_pump,
+/obj/map_helper/airlock/sensor/chamber_sensor,
 /obj/effect/overmap/visitable/ship/landable/tinycarrier,
 /turf/simulated/floor/tiled/monotile,
 /area/submap/debrisfield_vr/tinyshuttle/crew)
@@ -162,17 +159,13 @@
 /area/submap/debrisfield_vr/tinyshuttle/crew)
 "at" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
+	icon_state = "1-2"
 	},
 /obj/machinery/airlock_sensor/airlock_interior{
 	dir = 8;
-	pixel_x = 24;
-	pixel_y = 0
+	pixel_x = 24
 	},
-/obj/effect/map_helper/airlock/sensor/int_sensor,
+/obj/map_helper/airlock/sensor/int_sensor,
 /obj/effect/floor_decal/corner/brown{
 	dir = 6
 	},
@@ -212,8 +205,7 @@
 "ax" = (
 /obj/machinery/computer/shuttle_control/explore/tinycarrier,
 /obj/effect/floor_decal/corner/blue{
-	dir = 5;
-	icon_state = "corner_white"
+	dir = 5
 	},
 /turf/simulated/floor/tiled/airless{
 	broken = 1
@@ -225,8 +217,8 @@
 	pixel_x = 24;
 	req_one_access = list()
 	},
-/obj/effect/decal/cleanable/generic,
-/obj/machinery/atmospherics/unary/vent_scrubber,
+/obj/effect/debris/cleanable/generic,
+/obj/machinery/atmospherics/component/unary/vent_scrubber,
 /obj/effect/floor_decal/corner/blue/full{
 	dir = 1
 	},
@@ -250,8 +242,8 @@
 "aB" = (
 /obj/item/clothing/head/service,
 /obj/item/clothing/head/service,
-/obj/item/clothing/under/solgov/utility/fleet,
-/obj/item/clothing/under/solgov/utility/fleet,
+/obj/item/clothing/under/oricon/utility/fleet,
+/obj/item/clothing/under/oricon/utility/fleet,
 /obj/item/clothing/suit/storage/toggle/dress/fleet,
 /obj/item/clothing/suit/storage/toggle/dress/fleet,
 /obj/structure/closet/wardrobe/black{
@@ -267,8 +259,7 @@
 "aC" = (
 /obj/machinery/light_switch{
 	dir = 4;
-	pixel_x = -28;
-	pixel_y = 0
+	pixel_x = -28
 	},
 /obj/effect/floor_decal/corner/brown{
 	dir = 9
@@ -277,10 +268,7 @@
 /area/submap/debrisfield_vr/tinyshuttle/crew)
 "aD" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
+	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/corner/brown{
 	dir = 4
@@ -288,7 +276,7 @@
 /turf/simulated/floor/tiled,
 /area/submap/debrisfield_vr/tinyshuttle/crew)
 "aE" = (
-/obj/effect/decal/cleanable/dirt,
+/obj/effect/debris/cleanable/dirt,
 /obj/effect/floor_decal/corner/brown{
 	dir = 5
 	},
@@ -305,7 +293,6 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
-	pixel_x = 0;
 	pixel_y = 24
 	},
 /obj/structure/cable/green{
@@ -337,13 +324,12 @@
 	dir = 8
 	},
 /obj/effect/floor_decal/corner/blue{
-	dir = 1;
-	icon_state = "corner_white"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/airless,
 /area/submap/debrisfield_vr/tinyshuttle/bridge)
 "aJ" = (
-/obj/machinery/atmospherics/unary/vent_pump{
+/obj/machinery/atmospherics/component/unary/vent_pump{
 	dir = 4
 	},
 /obj/structure/cable/green{
@@ -364,8 +350,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5;
-	icon_state = "intact-scrubbers"
+	dir = 5
 	},
 /obj/effect/floor_decal/corner/blue{
 	dir = 6
@@ -389,7 +374,7 @@
 /obj/structure/prop{
 	desc = "A man-sized pod for entering suspended animation. This one is room temperature.";
 	dir = 8;
-	icon = 'icons/obj/Cryogenic2_vr.dmi';
+	icon = 'icons/obj/Cryogenic2.dmi';
 	icon_state = "cryopod_0";
 	name = "cryogenic freezer"
 	},
@@ -420,8 +405,7 @@
 	icon_state = "6-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 10;
-	icon_state = "intact"
+	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
@@ -435,7 +419,7 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/obj/machinery/atmospherics/component/unary/vent_pump/on{
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
@@ -445,8 +429,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 10;
-	icon_state = "intact"
+	dir = 10
 	},
 /turf/simulated/floor/tiled,
 /area/submap/debrisfield_vr/tinyshuttle/crew)
@@ -454,7 +437,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/machinery/atmospherics/component/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
 /area/submap/debrisfield_vr/tinyshuttle/crew)
 "aT" = (
@@ -464,13 +447,12 @@
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
-/obj/effect/decal/cleanable/dirt,
+/obj/effect/debris/cleanable/dirt,
 /turf/simulated/floor/tiled,
 /area/submap/debrisfield_vr/tinyshuttle/crew)
 "aU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
-	dir = 6;
-	icon_state = "intact-fuel"
+	dir = 6
 	},
 /turf/simulated/wall/thull,
 /area/submap/debrisfield_vr/tinyshuttle/engine)
@@ -481,7 +463,6 @@
 /area/submap/debrisfield_vr/tinyshuttle/bridge)
 "aW" = (
 /obj/machinery/computer/ship/sensors{
-	icon_state = "computer";
 	dir = 4
 	},
 /obj/structure/cable/green{
@@ -510,21 +491,18 @@
 	pixel_y = -24
 	},
 /obj/effect/floor_decal/corner/blue{
-	dir = 10;
-	icon_state = "corner_white"
+	dir = 10
 	},
 /turf/simulated/floor/tiled/airless,
 /area/submap/debrisfield_vr/tinyshuttle/bridge)
 "aY" = (
 /obj/machinery/turretid/lethal{
-	pixel_x = 0;
 	pixel_y = 4;
 	req_access = list()
 	},
 /obj/structure/table/steel_reinforced,
 /obj/effect/floor_decal/corner/blue{
-	dir = 10;
-	icon_state = "corner_white"
+	dir = 10
 	},
 /turf/simulated/floor/tiled/airless,
 /area/submap/debrisfield_vr/tinyshuttle/bridge)
@@ -535,15 +513,14 @@
 	pixel_x = 28
 	},
 /obj/structure/cable/green,
-/obj/effect/decal/cleanable/dirt,
+/obj/effect/debris/cleanable/dirt,
 /obj/machinery/light_switch{
 	dir = 1;
 	pixel_x = 22;
 	pixel_y = -24
 	},
 /obj/effect/floor_decal/corner/blue/full{
-	dir = 4;
-	icon_state = "corner_white_full"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/airless,
 /area/submap/debrisfield_vr/tinyshuttle/bridge)
@@ -552,13 +529,12 @@
 	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 6;
-	icon_state = "intact"
+	dir = 6
 	},
 /turf/simulated/floor/tiled,
 /area/submap/debrisfield_vr/tinyshuttle/crew)
 "bb" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/obj/machinery/atmospherics/component/unary/vent_pump/on{
 	dir = 8
 	},
 /turf/simulated/floor/tiled,
@@ -577,8 +553,7 @@
 /area/submap/debrisfield_vr/tinyshuttle/crew)
 "bd" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 5;
-	icon_state = "intact"
+	dir = 5
 	},
 /obj/structure/closet/secure_closet/guncabinet/sidearm{
 	anchored = 1;
@@ -587,8 +562,7 @@
 /obj/item/gun/projectile/p92x/large,
 /obj/item/gun/projectile/p92x/large,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5;
-	icon_state = "intact-scrubbers"
+	dir = 5
 	},
 /obj/effect/floor_decal/corner/brown/full,
 /obj/item/ammo_magazine/m9mm/large,
@@ -646,8 +620,7 @@
 /area/submap/debrisfield_vr/tinyshuttle/crew)
 "bh" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
-	dir = 8;
-	icon_state = "map-fuel"
+	dir = 8
 	},
 /turf/simulated/wall/thull,
 /area/submap/debrisfield_vr/tinyshuttle/engine)
@@ -695,14 +668,10 @@
 /area/submap/debrisfield_vr/tinyshuttle/crew)
 "bm" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
+	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 4;
-	icon_state = "map"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
@@ -724,10 +693,7 @@
 /area/submap/debrisfield_vr/tinyshuttle/bridge)
 "bo" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
+	icon_state = "1-2"
 	},
 /obj/structure/cable/green{
 	icon_state = "9-10"
@@ -772,11 +738,10 @@
 "bs" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
-	icon_state = "extinguisher_closed";
 	pixel_y = 32
 	},
 /obj/structure/table/steel,
-/obj/machinery/atmospherics/unary/vent_scrubber{
+/obj/machinery/atmospherics/component/unary/vent_scrubber{
 	dir = 4
 	},
 /obj/item/tool/crowbar,
@@ -792,7 +757,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
-	icon_state = "extinguisher_closed";
 	pixel_x = -30
 	},
 /obj/machinery/atmospherics/portables_connector{
@@ -806,9 +770,9 @@
 /area/submap/debrisfield_vr/tinyshuttle/engine)
 "bu" = (
 /obj/machinery/power/smes/buildable/outpost_substation{
-	charge = 3e+006;
+	charge = 3e+003;
 	input_attempt = 1;
-	input_level = 200000
+	input_level = 200
 	},
 /obj/structure/cable/green{
 	icon_state = "0-2"
@@ -824,8 +788,7 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 4;
-	icon_state = "map"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
@@ -851,7 +814,7 @@
 /turf/simulated/floor/plating,
 /area/submap/debrisfield_vr/tinyshuttle/bridge)
 "by" = (
-/obj/machinery/atmospherics/unary/vent_pump{
+/obj/machinery/atmospherics/component/unary/vent_pump{
 	dir = 4
 	},
 /obj/effect/floor_decal/industrial/warning/dust,
@@ -865,8 +828,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 9;
-	icon_state = "intact"
+	dir = 9
 	},
 /obj/machinery/light_switch{
 	dir = 8;
@@ -902,7 +864,6 @@
 	anchored = 1
 	},
 /obj/structure/cable{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -922,8 +883,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5;
-	icon_state = "intact-scrubbers"
+	dir = 5
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/submap/debrisfield_vr/tinyshuttle/engine)
@@ -968,12 +928,11 @@
 	dir = 1;
 	icon_state = "4-8"
 	},
-/obj/effect/decal/cleanable/dirt,
+/obj/effect/debris/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5;
-	icon_state = "intact-scrubbers"
+	dir = 5
 	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
+/obj/machinery/atmospherics/component/unary/vent_scrubber/on{
 	dir = 8
 	},
 /obj/effect/floor_decal/corner/orange{
@@ -983,17 +942,16 @@
 /area/submap/debrisfield_vr/tinyshuttle/engine)
 "bK" = (
 /obj/machinery/atmospherics/portables_connector/fuel{
-	icon_state = "map_connector-fuel";
 	dir = 4
 	},
 /obj/effect/floor_decal/corner/orange{
 	dir = 9
 	},
-/obj/effect/decal/cleanable/liquid_fuel,
+/obj/effect/debris/cleanable/liquid_fuel,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/debrisfield_vr/tinyshuttle/engine)
 "bL" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/obj/machinery/atmospherics/component/unary/vent_pump/on{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -1018,14 +976,12 @@
 /area/submap/debrisfield_vr/tinyshuttle/engine)
 "bN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
-	dir = 10;
-	icon_state = "intact-fuel"
+	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 5;
-	icon_state = "intact"
+	dir = 5
 	},
-/obj/effect/decal/cleanable/liquid_fuel,
+/obj/effect/debris/cleanable/liquid_fuel,
 /obj/item/multitool,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/submap/debrisfield_vr/tinyshuttle/engine)
@@ -1055,7 +1011,6 @@
 /area/submap/debrisfield_vr/tinyshuttle/engine)
 "bR" = (
 /obj/machinery/atmospherics/portables_connector/fuel{
-	icon_state = "map_connector-fuel";
 	dir = 4
 	},
 /obj/machinery/portable_atmospherics/canister/empty/phoron{
@@ -1063,7 +1018,7 @@
 	health = 0;
 	icon_state = "orangeps-1"
 	},
-/obj/effect/decal/cleanable/liquid_fuel,
+/obj/effect/debris/cleanable/liquid_fuel,
 /obj/effect/floor_decal/corner/orange/full,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/debrisfield_vr/tinyshuttle/engine)
@@ -1073,7 +1028,7 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/obj/effect/decal/cleanable/liquid_fuel,
+/obj/effect/debris/cleanable/liquid_fuel,
 /obj/effect/floor_decal/corner/orange{
 	dir = 10
 	},
@@ -1110,8 +1065,7 @@
 /area/submap/debrisfield_vr/tinyshuttle/hangar)
 "bY" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
-	dir = 5;
-	icon_state = "intact-fuel"
+	dir = 5
 	},
 /turf/simulated/wall/thull,
 /area/submap/debrisfield_vr/tinyshuttle/engine)
@@ -1121,7 +1075,7 @@
 /turf/simulated/floor/reinforced/airless,
 /area/submap/debrisfield_vr/tinyshuttle/hangar)
 "ca" = (
-/obj/effect/decal/cleanable/blood/gibs/robot,
+/obj/effect/debris/cleanable/blood/gibs/robot,
 /turf/simulated/floor/reinforced/airless,
 /area/submap/debrisfield_vr/tinyshuttle/hangar)
 "cb" = (
@@ -1145,8 +1099,7 @@
 /area/submap/debrisfield_vr/tinyshuttle/hangar)
 "ce" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
-	dir = 8;
-	icon_state = "intact-fuel"
+	dir = 8
 	},
 /obj/machinery/meter,
 /obj/machinery/light_switch{
@@ -1173,8 +1126,7 @@
 /turf/simulated/floor/airless,
 /area/submap/debrisfield_vr/tinyshuttle/hangar)
 "ch" = (
-/obj/machinery/atmospherics/binary/pump/fuel{
-	icon_state = "map_off-fuel";
+/obj/machinery/atmospherics/component/binary/pump/fuel{
 	dir = 4
 	},
 /obj/machinery/alarm/alarms_hidden{
@@ -1203,7 +1155,7 @@
 /obj/structure/prop{
 	desc = "A man-sized pod for entering suspended animation. This one is room temperature.";
 	dir = 8;
-	icon = 'icons/obj/Cryogenic2_vr.dmi';
+	icon = 'icons/obj/Cryogenic2.dmi';
 	icon_state = "cryopod_0";
 	name = "cryogenic freezer"
 	},

@@ -23,6 +23,11 @@
 	src.modules += new /obj/item/extinguisher(src)
 	src.modules += new /obj/item/pipe_painter(src)
 	src.modules += new /obj/item/floor_painter(src)
+	src.modules += new /obj/item/t_scanner(src)
+	src.modules += new /obj/item/analyzer(src)
+	src.modules += new /obj/item/inflatable_dispenser/robot(src)
+	src.modules += new /obj/item/barrier_tape_roll/engineering(src)
+	src.modules += new /obj/item/pipe_dispenser(src)
 
 	robot.internals = new/obj/item/tank/jetpack/carbondioxide(src)
 	src.modules += robot.internals
@@ -109,6 +114,10 @@
 	. = ..()
 	src.modules += new /obj/item/borg/sight/material(src)
 	src.modules += new /obj/item/pickaxe/borgdrill(src)
+	src.modules += new /obj/item/gun/energy/kinetic_accelerator/cyborg(src)
 	src.modules += new /obj/item/storage/bag/ore(src)
 	src.modules += new /obj/item/storage/bag/sheetsnatcher/borg(src)
 	src.emag = new /obj/item/pickaxe/diamonddrill(src)
+
+/obj/item/robot_module/drone/construction/matriarch
+	name = "matriarch drone module"

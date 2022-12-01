@@ -3,14 +3,13 @@
 /obj/machinery/computer/ship/disperser
 	name = "obstruction removal ballista control"
 	icon = 'icons/obj/computer.dmi'
-	icon_state = "computer"
+	icon_keyboard = "security_key"
+	icon_screen = "disperser"
+	light_color = "#7faaff"
 	circuit = /obj/item/circuitboard/disperser
 
 	core_skill = /datum/skill/pilot
 	var/skill_offset = SKILL_ADEPT - 1 //After which skill level it starts to matter. -1, because we have to index from zero
-
-	icon_keyboard = "rd_key"
-	icon_screen = "teleport"
 
 	var/obj/machinery/disperser/front/front
 	var/obj/machinery/disperser/middle/middle
@@ -28,7 +27,7 @@
 	var/next_shot = 0 //round time where the next shot can start from
 	var/const/coolinterval = 2 MINUTES //time to wait between safe shots in deciseconds
 
-/obj/machinery/computer/ship/disperser/Initialize()
+/obj/machinery/computer/ship/disperser/Initialize(mapload)
 	. = ..()
 	link_parts()
 	reset_calibration()
@@ -41,7 +40,7 @@
 	if(is_valid_setup())
 		return TRUE
 
-	for(var/obj/machinery/disperser/front/F in global.machines)
+	for(var/obj/machinery/disperser/front/F in GLOB.machines)
 		if(get_dist(src, F) >= link_range)
 			continue
 		var/backwards = turn(F.dir, 180)
@@ -55,13 +54,13 @@
 		middle = M
 		back = B
 		if(is_valid_setup())
-			GLOB.destroyed_event.register(F, src, .proc/release_links)
-			GLOB.destroyed_event.register(M, src, .proc/release_links)
-			GLOB.destroyed_event.register(B, src, .proc/release_links)
+			RegisterSignal(F, COMSIG_TURF_MULTIZ_DEL)
+			RegisterSignal(M, COMSIG_TURF_MULTIZ_DEL)
+			RegisterSignal(B, COMSIG_TURF_MULTIZ_DEL)
 			return TRUE
 	return FALSE
 
-obj/machinery/computer/ship/disperser/proc/is_valid_setup()
+/obj/machinery/computer/ship/disperser/proc/is_valid_setup()
 	if(front && middle && back)
 		var/everything_in_range = (get_dist(src, front) < link_range) && (get_dist(src, middle) < link_range) && (get_dist(src, back) < link_range)
 		var/everything_in_order = (middle.Adjacent(front) && middle.Adjacent(back)) && (front.dir == middle.dir && middle.dir == back.dir)
@@ -69,9 +68,9 @@ obj/machinery/computer/ship/disperser/proc/is_valid_setup()
 	return FALSE
 
 /obj/machinery/computer/ship/disperser/proc/release_links()
-	GLOB.destroyed_event.unregister(front, src, .proc/release_links)
-	GLOB.destroyed_event.unregister(middle, src, .proc/release_links)
-	GLOB.destroyed_event.unregister(back, src, .proc/release_links)
+	UnregisterSignal(front, COMSIG_TURF_MULTIZ_DEL)
+	UnregisterSignal(middle, COMSIG_TURF_MULTIZ_DEL)
+	UnregisterSignal(back, COMSIG_TURF_MULTIZ_DEL)
 	front = null
 	middle = null
 	back = null
@@ -207,4 +206,4 @@ obj/machinery/computer/ship/disperser/proc/is_valid_setup()
 			. = TRUE
 
 	if(. && !issilicon(usr))
-		playsound(src, "terminal_type", 50, 1)
+		playsound(src, SFX_ALIAS_TERMINAL, 50, 1)

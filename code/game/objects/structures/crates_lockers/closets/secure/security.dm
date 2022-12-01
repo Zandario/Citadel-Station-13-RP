@@ -17,12 +17,14 @@
 		/obj/item/radio/headset/heads/captain,
 		/obj/item/radio/headset/heads/captain/alt,
 		/obj/item/gun/energy/gun,
+		/obj/item/clothing/accessory/holster/waist,
+		/obj/item/clothing/accessory/holster/leg,
 		/obj/item/melee/telebaton,
 		/obj/item/flash,
 		/obj/item/gps/command,
 		/obj/item/storage/belt/sheath,
+		/obj/item/melee/baton/loaded/mini,
 		/obj/item/storage/box/ids)
-
 
 /obj/structure/closet/secure_closet/hop
 	name = "head of personnel's locker"
@@ -41,12 +43,11 @@
 		/obj/item/radio/headset/heads/hop,
 		/obj/item/radio/headset/heads/hop/alt,
 		/obj/item/storage/box/ids = 2,
-		/obj/item/gun/energy/gun,
 		/obj/item/gps/command,
-		/obj/item/gun/energy/gun/martin, //VOREStation Add,
-		/obj/item/storage/box/commandkeys, //VOREStation Add,
-		/obj/item/storage/box/servicekeys, //VOREStation Add,
-		///obj/item/gun/projectile/sec/flash, //VOREStation Removal,
+		/obj/item/gun/energy/gun,
+		/obj/item/storage/box/commandkeys,
+		/obj/item/storage/box/servicekeys,
+		/obj/item/melee/baton/loaded/mini,
 		/obj/item/flash)
 
 /obj/structure/closet/secure_closet/hop2
@@ -126,7 +127,7 @@
 		/obj/item/clothing/accessory/holster/waist,
 		/obj/item/melee/telebaton,
 		/obj/item/clothing/head/beret/sec/corporate/hos,
-		/obj/item/clothing/suit/storage/hooded/wintercoat/security,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/security/hos,
 		/obj/item/clothing/shoes/boots/winter/security,
 		/obj/item/gps/security/hos,
 		/obj/item/flashlight/maglight,
@@ -157,14 +158,19 @@
 	starts_with = list(
 		/obj/item/clothing/head/helmet/HoS,
 		/obj/item/clothing/head/helmet/HoS/hat,
+		/obj/item/clothing/head/beret/sec/corporate/hos,
 		/obj/item/clothing/suit/storage/vest/hos,
 		/obj/item/clothing/under/rank/head_of_security/jensen,
 		/obj/item/clothing/under/rank/head_of_security/corp,
 		/obj/item/clothing/under/rank/head_of_security/skirt_pleated,
 		/obj/item/clothing/under/rank/head_of_security/skirt_pleated/alt,
-		/obj/item/clothing/under/solgov/mildress/marine/command,
+		/obj/item/clothing/under/rank/head_of_security/turtleneck,
+		/obj/item/clothing/under/oricon/mildress/marine/command,
 		/obj/item/clothing/suit/storage/vest/hoscoat/jensen,
 		/obj/item/clothing/suit/storage/vest/hoscoat,
+		/obj/item/clothing/suit/storage/vest/hos_overcoat,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/security,
+		/obj/item/clothing/shoes/boots/winter/security,
 		/obj/item/clothing/suit/dress/marine/command/hos,
 		/obj/item/clothing/head/helmet/dermal,
 		/obj/item/radio/headset/heads/hos,
@@ -172,8 +178,6 @@
 		/obj/item/clothing/glasses/sunglasses/sechud,
 		/obj/item/storage/belt/security,
 		/obj/item/clothing/accessory/holster/waist,
-		/obj/item/clothing/head/beret/sec/corporate/hos,
-		/obj/item/clothing/suit/storage/hooded/wintercoat/security,
 		/obj/item/clothing/mask/gas/half,
 		/obj/item/clothing/under/bodysuit/bodysuitseccom)
 
@@ -202,13 +206,8 @@
 		/obj/item/melee/baton/loaded,
 		/obj/item/gun/energy/gun/multiphase,
 		/obj/item/melee/telebaton,
-		/obj/item/clothing/head/beret/sec/corporate/hos,
-		/obj/item/clothing/suit/storage/hooded/wintercoat/security,
-		/obj/item/clothing/shoes/boots/winter/security,
 		/obj/item/gps/security/hos,
-		/obj/item/flashlight/maglight,
-		/obj/item/clothing/under/rank/head_of_security/turtleneck)
-
+		/obj/item/flashlight/maglight)
 
 /obj/structure/closet/secure_closet/warden
 	name = "warden's locker"
@@ -286,11 +285,10 @@
 		/obj/item/clothing/glasses/sunglasses/sechud,
 		/obj/item/barrier_tape_roll/police,
 		/obj/item/hailer,
-		/obj/item/flashlight/flare,
+		/obj/item/flashlight/glowstick,
 		/obj/item/clothing/accessory/storage/black_vest,
 		/obj/item/clothing/head/soft/sec/corp,
 		/obj/item/clothing/under/rank/security/corp,
-		///obj/item/ammo_magazine/m45/rubber, //VOREStation Removal,
 		/obj/item/gun/energy/taser,
 		/obj/item/cell/device/weapon,
 		/obj/item/gps/security,
@@ -343,19 +341,20 @@
 
 	starts_with = list(
 		/obj/item/clothing/accessory/badge/holo/detective,
-		/obj/item/clothing/gloves/black,
+		/obj/item/clothing/gloves/forensic,
 		/obj/item/gun/projectile/revolver/detective45,
 		/obj/item/ammo_magazine/s45/rubber,
 		/obj/item/ammo_magazine/s45/rubber,
 		/obj/item/reagent_containers/spray/pepper,
-		///obj/item/gunbox, //VOREStation Removal,
 		/obj/item/storage/belt/detective,
 		/obj/item/storage/box/evidence,
 		/obj/item/radio/headset/headset_sec,
 		/obj/item/radio/headset/headset_sec/alt,
+		/obj/item/clothing/suit/storage/vest/,
 		/obj/item/clothing/suit/storage/vest/detective,
 		/obj/item/barrier_tape_roll/police,
 		/obj/item/clothing/accessory/holster/armpit,
+		/obj/item/clothing/accessory/holster/waist,
 		/obj/item/flashlight/maglight,
 		/obj/item/reagent_containers/food/drinks/flask/detflask,
 		/obj/item/storage/briefcase/crimekit,
@@ -449,7 +448,7 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 //Custom NT Security Lockers, Only found at central command
 /obj/structure/closet/secure_closet/nanotrasen_security
 	name = "NanoTrasen security officer's locker"
-	icon = 'icons/obj/closet_vr.dmi'
+	icon = 'icons/obj/closet.dmi'
 	icon_state = "secC1"
 	icon_closed = "secC"
 	icon_locked = "secC1"
@@ -497,7 +496,7 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 
 /obj/structure/closet/secure_closet/nanotrasen_commander
 	name = "NanoTrasen commander's locker"
-	icon = 'icons/obj/closet_vr.dmi'
+	icon = 'icons/obj/closet.dmi'
 	icon_state = "secC1"
 	icon_closed = "secC"
 	icon_locked = "secC1"
@@ -551,7 +550,7 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 
 /obj/structure/closet/secure_closet/nanotrasen_warden
 	name = "NanoTrasen warden's locker"
-	icon = 'icons/obj/closet_vr.dmi'
+	icon = 'icons/obj/closet.dmi'
 	icon_state = "secC1"
 	icon_closed = "secC"
 	icon_locked = "secC1"

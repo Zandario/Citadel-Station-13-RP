@@ -54,6 +54,9 @@
 	var/stealth_cooldown = 10 SECONDS	// Amount of time needed to re-stealth after losing it.
 	var/last_unstealth = 0			// world.time
 
+	mod_min = 70
+	mod_max = 110
+
 
 /mob/living/simple_mob/animal/giant_spider/lurker/proc/stealth()
 	if(stealthed)
@@ -107,7 +110,7 @@
 		if(isliving(A))
 			var/mob/living/L = A
 			L.Weaken(stealthed_weaken_amount)
-			to_chat(L, span("danger", "\The [src] ambushes you!"))
+			to_chat(L, SPAN_DANGER("\The [src] ambushes you!"))
 			playsound(L, 'sound/weapons/spiderlunge.ogg', 75, 1)
 	unstealth()
 	..() // For the poison.

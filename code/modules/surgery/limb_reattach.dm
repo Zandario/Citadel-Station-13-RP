@@ -53,9 +53,10 @@
 
 /datum/surgery_step/limb/attach/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/E = tool
+	if(!user.attempt_void_item_for_installation(E))
+		return
 	user.visible_message("<span class='notice'>[user] has attached [target]'s [E.name] to the [E.amputation_point].</span>",	\
 	"<span class='notice'>You have attached [target]'s [E.name] to the [E.amputation_point].</span>")
-	user.drop_from_inventory(E)
 	E.replaced(target)
 	target.update_icons_body(FALSE)
 	target.updatehealth()
@@ -75,6 +76,7 @@
 	allowed_tools = list(
 	/obj/item/surgical/hemostat = 100,	\
 	/obj/item/stack/cable_coil = 75, 	\
+	/obj/item/surgical/hemostat_primitive = 50, \
 	/obj/item/assembly/mousetrap = 20
 	)
 	can_infect = 1

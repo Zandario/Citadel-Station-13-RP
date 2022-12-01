@@ -4,14 +4,24 @@
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "stamp-qm"
 	item_state = "stamp"
-	throwforce = 0
+	throw_force = 0
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_HOLSTER
 	throw_speed = 7
 	throw_range = 15
-	matter = list(DEFAULT_WALL_MATERIAL = 60)
+	matter = list(MAT_STEEL = 60)
 	pressure_resistance = 2
 	attack_verb = list("stamped")
+
+	var/list/stamp_sounds = list(
+		'sound/items/stamp1.ogg',
+		'sound/items/stamp2.ogg',
+		'sound/items/stamp3.ogg'
+		)
+
+/obj/item/stamp/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+	. = ..()
+	playsound(M, pick(stamp_sounds), 30, 1, -1)
 
 /obj/item/stamp/captain
 	name = "Facility Director's rubber stamp"
@@ -65,8 +75,8 @@
 	name = "cargo rubber stamp"
 	icon_state = "stamp-cargo"
 
-/obj/item/stamp/solgov
-	name = "\improper Sol Government rubber stamp"
+/obj/item/stamp/oricon
+	name = "\improper Orion Confederation rubber stamp"
 	icon_state = "stamp-sg"
 
 

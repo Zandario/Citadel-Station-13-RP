@@ -4,9 +4,12 @@
 #define CUT_TIME 10 SECONDS
 #define CLIMB_TIME 5 SECONDS
 
-#define NO_HOLE 0 //section is intact
-#define MEDIUM_HOLE 1 //medium hole in the section - can climb through
-#define LARGE_HOLE 2 //large hole in the section - can walk through
+///section is intact
+#define NO_HOLE 0
+///medium hole in the section - can climb through
+#define MEDIUM_HOLE 1
+///large hole in the section - can walk through
+#define LARGE_HOLE 2
 #define MAX_HOLE_SIZE LARGE_HOLE
 
 /obj/structure/fence
@@ -55,11 +58,11 @@
 	cuttable = FALSE
 
 /obj/structure/fence/cut/medium
-	icon_state = "straight_cut2"
+	icon_state = "straight-cut2"
 	hole_size = MEDIUM_HOLE
 
 /obj/structure/fence/cut/large
-	icon_state = "straight_cut3"
+	icon_state = "straight-cut3"
 	hole_size = LARGE_HOLE
 
 // Projectiles can pass through fences.
@@ -71,30 +74,30 @@
 /obj/structure/fence/attackby(obj/item/W, mob/user)
 	if(W.is_wirecutter())
 		if(!cuttable)
-			to_chat(user, span("warning", "This section of the fence can't be cut."))
+			to_chat(user, SPAN_WARNING( "This section of the fence can't be cut."))
 			return
 		if(invulnerable)
-			to_chat(user, span("warning", "This fence is too strong to cut through."))
+			to_chat(user, SPAN_WARNING( "This fence is too strong to cut through."))
 			return
 		var/current_stage = hole_size
 		if(current_stage >= MAX_HOLE_SIZE)
-			to_chat(user, span("notice", "This fence has too much cut out of it already."))
+			to_chat(user, SPAN_NOTICE("This fence has too much cut out of it already."))
 			return
 
-		user.visible_message(span("danger", "\The [user] starts cutting through \the [src] with \the [W]."),\
-		span("danger", "You start cutting through \the [src] with \the [W]."))
-		playsound(src, W.usesound, 50, 1)
+		user.visible_message(SPAN_DANGER("\The [user] starts cutting through \the [src] with \the [W]."),\
+		SPAN_DANGER("You start cutting through \the [src] with \the [W]."))
+		playsound(src, W.tool_sound, 50, 1)
 
-		if(do_after(user, CUT_TIME * W.toolspeed, target = src))
+		if(do_after(user, CUT_TIME * W.tool_speed, target = src))
 			if(current_stage == hole_size)
 				switch(++hole_size)
 					if(MEDIUM_HOLE)
-						visible_message(span("notice", "\The [user] cuts into \the [src] some more."))
-						to_chat(user, span("notice", "You could probably fit yourself through that hole now. Although climbing through would be much faster if you made it even bigger."))
+						visible_message(SPAN_NOTICE("\The [user] cuts into \the [src] some more."))
+						to_chat(user, SPAN_NOTICE("You could probably fit yourself through that hole now. Although climbing through would be much faster if you made it even bigger."))
 						climbable = TRUE
 					if(LARGE_HOLE)
-						visible_message(span("notice", "\The [user] completely cuts through \the [src]."))
-						to_chat(user, span("notice", "The hole in \the [src] is now big enough to walk through."))
+						visible_message(SPAN_NOTICE("\The [user] completely cuts through \the [src]."))
+						to_chat(user, SPAN_NOTICE("The hole in \the [src] is now big enough to walk through."))
 						climbable = FALSE
 				update_cut_status()
 	return TRUE
@@ -108,9 +111,9 @@
 		if(NO_HOLE)
 			icon_state = initial(icon_state)
 		if(MEDIUM_HOLE)
-			icon_state = "straight_cut2"
+			icon_state = "straight-cut2"
 		if(LARGE_HOLE)
-			icon_state = "straight_cut3"
+			icon_state = "straight-cut3"
 			density = FALSE
 
 //FENCE DOORS
@@ -118,7 +121,7 @@
 /obj/structure/fence/door
 	name = "fence door"
 	desc = "Not very useful without a real lock."
-	icon_state = "door_closed"
+	icon_state = "door-closed"
 	cuttable = FALSE
 	var/open = FALSE
 	var/locked = FALSE
@@ -128,7 +131,7 @@
 	return ..()
 
 /obj/structure/fence/door/opened
-	icon_state = "door_opened"
+	icon_state = "door-opened"
 	open = TRUE
 	density = TRUE
 
@@ -140,17 +143,17 @@
 	if(can_open(user))
 		toggle(user)
 	else
-		to_chat(user, span("warning", "\The [src] is [!open ? "locked" : "stuck open"]."))
+		to_chat(user, SPAN_WARNING( "\The [src] is [!open ? "locked" : "stuck open"]."))
 
 	return TRUE
 
 /obj/structure/fence/door/proc/toggle(mob/user)
 	switch(open)
 		if(FALSE)
-			visible_message(span("notice", "\The [user] opens \the [src]."))
+			visible_message(SPAN_NOTICE("\The [user] opens \the [src]."))
 			open = TRUE
 		if(TRUE)
-			visible_message(span("notice", "\The [user] closes \the [src]."))
+			visible_message(SPAN_NOTICE("\The [user] closes \the [src]."))
 			open = FALSE
 
 	update_door_status()
@@ -160,15 +163,61 @@
 	switch(open)
 		if(FALSE)
 			density = TRUE
-			icon_state = "door_closed"
+			icon_state = "door-closed"
 		if(TRUE)
 			density = FALSE
-			icon_state = "door_opened"
+			icon_state = "door-opened"
 
 /obj/structure/fence/door/proc/can_open(mob/user)
 	if(locked)
 		return FALSE
 	return TRUE
+
+//Wooden Fence!
+/obj/structure/fence/wooden
+	name = "wooden fence"
+	desc = "A fence made out of roughly hewn logs. Not as effective as a wall, but generally it keeps people out."
+	icon_state = "straight_wood"
+	color = "#824B28"
+
+/obj/structure/fence/wooden/end
+	icon_state = "end_wood"
+	cuttable = FALSE
+
+/obj/structure/fence/wooden/corner
+	icon_state = "corner_wood"
+	cuttable = FALSE
+
+/obj/structure/fence/wooden/post
+	icon_state = "post_wood"
+	cuttable = FALSE
+
+/obj/structure/fence/wooden/cut/medium
+	icon_state = "straight_wood-cut2"
+	hole_size = MEDIUM_HOLE
+
+/obj/structure/fence/wooden/cut/large
+	icon_state = "straight_wood-cut3"
+	hole_size = LARGE_HOLE
+
+/obj/structure/fence/door/wooden
+	name = "wooden fence gate"
+	icon_state = "door_wood-closed"
+	color = "#824B28"
+
+/obj/structure/fence/door/wooden/opened
+	icon_state = "door_wood-opened"
+	open = TRUE
+	density = TRUE
+
+/obj/structure/fence/door/wooden/update_door_status()
+	switch(open)
+		if(FALSE)
+			density = TRUE
+			icon_state = "door_wood-closed"
+		if(TRUE)
+			density = FALSE
+			icon_state = "door_wood-opened"
 
 #undef CUT_TIME
 #undef CLIMB_TIME

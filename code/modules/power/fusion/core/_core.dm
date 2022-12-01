@@ -32,13 +32,11 @@ var/list/fusion_cores = list()
 	. = ..()
 	fusion_cores += src
 	default_apply_parts()
-
-/obj/machinery/power/fusion_core/mapped/Initialize(mapload)
-	. = ..()
-	connect_to_network()
+	if(anchored)
+		connect_to_network()
 
 /obj/machinery/power/fusion_core/Destroy()
-	for(var/obj/machinery/computer/fusion_core_control/FCC in machines)
+	for(var/obj/machinery/computer/fusion_core_control/FCC in GLOB.machines)
 		FCC.connected_devices -= src
 		if(FCC.cur_viewed_device == src)
 			FCC.cur_viewed_device = null
@@ -46,7 +44,7 @@ var/list/fusion_cores = list()
 	return ..()
 
 /obj/machinery/power/fusion_core/process(delta_time)
-	if((stat & BROKEN) || !powernet || !owned_field)
+	if((machine_stat & BROKEN) || !powernet || !owned_field)
 		Shutdown()
 	if(owned_field)
 		spawn(1)

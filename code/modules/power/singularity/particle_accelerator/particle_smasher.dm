@@ -11,7 +11,6 @@
 	density = 1
 	use_power = USE_POWER_OFF
 
-	var/successful_craft = FALSE	// Are we waiting to be emptied?
 	var/image/material_layer	// Holds the image used for the filled overlay.
 	var/image/material_glow		// Holds the image used for the glow overlay.
 	var/image/reagent_layer		// Holds the image used for showing a contained beaker.
@@ -34,7 +33,9 @@
 	for(var/datum/particle_smasher_recipe/D in recipes)
 		qdel(D)
 	recipes.Cut()
-	..()
+	for(var/atom/movable/AM in contents)
+		AM.forceMove(drop_location())
+	return ..()
 
 /obj/machinery/particle_smasher/examine(mob/user)
 	. = ..()
@@ -45,31 +46,29 @@
 /obj/machinery/particle_smasher/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.type == /obj/item/analyzer)
 		to_chat(user, "<span class='notice'>\The [src] reads an energy level of [energy].</span>")
-	else if(istype(W, /obj/item/stack/material))
+	else if(istype(W, /obj/item/stack/material) && !target)
 		var/obj/item/stack/material/M = W
 		if(M.uses_charge)
 			to_chat(user, "<span class='notice'>You cannot fill \the [src] with a synthesizer!</span>")
 			return
-		target = M.split(1)
-		target.forceMove(src)
+		if(!user.attempt_insert_item_for_installation(M, src))
+			return
+		target = M
+		user.visible_message("[user] slots \the [target] into [src].")
 		update_icon()
 	else if(istype(W, beaker_type))
 		if(reagent_container)
 			to_chat(user, "<span class='notice'>\The [src] already has a container attached.</span>")
 			return
-		if(isrobot(user) && istype(W.loc, /obj/item/gripper))
-			var/obj/item/gripper/G = W.loc
-			G.drop_item()
-		else
-			user.drop_from_inventory(W)
+		if(!user.transfer_item_to_loc(W, src))
+			return
 		reagent_container = W
-		reagent_container.forceMove(src)
 		to_chat(user, "<span class='notice'>You add \the [reagent_container] to \the [src].</span>")
 		update_icon()
 		return
 	else if(W.is_wrench())
 		anchored = !anchored
-		playsound(src, W.usesound, 75, 1)
+		playsound(src, W.tool_sound, 75, 1)
 		if(anchored)
 			user.visible_message("[user.name] secures [src.name] to the floor.", \
 				"You secure the [src.name] to the floor.", \
@@ -83,13 +82,9 @@
 	else if(istype(W, /obj/item/card/id))
 		to_chat(user, "<span class='notice'>Swiping \the [W] on \the [src] doesn't seem to do anything...</span>")
 		return ..()
-	else if(((isrobot(user) && istype(W.loc, /obj/item/gripper)) || (!isrobot(user) && W.canremove)) && storage.len < max_storage)
-		if(isrobot(user) && istype(W.loc, /obj/item/gripper))
-			var/obj/item/gripper/G = W.loc
-			G.drop_item()
-		else
-			user.drop_from_inventory(W)
-		W.forceMove(src)
+	else if(storage.len < max_storage)
+		if(!user.attempt_insert_item_for_installation(W, src))
+			return
 		storage += W
 	else
 		return ..()
@@ -100,7 +95,7 @@
 		material_layer = image(icon, "[initial(icon_state)]-material")
 	if(!material_glow)
 		material_glow = image(icon, "[initial(icon_state)]-material-glow")
-		material_glow.plane = PLANE_LIGHTING_ABOVE
+		material_glow.plane = ABOVE_LIGHTING_PLANE
 	if(!reagent_layer)
 		reagent_layer = image(icon, "[initial(icon_state)]-reagent")
 	if(anchored)
@@ -108,9 +103,9 @@
 		if(target)
 			material_layer.color = target.material.icon_colour
 			add_overlay(material_layer)
-			if(successful_craft)
-				material_glow.color = target.material.icon_colour
-				add_overlay(material_glow)
+//			if(successful_craft)
+//				material_glow.color = target.material.icon_colour
+//				add_overlay(material_glow)
 		if(reagent_container)
 			add_overlay(reagent_layer)
 	else
@@ -174,14 +169,6 @@
 		update_icon()
 		return
 
-	if(successful_craft)
-		visible_message("<span class='warning'>\The [src] fizzles.</span>")
-		if(prob(33))	// Why are you blasting it after it's already done!
-			SSradiation.radiate(src, 10 + round(src.energy / 60, 1))
-			energy = max(0, energy - 30)
-		update_icon()
-		return
-
 	var/list/possible_recipes = list()
 	var/max_prob = 0
 	for(var/datum/particle_smasher_recipe/R in recipes)	// Only things for the smasher. Don't get things like the chef's cake recipes.
@@ -206,33 +193,37 @@
 		for(var/datum/particle_smasher_recipe/R in possible_recipes)
 			cumulative += R.probability
 			if(local_prob < cumulative)
-				successful_craft = TRUE
 				DoCraft(R)
 				break
 	update_icon()
 
 /obj/machinery/particle_smasher/proc/DoCraft(var/datum/particle_smasher_recipe/recipe)
-	if(!successful_craft || !recipe)
+	if(!recipe)
 		return
 
-	qdel(target)
-	target = null
+	target.use(1)
 
 	if(reagent_container)
-		reagent_container.reagents.clear_reagents()
+		for(var/i in recipe.reagents)
+			reagent_container.reagents.remove_reagent(i, recipe.reagents[i])
 
 	if(recipe.items && recipe.items.len)
-		for(var/obj/item/I in storage)
-			for(var/item_type in recipe.items)
-				if(istype(I, item_type))
-					storage -= I
-					qdel(I)
-					break
+		for(var/type in recipe.items)
+			var/obj/item/thing = locate(type) in src
+			if(thing)
+				qdel(thing)
 
-	var/result = recipe.result
-	var/obj/item/stack/material/M = new result(src)
-	target = M
+	new recipe.result(drop_location())
 	update_icon()
+
+/obj/machinery/particle_smasher/Exited(atom/movable/AM)
+	if(AM == target)
+		target = null
+	if(AM == reagent_container)
+		reagent_container = null
+	if(islist(storage) && (AM in storage))
+		storage -= AM
+	return ..()
 
 /obj/machinery/particle_smasher/verb/eject_contents()
 	set src in view(1)
@@ -245,14 +236,9 @@
 	DumpContents()
 
 /obj/machinery/particle_smasher/proc/DumpContents()
-	target = null
-	reagent_container = null
-	successful_craft = FALSE
-	var/turf/T = get_turf(src)
+	var/atom/A = drop_location()
 	for(var/obj/item/I in contents)
-		if(I in storage)
-			storage -= I
-		I.forceMove(T)
+		I.forceMove(A)
 	update_icon()
 
 /*
@@ -351,7 +337,7 @@
 	probability = 50
 
 /datum/particle_smasher_recipe/phoron_valhollide
-	reagents = list("phoron" = 10, "pacid" = 10)
+	reagents = list(MAT_PHORON = 10, "pacid" = 10)
 
 	result = /obj/item/stack/material/valhollide
 	required_material = /obj/item/stack/material/phoron
@@ -364,7 +350,7 @@
 	probability = 10
 
 /datum/particle_smasher_recipe/valhollide_supermatter
-	reagents = list("phoron" = 300)
+	reagents = list(MAT_PHORON = 300)
 
 	result = /obj/item/stack/material/supermatter
 	required_material = /obj/item/stack/material/valhollide

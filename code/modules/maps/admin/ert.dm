@@ -1,7 +1,7 @@
 
 
 // Map template for spawning the shuttle
-/datum/map_template/shuttle/overmap/tether/ert_ship
+/datum/map_template/shuttle/overmap/generic/ert_ship
 	name = "OM Ship - ERT Ship (New Z)"
 	desc = "NT Emergency Response Ship."
 	mappath = "_maps/templates/admin/ert.dmm"
@@ -114,7 +114,7 @@
 	initial_generic_waypoints = list("ert_ship_near_fore", "ert_ship_near_aft", "ert_ship_near_port", "ert_ship_near_star", "ert_ship_port", "ert_ship_star", "ert_ship_base_dock", "omship_spawn_ert_lander")
 //	initial_restricted_waypoints = list("NRV Von Braun's Bay" = list("omship_spawn_ert_lander"))
 
-/obj/effect/landmark/map_data/ert_ship
+/obj/landmark/map_data/ert_ship
 	height = 1
 
 /obj/effect/shuttle_landmark/premade/ert_ship_port

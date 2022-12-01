@@ -3,6 +3,7 @@ name: Compile changelogs
 on:
   schedule:
   - cron: "0 0 * * *"
+  workflow_dispatch:
 
 jobs:
   compile:
@@ -15,8 +16,8 @@ jobs:
           CHANGELOG_ENABLER: ${{ secrets.CHANGELOG_ENABLER }}
         run: |
           unset SECRET_EXISTS
-          if [ -n $CHANGELOG_ENABLER ]; then SECRET_EXISTS='true' ; fi
-          echo ::set-output name=CL_ENABLED::${SECRET_EXISTS}
+          if [ -n "$CHANGELOG_ENABLER" ]; then SECRET_EXISTS=true ; fi
+          echo "CL_ENABLED=$SECRET_EXISTS" >> $GITHUB_OUTPUT
       - name: "Setup python"
         if: steps.value_holder.outputs.CL_ENABLED
         uses: actions/setup-python@v1
@@ -30,17 +31,14 @@ jobs:
           sudo apt-get install  dos2unix
       - name: "Checkout"
         if: steps.value_holder.outputs.CL_ENABLED
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
         with:
           fetch-depth: 25
+          persist-credentials: false
       - name: "Compile"
         if: steps.value_holder.outputs.CL_ENABLED
         run: |
-          python tools/ss13_genchangelog.py html/changelog.html html/changelogs
-      - name: "Convert Lineendings"
-        if: steps.value_holder.outputs.CL_ENABLED
-        run: |
-          unix2dos html/changelogs/.all_changelog.yml
+          python tools/ss13_genchangelog.py html/changelogs
       - name: Commit
         if: steps.value_holder.outputs.CL_ENABLED
         run: |

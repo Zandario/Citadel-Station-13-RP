@@ -16,15 +16,18 @@
 #define Z_LEVEL_ROGUEMINE_2					16
 #define Z_LEVEL_BEACH						17
 #define Z_LEVEL_BEACH_CAVE					18
-#define Z_LEVEL_AEROSTAT					19
-#define Z_LEVEL_AEROSTAT_SURFACE			20
-#define Z_LEVEL_DEBRISFIELD					21
-#define Z_LEVEL_FUELDEPOT					22
-#define Z_LEVEL_GATEWAY						23
+#define Z_LEVEL_DESERT						19
+#define Z_LEVEL_AEROSTAT					20
+#define Z_LEVEL_AEROSTAT_SURFACE			21
+#define Z_LEVEL_DEBRISFIELD					22
+#define Z_LEVEL_FUELDEPOT					23
+#define Z_LEVEL_GATEWAY						24
+#define Z_LEVEL_CLASS_D						25
 
 //Camera networks
 #define NETWORK_TETHER "Tether"
-#define NETWORK_TCOMMS "Telecommunications" //Using different from Polaris one for better name
+///Using different from Polaris one for better name
+#define NETWORK_TCOMMS "Telecommunications"
 #define NETWORK_OUTSIDE "Outside"
 #define NETWORK_EXPLORATION "Exploration"
 #define NETWORK_XENOBIO "Xenobiology"
@@ -32,12 +35,15 @@
 /datum/map/tether/New()
 	..()
 	var/choice = pickweight(list(
-		"title" = 10,
-		"tether" = 50,
-		"tether_night" = 50,
-		"tether2_night" = 50,
-		"tether2_dog" = 1,
-		"tether2_love" = 1
+		"title1" = 50,
+		"title2" = 10,
+		"title3" = 50,
+		"title4" = 50,
+		"title5" = 20,
+		"title6" = 20,
+		"title7" = 20,
+		"title8" = 1,
+		"title9" = 1
 	))
 	if(choice)
 		lobby_screens = list("title0")
@@ -113,13 +119,12 @@
 							NETWORK_ALARM_ATMOS,
 							NETWORK_ALARM_POWER,
 							NETWORK_ALARM_FIRE,
-							NETWORK_TALON_HELMETS,
-							NETWORK_TALON_SHIP
+							NETWORK_TRADE_STATION
 							)
 
 	bot_patrolling = FALSE
 
-	allowed_spawns = list("Tram Station","Gateway","Cryogenic Storage","Cyborg Storage","ITV Talon Cryo")
+	allowed_spawns = list("Tram Station","Gateway","Cryogenic Storage","Cyborg Storage","Beruang Trading Corp Cryo")
 	spawnpoint_died = /datum/spawnpoint/tram
 	spawnpoint_left = /datum/spawnpoint/tram
 	spawnpoint_stayed = /datum/spawnpoint/cryo
@@ -153,12 +158,12 @@
 
 	lateload_z_levels = list(
 		list("Tether - Misc","Tether - Underdark","Tether - Plains"), //Stock Tether lateload maps
-		list("Offmap Ship - Talon Z1","Offmap Ship - Talon Z2"),
 		list("Asteroid Belt 1","Asteroid Belt 2"),
-		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
+		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave","Desert Planet - Z3 Desert"),
 		list("Remmi Aerostat - Z1 Aerostat","Remmi Aerostat - Z2 Surface"),
 		list("Debris Field - Z1 Space"),
-		list("Fuel Depot - Z1 Space")
+		list("Fuel Depot - Z1 Space"),
+		list("Class D - Mountains and Rock Plains")
 		)
 
 	lateload_single_pick = list(
@@ -192,7 +197,8 @@
 	lateload_single_pick = null //Nothing right now.
 
 	planet_datums_to_make = list(/datum/planet/virgo3b,
-								/datum/planet/virgo4)
+								/datum/planet/virgo4,
+								/datum/planet/class_d)
 
 // /datum/map/tether/get_map_info()
 // 	. = list()
@@ -228,13 +234,11 @@
 	icon_state = "globe"
 	color = "#d35b5b"
 	initial_generic_waypoints = list(
-		"tether_dockarm_d1a1", //Bottom left,
-		"tether_dockarm_d1a2", //Top left,
-		"tether_dockarm_d1a3", //Left on inside,
-		"tether_dockarm_d2a1", //Bottom right,
-		"tether_dockarm_d2a2", //Top right,
-		"tether_dockarm_d1l", //End of left arm,
-		"tether_dockarm_d2l", //End of right arm,
+		"tether_dockarm_d2a", //Top left
+		"tether_dockarm_d2b", //Bottom left,
+		"tether_dockarm_d2r", //Right,
+		"tether_dockarm_d2l", //End of arm,
+		"tether_space_SE", //station1, bottom right of space,
 		"tether_space_SE", //station1, bottom right of space,
 		"tether_space_NE", //station1, top right of space,
 		"tether_space_SW", //station2, bottom left of space,
@@ -250,6 +254,15 @@
 		Z_LEVEL_UNDERDARK
 	)
 
+	levels_for_distress = list(
+		Z_LEVEL_OFFMAP1,
+		Z_LEVEL_BEACH,
+		Z_LEVEL_AEROSTAT,
+		Z_LEVEL_DEBRISFIELD,
+		Z_LEVEL_FUELDEPOT,
+		Z_LEVEL_CLASS_D
+		)
+
 //Port of Triumph Overmap Visitable Effects
 /obj/effect/overmap/visitable/sector/debrisfield
 	name = "Debris Field"
@@ -261,7 +274,7 @@
 	in_space = 1
 	initial_generic_waypoints = list("triumph_excursion_debrisfield")
 
-
+/* Updated and now handled in classd.dm
 /obj/effect/overmap/visitable/sector/class_d
 	name = "Unidentified Planet"
 	desc = "ASdlke ERROR%%%% UNABLE TO----."
@@ -270,6 +283,7 @@
 	icon_state = "globe"
 	known = FALSE
 	color = "#882933"
+*/
 
 /obj/effect/overmap/visitable/sector/class_h
 	name = "Desert Planet"
@@ -326,7 +340,7 @@ Allignment: Neutral to NanoTrasen. No Discount for services expected."}
 	known = FALSE
 	color = "#33BB33"
 
-/obj/effect/overmap/visitable/sector/frozen_planet
+/obj/effect/overmap/visitable/sector/class_p
 	name = "Frozen Planet"
 	desc = "A world shrouded in cold and snow that seems to never let up."
 	scanner_desc = @{"[i]Information[/i]: A planet with a very cold atmosphere. Possible life signs detected."}
@@ -335,6 +349,7 @@ Allignment: Neutral to NanoTrasen. No Discount for services expected."}
 	known = FALSE
 	in_space = 0
 
+/*
 /obj/effect/overmap/visitable/sector/trade_post
 	name = "Nebula Gas Food Mart"
 	desc = "A ubiquitous chain of traders common in this area of the Galaxy."
@@ -355,6 +370,7 @@ Allignment: Neutral to NanoTrasen. No Discount for services expected."}
 		"Civilian Transport" = list("nebula_pad_6")
 		)
 
+*/
 
 /obj/effect/overmap/visitable/sector/virgo3b/Crossed(var/atom/movable/AM)
 	. = ..()
@@ -381,12 +397,18 @@ Allignment: Neutral to NanoTrasen. No Discount for services expected."}
 		GLOB.lore_atc.msg(message)
 
 // For making the 6-in-1 holomap, we calculate some offsets
-#define TETHER_MAP_SIZE 140 // Width and height of compiled in tether z levels.
-#define TETHER_HOLOMAP_CENTER_GUTTER 40 // 40px central gutter between columns
-#define TETHER_HOLOMAP_MARGIN_X ((HOLOMAP_ICON_SIZE - (2*TETHER_MAP_SIZE) - TETHER_HOLOMAP_CENTER_GUTTER) / 2) // 80
-#define TETHER_HOLOMAP_MARGIN_Y ((HOLOMAP_ICON_SIZE - (3*TETHER_MAP_SIZE)) / 2) // 30
-
+/// Width and height of compiled in tether z levels.
+#define TETHER_MAP_SIZE 140
+/// 40px central gutter between columns
+#define TETHER_HOLOMAP_CENTER_GUTTER 40
+/// 80
+#define TETHER_HOLOMAP_MARGIN_X ((HOLOMAP_ICON_SIZE - (2*TETHER_MAP_SIZE) - TETHER_HOLOMAP_CENTER_GUTTER) / 2)
+/// 30
+#define TETHER_HOLOMAP_MARGIN_Y ((HOLOMAP_ICON_SIZE - (3*TETHER_MAP_SIZE)) / 2)
 // We have a bunch of stuff common to the station z levels
+/datum/map_z_level/tether
+	base_turf = /turf/simulated/floor/outdoors/rocks/virgo3b
+
 /datum/map_z_level/tether/station
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_XENOARCH_EXEMPT
 	holomap_legend_x = 220

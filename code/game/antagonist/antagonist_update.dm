@@ -34,7 +34,7 @@
 		return
 	var/indicator = (faction_indicator && (other in faction_members)) ? faction_indicator : antag_indicator
 	var/image/returnimage = image('icons/mob/mob.dmi', loc = other.current, icon_state = indicator)
-	returnimage.plane = PLANE_LIGHTING_ABOVE
+	returnimage.plane = ABOVE_LIGHTING_PLANE
 	return returnimage
 
 /datum/antagonist/proc/update_all_icons()
@@ -85,7 +85,7 @@
 	if(SSticker.mode.antag_scaling_coeff)
 
 		var/count = 0
-		for(var/mob/living/M in player_list)
+		for(var/mob/living/M in GLOB.player_list)
 			if(M.client)
 				count++
 

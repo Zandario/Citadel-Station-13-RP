@@ -17,7 +17,7 @@
 		edge = 1
 		sharp = 1
 		..() //Updates force.
-		throwforce = max(3,force-3)
+		throw_force = max(3,force-3)
 		hitsound = 'sound/weapons/bladeslice.ogg'
 		icon_state += "_open"
 		w_class = ITEMSIZE_NORMAL
@@ -35,6 +35,18 @@
 	name = "switchblade"
 	desc = "A classic switchblade with gold engraving. Just holding it makes you feel like a gangster."
 	icon_state = "switchblade"
+
+/obj/item/material/butterfly/butterfly_golden
+	name = "gold-plated balisong"
+	desc = "An exquisite, gold-plated butterfly knife. The centerpiece of any aspiring knife collector's showcase."
+	icon_state = "butterflyknife_gold"
+	applies_material_colour = 0
+
+/obj/item/material/butterfly/butterfly_wooden
+	name = "wood-handled butterfly knife"
+	desc = "A concealable butterlfly knife with an ornate, wooden handle. Requires far too much care to use more than once."
+	icon_state = "butterflyknife_wooden"
+	applies_material_colour = 0
 
 /obj/item/material/butterfly/boxcutter
 	name = "box cutter"
@@ -64,12 +76,12 @@
 	sharp = 1
 	edge = 1
 	force_divisor = 0.15 // 9 when wielded with hardness 60 (steel)
-	matter = list(DEFAULT_WALL_MATERIAL = 12000)
+	matter = list(MAT_STEEL = 12000)
 	origin_tech = list(TECH_MATERIAL = 1)
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/material/knife/suicide_act(mob/user)
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 	user.visible_message(pick("<span class='danger'>\The [user] is slitting [TU.his] wrists with \the [src]! It looks like [TU.hes] trying to commit suicide.</span>", \
 	                      "<span class='danger'>\The [user] is slitting [TU.his] throat with \the [src]! It looks like [TU.hes] trying to commit suicide.</span>", \
 	                      "<span class='danger'>\The [user] is slitting [TU.his] stomach open with \the [src]! It looks like [TU.hes] trying to commit seppuku.</span>"))
@@ -96,6 +108,21 @@
 	thrown_force_divisor = 1.75 // 20 with weight 20 (steel)
 	attack_verb = list("sliced", "stabbed", "chopped", "cut")
 	applies_material_colour = 1
+
+/obj/item/material/knife/stiletto
+	name = "stiletto knife"
+	desc = "A fancy-looking, thin bladed dagger designed to be stashed somewhere close to the body. Very lethal. Very illegal."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "stiletto"
+	item_state = "knife"
+	edge = 0 //Shouldn't be able to remove limbs
+	force_divisor = 0.1 //6 when hardness 60 (steel)
+	attack_verb = list("stabbed", "shanked", "punctured", "impaled", "skewered")
+	applies_material_colour = 1
+
+/obj/item/material/knife/tacknife/combatknife/bone
+	icon_state = "boneknife"
+	default_material = "bone"
 
 // Identical to the tactical knife but nowhere near as stabby.
 // Kind of like the toy esword compared to the real thing.
@@ -135,8 +162,7 @@
 	attack_verb = list("slashed", "chopped", "gouged", "ripped", "cut")
 	can_cleave = TRUE //Now hatchets inherit from the machete, and thus knives. Tables turned.
 	slot_flags = SLOT_BELT | SLOT_HOLSTER
-	default_material = "plasteel" //VOREStation Edit
-
+	default_material = "plasteel"
 /obj/item/material/knife/machete/armblade
 	name = "arm-mounted blade"
 	desc = "A long, machete-like blade, mounted to your arm. The size and location of it lends itself to parrying blows in melee."
@@ -155,11 +181,10 @@
 	return FALSE
 
 /obj/item/material/knife/machete/armblade/rig
-	default_material = DEFAULT_WALL_MATERIAL
-	canremove = FALSE
+	default_material = MAT_STEEL
 	var/obj/item/rig_module/armblade/storing_module
 
-/obj/item/material/knife/machete/armblade/rig/dropped(mob/user)
+/obj/item/material/knife/machete/armblade/rig/dropped(mob/user, flags, atom/newLoc)
 	. = ..()
 	if(storing_module)
 		src.forceMove(storing_module)
@@ -168,31 +193,105 @@
 			"<span class='notice'>You retract [src], folding it away with a click and a hiss.</span>",
 			"<span class='notice'>You hear a threatening click and a hiss.</span>"
 			)
-		playsound(src, 'modular_citadel/sound/items/helmetdeploy.ogg', 40, 1)
+		playsound(src, 'sound/items/helmetdeploy.ogg', 40, 1)
 	else
 		to_chat(user, "Something fucked up and the armblade got out of a module. Please report this bug.")
 		qdel(src)
 
 /obj/item/material/knife/tacknife/survival
 	name = "streamlined survival knife"
-	desc = "A hunting grade survival knife. The bulky storage handle and inlaid circuitry have been replaced with a sleek grip and the ability to easily upgrade the blade."
+	desc = "A hunting grade survival knife. The bulky storage handle has been replaced with a sleek grip and the ability to easily upgrade the blade."
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "survivalknife"
 	item_state = "knife"
 	applies_material_colour = FALSE
-	default_material = "plasteel" //VOREStation Edit
-	toolspeed = 2 // Use a real axe if you want to chop logs.
+	default_material = "plasteel"
+	tool_speed = 2 // Use a real axe if you want to chop logs.
 
-/*Placing this here, in the interests of adding it to a Dataknife further down the line
-
-/obj/item/storage/box/survival_knife/is_multitool()
-	return TRUE
-
-*/
-
+/obj/item/material/knife/tacknife/survival/bone
+	name = "primitive survival knife"
+	desc = "A hunting grade survival knife with a sleek leather grip."
+	applies_material_colour =TRUE
+	default_material = "bone"
 /obj/item/material/knife/machete/deluxe
 	name = "deluxe machete"
 	desc = "A fine example of a machete, with a polished blade, wooden handle and a leather cord loop."
 	icon = 'icons/obj/weapons_vr.dmi'
 	icon_state = "machetedx"
 	item_state = "machete"
+
+//The Return of the Data Knife
+/obj/item/material/knife/tacknife/dataknife
+	name = "data knife"
+	desc = "A special operations close combat weapon. Its razor sharp blade is inlaid with complex circuitry capable of hacking a variety of electronics."
+	icon = 'icons/obj/kitchen.dmi'
+	icon_state = "dataknife"
+	item_state = "knife"
+	applies_material_colour = FALSE
+	default_material = "plasteel"
+	tool_speed = 2 // Use a real axe if you want to chop logs.
+
+/obj/item/material/knife/tacknife/dataknife/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/gps, "DAT&#%F0", FALSE, TRUE, FALSE, TRUE, TRUE, TRUE, FALSE)
+
+/obj/item/material/knife/tacknife/dataknife/is_multitool()
+	return TRUE
+
+// Knife Material Variants
+/obj/item/material/butterfly/plasteel
+	default_material = "plasteel"
+
+/obj/item/material/butterfly/durasteel
+	default_material = "durasteel"
+
+/obj/item/material/butterfly/switchblade/plasteel
+	default_material = "plasteel"
+
+/obj/item/material/butterfly/switchblade/durasteel
+	default_material = "durasteel"
+
+/obj/item/material/butterfly/boxcutter/plasteel
+	default_material = "plasteel"
+
+/obj/item/material/butterfly/boxcutter/durasteel
+	default_material = "durasteel"
+
+/obj/item/material/knife/tacknife/plasteel
+	default_material = "plasteel"
+
+/obj/item/material/knife/tacknife/durasteel
+	default_material = "durasteel"
+
+/obj/item/material/knife/tacknife/combatknife/plasteel
+	default_material = "plasteel"
+
+/obj/item/material/knife/tacknife/combatknife/durasteel
+	default_material = "durasteel"
+
+/obj/item/material/knife/hook/plasteel
+	default_material = "plasteel"
+
+/obj/item/material/knife/hook/durasteel
+	default_material = "durasteel"
+
+/obj/item/material/knife/ritual/plasteel
+	default_material = "plasteel"
+
+/obj/item/material/knife/ritual/durasteel
+	default_material = "durasteel"
+
+/obj/item/material/knife/butch/plasteel
+	default_material = "plasteel"
+
+/obj/item/material/knife/butch/durasteel
+	default_material = "durasteel"
+
+/obj/item/material/knife/machete/durasteel
+	default_material = "durasteel"
+
+/obj/item/material/knife/machete/deluxe/durasteel
+	default_material = "durasteel"
+
+/obj/item/material/knife/tacknife/survival/durasteel
+	default_material = "durasteel"

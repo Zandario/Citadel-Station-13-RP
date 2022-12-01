@@ -18,11 +18,11 @@
 	)
 
 /obj/machinery/telecomms/receiver/preset_right/tether
-	id = "tether_rx"
+//	id = "tether_rx"
 	freq_listening = list(AI_FREQ, SCI_FREQ, MED_FREQ, SUP_FREQ, SRV_FREQ, COMM_FREQ, ENG_FREQ, SEC_FREQ, ENT_FREQ, EXP_FREQ)
 
 /obj/machinery/telecomms/broadcaster/preset_right/tether
-	id = "tether_tx"
+//	id = "tether_tx"
 
 /obj/machinery/telecomms/bus/preset_two/tether
 	freq_listening = list(SUP_FREQ, SRV_FREQ, EXP_FREQ)
@@ -55,7 +55,6 @@
 /area/tether/surfacebase/tcomms/chamber
 	name = "\improper Telecomms Central Compartment"
 	icon_state = "tcomsatcham"
-	flags = BLUE_SHIELDED
 
 /area/maintenance/substation/tcomms
 	name = "\improper Telecomms Substation"
@@ -85,6 +84,6 @@
 	name = "pre-linked multitool (tether hub)"
 	desc = "This multitool has already been linked to the Tether telecomms hub and can be used to configure one (1) relay."
 
-/obj/item/multitool/tether_buffered/Initialize()
+/obj/item/multitool/tether_buffered/Initialize(mapload)
 	. = ..()
 	buffer = locate(/obj/machinery/telecomms/hub/preset/tether)

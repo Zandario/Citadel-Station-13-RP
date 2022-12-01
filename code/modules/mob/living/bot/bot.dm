@@ -1,3 +1,33 @@
+// Obtained by scanning any bot.
+/datum/category_item/catalogue/technology/bot
+	name = "Bots"
+	desc = "Robots, commonly referred to as 'Bots', are unsophisticated automata programmed to follow \
+	a set routine of behaviors. Although automation has far outpaced the standard bot in sophistication \
+	and utility, bots are still able to fulfill a wide array of trivial utilities. From simple maintenance \
+	to augmenting law enforcement patrols, bots ease labor costs across the galaxy."
+	value = CATALOGUER_REWARD_TRIVIAL
+	unlocked_by_any = list(/datum/category_item/catalogue/technology/bot)
+
+// Obtained by scanning all bots.
+/datum/category_item/catalogue/technology/all_bots
+	name = "Collection - Bots"
+	desc = "You have scanned a large array of different types of bot, \
+	and therefore you have been granted a fair sum of points, through this \
+	entry."
+	value = CATALOGUER_REWARD_EASY
+	unlocked_by_all = list(
+		/datum/category_item/catalogue/technology/bot/cleanbot,
+		/datum/category_item/catalogue/technology/bot/cleanbot/edCLN,
+		/datum/category_item/catalogue/technology/bot/ed209,
+		/datum/category_item/catalogue/technology/bot/ed209/slime,
+		/datum/category_item/catalogue/technology/bot/farmbot,
+		/datum/category_item/catalogue/technology/bot/floorbot,
+		/datum/category_item/catalogue/technology/bot/medibot,
+		/datum/category_item/catalogue/technology/bot/mulebot,
+		/datum/category_item/catalogue/technology/bot/secbot,
+		/datum/category_item/catalogue/technology/bot/secbot/slime
+		)
+
 /mob/living/bot
 	name = "Bot"
 	health = 20
@@ -5,19 +35,20 @@
 	icon = 'icons/obj/aibots.dmi'
 	layer = MOB_LAYER
 	universal_speak = 1
-	density = 0
+	density = FALSE
 	silicon_privileges = PRIVILEGES_BOT
 
 	makes_dirt = FALSE	// No more dirt from Beepsky
 
 	var/obj/item/card/id/botcard = null
 	var/list/botcard_access = list()
-	var/on = 1
-	var/open = 0
-	var/locked = 1
-	var/emagged = 0
+	var/on = TRUE
+	var/open = FALSE
+	var/locked = TRUE
+	var/emagged = FALSE
 	var/light_strength = 3
-	var/busy = 0
+	var/busy = FALSE //Are they doing something?
+	var/skin = null // For variants of a bot, like Burn medkit Medibots!
 
 	var/obj/access_scanner = null
 	var/list/req_access = list()
@@ -29,8 +60,8 @@
 	var/list/target_path = list()
 	var/turf/obstacle = null
 
-	var/wait_if_pulled = 0 // Only applies to moving to the target
-	var/will_patrol = 0 // If set to 1, will patrol, duh
+	var/wait_if_pulled = FALSE // Only applies to moving to the target
+	var/will_patrol = FALSE // If set to 1, will patrol, duh
 	var/patrol_speed = 1 // How many times per tick we move when patrolling
 	var/target_speed = 2 // Ditto for chasing the target
 	var/panic_on_alert = FALSE	// Will the bot go faster when the alert level is raised?
@@ -41,12 +72,13 @@
 	var/target_patience = 5
 	var/frustration = 0
 	var/max_frustration = 0
+	var/robot_arm = /obj/item/robot_parts/r_arm
 
 /mob/living/bot/Initialize(mapload)
 	. = ..()
 	update_icons()
 
-	default_language = GLOB.all_languages[LANGUAGE_GALCOM]
+	default_language = SScharacters.resolve_language_name(LANGUAGE_GALCOM)
 
 	botcard = new /obj/item/card/id(src)
 	botcard.access = botcard_access.Copy()
@@ -64,11 +96,13 @@
 	if(on)
 		turn_on() // Update lights and other stuff
 
-/mob/living/bot/Life()
-	..()
+/mob/living/bot/Life(seconds, times_fired)
+	if((. = ..()))
+		return
 	if(health <= 0)
 		death()
-		return
+		return TRUE
+
 	SetWeakened(0)
 	SetStunned(0)
 	SetParalysis(0)
@@ -83,7 +117,7 @@
 /mob/living/bot/updatehealth()
 	if(status_flags & GODMODE)
 		health = getMaxHealth()
-		stat = CONSCIOUS
+		set_stat(CONSCIOUS)
 	else
 		health = getMaxHealth() - getFireLoss() - getBruteLoss()
 	oxyloss = 0
@@ -112,7 +146,7 @@
 		if(!locked)
 			open = !open
 			to_chat(user, "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>")
-			playsound(src, O.usesound, 50, 1)
+			playsound(src, O.tool_sound, 50, 1)
 		else
 			to_chat(user, "<span class='notice'>You need to unlock the controls first.</span>")
 		return
@@ -129,7 +163,7 @@
 					fireloss = fireloss - 10
 				updatehealth()
 				user.visible_message("<span class='notice'>[user] repairs [src].</span>","<span class='notice'>You repair [src].</span>")
-				playsound(src, O.usesound, 50, 1)
+				playsound(src, O.tool_sound, 50, 1)
 			else
 				to_chat(user, "<span class='notice'>Unable to repair with the maintenance panel closed.</span>")
 		else
@@ -160,7 +194,8 @@
 /mob/living/bot/Bump(var/atom/A)
 	if(on && botcard && istype(A, /obj/machinery/door))
 		var/obj/machinery/door/D = A
-		if(!istype(D, /obj/machinery/door/firedoor) && !istype(D, /obj/machinery/door/blast) && !istype(D, /obj/machinery/door/airlock/lift) && D.check_access(botcard))	//VOREStation Edit: Elevator safety precaution
+		// Elevator safety precaution
+		if(!istype(D, /obj/machinery/door/firedoor) && !istype(D, /obj/machinery/door/blast) && !istype(D, /obj/machinery/door/airlock/lift) && D.check_access(botcard))
 			D.open()
 	else
 		..()

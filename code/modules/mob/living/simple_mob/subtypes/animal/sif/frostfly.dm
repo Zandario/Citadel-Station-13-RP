@@ -32,8 +32,9 @@
 
 	maxHealth = 65
 	health = 65
+	randomized = TRUE
 
-	pass_flags = PASSTABLE
+	pass_flags = ATOM_PASS_TABLE
 
 	var/energy = 100
 	var/max_energy = 100

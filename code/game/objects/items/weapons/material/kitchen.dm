@@ -30,7 +30,7 @@
 
 	if(user.a_intent != INTENT_HELP)
 		if(user.zone_sel.selecting == BP_HEAD || user.zone_sel.selecting == O_EYES)
-			if((CLUMSY in user.mutations) && prob(50))
+			if((MUTATION_CLUMSY in user.mutations) && prob(50))
 				M = user
 			return eyestab(M,user)
 		else
@@ -64,6 +64,30 @@
 /obj/item/material/kitchen/utensil/fork/plastic
 	default_material = "plastic"
 
+/obj/item/material/kitchen/utensil/fork/plasteel
+	default_material = "plasteel"
+
+/obj/item/material/kitchen/utensil/fork/durasteel
+	default_material = "durasteel"
+
+/obj/item/material/kitchen/utensil/spoon/plasteel
+	default_material = "plasteel"
+
+/obj/item/material/kitchen/utensil/spoon/durasteel
+	default_material = "durasteel"
+
+/obj/item/material/knife/plasteel
+	default_material = "plasteel"
+
+/obj/item/material/knife/durasteel
+	default_material = "durasteel"
+
+/obj/item/material/kitchen/rollingpin/plasteel
+  default_material = "plasteel"
+
+/obj/item/material/kitchen/rollingpin/durasteel
+  default_material = "durasteel"
+
 /obj/item/material/kitchen/utensil/spoon
 	name = "spoon"
 	desc = "It's a spoon. You can see your own upside-down face in it."
@@ -82,7 +106,7 @@
 
 /* From the time of Clowns. Commented out for posterity, and sanity.
 /obj/item/material/knife/attack(target as mob, mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && prob(50))
+	if ((MUTATION_CLUMSY in user.mutations) && prob(50))
 		to_chat(user, "<span class='warning'>You accidentally cut yourself with \the [src].</span>")
 		user.take_organ_damage(20)
 		return
@@ -108,7 +132,7 @@
 	pickup_sound = 'sound/items/pickup/wooden.ogg'
 
 /obj/item/material/kitchen/rollingpin/attack(mob/living/M as mob, mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && prob(50))
+	if ((MUTATION_CLUMSY in user.mutations) && prob(50))
 		to_chat(user, "<span class='warning'>\The [src] slips out of your hand and hits your head.</span>")
 		user.take_organ_damage(10)
 		user.Paralyse(2)

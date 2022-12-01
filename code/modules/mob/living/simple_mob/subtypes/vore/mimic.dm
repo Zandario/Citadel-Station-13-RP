@@ -42,7 +42,7 @@
 	else
 		return ..()
 
-/obj/structure/closet/crate/mimic/ex_act(severity) //Stores Mimic Contents for later
+/obj/structure/closet/crate/mimic/legacy_ex_act(severity) //Stores Mimic Contents for later
 	for(var/obj/O in src.contents)
 		qdel(O)
 	qdel(src)
@@ -124,7 +124,7 @@
 		var/mob/living/L = A
 		if(prob(knockdown_chance))
 			L.Weaken(3)
-			L.visible_message(span("danger", "\The [src] knocks down \the [L]!"))
+			L.visible_message(SPAN_DANGER("\The [src] knocks down \the [L]!"))
 
 /mob/living/simple_mob/vore/aggressive/mimic/will_show_tooltip()
 	return FALSE
@@ -175,7 +175,7 @@
 	else
 		return ..()
 
-/obj/structure/closet/crate/mimic/airlock/ex_act(severity) //Stores Mimic Contents for later
+/obj/structure/closet/crate/mimic/airlock/legacy_ex_act(severity) //Stores Mimic Contents for later
 	for(var/obj/O in src.contents)
 		qdel(O)
 	qdel(src)
@@ -266,7 +266,7 @@
 	else
 		return ..()
 
-/obj/structure/closet/crate/mimic/closet/ex_act(severity) //Stores Mimic Contents for later
+/obj/structure/closet/crate/mimic/closet/legacy_ex_act(severity) //Stores Mimic Contents for later
 	for(var/obj/O in src.contents)
 		qdel(O)
 	qdel(src)
@@ -372,7 +372,7 @@
 	else
 		return ..()
 
-/obj/effect/floormimic/ex_act(severity)
+/obj/effect/floormimic/legacy_ex_act(severity)
 	qdel(src)
 
 /obj/effect/floormimic/safe

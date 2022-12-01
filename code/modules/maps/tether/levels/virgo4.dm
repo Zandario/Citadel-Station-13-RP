@@ -118,34 +118,28 @@
 /area/tether_away/beach
 	name = "\improper Away Mission - Virgo 4 Beach"
 	icon_state = "away"
-	base_turf = /turf/simulated/floor/outdoors/beach/sand //This is what the ground turns into if destroyed/bombed/etc
 	dynamic_lighting = 1
 	requires_power = 1
 
 /area/tether_away/beach/powershed
 	name = "\improper Away Mission - Virgo 4 Coast PS"
 	icon_state = "blue2"
-	base_turf = /turf/simulated/floor/outdoors/beach/sand
 
 /area/tether_away/beach/coast
 	name = "\improper Away Mission - Virgo 4 Coast"
 	icon_state = "blue2"
-	base_turf = /turf/simulated/floor/outdoors/beach/coastline
 
 /area/tether_away/beach/water
 	name = "\improper Away Mission - Virgo 4 Water"
 	icon_state = "bluenew"
-	base_turf = /turf/simulated/floor/outdoors/beach/water
 
 /area/tether_away/beach/jungle
 	name = "\improper Away Mission - Virgo 4 Desert"
 	icon_state = "green"
-	base_turf = /turf/simulated/floor/outdoors/beach/sand/desert
 
 /area/tether_away/beach/resort
 	icon = 'icons/turf/areas_vr.dmi'
 	icon_state = "yellow"
-	base_turf = /turf/simulated/floor/outdoors/beach/sand
 
 /area/tether_away/beach/resort/kitchen
 	name = "\improper Away Mission - Virgo 4 Kitchen"
@@ -162,31 +156,30 @@
 /area/tether_away/beach/resort/dorm1
 	name = "\improper Away Mission - Virgo 4 Private Room 1"
 	icon_state = "bluwhicir"
-	flags = RAD_SHIELDED
+	area_flags = AREA_RAD_SHIELDED
 /area/tether_away/beach/resort/dorm2
 	name = "\improper Away Mission - Virgo 4 Private Room 2"
 	icon_state = "bluwhicir"
-	flags = RAD_SHIELDED
+	area_flags = AREA_RAD_SHIELDED
 /area/tether_away/beach/resort/dorm3
 	name = "\improper Away Mission - Virgo 4 Private Room 3"
 	icon_state = "bluwhicir"
-	flags = RAD_SHIELDED
+	area_flags = AREA_RAD_SHIELDED
 /area/tether_away/beach/resort/dorm4
 	name = "\improper Away Mission - Virgo 4 Private Room 4"
 	icon_state = "bluwhicir"
-	flags = RAD_SHIELDED
+	area_flags = AREA_RAD_SHIELDED
 
 /area/tether_away/beach/cavebase
 	name = "\improper Away Mission - Virgo 4 Mysterious Cave"
 	icon = 'icons/turf/areas_vr.dmi'
 	icon_state = "orawhicir"
-	flags = RAD_SHIELDED
+	area_flags = AREA_RAD_SHIELDED
 
 //Some areas for the cave, which are referenced by our init object to seed submaps and ores
 /area/tether_away/cave
-	flags = RAD_SHIELDED
+	area_flags = AREA_RAD_SHIELDED
 	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg')
-	base_turf = /turf/simulated/mineral/floor/ignore_mapgen/cave
 
 /area/tether_away/cave/explored/normal
 	name = "\improper Away Mission - Virgo 4 Cave (E)"
@@ -203,3 +196,57 @@
 /area/tether_away/cave/unexplored/deep
 	name = "\improper Away Mission - Virgo 4 Cave Deep (UE)"
 	icon_state = "unexplored_deep"
+
+// Desert World Reborn Areas..
+
+/area/tether_away/beach/desert/poi
+	name = "\improper Away Mission - Virgo 4 Desert"
+	icon_state = "away"
+	requires_power = 1
+
+/area/tether_away/beach/desert/explored
+	name = "\improper Away Mission - Virgo 4 Desert (E)"
+	icon_state = "explored"
+
+/area/tether_away/beach/desert/unexplored
+	name = "\improper Away Mission - Virgo 4 Desert (UE)"
+	icon_state = "unexplored"
+
+/area/tether_away/beach/desert/poi/WW_Town
+	name = "V4 - Ghost Town"
+
+/area/tether_away/beach/desert/poi/landing_pad
+	name = "V4 - Prefab Homestead"
+
+/area/tether_away/beach/desert/poi/solar_farm
+	name = "V4 - Prefab Solar Farm"
+
+/area/tether_away/beach/desert/poi/dirt_farm
+	name = "V4 - Abandoned Farmstead"
+
+/area/tether_away/beach/desert/poi/graveyard
+	name = "V4 - Desert Graveyard"
+
+/area/tether_away/beach/desert/poi/goldmine
+	name = "V4 - Desert Goldmine"
+
+/area/tether_away/beach/desert/poi/ranch
+	name = "V4 - Abandoned Ranch"
+
+/area/tether_away/beach/desert/poi/saloon
+	name = "V4 - Saloon"
+
+/area/tether_away/beach/desert/poi/temple
+	name = "V4 - Old Temple"
+
+/area/tether_away/beach/desert/poi/tomb
+	name = "V4 - Old Tomb"
+
+/area/tether_away/beach/desert/poi/AuxiliaryResearchFacility
+	name = "V4 - Research Facility"
+
+/area/tether_away/beach/desert/poi/vault
+	name = "V4 - Desert Bunker"
+
+/area/tether_away/beach/desert/poi/covert_post
+	name = "V4 - Clown Listening Post"

@@ -79,6 +79,9 @@
 /turf/simulated/wall/sifwood/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	return ..(mapload, MAT_SIFWOOD)
 
+/turf/simulated/wall/hardwood/Initialize(mapload, materialtype, rmaterialtype, girdertype)
+	return ..(mapload, MAT_HARDWOOD)
+
 /turf/simulated/wall/log/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	return ..(mapload, MAT_LOG)
 
@@ -175,7 +178,7 @@
 	match_turf(WEST, WEST)
 
 	icon_state = "[base_state][join_flags]"
-	if(isDiagonal(join_flags))
+	if(IS_DIAGONAL(join_flags))
 		if(hard_corner) //You are using 'hard' (aka full-tile) corners.
 			icon_state += "h" //Hard corners have 'h' at the end of the state
 		else //Diagonals need an underlay to not look ugly.

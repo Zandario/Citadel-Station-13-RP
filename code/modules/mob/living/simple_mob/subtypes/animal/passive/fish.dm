@@ -7,20 +7,23 @@
 
 /mob/living/simple_mob/animal/passive/fish
 	name = "fish"
-	desc = "Its a fishy.  No touchy fishy."
+	desc = "Its a fishy. No touchy fishy."
 	icon = 'icons/mob/fish.dmi'
 	item_state = "fish"
 
 	catalogue_data = list(/datum/category_item/catalogue/fauna/invasive_fish)
 
 	mob_size = MOB_SMALL
+	randomized = TRUE
 	// So fish are actually underwater.
 	plane = TURF_PLANE
 	layer = UNDERWATER_LAYER
 
 	holder_type = /obj/item/holder/fish
 
+	meat_amount = 2
 	meat_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish
+	bone_amount = 1
 
 	// By default they can be in any water turf.  Subtypes might restrict to deep/shallow etc
 	var/global/list/suitable_turf_types =  list(
@@ -99,8 +102,10 @@
 	reagents.add_reagent("toxin", 45)
 	reagents.add_reagent("impedrezene", 15)
 
-/mob/living/simple_mob/animal/passive/fish/koi/poisonous/Life()
-	..()
+/mob/living/simple_mob/animal/passive/fish/koi/poisonous/BiologicalLife(seconds, times_fired)
+	if((. = ..()))
+		return
+
 	if(isbelly(loc) && prob(10))
 		var/obj/belly/B = loc
 		sting(B.owner)

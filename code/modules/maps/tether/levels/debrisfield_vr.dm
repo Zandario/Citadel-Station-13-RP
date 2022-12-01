@@ -37,13 +37,6 @@
 	teleport_y = y
 	teleport_z = z
 
-//This does nothing right now, but is framework if we do POIs for this place
-/obj/away_mission_init/debrisfield_vr
-	name = "away mission initializer - debrisfield"
-
-/obj/away_mission_init/debrisfield_vr/Initialize(mapload)
-	return INITIALIZE_HINT_QDEL
-
 /area/tether_away/debrisfield_vr
 	name = "Away Mission - Debris Field"
 	icon = 'icons/turf/areas_vr.dmi'
@@ -122,6 +115,23 @@
 /area/submap/debrisfield_vr/tinyshuttle/engine
 	name = "Systems Bay"
 
+/area/submap/debrisfiled_vr/clownshuttle
+	name = "POI - Covert Clown Shuttle"
+
+/area/submap/debrisfiled_vr/clownshuttle/cockpit
+	name = "Cockpit"
+
+/area/submap/debrisfiled_vr/clownshuttle/engine
+	name = "Engine"
+
+/area/submap/debrisfiled_vr/clownshuttle/atmos
+	name = "Atmospherics"
+/area/submap/debrisfiled_vr/clownshuttle/cargo
+	name = "Cargo"
+
+/area/submap/debrisfiled_vr/clownshuttle/bunk
+	name = "Bunks"
+
 /datum/shuttle/autodock/overmap/tinycarrier
 	name = "Debris Carrier"
 	warmup_time = 0
@@ -139,7 +149,7 @@
 	landmark_tag = "debris_field_carrier_start"
 	shuttle_type = /datum/shuttle/autodock/overmap/tinycarrier
 
-/obj/effect/shuttle_landmark/shuttle_initializer/tinycarrier/Initialize()
+/obj/effect/shuttle_landmark/shuttle_initializer/tinycarrier/Initialize(mapload)
 	var/obj/effect/overmap/visitable/O = get_overmap_sector(get_z(src)) //make this into general system some other time
 	LAZYINITLIST(O.initial_restricted_waypoints)
 	O.initial_restricted_waypoints["Debris Carrier"] = list(landmark_tag)
@@ -153,7 +163,7 @@
 	shuttle = "Debris Carrier"
 	fore_dir = WEST
 
-/obj/effect/overmap/visitable/ship/landable/tinycarrier/Initialize()
+/obj/effect/overmap/visitable/ship/landable/tinycarrier/Initialize(mapload)
 	. = ..()
 	var/datum/lore/organization/O = GLOB.loremaster.organizations[/datum/lore/organization/other/sysdef]
 	var/newname = "SDV [pick(O.ship_names)]"
@@ -192,7 +202,7 @@
 		/obj/item/mecha_parts/component/electrical/high_current
 		)
 
-/obj/mecha/combat/fighter/baron/loaded/busted/Initialize()
+/obj/mecha/combat/fighter/baron/loaded/busted/Initialize(mapload)
 	. = ..()
 	health = round(rand(50,120))
 	cell?.charge = 0
@@ -205,7 +215,7 @@
 	setInternalDamage(MECHA_INT_SHORT_CIRCUIT)
 */
 
-/obj/structure/fuel_port/empty_tank/Initialize()
+/obj/structure/fuel_port/empty_tank/Initialize(mapload)
 	. = ..()
 	var/obj/item/tank/phoron/T = locate() in src
 	if(T)

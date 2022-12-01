@@ -35,16 +35,20 @@
 /turf/simulated/floor,
 /area/submap/virgo2/CaveS)
 "l" = (
-/obj/effect/decal/cleanable/cobweb,
+/obj/effect/debris/cleanable/cobweb,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/CaveS)
 "n" = (
-/obj/effect/decal/cleanable/cobweb2,
+/obj/effect/debris/cleanable/cobweb2,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/CaveS)
 "o" = (
 /obj/effect/mine,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/CaveS)
+"p" = (
+/obj/structure/loot_pile/surface/drone,
+/turf/simulated/floor,
 /area/submap/virgo2/CaveS)
 "r" = (
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
@@ -61,7 +65,7 @@
 /turf/simulated/floor,
 /area/submap/virgo2/CaveS)
 "w" = (
-/obj/structure/loot_pile/surface,
+/obj/structure/loot_pile/surface/medicine_cabinet,
 /turf/simulated/floor,
 /area/submap/virgo2/CaveS)
 "x" = (
@@ -72,8 +76,7 @@
 "y" = (
 /obj/machinery/power/port_gen/pacman,
 /obj/structure/cable{
-	icon_state = "0-2";
-	d2 = 2
+	icon_state = "0-2"
 	},
 /turf/simulated/floor,
 /area/submap/virgo2/CaveS)
@@ -95,10 +98,7 @@
 /area/submap/virgo2/CaveS)
 "B" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
+	icon_state = "1-2"
 	},
 /turf/simulated/floor,
 /area/submap/virgo2/CaveS)
@@ -117,27 +117,25 @@
 /area/submap/virgo2/CaveS)
 "E" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor,
 /area/submap/virgo2/CaveS)
 "F" = (
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/simulated/floor,
 /area/submap/virgo2/CaveS)
 "G" = (
 /obj/machinery/computer/communications,
 /obj/structure/cable{
-	d2 = 8;
 	icon_state = "0-8"
 	},
+/turf/simulated/floor,
+/area/submap/virgo2/CaveS)
+"I" = (
+/obj/structure/loot_pile/surface/bones,
 /turf/simulated/floor,
 /area/submap/virgo2/CaveS)
 
@@ -1352,7 +1350,7 @@ z
 z
 F
 u
-w
+p
 r
 d
 d
@@ -1434,7 +1432,7 @@ u
 u
 A
 C
-u
+I
 u
 d
 d

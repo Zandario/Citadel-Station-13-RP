@@ -5,7 +5,7 @@
 	icon_state = "grey slime extract"
 	force = 1.0
 	w_class = ITEMSIZE_TINY
-	throwforce = 0
+	throw_force = 0
 	throw_speed = 3
 	throw_range = 6
 	origin_tech = list(TECH_BIO = 4)
@@ -120,7 +120,7 @@
 	icon_state = "rainbow slime extract"
 
 /obj/item/slimepotion
-	icon = 'icons/obj/chemical.dmi'
+	icon = 'icons/obj/medical/chemical.dmi'
 
 ////Pet Slime Creation///
 /*
@@ -183,7 +183,7 @@
 /obj/item/slimepotion2
 	name = "advanced docility potion"
 	desc = "A potent chemical mix that will nullify a slime's powers, causing it to become docile and tame. This one is meant for adult slimes"
-	icon = 'icons/obj/chemical.dmi'
+	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "bottle19"
 
 	attack(mob/living/carbon/slime/M as mob, mob/user as mob)
@@ -215,7 +215,7 @@
 /obj/item/slimesteroid
 	name = "slime steroid"
 	desc = "A potent chemical mix that will cause a slime to generate more extract."
-	icon = 'icons/obj/chemical.dmi'
+	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "bottle16"
 
 	attack(mob/living/carbon/slime/M as mob, mob/user as mob)
@@ -239,7 +239,7 @@
 /obj/item/slimesteroid2
 	name = "extract enhancer"
 	desc = "A potent chemical mix that will give a slime extract three uses."
-	icon = 'icons/obj/chemical.dmi'
+	icon = 'icons/obj/medical/chemical.dmi'
 	icon_state = "bottle17"
 
 	/*afterattack(obj/target, mob/user , flag)
@@ -291,14 +291,14 @@
 			to_chat(user, "The rune fizzles uselessly. There is no spirit nearby.")
 			return
 		var/mob/living/carbon/human/G = new(src.loc)
-		G.set_species("Golem")
+		G.set_species(SPECIES_GOLEM)
 		G.key = ghost.key
 		to_chat(G, "You are an adamantine golem. You move slowly, but are highly resistant to heat and cold as well as blunt trauma. You are unable to wear clothes, but can still use most tools. Serve [user], and assist them in completing their goals at any cost.")
 		qdel(src)
 
 
 	proc/announce_to_ghosts()
-		for(var/mob/observer/dead/G in player_list)
+		for(var/mob/observer/dead/G in GLOB.player_list)
 			if(G.client)
 				var/area/A = get_area(src)
 				if(A)

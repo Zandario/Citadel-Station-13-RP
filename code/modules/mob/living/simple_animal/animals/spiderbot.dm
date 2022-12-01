@@ -1,3 +1,10 @@
+/datum/category_item/catalogue/fauna/spiderbot
+	name = "Spiderbot"
+	desc = "A roaming curiosity, spiderbots are as harmless as \
+	they are visually frightening. Generally friendly, the intelligence \
+	piloting a spiderbot is usually still fully cognizant, and benign."
+	value = CATALOGUER_REWARD_EASY
+
 /mob/living/simple_mob/spiderbot
 	name = "spider-bot"
 	desc = "A skittering robotic friend!"
@@ -7,13 +14,14 @@
 	icon_living = "spiderbot-chassis"
 	icon_dead = "spiderbot-smashed"
 	intelligence_level = SA_HUMANOID // Because its piloted by players.
+	catalogue_data = list(/datum/category_item/catalogue/fauna/spiderbot)
 
 	health = 10
 	maxHealth = 10
 
 	wander = 0
 	speed = -1                    //Spiderbots gotta go fast.
-	pass_flags = PASSTABLE
+	pass_flags = ATOM_PASS_TABLE
 	mob_size = MOB_SMALL
 
 	response_help  = "pets"
@@ -56,7 +64,7 @@
 /mob/living/simple_mob/spiderbot/Initialize(mapload)
 	. = ..()
 	add_language(LANGUAGE_GALCOM)
-	default_language = GLOB.all_languages[LANGUAGE_GALCOM]
+	default_language = SScharacters.resolve_language_name(LANGUAGE_GALCOM)
 	verbs |= /mob/living/proc/ventcrawl
 	verbs |= /mob/living/proc/hide
 
@@ -73,7 +81,7 @@
 		if(!B.brainmob.key)
 			var/ghost_can_reenter = 0
 			if(B.brainmob.mind)
-				for(var/mob/observer/dead/G in player_list)
+				for(var/mob/observer/dead/G in GLOB.player_list)
 					if(G.can_reenter_corpse && G.mind == B.brainmob.mind)
 						ghost_can_reenter = 1
 						break

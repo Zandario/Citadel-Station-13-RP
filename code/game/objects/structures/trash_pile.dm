@@ -53,9 +53,9 @@
 /obj/structure/trash_pile/attackby(obj/item/W as obj, mob/user as mob)
 	var/w_type = W.type
 	if(w_type in allocated_gamma)
+		if(!user.attempt_insert_item_for_installation(W, src))
+			return
 		to_chat(user,"<span class='notice'>You feel \the [W] slip from your hand, and disappear into the trash pile.</span>")
-		user.unEquip(W)
-		W.forceMove(src)
 		allocated_gamma -= w_type
 		unique_gamma += w_type
 		qdel(W)
@@ -213,6 +213,7 @@
 					prob(1);/obj/item/spacecash/c50,
 					prob(1);/obj/item/storage/backpack/dufflebag/syndie,
 					prob(1);/obj/item/storage/box/cups,
+					prob(1);/obj/item/gun/energy/stripper,
 					prob(1);/obj/item/pizzavoucher)
 
 	var/obj/item/I = new path()
@@ -223,6 +224,7 @@
 					prob(4);/obj/item/storage/pill_bottle/happy,
 					prob(4);/obj/item/storage/pill_bottle/zoom,
 					prob(4);/obj/item/gun/energy/sizegun,
+					prob(4);/obj/item/gun/energy/stripper,
 					prob(3);/obj/item/material/butterfly,
 					prob(3);/obj/item/material/butterfly/switchblade,
 					prob(3);/obj/item/clothing/gloves/knuckledusters,

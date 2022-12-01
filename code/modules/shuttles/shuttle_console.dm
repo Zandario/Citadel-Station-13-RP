@@ -14,7 +14,6 @@
 /obj/machinery/computer/shuttle_control/attack_hand(user as mob)
 	if(..(user))
 		return
-	//src.add_fingerprint(user)	// Shouldn't need fingerprints just for looking at it.
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access Denied.</span>")
 		return 1
@@ -140,7 +139,7 @@
 /obj/machinery/computer/shuttle_control/bullet_act(var/obj/item/projectile/Proj)
 	visible_message("\The [Proj] ricochets off \the [src]!")
 
-/obj/machinery/computer/shuttle_control/ex_act()
+/obj/machinery/computer/shuttle_control/legacy_ex_act()
 	return
 
 /obj/machinery/computer/shuttle_control/emp_act()

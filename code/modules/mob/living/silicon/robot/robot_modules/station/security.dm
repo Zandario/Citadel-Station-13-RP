@@ -25,8 +25,12 @@
 					"Misato" = "tall2security",
 					"L3P1-D0T" = "Glitterfly-Security",
 					"Miss M" = "miss-security",
-					"Coffcurity" = "coffin-Combat"
-
+					"Coffcurity" = "coffin-Combat",
+					"Handy" = "handy-sec",
+					"Acheron" = "mechoid-Security",
+					"Shellguard Noble" = "Noble-SEC",
+					"ZOOM-BA" = "zoomba-security",
+					"W02M" = "worm-security"
 					)
 
 /obj/item/robot_module/robot/security/general/Initialize(mapload)
@@ -34,7 +38,6 @@
 	src.modules += new /obj/item/handcuffs/cyborg(src)
 	src.modules += new /obj/item/melee/baton/robot(src)
 	src.modules += new /obj/item/gun/energy/taser/mounted/cyborg(src)
-	// src.modules += new /obj/item/gun/energy/taser/xeno/sec/robot(src) // VOREStation Edit - We don't need these
 	src.modules += new /obj/item/barrier_tape_roll/police(src)
 	src.modules += new /obj/item/reagent_containers/spray/pepper(src)
 	src.modules += new /obj/item/gripper/security(src)
@@ -62,33 +65,36 @@
 					"Haruka" = "marinaCB",
 					"Cabeiri" = "eyebot-combat",
 					"Combat Android" = "droid-combat",
-					"Insekt" = "insekt-Combat"
+					"Insekt" = "insekt-Combat",
+					"Acheron" = "mechoid-Combat",
+					"ZOOM-BA" = "zoomba-combat"
 					)
 
 /obj/item/robot_module/robot/security/combat/Initialize(mapload)
 	. = ..()
 	src.modules += new /obj/item/flash(src)
-	//src.modules += new /obj/item/borg/sight/thermal(src) // VOREStation Edit
+	//src.modules += new /obj/item/borg/sight/thermal(src)
 	src.modules += new /obj/item/gun/energy/laser/mounted(src)
 	src.modules += new /obj/item/pickaxe/plasmacutter(src)
 	src.modules += new /obj/item/borg/combat/shield(src)
 	src.modules += new /obj/item/borg/combat/mobility(src)
 	src.emag = new /obj/item/gun/energy/lasercannon/mounted(src)
 
-/obj/item/robot_module/robot/knine
-	name = "k9 robot module"
+/obj/item/robot_module/robot/quad_sec
+	name = "SecuriQuad module"
 	sprites = list(
 					"K9 hound" = "k9",
 					"K9 Alternative" = "k92",
 					"Secborg model V-2" = "secborg",
 					"Borgi" = "borgi-sec",
-					"Otieborg" = "oties"
+					"Otieborg" = "oties",
+					"F3-LINE" = "FELI-Security"
 					)
 	channels = list("Security" = 1)
 	networks = list(NETWORK_SECURITY)
 	can_be_pushed = 0
 
-/obj/item/robot_module/robot/knine/Initialize(mapload)
+/obj/item/robot_module/robot/quad_sec/Initialize(mapload)
 	. = ..()
 	var/mob/living/silicon/robot/R = loc
 
@@ -117,24 +123,21 @@
 	B.water = water
 	src.modules += B
 
-	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
-	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
-	R.ui_style_vr = TRUE
-	R.pixel_x 	 = -16
-	R.old_x 	 = -16
-	R.default_pixel_x = -16
+	R.icon = 'icons/mob/robots_wide.dmi'
+	R.set_base_pixel_x(-16)
 	R.dogborg = TRUE
 	R.wideborg = TRUE
+	R.icon_dimension_x = 64
 	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
-	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
 	R.verbs |= /mob/living/proc/shred_limb
 	R.verbs |= /mob/living/silicon/robot/proc/rest_style
 
 	if(R.client && (R.client.ckey in list("nezuli")))
 		sprites += "Alina"
 		sprites["Alina"] = "alina-sec"
+		. = ..()
 
-/obj/item/robot_module/robot/knine/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+/obj/item/robot_module/robot/quad_sec/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 	var/obj/item/flash/F = locate() in src.modules
 	if(F.broken)
 		F.broken = 0
@@ -159,7 +162,8 @@
 	can_be_pushed = 0
 	sprites = list(
 					"Standard" = "ert",
-					"Borgi" = "borgi"
+					"Borgi" = "borgi",
+					"F3-LINE" = "FELI-Combat"
 					)
 
 /obj/item/robot_module/robot/ert/Initialize(mapload)
@@ -187,16 +191,11 @@
 	B.water = water
 	src.modules += B
 
-	R.icon 		 = 'icons/mob/64x64robot_vr.dmi'
-	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
-	R.ui_style_vr = TRUE
-	R.pixel_x 	 = -16
-	R.old_x 	 = -16
-	R.default_pixel_x = -16
+	R.icon = 'icons/mob/64x64robot_vr.dmi'
+	R.set_base_pixel_x(-16)
 	R.dogborg = TRUE
 	R.wideborg = TRUE
+	R.icon_dimension_x = 64
 	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
-	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
 	R.verbs |= /mob/living/proc/shred_limb
 	R.verbs |= /mob/living/silicon/robot/proc/rest_style
-	..()

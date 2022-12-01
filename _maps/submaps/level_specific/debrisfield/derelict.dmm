@@ -2,75 +2,66 @@
 "aa" = (
 /turf/space,
 /area/space/debrisfield/explored)
-"ae" = (
-/obj/effect/map_effect/interval/effect_emitter/sparks/frequent,
-/obj/effect/map_effect/interval/effect_emitter/smoke,
-/obj/machinery/door/airlock/alien,
-/turf/simulated/floor/plating/external,
-/area/space/debrisfield/explored)
 "af" = (
-/obj/effect/map_effect/interval/effect_emitter/sparks/frequent,
 /obj/structure/door_assembly/door_assembly_alien,
 /turf/simulated/floor/plating/external,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "ag" = (
 /obj/machinery/door/airlock/alien,
 /turf/simulated/floor/plating/external,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "al" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "burst_l"
 	},
 /turf/space,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "am" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 4;
 	icon_state = "burst_l"
 	},
 /turf/space,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "an" = (
 /obj/structure/prop/alien/computer,
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "ao" = (
 /turf/simulated/wall/r_wall,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "ap" = (
 /mob/living/simple_mob/mechanical/infectionbot{
 	faction = "derelict"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "aq" = (
 /turf/simulated/wall,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "ar" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/wall,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "as" = (
 /obj/structure/prop/alien/dispenser,
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "at" = (
 /obj/random/humanoidremains,
 /obj/item/gun/energy/ionrifle,
 /turf/simulated/floor/tiled/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "au" = (
 /turf/simulated/floor/tiled/steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "av" = (
 /obj/machinery/bomb_tester,
 /turf/simulated/floor/tiled/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "aw" = (
 /obj/structure/prop/alien/power,
 /obj/structure/cable{
@@ -81,166 +72,149 @@
 	invisibility = 101
 	},
 /turf/simulated/floor/reinforced/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "ax" = (
 /obj/structure/prop/alien/computer/camera/flipped,
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/reinforced/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "ay" = (
 /obj/machinery/transhuman/resleever,
 /turf/simulated/floor/tiled/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "az" = (
 /obj/machinery/artifact,
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "aA" = (
 /mob/living/simple_mob/mechanical/infectionbot{
 	faction = "derelict"
 	},
 /turf/simulated/floor/tiled/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "aE" = (
 /obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "aF" = (
 /obj/machinery/porta_turret/alien{
 	faction = "derelict";
 	use_power = 0
 	},
 /turf/simulated/floor/plating/external,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "aH" = (
 /obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/reinforced/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "aI" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/reinforced/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "aJ" = (
 /obj/machinery/drone_fabricator/derelict,
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "aL" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "aM" = (
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/external,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "aN" = (
 /obj/machinery/transhuman/synthprinter,
 /turf/simulated/floor/tiled/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "aO" = (
 /obj/mob_spawner/derelict/mech_wizard,
 /turf/simulated/floor/tiled/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "aQ" = (
 /obj/machinery/vr_sleeper/alien,
 /obj/item/grenade/empgrenade,
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "aR" = (
 /obj/mob_spawner/derelict/corrupt_maint_swarm,
 /mob/living/simple_mob/mechanical/corrupt_maint_drone{
 	faction = "derelict"
 	},
 /turf/simulated/floor/tiled/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "aS" = (
 /obj/effect/decal/remains/human,
 /turf/simulated/floor/tiled/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "aT" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/reinforced/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "aU" = (
 /obj/random/energy,
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "aV" = (
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/reinforced/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "aX" = (
 /obj/random/tool/alien,
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "aY" = (
 /obj/mob_spawner/derelict,
 /turf/simulated/floor/tiled/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "aZ" = (
 /obj/machinery/door/airlock/alien,
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "ba" = (
 /obj/machinery/auto_cloner,
 /turf/simulated/floor/tiled/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bb" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 1;
 	icon_state = "burst_l"
 	},
 /turf/space,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bc" = (
 /obj/structure/prop/alien/computer/camera,
 /turf/simulated/floor/reinforced/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bd" = (
 /obj/structure/prop/alien/power,
 /obj/structure/cable{
-	d2 = 2;
 	icon_state = "0-2"
 	},
 /obj/machinery/power/fractal_reactor{
@@ -248,7 +222,7 @@
 	invisibility = 101
 	},
 /turf/simulated/floor/reinforced/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bf" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -260,179 +234,152 @@
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bh" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/reinforced/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bj" = (
 /obj/random/humanoidremains,
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bk" = (
 /obj/machinery/door/airlock/alien,
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bm" = (
 /obj/item/xenos_claw,
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bn" = (
 /obj/machinery/door/airlock/alien,
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/reinforced/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bo" = (
 /obj/mob_spawner/derelict/corrupt_maint_swarm,
 /mob/living/simple_mob/mechanical/corrupt_maint_drone{
 	faction = "derelict"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bp" = (
 /obj/mob_spawner/derelict,
 /turf/simulated/floor/reinforced/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bq" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "br" = (
 /obj/machinery/implantchair,
 /turf/simulated/floor/tiled/white/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bs" = (
 /obj/machinery/door/airlock/alien,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bt" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/mob_spawner/derelict,
 /turf/simulated/floor/tiled/steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bu" = (
 /mob/living/simple_mob/mechanical/infectionbot{
 	faction = "derelict"
 	},
 /turf/simulated/floor/tiled/white/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bv" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bw" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/white/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bx" = (
 /obj/random/firstaid,
 /turf/simulated/floor/tiled/white/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bA" = (
 /obj/machinery/door/airlock/alien,
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bB" = (
 /turf/simulated/floor/reinforced/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bC" = (
 /obj/mob_spawner/derelict/corrupt_maint_swarm,
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/reinforced/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bD" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/reinforced/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bE" = (
 /obj/machinery/door/airlock/alien,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/reinforced/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bF" = (
 /obj/random/humanoidremains,
 /turf/simulated/floor/tiled/white/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bG" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bH" = (
-/obj/effect/map_effect/interval/effect_emitter/sparks/frequent,
 /obj/structure/door_assembly/door_assembly_alien,
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bI" = (
 /obj/structure/prop/prism,
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bJ" = (
 /obj/structure/cable,
 /obj/machinery/power/apc{
@@ -441,212 +388,188 @@
 	pixel_y = -24
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bK" = (
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bL" = (
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bM" = (
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/reinforced/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bN" = (
 /obj/machinery/replicator,
 /turf/simulated/floor/tiled/white/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bP" = (
 /obj/mob_spawner/derelict/corrupt_maint_swarm,
 /turf/simulated/floor/reinforced/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bQ" = (
 /obj/machinery/door/airlock/alien,
 /turf/simulated/floor/reinforced/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bS" = (
 /obj/machinery/door/airlock/alien,
 /turf/simulated/floor/tiled/steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bT" = (
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bU" = (
 /obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled/white/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bV" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bW" = (
 /obj/mob_spawner/derelict/corrupt_maint_swarm,
 /turf/simulated/floor/tiled/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bX" = (
 /obj/machinery/porta_turret/alien{
 	faction = "derelict";
 	use_power = 0
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bY" = (
 /turf/simulated/floor/tiled/white/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "bZ" = (
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "ca" = (
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cb" = (
 /obj/random/humanoidremains,
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cd" = (
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/white/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "ce" = (
 /obj/effect/alien/egg,
 /obj/effect/alien/weeds,
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cf" = (
 /obj/machinery/dna_scannernew,
 /turf/simulated/floor/tiled/white/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cg" = (
 /obj/item/gun/energy/ionrifle,
 /turf/simulated/floor/plating/external,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "ch" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "ci" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cj" = (
 /obj/machinery/optable,
 /obj/random/humanoidremains,
 /turf/simulated/floor/tiled/white/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "ck" = (
 /obj/structure/prop/alien/pod,
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cl" = (
 /obj/structure/ghost_pod/manual/lost_drone,
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cm" = (
 /obj/item/grenade/empgrenade,
 /obj/item/grenade/empgrenade,
 /obj/item/grenade/empgrenade,
 /turf/simulated/floor/plating/external,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "co" = (
 /obj/random/humanoidremains,
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cp" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cq" = (
 /obj/structure/ghost_pod/manual/lost_drone/dogborg,
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cr" = (
 /obj/machinery/door/airlock/alien/locked,
 /turf/simulated/floor/plating/external,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "ct" = (
 /obj/random/humanoidremains,
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cu" = (
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/white/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cv" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/white/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cy" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating/external,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cz" = (
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -658,37 +581,33 @@
 	pixel_x = 28
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cA" = (
 /turf/simulated/floor/tiled/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cB" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/plating/external,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cC" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating/external,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cE" = (
 /obj/mob_spawner/derelict/corrupt_maint_swarm,
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cF" = (
 /obj/structure/ghost_pod/manual/lost_drone/dogborg,
 /turf/simulated/floor/plating/external,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cG" = (
 /obj/machinery/door/airlock/hatch{
 	icon_state = "door_locked";
@@ -698,7 +617,7 @@
 	req_access = list(16)
 	},
 /turf/simulated/floor/plating/external,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cH" = (
 /obj/machinery/door/airlock/hatch{
 	icon_state = "door_locked";
@@ -708,16 +627,14 @@
 	req_access = list(16)
 	},
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating/external,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cI" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/space,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cJ" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -729,11 +646,9 @@
 	pixel_y = 24
 	},
 /turf/simulated/floor/greengrid/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cK" = (
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/power/fractal_reactor{
@@ -741,18 +656,17 @@
 	invisibility = 101
 	},
 /turf/simulated/floor/plating/external,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cL" = (
 /obj/mob_spawner/derelict/mech_wizard,
 /turf/simulated/floor/plating/external,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cM" = (
 /obj/structure/prop/alien/computer,
 /turf/simulated/floor/greengrid/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cN" = (
 /obj/structure/cable{
-	d2 = 8;
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc{
@@ -762,11 +676,11 @@
 	pixel_x = 28
 	},
 /turf/simulated/floor/plating/external,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cO" = (
 /obj/structure/prop/fake_ai,
 /turf/simulated/floor/greengrid/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cR" = (
 /obj/structure/catwalk,
 /obj/machinery/porta_turret/alien{
@@ -774,83 +688,78 @@
 	use_power = 0
 	},
 /turf/simulated/floor/plating/external,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cV" = (
 /turf/simulated/floor/greengrid/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cW" = (
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating/external,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cX" = (
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/plating/external,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "cZ" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "da" = (
 /obj/structure/prop/blackbox/xenofrigate,
 /turf/simulated/floor/greengrid/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "dc" = (
 /obj/machinery/porta_turret/alien{
 	faction = "derelict";
 	use_power = 0
 	},
 /turf/simulated/floor/greengrid/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "dd" = (
 /obj/structure/prop/prism,
 /turf/simulated/floor/greengrid/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "dZ" = (
 /obj/effect/decal/mecha_wreckage/gygax/adv,
 /turf/simulated/floor/plating/external,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "fl" = (
 /obj/machinery/door/airlock/alien,
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
+"mG" = (
+/turf/space,
+/area/debrisfield/derelict)
 "vL" = (
 /obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "yZ" = (
 /obj/machinery/door/airlock/alien,
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/white/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "JC" = (
 /turf/simulated/floor/plating/external,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "LM" = (
 /obj/structure/shuttle/engine/heater,
 /turf/simulated/wall,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 "TG" = (
 /obj/machinery/door/airlock/alien,
 /turf/simulated/floor/tiled/white/airless,
-/area/space/debrisfield/explored)
+/area/debrisfield/derelict)
 
 (1,1,1) = {"
 aa
@@ -1000,7 +909,7 @@ bB
 bB
 LM
 cI
-aa
+mG
 aa
 aa
 aa
@@ -1162,7 +1071,7 @@ bB
 bB
 LM
 cI
-aa
+mG
 aa
 aa
 aa
@@ -1612,7 +1521,7 @@ aa
 aa
 aa
 aq
-ae
+ag
 aq
 aa
 ao
@@ -2836,7 +2745,7 @@ bB
 bB
 LM
 cI
-aa
+mG
 aa
 aa
 aa
@@ -2998,7 +2907,7 @@ bB
 bB
 LM
 cI
-aa
+mG
 aa
 aa
 aa

@@ -87,10 +87,6 @@
 		to_chat(user, "<span class='warning'>The panel must be closed before operating this machine!</span>")
 		return
 
-	if(istype(get_area(src), /area/shuttle))
-		to_chat(user, "<span class='warning'>This is too unstable a platform for \the [src] to operate on!</span>")
-		return
-
 	if(!powernet)
 		to_chat(user, "<span class='warning'>[src] is not attached to a powernet!</span>")
 		return
@@ -150,8 +146,8 @@
 		last_teleport = world.time
 
 		// use a lot of power
-		var/power_to_use = 10000 / power_efficiency
-		if(draw_power(power_to_use) != power_to_use)
+		var/power_to_use = 10 / power_efficiency
+		if((draw_power(power_to_use)) != power_to_use)
 			to_chat(user, "<span class='warning'>Power is not sufficient to complete a teleport. Teleport aborted.</span>")
 			return
 

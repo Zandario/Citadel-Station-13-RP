@@ -4,9 +4,10 @@
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "cleaner"
 	item_state = "cleaner"
-	flags = OPENCONTAINER|NOBLUDGEON
+	item_flags = ITEM_NOBLUDGEON
+	flags = OPENCONTAINER
 	slot_flags = SLOT_BELT | SLOT_HOLSTER
-	throwforce = 3
+	throw_force = 3
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 2
 	throw_range = 10
@@ -64,7 +65,7 @@
 			if(!src)
 				return
 			reagents.trans_to_obj(D, amount_per_transfer_from_this)
-			D.set_color()
+			D.color = mix_color_from_reagents(D.reagents.reagent_list)
 			D.set_up(my_target, spray_size, 10)
 	return
 
@@ -82,11 +83,11 @@
 
 /obj/item/reagent_containers/spray/verb/empty()
 
-	set name = "Empty Spray Bottle"
+	set name = "Empty Tank"
 	set category = "Object"
 	set src in usr
 
-	if (alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", "Yes", "No") != "Yes")
+	if (alert(usr, "Are you sure you want to empty that?", "Empty Tank:", "Yes", "No") != "Yes")
 		return
 	if(isturf(usr.loc))
 		to_chat(usr, "<span class='notice'>You empty \the [src] onto the floor.</span>")
@@ -164,7 +165,7 @@
 	icon = 'icons/obj/gun/launcher.dmi'
 	icon_state = "chemsprayer"
 	item_state = "chemsprayer"
-	throwforce = 3
+	throw_force = 3
 	w_class = ITEMSIZE_NORMAL
 	possible_transfer_amounts = null
 	volume = 600
@@ -185,6 +186,7 @@
 			D.create_reagents(amount_per_transfer_from_this)
 			if(!src)
 				return
+			playsound(src.loc, 'sound/effects/spray2.ogg', 50, 1, -6)
 			reagents.trans_to_obj(D, amount_per_transfer_from_this)
 			D.set_color()
 			D.set_up(my_target, rand(6, 8), 2)
@@ -201,3 +203,52 @@
 /obj/item/reagent_containers/spray/plantbgone/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent("plantbgone", 100)
+
+/obj/item/reagent_containers/spray/pestbgone
+	name = "Pest-B-Gone"
+	desc = "Rated for pests up to 1:3 scale!"
+	icon = 'icons/obj/hydroponics_machines.dmi'
+	icon_state = "pestbgone"
+	item_state = "pestbgone"
+	volume = 100
+
+/obj/item/reagent_containers/spray/pestbgone/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent("pestbgone", 100)
+
+/obj/item/reagent_containers/spray/squirt
+	name = "HydroBlaster 4000"
+	desc = "A popular toy produced by Donk Co, the HydroBlaster 4000 is the latest in a long line of recreational pressurized water delivery systems."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "squirtgun"
+	item_state = "squirtgun"
+	w_class = ITEMSIZE_NORMAL
+	volume = 100
+	var/pumped = TRUE
+
+/obj/item/reagent_containers/spray/squirt/Initialize(mapload)
+	. = ..()
+	reagents.add_reagent("water", 100)
+
+/obj/item/reagent_containers/spray/squirt/examine(mob/user)
+	. = ..()
+	. += "The tank is [pumped ? "depressurized" : "pressurized"]."
+
+/obj/item/reagent_containers/spray/squirt/attack_self(var/mob/user)
+	pumped = !pumped
+	to_chat(usr, "<span class = 'notice'>You pump the handle [pumped ? "to depressurize" : "to pressurize"] the tank.</span>")
+
+/obj/item/reagent_containers/spray/squirt/Spray_at(atom/A as mob|obj)
+	if(pumped)
+		to_chat(usr, "<span class = 'warning'>The tank has no pressure!</span>")
+		return
+	. = ..()
+
+/obj/item/reagent_containers/spray/squirt/nt
+	name = "HydroBlaster 4001"
+	desc = "A popular toy produced by Donk Co, the HydroBlaster 4001 is modeled in NanoTrasen corporate colors. This is largely considered a sarcastic gesture."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "squirtgun_nt"
+	item_state = "squirtgun_nt"
+	w_class = ITEMSIZE_NORMAL
+	volume = 101

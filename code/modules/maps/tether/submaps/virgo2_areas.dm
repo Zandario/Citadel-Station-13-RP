@@ -2,7 +2,6 @@
 	name = "Submap Area"
 	icon_state = "submap"
 	dynamic_lighting = FALSE
-	base_turf = /turf/simulated/mineral/floor/ignore_mapgen/virgo2
 
 /area/submap/virgo2/spider1
 	name = "POI - spider nest"
@@ -82,3 +81,9 @@
 
 /area/submap/virgo2/Rocky4
 	name = "POI - Rocky4"
+
+/area/submap/virgo2/CrashedSmuggler
+	name = "POI - Crashed Smuggler"
+
+/area/submap/virgo2/CrashedSmuggler/ship
+	name = "POI - Crashed Smuggler (Ship)"

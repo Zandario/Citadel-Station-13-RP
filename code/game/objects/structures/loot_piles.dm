@@ -708,7 +708,8 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/mecha_parts/part/ripley_right_arm,
 		/obj/item/mecha_parts/part/ripley_left_leg,
 		/obj/item/mecha_parts/part/ripley_right_leg,
-		/obj/item/kit/paint/ripley/death
+		/obj/random/paintkit,
+		/obj/random/paintkit
 		)
 
 	uncommon_loot = list(
@@ -794,9 +795,8 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/grenade,
 		/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser,
 		/obj/item/mecha_parts/mecha_equipment/weapon/energy/taser,
-		/obj/item/kit/paint/gygax,
-		/obj/item/kit/paint/gygax/darkgygax,
-		/obj/item/kit/paint/gygax/recitence
+		/obj/random/paintkit/gygax,
+		/obj/random/paintkit/gygax
 		)
 
 	rare_loot = list(
@@ -847,9 +847,8 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/grenade,
 		/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser,
 		/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster,
-		/obj/item/kit/paint/durand,
-		/obj/item/kit/paint/durand/seraph,
-		/obj/item/kit/paint/durand/phazon
+		/obj/random/paintkit/durand,
+		/obj/random/paintkit/durand
 		)
 
 	rare_loot = list(
@@ -906,6 +905,83 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/mecha_parts/mecha_equipment/repair_droid,
 		/obj/item/mecha_parts/mecha_equipment/teleporter
 		)
+
+/obj/structure/loot_pile/mecha/honker
+	name = "H.O.N.K. wreckage"
+	desc = "The ruins of a H.O.N.K mech. It is thankfully beyond repair. Perhaps something is salvageable."
+	icon_state = "honker-broken"
+
+	common_loot = list(
+		/obj/random/tool,
+		/obj/item/stack/cable_coil/random,
+		/obj/random/tank,
+		/obj/random/tech_supply/component,
+		/obj/item/stack/material/steel{amount = 25},
+		/obj/item/stack/material/glass{amount = 10},
+		/obj/item/stack/material/plasteel{amount = 5},
+		/obj/item/bikehorn,
+		/obj/item/mecha_parts/chassis/honker,
+		/obj/item/mecha_parts/part/honker_head,
+		/obj/item/mecha_parts/part/honker_torso,
+		/obj/item/mecha_parts/part/honker_left_arm,
+		/obj/item/mecha_parts/part/honker_right_arm,
+		/obj/item/mecha_parts/part/honker_left_leg,
+		/obj/item/mecha_parts/part/honker_right_leg
+		)
+
+	uncommon_loot = list(
+		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/grenade/banana,
+		/obj/item/mecha_parts/mecha_equipment/weapon/honker,
+		/obj/item/mecha_parts/part/honker_armour
+		)
+
+	rare_loot = list(
+		/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay,
+		/obj/item/mecha_parts/mecha_equipment/repair_droid
+		)
+
+/obj/structure/loot_pile/mecha/honker/cluwne
+	name = "C.L.U.W.N.E. wreckage"
+	desc = "The ruins of a C.L.U.W.N.E. mech. It is thankfully beyond repair. Perhaps something is salvageable."
+	icon_state = "cluwne-broken"
+
+/obj/structure/loot_pile/mecha/reticent
+	name = "Reticent wreckage"
+	desc = "The ruins of a Reticent mech. The wreckage emanates a silent tragedy. Perhaps something is salvageable."
+	icon_state = "reticent-broken"
+
+	common_loot = list(
+		/obj/random/tool,
+		/obj/item/stack/cable_coil/random,
+		/obj/random/tank,
+		/obj/random/tech_supply/component,
+		/obj/item/stack/material/steel{amount = 25},
+		/obj/item/stack/material/glass{amount = 10},
+		/obj/item/stack/material/plasteel{amount = 5},
+		/obj/item/mecha_parts/chassis/reticent,
+		/obj/item/mecha_parts/part/reticent_head,
+		/obj/item/mecha_parts/part/reticent_torso,
+		/obj/item/mecha_parts/part/reticent_left_arm,
+		/obj/item/mecha_parts/part/reticent_right_arm,
+		/obj/item/mecha_parts/part/reticent_left_leg,
+		/obj/item/mecha_parts/part/reticent_right_leg
+		)
+
+	uncommon_loot = list(
+		/obj/item/mecha_parts/mecha_equipment/weapon/whisperblade,
+		/obj/item/mecha_parts/mecha_equipment/weapon/infernoblade,
+		/obj/item/mecha_parts/part/reticent_armour
+		)
+
+	rare_loot = list(
+		/obj/item/mecha_parts/mecha_equipment/combat_shield/reticent,
+		/obj/item/mecha_parts/mecha_equipment/cloak
+		)
+
+/obj/structure/loot_pile/mecha/reticent/reticence
+	name = "Reticence wreckage"
+	desc = "The ruins of a Reticence mech. The wreckage emanates a silent tragedy. Perhaps something is salvageable."
+	icon_state = "reticence-broken"
 
 //Micro mecha loot.
 /obj/structure/loot_pile/mecha/mouse_tank

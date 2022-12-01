@@ -1,3 +1,11 @@
+/datum/category_item/catalogue/technology/bot/ed209/slime
+	name = "Bot - SL ED 209"
+	desc = "Due to the commercial failure of the ED model bots, \
+	the frames are easily procured by hobbyists or tinkerers for field \
+	testing. To some surprise, the ED model is generally viable as a \
+	Xenobiology containment tool."
+	value = CATALOGUER_REWARD_TRIVIAL
+
 /mob/living/bot/secbot/ed209/slime
 	name = "SL-ED-209 Security Robot"
 	desc = "A security robot.  He looks less than thrilled."
@@ -6,6 +14,7 @@
 	density = 1
 	health = 200
 	maxHealth = 200
+	catalogue_data = list(/datum/category_item/catalogue/technology/bot/ed209/slime)
 
 	is_ranged = 1
 	preparing_arrest_sounds = new()
@@ -77,8 +86,8 @@
 	switch(build_step)
 		if(0, 1)
 			if(istype(W, /obj/item/robot_parts/l_leg) || istype(W, /obj/item/robot_parts/r_leg) || (istype(W, /obj/item/organ/external/leg) && ((W.name == "robotic right leg") || (W.name == "robotic left leg"))))
-				user.drop_item()
-				qdel(W)
+				if(!user.attempt_consume_item_for_construction(W))
+					return
 				build_step++
 				to_chat(user, "<span class='notice'>You add the robot leg to [src].</span>")
 				name = "legs/frame assembly"
@@ -89,8 +98,8 @@
 
 		if(2)
 			if(istype(W, /obj/item/clothing/suit/storage/vest))
-				user.drop_item()
-				qdel(W)
+				if(!user.attempt_consume_item_for_construction(W))
+					return
 				build_step++
 				to_chat(user, "<span class='notice'>You add the armor to [src].</span>")
 				name = "vest/legs/frame assembly"
@@ -106,8 +115,8 @@
 					to_chat(user, "<span class='notice'>You welded the vest to [src].</span>")
 		if(4)
 			if(istype(W, /obj/item/clothing/head/helmet))
-				user.drop_item()
-				qdel(W)
+				if(!user.attempt_consume_item_for_construction(W))
+					return
 				build_step++
 				to_chat(user, "<span class='notice'>You add the helmet to [src].</span>")
 				name = "covered and shielded frame assembly"
@@ -116,8 +125,8 @@
 
 		if(5)
 			if(isprox(W))
-				user.drop_item()
-				qdel(W)
+				if(!user.attempt_consume_item_for_construction(W))
+					return
 				build_step++
 				to_chat(user, "<span class='notice'>You add the prox sensor to [src].</span>")
 				name = "covered, shielded and sensored frame assembly"
@@ -140,17 +149,17 @@
 
 		if(7)
 			if(istype(W, /obj/item/gun/energy/taser/xeno))
+				if(!user.attempt_consume_item_for_construction(W))
+					return
 				name = "xenotaser SL-ED-209 assembly"
 				item_state = "sled209_taser"
 				icon_state = "sled209_taser"
 				build_step++
 				to_chat(user, "<span class='notice'>You add [W] to [src].</span>")
-				user.drop_item()
-				qdel(W)
 
 		if(8)
 			if(W.is_screwdriver())
-				playsound(src, W.usesound, 100, 1)
+				playsound(src, W.tool_sound, 100, 1)
 				var/turf/T = get_turf(user)
 				to_chat(user, "<span class='notice'>Now attaching the gun to the frame...</span>")
 				sleep(40)
@@ -161,12 +170,11 @@
 
 		if(9)
 			if(istype(W, /obj/item/cell))
+				if(!user.attempt_consume_item_for_construction(W))
+					return
 				build_step++
 				to_chat(user, "<span class='notice'>You complete the ED-209.</span>")
 				var/turf/T = get_turf(src)
 				new /mob/living/bot/secbot/ed209/slime(T,created_name,lasercolor)
-				user.drop_item()
-				qdel(W)
-				user.drop_from_inventory(src)
 				qdel(src)
 

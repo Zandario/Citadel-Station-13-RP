@@ -62,6 +62,7 @@
 	priority = 2
 	allowed_tools = list(
 		/obj/item/surgical/scalpel = 100,        \
+		/obj/item/surgical/scalpel_primitive = 80,	\
 		/obj/item/material/knife = 75,    \
 		/obj/item/material/shard = 50,         \
 	)
@@ -184,6 +185,7 @@
 	allowed_tools = list(
 		/obj/item/weldingtool = 80,
 		/obj/item/surgical/circular_saw = 60,
+		/obj/item/surgical/saw_primitive = 25,
 		/obj/item/pickaxe/plasmacutter = 100
 		)
 	req_open = 0
@@ -201,24 +203,21 @@
 		var/obj/item/weldingtool/welder = tool
 		if(!welder.isOn() || !welder.remove_fuel(1,user))
 			return 0
-	return (target_zone == BP_TORSO) && ((istype(target.back, /obj/item/rig) && !(target.back.canremove)) || (istype(target.belt, /obj/item/rig) && !(target.belt.canremove)))
+	if(!(target_zone == BP_TORSO))
+		return FALSE
+	var/obj/item/rig/R = target.get_rig(TRUE)
+	if(!R)
+		return FALSE
+	return TRUE
 
 /datum/surgery_step/hardsuit/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/obj/item/rig/rig = target.back
-	if(!istype(rig))
-		rig = target.belt
-		if(!istype(rig))
-			return
+	var/obj/item/rig/rig = target.get_rig(TRUE)
 	user.visible_message("[user] starts cutting through the support systems of \the [rig] on [target] with \the [tool]." , \
 	"You start cutting through the support systems of \the [rig] on [target] with \the [tool].")
 	..()
 
 /datum/surgery_step/hardsuit/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/obj/item/rig/rig = target.back
-	if(!istype(rig))
-		rig = target.belt
-		if(!istype(rig))
-			return
+	var/obj/item/rig/rig = target.get_rig(TRUE)
 	rig.reset()
 	user.visible_message("<span class='notice'>[user] has cut through the support systems of \the [rig] on [target] with \the [tool].</span>", \
 		"<span class='notice'>You have cut through the support systems of \the [rig] on [target] with \the [tool].</span>")
@@ -245,7 +244,7 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if (!affected || (affected.robotic >= ORGAN_ROBOT))
 		return 0
-	return target_zone == BP_TORSO && (HUSK in target.mutations)
+	return target_zone == BP_TORSO && (MUTATION_HUSK in target.mutations)
 
 /datum/surgery_step/dehusk/structinitial
 	allowed_tools = list(
@@ -280,6 +279,7 @@
 	allowed_tools = list(
 		/obj/item/surgical/hemostat = 100,	\
 		/obj/item/stack/cable_coil = 75, 	\
+		/obj/item/surgical/hemostat_primitive = 50, \
 		/obj/item/assembly/mousetrap = 20
 	)
 	min_duration = 90
@@ -331,7 +331,7 @@
 	user.visible_message("<span class='notice'>[user] finishes recreating the missing biological structures and filling in gaps in [target]'s flesh with \the [tool].</span>", \
 	"<span class='notice'>You finish recreating the missing biological structures and filling in gaps in [target]'s flesh with \the [tool].</span>")
 	target.op_stage.dehusk = 0
-	target.mutations.Remove(HUSK)
+	target.mutations.Remove(MUTATION_HUSK)
 	target.status_flags &= ~DISFIGURED
 	target.update_icons_body()
 	..()

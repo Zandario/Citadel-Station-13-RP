@@ -10,7 +10,7 @@
 	circuit = /obj/item/circuitboard/mining_equipment_vendor
 	var/icon_deny = "mining-deny"
 	var/obj/item/card/id/inserted_id
-	//VOREStation Edit Start - Heavily modified list
+	var/child = FALSE//To tell topic() to bypass this iteration of it
 	var/list/prize_list = list(
 		new /datum/data/mining_equipment("1 Marker Beacon",				/obj/item/stack/marker_beacon,										10),
 		new /datum/data/mining_equipment("10 Marker Beacons",			/obj/item/stack/marker_beacon/ten,									100),
@@ -25,6 +25,7 @@
 		new /datum/data/mining_equipment("Geiger Counter",				/obj/item/geiger,											750),
 		new /datum/data/mining_equipment("Plush Toy",					/obj/random/plushie,												300),
 		new /datum/data/mining_equipment("GPS Device",					/obj/item/gps/mining,										100),
+		new /datum/data/mining_equipment("Portable Fuel Can",			/obj/item/reagent_containers/portable_fuelcan,		250),
 		// TODO new /datum/data/mining_equipment("Advanced Scanner",	/obj/item/t_scanner/adv_mining_scanner,						800),
 		new /datum/data/mining_equipment("Fulton Beacon",				/obj/item/fulton_core,												500),
 		new /datum/data/mining_equipment("Shelter Capsule",				/obj/item/survivalcapsule,									500),
@@ -46,7 +47,8 @@
 		//new /datum/data/mining_equipment("Mining Conscription Kit",	/obj/item/storage/backpack/duffelbag/mining_conscript,				1000),
 		new /datum/data/mining_equipment("Diamond Pickaxe",				/obj/item/pickaxe/diamond,									2000),
 		new /datum/data/mining_equipment("Advanced Ore Scanner",				/obj/item/mining_scanner/advanced,										2000),
-		new /datum/data/mining_equipment("Space Cash",					/obj/item/spacecash/c100,									1000),
+		new /datum/data/mining_equipment("100 Thalers",					/obj/item/spacecash/c100,									1000),
+		new /datum/data/mining_equipment("1000 Thalers",					/obj/item/spacecash/c1000,									10000),
 		new /datum/data/mining_equipment("Hardsuit - Control Module",	/obj/item/rig/industrial,									2000),
 		new /datum/data/mining_equipment("Hardsuit - Plasma Cutter",		/obj/item/rig_module/device/plasmacutter,						800),
 		new /datum/data/mining_equipment("Hardsuit - Drill",				/obj/item/rig_module/device/drill,								5000),
@@ -89,7 +91,6 @@
 		new /datum/data/mining_equipment("Durasteel Fishing Rod",		/obj/item/material/fishing_rod/modern/strong,				7500),
 		new /datum/data/mining_equipment("Bar Shelter Capsule",		/obj/item/survivalcapsule/luxurybar,							10000)
 		)
-	//VOREStation Edit End
 
 /datum/data/mining_equipment
 	var/equipment_name = "generic"
@@ -106,9 +107,9 @@
 	default_apply_parts()
 
 /obj/machinery/mineral/equipment_vendor/power_change()
-	var/old_stat = stat
+	var/old_stat = machine_stat
 	..()
-	if(old_stat != stat)
+	if(old_stat != machine_stat)
 		update_icon()
 	if(inserted_id && !powered())
 		visible_message("<span class='notice'>The ID slot indicator light flickers on \the [src] as it spits out a card before powering down.</span>")
@@ -128,6 +129,7 @@
 	interact(user)
 
 /obj/machinery/mineral/equipment_vendor/attack_ghost(mob/user)
+	. = ..()
 	interact(user)
 
 /obj/machinery/mineral/equipment_vendor/interact(mob/user)
@@ -151,7 +153,8 @@
 /obj/machinery/mineral/equipment_vendor/Topic(href, href_list)
 	if(..())
 		return 1
-
+	if(child)
+		return 0
 	if(href_list["choice"])
 		if(istype(inserted_id))
 			if(href_list["choice"] == "eject")
@@ -163,9 +166,10 @@
 					inserted_id.forceMove(get_turf(src))
 					inserted_id = null
 		else if(href_list["choice"] == "insert")
-			var/obj/item/card/id/I = usr.get_active_hand()
-			if(istype(I) && !inserted_id && usr.unEquip(I))
-				I.forceMove(src)
+			var/obj/item/card/id/I = usr.get_active_held_item()
+			if(istype(I) && !inserted_id)
+				if(!usr.attempt_insert_item_for_installation(I, src))
+					return
 				inserted_id = I
 				interact(usr)
 				to_chat(usr, "<span class='notice'>You insert the ID into [src]'s card slot.</span>")
@@ -195,24 +199,25 @@
 /obj/machinery/mineral/equipment_vendor/attackby(obj/item/I, mob/user, params)
 	if(default_deconstruction_screwdriver(user, I))
 		updateUsrDialog()
-		return
+		return CLICKCHAIN_DO_NOT_PROPAGATE
 	if(default_part_replacement(user, I))
-		return
+		return CLICKCHAIN_DO_NOT_PROPAGATE
 	if(default_deconstruction_crowbar(user, I))
-		return
+		return CLICKCHAIN_DO_NOT_PROPAGATE
 	if(istype(I, /obj/item/mining_voucher))
 		if(!powered())
 			return
 		RedeemVoucher(I, user)
-		return
+		return CLICKCHAIN_DO_NOT_PROPAGATE
 	if(istype(I,/obj/item/card/id))
 		if(!powered())
-			return
-		else if(!inserted_id && user.unEquip(I))
-			I.forceMove(src)
+			return CLICKCHAIN_DO_NOT_PROPAGATE
+		else if(!inserted_id)
+			if(!user.attempt_insert_item_for_installation(I, src))
+				return
 			inserted_id = I
 			interact(user)
-		return
+		return CLICKCHAIN_DO_NOT_PROPAGATE
 	..()
 
 /obj/machinery/mineral/equipment_vendor/dismantle()
@@ -224,20 +229,12 @@
 	var/selection = input(redeemer, "Pick your equipment", "Mining Voucher Redemption") as null|anything in list("Kinetic Accelerator", "Resonator", "Mining Drone", "Advanced Scanner", "Crusher")
 	if(!selection || !Adjacent(redeemer) || voucher.loc != redeemer)
 		return
-	//VOREStation Edit Start - Uncommented these
 	var/drop_location = drop_location()
 	switch(selection)
 		if("Kinetic Accelerator")
 			new /obj/item/gun/energy/kinetic_accelerator(drop_location)
 		if("Resonator")
 			new /obj/item/resonator(drop_location)
-	//VOREStation Edit End
-		// if("Mining Drone")
-		// 	new /obj/item/storage/box/drone_kit(drop_location)
-		// if("Advanced Scanner")
-		// 	new /obj/item/t_scanner/adv_mining_scanner(drop_location)
-		// if("Crusher")
-		// 	new /obj/item/twohanded/required/mining_hammer(drop_location)
 	qdel(voucher)
 
 /obj/machinery/mineral/equipment_vendor/proc/new_prize(var/name, var/path, var/cost) // Generic proc for adding new entries. Good for abusing for FUN and PROFIT.
@@ -249,7 +246,7 @@
 		name = "Generic Entry"
 	prize_list += new /datum/data/mining_equipment(name, path, cost)
 
-/obj/machinery/mineral/equipment_vendor/ex_act(severity, target)
+/obj/machinery/mineral/equipment_vendor/legacy_ex_act(severity, target)
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(5, 1, src)
 	s.start()

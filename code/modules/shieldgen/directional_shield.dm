@@ -60,7 +60,7 @@
 		if(istype(P, /obj/item/projectile/test)) // Turrets need to try to kill the shield and so their test bullet needs to penetrate.
 			return TRUE
 
-		var/bad_arc = reverse_direction(dir) // Arc of directions from which we cannot block.
+		var/bad_arc = REVERSE_DIR(dir) // Arc of directions from which we cannot block.
 		if(check_shield_arc(src, bad_arc, P)) // This is actually for mobs but it will work for our purposes as well.
 			return FALSE
 	return TRUE
@@ -98,7 +98,17 @@
 	var/high_color = "#0099FF"			// Color the shield will be when at max health.  A light blue.
 	var/low_color = "#FF0000"			// Color the shield will drift towards as health is lowered.  Deep red.
 
-/obj/item/shield_projector/Initialize()
+/mob/living/simple_mob/Moved()
+	for(var/obj/item/shield_projector/C in src.contents)
+		C.moved_event()
+	return ..()
+
+/mob/living/simple_mob/death()
+	for(var/obj/item/shield_projector/C in src.contents)
+		QDEL_NULL(C)
+	return ..()
+
+/obj/item/shield_projector/Initialize(mapload)
 	START_PROCESSING(SSobj, src)
 	if(always_on)
 		create_shields()
@@ -111,11 +121,11 @@
 	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
 	return ..()
 
-/obj/item/shield_projector/pickup(mob/user)
+/obj/item/shield_projector/pickup(mob/user, flags, atom/oldLoc)
 	. = ..()
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/moved_event)
 
-/obj/item/shield_projector/dropped(mob/user)
+/obj/item/shield_projector/dropped(mob/user, flags, atom/newLoc)
 	. = ..()
 	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 

@@ -73,8 +73,7 @@
 	pixel_x = 32
 	},
 /obj/structure/bed/chair/sofa/corner{
-	dir = 8;
-	icon_state = "sofacorner"
+	dir = 8
 	},
 /turf/simulated/floor/carpet/oracarpet,
 /area/space/debrisfield/explored)
@@ -83,8 +82,7 @@
 	pixel_y = -32
 	},
 /obj/structure/bed/chair/sofa/right{
-	dir = 1;
-	icon_state = "sofaend_right"
+	dir = 1
 	},
 /turf/simulated/floor/carpet/oracarpet,
 /area/space/debrisfield/explored)
@@ -93,8 +91,6 @@
 	dir = 1
 	},
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/light/small{
@@ -108,8 +104,6 @@
 /area/space/debrisfield/explored)
 "w" = (
 /obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/simulated/wall/wood,
@@ -149,26 +143,22 @@
 	pixel_y = 30
 	},
 /obj/structure/cable/green{
-	d2 = 4;
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/carpet/oracarpet,
 /area/space/debrisfield/explored)
 "H" = (
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/simulated/wall/wood,
 /area/space/debrisfield/explored)
 "J" = (
 /obj/machinery/power/smes/buildable{
-	charge = 1.5e+007;
+	charge = 15000;
 	cur_coils = 3
 	},
 /obj/structure/cable/green{
-	d2 = 2;
 	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled/airless,
@@ -15577,8 +15567,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -15719,8 +15709,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -15861,8 +15851,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -16003,8 +15993,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -16145,8 +16135,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -16287,8 +16277,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -16429,8 +16419,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -16571,8 +16561,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -16713,8 +16703,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -16855,8 +16845,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -16997,8 +16987,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -17139,8 +17129,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -17281,8 +17271,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -17423,8 +17413,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -17565,8 +17555,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -17707,8 +17697,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -17837,7 +17827,6 @@ W
 W
 W
 W
-c
 W
 W
 W
@@ -17849,8 +17838,9 @@ W
 W
 W
 W
-a
-a
+W
+W
+W
 a
 a
 a
@@ -17991,8 +17981,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -18133,8 +18123,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -18275,8 +18265,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -18417,8 +18407,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -18556,11 +18546,11 @@ W
 W
 W
 W
+c
 W
 W
 W
-a
-a
+W
 a
 a
 a
@@ -18701,8 +18691,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -18843,8 +18833,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -18985,8 +18975,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -19127,8 +19117,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -19269,8 +19259,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -19411,8 +19401,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a
@@ -19553,8 +19543,8 @@ W
 W
 W
 W
-a
-a
+W
+W
 a
 a
 a

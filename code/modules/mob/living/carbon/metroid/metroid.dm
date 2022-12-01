@@ -1,8 +1,20 @@
+/*
+/datum/category_item/catalogue/fauna/slime
+	name = "Slime"
+	desc = "Often referred to as Slimes, this mysterious \
+	species represents a larger biological curiosity for NanoTrasen. \
+	Highly mutable, these carnivorous blobs of gelatinous tissue may \
+	be trained and farmed, but their temperament makes them a constant danger.\
+	Speculation among Xenobiologists that Slimes share a common ancestor \
+	with Prometheans have not been fully confirmed."
+	value = CATALOGUER_REWARD_EASY
+*/
+
 /mob/living/carbon/slime
 	name = "baby slime"
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "grey baby slime"
-	pass_flags = PASSTABLE
+	pass_flags = ATOM_PASS_TABLE
 	var/is_adult = 0
 	speak_emote = list("chirps")
 
@@ -173,7 +185,7 @@
 	powerlevel = 0 // oh no, the power!
 	..()
 
-/mob/living/carbon/slime/ex_act(severity)
+/mob/living/carbon/slime/legacy_ex_act(severity)
 	..()
 
 	var/b_loss = null
@@ -196,10 +208,6 @@
 	adjustFireLoss(f_loss)
 
 	updatehealth()
-
-
-/mob/living/carbon/slime/u_equip(obj/item/W as obj)
-	return
 
 /mob/living/carbon/slime/attack_ui(slot)
 	return
@@ -282,7 +290,7 @@
 
 			attacked += 10
 			if (prob(90))
-				if (HULK in M.mutations)
+				if (MUTATION_HULK in M.mutations)
 					damage += 5
 					if(Victim || Target)
 						Victim = null

@@ -225,9 +225,9 @@
 		for(var/obj/item/implant/backup/BI in backup_implants)
 			BI.forceMove(src)
 	if(color_action == 1)
-		M.set_species(O.species.name,0,1,M)
+		M.set_species(O.species.name, example = M)
 	else if(color_action == 2)
-		M.set_species(O.species.name,0,1,O)
+		M.set_species(O.species.name, example = O)
 	else
 		M.set_species(O.species.name)
 	M.custom_species = O.custom_species

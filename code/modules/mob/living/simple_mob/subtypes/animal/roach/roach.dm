@@ -29,7 +29,14 @@
 	unlocked_by_all = list(
 		/datum/category_item/catalogue/fauna/roach/roach,
 		/datum/category_item/catalogue/fauna/roach/roachling,
-		//Reminder: add rest
+		/datum/category_item/catalogue/fauna/roach/panzer,
+		/datum/category_item/catalogue/fauna/roach/jaeger,
+		/datum/category_item/catalogue/fauna/roach/seuche,
+		/datum/category_item/catalogue/fauna/roach/atomar,
+		/datum/category_item/catalogue/fauna/roach/uberfallen,
+		/datum/category_item/catalogue/fauna/roach/strahlend,
+		/datum/category_item/catalogue/fauna/roach/zeitraum,
+		/datum/category_item/catalogue/fauna/roach/fuhrer
 		)
 
 /mob/living/simple_mob/animal/roach
@@ -41,9 +48,11 @@
 	item_state = "roach"
 	icon_living = "roach"
 	icon_dead = "roach_dead"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/roach/roach)
 
 	maxHealth = 15
 	health = 15
+	randomized = TRUE
 
 	armor = list(
 				"melee" = 5,
@@ -54,7 +63,7 @@
 	faction = "roaches"
 
 	mob_size = MOB_SMALL
-	pass_flags = PASSTABLE
+	pass_flags = ATOM_PASS_TABLE
 //	can_pull_size = ITEMSIZE_TINY
 //	can_pull_mobs = MOB_PULL_NONE
 	layer = MOB_LAYER
@@ -107,6 +116,20 @@
 	name = "Greta"
 	desc = "Legend has it this roach sailed across the Eagle Nebula to protest bug burgers."
 
+	taser_kill = 0
+
+//Unrandom the pet...?
+/mob/living/simple_mob/animal/roach/Greta/Initialize(mapload)
+    . = ..()
+    size_multiplier = 1
+    maxHealth = maxHealth
+    health = health
+    melee_damage_lower = melee_damage_lower
+    melee_damage_upper = melee_damage_upper
+    movement_cooldown = movement_cooldown
+    meat_amount = meat_amount
+    update_icons()
+
 /mob/living/simple_mob/animal/roach/Greta/Initialize(mapload)
 	. = ..()
 	// Change my name back, don't want to be named Tom (666)
@@ -128,6 +151,7 @@
 	item_state = "roachling"
 	icon_living = "roachling"
 	icon_dead = "roachling_dead"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/roach/roachling)
 
 	maxHealth = 5
 	health = 5
@@ -136,18 +160,34 @@
 
 	melee_damage_lower = 2
 	melee_damage_upper = 3
-/*
-	var/age = 0
+
+	var/amount_grown = -1
+	var/spawn_delay = 20
 	var/list/grow_as = list(/mob/living/simple_mob/animal/roach, /mob/living/simple_mob/animal/roach/seuche, /mob/living/simple_mob/animal/roach/jaeger)
 
-/mob/living/simple_mob/animal/roach/roachling/proc/mature
-	if(prob(25))
-		age = rand(world.time - spawn_delay, world.time)
-	if(age >= 100)
-		var/spawn_type = pick(grow_as)
-		var/mob/living/simple_mob/animal/roach/GS = new spawn_type(src.loc, src)
-		qdel(src)
-*/
+/mob/living/simple_mob/animal/roach/roachling/Initialize(mapload, atom/parent)
+	. = ..()
+	START_PROCESSING(SSobj, src)
+	//50% chance to grow up
+	if(prob(50))
+		amount_grown = 1
+	get_light_and_color(parent)
+
+/mob/living/simple_mob/animal/roach/roachling/death()
+	STOP_PROCESSING(SSobj, src)
+	walk(src, 0) // Because we might have called walk_to, we must stop the walk loop or BYOND keeps an internal reference to us forever.
+	return ..()
+
+/mob/living/simple_mob/animal/roach/roachling/process(delta_time)
+	if(amount_grown >= 0)
+		amount_grown += rand(0,2)
+	if(amount_grown >= 100)
+		mature()
+
+/mob/living/simple_mob/animal/roach/roachling/proc/mature()
+	var/spawn_type = pick(grow_as)
+	new spawn_type(src.loc, src)
+	qdel(src)
 
 //That's just great. That's what we wanna show kids. Santa rolling down the block - in a Panzer.
 /datum/category_item/catalogue/fauna/roach/panzer
@@ -166,9 +206,12 @@
 	item_state = "panzer"
 	icon_living = "panzer"
 	icon_dead = "panzer_dead"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/roach/panzer)
 
 	maxHealth = 30
 	health = 30
+
+	taser_kill = 0
 
 	movement_cooldown = 7
 
@@ -194,9 +237,12 @@
 	item_state = "jaeger"
 	icon_living = "jaeger"
 	icon_dead = "jaeger_dead"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/roach/jaeger)
 
 	maxHealth = 15
 	health = 15
+
+	taser_kill = 0
 
 	melee_damage_lower = 7
 	melee_damage_upper = 10
@@ -228,9 +274,12 @@
 	item_state = "seuche"
 	icon_living = "seuche"
 	icon_dead = "seuche_dead"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/roach/seuche)
 
 	maxHealth = 15
 	health = 15
+
+	taser_kill = 0
 
 	armor = list(
 				"bio" = 100
@@ -276,9 +325,12 @@
 	item_state = "atomar"
 	icon_living = "atomar"
 	icon_dead = "atomar_dead"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/roach/atomar)
 
 	maxHealth = 10
 	health = 10
+
+	taser_kill = 0
 
 	melee_damage_lower = 2
 	melee_damage_upper = 3
@@ -315,9 +367,12 @@
 	icon_living = "uberfallen"
 	icon_dead = "uberfallen_dead"
 	faction = "synthtide"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/roach/uberfallen)
 
 	maxHealth = 30
 	health = 30
+
+	taser_kill = 0
 
 	movement_cooldown = 8
 
@@ -354,9 +409,12 @@
 	item_state = "strahlend"
 	icon_living = "strahlend"
 	icon_dead = "strahlend_dead"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/roach/strahlend)
 
 	maxHealth = 20
 	health = 20
+
+	taser_kill = 0
 
 	armor = list(
 				"melee" = 20,
@@ -389,9 +447,12 @@
 	item_state = "zeitraum"
 	icon_living = "zeitraun"
 	icon_dead = "zeitraum_dead"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/roach/zeitraum)
 
 	maxHealth = 20
 	health = 20
+
+	taser_kill = 0
 
 	melee_damage_lower = 5
 	melee_damage_upper = 10
@@ -466,7 +527,7 @@
 		if(isliving(A))
 			var/mob/living/L = A
 			L.Weaken(stealthed_weaken_amount)
-			to_chat(L, span("danger", "\The [src] ambushes you!"))
+			to_chat(L, SPAN_DANGER("\The [src] ambushes you!"))
 			playsound(L, 'sound/weapons/spiderlunge.ogg', 75, 1)
 	unstealth()
 	..() // For the poison.
@@ -497,9 +558,12 @@
 	item_state = "fuhrer"
 	icon_living = "fuhrer"
 	icon_dead = "fuhrer_dead"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/roach/fuhrer)
 
 	maxHealth = 60
 	health = 60
+
+	taser_kill = 0
 
 	melee_damage_lower = 10
 	melee_damage_upper = 20

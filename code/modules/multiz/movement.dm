@@ -16,6 +16,10 @@
 	if(eyeobj)
 		return eyeobj.zMove(direction)
 
+	if(istype(loc,/obj/mecha))
+		var/obj/mecha/mech = loc
+		return mech.relaymove(src,direction)
+
 	if(!can_ztravel())
 		to_chat(src, "<span class='warning'>You lack means of travel in that direction.</span>")
 		return
@@ -34,12 +38,9 @@
 		forceMove(destination)
 		return 1
 
-	if(!start.CanZPass(src, direction))
-		to_chat(src, "<span class='warning'>\The [start] is in the way.</span>")
-		return 0
-
-	if(!destination.CanZPass(src, direction))
-		to_chat(src, "<span class='warning'>\The [destination] blocks your way.</span>")
+	var/atom/obstructing = start.z_exit_obstruction(src, direction)
+	if(obstructing)
+		to_chat(src, SPAN_WARNING("\The [obstructing] is in the way."))
 		return 0
 
 	if(direction == UP && has_gravity() && !can_overcome_gravity())
@@ -53,8 +54,8 @@
 			else
 				to_chat(src, "<span class='warning'>You gave up on pulling yourself up.</span>")
 				return 0
-		else if(ismob(src)) //VOREStation Edit Start. Are they a mob, and are they currently flying??
-			var/mob/H = src
+		else if(ismob(src)) // Are they a mob, and are they currently flying??
+			var/mob/living/H = src
 			if(H.flying)
 				if(H.incapacitated(INCAPACITATION_ALL))
 					to_chat(src, "<span class='notice'>You can't fly in your current state.</span>")
@@ -71,14 +72,9 @@
 					return 0
 			else
 				to_chat(src, "<span class='warning'>Gravity stops you from moving upward.</span>")
-				return 0 //VOREStation Edit End.
+				return 0
 		else
 			to_chat(src, "<span class='warning'>Gravity stops you from moving upward.</span>")
-			return 0
-
-	for(var/atom/A in destination)
-		if(!A.CanPass(src, start, 1.5, 0))
-			to_chat(src, "<span class='warning'>\The [A] blocks you.</span>")
 			return 0
 	if(!Move(destination))
 		return 0
@@ -137,9 +133,8 @@
 	if(hovering || is_incorporeal())
 		return TRUE
 
-	if(flying) //VOREStation Edit. Allows movement up/down with wings.
-		return 1 //VOREStation Edit
-
+	if(flying) // Allows movement up/down with wings.
+		return 1
 	if(Process_Spacemove())
 		return TRUE
 
@@ -174,10 +169,11 @@
 
 ////////////////////////////
 
-
-
 //FALLING STUFF
-
+// todo: refactor
+//! WARNING: Falling code is held together by duct tape, to make the new procs shimmed in.
+// Yes, sometimes you need to make things worse temporarily, to make it better
+// yell at me if shit breaks ~silicons
 //Holds fall checks that should not be overriden by children
 /atom/movable/proc/fall()
 	if(!isturf(loc))
@@ -191,7 +187,9 @@
 		return
 
 	var/turf/T = loc
-	if(!T.CanZPass(src, DOWN) || !below.CanZPass(src, DOWN))
+	if(!T.z_exit_check(src, DOWN))
+		return
+	if(!T.z_fall_check(src))
 		return
 
 	// No gravity in space, apparently.
@@ -202,7 +200,7 @@
 		return
 
 	if(ismob(src))
-		var/mob/H = src //VOREStation Edit Start. Flight on mobs.
+		var/mob/H = src // Flight on mobs.
 		if(H.flying) //Some other checks are done in the wings_toggle proc
 			if(H.nutrition > 2)
 				H.nutrition -= 0.5 //You use up 0.5 nutrition per TILE and tick of flying above open spaces. If people wanna flap their wings in the hallways, shouldn't penalize them for it. Lowered to make winged people less sad.
@@ -227,8 +225,8 @@
 		else if(ishuman(H)) //Needed to prevent 2 people from grabbing eachother in the air.
 			var/mob/living/carbon/human/F = H
 			if(F.grabbed_by.len) //If you're grabbed (presumably by someone flying) let's not have you fall. This also allows people to grab onto you while you jump over a railing to prevent you from falling!
-				var/obj/item/grab/G = F.get_active_hand()
-				var/obj/item/grab/J = F.get_inactive_hand()
+				var/obj/item/grab/G = F.get_active_held_item()
+				var/obj/item/grab/J = F.get_inactive_held_item()
 				if(istype(G) || istype(J))
 					//fall
 				else
@@ -238,24 +236,31 @@
 		// We spawn here to let the current move operation complete before we start falling. fall() is normally called from
 		// Entered() which is part of Move(), by spawn()ing we let that complete.  But we want to preserve if we were in client movement
 		// or normal movement so other move behavior can continue.
-		var/mob/M = src
-		var/is_client_moving = (ismob(M) && M.client && M.client.moving)
+		// todo: this is stupid
+		var/checking = loc
 		spawn(0)
-			if(is_client_moving) M.client.moving = 1
+			if(loc != checking)	// we moved
+				return
+			if(!isturf(loc))	 // wtf
+				return
+			var/turf/cT = loc
+			if(!cT.z_exit_check(src, DOWN) || !cT.z_fall_check(src))
+				return	// nah
 			handle_fall(below)
-			if(is_client_moving) M.client.moving = 0
 		// TODO - handle fall on damage!
 
 //For children to override
 /atom/movable/proc/can_fall()
 	if(anchored)
 		return FALSE
+	// if(throwing)
+		// return FALSE
 	return TRUE
 
 /obj/effect/can_fall()
 	return FALSE
 
-/obj/effect/decal/cleanable/can_fall()
+/obj/effect/debris/cleanable/can_fall()
 	return TRUE
 
 // These didn't fall anyways but better to nip this now just incase.
@@ -276,6 +281,11 @@
 	if((locate(/obj/structure/disposalpipe/up) in below) || (locate(/obj/machinery/atmospherics/pipe/zpipe/up) in below))
 		return FALSE
 
+/mob/can_fall()
+	if(buckled)
+		return FALSE	// buckled falls instead
+	return ..()
+
 /mob/living/can_fall()
 	if(is_incorporeal())
 		return FALSE
@@ -287,45 +297,19 @@
 	if(..())
 		return species.can_fall(src)
 
-// Check if this atom prevents things standing on it from falling. Return TRUE to allow the fall.
-/obj/proc/CanFallThru(atom/movable/mover as mob|obj, turf/target as turf)
-	return TRUE
-
-// Things that prevent objects standing on them from falling into turf below
-/obj/structure/catwalk/CanFallThru(atom/movable/mover as mob|obj, turf/target as turf)
-	return FALSE
-
-// So you'll slam when falling onto a catwalk
-/obj/structure/catwalk/CheckFall(var/atom/movable/falling_atom)
-	return falling_atom.fall_impact(src)
-
-/obj/structure/lattice/CanFallThru(atom/movable/mover as mob|obj, turf/target as turf)
-	return mover.checkpass(PASSGRILLE)
-
-// So you'll slam when falling onto a grille
-/obj/structure/lattice/CheckFall(var/atom/movable/falling_atom)
-	if(istype(falling_atom) && falling_atom.checkpass(PASSGRILLE))
-		return FALSE
-	return falling_atom.fall_impact(src)
-
 // Actually process the falling movement and impacts.
-/atom/movable/proc/handle_fall(var/turf/landing)
+/atom/movable/proc/handle_fall(turf/landing)
 	var/turf/oldloc = loc
 
-	// Check if there is anything in our turf we are standing on to prevent falling.
-	for(var/obj/O in loc)
-		if(!O.CanFallThru(src, landing))
-			return FALSE
-	// See if something in turf below prevents us from falling into it.
-	for(var/atom/A in landing)
-		if(!A.CanPass(src, src.loc, 1, 0))
-			return FALSE
+	// something is blocking us
+	if(oldloc.z_exit_obstruction(src, DOWN))
+		return FALSE
+
 	// TODO - Stairs should operate thru a different mechanism, not falling, to allow side-bumping.
 
 	// this is shitcode lmao
-	var/obj/structure/stairs = locate() in landing
+	var/obj/structure/stairs/stairs = locate() in landing
 	if(!stairs)
-
 		// Now lets move there!
 		if(!Move(landing))
 			return 1
@@ -333,6 +317,11 @@
 		var/atom/A = find_fall_target(oldloc, landing)
 		if(special_fall_handle(A) || !A || !A.check_impact(src))
 			return
+		var/mob/drop_mob = locate(/mob, landing)
+		if(drop_mob && !(drop_mob == src) && ismob(drop_mob) && isliving(drop_mob)) //Shitload of checks. This is because the game finds various ways to screw me over.
+			var/mob/living/drop_living = drop_mob
+			if(drop_living.dropped_onto(src))
+				return
 		fall_impact(A)
 	else
 		locationTransitForceMove(landing)
@@ -346,7 +335,7 @@
 	return FALSE
 
 /atom/movable/proc/find_fall_target(var/turf/oldloc, var/turf/landing)
-	if(isopenspace(oldloc))
+	if(isopenturf(oldloc))
 		oldloc.visible_message("\The [src] falls down through \the [oldloc]!", "You hear something falling through the air.")
 
 	// If the turf has density, we give it first dibs
@@ -377,50 +366,13 @@
 /atom/proc/CheckFall(var/atom/movable/falling_atom)
 	if(density && !(flags & ON_BORDER))
 		return TRUE
+	return prevent_z_fall(falling_atom, 0, NONE) & (FALL_TERMINATED | FALL_BLOCKED)
 
 // If you are hit: how is it handled.
 // Return TRUE if the generic fall_impact should be called
 // Return FALSE if you handled it yourself or if there's no effect from hitting you
 /atom/proc/check_impact(var/atom/movable/falling_atom)
-	if(density && !(flags & ON_BORDER))
-		return TRUE
-
-// By default all turfs are gonna let you hit them regardless of density.
-/turf/CheckFall(var/atom/movable/falling_atom)
 	return TRUE
-
-/turf/check_impact(var/atom/movable/falling_atom)
-	return TRUE
-
-// Obviously you can't really hit open space.
-/turf/simulated/open/CheckFall(var/atom/movable/falling_atom)
-	return FALSE
-
-/turf/simulated/open/check_impact(var/atom/movable/falling_atom)
-	return FALSE
-
-// Or actual space.
-/turf/space/CheckFall(var/atom/movable/falling_atom)
-	return FALSE
-
-/turf/space/check_impact(var/atom/movable/falling_atom)
-	return FALSE
-
-// We return 1 without calling fall_impact in order to provide a soft landing. So nice.
-// Note this really should never even get this far
-/obj/structure/stairs/CheckFall(var/atom/movable/falling_atom)
-	return TRUE
-
-/obj/structure/stairs/check_impact(var/atom/movable/falling_atom)
-	return FALSE
-
-// Can't fall onto ghosts
-/mob/observer/dead/CheckFall()
-	return FALSE
-
-/mob/observer/dead/check_impact()
-	return FALSE
-
 
 // Called by CheckFall when we actually hit something. Various Vars will be described below
 // hit_atom is the thing we fall on
@@ -434,6 +386,8 @@
 		visible_message("\The [src] falls from above and slams into \the [hit_atom]!", "You hear something slam into \the [hit_atom].")
 	for(var/atom/movable/A in src.contents)
 		A.fall_impact(hit_atom, damage_min, damage_max, silent = TRUE)
+	for(var/mob/M in buckled_mobs)
+		M.fall_impact(hit_atom, damage_min, damage_max, silent, planetary)
 
 // Take damage from falling and hitting the ground
 /mob/living/fall_impact(var/atom/hit_atom, var/damage_min = 0, var/damage_max = 5, var/silent = FALSE, var/planetary = FALSE)
@@ -502,16 +456,16 @@
 		back.handleParachute()
 		return TRUE
 	if(s_store && s_store.isParachute())
-		back.handleParachute()
+		s_store.handleParachute()
 		return TRUE
 	if(belt && belt.isParachute())
-		back.handleParachute()
+		belt.handleParachute()
 		return TRUE
 	if(wear_suit && wear_suit.isParachute())
-		back.handleParachute()
+		wear_suit.handleParachute()
 		return TRUE
 	if(w_uniform && w_uniform.isParachute())
-		back.handleParachute()
+		w_uniform.handleParachute()
 		return TRUE
 	else
 		return parachuting

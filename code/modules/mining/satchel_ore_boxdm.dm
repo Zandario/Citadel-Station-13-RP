@@ -10,12 +10,13 @@
 	var/last_update = 0
 	var/list/stored_ore = list()
 
-/obj/structure/ore_box/ex_act(severity)
+/obj/structure/ore_box/legacy_ex_act(severity)
 	return //if an overstuffed ore box explodes it crashes the server, thank you GC
 
 /obj/structure/ore_box/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/ore))
-		user.remove_from_mob(W)
+		if(!user.attempt_insert_item_for_installation(W, src))
+			return
 		take(W)
 
 	else if (istype(W, /obj/item/storage))
@@ -25,7 +26,6 @@
 		S.hide_from(usr)
 		for(var/obj/item/ore/O in S.contents)
 			S.remove_from_storage(O, src) //This will move the item to this item's contents
-			take(O)
 
 /obj/structure/ore_box/examine(mob/user)
 	. = ..()
@@ -85,15 +85,17 @@
 		to_chat(usr,"<span class='warning'>The ore box is empty.</span>")
 		return
 
-	to_chat(usr,"<span class='notice'>You begin emptying the ore box.</span>")
+	var/mob/living/user = usr
+	to_chat(user, "<span class='notice'>You begin emptying the ore box.</span>")
+
 	if(do_after(usr,15,src))
 		while(!isEmpty())
-			if(!do_after(usr,5,src))
-				to_chat(usr,"<span class='notice'>You stop emptying the ore box.</span>")
+			if(!do_after(user, 5, src))
+				to_chat(user,"<span class='notice'>You stop emptying the ore box.</span>")
 				return
 			var/atom/A = drop_location()
-			if(!A || length(A.contents > 1000))
-				to_chat(usr, "<span class='warning'>The area under the box is too full.</span>")
+			if(!A || (length(A.contents) > 1000))
+				to_chat(user, "<span class='warning'>The area under the box is too full.</span>")
 				return
 			for(var/i in 1 to 20)
 				deposit(A)

@@ -54,7 +54,7 @@
 	log = FALSE
 
 /datum/world_topic/playing/Run(list/input)
-	return length(player_list)
+	return length(GLOB.player_list)
 
 /datum/world_topic/pr_announce
 	keyword = "announce"
@@ -124,10 +124,10 @@
 
 /datum/world_topic/server_hop/Run(list/input)
 	var/expected_key = input[keyword]
-	for(var/mob/dead/observer/O in GLOB.player_list)
+	for(var/mob/observer/dead/O in GLOB.GLOB.player_list)
 		if(O.key == expected_key)
 			if(O.client)
-				new /obj/screen/splash(O.client, TRUE)
+				new /atom/movable/screen/splash(O.client, TRUE)
 			break
 
 /datum/world_topic/adminmsg
@@ -203,12 +203,16 @@
 	var/list/misc = list()
 	var/list/offduty = list()
 	var/list/talon = list()
+	var/list/trade = list()
 	for(var/datum/data/record/R in data_core.general)
 		var/name = R.fields["name"]
 		var/rank = R.fields["rank"]
 		var/real_rank = make_list_rank(R.fields["real_rank"])
-		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_TALON))
+		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_TALON)) // Not touching this for now as I dont know if it will break things -Bloop
 			talon[name] = rank
+			continue
+		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_TRADE))
+			trade[name] = rank
 			continue
 		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_SECURITY))
 			security[name] = rank
@@ -265,6 +269,8 @@
 		.["Off Duty"] = offduty
 	if(talon.len)
 		.["Talon"] = talon
+	if(trade.len)
+		.["Trade"] = trade
 	return json_encode(.)
 
 /datum/world_topic/jsonrevision

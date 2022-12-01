@@ -1,6 +1,7 @@
-#define MOVES_HITSCAN -1		//Not actually hitscan but close as we get without actual hitscan.
-#define MUZZLE_EFFECT_PIXEL_INCREMENT 17	//How many pixels to move the muzzle flash up so your character doesn't look like they're shitting out lasers.
-
+///Not actually hitscan but close as we get without actual hitscan.
+#define MOVES_HITSCAN -1
+///How many pixels to move the muzzle flash up so your character doesn't look like they're shitting out lasers.
+#define MUZZLE_EFFECT_PIXEL_INCREMENT 17
 /obj/item/projectile
 	name = "projectile"
 	icon = 'icons/obj/projectiles.dmi'
@@ -8,7 +9,7 @@
 	density = FALSE
 	anchored = TRUE
 	unacidable = TRUE
-	pass_flags = PASSTABLE
+	pass_flags = ATOM_PASS_TABLE
 	mouse_opacity = 0
 
 	////TG PROJECTILE SYTSEM
@@ -46,6 +47,10 @@
 	var/impact_type
 	var/datum/beam_components_cache/beam_components
 
+	var/miss_sounds
+	var/ricochet_sounds
+	var/list/impact_sounds	//for different categories, IMPACT_MEAT etc
+
 	//Fancy hitscan lighting effects!
 	var/hitscan_light_intensity = 1.5
 	var/hitscan_light_range = 0.75
@@ -75,8 +80,6 @@
 	var/p_x = 16
 	var/p_y = 16			// the pixel location of the tile that the player clicked. Default is the center
 
-	//Misc/Polaris variables
-
 	var/def_zone = ""	//Aiming at
 	var/mob/firer = null//Who shot it
 	var/silenced = 0	//Attack message
@@ -91,6 +94,8 @@
 	var/list/submunitions = list() // Assoc list of the paths of any submunitions, and how many they are. [projectilepath] = [projectilecount].
 	var/submunition_spread_max = 30 // Divided by 10 to get the percentile dispersion.
 	var/submunition_spread_min = 5 // Above.
+	/// randomize spread? if so, evenly space between 0 and max on each side.
+	var/submunition_constant_spread = FALSE
 	var/force_max_submunition_spread = FALSE // Do we just force the maximum?
 	var/spread_submunition_damage = FALSE // Do we assign damage to our sub projectiles based on our main projectile damage?
 
@@ -232,7 +237,7 @@
 	if(AM.is_incorporeal())
 		return
 	..()
-	if(isliving(AM) && !(pass_flags & PASSMOB))
+	if(isliving(AM) && !check_pass_flags(ATOM_PASS_MOB))
 		var/mob/living/L = AM
 		if(can_hit_target(L, permutated, (AM == original)))
 			Bump(AM)
@@ -309,6 +314,9 @@
 		after_z_change(old, target)
 
 /obj/item/projectile/proc/fire(angle, atom/direct_target)
+	if(only_submunitions)	// refactor projectiles whwen holy shit this is awful lmao
+		qdel(src)
+		return
 	//If no angle needs to resolve it from xo/yo!
 	if(direct_target)
 		direct_target.bullet_act(src, def_zone)
@@ -345,7 +353,7 @@
 	if(.)
 		if(temporary_unstoppable_movement)
 			temporary_unstoppable_movement = FALSE
-			DISABLE_BITFIELD(movement_type, UNSTOPPABLE)
+			movement_type &= ~UNSTOPPABLE
 		if(fired && can_hit_target(original, permutated, TRUE))
 			Bump(original)
 
@@ -422,9 +430,8 @@
 		var/y = text2num(screen_loc_Y[1]) * 32 + text2num(screen_loc_Y[2]) - 32
 
 		//Calculate the "resolution" of screen based on client's view and world's icon size. This will work if the user can view more tiles than average.
-		var/list/screenview = user.client? getviewsize(user.client.view) : world.view
-		var/screenviewX = screenview[1] * world.icon_size
-		var/screenviewY = screenview[2] * world.icon_size
+		var/screenviewX = user.client.current_viewport_width * world.icon_size
+		var/screenviewY = user.client.current_viewport_height * world.icon_size
 
 		var/ox = round(screenviewX/2) - user.client.pixel_x //"origin" x
 		var/oy = round(screenviewY/2) - user.client.pixel_y //"origin" y
@@ -645,6 +652,7 @@
 	if(result == PROJECTILE_FORCE_MISS)
 		if(!silenced)
 			visible_message("<span class='notice'>\The [src] misses [target_mob] narrowly!</span>")
+			playsound(target_mob.loc, pick(miss_sounds), 60, 1)
 		return FALSE
 
 	//hit messages
@@ -664,14 +672,21 @@
 
 	return TRUE
 
-
-/obj/item/projectile/proc/launch_projectile(atom/target, target_zone, mob/user, params, angle_override, forced_spread = 0)
+/**
+ * i hate everything
+ *
+ * todo: refactor guns
+ * projectiles
+ * and everything else
+ *
+ * i am losing my fucking mind
+ * this shouldn't have to fucking exist because the ammo casing and/or gun should be doing it
+ * and submunitions SHOULDNT BE HANDLED HERE!!
+ */
+/obj/item/projectile/proc/launch_projectile_common(atom/target, target_zone, mob/user, params, angle_override, forced_spread = 0)
 	original = target
 	def_zone = check_zone(target_zone)
 	firer = user
-	var/direct_target
-	if(get_turf(target) == get_turf(src))
-		direct_target = target
 
 	if(use_submunitions && submunitions.len)
 		var/temp_min_spread = 0
@@ -695,16 +710,28 @@
 			damage_override = round(damage_override / max(1, projectile_count))
 
 		for(var/path in submunitions)
-			for(var/count = 1 to submunitions[path])
+			var/amt = submunitions[path]
+			for(var/count in 1 to amt)
 				var/obj/item/projectile/SM = new path(get_turf(loc))
 				SM.shot_from = shot_from
 				SM.silenced = silenced
-				SM.dispersion = rand(temp_min_spread, submunition_spread_max) / 10
 				if(!isnull(damage_override))
 					SM.damage = damage_override
-				SM.launch_projectile(target, target_zone, user, params, angle_override)
+				if(submunition_constant_spread)
+					SM.dispersion = 0
+					var/calculated = Angle + round((count / amt - 0.5) * submunition_spread_max, 1)
+					SM.launch_projectile(target, target_zone, user, params, calculated)
+				else
+					SM.dispersion = rand(temp_min_spread, submunition_spread_max) / 10
+					SM.launch_projectile(target, target_zone, user, params, angle_override)
+
+/obj/item/projectile/proc/launch_projectile(atom/target, target_zone, mob/user, params, angle_override, forced_spread = 0)
+	var/direct_target
+	if(get_turf(target) == get_turf(src))
+		direct_target = target
 
 	preparePixelProjectile(target, user? user : get_turf(src), params, forced_spread)
+	launch_projectile_common(target, target_zone, user, params, angle_override, forced_spread)
 	return fire(angle_override, direct_target)
 
 //called to launch a projectile from a gun
@@ -716,45 +743,12 @@
 	return launch_projectile(target, target_zone, user, params, angle_override, forced_spread)
 
 /obj/item/projectile/proc/launch_projectile_from_turf(atom/target, target_zone, mob/user, params, angle_override, forced_spread = 0)
-	original = target
-	def_zone = check_zone(target_zone)
-	firer = user
 	var/direct_target
 	if(get_turf(target) == get_turf(src))
 		direct_target = target
 
-	if(use_submunitions && submunitions.len)
-		var/temp_min_spread = 0
-		if(force_max_submunition_spread)
-			temp_min_spread = submunition_spread_max
-		else
-			temp_min_spread = submunition_spread_min
-
-		var/damage_override = null
-
-		if(spread_submunition_damage)
-			damage_override = damage
-			if(nodamage)
-				damage_override = 0
-
-			var/projectile_count = 0
-
-			for(var/proj in submunitions)
-				projectile_count += submunitions[proj]
-
-			damage_override = round(damage_override / max(1, projectile_count))
-
-		for(var/path in submunitions)
-			for(var/count = 1 to submunitions[path])
-				var/obj/item/projectile/SM = new path(get_turf(loc))
-				SM.shot_from = shot_from
-				SM.silenced = silenced
-				SM.dispersion = rand(temp_min_spread, submunition_spread_max) / 10
-				if(!isnull(damage_override))
-					SM.damage = damage_override
-				SM.launch_projectile_from_turf(target, target_zone, user, params, angle_override)
-
-	preparePixelProjectile(target, get_turf(src), params, forced_spread)
+	preparePixelProjectile(target, user? user : get_turf(src), params, forced_spread)
+	launch_projectile_common(target, target_zone, user, params, angle_override, forced_spread)
 	return fire(angle_override, direct_target)
 
 /**

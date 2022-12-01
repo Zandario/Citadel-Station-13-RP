@@ -1,5 +1,4 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-
 /obj/machinery/computer/security
 	name = "security camera monitor"
 	desc = "Used to access the various cameras on the station."
@@ -14,7 +13,7 @@
 
 	var/datum/tgui_module/camera/camera
 
-/obj/machinery/computer/security/Initialize()
+/obj/machinery/computer/security/Initialize(mapload)
 	. = ..()
 	if(!LAZYLEN(network))
 		network = get_default_networks()
@@ -32,7 +31,7 @@
 
 /obj/machinery/computer/security/attack_hand(mob/user)
 	add_fingerprint(user)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	ui_interact(user)
 
@@ -78,7 +77,7 @@
 	circuit = /obj/item/circuitboard/security/telescreen/entertainment
 	var/obj/item/radio/radio = null
 
-/obj/machinery/computer/security/telescreen/entertainment/Initialize()
+/obj/machinery/computer/security/telescreen/entertainment/Initialize(mapload)
 	. = ..()
 	radio = new(src)
 	radio.listening = TRUE
@@ -90,7 +89,7 @@
 /obj/machinery/computer/security/telescreen/entertainment/power_change()
 	..()
 	if(radio)
-		if(stat & NOPOWER)
+		if(machine_stat & NOPOWER)
 			radio.on = FALSE
 		else
 			radio.on = TRUE
@@ -132,3 +131,22 @@
 	network = list(NETWORK_MERCENARY)
 	circuit = null
 	req_access = list(150)
+
+
+/obj/machinery/camera/network/research/xenobio
+	network = list(NETWORK_RESEARCH, NETWORK_XENOBIO)
+/obj/machinery/computer/security/xenobio
+	name = "xenobiology camera monitor"
+	desc = "Used to access the xenobiology cell cameras."
+	icon_keyboard = "mining_key"
+	icon_screen = "mining"
+	network = list(NETWORK_XENOBIO)
+	circuit = /obj/item/circuitboard/security/xenobio
+	light_color = "#F9BBFC"
+
+/obj/item/circuitboard/security/xenobio
+//	name = T_BOARD("xenobiology camera monitor")  // Macro is loaded after this, dont want to mess with changing its location so just gonna manually name this one
+	name = "xenobiology camera monitor tech board"
+	build_path = /obj/machinery/computer/security/xenobio
+	network = list(NETWORK_XENOBIO)
+	req_access = list()

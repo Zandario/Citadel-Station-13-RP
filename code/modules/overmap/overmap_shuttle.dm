@@ -52,11 +52,6 @@
 /datum/shuttle/autodock/overmap/can_force()
 	return ..() && can_go()
 
-/datum/shuttle/autodock/overmap/get_travel_time()
-	var/distance_mod = get_dist(waypoint_sector(current_location),waypoint_sector(next_location))
-	var/skill_mod = 0.2*(skill_needed - operator_skill)
-	return move_time * (1 + distance_mod + skill_mod)
-
 /datum/shuttle/autodock/overmap/process_launch()
 	if(prob(10*max(0, skill_needed - operator_skill)))
 		var/places = get_possible_destinations()
@@ -181,7 +176,9 @@
 			to_chat(user, "<spawn class='warning'>\The [src] door is still closed!")
 			return
 		if(contents.len == 0)
-			user.unEquip(W, target = src)
+			if(!user.attempt_insert_item_for_installation(W, src))
+				return
+			to_chat(user, SPAN_WARNING("You install [W] in [src]."))
 	update_icon()
 
 // Walls hide stuff inside them, but we want to be visible.

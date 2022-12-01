@@ -13,6 +13,8 @@
 	var/radiation_count = 0
 	var/datum/looping_sound/geiger/soundloop
 
+	matter = list(MAT_STEEL = 200, MAT_GLASS = 100)
+
 /obj/item/geiger/Initialize(mapload)
 	soundloop = new(list(src), FALSE)
 	return ..()
@@ -57,6 +59,9 @@
 		return
 	loop.last_radiation = radiation_count
 	loop.start()
+
+/obj/item/geiger/AltClick(var/mob/user)
+	attack_self(user)
 
 /obj/item/geiger/attack_self(var/mob/user)
 	scanning = !scanning

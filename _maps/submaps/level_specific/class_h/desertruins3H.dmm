@@ -1,109 +1,161 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/simulated/floor/outdoors/beach/sand/lowdesert,
-/area/poi_h/unexplored)
+/area/class_h/explored)
+"b" = (
+/obj/random/multiple/treasure,
+/mob/living/simple_mob/faithless/cult,
+/turf/simulated/floor/wmarble,
+/area/class_h/POIs/temple)
 "d" = (
 /obj/effect/rune,
 /obj/random/humanoidremains,
 /turf/simulated/floor/bmarble,
-/area/poi_h/explored)
+/area/class_h/POIs/temple)
 "e" = (
 /obj/structure/simple_door/sandstone,
 /turf/simulated/floor/bmarble,
-/area/poi_h/explored)
+/area/class_h/POIs/temple)
+"g" = (
+/obj/effect/rune,
+/mob/living/simple_mob/construct/artificer/caster,
+/turf/simulated/floor/wmarble,
+/area/class_h/POIs/temple)
+"j" = (
+/obj/item/material/knife/ritual,
+/mob/living/simple_mob/construct/shade,
+/turf/simulated/floor/plating,
+/area/class_h/POIs/temple)
 "k" = (
 /turf/simulated/floor/wmarble,
-/area/poi_h/explored)
+/area/class_h/POIs/temple)
 "l" = (
 /obj/item/material/knife/ritual,
+/mob/living/simple_mob/creature/cult/strong,
 /turf/simulated/floor/plating,
-/area/poi_h/explored)
+/area/class_h/POIs/temple)
 "m" = (
-/obj/effect/decal/cleanable/blood,
+/obj/effect/debris/cleanable/blood,
 /turf/simulated/floor/plating,
-/area/poi_h/explored)
+/area/class_h/POIs/temple)
 "n" = (
 /obj/effect/rune,
 /turf/simulated/floor/bmarble,
-/area/poi_h/explored)
+/area/class_h/POIs/temple)
 "o" = (
 /obj/effect/rune,
 /turf/simulated/floor/wmarble,
-/area/poi_h/explored)
+/area/class_h/POIs/temple)
+"p" = (
+/mob/living/simple_mob/construct/proteon,
+/turf/simulated/floor/plating,
+/area/class_h/POIs/temple)
 "q" = (
 /turf/simulated/wall/sandstone,
-/area/poi_h/explored)
+/area/class_h/POIs/temple)
 "r" = (
 /obj/item/flame/candle/candelabra/everburn{
-	icon_state = "candelabra_lit";
-	lit = 1
+	icon_state = "candelabra_lit"
 	},
 /turf/simulated/floor/bmarble,
-/area/poi_h/explored)
+/area/class_h/POIs/temple)
 "s" = (
 /turf/simulated/floor/bmarble,
-/area/poi_h/explored)
+/area/class_h/POIs/temple)
 "u" = (
 /obj/random/humanoidremains,
-/obj/effect/decal/cleanable/blood,
+/obj/effect/debris/cleanable/blood,
 /turf/simulated/floor/plating,
-/area/poi_h/explored)
+/area/class_h/POIs/temple)
 "x" = (
 /turf/simulated/floor/outdoors/beach/sand/dirtlight,
-/area/poi_h/unexplored)
-"A" = (
-/mob/living/simple_mob/faithless/strong,
+/area/class_h/explored)
+"y" = (
 /obj/random/multiple/treasure,
+/mob/living/simple_mob/creature/cult/strong,
 /turf/simulated/floor/wmarble,
-/area/poi_h/explored)
+/area/class_h/POIs/temple)
+"z" = (
+/obj/random/humanoidremains,
+/turf/simulated/floor/plating,
+/area/class_h/POIs/temple)
+"A" = (
+/obj/random/multiple/treasure,
+/mob/living/simple_mob/creature/cult,
+/turf/simulated/floor/wmarble,
+/area/class_h/POIs/temple)
 "C" = (
 /obj/item/flame/candle/candelabra/everburn{
-	icon_state = "candelabra_lit";
-	lit = 1
+	icon_state = "candelabra_lit"
 	},
 /turf/simulated/floor/wmarble,
-/area/poi_h/explored)
+/area/class_h/POIs/temple)
+"E" = (
+/obj/effect/debris/cleanable/blood,
+/mob/living/simple_mob/construct/proteon,
+/turf/simulated/floor/plating,
+/area/class_h/POIs/temple)
+"H" = (
+/obj/random/multiple/treasure,
+/mob/living/simple_mob/faithless/cult/strong,
+/turf/simulated/floor/wmarble,
+/area/class_h/POIs/temple)
 "I" = (
 /obj/structure/simple_door/sandstone,
 /turf/simulated/mineral/floor/classh,
-/area/poi_h/explored)
+/area/class_h/POIs/temple)
 "K" = (
 /turf/simulated/wall/sandstone/classh,
-/area/poi_h/explored)
-"M" = (
+/area/class_h/POIs/temple)
+"N" = (
+/mob/living/simple_mob/construct/shade,
 /turf/simulated/floor/plating,
-/area/poi_h/explored)
+/area/class_h/POIs/temple)
 "P" = (
 /obj/structure/closet/coffin,
 /obj/random/roguemineloot,
 /obj/random/roguemineloot,
 /turf/simulated/floor/plating,
-/area/poi_h/explored)
+/area/class_h/POIs/temple)
 "Q" = (
 /obj/effect/rune,
 /obj/random/humanoidremains,
 /turf/simulated/floor/wmarble,
-/area/poi_h/explored)
+/area/class_h/POIs/temple)
+"R" = (
+/obj/effect/debris/cleanable/blood,
+/mob/living/simple_mob/construct/shade,
+/turf/simulated/floor/plating,
+/area/class_h/POIs/temple)
 "S" = (
 /obj/random/humanoidremains,
+/mob/living/simple_mob/faithless/cult/strong,
 /turf/simulated/floor/plating,
-/area/poi_h/explored)
+/area/class_h/POIs/temple)
+"T" = (
+/obj/item/material/knife/ritual,
+/mob/living/simple_mob/construct/proteon,
+/turf/simulated/floor/plating,
+/area/class_h/POIs/temple)
 "V" = (
-/obj/effect/decal/cleanable/blood,
+/obj/effect/debris/cleanable/blood,
 /turf/simulated/floor/wmarble,
-/area/poi_h/explored)
+/area/class_h/POIs/temple)
 "W" = (
 /obj/structure/simple_door/sandstone,
 /turf/simulated/floor/plating,
-/area/poi_h/explored)
+/area/class_h/POIs/temple)
 "X" = (
-/mob/living/simple_mob/creature,
 /turf/simulated/floor/plating,
-/area/poi_h/explored)
+/area/class_h/POIs/temple)
+"Y" = (
+/obj/item/material/knife/ritual,
+/turf/simulated/floor/plating,
+/area/class_h/POIs/temple)
 "Z" = (
 /obj/random/humanoidremains,
 /turf/simulated/floor/wmarble,
-/area/poi_h/explored)
+/area/class_h/POIs/temple)
 
 (1,1,1) = {"
 a
@@ -150,38 +202,38 @@ a
 K
 m
 X
-M
-M
-M
-M
+X
+X
+X
+X
 m
-M
-M
-M
-M
+X
+X
+X
+p
 m
-M
-l
+X
+T
 K
 a
 "}
 (4,1,1) = {"
 a
 K
-M
-S
-l
-q
-q
-q
-q
-q
-q
-q
-M
-M
 X
 S
+Y
+q
+q
+q
+q
+q
+q
+q
+X
+X
+X
+z
 K
 a
 "}
@@ -194,13 +246,13 @@ m
 q
 A
 q
-A
+y
 q
-A
+b
 q
 W
 q
-M
+X
 m
 K
 a
@@ -208,7 +260,7 @@ a
 (6,1,1) = {"
 a
 K
-M
+X
 q
 q
 q
@@ -220,7 +272,7 @@ e
 q
 P
 q
-m
+E
 X
 K
 a
@@ -228,7 +280,7 @@ a
 (7,1,1) = {"
 a
 K
-M
+X
 q
 Z
 q
@@ -248,7 +300,7 @@ a
 (8,1,1) = {"
 a
 K
-M
+X
 q
 s
 k
@@ -268,27 +320,27 @@ x
 (9,1,1) = {"
 a
 K
-M
+X
 I
 V
 q
 C
 n
-o
+g
 s
 V
 n
 k
 s
 Z
-I
+e
 x
 a
 "}
 (10,1,1) = {"
 a
 K
-M
+X
 q
 s
 k
@@ -308,7 +360,7 @@ x
 (11,1,1) = {"
 a
 K
-M
+X
 q
 k
 q
@@ -328,7 +380,7 @@ a
 (12,1,1) = {"
 a
 K
-M
+X
 q
 q
 q
@@ -340,8 +392,8 @@ e
 q
 P
 q
-M
-M
+X
+X
 K
 a
 "}
@@ -349,19 +401,19 @@ a
 a
 K
 m
-M
+X
 m
 q
-A
+H
 q
-A
+H
 q
 A
 q
 W
 q
 m
-l
+j
 K
 a
 "}
@@ -370,7 +422,7 @@ a
 K
 X
 l
-M
+X
 q
 q
 q
@@ -378,9 +430,9 @@ q
 q
 q
 q
-M
-M
-S
+X
+X
+z
 m
 K
 a
@@ -388,19 +440,19 @@ a
 (15,1,1) = {"
 a
 K
-M
+X
 u
 X
-M
-M
-M
-M
-M
-m
-M
-m
-M
 X
+X
+X
+X
+X
+m
+X
+R
+X
+N
 X
 K
 a

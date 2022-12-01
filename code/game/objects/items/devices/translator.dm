@@ -17,7 +17,7 @@
 	if(!listening) //Turning ON
 		langset = input(user,"Translate to which of your languages?","Language Selection") as null|anything in user.languages
 		if(langset)
-			if(langset && ((langset.flags & NONVERBAL) || (langset.flags & HIVEMIND) || (!langset.machine_understands)))
+			if(langset && ((langset.language_flags & NONVERBAL) || (langset.language_flags & HIVEMIND) || (!langset.machine_understands)))
 				//Nonverbal means no spoken words to translate, so I didn't see the need to remove it.
 				to_chat(user, "<span class='warning'>\The [src] cannot output that language.</span>")
 				return
@@ -51,16 +51,16 @@
 	if(!language)
 		return //Borgs were causing runtimes when passing language=null
 
-	if (language && (language.flags & NONVERBAL))
+	if (language && (language.language_flags & NONVERBAL))
 		return //Not gonna translate sign language
 
-	if (!(language.machine_understands & omni)) // cit change - omni check
+	if (!language.machine_understands && !omni) // cit change - omni check
 		return //Any other languages that it can't translate.
 
-	if (visual && ((L.sdisabilities & BLIND) || L.eye_blind))
+	if (visual && ((L.sdisabilities & SDISABILITY_NERVOUS) || L.eye_blind))
 		return //Can't see the screen, don't get the message
 
-	if (audio && ((L.sdisabilities & DEAF) || L.ear_deaf))
+	if (audio && ((L.sdisabilities & SDISABILITY_DEAF) || L.ear_deaf))
 		return //Can't hear the translation, don't get the message
 
 	//Only translate if they can't understand, otherwise pointlessly spammy
@@ -86,3 +86,13 @@
 	slot_flags = SLOT_EARS
 	visual = 0
 	audio = 1
+
+/obj/item/universal_translator/all
+  name = "handheld omni-translator"
+  desc = "This handy device appears to translate the languages it hears into onscreen text for a user, but upgraded with more languages. Somehow."
+  omni = 1
+
+/obj/item/universal_translator/ear/all
+  name = "omni-translator earpiece"
+  desc = "This handy device appears to translate the languages it hears into another language for a user, but upgraded with more languages. Somehow."
+  omni = 1

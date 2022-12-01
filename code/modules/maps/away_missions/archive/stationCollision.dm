@@ -43,11 +43,11 @@
 /*
  * Landmarks - Instead of spawning a new object type, I'll spawn the bible using a landmark!
  */
-/obj/effect/landmark/sc_bible_spawner
+/obj/landmark/sc_bible_spawner
 	name = "Safecode hint spawner"
 	delete_me = TRUE
 
-/obj/effect/landmark/sc_bible_spawner/Initialize()
+/obj/landmark/sc_bible_spawner/Initialize(mapload)
 	. = ..()
 	var/obj/item/storage/bible/B = new /obj/item/storage/bible/booze(src.loc)
 	B.name = "The Holy book of the Geometer"
@@ -198,7 +198,7 @@ var/sc_safecode5 = "[rand(0,9)]"
 		L.gib()
 	else if(istype(A,/obj/))
 		var/obj/O = A
-		O.ex_act(1.0)
+		O.legacy_ex_act(1.0)
 		if(O) qdel(O)
 	else if(isturf(A))
 		var/turf/T = A
@@ -211,6 +211,6 @@ var/sc_safecode5 = "[rand(0,9)]"
 		T.ChangeTurf(/turf/space)
 	return
 
-/obj/machinery/singularity/narsie/sc_Narsie/ex_act()
+/obj/machinery/singularity/narsie/sc_Narsie/legacy_ex_act()
 	return
 */
