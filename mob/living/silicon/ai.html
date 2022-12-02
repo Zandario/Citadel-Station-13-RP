@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="mob/living/silicon/ai.html#var">Var Details</a> - <a href="mob/living/silicon/ai.html#proc">Proc Details</a></header>
+<main>
+<h1>ai <aside>/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/silicon.html">silicon</a>/<a href="mob/living/silicon/ai.html">ai</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/subystems.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;subystems.dm 16"/></a></h1>
+
+<h2 id="malf-variables">MALF VARIABLES</h2><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/APU_power">APU_power</a></th><td>If set, the AI runs on APU power</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/bombing_core">bombing_core</a></th><td>Set if core auto-destruct is activated.</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/bombing_station">bombing_station</a></th><td>Set if station nuke auto-destruct is activated.</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/camera_light_on">camera_light_on</a></th><td>Defines if the AI toggled the light on the camera it's looking through.</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/carded">carded</a></th><td>Whether the AI is inside a AI Card or not.</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/custom_sprite">custom_sprite</a></th><td>Whether the selected icon is custom.</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/errored">errored</a></th><td>SIs set if a runtime error occurs. Only way of this happening i can think of is admin fucking up with varedit.</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/hack">hack</a></th><td>APC that is currently being hacked.</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/hack_can_fail">hack_can_fail</a></th><td>If unset, all abilities have zero chance of failing.</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/hack_fails">hack_fails</a></th><td>This increments with each failed hack, and determines the warning message text.</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/hacked_apcs">hacked_apcs</a></th><td>List of all hacked APCs</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/hacking">hacking</a></th><td>Set if AI is hacking a APC, cyborg, other AI, or running system override.</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/hardware">hardware</a></th><td>Installed piece of hardware.</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/holo_icon">holo_icon</a></th><td>Default is assigned when AI is created.</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/hologram_follow">hologram_follow</a></th><td>This is used for the AI eye, to determine if a holopad's hologram should follow it or not.</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/is_dummy">is_dummy</a></th><td>Used to prevent dummy AIs from spawning with communicators.</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/malfunctioning">malfunctioning</a></th><td>Master var that determines if AI is malfunctioning.</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/network">network</a></th><td>The network we have access to.</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/override_CPURate">override_CPURate</a></th><td>Bonus/Penalty CPU generation rate. For use by admins/testers.</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/override_CPUStorage">override_CPUStorage</a></th><td>Bonus/Penalty CPU Storage. For use by admins/testers.</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/psupply">psupply</a></th><td>Backwards reference to AI's powersupply object.</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/research">research</a></th><td>Malfunction research datum.</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/selected_sprite">selected_sprite</a></th><td>The selected icon set.</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/system_override">system_override</a></th><td>Set if system override is initiated, 2 if succeeded.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#proc/get_perspective">get_perspective</a></th><td>ais grab their eyeobj's perspective whenever possible</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/APU_power"><aside class="declaration">var </aside>APU_power
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/ai/ai.dm#L100">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 100"/></a></h3>
+        <p>If set, the AI runs on APU power</p><h3 id="var/bombing_core"><aside class="declaration">var </aside>bombing_core
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/ai/ai.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 112"/></a></h3>
+        <p>Set if core auto-destruct is activated.</p><h3 id="var/bombing_station"><aside class="declaration">var </aside>bombing_station
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/ai/ai.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 114"/></a></h3>
+        <p>Set if station nuke auto-destruct is activated.</p><h3 id="var/camera_light_on"><aside class="declaration">var </aside>camera_light_on
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/ai/ai.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 76"/></a></h3>
+        <p>Defines if the AI toggled the light on the camera it's looking through.</p><h3 id="var/carded"><aside class="declaration">var </aside>carded
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/ai/ai.dm#L127">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 127"/></a></h3>
+        <p>Whether the AI is inside a AI Card or not.</p><h3 id="var/custom_sprite"><aside class="declaration">var </aside>custom_sprite
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/ai/ai.dm#L123">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 123"/></a></h3>
+        <p>Whether the selected icon is custom.</p><h3 id="var/errored"><aside class="declaration">var </aside>errored
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/ai/ai.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 110"/></a></h3>
+        <p>SIs set if a runtime error occurs. Only way of this happening i can think of is admin fucking up with varedit.</p><h3 id="var/hack"><aside class="declaration">var </aside>hack
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/power.html">power</a>/<a href="obj/machinery/power/apc.html">apc</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/ai/ai.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 96"/></a></h3>
+        <p>APC that is currently being hacked.</p><h3 id="var/hack_can_fail"><aside class="declaration">var </aside>hack_can_fail
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/ai/ai.dm#L106">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 106"/></a></h3>
+        <p>If unset, all abilities have zero chance of failing.</p><h3 id="var/hack_fails"><aside class="declaration">var </aside>hack_fails
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/ai/ai.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 108"/></a></h3>
+        <p>This increments with each failed hack, and determines the warning message text.</p><h3 id="var/hacked_apcs"><aside class="declaration">var </aside>hacked_apcs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/ai/ai.dm#L98">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 98"/></a></h3>
+        <p>List of all hacked APCs</p><h3 id="var/hacking"><aside class="declaration">var </aside>hacking
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/ai/ai.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 102"/></a></h3>
+        <p>Set if AI is hacking a APC, cyborg, other AI, or running system override.</p><h3 id="var/hardware"><aside class="declaration">var </aside>hardware
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/malf_hardware.html">malf_hardware</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/ai/ai.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 92"/></a></h3>
+        <p>Installed piece of hardware.</p><h3 id="var/holo_icon"><aside class="declaration">var </aside>holo_icon
+            <aside>&ndash; /icon</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/ai/ai.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 69"/></a></h3>
+        <p>Default is assigned when AI is created.</p><h3 id="var/hologram_follow"><aside class="declaration">var </aside>hologram_follow
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/ai/ai.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 84"/></a></h3>
+        <p>This is used for the AI eye, to determine if a holopad's hologram should follow it or not.</p><h3 id="var/is_dummy"><aside class="declaration">var </aside>is_dummy
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/ai/ai.dm#L86">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 86"/></a></h3>
+        <p>Used to prevent dummy AIs from spawning with communicators.</p><h3 id="var/malfunctioning"><aside class="declaration">var </aside>malfunctioning
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/ai/ai.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 90"/></a></h3>
+        <p>Master var that determines if AI is malfunctioning.</p><h3 id="var/network"><aside class="declaration">var </aside>network
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/ai/ai.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 64"/></a></h3>
+        <p>The network we have access to.</p><h3 id="var/override_CPURate"><aside class="declaration">var </aside>override_CPURate
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/ai/ai.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 118"/></a></h3>
+        <p>Bonus/Penalty CPU generation rate. For use by admins/testers.</p><h3 id="var/override_CPUStorage"><aside class="declaration">var </aside>override_CPUStorage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/ai/ai.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 116"/></a></h3>
+        <p>Bonus/Penalty CPU Storage. For use by admins/testers.</p><h3 id="var/psupply"><aside class="declaration">var </aside>psupply
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/ai_powersupply</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/ai/ai.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 82"/></a></h3>
+        <p>Backwards reference to AI's powersupply object.</p><h3 id="var/research"><aside class="declaration">var </aside>research
+            <aside>&ndash; /<a href="datum.html">datum</a>/malf_research</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/ai/ai.dm#L94">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 94"/></a></h3>
+        <p>Malfunction research datum.</p><h3 id="var/selected_sprite"><aside class="declaration">var </aside>selected_sprite
+            <aside>&ndash; /<a href="datum.html">datum</a>/ai_icon</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/ai/ai.dm#L121">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 121"/></a></h3>
+        <p>The selected icon set.</p><h3 id="var/system_override"><aside class="declaration">var </aside>system_override
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/ai/ai.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 104"/></a></h3>
+        <p>Set if system override is initiated, 2 if succeeded.</p><h2 id="proc">Proc Details</h2><h3 id="proc/get_perspective"><aside class="parent"><a title="/atom/movable" href="atom/movable.html#proc/get_perspective">&uarr;</a></aside>get_perspective<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/silicon/ai/perspective.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;perspective.dm 2"/></a></aside>
+        </h3>
+        <p>ais grab their eyeobj's perspective whenever possible</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

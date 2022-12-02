@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__HELPERS&#x2F;_logging.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+</header>
+<main>
+<h1>code/__HELPERS/_logging.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/_logging.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_logging.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th>/proc/<a href="global.html#proc/log_admin">log_admin</a></th>
+                <td>Items with ADMINPRIVATE prefixed are stripped from public logs.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/log_game">log_game</a></th>
+                <td>All other items are public.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/log_access_in">log_access_in</a></th>
+                <td>&lt;VStation_specific&gt;</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/log_attack">log_attack</a></th>
+                <td>&lt;/VStation_specific&gt;</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/log_world">log_world</a></th>
+                <td>Log to both DD and the logfile.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/log_runtime">log_runtime</a></th>
+                <td>Log to the logfile only.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/log_config">log_config</a></th>
+                <td>Rarely gets called; just here in case the config breaks.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/start_log">start_log</a></th>
+                <td>For logging round startup.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/log_tgui">log_tgui</a></th>
+                <td>Appends a tgui-related log entry.
+All arguments are optional.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/shutdown_logging">shutdown_logging</a></th>
+                <td>Close open log handles.
+This should be called as late as possible, and no logging should hapen after.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/key_name">key_name</a></th>
+                <td>Helper procs for building detailed log lines</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/log_debug">log_debug</a></th>
+                <td>VSTATION SPECIFIC LOGGING.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/log_error">log_error</a></th>
+                <td>DEPRICATED. USE log_runtime(text) INSTEAD.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/print_dir">print_dir</a></th>
+                <td>VSTATION LOGGING HELPERS
+Pretty print a direction bitflag, can be useful for debugging.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/log_suspicious_login">log_suspicious_login</a></th>
+                <td>Writes to a special log file if the log_suspicious_login config flag is set,
+which is intended to contain all logins that failed under suspicious circumstances.</td></tr></table></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

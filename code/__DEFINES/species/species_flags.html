@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/species/species_flags.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/species/species_flags.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><h2 id="species-flags">SPECIES_FLAGS</h2></td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/NO_MINOR_CUT">NO_MINOR_CUT</a></th><td>Can step on broken glass with no ill-effects. Either thick skin (diona), cut resistant (slimes) or incorporeal (shadows)</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/IS_PLANT">IS_PLANT</a></th><td>Is a treeperson.</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/NO_SCAN">NO_SCAN</a></th><td>Cannot be scanned in a DNA machine/genome-stolen.</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/NO_PAIN">NO_PAIN</a></th><td>Cannot suffer halloss/recieves deceptive health indicator.</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/NO_SLIP">NO_SLIP</a></th><td>Cannot fall over.</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/NO_POISON">NO_POISON</a></th><td>Cannot not suffer toxloss.</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/NO_EMBED">NO_EMBED</a></th><td>Can step on broken glass with no ill-effects and cannot have shrapnel embedded in it.</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/NO_HALLUCINATION">NO_HALLUCINATION</a></th><td>Don't hallucinate, ever.</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/NO_BLOOD">NO_BLOOD</a></th><td>Never bleed, never show blood amount.</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/UNDEAD">UNDEAD</a></th><td>Various things that living things don't do, mostly for skeletons.</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/NO_INFECT">NO_INFECT</a></th><td>Don't allow infections in limbs or organs, similar to IS_PLANT, without other strings.</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/NO_DEFIB">NO_DEFIB</a></th><td>Cannot be defibbed.</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/CONTAMINATION_IMMUNE">CONTAMINATION_IMMUNE</a></th><td>(Phoron) Contamination doesnt affect them.</td></tr>
+        <tr><td colspan="2"><p>species_fluff_flags</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/SPECIES_FLUFF_PICKY_FACTION">SPECIES_FLUFF_PICKY_FACTION</a></th><td>deny cultures that don't specifically whitelist us</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/SPECIES_FLUFF_PICKY_ORIGIN">SPECIES_FLUFF_PICKY_ORIGIN</a></th><td>deny origins that don't specifically whitelist us</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/SPECIES_FLUFF_PICKY_CITIZENSHIP">SPECIES_FLUFF_PICKY_CITIZENSHIP</a></th><td>deny citizenships that don't specifically whitelist us</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/SPECIES_FLUFF_PICKY_RELIGION">SPECIES_FLUFF_PICKY_RELIGION</a></th><td>deny religions that don't specifically whitelist us</td></tr>
+        <tr><td colspan="2"><p>species_spawn_flags</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/SPECIES_SPAWN_SPECIAL">SPECIES_SPAWN_SPECIAL</a></th><td>is not considered a real character species; used for castes, monkies, etc.
+this flag will cause the species to skip char-species generation.</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/SPECIES_SPAWN_CHARACTER">SPECIES_SPAWN_CHARACTER</a></th><td>Species is selectable and visible in chargen. This must be on a species to be roundstart/latejoin.</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/SPECIES_SPAWN_WHITELISTED">SPECIES_SPAWN_WHITELISTED</a></th><td>Must be whitelisted to play roundstart/latejoin.</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/SPECIES_SPAWN_SECRET">SPECIES_SPAWN_SECRET</a></th><td>Must be whitelisted to see this species at all.</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/SPECIES_SPAWN_RESTRICTED">SPECIES_SPAWN_RESTRICTED</a></th><td>Cannot normally spawn; something must pass in PREFS_COPY_TO_NO_CHECK_SPECIES to spawn checks to use!</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/SPECIES_SPAWN_NO_FBP_CONSTRUCT">SPECIES_SPAWN_NO_FBP_CONSTRUCT</a></th><td>FBP of this species can't be made in-game.</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/SPECIES_SPAWN_NO_FBP_SETUP">SPECIES_SPAWN_NO_FBP_SETUP</a></th><td>FBP of this species can't be selected at chargen.</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/SPECIES_SPAWN_NO_ROBOTIC_ORGANS">SPECIES_SPAWN_NO_ROBOTIC_ORGANS</a></th><td>Species cannot start with robotic organs or have them attached.</td></tr>
+        <tr><td colspan="2"><p>species_appearance_flags</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/HAS_SKIN_TONE">HAS_SKIN_TONE</a></th><td>Skin tone selectable in chargen. (0-255)</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/HAS_SKIN_COLOR">HAS_SKIN_COLOR</a></th><td>Skin colour selectable in chargen. (RGB)</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/HAS_LIPS">HAS_LIPS</a></th><td>Lips are drawn onto the mob icon. (lipstick)</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/HAS_UNDERWEAR">HAS_UNDERWEAR</a></th><td>Underwear is drawn onto the mob icon.</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/HAS_EYE_COLOR">HAS_EYE_COLOR</a></th><td>Eye colour selectable in chargen. (RGB)</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/HAS_HAIR_COLOR">HAS_HAIR_COLOR</a></th><td>Hair colour selectable in chargen. (RGB)</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/RADIATION_GLOWS">RADIATION_GLOWS</a></th><td>Radiation causes this character to glow.</td></tr>
+        <tr><th><a href="code/__DEFINES/species/species_flags.html#define/HAS_BASE_SKIN_COLOR">HAS_BASE_SKIN_COLOR</a></th><td>Sets default skin colors based on icons.</td></tr>
+        <tr><td colspan="2"><p>skin flags</p>
+</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/CONTAMINATION_IMMUNE"><aside class="declaration">#define </aside>CONTAMINATION_IMMUNE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 28"/></a>
+    </h3>
+    <p>(Phoron) Contamination doesnt affect them.</p><h3 id="define/HAS_BASE_SKIN_COLOR"><aside class="declaration">#define </aside>HAS_BASE_SKIN_COLOR
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 113"/></a>
+    </h3>
+    <p>Sets default skin colors based on icons.</p><h3 id="define/HAS_EYE_COLOR"><aside class="declaration">#define </aside>HAS_EYE_COLOR
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 107"/></a>
+    </h3>
+    <p>Eye colour selectable in chargen. (RGB)</p><h3 id="define/HAS_HAIR_COLOR"><aside class="declaration">#define </aside>HAS_HAIR_COLOR
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 109"/></a>
+    </h3>
+    <p>Hair colour selectable in chargen. (RGB)</p><h3 id="define/HAS_LIPS"><aside class="declaration">#define </aside>HAS_LIPS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 103"/></a>
+    </h3>
+    <p>Lips are drawn onto the mob icon. (lipstick)</p><h3 id="define/HAS_SKIN_COLOR"><aside class="declaration">#define </aside>HAS_SKIN_COLOR
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 101"/></a>
+    </h3>
+    <p>Skin colour selectable in chargen. (RGB)</p><h3 id="define/HAS_SKIN_TONE"><aside class="declaration">#define </aside>HAS_SKIN_TONE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L99">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 99"/></a>
+    </h3>
+    <p>Skin tone selectable in chargen. (0-255)</p><h3 id="define/HAS_UNDERWEAR"><aside class="declaration">#define </aside>HAS_UNDERWEAR
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 105"/></a>
+    </h3>
+    <p>Underwear is drawn onto the mob icon.</p><h3 id="define/IS_PLANT"><aside class="declaration">#define </aside>IS_PLANT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 6"/></a>
+    </h3>
+    <p>Is a treeperson.</p><h3 id="define/NO_BLOOD"><aside class="declaration">#define </aside>NO_BLOOD
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 20"/></a>
+    </h3>
+    <p>Never bleed, never show blood amount.</p><h3 id="define/NO_DEFIB"><aside class="declaration">#define </aside>NO_DEFIB
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 26"/></a>
+    </h3>
+    <p>Cannot be defibbed.</p><h3 id="define/NO_EMBED"><aside class="declaration">#define </aside>NO_EMBED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 16"/></a>
+    </h3>
+    <p>Can step on broken glass with no ill-effects and cannot have shrapnel embedded in it.</p><h3 id="define/NO_HALLUCINATION"><aside class="declaration">#define </aside>NO_HALLUCINATION
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 18"/></a>
+    </h3>
+    <p>Don't hallucinate, ever.</p><h3 id="define/NO_INFECT"><aside class="declaration">#define </aside>NO_INFECT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 24"/></a>
+    </h3>
+    <p>Don't allow infections in limbs or organs, similar to IS_PLANT, without other strings.</p><h3 id="define/NO_MINOR_CUT"><aside class="declaration">#define </aside>NO_MINOR_CUT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 4"/></a>
+    </h3>
+    <p>Can step on broken glass with no ill-effects. Either thick skin (diona), cut resistant (slimes) or incorporeal (shadows)</p><h3 id="define/NO_PAIN"><aside class="declaration">#define </aside>NO_PAIN
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 10"/></a>
+    </h3>
+    <p>Cannot suffer halloss/recieves deceptive health indicator.</p><h3 id="define/NO_POISON"><aside class="declaration">#define </aside>NO_POISON
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 14"/></a>
+    </h3>
+    <p>Cannot not suffer toxloss.</p><h3 id="define/NO_SCAN"><aside class="declaration">#define </aside>NO_SCAN
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 8"/></a>
+    </h3>
+    <p>Cannot be scanned in a DNA machine/genome-stolen.</p><h3 id="define/NO_SLIP"><aside class="declaration">#define </aside>NO_SLIP
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 12"/></a>
+    </h3>
+    <p>Cannot fall over.</p><h3 id="define/RADIATION_GLOWS"><aside class="declaration">#define </aside>RADIATION_GLOWS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L111">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 111"/></a>
+    </h3>
+    <p>Radiation causes this character to glow.</p><h3 id="define/SPECIES_FLUFF_PICKY_CITIZENSHIP"><aside class="declaration">#define </aside>SPECIES_FLUFF_PICKY_CITIZENSHIP
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 52"/></a>
+    </h3>
+    <p>deny citizenships that don't specifically whitelist us</p><h3 id="define/SPECIES_FLUFF_PICKY_FACTION"><aside class="declaration">#define </aside>SPECIES_FLUFF_PICKY_FACTION
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 48"/></a>
+    </h3>
+    <p>deny cultures that don't specifically whitelist us</p><h3 id="define/SPECIES_FLUFF_PICKY_ORIGIN"><aside class="declaration">#define </aside>SPECIES_FLUFF_PICKY_ORIGIN
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 50"/></a>
+    </h3>
+    <p>deny origins that don't specifically whitelist us</p><h3 id="define/SPECIES_FLUFF_PICKY_RELIGION"><aside class="declaration">#define </aside>SPECIES_FLUFF_PICKY_RELIGION
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 54"/></a>
+    </h3>
+    <p>deny religions that don't specifically whitelist us</p><h3 id="define/SPECIES_SPAWN_CHARACTER"><aside class="declaration">#define </aside>SPECIES_SPAWN_CHARACTER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 68"/></a>
+    </h3>
+    <p>Species is selectable and visible in chargen. This must be on a species to be roundstart/latejoin.</p><h3 id="define/SPECIES_SPAWN_NO_FBP_CONSTRUCT"><aside class="declaration">#define </aside>SPECIES_SPAWN_NO_FBP_CONSTRUCT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 80"/></a>
+    </h3>
+    <p>FBP of this species can't be made in-game.</p><h3 id="define/SPECIES_SPAWN_NO_FBP_SETUP"><aside class="declaration">#define </aside>SPECIES_SPAWN_NO_FBP_SETUP
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 82"/></a>
+    </h3>
+    <p>FBP of this species can't be selected at chargen.</p><h3 id="define/SPECIES_SPAWN_NO_ROBOTIC_ORGANS"><aside class="declaration">#define </aside>SPECIES_SPAWN_NO_ROBOTIC_ORGANS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 84"/></a>
+    </h3>
+    <p>Species cannot start with robotic organs or have them attached.</p><h3 id="define/SPECIES_SPAWN_RESTRICTED"><aside class="declaration">#define </aside>SPECIES_SPAWN_RESTRICTED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 74"/></a>
+    </h3>
+    <p>Cannot normally spawn; something must pass in PREFS_COPY_TO_NO_CHECK_SPECIES to spawn checks to use!</p><h3 id="define/SPECIES_SPAWN_SECRET"><aside class="declaration">#define </aside>SPECIES_SPAWN_SECRET
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 72"/></a>
+    </h3>
+    <p>Must be whitelisted to see this species at all.</p><h3 id="define/SPECIES_SPAWN_SPECIAL"><aside class="declaration">#define </aside>SPECIES_SPAWN_SPECIAL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 66"/></a>
+    </h3>
+    <p>is not considered a real character species; used for castes, monkies, etc.
+this flag will cause the species to skip char-species generation.</p><h3 id="define/SPECIES_SPAWN_WHITELISTED"><aside class="declaration">#define </aside>SPECIES_SPAWN_WHITELISTED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 70"/></a>
+    </h3>
+    <p>Must be whitelisted to play roundstart/latejoin.</p><h3 id="define/UNDEAD"><aside class="declaration">#define </aside>UNDEAD
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/species/species_flags.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;species&#x2F;species_flags.dm 22"/></a>
+    </h3>
+    <p>Various things that living things don't do, mostly for skeletons.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

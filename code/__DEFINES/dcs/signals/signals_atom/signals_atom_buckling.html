@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_buckling.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_buckling.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.html#define/COMSIG_MOVABLE_MOB_BUCKLED">COMSIG_MOVABLE_MOB_BUCKLED</a></th><td>From base of atom/attack_hand(): (mob/user, list/modifiers)
+/#define COMSIG_ATOM_ATTACK_HAND &quot;atom_attack_hand&quot;
+From base of atom/attack_paw(): (mob/user)
+/#define COMSIG_ATOM_ATTACK_PAW &quot;atom_attack_paw&quot;
+? Works on all 3.
+/#define COMPONENT_NO_ATTACK_HAND (1&lt;&lt;0)
+/! buckling. flags are always buckling opflags, see __DEFINES/procs/buckling.dm
+called on mob buclked: (mob, flags, user, semantic)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.html#define/COMSIG_MOVABLE_MOB_UNBUCKLED">COMSIG_MOVABLE_MOB_UNBUCKLED</a></th><td>called on mob unbuckled: (mob, flags, user, semantic)</td></tr>
+        <tr><td colspan="2"><p>weird names to be more distinct from movable signals</p></td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.html#define/COMSIG_MOB_BUCKLED">COMSIG_MOB_BUCKLED</a></th><td>called on the mob that just got buckled: (mob, flags, user, semantic)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.html#define/COMSIG_MOB_UNBUCKLED">COMSIG_MOB_UNBUCKLED</a></th><td>called on the mob that just got unbuckled: (mob, flags, user, semantic)</td></tr>
+        <tr><td colspan="2"><p>For the below, component_block/force_buckle_operation works to varying degrees on varying procs.</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.html#define/COMSIG_MOVABLE_PRE_BUCKLE_MOB">COMSIG_MOVABLE_PRE_BUCKLE_MOB</a></th><td>called during mob buckling: (mob, flags, user, semantic)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.html#define/COMSIG_MOVABLE_CAN_BUCKLE_MOB">COMSIG_MOVABLE_CAN_BUCKLE_MOB</a></th><td>called during can buckle mob: (mob, flags, user, semantic)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.html#define/COMSIG_MOVABLE_CAN_UNBUCKLE_MOB">COMSIG_MOVABLE_CAN_UNBUCKLE_MOB</a></th><td>called during can unbuckle mob: (mob, flags, user, semantic)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.html#define/COMSIG_MOVABLE_USER_BUCKLE_MOB">COMSIG_MOVABLE_USER_BUCKLE_MOB</a></th><td>called during user buckle mob: (mob, flags, user, semantic). only &quot;block&quot; is allowed.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.html#define/COMSIG_MOVABLE_USER_UNBUCKLE_MOB">COMSIG_MOVABLE_USER_UNBUCKLE_MOB</a></th><td>called during user unbuckle mob: (mob, flags, user, semantic). only &quot;block&quot; is allowed.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.html#define/COMSIG_MOVABLE_MOB_RESIST_BUCKLE">COMSIG_MOVABLE_MOB_RESIST_BUCKLE</a></th><td>called on mob resist buckle: (mob, semantic). Can't force, can only block.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.html#define/COMSIG_MOB_CAN_BUCKLE">COMSIG_MOB_CAN_BUCKLE</a></th><td>called during can buckle on mob: (AM, flags, user, semantic, movable_opinion)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.html#define/COMSIG_MOB_CAN_UNBUCKLE">COMSIG_MOB_CAN_UNBUCKLE</a></th><td>called during can unbuckle on mob: (AM, flags, user, semantic, movable_opinion)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.html#define/COMPONENT_BLOCK_BUCKLE_OPERATION">COMPONENT_BLOCK_BUCKLE_OPERATION</a></th><td>block mob buckle/unbuckle <strong>silently</strong></td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.html#define/COMPONENT_FORCE_BUCKLE_OPERATION">COMPONENT_FORCE_BUCKLE_OPERATION</a></th><td>force allow buckle/unbuckled <strong>silently</strong></td></tr>
+        <tr><td colspan="2"><p>Interactions; only blocking default interactions work.</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.html#define/COMSIG_MOVABLE_DRAG_DROP_BUCKLE_INTERACTION">COMSIG_MOVABLE_DRAG_DROP_BUCKLE_INTERACTION</a></th><td>called from drag_drop_buckle_interaction: (A, user)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.html#define/COMSIG_MOVABLE_CLICK_UNBUCKLE_INTERACTION">COMSIG_MOVABLE_CLICK_UNBUCKLE_INTERACTION</a></th><td>called from click_unbuckle_interaction: (user)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.html#define/COMSIG_MOVABLE_RESIST_UNBUCKLE_INTERACTION">COMSIG_MOVABLE_RESIST_UNBUCKLE_INTERACTION</a></th><td>called from resist_unbuckle_interaction(M)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.html#define/COMPONENT_HANDLED_BUCKLE_INTERACTION">COMPONENT_HANDLED_BUCKLE_INTERACTION</a></th><td>cancel rest of procs</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/COMPONENT_BLOCK_BUCKLE_OPERATION"><aside class="declaration">#define </aside>COMPONENT_BLOCK_BUCKLE_OPERATION
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_buckling.dm 31"/></a>
+    </h3>
+    <p>block mob buckle/unbuckle <strong>silently</strong></p><h3 id="define/COMPONENT_FORCE_BUCKLE_OPERATION"><aside class="declaration">#define </aside>COMPONENT_FORCE_BUCKLE_OPERATION
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_buckling.dm 33"/></a>
+    </h3>
+    <p>force allow buckle/unbuckled <strong>silently</strong></p><h3 id="define/COMPONENT_HANDLED_BUCKLE_INTERACTION"><aside class="declaration">#define </aside>COMPONENT_HANDLED_BUCKLE_INTERACTION
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_buckling.dm 43"/></a>
+    </h3>
+    <p>cancel rest of procs</p><h3 id="define/COMSIG_MOB_BUCKLED"><aside class="declaration">#define </aside>COMSIG_MOB_BUCKLED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_buckling.dm 9"/></a>
+    </h3>
+    <p>called on the mob that just got buckled: (mob, flags, user, semantic)</p><h3 id="define/COMSIG_MOB_CAN_BUCKLE"><aside class="declaration">#define </aside>COMSIG_MOB_CAN_BUCKLE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_buckling.dm 27"/></a>
+    </h3>
+    <p>called during can buckle on mob: (AM, flags, user, semantic, movable_opinion)</p><h3 id="define/COMSIG_MOB_CAN_UNBUCKLE"><aside class="declaration">#define </aside>COMSIG_MOB_CAN_UNBUCKLE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_buckling.dm 29"/></a>
+    </h3>
+    <p>called during can unbuckle on mob: (AM, flags, user, semantic, movable_opinion)</p><h3 id="define/COMSIG_MOB_UNBUCKLED"><aside class="declaration">#define </aside>COMSIG_MOB_UNBUCKLED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_buckling.dm 11"/></a>
+    </h3>
+    <p>called on the mob that just got unbuckled: (mob, flags, user, semantic)</p><h3 id="define/COMSIG_MOVABLE_CAN_BUCKLE_MOB"><aside class="declaration">#define </aside>COMSIG_MOVABLE_CAN_BUCKLE_MOB
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_buckling.dm 17"/></a>
+    </h3>
+    <p>called during can buckle mob: (mob, flags, user, semantic)</p><h3 id="define/COMSIG_MOVABLE_CAN_UNBUCKLE_MOB"><aside class="declaration">#define </aside>COMSIG_MOVABLE_CAN_UNBUCKLE_MOB
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_buckling.dm 19"/></a>
+    </h3>
+    <p>called during can unbuckle mob: (mob, flags, user, semantic)</p><h3 id="define/COMSIG_MOVABLE_CLICK_UNBUCKLE_INTERACTION"><aside class="declaration">#define </aside>COMSIG_MOVABLE_CLICK_UNBUCKLE_INTERACTION
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_buckling.dm 39"/></a>
+    </h3>
+    <p>called from click_unbuckle_interaction: (user)</p><h3 id="define/COMSIG_MOVABLE_DRAG_DROP_BUCKLE_INTERACTION"><aside class="declaration">#define </aside>COMSIG_MOVABLE_DRAG_DROP_BUCKLE_INTERACTION
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_buckling.dm 37"/></a>
+    </h3>
+    <p>called from drag_drop_buckle_interaction: (A, user)</p><h3 id="define/COMSIG_MOVABLE_MOB_BUCKLED"><aside class="declaration">#define </aside>COMSIG_MOVABLE_MOB_BUCKLED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_buckling.dm 4"/></a>
+    </h3>
+    <p>From base of atom/attack_hand(): (mob/user, list/modifiers)
+/#define COMSIG_ATOM_ATTACK_HAND &quot;atom_attack_hand&quot;
+From base of atom/attack_paw(): (mob/user)
+/#define COMSIG_ATOM_ATTACK_PAW &quot;atom_attack_paw&quot;
+? Works on all 3.
+/#define COMPONENT_NO_ATTACK_HAND (1&lt;&lt;0)
+/! buckling. flags are always buckling opflags, see __DEFINES/procs/buckling.dm
+called on mob buclked: (mob, flags, user, semantic)</p><h3 id="define/COMSIG_MOVABLE_MOB_RESIST_BUCKLE"><aside class="declaration">#define </aside>COMSIG_MOVABLE_MOB_RESIST_BUCKLE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_buckling.dm 25"/></a>
+    </h3>
+    <p>called on mob resist buckle: (mob, semantic). Can't force, can only block.</p><h3 id="define/COMSIG_MOVABLE_MOB_UNBUCKLED"><aside class="declaration">#define </aside>COMSIG_MOVABLE_MOB_UNBUCKLED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_buckling.dm 6"/></a>
+    </h3>
+    <p>called on mob unbuckled: (mob, flags, user, semantic)</p><h3 id="define/COMSIG_MOVABLE_PRE_BUCKLE_MOB"><aside class="declaration">#define </aside>COMSIG_MOVABLE_PRE_BUCKLE_MOB
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_buckling.dm 15"/></a>
+    </h3>
+    <p>called during mob buckling: (mob, flags, user, semantic)</p><h3 id="define/COMSIG_MOVABLE_RESIST_UNBUCKLE_INTERACTION"><aside class="declaration">#define </aside>COMSIG_MOVABLE_RESIST_UNBUCKLE_INTERACTION
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_buckling.dm 41"/></a>
+    </h3>
+    <p>called from resist_unbuckle_interaction(M)</p><h3 id="define/COMSIG_MOVABLE_USER_BUCKLE_MOB"><aside class="declaration">#define </aside>COMSIG_MOVABLE_USER_BUCKLE_MOB
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_buckling.dm 21"/></a>
+    </h3>
+    <p>called during user buckle mob: (mob, flags, user, semantic). only &quot;block&quot; is allowed.</p><h3 id="define/COMSIG_MOVABLE_USER_UNBUCKLE_MOB"><aside class="declaration">#define </aside>COMSIG_MOVABLE_USER_UNBUCKLE_MOB
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_buckling.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_buckling.dm 23"/></a>
+    </h3>
+    <p>called during user unbuckle mob: (mob, flags, user, semantic). only &quot;block&quot; is allowed.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

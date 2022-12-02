@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;announcer - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/announcer.html#var">Var Details</a> - <a href="datum/announcer.html#proc">Proc Details</a></header>
+<main>
+<h1>announcer <aside>/<a href="datum.html">datum</a>/<a href="datum/announcer.html">announcer</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/announce/announcer.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;announce&#x2F;announcer.dm 5"/></a></h1>
+
+<p>announcer datums:
+handles processing /datum/announcement's</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/announcer.html#var/desc">desc</a></th><td>our desc</td></tr>
+            <tr><th><a href="datum/announcer.html#var/location">location</a></th><td>our location</td></tr>
+            <tr><th><a href="datum/announcer.html#var/name">name</a></th><td>our name</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/announcer.html#proc/GetAffected">GetAffected</a></th><td>get affected things</td></tr>
+            <tr><th><a href="datum/announcer.html#proc/SendSound">SendSound</a></th><td>sends sound in an announcement</td></tr>
+            <tr><th><a href="datum/announcer.html#proc/SendText">SendText</a></th><td>sends text in an announcement</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/desc"><aside class="declaration">var </aside>desc
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/announce/announcer.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;announce&#x2F;announcer.dm 9"/></a></h3>
+        <p>our desc</p><h3 id="var/location"><aside class="declaration">var </aside>location
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/announce_location.html">announce_location</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/announce/announcer.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;announce&#x2F;announcer.dm 13"/></a></h3>
+        <p>our location</p><h3 id="var/name"><aside class="declaration">var </aside>name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/announce/announcer.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;announce&#x2F;announcer.dm 7"/></a></h3>
+        <p>our name</p><h2 id="proc">Proc Details</h2><h3 id="proc/GetAffected"><aside class="declaration">proc </aside>GetAffected<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/announce/announcer.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;announce&#x2F;announcer.dm 19"/></a></aside>
+        </h3>
+        <p>get affected things</p><h3 id="proc/SendSound"><aside class="declaration">proc </aside>SendSound<aside>(/<a href="datum.html">datum</a>/<a href="datum/soundbyte.html">soundbyte</a>/SB, channel, /list/affected, volume, sound_environment) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/announce/announcer.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;announce&#x2F;announcer.dm 45"/></a></aside>
+        </h3>
+        <p>sends sound in an announcement</p>
+<p>@params</p>
+<ul>
+<li>SB - soundbyte datum</li>
+<li>channel - channel to use. used for reservation/synchronization.</li>
+<li>affected - affected atoms. used to optimize.</li>
+<li>volume - volume override for sound.</li>
+<li>sound_environment - true/false - if true, allow playsound_local to use local environment.</li>
+</ul><h3 id="proc/SendText"><aside class="declaration">proc </aside>SendText<aside>(source, name, message, /list/affected) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/announce/announcer.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;announce&#x2F;announcer.dm 31"/></a></aside>
+        </h3>
+        <p>sends text in an announcement</p>
+<p>@params</p>
+<ul>
+<li>source - source name, e.g. central command</li>
+<li>name - e.g. research director's desk announcement, proximity alarm, etc</li>
+<li>message - message body. <strong>supports HTML</strong></li>
+<li>affected - affected atoms. used to optimize.</li>
+</ul></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

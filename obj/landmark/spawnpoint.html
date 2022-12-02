@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;landmark&#x2F;spawnpoint - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/landmark/spawnpoint.html#var">Var Details</a> - <a href="obj/landmark/spawnpoint.html#proc">Proc Details</a></header>
+<main>
+<h1>spawnpoint <aside>/<a href="obj.html">obj</a>/<a href="obj/landmark.html">landmark</a>/<a href="obj/landmark/spawnpoint.html">spawnpoint</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/landmarks/spawnpoint/_spawnpoint.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;landmarks&#x2F;spawnpoint&#x2F;_spawnpoint.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/landmark/spawnpoint.html#var/announce_template">announce_template</a></th><td>default spawn announce text - allowed are %NAME%, %JOB% - for more complex, override RenderAnnounceMessage()</td></tr>
+            <tr><th><a href="obj/landmark/spawnpoint.html#var/delete_after_depleted">delete_after_depleted</a></th><td>Delete on depletion</td></tr>
+            <tr><th><a href="obj/landmark/spawnpoint.html#var/prevent_mob_stack">prevent_mob_stack</a></th><td>prevent stacking of mobs</td></tr>
+            <tr><th><a href="obj/landmark/spawnpoint.html#var/priority">priority</a></th><td>Priority - landmark is binary inserted on register/unregister. Lower numbers are higher priority.</td></tr>
+            <tr><th><a href="obj/landmark/spawnpoint.html#var/spawned">spawned</a></th><td>Number of spawns currently</td></tr>
+            <tr><th><a href="obj/landmark/spawnpoint.html#var/spawns_left">spawns_left</a></th><td>Spawns left</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/landmark/spawnpoint.html#proc/Available">Available</a></th><td>Called to check if this spawnpoint is available for a certain mob and client</td></tr>
+            <tr><th><a href="obj/landmark/spawnpoint.html#proc/GetSpawnLoc">GetSpawnLoc</a></th><td>Gets the spawn location of this spawnpoint
+This should usually be underneath it, as this is where the mob will be created/moved.</td></tr>
+            <tr><th><a href="obj/landmark/spawnpoint.html#proc/OnSpawn">OnSpawn</a></th><td>Called after the mob is created/moved to the spawnpoint.</td></tr>
+            <tr><th><a href="obj/landmark/spawnpoint.html#proc/OverrideAnnounceMessage">OverrideAnnounceMessage</a></th><td>special announce proc - text usually broadcasted is sent here, raw, from RenderAnnounceMessage</td></tr>
+            <tr><th><a href="obj/landmark/spawnpoint.html#proc/RenderAnnounceMessage">RenderAnnounceMessage</a></th><td>renders a html message for someone joining
+usually only called on latejoining</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/announce_template"><aside class="declaration">var </aside>announce_template
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/landmarks/spawnpoint/_spawnpoint.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;landmarks&#x2F;spawnpoint&#x2F;_spawnpoint.dm 16"/></a></h3>
+        <p>default spawn announce text - allowed are %NAME%, %JOB% - for more complex, override RenderAnnounceMessage()</p><h3 id="var/delete_after_depleted"><aside class="declaration">var </aside>delete_after_depleted
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/landmarks/spawnpoint/_spawnpoint.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;landmarks&#x2F;spawnpoint&#x2F;_spawnpoint.dm 12"/></a></h3>
+        <p>Delete on depletion</p><h3 id="var/prevent_mob_stack"><aside class="declaration">var </aside>prevent_mob_stack
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/landmarks/spawnpoint/_spawnpoint.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;landmarks&#x2F;spawnpoint&#x2F;_spawnpoint.dm 6"/></a></h3>
+        <p>prevent stacking of mobs</p><h3 id="var/priority"><aside class="declaration">var </aside>priority
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/landmarks/spawnpoint/_spawnpoint.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;landmarks&#x2F;spawnpoint&#x2F;_spawnpoint.dm 14"/></a></h3>
+        <p>Priority - landmark is binary inserted on register/unregister. Lower numbers are higher priority.</p><h3 id="var/spawned"><aside class="declaration">var </aside>spawned
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/landmarks/spawnpoint/_spawnpoint.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;landmarks&#x2F;spawnpoint&#x2F;_spawnpoint.dm 10"/></a></h3>
+        <p>Number of spawns currently</p><h3 id="var/spawns_left"><aside class="declaration">var </aside>spawns_left
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/landmarks/spawnpoint/_spawnpoint.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;landmarks&#x2F;spawnpoint&#x2F;_spawnpoint.dm 8"/></a></h3>
+        <p>Spawns left</p><h2 id="proc">Proc Details</h2><h3 id="proc/Available"><aside class="declaration">proc </aside>Available<aside>(/<a href="mob.html">mob</a>/M, /<a href="client.html">client</a>/C, harder) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/landmarks/spawnpoint/_spawnpoint.dm#L86">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;landmarks&#x2F;spawnpoint&#x2F;_spawnpoint.dm 86"/></a></aside>
+        </h3>
+        <p>Called to check if this spawnpoint is available for a certain mob and client</p>
+<p>@params</p>
+<ul>
+<li>M - (optional) - the mob being spawned. This is null during latejoins and other instances where the mob is
+made when there is a spawnpoint, as opposed to roundstart creating all mobs at once</li>
+<li>C - (optional) - the client of the player</li>
+<li>harder - ignore checks like prevent_mob_stack</li>
+</ul><h3 id="proc/GetSpawnLoc"><aside class="declaration">proc </aside>GetSpawnLoc<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/landmarks/spawnpoint/_spawnpoint.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;landmarks&#x2F;spawnpoint&#x2F;_spawnpoint.dm 61"/></a></aside>
+        </h3>
+        <p>Gets the spawn location of this spawnpoint
+This should usually be underneath it, as this is where the mob will be created/moved.</p><h3 id="proc/OnSpawn"><aside class="declaration">proc </aside>OnSpawn<aside>(/<a href="mob.html">mob</a>/M, /<a href="client.html">client</a>/C) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/landmarks/spawnpoint/_spawnpoint.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;landmarks&#x2F;spawnpoint&#x2F;_spawnpoint.dm 73"/></a></aside>
+        </h3>
+        <p>Called after the mob is created/moved to the spawnpoint.</p>
+<p>@params</p>
+<ul>
+<li>M - the mob that was spawned</li>
+<li>C - (optional) - the client of the player</li>
+</ul><h3 id="proc/OverrideAnnounceMessage"><aside class="declaration">proc </aside>OverrideAnnounceMessage<aside>(raw) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/landmarks/spawnpoint/_spawnpoint.dm#L147">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;landmarks&#x2F;spawnpoint&#x2F;_spawnpoint.dm 147"/></a></aside>
+        </h3>
+        <p>special announce proc - text usually broadcasted is sent here, raw, from RenderAnnounceMessage</p>
+<p>if this returns TRUE, regular announce is skipped.</p><h3 id="proc/RenderAnnounceMessage"><aside class="declaration">proc </aside>RenderAnnounceMessage<aside>(/<a href="mob.html">mob</a>/M, /<a href="client.html">client</a>/C, /<a href="datum.html">datum</a>/<a href="datum/job.html">job</a>/J, name, job_name) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/landmarks/spawnpoint/_spawnpoint.dm#L139">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;landmarks&#x2F;spawnpoint&#x2F;_spawnpoint.dm 139"/></a></aside>
+        </h3>
+        <p>renders a html message for someone joining
+usually only called on latejoining</p>
+<p>@params
+M - mob
+C - client (optional)
+J - job datum instance (optional)
+name - spawnee's name
+job_name - job's name - useful for alt titles</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

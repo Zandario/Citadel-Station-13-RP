@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;effect&#x2F;overmap&#x2F;visitable&#x2F;ship - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/effect/overmap/visitable/ship.html#var">Var Details</a></header>
+<main>
+<h1>ship <aside>/<a href="obj.html">obj</a>/<a href="obj/effect.html">effect</a>/<a href="obj/effect/overmap.html">overmap</a>/<a href="obj/effect/overmap/visitable.html">visitable</a>/<a href="obj/effect/overmap/visitable/ship.html">ship</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/overmap/ships/ship.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;overmap&#x2F;ships&#x2F;ship.dm 12"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/effect/overmap/visitable/ship.html#var/burn_delay">burn_delay</a></th><td>How often ship can do burns.</td></tr>
+            <tr><th><a href="obj/effect/overmap/visitable/ship.html#var/engines">engines</a></th><td>The list of all the engines we have.</td></tr>
+            <tr><th><a href="obj/effect/overmap/visitable/ship.html#var/engines_state">engines_state</a></th><td>Global on/off toggle for all engines.</td></tr>
+            <tr><th><a href="obj/effect/overmap/visitable/ship.html#var/fore_dir">fore_dir</a></th><td>What dir ship flies towards for purpose of moving stars effect procs.</td></tr>
+            <tr><th><a href="obj/effect/overmap/visitable/ship.html#var/halted">halted</a></th><td>Admin halt or other stop.</td></tr>
+            <tr><th><a href="obj/effect/overmap/visitable/ship.html#var/last_burn">last_burn</a></th><td>Worldtime when ship last acceleated.</td></tr>
+            <tr><th><a href="obj/effect/overmap/visitable/ship.html#var/max_speed">max_speed</a></th><td>&quot;Speed of light&quot; for the ship, in turfs/decisecond.</td></tr>
+            <tr><th><a href="obj/effect/overmap/visitable/ship.html#var/min_speed">min_speed</a></th><td>Below this, we round speed to 0 to avoid math errors.</td></tr>
+            <tr><th><a href="obj/effect/overmap/visitable/ship.html#var/position_x">position_x</a></th><td>Pixel coordinates in the world.</td></tr>
+            <tr><th><a href="obj/effect/overmap/visitable/ship.html#var/position_y">position_y</a></th><td>Pixel coordinates in the world.</td></tr>
+            <tr><th><a href="obj/effect/overmap/visitable/ship.html#var/skill_needed">skill_needed</a></th><td>Skill needed to steer it without going in random dir.</td></tr>
+            <tr><th><a href="obj/effect/overmap/visitable/ship.html#var/speed">speed</a></th><td>Speed in x,y direction.</td></tr>
+            <tr><th><a href="obj/effect/overmap/visitable/ship.html#var/thrust_limit">thrust_limit</a></th><td>Global thrust limit for all engines, 0..1</td></tr>
+            <tr><th><a href="obj/effect/overmap/visitable/ship.html#var/vessel_mass">vessel_mass</a></th><td>Tonnes, arbitrary number, affects acceleration provided by engines.</td></tr>
+            <tr><th><a href="obj/effect/overmap/visitable/ship.html#var/vessel_size">vessel_size</a></th><td>Arbitrary number, affects how likely are we to evade meteors.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/burn_delay"><aside class="declaration">var </aside>burn_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/overmap/ships/ship.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;overmap&#x2F;ships&#x2F;ship.dm 39"/></a></h3>
+        <p>How often ship can do burns.</p><h3 id="var/engines"><aside class="declaration">var </aside>engines
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/overmap/ships/ship.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;overmap&#x2F;ships&#x2F;ship.dm 44"/></a></h3>
+        <p>The list of all the engines we have.</p><h3 id="var/engines_state"><aside class="declaration">var </aside>engines_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/overmap/ships/ship.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;overmap&#x2F;ships&#x2F;ship.dm 46"/></a></h3>
+        <p>Global on/off toggle for all engines.</p><h3 id="var/fore_dir"><aside class="declaration">var </aside>fore_dir
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/overmap/ships/ship.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;overmap&#x2F;ships&#x2F;ship.dm 41"/></a></h3>
+        <p>What dir ship flies towards for purpose of moving stars effect procs.</p><h3 id="var/halted"><aside class="declaration">var </aside>halted
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/overmap/ships/ship.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;overmap&#x2F;ships&#x2F;ship.dm 50"/></a></h3>
+        <p>Admin halt or other stop.</p><h3 id="var/last_burn"><aside class="declaration">var </aside>last_burn
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/overmap/ships/ship.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;overmap&#x2F;ships&#x2F;ship.dm 37"/></a></h3>
+        <p>Worldtime when ship last acceleated.</p><h3 id="var/max_speed"><aside class="declaration">var </aside>max_speed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/overmap/ships/ship.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;overmap&#x2F;ships&#x2F;ship.dm 26"/></a></h3>
+        <p>&quot;Speed of light&quot; for the ship, in turfs/decisecond.</p><h3 id="var/min_speed"><aside class="declaration">var </aside>min_speed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/overmap/ships/ship.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;overmap&#x2F;ships&#x2F;ship.dm 28"/></a></h3>
+        <p>Below this, we round speed to 0 to avoid math errors.</p><h3 id="var/position_x"><aside class="declaration">var </aside>position_x
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/overmap/ships/ship.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;overmap&#x2F;ships&#x2F;ship.dm 31"/></a></h3>
+        <p>Pixel coordinates in the world.</p><h3 id="var/position_y"><aside class="declaration">var </aside>position_y
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/overmap/ships/ship.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;overmap&#x2F;ships&#x2F;ship.dm 33"/></a></h3>
+        <p>Pixel coordinates in the world.</p><h3 id="var/skill_needed"><aside class="declaration">var </aside>skill_needed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/overmap/ships/ship.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;overmap&#x2F;ships&#x2F;ship.dm 52"/></a></h3>
+        <p>Skill needed to steer it without going in random dir.</p><h3 id="var/speed"><aside class="declaration">var </aside>speed
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/overmap/ships/ship.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;overmap&#x2F;ships&#x2F;ship.dm 35"/></a></h3>
+        <p>Speed in x,y direction.</p><h3 id="var/thrust_limit"><aside class="declaration">var </aside>thrust_limit
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/overmap/ships/ship.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;overmap&#x2F;ships&#x2F;ship.dm 48"/></a></h3>
+        <p>Global thrust limit for all engines, 0..1</p><h3 id="var/vessel_mass"><aside class="declaration">var </aside>vessel_mass
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/overmap/ships/ship.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;overmap&#x2F;ships&#x2F;ship.dm 22"/></a></h3>
+        <p>Tonnes, arbitrary number, affects acceleration provided by engines.</p><h3 id="var/vessel_size"><aside class="declaration">var </aside>vessel_size
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/overmap/ships/ship.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;overmap&#x2F;ships&#x2F;ship.dm 24"/></a></h3>
+        <p>Arbitrary number, affects how likely are we to evade meteors.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

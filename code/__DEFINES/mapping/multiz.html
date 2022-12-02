@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;mapping&#x2F;multiz.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/mapping/multiz.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/mapping/multiz.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mapping/multiz.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mapping&#x2F;multiz.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/mapping/multiz.html#define/FALL_IGNORE_ANCHORED">FALL_IGNORE_ANCHORED</a></th><td>Falling should ignore anchored status</td></tr>
+        <tr><th><a href="code/__DEFINES/mapping/multiz.html#define/FALL_CUSHIONED_FALLER">FALL_CUSHIONED_FALLER</a></th><td>this fall shouldn't incur any sort of self-damage for hitting the ground</td></tr>
+        <tr><th><a href="code/__DEFINES/mapping/multiz.html#define/FALL_CUSHIONED_IMPACTED">FALL_CUSHIONED_IMPACTED</a></th><td>this fall shouldn't damage anything we're falling on</td></tr>
+        <tr><th><a href="code/__DEFINES/mapping/multiz.html#define/FALL_BLOCKED">FALL_BLOCKED</a></th><td>fall got interrupted by something blocking</td></tr>
+        <tr><th><a href="code/__DEFINES/mapping/multiz.html#define/FALL_RECOVERED">FALL_RECOVERED</a></th><td>fall got interrupted by the atom regaining its footing/gravity overcame</td></tr>
+        <tr><th><a href="code/__DEFINES/mapping/multiz.html#define/FALL_TERMINATED">FALL_TERMINATED</a></th><td>kill fall entirely, no handling for impacts/recovery</td></tr>
+        <tr><th><a href="code/__DEFINES/mapping/multiz.html#define/FALL_SILENT">FALL_SILENT</a></th><td>don't make fall feedback</td></tr>
+        <tr><th><a href="code/__DEFINES/mapping/multiz.html#define/FALL_ALLOWED">FALL_ALLOWED</a></th><td>allow default fall (used by can fall to determine if atom can support itself under its own power)</td></tr>
+        <tr><th><a href="code/__DEFINES/mapping/multiz.html#define/FALL_FLAGS_STOP">FALL_FLAGS_STOP</a></th><td>these flags mean a fall should stop</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/FALL_ALLOWED"><aside class="declaration">#define </aside>FALL_ALLOWED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mapping/multiz.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mapping&#x2F;multiz.dm 17"/></a>
+    </h3>
+    <p>allow default fall (used by can fall to determine if atom can support itself under its own power)</p><h3 id="define/FALL_BLOCKED"><aside class="declaration">#define </aside>FALL_BLOCKED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mapping/multiz.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mapping&#x2F;multiz.dm 9"/></a>
+    </h3>
+    <p>fall got interrupted by something blocking</p><h3 id="define/FALL_CUSHIONED_FALLER"><aside class="declaration">#define </aside>FALL_CUSHIONED_FALLER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mapping/multiz.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mapping&#x2F;multiz.dm 5"/></a>
+    </h3>
+    <p>this fall shouldn't incur any sort of self-damage for hitting the ground</p><h3 id="define/FALL_CUSHIONED_IMPACTED"><aside class="declaration">#define </aside>FALL_CUSHIONED_IMPACTED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mapping/multiz.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mapping&#x2F;multiz.dm 7"/></a>
+    </h3>
+    <p>this fall shouldn't damage anything we're falling on</p><h3 id="define/FALL_FLAGS_STOP"><aside class="declaration">#define </aside>FALL_FLAGS_STOP
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mapping/multiz.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mapping&#x2F;multiz.dm 20"/></a>
+    </h3>
+    <p>these flags mean a fall should stop</p><h3 id="define/FALL_IGNORE_ANCHORED"><aside class="declaration">#define </aside>FALL_IGNORE_ANCHORED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mapping/multiz.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mapping&#x2F;multiz.dm 3"/></a>
+    </h3>
+    <p>Falling should ignore anchored status</p><h3 id="define/FALL_RECOVERED"><aside class="declaration">#define </aside>FALL_RECOVERED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mapping/multiz.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mapping&#x2F;multiz.dm 11"/></a>
+    </h3>
+    <p>fall got interrupted by the atom regaining its footing/gravity overcame</p><h3 id="define/FALL_SILENT"><aside class="declaration">#define </aside>FALL_SILENT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mapping/multiz.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mapping&#x2F;multiz.dm 15"/></a>
+    </h3>
+    <p>don't make fall feedback</p><h3 id="define/FALL_TERMINATED"><aside class="declaration">#define </aside>FALL_TERMINATED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mapping/multiz.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mapping&#x2F;multiz.dm 13"/></a>
+    </h3>
+    <p>kill fall entirely, no handling for impacts/recovery</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;skin_menu_entry - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/skin_menu_entry.html#var">Var Details</a> - <a href="datum/skin_menu_entry.html#proc">Proc Details</a></header>
+<main>
+<h1>skin_menu_entry <aside>/<a href="datum.html">datum</a>/<a href="datum/skin_menu_entry.html">skin_menu_entry</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/interface/menus/_menus.dm#L150">
+        <img src="git.png" width="16" height="16" title="interface&#x2F;menus&#x2F;_menus.dm 150"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/skin_menu_entry.html#var/cached_constructor">cached_constructor</a></th><td>cached creation parameters</td></tr>
+            <tr><th><a href="datum/skin_menu_entry.html#var/category">category</a></th><td>category we belong to</td></tr>
+            <tr><th><a href="datum/skin_menu_entry.html#var/checkbox">checkbox</a></th><td>checkable?</td></tr>
+            <tr><th><a href="datum/skin_menu_entry.html#var/command">command</a></th><td>command to execute; \n to execute multiple.
+this datum will also inject our own command for synchronization automatically.
+generate_command() overrides this.</td></tr>
+            <tr><th><a href="datum/skin_menu_entry.html#var/group">group</a></th><td>do we have a button group? checkbox is required for this; we will NOT load disabled for groups!</td></tr>
+            <tr><th><a href="datum/skin_menu_entry.html#var/id">id</a></th><td>id - used for both skin and savefiles</td></tr>
+            <tr><th><a href="datum/skin_menu_entry.html#var/is_default">is_default</a></th><td>default enabled for checkable? only one in a group can have this!! infact, only one in a group <strong>MUST</strong> have tihs!!</td></tr>
+            <tr><th><a href="datum/skin_menu_entry.html#var/is_saved">is_saved</a></th><td>is saved? only applicable for checkboxes</td></tr>
+            <tr><th><a href="datum/skin_menu_entry.html#var/load_command_default">load_command_default</a></th><td>default load_command_enabled to command</td></tr>
+            <tr><th><a href="datum/skin_menu_entry.html#var/load_command_disabled">load_command_disabled</a></th><td>command to execute, if any, when loading prefs if we're unchecked</td></tr>
+            <tr><th><a href="datum/skin_menu_entry.html#var/load_command_enabled">load_command_enabled</a></th><td>command to execute, if any, when loading prefs if we're checked</td></tr>
+            <tr><th><a href="datum/skin_menu_entry.html#var/load_command_proc">load_command_proc</a></th><td>use proc for load command</td></tr>
+            <tr><th><a href="datum/skin_menu_entry.html#var/name">name</a></th><td>name</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/skin_menu_entry.html#proc/creation_parameters">creation_parameters</a></th><td>should omit id, that'll be set separately</td></tr>
+            <tr><th><a href="datum/skin_menu_entry.html#proc/generate_command">generate_command</a></th><td>generates our normal command</td></tr>
+            <tr><th><a href="datum/skin_menu_entry.html#proc/pressed">pressed</a></th><td>called when someone presses us; using usr here is fine as this should only be called from verb anyways!</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/cached_constructor"><aside class="declaration">var </aside>cached_constructor
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/interface/menus/_menus.dm#L178">
+        <img src="git.png" width="16" height="16" title="interface&#x2F;menus&#x2F;_menus.dm 178"/></a></h3>
+        <p>cached creation parameters</p><h3 id="var/category"><aside class="declaration">var </aside>category
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/skin_menu_category.html">skin_menu_category</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/interface/menus/_menus.dm#L182">
+        <img src="git.png" width="16" height="16" title="interface&#x2F;menus&#x2F;_menus.dm 182"/></a></h3>
+        <p>category we belong to</p><h3 id="var/checkbox"><aside class="declaration">var </aside>checkbox
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/interface/menus/_menus.dm#L166">
+        <img src="git.png" width="16" height="16" title="interface&#x2F;menus&#x2F;_menus.dm 166"/></a></h3>
+        <p>checkable?</p><h3 id="var/command"><aside class="declaration">var </aside>command
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/interface/menus/_menus.dm#L160">
+        <img src="git.png" width="16" height="16" title="interface&#x2F;menus&#x2F;_menus.dm 160"/></a></h3>
+        <p>command to execute; \n to execute multiple.
+this datum will also inject our own command for synchronization automatically.
+generate_command() overrides this.</p><h3 id="var/group"><aside class="declaration">var </aside>group
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/interface/menus/_menus.dm#L162">
+        <img src="git.png" width="16" height="16" title="interface&#x2F;menus&#x2F;_menus.dm 162"/></a></h3>
+        <p>do we have a button group? checkbox is required for this; we will NOT load disabled for groups!</p><h3 id="var/id"><aside class="declaration">var </aside>id
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/interface/menus/_menus.dm#L152">
+        <img src="git.png" width="16" height="16" title="interface&#x2F;menus&#x2F;_menus.dm 152"/></a></h3>
+        <p>id - used for both skin and savefiles</p><h3 id="var/is_default"><aside class="declaration">var </aside>is_default
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/interface/menus/_menus.dm#L164">
+        <img src="git.png" width="16" height="16" title="interface&#x2F;menus&#x2F;_menus.dm 164"/></a></h3>
+        <p>default enabled for checkable? only one in a group can have this!! infact, only one in a group <strong>MUST</strong> have tihs!!</p><h3 id="var/is_saved"><aside class="declaration">var </aside>is_saved
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/interface/menus/_menus.dm#L176">
+        <img src="git.png" width="16" height="16" title="interface&#x2F;menus&#x2F;_menus.dm 176"/></a></h3>
+        <p>is saved? only applicable for checkboxes</p><h3 id="var/load_command_default"><aside class="declaration">var </aside>load_command_default
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/interface/menus/_menus.dm#L174">
+        <img src="git.png" width="16" height="16" title="interface&#x2F;menus&#x2F;_menus.dm 174"/></a></h3>
+        <p>default load_command_enabled to command</p><h3 id="var/load_command_disabled"><aside class="declaration">var </aside>load_command_disabled
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/interface/menus/_menus.dm#L170">
+        <img src="git.png" width="16" height="16" title="interface&#x2F;menus&#x2F;_menus.dm 170"/></a></h3>
+        <p>command to execute, if any, when loading prefs if we're unchecked</p><h3 id="var/load_command_enabled"><aside class="declaration">var </aside>load_command_enabled
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/interface/menus/_menus.dm#L168">
+        <img src="git.png" width="16" height="16" title="interface&#x2F;menus&#x2F;_menus.dm 168"/></a></h3>
+        <p>command to execute, if any, when loading prefs if we're checked</p><h3 id="var/load_command_proc"><aside class="declaration">var </aside>load_command_proc
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/interface/menus/_menus.dm#L172">
+        <img src="git.png" width="16" height="16" title="interface&#x2F;menus&#x2F;_menus.dm 172"/></a></h3>
+        <p>use proc for load command</p><h3 id="var/name"><aside class="declaration">var </aside>name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/interface/menus/_menus.dm#L154">
+        <img src="git.png" width="16" height="16" title="interface&#x2F;menus&#x2F;_menus.dm 154"/></a></h3>
+        <p>name</p><h2 id="proc">Proc Details</h2><h3 id="proc/creation_parameters"><aside class="declaration">proc </aside>creation_parameters<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/interface/menus/_menus.dm#L267">
+        <img src="git.png" width="16" height="16" title="interface&#x2F;menus&#x2F;_menus.dm 267"/></a></aside>
+        </h3>
+        <p>should omit id, that'll be set separately</p><h3 id="proc/generate_command"><aside class="declaration">proc </aside>generate_command<aside>(loading) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/interface/menus/_menus.dm#L261">
+        <img src="git.png" width="16" height="16" title="interface&#x2F;menus&#x2F;_menus.dm 261"/></a></aside>
+        </h3>
+        <p>generates our normal command</p>
+<p>! WARNING !
+While loading, you CANNOT use chained commands with \n.</p><h3 id="proc/pressed"><aside class="declaration">proc </aside>pressed<aside>(/<a href="client.html">client</a>/C, new_checked) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/interface/menus/_menus.dm#L237">
+        <img src="git.png" width="16" height="16" title="interface&#x2F;menus&#x2F;_menus.dm 237"/></a></aside>
+        </h3>
+        <p>called when someone presses us; using usr here is fine as this should only be called from verb anyways!</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

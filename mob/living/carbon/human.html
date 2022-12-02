@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="mob/living/carbon/human.html#var">Var Details</a> - <a href="mob/living/carbon/human.html#proc">Proc Details</a></header>
+<main>
+<h1>human <aside>/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_attackhand.dm#L402">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_attackhand.dm 402"/></a></h1>
+
+<p>Buckling - For riding.dm</p>
+<h2 id="hair-colour-and-style">Hair colour and style</h2><h2 id="hair-gradients">Hair gradients</h2><h2 id="facial-hair-colour-and-style">Facial hair colour and style</h2><h2 id="eye-colour">Eye colour</h2><h2 id="skin-colour">Skin colour</h2><h2 id="ears-horns-tails-wings-and-custom-species">ears, horns, tails, wings and custom species.</h2><h2 id="synth-colors">Synth colors</h2><h2 id="general-information">General information</h2><h2 id="equipment-slots">Equipment slots</h2><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/ability_flags">ability_flags</a></th><td>Shadekin abilities/potentially other species-based?</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/active_regen">active_regen</a></th><td>Used for the regenerate proc in human_powers.dm</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/age">age</a></th><td>Player's age.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/b_type">b_type</a></th><td>Player's bloodtype.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/backbag">backbag</a></th><td>Which backpack type the player has chosen.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/can_defib">can_defib</a></th><td>Horrible damage (like beheadings) will prevent defibbing organics.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/damage_multiplier">damage_multiplier</a></th><td>Multiplies melee combat damage.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/descriptors">descriptors</a></th><td>For comparative examine code</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/embedded_flag">embedded_flag</a></th><td>To check if we've need to roll for damage on movement while an item is imbedded in us.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/icon_update">icon_update</a></th><td>Whether icon updating shall take place.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/identifying_gender">identifying_gender</a></th><td>In case someone identifies as another gender than it's biological one</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/impersonate_bodytype">impersonate_bodytype</a></th><td>for impersonating a bodytype but actually.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/impersonate_bodytype_legacy">impersonate_bodytype_legacy</a></th><td>For impersonating a bodytype.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/last_dam">last_dam</a></th><td>Used for determining if we need to process all organs or just some or even none.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/last_push_time">last_push_time</a></th><td>For human_attackhand.dm, keeps track of the last use of disarm.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/last_spit">last_spit</a></th><td>Timestamp.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/lip_style">lip_style</a></th><td>No lipstick by default- arguably misleading, as it could be used for general makeup.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/machine_visual">machine_visual</a></th><td>Machine that is currently applying visual effects to this mob.
+Only used for camera monitors currently.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/pdachoice">pdachoice</a></th><td>Which PDA type the player has chosen.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/pulling_punches">pulling_punches</a></th><td>Are you trying not to hurt your opponent?</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/resleeve_lock">resleeve_lock</a></th><td>Mind/body data storage system
+for the resleeving tech</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/robobody_count">robobody_count</a></th><td>Counts torso, groin, and head, if they're robotic</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/robolimb_count">robolimb_count</a></th><td>Total number of external robot parts.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/s_base">s_base</a></th><td>For adherent coloring....</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/s_tone">s_tone</a></th><td>Skin tone</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/sensorpref">sensorpref</a></th><td>Suit sensor loadout pref.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/skin_state">skin_state</a></th><td>Skin flag</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/spam_flag">spam_flag</a></th><td>Throws byond:tm: errors if placed in human/emote, but not here.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/special_voice">special_voice</a></th><td>Toggle for the mime's abilities. //TODO Readd mime stuff :(
+For changing our voice. Used by a symptom.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/spit_name">spit_name</a></th><td>String</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/spit_projectile">spit_projectile</a></th><td>Projectile type.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/spitting">spitting</a></th><td>Spitting and spitting related things. Any human based ranged attacks, be it innate or added abilities.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/step_count">step_count</a></th><td>Track how many footsteps have been taken to know when to play footstep sounds</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/synth_color">synth_color</a></th><td>Lets normally uncolorable synth parts be colorable.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/synth_markings">synth_markings</a></th><td>Enables/disables markings on synth parts.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/synthetic">synthetic</a></th><td>If they are a synthetic (aka synthetic torso). Also holds the datums for the type of robolimb.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/vantag_pref">vantag_pref</a></th><td>What's my status?</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/vessel">vessel</a></th><td>BLOOD SYSTEM</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/voice">voice</a></th><td>Instead of new say code calling GetVoice() over and over and over, we're just going to ask this variable, which gets updated in Life()</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/vr_holder">vr_holder</a></th><td>Used by mobs in virtual reality to point back to the &quot;real&quot; mob the client belongs to.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/vr_link">vr_link</a></th><td>Used by &quot;real&quot; mobs after they leave a VR session</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/wearing_rig">wearing_rig</a></th><td>This is very not good, but it's much much better than calling get_rig() every update_canmove() call.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/xylophone">xylophone</a></th><td>For the spoooooooky xylophone cooldown. //TODO: Everyone shouldn't have this.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/Initialize">Initialize</a></th><td>constructor; pass in a specieslike resolver as second argument to set</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/Robotize">Robotize</a></th><td>Human -&gt; Robot</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/alraune_fruit_select">alraune_fruit_select</a></th><td>Defines how much oxyloss humans can get per tick. A tile with no air at all (such as space) applies this value, otherwise it's a percentage of it.
+The amount of damage you'll get when in critical condition. We want this to be a 5 minute deal = 300s.
+There are 50HP to get through, so (1/6)*last_tick_duration per second.
+Breaths however only happen every 4 ticks. last_tick_duration = ~2.0 on average.
+If they're wearing a fully sealed suit, their internals take priority.
+If no sealed suit, internals take priority in low pressure environements.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/break_cloak">break_cloak</a></th><td>This is called when we want different types of 'cloaks' to stop working, e.g. when attacking.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/examine">examine</a></th><td>Just in case someone VVs the gender to something strange.
+It'll runtime anyway when it hits usages, better to CRASH() now with a helpful message.
+I hate this. Though it's better than what it was before. -Zandario
+End of the bs</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/eyecheck">eyecheck</a></th><td>eyecheck()
+Returns a number between -1 to 2</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/get_FBP_type">get_FBP_type</a></th><td>Returns a string based on what kind of brain the FBP has.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/get_display_species">get_display_species</a></th><td>Shows species in tooltips and examine.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/get_restraining_bolt">get_restraining_bolt</a></th><td>These things are allowed to add vision flags.
+If you code some crazy item that goes on your feet that lets you see ghosts, you need to add a slot here.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/handle_chemical_smoke">handle_chemical_smoke</a></th><td>breathing</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/handle_environment">handle_environment</a></th><td>I hate this, fuck you. Don't override shit in human life(). @Zandario</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/has_organ">has_organ</a></th><td>returns if we semantically have a certain organ</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/isSynthetic">isSynthetic</a></th><td>This is the 'mechanical' check for synthetic-ness, not appearance.
+Returns the company that made the synthetic</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/looksSynthetic">looksSynthetic</a></th><td>Would an onlooker know this person is synthetic?
+Based on sort of logical reasoning, 'Look at head, look at torso'</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/nectar_select">nectar_select</a></th><td>So if someone doesn't want to vomit jelly, they don't have to.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/nif_menu">nif_menu</a></th><td>Verb to open the interface</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/reset_species">reset_species</a></th><td>resets our species to default with this priority:</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/set_species">set_species</a></th><td>Sets a human mob's species.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/show_descriptors_to">show_descriptors_to</a></th><td>Small, mechanically supported physical customisation options.
+Also allows for per-species physical information ('his neck markings are more important than yours').</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/spam_flag_false">spam_flag_false</a></th><td>EMOTES PORTED FROM MAIN START</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/update_wing_showing">update_wing_showing</a></th><td>Wings! See update_icons_vr.dm for more wing procs</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/wearing_wiz_garb">wearing_wiz_garb</a></th><td>Humans can wear clothes.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/ability_flags"><aside class="declaration">var </aside>ability_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L141">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 141"/></a></h3>
+        <p>Shadekin abilities/potentially other species-based?</p><h3 id="var/active_regen"><aside class="declaration">var </aside>active_regen
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 28"/></a></h3>
+        <p>Used for the regenerate proc in human_powers.dm</p><h3 id="var/age"><aside class="declaration">var </aside>age
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L168">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 168"/></a></h3>
+        <p>Player's age.</p><h3 id="var/b_type"><aside class="declaration">var </aside>b_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L170">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 170"/></a></h3>
+        <p>Player's bloodtype.</p><h3 id="var/backbag"><aside class="declaration">var </aside>backbag
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L179">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 179"/></a></h3>
+        <p>Which backpack type the player has chosen.</p><h3 id="var/can_defib"><aside class="declaration">var </aside>can_defib
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 26"/></a></h3>
+        <p>Horrible damage (like beheadings) will prevent defibbing organics.</p><h3 id="var/damage_multiplier"><aside class="declaration">var </aside>damage_multiplier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L160">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 160"/></a></h3>
+        <p>Multiplies melee combat damage.</p><h3 id="var/descriptors"><aside class="declaration">var </aside>descriptors
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L244">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 244"/></a></h3>
+        <p>For comparative examine code</p><h3 id="var/embedded_flag"><aside class="declaration">var </aside>embedded_flag
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 10"/></a></h3>
+        <p>To check if we've need to roll for damage on movement while an item is imbedded in us.</p><h3 id="var/icon_update"><aside class="declaration">var </aside>icon_update
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L162">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 162"/></a></h3>
+        <p>Whether icon updating shall take place.</p><h3 id="var/identifying_gender"><aside class="declaration">var </aside>identifying_gender
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L241">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 241"/></a></h3>
+        <p>In case someone identifies as another gender than it's biological one</p><h3 id="var/impersonate_bodytype"><aside class="declaration">var </aside>impersonate_bodytype
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L139">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 139"/></a></h3>
+        <p>for impersonating a bodytype but actually.</p><h3 id="var/impersonate_bodytype_legacy"><aside class="declaration">var </aside>impersonate_bodytype_legacy
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L137">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 137"/></a></h3>
+        <p>For impersonating a bodytype.</p><h3 id="var/last_dam"><aside class="declaration">var </aside>last_dam
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L219">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 219"/></a></h3>
+        <p>Used for determining if we need to process all organs or just some or even none.</p><h3 id="var/last_push_time"><aside class="declaration">var </aside>last_push_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 14"/></a></h3>
+        <p>For human_attackhand.dm, keeps track of the last use of disarm.</p><h3 id="var/last_spit"><aside class="declaration">var </aside>last_spit
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 23"/></a></h3>
+        <p>Timestamp.</p><h3 id="var/lip_style"><aside class="declaration">var </aside>lip_style
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L165">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 165"/></a></h3>
+        <p>No lipstick by default- arguably misleading, as it could be used for general makeup.</p><h3 id="var/machine_visual"><aside class="declaration">var </aside>machine_visual
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_helpers.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_helpers.dm 5"/></a></h3>
+        <p>Machine that is currently applying visual effects to this mob.
+Only used for camera monitors currently.</p><h3 id="var/pdachoice"><aside class="declaration">var </aside>pdachoice
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L181">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 181"/></a></h3>
+        <p>Which PDA type the player has chosen.</p><h3 id="var/pulling_punches"><aside class="declaration">var </aside>pulling_punches
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L230">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 230"/></a></h3>
+        <p>Are you trying not to hurt your opponent?</p><h3 id="var/resleeve_lock"><aside class="declaration">var </aside>resleeve_lock
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/resleeving/infocore_records.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;resleeving&#x2F;infocore_records.dm 6"/></a></h3>
+        <p>Mind/body data storage system
+for the resleeving tech</p><h3 id="var/robobody_count"><aside class="declaration">var </aside>robobody_count
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L234">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 234"/></a></h3>
+        <p>Counts torso, groin, and head, if they're robotic</p><h3 id="var/robolimb_count"><aside class="declaration">var </aside>robolimb_count
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L232">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 232"/></a></h3>
+        <p>Total number of external robot parts.</p><h3 id="var/s_base"><aside class="declaration">var </aside>s_base
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L157">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 157"/></a></h3>
+        <p>For adherent coloring....</p><h3 id="var/s_tone"><aside class="declaration">var </aside>s_tone
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 71"/></a></h3>
+        <p>Skin tone</p><h3 id="var/sensorpref"><aside class="declaration">var </aside>sensorpref
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L143">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 143"/></a></h3>
+        <p>Suit sensor loadout pref.</p><h3 id="var/skin_state"><aside class="declaration">var </aside>skin_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 75"/></a></h3>
+        <p>Skin flag</p><h3 id="var/spam_flag"><aside class="declaration">var </aside>spam_flag
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 31"/></a></h3>
+        <p>Throws byond:tm: errors if placed in human/emote, but not here.</p><h3 id="var/special_voice"><aside class="declaration">var </aside>special_voice
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L216">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 216"/></a></h3>
+        <p>Toggle for the mime's abilities. //TODO Readd mime stuff :(
+For changing our voice. Used by a symptom.</p><h3 id="var/spit_name"><aside class="declaration">var </aside>spit_name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 21"/></a></h3>
+        <p>String</p><h3 id="var/spit_projectile"><aside class="declaration">var </aside>spit_projectile
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 19"/></a></h3>
+        <p>Projectile type.</p><h3 id="var/spitting"><aside class="declaration">var </aside>spitting
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 17"/></a></h3>
+        <p>Spitting and spitting related things. Any human based ranged attacks, be it innate or added abilities.</p><h3 id="var/step_count"><aside class="declaration">var </aside>step_count
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L247">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 247"/></a></h3>
+        <p>Track how many footsteps have been taken to know when to play footstep sounds</p><h3 id="var/synth_color"><aside class="declaration">var </aside>synth_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L149">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 149"/></a></h3>
+        <p>Lets normally uncolorable synth parts be colorable.</p><h3 id="var/synth_markings"><aside class="declaration">var </aside>synth_markings
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L155">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 155"/></a></h3>
+        <p>Enables/disables markings on synth parts.</p><h3 id="var/synthetic"><aside class="declaration">var </aside>synthetic
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/robolimb.html">robolimb</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L172">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 172"/></a></h3>
+        <p>If they are a synthetic (aka synthetic torso). Also holds the datums for the type of robolimb.</p><h3 id="var/vantag_pref"><aside class="declaration">var </aside>vantag_pref
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L134">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 134"/></a></h3>
+        <p>What's my status?</p><h3 id="var/vessel"><aside class="declaration">var </aside>vessel
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/reagents.html">reagents</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/blood.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;blood.dm 14"/></a></h3>
+        <p>BLOOD SYSTEM</p><h3 id="var/voice"><aside class="declaration">var </aside>voice
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L211">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 211"/></a></h3>
+        <p>Instead of new say code calling GetVoice() over and over and over, we're just going to ask this variable, which gets updated in Life()</p><h3 id="var/vr_holder"><aside class="declaration">var </aside>vr_holder
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L252">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 252"/></a></h3>
+        <p>Used by mobs in virtual reality to point back to the &quot;real&quot; mob the client belongs to.</p><h3 id="var/vr_link"><aside class="declaration">var </aside>vr_link
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L254">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 254"/></a></h3>
+        <p>Used by &quot;real&quot; mobs after they leave a VR session</p><h3 id="var/wearing_rig"><aside class="declaration">var </aside>wearing_rig
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/rig.html">rig</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 12"/></a></h3>
+        <p>This is very not good, but it's much much better than calling get_rig() every update_canmove() call.</p><h3 id="var/xylophone"><aside class="declaration">var </aside>xylophone
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_defines.dm#L222">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 222"/></a></h3>
+        <p>For the spoooooooky xylophone cooldown. //TODO: Everyone shouldn't have this.</p><h2 id="proc">Proc Details</h2><h3 id="proc/Initialize"><aside class="parent"><a title="/mob" href="mob.html#proc/Initialize">&uarr;</a></aside>Initialize<aside>(mapload, /<a href="datum.html">datum</a>/<a href="datum/species.html">species</a>/specieslike) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human.dm 6"/></a></aside>
+        </h3>
+        <p>constructor; pass in a specieslike resolver as second argument to set</p>
+<p>specieslike resolver = species datum, id, path, or name.</p><h3 id="proc/Robotize"><aside class="declaration">proc </aside>Robotize<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/transform_procs.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;transform_procs.dm 112"/></a></aside>
+        </h3>
+        <p>Human -&gt; Robot</p><h3 id="proc/alraune_fruit_select"><aside class="declaration">proc </aside>alraune_fruit_select<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/station/alraune.dm#L341">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;station&#x2F;alraune.dm 341"/></a></aside>
+        </h3>
+        <p>Defines how much oxyloss humans can get per tick. A tile with no air at all (such as space) applies this value, otherwise it's a percentage of it.
+The amount of damage you'll get when in critical condition. We want this to be a 5 minute deal = 300s.
+There are 50HP to get through, so (1/6)*last_tick_duration per second.
+Breaths however only happen every 4 ticks. last_tick_duration = ~2.0 on average.
+If they're wearing a fully sealed suit, their internals take priority.
+If no sealed suit, internals take priority in low pressure environements.</p><h3 id="proc/break_cloak">break_cloak<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_helpers.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_helpers.dm 56"/></a></aside>
+        </h3>
+        <p>This is called when we want different types of 'cloaks' to stop working, e.g. when attacking.</p><h3 id="proc/examine"><aside class="parent"><a title="/atom" href="atom.html#proc/examine">&uarr;</a></aside>examine<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/examine.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;examine.dm 1"/></a></aside>
+        </h3>
+        <p>Just in case someone VVs the gender to something strange.
+It'll runtime anyway when it hits usages, better to CRASH() now with a helpful message.
+I hate this. Though it's better than what it was before. -Zandario
+End of the bs</p><h3 id="proc/eyecheck">eyecheck<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human.dm#L597">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human.dm 597"/></a></aside>
+        </h3>
+        <p>eyecheck()
+Returns a number between -1 to 2</p><h3 id="proc/get_FBP_type"><aside class="declaration">proc </aside>get_FBP_type<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_helpers.dm#L143">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_helpers.dm 143"/></a></aside>
+        </h3>
+        <p>Returns a string based on what kind of brain the FBP has.</p><h3 id="proc/get_display_species"><aside class="declaration">proc </aside>get_display_species<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human.dm#L1521">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human.dm 1521"/></a></aside>
+        </h3>
+        <p>Shows species in tooltips and examine.</p>
+<p>Get custom species name if set, otherwise use the species name
+Beepboops get extra special text based on gender if obviously beepboop
+Else species name</p><h3 id="proc/get_restraining_bolt">get_restraining_bolt<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_helpers.dm#L213">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_helpers.dm 213"/></a></aside>
+        </h3>
+        <p>These things are allowed to add vision flags.
+If you code some crazy item that goes on your feet that lets you see ghosts, you need to add a slot here.</p><h3 id="proc/handle_chemical_smoke">handle_chemical_smoke<aside>(/<a href="datum.html">datum</a>/<a href="datum/gas_mixture.html">gas_mixture</a>/environment) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/life.dm#L359">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life.dm 359"/></a></aside>
+        </h3>
+        <p>breathing</p><h3 id="proc/handle_environment">handle_environment<aside>(/<a href="datum.html">datum</a>/<a href="datum/gas_mixture.html">gas_mixture</a>/environment) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/life.dm#L650">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life.dm 650"/></a></aside>
+        </h3>
+        <p>I hate this, fuck you. Don't override shit in human life(). @Zandario</p><h3 id="proc/has_organ"><aside class="declaration">proc </aside>has_organ<aside>(name) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_organs.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_organs.dm 4"/></a></aside>
+        </h3>
+        <p>returns if we semantically have a certain organ</p><h3 id="proc/isSynthetic">isSynthetic<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_helpers.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_helpers.dm 105"/></a></aside>
+        </h3>
+        <p>This is the 'mechanical' check for synthetic-ness, not appearance.
+Returns the company that made the synthetic</p><h3 id="proc/looksSynthetic"><aside class="declaration">proc </aside>looksSynthetic<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human_helpers.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_helpers.dm 124"/></a></aside>
+        </h3>
+        <p>Would an onlooker know this person is synthetic?
+Based on sort of logical reasoning, 'Look at head, look at torso'</p><h3 id="proc/nectar_select"><aside class="declaration">proc </aside>nectar_select<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/station/apidaen.dm#L129">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;station&#x2F;apidaen.dm 129"/></a></aside>
+        </h3>
+        <p>So if someone doesn't want to vomit jelly, they don't have to.</p><h3 id="proc/nif_menu"><aside class="declaration">proc </aside>nif_menu<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/nifsoft/nif_tgui.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;nifsoft&#x2F;nif_tgui.dm 87"/></a></aside>
+        </h3>
+        <p>Verb to open the interface</p><h3 id="proc/reset_species"><aside class="declaration">proc </aside>reset_species<aside>(force) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human.dm#L1169">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human.dm 1169"/></a></aside>
+        </h3>
+        <p>resets our species to default with this priority:</p>
+<ol>
+<li>dna species</li>
+<li>species var (aka prototype species)</li>
+<li>human</li>
+</ol><h3 id="proc/set_species"><aside class="declaration">proc </aside>set_species<aside>(/<a href="datum.html">datum</a>/<a href="datum/species.html">species</a>/specieslike, regen_icons, force, skip, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/example) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/human.dm#L1079">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human.dm 1079"/></a></aside>
+        </h3>
+        <p>Sets a human mob's species.</p>
+<p>todo: no more using anything id, and MAYBE path/direct datum; we really don't like names,
+todo: and things generally shouldn't be making species datums.</p>
+<p>todo: turn all of this shit into SPECIES_OP_X flags
+todo: either flags, or variable for keep organs:
+[X_REPLACE_ALL_ORGANS, X_DESTROY_EXTRA_ORGANS/X_DROP_EXTRA_ORGANS,
+X_REPLACE_VITAL_ORGANS, X_ASSERT_VITAL_ORGANS]?
+god this is going to be a pain in the ass</p>
+<p>@param</p>
+<ul>
+<li>specieslike - species instance, id, typepath, or name; if null, we reset species to dna.</li>
+<li>regen_icons - immediately update icons?</li>
+<li>force - change even if we are already that species <strong>by type</strong></li>
+<li>skip - skip most ops that aren't apply or remove which are required for instance cleanup. do not do this unless you absolutely know what you are doing.</li>
+<li>example - dumbshit argument used for vore transformations to copy necessary data, why tf is this not done in the vore module? //TODO: REMOVE.</li>
+</ul><h3 id="proc/show_descriptors_to"><aside class="declaration">proc </aside>show_descriptors_to<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/descriptors/_descriptors.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;descriptors&#x2F;_descriptors.dm 6"/></a></aside>
+        </h3>
+        <p>Small, mechanically supported physical customisation options.
+Also allows for per-species physical information ('his neck markings are more important than yours').</p><h3 id="proc/spam_flag_false"><aside class="declaration">proc </aside>spam_flag_false<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/emote.dm#L1167">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;emote.dm 1167"/></a></aside>
+        </h3>
+        <p>EMOTES PORTED FROM MAIN START</p><h3 id="proc/update_wing_showing"><aside class="declaration">proc </aside>update_wing_showing<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/update_icons.dm#L1016">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;update_icons.dm 1016"/></a></aside>
+        </h3>
+        <p>Wings! See update_icons_vr.dm for more wing procs</p><h3 id="proc/wearing_wiz_garb"><aside class="parent"><a title="/mob" href="mob.html#proc/wearing_wiz_garb">&uarr;</a></aside>wearing_wiz_garb<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/antagonist/outsider/wizard.dm#L127">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;antagonist&#x2F;outsider&#x2F;wizard.dm 127"/></a></aside>
+        </h3>
+        <p>Humans can wear clothes.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

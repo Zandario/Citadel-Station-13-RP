@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/_flags/item_flags.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/_flags/item_flags.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><p>Flags for the item_flags var on /obj/item</p></td></tr>
+        <tr><th><a href="code/__DEFINES/_flags/item_flags.html#define/IN_INVENTORY">IN_INVENTORY</a></th><td>is this item equipped into an inventory slot or hand of a mob? used for tooltips</td></tr>
+        <tr><th><a href="code/__DEFINES/_flags/item_flags.html#define/ITEM_DROPDEL">ITEM_DROPDEL</a></th><td>When dropped, it calls qdel on itself</td></tr>
+        <tr><th><a href="code/__DEFINES/_flags/item_flags.html#define/ITEM_NOBLUDGEON">ITEM_NOBLUDGEON</a></th><td>when an item has this it produces no &quot;X has been hit by Y with Z&quot; message in the default attackby()</td></tr>
+        <tr><th><a href="code/__DEFINES/_flags/item_flags.html#define/ITEM_ABSTRACT">ITEM_ABSTRACT</a></th><td>for all things that are technically items but used for various different stuff</td></tr>
+        <tr><th><a href="code/__DEFINES/_flags/item_flags.html#define/IMMUTABLE_SLOW">IMMUTABLE_SLOW</a></th><td>When players should not be able to change the slowdown of the item (Speed potions, ect)</td></tr>
+        <tr><th><a href="code/__DEFINES/_flags/item_flags.html#define/SURGICAL_TOOL">SURGICAL_TOOL</a></th><td>Tool commonly used for surgery: won't attack targets in an active surgical operation on help intent (in case of mistakes)</td></tr>
+        <tr><th><a href="code/__DEFINES/_flags/item_flags.html#define/IN_STORAGE">IN_STORAGE</a></th><td>is this item in a storage component?</td></tr>
+        <tr><th><a href="code/__DEFINES/_flags/item_flags.html#define/ITEM_THROW_UNCATCHABLE">ITEM_THROW_UNCATCHABLE</a></th><td>we can't be caught when hitting a mob on throw</td></tr>
+        <tr><th><a href="code/__DEFINES/_flags/item_flags.html#define/ITEM_NO_TOOL_ATTACK">ITEM_NO_TOOL_ATTACK</a></th><td>we cannot be used a tool on click, no matter what</td></tr>
+        <tr><td colspan="2"><p>Flags for the clothing_flags var on /obj/item</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/_flags/item_flags.html#define/BLOCK_GAS_SMOKE_EFFECT">BLOCK_GAS_SMOKE_EFFECT</a></th><td>Blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets ONLY! (NOTE: flag shared with ONESIZEFITSALL)</td></tr>
+        <tr><th><a href="code/__DEFINES/_flags/item_flags.html#define/ALLOWINTERNALS">ALLOWINTERNALS</a></th><td>Mask allows internals</td></tr>
+        <tr><th><a href="code/__DEFINES/_flags/item_flags.html#define/NOSLIP">NOSLIP</a></th><td>Prevents from slipping on wet floors, in space etc</td></tr>
+        <tr><th><a href="code/__DEFINES/_flags/item_flags.html#define/THICKMATERIAL">THICKMATERIAL</a></th><td>Prevents syringes, parapens and hyposprays if equipped to slot_suit or SLOT_ID_HEAD.</td></tr>
+        <tr><th><a href="code/__DEFINES/_flags/item_flags.html#define/SCAN_REAGENTS">SCAN_REAGENTS</a></th><td>Allows helmets and glasses to scan reagents.</td></tr>
+        <tr><th><a href="code/__DEFINES/_flags/item_flags.html#define/FLEXIBLEMATERIAL">FLEXIBLEMATERIAL</a></th><td>At the moment, masks with this flag will not prevent eating even if they are covering your face.</td></tr>
+        <tr><th><a href="code/__DEFINES/_flags/item_flags.html#define/ALLOW_SURVIVALFOOD">ALLOW_SURVIVALFOOD</a></th><td>Allows special survival food items to be eaten through it</td></tr>
+        <tr><th><a href="code/__DEFINES/_flags/item_flags.html#define/EQUIP_IGNORE_DELIMB">EQUIP_IGNORE_DELIMB</a></th><td>ignores &quot;is this limb here&quot; for equip.</td></tr>
+        <tr><th><a href="code/__DEFINES/_flags/item_flags.html#define/EQUIP_IGNORE_BELTLINK">EQUIP_IGNORE_BELTLINK</a></th><td>ignores &quot;do we have a jumpsuit&quot; for belt</td></tr>
+        <tr><th><a href="code/__DEFINES/_flags/item_flags.html#define/EQUIP_ALLOW_SINGLE_LIMB">EQUIP_ALLOW_SINGLE_LIMB</a></th><td>for plural limbs, wearable with just one</td></tr>
+        <tr><td colspan="2"><h1 id="bitflags-for-the-obj-item-var-flags-inv-variable-these-determine-when-a-piece-of-clothing-hides-another-i-e-a-helmet-hiding-glasses">bitflags for the /obj/item/var/flags_inv variable. These determine when a piece of clothing hides another, i.e. a helmet hiding glasses.</h1></td></tr>
+        <tr><th><a href="code/__DEFINES/_flags/item_flags.html#define/HIDEHOLSTER">HIDEHOLSTER</a></th><td>Some clothing hides holsters, but not all accessories</td></tr>
+        <tr><th><a href="code/__DEFINES/_flags/item_flags.html#define/HIDEEARS">HIDEEARS</a></th><td>Headsets and such.</td></tr>
+        <tr><th><a href="code/__DEFINES/_flags/item_flags.html#define/HIDEEYES">HIDEEYES</a></th><td>Glasses.</td></tr>
+        <tr><th><a href="code/__DEFINES/_flags/item_flags.html#define/HIDEFACE">HIDEFACE</a></th><td>Dictates whether we appear as &quot;Unknown&quot;.</td></tr>
+        <tr><th><a href="code/__DEFINES/_flags/item_flags.html#define/BLOCKHEADHAIR">BLOCKHEADHAIR</a></th><td>Hides the user's hair overlay. Leaves facial hair.</td></tr>
+        <tr><th><a href="code/__DEFINES/_flags/item_flags.html#define/BLOCKHAIR">BLOCKHAIR</a></th><td>Hides the user's hair, facial and otherwise.</td></tr>
+        <tr><td colspan="2"><h1 id="bitflags-for-obj-item-var-body-parts-covered">bitflags for /obj/item/var/body_parts_covered</h1></td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/ALLOWINTERNALS"><aside class="declaration">#define </aside>ALLOWINTERNALS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm 55"/></a>
+    </h3>
+    <p>Mask allows internals</p><h3 id="define/ALLOW_SURVIVALFOOD"><aside class="declaration">#define </aside>ALLOW_SURVIVALFOOD
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm 77"/></a>
+    </h3>
+    <p>Allows special survival food items to be eaten through it</p><h3 id="define/BLOCKHAIR"><aside class="declaration">#define </aside>BLOCKHAIR
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm#L119">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm 119"/></a>
+    </h3>
+    <p>Hides the user's hair, facial and otherwise.</p><h3 id="define/BLOCKHEADHAIR"><aside class="declaration">#define </aside>BLOCKHEADHAIR
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm#L117">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm 117"/></a>
+    </h3>
+    <p>Hides the user's hair overlay. Leaves facial hair.</p><h3 id="define/BLOCK_GAS_SMOKE_EFFECT"><aside class="declaration">#define </aside>BLOCK_GAS_SMOKE_EFFECT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm 53"/></a>
+    </h3>
+    <p>Blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets ONLY! (NOTE: flag shared with ONESIZEFITSALL)</p><h3 id="define/EQUIP_ALLOW_SINGLE_LIMB"><aside class="declaration">#define </aside>EQUIP_ALLOW_SINGLE_LIMB
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm 83"/></a>
+    </h3>
+    <p>for plural limbs, wearable with just one</p><h3 id="define/EQUIP_IGNORE_BELTLINK"><aside class="declaration">#define </aside>EQUIP_IGNORE_BELTLINK
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm 81"/></a>
+    </h3>
+    <p>ignores &quot;do we have a jumpsuit&quot; for belt</p><h3 id="define/EQUIP_IGNORE_DELIMB"><aside class="declaration">#define </aside>EQUIP_IGNORE_DELIMB
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm 79"/></a>
+    </h3>
+    <p>ignores &quot;is this limb here&quot; for equip.</p><h3 id="define/FLEXIBLEMATERIAL"><aside class="declaration">#define </aside>FLEXIBLEMATERIAL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm 75"/></a>
+    </h3>
+    <p>At the moment, masks with this flag will not prevent eating even if they are covering your face.</p><h3 id="define/HIDEEARS"><aside class="declaration">#define </aside>HIDEEARS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm#L111">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm 111"/></a>
+    </h3>
+    <p>Headsets and such.</p><h3 id="define/HIDEEYES"><aside class="declaration">#define </aside>HIDEEYES
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm 113"/></a>
+    </h3>
+    <p>Glasses.</p><h3 id="define/HIDEFACE"><aside class="declaration">#define </aside>HIDEFACE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm#L115">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm 115"/></a>
+    </h3>
+    <p>Dictates whether we appear as &quot;Unknown&quot;.</p><h3 id="define/HIDEHOLSTER"><aside class="declaration">#define </aside>HIDEHOLSTER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm 107"/></a>
+    </h3>
+    <p>Some clothing hides holsters, but not all accessories</p><h3 id="define/IMMUTABLE_SLOW"><aside class="declaration">#define </aside>IMMUTABLE_SLOW
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm 24"/></a>
+    </h3>
+    <p>When players should not be able to change the slowdown of the item (Speed potions, ect)</p><h3 id="define/IN_INVENTORY"><aside class="declaration">#define </aside>IN_INVENTORY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm 6"/></a>
+    </h3>
+    <p>is this item equipped into an inventory slot or hand of a mob? used for tooltips</p><h3 id="define/IN_STORAGE"><aside class="declaration">#define </aside>IN_STORAGE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm 28"/></a>
+    </h3>
+    <p>is this item in a storage component?</p><h3 id="define/ITEM_ABSTRACT"><aside class="declaration">#define </aside>ITEM_ABSTRACT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm 22"/></a>
+    </h3>
+    <p>for all things that are technically items but used for various different stuff</p><h3 id="define/ITEM_DROPDEL"><aside class="declaration">#define </aside>ITEM_DROPDEL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm 17"/></a>
+    </h3>
+    <p>When dropped, it calls qdel on itself</p><h3 id="define/ITEM_NOBLUDGEON"><aside class="declaration">#define </aside>ITEM_NOBLUDGEON
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm 20"/></a>
+    </h3>
+    <p>when an item has this it produces no &quot;X has been hit by Y with Z&quot; message in the default attackby()</p><h3 id="define/ITEM_NO_TOOL_ATTACK"><aside class="declaration">#define </aside>ITEM_NO_TOOL_ATTACK
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm 32"/></a>
+    </h3>
+    <p>we cannot be used a tool on click, no matter what</p><h3 id="define/ITEM_THROW_UNCATCHABLE"><aside class="declaration">#define </aside>ITEM_THROW_UNCATCHABLE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm 30"/></a>
+    </h3>
+    <p>we can't be caught when hitting a mob on throw</p><h3 id="define/NOSLIP"><aside class="declaration">#define </aside>NOSLIP
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm 57"/></a>
+    </h3>
+    <p>Prevents from slipping on wet floors, in space etc</p><h3 id="define/SCAN_REAGENTS"><aside class="declaration">#define </aside>SCAN_REAGENTS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm 73"/></a>
+    </h3>
+    <p>Allows helmets and glasses to scan reagents.</p><h3 id="define/SURGICAL_TOOL"><aside class="declaration">#define </aside>SURGICAL_TOOL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm 26"/></a>
+    </h3>
+    <p>Tool commonly used for surgery: won't attack targets in an active surgical operation on help intent (in case of mistakes)</p><h3 id="define/THICKMATERIAL"><aside class="declaration">#define </aside>THICKMATERIAL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_flags/item_flags.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_flags&#x2F;item_flags.dm 63"/></a>
+    </h3>
+    <p>Prevents syringes, parapens and hyposprays if equipped to slot_suit or SLOT_ID_HEAD.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

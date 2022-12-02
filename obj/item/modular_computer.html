@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;modular_computer - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/modular_computer.html#var">Var Details</a> - <a href="obj/item/modular_computer.html#proc">Proc Details</a></header>
+<main>
+<h1>modular_computer <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/modular_computer.html">modular_computer</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 3"/></a></h1>
+
+<p>Damage of the chassis. If the chassis takes too much damage it will break apart.
+Important hardware (must be installed for computer to work)
+Optional hardware (improves functionality, but is not critical for computer to work in most cases)</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/active_program">active_program</a></th><td>A currently active program running on the computer.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/ai_slot">ai_slot</a></th><td>AI slot, an intellicard housing that allows modifications of AIs.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/apc_powered">apc_powered</a></th><td>Set automatically. Whether the computer used APC power last tick.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/base_active_power_usage">base_active_power_usage</a></th><td>Power usage when the computer is open (screen is active) and can be interacted with. Remember hardware can use power too.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/base_idle_power_usage">base_idle_power_usage</a></th><td>Power usage when the computer is idle and screen is off. (currently only applies to laptops)</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/battery_module">battery_module</a></th><td>An internal power source for this computer. Can be recharged.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/broken_damage">broken_damage</a></th><td>Damage level at which the computer ceases to operate.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/bsod">bsod</a></th><td>Error screen displayed.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/card_slot">card_slot</a></th><td>ID Card slot component of this computer.  Mostly for HoP modification console that needs ID slot for modification.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/computer_emagged">computer_emagged</a></th><td>Whether the computer is emagged.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/damage">damage</a></th><td>Current damage level.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/enabled">enabled</a></th><td>Whether the computer is turned on.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/hard_drive">hard_drive</a></th><td>Hard Drive component of this computer. Stores programs and files.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/hardware_flag">hardware_flag</a></th><td>A flag that describes this device type.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/icon">icon</a></th><td>This thing isn't meant to be used on it's own. Subtypes should supply their own icon.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/icon_state_menu">icon_state_menu</a></th><td>Icon state overlay when the computer is turned on, but no program is loaded that would override the screen.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/icon_state_unpowered">icon_state_unpowered</a></th><td>No pixelshifting by placing on tables, etc.
+And no random pixelshifting on-creation either.
+Icon state when the computer is turned off.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/idle_threads">idle_threads</a></th><td>Idle programs on background. They still receive process calls but can't be interacted with.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/last_battery_percent">last_battery_percent</a></th><td>Used for deciding if battery percentage has chandged.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/last_power_usage">last_power_usage</a></th><td>Last tick power usage of this computer.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/light_strength">light_strength</a></th><td>Intensity of light this computer emits. Comparable to numbers light fixtures use.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/max_damage">max_damage</a></th><td>Damage level at which the computer breaks apart.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/max_hardware_size">max_hardware_size</a></th><td>Maximal hardware size. Currently, tablets have 1, laptops 2 and consoles 3. Limits what hardware types can be installed.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/nano_printer">nano_printer</a></th><td>Nano Printer component of this computer, for your everyday paperwork needs.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/network_card">network_card</a></th><td>Network Card component of this computer. Allows connection to NTNet.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/portable_drive">portable_drive</a></th><td>Portable data storage.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/processor_unit">processor_unit</a></th><td>CPU. Without it the computer won't run. Better CPUs can run more programs at once.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/screen_on">screen_on</a></th><td>Whether the computer is active/opened/it's screen is on.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/steel_sheet_cost">steel_sheet_cost</a></th><td>Amount of steel sheets refunded when disassembling an empty frame of this computer.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#var/tesla_link">tesla_link</a></th><td>Tesla Link, Allows remote charging from nearest APC.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#proc/apc_power">apc_power</a></th><td>Tries to use power from APC, if present.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#proc/attack_self">attack_self</a></th><td>On-click handling. Turns on the computer if it's off and opens the GUI.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#proc/battery_power">battery_power</a></th><td>Tries to use power from battery. Passing 0 as parameter results in this proc returning whether battery is functional or not.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#proc/bullet_act">bullet_act</a></th><td>&quot;Stun&quot; weapons can cause minor damage to components (short-circuits?)
+&quot;Burn&quot; damage is equally strong against internal components and exterior casing
+&quot;Brute&quot; damage mostly damages the casing.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#proc/emp_act">emp_act</a></th><td>EMPs are similar to explosions, but don't cause physical damage to the casing. Instead they screw up the components</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#proc/find_hardware_by_name">find_hardware_by_name</a></th><td>Checks all hardware pieces to determine if name matches, if yes, returns the hardware piece, otherwise returns null.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#proc/get_all_components">get_all_components</a></th><td>Returns list of all components.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#proc/handle_power">handle_power</a></th><td>Handles power-related things, such as battery interaction, recharging, shutdown when it's discharged</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#proc/install_default_hardware">install_default_hardware</a></th><td>Used to perform preset-specific hardware changes.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#proc/install_default_programs">install_default_programs</a></th><td>Used to install preset-specific programs</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#proc/kill_program">kill_program</a></th><td>Relays kill program request to currently active program. Use this to quit current program.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#proc/legacy_ex_act">legacy_ex_act</a></th><td>Stronger explosions cause serious damage to internal components
+Minor explosions are mostly mitigitated by casing.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#proc/try_install_component">try_install_component</a></th><td>Attempts to install the hardware into apropriate slot.</td></tr>
+            <tr><th><a href="obj/item/modular_computer.html#proc/uninstall_component">uninstall_component</a></th><td>Uninstalls component. Found and Critical vars may be passed by parent types, if they have additional hardware.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/active_program"><aside class="declaration">var </aside>active_program
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/computer_file.html">computer_file</a>/<a href="datum/computer_file/program.html">program</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 12"/></a></h3>
+        <p>A currently active program running on the computer.</p><h3 id="var/ai_slot"><aside class="declaration">var </aside>ai_slot
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/computer_hardware.html">computer_hardware</a>/ai_slot</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 84"/></a></h3>
+        <p>AI slot, an intellicard housing that allows modifications of AIs.</p><h3 id="var/apc_powered"><aside class="declaration">var </aside>apc_powered
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 24"/></a></h3>
+        <p>Set automatically. Whether the computer used APC power last tick.</p><h3 id="var/base_active_power_usage"><aside class="declaration">var </aside>base_active_power_usage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 26"/></a></h3>
+        <p>Power usage when the computer is open (screen is active) and can be interacted with. Remember hardware can use power too.</p><h3 id="var/base_idle_power_usage"><aside class="declaration">var </aside>base_idle_power_usage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 28"/></a></h3>
+        <p>Power usage when the computer is idle and screen is off. (currently only applies to laptops)</p><h3 id="var/battery_module"><aside class="declaration">var </aside>battery_module
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/computer_hardware.html">computer_hardware</a>/battery_module</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 76"/></a></h3>
+        <p>An internal power source for this computer. Can be recharged.</p><h3 id="var/broken_damage"><aside class="declaration">var </aside>broken_damage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 62"/></a></h3>
+        <p>Damage level at which the computer ceases to operate.</p><h3 id="var/bsod"><aside class="declaration">var </aside>bsod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 30"/></a></h3>
+        <p>Error screen displayed.</p><h3 id="var/card_slot"><aside class="declaration">var </aside>card_slot
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/computer_hardware.html">computer_hardware</a>/card_slot</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 78"/></a></h3>
+        <p>ID Card slot component of this computer.  Mostly for HoP modification console that needs ID slot for modification.</p><h3 id="var/computer_emagged"><aside class="declaration">var </aside>computer_emagged
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 22"/></a></h3>
+        <p>Whether the computer is emagged.</p><h3 id="var/damage"><aside class="declaration">var </aside>damage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 60"/></a></h3>
+        <p>Current damage level.</p><h3 id="var/enabled"><aside class="declaration">var </aside>enabled
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 8"/></a></h3>
+        <p>Whether the computer is turned on.</p><h3 id="var/hard_drive"><aside class="declaration">var </aside>hard_drive
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/computer_hardware.html">computer_hardware</a>/hard_drive</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 72"/></a></h3>
+        <p>Hard Drive component of this computer. Stores programs and files.</p><h3 id="var/hardware_flag"><aside class="declaration">var </aside>hardware_flag
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 14"/></a></h3>
+        <p>A flag that describes this device type.</p><h3 id="var/icon">icon
+            <aside>&ndash; /icon</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 37"/></a></h3>
+        <p>This thing isn't meant to be used on it's own. Subtypes should supply their own icon.</p><h3 id="var/icon_state_menu"><aside class="declaration">var </aside>icon_state_menu
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 47"/></a></h3>
+        <p>Icon state overlay when the computer is turned on, but no program is loaded that would override the screen.</p><h3 id="var/icon_state_unpowered"><aside class="declaration">var </aside>icon_state_unpowered
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 45"/></a></h3>
+        <p>No pixelshifting by placing on tables, etc.
+And no random pixelshifting on-creation either.
+Icon state when the computer is turned off.</p><h3 id="var/idle_threads"><aside class="declaration">var </aside>idle_threads
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 56"/></a></h3>
+        <p>Idle programs on background. They still receive process calls but can't be interacted with.</p><h3 id="var/last_battery_percent"><aside class="declaration">var </aside>last_battery_percent
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 18"/></a></h3>
+        <p>Used for deciding if battery percentage has chandged.</p><h3 id="var/last_power_usage"><aside class="declaration">var </aside>last_power_usage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 16"/></a></h3>
+        <p>Last tick power usage of this computer.</p><h3 id="var/light_strength"><aside class="declaration">var </aside>light_strength
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 54"/></a></h3>
+        <p>Intensity of light this computer emits. Comparable to numbers light fixtures use.</p><h3 id="var/max_damage"><aside class="declaration">var </aside>max_damage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 64"/></a></h3>
+        <p>Damage level at which the computer breaks apart.</p><h3 id="var/max_hardware_size"><aside class="declaration">var </aside>max_hardware_size
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 50"/></a></h3>
+        <p>Maximal hardware size. Currently, tablets have 1, laptops 2 and consoles 3. Limits what hardware types can be installed.</p><h3 id="var/nano_printer"><aside class="declaration">var </aside>nano_printer
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/computer_hardware.html">computer_hardware</a>/nano_printer</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 80"/></a></h3>
+        <p>Nano Printer component of this computer, for your everyday paperwork needs.</p><h3 id="var/network_card"><aside class="declaration">var </aside>network_card
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/computer_hardware.html">computer_hardware</a>/network_card</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 70"/></a></h3>
+        <p>Network Card component of this computer. Allows connection to NTNet.</p><h3 id="var/portable_drive"><aside class="declaration">var </aside>portable_drive
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/computer_hardware.html">computer_hardware</a>/hard_drive/portable</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 82"/></a></h3>
+        <p>Portable data storage.</p><h3 id="var/processor_unit"><aside class="declaration">var </aside>processor_unit
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/computer_hardware.html">computer_hardware</a>/processor_unit</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 68"/></a></h3>
+        <p>CPU. Without it the computer won't run. Better CPUs can run more programs at once.</p><h3 id="var/screen_on"><aside class="declaration">var </aside>screen_on
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 10"/></a></h3>
+        <p>Whether the computer is active/opened/it's screen is on.</p><h3 id="var/steel_sheet_cost"><aside class="declaration">var </aside>steel_sheet_cost
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/variables.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;variables.dm 52"/></a></h3>
+        <p>Amount of steel sheets refunded when disassembling an empty frame of this computer.</p><h3 id="var/tesla_link"><aside class="declaration">var </aside>tesla_link
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/computer_hardware.html">computer_hardware</a>/tesla_link</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/subtypes/dev_console.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;subtypes&#x2F;dev_console.dm 1"/></a></h3>
+        <p>Tesla Link, Allows remote charging from nearest APC.</p><h2 id="proc">Proc Details</h2><h3 id="proc/apc_power"><aside class="declaration">proc </aside>apc_power<aside>(power_usage) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/power.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;power.dm 20"/></a></aside>
+        </h3>
+        <p>Tries to use power from APC, if present.</p><h3 id="proc/attack_self">attack_self<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/interaction.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;interaction.dm 118"/></a></aside>
+        </h3>
+        <p>On-click handling. Turns on the computer if it's off and opens the GUI.</p><h3 id="proc/battery_power"><aside class="declaration">proc </aside>battery_power<aside>(power_usage) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/power.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;power.dm 11"/></a></aside>
+        </h3>
+        <p>Tries to use power from battery. Passing 0 as parameter results in this proc returning whether battery is functional or not.</p><h3 id="proc/bullet_act">bullet_act<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/projectile.html">projectile</a>/Proj) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/damage.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;damage.dm 52"/></a></aside>
+        </h3>
+        <p>&quot;Stun&quot; weapons can cause minor damage to components (short-circuits?)
+&quot;Burn&quot; damage is equally strong against internal components and exterior casing
+&quot;Brute&quot; damage mostly damages the casing.</p><h3 id="proc/emp_act">emp_act<aside>(severity) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/damage.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;damage.dm 44"/></a></aside>
+        </h3>
+        <p>EMPs are similar to explosions, but don't cause physical damage to the casing. Instead they screw up the components</p><h3 id="proc/find_hardware_by_name"><aside class="declaration">proc </aside>find_hardware_by_name<aside>(name) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/hardware.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;hardware.dm 101"/></a></aside>
+        </h3>
+        <p>Checks all hardware pieces to determine if name matches, if yes, returns the hardware piece, otherwise returns null.</p><h3 id="proc/get_all_components"><aside class="declaration">proc </aside>get_all_components<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/hardware.dm#L121">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;hardware.dm 121"/></a></aside>
+        </h3>
+        <p>Returns list of all components.</p><h3 id="proc/handle_power"><aside class="declaration">proc </aside>handle_power<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/power.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;power.dm 39"/></a></aside>
+        </h3>
+        <p>Handles power-related things, such as battery interaction, recharging, shutdown when it's discharged</p><h3 id="proc/install_default_hardware"><aside class="declaration">proc </aside>install_default_hardware<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/core.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;core.dm 38"/></a></aside>
+        </h3>
+        <p>Used to perform preset-specific hardware changes.</p><h3 id="proc/install_default_programs"><aside class="declaration">proc </aside>install_default_programs<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/core.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;core.dm 42"/></a></aside>
+        </h3>
+        <p>Used to install preset-specific programs</p><h3 id="proc/kill_program"><aside class="declaration">proc </aside>kill_program<aside>(forced) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/core.dm#L117">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;core.dm 117"/></a></aside>
+        </h3>
+        <p>Relays kill program request to currently active program. Use this to quit current program.</p><h3 id="proc/legacy_ex_act"><aside class="parent"><a title="/atom" href="atom.html#proc/legacy_ex_act">&uarr;</a></aside>legacy_ex_act<aside>(severity) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/damage.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;damage.dm 40"/></a></aside>
+        </h3>
+        <p>Stronger explosions cause serious damage to internal components
+Minor explosions are mostly mitigitated by casing.</p><h3 id="proc/try_install_component"><aside class="declaration">proc </aside>try_install_component<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/computer_hardware.html">computer_hardware</a>/H, found) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/hardware.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;hardware.dm 2"/></a></aside>
+        </h3>
+        <p>Attempts to install the hardware into apropriate slot.</p><h3 id="proc/uninstall_component"><aside class="declaration">proc </aside>uninstall_component<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/computer_hardware.html">computer_hardware</a>/H, found, critical) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/computers/modular_computer/hardware.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;computers&#x2F;modular_computer&#x2F;hardware.dm 60"/></a></aside>
+        </h3>
+        <p>Uninstalls component. Found and Critical vars may be passed by parent types, if they have additional hardware.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;ghostrole - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/ghostrole.html#var">Var Details</a> - <a href="datum/ghostrole.html#proc">Proc Details</a></header>
+<main>
+<h1>ghostrole <aside>/<a href="datum.html">datum</a>/<a href="datum/ghostrole.html">ghostrole</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ghostroles/role.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ghostroles&#x2F;role.dm 27"/></a></h1>
+
+<p>Ghostrole datums</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/ghostrole.html#var/abstract_type">abstract_type</a></th><td>Abstract type.</td></tr>
+            <tr><th><a href="datum/ghostrole.html#var/allow_pick_spawner">allow_pick_spawner</a></th><td>allow selecting the spawner, or random? <strong>If the spawner gets clicked by a player, they can still spawn from it!</strong></td></tr>
+            <tr><th><a href="datum/ghostrole.html#var/assigned_role">assigned_role</a></th><td>assigned role. defaults to name.</td></tr>
+            <tr><th><a href="datum/ghostrole.html#var/automatic_objective">automatic_objective</a></th><td>Automatically give them an objective and custom antag datum</td></tr>
+            <tr><th><a href="datum/ghostrole.html#var/desc">desc</a></th><td><strong>short</strong> description - use spawntext for long one.</td></tr>
+            <tr><th><a href="datum/ghostrole.html#var/id">id</a></th><td>snowflake ID for if we're not to be referred to by path - dynamically created ghostolres</td></tr>
+            <tr><th><a href="datum/ghostrole.html#var/important_info">important_info</a></th><td>important rules/policy info</td></tr>
+            <tr><th><a href="datum/ghostrole.html#var/inject_params">inject_params</a></th><td>inject params during spawning</td></tr>
+            <tr><th><a href="datum/ghostrole.html#var/instantiator">instantiator</a></th><td>datum/ghostrole_instantiator - handles mob creation, equip, and transfer. DOES NOT greet the ghostrole with role information.</td></tr>
+            <tr><th><a href="datum/ghostrole.html#var/jobban_role">jobban_role</a></th><td>jobban name/id, if any</td></tr>
+            <tr><th><a href="datum/ghostrole.html#var/lazy_init">lazy_init</a></th><td>init on server load or only when needed</td></tr>
+            <tr><th><a href="datum/ghostrole.html#var/name">name</a></th><td>name</td></tr>
+            <tr><th><a href="datum/ghostrole.html#var/show_standard_greeting">show_standard_greeting</a></th><td>should we show the standard ghostrole greeting?</td></tr>
+            <tr><th><a href="datum/ghostrole.html#var/slots">slots</a></th><td>max spawns</td></tr>
+            <tr><th><a href="datum/ghostrole.html#var/spawnerless">spawnerless</a></th><td>spawnerless - advanced users only. This isn't for &quot;load in spawners in PreInstantiate()&quot;, this is for true spawnpoint-less ghostroles.</td></tr>
+            <tr><th><a href="datum/ghostrole.html#var/spawns">spawns</a></th><td>spawn count</td></tr>
+            <tr><th><a href="datum/ghostrole.html#var/spawntext">spawntext</a></th><td>default message to show on greet(), also shows in spawners menu.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/ghostrole.html#proc/AllowSpawn">AllowSpawn</a></th><td>Checks if the client is a valid user mob and if we can allow a spawn from them</td></tr>
+            <tr><th><a href="datum/ghostrole.html#proc/AttemptSpawn">AttemptSpawn</a></th><td>Master proc for spawning someone as this role.</td></tr>
+            <tr><th><a href="datum/ghostrole.html#proc/BanCheck">BanCheck</a></th><td>Ban check.</td></tr>
+            <tr><th><a href="datum/ghostrole.html#proc/GetSpawnLoc">GetSpawnLoc</a></th><td>Gets a spawn location for a client.</td></tr>
+            <tr><th><a href="datum/ghostrole.html#proc/GetSpawnpoint">GetSpawnpoint</a></th><td>Gets a spawnpoint for a client</td></tr>
+            <tr><th><a href="datum/ghostrole.html#proc/PostInstantiate">PostInstantiate</a></th><td>Spawnpoint can be null here, if we're not using a spawnpoint</td></tr>
+            <tr><th><a href="datum/ghostrole.html#proc/PreInstantiate">PreInstantiate</a></th><td>Ran before anything else is at AttemptSpawn()</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/abstract_type"><aside class="parent"><a title="/datum" href="datum.html#var/abstract_type">&uarr;</a></aside>abstract_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ghostroles/role.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ghostroles&#x2F;role.dm 29"/></a></h3>
+        <p>Abstract type.</p><h3 id="var/allow_pick_spawner"><aside class="declaration">var </aside>allow_pick_spawner
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ghostroles/role.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ghostroles&#x2F;role.dm 38"/></a></h3>
+        <p>allow selecting the spawner, or random? <strong>If the spawner gets clicked by a player, they can still spawn from it!</strong></p><h3 id="var/assigned_role"><aside class="declaration">var </aside>assigned_role
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ghostroles/role.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ghostroles&#x2F;role.dm 56"/></a></h3>
+        <p>assigned role. defaults to name.</p><h3 id="var/automatic_objective"><aside class="declaration">var </aside>automatic_objective
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ghostroles/role.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ghostroles&#x2F;role.dm 60"/></a></h3>
+        <p>Automatically give them an objective and custom antag datum</p><h3 id="var/desc"><aside class="declaration">var </aside>desc
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ghostroles/role.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ghostroles&#x2F;role.dm 34"/></a></h3>
+        <p><strong>short</strong> description - use spawntext for long one.</p><h3 id="var/id"><aside class="declaration">var </aside>id
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ghostroles/role.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ghostroles&#x2F;role.dm 52"/></a></h3>
+        <p>snowflake ID for if we're not to be referred to by path - dynamically created ghostolres</p><h3 id="var/important_info"><aside class="declaration">var </aside>important_info
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ghostroles/role.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ghostroles&#x2F;role.dm 48"/></a></h3>
+        <p>important rules/policy info</p><h3 id="var/inject_params"><aside class="declaration">var </aside>inject_params
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ghostroles/role.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ghostroles&#x2F;role.dm 64"/></a></h3>
+        <p>inject params during spawning</p><h3 id="var/instantiator"><aside class="declaration">var </aside>instantiator
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/ghostrole_instantiator.html">ghostrole_instantiator</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ghostroles/role.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ghostroles&#x2F;role.dm 40"/></a></h3>
+        <p>datum/ghostrole_instantiator - handles mob creation, equip, and transfer. DOES NOT greet the ghostrole with role information.</p><h3 id="var/jobban_role"><aside class="declaration">var </aside>jobban_role
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ghostroles/role.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ghostroles&#x2F;role.dm 58"/></a></h3>
+        <p>jobban name/id, if any</p><h3 id="var/lazy_init"><aside class="declaration">var </aside>lazy_init
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ghostroles/role.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ghostroles&#x2F;role.dm 36"/></a></h3>
+        <p>init on server load or only when needed</p><h3 id="var/name"><aside class="declaration">var </aside>name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ghostroles/role.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ghostroles&#x2F;role.dm 32"/></a></h3>
+        <p>name</p><h3 id="var/show_standard_greeting"><aside class="declaration">var </aside>show_standard_greeting
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ghostroles/role.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ghostroles&#x2F;role.dm 50"/></a></h3>
+        <p>should we show the standard ghostrole greeting?</p><h3 id="var/slots"><aside class="declaration">var </aside>slots
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ghostroles/role.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ghostroles&#x2F;role.dm 44"/></a></h3>
+        <p>max spawns</p><h3 id="var/spawnerless"><aside class="declaration">var </aside>spawnerless
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ghostroles/role.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ghostroles&#x2F;role.dm 54"/></a></h3>
+        <p>spawnerless - advanced users only. This isn't for &quot;load in spawners in PreInstantiate()&quot;, this is for true spawnpoint-less ghostroles.</p><h3 id="var/spawns"><aside class="declaration">var </aside>spawns
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ghostroles/role.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ghostroles&#x2F;role.dm 42"/></a></h3>
+        <p>spawn count</p><h3 id="var/spawntext"><aside class="declaration">var </aside>spawntext
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ghostroles/role.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ghostroles&#x2F;role.dm 46"/></a></h3>
+        <p>default message to show on greet(), also shows in spawners menu.</p><h2 id="proc">Proc Details</h2><h3 id="proc/AllowSpawn"><aside class="declaration">proc </aside>AllowSpawn<aside>(/<a href="client.html">client</a>/C, /list/params) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ghostroles/role.dm#L138">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ghostroles&#x2F;role.dm 138"/></a></aside>
+        </h3>
+        <p>Checks if the client is a valid user mob and if we can allow a spawn from them</p><h3 id="proc/AttemptSpawn"><aside class="declaration">proc </aside>AttemptSpawn<aside>(/<a href="client.html">client</a>/C, /<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/ghostrole_spawnpoint.html">ghostrole_spawnpoint</a>/chosen_spawnpoint) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ghostroles/role.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ghostroles&#x2F;role.dm 88"/></a></aside>
+        </h3>
+        <p>Master proc for spawning someone as this role.</p>
+<p>Return TRUe on success, or a string of why it failed.</p><h3 id="proc/BanCheck"><aside class="declaration">proc </aside>BanCheck<aside>(/<a href="client.html">client</a>/C) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ghostroles/role.dm#L194">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ghostroles&#x2F;role.dm 194"/></a></aside>
+        </h3>
+        <p>Ban check.</p><h3 id="proc/GetSpawnLoc"><aside class="declaration">proc </aside>GetSpawnLoc<aside>(/<a href="client.html">client</a>/C, /<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/ghostrole_spawnpoint.html">ghostrole_spawnpoint</a>/spawnpoint) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ghostroles/role.dm#L177">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ghostroles&#x2F;role.dm 177"/></a></aside>
+        </h3>
+        <p>Gets a spawn location for a client.</p>
+<p>spawnpoint can be null for spawnerless ghostroles.</p><h3 id="proc/GetSpawnpoint"><aside class="declaration">proc </aside>GetSpawnpoint<aside>(/<a href="client.html">client</a>/C) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ghostroles/role.dm#L161">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ghostroles&#x2F;role.dm 161"/></a></aside>
+        </h3>
+        <p>Gets a spawnpoint for a client</p>
+<p>For spawnerless ghostroles, return null.</p><h3 id="proc/PostInstantiate"><aside class="declaration">proc </aside>PostInstantiate<aside>(/<a href="mob.html">mob</a>/created, /<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/ghostrole_spawnpoint.html">ghostrole_spawnpoint</a>/spawnpoint, /list/params) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ghostroles/role.dm#L183">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ghostroles&#x2F;role.dm 183"/></a></aside>
+        </h3>
+        <p>Spawnpoint can be null here, if we're not using a spawnpoint</p><h3 id="proc/PreInstantiate"><aside class="declaration">proc </aside>PreInstantiate<aside>(/<a href="client.html">client</a>/C) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ghostroles/role.dm#L132">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ghostroles&#x2F;role.dm 132"/></a></aside>
+        </h3>
+        <p>Ran before anything else is at AttemptSpawn()</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

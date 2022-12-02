@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_mob&#x2F;signals_mob_main.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_mob&#x2F;signals_mob_main.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.html#define/COMSIG_MOB_TRIED_ACCESS">COMSIG_MOB_TRIED_ACCESS</a></th><td>Called on <a href="obj/item.html" title="/obj/item">/obj/item</a> before unequip from base of [mob/proc/doUnEquip]: (force, atom/newloc, no_move, invdrop, silent)
+/#define COMSIG_ITEM_PRE_UNEQUIP &quot;item_pre_unequip&quot;
+? Only the pre unequip can be cancelled.
+/#define COMPONENT_ITEM_BLOCK_UNEQUIP (1&lt;&lt;0)
+Called on <a href="obj/item.html" title="/obj/item">/obj/item</a> AFTER unequip from base of [mob/proc/doUnEquip]: (force, atom/newloc, no_move, invdrop, silent)
+/#define COMSIG_ITEM_POST_UNEQUIP &quot;item_post_unequip&quot;
+A mob has just equipped an item. Called on <a href="mob.html" title="/mob">/mob</a> from base of <a href="obj/item.html" title="/obj/item">/obj/item/equipped()</a>: (/obj/item/equipped_item, slot)
+A mob has just unequipped an item.
+! ## Mob Signals. Format:</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.html#define/COMSIG_MOB_RECEIVE_MAGIC">COMSIG_MOB_RECEIVE_MAGIC</a></th><td>From base of mob/can_cast_magic(): (mob/user, magic_flags, charge_cost)
+/#define COMSIG_MOB_RESTRICT_MAGIC &quot;mob_cast_magic&quot;
+From base of mob/can_block_magic(): (mob/user, casted_magic_flags, charge_cost)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.html#define/COMSIG_MOB_EXAMINATE">COMSIG_MOB_EXAMINATE</a></th><td>From base of mob/create_mob_hud(): ()
+/#define COMSIG_MOB_HUD_CREATED &quot;mob_hud_created&quot;
+From base of /mob/living/proc/apply_damage(): (damage, damagetype, def_zone)
+/#define COMSIG_MOB_APPLY_DAMAGE &quot;mob_apply_damage&quot;
+From base of /mob/living/attack_alien(): (user)
+/#define COMSIG_MOB_ATTACK_ALIEN &quot;mob_attack_alien&quot;
+From base of /mob/throw_item(): (atom/target)
+/#define COMSIG_MOB_THROW &quot;mob_throw&quot;
+From base of /mob/verb/examinate(): (atom/target)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.html#define/COMSIG_MOB_EYECONTACT">COMSIG_MOB_EYECONTACT</a></th><td>From /mob/living/handle_eye_contact(): (mob/living/other_mob)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.html#define/COMSIG_BLOCK_EYECONTACT">COMSIG_BLOCK_EYECONTACT</a></th><td>? return this if you want to block printing this message to this person, if you want to print your own (does not affect the other person's message)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.html#define/COMSIG_MOB_UPDATE_SIGHT">COMSIG_MOB_UPDATE_SIGHT</a></th><td>From base of /mob/update_sight(): ()</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.html#define/COMSIG_MOB_CUSTOM_EMOTE">COMSIG_MOB_CUSTOM_EMOTE</a></th><td>/ From /mob/living/say(): ()
+/#define COMSIG_MOB_SAY &quot;mob_say&quot;
+/#define COMPONENT_UPPERCASE_SPEECH (1&lt;&lt;0)
+/#define SPEECH_MESSAGE 1
+/#define SPEECH_SPANS 3
+/#define SPEECH_LANGUAGE 5
+/#define SPEECH_RANGE 8
+From /mob/say_dead(): (mob/speaker, message)
+/#define COMSIG_MOB_DEADSAY &quot;mob_deadsay&quot;
+/#define MOB_DEADSAY_SIGNAL_INTERCEPT (1&lt;&lt;0)
+From /mob/living/emote(): ()
+/#define COMSIG_MOB_EMOTE &quot;mob_emote&quot;
+Sent on custom emote. (mob, raw_emote)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.html#define/COMSIG_MOB_SUBTLE_EMOTE">COMSIG_MOB_SUBTLE_EMOTE</a></th><td>Sent on subtle/subtler. (mob, raw_emote)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.html#define/COMSIG_MOB_CLIENT_LOGIN">COMSIG_MOB_CLIENT_LOGIN</a></th><td>From base of mob/swap_hand(): (obj/item)
+/#define COMSIG_MOB_SWAP_HANDS &quot;mob_swap_hands&quot;
+/#define COMPONENT_BLOCK_SWAP (1&lt;&lt;0)
+From base of /mob/verb/pointed: (atom/A)
+/#define COMSIG_MOB_POINTED &quot;mob_pointed&quot;
+Mob is trying to open the wires of a target <a href="atom.html" title="/atom">/atom</a>, from /datum/wires/interactable(): (atom/target)
+/#define COMSIG_TRY_WIRES_INTERACT &quot;try_wires_interact&quot;
+/#define COMPONENT_CANT_INTERACT_WIRES (1&lt;&lt;0)
+/#define COMSIG_MOB_EMOTED(emote_key) &quot;mob_emoted_[emote_key]&quot;
+Sent when a mob/login() finishes: (client)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.html#define/COMSIG_MOB_CLIENT_LOGOUT">COMSIG_MOB_CLIENT_LOGOUT</a></th><td>Sent when a mob/logout() begins: (client)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.html#define/COMSIG_MOB_ON_LIFE">COMSIG_MOB_ON_LIFE</a></th><td>From base of client/MouseDown(): (/client, object, location, control, params)
+/#define COMSIG_CLIENT_MOUSEDOWN &quot;client_mousedown&quot;
+From base of client/MouseUp(): (/client, object, location, control, params)
+/#define COMSIG_CLIENT_MOUSEUP &quot;client_mouseup&quot;
+/#define COMPONENT_CLIENT_MOUSEUP_INTERCEPT (1&lt;&lt;0)
+From base of client/MouseUp(): (/client, object, location, control, params)
+/#define COMSIG_CLIENT_MOUSEDRAG &quot;client_mousedrag&quot;
+Called on user, from base of /datum/strippable_item/try_(un)equip() (atom/target, obj/item/equipping?)
+/#define COMSIG_TRY_STRIP &quot;try_strip&quot;
+/#define COMPONENT_CANT_STRIP (1&lt;&lt;0)
+From /datum/component/creamed/Initialize()
+/#define COMSIG_MOB_CREAMED &quot;mob_creamed&quot;
+From /obj/item/gun/proc/check_botched()
+/#define COMSIG_MOB_CLUMSY_SHOOT_FOOT &quot;mob_clumsy_shoot_foot&quot;
+From /obj/item/hand_item/slapper/attack_atom(): (source=obj/structure/table/slammed_table, mob/living/slammer)
+/#define COMSIG_TABLE_SLAMMED &quot;table_slammed&quot;
+From base of atom/attack_hand(): (mob/user, modifiers)
+/#define COMSIG_MOB_ATTACK_HAND &quot;mob_attack_hand&quot;
+From base of /obj/item/attack(): (mob/M, mob/user)
+/#define COMSIG_MOB_ITEM_ATTACK &quot;mob_item_attack&quot;
+/#define COMPONENT_ITEM_NO_ATTACK (1&lt;&lt;0)
+From base of obj/item/afterattack(): (atom/target, obj/item/weapon, proximity_flag, click_parameters)
+/#define COMSIG_MOB_ITEM_AFTERATTACK &quot;mob_item_afterattack&quot;
+From base of obj/item/afterattack_secondary(): (atom/target, obj/item/weapon, proximity_flag, click_parameters)
+/#define COMSIG_MOB_ITEM_AFTERATTACK_SECONDARY &quot;mob_item_afterattack_secondary&quot;
+From base of obj/item/attack_qdeleted(): (atom/target, mob/user, proximity_flag, click_parameters)
+/#define COMSIG_MOB_ITEM_ATTACK_QDELETED &quot;mob_item_attack_qdeleted&quot;
+From base of mob/RangedAttack(): (atom/A, modifiers)
+/#define COMSIG_MOB_ATTACK_RANGED &quot;mob_attack_ranged&quot;
+From base of mob/ranged_secondary_attack(): (atom/target, modifiers)
+/#define COMSIG_MOB_ATTACK_RANGED_SECONDARY &quot;mob_attack_ranged_secondary&quot;
+From base of atom/ctrl_click(): (atom/A)
+/#define COMSIG_MOB_CTRL_CLICKED &quot;mob_ctrl_clicked&quot;
+From base of mob/update_movespeed():area
+/#define COMSIG_MOB_MOVESPEED_UPDATED &quot;mob_update_movespeed&quot;
+From /atom/movable/screen/zone_sel/proc/set_selected_zone.
+Fires when the user has changed their selected body target.
+/#define COMSIG_MOB_SELECTED_ZONE_SET &quot;mob_set_selected_zone&quot;
+From base of [/client/proc/handle_spam_prevention] (message, mute_type)
+/#define COMSIG_MOB_AUTOMUTE_CHECK &quot;client_automute_check&quot; // The check is performed by the client.
+? Prevents the automute system checking this client for repeated messages.
+/#define WAIVE_AUTOMUTE_CHECK (1&lt;&lt;0)
+From base of mob/Life(): (seconds, times_fired)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.html#define/COMSIG_MOB_UPDATE_LYING">COMSIG_MOB_UPDATE_LYING</a></th><td>called when we update lying: (new_lying)</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/COMSIG_BLOCK_EYECONTACT"><aside class="declaration">#define </aside>COMSIG_BLOCK_EYECONTACT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_mob&#x2F;signals_mob_main.dm 78"/></a>
+    </h3>
+    <p>? return this if you want to block printing this message to this person, if you want to print your own (does not affect the other person's message)</p><h3 id="define/COMSIG_MOB_CLIENT_LOGIN"><aside class="declaration">#define </aside>COMSIG_MOB_CLIENT_LOGIN
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_mob&#x2F;signals_mob_main.dm 113"/></a>
+    </h3>
+    <p>From base of mob/swap_hand(): (obj/item)
+/#define COMSIG_MOB_SWAP_HANDS &quot;mob_swap_hands&quot;
+/#define COMPONENT_BLOCK_SWAP (1&lt;&lt;0)
+From base of /mob/verb/pointed: (atom/A)
+/#define COMSIG_MOB_POINTED &quot;mob_pointed&quot;
+Mob is trying to open the wires of a target <a href="atom.html" title="/atom">/atom</a>, from /datum/wires/interactable(): (atom/target)
+/#define COMSIG_TRY_WIRES_INTERACT &quot;try_wires_interact&quot;
+/#define COMPONENT_CANT_INTERACT_WIRES (1&lt;&lt;0)
+/#define COMSIG_MOB_EMOTED(emote_key) &quot;mob_emoted_[emote_key]&quot;
+Sent when a mob/login() finishes: (client)</p><h3 id="define/COMSIG_MOB_CLIENT_LOGOUT"><aside class="declaration">#define </aside>COMSIG_MOB_CLIENT_LOGOUT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.dm#L115">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_mob&#x2F;signals_mob_main.dm 115"/></a>
+    </h3>
+    <p>Sent when a mob/logout() begins: (client)</p><h3 id="define/COMSIG_MOB_CUSTOM_EMOTE"><aside class="declaration">#define </aside>COMSIG_MOB_CUSTOM_EMOTE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.dm#L100">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_mob&#x2F;signals_mob_main.dm 100"/></a>
+    </h3>
+    <p>/ From /mob/living/say(): ()
+/#define COMSIG_MOB_SAY &quot;mob_say&quot;
+/#define COMPONENT_UPPERCASE_SPEECH (1&lt;&lt;0)
+/#define SPEECH_MESSAGE 1
+/#define SPEECH_SPANS 3
+/#define SPEECH_LANGUAGE 5
+/#define SPEECH_RANGE 8
+From /mob/say_dead(): (mob/speaker, message)
+/#define COMSIG_MOB_DEADSAY &quot;mob_deadsay&quot;
+/#define MOB_DEADSAY_SIGNAL_INTERCEPT (1&lt;&lt;0)
+From /mob/living/emote(): ()
+/#define COMSIG_MOB_EMOTE &quot;mob_emote&quot;
+Sent on custom emote. (mob, raw_emote)</p><h3 id="define/COMSIG_MOB_EXAMINATE"><aside class="declaration">#define </aside>COMSIG_MOB_EXAMINATE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_mob&#x2F;signals_mob_main.dm 74"/></a>
+    </h3>
+    <p>From base of mob/create_mob_hud(): ()
+/#define COMSIG_MOB_HUD_CREATED &quot;mob_hud_created&quot;
+From base of /mob/living/proc/apply_damage(): (damage, damagetype, def_zone)
+/#define COMSIG_MOB_APPLY_DAMAGE &quot;mob_apply_damage&quot;
+From base of /mob/living/attack_alien(): (user)
+/#define COMSIG_MOB_ATTACK_ALIEN &quot;mob_attack_alien&quot;
+From base of /mob/throw_item(): (atom/target)
+/#define COMSIG_MOB_THROW &quot;mob_throw&quot;
+From base of /mob/verb/examinate(): (atom/target)</p><h3 id="define/COMSIG_MOB_EYECONTACT"><aside class="declaration">#define </aside>COMSIG_MOB_EYECONTACT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_mob&#x2F;signals_mob_main.dm 76"/></a>
+    </h3>
+    <p>From /mob/living/handle_eye_contact(): (mob/living/other_mob)</p><h3 id="define/COMSIG_MOB_ON_LIFE"><aside class="declaration">#define </aside>COMSIG_MOB_ON_LIFE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.dm#L160">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_mob&#x2F;signals_mob_main.dm 160"/></a>
+    </h3>
+    <p>From base of client/MouseDown(): (/client, object, location, control, params)
+/#define COMSIG_CLIENT_MOUSEDOWN &quot;client_mousedown&quot;
+From base of client/MouseUp(): (/client, object, location, control, params)
+/#define COMSIG_CLIENT_MOUSEUP &quot;client_mouseup&quot;
+/#define COMPONENT_CLIENT_MOUSEUP_INTERCEPT (1&lt;&lt;0)
+From base of client/MouseUp(): (/client, object, location, control, params)
+/#define COMSIG_CLIENT_MOUSEDRAG &quot;client_mousedrag&quot;
+Called on user, from base of /datum/strippable_item/try_(un)equip() (atom/target, obj/item/equipping?)
+/#define COMSIG_TRY_STRIP &quot;try_strip&quot;
+/#define COMPONENT_CANT_STRIP (1&lt;&lt;0)
+From /datum/component/creamed/Initialize()
+/#define COMSIG_MOB_CREAMED &quot;mob_creamed&quot;
+From /obj/item/gun/proc/check_botched()
+/#define COMSIG_MOB_CLUMSY_SHOOT_FOOT &quot;mob_clumsy_shoot_foot&quot;
+From /obj/item/hand_item/slapper/attack_atom(): (source=obj/structure/table/slammed_table, mob/living/slammer)
+/#define COMSIG_TABLE_SLAMMED &quot;table_slammed&quot;
+From base of atom/attack_hand(): (mob/user, modifiers)
+/#define COMSIG_MOB_ATTACK_HAND &quot;mob_attack_hand&quot;
+From base of /obj/item/attack(): (mob/M, mob/user)
+/#define COMSIG_MOB_ITEM_ATTACK &quot;mob_item_attack&quot;
+/#define COMPONENT_ITEM_NO_ATTACK (1&lt;&lt;0)
+From base of obj/item/afterattack(): (atom/target, obj/item/weapon, proximity_flag, click_parameters)
+/#define COMSIG_MOB_ITEM_AFTERATTACK &quot;mob_item_afterattack&quot;
+From base of obj/item/afterattack_secondary(): (atom/target, obj/item/weapon, proximity_flag, click_parameters)
+/#define COMSIG_MOB_ITEM_AFTERATTACK_SECONDARY &quot;mob_item_afterattack_secondary&quot;
+From base of obj/item/attack_qdeleted(): (atom/target, mob/user, proximity_flag, click_parameters)
+/#define COMSIG_MOB_ITEM_ATTACK_QDELETED &quot;mob_item_attack_qdeleted&quot;
+From base of mob/RangedAttack(): (atom/A, modifiers)
+/#define COMSIG_MOB_ATTACK_RANGED &quot;mob_attack_ranged&quot;
+From base of mob/ranged_secondary_attack(): (atom/target, modifiers)
+/#define COMSIG_MOB_ATTACK_RANGED_SECONDARY &quot;mob_attack_ranged_secondary&quot;
+From base of atom/ctrl_click(): (atom/A)
+/#define COMSIG_MOB_CTRL_CLICKED &quot;mob_ctrl_clicked&quot;
+From base of mob/update_movespeed():area
+/#define COMSIG_MOB_MOVESPEED_UPDATED &quot;mob_update_movespeed&quot;
+From /atom/movable/screen/zone_sel/proc/set_selected_zone.
+Fires when the user has changed their selected body target.
+/#define COMSIG_MOB_SELECTED_ZONE_SET &quot;mob_set_selected_zone&quot;
+From base of [/client/proc/handle_spam_prevention] (message, mute_type)
+/#define COMSIG_MOB_AUTOMUTE_CHECK &quot;client_automute_check&quot; // The check is performed by the client.
+? Prevents the automute system checking this client for repeated messages.
+/#define WAIVE_AUTOMUTE_CHECK (1&lt;&lt;0)
+From base of mob/Life(): (seconds, times_fired)</p><h3 id="define/COMSIG_MOB_RECEIVE_MAGIC"><aside class="declaration">#define </aside>COMSIG_MOB_RECEIVE_MAGIC
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_mob&#x2F;signals_mob_main.dm 61"/></a>
+    </h3>
+    <p>From base of mob/can_cast_magic(): (mob/user, magic_flags, charge_cost)
+/#define COMSIG_MOB_RESTRICT_MAGIC &quot;mob_cast_magic&quot;
+From base of mob/can_block_magic(): (mob/user, casted_magic_flags, charge_cost)</p><h3 id="define/COMSIG_MOB_SUBTLE_EMOTE"><aside class="declaration">#define </aside>COMSIG_MOB_SUBTLE_EMOTE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_mob&#x2F;signals_mob_main.dm 102"/></a>
+    </h3>
+    <p>Sent on subtle/subtler. (mob, raw_emote)</p><h3 id="define/COMSIG_MOB_TRIED_ACCESS"><aside class="declaration">#define </aside>COMSIG_MOB_TRIED_ACCESS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_mob&#x2F;signals_mob_main.dm 53"/></a>
+    </h3>
+    <p>Called on <a href="obj/item.html" title="/obj/item">/obj/item</a> before unequip from base of [mob/proc/doUnEquip]: (force, atom/newloc, no_move, invdrop, silent)
+/#define COMSIG_ITEM_PRE_UNEQUIP &quot;item_pre_unequip&quot;
+? Only the pre unequip can be cancelled.
+/#define COMPONENT_ITEM_BLOCK_UNEQUIP (1&lt;&lt;0)
+Called on <a href="obj/item.html" title="/obj/item">/obj/item</a> AFTER unequip from base of [mob/proc/doUnEquip]: (force, atom/newloc, no_move, invdrop, silent)
+/#define COMSIG_ITEM_POST_UNEQUIP &quot;item_post_unequip&quot;
+A mob has just equipped an item. Called on <a href="mob.html" title="/mob">/mob</a> from base of <a href="obj/item.html" title="/obj/item">/obj/item/equipped()</a>: (/obj/item/equipped_item, slot)
+A mob has just unequipped an item.
+! ## Mob Signals. Format:</p>
+<ul>
+<li>When the signal is called: (signal arguments)</li>
+<li>All signals send the source datum of the signal as the first argument
+Called on user, from base of /datum/strippable_item/alternate_action() (atom/target)
+/#define COMSIG_TRY_ALT_ACTION &quot;try_alt_action&quot;
+/#define COMPONENT_CANT_ALT_ACTION (1&lt;&lt;0)
+Called on /basic when updating its speed, from base of /mob/living/basic/update_basic_mob_varspeed(): ()
+/#define POST_BASIC_MOB_UPDATE_VARSPEED &quot;post_basic_mob_update_varspeed&quot;
+From base of /mob/Login(): ()
+/#define COMSIG_MOB_LOGIN &quot;mob_login&quot;
+From base of /mob/Logout(): ()
+/#define COMSIG_MOB_LOGOUT &quot;mob_logout&quot;
+From base of mob/set_stat(): (new_stat, old_stat)
+/#define COMSIG_MOB_STATCHANGE &quot;mob_statchange&quot;
+From base of mob/clickon(): (atom/A, params)
+/#define COMSIG_MOB_CLICKON &quot;mob_clickon&quot;
+From base of mob/MiddleClickOn(): (atom/A)
+/#define COMSIG_MOB_MIDDLECLICKON &quot;mob_middleclickon&quot;
+From base of mob/AltClickOn(): (atom/A)
+/#define COMSIG_MOB_ALTCLICKON &quot;mob_altclickon&quot;
+/#define COMSIG_MOB_CANCEL_CLICKON (1&lt;&lt;0)
+From base of mob/alt_click_on_secodary(): (atom/A)
+/#define COMSIG_MOB_ALTCLICKON_SECONDARY &quot;mob_altclickon_secondary&quot;
+From base of /mob/living/simple_animal/bot/proc/bot_step()
+/#define COMSIG_MOB_BOT_PRE_STEP &quot;mob_bot_pre_step&quot;
+? Should always match COMPONENT_MOVABLE_BLOCK_PRE_MOVE as these are interchangeable and used to block movement.
+/#define COMPONENT_MOB_BOT_BLOCK_PRE_STEP COMPONENT_MOVABLE_BLOCK_PRE_MOVE
+From base of /mob/living/simple_animal/bot/proc/bot_step()
+/#define COMSIG_MOB_BOT_STEP &quot;mob_bot_step&quot;
+From base of /client/Move()
+/#define COMSIG_MOB_CLIENT_PRE_MOVE &quot;mob_client_pre_move&quot;
+? Should always match COMPONENT_MOVABLE_BLOCK_PRE_MOVE as these are interchangeable and used to block movement.
+/#define COMSIG_MOB_CLIENT_BLOCK_PRE_MOVE COMPONENT_MOVABLE_BLOCK_PRE_MOVE
+From base of /client/Move()
+/#define COMSIG_MOB_CLIENT_PRE_LIVING_MOVE &quot;mob_client_pre_living_move&quot;
+? Should we stop the current living movement attempt
+/#define COMSIG_MOB_CLIENT_BLOCK_PRE_LIVING_MOVE COMPONENT_MOVABLE_BLOCK_PRE_MOVE
+From base of /client/Move()
+/#define COMSIG_MOB_CLIENT_MOVED &quot;mob_client_moved&quot;
+From base of /client/proc/change_view() (mob/source, new_size)
+/#define COMSIG_MOB_CLIENT_CHANGE_VIEW &quot;mob_client_change_view&quot;
+From base of /mob/proc/reset_perspective() (mob/source)
+/#define COMSIG_MOB_RESET_PERSPECTIVE &quot;mob_reset_perspective&quot;
+From mind/transfer_to. Sent to the receiving mob.
+/#define COMSIG_MOB_MIND_TRANSFERRED_INTO &quot;mob_mind_transferred_into&quot;
+From base of obj/allowed(mob/M): (/obj) returns ACCESS_ALLOWED if mob has id access to the obj</li>
+</ul><h3 id="define/COMSIG_MOB_UPDATE_LYING"><aside class="declaration">#define </aside>COMSIG_MOB_UPDATE_LYING
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.dm#L165">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_mob&#x2F;signals_mob_main.dm 165"/></a>
+    </h3>
+    <p>called when we update lying: (new_lying)</p><h3 id="define/COMSIG_MOB_UPDATE_SIGHT"><aside class="declaration">#define </aside>COMSIG_MOB_UPDATE_SIGHT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_mob/signals_mob_main.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_mob&#x2F;signals_mob_main.dm 80"/></a>
+    </h3>
+    <p>From base of /mob/update_sight(): ()</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

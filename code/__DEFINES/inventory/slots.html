@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;inventory&#x2F;slots.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/inventory/slots.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/inventory/slots.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/slots.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;slots.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/inventory/slots.html#define/SLOT_ID_HANDS">SLOT_ID_HANDS</a></th><td>this is an id because SLOT_ID_HANDS is used for worn_slot when something is being held :</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/slots.html#define/SLOT_ID_LEFT_HAND">SLOT_ID_LEFT_HAND</a></th><td><em>ONLY USE THIS FOR RENDERING</em> - this is nonsensical anywhere else</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/slots.html#define/SLOT_ID_RIGHT_HAND">SLOT_ID_RIGHT_HAND</a></th><td><em>ONLY USE THIS FOR RENDERING</em> - this is nonsensical anywhere else</td></tr>
+        <tr><td colspan="2"><p>slot meta slot_equip_checks flags</p></td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/slots.html#define/SLOT_EQUIP_CHECK_USE_FLAGS">SLOT_EQUIP_CHECK_USE_FLAGS</a></th><td>check slot flags - must match</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/slots.html#define/SLOT_EQUIP_CHECK_USE_PROC">SLOT_EQUIP_CHECK_USE_PROC</a></th><td>use proc</td></tr>
+        <tr><td colspan="2"><p>slot meta inventory_slot_flags flags</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/slots.html#define/INV_SLOT_IS_RENDERED">INV_SLOT_IS_RENDERED</a></th><td>render on mob</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/slots.html#define/INV_SLOT_CONSIDERED_WORN">INV_SLOT_CONSIDERED_WORN</a></th><td>considered worn equipment</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/slots.html#define/INV_SLOT_ALLOW_RANDOM_ID">INV_SLOT_ALLOW_RANDOM_ID</a></th><td>allow random uid</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/slots.html#define/INV_SLOT_IS_INVENTORY">INV_SLOT_IS_INVENTORY</a></th><td>considered inventory? mob can access normally from hud if so</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/slots.html#define/INV_SLOT_HUD_REQUIRES_EXPAND">INV_SLOT_HUD_REQUIRES_EXPAND</a></th><td>hide unless inv is expanded</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/slots.html#define/INV_SLOT_IS_ABSTRACT">INV_SLOT_IS_ABSTRACT</a></th><td>considered abstract - represents a logical action, isn't actually an item holding slot</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/slots.html#define/INV_SLOT_IS_STRIPPABLE">INV_SLOT_IS_STRIPPABLE</a></th><td>show on strip menu?</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/slots.html#define/INV_SLOT_STRIP_SIMPLE_LINK">INV_SLOT_STRIP_SIMPLE_LINK</a></th><td>simple stripping - show slot + link, do not show item regardless of obfuscation. handles obfuscation differently.</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/slots.html#define/INV_SLOT_STRIP_ONLY_REMOVES">INV_SLOT_STRIP_ONLY_REMOVES</a></th><td>do not show on strip panel unless it's occupied by an item</td></tr>
+        <tr><td colspan="2"><p>slot flags</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/slots.html#define/SLOT_POCKET">SLOT_POCKET</a></th><td>This is to allow items with a w_class of 3 or 4 to fit in pockets.</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/slots.html#define/SLOT_DENYPOCKET">SLOT_DENYPOCKET</a></th><td>This is to  deny items with a w_class of 2 or 1 from fitting in pockets.</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/slots.html#define/SLOT_HOLSTER">SLOT_HOLSTER</a></th><td>items with this can fit in holster no matter what</td></tr>
+        <tr><td colspan="2"><p>legacy</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/slots.html#define/HUMAN_STRIP_DELAY">HUMAN_STRIP_DELAY</a></th><td>Takes 40ds = 4s to strip someone.</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/slots.html#define/HUMAN_INTERACT_DELAY">HUMAN_INTERACT_DELAY</a></th><td>Takes 2s to use a UI element in somebody else's hands.</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/HUMAN_INTERACT_DELAY"><aside class="declaration">#define </aside>HUMAN_INTERACT_DELAY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/slots.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;slots.dm 120"/></a>
+    </h3>
+    <p>Takes 2s to use a UI element in somebody else's hands.</p><h3 id="define/HUMAN_STRIP_DELAY"><aside class="declaration">#define </aside>HUMAN_STRIP_DELAY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/slots.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;slots.dm 118"/></a>
+    </h3>
+    <p>Takes 40ds = 4s to strip someone.</p><h3 id="define/INV_SLOT_ALLOW_RANDOM_ID"><aside class="declaration">#define </aside>INV_SLOT_ALLOW_RANDOM_ID
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/slots.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;slots.dm 43"/></a>
+    </h3>
+    <p>allow random uid</p><h3 id="define/INV_SLOT_CONSIDERED_WORN"><aside class="declaration">#define </aside>INV_SLOT_CONSIDERED_WORN
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/slots.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;slots.dm 41"/></a>
+    </h3>
+    <p>considered worn equipment</p><h3 id="define/INV_SLOT_HUD_REQUIRES_EXPAND"><aside class="declaration">#define </aside>INV_SLOT_HUD_REQUIRES_EXPAND
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/slots.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;slots.dm 47"/></a>
+    </h3>
+    <p>hide unless inv is expanded</p><h3 id="define/INV_SLOT_IS_ABSTRACT"><aside class="declaration">#define </aside>INV_SLOT_IS_ABSTRACT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/slots.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;slots.dm 49"/></a>
+    </h3>
+    <p>considered abstract - represents a logical action, isn't actually an item holding slot</p><h3 id="define/INV_SLOT_IS_INVENTORY"><aside class="declaration">#define </aside>INV_SLOT_IS_INVENTORY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/slots.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;slots.dm 45"/></a>
+    </h3>
+    <p>considered inventory? mob can access normally from hud if so</p><h3 id="define/INV_SLOT_IS_RENDERED"><aside class="declaration">#define </aside>INV_SLOT_IS_RENDERED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/slots.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;slots.dm 39"/></a>
+    </h3>
+    <p>render on mob</p><h3 id="define/INV_SLOT_IS_STRIPPABLE"><aside class="declaration">#define </aside>INV_SLOT_IS_STRIPPABLE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/slots.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;slots.dm 51"/></a>
+    </h3>
+    <p>show on strip menu?</p><h3 id="define/INV_SLOT_STRIP_ONLY_REMOVES"><aside class="declaration">#define </aside>INV_SLOT_STRIP_ONLY_REMOVES
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/slots.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;slots.dm 55"/></a>
+    </h3>
+    <p>do not show on strip panel unless it's occupied by an item</p><h3 id="define/INV_SLOT_STRIP_SIMPLE_LINK"><aside class="declaration">#define </aside>INV_SLOT_STRIP_SIMPLE_LINK
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/slots.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;slots.dm 53"/></a>
+    </h3>
+    <p>simple stripping - show slot + link, do not show item regardless of obfuscation. handles obfuscation differently.</p><h3 id="define/SLOT_DENYPOCKET"><aside class="declaration">#define </aside>SLOT_DENYPOCKET
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/slots.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;slots.dm 85"/></a>
+    </h3>
+    <p>This is to  deny items with a w_class of 2 or 1 from fitting in pockets.</p><h3 id="define/SLOT_EQUIP_CHECK_USE_FLAGS"><aside class="declaration">#define </aside>SLOT_EQUIP_CHECK_USE_FLAGS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/slots.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;slots.dm 28"/></a>
+    </h3>
+    <p>check slot flags - must match</p><h3 id="define/SLOT_EQUIP_CHECK_USE_PROC"><aside class="declaration">#define </aside>SLOT_EQUIP_CHECK_USE_PROC
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/slots.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;slots.dm 30"/></a>
+    </h3>
+    <p>use proc</p><h3 id="define/SLOT_HOLSTER"><aside class="declaration">#define </aside>SLOT_HOLSTER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/slots.dm#L91">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;slots.dm 91"/></a>
+    </h3>
+    <p>items with this can fit in holster no matter what</p><h3 id="define/SLOT_ID_HANDS"><aside class="declaration">#define </aside>SLOT_ID_HANDS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/slots.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;slots.dm 20"/></a>
+    </h3>
+    <p>this is an id because SLOT_ID_HANDS is used for worn_slot when something is being held :</p><h3 id="define/SLOT_ID_LEFT_HAND"><aside class="declaration">#define </aside>SLOT_ID_LEFT_HAND
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/slots.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;slots.dm 22"/></a>
+    </h3>
+    <p><em>ONLY USE THIS FOR RENDERING</em> - this is nonsensical anywhere else</p><h3 id="define/SLOT_ID_RIGHT_HAND"><aside class="declaration">#define </aside>SLOT_ID_RIGHT_HAND
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/slots.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;slots.dm 24"/></a>
+    </h3>
+    <p><em>ONLY USE THIS FOR RENDERING</em> - this is nonsensical anywhere else</p><h3 id="define/SLOT_POCKET"><aside class="declaration">#define </aside>SLOT_POCKET
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/slots.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;slots.dm 83"/></a>
+    </h3>
+    <p>This is to allow items with a w_class of 3 or 4 to fit in pockets.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

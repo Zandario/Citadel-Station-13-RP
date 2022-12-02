@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;category_item&#x2F;player_setup_item - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/category_item/player_setup_item.html#var">Var Details</a> - <a href="datum/category_item/player_setup_item.html#proc">Proc Details</a></header>
+<main>
+<h1>player_setup_item <aside>/<a href="datum.html">datum</a>/<a href="datum/category_item/player_setup_item.html">category_item/player_setup_item</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/preference_item_new.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;preference_item_new.dm 8"/></a></h1>
+
+<p>Category Item Setup</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/category_item/player_setup_item.html#var/is_global">is_global</a></th><td>globally saved, or character-slot saved?</td></tr>
+            <tr><th><a href="datum/category_item/player_setup_item.html#var/load_order">load_order</a></th><td>load order; sanitization + deserialization goes from lowest to highest</td></tr>
+            <tr><th><a href="datum/category_item/player_setup_item.html#var/save_key">save_key</a></th><td>primary data key</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/category_item/player_setup_item.html#proc/act">act</a></th><td>called when something acts on a href
+returns PREFERENCES_X bitfields for what to do</td></tr>
+            <tr><th><a href="datum/category_item/player_setup_item.html#proc/content">content</a></th><td>called to render the text the user sees</td></tr>
+            <tr><th><a href="datum/category_item/player_setup_item.html#proc/copy_to_mob">copy_to_mob</a></th><td>called to apply to mob</td></tr>
+            <tr><th><a href="datum/category_item/player_setup_item.html#proc/default_value">default_value</a></th><td>get default value</td></tr>
+            <tr><th><a href="datum/category_item/player_setup_item.html#proc/deserialize_data">deserialize_data</a></th><td>called to deserialize our value during loading</td></tr>
+            <tr><th><a href="datum/category_item/player_setup_item.html#proc/filter_data">filter_data</a></th><td>called to sanitize our value.</td></tr>
+            <tr><th><a href="datum/category_item/player_setup_item.html#proc/get_FBP_type">get_FBP_type</a></th><td>Returns what kind of FBP the player's prefs are.  Returns FALSE if they're not an FBP.</td></tr>
+            <tr><th><a href="datum/category_item/player_setup_item.html#proc/href">href</a></th><td>encodes href</td></tr>
+            <tr><th><a href="datum/category_item/player_setup_item.html#proc/href_simple">href_simple</a></th><td>encodes href</td></tr>
+            <tr><th><a href="datum/category_item/player_setup_item.html#proc/informed_default_value">informed_default_value</a></th><td>get default value assuming pref</td></tr>
+            <tr><th><a href="datum/category_item/player_setup_item.html#proc/is_FBP">is_FBP</a></th><td>Checks in a really hacky way if a character's preferences say they are an FBP or not.</td></tr>
+            <tr><th><a href="datum/category_item/player_setup_item.html#proc/read">read</a></th><td>read data; does not auto-sanitize</td></tr>
+            <tr><th><a href="datum/category_item/player_setup_item.html#proc/sanitize_data">sanitize_data</a></th><td>called to sanitize our value on a preferences datum</td></tr>
+            <tr><th><a href="datum/category_item/player_setup_item.html#proc/serialize_data">serialize_data</a></th><td>called to serialize our value for saving</td></tr>
+            <tr><th><a href="datum/category_item/player_setup_item.html#proc/spawn_checks">spawn_checks</a></th><td>called to check for errors; if non null, players get showed this while spawning and the
+spawn is blocked.</td></tr>
+            <tr><th><a href="datum/category_item/player_setup_item.html#proc/write">write</a></th><td>write data, sanitizing in the process</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/is_global"><aside class="declaration">var </aside>is_global
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/preference_item_new.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;preference_item_new.dm 13"/></a></h3>
+        <p>globally saved, or character-slot saved?</p><h3 id="var/load_order"><aside class="declaration">var </aside>load_order
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/preference_item_new.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;preference_item_new.dm 15"/></a></h3>
+        <p>load order; sanitization + deserialization goes from lowest to highest</p><h3 id="var/save_key"><aside class="declaration">var </aside>save_key
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/preference_item_new.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;preference_item_new.dm 11"/></a></h3>
+        <p>primary data key</p><h2 id="proc">Proc Details</h2><h3 id="proc/act"><aside class="declaration">proc </aside>act<aside>(/<a href="datum.html">datum</a>/<a href="datum/preferences.html">preferences</a>/prefs, /<a href="mob.html">mob</a>/user, action, /list/params) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/preference_item_new.dm#L133">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;preference_item_new.dm 133"/></a></aside>
+        </h3>
+        <p>called when something acts on a href
+returns PREFERENCES_X bitfields for what to do</p>
+<p>@params</p>
+<ul>
+<li>prefs - prefs we're acting on</li>
+<li>user - person acting on us</li>
+<li>action - the action</li>
+<li>params - additional parameters</li>
+</ul><h3 id="proc/content"><aside class="declaration">proc </aside>content<aside>(/<a href="datum.html">datum</a>/<a href="datum/preferences.html">preferences</a>/prefs, /<a href="mob.html">mob</a>/user, data) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/preference_item_new.dm#L119">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;preference_item_new.dm 119"/></a></aside>
+        </h3>
+        <p>called to render the text the user sees</p>
+<p>@params</p>
+<ul>
+<li>prefs - host preferences datum</li>
+<li>user - viewer</li>
+<li>data - our save data</li>
+</ul><h3 id="proc/copy_to_mob"><aside class="declaration">proc </aside>copy_to_mob<aside>(/<a href="datum.html">datum</a>/<a href="datum/preferences.html">preferences</a>/prefs, /<a href="mob.html">mob</a>/M, data, flags) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/preference_item_new.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;preference_item_new.dm 26"/></a></aside>
+        </h3>
+        <p>called to apply to mob</p>
+<p>@params</p>
+<ul>
+<li>prefs - the preferences datum. This is OPTIONAL, as we can use prefs items in admin rejuv!!</li>
+<li>M - the mob in question</li>
+<li>data - our save data</li>
+<li>flags - PREF_COPY_TO_FOR_ flags</li>
+</ul><h3 id="proc/default_value"><aside class="declaration">proc </aside>default_value<aside>(randomizing) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/preference_item_new.dm#L100">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;preference_item_new.dm 100"/></a></aside>
+        </h3>
+        <p>get default value</p>
+<p>todo: randomizing is awful, we need multi stage randomizing + templates for this</p><h3 id="proc/deserialize_data"><aside class="declaration">proc </aside>deserialize_data<aside>(/<a href="datum.html">datum</a>/<a href="datum/preferences.html">preferences</a>/prefs, raw, /list/errors) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/preference_item_new.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;preference_item_new.dm 74"/></a></aside>
+        </h3>
+        <p>called to deserialize our value during loading</p>
+<p>migrations are obviously allowed</p>
+<p>@return deserialized data to set on preferences data lists</p><h3 id="proc/filter_data"><aside class="declaration">proc </aside>filter_data<aside>(/<a href="datum.html">datum</a>/<a href="datum/preferences.html">preferences</a>/prefs, data, /list/errors) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/preference_item_new.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;preference_item_new.dm 48"/></a></aside>
+        </h3>
+        <p>called to sanitize our value.</p>
+<p>called after deserialization.</p>
+<p>put errors into errors for user feedback</p><h3 id="proc/get_FBP_type"><aside class="declaration">proc </aside>get_FBP_type<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/preference_setup.dm#L272">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;preference_setup.dm 272"/></a></aside>
+        </h3>
+        <p>Returns what kind of FBP the player's prefs are.  Returns FALSE if they're not an FBP.</p><h3 id="proc/href"><aside class="declaration">proc </aside>href<aside>(/<a href="datum.html">datum</a>/<a href="datum/preferences.html">preferences</a>/prefs, action, innerhtml, /list/params) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/preference_item_new.dm#L139">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;preference_item_new.dm 139"/></a></aside>
+        </h3>
+        <p>encodes href</p><h3 id="proc/href_simple"><aside class="declaration">proc </aside>href_simple<aside>(/<a href="datum.html">datum</a>/<a href="datum/preferences.html">preferences</a>/prefs, action, innerhtml, option) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/preference_item_new.dm#L149">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;preference_item_new.dm 149"/></a></aside>
+        </h3>
+        <p>encodes href</p>
+<p>act() will be called with action and the action associated to the option in params.</p><h3 id="proc/informed_default_value"><aside class="declaration">proc </aside>informed_default_value<aside>(/<a href="datum.html">datum</a>/<a href="datum/preferences.html">preferences</a>/prefs, randomizing) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/preference_item_new.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;preference_item_new.dm 108"/></a></aside>
+        </h3>
+        <p>get default value assuming pref</p>
+<p>todo: randomizing is awful, we need multi stage randomizing + templates for this</p><h3 id="proc/is_FBP"><aside class="declaration">proc </aside>is_FBP<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/preference_setup.dm#L266">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;preference_setup.dm 266"/></a></aside>
+        </h3>
+        <p>Checks in a really hacky way if a character's preferences say they are an FBP or not.</p><h3 id="proc/read"><aside class="declaration">proc </aside>read<aside>(/<a href="datum.html">datum</a>/<a href="datum/preferences.html">preferences</a>/prefs) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/preference_item_new.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;preference_item_new.dm 89"/></a></aside>
+        </h3>
+        <p>read data; does not auto-sanitize</p><h3 id="proc/sanitize_data"><aside class="declaration">proc </aside>sanitize_data<aside>(/<a href="datum.html">datum</a>/<a href="datum/preferences.html">preferences</a>/prefs, /list/errors) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/preference_item_new.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;preference_item_new.dm 56"/></a></aside>
+        </h3>
+        <p>called to sanitize our value on a preferences datum</p>
+<p>put errors into errors for user feedback</p><h3 id="proc/serialize_data"><aside class="declaration">proc </aside>serialize_data<aside>(/<a href="datum.html">datum</a>/<a href="datum/preferences.html">preferences</a>/prefs, data, /list/errors) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/preference_item_new.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;preference_item_new.dm 64"/></a></aside>
+        </h3>
+        <p>called to serialize our value for saving</p>
+<p>@return raw data to save</p><h3 id="proc/spawn_checks"><aside class="declaration">proc </aside>spawn_checks<aside>(/<a href="datum.html">datum</a>/<a href="datum/preferences.html">preferences</a>/prefs, data, flags, /list/errors) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/preference_item_new.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;preference_item_new.dm 38"/></a></aside>
+        </h3>
+        <p>called to check for errors; if non null, players get showed this while spawning and the
+spawn is blocked.</p>
+<p>put reasons into errors</p><h3 id="proc/write"><aside class="declaration">proc </aside>write<aside>(/<a href="datum.html">datum</a>/<a href="datum/preferences.html">preferences</a>/prefs, data, /list/errors) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/preference_item_new.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;preference_item_new.dm 80"/></a></aside>
+        </h3>
+        <p>write data, sanitizing in the process</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;dmm_suite - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="dmm_suite.html#proc">Proc Details</a></header>
+<main>
+<h1>dmm_suite <aside>/<a href="dmm_suite.html">dmm_suite</a></aside><aside> inherits /<a href="datum.html">datum</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/maps/tg/dmm_suite.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;maps&#x2F;tg&#x2F;dmm_suite.dm 54"/></a></h1>
+
+<p>dmm_suite version 1.0
+Released January 30th, 2011.</p>
+<p>NOTE: Map saving functionality removed</p>
+<p>defines the object /dmm_suite
+- Provides the proc load_map()
+- Loads the specified map file onto the specified z-level.
+- provides the proc write_map()
+- Returns a text string of the map in dmm format
+ready for output to a file.
+- provides the proc save_map()
+- Returns a .dmm file if map is saved
+- Returns FALSE if map fails to save</p>
+<p>The dmm_suite provides saving and loading of map files in BYOND's native DMM map
+format. It approximates the map saving and loading processes of the Dream Maker
+and Dream Seeker programs so as to allow editing, saving, and loading of maps at
+runtime.</p>
+<hr />
+<p>To save a map at runtime, create an instance of /dmm_suite, and then call
+write_map(), which accepts three arguments:
+- A turf representing one corner of a three dimensional grid (Required).
+- Another turf representing the other corner of the same grid (Required).
+- Any, or a combination, of several bit flags (Optional, see documentation).</p>
+<p>The order in which the turfs are supplied does not matter, the /dmm_writer will
+determine the grid containing both, in much the same way as DM's block() function.
+write_map() will then return a string representing the saved map in dmm format;
+this string can then be saved to a file, or used for any other purose.</p>
+<hr />
+<p>To load a map at runtime, create an instance of /dmm_suite, and then call load_map(),
+which accepts two arguments:
+- A .dmm file to load (Required).
+- A number representing the z-level on which to start loading the map (Optional).</p>
+<p>The /dmm_suite will load the map file starting on the specified z-level. If no
+z-level	was specified, world.maxz will be increased so as to fit the map. Note
+that if you wish to load a map onto a z-level that already has objects on it,
+you will have to handle the removal of those objects. Otherwise the new map will
+simply load the new objects on top of the old ones.</p>
+<p>Also note that all type paths specified in the .dmm file must exist in the world's
+code, and that the /dmm_reader trusts that files to be loaded are in fact valid
+.dmm files. Errors in the .dmm format will cause runtime errors.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="dmm_suite.html#proc/load_map">load_map</a></th><td>Construct the model map and control the loading process</td></tr>
+            <tr><th><a href="dmm_suite.html#proc/parse_grid">parse_grid</a></th><td>Fill a given tile with its area/turf/objects/mobs
+Variable model is one full map line (e.g /turf/unsimulated/wall{icon_state = &quot;rock&quot;}, /area/mine/explored)</td></tr></table><h2 id="proc">Proc Details</h2><h3 id="proc/load_map"><aside class="declaration">verb </aside>load_map<aside>(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, orientation) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/maps/tg/reader.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;maps&#x2F;tg&#x2F;reader.dm 27"/></a></aside>
+        </h3>
+        <p>Construct the model map and control the loading process</p>
+<p>WORKING :</p>
+<ol>
+<li>Makes an associative mapping of model_keys with model
+e.g aa = /turf/unsimulated/wall{icon_state = &quot;rock&quot;}</li>
+<li>Read the map line by line, parsing the result (using parse_grid)</li>
+</ol><h3 id="proc/parse_grid"><aside class="declaration">proc </aside>parse_grid<aside>(model, model_key, xcrd, ycrd, zcrd, no_changeturf, orientation, /list/areaCache) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/maps/tg/reader.dm#L259">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;maps&#x2F;tg&#x2F;reader.dm 259"/></a></aside>
+        </h3>
+        <p>Fill a given tile with its area/turf/objects/mobs
+Variable model is one full map line (e.g /turf/unsimulated/wall{icon_state = &quot;rock&quot;}, /area/mine/explored)</p>
+<p>WORKING :</p>
+<ol>
+<li>
+<p>Read the model string, member by member (delimiter is ',')</p>
+</li>
+<li>
+<p>Get the path of the atom and store it into a list</p>
+</li>
+<li>
+<p>a) Check if the member has variables (text within '{' and '}')</p>
+</li>
+<li>
+<p>b) Construct an associative list with found variables, if any (the atom index in members is the same as its variables in members_attributes)</p>
+</li>
+<li>
+<p>Instanciates the atom with its variables</p>
+</li>
+</ol></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

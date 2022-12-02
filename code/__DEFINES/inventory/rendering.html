@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;inventory&#x2F;rendering.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/inventory/rendering.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/inventory/rendering.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/rendering.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;rendering.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><p>worn_render_flags on /obj/item</p></td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/rendering.html#define/WORN_RENDER_SLOT_ONE_FOR_ALL">WORN_RENDER_SLOT_ONE_FOR_ALL</a></th><td>_all for state</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/rendering.html#define/WORN_RENDER_INHAND_ONE_FOR_ALL">WORN_RENDER_INHAND_ONE_FOR_ALL</a></th><td>_all for state on inhands</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/rendering.html#define/WORN_RENDER_SLOT_ALLOW_DEFAULT">WORN_RENDER_SLOT_ALLOW_DEFAULT</a></th><td>allow worn defaulting</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/rendering.html#define/WORN_RENDER_INHAND_ALLOW_DEFAULT">WORN_RENDER_INHAND_ALLOW_DEFAULT</a></th><td>allow inhand defaulting</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/rendering.html#define/WORN_RENDER_SLOT_NO_RENDER">WORN_RENDER_SLOT_NO_RENDER</a></th><td>don't render in slots; render_additional still used, others aren't</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/rendering.html#define/WORN_RENDER_INHAND_NO_RENDER">WORN_RENDER_INHAND_NO_RENDER</a></th><td>don't render in inhands; render_additional still used, others aren't</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/rendering.html#define/WORN_RENDER_SLOT_USE_PLURAL">WORN_RENDER_SLOT_USE_PLURAL</a></th><td>use plural key when we can; overridden by ONE_FOR_ALL</td></tr>
+        <tr><td colspan="2"><p>list indices for resolve_worn_assets</p>
+</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/WORN_RENDER_INHAND_ALLOW_DEFAULT"><aside class="declaration">#define </aside>WORN_RENDER_INHAND_ALLOW_DEFAULT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/rendering.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;rendering.dm 9"/></a>
+    </h3>
+    <p>allow inhand defaulting</p><h3 id="define/WORN_RENDER_INHAND_NO_RENDER"><aside class="declaration">#define </aside>WORN_RENDER_INHAND_NO_RENDER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/rendering.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;rendering.dm 13"/></a>
+    </h3>
+    <p>don't render in inhands; render_additional still used, others aren't</p><h3 id="define/WORN_RENDER_INHAND_ONE_FOR_ALL"><aside class="declaration">#define </aside>WORN_RENDER_INHAND_ONE_FOR_ALL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/rendering.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;rendering.dm 5"/></a>
+    </h3>
+    <p>_all for state on inhands</p><h3 id="define/WORN_RENDER_SLOT_ALLOW_DEFAULT"><aside class="declaration">#define </aside>WORN_RENDER_SLOT_ALLOW_DEFAULT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/rendering.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;rendering.dm 7"/></a>
+    </h3>
+    <p>allow worn defaulting</p><h3 id="define/WORN_RENDER_SLOT_NO_RENDER"><aside class="declaration">#define </aside>WORN_RENDER_SLOT_NO_RENDER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/rendering.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;rendering.dm 11"/></a>
+    </h3>
+    <p>don't render in slots; render_additional still used, others aren't</p><h3 id="define/WORN_RENDER_SLOT_ONE_FOR_ALL"><aside class="declaration">#define </aside>WORN_RENDER_SLOT_ONE_FOR_ALL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/rendering.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;rendering.dm 3"/></a>
+    </h3>
+    <p>_all for state</p><h3 id="define/WORN_RENDER_SLOT_USE_PLURAL"><aside class="declaration">#define </aside>WORN_RENDER_SLOT_USE_PLURAL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/rendering.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;rendering.dm 15"/></a>
+    </h3>
+    <p>use plural key when we can; overridden by ONE_FOR_ALL</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

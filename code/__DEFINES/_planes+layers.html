@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;_planes+layers.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/_planes+layers.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/_planes+layers.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><p>todo: layers still need to be linear regardless of plane. stuff like projectiles DO CARE.</p></td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/SPACE_PLANE">SPACE_PLANE</a></th><td>Reserved for use in space/parallax</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/PARALLAX_PLANE">PARALLAX_PLANE</a></th><td>Reserved for use in space/parallax</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/PARALLAX_VIS_LAYER_BELOW">PARALLAX_VIS_LAYER_BELOW</a></th><td>everything layering below</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/PARALLAX_VIS_LAYER_ABOVE">PARALLAX_VIS_LAYER_ABOVE</a></th><td>ditto</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/PLANE_LOOKINGGLASS">PLANE_LOOKINGGLASS</a></th><td>For the Looking Glass holodecks</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/PLANE_LOOKINGGLASS_IMG">PLANE_LOOKINGGLASS_IMG</a></th><td>For the Looking Glass holodecks</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/OPENSPACE_PLANE">OPENSPACE_PLANE</a></th><td>turf/simulated/open will use OPENSPACE_PLANE + z (Valid z's being 2 thru 17)</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/PLATING_PLANE">PLATING_PLANE</a></th><td>Plating</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/DISPOSAL_LAYER">DISPOSAL_LAYER</a></th><td>Under objects, even when planeswapped</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/PIPES_LAYER">PIPES_LAYER</a></th><td>Under objects, even when planeswapped</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/WIRES_LAYER">WIRES_LAYER</a></th><td>Under objects, even when planeswapped</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/ATMOS_LAYER">ATMOS_LAYER</a></th><td>Pipe-like atmos machinery that goes on the floor, like filters.</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/ABOVE_UTILITY">ABOVE_UTILITY</a></th><td>Above stuff like pipes and wires</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/TURF_PLANE">TURF_PLANE</a></th><td>Turfs themselves, most flooring</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/WATER_FLOOR_LAYER">WATER_FLOOR_LAYER</a></th><td>The 'bottom' of water tiles.</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/BUILTIN_DECAL_LAYER">BUILTIN_DECAL_LAYER</a></th><td>For floors that automatically add decal overlays</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/MAPPER_DECAL_LAYER">MAPPER_DECAL_LAYER</a></th><td>For intentionally placed floor decal overlays</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/UNDERWATER_LAYER">UNDERWATER_LAYER</a></th><td>Anything on this layer will render under the water layer.</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/WATER_LAYER">WATER_LAYER</a></th><td>Layer for water overlays.</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/ABOVE_TURF_LAYER">ABOVE_TURF_LAYER</a></th><td>Snow and wallmounted/floormounted equipment</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/DEBRIS_LAYER">DEBRIS_LAYER</a></th><td>cleanable debris</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/STAIRS_LAYER">STAIRS_LAYER</a></th><td>Layer for stairs</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/HIDING_LAYER">HIDING_LAYER</a></th><td>Layer at which mobs hide to be under things like tables</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/DOOR_OPEN_LAYER">DOOR_OPEN_LAYER</a></th><td>Under all objects if opened. 2.7 due to tables being at 2.6</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/TABLE_LAYER">TABLE_LAYER</a></th><td>Just under stuff that wants to be slightly below common objects.</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/UNDER_JUNK_LAYER">UNDER_JUNK_LAYER</a></th><td>Things that want to be slightly below common objects</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/ABOVE_JUNK_LAYER">ABOVE_JUNK_LAYER</a></th><td>Things that want to be slightly above common objects</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/DOOR_CLOSED_LAYER">DOOR_CLOSED_LAYER</a></th><td>Doors when closed</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/WINDOW_LAYER">WINDOW_LAYER</a></th><td>Windows</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/ON_WINDOW_LAYER">ON_WINDOW_LAYER</a></th><td>Ontop of a window</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/ABOVE_WINDOW_LAYER">ABOVE_WINDOW_LAYER</a></th><td>Above full tile windows so wall items are clickable</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/PLANE_WORLD">PLANE_WORLD</a></th><td>BYOND's default value for plane, the &quot;base plane&quot;</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/HUD_LAYER">HUD_LAYER</a></th><td>Above lighting, but below obfuscation. For in-game HUD effects (whereas SCREEN_LAYER is for abstract/OOC things like inventory slots)</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/SCREEN_LAYER">SCREEN_LAYER</a></th><td>Mob HUD/effects layer</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/PLANE_STATUS">PLANE_STATUS</a></th><td>Status Indicators that show over mobs' heads when certain things like stuns affect them.</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/PLANE_ADMIN1">PLANE_ADMIN1</a></th><td>Purely for shenanigans (below lighting)</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/PLANE_PLANETLIGHTING">PLANE_PLANETLIGHTING</a></th><td>Lighting on planets</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/LIGHTING_PLANE">LIGHTING_PLANE</a></th><td>Where the lighting (and darkness) lives (ignoring all other higher planes)</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/ABOVE_LIGHTING_PLANE">ABOVE_LIGHTING_PLANE</a></th><td>For glowy eyes etc. that shouldn't be affected by darkness</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/PLANE_GHOSTS">PLANE_GHOSTS</a></th><td>Spooooooooky ghooooooosts</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/PLANE_AI_EYE">PLANE_AI_EYE</a></th><td>The AI eye lives here</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/PLANE_MESONS">PLANE_MESONS</a></th><td>Stuff seen with mesons, like open ceilings. This is 30 for downstreams.</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/PLANE_ADMIN2">PLANE_ADMIN2</a></th><td>Purely for shenanigans (above lighting)</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/PLANE_AUGMENTED">PLANE_AUGMENTED</a></th><td>Augmented-reality plane</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/PLANE_PLAYER_HUD">PLANE_PLAYER_HUD</a></th><td>The character's UI is on this plane</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/LAYER_HUD_UNDER">LAYER_HUD_UNDER</a></th><td>Under the HUD items</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/LAYER_HUD_BASE">LAYER_HUD_BASE</a></th><td>The HUD items themselves</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/LAYER_HUD_ITEM">LAYER_HUD_ITEM</a></th><td>Things sitting on HUD items (largely irrelevant because PLANE_PLAYER_HUD_ITEMS)</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/LAYER_HUD_ABOVE">LAYER_HUD_ABOVE</a></th><td>Things that reside above items (highlights)</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/PLANE_PLAYER_HUD_ITEMS">PLANE_PLAYER_HUD_ITEMS</a></th><td>Separate layer with which to apply colorblindness</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/PLANE_PLAYER_HUD_ABOVE">PLANE_PLAYER_HUD_ABOVE</a></th><td>Things above the player hud</td></tr>
+        <tr><th><a href="code/__DEFINES/_planes+layers.html#define/PLANE_ADMIN3">PLANE_ADMIN3</a></th><td>Purely for shenanigans (above HUD)</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/ABOVE_JUNK_LAYER"><aside class="declaration">#define </aside>ABOVE_JUNK_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L115">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 115"/></a>
+    </h3>
+    <p>Things that want to be slightly above common objects</p><h3 id="define/ABOVE_LIGHTING_PLANE"><aside class="declaration">#define </aside>ABOVE_LIGHTING_PLANE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L170">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 170"/></a>
+    </h3>
+    <p>For glowy eyes etc. that shouldn't be affected by darkness</p><h3 id="define/ABOVE_TURF_LAYER"><aside class="declaration">#define </aside>ABOVE_TURF_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 95"/></a>
+    </h3>
+    <p>Snow and wallmounted/floormounted equipment</p><h3 id="define/ABOVE_UTILITY"><aside class="declaration">#define </aside>ABOVE_UTILITY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 81"/></a>
+    </h3>
+    <p>Above stuff like pipes and wires</p><h3 id="define/ABOVE_WINDOW_LAYER"><aside class="declaration">#define </aside>ABOVE_WINDOW_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L123">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 123"/></a>
+    </h3>
+    <p>Above full tile windows so wall items are clickable</p><h3 id="define/ATMOS_LAYER"><aside class="declaration">#define </aside>ATMOS_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 79"/></a>
+    </h3>
+    <p>Pipe-like atmos machinery that goes on the floor, like filters.</p><h3 id="define/BUILTIN_DECAL_LAYER"><aside class="declaration">#define </aside>BUILTIN_DECAL_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 87"/></a>
+    </h3>
+    <p>For floors that automatically add decal overlays</p><h3 id="define/DEBRIS_LAYER"><aside class="declaration">#define </aside>DEBRIS_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 101"/></a>
+    </h3>
+    <p>cleanable debris</p><h3 id="define/DISPOSAL_LAYER"><aside class="declaration">#define </aside>DISPOSAL_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 73"/></a>
+    </h3>
+    <p>Under objects, even when planeswapped</p><h3 id="define/DOOR_CLOSED_LAYER"><aside class="declaration">#define </aside>DOOR_CLOSED_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L117">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 117"/></a>
+    </h3>
+    <p>Doors when closed</p><h3 id="define/DOOR_OPEN_LAYER"><aside class="declaration">#define </aside>DOOR_OPEN_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 107"/></a>
+    </h3>
+    <p>Under all objects if opened. 2.7 due to tables being at 2.6</p><h3 id="define/HIDING_LAYER"><aside class="declaration">#define </aside>HIDING_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 105"/></a>
+    </h3>
+    <p>Layer at which mobs hide to be under things like tables</p><h3 id="define/HUD_LAYER"><aside class="declaration">#define </aside>HUD_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L155">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 155"/></a>
+    </h3>
+    <p>Above lighting, but below obfuscation. For in-game HUD effects (whereas SCREEN_LAYER is for abstract/OOC things like inventory slots)</p><h3 id="define/LAYER_HUD_ABOVE"><aside class="declaration">#define </aside>LAYER_HUD_ABOVE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L207">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 207"/></a>
+    </h3>
+    <p>Things that reside above items (highlights)</p><h3 id="define/LAYER_HUD_BASE"><aside class="declaration">#define </aside>LAYER_HUD_BASE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L203">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 203"/></a>
+    </h3>
+    <p>The HUD items themselves</p><h3 id="define/LAYER_HUD_ITEM"><aside class="declaration">#define </aside>LAYER_HUD_ITEM
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L205">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 205"/></a>
+    </h3>
+    <p>Things sitting on HUD items (largely irrelevant because PLANE_PLAYER_HUD_ITEMS)</p><h3 id="define/LAYER_HUD_UNDER"><aside class="declaration">#define </aside>LAYER_HUD_UNDER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L201">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 201"/></a>
+    </h3>
+    <p>Under the HUD items</p><h3 id="define/LIGHTING_PLANE"><aside class="declaration">#define </aside>LIGHTING_PLANE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L165">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 165"/></a>
+    </h3>
+    <p>Where the lighting (and darkness) lives (ignoring all other higher planes)</p><h3 id="define/MAPPER_DECAL_LAYER"><aside class="declaration">#define </aside>MAPPER_DECAL_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 89"/></a>
+    </h3>
+    <p>For intentionally placed floor decal overlays</p><h3 id="define/ON_WINDOW_LAYER"><aside class="declaration">#define </aside>ON_WINDOW_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L121">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 121"/></a>
+    </h3>
+    <p>Ontop of a window</p><h3 id="define/OPENSPACE_PLANE"><aside class="declaration">#define </aside>OPENSPACE_PLANE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 63"/></a>
+    </h3>
+    <p>turf/simulated/open will use OPENSPACE_PLANE + z (Valid z's being 2 thru 17)</p><h3 id="define/PARALLAX_PLANE"><aside class="declaration">#define </aside>PARALLAX_PLANE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 51"/></a>
+    </h3>
+    <p>Reserved for use in space/parallax</p><h3 id="define/PARALLAX_VIS_LAYER_ABOVE"><aside class="declaration">#define </aside>PARALLAX_VIS_LAYER_ABOVE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 56"/></a>
+    </h3>
+    <p>ditto</p><h3 id="define/PARALLAX_VIS_LAYER_BELOW"><aside class="declaration">#define </aside>PARALLAX_VIS_LAYER_BELOW
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 53"/></a>
+    </h3>
+    <p>everything layering below</p><h3 id="define/PIPES_LAYER"><aside class="declaration">#define </aside>PIPES_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 75"/></a>
+    </h3>
+    <p>Under objects, even when planeswapped</p><h3 id="define/PLANE_ADMIN1"><aside class="declaration">#define </aside>PLANE_ADMIN1
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L161">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 161"/></a>
+    </h3>
+    <p>Purely for shenanigans (below lighting)</p><h3 id="define/PLANE_ADMIN2"><aside class="declaration">#define </aside>PLANE_ADMIN2
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L184">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 184"/></a>
+    </h3>
+    <p>Purely for shenanigans (above lighting)</p><h3 id="define/PLANE_ADMIN3"><aside class="declaration">#define </aside>PLANE_ADMIN3
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L213">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 213"/></a>
+    </h3>
+    <p>Purely for shenanigans (above HUD)</p><h3 id="define/PLANE_AI_EYE"><aside class="declaration">#define </aside>PLANE_AI_EYE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L180">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 180"/></a>
+    </h3>
+    <p>The AI eye lives here</p><h3 id="define/PLANE_AUGMENTED"><aside class="declaration">#define </aside>PLANE_AUGMENTED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L186">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 186"/></a>
+    </h3>
+    <p>Augmented-reality plane</p><h3 id="define/PLANE_GHOSTS"><aside class="declaration">#define </aside>PLANE_GHOSTS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L178">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 178"/></a>
+    </h3>
+    <p>Spooooooooky ghooooooosts</p><h3 id="define/PLANE_LOOKINGGLASS"><aside class="declaration">#define </aside>PLANE_LOOKINGGLASS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 58"/></a>
+    </h3>
+    <p>For the Looking Glass holodecks</p><h3 id="define/PLANE_LOOKINGGLASS_IMG"><aside class="declaration">#define </aside>PLANE_LOOKINGGLASS_IMG
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 60"/></a>
+    </h3>
+    <p>For the Looking Glass holodecks</p><h3 id="define/PLANE_MESONS"><aside class="declaration">#define </aside>PLANE_MESONS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L182">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 182"/></a>
+    </h3>
+    <p>Stuff seen with mesons, like open ceilings. This is 30 for downstreams.</p><h3 id="define/PLANE_PLANETLIGHTING"><aside class="declaration">#define </aside>PLANE_PLANETLIGHTING
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L163">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 163"/></a>
+    </h3>
+    <p>Lighting on planets</p><h3 id="define/PLANE_PLAYER_HUD"><aside class="declaration">#define </aside>PLANE_PLAYER_HUD
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L199">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 199"/></a>
+    </h3>
+    <p>The character's UI is on this plane</p><h3 id="define/PLANE_PLAYER_HUD_ABOVE"><aside class="declaration">#define </aside>PLANE_PLAYER_HUD_ABOVE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L211">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 211"/></a>
+    </h3>
+    <p>Things above the player hud</p><h3 id="define/PLANE_PLAYER_HUD_ITEMS"><aside class="declaration">#define </aside>PLANE_PLAYER_HUD_ITEMS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L209">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 209"/></a>
+    </h3>
+    <p>Separate layer with which to apply colorblindness</p><h3 id="define/PLANE_STATUS"><aside class="declaration">#define </aside>PLANE_STATUS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L159">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 159"/></a>
+    </h3>
+    <p>Status Indicators that show over mobs' heads when certain things like stuns affect them.</p><h3 id="define/PLANE_WORLD"><aside class="declaration">#define </aside>PLANE_WORLD
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L141">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 141"/></a>
+    </h3>
+    <p>BYOND's default value for plane, the &quot;base plane&quot;</p><h3 id="define/PLATING_PLANE"><aside class="declaration">#define </aside>PLATING_PLANE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 71"/></a>
+    </h3>
+    <p>Plating</p><h3 id="define/SCREEN_LAYER"><aside class="declaration">#define </aside>SCREEN_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L157">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 157"/></a>
+    </h3>
+    <p>Mob HUD/effects layer</p><h3 id="define/SPACE_PLANE"><aside class="declaration">#define </aside>SPACE_PLANE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 49"/></a>
+    </h3>
+    <p>Reserved for use in space/parallax</p><h3 id="define/STAIRS_LAYER"><aside class="declaration">#define </aside>STAIRS_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 103"/></a>
+    </h3>
+    <p>Layer for stairs</p><h3 id="define/TABLE_LAYER"><aside class="declaration">#define </aside>TABLE_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 109"/></a>
+    </h3>
+    <p>Just under stuff that wants to be slightly below common objects.</p><h3 id="define/TURF_PLANE"><aside class="declaration">#define </aside>TURF_PLANE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 83"/></a>
+    </h3>
+    <p>Turfs themselves, most flooring</p><h3 id="define/UNDERWATER_LAYER"><aside class="declaration">#define </aside>UNDERWATER_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L91">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 91"/></a>
+    </h3>
+    <p>Anything on this layer will render under the water layer.</p><h3 id="define/UNDER_JUNK_LAYER"><aside class="declaration">#define </aside>UNDER_JUNK_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 112"/></a>
+    </h3>
+    <p>Things that want to be slightly below common objects</p><h3 id="define/WATER_FLOOR_LAYER"><aside class="declaration">#define </aside>WATER_FLOOR_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 85"/></a>
+    </h3>
+    <p>The 'bottom' of water tiles.</p><h3 id="define/WATER_LAYER"><aside class="declaration">#define </aside>WATER_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 93"/></a>
+    </h3>
+    <p>Layer for water overlays.</p><h3 id="define/WINDOW_LAYER"><aside class="declaration">#define </aside>WINDOW_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L119">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 119"/></a>
+    </h3>
+    <p>Windows</p><h3 id="define/WIRES_LAYER"><aside class="declaration">#define </aside>WIRES_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_planes+layers.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_planes+layers.dm 77"/></a>
+    </h3>
+    <p>Under objects, even when planeswapped</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

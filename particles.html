@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;particles - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="particles.html#var">Var Details</a></header>
+<main>
+<h1>particles <aside>/<a href="particles.html">particles</a></aside><aside> inherits /<a href="datum.html">datum</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/effects/particles/_particles.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;particles&#x2F;_particles.dm 20"/></a></h1>
+
+<p>A particle set is a special effect, whose computations are handled entirely on the client,
+that spawns and tracks multiple pixels or icons with a temporary lifespan. Examples of this
+might be confetti, sparks, rocket exhaust, or rain or snow. Particles are rendered on a special
+surface and that gets attached to an obj or a mob like an overlay.</p>
+<p>Particles can exist in 3 dimensions instead of the usual 2, so a particle's position, velocity,
+and other values may have a z coordinate. To make use of this z coordinate, you can use a projection matrix.
+(The value of the z coordinate must be between -100 and 100 after projection. Otherwise it's not guaranteed the particle will be displayed.)</p>
+<p>To create a particle set, use new to create a new /particles datum, and then you can set the datum's vars.
+The vars can be set to constant values, or generator functions that will allow the client to choose from a
+range of values when spawning those particles.
+(The easiest way to handle this is to create your own type that inherits from /particles, and set up the parameters you'll want at compile-time.)</p>
+<p>After the datum is created, it can be assigned to an obj or mob using their particles var. The particles will appear on the map wherever that obj or mob appears.</p>
+<h2 id="particle-vars-that-affect-the-entire-set-generators-are-not-allowed-for-these">Particle vars that affect the entire set (generators are not allowed for these)</h2><h2 id="vars-that-apply-when-a-particle-spawns">Vars that apply when a particle spawns</h2><h2 id="vars-that-are-evalulated-every-tick">Vars that are evalulated every tick.</h2><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="particles.html#var/bound1">bound1</a></th><td>Minimum particle position in x,y,z space; defaults to list(-1000,-1000,-1000).</td></tr>
+            <tr><th><a href="particles.html#var/bound2">bound2</a></th><td>Maximum particle position in x,y,z space; defaults to list(1000,1000,1000).</td></tr>
+            <tr><th><a href="particles.html#var/color">color</a></th><td>Particle color (not a color matrix); can be a number if a gradient is used.</td></tr>
+            <tr><th><a href="particles.html#var/color_change">color_change</a></th><td>Color change per tick; only applies if gradient is used.</td></tr>
+            <tr><th><a href="particles.html#var/count">count</a></th><td>Maximum particle count.</td></tr>
+            <tr><th><a href="particles.html#var/drift">drift</a></th><td>Added acceleration every tick; e.g. a circle or sphere generator can be applied to produce snow or ember effects.</td></tr>
+            <tr><th><a href="particles.html#var/fade">fade</a></th><td>Fade-out time at end of lifespan, in ticks.</td></tr>
+            <tr><th><a href="particles.html#var/fadein">fadein</a></th><td>Fade-in time, in ticks.</td></tr>
+            <tr><th><a href="particles.html#var/friction">friction</a></th><td></td></tr>
+            <tr><th><a href="particles.html#var/gradient">gradient</a></th><td>Color gradient used, if any.</td></tr>
+            <tr><th><a href="particles.html#var/gravity">gravity</a></th><td>Constant acceleration applied to all particles in this set (pixels per squared tick).</td></tr>
+            <tr><th><a href="particles.html#var/grow">grow</a></th><td>Change in scale per tick; defaults to list(0,0).</td></tr>
+            <tr><th><a href="particles.html#var/height">height</a></th><td>Height size of the particle image in pixels.</td></tr>
+            <tr><th><a href="particles.html#var/icon">icon</a></th><td>Icon to use, if any; no icon means this particle will be a dot.
+Can be assigned a weighted list of icon files, to choose an icon at random.</td></tr>
+            <tr><th><a href="particles.html#var/icon_state">icon_state</a></th><td>Icon state to use, if any.
+Can be assigned a weighted list of strings, to choose an icon at random.</td></tr>
+            <tr><th><a href="particles.html#var/lifespan">lifespan</a></th><td>Maximum life of the particle, in ticks.</td></tr>
+            <tr><th><a href="particles.html#var/position">position</a></th><td></td></tr>
+            <tr><th><a href="particles.html#var/rotation">rotation</a></th><td>Angle of rotation (clockwise); applies only if using an icon.</td></tr>
+            <tr><th><a href="particles.html#var/scale">scale</a></th><td>Scale applied to icon, if used; defaults to list(1,1).</td></tr>
+            <tr><th><a href="particles.html#var/spawning">spawning</a></th><td>Number of particles to spawn per tick (can be fractional).</td></tr>
+            <tr><th><a href="particles.html#var/spin">spin</a></th><td>Change in rotation per tick.</td></tr>
+            <tr><th><a href="particles.html#var/transform">transform</a></th><td>Transform done to all particles, if any (can be higher than 2D).</td></tr>
+            <tr><th><a href="particles.html#var/velocity">velocity</a></th><td></td></tr>
+            <tr><th><a href="particles.html#var/width">width</a></th><td>Width size of the particle image in pixels.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/bound1"><aside class="declaration">var </aside>bound1
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/effects/particles/_particles.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;particles&#x2F;_particles.dm 51"/></a></h3>
+        <p>Minimum particle position in x,y,z space; defaults to list(-1000,-1000,-1000).</p>
+<ul>
+<li>Type: vector</li>
+</ul><h3 id="var/bound2"><aside class="declaration">var </aside>bound2
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/effects/particles/_particles.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;particles&#x2F;_particles.dm 57"/></a></h3>
+        <p>Maximum particle position in x,y,z space; defaults to list(1000,1000,1000).</p>
+<ul>
+<li>Type: vector</li>
+</ul><h3 id="var/color"><aside class="declaration">var </aside>color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/effects/particles/_particles.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;particles&#x2F;_particles.dm 118"/></a></h3>
+        <p>Particle color (not a color matrix); can be a number if a gradient is used.</p>
+<ul>
+<li>Type: num or color</li>
+</ul><h3 id="var/color_change"><aside class="declaration">var </aside>color_change
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/effects/particles/_particles.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;particles&#x2F;_particles.dm 124"/></a></h3>
+        <p>Color change per tick; only applies if gradient is used.</p>
+<ul>
+<li>Type: number</li>
+</ul><h3 id="var/count"><aside class="declaration">var </aside>count
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/effects/particles/_particles.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;particles&#x2F;_particles.dm 39"/></a></h3>
+        <p>Maximum particle count.</p>
+<ul>
+<li>Type: number</li>
+</ul><h3 id="var/drift"><aside class="declaration">var </aside>drift
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/effects/particles/_particles.dm#L174">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;particles&#x2F;_particles.dm 174"/></a></h3>
+        <p>Added acceleration every tick; e.g. a circle or sphere generator can be applied to produce snow or ember effects.</p>
+<ul>
+<li>Type: vector</li>
+</ul><h3 id="var/fade"><aside class="declaration">var </aside>fade
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/effects/particles/_particles.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;particles&#x2F;_particles.dm 89"/></a></h3>
+        <p>Fade-out time at end of lifespan, in ticks.</p>
+<ul>
+<li>Type: number</li>
+</ul><h3 id="var/fadein"><aside class="declaration">var </aside>fadein
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/effects/particles/_particles.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;particles&#x2F;_particles.dm 95"/></a></h3>
+        <p>Fade-in time, in ticks.</p>
+<ul>
+<li>Type: number</li>
+</ul><h3 id="var/friction"><aside class="declaration">var </aside>friction
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/effects/particles/_particles.dm#L166">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;particles&#x2F;_particles.dm 166"/></a></h3>
+        <pre><code>Amount of velocity to shed (0 to 1) per tick, also applied to acceleration from drift.
+</code></pre>
+<ul>
+<li>Type: number</li>
+</ul><h3 id="var/gradient"><aside class="declaration">var </aside>gradient
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/effects/particles/_particles.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;particles&#x2F;_particles.dm 69"/></a></h3>
+        <p>Color gradient used, if any.</p>
+<ul>
+<li>Type: color gradient</li>
+</ul><h3 id="var/gravity"><aside class="declaration">var </aside>gravity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/effects/particles/_particles.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;particles&#x2F;_particles.dm 63"/></a></h3>
+        <p>Constant acceleration applied to all particles in this set (pixels per squared tick).</p>
+<ul>
+<li>Type: vector</li>
+</ul><h3 id="var/grow"><aside class="declaration">var </aside>grow
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/effects/particles/_particles.dm#L148">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;particles&#x2F;_particles.dm 148"/></a></h3>
+        <p>Change in scale per tick; defaults to list(0,0).</p>
+<ul>
+<li>Type: number</li>
+</ul><h3 id="var/height"><aside class="declaration">var </aside>height
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/effects/particles/_particles.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;particles&#x2F;_particles.dm 33"/></a></h3>
+        <p>Height size of the particle image in pixels.</p>
+<ul>
+<li>Type: number</li>
+</ul><h3 id="var/icon"><aside class="declaration">var </aside>icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/effects/particles/_particles.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;particles&#x2F;_particles.dm 105"/></a></h3>
+        <p>Icon to use, if any; no icon means this particle will be a dot.
+Can be assigned a weighted list of icon files, to choose an icon at random.</p>
+<ul>
+<li>Type: icon</li>
+</ul><h3 id="var/icon_state"><aside class="declaration">var </aside>icon_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/effects/particles/_particles.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;particles&#x2F;_particles.dm 112"/></a></h3>
+        <p>Icon state to use, if any.
+Can be assigned a weighted list of strings, to choose an icon at random.</p>
+<ul>
+<li>Type: string</li>
+</ul><h3 id="var/lifespan"><aside class="declaration">var </aside>lifespan
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/effects/particles/_particles.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;particles&#x2F;_particles.dm 83"/></a></h3>
+        <p>Maximum life of the particle, in ticks.</p>
+<ul>
+<li>Type: number</li>
+</ul><h3 id="var/position"><aside class="declaration">var </aside>position
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/effects/particles/_particles.dm#L130">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;particles&#x2F;_particles.dm 130"/></a></h3>
+        <pre><code>x,y,z position, from center in pixels.
+</code></pre>
+<ul>
+<li>Type: number</li>
+</ul><h3 id="var/rotation"><aside class="declaration">var </aside>rotation
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/effects/particles/_particles.dm#L154">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;particles&#x2F;_particles.dm 154"/></a></h3>
+        <p>Angle of rotation (clockwise); applies only if using an icon.</p>
+<ul>
+<li>Type: number</li>
+</ul><h3 id="var/scale"><aside class="declaration">var </aside>scale
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/effects/particles/_particles.dm#L142">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;particles&#x2F;_particles.dm 142"/></a></h3>
+        <p>Scale applied to icon, if used; defaults to list(1,1).</p>
+<ul>
+<li>Type: vector(2D)</li>
+</ul><h3 id="var/spawning"><aside class="declaration">var </aside>spawning
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/effects/particles/_particles.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;particles&#x2F;_particles.dm 45"/></a></h3>
+        <p>Number of particles to spawn per tick (can be fractional).</p>
+<ul>
+<li>Type: number</li>
+</ul><h3 id="var/spin"><aside class="declaration">var </aside>spin
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/effects/particles/_particles.dm#L160">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;particles&#x2F;_particles.dm 160"/></a></h3>
+        <p>Change in rotation per tick.</p>
+<ul>
+<li>Type: number</li>
+</ul><h3 id="var/transform"><aside class="declaration">var </aside>transform
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/effects/particles/_particles.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;particles&#x2F;_particles.dm 75"/></a></h3>
+        <p>Transform done to all particles, if any (can be higher than 2D).</p>
+<ul>
+<li>Type: matrix</li>
+</ul><h3 id="var/velocity"><aside class="declaration">var </aside>velocity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/effects/particles/_particles.dm#L136">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;particles&#x2F;_particles.dm 136"/></a></h3>
+        <pre><code>x,y,z velocity, in pixels.
+</code></pre>
+<ul>
+<li>Type: number</li>
+</ul><h3 id="var/width"><aside class="declaration">var </aside>width
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/effects/particles/_particles.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;particles&#x2F;_particles.dm 27"/></a></h3>
+        <p>Width size of the particle image in pixels.</p>
+<ul>
+<li>Type: number</li>
+</ul></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

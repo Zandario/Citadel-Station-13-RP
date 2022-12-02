@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;gas_mixture - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/gas_mixture.html#proc">Proc Details</a></header>
+<main>
+<h1>gas_mixture <aside>/<a href="datum.html">datum</a>/<a href="datum/gas_mixture.html">gas_mixture</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/gasmixtures/gas_mixture.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;gas_mixture.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/adjust_thermal_energy">adjust_thermal_energy</a></th><td>adjusts thermal energy in joules</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/compare_virtual">compare_virtual</a></th><td>checks if we are within acceptable like-ness of a virtual gas data struct to suspend processing or merge</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/copy_from_turf">copy_from_turf</a></th><td>Sets our gas/temperature equal to a turf's initial gas mix.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/copy_single_tile">copy_single_tile</a></th><td>get the equivalent of a single tile of this gas mixture</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/default_share_ratio">default_share_ratio</a></th><td>Default share gas implementation - shares with another gas_mixture non-canonically
+based on connecting tiles. Is just a wrapper to use a lookup table.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/default_share_unsimulated">default_share_unsimulated</a></th><td>default implementation to equalize with an unsimulated space
+by default, this will ramp up equalization to match our room, so we can't
+overpower say, 1 tile of unsimulated with a massive room.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/get_thermal_energy_change">get_thermal_energy_change</a></th><td>returns thermal energy change in joules to get to a certain temperature</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/get_turf_graphics">get_turf_graphics</a></th><td>Returns a list of vis_contents graphics for the gases we contain.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/heat_capacity">heat_capacity</a></th><td>Returns the heat capacity of the gas mix based on the specific heat of the gases and their moles.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/merge_gas_string">merge_gas_string</a></th><td>Adds from a specially formatted gas string, taking on its gas values as our own as well as their temperature.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/parse_gas_string">parse_gas_string</a></th><td>Copies from a specially formatted gas string, taking on its gas values as our own as well as their temperature.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/share_ratio">share_ratio</a></th><td>Shares a ratio of the combined gas of two gas mixtures</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/share_virtual">share_virtual</a></th><td>equalizes x% of our gas with an unsimulated mixture.</td></tr>
+            <tr><th><a href="datum/gas_mixture.html#proc/thermal_energy">thermal_energy</a></th><td>gets total thermal energy, taking into account group multiplier</td></tr></table><h2 id="proc">Proc Details</h2><h3 id="proc/adjust_thermal_energy"><aside class="declaration">proc </aside>adjust_thermal_energy<aside>(joules) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/gasmixtures/gas_mixture.dm#L150">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;gas_mixture.dm 150"/></a></aside>
+        </h3>
+        <p>adjusts thermal energy in joules</p>
+<p>returns amount changed, so we can't go below TCMB; <strong>amount changed is not absolute value</strong>, e.g. inputting -10 will net you returned -10.</p><h3 id="proc/compare_virtual"><aside class="declaration">proc </aside>compare_virtual<aside>(/list/gases, volume, temperature) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/gasmixtures/gas_mixture.dm#L336">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;gas_mixture.dm 336"/></a></aside>
+        </h3>
+        <p>checks if we are within acceptable like-ness of a virtual gas data struct to suspend processing or merge</p>
+<p>@return TRUE if we are equal enough, otherwise FALSE</p><h3 id="proc/copy_from_turf"><aside class="declaration">proc </aside>copy_from_turf<aside>(/<a href="turf.html">turf</a>/model) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/gasmixtures/gas_mixture.dm#L415">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;gas_mixture.dm 415"/></a></aside>
+        </h3>
+        <p>Sets our gas/temperature equal to a turf's initial gas mix.</p><h3 id="proc/copy_single_tile"><aside class="declaration">proc </aside>copy_single_tile<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/gasmixtures/gas_mixture.dm#L504">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;gas_mixture.dm 504"/></a></aside>
+        </h3>
+        <p>get the equivalent of a single tile of this gas mixture</p>
+<p>TODO: remove group_multiplier, change to tiles_represented</p><h3 id="proc/default_share_ratio"><aside class="declaration">proc </aside>default_share_ratio<aside>(/<a href="datum.html">datum</a>/<a href="datum/gas_mixture.html">gas_mixture</a>/other, tiles) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/gasmixtures/gas_mixture.dm#L516">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;gas_mixture.dm 516"/></a></aside>
+        </h3>
+        <p>Default share gas implementation - shares with another gas_mixture non-canonically
+based on connecting tiles. Is just a wrapper to use a lookup table.</p><h3 id="proc/default_share_unsimulated"><aside class="declaration">proc </aside>default_share_unsimulated<aside>(/<a href="datum.html">datum</a>/<a href="datum/gas_mixture.html">gas_mixture</a>/unsimulated) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/gasmixtures/gas_mixture.dm#L600">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;gas_mixture.dm 600"/></a></aside>
+        </h3>
+        <p>default implementation to equalize with an unsimulated space
+by default, this will ramp up equalization to match our room, so we can't
+overpower say, 1 tile of unsimulated with a massive room.</p><h3 id="proc/get_thermal_energy_change"><aside class="declaration">proc </aside>get_thermal_energy_change<aside>(target) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/gasmixtures/gas_mixture.dm#L162">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;gas_mixture.dm 162"/></a></aside>
+        </h3>
+        <p>returns thermal energy change in joules to get to a certain temperature</p><h3 id="proc/get_turf_graphics"><aside class="declaration">proc </aside>get_turf_graphics<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/gasmixtures/gas_mixture.dm#L359">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;gas_mixture.dm 359"/></a></aside>
+        </h3>
+        <p>Returns a list of vis_contents graphics for the gases we contain.</p><h3 id="proc/heat_capacity"><aside class="declaration">proc </aside>heat_capacity<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/gasmixtures/gas_mixture.dm#L133">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;gas_mixture.dm 133"/></a></aside>
+        </h3>
+        <p>Returns the heat capacity of the gas mix based on the specific heat of the gases and their moles.</p>
+<p>takes group_multiplier into account.</p><h3 id="proc/merge_gas_string"><aside class="declaration">proc </aside>merge_gas_string<aside>(gas_string) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/gasmixtures/gas_mixture.dm#L491">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;gas_mixture.dm 491"/></a></aside>
+        </h3>
+        <p>Adds from a specially formatted gas string, taking on its gas values as our own as well as their temperature.</p><h3 id="proc/parse_gas_string"><aside class="declaration">proc </aside>parse_gas_string<aside>(gas_string) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/gasmixtures/gas_mixture.dm#L471">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;gas_mixture.dm 471"/></a></aside>
+        </h3>
+        <p>Copies from a specially formatted gas string, taking on its gas values as our own as well as their temperature.</p><h3 id="proc/share_ratio"><aside class="declaration">proc </aside>share_ratio<aside>(/<a href="datum.html">datum</a>/<a href="datum/gas_mixture.html">gas_mixture</a>/other, ratio) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/gasmixtures/gas_mixture.dm#L539">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;gas_mixture.dm 539"/></a></aside>
+        </h3>
+        <p>Shares a ratio of the combined gas of two gas mixtures</p>
+<p>non canonical, e.g. A shares with B --&gt; A shares with C != A shares with C --&gt; A shares with B</p>
+<p>this also assumes equal</p><h3 id="proc/share_virtual"><aside class="declaration">proc </aside>share_virtual<aside>(/list/gases, group_multiplier, temperature, ratio) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/gasmixtures/gas_mixture.dm#L616">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;gas_mixture.dm 616"/></a></aside>
+        </h3>
+        <p>equalizes x% of our gas with an unsimulated mixture.</p>
+<p>! warning: this assumes the virtual mixture is the same volume as us, for optimization</p>
+<p>@params</p>
+<ul>
+<li>gases - gases of the other mixture</li>
+<li>group_multiplier - how big the other mixture is pretending to be</li>
+<li>temperature - how hot the other mixture is</li>
+<li>ratio - how much of the <strong>total</strong> mixture will be equalized
+IF YOU DO NOT KNOW WHY WE ARE COPYING, DO NOT TAKE THIS OUT.</li>
+</ul><h3 id="proc/thermal_energy"><aside class="declaration">proc </aside>thermal_energy<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/gasmixtures/gas_mixture.dm#L142">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;gas_mixture.dm 142"/></a></aside>
+        </h3>
+        <p>gets total thermal energy, taking into account group multiplier</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

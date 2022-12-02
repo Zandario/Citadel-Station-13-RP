@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;global_vars - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/global_vars.html#var">Var Details</a></header>
+<main>
+<h1>global_vars <aside>/<a href="datum.html">datum</a>/<a href="datum/controller.html">controller</a>/<a href="datum/controller/global_vars.html">global_vars</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/globals.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;globals.dm 3"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/GPS_list">GPS_list</a></th><td>Global GPS_list. All  GPS components get saved in here for easy reference.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/admin_state">admin_state</a></th><td>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/all_cataloguers">all_cataloguers</a></th><td>Template for Catalogue Data.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/all_observable_events">all_observable_events</a></th><td>Debug Support</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/always_state">always_state</a></th><td>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/areas_by_type">areas_by_type</a></th><td>An association from typepath to area instance. Only includes areas with <code>unique</code> set.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/cellefficiency">cellefficiency</a></th><td>current calculations
+cellrate 0.5 = 0.5 kj/unit
+for 10k cell, 5000kj
+1 Wh = 60J-S*60s/m = 3600J = 3.6kJ
+10k cell --&gt; 1388.89 Wh
+damn, future cells be pogging
+the closest thing we'll get to a cvar - affects cell use_scaled - higher = things use less energy. handheld devices usually use this.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/cellrate">cellrate</a></th><td>the closest thing we'll get to a cvar - cellrate is kJ per cell unit. kJ to avoid float precision loss.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/clients">clients</a></th><td>all clients</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/config_error_log">config_error_log</a></th><td>Config loading error/config validation errors</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/conscious_state">conscious_state</a></th><td>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/contained_state">contained_state</a></th><td>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/deep_inventory_state">deep_inventory_state</a></th><td>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/default_glide_size">default_glide_size</a></th><td>Default world glide size</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/default_state">default_state</a></th><td>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/directory">directory</a></th><td>ckey-client lookup: directory[ckey] = client</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/event_role_list">event_role_list</a></th><td>BALANCING - MACHINERY POWER</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/explicit_new_player_state">explicit_new_player_state</a></th><td>tgui state: explicit_new_player_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/fancy_shuttles">fancy_shuttles</a></th><td>To map these, place down a /obj/effect/fancy_shuttle on the map and lay down /turf/simulated/wall/fancy_shuttle
+everywhere that is included in the sprite. Up to you if you want to make some opacity=FALSE or density=FALSE
+Set a matching fancy_shuttle_tag on your walls and on the /obj/effect/fancy_shuttle. Make sure it's unique.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/fileaccess_timer">fileaccess_timer</a></th><td>For FTP requests. (i.e. downloading runtime logs.)</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/gametime_offset">gametime_offset</a></th><td>12:00 in seconds</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/glide_size_multiplier">glide_size_multiplier</a></th><td>Compensating for time dialation</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/hands_state">hands_state</a></th><td>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/human_adjacent_state">human_adjacent_state</a></th><td>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/human_icon_cache">human_icon_cache</a></th><td>Global associative list for caching humanoid icons.
+Index format m or f, followed by a string of 0 and 1 to represent bodyparts followed by husk fat hulk skeleton 1 or 0.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/inventory_slot_meta">inventory_slot_meta</a></th><td>global slot meta cache - all ids must be string!</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/inventory_slot_type_cache">inventory_slot_type_cache</a></th><td>global slot meta cache by type - only works for hardcoded</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/inventory_state">inventory_state</a></th><td>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/item_vore_blacklist">item_vore_blacklist</a></th><td>Blacklist to exclude items from object ingestion. Digestion blacklist located in digest_act_vr.dm</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/log_directory">log_directory</a></th><td>Base directory at where logs are placed</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/lore_atc">lore_atc</a></th><td>Also, massive additions/refactors by Killian, because the original incarnation was full of holes
+Cleaned up to be less shit, again.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/loremaster">loremaster</a></th><td>Resolve to the instances
+repurposed for new fun stuff
+get the name - don't need to for now! uncommented to avoid compile warnings.
+Use the short name
+Pick a random prefix
+The value of the prefix is the mission type that prefix does
+Pick a random ship name
+Destination is where?
+Which faction class do we belong to?
+Are we part of the fleet? Not needed whilst fleet events are disabled</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/meta_gas_by_flag">meta_gas_by_flag</a></th><td>Gases by gas flag</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/meta_gas_flags">meta_gas_flags</a></th><td>Gas flags by gas</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/meta_gas_id_lookup">meta_gas_id_lookup</a></th><td>Gas ID to typepath conversion lookup for optimal speed.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/meta_gas_molar_mass">meta_gas_molar_mass</a></th><td>Gas molar mass by gas</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/meta_gas_reagent_amount">meta_gas_reagent_amount</a></th><td>The amount of the reagents gases give mobs</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/meta_gas_reagent_id">meta_gas_reagent_id</a></th><td>The reagents gases give mobs when breathed</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/meta_gas_typecache_no_overlays">meta_gas_typecache_no_overlays</a></th><td>Typecache of gases with no overlays</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/multiz_hole_baseturfs">multiz_hole_baseturfs</a></th><td>list of turf types that are logically &quot;below&quot; the last turf layer, and are therefore things we should inject above when doing things like injecting shuttle ceilings</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/never_state">never_state</a></th><td>! Copyright (c) 2021 Arm A. Hammer
+! SPDX-License-Identifier: MIT</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/new_player_state">new_player_state</a></th><td>tgui state: new_player_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/nonreactive_gases">nonreactive_gases</a></th><td>List of gases that can't react amongst themselves. KEEP THIS UP TO DATE!</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/not_incapacitated_state">not_incapacitated_state</a></th><td>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/not_incapacitated_turf_state">not_incapacitated_turf_state</a></th><td>tgui state: not_incapacitated_turf_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/notcontained_state">notcontained_state</a></th><td>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/ntos_state">ntos_state</a></th><td>tgui state: ntos_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/observer_state">observer_state</a></th><td>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/orion_events">orion_events</a></th><td>assoc list, [datum singleton] = weight</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/physical_obscured_state">physical_obscured_state</a></th><td>tgui state: physical_obscured_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/physical_state">physical_state</a></th><td>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/picture_log_directory">picture_log_directory</a></th><td>Picture logging</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/pipe_color_name">pipe_color_name</a></th><td>Names shown in the examine for every colored atmos component</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/pipe_colors_ordered">pipe_colors_ordered</a></th><td>List that sorts the colors and is used for setting up the pipes layer so that they overlap correctly</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/pipe_paint_colors">pipe_paint_colors</a></th><td>All colors available to pipes and atmos components</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/player_details">player_details</a></th><td>assoc list of ckey -&gt; /datum/player_details</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/player_list">player_list</a></th><td>all player mobs (not clients!)</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/points_mined">points_mined</a></th><td>Crypto miner, turns power into points for engineering
+Basicly a glorified power sink
+Heats either atmos in the connector below or atmos in the environment
+Reduced efficency the warmer it gets
+Breaks down when to warm
+Conversion rate tbd, starting value 100kJ =&gt; 1 Point</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/respawn_timers">respawn_timers</a></th><td>Times that players are allowed to respawn (&quot;ckey&quot; = world.time)</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/reverse_contained_state">reverse_contained_state</a></th><td>! Not copyrighted, but magatsuchi made it.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/round_id">round_id</a></th><td>Current round ID. If unset, logs will use the old timestamp-directory format.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/self_state">self_state</a></th><td>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/skin_menu_entries">skin_menu_entries</a></th><td>lookup for skin menu entries</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/slot_equipment_priority">slot_equipment_priority</a></th><td>global list of default slots to use when equipping to appropriate slot</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/smeses">smeses</a></th><td>smes</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/sort_instance">sort_instance</a></th><td>This is a global instance to allow much of this code to be reused. The interfaces are kept separately.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/sortedAreas">sortedAreas</a></th><td>used by jump-to-area etc. Updated by area/updateName()</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/sql_error_log">sql_error_log</a></th><td>logs sql events</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/stat_set_event">stat_set_event</a></th><td>Shuttle Moved/Pre Move Handling</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/subsystem_log">subsystem_log</a></th><td>datum/controller/subsystem logging in general</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/surgery_steps">surgery_steps</a></th><td>All surgery steps</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/text_tag_icons">text_tag_icons</a></th><td>For generating neat chat tag-images.
+The icon var could be local in the proc, but it's a waste of resources
+to always create it and then throw it out.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/timezoneOffset">timezoneOffset</a></th><td>The difference betwen midnight (of the host computer) and 0 world.ticks.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/trait_name_map">trait_name_map</a></th><td>value -&gt; trait name, generated on use from trait_by_type global</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/ui_modals">ui_modals</a></th><td>tgui modals</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/ui_nif_main_state">ui_nif_main_state</a></th><td>This is slightly distinct from the module state, as it wants to update if not working</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/wire_color_directory">wire_color_directory</a></th><td>List of wire colors for each object type of that round. One for airlocks, one for vendors, etc.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/world_attack_log">world_attack_log</a></th><td>Attack logs/actions go in here</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/world_game_log">world_game_log</a></th><td>General game log for anything that doesn't fit elsewhere</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/world_href_log">world_href_log</a></th><td>Href logs go in here</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/world_map_error_log">world_map_error_log</a></th><td>Map error logging</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/world_qdel_log">world_qdel_log</a></th><td>qdel() performance logging</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/world_runtime_log">world_runtime_log</a></th><td>Runtimes go in here</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/world_suspicious_login_log">world_suspicious_login_log</a></th><td>Log associated with [/proc/log_suspicious_login()]
+Intended to hold all logins that failed due to suspicious circumstances such as ban detection, CID randomisation etc.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/z_state">z_state</a></th><td>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/GPS_list"><aside class="declaration">var </aside>GPS_list
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/components/gps.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;gps.dm 2"/></a></h3>
+        <p>Global GPS_list. All  GPS components get saved in here for easy reference.</p><h3 id="var/admin_state"><aside class="declaration">var </aside>admin_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/admin_state</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/tgui/states/admin.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;admin.dm 12"/></a></h3>
+        <p>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</p>
+<p>tgui state: admin_state</p>
+<p>Checks that the user is an admin, end-of-story.</p><h3 id="var/all_cataloguers"><aside class="declaration">var </aside>all_cataloguers
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/catalogue/cataloguer.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;catalogue&#x2F;cataloguer.dm 1"/></a></h3>
+        <p>Template for Catalogue Data.</p><h3 id="var/all_observable_events"><aside class="declaration">var </aside>all_observable_events
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/all_observable_events</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/observation/_debug.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;observation&#x2F;_debug.dm 4"/></a></h3>
+        <p>Debug Support</p><h3 id="var/always_state"><aside class="declaration">var </aside>always_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/always_state</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/tgui/states/always.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;always.dm 12"/></a></h3>
+        <p>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</p>
+<p>tgui state: always_state</p>
+<p>Always grants the user UI_INTERACTIVE. Period.</p><h3 id="var/areas_by_type"><aside class="declaration">var </aside>areas_by_type
+            <aside>&ndash; /static/list/area</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/_globalvars/lists/mapping.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;mapping.dm 37"/></a></h3>
+        <p>An association from typepath to area instance. Only includes areas with <code>unique</code> set.</p><h3 id="var/cellefficiency"><aside class="declaration">var </aside>cellefficiency
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/power/power.dm#L188">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;power&#x2F;power.dm 188"/></a></h3>
+        <p>current calculations
+cellrate 0.5 = 0.5 kj/unit
+for 10k cell, 5000kj
+1 Wh = 60J-S*60s/m = 3600J = 3.6kJ
+10k cell --&gt; 1388.89 Wh
+damn, future cells be pogging
+the closest thing we'll get to a cvar - affects cell use_scaled - higher = things use less energy. handheld devices usually use this.</p><h3 id="var/cellrate"><aside class="declaration">var </aside>cellrate
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/power/power.dm#L178">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;power&#x2F;power.dm 178"/></a></h3>
+        <p>the closest thing we'll get to a cvar - cellrate is kJ per cell unit. kJ to avoid float precision loss.</p><h3 id="var/clients"><aside class="declaration">var </aside>clients
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/_globalvars/lists/clients.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;clients.dm 4"/></a></h3>
+        <p>all clients</p><h3 id="var/config_error_log"><aside class="declaration">var </aside>config_error_log
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/_globalvars/logging.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;logging.dm 25"/></a></h3>
+        <p>Config loading error/config validation errors</p><h3 id="var/conscious_state"><aside class="declaration">var </aside>conscious_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/conscious_state</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/tgui/states/conscious.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;conscious.dm 12"/></a></h3>
+        <p>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</p>
+<p>tgui state: conscious_state</p>
+<p>Only checks if the user is conscious.</p><h3 id="var/contained_state"><aside class="declaration">var </aside>contained_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/contained_state</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/tgui/states/contained.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;contained.dm 12"/></a></h3>
+        <p>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</p>
+<p>tgui state: contained_state</p>
+<p>Checks that the user is inside the src_object.</p><h3 id="var/deep_inventory_state"><aside class="declaration">var </aside>deep_inventory_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/deep_inventory_state</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/tgui/states/deep_inventory.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;deep_inventory.dm 13"/></a></h3>
+        <p>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</p>
+<p>tgui state: deep_inventory_state</p>
+<p>Checks that the src_object is in the user's deep
+(backpack, box, toolbox, etc) inventory.</p><h3 id="var/default_glide_size"><aside class="declaration">var </aside>default_glide_size
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/movement.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm 10"/></a></h3>
+        <p>Default world glide size</p><h3 id="var/default_state"><aside class="declaration">var </aside>default_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/default</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/tgui/states/default.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;default.dm 13"/></a></h3>
+        <p>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</p>
+<p>tgui state: default_state</p>
+<p>Checks a number of things -- mostly physical distance for humans
+and view for robots.</p><h3 id="var/directory"><aside class="declaration">var </aside>directory
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/_globalvars/lists/clients.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;clients.dm 2"/></a></h3>
+        <p>ckey-client lookup: directory[ckey] = client</p><h3 id="var/event_role_list"><aside class="declaration">var </aside>event_role_list
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/preferences/event_antag.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;preferences&#x2F;event_antag.dm 15"/></a></h3>
+        <p>BALANCING - MACHINERY POWER</p><h3 id="var/explicit_new_player_state"><aside class="declaration">var </aside>explicit_new_player_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/explicit_new_player_state</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/tgui/states/new_player.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;new_player.dm 20"/></a></h3>
+        <p>tgui state: explicit_new_player_state</p>
+<p>Checks that the user is a new_player</p><h3 id="var/fancy_shuttles"><aside class="declaration">var </aside>fancy_shuttles
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/turfs/simulated/misc/fancy_shuttles.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;simulated&#x2F;misc&#x2F;fancy_shuttles.dm 11"/></a></h3>
+        <p>To map these, place down a /obj/effect/fancy_shuttle on the map and lay down /turf/simulated/wall/fancy_shuttle
+everywhere that is included in the sprite. Up to you if you want to make some opacity=FALSE or density=FALSE
+Set a matching fancy_shuttle_tag on your walls and on the /obj/effect/fancy_shuttle. Make sure it's unique.</p>
+<p>If you want flooring to look like the shuttle flooring, put /obj/effect/floor_decal/fancy_shuttle on all of it.
+You can add your own decals on top of that. Just make sure to put the fancy_shuttle decal lowest.
+Also set the same tag as your /obj/effect/fancy_shuttle on the decals.</p><h3 id="var/fileaccess_timer"><aside class="declaration">var </aside>fileaccess_timer
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/files/client_io.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;files&#x2F;client_io.dm 6"/></a></h3>
+        <p>For FTP requests. (i.e. downloading runtime logs.)</p>
+<p>However it'd be ok to use for accessing attack logs and such too, which are even laggier.</p><h3 id="var/gametime_offset"><aside class="declaration">var </aside>gametime_offset
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/_globalvars/time_vars.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;time_vars.dm 4"/></a></h3>
+        <p>12:00 in seconds</p><h3 id="var/glide_size_multiplier"><aside class="declaration">var </aside>glide_size_multiplier
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/movement.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm 8"/></a></h3>
+        <p>Compensating for time dialation</p><h3 id="var/hands_state"><aside class="declaration">var </aside>hands_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/hands_state</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/tgui/states/hands.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;hands.dm 12"/></a></h3>
+        <p>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</p>
+<p>tgui state: hands_state</p>
+<p>Checks that the src_object is in the user's hands.</p><h3 id="var/human_adjacent_state"><aside class="declaration">var </aside>human_adjacent_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/human_adjacent_state</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/tgui/states/human_adjacent.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;human_adjacent.dm 13"/></a></h3>
+        <p>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</p>
+<p>tgui state: human_adjacent_state</p>
+<p>In addition to default checks, only allows interaction for a
+human adjacent user.</p><h3 id="var/human_icon_cache"><aside class="declaration">var </aside>human_icon_cache
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/update_icons.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;update_icons.dm 5"/></a></h3>
+        <p>Global associative list for caching humanoid icons.
+Index format m or f, followed by a string of 0 and 1 to represent bodyparts followed by husk fat hulk skeleton 1 or 0.</p><h3 id="var/inventory_slot_meta"><aside class="declaration">var </aside>inventory_slot_meta
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 2"/></a></h3>
+        <p>global slot meta cache - all ids must be string!</p><h3 id="var/inventory_slot_type_cache"><aside class="declaration">var </aside>inventory_slot_type_cache
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 4"/></a></h3>
+        <p>global slot meta cache by type - only works for hardcoded</p><h3 id="var/inventory_state"><aside class="declaration">var </aside>inventory_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/inventory_state</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/tgui/states/inventory.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;inventory.dm 13"/></a></h3>
+        <p>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</p>
+<p>tgui state: inventory_state</p>
+<p>Checks that the src_object is in the user's top-level
+(hand, ear, pocket, belt, etc) inventory.</p><h3 id="var/item_vore_blacklist"><aside class="declaration">var </aside>item_vore_blacklist
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/global_lists.dm#L293">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;global_lists.dm 293"/></a></h3>
+        <p>Blacklist to exclude items from object ingestion. Digestion blacklist located in digest_act_vr.dm</p><h3 id="var/log_directory"><aside class="declaration">var </aside>log_directory
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/_globalvars/logging.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;logging.dm 2"/></a></h3>
+        <p>Base directory at where logs are placed</p><h3 id="var/lore_atc"><aside class="declaration">var </aside>lore_atc
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/lore.html">lore</a>/<a href="datum/lore/atc_controller.html">atc_controller</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/busy_space/air_traffic.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;busy_space&#x2F;air_traffic.dm 4"/></a></h3>
+        <p>Also, massive additions/refactors by Killian, because the original incarnation was full of holes
+Cleaned up to be less shit, again.</p><h3 id="var/loremaster"><aside class="declaration">var </aside>loremaster
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/lore.html">lore</a>/loremaster</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/busy_space/loremaster.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;busy_space&#x2F;loremaster.dm 3"/></a></h3>
+        <p>Resolve to the instances
+repurposed for new fun stuff
+get the name - don't need to for now! uncommented to avoid compile warnings.
+Use the short name
+Pick a random prefix
+The value of the prefix is the mission type that prefix does
+Pick a random ship name
+Destination is where?
+Which faction class do we belong to?
+Are we part of the fleet? Not needed whilst fleet events are disabled</p>
+<p>Pick a random prefix
+Pick a random ship name
+Which faction class do we belong to?
+Is this ship part of the fleet too?
+pull from a list of owner-specific flight ops, to allow an extra dash of flavor
+if our source has the complex_tasks flag, regenerate with a two-stage assignment</p><h3 id="var/meta_gas_by_flag"><aside class="declaration">var </aside>meta_gas_by_flag
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/gasmixtures/gas_types.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;gas_types.dm 24"/></a></h3>
+        <p>Gases by gas flag</p><h3 id="var/meta_gas_flags"><aside class="declaration">var </aside>meta_gas_flags
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/gasmixtures/gas_types.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;gas_types.dm 22"/></a></h3>
+        <p>Gas flags by gas</p><h3 id="var/meta_gas_id_lookup"><aside class="declaration">var </aside>meta_gas_id_lookup
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/gasmixtures/gas_types.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;gas_types.dm 20"/></a></h3>
+        <p>Gas ID to typepath conversion lookup for optimal speed.</p><h3 id="var/meta_gas_molar_mass"><aside class="declaration">var </aside>meta_gas_molar_mass
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/gasmixtures/gas_types.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;gas_types.dm 26"/></a></h3>
+        <p>Gas molar mass by gas</p><h3 id="var/meta_gas_reagent_amount"><aside class="declaration">var </aside>meta_gas_reagent_amount
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/gasmixtures/gas_types.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;gas_types.dm 32"/></a></h3>
+        <p>The amount of the reagents gases give mobs</p><h3 id="var/meta_gas_reagent_id"><aside class="declaration">var </aside>meta_gas_reagent_id
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/gasmixtures/gas_types.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;gas_types.dm 30"/></a></h3>
+        <p>The reagents gases give mobs when breathed</p><h3 id="var/meta_gas_typecache_no_overlays"><aside class="declaration">var </aside>meta_gas_typecache_no_overlays
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/gasmixtures/gas_types.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;gas_types.dm 28"/></a></h3>
+        <p>Typecache of gases with no overlays</p><h3 id="var/multiz_hole_baseturfs"><aside class="declaration">var </aside>multiz_hole_baseturfs
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/turfs/change_turf.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;change_turf.dm 9"/></a></h3>
+        <p>list of turf types that are logically &quot;below&quot; the last turf layer, and are therefore things we should inject above when doing things like injecting shuttle ceilings</p><h3 id="var/never_state"><aside class="declaration">var </aside>never_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/never_state</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/tgui/states/never.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;never.dm 12"/></a></h3>
+        <p>! Copyright (c) 2021 Arm A. Hammer
+! SPDX-License-Identifier: MIT</p>
+<p>tgui state: never_state</p>
+<p>Always closes the UI, no matter what. See the ui_state in religious_tool.dm to see an example</p><h3 id="var/new_player_state"><aside class="declaration">var </aside>new_player_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/new_player_state</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/tgui/states/new_player.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;new_player.dm 7"/></a></h3>
+        <p>tgui state: new_player_state</p>
+<p>Checks that the user is a new_player, or if user is an admin</p><h3 id="var/nonreactive_gases"><aside class="declaration">var </aside>nonreactive_gases
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/gasmixtures/gas_types.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;gasmixtures&#x2F;gas_types.dm 2"/></a></h3>
+        <p>List of gases that can't react amongst themselves. KEEP THIS UP TO DATE!</p><h3 id="var/not_incapacitated_state"><aside class="declaration">var </aside>not_incapacitated_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/not_incapacitated_state</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/tgui/states/not_incapacitated.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;not_incapacitated.dm 12"/></a></h3>
+        <p>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</p>
+<p>tgui state: not_incapacitated_state</p>
+<p>Checks that the user isn't incapacitated</p><h3 id="var/not_incapacitated_turf_state"><aside class="declaration">var </aside>not_incapacitated_turf_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/not_incapacitated_state</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/tgui/states/not_incapacitated.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;not_incapacitated.dm 20"/></a></h3>
+        <p>tgui state: not_incapacitated_turf_state</p>
+<p>Checks that the user isn't incapacitated and that their loc is a turf</p><h3 id="var/notcontained_state"><aside class="declaration">var </aside>notcontained_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/notcontained_state</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/tgui/states/notcontained.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;notcontained.dm 13"/></a></h3>
+        <p>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</p>
+<p>tgui state: notcontained_state</p>
+<p>Checks that the user is not inside src_object, and then makes the
+default checks.</p><h3 id="var/ntos_state"><aside class="declaration">var </aside>ntos_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/ntos</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/tgui/states/ntos.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;ntos.dm 9"/></a></h3>
+        <p>tgui state: ntos_state</p>
+<p>Checks a number of things -- mostly physical distance for humans and view for robots.
+This is basically the same as default, except instead of src_object, it uses the computer
+it's attached to.</p><h3 id="var/observer_state"><aside class="declaration">var </aside>observer_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/observer_state</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/tgui/states/observer.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;observer.dm 12"/></a></h3>
+        <p>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</p>
+<p>tgui state: observer_state</p>
+<p>Checks that the user is an observer/ghost.</p><h3 id="var/orion_events"><aside class="declaration">var </aside>orion_events
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/computer/arcade/orion.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;computer&#x2F;arcade&#x2F;orion.dm 8"/></a></h3>
+        <p>assoc list, [datum singleton] = weight</p><h3 id="var/physical_obscured_state"><aside class="declaration">var </aside>physical_obscured_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/physical_obscured_state</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/tgui/states/physical.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;physical.dm 41"/></a></h3>
+        <p>tgui state: physical_obscured_state</p>
+<p>Short-circuits the default state to only check physical distance, being in view doesn't matter</p><h3 id="var/physical_state"><aside class="declaration">var </aside>physical_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/physical</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/tgui/states/physical.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;physical.dm 12"/></a></h3>
+        <p>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</p>
+<p>tgui state: physical_state</p>
+<p>Short-circuits the default state to only check physical distance.</p><h3 id="var/picture_log_directory"><aside class="declaration">var </aside>picture_log_directory
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/_globalvars/logging.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;logging.dm 43"/></a></h3>
+        <p>Picture logging</p><h3 id="var/pipe_color_name"><aside class="declaration">var </aside>pipe_color_name
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/piping_colors_lists.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;piping_colors_lists.dm 43"/></a></h3>
+        <p>Names shown in the examine for every colored atmos component</p><h3 id="var/pipe_colors_ordered"><aside class="declaration">var </aside>pipe_colors_ordered
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/piping_colors_lists.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;piping_colors_lists.dm 29"/></a></h3>
+        <p>List that sorts the colors and is used for setting up the pipes layer so that they overlap correctly</p><h3 id="var/pipe_paint_colors"><aside class="declaration">var </aside>pipe_paint_colors
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/piping_colors_lists.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;piping_colors_lists.dm 15"/></a></h3>
+        <p>All colors available to pipes and atmos components</p><h3 id="var/player_details"><aside class="declaration">var </aside>player_details
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/client/player_details.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;player_details.dm 3"/></a></h3>
+        <p>assoc list of ckey -&gt; /datum/player_details</p><h3 id="var/player_list"><aside class="declaration">var </aside>player_list
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/_globalvars/lists/mobs.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;mobs.dm 2"/></a></h3>
+        <p>all player mobs (not clients!)</p><h3 id="var/points_mined"><aside class="declaration">var </aside>points_mined
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/power/crypto_miner.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;crypto_miner.dm 11"/></a></h3>
+        <p>Crypto miner, turns power into points for engineering
+Basicly a glorified power sink
+Heats either atmos in the connector below or atmos in the environment
+Reduced efficency the warmer it gets
+Breaks down when to warm
+Conversion rate tbd, starting value 100kJ =&gt; 1 Point</p>
+<p>Can be configured on how much power it draws or just wipes all avaiable power.</p><h3 id="var/respawn_timers"><aside class="declaration">var </aside>respawn_timers
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/global_lists.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;global_lists.dm 30"/></a></h3>
+        <p>Times that players are allowed to respawn (&quot;ckey&quot; = world.time)</p><h3 id="var/reverse_contained_state"><aside class="declaration">var </aside>reverse_contained_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/reverse_contained_state</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/tgui/states/reverse_contained.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;reverse_contained.dm 11"/></a></h3>
+        <p>! Not copyrighted, but magatsuchi made it.</p>
+<p>tgui state: reverse_contained_state</p>
+<p>Checks if src_object is inside of user.</p><h3 id="var/round_id"><aside class="declaration">var </aside>round_id
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/_globalvars/logging.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;logging.dm 22"/></a></h3>
+        <p>Current round ID. If unset, logs will use the old timestamp-directory format.</p><h3 id="var/self_state"><aside class="declaration">var </aside>self_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/self_state</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/tgui/states/self.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;self.dm 12"/></a></h3>
+        <p>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</p>
+<p>tgui state: self_state</p>
+<p>Only checks that the user and src_object are the same.</p><h3 id="var/skin_menu_entries"><aside class="declaration">var </aside>skin_menu_entries
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/interface/menus/_menus.dm#L149">
+        <img src="git.png" width="16" height="16" title="interface&#x2F;menus&#x2F;_menus.dm 149"/></a></h3>
+        <p>lookup for skin menu entries</p><h3 id="var/slot_equipment_priority"><aside class="declaration">var </aside>slot_equipment_priority
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/slots.dm#L127">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;slots.dm 127"/></a></h3>
+        <p>global list of default slots to use when equipping to appropriate slot</p><h3 id="var/smeses"><aside class="declaration">var </aside>smeses
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/power/smes/smes.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;smes&#x2F;smes.dm 12"/></a></h3>
+        <p>smes</p>
+<p>base type of power storage unit</p>
+<p>storage values are measured in <strong>kilowatt minutes</strong> due to float precision.
+flow values are measured in kilowatts.</p>
+<p>TODO: generalize to /obj/machinery/power/storage, and split into storage/smes and storage/batteryrack, etc</p><h3 id="var/sort_instance"><aside class="declaration">var </aside>sort_instance
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/sort_instance.html">sort_instance</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/sorts/__main.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;sorts&#x2F;__main.dm 20"/></a></h3>
+        <p>This is a global instance to allow much of this code to be reused. The interfaces are kept separately.</p><h3 id="var/sortedAreas"><aside class="declaration">var </aside>sortedAreas
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/_globalvars/lists/mapping.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;mapping.dm 35"/></a></h3>
+        <p>used by jump-to-area etc. Updated by area/updateName()</p><h3 id="var/sql_error_log"><aside class="declaration">var </aside>sql_error_log
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/_globalvars/logging.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;logging.dm 28"/></a></h3>
+        <p>logs sql events</p><h3 id="var/stat_set_event"><aside class="declaration">var </aside>stat_set_event
+            <aside>&ndash; /static/singleton/observ/stat_set</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/observation/stat_set.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;observation&#x2F;stat_set.dm 11"/></a></h3>
+        <p>Shuttle Moved/Pre Move Handling</p><h3 id="var/subsystem_log"><aside class="declaration">var </aside>subsystem_log
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/_globalvars/logging.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;logging.dm 34"/></a></h3>
+        <p>datum/controller/subsystem logging in general</p><h3 id="var/surgery_steps"><aside class="declaration">var </aside>surgery_steps
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/_globalvars/lists/medical.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;medical.dm 2"/></a></h3>
+        <p>All surgery steps</p><h3 id="var/text_tag_icons"><aside class="declaration">var </aside>text_tag_icons
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/text.dm#L448">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;text.dm 448"/></a></h3>
+        <p>For generating neat chat tag-images.
+The icon var could be local in the proc, but it's a waste of resources
+to always create it and then throw it out.</p><h3 id="var/timezoneOffset"><aside class="declaration">var </aside>timezoneOffset
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/_globalvars/time_vars.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;time_vars.dm 2"/></a></h3>
+        <p>The difference betwen midnight (of the host computer) and 0 world.ticks.</p><h3 id="var/trait_name_map"><aside class="declaration">var </aside>trait_name_map
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/_globalvars/traits.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;traits.dm 118"/></a></h3>
+        <p>value -&gt; trait name, generated on use from trait_by_type global</p><h3 id="var/ui_modals"><aside class="declaration">var </aside>ui_modals
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/tgui/modal_vr.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;modal_vr.dm 14"/></a></h3>
+        <p>tgui modals</p>
+<p>Allows creation of modals within tgui.
+Renamed from tgui_modal to ui_modal because WHY is it called a conflicting name with /tg/station tgui_alert tgui_modals :)</p><h3 id="var/ui_nif_main_state"><aside class="declaration">var </aside>ui_nif_main_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/nif_main_state</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/tgui/states/inventory.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;inventory.dm 41"/></a></h3>
+        <p>This is slightly distinct from the module state, as it wants to update if not working</p><h3 id="var/wire_color_directory"><aside class="declaration">var </aside>wire_color_directory
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/_globalvars/lists/misc.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;misc.dm 8"/></a></h3>
+        <p>List of wire colors for each object type of that round. One for airlocks, one for vendors, etc.</p><h3 id="var/world_attack_log"><aside class="declaration">var </aside>world_attack_log
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/_globalvars/logging.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;logging.dm 16"/></a></h3>
+        <p>Attack logs/actions go in here</p><h3 id="var/world_game_log"><aside class="declaration">var </aside>world_game_log
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/_globalvars/logging.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;logging.dm 5"/></a></h3>
+        <p>General game log for anything that doesn't fit elsewhere</p><h3 id="var/world_href_log"><aside class="declaration">var </aside>world_href_log
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/_globalvars/logging.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;logging.dm 19"/></a></h3>
+        <p>Href logs go in here</p><h3 id="var/world_map_error_log"><aside class="declaration">var </aside>world_map_error_log
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/_globalvars/logging.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;logging.dm 31"/></a></h3>
+        <p>Map error logging</p><h3 id="var/world_qdel_log"><aside class="declaration">var </aside>world_qdel_log
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/_globalvars/logging.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;logging.dm 13"/></a></h3>
+        <p>qdel() performance logging</p><h3 id="var/world_runtime_log"><aside class="declaration">var </aside>world_runtime_log
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/_globalvars/logging.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;logging.dm 10"/></a></h3>
+        <p>Runtimes go in here</p><h3 id="var/world_suspicious_login_log"><aside class="declaration">var </aside>world_suspicious_login_log
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/_globalvars/logging.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;logging.dm 51"/></a></h3>
+        <p>Log associated with [/proc/log_suspicious_login()]
+Intended to hold all logins that failed due to suspicious circumstances such as ban detection, CID randomisation etc.</p><h3 id="var/z_state"><aside class="declaration">var </aside>z_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/z_state</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/tgui/states/zlevel.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;zlevel.dm 12"/></a></h3>
+        <p>! Copyright (c) 2020 Aleksej Komarov
+! SPDX-License-Identifier: MIT</p>
+<p>tgui state: z_state</p>
+<p>Only checks that the Z-level of the user and src_object are the same.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

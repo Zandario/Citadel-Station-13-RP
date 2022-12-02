@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;mobs&#x2F;health.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/mobs/health.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/mobs/health.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs/health.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs&#x2F;health.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><p>Health - Core</p></td></tr>
+        <tr><th><a href="code/__DEFINES/mobs/health.html#define/DAMAGE_PRECISION">DAMAGE_PRECISION</a></th><td></td></tr>
+        <tr><td colspan="2"><p>Stat var - lets us get the most basic of mob health status from one var</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs/health.html#define/CONSCIOUS">CONSCIOUS</a></th><td>we're conscious</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs/health.html#define/UNCONSCIOUS">UNCONSCIOUS</a></th><td>we're unconscious</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs/health.html#define/DEAD">DEAD</a></th><td>we're dead</td></tr>
+        <tr><td colspan="2"><p>stat helpers - since most semantic checks are going to be compound checks</p>
+<p>direct stat helpers</p>
+<p>CPR</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs/health.html#define/CPR_BRAIN_STASIS_TIME">CPR_BRAIN_STASIS_TIME</a></th><td>how long CPR suppresses brain decay</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs/health.html#define/CPR_VENTILATION_TIME">CPR_VENTILATION_TIME</a></th><td>how long CPR acts as mechanical ventilation</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs/health.html#define/CPR_CIRCULATION_TIME">CPR_CIRCULATION_TIME</a></th><td>how long CPR acts as mechanical circulation</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs/health.html#define/CPR_ACTION_TIME">CPR_ACTION_TIME</a></th><td>how long CPR takes to do</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs/health.html#define/CPR_NOMINAL_COOLDOWN">CPR_NOMINAL_COOLDOWN</a></th><td>how long CPR is on nominal cooldown (doing it faster is less effective)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs/health.html#define/CPR_FORCED_METABOLISM_STRENGTH_NOMINAL">CPR_FORCED_METABOLISM_STRENGTH_NOMINAL</a></th><td>nominal CPR reagent tick strength (as multiplier of normal living)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs/health.html#define/CPR_FORCED_METABOLISM_STRENGTH_CLIPPED">CPR_FORCED_METABOLISM_STRENGTH_CLIPPED</a></th><td>on-cooldown reagent tick strength (as multiplier of normal living)</td></tr>
+        <tr><td colspan="2"><p>Organs - General</p>
+<p>Organs - Decaying while dead/removed</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs/health.html#define/ORGAN_DECAY_PER_SECOND_DEFAULT">ORGAN_DECAY_PER_SECOND_DEFAULT</a></th><td>how much damage most organs take per second when the user is dead and it is not preserved</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs/health.html#define/ORGAN_DECAY_PER_SECOND_BRAIN">ORGAN_DECAY_PER_SECOND_BRAIN</a></th><td>how much damage the brain takes per second when the user is dead and it is not preserved</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/CONSCIOUS"><aside class="declaration">#define </aside>CONSCIOUS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs/health.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs&#x2F;health.dm 11"/></a>
+    </h3>
+    <p>we're conscious</p><h3 id="define/CPR_ACTION_TIME"><aside class="declaration">#define </aside>CPR_ACTION_TIME
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs/health.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs&#x2F;health.dm 33"/></a>
+    </h3>
+    <p>how long CPR takes to do</p><h3 id="define/CPR_BRAIN_STASIS_TIME"><aside class="declaration">#define </aside>CPR_BRAIN_STASIS_TIME
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs/health.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs&#x2F;health.dm 27"/></a>
+    </h3>
+    <p>how long CPR suppresses brain decay</p><h3 id="define/CPR_CIRCULATION_TIME"><aside class="declaration">#define </aside>CPR_CIRCULATION_TIME
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs/health.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs&#x2F;health.dm 31"/></a>
+    </h3>
+    <p>how long CPR acts as mechanical circulation</p><h3 id="define/CPR_FORCED_METABOLISM_STRENGTH_CLIPPED"><aside class="declaration">#define </aside>CPR_FORCED_METABOLISM_STRENGTH_CLIPPED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs/health.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs&#x2F;health.dm 39"/></a>
+    </h3>
+    <p>on-cooldown reagent tick strength (as multiplier of normal living)</p><h3 id="define/CPR_FORCED_METABOLISM_STRENGTH_NOMINAL"><aside class="declaration">#define </aside>CPR_FORCED_METABOLISM_STRENGTH_NOMINAL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs/health.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs&#x2F;health.dm 37"/></a>
+    </h3>
+    <p>nominal CPR reagent tick strength (as multiplier of normal living)</p><h3 id="define/CPR_NOMINAL_COOLDOWN"><aside class="declaration">#define </aside>CPR_NOMINAL_COOLDOWN
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs/health.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs&#x2F;health.dm 35"/></a>
+    </h3>
+    <p>how long CPR is on nominal cooldown (doing it faster is less effective)</p><h3 id="define/CPR_VENTILATION_TIME"><aside class="declaration">#define </aside>CPR_VENTILATION_TIME
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs/health.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs&#x2F;health.dm 29"/></a>
+    </h3>
+    <p>how long CPR acts as mechanical ventilation</p><h3 id="define/DAMAGE_PRECISION"><aside class="declaration">#define </aside>DAMAGE_PRECISION
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs/health.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs&#x2F;health.dm 7"/></a>
+    </h3>
+    <ul>
+<li>Round damage values to this value</li>
+<li>Atom damage uses this too!</li>
+</ul><h3 id="define/DEAD"><aside class="declaration">#define </aside>DEAD
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs/health.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs&#x2F;health.dm 15"/></a>
+    </h3>
+    <p>we're dead</p><h3 id="define/ORGAN_DECAY_PER_SECOND_BRAIN"><aside class="declaration">#define </aside>ORGAN_DECAY_PER_SECOND_BRAIN
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs/health.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs&#x2F;health.dm 48"/></a>
+    </h3>
+    <p>how much damage the brain takes per second when the user is dead and it is not preserved</p><h3 id="define/ORGAN_DECAY_PER_SECOND_DEFAULT"><aside class="declaration">#define </aside>ORGAN_DECAY_PER_SECOND_DEFAULT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs/health.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs&#x2F;health.dm 46"/></a>
+    </h3>
+    <p>how much damage most organs take per second when the user is dead and it is not preserved</p><h3 id="define/UNCONSCIOUS"><aside class="declaration">#define </aside>UNCONSCIOUS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs/health.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs&#x2F;health.dm 13"/></a>
+    </h3>
+    <p>we're unconscious</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

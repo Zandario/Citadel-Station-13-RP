@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;sort_instance - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/sort_instance.html#var">Var Details</a> - <a href="datum/sort_instance.html#proc">Proc Details</a></header>
+<main>
+<h1>sort_instance <aside>/<a href="datum.html">datum</a>/<a href="datum/sort_instance.html">sort_instance</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/sorts/__main.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;sorts&#x2F;__main.dm 21"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/sort_instance.html#var/L">L</a></th><td>The array being sorted.</td></tr>
+            <tr><th><a href="datum/sort_instance.html#var/associative">associative</a></th><td>Whether we are sorting list keys (0: L[i]) or associated values (1: L[L[i]])</td></tr>
+            <tr><th><a href="datum/sort_instance.html#var/cmp">cmp</a></th><td>The comparator proc-reference.</td></tr>
+            <tr><th><a href="datum/sort_instance.html#var/min_gallop">min_gallop</a></th><td>This controls when we get <em>into</em> galloping mode.  It is initialized	to MIN_GALLOP.
+The merge_low and merge_high methods nudge it higher for random data, and lower for highly structured data.</td></tr>
+            <tr><th><a href="datum/sort_instance.html#var/run_bases">run_bases</a></th><td>Stores information regarding runs yet to be merged.
+Run i starts at runBase[i] and extends for runLen[i] elements.
+runBase[i] + runLen[i] == runBase[i+1]</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/sort_instance.html#proc/binary_sort">binary_sort</a></th><td>Sorts the specified portion of the specified array using a binary
+insertion sort.  This is the best method for sorting small numbers
+of elements.  It requires O(n log n) compares, but O(n^2) data
+movement (worst case).</td></tr>
+            <tr><th><a href="datum/sort_instance.html#proc/count_run_and_make_ascending">count_run_and_make_ascending</a></th><td>Returns the length of the run beginning at the specified position and reverses the run if it is back-to-front.</td></tr>
+            <tr><th><a href="datum/sort_instance.html#proc/gallop_left">gallop_left</a></th><td>Record the legth of the combined runs. If i is the 3rd last run now, also slide over the last run.
+(which isn't involved in this merge). The current run (i+1) goes away in any case.</td></tr>
+            <tr><th><a href="datum/sort_instance.html#proc/gallop_right">gallop_right</a></th><td>Now L[base+last_offset] &lt; key &lt;= L[base + offset], so key belongs somewhere to the right of last_offset but no farther than
+offset. Do a binary search with invariant L[base+last_offset-1] &lt; key &lt;= L[base+offset]</td></tr>
+            <tr><th><a href="datum/sort_instance.html#proc/merge_at">merge_at</a></th><td>Merges the two consecutive runs at stack indices i and i+1.
+Run i must be the penultimate or antepenultimate run on the stack.
+In other words, i must be equal to stackSize-2 or stackSize-3.</td></tr>
+            <tr><th><a href="datum/sort_instance.html#proc/merge_collapse">merge_collapse</a></th><td>Examines the stack of runs waiting to be merged and merges adjacent runs until the stack invariants are reestablished:</td></tr>
+            <tr><th><a href="datum/sort_instance.html#proc/merge_force_collapse">merge_force_collapse</a></th><td>Merges all runs on the stack until only one remains.
+Called only once, to finalise the sort</td></tr>
+            <tr><th><a href="datum/sort_instance.html#proc/merge_high">merge_high</a></th><td></td></tr>
+            <tr><th><a href="datum/sort_instance.html#proc/merge_low">merge_low</a></th><td>Merges two adjacent runs in-place in a stable fashion.
+For performance this method should only be called when len1 &lt;= len2!</td></tr>
+            <tr><th><a href="datum/sort_instance.html#proc/min_run_length">min_run_length</a></th><td>Returns the minimum acceptable run length for an array of the specified length.
+Natural runs shorter than this will be extended with binary_sort</td></tr>
+            <tr><th><a href="datum/sort_instance.html#proc/sort_merge">sort_merge</a></th><td></td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/L"><aside class="declaration">var </aside>L
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/sorts/__main.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;sorts&#x2F;__main.dm 23"/></a></h3>
+        <p>The array being sorted.</p><h3 id="var/associative"><aside class="declaration">var </aside>associative
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/sorts/__main.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;sorts&#x2F;__main.dm 29"/></a></h3>
+        <p>Whether we are sorting list keys (0: L[i]) or associated values (1: L[L[i]])</p><h3 id="var/cmp"><aside class="declaration">var </aside>cmp
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/sorts/__main.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;sorts&#x2F;__main.dm 26"/></a></h3>
+        <p>The comparator proc-reference.</p><h3 id="var/min_gallop"><aside class="declaration">var </aside>min_gallop
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/sorts/__main.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;sorts&#x2F;__main.dm 35"/></a></h3>
+        <p>This controls when we get <em>into</em> galloping mode.  It is initialized	to MIN_GALLOP.
+The merge_low and merge_high methods nudge it higher for random data, and lower for highly structured data.</p><h3 id="var/run_bases"><aside class="declaration">var </aside>run_bases
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/sorts/__main.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;sorts&#x2F;__main.dm 42"/></a></h3>
+        <p>Stores information regarding runs yet to be merged.
+Run i starts at runBase[i] and extends for runLen[i] elements.
+runBase[i] + runLen[i] == runBase[i+1]</p><h2 id="proc">Proc Details</h2><h3 id="proc/binary_sort"><aside class="declaration">proc </aside>binary_sort<aside>(lo, hi, start) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/sorts/__main.dm#L111">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;sorts&#x2F;__main.dm 111"/></a></aside>
+        </h3>
+        <p>Sorts the specified portion of the specified array using a binary
+insertion sort.  This is the best method for sorting small numbers
+of elements.  It requires O(n log n) compares, but O(n^2) data
+movement (worst case).</p>
+<p>If the initial part of the specified range is already sorted,
+this method can take advantage of it: the method assumes that the
+elements in range [lo,start) are already sorted</p>
+<p>lo		the index of the first element in the range to be sorted
+hi		the index after the last element in the range to be sorted
+start	the index of the first element in the range that is	not already known to be sorted</p><h3 id="proc/count_run_and_make_ascending"><aside class="declaration">proc </aside>count_run_and_make_ascending<aside>(lo, hi) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/sorts/__main.dm#L149">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;sorts&#x2F;__main.dm 149"/></a></aside>
+        </h3>
+        <p>Returns the length of the run beginning at the specified position and reverses the run if it is back-to-front.</p>
+<p>A run is the longest ascending sequence with:</p>
+<ul>
+<li>a[lo] &lt;= a[lo + 1] &lt;= a[lo + 2] &lt;= ...</li>
+</ul>
+<p>or the longest descending sequence with:</p>
+<ul>
+<li>a[lo] &gt;  a[lo + 1] &gt;  a[lo + 2] &gt;  ...</li>
+</ul>
+<p>For its intended use in a stable mergesort, the strictness of the
+definition of &quot;descending&quot; is needed so that the call can safely
+reverse a descending sequence without violating stability.</p><h3 id="proc/gallop_left"><aside class="declaration">proc </aside>gallop_left<aside>(key, base, len, hint) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/sorts/__main.dm#L286">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;sorts&#x2F;__main.dm 286"/></a></aside>
+        </h3>
+        <p>Record the legth of the combined runs. If i is the 3rd last run now, also slide over the last run.
+(which isn't involved in this merge). The current run (i+1) goes away in any case.</p>
+<p>Find where the first element of run2 goes in run1.
+Prior elements in run1 can be ignored (because they're already in place)</p>
+<p>Find where the last element of run1 goes in run2.
+Subsequent elements in run2 can be ignored (because they're already in place)</p>
+<p>Locates the position to insert key within the specified sorted range
+If the range contains elements equal to key, this will return the index of the LEFTMOST of those elements</p>
+<p>key		the element to be inserted into the sorted range
+base	the index of the first element of the sorted range
+len		the length of the sorted range, must be greater than 0
+hint	the offset from base at which to begin the search, such that 0 &lt;= hint &lt; len; i.e. base &lt;= hint &lt; base+hint</p>
+<p>Returns the index at which to insert element 'key'</p><h3 id="proc/gallop_right"><aside class="declaration">proc </aside>gallop_right<aside>(key, base, len, hint) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/sorts/__main.dm#L347">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;sorts&#x2F;__main.dm 347"/></a></aside>
+        </h3>
+        <p>Now L[base+last_offset] &lt; key &lt;= L[base + offset], so key belongs somewhere to the right of last_offset but no farther than
+offset. Do a binary search with invariant L[base+last_offset-1] &lt; key &lt;= L[base+offset]</p>
+<p>Like gallop_left, except that if the range contains an element equal to
+key, gallop_right returns the index after the rightmost equal element.</p>
+<p>@param key the key whose insertion point to search for
+@param a the array in which to search
+@param base the index of the first element in the range
+@param len the length of the range; must be &gt; 0
+@param hint the index at which to begin the search, 0 &lt;= hint &lt; n.
+The closer hint is to the result, the faster this method will run.
+@param c the comparator used to order the range, and to search
+@return the int k,  0 &lt;= k &lt;= n such that a[b + k - 1] &lt;= key &lt; a[b + k]</p><h3 id="proc/merge_at"><aside class="declaration">proc </aside>merge_at<aside>(i) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/sorts/__main.dm#L227">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;sorts&#x2F;__main.dm 227"/></a></aside>
+        </h3>
+        <p>Merges the two consecutive runs at stack indices i and i+1.
+Run i must be the penultimate or antepenultimate run on the stack.
+In other words, i must be equal to stackSize-2 or stackSize-3.</p><h3 id="proc/merge_collapse"><aside class="declaration">proc </aside>merge_collapse<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/sorts/__main.dm#L198">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;sorts&#x2F;__main.dm 198"/></a></aside>
+        </h3>
+        <p>Examines the stack of runs waiting to be merged and merges adjacent runs until the stack invariants are reestablished:</p>
+<ul>
+<li>runLen[i-3] &gt; runLen[i-2] + runLen[i-1]</li>
+<li>runLen[i-2] &gt; runLen[i-1]</li>
+</ul>
+<p>This method is called each time a new run is pushed onto the stack.
+So the invariants are guaranteed to hold for i&lt;stackSize upon entry to the method.</p><h3 id="proc/merge_force_collapse"><aside class="declaration">proc </aside>merge_force_collapse<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/sorts/__main.dm#L215">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;sorts&#x2F;__main.dm 215"/></a></aside>
+        </h3>
+        <p>Merges all runs on the stack until only one remains.
+Called only once, to finalise the sort</p><h3 id="proc/merge_high"><aside class="declaration">proc </aside>merge_high<aside>(base1, len1, base2, len2) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/sorts/__main.dm#L510">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;sorts&#x2F;__main.dm 510"/></a></aside>
+        </h3>
+        <h1 id="of-times-in-a-row-that-first-run-won">of times in a row that first run won.</h1><h1 id="of-times-in-a-row-that-second-run-won">of times in a row that second run won.</h1>
+<p>One run is winning consistently so galloping may provide huge benifits
+so try galloping, until such time as the run is no longer consistently winning.</p><h3 id="proc/merge_low"><aside class="declaration">proc </aside>merge_low<aside>(base1, len1, base2, len2) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/sorts/__main.dm#L405">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;sorts&#x2F;__main.dm 405"/></a></aside>
+        </h3>
+        <p>Merges two adjacent runs in-place in a stable fashion.
+For performance this method should only be called when len1 &lt;= len2!</p><h3 id="proc/min_run_length"><aside class="declaration">proc </aside>min_run_length<aside>(n) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/sorts/__main.dm#L181">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;sorts&#x2F;__main.dm 181"/></a></aside>
+        </h3>
+        <p>Returns the minimum acceptable run length for an array of the specified length.
+Natural runs shorter than this will be extended with binary_sort</p><h3 id="proc/sort_merge"><aside class="declaration">proc </aside>sort_merge<aside>(start, end) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/sorts/__main.dm#L617">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;sorts&#x2F;__main.dm 617"/></a></aside>
+        </h3>
+        <h1 id="of-times-in-a-row-that-first-run-won">of times in a row that first run won.</h1><h1 id="of-times-in-a-row-that-second-run-won">of times in a row that second run won.</h1>
+<p>One run is winning consistently so galloping may provide huge benifits
+so try galloping, until such time as the run is no longer consistently winning.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

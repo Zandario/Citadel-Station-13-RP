@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;mobs.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/mobs.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/mobs.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><p>Human Overlays Indexes</p></td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/MUTATIONS_LAYER">MUTATIONS_LAYER</a></th><td>Mutations like fat, and lasereyes</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SKIN_LAYER">SKIN_LAYER</a></th><td>Skin things added by a call on species</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BLOOD_LAYER">BLOOD_LAYER</a></th><td>Bloodied hands/feet/anything else</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/DAMAGE_LAYER">DAMAGE_LAYER</a></th><td>Injury overlay sprites like open wounds</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SURGERY_LAYER">SURGERY_LAYER</a></th><td>Overlays for open surgical sites</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/UNDERWEAR_LAYER">UNDERWEAR_LAYER</a></th><td>Underwear/bras/etc</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SHOES_LAYER_ALT">SHOES_LAYER_ALT</a></th><td>Shoe-slot item (when set to be under uniform via verb)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/UNIFORM_LAYER">UNIFORM_LAYER</a></th><td>Uniform-slot item</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/ID_LAYER">ID_LAYER</a></th><td>ID-slot item</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SHOES_LAYER">SHOES_LAYER</a></th><td>Shoe-slot item</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/GLOVES_LAYER">GLOVES_LAYER</a></th><td>Glove-slot item</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BELT_LAYER">BELT_LAYER</a></th><td>Belt-slot item</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SUIT_LAYER">SUIT_LAYER</a></th><td>Suit-slot item</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/TAIL_LAYER">TAIL_LAYER</a></th><td>Some species have tails to render</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/GLASSES_LAYER">GLASSES_LAYER</a></th><td>Eye-slot item</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BELT_LAYER_ALT">BELT_LAYER_ALT</a></th><td>Belt-slot item (when set to be above suit via verb)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SUIT_STORE_LAYER">SUIT_STORE_LAYER</a></th><td>Suit storage-slot item</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BACK_LAYER">BACK_LAYER</a></th><td>Back-slot item</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HAIR_LAYER">HAIR_LAYER</a></th><td>The human's hair</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/EARS_LAYER">EARS_LAYER</a></th><td>Both ear-slot items (combined image)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/EYES_LAYER">EYES_LAYER</a></th><td>Mob's eyes (used for glowing eyes)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/FACEMASK_LAYER">FACEMASK_LAYER</a></th><td>Mask-slot item</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HEAD_LAYER">HEAD_LAYER</a></th><td>Head-slot item</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HANDCUFF_LAYER">HANDCUFF_LAYER</a></th><td>Handcuffs, if the human is handcuffed, in a secret inv slot</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/LEGCUFF_LAYER">LEGCUFF_LAYER</a></th><td>Same as handcuffs, for legcuffs</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/L_HAND_LAYER">L_HAND_LAYER</a></th><td>Left-hand item</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/R_HAND_LAYER">R_HAND_LAYER</a></th><td>Right-hand item</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/WING_LAYER">WING_LAYER</a></th><td>Wing overlay layer.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/TAIL_LAYER_ALT">TAIL_LAYER_ALT</a></th><td>Tail alt. overlay layer for fixing overlay issues.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/MODIFIER_EFFECTS_LAYER">MODIFIER_EFFECTS_LAYER</a></th><td>Effects drawn by modifiers</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/FIRE_LAYER">FIRE_LAYER</a></th><td>'Mob on fire' overlay layer</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/MOB_WATER_LAYER">MOB_WATER_LAYER</a></th><td>'Mob submerged' overlay layer</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/TARGETED_LAYER">TARGETED_LAYER</a></th><td>'Aimed at' overlay layer</td></tr>
+        <tr><td colspan="2"><p>KEEP THIS UPDATED, should always equal the highest number here, used to initialize a list.</p>
+<p>the offset used</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PASSEMOTES">PASSEMOTES</a></th><td>Mob has a cortical borer or holders inside of it that need to see emotes.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/FAKEDEATH">FAKEDEATH</a></th><td>Replaces stuff like changeling.changeling_fakedeath.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/DISFIGURED">DISFIGURED</a></th><td>Set but never checked. Remove this sometime and replace occurences with the appropriate organ code</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/STANCE_ATTACK">STANCE_ATTACK</a></th><td>Backwards compatability</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/STANCE_ATTACKING">STANCE_ATTACKING</a></th><td>Ditto</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/STANCE_SLEEP">STANCE_SLEEP</a></th><td>Doing (almost) nothing, to save on CPU because nobody is around to notice or the mob died.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/STANCE_IDLE">STANCE_IDLE</a></th><td>The more or less default state. Wanders around, looks for baddies, and spouts one-liners.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/STANCE_ALERT">STANCE_ALERT</a></th><td>A baddie is visible but not too close, and essentially we tell them to go away or die.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/STANCE_APPROACH">STANCE_APPROACH</a></th><td>Attempting to get into range to attack them.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/STANCE_FIGHT">STANCE_FIGHT</a></th><td>Actually fighting, with melee or ranged.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/STANCE_BLINDFIGHT">STANCE_BLINDFIGHT</a></th><td>Fighting something that cannot be seen by the mob, from invisibility or out of sight.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/STANCE_REPOSITION">STANCE_REPOSITION</a></th><td>Relocating to a better position while in combat. Also used when moving away from a danger like grenades.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/STANCE_MOVE">STANCE_MOVE</a></th><td>Similar to above but for out of combat. If a baddie is seen, they'll cancel and fight them.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/STANCE_FOLLOW">STANCE_FOLLOW</a></th><td>Following somone, without trying to murder them.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/STANCE_FLEE">STANCE_FLEE</a></th><td>Run away from the target because they're too spooky/we're dying/some other reason.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/STANCE_DISABLED">STANCE_DISABLED</a></th><td>Used when the holder is afflicted with certain status effects, such as stuns or confusion.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PULSE_NONE">PULSE_NONE</a></th><td>So !M.pulse checks would be possible.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PULSE_SLOW">PULSE_SLOW</a></th><td>&lt;60     bpm</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PULSE_NORM">PULSE_NORM</a></th><td>60-90  bpm</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PULSE_FAST">PULSE_FAST</a></th><td>90-120 bpm</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PULSE_2FAST">PULSE_2FAST</a></th><td></td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PULSE_THREADY">PULSE_THREADY</a></th><td>Occurs during hypovolemic shock</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/GETPULSE_HAND">GETPULSE_HAND</a></th><td>Less accurate. (hand)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/GETPULSE_TOOL">GETPULSE_TOOL</a></th><td>More accurate. (med scanner, sleeper, etc.)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/DEFAULT_ATTACK_COOLDOWN">DEFAULT_ATTACK_COOLDOWN</a></th><td>Default timeout for aggressive actions</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/INCAPACITATION_FORCELYING">INCAPACITATION_FORCELYING</a></th><td>needs a better name - represents being knocked down BUT still conscious.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/MODIFIER_STACK_FORBID">MODIFIER_STACK_FORBID</a></th><td>Disallows stacking entirely.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/MODIFIER_STACK_EXTEND">MODIFIER_STACK_EXTEND</a></th><td>Disallows a second instance, but will extend the first instance if possible.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/MODIFIER_STACK_ALLOWED">MODIFIER_STACK_ALLOWED</a></th><td>Multiple instances are allowed.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/MODIFIER_GENETIC">MODIFIER_GENETIC</a></th><td>Modifiers with this flag will be copied to mobs who get cloned.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/MOB_CLASS_NONE">MOB_CLASS_NONE</a></th><td>Default value, and used to invert for _ALL.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/MOB_CLASS_PLANT">MOB_CLASS_PLANT</a></th><td>Unused at the moment.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/MOB_CLASS_ANIMAL">MOB_CLASS_ANIMAL</a></th><td>Animals and beasts like spiders, saviks, and bears.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/MOB_CLASS_HUMANOID">MOB_CLASS_HUMANOID</a></th><td>Non-robotic humanoids, including /simple_mob and /carbon/humans and their alien variants.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/MOB_CLASS_SYNTHETIC">MOB_CLASS_SYNTHETIC</a></th><td>Silicons, mechanical simple mobs, FBPs, and anything else that would pass is_synthetic()</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/MOB_CLASS_SLIME">MOB_CLASS_SLIME</a></th><td>Everyone's favorite xenobiology specimen (and maybe prometheans?).</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/MOB_CLASS_ABERRATION">MOB_CLASS_ABERRATION</a></th><td>Weird shit.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/MOB_CLASS_DEMONIC">MOB_CLASS_DEMONIC</a></th><td>Cult stuff.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/MOB_CLASS_BOSS">MOB_CLASS_BOSS</a></th><td>Future megafauna hopefully someday.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/MOB_CLASS_ILLUSION">MOB_CLASS_ILLUSION</a></th><td>Fake mobs, e.g. Technomancer illusions.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/MOB_CLASS_PHOTONIC">MOB_CLASS_PHOTONIC</a></th><td>Holographic mobs like holocarp, similar to _ILLUSION, but that make no attempt to hide their true nature.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SLIME_COMMAND_OBEY">SLIME_COMMAND_OBEY</a></th><td>When disciplined.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SLIME_COMMAND_FACTION">SLIME_COMMAND_FACTION</a></th><td>When in the same 'faction'.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SLIME_COMMAND_FRIEND">SLIME_COMMAND_FRIEND</a></th><td>When befriended with a slime friendship agent.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/VIS_COUNT">VIS_COUNT</a></th><td>Must be highest number from above.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/EYE_CONTACT_RANGE">EYE_CONTACT_RANGE</a></th><td>How far away you can be to make eye contact with someone while examining</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/EXAMINE_MORE_TIME">EXAMINE_MORE_TIME</a></th><td>If you examine the same atom twice in this timeframe, we call examine_more() instead of examine()</td></tr>
+        <tr><td colspan="2"><p>Blood levels</p>
+</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/BACK_LAYER"><aside class="declaration">#define </aside>BACK_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 40"/></a>
+    </h3>
+    <p>Back-slot item</p><h3 id="define/BELT_LAYER"><aside class="declaration">#define </aside>BELT_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 28"/></a>
+    </h3>
+    <p>Belt-slot item</p><h3 id="define/BELT_LAYER_ALT"><aside class="declaration">#define </aside>BELT_LAYER_ALT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 36"/></a>
+    </h3>
+    <p>Belt-slot item (when set to be above suit via verb)</p><h3 id="define/BLOOD_LAYER"><aside class="declaration">#define </aside>BLOOD_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 10"/></a>
+    </h3>
+    <p>Bloodied hands/feet/anything else</p><h3 id="define/DAMAGE_LAYER"><aside class="declaration">#define </aside>DAMAGE_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 12"/></a>
+    </h3>
+    <p>Injury overlay sprites like open wounds</p><h3 id="define/DEFAULT_ATTACK_COOLDOWN"><aside class="declaration">#define </aside>DEFAULT_ATTACK_COOLDOWN
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L194">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 194"/></a>
+    </h3>
+    <p>Default timeout for aggressive actions</p><h3 id="define/DISFIGURED"><aside class="declaration">#define </aside>DISFIGURED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 90"/></a>
+    </h3>
+    <p>Set but never checked. Remove this sometime and replace occurences with the appropriate organ code</p><h3 id="define/EARS_LAYER"><aside class="declaration">#define </aside>EARS_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 44"/></a>
+    </h3>
+    <p>Both ear-slot items (combined image)</p><h3 id="define/EXAMINE_MORE_TIME"><aside class="declaration">#define </aside>EXAMINE_MORE_TIME
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L369">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 369"/></a>
+    </h3>
+    <p>If you examine the same atom twice in this timeframe, we call examine_more() instead of examine()</p><h3 id="define/EYES_LAYER"><aside class="declaration">#define </aside>EYES_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 46"/></a>
+    </h3>
+    <p>Mob's eyes (used for glowing eyes)</p><h3 id="define/EYE_CONTACT_RANGE"><aside class="declaration">#define </aside>EYE_CONTACT_RANGE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L366">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 366"/></a>
+    </h3>
+    <p>How far away you can be to make eye contact with someone while examining</p><h3 id="define/FACEMASK_LAYER"><aside class="declaration">#define </aside>FACEMASK_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 48"/></a>
+    </h3>
+    <p>Mask-slot item</p><h3 id="define/FAKEDEATH"><aside class="declaration">#define </aside>FAKEDEATH
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 88"/></a>
+    </h3>
+    <p>Replaces stuff like changeling.changeling_fakedeath.</p><h3 id="define/FIRE_LAYER"><aside class="declaration">#define </aside>FIRE_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 66"/></a>
+    </h3>
+    <p>'Mob on fire' overlay layer</p><h3 id="define/GETPULSE_HAND"><aside class="declaration">#define </aside>GETPULSE_HAND
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L159">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 159"/></a>
+    </h3>
+    <p>Less accurate. (hand)</p><h3 id="define/GETPULSE_TOOL"><aside class="declaration">#define </aside>GETPULSE_TOOL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L161">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 161"/></a>
+    </h3>
+    <p>More accurate. (med scanner, sleeper, etc.)</p><h3 id="define/GLASSES_LAYER"><aside class="declaration">#define </aside>GLASSES_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 34"/></a>
+    </h3>
+    <p>Eye-slot item</p><h3 id="define/GLOVES_LAYER"><aside class="declaration">#define </aside>GLOVES_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 26"/></a>
+    </h3>
+    <p>Glove-slot item</p><h3 id="define/HAIR_LAYER"><aside class="declaration">#define </aside>HAIR_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 42"/></a>
+    </h3>
+    <p>The human's hair</p><h3 id="define/HANDCUFF_LAYER"><aside class="declaration">#define </aside>HANDCUFF_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 52"/></a>
+    </h3>
+    <p>Handcuffs, if the human is handcuffed, in a secret inv slot</p><h3 id="define/HEAD_LAYER"><aside class="declaration">#define </aside>HEAD_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 50"/></a>
+    </h3>
+    <p>Head-slot item</p><h3 id="define/ID_LAYER"><aside class="declaration">#define </aside>ID_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 22"/></a>
+    </h3>
+    <p>ID-slot item</p><h3 id="define/INCAPACITATION_FORCELYING"><aside class="declaration">#define </aside>INCAPACITATION_FORCELYING
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L241">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 241"/></a>
+    </h3>
+    <p>needs a better name - represents being knocked down BUT still conscious.</p><h3 id="define/LEGCUFF_LAYER"><aside class="declaration">#define </aside>LEGCUFF_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 54"/></a>
+    </h3>
+    <p>Same as handcuffs, for legcuffs</p><h3 id="define/L_HAND_LAYER"><aside class="declaration">#define </aside>L_HAND_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 56"/></a>
+    </h3>
+    <p>Left-hand item</p><h3 id="define/MOB_CLASS_ABERRATION"><aside class="declaration">#define </aside>MOB_CLASS_ABERRATION
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L291">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 291"/></a>
+    </h3>
+    <p>Weird shit.</p><h3 id="define/MOB_CLASS_ANIMAL"><aside class="declaration">#define </aside>MOB_CLASS_ANIMAL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L283">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 283"/></a>
+    </h3>
+    <p>Animals and beasts like spiders, saviks, and bears.</p><h3 id="define/MOB_CLASS_BOSS"><aside class="declaration">#define </aside>MOB_CLASS_BOSS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L295">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 295"/></a>
+    </h3>
+    <p>Future megafauna hopefully someday.</p><h3 id="define/MOB_CLASS_DEMONIC"><aside class="declaration">#define </aside>MOB_CLASS_DEMONIC
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L293">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 293"/></a>
+    </h3>
+    <p>Cult stuff.</p><h3 id="define/MOB_CLASS_HUMANOID"><aside class="declaration">#define </aside>MOB_CLASS_HUMANOID
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L285">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 285"/></a>
+    </h3>
+    <p>Non-robotic humanoids, including /simple_mob and /carbon/humans and their alien variants.</p><h3 id="define/MOB_CLASS_ILLUSION"><aside class="declaration">#define </aside>MOB_CLASS_ILLUSION
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L297">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 297"/></a>
+    </h3>
+    <p>Fake mobs, e.g. Technomancer illusions.</p><h3 id="define/MOB_CLASS_NONE"><aside class="declaration">#define </aside>MOB_CLASS_NONE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L279">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 279"/></a>
+    </h3>
+    <p>Default value, and used to invert for _ALL.</p><h3 id="define/MOB_CLASS_PHOTONIC"><aside class="declaration">#define </aside>MOB_CLASS_PHOTONIC
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L299">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 299"/></a>
+    </h3>
+    <p>Holographic mobs like holocarp, similar to _ILLUSION, but that make no attempt to hide their true nature.</p><h3 id="define/MOB_CLASS_PLANT"><aside class="declaration">#define </aside>MOB_CLASS_PLANT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L281">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 281"/></a>
+    </h3>
+    <p>Unused at the moment.</p><h3 id="define/MOB_CLASS_SLIME"><aside class="declaration">#define </aside>MOB_CLASS_SLIME
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L289">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 289"/></a>
+    </h3>
+    <p>Everyone's favorite xenobiology specimen (and maybe prometheans?).</p><h3 id="define/MOB_CLASS_SYNTHETIC"><aside class="declaration">#define </aside>MOB_CLASS_SYNTHETIC
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L287">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 287"/></a>
+    </h3>
+    <p>Silicons, mechanical simple mobs, FBPs, and anything else that would pass is_synthetic()</p><h3 id="define/MOB_WATER_LAYER"><aside class="declaration">#define </aside>MOB_WATER_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 68"/></a>
+    </h3>
+    <p>'Mob submerged' overlay layer</p><h3 id="define/MODIFIER_EFFECTS_LAYER"><aside class="declaration">#define </aside>MODIFIER_EFFECTS_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 64"/></a>
+    </h3>
+    <p>Effects drawn by modifiers</p><h3 id="define/MODIFIER_GENETIC"><aside class="declaration">#define </aside>MODIFIER_GENETIC
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L258">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 258"/></a>
+    </h3>
+    <p>Modifiers with this flag will be copied to mobs who get cloned.</p><h3 id="define/MODIFIER_STACK_ALLOWED"><aside class="declaration">#define </aside>MODIFIER_STACK_ALLOWED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L255">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 255"/></a>
+    </h3>
+    <p>Multiple instances are allowed.</p><h3 id="define/MODIFIER_STACK_EXTEND"><aside class="declaration">#define </aside>MODIFIER_STACK_EXTEND
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L253">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 253"/></a>
+    </h3>
+    <p>Disallows a second instance, but will extend the first instance if possible.</p><h3 id="define/MODIFIER_STACK_FORBID"><aside class="declaration">#define </aside>MODIFIER_STACK_FORBID
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L251">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 251"/></a>
+    </h3>
+    <p>Disallows stacking entirely.</p><h3 id="define/MUTATIONS_LAYER"><aside class="declaration">#define </aside>MUTATIONS_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 6"/></a>
+    </h3>
+    <p>Mutations like fat, and lasereyes</p><h3 id="define/PASSEMOTES"><aside class="declaration">#define </aside>PASSEMOTES
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 85"/></a>
+    </h3>
+    <p>Mob has a cortical borer or holders inside of it that need to see emotes.</p><h3 id="define/PULSE_2FAST"><aside class="declaration">#define </aside>PULSE_2FAST
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L155">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 155"/></a>
+    </h3>
+    <blockquote>
+<p>120    bpm</p>
+</blockquote><h3 id="define/PULSE_FAST"><aside class="declaration">#define </aside>PULSE_FAST
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L153">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 153"/></a>
+    </h3>
+    <p>90-120 bpm</p><h3 id="define/PULSE_NONE"><aside class="declaration">#define </aside>PULSE_NONE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L147">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 147"/></a>
+    </h3>
+    <p>So !M.pulse checks would be possible.</p><h3 id="define/PULSE_NORM"><aside class="declaration">#define </aside>PULSE_NORM
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L151">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 151"/></a>
+    </h3>
+    <p>60-90  bpm</p><h3 id="define/PULSE_SLOW"><aside class="declaration">#define </aside>PULSE_SLOW
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L149">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 149"/></a>
+    </h3>
+    <p>&lt;60     bpm</p><h3 id="define/PULSE_THREADY"><aside class="declaration">#define </aside>PULSE_THREADY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L157">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 157"/></a>
+    </h3>
+    <p>Occurs during hypovolemic shock</p><h3 id="define/R_HAND_LAYER"><aside class="declaration">#define </aside>R_HAND_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 58"/></a>
+    </h3>
+    <p>Right-hand item</p><h3 id="define/SHOES_LAYER"><aside class="declaration">#define </aside>SHOES_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 24"/></a>
+    </h3>
+    <p>Shoe-slot item</p><h3 id="define/SHOES_LAYER_ALT"><aside class="declaration">#define </aside>SHOES_LAYER_ALT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 18"/></a>
+    </h3>
+    <p>Shoe-slot item (when set to be under uniform via verb)</p><h3 id="define/SKIN_LAYER"><aside class="declaration">#define </aside>SKIN_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 8"/></a>
+    </h3>
+    <p>Skin things added by a call on species</p><h3 id="define/SLIME_COMMAND_FACTION"><aside class="declaration">#define </aside>SLIME_COMMAND_FACTION
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L306">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 306"/></a>
+    </h3>
+    <p>When in the same 'faction'.</p><h3 id="define/SLIME_COMMAND_FRIEND"><aside class="declaration">#define </aside>SLIME_COMMAND_FRIEND
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L308">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 308"/></a>
+    </h3>
+    <p>When befriended with a slime friendship agent.</p><h3 id="define/SLIME_COMMAND_OBEY"><aside class="declaration">#define </aside>SLIME_COMMAND_OBEY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L304">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 304"/></a>
+    </h3>
+    <p>When disciplined.</p><h3 id="define/STANCE_ALERT"><aside class="declaration">#define </aside>STANCE_ALERT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L122">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 122"/></a>
+    </h3>
+    <p>A baddie is visible but not too close, and essentially we tell them to go away or die.</p><h3 id="define/STANCE_APPROACH"><aside class="declaration">#define </aside>STANCE_APPROACH
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 124"/></a>
+    </h3>
+    <p>Attempting to get into range to attack them.</p><h3 id="define/STANCE_ATTACK"><aside class="declaration">#define </aside>STANCE_ATTACK
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L98">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 98"/></a>
+    </h3>
+    <p>Backwards compatability</p><h3 id="define/STANCE_ATTACKING"><aside class="declaration">#define </aside>STANCE_ATTACKING
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L100">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 100"/></a>
+    </h3>
+    <p>Ditto</p><h3 id="define/STANCE_BLINDFIGHT"><aside class="declaration">#define </aside>STANCE_BLINDFIGHT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L128">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 128"/></a>
+    </h3>
+    <p>Fighting something that cannot be seen by the mob, from invisibility or out of sight.</p><h3 id="define/STANCE_DISABLED"><aside class="declaration">#define </aside>STANCE_DISABLED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L138">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 138"/></a>
+    </h3>
+    <p>Used when the holder is afflicted with certain status effects, such as stuns or confusion.</p><h3 id="define/STANCE_FIGHT"><aside class="declaration">#define </aside>STANCE_FIGHT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 126"/></a>
+    </h3>
+    <p>Actually fighting, with melee or ranged.</p><h3 id="define/STANCE_FLEE"><aside class="declaration">#define </aside>STANCE_FLEE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L136">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 136"/></a>
+    </h3>
+    <p>Run away from the target because they're too spooky/we're dying/some other reason.</p><h3 id="define/STANCE_FOLLOW"><aside class="declaration">#define </aside>STANCE_FOLLOW
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L134">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 134"/></a>
+    </h3>
+    <p>Following somone, without trying to murder them.</p><h3 id="define/STANCE_IDLE"><aside class="declaration">#define </aside>STANCE_IDLE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 120"/></a>
+    </h3>
+    <p>The more or less default state. Wanders around, looks for baddies, and spouts one-liners.</p><h3 id="define/STANCE_MOVE"><aside class="declaration">#define </aside>STANCE_MOVE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L132">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 132"/></a>
+    </h3>
+    <p>Similar to above but for out of combat. If a baddie is seen, they'll cancel and fight them.</p><h3 id="define/STANCE_REPOSITION"><aside class="declaration">#define </aside>STANCE_REPOSITION
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L130">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 130"/></a>
+    </h3>
+    <p>Relocating to a better position while in combat. Also used when moving away from a danger like grenades.</p><h3 id="define/STANCE_SLEEP"><aside class="declaration">#define </aside>STANCE_SLEEP
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 118"/></a>
+    </h3>
+    <p>Doing (almost) nothing, to save on CPU because nobody is around to notice or the mob died.</p><h3 id="define/SUIT_LAYER"><aside class="declaration">#define </aside>SUIT_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 30"/></a>
+    </h3>
+    <p>Suit-slot item</p><h3 id="define/SUIT_STORE_LAYER"><aside class="declaration">#define </aside>SUIT_STORE_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 38"/></a>
+    </h3>
+    <p>Suit storage-slot item</p><h3 id="define/SURGERY_LAYER"><aside class="declaration">#define </aside>SURGERY_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 14"/></a>
+    </h3>
+    <p>Overlays for open surgical sites</p><h3 id="define/TAIL_LAYER"><aside class="declaration">#define </aside>TAIL_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 32"/></a>
+    </h3>
+    <p>Some species have tails to render</p><h3 id="define/TAIL_LAYER_ALT"><aside class="declaration">#define </aside>TAIL_LAYER_ALT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 62"/></a>
+    </h3>
+    <p>Tail alt. overlay layer for fixing overlay issues.</p><h3 id="define/TARGETED_LAYER"><aside class="declaration">#define </aside>TARGETED_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 70"/></a>
+    </h3>
+    <p>'Aimed at' overlay layer</p><h3 id="define/UNDERWEAR_LAYER"><aside class="declaration">#define </aside>UNDERWEAR_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 16"/></a>
+    </h3>
+    <p>Underwear/bras/etc</p><h3 id="define/UNIFORM_LAYER"><aside class="declaration">#define </aside>UNIFORM_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 20"/></a>
+    </h3>
+    <p>Uniform-slot item</p><h3 id="define/VIS_COUNT"><aside class="declaration">#define </aside>VIS_COUNT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L338">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 338"/></a>
+    </h3>
+    <p>Must be highest number from above.</p><h3 id="define/WING_LAYER"><aside class="declaration">#define </aside>WING_LAYER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/mobs.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 60"/></a>
+    </h3>
+    <p>Wing overlay layer.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

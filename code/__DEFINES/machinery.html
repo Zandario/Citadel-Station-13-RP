@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;machinery.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/machinery.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/machinery.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><p>Doors!</p></td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/ALIEN_SELECT_AFK_BUFFER">ALIEN_SELECT_AFK_BUFFER</a></th><td>How many minutes that a person can be AFK before not being allowed to be an alien.</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/USE_POWER_OFF">USE_POWER_OFF</a></th><td>No continuous power use</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/USE_POWER_IDLE">USE_POWER_IDLE</a></th><td>Machine is using power at its idle power level</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/USE_POWER_ACTIVE">USE_POWER_ACTIVE</a></th><td>Machine is using power at its active power level</td></tr>
+        <tr><td colspan="2"><p>Bitflags for a machine's preferences on when it should start processing. For use with machinery's <code>processing_flags</code> var.</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/START_PROCESSING_ON_INIT">START_PROCESSING_ON_INIT</a></th><td>Indicates the machine will automatically start processing right after it's <code>Initialize()</code> is ran.</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/START_PROCESSING_MANUALLY">START_PROCESSING_MANUALLY</a></th><td>Machines with this flag will not start processing when it's spawned. Use this if you want to manually control when a machine starts processing.</td></tr>
+        <tr><td colspan="2"><p>Channel numbers for power.</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/CURRENT_CHANNEL">CURRENT_CHANNEL</a></th><td>Passed as an argument this means &quot;use whatever current channel is&quot;</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/TOTAL">TOTAL</a></th><td>For total power used only.</td></tr>
+        <tr><td colspan="2"><p>Bitflags for machine stat variable.</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/POWEROFF">POWEROFF</a></th><td>TBD.</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/MAINT">MAINT</a></th><td>Under maintenance.</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/EMPED">EMPED</a></th><td>Temporary broken by EMP pulse.</td></tr>
+        <tr><td colspan="2"><p>Remote control states</p>
+<p>Used by firelocks</p>
+<p>Camera networks</p>
+<p>Off Station Camera Networks</p>
+<p>Station Specific Camera Networks</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/TRANSMISSION_WIRE">TRANSMISSION_WIRE</a></th><td>Is this ever used? I don't think it is.</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/TRANSMISSION_RADIO">TRANSMISSION_RADIO</a></th><td>Radio transmissions (like airlock controller to pump)</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/TRANSMISSION_SUBSPACE">TRANSMISSION_SUBSPACE</a></th><td>Like headsets</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/TRANSMISSION_BLUESPACE">TRANSMISSION_BLUESPACE</a></th><td>Point-to-point links</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/SIGNAL_NORMAL">SIGNAL_NORMAL</a></th><td>Normal subspace signals</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/SIGNAL_SIMPLE">SIGNAL_SIMPLE</a></th><td>Normal inter-machinery(?) signals</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/SIGNAL_FAKE">SIGNAL_FAKE</a></th><td>Untrackable signals</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/SIGNAL_TEST">SIGNAL_TEST</a></th><td>Unlogged signals</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/DATA_NORMAL">DATA_NORMAL</a></th><td>Normal data</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/DATA_INTERCOM">DATA_INTERCOM</a></th><td>Intercoms only</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/DATA_LOCAL">DATA_LOCAL</a></th><td>Intercoms and SBRs</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/DATA_ANTAG">DATA_ANTAG</a></th><td>Antag interception</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/DATA_FAKE">DATA_FAKE</a></th><td>Not from a real mob</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/MAX_SIPHON_FLOWRATE">MAX_SIPHON_FLOWRATE</a></th><td>! Atmospherics Machinery.
+L/s. This can be used to balance how fast a room is siphoned. Anything higher than CELL_VOLUME has no effect.</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/MAX_SCRUBBER_FLOWRATE">MAX_SCRUBBER_FLOWRATE</a></th><td>L/s. Max flow rate when scrubbing from a turf.</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/ATMOS_DEFAULT_VOLUME_PUMP">ATMOS_DEFAULT_VOLUME_PUMP</a></th><td>Liters.</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/ATMOS_DEFAULT_VOLUME_FILTER">ATMOS_DEFAULT_VOLUME_FILTER</a></th><td>L.</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/ATMOS_DEFAULT_VOLUME_MIXER">ATMOS_DEFAULT_VOLUME_MIXER</a></th><td>L.</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/ATMOS_DEFAULT_VOLUME_PIPE">ATMOS_DEFAULT_VOLUME_PIPE</a></th><td>L.</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/SUPERMATTER_ERROR">SUPERMATTER_ERROR</a></th><td>Unknown status, shouldn't happen but just in case.</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/SUPERMATTER_INACTIVE">SUPERMATTER_INACTIVE</a></th><td>No or minimal energy</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/SUPERMATTER_NORMAL">SUPERMATTER_NORMAL</a></th><td>Normal operation</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/SUPERMATTER_NOTIFY">SUPERMATTER_NOTIFY</a></th><td>Ambient temp &gt; 80% of CRITICAL_TEMPERATURE</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/SUPERMATTER_WARNING">SUPERMATTER_WARNING</a></th><td>Ambient temp &gt; CRITICAL_TEMPERATURE OR integrity damaged</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/SUPERMATTER_DANGER">SUPERMATTER_DANGER</a></th><td>Integrity &lt; 50%</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/SUPERMATTER_EMERGENCY">SUPERMATTER_EMERGENCY</a></th><td>Integrity &lt; 25%</td></tr>
+        <tr><th><a href="code/__DEFINES/machinery.html#define/SUPERMATTER_DELAMINATING">SUPERMATTER_DELAMINATING</a></th><td>Pretty obvious.</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/ALIEN_SELECT_AFK_BUFFER"><aside class="declaration">#define </aside>ALIEN_SELECT_AFK_BUFFER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 7"/></a>
+    </h3>
+    <p>How many minutes that a person can be AFK before not being allowed to be an alien.</p><h3 id="define/ATMOS_DEFAULT_VOLUME_FILTER"><aside class="declaration">#define </aside>ATMOS_DEFAULT_VOLUME_FILTER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L159">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 159"/></a>
+    </h3>
+    <p>L.</p><h3 id="define/ATMOS_DEFAULT_VOLUME_MIXER"><aside class="declaration">#define </aside>ATMOS_DEFAULT_VOLUME_MIXER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L161">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 161"/></a>
+    </h3>
+    <p>L.</p><h3 id="define/ATMOS_DEFAULT_VOLUME_PIPE"><aside class="declaration">#define </aside>ATMOS_DEFAULT_VOLUME_PIPE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L163">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 163"/></a>
+    </h3>
+    <p>L.</p><h3 id="define/ATMOS_DEFAULT_VOLUME_PUMP"><aside class="declaration">#define </aside>ATMOS_DEFAULT_VOLUME_PUMP
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L157">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 157"/></a>
+    </h3>
+    <p>Liters.</p><h3 id="define/CURRENT_CHANNEL"><aside class="declaration">#define </aside>CURRENT_CHANNEL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 24"/></a>
+    </h3>
+    <p>Passed as an argument this means &quot;use whatever current channel is&quot;</p><h3 id="define/DATA_ANTAG"><aside class="declaration">#define </aside>DATA_ANTAG
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 124"/></a>
+    </h3>
+    <p>Antag interception</p><h3 id="define/DATA_FAKE"><aside class="declaration">#define </aside>DATA_FAKE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 126"/></a>
+    </h3>
+    <p>Not from a real mob</p><h3 id="define/DATA_INTERCOM"><aside class="declaration">#define </aside>DATA_INTERCOM
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 120"/></a>
+    </h3>
+    <p>Intercoms only</p><h3 id="define/DATA_LOCAL"><aside class="declaration">#define </aside>DATA_LOCAL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L122">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 122"/></a>
+    </h3>
+    <p>Intercoms and SBRs</p><h3 id="define/DATA_NORMAL"><aside class="declaration">#define </aside>DATA_NORMAL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 118"/></a>
+    </h3>
+    <p>Normal data</p><h3 id="define/EMPED"><aside class="declaration">#define </aside>EMPED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 39"/></a>
+    </h3>
+    <p>Temporary broken by EMP pulse.</p><h3 id="define/MAINT"><aside class="declaration">#define </aside>MAINT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 37"/></a>
+    </h3>
+    <p>Under maintenance.</p><h3 id="define/MAX_SCRUBBER_FLOWRATE"><aside class="declaration">#define </aside>MAX_SCRUBBER_FLOWRATE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L141">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 141"/></a>
+    </h3>
+    <p>L/s. Max flow rate when scrubbing from a turf.</p><h3 id="define/MAX_SIPHON_FLOWRATE"><aside class="declaration">#define </aside>MAX_SIPHON_FLOWRATE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L139">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 139"/></a>
+    </h3>
+    <p>! Atmospherics Machinery.
+L/s. This can be used to balance how fast a room is siphoned. Anything higher than CELL_VOLUME has no effect.</p><h3 id="define/POWEROFF"><aside class="declaration">#define </aside>POWEROFF
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 35"/></a>
+    </h3>
+    <p>TBD.</p><h3 id="define/SIGNAL_FAKE"><aside class="declaration">#define </aside>SIGNAL_FAKE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 114"/></a>
+    </h3>
+    <p>Untrackable signals</p><h3 id="define/SIGNAL_NORMAL"><aside class="declaration">#define </aside>SIGNAL_NORMAL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 110"/></a>
+    </h3>
+    <p>Normal subspace signals</p><h3 id="define/SIGNAL_SIMPLE"><aside class="declaration">#define </aside>SIGNAL_SIMPLE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 112"/></a>
+    </h3>
+    <p>Normal inter-machinery(?) signals</p><h3 id="define/SIGNAL_TEST"><aside class="declaration">#define </aside>SIGNAL_TEST
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 116"/></a>
+    </h3>
+    <p>Unlogged signals</p><h3 id="define/START_PROCESSING_MANUALLY"><aside class="declaration">#define </aside>START_PROCESSING_MANUALLY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 20"/></a>
+    </h3>
+    <p>Machines with this flag will not start processing when it's spawned. Use this if you want to manually control when a machine starts processing.</p><h3 id="define/START_PROCESSING_ON_INIT"><aside class="declaration">#define </aside>START_PROCESSING_ON_INIT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 18"/></a>
+    </h3>
+    <p>Indicates the machine will automatically start processing right after it's <code>Initialize()</code> is ran.</p><h3 id="define/SUPERMATTER_DANGER"><aside class="declaration">#define </aside>SUPERMATTER_DANGER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L176">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 176"/></a>
+    </h3>
+    <p>Integrity &lt; 50%</p><h3 id="define/SUPERMATTER_DELAMINATING"><aside class="declaration">#define </aside>SUPERMATTER_DELAMINATING
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L180">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 180"/></a>
+    </h3>
+    <p>Pretty obvious.</p><h3 id="define/SUPERMATTER_EMERGENCY"><aside class="declaration">#define </aside>SUPERMATTER_EMERGENCY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L178">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 178"/></a>
+    </h3>
+    <p>Integrity &lt; 25%</p><h3 id="define/SUPERMATTER_ERROR"><aside class="declaration">#define </aside>SUPERMATTER_ERROR
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L166">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 166"/></a>
+    </h3>
+    <p>Unknown status, shouldn't happen but just in case.</p><h3 id="define/SUPERMATTER_INACTIVE"><aside class="declaration">#define </aside>SUPERMATTER_INACTIVE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L168">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 168"/></a>
+    </h3>
+    <p>No or minimal energy</p><h3 id="define/SUPERMATTER_NORMAL"><aside class="declaration">#define </aside>SUPERMATTER_NORMAL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L170">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 170"/></a>
+    </h3>
+    <p>Normal operation</p><h3 id="define/SUPERMATTER_NOTIFY"><aside class="declaration">#define </aside>SUPERMATTER_NOTIFY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L172">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 172"/></a>
+    </h3>
+    <p>Ambient temp &gt; 80% of CRITICAL_TEMPERATURE</p><h3 id="define/SUPERMATTER_WARNING"><aside class="declaration">#define </aside>SUPERMATTER_WARNING
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L174">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 174"/></a>
+    </h3>
+    <p>Ambient temp &gt; CRITICAL_TEMPERATURE OR integrity damaged</p><h3 id="define/TOTAL"><aside class="declaration">#define </aside>TOTAL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 29"/></a>
+    </h3>
+    <p>For total power used only.</p><h3 id="define/TRANSMISSION_BLUESPACE"><aside class="declaration">#define </aside>TRANSMISSION_BLUESPACE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 108"/></a>
+    </h3>
+    <p>Point-to-point links</p><h3 id="define/TRANSMISSION_RADIO"><aside class="declaration">#define </aside>TRANSMISSION_RADIO
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 104"/></a>
+    </h3>
+    <p>Radio transmissions (like airlock controller to pump)</p><h3 id="define/TRANSMISSION_SUBSPACE"><aside class="declaration">#define </aside>TRANSMISSION_SUBSPACE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L106">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 106"/></a>
+    </h3>
+    <p>Like headsets</p><h3 id="define/TRANSMISSION_WIRE"><aside class="declaration">#define </aside>TRANSMISSION_WIRE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 102"/></a>
+    </h3>
+    <p>Is this ever used? I don't think it is.</p><h3 id="define/USE_POWER_ACTIVE"><aside class="declaration">#define </aside>USE_POWER_ACTIVE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 14"/></a>
+    </h3>
+    <p>Machine is using power at its active power level</p><h3 id="define/USE_POWER_IDLE"><aside class="declaration">#define </aside>USE_POWER_IDLE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 12"/></a>
+    </h3>
+    <p>Machine is using power at its idle power level</p><h3 id="define/USE_POWER_OFF"><aside class="declaration">#define </aside>USE_POWER_OFF
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/machinery.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;machinery.dm 10"/></a>
+    </h3>
+    <p>No continuous power use</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_object.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/dcs/signals/signals_object.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/dcs/signals/signals_object.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_object.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_object.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><p>obj signals</p>
+<p>obj/machinery signals</p></td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_object.html#define/COMSIG_ARCADE_PRIZEVEND">COMSIG_ARCADE_PRIZEVEND</a></th><td>From /obj/machinery/atom_break(damage_flag): (damage_flag)
+/#define COMSIG_MACHINERY_BROKEN &quot;machinery_broken&quot;
+From base power_change() when power is lost
+/#define COMSIG_MACHINERY_POWER_LOST &quot;machinery_power_lost&quot;
+From base power_change() when power is restored
+/#define COMSIG_MACHINERY_POWER_RESTORED &quot;machinery_power_restored&quot;
+From /obj/machinery/set_occupant(atom/movable/O): (new_occupant)
+/#define COMSIG_MACHINERY_SET_OCCUPANT &quot;machinery_set_occupant&quot;
+From /obj/machinery/destructive_scanner/proc/open(aggressive): Runs when the destructive scanner scans a group of objects. (list/scanned_atoms)
+/#define COMSIG_MACHINERY_DESTRUCTIVE_SCAN &quot;machinery_destructive_scan&quot;
+From /obj/machinery/computer/arcade/prizevend(mob/user, prizes = 1)</td></tr>
+        <tr><td colspan="2"><p>/obj/machinery/computer/teleporter</p>
+<p>/obj/machinery/power/supermatter_crystal signals</p>
+<p>/obj/machinery/atmospherics/components/unary/cryo_cell signals</p>
+<p>/obj/machinery/atmospherics/components/binary/valve signals</p>
+<p>/obj access signals</p>
+<p>/obj/machinery/door/airlock signals</p>
+<p>/obj/item signals</p>
+<p>Eigenstasium Signals</p>
+<p>/obj Signals for economy</p>
+<p>/obj/item signals for economy</p>
+<p>/obj/item/clothing signals</p>
+<p>/obj/item/implant signals</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_object.html#define/COMSIG_IMPLANT_REMOVED">COMSIG_IMPLANT_REMOVED</a></th><td>From base of /obj/item/implant/proc/activate(): ()
+/#define COMSIG_IMPLANT_ACTIVATED &quot;implant_activated&quot;
+From base of /obj/item/implant/proc/implant(): (list/args)
+/#define COMSIG_IMPLANT_IMPLANTING &quot;implant_implanting&quot;
+/#define COMPONENT_STOP_IMPLANTING (1&lt;&lt;0)
+Called on already installed implants when a new one is being added in /obj/item/implant/proc/implant(): (list/args, obj/item/implant/new_implant)
+/#define COMSIG_IMPLANT_OTHER &quot;implant_other&quot;
+? The name makes sense for both
+/#define COMPONENT_STOP_IMPLANTING (1&lt;&lt;0)
+/#define COMPONENT_DELETE_NEW_IMPLANT (1&lt;&lt;1)
+/#define COMPONENT_DELETE_OLD_IMPLANT (1&lt;&lt;2)
+Called on implants, after a successful implantation: (mob/living/target, mob/user, silent, force)
+/#define COMSIG_IMPLANT_IMPLANTED &quot;implant_implanted&quot;
+Called on implants, after an implant has been removed: (mob/living/source, silent, special)</td></tr>
+        <tr><td colspan="2"><p>obj/item/pda signals</p>
+<p>obj/item/radio signals</p>
+<p>obj/item/pen signals</p>
+<p>obj/item/gun signals</p>
+<p>obj/effect/proc_holder/spell signals</p>
+<p>obj/item/camera signals</p>
+<p>obj/item/grenade signals</p>
+<p>obj/projectile signals (sent to the firer)</p>
+<p>obj/vehicle/sealed/mecha signals</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_object.html#define/COMSIG_ITEM_ATTACK_SELF">COMSIG_ITEM_ATTACK_SELF</a></th><td>Sent from mecha action buttons to the mecha they're linked to
+/#define COMSIG_MECHA_ACTION_TRIGGER &quot;mecha_action_activate&quot;
+Sent from clicking while you have no equipment selected. Sent before cooldown and adjacency checks, so you can use this for infinite range things if you want.
+/#define COMSIG_MECHA_MELEE_CLICK &quot;mecha_action_melee_click&quot;
+? Prevents click from happening.
+/#define COMPONENT_CANCEL_MELEE_CLICK (1&lt;&lt;0)
+Sent from clicking while you have equipment selected.
+/#define COMSIG_MECHA_EQUIPMENT_CLICK &quot;mecha_action_equipment_click&quot;
+? Prevents click from happening.
+/#define COMPONENT_CANCEL_EQUIPMENT_CLICK (1&lt;&lt;0)
+/#define COMSIG_ITEM_ATTACK &quot;item_attack&quot;
+From base of obj/item/attack_self(): (/mob)</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/COMSIG_ARCADE_PRIZEVEND"><aside class="declaration">#define </aside>COMSIG_ARCADE_PRIZEVEND
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_object.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_object.dm 29"/></a>
+    </h3>
+    <p>From /obj/machinery/atom_break(damage_flag): (damage_flag)
+/#define COMSIG_MACHINERY_BROKEN &quot;machinery_broken&quot;
+From base power_change() when power is lost
+/#define COMSIG_MACHINERY_POWER_LOST &quot;machinery_power_lost&quot;
+From base power_change() when power is restored
+/#define COMSIG_MACHINERY_POWER_RESTORED &quot;machinery_power_restored&quot;
+From /obj/machinery/set_occupant(atom/movable/O): (new_occupant)
+/#define COMSIG_MACHINERY_SET_OCCUPANT &quot;machinery_set_occupant&quot;
+From /obj/machinery/destructive_scanner/proc/open(aggressive): Runs when the destructive scanner scans a group of objects. (list/scanned_atoms)
+/#define COMSIG_MACHINERY_DESTRUCTIVE_SCAN &quot;machinery_destructive_scan&quot;
+From /obj/machinery/computer/arcade/prizevend(mob/user, prizes = 1)</p><h3 id="define/COMSIG_IMPLANT_REMOVED"><aside class="declaration">#define </aside>COMSIG_IMPLANT_REMOVED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_object.dm#L233">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_object.dm 233"/></a>
+    </h3>
+    <p>From base of /obj/item/implant/proc/activate(): ()
+/#define COMSIG_IMPLANT_ACTIVATED &quot;implant_activated&quot;
+From base of /obj/item/implant/proc/implant(): (list/args)
+/#define COMSIG_IMPLANT_IMPLANTING &quot;implant_implanting&quot;
+/#define COMPONENT_STOP_IMPLANTING (1&lt;&lt;0)
+Called on already installed implants when a new one is being added in /obj/item/implant/proc/implant(): (list/args, obj/item/implant/new_implant)
+/#define COMSIG_IMPLANT_OTHER &quot;implant_other&quot;
+? The name makes sense for both
+/#define COMPONENT_STOP_IMPLANTING (1&lt;&lt;0)
+/#define COMPONENT_DELETE_NEW_IMPLANT (1&lt;&lt;1)
+/#define COMPONENT_DELETE_OLD_IMPLANT (1&lt;&lt;2)
+Called on implants, after a successful implantation: (mob/living/target, mob/user, silent, force)
+/#define COMSIG_IMPLANT_IMPLANTED &quot;implant_implanted&quot;
+Called on implants, after an implant has been removed: (mob/living/source, silent, special)</p><h3 id="define/COMSIG_ITEM_ATTACK_SELF"><aside class="declaration">#define </aside>COMSIG_ITEM_ATTACK_SELF
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_object.dm#L332">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_object.dm 332"/></a>
+    </h3>
+    <p>Sent from mecha action buttons to the mecha they're linked to
+/#define COMSIG_MECHA_ACTION_TRIGGER &quot;mecha_action_activate&quot;
+Sent from clicking while you have no equipment selected. Sent before cooldown and adjacency checks, so you can use this for infinite range things if you want.
+/#define COMSIG_MECHA_MELEE_CLICK &quot;mecha_action_melee_click&quot;
+? Prevents click from happening.
+/#define COMPONENT_CANCEL_MELEE_CLICK (1&lt;&lt;0)
+Sent from clicking while you have equipment selected.
+/#define COMSIG_MECHA_EQUIPMENT_CLICK &quot;mecha_action_equipment_click&quot;
+? Prevents click from happening.
+/#define COMPONENT_CANCEL_EQUIPMENT_CLICK (1&lt;&lt;0)
+/#define COMSIG_ITEM_ATTACK &quot;item_attack&quot;
+From base of obj/item/attack_self(): (/mob)</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

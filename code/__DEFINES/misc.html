@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;misc.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/misc.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/misc.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/misc.html#define/THIS_PROC_TYPE_STR">THIS_PROC_TYPE_STR</a></th><td>Because you can only obtain a string of THIS_PROC_TYPE using &quot;[]&quot;, and it's nice to just +/+= strings</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/THIS_PROC_TYPE_WEIRD">THIS_PROC_TYPE_WEIRD</a></th><td>This one is WEIRD, in some cases (When used in certain defines? (eg: ASSERT)) THIS_PROC_TYPE will fail to work, but THIS_PROC_TYPE_WEIRD will work instead</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/EFFECTIVE_INVIS">EFFECTIVE_INVIS</a></th><td>Pseudo-Invis, like Ninja, Ling, Etc.
+Below this, can't be examined, may as well be invisible to the game</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/SIGHT_FLAGS_DEFAULT">SIGHT_FLAGS_DEFAULT</a></th><td>default mob sight flags</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/MAX_CLIENT_FPS">MAX_CLIENT_FPS</a></th><td>For the client FPS pref and anywhere else</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/PROCESS_KILL">PROCESS_KILL</a></th><td>Used to trigger removal from a processing list.</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/MAX_GEAR_COST">MAX_GEAR_COST</a></th><td>Used in chargen for accessory loadout limit.</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/MAX_GEAR_COST_HOLIDAY_SPAM">MAX_GEAR_COST_HOLIDAY_SPAM</a></th><td>Used in chargen for accessory loadout limit on holidays.</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/SHUTTLE_PREPTIME">SHUTTLE_PREPTIME</a></th><td>5 minutes = 300 seconds - after this time, the shuttle departs centcom and cannot be recalled.</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/SHUTTLE_LEAVETIME">SHUTTLE_LEAVETIME</a></th><td>3 minutes = 180 seconds - the duration for which the shuttle will wait at the station after arriving.</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/SHUTTLE_TRANSIT_DURATION">SHUTTLE_TRANSIT_DURATION</a></th><td>5 minutes = 300 seconds - how long it takes for the shuttle to get to the station.</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/SHUTTLE_TRANSIT_DURATION_RETURN">SHUTTLE_TRANSIT_DURATION_RETURN</a></th><td>2 minutes = 120 seconds - for some reason it takes less time to come back, go figure.</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/SHUTTLE_CRASHED">SHUTTLE_CRASHED</a></th><td>Yup that can happen now</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/MAX_MESSAGE_LEN">MAX_MESSAGE_LEN</a></th><td>I'm not sure about &quot;easily&quot;. It can be a lot longer.</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/MAX_TEXTFILE_LENGTH">MAX_TEXTFILE_LENGTH</a></th><td>512GQ file</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/HYDRO_SPEED_MULTIPLIER">HYDRO_SPEED_MULTIPLIER</a></th><td>General-purpose life speed define for plants.</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/TABLE_BRITTLE_MATERIAL_MULTIPLIER">TABLE_BRITTLE_MATERIAL_MULTIPLIER</a></th><td>Amount table damage is multiplied by if it is made of a brittle material (e.g. glass)</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/NTNET_SOFTWAREDOWNLOAD">NTNET_SOFTWAREDOWNLOAD</a></th><td>Downloads of software from NTNet</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/NTNET_PEERTOPEER">NTNET_PEERTOPEER</a></th><td>P2P transfers of files between devices</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/NTNET_COMMUNICATION">NTNET_COMMUNICATION</a></th><td>Communication (messaging)</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/NTNET_SYSTEMCONTROL">NTNET_SYSTEMCONTROL</a></th><td>Control of various systems, RCon, air alarm control, etc.</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/NTNETSPEED_LOWSIGNAL">NTNETSPEED_LOWSIGNAL</a></th><td>GQ/s transfer speed when the device is wirelessly connected and on Low signal</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/NTNETSPEED_HIGHSIGNAL">NTNETSPEED_HIGHSIGNAL</a></th><td>GQ/s transfer speed when the device is wirelessly connected and on High signal</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/NTNETSPEED_ETHERNET">NTNETSPEED_ETHERNET</a></th><td>GQ/s transfer speed when the device is using wired connection</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/NTNETSPEED_DOS_AMPLIFICATION">NTNETSPEED_DOS_AMPLIFICATION</a></th><td>Multiplier for Denial of Service program. Resulting load on NTNet relay is this multiplied by NTNETSPEED of the device</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/PROJECTILE_CONTINUE">PROJECTILE_CONTINUE</a></th><td>If the projectile should continue flying after calling bullet_act()</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/PROJECTILE_FORCE_MISS">PROJECTILE_FORCE_MISS</a></th><td>If the projectile should treat the attack as a miss (suppresses attack and admin logs) - only applies to mobs.</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/DEPARTMENT_TALON">DEPARTMENT_TALON</a></th><td>Leaving this definition in place, can perhaps use it in the future but removing it will require digging into other stuff im not comfortable with -BLoop</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/TSC_HEPH">TSC_HEPH</a></th><td>Because everyone misspells it</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/TSC_XION">TSC_XION</a></th><td>Not really needed but consistancy I guess.</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/MIDNIGHT_ROLLOVER">MIDNIGHT_ROLLOVER</a></th><td>The number of deciseconds in a day</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/PIXEL_MULTIPLIER">PIXEL_MULTIPLIER</a></th><td>Needed for the R-UST port</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/MAX_CLIENT_VIEW">MAX_CLIENT_VIEW</a></th><td>Maximum effective value of client.view (According to DM references)</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/RCD_FLOORWALL">RCD_FLOORWALL</a></th><td>Builds plating on space/ground/open tiles. Builds a wall when on floors. Finishes walls when used on girders.</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/RCD_AIRLOCK">RCD_AIRLOCK</a></th><td>Builds an airlock on the tile if one isn't already there.</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/RCD_WINDOWGRILLE">RCD_WINDOWGRILLE</a></th><td>Builds a full tile window and grille pair on floors.</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/RCD_DECONSTRUCT">RCD_DECONSTRUCT</a></th><td>Removes various things. Still consumes compressed matter.</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/RCD_SHEETS_PER_MATTER_UNIT">RCD_SHEETS_PER_MATTER_UNIT</a></th><td>Each physical material sheet is worth four matter units.</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/PREF_SAVELOAD_COOLDOWN">PREF_SAVELOAD_COOLDOWN</a></th><td>Should be sufficiently hard to achieve without a broken mouse or autoclicker while still fulfilling its intended goal.</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/RAD_LEVEL_LOW">RAD_LEVEL_LOW</a></th><td>Around the level at which radiation starts to become harmful</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/RADIATION_THRESHOLD_CUTOFF">RADIATION_THRESHOLD_CUTOFF</a></th><td>Radiation will not affect a tile when below this value.</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/EMBED_CHANCE_UNSET">EMBED_CHANCE_UNSET</a></th><td>Embed chance unset for embed_chance var on /obj/item.</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/HITSOUND_UNSET">HITSOUND_UNSET</a></th><td>No hitsound define</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/HERM">HERM</a></th><td>Herm Gender
+Snowflake Global that throws a fit</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/JOB_SILICON">JOB_SILICON</a></th><td>2|4, probably don't set jobs to this, but good for checking</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/GREYSCALE_COLOR_REPLACE">GREYSCALE_COLOR_REPLACE</a></th><td>Pure Black and white colorblindness. Every species except Vulpkanins and Tajarans will have this.</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/PROTANOPIA_COLOR_REPLACE">PROTANOPIA_COLOR_REPLACE</a></th><td>Red colorblindness. Vulpkanins/Wolpins have this.</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/DEUTERANOPIA_COLOR_REPLACE">DEUTERANOPIA_COLOR_REPLACE</a></th><td>Green colorblindness.</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/TRITANOPIA_COLOR_REPLACE">TRITANOPIA_COLOR_REPLACE</a></th><td>Yellow-Blue colorblindness. Tajarans/Farwas have this.</td></tr>
+        <tr><td colspan="2"><p>Window construction stages</p></td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/WINDOW_STATE_UNSECURED">WINDOW_STATE_UNSECURED</a></th><td>window construction isn't started at all</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/WINDOW_STATE_SCREWED_TO_FLOOR">WINDOW_STATE_SCREWED_TO_FLOOR</a></th><td>frame is screwed to floor</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/WINDOW_STATE_CROWBRARED_IN">WINDOW_STATE_CROWBRARED_IN</a></th><td>window is crowbarred in</td></tr>
+        <tr><th><a href="code/__DEFINES/misc.html#define/WINDOW_STATE_SECURED_TO_FRAME">WINDOW_STATE_SECURED_TO_FRAME</a></th><td>window is secured to frame</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/DEPARTMENT_TALON"><aside class="declaration">#define </aside>DEPARTMENT_TALON
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L273">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 273"/></a>
+    </h3>
+    <p>Leaving this definition in place, can perhaps use it in the future but removing it will require digging into other stuff im not comfortable with -BLoop</p><h3 id="define/DEUTERANOPIA_COLOR_REPLACE"><aside class="declaration">#define </aside>DEUTERANOPIA_COLOR_REPLACE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L531">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 531"/></a>
+    </h3>
+    <p>Green colorblindness.</p><h3 id="define/EFFECTIVE_INVIS"><aside class="declaration">#define </aside>EFFECTIVE_INVIS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 39"/></a>
+    </h3>
+    <p>Pseudo-Invis, like Ninja, Ling, Etc.
+Below this, can't be examined, may as well be invisible to the game</p><h3 id="define/EMBED_CHANCE_UNSET"><aside class="declaration">#define </aside>EMBED_CHANCE_UNSET
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L442">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 442"/></a>
+    </h3>
+    <p>Embed chance unset for embed_chance var on /obj/item.</p><h3 id="define/GREYSCALE_COLOR_REPLACE"><aside class="declaration">#define </aside>GREYSCALE_COLOR_REPLACE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L501">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 501"/></a>
+    </h3>
+    <p>Pure Black and white colorblindness. Every species except Vulpkanins and Tajarans will have this.</p><h3 id="define/HERM"><aside class="declaration">#define </aside>HERM
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L451">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 451"/></a>
+    </h3>
+    <p>Herm Gender
+Snowflake Global that throws a fit</p><h3 id="define/HITSOUND_UNSET"><aside class="declaration">#define </aside>HITSOUND_UNSET
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L446">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 446"/></a>
+    </h3>
+    <p>No hitsound define</p><h3 id="define/HYDRO_SPEED_MULTIPLIER"><aside class="declaration">#define </aside>HYDRO_SPEED_MULTIPLIER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 109"/></a>
+    </h3>
+    <p>General-purpose life speed define for plants.</p><h3 id="define/JOB_SILICON"><aside class="declaration">#define </aside>JOB_SILICON
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L478">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 478"/></a>
+    </h3>
+    <p>2|4, probably don't set jobs to this, but good for checking</p><h3 id="define/MAX_CLIENT_FPS"><aside class="declaration">#define </aside>MAX_CLIENT_FPS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 45"/></a>
+    </h3>
+    <p>For the client FPS pref and anywhere else</p><h3 id="define/MAX_CLIENT_VIEW"><aside class="declaration">#define </aside>MAX_CLIENT_VIEW
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L320">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 320"/></a>
+    </h3>
+    <p>Maximum effective value of client.view (According to DM references)</p><h3 id="define/MAX_GEAR_COST"><aside class="declaration">#define </aside>MAX_GEAR_COST
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 51"/></a>
+    </h3>
+    <p>Used in chargen for accessory loadout limit.</p><h3 id="define/MAX_GEAR_COST_HOLIDAY_SPAM"><aside class="declaration">#define </aside>MAX_GEAR_COST_HOLIDAY_SPAM
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 53"/></a>
+    </h3>
+    <p>Used in chargen for accessory loadout limit on holidays.</p><h3 id="define/MAX_MESSAGE_LEN"><aside class="declaration">#define </aside>MAX_MESSAGE_LEN
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 95"/></a>
+    </h3>
+    <p>I'm not sure about &quot;easily&quot;. It can be a lot longer.</p><h3 id="define/MAX_TEXTFILE_LENGTH"><aside class="declaration">#define </aside>MAX_TEXTFILE_LENGTH
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 102"/></a>
+    </h3>
+    <p>512GQ file</p><h3 id="define/MIDNIGHT_ROLLOVER"><aside class="declaration">#define </aside>MIDNIGHT_ROLLOVER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L315">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 315"/></a>
+    </h3>
+    <p>The number of deciseconds in a day</p><h3 id="define/NTNETSPEED_DOS_AMPLIFICATION"><aside class="declaration">#define </aside>NTNETSPEED_DOS_AMPLIFICATION
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L217">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 217"/></a>
+    </h3>
+    <p>Multiplier for Denial of Service program. Resulting load on NTNet relay is this multiplied by NTNETSPEED of the device</p><h3 id="define/NTNETSPEED_ETHERNET"><aside class="declaration">#define </aside>NTNETSPEED_ETHERNET
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L215">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 215"/></a>
+    </h3>
+    <p>GQ/s transfer speed when the device is using wired connection</p><h3 id="define/NTNETSPEED_HIGHSIGNAL"><aside class="declaration">#define </aside>NTNETSPEED_HIGHSIGNAL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L213">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 213"/></a>
+    </h3>
+    <p>GQ/s transfer speed when the device is wirelessly connected and on High signal</p><h3 id="define/NTNETSPEED_LOWSIGNAL"><aside class="declaration">#define </aside>NTNETSPEED_LOWSIGNAL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L211">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 211"/></a>
+    </h3>
+    <p>GQ/s transfer speed when the device is wirelessly connected and on Low signal</p><h3 id="define/NTNET_COMMUNICATION"><aside class="declaration">#define </aside>NTNET_COMMUNICATION
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L205">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 205"/></a>
+    </h3>
+    <p>Communication (messaging)</p><h3 id="define/NTNET_PEERTOPEER"><aside class="declaration">#define </aside>NTNET_PEERTOPEER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L203">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 203"/></a>
+    </h3>
+    <p>P2P transfers of files between devices</p><h3 id="define/NTNET_SOFTWAREDOWNLOAD"><aside class="declaration">#define </aside>NTNET_SOFTWAREDOWNLOAD
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L201">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 201"/></a>
+    </h3>
+    <p>Downloads of software from NTNet</p><h3 id="define/NTNET_SYSTEMCONTROL"><aside class="declaration">#define </aside>NTNET_SYSTEMCONTROL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L207">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 207"/></a>
+    </h3>
+    <p>Control of various systems, RCon, air alarm control, etc.</p><h3 id="define/PIXEL_MULTIPLIER"><aside class="declaration">#define </aside>PIXEL_MULTIPLIER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L318">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 318"/></a>
+    </h3>
+    <p>Needed for the R-UST port</p><h3 id="define/PREF_SAVELOAD_COOLDOWN"><aside class="declaration">#define </aside>PREF_SAVELOAD_COOLDOWN
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L414">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 414"/></a>
+    </h3>
+    <p>Should be sufficiently hard to achieve without a broken mouse or autoclicker while still fulfilling its intended goal.</p><h3 id="define/PROCESS_KILL"><aside class="declaration">#define </aside>PROCESS_KILL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 49"/></a>
+    </h3>
+    <p>Used to trigger removal from a processing list.</p><h3 id="define/PROJECTILE_CONTINUE"><aside class="declaration">#define </aside>PROJECTILE_CONTINUE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L237">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 237"/></a>
+    </h3>
+    <p>If the projectile should continue flying after calling bullet_act()</p><h3 id="define/PROJECTILE_FORCE_MISS"><aside class="declaration">#define </aside>PROJECTILE_FORCE_MISS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L239">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 239"/></a>
+    </h3>
+    <p>If the projectile should treat the attack as a miss (suppresses attack and admin logs) - only applies to mobs.</p><h3 id="define/PROTANOPIA_COLOR_REPLACE"><aside class="declaration">#define </aside>PROTANOPIA_COLOR_REPLACE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L516">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 516"/></a>
+    </h3>
+    <p>Red colorblindness. Vulpkanins/Wolpins have this.</p><h3 id="define/RADIATION_THRESHOLD_CUTOFF"><aside class="declaration">#define </aside>RADIATION_THRESHOLD_CUTOFF
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L425">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 425"/></a>
+    </h3>
+    <p>Radiation will not affect a tile when below this value.</p><h3 id="define/RAD_LEVEL_LOW"><aside class="declaration">#define </aside>RAD_LEVEL_LOW
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L419">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 419"/></a>
+    </h3>
+    <p>Around the level at which radiation starts to become harmful</p><h3 id="define/RCD_AIRLOCK"><aside class="declaration">#define </aside>RCD_AIRLOCK
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L397">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 397"/></a>
+    </h3>
+    <p>Builds an airlock on the tile if one isn't already there.</p><h3 id="define/RCD_DECONSTRUCT"><aside class="declaration">#define </aside>RCD_DECONSTRUCT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L401">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 401"/></a>
+    </h3>
+    <p>Removes various things. Still consumes compressed matter.</p><h3 id="define/RCD_FLOORWALL"><aside class="declaration">#define </aside>RCD_FLOORWALL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L395">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 395"/></a>
+    </h3>
+    <p>Builds plating on space/ground/open tiles. Builds a wall when on floors. Finishes walls when used on girders.</p><h3 id="define/RCD_SHEETS_PER_MATTER_UNIT"><aside class="declaration">#define </aside>RCD_SHEETS_PER_MATTER_UNIT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L408">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 408"/></a>
+    </h3>
+    <p>Each physical material sheet is worth four matter units.</p><h3 id="define/RCD_WINDOWGRILLE"><aside class="declaration">#define </aside>RCD_WINDOWGRILLE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L399">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 399"/></a>
+    </h3>
+    <p>Builds a full tile window and grille pair on floors.</p><h3 id="define/SHUTTLE_CRASHED"><aside class="declaration">#define </aside>SHUTTLE_CRASHED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 72"/></a>
+    </h3>
+    <p>Yup that can happen now</p><h3 id="define/SHUTTLE_LEAVETIME"><aside class="declaration">#define </aside>SHUTTLE_LEAVETIME
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 61"/></a>
+    </h3>
+    <p>3 minutes = 180 seconds - the duration for which the shuttle will wait at the station after arriving.</p><h3 id="define/SHUTTLE_PREPTIME"><aside class="declaration">#define </aside>SHUTTLE_PREPTIME
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 59"/></a>
+    </h3>
+    <p>5 minutes = 300 seconds - after this time, the shuttle departs centcom and cannot be recalled.</p><h3 id="define/SHUTTLE_TRANSIT_DURATION"><aside class="declaration">#define </aside>SHUTTLE_TRANSIT_DURATION
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 63"/></a>
+    </h3>
+    <p>5 minutes = 300 seconds - how long it takes for the shuttle to get to the station.</p><h3 id="define/SHUTTLE_TRANSIT_DURATION_RETURN"><aside class="declaration">#define </aside>SHUTTLE_TRANSIT_DURATION_RETURN
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 65"/></a>
+    </h3>
+    <p>2 minutes = 120 seconds - for some reason it takes less time to come back, go figure.</p><h3 id="define/SIGHT_FLAGS_DEFAULT"><aside class="declaration">#define </aside>SIGHT_FLAGS_DEFAULT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 42"/></a>
+    </h3>
+    <p>default mob sight flags</p><h3 id="define/TABLE_BRITTLE_MATERIAL_MULTIPLIER"><aside class="declaration">#define </aside>TABLE_BRITTLE_MATERIAL_MULTIPLIER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L192">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 192"/></a>
+    </h3>
+    <p>Amount table damage is multiplied by if it is made of a brittle material (e.g. glass)</p><h3 id="define/THIS_PROC_TYPE_STR"><aside class="declaration">#define </aside>THIS_PROC_TYPE_STR
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 10"/></a>
+    </h3>
+    <p>Because you can only obtain a string of THIS_PROC_TYPE using &quot;[]&quot;, and it's nice to just +/+= strings</p><h3 id="define/THIS_PROC_TYPE_WEIRD"><aside class="declaration">#define </aside>THIS_PROC_TYPE_WEIRD
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 13"/></a>
+    </h3>
+    <p>This one is WEIRD, in some cases (When used in certain defines? (eg: ASSERT)) THIS_PROC_TYPE will fail to work, but THIS_PROC_TYPE_WEIRD will work instead</p><h3 id="define/TRITANOPIA_COLOR_REPLACE"><aside class="declaration">#define </aside>TRITANOPIA_COLOR_REPLACE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L547">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 547"/></a>
+    </h3>
+    <p>Yellow-Blue colorblindness. Tajarans/Farwas have this.</p><h3 id="define/TSC_HEPH"><aside class="declaration">#define </aside>TSC_HEPH
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L305">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 305"/></a>
+    </h3>
+    <p>Because everyone misspells it</p><h3 id="define/TSC_XION"><aside class="declaration">#define </aside>TSC_XION
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L311">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 311"/></a>
+    </h3>
+    <p>Not really needed but consistancy I guess.</p><h3 id="define/WINDOW_STATE_CROWBRARED_IN"><aside class="declaration">#define </aside>WINDOW_STATE_CROWBRARED_IN
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L568">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 568"/></a>
+    </h3>
+    <p>window is crowbarred in</p><h3 id="define/WINDOW_STATE_SCREWED_TO_FLOOR"><aside class="declaration">#define </aside>WINDOW_STATE_SCREWED_TO_FLOOR
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L566">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 566"/></a>
+    </h3>
+    <p>frame is screwed to floor</p><h3 id="define/WINDOW_STATE_SECURED_TO_FRAME"><aside class="declaration">#define </aside>WINDOW_STATE_SECURED_TO_FRAME
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L570">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 570"/></a>
+    </h3>
+    <p>window is secured to frame</p><h3 id="define/WINDOW_STATE_UNSECURED"><aside class="declaration">#define </aside>WINDOW_STATE_UNSECURED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/misc.dm#L564">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;misc.dm 564"/></a>
+    </h3>
+    <p>window construction isn't started at all</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

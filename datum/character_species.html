@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;character_species - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/character_species.html#var">Var Details</a></header>
+<main>
+<h1>character_species <aside>/<a href="datum.html">datum</a>/<a href="datum/character_species.html">character_species</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 43"/></a></h1>
+
+<p>since we're a server of snowflakes, we have this to embody character species</p>
+<p>they store real species UID so we can change species, and allow us to tweak the species on spawn.</p>
+<p>/datum/character_species is a singleton type stored on SScharacters.
+Intrinsics
+Defaults to set for visuals
+Defaults to set for background - typepaths allowed
+Languages - IDs only, as typepaths are too expensive to resolve</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/character_species.html#var/abstract_type">abstract_type</a></th><td>Abstract type (i'm addicted to abstract types) @silicons</td></tr>
+            <tr><th><a href="datum/character_species.html#var/category">category</a></th><td>category</td></tr>
+            <tr><th><a href="datum/character_species.html#var/default_citizenship">default_citizenship</a></th><td>default citizenship</td></tr>
+            <tr><th><a href="datum/character_species.html#var/default_faction">default_faction</a></th><td>default faction</td></tr>
+            <tr><th><a href="datum/character_species.html#var/default_language">default_language</a></th><td>default language when talking; this should probably be part of intrinsics!</td></tr>
+            <tr><th><a href="datum/character_species.html#var/default_origin">default_origin</a></th><td>default origin</td></tr>
+            <tr><th><a href="datum/character_species.html#var/default_religion">default_religion</a></th><td>default religion</td></tr>
+            <tr><th><a href="datum/character_species.html#var/desc">desc</a></th><td>desc (lore fluff)</td></tr>
+            <tr><th><a href="datum/character_species.html#var/ear_style_default">ear_style_default</a></th><td>default ear path</td></tr>
+            <tr><th><a href="datum/character_species.html#var/galactic_language">galactic_language</a></th><td>has galactic common? you better not disable this unless you know what you're doing</td></tr>
+            <tr><th><a href="datum/character_species.html#var/genders">genders</a></th><td>allowed genders</td></tr>
+            <tr><th><a href="datum/character_species.html#var/intrinsic_languages">intrinsic_languages</a></th><td>additional languages we always have, regardless of background - list or ID</td></tr>
+            <tr><th><a href="datum/character_species.html#var/is_real">is_real</a></th><td>are we an actual species as opposed to a demoted species? <strong>DO NOT TOUCH THIS VAR.</strong></td></tr>
+            <tr><th><a href="datum/character_species.html#var/is_subspecies">is_subspecies</a></th><td>is subspecies of master species</td></tr>
+            <tr><th><a href="datum/character_species.html#var/max_additional_languages">max_additional_languages</a></th><td>additional anguages we can learn (ontop of any we get from us, and from culture datums)</td></tr>
+            <tr><th><a href="datum/character_species.html#var/max_age">max_age</a></th><td>maximum age</td></tr>
+            <tr><th><a href="datum/character_species.html#var/min_age">min_age</a></th><td>minimum age</td></tr>
+            <tr><th><a href="datum/character_species.html#var/name">name</a></th><td>name (ALSO SETS THE PERSON'S CUSTOM RACE NAME!)</td></tr>
+            <tr><th><a href="datum/character_species.html#var/name_language">name_language</a></th><td>name language is from for randomgen - id - null to use vanilla ss13 randomgen</td></tr>
+            <tr><th><a href="datum/character_species.html#var/our_bodytype">our_bodytype</a></th><td>set species bodytype to this</td></tr>
+            <tr><th><a href="datum/character_species.html#var/real_species_type">real_species_type</a></th><td>real species type</td></tr>
+            <tr><th><a href="datum/character_species.html#var/species_appearance_flags">species_appearance_flags</a></th><td>species appearance flags - read species_flags.dm in __DEFINES</td></tr>
+            <tr><th><a href="datum/character_species.html#var/species_flags">species_flags</a></th><td>species main flags - read species_flags.dm in __DEFINES</td></tr>
+            <tr><th><a href="datum/character_species.html#var/species_fluff_flags">species_fluff_flags</a></th><td>species fluff flags - read species_flags.dm in __DEFINES</td></tr>
+            <tr><th><a href="datum/character_species.html#var/species_spawn_flags">species_spawn_flags</a></th><td>spawn flags</td></tr>
+            <tr><th><a href="datum/character_species.html#var/superspecies_id">superspecies_id</a></th><td>master species id</td></tr>
+            <tr><th><a href="datum/character_species.html#var/tail_style_default">tail_style_default</a></th><td>default tail path</td></tr>
+            <tr><th><a href="datum/character_species.html#var/uid">uid</a></th><td>uid (this must be unique with both species and minor species, don't be outrageous with it, don't be stupid)</td></tr>
+            <tr><th><a href="datum/character_species.html#var/whitelist_languages">whitelist_languages</a></th><td>languages we are always allowed to learn, even if restricted (obviously overridden by intrinsic languages) - list or ID</td></tr>
+            <tr><th><a href="datum/character_species.html#var/wing_style_default">wing_style_default</a></th><td>default wing path</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/abstract_type"><aside class="parent"><a title="/datum" href="datum.html#var/abstract_type">&uarr;</a></aside>abstract_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 45"/></a></h3>
+        <p>Abstract type (i'm addicted to abstract types) @silicons</p><h3 id="var/category"><aside class="declaration">var </aside>category
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 57"/></a></h3>
+        <p>category</p><h3 id="var/default_citizenship"><aside class="declaration">var </aside>default_citizenship
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 93"/></a></h3>
+        <p>default citizenship</p><h3 id="var/default_faction"><aside class="declaration">var </aside>default_faction
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 95"/></a></h3>
+        <p>default faction</p><h3 id="var/default_language"><aside class="declaration">var </aside>default_language
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L111">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 111"/></a></h3>
+        <p>default language when talking; this should probably be part of intrinsics!</p><h3 id="var/default_origin"><aside class="declaration">var </aside>default_origin
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L91">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 91"/></a></h3>
+        <p>default origin</p><h3 id="var/default_religion"><aside class="declaration">var </aside>default_religion
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L97">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 97"/></a></h3>
+        <p>default religion</p><h3 id="var/desc"><aside class="declaration">var </aside>desc
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 59"/></a></h3>
+        <p>desc (lore fluff)</p><h3 id="var/ear_style_default"><aside class="declaration">var </aside>ear_style_default
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 81"/></a></h3>
+        <p>default ear path</p><h3 id="var/galactic_language"><aside class="declaration">var </aside>galactic_language
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 101"/></a></h3>
+        <p>has galactic common? you better not disable this unless you know what you're doing</p><h3 id="var/genders"><aside class="declaration">var </aside>genders
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 73"/></a></h3>
+        <p>allowed genders</p><h3 id="var/intrinsic_languages"><aside class="declaration">var </aside>intrinsic_languages
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 103"/></a></h3>
+        <p>additional languages we always have, regardless of background - list or ID</p><h3 id="var/is_real"><aside class="declaration">var </aside>is_real
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 61"/></a></h3>
+        <p>are we an actual species as opposed to a demoted species? <strong>DO NOT TOUCH THIS VAR.</strong></p><h3 id="var/is_subspecies"><aside class="declaration">var </aside>is_subspecies
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 53"/></a></h3>
+        <p>is subspecies of master species</p><h3 id="var/max_additional_languages"><aside class="declaration">var </aside>max_additional_languages
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 109"/></a></h3>
+        <p>additional anguages we can learn (ontop of any we get from us, and from culture datums)</p><h3 id="var/max_age"><aside class="declaration">var </aside>max_age
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 77"/></a></h3>
+        <p>maximum age</p><h3 id="var/min_age"><aside class="declaration">var </aside>min_age
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 75"/></a></h3>
+        <p>minimum age</p><h3 id="var/name"><aside class="declaration">var </aside>name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 55"/></a></h3>
+        <p>name (ALSO SETS THE PERSON'S CUSTOM RACE NAME!)</p><h3 id="var/name_language"><aside class="declaration">var </aside>name_language
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 105"/></a></h3>
+        <p>name language is from for randomgen - id - null to use vanilla ss13 randomgen</p><h3 id="var/our_bodytype"><aside class="declaration">var </aside>our_bodytype
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 87"/></a></h3>
+        <p>set species bodytype to this</p><h3 id="var/real_species_type"><aside class="declaration">var </aside>real_species_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 65"/></a></h3>
+        <p>real species type</p><h3 id="var/species_appearance_flags"><aside class="declaration">var </aside>species_appearance_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 69"/></a></h3>
+        <p>species appearance flags - read species_flags.dm in __DEFINES</p><h3 id="var/species_flags"><aside class="declaration">var </aside>species_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 71"/></a></h3>
+        <p>species main flags - read species_flags.dm in __DEFINES</p><h3 id="var/species_fluff_flags"><aside class="declaration">var </aside>species_fluff_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 67"/></a></h3>
+        <p>species fluff flags - read species_flags.dm in __DEFINES</p><h3 id="var/species_spawn_flags"><aside class="declaration">var </aside>species_spawn_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 63"/></a></h3>
+        <p>spawn flags</p><h3 id="var/superspecies_id"><aside class="declaration">var </aside>superspecies_id
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 51"/></a></h3>
+        <p>master species id</p><h3 id="var/tail_style_default"><aside class="declaration">var </aside>tail_style_default
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 83"/></a></h3>
+        <p>default tail path</p><h3 id="var/uid"><aside class="declaration">var </aside>uid
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 49"/></a></h3>
+        <p>uid (this must be unique with both species and minor species, don't be outrageous with it, don't be stupid)</p><h3 id="var/whitelist_languages"><aside class="declaration">var </aside>whitelist_languages
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 107"/></a></h3>
+        <p>languages we are always allowed to learn, even if restricted (obviously overridden by intrinsic languages) - list or ID</p><h3 id="var/wing_style_default"><aside class="declaration">var </aside>wing_style_default
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/character_species.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;character_species.dm 85"/></a></h3>
+        <p>default wing path</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

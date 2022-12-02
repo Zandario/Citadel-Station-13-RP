@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;inventory_slot_meta - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/inventory_slot_meta.html#var">Var Details</a> - <a href="datum/inventory_slot_meta.html#proc">Proc Details</a></header>
+<main>
+<h1>inventory_slot_meta <aside>/<a href="datum.html">datum</a>/<a href="datum/inventory_slot_meta.html">inventory_slot_meta</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 79"/></a></h1>
+
+<p>inventory slot meta
+stores all the required information for an inventory slot</p>
+<p><strong>Typepaths for these are used directly in most circumstances of slot IDs</strong>
+<strong>Use get_inventory_slot_meta(id) to automatically translate anything to the static datum.</strong></p>
+<p>ABSTRACT SLOTS:
+Abstract slots attempts to do something special, based on mob.
+They only work on equips - can_equip, and anything unrelating to unequips, cannot check for it well.
+Can equip supports some abstract slots but not others.
+Intrinsics
+HUD
+Grammar
+Equip Checks
+Stripping
+Rendering</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#var/abstract_type">abstract_type</a></th><td>abstract type</td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#var/always_show_on_strip_menu">always_show_on_strip_menu</a></th><td>always show on strip/force equip menu, or only show when full</td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#var/default_strip_inv_view_flags">default_strip_inv_view_flags</a></th><td>default INV_VIEW flags for stripping</td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#var/display_name">display_name</a></th><td>player friendly name</td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#var/display_plural">display_plural</a></th><td>is this a &quot;plural&quot; slot?</td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#var/display_preposition">display_preposition</a></th><td>player friendly preposition</td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#var/hud_position">hud_position</a></th><td>our screen loc</td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#var/id">id</a></th><td>id</td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#var/id_next">id_next</a></th><td>next id</td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#var/inventory_slot_flags">inventory_slot_flags</a></th><td>flags</td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#var/name">name</a></th><td>slot name</td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#var/render_default_icons">render_default_icons</a></th><td>rendering default icons by bodytype</td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#var/render_dim_x_cache">render_dim_x_cache</a></th><td>rendering dim x</td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#var/render_dim_y_cache">render_dim_y_cache</a></th><td>rendering dim y</td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#var/render_fallback">render_fallback</a></th><td>fallback states; if set for a bodytype, that bodytype converts to this if not in worn_bodytypes, rather than defaulted.</td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#var/render_key">render_key</a></th><td>rendering slot key</td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#var/render_key_plural">render_key_plural</a></th><td>rendering plural slot key - only set on base type of plural slots</td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#var/render_layer">render_layer</a></th><td>rendering default layer; first is default, rest are alt layers. can be list or just one number.</td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#var/render_state_cache">render_state_cache</a></th><td>rendering icon state cache for default icons</td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#var/slot_equip_checks">slot_equip_checks</a></th><td>equip checks to use</td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#var/slot_flags_forbidden">slot_flags_forbidden</a></th><td>slot flags forbidden to have if checking</td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#var/slot_flags_required">slot_flags_required</a></th><td>slot flags required to have if checking</td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#var/sort_order">sort_order</a></th><td>display order - higher is upper. a <hr> is applied on 0.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#proc/allow_equip">allow_equip</a></th><td>checked if slot_equip_checks specifies to use proc</td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#proc/resolve_default_assets">resolve_default_assets</a></th><td>returns (icon, dim_x, dim_y) if found in defaults, null if not</td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#proc/resolve_default_layer">resolve_default_layer</a></th><td>returns layer</td></tr>
+            <tr><th><a href="datum/inventory_slot_meta.html#proc/strip_obfuscation_check">strip_obfuscation_check</a></th><td>checks for obfuscation when making the strip menu</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/abstract_type"><aside class="parent"><a title="/datum" href="datum.html#var/abstract_type">&uarr;</a></aside>abstract_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 81"/></a></h3>
+        <p>abstract type</p><h3 id="var/always_show_on_strip_menu"><aside class="declaration">var </aside>always_show_on_strip_menu
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L117">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 117"/></a></h3>
+        <p>always show on strip/force equip menu, or only show when full</p><h3 id="var/default_strip_inv_view_flags"><aside class="declaration">var </aside>default_strip_inv_view_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L119">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 119"/></a></h3>
+        <p>default INV_VIEW flags for stripping</p><h3 id="var/display_name"><aside class="declaration">var </aside>display_name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 101"/></a></h3>
+        <p>player friendly name</p><h3 id="var/display_plural"><aside class="declaration">var </aside>display_plural
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 105"/></a></h3>
+        <p>is this a &quot;plural&quot; slot?</p><h3 id="var/display_preposition"><aside class="declaration">var </aside>display_preposition
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 103"/></a></h3>
+        <p>player friendly preposition</p><h3 id="var/hud_position"><aside class="declaration">var </aside>hud_position
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L97">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 97"/></a></h3>
+        <p>our screen loc</p><h3 id="var/id"><aside class="declaration">var </aside>id
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 87"/></a></h3>
+        <p>id</p><h3 id="var/id_next"><aside class="declaration">var </aside>id_next
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 89"/></a></h3>
+        <p>next id</p><h3 id="var/inventory_slot_flags"><aside class="declaration">var </aside>inventory_slot_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L91">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 91"/></a></h3>
+        <p>flags</p><h3 id="var/name"><aside class="declaration">var </aside>name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 85"/></a></h3>
+        <p>slot name</p><h3 id="var/render_default_icons"><aside class="declaration">var </aside>render_default_icons
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L131">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 131"/></a></h3>
+        <p>rendering default icons by bodytype</p><h3 id="var/render_dim_x_cache"><aside class="declaration">var </aside>render_dim_x_cache
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L133">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 133"/></a></h3>
+        <p>rendering dim x</p><h3 id="var/render_dim_y_cache"><aside class="declaration">var </aside>render_dim_y_cache
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L135">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 135"/></a></h3>
+        <p>rendering dim y</p><h3 id="var/render_fallback"><aside class="declaration">var </aside>render_fallback
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L139">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 139"/></a></h3>
+        <p>fallback states; if set for a bodytype, that bodytype converts to this if not in worn_bodytypes, rather than defaulted.</p><h3 id="var/render_key"><aside class="declaration">var </aside>render_key
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L123">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 123"/></a></h3>
+        <p>rendering slot key</p><h3 id="var/render_key_plural"><aside class="declaration">var </aside>render_key_plural
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L125">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 125"/></a></h3>
+        <p>rendering plural slot key - only set on base type of plural slots</p><h3 id="var/render_layer"><aside class="declaration">var </aside>render_layer
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L127">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 127"/></a></h3>
+        <p>rendering default layer; first is default, rest are alt layers. can be list or just one number.</p><h3 id="var/render_state_cache"><aside class="declaration">var </aside>render_state_cache
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L129">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 129"/></a></h3>
+        <p>rendering icon state cache for default icons</p><h3 id="var/slot_equip_checks"><aside class="declaration">var </aside>slot_equip_checks
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 109"/></a></h3>
+        <p>equip checks to use</p><h3 id="var/slot_flags_forbidden"><aside class="declaration">var </aside>slot_flags_forbidden
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 113"/></a></h3>
+        <p>slot flags forbidden to have if checking</p><h3 id="var/slot_flags_required"><aside class="declaration">var </aside>slot_flags_required
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L111">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 111"/></a></h3>
+        <p>slot flags required to have if checking</p><h3 id="var/sort_order"><aside class="declaration">var </aside>sort_order
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 93"/></a></h3>
+        <p>display order - higher is upper. a <hr> is applied on 0.</p><h2 id="proc">Proc Details</h2><h3 id="proc/allow_equip"><aside class="declaration">proc </aside>allow_equip<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I, /<a href="mob.html">mob</a>/wearer, /<a href="mob.html">mob</a>/user, force) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L160">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 160"/></a></aside>
+        </h3>
+        <p>checked if slot_equip_checks specifies to use proc</p><h3 id="proc/resolve_default_assets"><aside class="declaration">proc </aside>resolve_default_assets<aside>(bodytype, state, /<a href="mob.html">mob</a>/wearer, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/equipped, inhand_domain) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L195">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 195"/></a></aside>
+        </h3>
+        <p>returns (icon, dim_x, dim_y) if found in defaults, null if not</p><h3 id="proc/resolve_default_layer"><aside class="declaration">proc </aside>resolve_default_layer<aside>(bodytype, /<a href="mob.html">mob</a>/wearer, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/equipped, inhand_domain) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L204">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 204"/></a></aside>
+        </h3>
+        <p>returns layer</p><h3 id="proc/strip_obfuscation_check"><aside class="declaration">proc </aside>strip_obfuscation_check<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/equipped, /<a href="mob.html">mob</a>/wearer, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/inventory/slot_meta.dm#L166">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory&#x2F;slot_meta.dm 166"/></a></aside>
+        </h3>
+        <p>checks for obfuscation when making the strip menu</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;turf - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="turf.html#var">Var Details</a> - <a href="turf.html#proc">Proc Details</a></header>
+<main>
+<h1>turf <aside>/<a href="turf.html">turf</a></aside><aside> inherits /<a href="atom.html">atom</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/explosion_recursive.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;explosion_recursive.dm 63"/></a></h1>
+
+<p>Any floor or wall. What makes up the station and the rest of the map.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="turf.html#var/acting_automata">acting_automata</a></th><td>Automata
+acted automata - automata associated to power, act_cross() will be called when something enters us while this is set</td></tr>
+            <tr><th><a href="turf.html#var/air">air</a></th><td>our air mixture, if any - this refers <strong>just</strong> to ours, not our zone.</td></tr>
+            <tr><th><a href="turf.html#var/baseturfs">baseturfs</a></th><td>Baseturfs</td></tr>
+            <tr><th><a href="turf.html#var/blessed">blessed</a></th><td>Has the turf been blessed?</td></tr>
+            <tr><th><a href="turf.html#var/block_tele">block_tele</a></th><td>If true, most forms of teleporting to or from this turf tile will fail.</td></tr>
+            <tr><th><a href="turf.html#var/blocks_air">blocks_air</a></th><td>Does this turf contain air/let air through?</td></tr>
+            <tr><th><a href="turf.html#var/can_build_into_floor">can_build_into_floor</a></th><td>Used for things like RCDs (and maybe lattices/floor tiles in the future), to see if a floor should replace it.</td></tr>
+            <tr><th><a href="turf.html#var/changing_turf">changing_turf</a></th><td>are we mid changeturf?</td></tr>
+            <tr><th><a href="turf.html#var/dangerous_objects">dangerous_objects</a></th><td>List of 'dangerous' objs that the turf holds that can cause something bad to happen when stepped on, used for AI mobs.</td></tr>
+            <tr><th><a href="turf.html#var/fixed_underlay">fixed_underlay</a></th><td>Icon-smoothing variable to map a diagonal wall corner with a fixed underlay.</td></tr>
+            <tr><th><a href="turf.html#var/initial_gas_mix">initial_gas_mix</a></th><td>Initial air contents, as a specially formatted gas string.</td></tr>
+            <tr><th><a href="turf.html#var/movement_cost">movement_cost</a></th><td>How much the turf slows down movement, if any.</td></tr>
+            <tr><th><a href="turf.html#var/noshield">noshield</a></th><td>For if you explicitly want a turf to not be affected by shield generators</td></tr>
+            <tr><th><a href="turf.html#var/pathweight">pathweight</a></th><td>How much does it cost to pathfind over this turf?</td></tr>
+            <tr><th><a href="turf.html#var/temperature">temperature</a></th><td>Initial turf temperature.</td></tr>
+            <tr><th><a href="turf.html#var/turf_flags">turf_flags</a></th><td>turf flags</td></tr>
+            <tr><th><a href="turf.html#var/z_flags">z_flags</a></th><td>multiz behavior flags</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="turf.html#proc/AtmosAdjacencyFloodfillHeuristic">AtmosAdjacencyFloodfillHeuristic</a></th><td>heuristically grab nearby adjacent tiles</td></tr>
+            <tr><th><a href="turf.html#proc/CanAtmosPass">CanAtmosPass</a></th><td>semantically means &quot;we can pass to them&quot;, not &quot;they can pass to us&quot;
+use CheckAirBlock instead
+warning: this does break some ZAS functionality but honestly blocking self to self is a stupid and expensive concept to maintain.</td></tr>
+            <tr><th><a href="turf.html#proc/ClickCross">ClickCross</a></th><td>Checks if there's uninterrupted airspace from this turf to another</td></tr>
+            <tr><th><a href="turf.html#proc/Initialize">Initialize</a></th><td>Turf Initialize</td></tr>
+            <tr><th><a href="turf.html#proc/LinkBlockedWithAccess">LinkBlockedWithAccess</a></th><td>For seeing if we can actually move between 2 given turfs while accounting for our access and the caller's pass_flags</td></tr>
+            <tr><th><a href="turf.html#proc/PlaceBelowLogicalBottom">PlaceBelowLogicalBottom</a></th><td>put a turf in from the bottom above logically multiz hole baseturfs. can changeturf.
+used for shuttle ceilings</td></tr>
+            <tr><th><a href="turf.html#proc/PlaceBelowLogicalTop">PlaceBelowLogicalTop</a></th><td>put a turf one below the logical top. can changeturf if logical top is a hole.
+used for shuttle floors</td></tr>
+            <tr><th><a href="turf.html#proc/PlaceOnTop">PlaceOnTop</a></th><td>WARNING WARNING: CITRP EDIT: /turf/closed check replaced with TURF DENSITY CHECK.
+every if(!density) is a if(!istype(src, /turf/closed)) in this version.</td></tr>
+            <tr><th><a href="turf.html#proc/ScrapeAway">ScrapeAway</a></th><td>Take off the top layer turf and replace it with the next baseturf down</td></tr>
+            <tr><th><a href="turf.html#proc/ScrapeFromLogicalBottom">ScrapeFromLogicalBottom</a></th><td>scrape away a turf from the bottom above logically multiz hole baseturfs
+used for shuttle ceilings</td></tr>
+            <tr><th><a href="turf.html#proc/TurfAdjacency">TurfAdjacency</a></th><td>Turf adjacency</td></tr>
+            <tr><th><a href="turf.html#proc/queue_zone_update">queue_zone_update</a></th><td>queues us for a zone rebuild</td></tr>
+            <tr><th><a href="turf.html#proc/spawn_air">spawn_air</a></th><td>spawns air from a gas string
+this is a turf proc because i want people to understand what they're doing instead of blindly using it,
+as return_air() has many different connotations</td></tr>
+            <tr><th><a href="turf.html#proc/update_vertical_turf_graphics">update_vertical_turf_graphics</a></th><td>called during AfterChange() to request the turfs above and below us update their graphics.</td></tr>
+            <tr><th><a href="turf.html#proc/z_exit_check">z_exit_check</a></th><td>simple boolean check to see if something's physically blocked from leaving us via up/down</td></tr>
+            <tr><th><a href="turf.html#proc/z_exit_obstruction">z_exit_obstruction</a></th><td>checks if an atom can exit us up or down
+checks for physical obstructions and returns first obstruction;
+does NOT check if the atom is logically able to move under its own power!</td></tr>
+            <tr><th><a href="turf.html#proc/z_fall_check">z_fall_check</a></th><td>simple boolean check to see if something's physically blocked from falling through us</td></tr>
+            <tr><th><a href="turf.html#proc/z_fall_obstruction">z_fall_obstruction</a></th><td>checks what is going to block something from falling through us</td></tr>
+            <tr><th><a href="turf.html#proc/z_pass_in_obstruction">z_pass_in_obstruction</a></th><td>WARNING: This proc is unique. Read the doc here, especially the return value.
+Check if an atom can move into us from either above or below</td></tr>
+            <tr><th><a href="turf.html#proc/z_pass_out_obstruction">z_pass_out_obstruction</a></th><td>WARNING: This proc is unique. Read the doc here, especially the return value.
+Check if an atom can move out of us to either above or below</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/acting_automata"><aside class="declaration">var </aside>acting_automata
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/turfs/turf.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 46"/></a></h3>
+        <p>Automata
+acted automata - automata associated to power, act_cross() will be called when something enters us while this is set</p><h3 id="var/air"><aside class="declaration">var </aside>air
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/gas_mixture.html">gas_mixture</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/environmental/turf.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;environmental&#x2F;turf.dm 12"/></a></h3>
+        <p>our air mixture, if any - this refers <strong>just</strong> to ours, not our zone.</p><h3 id="var/baseturfs"><aside class="declaration">var </aside>baseturfs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/turfs/turf.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 37"/></a></h3>
+        <p>Baseturfs</p><h3 id="var/blessed"><aside class="declaration">var </aside>blessed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/turfs/turf.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 56"/></a></h3>
+        <p>Has the turf been blessed?</p><h3 id="var/block_tele"><aside class="declaration">var </aside>block_tele
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/turfs/turf.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 69"/></a></h3>
+        <p>If true, most forms of teleporting to or from this turf tile will fail.</p><h3 id="var/blocks_air"><aside class="declaration">var </aside>blocks_air
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/turfs/turf.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 27"/></a></h3>
+        <p>Does this turf contain air/let air through?</p><h3 id="var/can_build_into_floor"><aside class="declaration">var </aside>can_build_into_floor
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/turfs/turf.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 71"/></a></h3>
+        <p>Used for things like RCDs (and maybe lattices/floor tiles in the future), to see if a floor should replace it.</p><h3 id="var/changing_turf"><aside class="declaration">var </aside>changing_turf
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/turfs/turf.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 39"/></a></h3>
+        <p>are we mid changeturf?</p><h3 id="var/dangerous_objects"><aside class="declaration">var </aside>dangerous_objects
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/turfs/turf.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 73"/></a></h3>
+        <p>List of 'dangerous' objs that the turf holds that can cause something bad to happen when stepped on, used for AI mobs.</p><h3 id="var/fixed_underlay"><aside class="declaration">var </aside>fixed_underlay
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/turfs/turf.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 49"/></a></h3>
+        <p>Icon-smoothing variable to map a diagonal wall corner with a fixed underlay.</p><h3 id="var/initial_gas_mix"><aside class="declaration">var </aside>initial_gas_mix
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/turfs/turf.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 16"/></a></h3>
+        <p>Initial air contents, as a specially formatted gas string.</p><h3 id="var/movement_cost"><aside class="declaration">var </aside>movement_cost
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/turfs/turf.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 61"/></a></h3>
+        <p>How much the turf slows down movement, if any.</p><h3 id="var/noshield"><aside class="declaration">var </aside>noshield
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/turfs/turf.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 75"/></a></h3>
+        <p>For if you explicitly want a turf to not be affected by shield generators</p><h3 id="var/pathweight"><aside class="declaration">var </aside>pathweight
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/turfs/turf.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 54"/></a></h3>
+        <p>How much does it cost to pathfind over this turf?</p><h3 id="var/temperature"><aside class="declaration">var </aside>temperature
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/turfs/turf.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 25"/></a></h3>
+        <p>Initial turf temperature.</p><h3 id="var/turf_flags"><aside class="declaration">var </aside>turf_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/turfs/turf.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 10"/></a></h3>
+        <p>turf flags</p><h3 id="var/z_flags"><aside class="declaration">var </aside>z_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/multiz/turf.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;multiz&#x2F;turf.dm 3"/></a></h3>
+        <p>multiz behavior flags</p><h2 id="proc">Proc Details</h2><h3 id="proc/AtmosAdjacencyFloodfillHeuristic"><aside class="declaration">proc </aside>AtmosAdjacencyFloodfillHeuristic<aside>(amount, radius) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/environmental/turf.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;environmental&#x2F;turf.dm 55"/></a></aside>
+        </h3>
+        <p>heuristically grab nearby adjacent tiles</p><h3 id="proc/CanAtmosPass">CanAtmosPass<aside>(/<a href="turf.html">turf</a>/T, d) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/environmental/turf.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;environmental&#x2F;turf.dm 16"/></a></aside>
+        </h3>
+        <p>semantically means &quot;we can pass to them&quot;, not &quot;they can pass to us&quot;
+use CheckAirBlock instead
+warning: this does break some ZAS functionality but honestly blocking self to self is a stupid and expensive concept to maintain.</p><h3 id="proc/ClickCross"><aside class="declaration">proc </aside>ClickCross<aside>(d, border_only, /<a href="atom.html">atom</a>/target, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/mover) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/_onclick/adjacency.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;adjacency.dm 87"/></a></aside>
+        </h3>
+        <p>Checks if there's uninterrupted airspace from this turf to another</p>
+<p>Interrputions:
+Dense objects without ATOM_PASS_CLICK</p><h3 id="proc/Initialize"><aside class="parent"><a title="/atom" href="atom.html#proc/Initialize">&uarr;</a></aside>Initialize<aside>(mapload) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/turfs/turf.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 88"/></a></aside>
+        </h3>
+        <p>Turf Initialize</p>
+<p>Doesn't call parent, see <a href="atom.html#proc/Initialize" title="/atom">/atom/proc/Initialize</a></p><h3 id="proc/LinkBlockedWithAccess"><aside class="declaration">proc </aside>LinkBlockedWithAccess<aside>(/<a href="turf.html">turf</a>/destination_turf, caller, ID) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/path.dm#L345">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;path.dm 345"/></a></aside>
+        </h3>
+        <p>For seeing if we can actually move between 2 given turfs while accounting for our access and the caller's pass_flags</p>
+<p>Arguments:</p>
+<ul>
+<li>caller: The movable, if one exists, being used for mobility checks to see what tiles it can reach</li>
+<li>ID: An ID card that decides if we can gain access to doors that would otherwise block a turf</li>
+<li>simulated_only: Do we only worry about turfs with simulated atmos, most notably things that aren't space?</li>
+</ul><h3 id="proc/PlaceBelowLogicalBottom"><aside class="declaration">proc </aside>PlaceBelowLogicalBottom<aside>(type, flags) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/turfs/change_turf.dm#L264">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;change_turf.dm 264"/></a></aside>
+        </h3>
+        <p>put a turf in from the bottom above logically multiz hole baseturfs. can changeturf.
+used for shuttle ceilings</p><h3 id="proc/PlaceBelowLogicalTop"><aside class="declaration">proc </aside>PlaceBelowLogicalTop<aside>(type, flags) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/turfs/change_turf.dm#L291">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;change_turf.dm 291"/></a></aside>
+        </h3>
+        <p>put a turf one below the logical top. can changeturf if logical top is a hole.
+used for shuttle floors</p><h3 id="proc/PlaceOnTop"><aside class="declaration">proc </aside>PlaceOnTop<aside>(/list/new_baseturfs, /<a href="turf.html">turf</a>/fake_turf_type, flags) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/turfs/change_turf.dm#L335">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;change_turf.dm 335"/></a></aside>
+        </h3>
+        <p>WARNING WARNING: CITRP EDIT: /turf/closed check replaced with TURF DENSITY CHECK.
+every if(!density) is a if(!istype(src, /turf/closed)) in this version.</p><h3 id="proc/ScrapeAway"><aside class="declaration">proc </aside>ScrapeAway<aside>(amount, flags) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/turfs/change_turf.dm#L212">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;change_turf.dm 212"/></a></aside>
+        </h3>
+        <p>Take off the top layer turf and replace it with the next baseturf down</p><h3 id="proc/ScrapeFromLogicalBottom"><aside class="declaration">proc </aside>ScrapeFromLogicalBottom<aside>(flags, this_type_only) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/turfs/change_turf.dm#L237">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;change_turf.dm 237"/></a></aside>
+        </h3>
+        <p>scrape away a turf from the bottom above logically multiz hole baseturfs
+used for shuttle ceilings</p><h3 id="proc/TurfAdjacency"><aside class="declaration">proc </aside>TurfAdjacency<aside>(/<a href="turf.html">turf</a>/neighbor_turf, /<a href="atom.html">atom</a>/target, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/mover) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/_onclick/adjacency.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;adjacency.dm 42"/></a></aside>
+        </h3>
+        <p>Turf adjacency</p>
+<ul>
+<li>Always true if you're in the same turf</li>
+<li>If you're vertically/horizontally adjacent, ensure there's no border obects</li>
+<li>If you're diagonally adjacent, ensure you can pass to it with mutually adjacent squares</li>
+</ul><h3 id="proc/queue_zone_update"><aside class="declaration">proc </aside>queue_zone_update<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/environmental/turf.dm#L100">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;environmental&#x2F;turf.dm 100"/></a></aside>
+        </h3>
+        <p>queues us for a zone rebuild</p><h3 id="proc/spawn_air"><aside class="declaration">proc </aside>spawn_air<aside>(gas_string) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/atmospherics/environmental/public.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;atmospherics&#x2F;environmental&#x2F;public.dm 24"/></a></aside>
+        </h3>
+        <p>spawns air from a gas string
+this is a turf proc because i want people to understand what they're doing instead of blindly using it,
+as return_air() has many different connotations</p><h3 id="proc/update_vertical_turf_graphics"><aside class="declaration">proc </aside>update_vertical_turf_graphics<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/multiz/turf.dm#L136">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;multiz&#x2F;turf.dm 136"/></a></aside>
+        </h3>
+        <p>called during AfterChange() to request the turfs above and below us update their graphics.</p><h3 id="proc/z_exit_check"><aside class="declaration">proc </aside>z_exit_check<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/mover, dir) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/multiz/turf.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;multiz&#x2F;turf.dm 78"/></a></aside>
+        </h3>
+        <p>simple boolean check to see if something's physically blocked from leaving us via up/down</p>
+<p>@params</p>
+<ul>
+<li>mover - atom that needs to move</li>
+<li>dir - are they going UP abov eus or DOWN below us?</li>
+</ul><h3 id="proc/z_exit_obstruction"><aside class="declaration">proc </aside>z_exit_obstruction<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/mover, dir) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/multiz/turf.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;multiz&#x2F;turf.dm 60"/></a></aside>
+        </h3>
+        <p>checks if an atom can exit us up or down
+checks for physical obstructions and returns first obstruction;
+does NOT check if the atom is logically able to move under its own power!</p>
+<p>WARNING: If the turf above/below us doesn't exist, this returns null.</p>
+<p>@params</p>
+<ul>
+<li>mover - atom that needs to move</li>
+<li>dir - are they going UP abov eus or DOWN below us?</li>
+</ul><h3 id="proc/z_fall_check"><aside class="declaration">proc </aside>z_fall_check<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/mover, levels, fall_flags) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/multiz/turf.dm#L100">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;multiz&#x2F;turf.dm 100"/></a></aside>
+        </h3>
+        <p>simple boolean check to see if something's physically blocked from falling through us</p><h3 id="proc/z_fall_obstruction"><aside class="declaration">proc </aside>z_fall_obstruction<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/mover, levels, fall_flags) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/multiz/turf.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;multiz&#x2F;turf.dm 92"/></a></aside>
+        </h3>
+        <p>checks what is going to block something from falling through us</p><h3 id="proc/z_pass_in_obstruction"><aside class="declaration">proc </aside>z_pass_in_obstruction<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/mover, dir, /<a href="turf.html">turf</a>/source) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/multiz/turf.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;multiz&#x2F;turf.dm 20"/></a></aside>
+        </h3>
+        <p>WARNING: This proc is unique. Read the doc here, especially the return value.
+Check if an atom can move into us from either above or below</p>
+<p>We don't use an unified CanZPass() because our codebase does the Funny of allowing logical multiz linkages that aren't actually +1 or -1 zlevel
+So, it's actually going to be faster doing &quot;snowflakey&quot; in/out calls rather than an unified call that works like CanPass().</p>
+<p>@param
+AM - moving atom
+dir - Direction it's <strong>coming from</strong> (e.g. if it's above us, it'll be <strong>UP</strong>).
+source - turf it's coming from</p>
+<p>@return
+The atom that's blocking. Returns NULL if there's no obstruction.</p><h3 id="proc/z_pass_out_obstruction"><aside class="declaration">proc </aside>z_pass_out_obstruction<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/mover, dir, /<a href="turf.html">turf</a>/dest) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/multiz/turf.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;multiz&#x2F;turf.dm 42"/></a></aside>
+        </h3>
+        <p>WARNING: This proc is unique. Read the doc here, especially the return value.
+Check if an atom can move out of us to either above or below</p>
+<p>We don't use an unified CanZPass() because our codebase does the Funny of allowing logical multiz linkages that aren't actually +1 or -1 zlevel
+So, it's actually going to be faster doing &quot;snowflakey&quot; in/out calls rather than an unified call that works like CanPass().</p>
+<p>@param
+AM - moving atom
+dir - Direction it's <strong>going to</strong> (e.g. if it's going through the roof, it'll be <strong>UP</strong>).
+dest - turf it's going to</p>
+<p>@return
+The atom that's blocking. Returns NULL if there's no obstruction.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

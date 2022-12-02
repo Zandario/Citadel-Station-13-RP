@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;damage_organs.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/damage_organs.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/damage_organs.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/damage_organs.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;damage_organs.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/damage_organs.html#define/FIRE_DAMAGE_MODIFIER">FIRE_DAMAGE_MODIFIER</a></th><td>Higher values result in more external fire damage to the skin. (default 0.0215)</td></tr>
+        <tr><th><a href="code/__DEFINES/damage_organs.html#define/AIR_DAMAGE_MODIFIER">AIR_DAMAGE_MODIFIER</a></th><td>More means less damage from hot air scalding lungs, less = more damage. (default 2.025)</td></tr>
+        <tr><td colspan="2"><p>Organ defines. Bitflag into organ.status</p>
+<p>The condition defines. /SET/ into organ.robotic [example: if(organ.robotic == ORGAN_NANOFORM) to_chat(&quot;Organ is nanites&quot;)]</p></td></tr>
+        <tr><th><a href="code/__DEFINES/damage_organs.html#define/ORGAN_FLESH">ORGAN_FLESH</a></th><td>Normal organic organs.</td></tr>
+        <tr><th><a href="code/__DEFINES/damage_organs.html#define/ORGAN_ASSISTED">ORGAN_ASSISTED</a></th><td>Like pacemakers, not robotic</td></tr>
+        <tr><th><a href="code/__DEFINES/damage_organs.html#define/ORGAN_ROBOT">ORGAN_ROBOT</a></th><td>Fully robotic, no organic parts</td></tr>
+        <tr><th><a href="code/__DEFINES/damage_organs.html#define/ORGAN_LIFELIKE">ORGAN_LIFELIKE</a></th><td>Robotic, made to appear organic</td></tr>
+        <tr><th><a href="code/__DEFINES/damage_organs.html#define/ORGAN_NANOFORM">ORGAN_NANOFORM</a></th><td>Fully nanoswarm organ</td></tr>
+        <tr><th><a href="code/__DEFINES/damage_organs.html#define/ORGAN_CRYSTAL">ORGAN_CRYSTAL</a></th><td>The organ does not suffer laser damage, but shatters on droplimb.</td></tr>
+        <tr><td colspan="2"><p>Germs and infections.</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/damage_organs.html#define/GERM_LEVEL_AMBIENT">GERM_LEVEL_AMBIENT</a></th><td>Maximum germ level you can reach by standing still.</td></tr>
+        <tr><th><a href="code/__DEFINES/damage_organs.html#define/GERM_LEVEL_MOVE_CAP">GERM_LEVEL_MOVE_CAP</a></th><td>Maximum germ level you can reach by running around.</td></tr>
+        <tr><th><a href="code/__DEFINES/damage_organs.html#define/MODULAR_BODYPART_INVALID">MODULAR_BODYPART_INVALID</a></th><td>Cannot be detached or reattached.</td></tr>
+        <tr><th><a href="code/__DEFINES/damage_organs.html#define/MODULAR_BODYPART_PROSTHETIC">MODULAR_BODYPART_PROSTHETIC</a></th><td>Can be detached or reattached freely.</td></tr>
+        <tr><th><a href="code/__DEFINES/damage_organs.html#define/MODULAR_BODYPART_CYBERNETIC">MODULAR_BODYPART_CYBERNETIC</a></th><td>Can be detached or reattached to compatible parent organs.</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/AIR_DAMAGE_MODIFIER"><aside class="declaration">#define </aside>AIR_DAMAGE_MODIFIER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/damage_organs.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;damage_organs.dm 37"/></a>
+    </h3>
+    <p>More means less damage from hot air scalding lungs, less = more damage. (default 2.025)</p><h3 id="define/FIRE_DAMAGE_MODIFIER"><aside class="declaration">#define </aside>FIRE_DAMAGE_MODIFIER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/damage_organs.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;damage_organs.dm 35"/></a>
+    </h3>
+    <p>Higher values result in more external fire damage to the skin. (default 0.0215)</p><h3 id="define/GERM_LEVEL_AMBIENT"><aside class="declaration">#define </aside>GERM_LEVEL_AMBIENT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/damage_organs.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;damage_organs.dm 71"/></a>
+    </h3>
+    <p>Maximum germ level you can reach by standing still.</p><h3 id="define/GERM_LEVEL_MOVE_CAP"><aside class="declaration">#define </aside>GERM_LEVEL_MOVE_CAP
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/damage_organs.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;damage_organs.dm 73"/></a>
+    </h3>
+    <p>Maximum germ level you can reach by running around.</p><h3 id="define/MODULAR_BODYPART_CYBERNETIC"><aside class="declaration">#define </aside>MODULAR_BODYPART_CYBERNETIC
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/damage_organs.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;damage_organs.dm 85"/></a>
+    </h3>
+    <p>Can be detached or reattached to compatible parent organs.</p><h3 id="define/MODULAR_BODYPART_INVALID"><aside class="declaration">#define </aside>MODULAR_BODYPART_INVALID
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/damage_organs.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;damage_organs.dm 81"/></a>
+    </h3>
+    <p>Cannot be detached or reattached.</p><h3 id="define/MODULAR_BODYPART_PROSTHETIC"><aside class="declaration">#define </aside>MODULAR_BODYPART_PROSTHETIC
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/damage_organs.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;damage_organs.dm 83"/></a>
+    </h3>
+    <p>Can be detached or reattached freely.</p><h3 id="define/ORGAN_ASSISTED"><aside class="declaration">#define </aside>ORGAN_ASSISTED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/damage_organs.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;damage_organs.dm 58"/></a>
+    </h3>
+    <p>Like pacemakers, not robotic</p><h3 id="define/ORGAN_CRYSTAL"><aside class="declaration">#define </aside>ORGAN_CRYSTAL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/damage_organs.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;damage_organs.dm 66"/></a>
+    </h3>
+    <p>The organ does not suffer laser damage, but shatters on droplimb.</p><h3 id="define/ORGAN_FLESH"><aside class="declaration">#define </aside>ORGAN_FLESH
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/damage_organs.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;damage_organs.dm 56"/></a>
+    </h3>
+    <p>Normal organic organs.</p><h3 id="define/ORGAN_LIFELIKE"><aside class="declaration">#define </aside>ORGAN_LIFELIKE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/damage_organs.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;damage_organs.dm 62"/></a>
+    </h3>
+    <p>Robotic, made to appear organic</p><h3 id="define/ORGAN_NANOFORM"><aside class="declaration">#define </aside>ORGAN_NANOFORM
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/damage_organs.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;damage_organs.dm 64"/></a>
+    </h3>
+    <p>Fully nanoswarm organ</p><h3 id="define/ORGAN_ROBOT"><aside class="declaration">#define </aside>ORGAN_ROBOT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/damage_organs.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;damage_organs.dm 60"/></a>
+    </h3>
+    <p>Fully robotic, no organic parts</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

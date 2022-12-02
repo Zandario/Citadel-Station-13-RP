@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;modules&#x2F;ai&#x2F;_defines.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/modules/ai/_defines.html#define">Define Details</a></header>
+<main>
+<h1>code/modules/ai/_defines.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ai/_defines.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;_defines.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/modules/ai/_defines.html#define/AI_DUMB">AI_DUMB</a></th><td>Be dumber than usual.</td></tr>
+        <tr><th><a href="code/modules/ai/_defines.html#define/AI_NORMAL">AI_NORMAL</a></th><td>Default level.</td></tr>
+        <tr><th><a href="code/modules/ai/_defines.html#define/AI_SMART">AI_SMART</a></th><td>Will do more processing to be a little smarter, like not walking while confused if it could risk stepping randomly onto a bad tile.</td></tr>
+        <tr><th><a href="code/modules/ai/_defines.html#define/AI_LOG_OFF">AI_LOG_OFF</a></th><td>Don't show anything.</td></tr>
+        <tr><th><a href="code/modules/ai/_defines.html#define/AI_LOG_ERROR">AI_LOG_ERROR</a></th><td>Show logs of things likely causing the mob to not be functioning correctly.</td></tr>
+        <tr><th><a href="code/modules/ai/_defines.html#define/AI_LOG_WARNING">AI_LOG_WARNING</a></th><td>Show less serious but still helpful to know issues that might be causing things to work incorrectly.</td></tr>
+        <tr><th><a href="code/modules/ai/_defines.html#define/AI_LOG_INFO">AI_LOG_INFO</a></th><td>Important regular events, like selecting a target or switching stances.</td></tr>
+        <tr><th><a href="code/modules/ai/_defines.html#define/AI_LOG_DEBUG">AI_LOG_DEBUG</a></th><td>More detailed information about the flow of execution.</td></tr>
+        <tr><th><a href="code/modules/ai/_defines.html#define/AI_LOG_TRACE">AI_LOG_TRACE</a></th><td>Even more detailed than the last. Will absolutely flood your chatlog.</td></tr>
+        <tr><th><a href="code/modules/ai/_defines.html#define/MOVEMENT_ON_COOLDOWN">MOVEMENT_ON_COOLDOWN</a></th><td>Recently moved and needs to try again soon.</td></tr>
+        <tr><th><a href="code/modules/ai/_defines.html#define/MOVEMENT_FAILED">MOVEMENT_FAILED</a></th><td>Move() returned false for whatever reason and the mob didn't move.</td></tr>
+        <tr><th><a href="code/modules/ai/_defines.html#define/MOVEMENT_SUCCESSFUL">MOVEMENT_SUCCESSFUL</a></th><td>Move() returned true and the mob hopefully moved.</td></tr>
+        <tr><th><a href="code/modules/ai/_defines.html#define/AI_TARGET_VALID">AI_TARGET_VALID</a></th><td>We can fight them.</td></tr>
+        <tr><th><a href="code/modules/ai/_defines.html#define/AI_TARGET_INVIS">AI_TARGET_INVIS</a></th><td>They were in field of view but became invisible. Switch to STANCE_BLINDFIGHT if no other viable targets exist.</td></tr>
+        <tr><th><a href="code/modules/ai/_defines.html#define/AI_TARGET_NOSIGHT">AI_TARGET_NOSIGHT</a></th><td>No longer in field of view. Go STANCE_REPOSITION to their last known location if no other targets are seen.</td></tr>
+        <tr><th><a href="code/modules/ai/_defines.html#define/AI_TARGET_ALLY">AI_TARGET_ALLY</a></th><td>They are an ally. Find a new target.</td></tr>
+        <tr><th><a href="code/modules/ai/_defines.html#define/AI_TARGET_DEAD">AI_TARGET_DEAD</a></th><td>They're dead. Find a new target.</td></tr>
+        <tr><th><a href="code/modules/ai/_defines.html#define/AI_TARGET_INVINCIBLE">AI_TARGET_INVINCIBLE</a></th><td>Target is currently unable to receive damage for whatever reason. Find a new target or wait.</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/AI_DUMB"><aside class="declaration">#define </aside>AI_DUMB
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ai/_defines.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;_defines.dm 4"/></a>
+    </h3>
+    <p>Be dumber than usual.</p><h3 id="define/AI_LOG_DEBUG"><aside class="declaration">#define </aside>AI_LOG_DEBUG
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ai/_defines.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;_defines.dm 21"/></a>
+    </h3>
+    <p>More detailed information about the flow of execution.</p><h3 id="define/AI_LOG_ERROR"><aside class="declaration">#define </aside>AI_LOG_ERROR
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ai/_defines.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;_defines.dm 15"/></a>
+    </h3>
+    <p>Show logs of things likely causing the mob to not be functioning correctly.</p><h3 id="define/AI_LOG_INFO"><aside class="declaration">#define </aside>AI_LOG_INFO
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ai/_defines.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;_defines.dm 19"/></a>
+    </h3>
+    <p>Important regular events, like selecting a target or switching stances.</p><h3 id="define/AI_LOG_OFF"><aside class="declaration">#define </aside>AI_LOG_OFF
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ai/_defines.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;_defines.dm 13"/></a>
+    </h3>
+    <p>Don't show anything.</p><h3 id="define/AI_LOG_TRACE"><aside class="declaration">#define </aside>AI_LOG_TRACE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ai/_defines.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;_defines.dm 23"/></a>
+    </h3>
+    <p>Even more detailed than the last. Will absolutely flood your chatlog.</p><h3 id="define/AI_LOG_WARNING"><aside class="declaration">#define </aside>AI_LOG_WARNING
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ai/_defines.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;_defines.dm 17"/></a>
+    </h3>
+    <p>Show less serious but still helpful to know issues that might be causing things to work incorrectly.</p><h3 id="define/AI_NORMAL"><aside class="declaration">#define </aside>AI_NORMAL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ai/_defines.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;_defines.dm 6"/></a>
+    </h3>
+    <p>Default level.</p><h3 id="define/AI_SMART"><aside class="declaration">#define </aside>AI_SMART
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ai/_defines.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;_defines.dm 8"/></a>
+    </h3>
+    <p>Will do more processing to be a little smarter, like not walking while confused if it could risk stepping randomly onto a bad tile.</p><h3 id="define/AI_TARGET_ALLY"><aside class="declaration">#define </aside>AI_TARGET_ALLY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ai/_defines.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;_defines.dm 40"/></a>
+    </h3>
+    <p>They are an ally. Find a new target.</p><h3 id="define/AI_TARGET_DEAD"><aside class="declaration">#define </aside>AI_TARGET_DEAD
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ai/_defines.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;_defines.dm 42"/></a>
+    </h3>
+    <p>They're dead. Find a new target.</p><h3 id="define/AI_TARGET_INVINCIBLE"><aside class="declaration">#define </aside>AI_TARGET_INVINCIBLE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ai/_defines.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;_defines.dm 44"/></a>
+    </h3>
+    <p>Target is currently unable to receive damage for whatever reason. Find a new target or wait.</p><h3 id="define/AI_TARGET_INVIS"><aside class="declaration">#define </aside>AI_TARGET_INVIS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ai/_defines.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;_defines.dm 36"/></a>
+    </h3>
+    <p>They were in field of view but became invisible. Switch to STANCE_BLINDFIGHT if no other viable targets exist.</p><h3 id="define/AI_TARGET_NOSIGHT"><aside class="declaration">#define </aside>AI_TARGET_NOSIGHT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ai/_defines.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;_defines.dm 38"/></a>
+    </h3>
+    <p>No longer in field of view. Go STANCE_REPOSITION to their last known location if no other targets are seen.</p><h3 id="define/AI_TARGET_VALID"><aside class="declaration">#define </aside>AI_TARGET_VALID
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ai/_defines.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;_defines.dm 34"/></a>
+    </h3>
+    <p>We can fight them.</p><h3 id="define/MOVEMENT_FAILED"><aside class="declaration">#define </aside>MOVEMENT_FAILED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ai/_defines.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;_defines.dm 29"/></a>
+    </h3>
+    <p>Move() returned false for whatever reason and the mob didn't move.</p><h3 id="define/MOVEMENT_ON_COOLDOWN"><aside class="declaration">#define </aside>MOVEMENT_ON_COOLDOWN
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ai/_defines.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;_defines.dm 27"/></a>
+    </h3>
+    <p>Recently moved and needs to try again soon.</p><h3 id="define/MOVEMENT_SUCCESSFUL"><aside class="declaration">#define </aside>MOVEMENT_SUCCESSFUL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/ai/_defines.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;_defines.dm 31"/></a>
+    </h3>
+    <p>Move() returned true and the mob hopefully moved.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

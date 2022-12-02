@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;modules&#x2F;integrated_electronics&#x2F;subtypes&#x2F;manipulation.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+</header>
+<main>
+<h1>code/modules/integrated_electronics/subtypes/manipulation.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/subtypes/manipulation.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;subtypes&#x2F;manipulation.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><pre><code>TBI: Material update
+</code></pre>
+<p>/obj/item/integrated_circuit/manipulation/matman
+name = &quot;material manager&quot;
+desc = &quot;This circuit is designed for automatic storage and distribution of materials.&quot;
+extended_desc = &quot;The first input takes a ref of a machine with a material container.  <br />
+Second input is used for inserting material stacks into the internal material storage.  <br />
+Inputs 3-13 are used to transfer materials between target machine and circuit storage.  <br />
+Positive values will take that number of materials from another machine.  <br />
+Negative values will fill another machine from internal storage.  Outputs show current stored amounts of mats.&quot;
+icon_state = &quot;grabber&quot;
+complexity = 16
+inputs = list(
+&quot;target&quot; 				= IC_PINTYPE_REF,
+&quot;sheets to insert&quot;	 	= IC_PINTYPE_NUMBER,
+&quot;Metal&quot;				 	= IC_PINTYPE_NUMBER,
+&quot;Glass&quot;					= IC_PINTYPE_NUMBER,
+&quot;Silver&quot;				= IC_PINTYPE_NUMBER,
+&quot;Gold&quot;					= IC_PINTYPE_NUMBER,
+&quot;Diamond&quot;				= IC_PINTYPE_NUMBER,
+&quot;Uranium&quot;				= IC_PINTYPE_NUMBER,
+&quot;Solid Plasma&quot;			= IC_PINTYPE_NUMBER,
+&quot;Bluespace Mesh&quot;		= IC_PINTYPE_NUMBER,
+&quot;Bananium&quot;				= IC_PINTYPE_NUMBER,
+&quot;Titanium&quot;				= IC_PINTYPE_NUMBER,
+&quot;Plastic&quot;				= IC_PINTYPE_NUMBER
+)
+outputs = list(
+&quot;self ref&quot; 				= IC_PINTYPE_REF,
+&quot;Total amount&quot;		 	= IC_PINTYPE_NUMBER,
+&quot;Metal&quot;				 	= IC_PINTYPE_NUMBER,
+&quot;Glass&quot;					= IC_PINTYPE_NUMBER,
+&quot;Silver&quot;				= IC_PINTYPE_NUMBER,
+&quot;Gold&quot;					= IC_PINTYPE_NUMBER,
+&quot;Diamond&quot;				= IC_PINTYPE_NUMBER,
+&quot;Uranium&quot;				= IC_PINTYPE_NUMBER,
+&quot;Solid Plasma&quot;			= IC_PINTYPE_NUMBER,
+&quot;Bluespace Mesh&quot;		= IC_PINTYPE_NUMBER,
+&quot;Bananium&quot;				= IC_PINTYPE_NUMBER,
+&quot;Titanium&quot;				= IC_PINTYPE_NUMBER,
+&quot;Plastic&quot;				= IC_PINTYPE_NUMBER
+)
+activators = list(
+&quot;insert sheet&quot; = IC_PINTYPE_PULSE_IN,
+&quot;transfer mats&quot; = IC_PINTYPE_PULSE_IN,
+&quot;on success&quot; = IC_PINTYPE_PULSE_OUT,
+&quot;on failure&quot; = IC_PINTYPE_PULSE_OUT,
+&quot;push ref&quot; = IC_PINTYPE_PULSE_IN,
+&quot;on push ref&quot; = IC_PINTYPE_PULSE_IN
+)
+spawn_flags = IC_SPAWN_RESEARCH
+power_draw_per_use = 40
+ext_cooldown = 1
+cooldown_per_use = 10
+var/static/list/mtypes = list(
+/datum/material/iron,
+/datum/material/glass,
+/datum/material/silver,
+/datum/material/gold,
+/datum/material/diamond,
+/datum/material/uranium,
+/datum/material/plasma,
+/datum/material/bluespace,
+/datum/material/bananium,
+/datum/material/titanium,
+/datum/material/plastic
+)</p>
+<p>/obj/item/integrated_circuit/manipulation/matman/ComponentInitialize()
+var/datum/component/material_container/materials = AddComponent(/datum/component/material_container, mtypes, 100000, FALSE, /obj/item/stack, CALLBACK(src, .proc/is_insertion_ready), CALLBACK(src, .proc/AfterMaterialInsert))
+materials.precise_insertion = TRUE
+.=..()</p>
+<p>/obj/item/integrated_circuit/manipulation/matman/proc/AfterMaterialInsert(type_inserted, id_inserted, amount_inserted)
+var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
+set_pin_data(IC_OUTPUT, 2, materials.total_amount)
+for(var/I in 1 to mtypes.len)
+var/datum/material/M = materials.materials[SSmaterials.GetMaterialRef(I)]
+var/amount = materials[M]
+if(M)
+set_pin_data(IC_OUTPUT, I+2, amount)
+push_data()</p>
+<p>/obj/item/integrated_circuit/manipulation/matman/proc/is_insertion_ready(mob/user)
+return TRUE</p>
+<p>/obj/item/integrated_circuit/manipulation/matman/do_work(ord)
+var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
+var/atom/movable/H = get_pin_data_as_type(IC_INPUT, 1, /atom/movable)
+if(!check_target(H))
+activate_pin(4)
+return
+var/turf/T = get_turf(H)
+switch(ord)
+if(1)
+var/obj/item/stack/sheet/S = H
+if(!S)
+activate_pin(4)
+return
+if(materials.insert_item(S, clamp(get_pin_data(IC_INPUT, 2),0,100), multiplier = 1) )
+AfterMaterialInsert()
+activate_pin(3)
+else
+activate_pin(4)
+if(2)
+var/datum/component/material_container/mt = H.GetComponent(/datum/component/material_container)
+var/suc
+for(var/I in 1 to mtypes.len)
+var/datum/material/M = materials.materials[mtypes[I]]
+if(M)
+var/U = clamp(get_pin_data(IC_INPUT, I+2),-100000,100000)
+if(!U)
+continue
+if(!mt) //Invalid input
+if(U&gt;0)
+if(materials.retrieve_sheets(U, SSmaterials.GetMaterialRef(mtypes[I]), T))
+suc = TRUE
+else
+if(mt.transer_amt_to(materials, U, mtypes[I]))
+suc = TRUE
+if(suc)
+AfterMaterialInsert()
+activate_pin(3)
+else
+activate_pin(4)
+if(5)
+set_pin_data(IC_OUTPUT, 1, WEAKREF(src))
+AfterMaterialInsert()
+activate_pin(6)</p>
+<p>/obj/item/integrated_circuit/manipulation/matman/Destroy()
+var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
+materials.retrieve_all()
+.=..()</p></td></tr></table></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

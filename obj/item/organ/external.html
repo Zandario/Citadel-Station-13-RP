@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;organ&#x2F;external - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/organ/external.html#var">Var Details</a> - <a href="obj/item/organ/external.html#proc">Proc Details</a></header>
+<main>
+<h1>external <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/organ.html">organ</a>/<a href="obj/item/organ/external.html">external</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 1"/></a></h1>
+
+<h2 id="strings">STRINGS</h2><h2 id="damage-vars">DAMAGE VARS</h2><h2 id="appearance-vars">APPEARANCE VARS</h2><h2 id="structural-vars">STRUCTURAL VARS</h2><h2 id="wound-vars">WOUND VARS</h2><h2 id="joint-state-vars">JOINT/STATE VARS</h2><h2 id="surgery-vars">SURGERY VARS</h2><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/amputation_point">amputation_point</a></th><td>Descriptive string used in amputation.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/base_miss_chance">base_miss_chance</a></th><td>Chance of missing.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/body_hair">body_hair</a></th><td>Icon blend for body hair if any.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/body_part">body_part</a></th><td>Part flag</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/broken_description">broken_description</a></th><td>Fracture description if any.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/brute_dam">brute_dam</a></th><td>Actual current brute damage.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/brute_mod">brute_mod</a></th><td>Multiplier for incoming brute damage.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/brute_stage">brute_stage</a></th><td>Surgical repair stage for brute.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/burn_dam">burn_dam</a></th><td>Actual current burn damage.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/burn_mod">burn_mod</a></th><td>As above for burn.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/burn_stage">burn_stage</a></th><td>Surgical repair stage for burn.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/can_grasp">can_grasp</a></th><td>It would be more appropriate if these two were named &quot;affects_grasp&quot; and &quot;affects_stand&quot; at this point</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/can_stand">can_stand</a></th><td>Modifies stance tally/ability to stand.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/cannot_amputate">cannot_amputate</a></th><td>Impossible to amputate.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/cannot_break">cannot_break</a></th><td>Impossible to fracture.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/cannot_gib">cannot_gib</a></th><td>Impossible to gib, distinct from amputation.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/children">children</a></th><td>Sub-limbs.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/damage_state">damage_state</a></th><td>Modifier used for generating the on-mob damage overlay for this limb.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/disfigured">disfigured</a></th><td>Scarred/burned beyond recognition.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/dislocated">dislocated</a></th><td>If you target a joint, you can dislocate the limb, impairing it's usefulness and causing pain.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/emp_mod">emp_mod</a></th><td>EMP damage multiplier</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/encased">encased</a></th><td>Needs to be opened with a saw to access the organs.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/force_icon">force_icon</a></th><td>Used to force override of species-specific limb icons (for prosthetics). Also used for any limbs chopped from a simple mob, and then attached to humans.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/force_icon_key">force_icon_key</a></th><td>Used to force the override of the icon-key generated using the species. Must be used in tandem with the above.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/gendered_icon">gendered_icon</a></th><td>Whether or not the icon state appends a gender.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/h_col">h_col</a></th><td>Hair colour</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/hud_damage_image">hud_damage_image</a></th><td>HUD element variable, see organ_icon.dm get_damage_hud_image()</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/icon_name">icon_name</a></th><td>Icon state base.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/icon_position">icon_position</a></th><td>Used in mob overlay layering calculations.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/implants">implants</a></th><td>Currently implanted objects.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/internal_organs">internal_organs</a></th><td>Internal organs of this body part</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/joint">joint</a></th><td>Descriptive string used in dislocation.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/last_dam">last_dam</a></th><td>Used in healing/processing calculations.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/markings">markings</a></th><td>Markings (body_markings) to apply to the icon</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/mob_icon">mob_icon</a></th><td>Cached icon for use in mob overlays.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/model">model</a></th><td>Used when caching robolimb icons.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/nonsolid">nonsolid</a></th><td>Snowflake warning, reee. Used for slime limbs.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/number_wounds">number_wounds</a></th><td>Number of wounds, which is NOT wounds.len!</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/organ_rel_size">organ_rel_size</a></th><td>Relative size of the organ.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/parent">parent</a></th><td>Master-limb.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/s_col">s_col</a></th><td>Skin colour</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/s_col_blend">s_col_blend</a></th><td>How the skin colour is applied.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/s_tone">s_tone</a></th><td>Skin tone.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/sabotaged">sabotaged</a></th><td>If a prosthetic limb is emagged, it will detonate when it fails.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/spread_dam">spread_dam</a></th><td>If damage done to this organ spreads to connected organs.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/syringe_infection_queued">syringe_infection_queued</a></th><td>makes this dumb as fuck mechanic slightly less awful - records queued syringe infections instead of a spawn()</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/thick_skin">thick_skin</a></th><td>If a needle has a chance to fail to penetrate.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/transparent">transparent</a></th><td>Also for slimes. Used for transparent limbs.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/wound_update_accuracy">wound_update_accuracy</a></th><td>How often wounds should be updated, a higher number means less often</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#var/wounds">wounds</a></th><td>Wound datum list.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/organ/external.html#proc/Destroy">Destroy</a></th><td>EXTERNAL ORGANS</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#proc/droplimb">droplimb</a></th><td>DISMEMBERMENT</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#proc/is_broken">is_broken</a></th><td>PROCESSING &amp; UPDATING</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#proc/is_damageable">is_damageable</a></th><td>DAMAGE PROCS</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#proc/is_stump">is_stump</a></th><td>HELPERS</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#proc/rejuvenate">rejuvenate</a></th><td>This function completely restores a damaged organ to perfect condition.</td></tr>
+            <tr><th><a href="obj/item/organ/external.html#proc/robo_repair">robo_repair</a></th><td>Helper proc used by various tools for repairing robot limbs</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/amputation_point"><aside class="declaration">var </aside>amputation_point
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 116"/></a></h3>
+        <p>Descriptive string used in amputation.</p><h3 id="var/base_miss_chance"><aside class="declaration">var </aside>base_miss_chance
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 38"/></a></h3>
+        <p>Chance of missing.</p><h3 id="var/body_hair"><aside class="declaration">var </aside>body_hair
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 71"/></a></h3>
+        <p>Icon blend for body hair if any.</p><h3 id="var/body_part"><aside class="declaration">var </aside>body_part
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 49"/></a></h3>
+        <p>Part flag</p><h3 id="var/broken_description"><aside class="declaration">var </aside>broken_description
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 11"/></a></h3>
+        <p>Fracture description if any.</p><h3 id="var/brute_dam"><aside class="declaration">var </aside>brute_dam
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 24"/></a></h3>
+        <p>Actual current brute damage.</p><h3 id="var/brute_mod"><aside class="declaration">var </aside>brute_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 18"/></a></h3>
+        <p>Multiplier for incoming brute damage.</p><h3 id="var/brute_stage"><aside class="declaration">var </aside>brute_stage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L131">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 131"/></a></h3>
+        <p>Surgical repair stage for brute.</p><h3 id="var/burn_dam"><aside class="declaration">var </aside>burn_dam
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 26"/></a></h3>
+        <p>Actual current burn damage.</p><h3 id="var/burn_mod"><aside class="declaration">var </aside>burn_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 20"/></a></h3>
+        <p>As above for burn.</p><h3 id="var/burn_stage"><aside class="declaration">var </aside>burn_stage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L129">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 129"/></a></h3>
+        <p>Surgical repair stage for burn.</p><h3 id="var/can_grasp"><aside class="declaration">var </aside>can_grasp
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 102"/></a></h3>
+        <p>It would be more appropriate if these two were named &quot;affects_grasp&quot; and &quot;affects_stand&quot; at this point</p><h3 id="var/can_stand"><aside class="declaration">var </aside>can_stand
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 104"/></a></h3>
+        <p>Modifies stance tally/ability to stand.</p><h3 id="var/cannot_amputate"><aside class="declaration">var </aside>cannot_amputate
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 108"/></a></h3>
+        <p>Impossible to amputate.</p><h3 id="var/cannot_break"><aside class="declaration">var </aside>cannot_break
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 110"/></a></h3>
+        <p>Impossible to fracture.</p><h3 id="var/cannot_gib"><aside class="declaration">var </aside>cannot_gib
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 112"/></a></h3>
+        <p>Impossible to gib, distinct from amputation.</p><h3 id="var/children"><aside class="declaration">var </aside>children
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 81"/></a></h3>
+        <p>Sub-limbs.</p><h3 id="var/damage_state"><aside class="declaration">var </aside>damage_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 13"/></a></h3>
+        <p>Modifier used for generating the on-mob damage overlay for this limb.</p><h3 id="var/disfigured"><aside class="declaration">var </aside>disfigured
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L106">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 106"/></a></h3>
+        <p>Scarred/burned beyond recognition.</p><h3 id="var/dislocated"><aside class="declaration">var </aside>dislocated
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 118"/></a></h3>
+        <p>If you target a joint, you can dislocate the limb, impairing it's usefulness and causing pain.</p><h3 id="var/emp_mod"><aside class="declaration">var </aside>emp_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 22"/></a></h3>
+        <p>EMP damage multiplier</p><h3 id="var/encased"><aside class="declaration">var </aside>encased
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 120"/></a></h3>
+        <p>Needs to be opened with a saw to access the organs.</p><h3 id="var/force_icon"><aside class="declaration">var </aside>force_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 55"/></a></h3>
+        <p>Used to force override of species-specific limb icons (for prosthetics). Also used for any limbs chopped from a simple mob, and then attached to humans.</p><h3 id="var/force_icon_key"><aside class="declaration">var </aside>force_icon_key
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 57"/></a></h3>
+        <p>Used to force the override of the icon-key generated using the species. Must be used in tandem with the above.</p><h3 id="var/gendered_icon"><aside class="declaration">var </aside>gendered_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 61"/></a></h3>
+        <p>Whether or not the icon state appends a gender.</p><h3 id="var/h_col"><aside class="declaration">var </aside>h_col
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 69"/></a></h3>
+        <p>Hair colour</p><h3 id="var/hud_damage_image"><aside class="declaration">var </aside>hud_damage_image
+            <aside>&ndash; /image</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L134">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 134"/></a></h3>
+        <p>HUD element variable, see organ_icon.dm get_damage_hud_image()</p><h3 id="var/icon_name"><aside class="declaration">var </aside>icon_name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 47"/></a></h3>
+        <p>Icon state base.</p><h3 id="var/icon_position"><aside class="declaration">var </aside>icon_position
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 51"/></a></h3>
+        <p>Used in mob overlay layering calculations.</p><h3 id="var/implants"><aside class="declaration">var </aside>implants
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 85"/></a></h3>
+        <p>Currently implanted objects.</p><h3 id="var/internal_organs"><aside class="declaration">var </aside>internal_organs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 83"/></a></h3>
+        <p>Internal organs of this body part</p><h3 id="var/joint"><aside class="declaration">var </aside>joint
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 114"/></a></h3>
+        <p>Descriptive string used in dislocation.</p><h3 id="var/last_dam"><aside class="declaration">var </aside>last_dam
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 28"/></a></h3>
+        <p>Used in healing/processing calculations.</p><h3 id="var/markings"><aside class="declaration">var </aside>markings
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 74"/></a></h3>
+        <p>Markings (body_markings) to apply to the icon</p><h3 id="var/mob_icon"><aside class="declaration">var </aside>mob_icon
+            <aside>&ndash; /icon</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 59"/></a></h3>
+        <p>Cached icon for use in mob overlays.</p><h3 id="var/model"><aside class="declaration">var </aside>model
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 53"/></a></h3>
+        <p>Used when caching robolimb icons.</p><h3 id="var/nonsolid"><aside class="declaration">var </aside>nonsolid
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 43"/></a></h3>
+        <p>Snowflake warning, reee. Used for slime limbs.</p><h3 id="var/number_wounds"><aside class="declaration">var </aside>number_wounds
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L97">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 97"/></a></h3>
+        <p>Number of wounds, which is NOT wounds.len!</p><h3 id="var/organ_rel_size"><aside class="declaration">var </aside>organ_rel_size
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 87"/></a></h3>
+        <p>Relative size of the organ.</p><h3 id="var/parent"><aside class="declaration">var </aside>parent
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/organ.html">organ</a>/<a href="obj/item/organ/external.html">external</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 79"/></a></h3>
+        <p>Master-limb.</p><h3 id="var/s_col"><aside class="declaration">var </aside>s_col
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 65"/></a></h3>
+        <p>Skin colour</p><h3 id="var/s_col_blend"><aside class="declaration">var </aside>s_col_blend
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 67"/></a></h3>
+        <p>How the skin colour is applied.</p><h3 id="var/s_tone"><aside class="declaration">var </aside>s_tone
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 63"/></a></h3>
+        <p>Skin tone.</p><h3 id="var/sabotaged"><aside class="declaration">var </aside>sabotaged
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 35"/></a></h3>
+        <p>If a prosthetic limb is emagged, it will detonate when it fails.</p><h3 id="var/spread_dam"><aside class="declaration">var </aside>spread_dam
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 31"/></a></h3>
+        <p>If damage done to this organ spreads to connected organs.</p><h3 id="var/syringe_infection_queued"><aside class="declaration">var </aside>syringe_infection_queued
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/internal_defines.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;internal_defines.dm 1"/></a></h3>
+        <p>makes this dumb as fuck mechanic slightly less awful - records queued syringe infections instead of a spawn()</p><h3 id="var/thick_skin"><aside class="declaration">var </aside>thick_skin
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 33"/></a></h3>
+        <p>If a needle has a chance to fail to penetrate.</p><h3 id="var/transparent"><aside class="declaration">var </aside>transparent
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 45"/></a></h3>
+        <p>Also for slimes. Used for transparent limbs.</p><h3 id="var/wound_update_accuracy"><aside class="declaration">var </aside>wound_update_accuracy
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 93"/></a></h3>
+        <p>How often wounds should be updated, a higher number means less often</p><h3 id="var/wounds"><aside class="declaration">var </aside>wounds
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external_defines.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external_defines.dm 95"/></a></h3>
+        <p>Wound datum list.</p><h2 id="proc">Proc Details</h2><h3 id="proc/Destroy"><aside class="parent"><a title="/obj" href="obj.html#proc/Destroy">&uarr;</a></aside>Destroy<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external/_external.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external&#x2F;_external.dm 5"/></a></aside>
+        </h3>
+        <p>EXTERNAL ORGANS</p><h3 id="proc/droplimb"><aside class="declaration">proc </aside>droplimb<aside>(clean, disintegrate, ignore_children) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external/_external.dm#L776">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external&#x2F;_external.dm 776"/></a></aside>
+        </h3>
+        <p>DISMEMBERMENT</p><h3 id="proc/is_broken">is_broken<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external/_external.dm#L498">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external&#x2F;_external.dm 498"/></a></aside>
+        </h3>
+        <p>PROCESSING &amp; UPDATING</p><h3 id="proc/is_damageable"><aside class="declaration">proc </aside>is_damageable<aside>(additional_damage) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external/_external.dm#L177">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external&#x2F;_external.dm 177"/></a></aside>
+        </h3>
+        <p>DAMAGE PROCS</p><h3 id="proc/is_stump"><aside class="declaration">proc </aside>is_stump<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external/_external.dm#L900">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external&#x2F;_external.dm 900"/></a></aside>
+        </h3>
+        <p>HELPERS</p><h3 id="proc/rejuvenate">rejuvenate<aside>(ignore_prosthetic_prefs) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external/_external.dm#L391">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external&#x2F;_external.dm 391"/></a></aside>
+        </h3>
+        <p>This function completely restores a damaged organ to perfect condition.</p><h3 id="proc/robo_repair"><aside class="declaration">proc </aside>robo_repair<aside>(repair_amount, damage_type, damage_desc, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/tool, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/external/_external.dm#L330">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;external&#x2F;_external.dm 330"/></a></aside>
+        </h3>
+        <p>Helper proc used by various tools for repairing robot limbs</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

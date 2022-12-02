@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;persistence - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/persistence.html#var">Var Details</a> - <a href="datum/controller/subsystem/persistence.html#proc">Proc Details</a></header>
+<main>
+<h1>persistence <aside>/<a href="datum.html">datum</a>/<a href="datum/controller.html">controller</a>/<a href="datum/controller/subsystem.html">subsystem</a>/<a href="datum/controller/subsystem/persistence.html">persistence</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/persistence/_persistence.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;persistence&#x2F;_persistence.dm 1"/></a></h1>
+
+<p>! Unique String Persistence</p>
+<p>this is the &quot;generic store anything by key/value&quot; system
+group specific string load is allowed but not required.</p>
+<p>use if none of the others can work
+or if you're somehow too lazy to optimize your persistence system by making a new persistence type
+but somehow not lazy enough to optimize it into a string??</p>
+<p>notice how we can't delete strings?
+that's intentional, and for optimization.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/persistence.html#var/current_map_directory">current_map_directory</a></th><td>The directory to write to for per-map persistence. If null, the current map shouldn't be persisted to/from.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/persistence.html#proc/GetString">GetString</a></th><td>gets a persistent string</td></tr>
+            <tr><th><a href="datum/controller/subsystem/persistence.html#proc/Initialize">Initialize</a></th><td>current map id - used for database</td></tr>
+            <tr><th><a href="datum/controller/subsystem/persistence.html#proc/LoadString">LoadString</a></th><td>gets the group name for the current map</td></tr>
+            <tr><th><a href="datum/controller/subsystem/persistence.html#proc/SetMapDirectory">SetMapDirectory</a></th><td>Sets our current_map_directory to corrospond to the current map.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/persistence.html#proc/SetString">SetString</a></th><td>sets a persistent string</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/current_map_directory"><aside class="declaration">var </aside>current_map_directory
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/persistence/_persistence.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;persistence&#x2F;_persistence.dm 7"/></a></h3>
+        <p>The directory to write to for per-map persistence. If null, the current map shouldn't be persisted to/from.</p><h2 id="proc">Proc Details</h2><h3 id="proc/GetString"><aside class="declaration">proc </aside>GetString<aside>(key, group) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/persistence/objects/unique_string.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;persistence&#x2F;objects&#x2F;unique_string.dm 23"/></a></aside>
+        </h3>
+        <p>gets a persistent string</p>
+<p>@params</p>
+<ul>
+<li>key - key of string</li>
+<li>group - optional group-specific. null counts as its own group.</li>
+</ul><h3 id="proc/Initialize">Initialize<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/persistence/_persistence.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;persistence&#x2F;_persistence.dm 10"/></a></aside>
+        </h3>
+        <p>current map id - used for database</p><h3 id="proc/LoadString"><aside class="declaration">proc </aside>LoadString<aside>(group, key) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/persistence/objects/unique_string.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;persistence&#x2F;objects&#x2F;unique_string.dm 62"/></a></aside>
+        </h3>
+        <p>gets the group name for the current map</p><h3 id="proc/SetMapDirectory"><aside class="declaration">proc </aside>SetMapDirectory<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/persistence/_persistence.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;persistence&#x2F;_persistence.dm 34"/></a></aside>
+        </h3>
+        <p>Sets our current_map_directory to corrospond to the current map.</p><h3 id="proc/SetString"><aside class="declaration">proc </aside>SetString<aside>(key, value, group, flush) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/persistence/objects/unique_string.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;persistence&#x2F;objects&#x2F;unique_string.dm 35"/></a></aside>
+        </h3>
+        <p>sets a persistent string</p>
+<p>@params</p>
+<ul>
+<li>key - key of string</li>
+<li>value - string to set it to</li>
+<li>group - optional group-specific. null counts as its own group.</li>
+<li>flush - immediately invoke SQL; otherwise subsystem decides when.</li>
+</ul></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

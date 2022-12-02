@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__HELPERS&#x2F;text.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+</header>
+<main>
+<h1>code/__HELPERS/text.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/text.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;text.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th>/proc/<a href="global.html#proc/format_table_name">format_table_name</a></th>
+                <td>Holds procs designed to help with filtering text
+Contains groups:
+! SQL sanitization
+! Text sanitization
+! Text searches
+! Text modification
+! Misc</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/sanitize">sanitize</a></th>
+                <td>! Text sanitization
+Used for preprocessing entered text.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/sanitize_simple_tg">sanitize_simple_tg</a></th>
+                <td>Removes a few problematic characters. Renamed because namespace.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/sanitizeSafe">sanitizeSafe</a></th>
+                <td>Run sanitize(), but remove &lt;, &gt;, &quot; first to prevent displaying them as &gt; &lt; &amp;34; in some places, after html_encode().
+Best used for sanitize object names, window titles.
+If you have a problem with sanitize() in chat, when quotes and &gt;, &lt; are displayed as html entites -
+this is a problem of double-encode(when &amp; becomes &amp;), use sanitize() with encode=0, but not the sanitizeSafe()!</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/sanitizeName">sanitizeName</a></th>
+                <td>Filters out undesirable characters from names.
+Uppercase Characters: A  .. Z
+Lowercase Characters: a  .. z
+Number Characters: 0  .. 9
+Symbol Characters: '  -  .
+Hardcoded Characters: ~   |   @  :  #  $  %  &amp;  *  +
+Space Character</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/reject_bad_text">reject_bad_text</a></th>
+                <td>Returns null if there is any bad text in the string.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/stripped_input">stripped_input</a></th>
+                <td>Used to get a properly sanitized input, of max_length
+no_trim is self explanatory but it prevents the input from being trimed if you intend to parse newlines or whitespace.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/stripped_multiline_input">stripped_multiline_input</a></th>
+                <td>Used to get a properly sanitized multiline input, of max_length.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/sanitize_old">sanitize_old</a></th>
+                <td>Old variant. Haven't dared to replace in some places.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/dd_hasprefix">dd_hasprefix</a></th>
+                <td>! Text searches</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/dd_hasprefix_case">dd_hasprefix_case</a></th>
+                <td>Checks the beginning of a string for a specified sub-string. This proc is case sensitive.
+Returns the position of the substring or 0 if it was not found.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/dd_hassuffix">dd_hassuffix</a></th>
+                <td>Checks the end of a string for a specified substring.
+Returns the position of the substring or 0 if it was not found.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/dd_hassuffix_case">dd_hassuffix_case</a></th>
+                <td>Checks the end of a string for a specified substring. This proc is case sensitive.
+Returns the position of the substring or 0 if it was not found.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/replace_characters">replace_characters</a></th>
+                <td>! Text modification</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/add_zero">add_zero</a></th>
+                <td>Adds 'u' number of zeros ahead of the text 't'.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/add_lspace">add_lspace</a></th>
+                <td>Adds 'u' number of spaces ahead of the text 't'.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/add_tspace">add_tspace</a></th>
+                <td>Adds 'u' number of spaces behind the text 't'.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/trim_left">trim_left</a></th>
+                <td>Returns a string with reserved characters and spaces before the first letter removed.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/trim_right">trim_right</a></th>
+                <td>Returns a string with reserved characters and spaces after the last letter removed.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/trim">trim</a></th>
+                <td>Returns a string with reserved characters and spaces before the first word and after the last word removed.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/capitalize">capitalize</a></th>
+                <td>Returns a string with the first element of the string capitalized.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/autocorrect">autocorrect</a></th>
+                <td>Syntax is &quot;stringtoreplace&quot;=&quot;stringtoreplacewith&quot;.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/strip_html_properly">strip_html_properly</a></th>
+                <td>This proc strips html properly, remove &lt; &gt; and all text between
+for complete text sanitizing should be used sanitize()</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/stringmerge">stringmerge</a></th>
+                <td>This proc fills in all spaces with the &quot;replace&quot; var (* by default) with whatever
+is in the other string at the same spot (assuming it is not a replace char).
+This is used for fingerprints.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/stringpercent">stringpercent</a></th>
+                <td>This proc returns the number of chars of the string that is the character.
+This is used for detective work to determine fingerprint completion.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/TextPreview">TextPreview</a></th>
+                <td>Used in preferences' SetFlavorText and human's set_flavor verb
+Previews a string of len or less length</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/copytext_preserve_html">copytext_preserve_html</a></th>
+                <td>Alternative copytext() for encoded text, doesn't break html entities (&quot; and other)</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/contains_az09">contains_az09</a></th>
+                <td>Uppercase Characters: A  .. Z
+Lowercase Characters:  a  .. z
+Number Characters: 0  .. 9</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/strip_improper">strip_improper</a></th>
+                <td>Strip out the special beyond characters for \proper and \improper
+from text that will be sent to the browser.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/GenerateKey">GenerateKey</a></th>
+                <td>Random password generator. // Could've just flustered a bottom.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/apply_text_macros">apply_text_macros</a></th>
+                <td>Used for applying byonds text macros to strings that are loaded at runtime.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/readd_quotes">readd_quotes</a></th>
+                <td>Readds quotes and apostrophes to HTML-encoded strings.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/add_leading">add_leading</a></th>
+                <td>Adds 'char' ahead of 'text' until there are 'count' characters total.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/add_trailing">add_trailing</a></th>
+                <td>Adds 'char' behind 'text' until there are 'count' characters total.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/sanitize_css_class_name">sanitize_css_class_name</a></th>
+                <td>Removes all non-alphanumerics from the text, keep in mind this can lead to id conflicts.</td></tr></table></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;weather_holder - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/weather_holder.html#var">Var Details</a> - <a href="datum/weather_holder.html#proc">Proc Details</a></header>
+<main>
+<h1>weather_holder <aside>/<a href="datum.html">datum</a>/<a href="datum/weather_holder.html">weather_holder</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/weather_holder.html#var/allowed_weather_types">allowed_weather_types</a></th><td>Assoc list of weather identifiers, containing the actual weather datum.</td></tr>
+            <tr><th><a href="datum/weather_holder.html#var/current_weather">current_weather</a></th><td>The current weather that is affecting the planet.</td></tr>
+            <tr><th><a href="datum/weather_holder.html#var/forecast">forecast</a></th><td>A list of what the weather will be in the future. This allows it to be pre-determined and planned around.</td></tr>
+            <tr><th><a href="datum/weather_holder.html#var/next_weather_shift">next_weather_shift</a></th><td>world.time when the weather subsystem will advance the forecast.</td></tr>
+            <tr><th><a href="datum/weather_holder.html#var/our_planet">our_planet</a></th><td>Reference to the planet datum that holds this datum.</td></tr>
+            <tr><th><a href="datum/weather_holder.html#var/roundstart_weather_chances">roundstart_weather_chances</a></th><td>Assoc list of weather identifiers and their odds of being picked to happen at roundstart.</td></tr>
+            <tr><th><a href="datum/weather_holder.html#var/temperature">temperature</a></th><td>The temperature to set planetary walls to.</td></tr>
+            <tr><th><a href="datum/weather_holder.html#var/wind_dir">wind_dir</a></th><td>The direction the wind is blowing. Moving against the wind slows you down, while moving with it speeds you up.</td></tr>
+            <tr><th><a href="datum/weather_holder.html#var/wind_speed">wind_speed</a></th><td>How fast or slow a mob can be due to wind acting on them.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/weather_holder.html#proc/build_forecast">build_forecast</a></th><td>Creates a list of future weather shifts, that the planet will undergo at some point in the future.
+Determining it ahead of time allows for attentive players to plan further ahead, if they can see the forecast.</td></tr>
+            <tr><th><a href="datum/weather_holder.html#proc/get_next_weather">get_next_weather</a></th><td>Used to determine what the weather will be soon, in a semi-random fashion.
+The forecast is made by calling this repeatively, from the bottom (highest index) of the forecast list.</td></tr>
+            <tr><th><a href="datum/weather_holder.html#proc/rebuild_forecast">rebuild_forecast</a></th><td>Go to the bottom of the list.
+Get the actual datum and not a string.
+Get a suitable weather pattern to shift to from this one.
+Wipes the forecast and regenerates it.
+Used for when the weather is forcefully changed, such as with admin verbs.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/allowed_weather_types"><aside class="declaration">var </aside>allowed_weather_types
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 13"/></a></h3>
+        <p>Assoc list of weather identifiers, containing the actual weather datum.</p><h3 id="var/current_weather"><aside class="declaration">var </aside>current_weather
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/weather.html">weather</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 5"/></a></h3>
+        <p>The current weather that is affecting the planet.</p><h3 id="var/forecast"><aside class="declaration">var </aside>forecast
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 19"/></a></h3>
+        <p>A list of what the weather will be in the future. This allows it to be pre-determined and planned around.</p><h3 id="var/next_weather_shift"><aside class="declaration">var </aside>next_weather_shift
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 17"/></a></h3>
+        <p>world.time when the weather subsystem will advance the forecast.</p><h3 id="var/our_planet"><aside class="declaration">var </aside>our_planet
+            <aside>&ndash; /<a href="datum.html">datum</a>/planet</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 3"/></a></h3>
+        <p>Reference to the planet datum that holds this datum.</p><h3 id="var/roundstart_weather_chances"><aside class="declaration">var </aside>roundstart_weather_chances
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 15"/></a></h3>
+        <p>Assoc list of weather identifiers and their odds of being picked to happen at roundstart.</p><h3 id="var/temperature"><aside class="declaration">var </aside>temperature
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 7"/></a></h3>
+        <p>The temperature to set planetary walls to.</p><h3 id="var/wind_dir"><aside class="declaration">var </aside>wind_dir
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 9"/></a></h3>
+        <p>The direction the wind is blowing. Moving against the wind slows you down, while moving with it speeds you up.</p><h3 id="var/wind_speed"><aside class="declaration">var </aside>wind_speed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 11"/></a></h3>
+        <p>How fast or slow a mob can be due to wind acting on them.</p><h2 id="proc">Proc Details</h2><h3 id="proc/build_forecast"><aside class="declaration">proc </aside>build_forecast<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 114"/></a></aside>
+        </h3>
+        <p>Creates a list of future weather shifts, that the planet will undergo at some point in the future.
+Determining it ahead of time allows for attentive players to plan further ahead, if they can see the forecast.</p><h3 id="proc/get_next_weather"><aside class="declaration">proc </aside>get_next_weather<aside>(/<a href="datum.html">datum</a>/<a href="datum/weather.html">weather</a>/W) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L94">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 94"/></a></aside>
+        </h3>
+        <p>Used to determine what the weather will be soon, in a semi-random fashion.
+The forecast is made by calling this repeatively, from the bottom (highest index) of the forecast list.</p><h3 id="proc/rebuild_forecast"><aside class="declaration">proc </aside>rebuild_forecast<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L138">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 138"/></a></aside>
+        </h3>
+        <p>Go to the bottom of the list.
+Get the actual datum and not a string.
+Get a suitable weather pattern to shift to from this one.
+Wipes the forecast and regenerates it.
+Used for when the weather is forcefully changed, such as with admin verbs.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

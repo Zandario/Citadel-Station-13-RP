@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;perspective - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/perspective.html#var">Var Details</a> - <a href="datum/perspective.html#proc">Proc Details</a></header>
+<main>
+<h1>perspective <aside>/<a href="datum.html">datum</a>/<a href="datum/perspective.html">perspective</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 50"/></a></h1>
+
+<p>MOB PERRSPECTIVE SYSTEM</p>
+<p>allows managed control of client viewport/eye changes</p>
+<p>!  - - - ATTENTION - - -
+! These datums will modify mob variables.
+! This can result in AI mobs having inconsistent sight/whatevers
+! from what they'd usually have after a player enters, and
+! leaves them.
+! Mob reset_perspective() should handle most of these cases, but be wary.</p>
+<p>! - - - ATTENTION - - -
+! View sizes should only be for clients.
+! Do not read off this for stuff like AI view/target tracking.</p>
+<p>? - - - ATTENTION - - -
+? We track MAXIMUM view sizes.
+? Client can resize up/down as needed.
+? If you want to force a client to a specific size,
+? regardless of their widescreen setting,
+? use client.set_temporary_view.
+? Augmented view will also ignore client prefs on widescreen, <em>kinda.</em></p>
+<p>as of right now, perspectives will <strong>trample</strong> the following on every set:
+client.eye
+client.lazy_eye (unimplemented)
+client.virtual_eye (unimplemented)
+client.perspective
+client.view
+mob.see_in_dark
+mob.see_invisible
+mob.sight</p>
+<p>these will be added/removed using synchronized access,
+and therefore existing values will be left alone,
+as long as existing values are not also in the perspective:
+client.screen
+client.images</p>
+<p>this is intentional - most of mobcode uses their own screen/image synchronization code.
+perspectives will never be able to replace that without ruining a lot of lazy-load
+behavior. instead, perspective is focused on allowing using it to manage generic
+synchronization of screen/images, rather than forcing the rest of the codebase to use it.</p>
+<p>however, perspectives are designed to force synchronization of the vars it does trample,
+because there's no better way to do it (because those vars are, semantically, only relevant to our perspective),
+while screen/images can be used for embedded maps/hud/etc.
+view size</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/perspective.html#var/augment_view_height">augment_view_height</a></th><td>view size increase y</td></tr>
+            <tr><th><a href="datum/perspective.html#var/augment_view_width">augment_view_width</a></th><td>view size increase x</td></tr>
+            <tr><th><a href="datum/perspective.html#var/cached_view_height">cached_view_height</a></th><td>cached view y</td></tr>
+            <tr><th><a href="datum/perspective.html#var/cached_view_width">cached_view_width</a></th><td>cached view x</td></tr>
+            <tr><th><a href="datum/perspective.html#var/clients">clients</a></th><td>active clients - this is not the same as mobs because a client can be looking somewhere that isn't their mob</td></tr>
+            <tr><th><a href="datum/perspective.html#var/default_view_size">default_view_size</a></th><td>default view; if null, world.view</td></tr>
+            <tr><th><a href="datum/perspective.html#var/eye">eye</a></th><td>eye - where visual calcs go from</td></tr>
+            <tr><th><a href="datum/perspective.html#var/images">images</a></th><td>images</td></tr>
+            <tr><th><a href="datum/perspective.html#var/mobs">mobs</a></th><td>mobs that are using this - required for clean gcs</td></tr>
+            <tr><th><a href="datum/perspective.html#var/perspective">perspective</a></th><td>client perspective var</td></tr>
+            <tr><th><a href="datum/perspective.html#var/reset_on_logout">reset_on_logout</a></th><td>when a client logs out of a mob, and it's using us, the mob should reset to its self_perspective</td></tr>
+            <tr><th><a href="datum/perspective.html#var/screens">screens</a></th><td>screen objects</td></tr>
+            <tr><th><a href="datum/perspective.html#var/see_in_dark">see_in_dark</a></th><td>see in dark</td></tr>
+            <tr><th><a href="datum/perspective.html#var/see_invisible">see_invisible</a></th><td>see_invisible</td></tr>
+            <tr><th><a href="datum/perspective.html#var/sight">sight</a></th><td>sight var</td></tr>
+            <tr><th><a href="datum/perspective.html#var/view_dirty">view_dirty</a></th><td>view cache needs recompute</td></tr>
+            <tr><th><a href="datum/perspective.html#var/view_suppression">view_suppression</a></th><td>suppression sources</td></tr>
+            <tr><th><a href="datum/perspective.html#var/virtual_eye">virtual_eye</a></th><td>virtual eye - the center of the map display</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/perspective.html#proc/AddClient">AddClient</a></th><td>ONLY CALL FROM CLIENT.SET_PERSPECTIVE
+I DO NOT TRUST PEOPLE TO NOT SCREW THIS UP</td></tr>
+            <tr><th><a href="datum/perspective.html#proc/AddImage">AddImage</a></th><td>works with lists too</td></tr>
+            <tr><th><a href="datum/perspective.html#proc/AddMob">AddMob</a></th><td>registers as a mob's current perspective
+sets mob vars as necessary</td></tr>
+            <tr><th><a href="datum/perspective.html#proc/AddScreen">AddScreen</a></th><td>works with lists too</td></tr>
+            <tr><th><a href="datum/perspective.html#proc/Apply">Apply</a></th><td>applys screen objs, etc, stuff that shouldn't be updated regularly</td></tr>
+            <tr><th><a href="datum/perspective.html#proc/ClearMobs">ClearMobs</a></th><td>kicks all obs off of us</td></tr>
+            <tr><th><a href="datum/perspective.html#proc/GetClients">GetClients</a></th><td>gets all clients viewing us</td></tr>
+            <tr><th><a href="datum/perspective.html#proc/GetEyeMode">GetEyeMode</a></th><td>get perspective var for a client</td></tr>
+            <tr><th><a href="datum/perspective.html#proc/KickAll">KickAll</a></th><td>kicks all clients off us</td></tr>
+            <tr><th><a href="datum/perspective.html#proc/RemoveClient">RemoveClient</a></th><td>ONLY CALL FROM CLIENT.SET_PERSPECTIVE
+I DO NOT TRUST PEOPLE TO NOT SCREW THIS UP</td></tr>
+            <tr><th><a href="datum/perspective.html#proc/RemoveImage">RemoveImage</a></th><td>works with lists too</td></tr>
+            <tr><th><a href="datum/perspective.html#proc/RemoveMob">RemoveMob</a></th><td>unregisters as a mob's current perspective
+resets mob vars to initial() values</td></tr>
+            <tr><th><a href="datum/perspective.html#proc/RemoveScreen">RemoveScreen</a></th><td>works with lists too</td></tr>
+            <tr><th><a href="datum/perspective.html#proc/Update">Update</a></th><td>updates eye, perspective var, virtual eye, lazy eye, sight, see in dark, see invis</td></tr>
+            <tr><th><a href="datum/perspective.html#proc/UpdateAll">UpdateAll</a></th><td>update all viewers</td></tr>
+            <tr><th><a href="datum/perspective.html#proc/set_augmented_view">set_augmented_view</a></th><td>Sets augmented size ontop of default size.</td></tr>
+            <tr><th><a href="datum/perspective.html#proc/set_default_view">set_default_view</a></th><td>Sets our default size.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/augment_view_height"><aside class="declaration">var </aside>augment_view_height
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 80"/></a></h3>
+        <p>view size increase y</p><h3 id="var/augment_view_width"><aside class="declaration">var </aside>augment_view_width
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 78"/></a></h3>
+        <p>view size increase x</p><h3 id="var/cached_view_height"><aside class="declaration">var </aside>cached_view_height
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L86">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 86"/></a></h3>
+        <p>cached view y</p><h3 id="var/cached_view_width"><aside class="declaration">var </aside>cached_view_width
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 84"/></a></h3>
+        <p>cached view x</p><h3 id="var/clients"><aside class="declaration">var </aside>clients
+            <aside>&ndash; /list/client</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 64"/></a></h3>
+        <p>active clients - this is not the same as mobs because a client can be looking somewhere that isn't their mob</p><h3 id="var/default_view_size"><aside class="declaration">var </aside>default_view_size
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 76"/></a></h3>
+        <p>default view; if null, world.view</p><h3 id="var/eye"><aside class="declaration">var </aside>eye
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 52"/></a></h3>
+        <p>eye - where visual calcs go from</p><h3 id="var/images"><aside class="declaration">var </aside>images
+            <aside>&ndash; /list/image</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 58"/></a></h3>
+        <p>images</p><h3 id="var/mobs"><aside class="declaration">var </aside>mobs
+            <aside>&ndash; /list/mob</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 66"/></a></h3>
+        <p>mobs that are using this - required for clean gcs</p><h3 id="var/perspective"><aside class="declaration">var </aside>perspective
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 56"/></a></h3>
+        <p>client perspective var</p><h3 id="var/reset_on_logout"><aside class="declaration">var </aside>reset_on_logout
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 68"/></a></h3>
+        <p>when a client logs out of a mob, and it's using us, the mob should reset to its self_perspective</p><h3 id="var/screens"><aside class="declaration">var </aside>screens
+            <aside>&ndash; /list/atom/movable</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 60"/></a></h3>
+        <p>screen objects</p><h3 id="var/see_in_dark"><aside class="declaration">var </aside>see_in_dark
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 70"/></a></h3>
+        <p>see in dark</p><h3 id="var/see_invisible"><aside class="declaration">var </aside>see_invisible
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 72"/></a></h3>
+        <p>see_invisible</p><h3 id="var/sight"><aside class="declaration">var </aside>sight
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 62"/></a></h3>
+        <p>sight var</p><h3 id="var/view_dirty"><aside class="declaration">var </aside>view_dirty
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 88"/></a></h3>
+        <p>view cache needs recompute</p><h3 id="var/view_suppression"><aside class="declaration">var </aside>view_suppression
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 82"/></a></h3>
+        <p>suppression sources</p><h3 id="var/virtual_eye"><aside class="declaration">var </aside>virtual_eye
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 54"/></a></h3>
+        <p>virtual eye - the center of the map display</p><h2 id="proc">Proc Details</h2><h3 id="proc/AddClient"><aside class="declaration">proc </aside>AddClient<aside>(/<a href="client.html">client</a>/C) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 102"/></a></aside>
+        </h3>
+        <p>ONLY CALL FROM CLIENT.SET_PERSPECTIVE
+I DO NOT TRUST PEOPLE TO NOT SCREW THIS UP</p><h3 id="proc/AddImage"><aside class="declaration">proc </aside>AddImage<aside>(/image/I) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L240">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 240"/></a></aside>
+        </h3>
+        <p>works with lists too</p><h3 id="proc/AddMob"><aside class="declaration">proc </aside>AddMob<aside>(/<a href="mob.html">mob</a>/M) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L156">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 156"/></a></aside>
+        </h3>
+        <p>registers as a mob's current perspective
+sets mob vars as necessary</p><h3 id="proc/AddScreen"><aside class="declaration">proc </aside>AddScreen<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/AM) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L261">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 261"/></a></aside>
+        </h3>
+        <p>works with lists too</p><h3 id="proc/Apply"><aside class="declaration">proc </aside>Apply<aside>(/<a href="client.html">client</a>/C) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L190">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 190"/></a></aside>
+        </h3>
+        <p>applys screen objs, etc, stuff that shouldn't be updated regularly</p><h3 id="proc/ClearMobs"><aside class="declaration">proc </aside>ClearMobs<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L148">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 148"/></a></aside>
+        </h3>
+        <p>kicks all obs off of us</p><h3 id="proc/GetClients"><aside class="declaration">proc </aside>GetClients<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L135">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 135"/></a></aside>
+        </h3>
+        <p>gets all clients viewing us</p><h3 id="proc/GetEyeMode"><aside class="declaration">proc </aside>GetEyeMode<aside>(/<a href="client.html">client</a>/C) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L206">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 206"/></a></aside>
+        </h3>
+        <p>get perspective var for a client</p><h3 id="proc/KickAll"><aside class="declaration">proc </aside>KickAll<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L141">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 141"/></a></aside>
+        </h3>
+        <p>kicks all clients off us</p><h3 id="proc/RemoveClient"><aside class="declaration">proc </aside>RemoveClient<aside>(/<a href="client.html">client</a>/C, switching) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 116"/></a></aside>
+        </h3>
+        <p>ONLY CALL FROM CLIENT.SET_PERSPECTIVE
+I DO NOT TRUST PEOPLE TO NOT SCREW THIS UP</p><h3 id="proc/RemoveImage"><aside class="declaration">proc </aside>RemoveImage<aside>(/image/I) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L251">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 251"/></a></aside>
+        </h3>
+        <p>works with lists too</p><h3 id="proc/RemoveMob"><aside class="declaration">proc </aside>RemoveMob<aside>(/<a href="mob.html">mob</a>/M, switching) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L173">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 173"/></a></aside>
+        </h3>
+        <p>unregisters as a mob's current perspective
+resets mob vars to initial() values</p><h3 id="proc/RemoveScreen"><aside class="declaration">proc </aside>RemoveScreen<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/AM) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L272">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 272"/></a></aside>
+        </h3>
+        <p>works with lists too</p><h3 id="proc/Update"><aside class="declaration">proc </aside>Update<aside>(/<a href="client.html">client</a>/C) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L216">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 216"/></a></aside>
+        </h3>
+        <p>updates eye, perspective var, virtual eye, lazy eye, sight, see in dark, see invis</p><h3 id="proc/UpdateAll"><aside class="declaration">proc </aside>UpdateAll<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L233">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 233"/></a></aside>
+        </h3>
+        <p>update all viewers</p><h3 id="proc/set_augmented_view"><aside class="declaration">proc </aside>set_augmented_view<aside>(width, height) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L367">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 367"/></a></aside>
+        </h3>
+        <p>Sets augmented size ontop of default size.</p>
+<p>Currently only supports positive numbers. Numbers apply equally
+to both directions of a dimension.</p><h3 id="proc/set_default_view"><aside class="declaration">proc </aside>set_default_view<aside>(size) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/perspective.dm#L343">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perspective.dm 343"/></a></aside>
+        </h3>
+        <p>Sets our default size.</p>
+<p>DO NOT use this in place of augmented.
+User widescreen preferences WILL override this!</p>
+<p>Ideally this shouldn't be used at all.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

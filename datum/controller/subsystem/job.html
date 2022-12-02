@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;job - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/job.html#var">Var Details</a> - <a href="datum/controller/subsystem/job.html#proc">Proc Details</a></header>
+<main>
+<h1>job <aside>/<a href="datum.html">datum</a>/<a href="datum/controller.html">controller</a>/<a href="datum/controller/subsystem.html">subsystem</a>/<a href="datum/controller/subsystem/job.html">job</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/_job.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;_job.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#var/custom_spawnpoints">custom_spawnpoints</a></th><td>Custom spawnpoints, nested list key = list()</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#var/divide_overflows">divide_overflows</a></th><td>cached list of job overflow preferences by the player</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#var/divide_priorities">divide_priorities</a></th><td>cached list of job priorities by the player</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#var/divide_unassigned">divide_unassigned</a></th><td>players who need jobs</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#var/job_lookup">job_lookup</a></th><td>jobs by id</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#var/job_pref_ui_cache">job_pref_ui_cache</a></th><td>job preferences ui cache - cache[faction string][department name] = list(job ids)</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#var/job_pref_ui_per">job_pref_ui_per</a></th><td>jobs per column</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#var/job_spawnpoints">job_spawnpoints</a></th><td>Job spawnpoints keyed to job id/typepath</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#var/latejoin_spawnpoints">latejoin_spawnpoints</a></th><td>Generic latejoin spawnpoints, nested list faction = list()</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#var/name_occupations">name_occupations</a></th><td>Dict of all jobs, keys are titles</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#var/occupations">occupations</a></th><td>List of all jobs</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#var/overflow_spawnpoints">overflow_spawnpoints</a></th><td>Generic overflow spawnpoints, nested list faction = list()</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#var/spawnpoints">spawnpoints</a></th><td>All spawnpoints</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#var/type_occupations">type_occupations</a></th><td>Dict of all jobs, keys are types</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#proc/CheckHeadPositions">CheckHeadPositions</a></th><td>This proc is called at the start of the level loop of DivideOccupations() and will cause
+head jobs to be checked before any other jobs of the same level.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#proc/DivideOccupations">DivideOccupations</a></th><td></td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#proc/EquipRank">EquipRank</a></th><td>gather for speed</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#proc/FillHeadPosition">FillHeadPosition</a></th><td>This proc is called before the level loop of DivideOccupations() and will try to select a head,
+ignoring ALL non-head preferences for every level until it locates a head or runs out of levels to check.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#proc/FreeRole">FreeRole</a></th><td>Making additional slot on the fly.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#proc/get_all_spawnpoints">get_all_spawnpoints</a></th><td>Get all spawnpoint landmarks</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#proc/get_custom_spawnpoint">get_custom_spawnpoint</a></th><td>Gets a valid custom spawnpoint to use by key</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#proc/get_latejoin_spawnpoint">get_latejoin_spawnpoint</a></th><td>Gets a spawnpoint to use for a latejoin spawn
+Note that there's no mob argument, since latejoin won't make the mob until there's a free spawnpoint</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#proc/get_roundstart_spawnpoint">get_roundstart_spawnpoint</a></th><td>Gets a valid spawnpoint to use for a roundstart spawn</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#proc/possible_latejoin_spawnpoints">possible_latejoin_spawnpoints</a></th><td>Gets a list of possible join methods</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#proc/reconstruct_spawnpoints">reconstruct_spawnpoints</a></th><td>Fully resets spawnpoints list and ensures validity</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/custom_spawnpoints"><aside class="declaration">var </aside>custom_spawnpoints
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/spawnpoints.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;spawnpoints.dm 11"/></a></h3>
+        <p>Custom spawnpoints, nested list key = list()</p><h3 id="var/divide_overflows"><aside class="declaration">var </aside>divide_overflows
+            <aside>&ndash; /list/mob/new_player</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/roundstart.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;roundstart.dm 9"/></a></h3>
+        <p>cached list of job overflow preferences by the player</p><h3 id="var/divide_priorities"><aside class="declaration">var </aside>divide_priorities
+            <aside>&ndash; /list/mob/new_player</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/roundstart.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;roundstart.dm 5"/></a></h3>
+        <p>cached list of job priorities by the player</p><h3 id="var/divide_unassigned"><aside class="declaration">var </aside>divide_unassigned
+            <aside>&ndash; /list/mob/new_player</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/roundstart.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;roundstart.dm 3"/></a></h3>
+        <p>players who need jobs</p><h3 id="var/job_lookup"><aside class="declaration">var </aside>job_lookup
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/_job.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;_job.dm 13"/></a></h3>
+        <p>jobs by id</p><h3 id="var/job_pref_ui_cache"><aside class="declaration">var </aside>job_pref_ui_cache
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/_job.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;_job.dm 15"/></a></h3>
+        <p>job preferences ui cache - cache[faction string][department name] = list(job ids)</p><h3 id="var/job_pref_ui_per"><aside class="declaration">var </aside>job_pref_ui_per
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/_job.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;_job.dm 17"/></a></h3>
+        <p>jobs per column</p><h3 id="var/job_spawnpoints"><aside class="declaration">var </aside>job_spawnpoints
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/spawnpoints.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;spawnpoints.dm 5"/></a></h3>
+        <p>Job spawnpoints keyed to job id/typepath</p><h3 id="var/latejoin_spawnpoints"><aside class="declaration">var </aside>latejoin_spawnpoints
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/spawnpoints.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;spawnpoints.dm 7"/></a></h3>
+        <p>Generic latejoin spawnpoints, nested list faction = list()</p><h3 id="var/name_occupations"><aside class="declaration">var </aside>name_occupations
+            <aside>&ndash; /list/datum/job</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/_job.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;_job.dm 9"/></a></h3>
+        <p>Dict of all jobs, keys are titles</p><h3 id="var/occupations"><aside class="declaration">var </aside>occupations
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/_job.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;_job.dm 7"/></a></h3>
+        <p>List of all jobs</p><h3 id="var/overflow_spawnpoints"><aside class="declaration">var </aside>overflow_spawnpoints
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/spawnpoints.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;spawnpoints.dm 9"/></a></h3>
+        <p>Generic overflow spawnpoints, nested list faction = list()</p><h3 id="var/spawnpoints"><aside class="declaration">var </aside>spawnpoints
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/spawnpoints.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;spawnpoints.dm 3"/></a></h3>
+        <p>All spawnpoints</p><h3 id="var/type_occupations"><aside class="declaration">var </aside>type_occupations
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/_job.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;_job.dm 11"/></a></h3>
+        <p>Dict of all jobs, keys are types</p><h2 id="proc">Proc Details</h2><h3 id="proc/CheckHeadPositions"><aside class="declaration">proc </aside>CheckHeadPositions<aside>(level) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/_legacy_job_stuff.dm#L122">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;_legacy_job_stuff.dm 122"/></a></aside>
+        </h3>
+        <p>This proc is called at the start of the level loop of DivideOccupations() and will cause
+head jobs to be checked before any other jobs of the same level.</p><h3 id="proc/DivideOccupations"><aside class="declaration">proc </aside>DivideOccupations<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/_legacy_job_stuff.dm#L139">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;_legacy_job_stuff.dm 139"/></a></aside>
+        </h3>
+        <ul>
+<li>Proc DivideOccupations</li>
+<li>fills var &quot;assigned_role&quot; for all ready players.</li>
+<li>This proc must not have any side effect besides of modifying &quot;assigned_role&quot;.</li>
+</ul><h3 id="proc/EquipRank"><aside class="declaration">proc </aside>EquipRank<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H, rank, joined_late) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/_legacy_job_stuff.dm#L239">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;_legacy_job_stuff.dm 239"/></a></aside>
+        </h3>
+        <p>gather for speed</p><h3 id="proc/FillHeadPosition"><aside class="declaration">proc </aside>FillHeadPosition<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/_legacy_job_stuff.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;_legacy_job_stuff.dm 75"/></a></aside>
+        </h3>
+        <p>This proc is called before the level loop of DivideOccupations() and will try to select a head,
+ignoring ALL non-head preferences for every level until it locates a head or runs out of levels to check.</p><h3 id="proc/FreeRole"><aside class="declaration">proc </aside>FreeRole<aside>(rank) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/_legacy_job_stuff.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;_legacy_job_stuff.dm 36"/></a></aside>
+        </h3>
+        <p>Making additional slot on the fly.</p><h3 id="proc/get_all_spawnpoints"><aside class="declaration">proc </aside>get_all_spawnpoints<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/spawnpoints.dm#L208">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;spawnpoints.dm 208"/></a></aside>
+        </h3>
+        <p>Get all spawnpoint landmarks</p><h3 id="proc/get_custom_spawnpoint"><aside class="declaration">proc </aside>get_custom_spawnpoint<aside>(/<a href="mob.html">mob</a>/M, /<a href="client.html">client</a>/C, key) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/spawnpoints.dm#L197">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;spawnpoints.dm 197"/></a></aside>
+        </h3>
+        <p>Gets a valid custom spawnpoint to use by key</p>
+<p>@params</p>
+<ul>
+<li>M - (optional) mob being spawned</li>
+<li>C - (optional) client of player</li>
+<li>key - spawnpoint key to look for</li>
+</ul><h3 id="proc/get_latejoin_spawnpoint"><aside class="declaration">proc </aside>get_latejoin_spawnpoint<aside>(/<a href="client.html">client</a>/C, job_path, faction, method, random, harder) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/spawnpoints.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;spawnpoints.dm 102"/></a></aside>
+        </h3>
+        <p>Gets a spawnpoint to use for a latejoin spawn
+Note that there's no mob argument, since latejoin won't make the mob until there's a free spawnpoint</p>
+<p>This is not a random pick, this is first priority-availability first server and fully deterministic.</p>
+<p>@params</p>
+<ul>
+<li>C - (optional) the client of the player</li>
+<li>job_path - (optional) path to job</li>
+<li>faction - what faction the player is in terms of job factions</li>
+<li>method - (optional) required method for the spawnpoint - this will make the proc return null instead of an overflow, if it can't find something for the method.</li>
+<li>random - deterministic first pick or random?</li>
+<li>harder - used when the first iteration failed, tells spawnpoints to skip certain checks</li>
+</ul><h3 id="proc/get_roundstart_spawnpoint"><aside class="declaration">proc </aside>get_roundstart_spawnpoint<aside>(/<a href="mob.html">mob</a>/M, /<a href="client.html">client</a>/C, job_path, faction, random, harder) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/spawnpoints.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;spawnpoints.dm 54"/></a></aside>
+        </h3>
+        <p>Gets a valid spawnpoint to use for a roundstart spawn</p>
+<p>@params</p>
+<ul>
+<li>M - the mob being spawned</li>
+<li>C - (optional) the client of the player</li>
+<li>job_path - (optional) path to job</li>
+<li>faction - what faction the player is in terms of job factions</li>
+<li>random - deterministic first pick or random?</li>
+<li>harder - used when the first iteration failed, tells spawnpoints to skip certain checks</li>
+</ul><h3 id="proc/possible_latejoin_spawnpoints"><aside class="declaration">proc </aside>possible_latejoin_spawnpoints<aside>(/<a href="client.html">client</a>/C, job_path, faction) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/spawnpoints.dm#L165">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;spawnpoints.dm 165"/></a></aside>
+        </h3>
+        <p>Gets a list of possible join methods</p>
+<p>If latejoining and a job-specific spawnpoint has latejoin override, only that method will be returned</p>
+<p>The &quot;harder&quot; argument is automatically set to TRUE here, as we're checking for all possibilities.</p>
+<p>@params</p>
+<ul>
+<li>C - (optional) the client of the player</li>
+<li>job_path - (optional) path to job</li>
+<li>faction - what faction the player is in terms of job factions</li>
+</ul><h3 id="proc/reconstruct_spawnpoints"><aside class="declaration">proc </aside>reconstruct_spawnpoints<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/job/spawnpoints.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;job&#x2F;spawnpoints.dm 16"/></a></aside>
+        </h3>
+        <p>Fully resets spawnpoints list and ensures validity</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

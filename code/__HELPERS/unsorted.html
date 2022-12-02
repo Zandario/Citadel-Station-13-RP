@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__HELPERS&#x2F;unsorted.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__HELPERS/unsorted.html#define">Define Details</a></header>
+<main>
+<h1>code/__HELPERS/unsorted.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/unsorted.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;unsorted.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__HELPERS/unsorted.html#define/BIT_TEST_ALL">BIT_TEST_ALL</a></th><td>! A large number of misc global procs.
+Checks if all high bits in req_mask are set in bitfield.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/invertHTML">invertHTML</a></th>
+                <td>Inverts the colour of an HTML string.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/Get_Angle">Get_Angle</a></th>
+                <td>Calculate the angle between two points and the west|east coordinate.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/get_teleport_loc">get_teleport_loc</a></th>
+                <td>Returns location.  Returns null if no location was found.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/LinkBlocked">LinkBlocked</a></th>
+                <td>This will draw a block around the target turf, given what the error is.
+Specifying the values above will basically draw a different sort of block.
+If the values are the same, it will be a square. If they are different, it will be a rectengle.
+In either case, it will center based on offset. Offset is position from center.
+Offset always calculates in relation to direction faced. In other words, depending on the direction of the teleport,
+the offset should remain positioned in relation to destination.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/getline">getline</a></th>
+                <td>Ultra-Fast Bresenham Line-Drawing Algorithm.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/getcircle">getcircle</a></th>
+                <td>Starting x coordinate.
+Starting y coordinate.
+X distance.
+Y distance.
+Absolute value of x distance.
+Absolute value of y distance.
+Sign of x distance (+ or -).
+Sign of y distance (+ or -).
+Counters for steps taken, setting to distance/2.
+Bit-shifting makes me l33t.  It also makes getline() unnessecarrily fast.
+Generic integer for counting.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/IsGuestKey">IsGuestKey</a></th>
+                <td>Returns whether or not a player is a guest using their ckey as an input.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/sanitize_frequency">sanitize_frequency</a></th>
+                <td>Ensure the frequency is within bounds of what it should be sending/recieving at.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/format_frequency">format_frequency</a></th>
+                <td>Turns 1479 into 147.9.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/unformat_frequency">unformat_frequency</a></th>
+                <td>Opposite of format, returns as a number.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/ionnum">ionnum</a></th>
+                <td>Picks a string of symbols to display as the law number for hacked or ion laws.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/freeborg">freeborg</a></th>
+                <td>When an AI is activated, it can choose from a list of non-slaved borgs to have as a slave.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/active_ais">active_ais</a></th>
+                <td>When a borg is activated, it can choose which AI it wants to be slaved to.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/select_active_ai_with_fewest_borgs">select_active_ai_with_fewest_borgs</a></th>
+                <td>Find an active ai with the least borgs. VERBOSE PROCNAME HUH!</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/getmobs">getmobs</a></th>
+                <td>Returns a list of all mobs with their name.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/sortmobs">sortmobs</a></th>
+                <td>Orders mobs by type then by name.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/modulus">modulus</a></th>
+                <td>Forces a variable to be positive.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/get_edge_target_turf">get_edge_target_turf</a></th>
+                <td>Returns the turf located at the map edge in the specified direction relative to A.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/get_ranged_target_turf">get_ranged_target_turf</a></th>
+                <td>returns turf relative to A in given direction at set range
+result is bounded to map size
+note range is non-pythagorean</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/get_offset_target_turf">get_offset_target_turf</a></th>
+                <td>Returns turf relative to A offset in dx and dy tiles.
+Bound to map limits.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/between">between</a></th>
+                <td>Makes sure MIDDLE is between LOW and HIGH. If not, it adjusts it. Returns the adjusted value.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/GaussRand">GaussRand</a></th>
+                <td>Returns random gauss number.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/GaussRandRound">GaussRandRound</a></th>
+                <td>Returns random gauss number, rounded to 'roundto'.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/can_see">can_see</a></th>
+                <td>Step-towards method of determining whether one atom can see another. Similar to viewers()</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/hasvar">hasvar</a></th>
+                <td>Takes: Anything that could possibly have variables and a varname to check.
+Returns: 1 if found, 0 if not.</td></tr>
+        <tr><th>/<a href="datum.html">datum</a>/coords</th><td>Simple datum for storing coordinates.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/anyprob">anyprob</a></th>
+                <td>Chances are 1:value. anyprob(1) will always return true.</td></tr>
+        <tr><th>/var/<a href="global.html#var/common_tools">common_tools</a></th>
+                <td>Quick type checks for some tools.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/is_sharp">is_sharp</a></th>
+                <td>Whether or not the given item counts as sharp in terms of dealing damage.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/has_edge">has_edge</a></th>
+                <td>Whether or not the given item counts as cutting with an edge in terms of removing limbs.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/can_puncture">can_puncture</a></th>
+                <td>Returns 1 if the given item is capable of popping things like balloons, inflatable barriers, or cutting police tape.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/can_operate">can_operate</a></th>
+                <td>check if mob is lying down on something we can operate him on.
+The RNG with table/rollerbeds comes into play in do_surgery() so that fail_step() can be used instead.</td></tr>
+        <tr><th>/var/<a href="global.html#var/WALLITEMS">WALLITEMS</a></th>
+                <td>Checks if that loc and dir has a item on the wall
+TODO - Fix this ancient list of wall items. Preferably make it dynamically populated. ~Leshana</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/dview">dview</a></th>
+                <td>Version of view() which ignores darkness, because BYOND doesn't have it (I actually suggested it but it was tagged redundant, BUT HEARERS IS A T- /rant).</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/crash_with">crash_with</a></th>
+                <td>Call to generate a stack trace and print to runtime logs.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/format_SI">format_SI</a></th>
+                <td>Displays something as commonly used (non-submultiples) SI units.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/urange">urange</a></th>
+                <td>Ultra range (no limitations on distance, faster than range for distances &gt; 8); including areas drastically decreases performance.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/spiral_range">spiral_range</a></th>
+                <td>Similar function to range(), but with no limitations on the distance; will search spiralling outwards from the center.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/spiral_range_turfs">spiral_range_turfs</a></th>
+                <td>Similar function to RANGE_TURFS(), but will search spiralling outwards from the center (like the above, but only turfs).</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/get_adir">get_adir</a></th>
+                <td>Returns direction-string, rounded to multiples of 22.5, from the first parameter to the second
+N, NNE, NE, ENE, E, ESE, SE, SSE, S, SSW, SW, WSW, W, WNW, NW, NNW</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/get_holder_at_turf_level">get_holder_at_turf_level</a></th>
+                <td>get_holder_at_turf_level(): Similar to get_turf(), will return the &quot;highest up&quot; holder of this atom, excluding the turf.
+Example: A fork inside a box inside a locker will return the locker. Essentially, get_just_before_turf().</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/admin_chat_message">admin_chat_message</a></th>
+                <td>Sender is optional</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/get_tgui_plane_masters">get_tgui_plane_masters</a></th>
+                <td>This is a helper for anything that wants to render the map in TGUI.
+'Utility' planes
+Real tangible stuff planes
+Random other plane masters from Virgo</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/BIT_TEST_ALL"><aside class="declaration">#define </aside>BIT_TEST_ALL
+            <aside>(bitfield, req_mask)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/unsorted.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;unsorted.dm 7"/></a>
+    </h3>
+    <p>! A large number of misc global procs.
+Checks if all high bits in req_mask are set in bitfield.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

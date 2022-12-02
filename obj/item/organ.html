@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;organ - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/organ.html#var">Var Details</a> - <a href="obj/item/organ.html#proc">Proc Details</a></header>
+<main>
+<h1>organ <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/organ.html">organ</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/_organ_defines.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;_organ_defines.dm 3"/></a></h1>
+
+<h2 id="strings-vars">STRINGS VARS</h2>
+<p>STATUS VARS
+##REFERENCE VARS</p>
+<h2 id="damage-vars">DAMAGE VARS</h2><h2 id="language-vars-for-organs-that-assist-with-certain-languages">LANGUAGE VARS - For organs that assist with certain languages.</h2><h2 id="verb-vars">VERB VARS</h2><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/organ.html#var/autopsy_data">autopsy_data</a></th><td>Trauma data for forensics.</td></tr>
+            <tr><th><a href="obj/item/organ.html#var/butcherable">butcherable</a></th><td>Can we butcher this organ.</td></tr>
+            <tr><th><a href="obj/item/organ.html#var/can_reject">can_reject</a></th><td>Can this organ reject?</td></tr>
+            <tr><th><a href="obj/item/organ.html#var/damage">damage</a></th><td>Current damage to the organ</td></tr>
+            <tr><th><a href="obj/item/organ.html#var/decay_rate">decay_rate</a></th><td>decay rate</td></tr>
+            <tr><th><a href="obj/item/organ.html#var/decays">decays</a></th><td>Can this organ decay at all?</td></tr>
+            <tr><th><a href="obj/item/organ.html#var/dna">dna</a></th><td>Original DNA.</td></tr>
+            <tr><th><a href="obj/item/organ.html#var/forgiving_class">forgiving_class</a></th><td>Will the organ give its verbs when it isn't a perfect match? I.E., assisted in organic, synthetic in organic.</td></tr>
+            <tr><th><a href="obj/item/organ.html#var/max_damage">max_damage</a></th><td>Damage cap</td></tr>
+            <tr><th><a href="obj/item/organ.html#var/meat_type">meat_type</a></th><td>What does butchering, if possible, make?</td></tr>
+            <tr><th><a href="obj/item/organ.html#var/min_broken_damage">min_broken_damage</a></th><td>Damage before becoming broken</td></tr>
+            <tr><th><a href="obj/item/organ.html#var/min_bruised_damage">min_bruised_damage</a></th><td>Damage before considered bruised</td></tr>
+            <tr><th><a href="obj/item/organ.html#var/organ_tag">organ_tag</a></th><td>Unique identifier.</td></tr>
+            <tr><th><a href="obj/item/organ.html#var/organ_verbs">organ_verbs</a></th><td>Verbs added by the organ when present in the body.</td></tr>
+            <tr><th><a href="obj/item/organ.html#var/owner">owner</a></th><td>Current mob owning the organ.</td></tr>
+            <tr><th><a href="obj/item/organ.html#var/parent_organ">parent_organ</a></th><td>The organ holding this object.</td></tr>
+            <tr><th><a href="obj/item/organ.html#var/rejecting">rejecting</a></th><td>Is this organ already being rejected?</td></tr>
+            <tr><th><a href="obj/item/organ.html#var/robotic">robotic</a></th><td>What kind of robotic organ, if valid.</td></tr>
+            <tr><th><a href="obj/item/organ.html#var/species">species</a></th><td>Original species.</td></tr>
+            <tr><th><a href="obj/item/organ.html#var/stapled_nerves">stapled_nerves</a></th><td>If true, this organ can't feel pain.</td></tr>
+            <tr><th><a href="obj/item/organ.html#var/status">status</a></th><td>Various status flags</td></tr>
+            <tr><th><a href="obj/item/organ.html#var/target_parent_classes">target_parent_classes</a></th><td>Is the parent supposed to be organic, robotic, assisted?</td></tr>
+            <tr><th><a href="obj/item/organ.html#var/trace_chemicals">trace_chemicals</a></th><td>Traces of chemicals in the organ.</td></tr>
+            <tr><th><a href="obj/item/organ.html#var/transplant_data">transplant_data</a></th><td>Transplant match data.</td></tr>
+            <tr><th><a href="obj/item/organ.html#var/vital">vital</a></th><td>Lose a vital limb, die immediately.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/organ.html#proc/add_autopsy_data">add_autopsy_data</a></th><td>Adds autopsy data for used_weapon.</td></tr>
+            <tr><th><a href="obj/item/organ.html#proc/can_decay">can_decay</a></th><td>can we decay?</td></tr>
+            <tr><th><a href="obj/item/organ.html#proc/check_verb_compatability">check_verb_compatability</a></th><td>Used for determining if an organ should give or remove its verbs. I.E., FBP part in a human, no verbs. If true, keep or add.</td></tr>
+            <tr><th><a href="obj/item/organ.html#proc/digitize">digitize</a></th><td>Used to make the circuit-brain. On this level in the event more circuit-organs are added/tweaks are wanted.</td></tr>
+            <tr><th><a href="obj/item/organ.html#proc/handle_germ_effects">handle_germ_effects</a></th><td>At germ_level &lt; 500, this should cure the infection in a minute
+At germ_level &lt; 1000, this will cure the infection in 5 minutes
+You waited this long to get treated, you don't really deserve this organ.
+A little wonky: internal organs stop calling this (they return early in process) when dead, but external ones cause further damage when dead</td></tr>
+            <tr><th><a href="obj/item/organ.html#proc/handle_organ_proc_special">handle_organ_proc_special</a></th><td>Called when processed.</td></tr>
+            <tr><th><a href="obj/item/organ.html#proc/mechassist">mechassist</a></th><td>Used to add things like pacemakers, etc</td></tr>
+            <tr><th><a href="obj/item/organ.html#proc/preserve">preserve</a></th><td>preserved trait wrapper</td></tr>
+            <tr><th><a href="obj/item/organ.html#proc/reconsider_processing">reconsider_processing</a></th><td>reconsider if we need to process</td></tr>
+            <tr><th><a href="obj/item/organ.html#proc/robotize">robotize</a></th><td>Being used to make robutt hearts, etc</td></tr>
+            <tr><th><a href="obj/item/organ.html#proc/should_process">should_process</a></th><td>do we need to process?
+do NOT check owner for removed, listen to the params!
+do NOT check owner for life/dead, listen to the params!</td></tr>
+            <tr><th><a href="obj/item/organ.html#proc/tick_death">tick_death</a></th><td>called while dead</td></tr>
+            <tr><th><a href="obj/item/organ.html#proc/tick_life">tick_life</a></th><td>called while alive</td></tr>
+            <tr><th><a href="obj/item/organ.html#proc/tick_removed">tick_removed</a></th><td>called while removed from a mob</td></tr>
+            <tr><th><a href="obj/item/organ.html#proc/unpreserve">unpreserve</a></th><td>preserved trait wrapper</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/autopsy_data"><aside class="declaration">var </aside>autopsy_data
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/_organ_defines.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;_organ_defines.dm 37"/></a></h3>
+        <p>Trauma data for forensics.</p><h3 id="var/butcherable"><aside class="declaration">var </aside>butcherable
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/_organ_defines.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;_organ_defines.dm 77"/></a></h3>
+        <p>Can we butcher this organ.</p><h3 id="var/can_reject"><aside class="declaration">var </aside>can_reject
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/_organ_defines.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;_organ_defines.dm 55"/></a></h3>
+        <p>Can this organ reject?</p><h3 id="var/damage"><aside class="declaration">var </aside>damage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/_organ_defines.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;_organ_defines.dm 24"/></a></h3>
+        <p>Current damage to the organ</p><h3 id="var/decay_rate"><aside class="declaration">var </aside>decay_rate
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/_organ_defines.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;_organ_defines.dm 61"/></a></h3>
+        <p>decay rate</p><h3 id="var/decays"><aside class="declaration">var </aside>decays
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/_organ_defines.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;_organ_defines.dm 59"/></a></h3>
+        <p>Can this organ decay at all?</p><h3 id="var/dna"><aside class="declaration">var </aside>dna
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/dna.html">dna</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/_organ_defines.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;_organ_defines.dm 41"/></a></h3>
+        <p>Original DNA.</p><h3 id="var/forgiving_class"><aside class="declaration">var </aside>forgiving_class
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/_organ_defines.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;_organ_defines.dm 74"/></a></h3>
+        <p>Will the organ give its verbs when it isn't a perfect match? I.E., assisted in organic, synthetic in organic.</p><h3 id="var/max_damage"><aside class="declaration">var </aside>max_damage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/_organ_defines.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;_organ_defines.dm 53"/></a></h3>
+        <p>Damage cap</p><h3 id="var/meat_type"><aside class="declaration">var </aside>meat_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/blood.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;blood.dm 1"/></a></h3>
+        <p>What does butchering, if possible, make?</p><h3 id="var/min_broken_damage"><aside class="declaration">var </aside>min_broken_damage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/_organ_defines.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;_organ_defines.dm 51"/></a></h3>
+        <p>Damage before becoming broken</p><h3 id="var/min_bruised_damage"><aside class="declaration">var </aside>min_bruised_damage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/_organ_defines.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;_organ_defines.dm 49"/></a></h3>
+        <p>Damage before considered bruised</p><h3 id="var/organ_tag"><aside class="declaration">var </aside>organ_tag
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/_organ_defines.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;_organ_defines.dm 13"/></a></h3>
+        <p>Unique identifier.</p><h3 id="var/organ_verbs"><aside class="declaration">var </aside>organ_verbs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/_organ_defines.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;_organ_defines.dm 70"/></a></h3>
+        <p>Verbs added by the organ when present in the body.</p><h3 id="var/owner"><aside class="declaration">var </aside>owner
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/_organ_defines.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;_organ_defines.dm 33"/></a></h3>
+        <p>Current mob owning the organ.</p><h3 id="var/parent_organ"><aside class="declaration">var </aside>parent_organ
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/_organ_defines.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;_organ_defines.dm 15"/></a></h3>
+        <p>The organ holding this object.</p><h3 id="var/rejecting"><aside class="declaration">var </aside>rejecting
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/_organ_defines.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;_organ_defines.dm 57"/></a></h3>
+        <p>Is this organ already being rejected?</p><h3 id="var/robotic"><aside class="declaration">var </aside>robotic
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/_organ_defines.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;_organ_defines.dm 26"/></a></h3>
+        <p>What kind of robotic organ, if valid.</p><h3 id="var/species"><aside class="declaration">var </aside>species
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/species.html">species</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/_organ_defines.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;_organ_defines.dm 43"/></a></h3>
+        <p>Original species.</p><h3 id="var/stapled_nerves"><aside class="declaration">var </aside>stapled_nerves
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/_organ_defines.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;_organ_defines.dm 28"/></a></h3>
+        <p>If true, this organ can't feel pain.</p><h3 id="var/status"><aside class="declaration">var </aside>status
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/_organ_defines.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;_organ_defines.dm 20"/></a></h3>
+        <p>Various status flags</p><h3 id="var/target_parent_classes"><aside class="declaration">var </aside>target_parent_classes
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/_organ_defines.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;_organ_defines.dm 72"/></a></h3>
+        <p>Is the parent supposed to be organic, robotic, assisted?</p><h3 id="var/trace_chemicals"><aside class="declaration">var </aside>trace_chemicals
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/_organ_defines.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;_organ_defines.dm 39"/></a></h3>
+        <p>Traces of chemicals in the organ.</p><h3 id="var/transplant_data"><aside class="declaration">var </aside>transplant_data
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/_organ_defines.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;_organ_defines.dm 35"/></a></h3>
+        <p>Transplant match data.</p><h3 id="var/vital"><aside class="declaration">var </aside>vital
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/_organ_defines.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;_organ_defines.dm 22"/></a></h3>
+        <p>Lose a vital limb, die immediately.</p><h2 id="proc">Proc Details</h2><h3 id="proc/add_autopsy_data"><aside class="declaration">proc </aside>add_autopsy_data<aside>(used_weapon, damage) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/organ.dm#L168">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;organ.dm 168"/></a></aside>
+        </h3>
+        <p>Adds autopsy data for used_weapon.</p><h3 id="proc/can_decay"><aside class="declaration">proc </aside>can_decay<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/organ.dm#L400">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;organ.dm 400"/></a></aside>
+        </h3>
+        <p>can we decay?</p><h3 id="proc/check_verb_compatability"><aside class="declaration">proc </aside>check_verb_compatability<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/organ.dm#L640">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;organ.dm 640"/></a></aside>
+        </h3>
+        <p>Used for determining if an organ should give or remove its verbs. I.E., FBP part in a human, no verbs. If true, keep or add.</p><h3 id="proc/digitize"><aside class="declaration">proc </aside>digitize<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/organ.dm#L212">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;organ.dm 212"/></a></aside>
+        </h3>
+        <p>Used to make the circuit-brain. On this level in the event more circuit-organs are added/tweaks are wanted.</p><h3 id="proc/handle_germ_effects"><aside class="declaration">proc </aside>handle_germ_effects<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/organ.dm#L444">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;organ.dm 444"/></a></aside>
+        </h3>
+        <p>At germ_level &lt; 500, this should cure the infection in a minute
+At germ_level &lt; 1000, this will cure the infection in 5 minutes
+You waited this long to get treated, you don't really deserve this organ.
+A little wonky: internal organs stop calling this (they return early in process) when dead, but external ones cause further damage when dead</p><h3 id="proc/handle_organ_proc_special"><aside class="declaration">proc </aside>handle_organ_proc_special<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/organ.dm#L636">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;organ.dm 636"/></a></aside>
+        </h3>
+        <p>Called when processed.</p><h3 id="proc/mechassist"><aside class="declaration">proc </aside>mechassist<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/organ.dm#L204">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;organ.dm 204"/></a></aside>
+        </h3>
+        <p>Used to add things like pacemakers, etc</p><h3 id="proc/preserve"><aside class="declaration">proc </aside>preserve<aside>(source) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/organ.dm#L406">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;organ.dm 406"/></a></aside>
+        </h3>
+        <p>preserved trait wrapper</p><h3 id="proc/reconsider_processing"><aside class="declaration">proc </aside>reconsider_processing<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/organ.dm#L386">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;organ.dm 386"/></a></aside>
+        </h3>
+        <p>reconsider if we need to process</p><h3 id="proc/robotize"><aside class="declaration">proc </aside>robotize<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/organ.dm#L197">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;organ.dm 197"/></a></aside>
+        </h3>
+        <p>Being used to make robutt hearts, etc</p><h3 id="proc/should_process"><aside class="declaration">proc </aside>should_process<aside>(locality) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/organ.dm#L374">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;organ.dm 374"/></a></aside>
+        </h3>
+        <p>do we need to process?
+do NOT check owner for removed, listen to the params!
+do NOT check owner for life/dead, listen to the params!</p>
+<p>! DO NOT RELY ON THIS TO STOP PROCESSING.
+Define your tick_life, tick_death, tick_removed properly!</p>
+<p>@params</p>
+<ul>
+<li>locality - check <a href="code/__DEFINES/mobs/organs.html" title="code/__DEFINES/mobs/organs.dm">code/__DEFINES/mobs/organs.dm</a></li>
+</ul><h3 id="proc/tick_death"><aside class="declaration">proc </aside>tick_death<aside>(dt) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/organ.dm#L310">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;organ.dm 310"/></a></aside>
+        </h3>
+        <p>called while dead</p>
+<p>preconditions: owner is a /mob</p><h3 id="proc/tick_life"><aside class="declaration">proc </aside>tick_life<aside>(dt) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/organ.dm#L286">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;organ.dm 286"/></a></aside>
+        </h3>
+        <p>called while alive</p>
+<p>preconditions: owner is a /mob</p><h3 id="proc/tick_removed"><aside class="declaration">proc </aside>tick_removed<aside>(dt) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/organ.dm#L338">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;organ.dm 338"/></a></aside>
+        </h3>
+        <p>called while removed from a mob</p><h3 id="proc/unpreserve"><aside class="declaration">proc </aside>unpreserve<aside>(source) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/organs/organ.dm#L414">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;organ.dm 414"/></a></aside>
+        </h3>
+        <p>preserved trait wrapper</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

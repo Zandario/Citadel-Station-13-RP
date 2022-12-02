@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;computer_file&#x2F;program - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/computer_file/program.html#var">Var Details</a> - <a href="datum/computer_file/program.html#proc">Proc Details</a></header>
+<main>
+<h1>program <aside>/<a href="datum.html">datum</a>/<a href="datum/computer_file.html">computer_file</a>/<a href="datum/computer_file/program.html">program</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 2"/></a></h1>
+
+<p>File name. FILE NAME MUST BE UNIQUE IF YOU WANT THE PROGRAM TO BE DOWNLOADABLE FROM NTNET!</p>
+<h2 id="nanoui">Nanoui</h2><h2 id="tgui">TGUI</h2><h2 id="misc-program-stuff">Misc Program Stuff</h2><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/computer_file/program.html#var/NM">NM</a></th><td>If the program uses NanoModule, put it here and it will be automagically opened. Otherwise implement nano_ui_interact.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#var/TM">TM</a></th><td>If the program uses TGUIModule, put it here and it will be automagically opened. Otherwise implement ui_interact.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#var/available_on_ntnet">available_on_ntnet</a></th><td>Whether the program can be downloaded from NTNet. Set to FALSE to disable.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#var/available_on_syndinet">available_on_syndinet</a></th><td>Whether the program can be downloaded from SyndiNet (accessible via emagging the computer). Set to TRUE to enable.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#var/computer">computer</a></th><td>Device that runs this program.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#var/computer_emagged">computer_emagged</a></th><td>Set to TRUE if computer that's running us was emagged. Computer updates this every Process() tick</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#var/extended_desc">extended_desc</a></th><td>Short description of this program's function.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#var/filedesc">filedesc</a></th><td>User-friendly name of this program.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#var/nanomodule_path">nanomodule_path</a></th><td>Path to nanomodule, make sure to set this if implementing new program.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#var/network_destination">network_destination</a></th><td>Optional string that describes what NTNet server/system this program connects to. Used in default logging.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#var/ntnet_speed">ntnet_speed</a></th><td>GQ/s - current network connectivity transfer rate.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#var/ntnet_status">ntnet_status</a></th><td>NTNet status, updated every tick by computer running this program. Don't use this for checks if NTNet works, computers do that. Use this for calculations, etc.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#var/program_icon_state">program_icon_state</a></th><td>Program-specific screen icon state.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#var/program_key_state">program_key_state</a></th><td>Program-specific keyboard icon state.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#var/program_menu_icon">program_menu_icon</a></th><td>Icon to use for program's link in main menu.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#var/program_state">program_state</a></th><td>PROGRAM_STATE_KILLED or PROGRAM_STATE_BACKGROUND or PROGRAM_STATE_ACTIVE - specifies whether this program is running.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#var/required_access">required_access</a></th><td>List of required accesses to run/download the program.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#var/requires_access_to_download">requires_access_to_download</a></th><td>Whether the program checks for required_access when downloading.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#var/requires_access_to_run">requires_access_to_run</a></th><td>Whether the program checks for required_access when run.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#var/requires_ntnet">requires_ntnet</a></th><td>Set to TRUE for program to require nonstop NTNet connection to run. If NTNet connection is lost program crashes.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#var/requires_ntnet_feature">requires_ntnet_feature</a></th><td>Optional, if above is set to TRUE checks for specific function of NTNet (currently NTNET_SOFTWAREDOWNLOAD, NTNET_PEERTOPEER, NTNET_SYSTEMCONTROL and NTNET_COMMUNICATION)</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#var/tguimodule_path">tguimodule_path</a></th><td>Path to tguimodule, make sure to set this if implementing new program.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#var/ui_header">ui_header</a></th><td>Example: &quot;something.gif&quot; - a header image that will be rendered in computer's UI when this program is running at background. Images are taken from /nano/images/status_icons. Be careful not to use too large images!</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#var/usage_flags">usage_flags</a></th><td>Bitflags (PROGRAM_CONSOLE, PROGRAM_LAPTOP, PROGRAM_TABLET combination) or PROGRAM_ALL</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/computer_file/program.html#proc/Topic">Topic</a></th><td>! CONVENTIONS, READ THIS WHEN CREATING NEW PROGRAM AND OVERRIDING THIS PROC:</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#proc/can_run">can_run</a></th><td>Check if the user can run program. Only humans can operate computer. Automatically called in run_program()
+User has to wear their ID or have it inhand for ID Scan to work.
+Can also be called manually, with optional parameter being access_to_check to scan the user's ID</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#proc/check_eye">check_eye</a></th><td>Relays the call to nano module, if we have one</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#proc/event_idremoved">event_idremoved</a></th><td>Events are sent to the program by the computer.
+Always include a parent call when overriding an event.
+Called when the ID card is removed from computer. ID is removed AFTER this proc.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#proc/event_networkfailure">event_networkfailure</a></th><td>Called when the network connectivity fails. Computer does necessary checks and only calls this when requires_ntnet_feature and similar variables are not met.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#proc/event_powerfailure">event_powerfailure</a></th><td>Called when the computer fails due to power loss. Override when program wants to specifically react to power loss.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#proc/generate_network_log">generate_network_log</a></th><td>Attempts to create a log in global ntnet datum. Returns TRUE on success, FALSE on fail.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#proc/get_header_data">get_header_data</a></th><td>This attempts to retrieve header data for NanoUIs. If implementing completely new device of different type than existing ones
+always include the device here in this proc. This proc basically relays the request to whatever is running the program.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#proc/kill_program">kill_program</a></th><td>Use this proc to kill the program. Designed to be implemented by each program if it requires on-quit logic, such as the NTNRC client.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#proc/nano_ui_interact">nano_ui_interact</a></th><td>This is called every tick when the program is enabled. Ensure you do parent call if you override it. If parent returns TRUE continue with UI initialisation.
+It returns FALSE if it can't run or if NanoModule was used instead. I suggest using NanoModules where applicable.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#proc/process_tick">process_tick</a></th><td>Called by Process() on device that runs us, once every tick.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#proc/run_program">run_program</a></th><td>This is performed on program startup. May be overriden to add extra logic. Remember to include ..() call. Return 1 on success, 0 on failure.
+When implementing new program based device, use this to run the program.</td></tr>
+            <tr><th><a href="datum/computer_file/program.html#proc/update_computer_icon">update_computer_icon</a></th><td>Relays icon update to the computer.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/NM"><aside class="declaration">var </aside>NM
+            <aside>&ndash; /<a href="datum.html">datum</a>/nano_module</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 15"/></a></h3>
+        <p>If the program uses NanoModule, put it here and it will be automagically opened. Otherwise implement nano_ui_interact.</p><h3 id="var/TM"><aside class="declaration">var </aside>TM
+            <aside>&ndash; /<a href="datum.html">datum</a>/tgui_module</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 21"/></a></h3>
+        <p>If the program uses TGUIModule, put it here and it will be automagically opened. Otherwise implement ui_interact.</p><h3 id="var/available_on_ntnet"><aside class="declaration">var </aside>available_on_ntnet
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 51"/></a></h3>
+        <p>Whether the program can be downloaded from NTNet. Set to FALSE to disable.</p><h3 id="var/available_on_syndinet"><aside class="declaration">var </aside>available_on_syndinet
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 53"/></a></h3>
+        <p>Whether the program can be downloaded from SyndiNet (accessible via emagging the computer). Set to TRUE to enable.</p><h3 id="var/computer"><aside class="declaration">var </aside>computer
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/modular_computer.html">modular_computer</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 29"/></a></h3>
+        <p>Device that runs this program.</p><h3 id="var/computer_emagged"><aside class="declaration">var </aside>computer_emagged
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 55"/></a></h3>
+        <p>Set to TRUE if computer that's running us was emagged. Computer updates this every Process() tick</p><h3 id="var/extended_desc"><aside class="declaration">var </aside>extended_desc
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 33"/></a></h3>
+        <p>Short description of this program's function.</p><h3 id="var/filedesc"><aside class="declaration">var </aside>filedesc
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 31"/></a></h3>
+        <p>User-friendly name of this program.</p><h3 id="var/nanomodule_path"><aside class="declaration">var </aside>nanomodule_path
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 17"/></a></h3>
+        <p>Path to nanomodule, make sure to set this if implementing new program.</p><h3 id="var/network_destination"><aside class="declaration">var </aside>network_destination
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 49"/></a></h3>
+        <p>Optional string that describes what NTNet server/system this program connects to. Used in default logging.</p><h3 id="var/ntnet_speed"><aside class="declaration">var </aside>ntnet_speed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 59"/></a></h3>
+        <p>GQ/s - current network connectivity transfer rate.</p><h3 id="var/ntnet_status"><aside class="declaration">var </aside>ntnet_status
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 45"/></a></h3>
+        <p>NTNet status, updated every tick by computer running this program. Don't use this for checks if NTNet works, computers do that. Use this for calculations, etc.</p><h3 id="var/program_icon_state"><aside class="declaration">var </aside>program_icon_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 35"/></a></h3>
+        <p>Program-specific screen icon state.</p><h3 id="var/program_key_state"><aside class="declaration">var </aside>program_key_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 37"/></a></h3>
+        <p>Program-specific keyboard icon state.</p><h3 id="var/program_menu_icon"><aside class="declaration">var </aside>program_menu_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 39"/></a></h3>
+        <p>Icon to use for program's link in main menu.</p><h3 id="var/program_state"><aside class="declaration">var </aside>program_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 27"/></a></h3>
+        <p>PROGRAM_STATE_KILLED or PROGRAM_STATE_BACKGROUND or PROGRAM_STATE_ACTIVE - specifies whether this program is running.</p><h3 id="var/required_access"><aside class="declaration">var </aside>required_access
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 7"/></a></h3>
+        <p>List of required accesses to run/download the program.</p><h3 id="var/requires_access_to_download"><aside class="declaration">var </aside>requires_access_to_download
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 11"/></a></h3>
+        <p>Whether the program checks for required_access when downloading.</p><h3 id="var/requires_access_to_run"><aside class="declaration">var </aside>requires_access_to_run
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 9"/></a></h3>
+        <p>Whether the program checks for required_access when run.</p><h3 id="var/requires_ntnet"><aside class="declaration">var </aside>requires_ntnet
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 41"/></a></h3>
+        <p>Set to TRUE for program to require nonstop NTNet connection to run. If NTNet connection is lost program crashes.</p><h3 id="var/requires_ntnet_feature"><aside class="declaration">var </aside>requires_ntnet_feature
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 43"/></a></h3>
+        <p>Optional, if above is set to TRUE checks for specific function of NTNet (currently NTNET_SOFTWAREDOWNLOAD, NTNET_PEERTOPEER, NTNET_SYSTEMCONTROL and NTNET_COMMUNICATION)</p><h3 id="var/tguimodule_path"><aside class="declaration">var </aside>tguimodule_path
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 23"/></a></h3>
+        <p>Path to tguimodule, make sure to set this if implementing new program.</p><h3 id="var/ui_header"><aside class="declaration">var </aside>ui_header
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 57"/></a></h3>
+        <p>Example: &quot;something.gif&quot; - a header image that will be rendered in computer's UI when this program is running at background. Images are taken from /nano/images/status_icons. Be careful not to use too large images!</p><h3 id="var/usage_flags"><aside class="declaration">var </aside>usage_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 47"/></a></h3>
+        <p>Bitflags (PROGRAM_CONSOLE, PROGRAM_LAPTOP, PROGRAM_TABLET combination) or PROGRAM_ALL</p><h2 id="proc">Proc Details</h2><h3 id="proc/Topic"><aside class="parent"><a title="/datum" href="datum.html#proc/Topic">&uarr;</a></aside>Topic<aside>(href, href_list) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L219">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 219"/></a></aside>
+        </h3>
+        <p>! CONVENTIONS, READ THIS WHEN CREATING NEW PROGRAM AND OVERRIDING THIS PROC:</p>
+<p>Topic calls are automagically forwarded from NanoModule this program contains.
+Calls beginning with &quot;PRG_&quot; are reserved for programs handling.
+Calls beginning with &quot;PC_&quot; are reserved for computer handling (by whatever runs the program)</p>
+<p>! ALWAYS INCLUDE PARENT CALL ..() OR DIE IN FIRE.</p><h3 id="proc/can_run"><aside class="declaration">proc </aside>can_run<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, loud, access_to_check) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L127">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 127"/></a></aside>
+        </h3>
+        <p>Check if the user can run program. Only humans can operate computer. Automatically called in run_program()
+User has to wear their ID or have it inhand for ID Scan to work.
+Can also be called manually, with optional parameter being access_to_check to scan the user's ID</p><h3 id="proc/check_eye"><aside class="declaration">proc </aside>check_eye<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L226">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 226"/></a></aside>
+        </h3>
+        <p>Relays the call to nano module, if we have one</p><h3 id="proc/event_idremoved"><aside class="declaration">proc </aside>event_idremoved<aside>(background) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program_events.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program_events.dm 7"/></a></aside>
+        </h3>
+        <p>Events are sent to the program by the computer.
+Always include a parent call when overriding an event.
+Called when the ID card is removed from computer. ID is removed AFTER this proc.</p><h3 id="proc/event_networkfailure"><aside class="declaration">proc </aside>event_networkfailure<aside>(background) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program_events.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program_events.dm 15"/></a></aside>
+        </h3>
+        <p>Called when the network connectivity fails. Computer does necessary checks and only calls this when requires_ntnet_feature and similar variables are not met.</p><h3 id="proc/event_powerfailure"><aside class="declaration">proc </aside>event_powerfailure<aside>(background) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program_events.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program_events.dm 11"/></a></aside>
+        </h3>
+        <p>Called when the computer fails due to power loss. Override when program wants to specifically react to power loss.</p><h3 id="proc/generate_network_log"><aside class="declaration">proc </aside>generate_network_log<aside>(text) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 90"/></a></aside>
+        </h3>
+        <p>Attempts to create a log in global ntnet datum. Returns TRUE on success, FALSE on fail.</p><h3 id="proc/get_header_data"><aside class="declaration">proc </aside>get_header_data<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L156">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 156"/></a></aside>
+        </h3>
+        <p>This attempts to retrieve header data for NanoUIs. If implementing completely new device of different type than existing ones
+always include the device here in this proc. This proc basically relays the request to whatever is running the program.</p><h3 id="proc/kill_program"><aside class="declaration">proc </aside>kill_program<aside>(forced) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L182">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 182"/></a></aside>
+        </h3>
+        <p>Use this proc to kill the program. Designed to be implemented by each program if it requires on-quit logic, such as the NTNRC client.</p><h3 id="proc/nano_ui_interact"><aside class="parent"><a title="/datum" href="datum.html#proc/nano_ui_interact">&uarr;</a></aside>nano_ui_interact<aside>(/<a href="mob.html">mob</a>/user, ui_key, /<a href="datum.html">datum</a>/<a href="datum/nanoui.html">nanoui</a>/ui, force_open) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L197">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 197"/></a></aside>
+        </h3>
+        <p>This is called every tick when the program is enabled. Ensure you do parent call if you override it. If parent returns TRUE continue with UI initialisation.
+It returns FALSE if it can't run or if NanoModule was used instead. I suggest using NanoModules where applicable.</p><h3 id="proc/process_tick"><aside class="declaration">proc </aside>process_tick<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 108"/></a></aside>
+        </h3>
+        <p>Called by Process() on device that runs us, once every tick.</p><h3 id="proc/run_program"><aside class="declaration">proc </aside>run_program<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L165">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 165"/></a></aside>
+        </h3>
+        <p>This is performed on program startup. May be overriden to add extra logic. Remember to include ..() call. Return 1 on success, 0 on failure.
+When implementing new program based device, use this to run the program.</p><h3 id="proc/update_computer_icon"><aside class="declaration">proc </aside>update_computer_icon<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/modular_computers/file_system/program.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;modular_computers&#x2F;file_system&#x2F;program.dm 85"/></a></aside>
+        </h3>
+        <p>Relays icon update to the computer.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

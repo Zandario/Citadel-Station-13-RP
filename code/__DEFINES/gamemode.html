@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;gamemode.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/gamemode.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/gamemode.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/gamemode.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;gamemode.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/gamemode.html#define/ANTAG_OVERRIDE_JOB">ANTAG_OVERRIDE_JOB</a></th><td>Assigned job is set to MODE when spawning.</td></tr>
+        <tr><th><a href="code/__DEFINES/gamemode.html#define/ANTAG_OVERRIDE_MOB">ANTAG_OVERRIDE_MOB</a></th><td>Mob is recreated from datum mob_type var when spawning.</td></tr>
+        <tr><th><a href="code/__DEFINES/gamemode.html#define/ANTAG_CLEAR_EQUIPMENT">ANTAG_CLEAR_EQUIPMENT</a></th><td>All preexisting equipment is purged.</td></tr>
+        <tr><th><a href="code/__DEFINES/gamemode.html#define/ANTAG_CHOOSE_NAME">ANTAG_CHOOSE_NAME</a></th><td>Antagonists are prompted to enter a name.</td></tr>
+        <tr><th><a href="code/__DEFINES/gamemode.html#define/ANTAG_IMPLANT_IMMUNE">ANTAG_IMPLANT_IMMUNE</a></th><td>Cannot be loyalty implanted.</td></tr>
+        <tr><th><a href="code/__DEFINES/gamemode.html#define/ANTAG_SUSPICIOUS">ANTAG_SUSPICIOUS</a></th><td>Shows up on roundstart report.</td></tr>
+        <tr><th><a href="code/__DEFINES/gamemode.html#define/ANTAG_HAS_LEADER">ANTAG_HAS_LEADER</a></th><td>Generates a leader antagonist.</td></tr>
+        <tr><th><a href="code/__DEFINES/gamemode.html#define/ANTAG_HAS_NUKE">ANTAG_HAS_NUKE</a></th><td>Will spawn a nuke at supplied location.</td></tr>
+        <tr><th><a href="code/__DEFINES/gamemode.html#define/ANTAG_RANDSPAWN">ANTAG_RANDSPAWN</a></th><td>Potentially randomly spawns due to events.</td></tr>
+        <tr><th><a href="code/__DEFINES/gamemode.html#define/ANTAG_VOTABLE">ANTAG_VOTABLE</a></th><td>Can be voted as an additional antagonist before roundstart.</td></tr>
+        <tr><th><a href="code/__DEFINES/gamemode.html#define/ANTAG_SET_APPEARANCE">ANTAG_SET_APPEARANCE</a></th><td>Causes antagonists to use an appearance modifier on spawn.</td></tr>
+        <tr><th><a href="code/__DEFINES/gamemode.html#define/GHOSTCAST">GHOSTCAST</a></th><td>/WIZARD //////</td></tr>
+        <tr><th><a href="code/__DEFINES/gamemode.html#define/NEEDSCLOTHES">NEEDSCLOTHES</a></th><td>does it need the wizard garb to cast? Nonwizard spells should not have this</td></tr>
+        <tr><th><a href="code/__DEFINES/gamemode.html#define/NEEDSHUMAN">NEEDSHUMAN</a></th><td>does it require the caster to be human?</td></tr>
+        <tr><th><a href="code/__DEFINES/gamemode.html#define/Z2NOCAST">Z2NOCAST</a></th><td>if this is added, the spell can't be cast at CentCom</td></tr>
+        <tr><th><a href="code/__DEFINES/gamemode.html#define/STATALLOWED">STATALLOWED</a></th><td>if set, the user doesn't have to be conscious to cast. Required for ghost spells</td></tr>
+        <tr><th><a href="code/__DEFINES/gamemode.html#define/IGNOREPREV">IGNOREPREV</a></th><td>if set, each new target does not overlap with the previous one</td></tr>
+        <tr><th><a href="code/__DEFINES/gamemode.html#define/INCLUDEUSER">INCLUDEUSER</a></th><td>does the spell include the caster in its target selection?</td></tr>
+        <tr><th><a href="code/__DEFINES/gamemode.html#define/SELECTABLE">SELECTABLE</a></th><td>can you select each target for the spell?</td></tr>
+        <tr><th><a href="code/__DEFINES/gamemode.html#define/IGNOREDENSE">IGNOREDENSE</a></th><td>are dense turfs ignored in selection?</td></tr>
+        <tr><th><a href="code/__DEFINES/gamemode.html#define/IGNORESPACE">IGNORESPACE</a></th><td>are space turfs ignored in selection?</td></tr>
+        <tr><th><a href="code/__DEFINES/gamemode.html#define/CONSTRUCT_CHECK">CONSTRUCT_CHECK</a></th><td>used by construct spells - checks for nullrods</td></tr>
+        <tr><th><a href="code/__DEFINES/gamemode.html#define/NO_BUTTON">NO_BUTTON</a></th><td>spell won't show up in the HUD with this</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/ANTAG_CHOOSE_NAME"><aside class="declaration">#define </aside>ANTAG_CHOOSE_NAME
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/gamemode.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;gamemode.dm 55"/></a>
+    </h3>
+    <p>Antagonists are prompted to enter a name.</p><h3 id="define/ANTAG_CLEAR_EQUIPMENT"><aside class="declaration">#define </aside>ANTAG_CLEAR_EQUIPMENT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/gamemode.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;gamemode.dm 53"/></a>
+    </h3>
+    <p>All preexisting equipment is purged.</p><h3 id="define/ANTAG_HAS_LEADER"><aside class="declaration">#define </aside>ANTAG_HAS_LEADER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/gamemode.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;gamemode.dm 61"/></a>
+    </h3>
+    <p>Generates a leader antagonist.</p><h3 id="define/ANTAG_HAS_NUKE"><aside class="declaration">#define </aside>ANTAG_HAS_NUKE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/gamemode.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;gamemode.dm 63"/></a>
+    </h3>
+    <p>Will spawn a nuke at supplied location.</p><h3 id="define/ANTAG_IMPLANT_IMMUNE"><aside class="declaration">#define </aside>ANTAG_IMPLANT_IMMUNE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/gamemode.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;gamemode.dm 57"/></a>
+    </h3>
+    <p>Cannot be loyalty implanted.</p><h3 id="define/ANTAG_OVERRIDE_JOB"><aside class="declaration">#define </aside>ANTAG_OVERRIDE_JOB
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/gamemode.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;gamemode.dm 49"/></a>
+    </h3>
+    <p>Assigned job is set to MODE when spawning.</p><h3 id="define/ANTAG_OVERRIDE_MOB"><aside class="declaration">#define </aside>ANTAG_OVERRIDE_MOB
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/gamemode.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;gamemode.dm 51"/></a>
+    </h3>
+    <p>Mob is recreated from datum mob_type var when spawning.</p><h3 id="define/ANTAG_RANDSPAWN"><aside class="declaration">#define </aside>ANTAG_RANDSPAWN
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/gamemode.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;gamemode.dm 65"/></a>
+    </h3>
+    <p>Potentially randomly spawns due to events.</p><h3 id="define/ANTAG_SET_APPEARANCE"><aside class="declaration">#define </aside>ANTAG_SET_APPEARANCE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/gamemode.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;gamemode.dm 69"/></a>
+    </h3>
+    <p>Causes antagonists to use an appearance modifier on spawn.</p><h3 id="define/ANTAG_SUSPICIOUS"><aside class="declaration">#define </aside>ANTAG_SUSPICIOUS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/gamemode.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;gamemode.dm 59"/></a>
+    </h3>
+    <p>Shows up on roundstart report.</p><h3 id="define/ANTAG_VOTABLE"><aside class="declaration">#define </aside>ANTAG_VOTABLE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/gamemode.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;gamemode.dm 67"/></a>
+    </h3>
+    <p>Can be voted as an additional antagonist before roundstart.</p><h3 id="define/CONSTRUCT_CHECK"><aside class="declaration">#define </aside>CONSTRUCT_CHECK
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/gamemode.dm#L129">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;gamemode.dm 129"/></a>
+    </h3>
+    <p>used by construct spells - checks for nullrods</p><h3 id="define/GHOSTCAST"><aside class="declaration">#define </aside>GHOSTCAST
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/gamemode.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;gamemode.dm 105"/></a>
+    </h3>
+    <p>/WIZARD //////</p>
+<p>can a ghost cast it?</p><h3 id="define/IGNOREDENSE"><aside class="declaration">#define </aside>IGNOREDENSE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/gamemode.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;gamemode.dm 124"/></a>
+    </h3>
+    <p>are dense turfs ignored in selection?</p><h3 id="define/IGNOREPREV"><aside class="declaration">#define </aside>IGNOREPREV
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/gamemode.dm#L115">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;gamemode.dm 115"/></a>
+    </h3>
+    <p>if set, each new target does not overlap with the previous one</p><h3 id="define/IGNORESPACE"><aside class="declaration">#define </aside>IGNORESPACE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/gamemode.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;gamemode.dm 126"/></a>
+    </h3>
+    <p>are space turfs ignored in selection?</p><h3 id="define/INCLUDEUSER"><aside class="declaration">#define </aside>INCLUDEUSER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/gamemode.dm#L119">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;gamemode.dm 119"/></a>
+    </h3>
+    <p>does the spell include the caster in its target selection?</p><h3 id="define/NEEDSCLOTHES"><aside class="declaration">#define </aside>NEEDSCLOTHES
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/gamemode.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;gamemode.dm 107"/></a>
+    </h3>
+    <p>does it need the wizard garb to cast? Nonwizard spells should not have this</p><h3 id="define/NEEDSHUMAN"><aside class="declaration">#define </aside>NEEDSHUMAN
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/gamemode.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;gamemode.dm 109"/></a>
+    </h3>
+    <p>does it require the caster to be human?</p><h3 id="define/NO_BUTTON"><aside class="declaration">#define </aside>NO_BUTTON
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/gamemode.dm#L131">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;gamemode.dm 131"/></a>
+    </h3>
+    <p>spell won't show up in the HUD with this</p><h3 id="define/SELECTABLE"><aside class="declaration">#define </aside>SELECTABLE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/gamemode.dm#L121">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;gamemode.dm 121"/></a>
+    </h3>
+    <p>can you select each target for the spell?</p><h3 id="define/STATALLOWED"><aside class="declaration">#define </aside>STATALLOWED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/gamemode.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;gamemode.dm 113"/></a>
+    </h3>
+    <p>if set, the user doesn't have to be conscious to cast. Required for ghost spells</p><h3 id="define/Z2NOCAST"><aside class="declaration">#define </aside>Z2NOCAST
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/gamemode.dm#L111">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;gamemode.dm 111"/></a>
+    </h3>
+    <p>if this is added, the spell can't be cast at CentCom</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

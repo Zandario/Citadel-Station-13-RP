@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;modules&#x2F;automata&#x2F;_wave.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/modules/automata/_wave.html#define">Define Details</a></header>
+<main>
+<h1>code/modules/automata/_wave.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/_wave.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;_wave.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="datum&#x2F;automata&#x2F;wave.html">&#x2F;datum&#x2F;automata&#x2F;wave</a></th><td>wave effects</td></tr>
+        <tr><td colspan="2"><p>Evil defines here</p>
+<p>Shared</p></td></tr>
+        <tr><th><a href="code/modules/automata/_wave.html#define/ITERATION_BASE">ITERATION_BASE</a></th><td>base run for current turf</td></tr>
+        <tr><td colspan="2"><p>For spread: minimal</p>
+</td></tr>
+        <tr><th><a href="code/modules/automata/_wave.html#define/SIMPLE_EXPAND">SIMPLE_EXPAND</a></th><td>simple expand: really simple, take dir, set next turf in edges next, set power, etc</td></tr>
+        <tr><td colspan="2"><p>For spread: shadowcast</p>
+</td></tr>
+        <tr><th><a href="code/modules/automata/_wave.html#define/SHADOWCAST">SHADOWCAST</a></th><td>shadowcast helper
+expands a turf's dirs to edges next</td></tr>
+        <tr><th><a href="code/modules/automata/_wave.html#define/SHADOWCAST_INIT">SHADOWCAST_INIT</a></th><td>the above but PD is &quot;put direction&quot;, used to direct where the wave goes
+since on the first step the singular turf has all dirs.</td></tr>
+        <tr><td colspan="2"><p>For spread: shockwave</p>
+</td></tr>
+        <tr><th><a href="code/modules/automata/_wave.html#define/SHOCKWAVE_MARK_CARDINAL">SHOCKWAVE_MARK_CARDINAL</a></th><td>runs a specific cardinal</td></tr>
+        <tr><th><a href="code/modules/automata/_wave.html#define/SHOCKWAVE_MARK_DIAGONAL_SUBSTEP">SHOCKWAVE_MARK_DIAGONAL_SUBSTEP</a></th><td>runs a specific cardinal on diagstep</td></tr>
+        <tr><th><a href="code/modules/automata/_wave.html#define/ITERATION_BASE_DIAGONAL">ITERATION_BASE_DIAGONAL</a></th><td>iteration base for diagonals, basically modified ITERATION_BASE</td></tr>
+        <tr><th><a href="code/modules/automata/_wave.html#define/ITERATION_BASE_DIAGMARK">ITERATION_BASE_DIAGMARK</a></th><td>iteration base for marking diagonals</td></tr>
+        <tr><th><a href="code/modules/automata/_wave.html#define/SHOCKWAVE_DIAGONAL_MARK_SUBSTEP">SHOCKWAVE_DIAGONAL_MARK_SUBSTEP</a></th><td>diagonal marking internal substep</td></tr>
+        <tr><th><a href="code/modules/automata/_wave.html#define/SHOCKWAVE_DIAGONAL_MARK">SHOCKWAVE_DIAGONAL_MARK</a></th><td>marking diagonals: turfs considered for an immediate, quick expansion due to being perpendicular to normal expansions</td></tr>
+        <tr><td colspan="2"><p>Evil defines end</p>
+</td></tr>
+        <tr><th><a href="datum&#x2F;automata&#x2F;wave&#x2F;debug.html">&#x2F;datum&#x2F;automata&#x2F;wave&#x2F;debug</a></th><td>debugging wave automata - displays powers.</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/ITERATION_BASE"><aside class="declaration">#define </aside>ITERATION_BASE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/_wave.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;_wave.dm 48"/></a>
+    </h3>
+    <p>base run for current turf</p><h3 id="define/ITERATION_BASE_DIAGMARK"><aside class="declaration">#define </aside>ITERATION_BASE_DIAGMARK
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/_wave.dm#L132">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;_wave.dm 132"/></a>
+    </h3>
+    <p>iteration base for marking diagonals</p><h3 id="define/ITERATION_BASE_DIAGONAL"><aside class="declaration">#define </aside>ITERATION_BASE_DIAGONAL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/_wave.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;_wave.dm 120"/></a>
+    </h3>
+    <p>iteration base for diagonals, basically modified ITERATION_BASE</p><h3 id="define/SHADOWCAST"><aside class="declaration">#define </aside>SHADOWCAST
+            <aside>(T, P, D, CD, RD)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/_wave.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;_wave.dm 82"/></a>
+    </h3>
+    <p>shadowcast helper
+expands a turf's dirs to edges next</p>
+<p>params:
+T, D, P - ditto, though D is direction_BIT and not byond direction defines
+CD - dir to check.
+RD - real byond dir, used for the get_step since we use direction bits now</p><h3 id="define/SHADOWCAST_INIT"><aside class="declaration">#define </aside>SHADOWCAST_INIT
+            <aside>(T, P, D, CD, RD, PD)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/_wave.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;_wave.dm 92"/></a>
+    </h3>
+    <p>the above but PD is &quot;put direction&quot;, used to direct where the wave goes
+since on the first step the singular turf has all dirs.</p><h3 id="define/SHOCKWAVE_DIAGONAL_MARK"><aside class="declaration">#define </aside>SHOCKWAVE_DIAGONAL_MARK
+            <aside>(T, D, ED, OP, RP)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/_wave.dm#L168">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;_wave.dm 168"/></a>
+    </h3>
+    <p>marking diagonals: turfs considered for an immediate, quick expansion due to being perpendicular to normal expansions</p>
+<p>to explain the dumb math:
+turn() has cost
+bit ops on constants with constants don't
+first one is clockwise
+second one counterclockwise
+figure it out ;)</p><h3 id="define/SHOCKWAVE_DIAGONAL_MARK_SUBSTEP"><aside class="declaration">#define </aside>SHOCKWAVE_DIAGONAL_MARK_SUBSTEP
+            <aside>(T, D, ED, OP, RP)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/_wave.dm#L147">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;_wave.dm 147"/></a>
+    </h3>
+    <p>diagonal marking internal substep</p><h3 id="define/SHOCKWAVE_MARK_CARDINAL"><aside class="declaration">#define </aside>SHOCKWAVE_MARK_CARDINAL
+            <aside>(T, P, D, ED)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/_wave.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;_wave.dm 103"/></a>
+    </h3>
+    <p>runs a specific cardinal</p><h3 id="define/SHOCKWAVE_MARK_DIAGONAL_SUBSTEP"><aside class="declaration">#define </aside>SHOCKWAVE_MARK_DIAGONAL_SUBSTEP
+            <aside>(T, P, D, ED)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/_wave.dm#L115">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;_wave.dm 115"/></a>
+    </h3>
+    <p>runs a specific cardinal on diagstep</p><h3 id="define/SIMPLE_EXPAND"><aside class="declaration">#define </aside>SIMPLE_EXPAND
+            <aside>(T, D, P)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/_wave.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;_wave.dm 70"/></a>
+    </h3>
+    <p>simple expand: really simple, take dir, set next turf in edges next, set power, etc</p>
+<p>params:
+T - turf to expand from
+D - dir to expand in
+P - power to set expanded turf to</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;characters - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/characters.html#var">Var Details</a> - <a href="datum/controller/subsystem/characters.html#proc">Proc Details</a></header>
+<main>
+<h1>characters <aside>/<a href="datum.html">datum</a>/<a href="datum/controller.html">controller</a>/<a href="datum/controller/subsystem.html">subsystem</a>/<a href="datum/controller/subsystem/characters.html">characters</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/characters/_characters.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;characters&#x2F;_characters.dm 7"/></a></h1>
+
+<p>Backgrounds - to be shoved into some lore system later (maybe)
+Species</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/characters.html#var/character_species_cache">character_species_cache</a></th><td>species ui cache
+so we don't rebuild this every time someone makes an ui
+list of categories associated to lists
+second layer of list contains:
+{name: str, desc: str, whitelisted: 1 or 0, id: str}</td></tr>
+            <tr><th><a href="datum/controller/subsystem/characters.html#var/character_species_lookup">character_species_lookup</a></th><td>yeah so funny right</td></tr>
+            <tr><th><a href="datum/controller/subsystem/characters.html#var/custom_species_bases">custom_species_bases</a></th><td>custom species icon bases - names</td></tr>
+            <tr><th><a href="datum/controller/subsystem/characters.html#var/default_species_path">default_species_path</a></th><td>default species path</td></tr>
+            <tr><th><a href="datum/controller/subsystem/characters.html#var/language_keys">language_keys</a></th><td>language key cache</td></tr>
+            <tr><th><a href="datum/controller/subsystem/characters.html#var/language_lookup">language_lookup</a></th><td>languages by id</td></tr>
+            <tr><th><a href="datum/controller/subsystem/characters.html#var/language_names">language_names</a></th><td>language by name</td></tr>
+            <tr><th><a href="datum/controller/subsystem/characters.html#var/language_paths">language_paths</a></th><td>languages by path</td></tr>
+            <tr><th><a href="datum/controller/subsystem/characters.html#var/playable_species">playable_species</a></th><td>whitelisted species - names</td></tr>
+            <tr><th><a href="datum/controller/subsystem/characters.html#var/species_lookup">species_lookup</a></th><td>species by id</td></tr>
+            <tr><th><a href="datum/controller/subsystem/characters.html#var/species_names">species_names</a></th><td>species by name</td></tr>
+            <tr><th><a href="datum/controller/subsystem/characters.html#var/species_paths">species_paths</a></th><td>species by type</td></tr>
+            <tr><th><a href="datum/controller/subsystem/characters.html#var/whitelisted_species">whitelisted_species</a></th><td>playable species - names</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/characters.html#proc/all_language_names">all_language_names</a></th><td>returns all language names</td></tr>
+            <tr><th><a href="datum/controller/subsystem/characters.html#proc/all_languages">all_languages</a></th><td>returns all language datums
+do NOT modify these unless you know what you are doing!</td></tr>
+            <tr><th><a href="datum/controller/subsystem/characters.html#proc/all_static_species_meta">all_static_species_meta</a></th><td>returns all static species datums
+DO NOT EVER MODIFY THESE.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/characters.html#proc/default_species_id">default_species_id</a></th><td>default species id for when someone's species is removed/no longer playable</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/character_species_cache"><aside class="declaration">var </aside>character_species_cache
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/characters/character_species.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;characters&#x2F;character_species.dm 24"/></a></h3>
+        <p>species ui cache
+so we don't rebuild this every time someone makes an ui
+list of categories associated to lists
+second layer of list contains:
+{name: str, desc: str, whitelisted: 1 or 0, id: str}</p><h3 id="var/character_species_lookup"><aside class="declaration">var </aside>character_species_lookup
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/characters/character_species.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;characters&#x2F;character_species.dm 14"/></a></h3>
+        <p>yeah so funny right</p>
+<p>we have a lot of fake-people around (minor races/human reskins)
+i can't remove them because that'd ruffle feathers
+( literally, looking at you harpies )
+so <strong>everyone</strong> gets to be a /datum/character_species
+that way we get the name, desc, and species id of what
+actual species we should be any are able to do roundstart tweaks.</p><h3 id="var/custom_species_bases"><aside class="declaration">var </aside>custom_species_bases
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/characters/species.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;characters&#x2F;species.dm 16"/></a></h3>
+        <p>custom species icon bases - names</p><h3 id="var/default_species_path"><aside class="declaration">var </aside>default_species_path
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/characters/species.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;characters&#x2F;species.dm 18"/></a></h3>
+        <p>default species path</p><h3 id="var/language_keys"><aside class="declaration">var </aside>language_keys
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/characters/languages.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;characters&#x2F;languages.dm 8"/></a></h3>
+        <p>language key cache</p><h3 id="var/language_lookup"><aside class="declaration">var </aside>language_lookup
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/characters/languages.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;characters&#x2F;languages.dm 3"/></a></h3>
+        <p>languages by id</p><h3 id="var/language_names"><aside class="declaration">var </aside>language_names
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/characters/languages.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;characters&#x2F;languages.dm 13"/></a></h3>
+        <p>language by name</p><h3 id="var/language_paths"><aside class="declaration">var </aside>language_paths
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/characters/languages.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;characters&#x2F;languages.dm 5"/></a></h3>
+        <p>languages by path</p><h3 id="var/playable_species"><aside class="declaration">var </aside>playable_species
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/characters/species.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;characters&#x2F;species.dm 13"/></a></h3>
+        <p>whitelisted species - names</p><h3 id="var/species_lookup"><aside class="declaration">var </aside>species_lookup
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/characters/species.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;characters&#x2F;species.dm 3"/></a></h3>
+        <p>species by id</p><h3 id="var/species_names"><aside class="declaration">var </aside>species_names
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/characters/species.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;characters&#x2F;species.dm 7"/></a></h3>
+        <p>species by name</p><h3 id="var/species_paths"><aside class="declaration">var </aside>species_paths
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/characters/species.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;characters&#x2F;species.dm 5"/></a></h3>
+        <p>species by type</p><h3 id="var/whitelisted_species"><aside class="declaration">var </aside>whitelisted_species
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/characters/species.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;characters&#x2F;species.dm 10"/></a></h3>
+        <p>playable species - names</p><h2 id="proc">Proc Details</h2><h3 id="proc/all_language_names"><aside class="declaration">proc </aside>all_language_names<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/characters/languages.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;characters&#x2F;languages.dm 66"/></a></aside>
+        </h3>
+        <p>returns all language names</p><h3 id="proc/all_languages"><aside class="declaration">proc </aside>all_languages<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/characters/languages.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;characters&#x2F;languages.dm 57"/></a></aside>
+        </h3>
+        <p>returns all language datums
+do NOT modify these unless you know what you are doing!</p><h3 id="proc/all_static_species_meta"><aside class="declaration">proc </aside>all_static_species_meta<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/characters/species.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;characters&#x2F;species.dm 103"/></a></aside>
+        </h3>
+        <p>returns all static species datums
+DO NOT EVER MODIFY THESE.</p><h3 id="proc/default_species_id"><aside class="declaration">proc </aside>default_species_id<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/characters/species.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;characters&#x2F;species.dm 118"/></a></aside>
+        </h3>
+        <p>default species id for when someone's species is removed/no longer playable</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

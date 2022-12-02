@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;dcs&#x2F;components&#x2F;riding.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/dcs/components/riding.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/dcs/components/riding.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/components/riding.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;components&#x2F;riding.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><p>Riding filters</p></td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/components/riding.html#define/CF_RIDING_FILTER_AUTO_BUCKLE_TOGGLE">CF_RIDING_FILTER_AUTO_BUCKLE_TOGGLE</a></th><td>automatically enable and reset buckle_allowed on add/remove</td></tr>
+        <tr><td colspan="2"><p>Riding handlers</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/components/riding.html#define/CF_RIDING_HANDLER_EPHEMERAL">CF_RIDING_HANDLER_EPHEMERAL</a></th><td>ephemeral - delete on last mob unbuckled</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/components/riding.html#define/CF_RIDING_HANDLER_ALLOW_BORDER">CF_RIDING_HANDLER_ALLOW_BORDER</a></th><td>allow us to be one away from valid turfs</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/components/riding.html#define/CF_RIDING_HANDLER_FORCED_SPACEMOVE">CF_RIDING_HANDLER_FORCED_SPACEMOVE</a></th><td>always allow spacemove</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/components/riding.html#define/CF_RIDING_HANDLER_IS_CONTROLLABLE">CF_RIDING_HANDLER_IS_CONTROLLABLE</a></th><td>allow &quot;piloting&quot; of the thing we're riding at all</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/components/riding.html#define/CF_RIDING_HANDLER_FORBID_BORDER_CROSS">CF_RIDING_HANDLER_FORBID_BORDER_CROSS</a></th><td>for allow borders, do not allow crossing</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/components/riding.html#define/CF_RIDING_HANDLER_SHIFT_RIDER_PLANE">CF_RIDING_HANDLER_SHIFT_RIDER_PLANE</a></th><td>shift rider to our plane</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/components/riding.html#define/CF_RIDING_CHECK_UNCONSCIOUS">CF_RIDING_CHECK_UNCONSCIOUS</a></th><td>if unconscious</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/components/riding.html#define/CF_RIDING_CHECK_RESTRAINED">CF_RIDING_CHECK_RESTRAINED</a></th><td>if restrained</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/components/riding.html#define/CF_RIDING_CHECK_ARMS">CF_RIDING_CHECK_ARMS</a></th><td>if no arms - behavior depends on component</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/components/riding.html#define/CF_RIDING_CHECK_LEGS">CF_RIDING_CHECK_LEGS</a></th><td>if no legs - behavior depends on component</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/components/riding.html#define/CF_RIDING_CHECK_INCAPACITATED">CF_RIDING_CHECK_INCAPACITATED</a></th><td>if incapacitated</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/components/riding.html#define/CF_RIDING_CHECK_LYING">CF_RIDING_CHECK_LYING</a></th><td>check not laying down - ONLY SENSICAL ON RIDDEN</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/components/riding.html#define/CF_RIDING_OFFSETS_SIMPLE">CF_RIDING_OFFSETS_SIMPLE</a></th><td>list(x, y, layer)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/components/riding.html#define/CF_RIDING_OFFSETS_DIRECTIONAL">CF_RIDING_OFFSETS_DIRECTIONAL</a></th><td>list(list(x, y, layer), ...), for NESW</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/components/riding.html#define/CF_RIDING_OFFSETS_ENUMERATED">CF_RIDING_OFFSETS_ENUMERATED</a></th><td>list(list(list(x, y, layer), ...), ...) for NESW inner, indices outer (last index used for remainder)</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/CF_RIDING_CHECK_ARMS"><aside class="declaration">#define </aside>CF_RIDING_CHECK_ARMS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/components/riding.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;components&#x2F;riding.dm 41"/></a>
+    </h3>
+    <p>if no arms - behavior depends on component</p><h3 id="define/CF_RIDING_CHECK_INCAPACITATED"><aside class="declaration">#define </aside>CF_RIDING_CHECK_INCAPACITATED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/components/riding.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;components&#x2F;riding.dm 45"/></a>
+    </h3>
+    <p>if incapacitated</p><h3 id="define/CF_RIDING_CHECK_LEGS"><aside class="declaration">#define </aside>CF_RIDING_CHECK_LEGS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/components/riding.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;components&#x2F;riding.dm 43"/></a>
+    </h3>
+    <p>if no legs - behavior depends on component</p><h3 id="define/CF_RIDING_CHECK_LYING"><aside class="declaration">#define </aside>CF_RIDING_CHECK_LYING
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/components/riding.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;components&#x2F;riding.dm 47"/></a>
+    </h3>
+    <p>check not laying down - ONLY SENSICAL ON RIDDEN</p><h3 id="define/CF_RIDING_CHECK_RESTRAINED"><aside class="declaration">#define </aside>CF_RIDING_CHECK_RESTRAINED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/components/riding.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;components&#x2F;riding.dm 39"/></a>
+    </h3>
+    <p>if restrained</p><h3 id="define/CF_RIDING_CHECK_UNCONSCIOUS"><aside class="declaration">#define </aside>CF_RIDING_CHECK_UNCONSCIOUS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/components/riding.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;components&#x2F;riding.dm 37"/></a>
+    </h3>
+    <p>if unconscious</p><h3 id="define/CF_RIDING_FILTER_AUTO_BUCKLE_TOGGLE"><aside class="declaration">#define </aside>CF_RIDING_FILTER_AUTO_BUCKLE_TOGGLE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/components/riding.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;components&#x2F;riding.dm 4"/></a>
+    </h3>
+    <p>automatically enable and reset buckle_allowed on add/remove</p><h3 id="define/CF_RIDING_HANDLER_ALLOW_BORDER"><aside class="declaration">#define </aside>CF_RIDING_HANDLER_ALLOW_BORDER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/components/riding.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;components&#x2F;riding.dm 16"/></a>
+    </h3>
+    <p>allow us to be one away from valid turfs</p><h3 id="define/CF_RIDING_HANDLER_EPHEMERAL"><aside class="declaration">#define </aside>CF_RIDING_HANDLER_EPHEMERAL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/components/riding.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;components&#x2F;riding.dm 14"/></a>
+    </h3>
+    <p>ephemeral - delete on last mob unbuckled</p><h3 id="define/CF_RIDING_HANDLER_FORBID_BORDER_CROSS"><aside class="declaration">#define </aside>CF_RIDING_HANDLER_FORBID_BORDER_CROSS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/components/riding.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;components&#x2F;riding.dm 22"/></a>
+    </h3>
+    <p>for allow borders, do not allow crossing</p><h3 id="define/CF_RIDING_HANDLER_FORCED_SPACEMOVE"><aside class="declaration">#define </aside>CF_RIDING_HANDLER_FORCED_SPACEMOVE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/components/riding.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;components&#x2F;riding.dm 18"/></a>
+    </h3>
+    <p>always allow spacemove</p><h3 id="define/CF_RIDING_HANDLER_IS_CONTROLLABLE"><aside class="declaration">#define </aside>CF_RIDING_HANDLER_IS_CONTROLLABLE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/components/riding.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;components&#x2F;riding.dm 20"/></a>
+    </h3>
+    <p>allow &quot;piloting&quot; of the thing we're riding at all</p><h3 id="define/CF_RIDING_HANDLER_SHIFT_RIDER_PLANE"><aside class="declaration">#define </aside>CF_RIDING_HANDLER_SHIFT_RIDER_PLANE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/components/riding.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;components&#x2F;riding.dm 24"/></a>
+    </h3>
+    <p>shift rider to our plane</p><h3 id="define/CF_RIDING_OFFSETS_DIRECTIONAL"><aside class="declaration">#define </aside>CF_RIDING_OFFSETS_DIRECTIONAL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/components/riding.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;components&#x2F;riding.dm 70"/></a>
+    </h3>
+    <p>list(list(x, y, layer), ...), for NESW</p><h3 id="define/CF_RIDING_OFFSETS_ENUMERATED"><aside class="declaration">#define </aside>CF_RIDING_OFFSETS_ENUMERATED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/components/riding.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;components&#x2F;riding.dm 72"/></a>
+    </h3>
+    <p>list(list(list(x, y, layer), ...), ...) for NESW inner, indices outer (last index used for remainder)</p><h3 id="define/CF_RIDING_OFFSETS_SIMPLE"><aside class="declaration">#define </aside>CF_RIDING_OFFSETS_SIMPLE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/components/riding.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;components&#x2F;riding.dm 68"/></a>
+    </h3>
+    <p>list(x, y, layer)</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

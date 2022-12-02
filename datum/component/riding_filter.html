@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;riding_filter - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/riding_filter.html#var">Var Details</a> - <a href="datum/component/riding_filter.html#proc">Proc Details</a></header>
+<main>
+<h1>riding_filter <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/riding_filter.html">riding_filter</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/components/riding/riding_filter.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding&#x2F;riding_filter.dm 24"/></a></h1>
+
+<p>Riding filter components</p>
+<p>Filters who can/can't ride this mob and in what circumstances.</p>
+<p>They also handle initializing the handler.</p>
+<p><strong>The only reason this is not an element is admin abuse.</strong>
+I'm not even joking. Oh, and I guess adding support for one time fuckery.
+Elements cache the datum, which is usually how you save memory because we don't have to write complex lists/whatnot.
+However, they still hanve to register signals.</p>
+<p>We can achieve the same effect to a lighter degree due to this, by just not overriding variables with non constant instances (like lists, etc)</p>
+<p><strong>Avoid LoadComponent and GetComponent.</strong> It's better to subtype these than to fuck around with manual var overrides
+If people start doing the latter outside of absolute necessity I'll just make these all an element because you SHOULDN'T DO THAT!</p>
+<p>! Right now, we DO use LoadComponent as &quot;assert riding component exists&quot; in this.
+! The other option is put check logic on riding components only and always instantiate, rather than on success.
+! I picked this poison rather than the other. If you think the other is good and can write it well, feel free to refactor.</p>
+<p>? This component overrides all normal can buckles and will force operations if needed. Be careful.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/riding_filter.html#var/expected_typepath">expected_typepath</a></th><td>expected typepath of what we're to be filtering for</td></tr>
+            <tr><th><a href="datum/component/riding_filter.html#var/handler_typepath">handler_typepath</a></th><td>the path of the riding handler component we're going to make.</td></tr>
+            <tr><th><a href="datum/component/riding_filter.html#var/implements_can_buckle_hints">implements_can_buckle_hints</a></th><td>implements smart can_buckle checks rather than just pre_buckle</td></tr>
+            <tr><th><a href="datum/component/riding_filter.html#var/offhand_requirements_are_rigid">offhand_requirements_are_rigid</a></th><td>hard requirement of offhands? if not, we won't try to equip more than they have hands to equip</td></tr>
+            <tr><th><a href="datum/component/riding_filter.html#var/offhands_needed_rider">offhands_needed_rider</a></th><td>offhands required on people buckled to us</td></tr>
+            <tr><th><a href="datum/component/riding_filter.html#var/our_offhands">our_offhands</a></th><td><del>our overlays</del> e-er, I mean our_offhands.</td></tr>
+            <tr><th><a href="datum/component/riding_filter.html#var/riding_filter_flags">riding_filter_flags</a></th><td>filter flags</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/riding_filter.html#proc/allocate_offhands">allocate_offhands</a></th><td>called to register offhands for a new rider
+returns true/false based on success/failure</td></tr>
+            <tr><th><a href="datum/component/riding_filter.html#proc/check_mount_attempt">check_mount_attempt</a></th><td>checks if we should allow someone to mount.
+overrides atom opinion.</td></tr>
+            <tr><th><a href="datum/component/riding_filter.html#proc/check_offhands">check_offhands</a></th><td>ensures offhands required are equipped
+pass in a rider to only check them, else we check all.
+pass in unbuckling if checking after unbuckling, so we can destroy offhands without triggering a loop.</td></tr>
+            <tr><th><a href="datum/component/riding_filter.html#proc/check_user_mount">check_user_mount</a></th><td>checks if we should allow an entity to buckle another entity to us
+overrides atom opinion</td></tr>
+            <tr><th><a href="datum/component/riding_filter.html#proc/mount_allocate_offhands">mount_allocate_offhands</a></th><td>handles offhand allocation on mount</td></tr>
+            <tr><th><a href="datum/component/riding_filter.html#proc/on_mount_attempt">on_mount_attempt</a></th><td>called on buckling process right before point of no return
+overrides atom opinion.</td></tr>
+            <tr><th><a href="datum/component/riding_filter.html#proc/signal_hook_can_buckle">signal_hook_can_buckle</a></th><td>if implemented (set <code>implements_can_buckle_hints</code> to TRUE), allows us to hint early
+that something can't buckle, rather than interrupting last moment during pre_buckle.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/expected_typepath"><aside class="declaration">var </aside>expected_typepath
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/components/riding/riding_filter.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding&#x2F;riding_filter.dm 32"/></a></h3>
+        <p>expected typepath of what we're to be filtering for</p><h3 id="var/handler_typepath"><aside class="declaration">var </aside>handler_typepath
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/components/riding/riding_filter.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding&#x2F;riding_filter.dm 34"/></a></h3>
+        <p>the path of the riding handler component we're going to make.</p><h3 id="var/implements_can_buckle_hints"><aside class="declaration">var </aside>implements_can_buckle_hints
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/components/riding/riding_filter.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding&#x2F;riding_filter.dm 36"/></a></h3>
+        <p>implements smart can_buckle checks rather than just pre_buckle</p><h3 id="var/offhand_requirements_are_rigid"><aside class="declaration">var </aside>offhand_requirements_are_rigid
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/components/riding/riding_filter.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding&#x2F;riding_filter.dm 40"/></a></h3>
+        <p>hard requirement of offhands? if not, we won't try to equip more than they have hands to equip</p><h3 id="var/offhands_needed_rider"><aside class="declaration">var </aside>offhands_needed_rider
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/components/riding/riding_filter.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding&#x2F;riding_filter.dm 38"/></a></h3>
+        <p>offhands required on people buckled to us</p><h3 id="var/our_offhands"><aside class="declaration">var </aside>our_offhands
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/components/riding/riding_filter.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding&#x2F;riding_filter.dm 44"/></a></h3>
+        <p><del>our overlays</del> e-er, I mean our_offhands.</p><h3 id="var/riding_filter_flags"><aside class="declaration">var </aside>riding_filter_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/components/riding/riding_filter.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding&#x2F;riding_filter.dm 30"/></a></h3>
+        <p>filter flags</p><h2 id="proc">Proc Details</h2><h3 id="proc/allocate_offhands"><aside class="declaration">proc </aside>allocate_offhands<aside>(/<a href="mob.html">mob</a>/rider, semantic, /list/offhands) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/components/riding/riding_filter.dm#L209">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding&#x2F;riding_filter.dm 209"/></a></aside>
+        </h3>
+        <p>called to register offhands for a new rider
+returns true/false based on success/failure</p><h3 id="proc/check_mount_attempt"><aside class="declaration">proc </aside>check_mount_attempt<aside>(/<a href="mob.html">mob</a>/M, buckle_flags, /<a href="mob.html">mob</a>/user, semantic) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/components/riding/riding_filter.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding&#x2F;riding_filter.dm 126"/></a></aside>
+        </h3>
+        <p>checks if we should allow someone to mount.
+overrides atom opinion.</p><h3 id="proc/check_offhands"><aside class="declaration">proc </aside>check_offhands<aside>(/<a href="mob.html">mob</a>/rider, unbuckling) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/components/riding/riding_filter.dm#L173">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding&#x2F;riding_filter.dm 173"/></a></aside>
+        </h3>
+        <p>ensures offhands required are equipped
+pass in a rider to only check them, else we check all.
+pass in unbuckling if checking after unbuckling, so we can destroy offhands without triggering a loop.</p>
+<p>! This proc is shitcode, don't fuck with this without knowing what you're doing.</p><h3 id="proc/check_user_mount"><aside class="declaration">proc </aside>check_user_mount<aside>(/<a href="mob.html">mob</a>/M, buckle_flags, /<a href="mob.html">mob</a>/user, semantic) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/components/riding/riding_filter.dm#L135">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding&#x2F;riding_filter.dm 135"/></a></aside>
+        </h3>
+        <p>checks if we should allow an entity to buckle another entity to us
+overrides atom opinion</p><h3 id="proc/mount_allocate_offhands"><aside class="declaration">proc </aside>mount_allocate_offhands<aside>(/<a href="mob.html">mob</a>/M, buckle_flags, /<a href="mob.html">mob</a>/user, semantic) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/components/riding/riding_filter.dm#L158">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding&#x2F;riding_filter.dm 158"/></a></aside>
+        </h3>
+        <p>handles offhand allocation on mount</p><h3 id="proc/on_mount_attempt"><aside class="declaration">proc </aside>on_mount_attempt<aside>(/<a href="mob.html">mob</a>/M, buckle_flags, /<a href="mob.html">mob</a>/user, semantic) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/components/riding/riding_filter.dm#L115">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding&#x2F;riding_filter.dm 115"/></a></aside>
+        </h3>
+        <p>called on buckling process right before point of no return
+overrides atom opinion.</p><h3 id="proc/signal_hook_can_buckle"><aside class="declaration">proc </aside>signal_hook_can_buckle<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/source, /<a href="mob.html">mob</a>/M, flags, /<a href="mob.html">mob</a>/user, semantic) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/components/riding/riding_filter.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;riding&#x2F;riding_filter.dm 107"/></a></aside>
+        </h3>
+        <p>if implemented (set <code>implements_can_buckle_hints</code> to TRUE), allows us to hint early
+that something can't buckle, rather than interrupting last moment during pre_buckle.</p>
+<p>it is good practice, but not required, to do this.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;game&#x2F;sd_Alert.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/game/sd_Alert.html#define">Define Details</a></header>
+<main>
+<h1>code/game/sd_Alert.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/sd_Alert.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;sd_Alert.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/game/sd_Alert.html#define/SD_ALERT_SCROLL">SD_ALERT_SCROLL</a></th><td>! sd_Alert library
+! by Shadowdarke (shadowdarke@byond.com)</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/SD_ALERT_SCROLL"><aside class="declaration">#define </aside>SD_ALERT_SCROLL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/sd_Alert.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;sd_Alert.dm 65"/></a>
+    </h3>
+    <p>! sd_Alert library
+! by Shadowdarke (shadowdarke@byond.com)</p>
+<pre><code>sd_Alert() is a powerful and flexible alternative to the built in BYOND
+alert() proc. sd_Alert offers timed popups, unlimited buttons, custom
+appearance, and even the option to popup without stealing keyboard focus
+from the map or command line.
+
+Please see demo.dm for detailed examples.
+</code></pre>
+<p>FORMAT
+sd_Alert(who, message, title, buttons, default, duration, unfocus, <br />
+size, table, style, tag, select, flags)</p>
+<p>ARGUMENTS
+who			- the client or mob to display the alert to.
+message		- text message to display
+title		- title of the alert box
+buttons		- list of buttons
+Default Value: list(&quot;Ok&quot;)
+default		- default button selestion
+Default Value: the first button in the list
+duration	- the number of ticks before this alert expires. If not
+set, the alert lasts until a button is clicked.
+Default Value: 0 (unlimited)
+unfocus		- if this value is set, the popup will not steal keyboard
+focus from the map or command line.
+Default Value: 1 (do not take focus)
+size		- size of the popup window in px
+Default Value: &quot;300x200&quot;
+table		- optional parameters for the HTML table in the alert
+Default Value: &quot;width=100% height=100%&quot; (fill the window)
+style		- optional style sheet information
+tag			- lets you specify a certain tag for this sd_Alert so you may manipulate it
+externally. (i.e. force the alert to close, change options and redisplay,
+reuse the same window, etc.)
+select		- if set, the buttons will be replaced with a selection box with a number of
+lines displayed equal to this value.
+Default value: 0 (use buttons)
+flags		- optional flags effecting the alert display. These flags may be ORed (|)
+together for multiple effects.
+SD_ALERT_SCROLL			= display a scrollbar
+SD_ALERT_SELECT_MULTI	= forces selection box display (instead of
+buttons) allows the user to select multiple
+choices.
+SD_ALERT_LINKS			= display each choice as a plain text link.
+Any selection box style overrides this flag.
+SD_ALERT_NOVALIDATE		= don't validate responses
+Default value: SD_ALERT_SCROLL
+(button display with scroll bar, validate responses)
+RETURNS
+The text of the selected button, or null if the alert duration expired
+without a button click.</p>
+<p>Version 1 changes (from version 0):</p>
+<ul>
+<li>Added the tag, select, and flags arguments, thanks to several suggestions from Foomer.</li>
+<li>Split the sd_Alert/Alert() proc into New(), Display(), and Response() to allow more
+customization by developers. Primarily developers would want to use Display() to change
+the display of active tagged windows</li>
+</ul></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

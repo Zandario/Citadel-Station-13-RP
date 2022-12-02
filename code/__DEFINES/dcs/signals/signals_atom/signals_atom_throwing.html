@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_throwing.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_throwing.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><p>Wanna add hitpush signals? TOO BAD, DON'T. Modify the thrownthing datum these pass in!</p></td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.html#define/COMSIG_ATOM_THROW_IMPACTED">COMSIG_ATOM_THROW_IMPACTED</a></th><td>from base of /atom/proc/throw_impacted: (AM, thrownthing)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.html#define/COMSIG_MOVABLE_THROW_IMPACT">COMSIG_MOVABLE_THROW_IMPACT</a></th><td>from base of /atom/movable/proc/throw_impact: (AM, thrownthing)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.html#define/COMPONENT_THROW_HIT_NEVERMIND">COMPONENT_THROW_HIT_NEVERMIND</a></th><td>cancel further actions in this hit</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.html#define/COMPONENT_THROW_HIT_PIERCE">COMPONENT_THROW_HIT_PIERCE</a></th><td>pierce through.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.html#define/COMPONENT_THROW_HIT_TERMINATE">COMPONENT_THROW_HIT_TERMINATE</a></th><td>completely terminate throw silently immediately. Use if you're deleting the atom.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.html#define/COMSIG_MOVABLE_THROW_LAND">COMSIG_MOVABLE_THROW_LAND</a></th><td>called on throws landing on something: (landed_on, thrownthing)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.html#define/COMSIG_ATOM_THROW_LANDED">COMSIG_ATOM_THROW_LANDED</a></th><td>called on something landing on us from a throw</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.html#define/COMPONENT_THROW_LANDING_NEVERMIND">COMPONENT_THROW_LANDING_NEVERMIND</a></th><td>cancel further actions</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.html#define/COMPONENT_THROW_LANDING_TERMINATE">COMPONENT_THROW_LANDING_TERMINATE</a></th><td>completely terminate throw silently immediately. Use if you're deleting the atom.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.html#define/COMSIG_MOVABLE_PRE_THROW">COMSIG_MOVABLE_PRE_THROW</a></th><td>called in subsystem_throw and emulated_throw before the datum is created with (target, range, speed, flags, thrower, cb_on_hit, cb_on_land, emulated); you can stop the throw at this point.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.html#define/COMPONENT_CANCEL_PRE_THROW">COMPONENT_CANCEL_PRE_THROW</a></th><td>cancel the throw</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.html#define/COMSIG_MOVABLE_POST_THROW">COMSIG_MOVABLE_POST_THROW</a></th><td>called in subsystem_throw and emulated_throw after the datum is created with (target, range, speed, flags, thrower, cb_on_hit, cb_on_land, emulated); it is now too late to cancel the throw.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.html#define/COMSIG_MOVABLE_INIT_THROW">COMSIG_MOVABLE_INIT_THROW</a></th><td>called in _init_throw_datum  during both subsystem and emulated throw with (target, range, speed, flags, thrower, cb_on_hit, cb_on_land, emulated)</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/COMPONENT_CANCEL_PRE_THROW"><aside class="declaration">#define </aside>COMPONENT_CANCEL_PRE_THROW
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_throwing.dm 28"/></a>
+    </h3>
+    <p>cancel the throw</p><h3 id="define/COMPONENT_THROW_HIT_NEVERMIND"><aside class="declaration">#define </aside>COMPONENT_THROW_HIT_NEVERMIND
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_throwing.dm 9"/></a>
+    </h3>
+    <p>cancel further actions in this hit</p><h3 id="define/COMPONENT_THROW_HIT_PIERCE"><aside class="declaration">#define </aside>COMPONENT_THROW_HIT_PIERCE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_throwing.dm 11"/></a>
+    </h3>
+    <p>pierce through.</p><h3 id="define/COMPONENT_THROW_HIT_TERMINATE"><aside class="declaration">#define </aside>COMPONENT_THROW_HIT_TERMINATE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_throwing.dm 13"/></a>
+    </h3>
+    <p>completely terminate throw silently immediately. Use if you're deleting the atom.</p><h3 id="define/COMPONENT_THROW_LANDING_NEVERMIND"><aside class="declaration">#define </aside>COMPONENT_THROW_LANDING_NEVERMIND
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_throwing.dm 21"/></a>
+    </h3>
+    <p>cancel further actions</p><h3 id="define/COMPONENT_THROW_LANDING_TERMINATE"><aside class="declaration">#define </aside>COMPONENT_THROW_LANDING_TERMINATE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_throwing.dm 23"/></a>
+    </h3>
+    <p>completely terminate throw silently immediately. Use if you're deleting the atom.</p><h3 id="define/COMSIG_ATOM_THROW_IMPACTED"><aside class="declaration">#define </aside>COMSIG_ATOM_THROW_IMPACTED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_throwing.dm 4"/></a>
+    </h3>
+    <p>from base of /atom/proc/throw_impacted: (AM, thrownthing)</p><h3 id="define/COMSIG_ATOM_THROW_LANDED"><aside class="declaration">#define </aside>COMSIG_ATOM_THROW_LANDED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_throwing.dm 18"/></a>
+    </h3>
+    <p>called on something landing on us from a throw</p><h3 id="define/COMSIG_MOVABLE_INIT_THROW"><aside class="declaration">#define </aside>COMSIG_MOVABLE_INIT_THROW
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_throwing.dm 32"/></a>
+    </h3>
+    <p>called in _init_throw_datum  during both subsystem and emulated throw with (target, range, speed, flags, thrower, cb_on_hit, cb_on_land, emulated)</p><h3 id="define/COMSIG_MOVABLE_POST_THROW"><aside class="declaration">#define </aside>COMSIG_MOVABLE_POST_THROW
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_throwing.dm 30"/></a>
+    </h3>
+    <p>called in subsystem_throw and emulated_throw after the datum is created with (target, range, speed, flags, thrower, cb_on_hit, cb_on_land, emulated); it is now too late to cancel the throw.</p><h3 id="define/COMSIG_MOVABLE_PRE_THROW"><aside class="declaration">#define </aside>COMSIG_MOVABLE_PRE_THROW
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_throwing.dm 26"/></a>
+    </h3>
+    <p>called in subsystem_throw and emulated_throw before the datum is created with (target, range, speed, flags, thrower, cb_on_hit, cb_on_land, emulated); you can stop the throw at this point.</p><h3 id="define/COMSIG_MOVABLE_THROW_IMPACT"><aside class="declaration">#define </aside>COMSIG_MOVABLE_THROW_IMPACT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_throwing.dm 6"/></a>
+    </h3>
+    <p>from base of /atom/movable/proc/throw_impact: (AM, thrownthing)</p><h3 id="define/COMSIG_MOVABLE_THROW_LAND"><aside class="declaration">#define </aside>COMSIG_MOVABLE_THROW_LAND
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_throwing.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_throwing.dm 16"/></a>
+    </h3>
+    <p>called on throws landing on something: (landed_on, thrownthing)</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

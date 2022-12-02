@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;mecha - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/mecha.html#var">Var Details</a> - <a href="obj/mecha.html#proc">Proc Details</a></header>
+<main>
+<h1>mecha <aside>/<a href="obj.html">obj</a>/<a href="obj/mecha.html">mecha</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 20"/></a></h1>
+
+<p>Inner atmos
+Mech actions</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/mecha.html#var/anchored">anchored</a></th><td>No pulling around.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/can_phase">can_phase</a></th><td>This is an internal check during the relevant procs.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/damage_absorption">damage_absorption</a></th><td>The values in this list show how much damage will pass through, not how much will be absorbed.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/defence_deflect">defence_deflect</a></th><td>How much it deflect.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/defence_mode">defence_mode</a></th><td>Are we in defence mode.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/defence_mode_possible">defence_mode_possible</a></th><td>Can we even use defence mode? This is used to assign it to mechs and check for verbs.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/deflect_chance">deflect_chance</a></th><td>Chance to deflect the incoming projectiles, hits, or lesser the effect of legacy_ex_act.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/density">density</a></th><td>Dense. To raise the heat.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/dir_in">dir_in</a></th><td>What direction will the mech face when entered/powered on? Defaults to South.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/dna">dna</a></th><td>Dna-locking the mech.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/encumbrance_gap">encumbrance_gap</a></th><td>How many points of slowdown are negated from equipment? Added to the mech's base step_in.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/equipment">equipment</a></th><td>This lists holds what stuff you bolted onto your baby ride.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/fail_penetration_value">fail_penetration_value</a></th><td>By how much failing to penetrate reduces your shit. 66% by default. 100dmg = 66dmg if failed pen.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/firstactivation">firstactivation</a></th><td>It's simple. If it's 0, no one entered it yet. Otherwise someone entered it at least once.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/health">health</a></th><td>Health is healthdrain = 10</td></tr>
+            <tr><th><a href="obj/mecha.html#var/infra_luminosity">infra_luminosity</a></th><td>Byond implementation is bugged.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/initial_icon">initial_icon</a></th><td>Mech type for resetting icon. Only used for reskinning kits (see custom items).</td></tr>
+            <tr><th><a href="obj/mecha.html#var/internal_damage">internal_damage</a></th><td>Contains bitflags.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/internal_damage_minimum">internal_damage_minimum</a></th><td>At least this much damage to trigger some real bad hurt.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/internal_damage_threshold">internal_damage_threshold</a></th><td>Health percentage below which internal damage is possible.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/internals_req_access">internals_req_access</a></th><td>Required access level to open cell compartment.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/layer">layer</a></th><td>Icon draw layer.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/max_temperature">max_temperature</a></th><td>Kelvin values.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/maxhealth">maxhealth</a></th><td>Maxhealth is maxhealth.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/opacity">opacity</a></th><td>Opaque. Menacing.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/operation_req_access">operation_req_access</a></th><td>Required access level for mecha operation.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/overload">overload</a></th><td>Are our legs overloaded.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/overload_coeff">overload_coeff</a></th><td>How much extra energy you use when use the L E G.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/overload_possible">overload_possible</a></th><td>Same as above. Don't forget to GRANT the verb&amp;actions if you want everything to work proper.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/phasing">phasing</a></th><td>Are we currently phasing.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/phasing_possible">phasing_possible</a></th><td>This is to allow phasing.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/pr_give_air">pr_give_air</a></th><td>Moves air from tank to cabin.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/pr_inertial_movement">pr_inertial_movement</a></th><td>Controls intertial movement in spesss.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/pr_int_temp_processor">pr_int_temp_processor</a></th><td>Normalizes internal air mixture temperature.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/pr_internal_damage">pr_internal_damage</a></th><td>Processes internal damage.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/proc_res">proc_res</a></th><td>Stores proc owners, like proc_res[&quot;functionname&quot;] = owner reference.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/smoke_cooldown">smoke_cooldown</a></th><td>How long you have between uses.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/smoke_ready">smoke_ready</a></th><td>This is a check for the whether or not the cooldown is ongoing.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/smoke_reserve">smoke_reserve</a></th><td>How many shots you have. Might make a reload later on. MIGHT.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/starting_equipment">starting_equipment</a></th><td>List containing starting tools.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/step_in">step_in</a></th><td>Make a step in step_in/10 sec.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/strafing">strafing</a></th><td>re we strafing or not?</td></tr>
+            <tr><th><a href="obj/mecha.html#var/switch_dmg_type_possible">switch_dmg_type_possible</a></th><td>Can you switch damage type? It is mostly for the Phazon and its children.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/unacidable">unacidable</a></th><td>And no deleting hoomans inside.</td></tr>
+            <tr><th><a href="obj/mecha.html#var/weapons_only_cycle">weapons_only_cycle</a></th><td>So combat mechs don't switch to their equipment at times.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/mecha.html#proc/GrantActions">GrantActions</a></th><td>Adding the buttons things to the player. The interactive, top left things, at least at time of writing.
+If you want it to be only for a special mech, you have to go and make an override like in the durand mech.</td></tr>
+            <tr><th><a href="obj/mecha.html#proc/Moved">Moved</a></th><td>Movement procs</td></tr>
+            <tr><th><a href="obj/mecha.html#proc/Topic">Topic</a></th><td>Topic</td></tr>
+            <tr><th><a href="obj/mecha.html#proc/check_for_internal_damage">check_for_internal_damage</a></th><td>Internal damage</td></tr>
+            <tr><th><a href="obj/mecha.html#proc/click_action">click_action</a></th><td>Action processing</td></tr>
+            <tr><th><a href="obj/mecha.html#proc/connect_to_port">connect_to_port</a></th><td>Verbs</td></tr>
+            <tr><th><a href="obj/mecha.html#proc/get_stats_html">get_stats_html</a></th><td>Rendering stats window</td></tr>
+            <tr><th><a href="obj/mecha.html#proc/has_charge">has_charge</a></th><td>Power stuff</td></tr>
+            <tr><th><a href="obj/mecha.html#proc/mmi_move_inside">mmi_move_inside</a></th><td>Brain Stuff</td></tr>
+            <tr><th><a href="obj/mecha.html#proc/occupant_message">occupant_message</a></th><td>Messages and Log</td></tr>
+            <tr><th><a href="obj/mecha.html#proc/operation_allowed">operation_allowed</a></th><td>Access stuff</td></tr>
+            <tr><th><a href="obj/mecha.html#proc/removeVerb">removeVerb</a></th><td>Helpers</td></tr>
+            <tr><th><a href="obj/mecha.html#proc/return_air">return_air</a></th><td>Atmospheric stuff</td></tr>
+            <tr><th><a href="obj/mecha.html#proc/take_damage">take_damage</a></th><td>Health related procs</td></tr>
+            <tr><th><a href="obj/mecha.html#proc/toggle_defence_mode">toggle_defence_mode</a></th><td>ACTUAL MECANICS FOR THE ACTIONS
+OVERLOAD, DEFENCE, SMOKE</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/anchored"><aside class="parent"><a title="/atom/movable" href="atom/movable.html#var/anchored">&uarr;</a></aside>anchored
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 30"/></a></h3>
+        <p>No pulling around.</p><h3 id="var/can_phase"><aside class="declaration">var </aside>can_phase
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L207">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 207"/></a></h3>
+        <p>This is an internal check during the relevant procs.</p><h3 id="var/damage_absorption"><aside class="declaration">var </aside>damage_absorption
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 57"/></a></h3>
+        <p>The values in this list show how much damage will pass through, not how much will be absorbed.</p><h3 id="var/defence_deflect"><aside class="declaration">var </aside>defence_deflect
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L187">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 187"/></a></h3>
+        <p>How much it deflect.</p><h3 id="var/defence_mode"><aside class="declaration">var </aside>defence_mode
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L185">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 185"/></a></h3>
+        <p>Are we in defence mode.</p><h3 id="var/defence_mode_possible"><aside class="declaration">var </aside>defence_mode_possible
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L183">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 183"/></a></h3>
+        <p>Can we even use defence mode? This is used to assign it to mechs and check for verbs.</p><h3 id="var/deflect_chance"><aside class="declaration">var </aside>deflect_chance
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 55"/></a></h3>
+        <p>Chance to deflect the incoming projectiles, hits, or lesser the effect of legacy_ex_act.</p><h3 id="var/density">density
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 26"/></a></h3>
+        <p>Dense. To raise the heat.</p><h3 id="var/dir_in"><aside class="declaration">var </aside>dir_in
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 48"/></a></h3>
+        <p>What direction will the mech face when entered/powered on? Defaults to South.</p><h3 id="var/dna"><aside class="declaration">var </aside>dna
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 82"/></a></h3>
+        <p>Dna-locking the mech.</p><h3 id="var/encumbrance_gap"><aside class="declaration">var </aside>encumbrance_gap
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 45"/></a></h3>
+        <p>How many points of slowdown are negated from equipment? Added to the mech's base step_in.</p><h3 id="var/equipment"><aside class="declaration">var </aside>equipment
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L132">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 132"/></a></h3>
+        <p>This lists holds what stuff you bolted onto your baby ride.</p><h3 id="var/fail_penetration_value"><aside class="declaration">var </aside>fail_penetration_value
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 73"/></a></h3>
+        <p>By how much failing to penetrate reduces your shit. 66% by default. 100dmg = 66dmg if failed pen.</p><h3 id="var/firstactivation"><aside class="declaration">var </aside>firstactivation
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 92"/></a></h3>
+        <p>It's simple. If it's 0, no one entered it yet. Otherwise someone entered it at least once.</p><h3 id="var/health"><aside class="declaration">var </aside>health
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 51"/></a></h3>
+        <p>Health is healthdrain = 10</p><h3 id="var/infra_luminosity">infra_luminosity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 36"/></a></h3>
+        <p>Byond implementation is bugged.</p><h3 id="var/initial_icon"><aside class="declaration">var </aside>initial_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 38"/></a></h3>
+        <p>Mech type for resetting icon. Only used for reskinning kits (see custom items).</p><h3 id="var/internal_damage"><aside class="declaration">var </aside>internal_damage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 113"/></a></h3>
+        <p>Contains bitflags.</p><h3 id="var/internal_damage_minimum"><aside class="declaration">var </aside>internal_damage_minimum
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L111">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 111"/></a></h3>
+        <p>At least this much damage to trigger some real bad hurt.</p><h3 id="var/internal_damage_threshold"><aside class="declaration">var </aside>internal_damage_threshold
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 109"/></a></h3>
+        <p>Health percentage below which internal damage is possible.</p><h3 id="var/internals_req_access"><aside class="declaration">var </aside>internals_req_access
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 118"/></a></h3>
+        <p>Required access level to open cell compartment.</p><h3 id="var/layer">layer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 34"/></a></h3>
+        <p>Icon draw layer.</p><h3 id="var/max_temperature"><aside class="declaration">var </aside>max_temperature
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 107"/></a></h3>
+        <p>Kelvin values.</p><h3 id="var/maxhealth"><aside class="declaration">var </aside>maxhealth
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 53"/></a></h3>
+        <p>Maxhealth is maxhealth.</p><h3 id="var/opacity">opacity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 28"/></a></h3>
+        <p>Opaque. Menacing.</p><h3 id="var/operation_req_access"><aside class="declaration">var </aside>operation_req_access
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 116"/></a></h3>
+        <p>Required access level for mecha operation.</p><h3 id="var/overload"><aside class="declaration">var </aside>overload
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L192">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 192"/></a></h3>
+        <p>Are our legs overloaded.</p><h3 id="var/overload_coeff"><aside class="declaration">var </aside>overload_coeff
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L194">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 194"/></a></h3>
+        <p>How much extra energy you use when use the L E G.</p><h3 id="var/overload_possible"><aside class="declaration">var </aside>overload_possible
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L190">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 190"/></a></h3>
+        <p>Same as above. Don't forget to GRANT the verb&amp;actions if you want everything to work proper.</p><h3 id="var/phasing"><aside class="declaration">var </aside>phasing
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L203">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 203"/></a></h3>
+        <p>Are we currently phasing.</p><h3 id="var/phasing_possible"><aside class="declaration">var </aside>phasing_possible
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L205">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 205"/></a></h3>
+        <p>This is to allow phasing.</p><h3 id="var/pr_give_air"><aside class="declaration">var </aside>pr_give_air
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/global_iterator.html">global_iterator</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L125">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 125"/></a></h3>
+        <p>Moves air from tank to cabin.</p><h3 id="var/pr_inertial_movement"><aside class="declaration">var </aside>pr_inertial_movement
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/global_iterator.html">global_iterator</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L123">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 123"/></a></h3>
+        <p>Controls intertial movement in spesss.</p><h3 id="var/pr_int_temp_processor"><aside class="declaration">var </aside>pr_int_temp_processor
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/global_iterator.html">global_iterator</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L121">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 121"/></a></h3>
+        <p>Normalizes internal air mixture temperature.</p><h3 id="var/pr_internal_damage"><aside class="declaration">var </aside>pr_internal_damage
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/global_iterator.html">global_iterator</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L127">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 127"/></a></h3>
+        <p>Processes internal damage.</p><h3 id="var/proc_res"><aside class="declaration">var </aside>proc_res
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 84"/></a></h3>
+        <p>Stores proc owners, like proc_res[&quot;functionname&quot;] = owner reference.</p><h3 id="var/smoke_cooldown"><aside class="declaration">var </aside>smoke_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L219">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 219"/></a></h3>
+        <p>How long you have between uses.</p><h3 id="var/smoke_ready"><aside class="declaration">var </aside>smoke_ready
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L217">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 217"/></a></h3>
+        <p>This is a check for the whether or not the cooldown is ongoing.</p><h3 id="var/smoke_reserve"><aside class="declaration">var </aside>smoke_reserve
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L215">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 215"/></a></h3>
+        <p>How many shots you have. Might make a reload later on. MIGHT.</p><h3 id="var/starting_equipment"><aside class="declaration">var </aside>starting_equipment
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L150">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 150"/></a></h3>
+        <p>List containing starting tools.</p><h3 id="var/step_in"><aside class="declaration">var </aside>step_in
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 43"/></a></h3>
+        <p>Make a step in step_in/10 sec.</p><h3 id="var/strafing"><aside class="declaration">var </aside>strafing
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L180">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 180"/></a></h3>
+        <p>re we strafing or not?</p><h3 id="var/switch_dmg_type_possible"><aside class="declaration">var </aside>switch_dmg_type_possible
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L211">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 211"/></a></h3>
+        <p>Can you switch damage type? It is mostly for the Phazon and its children.</p><h3 id="var/unacidable">unacidable
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 32"/></a></h3>
+        <p>And no deleting hoomans inside.</p><h3 id="var/weapons_only_cycle"><aside class="declaration">var </aside>weapons_only_cycle
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L244">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 244"/></a></h3>
+        <p>So combat mechs don't switch to their equipment at times.</p><h2 id="proc">Proc Details</h2><h3 id="proc/GrantActions"><aside class="declaration">proc </aside>GrantActions<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, human_occupant) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha_actions.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha_actions.dm 15"/></a></aside>
+        </h3>
+        <p>Adding the buttons things to the player. The interactive, top left things, at least at time of writing.
+If you want it to be only for a special mech, you have to go and make an override like in the durand mech.</p><h3 id="proc/Moved">Moved<aside>(/<a href="atom.html">atom</a>/old_loc, direction, forced) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L643">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 643"/></a></aside>
+        </h3>
+        <p>Movement procs</p><h3 id="proc/Topic"><aside class="parent"><a title="/datum" href="datum.html#proc/Topic">&uarr;</a></aside>Topic<aside>(href, href_list) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L2346">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 2346"/></a></aside>
+        </h3>
+        <p>Topic</p><h3 id="proc/check_for_internal_damage"><aside class="declaration">proc </aside>check_for_internal_damage<aside>(/list/possible_int_damage, ignore_threshold) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L896">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 896"/></a></aside>
+        </h3>
+        <p>Internal damage</p><h3 id="proc/click_action"><aside class="declaration">proc </aside>click_action<aside>(/<a href="atom.html">atom</a>/target, /<a href="mob.html">mob</a>/user, params) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L573">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 573"/></a></aside>
+        </h3>
+        <p>Action processing</p><h3 id="proc/connect_to_port"><aside class="declaration">verb </aside>connect_to_port<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L1681">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 1681"/></a></aside>
+        </h3>
+        <p>Verbs</p><h3 id="proc/get_stats_html"><aside class="declaration">proc </aside>get_stats_html<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L2060">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 2060"/></a></aside>
+        </h3>
+        <p>Rendering stats window</p><h3 id="proc/has_charge"><aside class="declaration">proc </aside>has_charge<aside>(amount) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L2616">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 2616"/></a></aside>
+        </h3>
+        <p>Power stuff</p><h3 id="proc/mmi_move_inside"><aside class="declaration">proc </aside>mmi_move_inside<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/mmi.html">mmi</a>/mmi_as_oc, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L1567">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 1567"/></a></aside>
+        </h3>
+        <p>Brain Stuff</p><h3 id="proc/occupant_message"><aside class="declaration">proc </aside>occupant_message<aside>(message) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L2325">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 2325"/></a></aside>
+        </h3>
+        <p>Messages and Log</p><h3 id="proc/operation_allowed"><aside class="declaration">proc </aside>operation_allowed<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L2016">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 2016"/></a></aside>
+        </h3>
+        <p>Access stuff</p><h3 id="proc/removeVerb"><aside class="declaration">proc </aside>removeVerb<aside>(verb_path) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L387">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 387"/></a></aside>
+        </h3>
+        <p>Helpers</p><h3 id="proc/return_air"><aside class="parent"><a title="/atom" href="atom.html#proc/return_air">&uarr;</a></aside>return_air<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L1632">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 1632"/></a></aside>
+        </h3>
+        <p>Atmospheric stuff</p><h3 id="proc/take_damage">take_damage<aside>(amount, type) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha.dm#L945">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha.dm 945"/></a></aside>
+        </h3>
+        <p>Health related procs</p><h3 id="proc/toggle_defence_mode"><aside class="declaration">verb </aside>toggle_defence_mode<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/mecha/mecha_actions.dm#L266">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;mecha&#x2F;mecha_actions.dm 266"/></a></aside>
+        </h3>
+        <p>ACTUAL MECANICS FOR THE ACTIONS
+OVERLOAD, DEFENCE, SMOKE</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

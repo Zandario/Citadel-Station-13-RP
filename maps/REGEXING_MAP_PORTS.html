@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>maps&#x2F;REGEXING_MAP_PORTS.md - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+</header>
+<main>
+<h1>Regexing Map Ports <aside>maps/REGEXING_MAP_PORTS.md</aside> 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/maps/REGEXING_MAP_PORTS.md">
+        <img src="git.png" width="16" height="16" title="maps&#x2F;REGEXING_MAP_PORTS.md"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><h2 id="primary">Primary</h2>
+<p>// TODO: ADD PYTHON SCRIPT TO AUTOMATE THIS</p>
+<p>Yeah so we're (me) all a bunch of idiots (insane).
+As such we have a <em>ton</em> of path replacements.
+All of these regexes are for VSC. They are not necessarily optimized, so, if you're good at regexes, do help!</p>
+<p>Apply regexes in this order:</p>
+<p>// TODO: tape roll
+// todo: devices/weapons</p>
+<p>// Effect decals
+<code>/obj/effect/decal/cleanable</code> - <code>/obj/effect/debris/cleanable</code></p>
+<p>// Landmarks
+<code>/obj/effect/landmark</code>-<code>/obj/landmark</code>
+// Specific landmarks
+<code>/obj/landmark\{\n\tname = &quot;Observer-Start&quot;\n\t\}</code>-<code>/obj/landmark/observer_spawn</code>
+// Preliminary job landmarks
+<code>/obj/landmark/start\{\n\tname = &quot;([A-z]+)&quot;\n\t\}</code>-<code>/obj/landmark/spawnpoint/job/\L$1</code>
+<code>/obj/landmark/start\{\n\tname = &quot;([A-z]+) ([A-z]+)&quot;\n\t\}</code>-<code>/obj/landmark/spawnpoint/job/\L$1_\L$2</code>
+<code>/obj/landmark/start\{\n\tname = &quot;([A-z]+) ([A-z]+) ([A-z]+)&quot;\n\t\}</code>-<code>/obj/landmark/spawnpoint/job/\L$1_\L$2_\L$3</code>
+/// Specific job landmarks
+<code>/obj/landmark/spawnpoint/job/search_and_rescue</code>-<code>/obj/landmark/spawnpoint/job/field_medic</code>
+<code>/obj/landmark/spawnpoint/job/facility_director</code>-<code>/obj/landmark/spawnpoint/job/captain</code>
+<code>/obj/landmark/spawnpoint/job/internal_affairs_agent</code>-<code>/obj/landmark/spawnpoint/job/lawyer</code>
+<code>/obj/landmark/spawnpoint/job/gardener</code>-<code>/obj/landmark/spawnpoint/job/botanist</code></p>
+<p>// TODO: MAKE SURE NO / AFTER COSTUME
+<code>/obj/landmark/costume</code>-<code>/obj/landmark/costume/random</code></p>
+<p>// ATMOSPHERICS
+<code>/obj/machinery/atmospherics/omni</code>-<code>/obj/machinery/atmospherics/component/quaternary</code>
+<code>/obj/machinery/atmospherics/(unary|binary|trinary)</code>-<code>/obj/machinery/atmospherics/component/$1</code></p>
+<h2 id="pruning">Pruning</h2>
+<p>// getting rid of extraneous d1/d2 varedits
+// d1-d2
+<code>\td1 = (1|2|4|8);\n\td2 = (1|2|4|8);\n\ticon_state = &quot;\1-\2&quot;(;\n\tpixel_[xy] = [0-9]+){0,2}</code>-<code>\ticon_state = &quot;$1-$2&quot;</code>
+// 0-d2
+<code>\td2 = (1|2|4|8);\n\ticon_state = &quot;0-\1&quot;(;\n\tpixel_[xy] = [0-9]+){0,2}</code>-<code>\ticon_state = &quot;0-$1&quot;</code>
+// 0-d2 but reversed because people are idiots
+<code>\ticon_state = &quot;0-(1|2|4|8)&quot;;\n\td2 = \1</code>-<code>\ticon_state = &quot;0-$1&quot;</code>
+// 16-0 (upwards-coming-in)
+<code>\td1 = 16;\n\td2 = 0;\n\ticon_state = &quot;16-0&quot;</code>-<code>\ticon_state = &quot;16-0&quot;</code>
+// 32-x (side-going-down)
+<code>\td1 = 32;\n\td2 = (1|2|4|8);\n\ticon_state = &quot;32-\1&quot;</code>-<code>\ticon_state = &quot;32-$1&quot;</code></p></td></tr></table></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

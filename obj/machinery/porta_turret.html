@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;porta_turret - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/porta_turret.html#var">Var Details</a></header>
+<main>
+<h1>porta_turret <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/porta_turret.html">porta_turret</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 35"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/active_power_usage">active_power_usage</a></th><td>When active, this turret takes up constant 300 Equipment power.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/ailock">ailock</a></th><td>If active, AI cannot use this.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/attacked">attacked</a></th><td>If set to TRUE, the turret gets pissed off and shoots at people nearby. (unless they have sec access!)</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/auto_repair">auto_repair</a></th><td>If the turret slowly repairs itself.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/can_salvage">can_salvage</a></th><td>If false, salvaging doesn't give you anything.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/check_access">check_access</a></th><td>If this is active, the turret shoots everything that does not meet the access requirements.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/check_all">check_all</a></th><td>If active, will fire on anything, including synthetics.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/check_anomalies">check_anomalies</a></th><td>Checks if it can shoot at unidentified lifeforms. (ie xenos)</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/check_arrest">check_arrest</a></th><td>Checks if the perp is set to arrest.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/check_down">check_down</a></th><td>If active, will shoot to kill when lethals are also on.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/check_records">check_records</a></th><td>Checks if a security record exists at all.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/check_synth">check_synth</a></th><td>If active, will shoot at anything not an AI or cyborg.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/check_weapons">check_weapons</a></th><td>Checks if it can shoot people that have a weapon they aren't authorized to have.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/controllock">controllock</a></th><td>If the turret responds to control panels.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/disabled">disabled</a></th><td>Determines if the turret is disabled.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/enabled">enabled</a></th><td>Determines if the turret is on.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/faction">faction</a></th><td>If set, will not fire at people in the same faction for any reason.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/gun_charge">gun_charge</a></th><td>The charge of the gun inserted.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/health">health</a></th><td>The turret's health.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/idle_power_usage">idle_power_usage</a></th><td>When inactive, this turret takes up constant 50 Equipment power.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/installation">installation</a></th><td>The type of weapon installed.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/last_fired">last_fired</a></th><td>TRUE: if the turret is cooling down from a shot, FALSE: turret is ready to fire.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/last_target">last_target</a></th><td>Last target fired at, prevents turrets from erratically firing at all valid targets in range.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/lethal">lethal</a></th><td>Whether in lethal or stun mode.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/lethal_projectile">lethal_projectile</a></th><td>Holder for the shot when emagged.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/lethal_shot_sound">lethal_shot_sound</a></th><td>What sound should play when the emagged turret fires.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/locked">locked</a></th><td>If the turret's behaviour control access is locked.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/maxhealth">maxhealth</a></th><td>The turret's maximum health.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/power_channel">power_channel</a></th><td>Drains power from the EQUIPMENT channel.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/projectile">projectile</a></th><td>Holder for bullettype.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/raised">raised</a></th><td>If the turret cover is &quot;open&quot; and the turret is raised.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/raising">raising</a></th><td>If the turret is currently opening or closing its cover.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/reqpower">reqpower</a></th><td>Holder for power needed.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/shot_delay">shot_delay</a></th><td>1.5 seconds between each shot.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/shot_sound">shot_sound</a></th><td>What sound should play when the turret fires.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/spark_system">spark_system</a></th><td>The spark system, used for generating... sparks?</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/timeout">timeout</a></th><td>When a turret pops up, then finds nothing to shoot at, this number decrements until 0, when it pops down.</td></tr>
+            <tr><th><a href="obj/machinery/porta_turret.html#var/use_power">use_power</a></th><td>This turret uses and requires power.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/active_power_usage"><aside class="parent"><a title="/obj/machinery" href="obj/machinery.html#var/active_power_usage">&uarr;</a></aside>active_power_usage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 48"/></a></h3>
+        <p>When active, this turret takes up constant 300 Equipment power.</p><h3 id="var/ailock"><aside class="declaration">var </aside>ailock
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 102"/></a></h3>
+        <p>If active, AI cannot use this.</p><h3 id="var/attacked"><aside class="declaration">var </aside>attacked
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 109"/></a></h3>
+        <p>If set to TRUE, the turret gets pissed off and shoots at people nearby. (unless they have sec access!)</p><h3 id="var/auto_repair"><aside class="declaration">var </aside>auto_repair
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 62"/></a></h3>
+        <p>If the turret slowly repairs itself.</p><h3 id="var/can_salvage"><aside class="declaration">var </aside>can_salvage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L133">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 133"/></a></h3>
+        <p>If false, salvaging doesn't give you anything.</p><h3 id="var/check_access"><aside class="declaration">var </aside>check_access
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L94">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 94"/></a></h3>
+        <p>If this is active, the turret shoots everything that does not meet the access requirements.</p><h3 id="var/check_all"><aside class="declaration">var </aside>check_all
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L100">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 100"/></a></h3>
+        <p>If active, will fire on anything, including synthetics.</p><h3 id="var/check_anomalies"><aside class="declaration">var </aside>check_anomalies
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 96"/></a></h3>
+        <p>Checks if it can shoot at unidentified lifeforms. (ie xenos)</p><h3 id="var/check_arrest"><aside class="declaration">var </aside>check_arrest
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 88"/></a></h3>
+        <p>Checks if the perp is set to arrest.</p><h3 id="var/check_down"><aside class="declaration">var </aside>check_down
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 104"/></a></h3>
+        <p>If active, will shoot to kill when lethals are also on.</p><h3 id="var/check_records"><aside class="declaration">var </aside>check_records
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 90"/></a></h3>
+        <p>Checks if a security record exists at all.</p><h3 id="var/check_synth"><aside class="declaration">var </aside>check_synth
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L98">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 98"/></a></h3>
+        <p>If active, will shoot at anything not an AI or cyborg.</p><h3 id="var/check_weapons"><aside class="declaration">var </aside>check_weapons
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 92"/></a></h3>
+        <p>Checks if it can shoot people that have a weapon they aren't authorized to have.</p><h3 id="var/controllock"><aside class="declaration">var </aside>controllock
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 66"/></a></h3>
+        <p>If the turret responds to control panels.</p><h3 id="var/disabled"><aside class="declaration">var </aside>disabled
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 116"/></a></h3>
+        <p>Determines if the turret is disabled.</p><h3 id="var/enabled"><aside class="declaration">var </aside>enabled
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 112"/></a></h3>
+        <p>Determines if the turret is on.</p><h3 id="var/faction"><aside class="declaration">var </aside>faction
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L106">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 106"/></a></h3>
+        <p>If set, will not fire at people in the same faction for any reason.</p><h3 id="var/gun_charge"><aside class="declaration">var </aside>gun_charge
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 71"/></a></h3>
+        <p>The charge of the gun inserted.</p><h3 id="var/health"><aside class="declaration">var </aside>health
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 58"/></a></h3>
+        <p>The turret's health.</p><h3 id="var/idle_power_usage"><aside class="parent"><a title="/obj/machinery" href="obj/machinery.html#var/idle_power_usage">&uarr;</a></aside>idle_power_usage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 46"/></a></h3>
+        <p>When inactive, this turret takes up constant 50 Equipment power.</p><h3 id="var/installation"><aside class="declaration">var </aside>installation
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 69"/></a></h3>
+        <p>The type of weapon installed.</p><h3 id="var/last_fired"><aside class="declaration">var </aside>last_fired
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 83"/></a></h3>
+        <p>TRUE: if the turret is cooling down from a shot, FALSE: turret is ready to fire.</p><h3 id="var/last_target"><aside class="declaration">var </aside>last_target
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L129">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 129"/></a></h3>
+        <p>Last target fired at, prevents turrets from erratically firing at all valid targets in range.</p><h3 id="var/lethal"><aside class="declaration">var </aside>lethal
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 114"/></a></h3>
+        <p>Whether in lethal or stun mode.</p><h3 id="var/lethal_projectile"><aside class="declaration">var </aside>lethal_projectile
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 75"/></a></h3>
+        <p>Holder for the shot when emagged.</p><h3 id="var/lethal_shot_sound"><aside class="declaration">var </aside>lethal_shot_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L121">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 121"/></a></h3>
+        <p>What sound should play when the emagged turret fires.</p><h3 id="var/locked"><aside class="declaration">var </aside>locked
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 64"/></a></h3>
+        <p>If the turret's behaviour control access is locked.</p><h3 id="var/maxhealth"><aside class="declaration">var </aside>maxhealth
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 60"/></a></h3>
+        <p>The turret's maximum health.</p><h3 id="var/power_channel"><aside class="parent"><a title="/obj/machinery" href="obj/machinery.html#var/power_channel">&uarr;</a></aside>power_channel
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 50"/></a></h3>
+        <p>Drains power from the EQUIPMENT channel.</p><h3 id="var/projectile"><aside class="declaration">var </aside>projectile
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 73"/></a></h3>
+        <p>Holder for bullettype.</p><h3 id="var/raised"><aside class="declaration">var </aside>raised
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 54"/></a></h3>
+        <p>If the turret cover is &quot;open&quot; and the turret is raised.</p><h3 id="var/raising"><aside class="declaration">var </aside>raising
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 56"/></a></h3>
+        <p>If the turret is currently opening or closing its cover.</p><h3 id="var/reqpower"><aside class="declaration">var </aside>reqpower
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 77"/></a></h3>
+        <p>Holder for power needed.</p><h3 id="var/shot_delay"><aside class="declaration">var </aside>shot_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 85"/></a></h3>
+        <p>1.5 seconds between each shot.</p><h3 id="var/shot_sound"><aside class="declaration">var </aside>shot_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L119">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 119"/></a></h3>
+        <p>What sound should play when the turret fires.</p><h3 id="var/spark_system"><aside class="declaration">var </aside>spark_system
+            <aside>&ndash; /<a href="datum.html">datum</a>/effect_system/spark_spread</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 124"/></a></h3>
+        <p>The spark system, used for generating... sparks?</p><h3 id="var/timeout"><aside class="declaration">var </aside>timeout
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L131">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 131"/></a></h3>
+        <p>When a turret pops up, then finds nothing to shoot at, this number decrements until 0, when it pops down.</p><h3 id="var/use_power"><aside class="parent"><a title="/obj/machinery" href="obj/machinery.html#var/use_power">&uarr;</a></aside>use_power
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/portable_turret.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;portable_turret.dm 44"/></a></h3>
+        <p>This turret uses and requires power.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

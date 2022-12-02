@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;integrated_circuit_printer - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/integrated_circuit_printer.html#var">Var Details</a> - <a href="obj/item/integrated_circuit_printer.html#proc">Proc Details</a></header>
+<main>
+<h1>integrated_circuit_printer <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/integrated_circuit_printer.html">integrated_circuit_printer</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/printer.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;printer.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/integrated_circuit_printer.html#var/can_clone">can_clone</a></th><td>Same for above, but will allow the printer to duplicate a specific assembly.</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit_printer.html#var/cloning">cloning</a></th><td>If the printer is currently creating a circuit</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit_printer.html#var/debug">debug</a></th><td>If true, metal is infinite.</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit_printer.html#var/fast_clone">fast_clone</a></th><td>If this is false, then cloning will take an amount of deciseconds equal to the metal cost divided by 100.</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit_printer.html#var/metal_per_sheet">metal_per_sheet</a></th><td>One sheet equals this much metal.</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit_printer.html#var/program">program</a></th><td>Currently loaded save, in form of list</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit_printer.html#var/recycling">recycling</a></th><td>If an assembly is being emptied into this printer</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit_printer.html#var/upgraded">upgraded</a></th><td>When hit with an upgrade disk, will turn true, allowing it to print the higher tier circuits.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/integrated_circuit_printer.html#proc/ui_act">ui_act</a></th><td>This should be done through disks and modular comps! For now we have copy-paste here.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/can_clone"><aside class="declaration">var </aside>can_clone
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/printer.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;printer.dm 14"/></a></h3>
+        <p>Same for above, but will allow the printer to duplicate a specific assembly.</p><h3 id="var/cloning"><aside class="declaration">var </aside>cloning
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/printer.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;printer.dm 21"/></a></h3>
+        <p>If the printer is currently creating a circuit</p><h3 id="var/debug"><aside class="declaration">var </aside>debug
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/printer.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;printer.dm 18"/></a></h3>
+        <p>If true, metal is infinite.</p><h3 id="var/fast_clone"><aside class="declaration">var </aside>fast_clone
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/printer.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;printer.dm 16"/></a></h3>
+        <p>If this is false, then cloning will take an amount of deciseconds equal to the metal cost divided by 100.</p><h3 id="var/metal_per_sheet"><aside class="declaration">var </aside>metal_per_sheet
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/printer.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;printer.dm 10"/></a></h3>
+        <p>One sheet equals this much metal.</p><h3 id="var/program"><aside class="declaration">var </aside>program
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/printer.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;printer.dm 25"/></a></h3>
+        <p>Currently loaded save, in form of list</p><h3 id="var/recycling"><aside class="declaration">var </aside>recycling
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/printer.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;printer.dm 23"/></a></h3>
+        <p>If an assembly is being emptied into this printer</p><h3 id="var/upgraded"><aside class="declaration">var </aside>upgraded
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/printer.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;printer.dm 12"/></a></h3>
+        <p>When hit with an upgrade disk, will turn true, allowing it to print the higher tier circuits.</p><h2 id="proc">Proc Details</h2><h3 id="proc/ui_act"><aside class="parent"><a title="/datum" href="datum.html#proc/ui_act">&uarr;</a></aside>ui_act<aside>(action, /list/params, /<a href="datum.html">datum</a>/<a href="datum/tgui.html">tgui</a>/ui, /<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/state) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/printer.dm#L255">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;printer.dm 255"/></a></aside>
+        </h3>
+        <p>This should be done through disks and modular comps! For now we have copy-paste here.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

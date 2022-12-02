@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;environmental.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/atmospherics/environmental.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/atmospherics/environmental.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/environmental.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;environmental.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><p>these are actual return values, using them in CanAtmosPass results in it always be returned.</p></td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/environmental.html#define/ATMOS_PASS_NOT_BLOCKED">ATMOS_PASS_NOT_BLOCKED</a></th><td>lets everything through</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/environmental.html#define/ATMOS_PASS_ZONE_BLOCKED">ATMOS_PASS_ZONE_BLOCKED</a></th><td>block zone merging through this but not air</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/environmental.html#define/ATMOS_PASS_AIR_BLOCKED">ATMOS_PASS_AIR_BLOCKED</a></th><td>blocks everything</td></tr>
+        <tr><td colspan="2"><p>these are hints we can use in CanAtmosPass</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/environmental.html#define/ATMOS_PASS_PROC">ATMOS_PASS_PROC</a></th><td>ask CanAtmosPass()</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/environmental.html#define/ATMOS_PASS_DENSITY">ATMOS_PASS_DENSITY</a></th><td>if dense, air blocked, else, not blocked</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/environmental.html#define/ATMOS_PASS_VERTICAL_DEFAULT">ATMOS_PASS_VERTICAL_DEFAULT</a></th><td>ONLY FOR VERTICAL ATMOS PASS - check normal CanAtmosPass</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/environmental.html#define/ZONE_MIN_SIZE">ZONE_MIN_SIZE</a></th><td>LEGACY BELOW
+Zones with less than this many turfs will always merge, even if the connection is not direct</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/ATMOS_PASS_AIR_BLOCKED"><aside class="declaration">#define </aside>ATMOS_PASS_AIR_BLOCKED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/environmental.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;environmental.dm 9"/></a>
+    </h3>
+    <p>blocks everything</p><h3 id="define/ATMOS_PASS_DENSITY"><aside class="declaration">#define </aside>ATMOS_PASS_DENSITY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/environmental.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;environmental.dm 14"/></a>
+    </h3>
+    <p>if dense, air blocked, else, not blocked</p><h3 id="define/ATMOS_PASS_NOT_BLOCKED"><aside class="declaration">#define </aside>ATMOS_PASS_NOT_BLOCKED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/environmental.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;environmental.dm 5"/></a>
+    </h3>
+    <p>lets everything through</p><h3 id="define/ATMOS_PASS_PROC"><aside class="declaration">#define </aside>ATMOS_PASS_PROC
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/environmental.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;environmental.dm 12"/></a>
+    </h3>
+    <p>ask CanAtmosPass()</p><h3 id="define/ATMOS_PASS_VERTICAL_DEFAULT"><aside class="declaration">#define </aside>ATMOS_PASS_VERTICAL_DEFAULT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/environmental.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;environmental.dm 16"/></a>
+    </h3>
+    <p>ONLY FOR VERTICAL ATMOS PASS - check normal CanAtmosPass</p><h3 id="define/ATMOS_PASS_ZONE_BLOCKED"><aside class="declaration">#define </aside>ATMOS_PASS_ZONE_BLOCKED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/environmental.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;environmental.dm 7"/></a>
+    </h3>
+    <p>block zone merging through this but not air</p><h3 id="define/ZONE_MIN_SIZE"><aside class="declaration">#define </aside>ZONE_MIN_SIZE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/environmental.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;environmental.dm 26"/></a>
+    </h3>
+    <p>LEGACY BELOW
+Zones with less than this many turfs will always merge, even if the connection is not direct</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

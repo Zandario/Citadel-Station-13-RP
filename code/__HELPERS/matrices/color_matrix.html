@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__HELPERS&#x2F;matrices&#x2F;color_matrix.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+</header>
+<main>
+<h1>code/__HELPERS/matrices/color_matrix.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/matrices/color_matrix.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;matrices&#x2F;color_matrix.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th>/proc/<a href="global.html#proc/color_matrix_identity">color_matrix_identity</a></th>
+                <td>Does nothing.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/color_matrix_lightness">color_matrix_lightness</a></th>
+                <td>Adds/subtracts overall lightness.
+0 is identity, 1 makes everything white, -1 makes everything black.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/color_matrix_saturation">color_matrix_saturation</a></th>
+                <td>Changes distance hues have from grey while maintaining the overall lightness. Greys are unaffected.
+1 is identity, 0 is greyscale, &gt;1 oversaturates colors.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/color_matrix_saturation_percent">color_matrix_saturation_percent</a></th>
+                <td>Exxagerates or removes colors.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/color_matrix_greyscale">color_matrix_greyscale</a></th>
+                <td>Greyscale matrix.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/color_matrix_contrast">color_matrix_contrast</a></th>
+                <td>Changes distance colors have from rgb(127,127,127) grey.
+1 is identity. 0 makes everything grey &gt;1 blows out colors and greys.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/color_matrix_contrast_percent">color_matrix_contrast_percent</a></th>
+                <td>Exxagerates or removes brightness.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/color_matrix_rotate_hue">color_matrix_rotate_hue</a></th>
+                <td>Moves all colors angle degrees around the color wheel while maintaining intensity of the color and not affecting greys.
+0 is identity, 120 moves reds to greens, 240 moves reds to blues.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/color_matrix_rotation">color_matrix_rotation</a></th>
+                <td>Moves all colors angle degrees around the color wheel while maintaining intensity of the color and not affecting whites.
+TODO: Need a version that only affects one color (ie shift red to blue but leave greens and blues alone)</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/color_matrix_rotate_x">color_matrix_rotate_x</a></th>
+                <td>These next three rotate values about one axis only.
+x is the red axis, y is the green axis, z is the blue axis.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/color_matrix_hsv">color_matrix_hsv</a></th>
+                <td>Builds a color matrix that transforms the hue, saturation, and value, all in one operation.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/color_matrix_add">color_matrix_add</a></th>
+                <td>Returns a matrix addition of A with B.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/color_matrix_multiply">color_matrix_multiply</a></th>
+                <td>Returns a matrix multiplication of A with B.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/rgb_construct_color_matrix">rgb_construct_color_matrix</a></th>
+                <td>Assembles a color matrix, defaulting to identity.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/rgba_construct_color_matrix">rgba_construct_color_matrix</a></th>
+                <td>Assembles a color matrix, defaulting to identity.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/rgba_auto_greyscale_matrix">rgba_auto_greyscale_matrix</a></th>
+                <td>Constructs a colored greyscale matrix.
+WARNING: Bad math up ahead.</td></tr></table></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;client_dbdata - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/client_dbdata.html#var">Var Details</a> - <a href="datum/client_dbdata.html#proc">Proc Details</a></header>
+<main>
+<h1>client_dbdata <aside>/<a href="datum.html">datum</a>/<a href="datum/client_dbdata.html">client_dbdata</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/client/database.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;database.dm 5"/></a></h1>
+
+<p>holds db-related data
+loaded every connect
+intrinsics
+loaded data</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/client_dbdata.html#var/available">available</a></th><td>available: null if don't know yet, FALSE if no dbcon, TRUE if loaded</td></tr>
+            <tr><th><a href="datum/client_dbdata.html#var/ckey">ckey</a></th><td>our ckey</td></tr>
+            <tr><th><a href="datum/client_dbdata.html#var/loading">loading</a></th><td>loading?</td></tr>
+            <tr><th><a href="datum/client_dbdata.html#var/player_age">player_age</a></th><td>player age</td></tr>
+            <tr><th><a href="datum/client_dbdata.html#var/player_flags">player_flags</a></th><td>player flags</td></tr>
+            <tr><th><a href="datum/client_dbdata.html#var/player_id">player_id</a></th><td>player id</td></tr>
+            <tr><th><a href="datum/client_dbdata.html#var/saving">saving</a></th><td>saving?</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/client_dbdata.html#proc/Load">Load</a></th><td>async</td></tr>
+            <tr><th><a href="datum/client_dbdata.html#proc/LogConnect">LogConnect</a></th><td>async</td></tr>
+            <tr><th><a href="datum/client_dbdata.html#proc/Save">Save</a></th><td>async</td></tr>
+            <tr><th><a href="datum/client_dbdata.html#proc/block_on_available">block_on_available</a></th><td>block until we know if we're available
+then return if we are</td></tr>
+            <tr><th><a href="datum/client_dbdata.html#proc/immediately_available">immediately_available</a></th><td>returns if we're available
+if we don't know yet, return false</td></tr>
+            <tr><th><a href="datum/client_dbdata.html#proc/player_age">player_age</a></th><td>sync</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/available"><aside class="declaration">var </aside>available
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/client/database.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;database.dm 10"/></a></h3>
+        <p>available: null if don't know yet, FALSE if no dbcon, TRUE if loaded</p><h3 id="var/ckey"><aside class="declaration">var </aside>ckey
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/client/database.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;database.dm 8"/></a></h3>
+        <p>our ckey</p><h3 id="var/loading"><aside class="declaration">var </aside>loading
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/client/database.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;database.dm 12"/></a></h3>
+        <p>loading?</p><h3 id="var/player_age"><aside class="declaration">var </aside>player_age
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/client/database.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;database.dm 26"/></a></h3>
+        <p>player age</p><h3 id="var/player_flags"><aside class="declaration">var </aside>player_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/client/database.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;database.dm 22"/></a></h3>
+        <p>player flags</p><h3 id="var/player_id"><aside class="declaration">var </aside>player_id
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/client/database.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;database.dm 20"/></a></h3>
+        <p>player id</p><h3 id="var/saving"><aside class="declaration">var </aside>saving
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/client/database.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;database.dm 14"/></a></h3>
+        <p>saving?</p><h2 id="proc">Proc Details</h2><h3 id="proc/Load"><aside class="declaration">proc </aside>Load<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/client/database.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;database.dm 35"/></a></aside>
+        </h3>
+        <p>async</p><h3 id="proc/LogConnect"><aside class="declaration">proc </aside>LogConnect<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/client/database.dm#L183">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;database.dm 183"/></a></aside>
+        </h3>
+        <p>async</p><h3 id="proc/Save"><aside class="declaration">proc </aside>Save<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/client/database.dm#L152">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;database.dm 152"/></a></aside>
+        </h3>
+        <p>async</p><h3 id="proc/block_on_available"><aside class="declaration">proc </aside>block_on_available<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/client/database.dm#L210">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;database.dm 210"/></a></aside>
+        </h3>
+        <p>block until we know if we're available
+then return if we are</p><h3 id="proc/immediately_available"><aside class="declaration">proc </aside>immediately_available<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/client/database.dm#L218">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;database.dm 218"/></a></aside>
+        </h3>
+        <p>returns if we're available
+if we don't know yet, return false</p><h3 id="proc/player_age"><aside class="declaration">proc </aside>player_age<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/client/database.dm#L202">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;database.dm 202"/></a></aside>
+        </h3>
+        <p>sync</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

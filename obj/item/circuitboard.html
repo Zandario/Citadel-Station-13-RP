@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;circuitboard - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/circuitboard.html#var">Var Details</a> - <a href="obj/item/circuitboard.html#proc">Proc Details</a></header>
+<main>
+<h1>circuitboard <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/circuitboard.html">circuitboard</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/items/circuitboards/circuitboard.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;circuitboards&#x2F;circuitboard.dm 14"/></a></h1>
+
+<p>circuitboards</p>
+<p>used in frames to construct arbitrary objects with arbitrary components.
+this will usually be /obj/machinery, but other things are possible.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/circuitboard.html#var/def_components">def_components</a></th><td>Components that are optional for the machine.
+Example: list(/obj/item/stock_parts/matter_bin = 5)</td></tr>
+            <tr><th><a href="obj/item/circuitboard.html#var/req_components">req_components</a></th><td>Components required by the machine.
+Example: list(/obj/item/stock_parts/matter_bin = 5)</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/circuitboard.html#proc/after_construct">after_construct</a></th><td>called when we are used to construct something.</td></tr>
+            <tr><th><a href="obj/item/circuitboard.html#proc/after_deconstruct">after_deconstruct</a></th><td>called when what we were used to construct is deconstructed.</td></tr>
+            <tr><th><a href="obj/item/circuitboard.html#proc/apply_default_parts">apply_default_parts</a></th><td>Should be called from the constructor of any machine to automatically populate the default parts.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/def_components"><aside class="declaration">var </aside>def_components
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/items/circuitboards/circuitboard.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;circuitboards&#x2F;circuitboard.dm 38"/></a></h3>
+        <p>Components that are optional for the machine.
+Example: list(/obj/item/stock_parts/matter_bin = 5)</p><h3 id="var/req_components"><aside class="declaration">var </aside>req_components
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/items/circuitboards/circuitboard.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;circuitboards&#x2F;circuitboard.dm 32"/></a></h3>
+        <p>Components required by the machine.
+Example: list(/obj/item/stock_parts/matter_bin = 5)</p><h2 id="proc">Proc Details</h2><h3 id="proc/after_construct"><aside class="declaration">proc </aside>after_construct<aside>(/<a href="atom.html">atom</a>/A) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/items/circuitboards/circuitboard.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;circuitboards&#x2F;circuitboard.dm 47"/></a></aside>
+        </h3>
+        <p>called when we are used to construct something.</p>
+<p>put your synchronization code in here.</p><h3 id="proc/after_deconstruct"><aside class="declaration">proc </aside>after_deconstruct<aside>(/<a href="atom.html">atom</a>/A) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/items/circuitboards/circuitboard.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;circuitboards&#x2F;circuitboard.dm 56"/></a></aside>
+        </h3>
+        <p>called when what we were used to construct is deconstructed.</p>
+<p>put your synchronization code in here.</p><h3 id="proc/apply_default_parts"><aside class="declaration">proc </aside>apply_default_parts<aside>(/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/M) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/items/circuitboards/circuitboard.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;circuitboards&#x2F;circuitboard.dm 60"/></a></aside>
+        </h3>
+        <p>Should be called from the constructor of any machine to automatically populate the default parts.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

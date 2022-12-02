@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;vending - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/vending.html#var">Var Details</a> - <a href="obj/machinery/vending.html#proc">Proc Details</a></header>
+<main>
+<h1>vending <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/vending.html">vending</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 4"/></a></h1>
+
+<p>A vending machine</p>
+<h2 id="icons">Icons</h2><h2 id="power">Power</h2><h2 id="vending-related">Vending-related</h2><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/active">active</a></th><td>No sales pitches if off!</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/categories">categories</a></th><td>Bitmask of categories we're currently showing.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/currently_vending">currently_vending</a></th><td>What we're requesting payment for right now.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/emagged">emagged</a></th><td>Ignores if somebody doesn't have card access to that machine.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/has_logs">has_logs</a></th><td>Defaults to 0, set to anything else for vendor to have logs.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/icon_deny">icon_deny</a></th><td>Icon_state when denying access.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/icon_vend">icon_vend</a></th><td>Icon_state when vending.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/last_slogan">last_slogan</a></th><td>When did we last pitch?</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/product_ads">product_ads</a></th><td>String of small ad messages in the vending screen.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/product_records">product_records</a></th><td>List of vending_product items available.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/product_slogans">product_slogans</a></th><td>String of slogans spoken out loud, separated by semicolons.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/products">products</a></th><td>Variables used to initialize the product list
+These are used for initialization only, and so are optional if
+product_records is specified</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/req_log_access">req_log_access</a></th><td>Default access for checking logs is cargo.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/seconds_electrified">seconds_electrified</a></th><td>Shock customers like an airlock.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/shoot_inventory">shoot_inventory</a></th><td>Fire items at customers! We're broken!</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/shut_up">shut_up</a></th><td>Set to true to silence it.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/slogan_delay">slogan_delay</a></th><td>How long until we can pitch again?</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/status_error">status_error</a></th><td>Set to TRUE if status_message is an error.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/status_message">status_message</a></th><td>Status screen messages like &quot;insufficient funds&quot;, displayed in NanoUI.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/vend_delay">vend_delay</a></th><td>How long does it take to vend?</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/vend_ready">vend_ready</a></th><td>Are we ready to vend?? Is it time??</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/vend_reply">vend_reply</a></th><td>Thank you for shopping!</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/vending.html#proc/build_inventory">build_inventory</a></th><td>Build produdct_records from the products lists</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#proc/credit_purchase">credit_purchase</a></th><td>Add money for current purchase to the vendor account.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#proc/nano_ui_interact">nano_ui_interact</a></th><td>Display the NanoUI window for the vending machine.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#proc/stock">stock</a></th><td>Add item to the machine</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/active"><aside class="declaration">var </aside>active
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 25"/></a></h3>
+        <p>No sales pitches if off!</p><h3 id="var/categories"><aside class="declaration">var </aside>categories
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 31"/></a></h3>
+        <p>Bitmask of categories we're currently showing.</p><h3 id="var/currently_vending"><aside class="declaration">var </aside>currently_vending
+            <aside>&ndash; /<a href="datum.html">datum</a>/stored_item/vending_product</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 33"/></a></h3>
+        <p>What we're requesting payment for right now.</p><h3 id="var/emagged">emagged
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 75"/></a></h3>
+        <p>Ignores if somebody doesn't have card access to that machine.</p><h3 id="var/has_logs"><aside class="declaration">var </aside>has_logs
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 90"/></a></h3>
+        <p>Defaults to 0, set to anything else for vendor to have logs.</p><h3 id="var/icon_deny"><aside class="declaration">var </aside>icon_deny
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 16"/></a></h3>
+        <p>Icon_state when denying access.</p><h3 id="var/icon_vend"><aside class="declaration">var </aside>icon_vend
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 14"/></a></h3>
+        <p>Icon_state when vending.</p><h3 id="var/last_slogan"><aside class="declaration">var </aside>last_slogan
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 69"/></a></h3>
+        <p>When did we last pitch?</p><h3 id="var/product_ads"><aside class="declaration">var </aside>product_ads
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 57"/></a></h3>
+        <p>String of small ad messages in the vending screen.</p><h3 id="var/product_records"><aside class="declaration">var </aside>product_records
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 50"/></a></h3>
+        <p>List of vending_product items available.</p><h3 id="var/product_slogans"><aside class="declaration">var </aside>product_slogans
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 55"/></a></h3>
+        <p>String of slogans spoken out loud, separated by semicolons.</p><h3 id="var/products"><aside class="declaration">var </aside>products
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 44"/></a></h3>
+        <p>Variables used to initialize the product list
+These are used for initialization only, and so are optional if
+product_records is specified</p><h3 id="var/req_log_access"><aside class="declaration">var </aside>req_log_access
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 88"/></a></h3>
+        <p>Default access for checking logs is cargo.</p><h3 id="var/seconds_electrified"><aside class="declaration">var </aside>seconds_electrified
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 77"/></a></h3>
+        <p>Shock customers like an airlock.</p><h3 id="var/shoot_inventory"><aside class="declaration">var </aside>shoot_inventory
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 79"/></a></h3>
+        <p>Fire items at customers! We're broken!</p><h3 id="var/shut_up"><aside class="declaration">var </aside>shut_up
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 64"/></a></h3>
+        <p>Set to true to silence it.</p><h3 id="var/slogan_delay"><aside class="declaration">var </aside>slogan_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 71"/></a></h3>
+        <p>How long until we can pitch again?</p><h3 id="var/status_error"><aside class="declaration">var </aside>status_error
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 37"/></a></h3>
+        <p>Set to TRUE if status_message is an error.</p><h3 id="var/status_message"><aside class="declaration">var </aside>status_message
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 35"/></a></h3>
+        <p>Status screen messages like &quot;insufficient funds&quot;, displayed in NanoUI.</p><h3 id="var/vend_delay"><aside class="declaration">var </aside>vend_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 29"/></a></h3>
+        <p>How long does it take to vend?</p><h3 id="var/vend_ready"><aside class="declaration">var </aside>vend_ready
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 27"/></a></h3>
+        <p>Are we ready to vend?? Is it time??</p><h3 id="var/vend_reply"><aside class="declaration">var </aside>vend_reply
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 66"/></a></h3>
+        <p>Thank you for shopping!</p><h2 id="proc">Proc Details</h2><h3 id="proc/build_inventory"><aside class="declaration">proc </aside>build_inventory<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 118"/></a></aside>
+        </h3>
+        <p>Build produdct_records from the products lists</p>
+<p>products, contraband, premium, and prices allow specifying
+products that the vending machine is to carry without manually populating
+product_records.</p><h3 id="proc/credit_purchase"><aside class="declaration">proc </aside>credit_purchase<aside>(target) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L268">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 268"/></a></aside>
+        </h3>
+        <p>Add money for current purchase to the vendor account.</p>
+<p>Called after the money has already been taken from the customer.</p><h3 id="proc/nano_ui_interact"><aside class="parent"><a title="/datum" href="datum.html#proc/nano_ui_interact">&uarr;</a></aside>nano_ui_interact<aside>(/<a href="mob.html">mob</a>/user, ui_key, /<a href="datum.html">datum</a>/<a href="datum/nanoui.html">nanoui</a>/ui, force_open) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L299">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 299"/></a></aside>
+        </h3>
+        <p>Display the NanoUI window for the vending machine.</p>
+<p>See NanoUI documentation for details.</p><h3 id="proc/stock"><aside class="declaration">proc </aside>stock<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/W, /<a href="datum.html">datum</a>/stored_item/vending_product/R, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/vending.dm#L497">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;vending.dm 497"/></a></aside>
+        </h3>
+        <p>Add item to the machine</p>
+<p>Checks if item is vendable in this machine should be performed before
+calling. W is the item being inserted, R is the associated vending_product entry.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

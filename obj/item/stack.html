@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;stack - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/stack.html#var">Var Details</a> - <a href="obj/item/stack.html#proc">Proc Details</a></header>
+<main>
+<h1>stack <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/stack.html">stack</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/items/stacks/stack.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 14"/></a></h1>
+
+<p>Stack type objects!</p>
+<p>Contains:</p>
+<ul>
+<li>Stacks</li>
+<li>Recipe datum</li>
+<li>Recipe list datum</li>
+</ul><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/stack.html#var/build_type">build_type</a></th><td>Used when directly applied to a turf.</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/max_amount">max_amount</a></th><td>See stack recipes initialisation, param &quot;max_res_amount&quot; must be equal to this max_amount.</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/mid_delete">mid_delete</a></th><td>bandaid until new inventorycode</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/no_variants">no_variants</a></th><td>Determines whether the item should update it's sprites based on amount.</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/pass_color">pass_color</a></th><td>Will the item pass its own color var to the created item? Dyed cloth, wood, etc.</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/stacktype">stacktype</a></th><td>Determines whether different stack types can merge.</td></tr>
+            <tr><th><a href="obj/item/stack.html#var/strict_color_stacking">strict_color_stacking</a></th><td>Will the stack merge with other stacks that are different colors? (Dyed cloth, wood, etc).</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/stack.html#proc/can_merge">can_merge</a></th><td>Can we merge with this stack?</td></tr>
+            <tr><th><a href="obj/item/stack.html#proc/can_use">can_use</a></th><td>Return 1 if an immediate subsequent call to use() would succeed.
+Ensures that code dealing with stacks uses the same logic</td></tr>
+            <tr><th><a href="obj/item/stack.html#proc/merge">merge</a></th><td>Merge src into S, as much as possible.</td></tr>
+            <tr><th><a href="obj/item/stack.html#proc/split">split</a></th><td>Creates a new stack with the specified amount.</td></tr>
+            <tr><th><a href="obj/item/stack.html#proc/transfer_to">transfer_to</a></th><td>The transfer and split procs work differently than use() and add().
+Whereas those procs take no action if the desired amount cannot be added or removed these procs will try to transfer whatever they can.
+They also remove an equal amount from the source stack.
+Attempts to transfer amount to S, and returns the amount actually transferred.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/build_type"><aside class="declaration">var </aside>build_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/items/stacks/stack.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 28"/></a></h3>
+        <p>Used when directly applied to a turf.</p><h3 id="var/max_amount"><aside class="declaration">var </aside>max_amount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/items/stacks/stack.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 22"/></a></h3>
+        <p>See stack recipes initialisation, param &quot;max_res_amount&quot; must be equal to this max_amount.</p><h3 id="var/mid_delete"><aside class="declaration">var </aside>mid_delete
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/items/stacks/stack.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 24"/></a></h3>
+        <p>bandaid until new inventorycode</p><h3 id="var/no_variants"><aside class="declaration">var </aside>no_variants
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/items/stacks/stack.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 33"/></a></h3>
+        <p>Determines whether the item should update it's sprites based on amount.</p><h3 id="var/pass_color"><aside class="declaration">var </aside>pass_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/items/stacks/stack.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 36"/></a></h3>
+        <p>Will the item pass its own color var to the created item? Dyed cloth, wood, etc.</p><h3 id="var/stacktype"><aside class="declaration">var </aside>stacktype
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/items/stacks/stack.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 26"/></a></h3>
+        <p>Determines whether different stack types can merge.</p><h3 id="var/strict_color_stacking"><aside class="declaration">var </aside>strict_color_stacking
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/items/stacks/stack.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 38"/></a></h3>
+        <p>Will the stack merge with other stacks that are different colors? (Dyed cloth, wood, etc).</p><h2 id="proc">Proc Details</h2><h3 id="proc/can_merge"><aside class="declaration">proc </aside>can_merge<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/stack.html">stack</a>/other) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/items/stacks/stack.dm#L238">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 238"/></a></aside>
+        </h3>
+        <p>Can we merge with this stack?</p><h3 id="proc/can_use"><aside class="declaration">proc </aside>can_use<aside>(used) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/items/stacks/stack.dm#L230">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 230"/></a></aside>
+        </h3>
+        <p>Return 1 if an immediate subsequent call to use() would succeed.
+Ensures that code dealing with stacks uses the same logic</p><h3 id="proc/merge"><aside class="declaration">proc </aside>merge<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/stack.html">stack</a>/S) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/items/stacks/stack.dm#L379">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 379"/></a></aside>
+        </h3>
+        <p>Merge src into S, as much as possible.</p><h3 id="proc/split"><aside class="declaration">proc </aside>split<aside>(tamount) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/items/stacks/stack.dm#L309">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 309"/></a></aside>
+        </h3>
+        <p>Creates a new stack with the specified amount.</p><h3 id="proc/transfer_to"><aside class="declaration">proc </aside>transfer_to<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/stack.html">stack</a>/S, tamount, type_verified) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/objects/items/stacks/stack.dm#L285">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;stack.dm 285"/></a></aside>
+        </h3>
+        <p>The transfer and split procs work differently than use() and add().
+Whereas those procs take no action if the desired amount cannot be added or removed these procs will try to transfer whatever they can.
+They also remove an equal amount from the source stack.
+Attempts to transfer amount to S, and returns the amount actually transferred.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;preferences - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/preferences.html#var">Var Details</a> - <a href="datum/preferences.html#proc">Proc Details</a></header>
+<main>
+<h1>preferences <aside>/<a href="datum.html">datum</a>/<a href="datum/preferences.html">preferences</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 5"/></a></h1>
+
+<p>Intrinsics
+Error Handling</p>
+<h2 id="doohickeys-for-savefiles">Doohickeys For Savefiles</h2><h2 id="non-preference-stuff">Non-Preference Stuff</h2><h2 id="cooldowns-for-saving-loading">Cooldowns for saving/loading.</h2>
+<p>Loaded data</p>
+<h2 id="game-preferences">Game Preferences</h2><h2 id="character-preferences">Character Preferences</h2><h2 id="background-preferences">Background Preferences</h2><h2 id="mob-preview">Mob Preview</h2><h2 id="skills-preferences-depricated">Skills Preferences - Depricated.</h2><h2 id="body-preferences">Body Preferences</h2><h2 id="ooc-metadata">OOC Metadata</h2><h2 id="character-directory-stuff">Character Directory Stuff</h2><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/preferences.html#var/age">age</a></th><td>Age of character</td></tr>
+            <tr><th><a href="datum/preferences.html#var/antag_faction">antag_faction</a></th><td>Antag associated faction.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/antag_vis">antag_vis</a></th><td>How visible antag association is to others.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/auto_fit_viewport">auto_fit_viewport</a></th><td>Should we automatically fit the viewport?</td></tr>
+            <tr><th><a href="datum/preferences.html#var/b_eyes">b_eyes</a></th><td>Eye color.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/b_facial">b_facial</a></th><td>Face hair color.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/b_grad">b_grad</a></th><td>Gradient color.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/b_hair">b_hair</a></th><td>Hair color.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/b_skin">b_skin</a></th><td>Skin color.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/b_synth">b_synth</a></th><td>Used with synth_color to color synth parts that normaly can't be colored.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/b_type">b_type</a></th><td>Blood type. (not-chooseable)</td></tr>
+            <tr><th><a href="datum/preferences.html#var/backbag">backbag</a></th><td>Backpack type.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/be_event_role">be_event_role</a></th><td>Event role prefs flag.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/be_random_name">be_random_name</a></th><td>Whether we are a random name every round</td></tr>
+            <tr><th><a href="datum/preferences.html#var/be_special">be_special</a></th><td>Special role selection.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/char_render_holders">char_render_holders</a></th><td>Should only be a key-value list of north/south/east/west = atom/movable/screen.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/character">character</a></th><td>character data</td></tr>
+            <tr><th><a href="datum/preferences.html#var/communicator_visibility">communicator_visibility</a></th><td>Communicator identity data.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/default_slot">default_slot</a></th><td>Holder so it doesn't default to slot 1, rather the last one used.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/directory_ad">directory_ad</a></th><td>Advertisement stuff to show in character directory.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/directory_erptag">directory_erptag</a></th><td>Sorting tag to use for erp-prefs.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/directory_tag">directory_tag</a></th><td>Sorting tag to use for vore-prefs.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/f_style">f_style</a></th><td>Face hair type.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/g_eyes">g_eyes</a></th><td>Eye color.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/g_facial">g_facial</a></th><td>Face hair color.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/g_grad">g_grad</a></th><td>Gradient color.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/g_hair">g_hair</a></th><td>Hair color.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/g_skin">g_skin</a></th><td>Skin color.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/g_synth">g_synth</a></th><td>Used with synth_color to color synth parts that normaly can't be colored.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/gear">gear</a></th><td>Left in for Legacy reasons, will no longer save.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/gear_list">gear_list</a></th><td>Custom/fluff item loadouts.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/gear_slot">gear_slot</a></th><td>The current gear save slot.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/grad_style">grad_style</a></th><td>Gradient style.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/grad_wingstyle">grad_wingstyle</a></th><td>Gradient style.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/h_style">h_style</a></th><td>Hair type.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/hotkeys">hotkeys</a></th><td>Hotkeys mode</td></tr>
+            <tr><th><a href="datum/preferences.html#var/initialized">initialized</a></th><td>did we load yet?</td></tr>
+            <tr><th><a href="datum/preferences.html#var/io_error_queue">io_error_queue</a></th><td>queued error messages to display</td></tr>
+            <tr><th><a href="datum/preferences.html#var/key_bindings">key_bindings</a></th><td>Custom Keybindings</td></tr>
+            <tr><th><a href="datum/preferences.html#var/lastchangelog">lastchangelog</a></th><td>Saved changlog filesize to detect if there was a change.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/lastnews">lastnews</a></th><td>Hash of last seen lobby news content.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/nickname">nickname</a></th><td>Our character's nickname</td></tr>
+            <tr><th><a href="datum/preferences.html#var/ooccolor">ooccolor</a></th><td>Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/options">options</a></th><td>global data</td></tr>
+            <tr><th><a href="datum/preferences.html#var/organ_data">organ_data</a></th><td>Maps each organ to either null(intact), &quot;cyborg&quot; or &quot;amputated&quot;
+will probably not be able to do this for head and torso ;)</td></tr>
+            <tr><th><a href="datum/preferences.html#var/pdachoice">pdachoice</a></th><td>PDA type.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/r_eyes">r_eyes</a></th><td>Eye color.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/r_facial">r_facial</a></th><td>Face hair color.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/r_grad">r_grad</a></th><td>Gradient color.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/r_hair">r_hair</a></th><td>Hair color.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/r_skin">r_skin</a></th><td>Skin color.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/r_synth">r_synth</a></th><td>Used with synth_color to color synth parts that normaly can't be colored.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/real_name">real_name</a></th><td>Our character's name</td></tr>
+            <tr><th><a href="datum/preferences.html#var/regen_limbs">regen_limbs</a></th><td>Set to 1 when altering limb states. fix for prosthetic &gt; normal changes not working on preview.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/ringtone">ringtone</a></th><td>Default ringtone for character; if blank, use job default.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/s_base">s_base</a></th><td>For Adherent.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/s_tone">s_tone</a></th><td>Skin tone.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/sensorpref">sensorpref</a></th><td>Set character's suit sensor level.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/show_in_directory">show_in_directory</a></th><td>Should we show in Character Directory.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/skills">skills</a></th><td>Skills can range from 0 to 3.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/skin">skin</a></th><td>data for byond skin - checkboxes and whatnot; this is ENTIRELY synchronized by the skin system.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/spawnpoint">spawnpoint</a></th><td>Where this character will spawn. (0-2)</td></tr>
+            <tr><th><a href="datum/preferences.html#var/synth_color">synth_color</a></th><td>Lets normally uncolorable synth parts be colorable.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/synth_markings">synth_markings</a></th><td>Enable/disable markings on synth parts.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/tooltipstyle">tooltipstyle</a></th><td>Style for popup tooltips.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/traits">traits</a></th><td>Traits which modifier characters for better or worse (mostly worse).</td></tr>
+            <tr><th><a href="datum/preferences.html#var/widescreenpref">widescreenpref</a></th><td>Should we be in the widescreen mode set by the config?</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/preferences.html#proc/all_language_ids">all_language_ids</a></th><td>returns ids of ALL languages</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/check_character_species">check_character_species</a></th><td>check if we can play a species</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/checked_get_character_data">checked_get_character_data</a></th><td>checked read of a character key;
+use when accessing from an outside datum to that key</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/checked_get_global_data">checked_get_global_data</a></th><td>checked read of a global options key;
+use when accessing from an outside datum to that key</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/checked_set_character_data">checked_set_character_data</a></th><td>checked write of a character key;
+use when accessing from an outside datum to that key</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/checked_set_global_data">checked_set_global_data</a></th><td>checked write of a global options key;
+use when accessing from an outside datum to that key</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/demote_high_priority_jobs">demote_high_priority_jobs</a></th><td>resets any jobs set to high to medium</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/extraneous_language_ids">extraneous_language_ids</a></th><td>returns ids of languages that aren't innate to our species/background</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/extraneous_languages_max">extraneous_languages_max</a></th><td>returns max amounts we can have. doesn't take into account what we do have.</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/get_character_data">get_character_data</a></th><td>reads a character data key</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/get_global_data">get_global_data</a></th><td>reads a global options data key</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/get_preference">get_preference</a></th><td>checked get preference data</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/imprint_mind">imprint_mind</a></th><td>/datum/mind is usually used to semantically track someone's soul
+(this sounds stupid to say in a code comment but whatever)</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/innate_language_ids">innate_language_ids</a></th><td>returns ids of languages that are innate to our species/background</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/json_export_character">json_export_character</a></th><td>json export</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/json_import_character">json_import_character</a></th><td>json import</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/perform_character_migrations">perform_character_migrations</a></th><td>@params</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/perform_global_migrations">perform_global_migrations</a></th><td>@params</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/read_character_data">read_character_data</a></th><td>load character data from disk
+warning: missing keys are automatically dropped.
+Read character data version</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/read_global_data">read_global_data</a></th><td>load global data from disk
+warning: missing keys are automatically dropped.</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/reset_everything_to_default">reset_everything_to_default</a></th><td>default everything that has save keys</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/reset_jobs">reset_jobs</a></th><td>resets job prefs</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/resolve_whitelisted_species">resolve_whitelisted_species</a></th><td>gets list of species we can play of those who are whitelisted</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/sanitize_everything">sanitize_everything</a></th><td>resanitize everything</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/sanitize_preference">sanitize_preference</a></th><td>sanitize prefs data</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/set_character_data">set_character_data</a></th><td>sets a character data key to a value</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/set_character_species">set_character_species</a></th><td>WARNING: SHITCODE AHEAD / LEGACY SHIMS
+END</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/set_global_data">set_global_data</a></th><td>sets a global options data key to a value</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/set_preference">set_preference</a></th><td>checked set preference data</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/write_character_data">write_character_data</a></th><td>flush character data to disk
+warning: missing keys are automatically dropped.
+Write character data version</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/write_global_data">write_global_data</a></th><td>flush global data to disk
+warning: missing keys are automatically dropped.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/age"><aside class="declaration">var </aside>age
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 72"/></a></h3>
+        <p>Age of character</p><h3 id="var/antag_faction"><aside class="declaration">var </aside>antag_faction
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L144">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 144"/></a></h3>
+        <p>Antag associated faction.</p><h3 id="var/antag_vis"><aside class="declaration">var </aside>antag_vis
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L146">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 146"/></a></h3>
+        <p>How visible antag association is to others.</p><h3 id="var/auto_fit_viewport"><aside class="declaration">var </aside>auto_fit_viewport
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L224">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 224"/></a></h3>
+        <p>Should we automatically fit the viewport?</p><h3 id="var/b_eyes"><aside class="declaration">var </aside>b_eyes
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L122">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 122"/></a></h3>
+        <p>Eye color.</p><h3 id="var/b_facial"><aside class="declaration">var </aside>b_facial
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L106">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 106"/></a></h3>
+        <p>Face hair color.</p><h3 id="var/b_grad"><aside class="declaration">var </aside>b_grad
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 96"/></a></h3>
+        <p>Gradient color.</p><h3 id="var/b_hair"><aside class="declaration">var </aside>b_hair
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 88"/></a></h3>
+        <p>Hair color.</p><h3 id="var/b_skin"><aside class="declaration">var </aside>b_skin
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 114"/></a></h3>
+        <p>Skin color.</p><h3 id="var/b_synth"><aside class="declaration">var </aside>b_synth
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L138">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 138"/></a></h3>
+        <p>Used with synth_color to color synth parts that normaly can't be colored.</p><h3 id="var/b_type"><aside class="declaration">var </aside>b_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 76"/></a></h3>
+        <p>Blood type. (not-chooseable)</p><h3 id="var/backbag"><aside class="declaration">var </aside>backbag
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 78"/></a></h3>
+        <p>Backpack type.</p><h3 id="var/be_event_role"><aside class="declaration">var </aside>be_event_role
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 56"/></a></h3>
+        <p>Event role prefs flag.</p><h3 id="var/be_random_name"><aside class="declaration">var </aside>be_random_name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 68"/></a></h3>
+        <p>Whether we are a random name every round</p><h3 id="var/be_special"><aside class="declaration">var </aside>be_special
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 54"/></a></h3>
+        <p>Special role selection.</p><h3 id="var/char_render_holders"><aside class="declaration">var </aside>char_render_holders
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L161">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 161"/></a></h3>
+        <p>Should only be a key-value list of north/south/east/west = atom/movable/screen.</p><h3 id="var/character"><aside class="declaration">var </aside>character
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 40"/></a></h3>
+        <p>character data</p><h3 id="var/communicator_visibility"><aside class="declaration">var </aside>communicator_visibility
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L199">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 199"/></a></h3>
+        <p>Communicator identity data.</p><h3 id="var/default_slot"><aside class="declaration">var </aside>default_slot
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 17"/></a></h3>
+        <p>Holder so it doesn't default to slot 1, rather the last one used.</p><h3 id="var/directory_ad"><aside class="declaration">var </aside>directory_ad
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L218">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 218"/></a></h3>
+        <p>Advertisement stuff to show in character directory.</p><h3 id="var/directory_erptag"><aside class="declaration">var </aside>directory_erptag
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L216">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 216"/></a></h3>
+        <p>Sorting tag to use for erp-prefs.</p><h3 id="var/directory_tag"><aside class="declaration">var </aside>directory_tag
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L214">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 214"/></a></h3>
+        <p>Sorting tag to use for vore-prefs.</p><h3 id="var/f_style"><aside class="declaration">var </aside>f_style
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L100">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 100"/></a></h3>
+        <p>Face hair type.</p><h3 id="var/g_eyes"><aside class="declaration">var </aside>g_eyes
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 120"/></a></h3>
+        <p>Eye color.</p><h3 id="var/g_facial"><aside class="declaration">var </aside>g_facial
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 104"/></a></h3>
+        <p>Face hair color.</p><h3 id="var/g_grad"><aside class="declaration">var </aside>g_grad
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L94">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 94"/></a></h3>
+        <p>Gradient color.</p><h3 id="var/g_hair"><aside class="declaration">var </aside>g_hair
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L86">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 86"/></a></h3>
+        <p>Hair color.</p><h3 id="var/g_skin"><aside class="declaration">var </aside>g_skin
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 112"/></a></h3>
+        <p>Skin color.</p><h3 id="var/g_synth"><aside class="declaration">var </aside>g_synth
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L136">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 136"/></a></h3>
+        <p>Used with synth_color to color synth parts that normaly can't be colored.</p><h3 id="var/gear"><aside class="declaration">var </aside>gear
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 124"/></a></h3>
+        <p>Left in for Legacy reasons, will no longer save.</p><h3 id="var/gear_list"><aside class="declaration">var </aside>gear_list
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 126"/></a></h3>
+        <p>Custom/fluff item loadouts.</p><h3 id="var/gear_slot"><aside class="declaration">var </aside>gear_slot
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L128">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 128"/></a></h3>
+        <p>The current gear save slot.</p><h3 id="var/grad_style"><aside class="declaration">var </aside>grad_style
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 90"/></a></h3>
+        <p>Gradient style.</p><h3 id="var/grad_wingstyle"><aside class="declaration">var </aside>grad_wingstyle
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L98">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 98"/></a></h3>
+        <p>Gradient style.</p><h3 id="var/h_style"><aside class="declaration">var </aside>h_style
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 82"/></a></h3>
+        <p>Hair type.</p><h3 id="var/hotkeys"><aside class="declaration">var </aside>hotkeys
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/keybindings/keybindings.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;keybindings&#x2F;keybindings.dm 5"/></a></h3>
+        <p>Hotkeys mode</p><h3 id="var/initialized"><aside class="declaration">var </aside>initialized
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 8"/></a></h3>
+        <p>did we load yet?</p><h3 id="var/io_error_queue"><aside class="declaration">var </aside>io_error_queue
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 12"/></a></h3>
+        <p>queued error messages to display</p><h3 id="var/key_bindings"><aside class="declaration">var </aside>key_bindings
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/keybindings/keybindings.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;keybindings&#x2F;keybindings.dm 3"/></a></h3>
+        <p>Custom Keybindings</p><h3 id="var/lastchangelog"><aside class="declaration">var </aside>lastchangelog
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 50"/></a></h3>
+        <p>Saved changlog filesize to detect if there was a change.</p><h3 id="var/lastnews"><aside class="declaration">var </aside>lastnews
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L208">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 208"/></a></h3>
+        <p>Hash of last seen lobby news content.</p><h3 id="var/nickname"><aside class="declaration">var </aside>nickname
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 70"/></a></h3>
+        <p>Our character's nickname</p><h3 id="var/ooccolor"><aside class="declaration">var </aside>ooccolor
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 52"/></a></h3>
+        <p>Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color.</p><h3 id="var/options"><aside class="declaration">var </aside>options
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 42"/></a></h3>
+        <p>global data</p><h3 id="var/organ_data"><aside class="declaration">var </aside>organ_data
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L179">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 179"/></a></h3>
+        <p>Maps each organ to either null(intact), &quot;cyborg&quot; or &quot;amputated&quot;
+will probably not be able to do this for head and torso ;)</p><h3 id="var/pdachoice"><aside class="declaration">var </aside>pdachoice
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 80"/></a></h3>
+        <p>PDA type.</p><h3 id="var/r_eyes"><aside class="declaration">var </aside>r_eyes
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 118"/></a></h3>
+        <p>Eye color.</p><h3 id="var/r_facial"><aside class="declaration">var </aside>r_facial
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 102"/></a></h3>
+        <p>Face hair color.</p><h3 id="var/r_grad"><aside class="declaration">var </aside>r_grad
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 92"/></a></h3>
+        <p>Gradient color.</p><h3 id="var/r_hair"><aside class="declaration">var </aside>r_hair
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 84"/></a></h3>
+        <p>Hair color.</p><h3 id="var/r_skin"><aside class="declaration">var </aside>r_skin
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 110"/></a></h3>
+        <p>Skin color.</p><h3 id="var/r_synth"><aside class="declaration">var </aside>r_synth
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L134">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 134"/></a></h3>
+        <p>Used with synth_color to color synth parts that normaly can't be colored.</p><h3 id="var/real_name"><aside class="declaration">var </aside>real_name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 66"/></a></h3>
+        <p>Our character's name</p><h3 id="var/regen_limbs"><aside class="declaration">var </aside>regen_limbs
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L182">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 182"/></a></h3>
+        <p>Set to 1 when altering limb states. fix for prosthetic &gt; normal changes not working on preview.</p><h3 id="var/ringtone"><aside class="declaration">var </aside>ringtone
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L202">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 202"/></a></h3>
+        <p>Default ringtone for character; if blank, use job default.</p><h3 id="var/s_base"><aside class="declaration">var </aside>s_base
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 116"/></a></h3>
+        <p>For Adherent.</p><h3 id="var/s_tone"><aside class="declaration">var </aside>s_tone
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 108"/></a></h3>
+        <p>Skin tone.</p><h3 id="var/sensorpref"><aside class="declaration">var </aside>sensorpref
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L221">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 221"/></a></h3>
+        <p>Set character's suit sensor level.</p><h3 id="var/show_in_directory"><aside class="declaration">var </aside>show_in_directory
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L212">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 212"/></a></h3>
+        <p>Should we show in Character Directory.</p><h3 id="var/skills"><aside class="declaration">var </aside>skills
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L174">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 174"/></a></h3>
+        <p>Skills can range from 0 to 3.</p><h3 id="var/skin"><aside class="declaration">var </aside>skin
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 44"/></a></h3>
+        <p>data for byond skin - checkboxes and whatnot; this is ENTIRELY synchronized by the skin system.</p><h3 id="var/spawnpoint"><aside class="declaration">var </aside>spawnpoint
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 74"/></a></h3>
+        <p>Where this character will spawn. (0-2)</p><h3 id="var/synth_color"><aside class="declaration">var </aside>synth_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L132">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 132"/></a></h3>
+        <p>Lets normally uncolorable synth parts be colorable.</p><h3 id="var/synth_markings"><aside class="declaration">var </aside>synth_markings
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L140">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 140"/></a></h3>
+        <p>Enable/disable markings on synth parts.</p><h3 id="var/tooltipstyle"><aside class="declaration">var </aside>tooltipstyle
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 61"/></a></h3>
+        <p>Style for popup tooltips.</p><h3 id="var/traits"><aside class="declaration">var </aside>traits
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L130">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 130"/></a></h3>
+        <p>Traits which modifier characters for better or worse (mostly worse).</p><h3 id="var/widescreenpref"><aside class="declaration">var </aside>widescreenpref
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/_preferences.dm#L227">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;_preferences.dm 227"/></a></h3>
+        <p>Should we be in the widescreen mode set by the config?</p><h2 id="proc">Proc Details</h2><h3 id="proc/all_language_ids"><aside class="declaration">proc </aside>all_language_ids<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/background/language.dm#L115">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;background&#x2F;language.dm 115"/></a></aside>
+        </h3>
+        <p>returns ids of ALL languages</p><h3 id="proc/check_character_species"><aside class="declaration">proc </aside>check_character_species<aside>(/<a href="datum.html">datum</a>/<a href="datum/character_species.html">character_species</a>/CS) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/helpers/species_pick.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;helpers&#x2F;species_pick.dm 22"/></a></aside>
+        </h3>
+        <p>check if we can play a species</p><h3 id="proc/checked_get_character_data"><aside class="declaration">proc </aside>checked_get_character_data<aside>(key) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/data.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;data.dm 49"/></a></aside>
+        </h3>
+        <p>checked read of a character key;
+use when accessing from an outside datum to that key</p><h3 id="proc/checked_get_global_data"><aside class="declaration">proc </aside>checked_get_global_data<aside>(key) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/data.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;data.dm 29"/></a></aside>
+        </h3>
+        <p>checked read of a global options key;
+use when accessing from an outside datum to that key</p><h3 id="proc/checked_set_character_data"><aside class="declaration">proc </aside>checked_set_character_data<aside>(key, value) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/data.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;data.dm 59"/></a></aside>
+        </h3>
+        <p>checked write of a character key;
+use when accessing from an outside datum to that key</p><h3 id="proc/checked_set_global_data"><aside class="declaration">proc </aside>checked_set_global_data<aside>(key, value) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/data.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;data.dm 39"/></a></aside>
+        </h3>
+        <p>checked write of a global options key;
+use when accessing from an outside datum to that key</p><h3 id="proc/demote_high_priority_jobs"><aside class="declaration">proc </aside>demote_high_priority_jobs<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/occupation/occupation.dm#L324">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;occupation&#x2F;occupation.dm 324"/></a></aside>
+        </h3>
+        <p>resets any jobs set to high to medium</p><h3 id="proc/extraneous_language_ids"><aside class="declaration">proc </aside>extraneous_language_ids<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/background/language.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;background&#x2F;language.dm 108"/></a></aside>
+        </h3>
+        <p>returns ids of languages that aren't innate to our species/background</p><h3 id="proc/extraneous_languages_max"><aside class="declaration">proc </aside>extraneous_languages_max<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/background/language.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;background&#x2F;language.dm 102"/></a></aside>
+        </h3>
+        <p>returns max amounts we can have. doesn't take into account what we do have.</p><h3 id="proc/get_character_data"><aside class="declaration">proc </aside>get_character_data<aside>(key) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/data.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;data.dm 10"/></a></aside>
+        </h3>
+        <p>reads a character data key</p><h3 id="proc/get_global_data"><aside class="declaration">proc </aside>get_global_data<aside>(key) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/data.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;data.dm 22"/></a></aside>
+        </h3>
+        <p>reads a global options data key</p><h3 id="proc/get_preference"><aside class="declaration">proc </aside>get_preference<aside>(pref) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/data.dm#L169">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;data.dm 169"/></a></aside>
+        </h3>
+        <p>checked get preference data</p><h3 id="proc/imprint_mind"><aside class="declaration">proc </aside>imprint_mind<aside>(/<a href="datum.html">datum</a>/<a href="datum/mind.html">mind</a>/M) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/apply.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;apply.dm 54"/></a></aside>
+        </h3>
+        <p>/datum/mind is usually used to semantically track someone's soul
+(this sounds stupid to say in a code comment but whatever)</p>
+<p>therefore if we want to get original state of a player at roundstart,
+we're going to want to store prefs data</p>
+<p>pref items are able to copy_to_mob without a prefs datum to support this</p><h3 id="proc/innate_language_ids"><aside class="declaration">proc </aside>innate_language_ids<aside>(include_background) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/background/language.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;background&#x2F;language.dm 83"/></a></aside>
+        </h3>
+        <p>returns ids of languages that are innate to our species/background</p><h3 id="proc/json_export_character"><aside class="declaration">proc </aside>json_export_character<aside>(/list/errors) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/data.dm#L240">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;data.dm 240"/></a></aside>
+        </h3>
+        <p>json export</p><h3 id="proc/json_import_character"><aside class="declaration">proc </aside>json_import_character<aside>(/list/json, /list/errors) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/data.dm#L250">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;data.dm 250"/></a></aside>
+        </h3>
+        <p>json import</p><h3 id="proc/perform_character_migrations"><aside class="declaration">proc </aside>perform_character_migrations<aside>(/savefile/S, current_version, /list/errors, /list/character) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/migration.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;migration.dm 25"/></a></aside>
+        </h3>
+        <p>@params</p>
+<ul>
+<li>S - the savefile we operate on</li>
+<li>current_version - the version it's at</li>
+<li>errors - put errors into this list to be displayed to the player</li>
+<li>options - the loaded character options list</li>
+</ul><h3 id="proc/perform_global_migrations"><aside class="declaration">proc </aside>perform_global_migrations<aside>(/savefile/S, current_version, /list/errors, /list/options) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/migration.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;migration.dm 8"/></a></aside>
+        </h3>
+        <p>@params</p>
+<ul>
+<li>S - the savefile we operate on</li>
+<li>current_version - the version it's at</li>
+<li>errors - put errors into this list to be displayed to the player</li>
+<li>options - the loaded global options list</li>
+</ul><h3 id="proc/read_character_data"><aside class="declaration">proc </aside>read_character_data<aside>(/savefile/S, slot, /list/errors) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/data.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;data.dm 90"/></a></aside>
+        </h3>
+        <p>load character data from disk
+warning: missing keys are automatically dropped.
+Read character data version</p><h3 id="proc/read_global_data"><aside class="declaration">proc </aside>read_global_data<aside>(/savefile/S, /list/errors) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/data.dm#L135">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;data.dm 135"/></a></aside>
+        </h3>
+        <p>load global data from disk
+warning: missing keys are automatically dropped.</p><h3 id="proc/reset_everything_to_default"><aside class="declaration">proc </aside>reset_everything_to_default<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/data.dm#L211">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;data.dm 211"/></a></aside>
+        </h3>
+        <p>default everything that has save keys</p><h3 id="proc/reset_jobs"><aside class="declaration">proc </aside>reset_jobs<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/occupation/occupation.dm#L316">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;occupation&#x2F;occupation.dm 316"/></a></aside>
+        </h3>
+        <p>resets job prefs</p><h3 id="proc/resolve_whitelisted_species"><aside class="declaration">proc </aside>resolve_whitelisted_species<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/helpers/species_pick.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;helpers&#x2F;species_pick.dm 12"/></a></aside>
+        </h3>
+        <p>gets list of species we can play of those who are whitelisted</p><h3 id="proc/sanitize_everything"><aside class="declaration">proc </aside>sanitize_everything<aside>(/list/errors) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/data.dm#L189">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;data.dm 189"/></a></aside>
+        </h3>
+        <p>resanitize everything</p><h3 id="proc/sanitize_preference"><aside class="declaration">proc </aside>sanitize_preference<aside>(pref, /list/errors) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/data.dm#L179">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;data.dm 179"/></a></aside>
+        </h3>
+        <p>sanitize prefs data</p><h3 id="proc/set_character_data"><aside class="declaration">proc </aside>set_character_data<aside>(key, value) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/data.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;data.dm 4"/></a></aside>
+        </h3>
+        <p>sets a character data key to a value</p><h3 id="proc/set_character_species"><aside class="declaration">proc </aside>set_character_species<aside>(/<a href="datum.html">datum</a>/<a href="datum/character_species.html">character_species</a>/CS, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/preference_setup/helpers/species_pick.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;preference_setup&#x2F;helpers&#x2F;species_pick.dm 42"/></a></aside>
+        </h3>
+        <p>WARNING: SHITCODE AHEAD / LEGACY SHIMS
+END</p><h3 id="proc/set_global_data"><aside class="declaration">proc </aside>set_global_data<aside>(key, value) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/data.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;data.dm 16"/></a></aside>
+        </h3>
+        <p>sets a global options data key to a value</p><h3 id="proc/set_preference"><aside class="declaration">proc </aside>set_preference<aside>(pref, value) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/data.dm#L158">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;data.dm 158"/></a></aside>
+        </h3>
+        <p>checked set preference data</p><h3 id="proc/write_character_data"><aside class="declaration">proc </aside>write_character_data<aside>(/savefile/S, slot, /list/errors) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/data.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;data.dm 68"/></a></aside>
+        </h3>
+        <p>flush character data to disk
+warning: missing keys are automatically dropped.
+Write character data version</p><h3 id="proc/write_global_data"><aside class="declaration">proc </aside>write_global_data<aside>(/savefile/S, /list/errors) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/preferences/data.dm#L115">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;preferences&#x2F;data.dm 115"/></a></aside>
+        </h3>
+        <p>flush global data to disk
+warning: missing keys are automatically dropped.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

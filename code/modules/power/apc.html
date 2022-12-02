@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;modules&#x2F;power&#x2F;apc.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/modules/power/apc.html#define">Define Details</a></header>
+<main>
+<h1>code/modules/power/apc.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/power/apc.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/modules/power/apc.html#define/CRITICAL_APC_EMP_PROTECTION">CRITICAL_APC_EMP_PROTECTION</a></th><td>EMP effect duration is divided by this number if the APC has &quot;critical&quot; flag</td></tr>
+        <tr><th><a href="code/modules/power/apc.html#define/APC_UPDATE_ICON_COOLDOWN">APC_UPDATE_ICON_COOLDOWN</a></th><td>10 seconds</td></tr>
+        <tr><th><a href="code/modules/power/apc.html#define/POWERCHAN_OFF">POWERCHAN_OFF</a></th><td>Power channel is off and will stay that way dammit</td></tr>
+        <tr><th><a href="code/modules/power/apc.html#define/POWERCHAN_OFF_AUTO">POWERCHAN_OFF_AUTO</a></th><td>Power channel is off until power rises above a threshold</td></tr>
+        <tr><th><a href="code/modules/power/apc.html#define/POWERCHAN_ON">POWERCHAN_ON</a></th><td>Power channel is on until there is no power</td></tr>
+        <tr><th><a href="code/modules/power/apc.html#define/POWERCHAN_ON_AUTO">POWERCHAN_ON_AUTO</a></th><td>Power channel is on until power drops below a threshold</td></tr>
+        <tr><th>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/power.html">power</a>/<a href="obj/machinery/power/apc.html">apc</a>/high</th><td>High capacity cell APCs</td></tr>
+        <tr><th>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/power.html">power</a>/<a href="obj/machinery/power/apc.html">apc</a>/super</th><td>Super capacity cell APCS</td></tr>
+        <tr><th>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/power.html">power</a>/<a href="obj/machinery/power/apc.html">apc</a>/super/critical</th><td>Critical APCs with super cells</td></tr>
+        <tr><th>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/power.html">power</a>/<a href="obj/machinery/power/apc.html">apc</a>/hyper</th><td>APCS with hyper cells. How lewd</td></tr>
+        <tr><th>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/power.html">power</a>/<a href="obj/machinery/power/apc.html">apc</a>/alarms_hidden</th><td>APCs with alarms hidden. Use these for POI's and offmap stuff so engineers dont get notified that shitty_ruins4 is running out of power -Bloop</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/APC_UPDATE_ICON_COOLDOWN"><aside class="declaration">#define </aside>APC_UPDATE_ICON_COOLDOWN
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/power/apc.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc.dm 33"/></a>
+    </h3>
+    <p>10 seconds</p><h3 id="define/CRITICAL_APC_EMP_PROTECTION"><aside class="declaration">#define </aside>CRITICAL_APC_EMP_PROTECTION
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/power/apc.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc.dm 4"/></a>
+    </h3>
+    <p>EMP effect duration is divided by this number if the APC has &quot;critical&quot; flag</p><h3 id="define/POWERCHAN_OFF"><aside class="declaration">#define </aside>POWERCHAN_OFF
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/power/apc.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc.dm 41"/></a>
+    </h3>
+    <p>Power channel is off and will stay that way dammit</p><h3 id="define/POWERCHAN_OFF_AUTO"><aside class="declaration">#define </aside>POWERCHAN_OFF_AUTO
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/power/apc.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc.dm 43"/></a>
+    </h3>
+    <p>Power channel is off until power rises above a threshold</p><h3 id="define/POWERCHAN_ON"><aside class="declaration">#define </aside>POWERCHAN_ON
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/power/apc.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc.dm 45"/></a>
+    </h3>
+    <p>Power channel is on until there is no power</p><h3 id="define/POWERCHAN_ON_AUTO"><aside class="declaration">#define </aside>POWERCHAN_ON_AUTO
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/power/apc.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc.dm 47"/></a>
+    </h3>
+    <p>Power channel is on until power drops below a threshold</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

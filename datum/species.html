@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;species - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/species.html#var">Var Details</a> - <a href="datum/species.html#proc">Proc Details</a></header>
+<main>
+<h1>species <aside>/<a href="datum.html">datum</a>/<a href="datum/species.html">species</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 20"/></a></h1>
+
+<p>Species Datums</p>
+<p>They are <strong>not</strong> singletons, however, they are globally cached as a static set
+for use in preferences to determine default properties/whatever</p>
+<p>? Someday we'll rework this. Someday. I believe.</p>
+<p>Mob set_species supports either a datum or a typepath. Mobs, upon receiving a typepath, will make their own copy for modification.</p>
+<p>Mob species var should <strong>never</strong> be the global copy.</p>
+<p>Unfortunately, until we decide how we want to refactor species and humans proper,
+we're stuck doing the following:</p>
+<ul>
+<li>Species procs will all be static with the template of (H, ...) where H is the human it's ticking on</li>
+<li><strong>New species are allowed to have instance variables, like proteans using this for storage</strong>, since species are no longer actually static cached copies</li>
+<li><strong>New species are allowed to use these instance variables.</strong> TODO: unified tgui for species ability control, ability datums/actions</li>
+<li>A global cache of species by typepath will still be maintained for &quot;static&quot; usages of these datums, like for preferences rendering.
+Intrinsics
+Appearance
+Spawning
+Culture/Background - Typepaths
+Language - IDs</li>
+</ul>
+<h2 id="languages-old">Languages (old)</h2><h2 id="descriptors-and-strings">Descriptors and strings.</h2><h2 id="icon-appearance-vars">Icon/appearance vars.</h2><h2 id="damage-overlay-and-masks">Damage overlay and masks.</h2><h2 id="speech-sounds">Speech Sounds</h2><h2 id="soundy-emotey-things">Soundy emotey things.</h2><h2 id="combat-vars">Combat vars.</h2><h2 id="death-vars">Death vars.</h2><h2 id="cold">Cold</h2><h2 id="hot">Hot</h2><h2 id="hud-data-vars">HUD data vars.</h2><h2 id="body-form-vars">Body/form vars.</h2><h2 id="flags">Flags</h2><h2 id="bump-vars">Bump vars</h2><h2 id="misc-vars">Misc vars</h2>
+<p>Weaver abilities</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/species.html#var/abstract_type">abstract_type</a></th><td>Abstract type.</td></tr>
+            <tr><th><a href="datum/species.html#var/active_regen_mult">active_regen_mult</a></th><td>Multiplier for 'Regenerate' power speed, in human_powers.dm</td></tr>
+            <tr><th><a href="datum/species.html#var/ambiguous_genders">ambiguous_genders</a></th><td>If true, people examining a member of this species whom are not also the same species will see them as gender neutral.	Because aliens.</td></tr>
+            <tr><th><a href="datum/species.html#var/assisted_langs">assisted_langs</a></th><td>The languages the species can't speak without an assisted organ.
+This list is a guess at things that no one other than the parent species should be able to speak</td></tr>
+            <tr><th><a href="datum/species.html#var/base_color">base_color</a></th><td>Used by changelings. Should also be used for icon previews.</td></tr>
+            <tr><th><a href="datum/species.html#var/base_skin_colours">base_skin_colours</a></th><td>Used for species that only need to change one or two entries in has_limbs.
+The basic skin colours this species uses.</td></tr>
+            <tr><th><a href="datum/species.html#var/blood_color">blood_color</a></th><td>The color of the species blood.</td></tr>
+            <tr><th><a href="datum/species.html#var/blood_level_danger">blood_level_danger</a></th><td>&quot;Danger&quot; blood level; above this, you'll rapidly take up to 50 oxyloss, and it will then steadily accumulate at a lower rate.</td></tr>
+            <tr><th><a href="datum/species.html#var/blood_level_fatal">blood_level_fatal</a></th><td>&quot;Fatal&quot; blood level; below this, you take extremely high oxydamage.</td></tr>
+            <tr><th><a href="datum/species.html#var/blood_level_safe">blood_level_safe</a></th><td>&quot;Safe&quot; blood level; above this, you're OK.</td></tr>
+            <tr><th><a href="datum/species.html#var/blood_level_warning">blood_level_warning</a></th><td>&quot;Warning&quot; blood level; above this, you're a bit woozy and will have low-level oxydamage. (no more than 20, or 15 with inap)</td></tr>
+            <tr><th><a href="datum/species.html#var/blood_name">blood_name</a></th><td>Name for the species' blood.</td></tr>
+            <tr><th><a href="datum/species.html#var/blood_volume">blood_volume</a></th><td>Initial blood volume.
+TODO: Put this on living so this is moreso an override. @Zandario</td></tr>
+            <tr><th><a href="datum/species.html#var/bloodloss_rate">bloodloss_rate</a></th><td>Multiplier for how fast a species bleeds out. Higher = Faster</td></tr>
+            <tr><th><a href="datum/species.html#var/blurb">blurb</a></th><td>A brief lore summary for use in the chargen screen.</td></tr>
+            <tr><th><a href="datum/species.html#var/body_temperature">body_temperature</a></th><td>Species will try to stabilize at this temperature. (also affects temperature processing)</td></tr>
+            <tr><th><a href="datum/species.html#var/breath_cold_level_1">breath_cold_level_1</a></th><td>Cold gas damage level 1 below this point.</td></tr>
+            <tr><th><a href="datum/species.html#var/breath_cold_level_2">breath_cold_level_2</a></th><td>Cold gas damage level 2 below this point.</td></tr>
+            <tr><th><a href="datum/species.html#var/breath_cold_level_3">breath_cold_level_3</a></th><td>Cold gas damage level 3 below this point.</td></tr>
+            <tr><th><a href="datum/species.html#var/breath_heat_level_1">breath_heat_level_1</a></th><td>Heat gas damage level 1 below this point.</td></tr>
+            <tr><th><a href="datum/species.html#var/breath_heat_level_2">breath_heat_level_2</a></th><td>Heat gas damage level 2 below this point.</td></tr>
+            <tr><th><a href="datum/species.html#var/breath_heat_level_3">breath_heat_level_3</a></th><td>Heat gas damage level 3 below this point.</td></tr>
+            <tr><th><a href="datum/species.html#var/breath_type">breath_type</a></th><td>Non-oxygen gas breathed, if any.</td></tr>
+            <tr><th><a href="datum/species.html#var/brute_mod">brute_mod</a></th><td>Physical damage multiplier.</td></tr>
+            <tr><th><a href="datum/species.html#var/bump_flag">bump_flag</a></th><td>What are we considered to be when bumped?</td></tr>
+            <tr><th><a href="datum/species.html#var/burn_mod">burn_mod</a></th><td>Burn damage multiplier.</td></tr>
+            <tr><th><a href="datum/species.html#var/catalogue_data">catalogue_data</a></th><td>A list of /datum/category_item/catalogue datums, for the cataloguer, or null.</td></tr>
+            <tr><th><a href="datum/species.html#var/category">category</a></th><td>Category in character setup</td></tr>
+            <tr><th><a href="datum/species.html#var/chemOD_mod">chemOD_mod</a></th><td>Damage modifier for overdose</td></tr>
+            <tr><th><a href="datum/species.html#var/cold_discomfort_level">cold_discomfort_level</a></th><td>Aesthetic messages about feeling chilly.</td></tr>
+            <tr><th><a href="datum/species.html#var/cold_level_1">cold_level_1</a></th><td>Cold damage level 1 below this point.</td></tr>
+            <tr><th><a href="datum/species.html#var/cold_level_2">cold_level_2</a></th><td>Cold damage level 2 below this point.</td></tr>
+            <tr><th><a href="datum/species.html#var/cold_level_3">cold_level_3</a></th><td>Cold damage level 3 below this point.</td></tr>
+            <tr><th><a href="datum/species.html#var/color_force_greyscale">color_force_greyscale</a></th><td>force non greyscale icons to greyscale before multiplying? WARNING :CITADEL JANK, REPLACE ASAP</td></tr>
+            <tr><th><a href="datum/species.html#var/color_mult">color_mult</a></th><td>This is used in character setup preview generation (prefences_setup.dm) and human mob rendering (update_icons.dm)</td></tr>
+            <tr><th><a href="datum/species.html#var/darksight">darksight</a></th><td>Native darksight distance.</td></tr>
+            <tr><th><a href="datum/species.html#var/default_bodytype">default_bodytype</a></th><td>default bodytype to use for clothing rendering</td></tr>
+            <tr><th><a href="datum/species.html#var/default_citizenship">default_citizenship</a></th><td>default citizenship</td></tr>
+            <tr><th><a href="datum/species.html#var/default_faction">default_faction</a></th><td>default faction</td></tr>
+            <tr><th><a href="datum/species.html#var/default_language">default_language</a></th><td>default language used when speaking</td></tr>
+            <tr><th><a href="datum/species.html#var/default_origin">default_origin</a></th><td>default origin</td></tr>
+            <tr><th><a href="datum/species.html#var/default_religion">default_religion</a></th><td>default religion</td></tr>
+            <tr><th><a href="datum/species.html#var/deform">deform</a></th><td>Mutated icon set.</td></tr>
+            <tr><th><a href="datum/species.html#var/descriptors">descriptors</a></th><td>descriptors</td></tr>
+            <tr><th><a href="datum/species.html#var/dispersed_eyes">dispersed_eyes</a></th><td>If set, the species will be affected by flashbangs regardless if they have eyes or not, as they see in large areas.</td></tr>
+            <tr><th><a href="datum/species.html#var/display_name">display_name</a></th><td>what you see on health analyzers/IC</td></tr>
+            <tr><th><a href="datum/species.html#var/economic_modifier">economic_modifier</a></th><td>How much money this species makes</td></tr>
+            <tr><th><a href="datum/species.html#var/equip_adjust">equip_adjust</a></th><td>Used to shift equipment around based on which species you are.</td></tr>
+            <tr><th><a href="datum/species.html#var/examine_name">examine_name</a></th><td>what you see on tooltip/examine</td></tr>
+            <tr><th><a href="datum/species.html#var/exhale_type">exhale_type</a></th><td>Exhaled gas type.</td></tr>
+            <tr><th><a href="datum/species.html#var/fire_icon_state">fire_icon_state</a></th><td>The icon_state used inside OnFire.dmi for when on fire.</td></tr>
+            <tr><th><a href="datum/species.html#var/flash_burn">flash_burn</a></th><td>how much damage to take from being flashed if light hypersensitive</td></tr>
+            <tr><th><a href="datum/species.html#var/flash_mod">flash_mod</a></th><td>Stun from blindness modifier.</td></tr>
+            <tr><th><a href="datum/species.html#var/flesh_color">flesh_color</a></th><td>The color of the species flesh.</td></tr>
+            <tr><th><a href="datum/species.html#var/galactic_language">galactic_language</a></th><td>do we have galactic common? this is so common we just have this as a var</td></tr>
+            <tr><th><a href="datum/species.html#var/gluttonous">gluttonous</a></th><td>Can eat some mobs. 1 for mice, 2 for monkeys, 3 for people.</td></tr>
+            <tr><th><a href="datum/species.html#var/greater_form">greater_form</a></th><td>Greater form, if any, ie. human for monkeys.</td></tr>
+            <tr><th><a href="datum/species.html#var/has_fine_manipulation">has_fine_manipulation</a></th><td>Can use small items.</td></tr>
+            <tr><th><a href="datum/species.html#var/has_floating_eyes">has_floating_eyes</a></th><td>Whether the eyes can be shown above other icons</td></tr>
+            <tr><th><a href="datum/species.html#var/has_glowing_eyes">has_glowing_eyes</a></th><td>Whether the eyes are shown above all lighting</td></tr>
+            <tr><th><a href="datum/species.html#var/has_organ">has_organ</a></th><td>Determines the organs that the species spawns with and which required-organ checks are conducted.</td></tr>
+            <tr><th><a href="datum/species.html#var/hazard_high_pressure">hazard_high_pressure</a></th><td>Dangerously high pressure.</td></tr>
+            <tr><th><a href="datum/species.html#var/hazard_low_pressure">hazard_low_pressure</a></th><td>Dangerously low pressure.</td></tr>
+            <tr><th><a href="datum/species.html#var/health_hud_intensity">health_hud_intensity</a></th><td>This modifies how intensely the health hud is colored.</td></tr>
+            <tr><th><a href="datum/species.html#var/heat_discomfort_level">heat_discomfort_level</a></th><td>Aesthetic messages about feeling warm.</td></tr>
+            <tr><th><a href="datum/species.html#var/heat_level_1">heat_level_1</a></th><td>Heat damage level 1 above this point.</td></tr>
+            <tr><th><a href="datum/species.html#var/heat_level_2">heat_level_2</a></th><td>Heat damage level 2 above this point.</td></tr>
+            <tr><th><a href="datum/species.html#var/heat_level_3">heat_level_3</a></th><td>Heat damage level 3 above this point.</td></tr>
+            <tr><th><a href="datum/species.html#var/holder_type">holder_type</a></th><td>This allows you to pick up crew</td></tr>
+            <tr><th><a href="datum/species.html#var/hunger_factor">hunger_factor</a></th><td>Multiplier for hunger.</td></tr>
+            <tr><th><a href="datum/species.html#var/husk_icon">husk_icon</a></th><td>Species-specific husk sprite if applicable.</td></tr>
+            <tr><th><a href="datum/species.html#var/icobase">icobase</a></th><td>Normal icon set.</td></tr>
+            <tr><th><a href="datum/species.html#var/icobase_tail">icobase_tail</a></th><td>This is for overriding tail rendering with a specific icon in icobase, for static tails only, since tails would wag when dead if you used this.</td></tr>
+            <tr><th><a href="datum/species.html#var/icon_scale_x">icon_scale_x</a></th><td>Makes the icon wider/thinner.</td></tr>
+            <tr><th><a href="datum/species.html#var/icon_scale_y">icon_scale_y</a></th><td>Makes the icon taller/shorter.</td></tr>
+            <tr><th><a href="datum/species.html#var/icon_template">icon_template</a></th><td>Used for mob icon generation for non-32x32 species.</td></tr>
+            <tr><th><a href="datum/species.html#var/id">id</a></th><td>if we're a subspecies, real id</td></tr>
+            <tr><th><a href="datum/species.html#var/infect_wounds">infect_wounds</a></th><td>Whether the species can infect wounds, only works with claws / bites</td></tr>
+            <tr><th><a href="datum/species.html#var/inherent_spells">inherent_spells</a></th><td>Species-specific spells.</td></tr>
+            <tr><th><a href="datum/species.html#var/inherent_verbs">inherent_verbs</a></th><td>Species-specific verbs.</td></tr>
+            <tr><th><a href="datum/species.html#var/intrinsic_languages">intrinsic_languages</a></th><td>intrinsic species languages - list() or singular language or null</td></tr>
+            <tr><th><a href="datum/species.html#var/item_slowdown_mod">item_slowdown_mod</a></th><td>How affected by item slowdown the species is.</td></tr>
+            <tr><th><a href="datum/species.html#var/light_dam">light_dam</a></th><td>If set, mob will be damaged in light over this value and heal in light below its negative.</td></tr>
+            <tr><th><a href="datum/species.html#var/max_additional_languages">max_additional_languages</a></th><td>additional languages we can learn (ONTOP OF INTRINSIC AND CULTURE)</td></tr>
+            <tr><th><a href="datum/species.html#var/max_age">max_age</a></th><td>The maximum age a species is allowed to be played as. This is generally determined by lifespan.</td></tr>
+            <tr><th><a href="datum/species.html#var/max_nutrition">max_nutrition</a></th><td>max nutrition - i hate myself for haphazardly throwing this in but sue me</td></tr>
+            <tr><th><a href="datum/species.html#var/min_age">min_age</a></th><td>The minimum age a species is allowed to be played as. For our purposes, this is global.</td></tr>
+            <tr><th><a href="datum/species.html#var/minimum_breath_pressure">minimum_breath_pressure</a></th><td>Minimum required pressure for breath, in kPa</td></tr>
+            <tr><th><a href="datum/species.html#var/mob_size">mob_size</a></th><td>As above, but specifically for the antagHUD indicator.
+As above, but specifically for the antagHUD indicator.</td></tr>
+            <tr><th><a href="datum/species.html#var/move_trail">move_trail</a></th><td>What marks are left when walking</td></tr>
+            <tr><th><a href="datum/species.html#var/name">name</a></th><td>Species real name.</td></tr>
+            <tr><th><a href="datum/species.html#var/name_language">name_language</a></th><td>language our name is in - used for namegen; null to force stock ss13 namegen instead</td></tr>
+            <tr><th><a href="datum/species.html#var/name_plural">name_plural</a></th><td>Pluralized name (since &quot;[name]s&quot; is not always valid)</td></tr>
+            <tr><th><a href="datum/species.html#var/organs_icon">organs_icon</a></th><td>Species specific internal organs icons.</td></tr>
+            <tr><th><a href="datum/species.html#var/override_worn_legacy_bodytype">override_worn_legacy_bodytype</a></th><td>override for bodytype</td></tr>
+            <tr><th><a href="datum/species.html#var/oxy_mod">oxy_mod</a></th><td>Oxyloss modifier</td></tr>
+            <tr><th><a href="datum/species.html#var/passive_temp_gain">passive_temp_gain</a></th><td>Species will gain this much temperature every second</td></tr>
+            <tr><th><a href="datum/species.html#var/pixel_offset_x">pixel_offset_x</a></th><td>Used for offsetting large icons.</td></tr>
+            <tr><th><a href="datum/species.html#var/pixel_offset_y">pixel_offset_y</a></th><td>Used for offsetting large icons.</td></tr>
+            <tr><th><a href="datum/species.html#var/pixel_offset_z">pixel_offset_z</a></th><td>Used for offsetting large icons.</td></tr>
+            <tr><th><a href="datum/species.html#var/poison_type">poison_type</a></th><td>Poisonous air.</td></tr>
+            <tr><th><a href="datum/species.html#var/preview_icon">preview_icon</a></th><td>Preview icon used in species selection.</td></tr>
+            <tr><th><a href="datum/species.html#var/primitive_form">primitive_form</a></th><td>Lesser form, if any (ie. monkey for humans)</td></tr>
+            <tr><th><a href="datum/species.html#var/prone_icon">prone_icon</a></th><td>If set, draws this from icobase when mob is prone.</td></tr>
+            <tr><th><a href="datum/species.html#var/push_flags">push_flags</a></th><td>What can we push?</td></tr>
+            <tr><th><a href="datum/species.html#var/radiation_mod">radiation_mod</a></th><td>Radiation modifier</td></tr>
+            <tr><th><a href="datum/species.html#var/rarity_value">rarity_value</a></th><td>Relative rarity/collector value for this species.</td></tr>
+            <tr><th><a href="datum/species.html#var/reagent_tag">reagent_tag</a></th><td>Used for metabolizing reagents.</td></tr>
+            <tr><th><a href="datum/species.html#var/sexybits_location">sexybits_location</a></th><td>Organ tag where they are located if they can be kicked for increased pain.</td></tr>
+            <tr><th><a href="datum/species.html#var/short_sighted">short_sighted</a></th><td>Permanent weldervision.</td></tr>
+            <tr><th><a href="datum/species.html#var/siemens_coefficient">siemens_coefficient</a></th><td>The lower, the thicker the skin and better the insulation.</td></tr>
+            <tr><th><a href="datum/species.html#var/slowdown">slowdown</a></th><td>Passive movement speed malus (or boost, if negative)</td></tr>
+            <tr><th><a href="datum/species.html#var/snow_movement">snow_movement</a></th><td>How much faster or slower the species is on snow</td></tr>
+            <tr><th><a href="datum/species.html#var/sound_mod">sound_mod</a></th><td>Stun from sounds, I.E. flashbangs.</td></tr>
+            <tr><th><a href="datum/species.html#var/species_appearance_flags">species_appearance_flags</a></th><td>Appearance/display related features.</td></tr>
+            <tr><th><a href="datum/species.html#var/species_flags">species_flags</a></th><td>Various specific features.</td></tr>
+            <tr><th><a href="datum/species.html#var/species_fluff_flags">species_fluff_flags</a></th><td>fluff flags</td></tr>
+            <tr><th><a href="datum/species.html#var/species_spawn_flags">species_spawn_flags</a></th><td>Flags that specify who can spawn as this species</td></tr>
+            <tr><th><a href="datum/species.html#var/speech_bubble_appearance">speech_bubble_appearance</a></th><td>Part of icon_state to use for speech bubbles when talking.	See talk.dmi for available icons.</td></tr>
+            <tr><th><a href="datum/species.html#var/speech_chance">speech_chance</a></th><td>The likelihood of a speech sound playing.</td></tr>
+            <tr><th><a href="datum/species.html#var/speech_sounds">speech_sounds</a></th><td>A list of sounds to potentially play when speaking.</td></tr>
+            <tr><th><a href="datum/species.html#var/suit_storage_icon">suit_storage_icon</a></th><td>Icons used for worn items in suit storage slot.</td></tr>
+            <tr><th><a href="datum/species.html#var/swap_flags">swap_flags</a></th><td>What can we swap place with?</td></tr>
+            <tr><th><a href="datum/species.html#var/tail">tail</a></th><td>Name of tail state in species effects icon file.</td></tr>
+            <tr><th><a href="datum/species.html#var/tail_animation">tail_animation</a></th><td>If set, the icon to obtain tail animation states from.</td></tr>
+            <tr><th><a href="datum/species.html#var/taste_sensitivity">taste_sensitivity</a></th><td>How sensitive the species is to minute tastes.</td></tr>
+            <tr><th><a href="datum/species.html#var/thirst_factor">thirst_factor</a></th><td>Multiplier for thirst.</td></tr>
+            <tr><th><a href="datum/species.html#var/total_health">total_health</a></th><td>Point at which the mob will enter crit.</td></tr>
+            <tr><th><a href="datum/species.html#var/toxins_mod">toxins_mod</a></th><td>Toxloss modifier</td></tr>
+            <tr><th><a href="datum/species.html#var/traits">traits</a></th><td>traits</td></tr>
+            <tr><th><a href="datum/species.html#var/uid">uid</a></th><td>uid - <strong>must be unique</strong></td></tr>
+            <tr><th><a href="datum/species.html#var/unarmed_attacks">unarmed_attacks</a></th><td>For empty hand harm-intent attack</td></tr>
+            <tr><th><a href="datum/species.html#var/unarmed_types">unarmed_types</a></th><td>Possible unarmed attacks that the mob will use in combat,</td></tr>
+            <tr><th><a href="datum/species.html#var/vision_flags">vision_flags</a></th><td>Same flags as glasses.</td></tr>
+            <tr><th><a href="datum/species.html#var/vision_organ">vision_organ</a></th><td>If set, this organ is required for vision. Defaults to &quot;eyes&quot; if the species has them.</td></tr>
+            <tr><th><a href="datum/species.html#var/warning_high_pressure">warning_high_pressure</a></th><td>High pressure warning.</td></tr>
+            <tr><th><a href="datum/species.html#var/warning_low_pressure">warning_low_pressure</a></th><td>Low pressure warning.</td></tr>
+            <tr><th><a href="datum/species.html#var/water_movement">water_movement</a></th><td>How much faster or slower the species is in water</td></tr>
+            <tr><th><a href="datum/species.html#var/whitelist_languages">whitelist_languages</a></th><td>languages we are always allowed to learn (overridden by intrinsic languages) even if restricted - list() or singular language</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/species.html#proc/clone">clone</a></th><td>clones us into a new datum</td></tr>
+            <tr><th><a href="datum/species.html#proc/copy_from">copy_from</a></th><td>completely clones us from another species, updating the provided human in the process</td></tr>
+            <tr><th><a href="datum/species.html#proc/create_blood">create_blood</a></th><td>called to ensure blood is consistent
+this is a destructive proc and will erase incompatible blood.</td></tr>
+            <tr><th><a href="datum/species.html#proc/create_organs">create_organs</a></th><td>called to ensure organs are consistent with our species's
+this is a destructive operation and will erase old organs!</td></tr>
+            <tr><th><a href="datum/species.html#proc/get_effective_bodytype">get_effective_bodytype</a></th><td>get effective bodytype</td></tr>
+            <tr><th><a href="datum/species.html#proc/get_exact_species_id">get_exact_species_id</a></th><td>get exact species id; subspecies does NOT return main species</td></tr>
+            <tr><th><a href="datum/species.html#proc/get_species_id">get_species_id</a></th><td>get species id; subspecies returns main species</td></tr>
+            <tr><th><a href="datum/species.html#proc/handle_post_spawn">handle_post_spawn</a></th><td>called after a mob is <strong>fully</strong> spawned</td></tr>
+            <tr><th><a href="datum/species.html#proc/on_apply">on_apply</a></th><td>called when we apply to a mob</td></tr>
+            <tr><th><a href="datum/species.html#proc/on_remove">on_remove</a></th><td>called when we are removed from a mob</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/abstract_type"><aside class="parent"><a title="/datum" href="datum.html#var/abstract_type">&uarr;</a></aside>abstract_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 22"/></a></h3>
+        <p>Abstract type.</p><h3 id="var/active_regen_mult"><aside class="declaration">var </aside>active_regen_mult
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L176">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 176"/></a></h3>
+        <p>Multiplier for 'Regenerate' power speed, in human_powers.dm</p><h3 id="var/ambiguous_genders"><aside class="declaration">var </aside>ambiguous_genders
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L420">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 420"/></a></h3>
+        <p>If true, people examining a member of this species whom are not also the same species will see them as gender neutral.	Because aliens.</p><h3 id="var/assisted_langs"><aside class="declaration">var </aside>assisted_langs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 70"/></a></h3>
+        <p>The languages the species can't speak without an assisted organ.
+This list is a guess at things that no one other than the parent species should be able to speak</p><h3 id="var/base_color"><aside class="declaration">var </aside>base_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 124"/></a></h3>
+        <p>Used by changelings. Should also be used for icon previews.</p><h3 id="var/base_skin_colours"><aside class="declaration">var </aside>base_skin_colours
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L417">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 417"/></a></h3>
+        <p>Used for species that only need to change one or two entries in has_limbs.
+The basic skin colours this species uses.</p><h3 id="var/blood_color"><aside class="declaration">var </aside>blood_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 120"/></a></h3>
+        <p>The color of the species blood.</p><h3 id="var/blood_level_danger"><aside class="declaration">var </aside>blood_level_danger
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L168">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 168"/></a></h3>
+        <p>&quot;Danger&quot; blood level; above this, you'll rapidly take up to 50 oxyloss, and it will then steadily accumulate at a lower rate.</p><h3 id="var/blood_level_fatal"><aside class="declaration">var </aside>blood_level_fatal
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L170">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 170"/></a></h3>
+        <p>&quot;Fatal&quot; blood level; below this, you take extremely high oxydamage.</p><h3 id="var/blood_level_safe"><aside class="declaration">var </aside>blood_level_safe
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L164">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 164"/></a></h3>
+        <p>&quot;Safe&quot; blood level; above this, you're OK.</p><h3 id="var/blood_level_warning"><aside class="declaration">var </aside>blood_level_warning
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L166">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 166"/></a></h3>
+        <p>&quot;Warning&quot; blood level; above this, you're a bit woozy and will have low-level oxydamage. (no more than 20, or 15 with inap)</p><h3 id="var/blood_name"><aside class="declaration">var </aside>blood_name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L157">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 157"/></a></h3>
+        <p>Name for the species' blood.</p><h3 id="var/blood_volume"><aside class="declaration">var </aside>blood_volume
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L160">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 160"/></a></h3>
+        <p>Initial blood volume.
+TODO: Put this on living so this is moreso an override. @Zandario</p><h3 id="var/bloodloss_rate"><aside class="declaration">var </aside>bloodloss_rate
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L162">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 162"/></a></h3>
+        <p>Multiplier for how fast a species bleeds out. Higher = Faster</p><h3 id="var/blurb"><aside class="declaration">var </aside>blurb
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 85"/></a></h3>
+        <p>A brief lore summary for use in the chargen screen.</p><h3 id="var/body_temperature"><aside class="declaration">var </aside>body_temperature
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L255">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 255"/></a></h3>
+        <p>Species will try to stabilize at this temperature. (also affects temperature processing)</p><h3 id="var/breath_cold_level_1"><aside class="declaration">var </aside>breath_cold_level_1
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L266">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 266"/></a></h3>
+        <p>Cold gas damage level 1 below this point.</p><h3 id="var/breath_cold_level_2"><aside class="declaration">var </aside>breath_cold_level_2
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L268">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 268"/></a></h3>
+        <p>Cold gas damage level 2 below this point.</p><h3 id="var/breath_cold_level_3"><aside class="declaration">var </aside>breath_cold_level_3
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L270">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 270"/></a></h3>
+        <p>Cold gas damage level 3 below this point.</p><h3 id="var/breath_heat_level_1"><aside class="declaration">var </aside>breath_heat_level_1
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L289">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 289"/></a></h3>
+        <p>Heat gas damage level 1 below this point.</p><h3 id="var/breath_heat_level_2"><aside class="declaration">var </aside>breath_heat_level_2
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L291">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 291"/></a></h3>
+        <p>Heat gas damage level 2 below this point.</p><h3 id="var/breath_heat_level_3"><aside class="declaration">var </aside>breath_heat_level_3
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L293">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 293"/></a></h3>
+        <p>Heat gas damage level 3 below this point.</p><h3 id="var/breath_type"><aside class="declaration">var </aside>breath_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L248">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 248"/></a></h3>
+        <p>Non-oxygen gas breathed, if any.</p><h3 id="var/brute_mod"><aside class="declaration">var </aside>brute_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L211">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 211"/></a></h3>
+        <p>Physical damage multiplier.</p><h3 id="var/bump_flag"><aside class="declaration">var </aside>bump_flag
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L427">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 427"/></a></h3>
+        <p>What are we considered to be when bumped?</p><h3 id="var/burn_mod"><aside class="declaration">var </aside>burn_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L213">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 213"/></a></h3>
+        <p>Burn damage multiplier.</p><h3 id="var/catalogue_data"><aside class="declaration">var </aside>catalogue_data
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 87"/></a></h3>
+        <p>A list of /datum/category_item/catalogue datums, for the cataloguer, or null.</p><h3 id="var/category"><aside class="declaration">var </aside>category
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 77"/></a></h3>
+        <p>Category in character setup</p><h3 id="var/chemOD_mod"><aside class="declaration">var </aside>chemOD_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L227">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 227"/></a></h3>
+        <p>Damage modifier for overdose</p><h3 id="var/cold_discomfort_level"><aside class="declaration">var </aside>cold_discomfort_level
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L273">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 273"/></a></h3>
+        <p>Aesthetic messages about feeling chilly.</p><h3 id="var/cold_level_1"><aside class="declaration">var </aside>cold_level_1
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L259">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 259"/></a></h3>
+        <p>Cold damage level 1 below this point.</p><h3 id="var/cold_level_2"><aside class="declaration">var </aside>cold_level_2
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L261">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 261"/></a></h3>
+        <p>Cold damage level 2 below this point.</p><h3 id="var/cold_level_3"><aside class="declaration">var </aside>cold_level_3
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L263">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 263"/></a></h3>
+        <p>Cold damage level 3 below this point.</p><h3 id="var/color_force_greyscale"><aside class="declaration">var </aside>color_force_greyscale
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L444">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 444"/></a></h3>
+        <p>force non greyscale icons to greyscale before multiplying? WARNING :CITADEL JANK, REPLACE ASAP</p><h3 id="var/color_mult"><aside class="declaration">var </aside>color_mult
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L442">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 442"/></a></h3>
+        <p>This is used in character setup preview generation (prefences_setup.dm) and human mob rendering (update_icons.dm)</p><h3 id="var/darksight"><aside class="declaration">var </aside>darksight
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L342">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 342"/></a></h3>
+        <p>Native darksight distance.</p><h3 id="var/default_bodytype"><aside class="declaration">var </aside>default_bodytype
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 110"/></a></h3>
+        <p>default bodytype to use for clothing rendering</p><h3 id="var/default_citizenship"><aside class="declaration">var </aside>default_citizenship
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 43"/></a></h3>
+        <p>default citizenship</p><h3 id="var/default_faction"><aside class="declaration">var </aside>default_faction
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 45"/></a></h3>
+        <p>default faction</p><h3 id="var/default_language"><aside class="declaration">var </aside>default_language
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 53"/></a></h3>
+        <p>default language used when speaking</p><h3 id="var/default_origin"><aside class="declaration">var </aside>default_origin
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 41"/></a></h3>
+        <p>default origin</p><h3 id="var/default_religion"><aside class="declaration">var </aside>default_religion
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 47"/></a></h3>
+        <p>default religion</p><h3 id="var/deform"><aside class="declaration">var </aside>deform
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 93"/></a></h3>
+        <p>Mutated icon set.</p><h3 id="var/descriptors"><aside class="declaration">var </aside>descriptors
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L437">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 437"/></a></h3>
+        <p>descriptors</p><h3 id="var/dispersed_eyes"><aside class="declaration">var </aside>dispersed_eyes
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L397">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 397"/></a></h3>
+        <p>If set, the species will be affected by flashbangs regardless if they have eyes or not, as they see in large areas.</p><h3 id="var/display_name"><aside class="declaration">var </aside>display_name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 81"/></a></h3>
+        <p>what you see on health analyzers/IC</p><h3 id="var/economic_modifier"><aside class="declaration">var </aside>economic_modifier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L378">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 378"/></a></h3>
+        <p>How much money this species makes</p><h3 id="var/equip_adjust"><aside class="declaration">var </aside>equip_adjust
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L321">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 321"/></a></h3>
+        <p>Used to shift equipment around based on which species you are.</p><h3 id="var/examine_name"><aside class="declaration">var </aside>examine_name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 79"/></a></h3>
+        <p>what you see on tooltip/examine</p><h3 id="var/exhale_type"><aside class="declaration">var </aside>exhale_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L252">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 252"/></a></h3>
+        <p>Exhaled gas type.</p><h3 id="var/fire_icon_state"><aside class="declaration">var </aside>fire_icon_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 103"/></a></h3>
+        <p>The icon_state used inside OnFire.dmi for when on fire.</p><h3 id="var/flash_burn"><aside class="declaration">var </aside>flash_burn
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L223">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 223"/></a></h3>
+        <p>how much damage to take from being flashed if light hypersensitive</p><h3 id="var/flash_mod"><aside class="declaration">var </aside>flash_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L221">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 221"/></a></h3>
+        <p>Stun from blindness modifier.</p><h3 id="var/flesh_color"><aside class="declaration">var </aside>flesh_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L122">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 122"/></a></h3>
+        <p>The color of the species flesh.</p><h3 id="var/galactic_language"><aside class="declaration">var </aside>galactic_language
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 55"/></a></h3>
+        <p>do we have galactic common? this is so common we just have this as a var</p><h3 id="var/gluttonous"><aside class="declaration">var </aside>gluttonous
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L373">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 373"/></a></h3>
+        <p>Can eat some mobs. 1 for mice, 2 for monkeys, 3 for people.</p><h3 id="var/greater_form"><aside class="declaration">var </aside>greater_form
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L369">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 369"/></a></h3>
+        <p>Greater form, if any, ie. human for monkeys.</p><h3 id="var/has_fine_manipulation"><aside class="declaration">var </aside>has_fine_manipulation
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L338">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 338"/></a></h3>
+        <p>Can use small items.</p><h3 id="var/has_floating_eyes"><aside class="declaration">var </aside>has_floating_eyes
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L351">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 351"/></a></h3>
+        <p>Whether the eyes can be shown above other icons</p><h3 id="var/has_glowing_eyes"><aside class="declaration">var </aside>has_glowing_eyes
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L353">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 353"/></a></h3>
+        <p>Whether the eyes are shown above all lighting</p><h3 id="var/has_organ"><aside class="declaration">var </aside>has_organ
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L381">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 381"/></a></h3>
+        <p>Determines the organs that the species spawns with and which required-organ checks are conducted.</p><h3 id="var/hazard_high_pressure"><aside class="declaration">var </aside>hazard_high_pressure
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L307">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 307"/></a></h3>
+        <p>Dangerously high pressure.</p><h3 id="var/hazard_low_pressure"><aside class="declaration">var </aside>hazard_low_pressure
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L313">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 313"/></a></h3>
+        <p>Dangerously low pressure.</p><h3 id="var/health_hud_intensity"><aside class="declaration">var </aside>health_hud_intensity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L330">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 330"/></a></h3>
+        <p>This modifies how intensely the health hud is colored.</p><h3 id="var/heat_discomfort_level"><aside class="declaration">var </aside>heat_discomfort_level
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L296">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 296"/></a></h3>
+        <p>Aesthetic messages about feeling warm.</p><h3 id="var/heat_level_1"><aside class="declaration">var </aside>heat_level_1
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L282">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 282"/></a></h3>
+        <p>Heat damage level 1 above this point.</p><h3 id="var/heat_level_2"><aside class="declaration">var </aside>heat_level_2
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L284">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 284"/></a></h3>
+        <p>Heat damage level 2 above this point.</p><h3 id="var/heat_level_3"><aside class="declaration">var </aside>heat_level_3
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L286">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 286"/></a></h3>
+        <p>Heat damage level 3 above this point.</p><h3 id="var/holder_type"><aside class="declaration">var </aside>holder_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L371">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 371"/></a></h3>
+        <p>This allows you to pick up crew</p><h3 id="var/hunger_factor"><aside class="declaration">var </aside>hunger_factor
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L172">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 172"/></a></h3>
+        <p>Multiplier for hunger.</p><h3 id="var/husk_icon"><aside class="declaration">var </aside>husk_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L97">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 97"/></a></h3>
+        <p>Species-specific husk sprite if applicable.</p><h3 id="var/icobase"><aside class="declaration">var </aside>icobase
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L91">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 91"/></a></h3>
+        <p>Normal icon set.</p><h3 id="var/icobase_tail"><aside class="declaration">var </aside>icobase_tail
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L447">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 447"/></a></h3>
+        <p>This is for overriding tail rendering with a specific icon in icobase, for static tails only, since tails would wag when dead if you used this.</p><h3 id="var/icon_scale_x"><aside class="declaration">var </aside>icon_scale_x
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L137">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 137"/></a></h3>
+        <p>Makes the icon wider/thinner.</p><h3 id="var/icon_scale_y"><aside class="declaration">var </aside>icon_scale_y
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L139">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 139"/></a></h3>
+        <p>Makes the icon taller/shorter.</p><h3 id="var/icon_template"><aside class="declaration">var </aside>icon_template
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L135">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 135"/></a></h3>
+        <p>Used for mob icon generation for non-32x32 species.</p><h3 id="var/id"><aside class="declaration">var </aside>id
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 28"/></a></h3>
+        <p>if we're a subspecies, real id</p><h3 id="var/infect_wounds"><aside class="declaration">var </aside>infect_wounds
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L362">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 362"/></a></h3>
+        <p>Whether the species can infect wounds, only works with claws / bites</p><h3 id="var/inherent_spells"><aside class="declaration">var </aside>inherent_spells
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L336">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 336"/></a></h3>
+        <p>Species-specific spells.</p><h3 id="var/inherent_verbs"><aside class="declaration">var </aside>inherent_verbs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L334">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 334"/></a></h3>
+        <p>Species-specific verbs.</p><h3 id="var/intrinsic_languages"><aside class="declaration">var </aside>intrinsic_languages
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 58"/></a></h3>
+        <p>intrinsic species languages - list() or singular language or null</p><h3 id="var/item_slowdown_mod"><aside class="declaration">var </aside>item_slowdown_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L365">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 365"/></a></h3>
+        <p>How affected by item slowdown the species is.</p><h3 id="var/light_dam"><aside class="declaration">var </aside>light_dam
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L316">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 316"/></a></h3>
+        <p>If set, mob will be damaged in light over this value and heal in light below its negative.</p><h3 id="var/max_additional_languages"><aside class="declaration">var </aside>max_additional_languages
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 65"/></a></h3>
+        <p>additional languages we can learn (ONTOP OF INTRINSIC AND CULTURE)</p><h3 id="var/max_age"><aside class="declaration">var </aside>max_age
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L183">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 183"/></a></h3>
+        <p>The maximum age a species is allowed to be played as. This is generally determined by lifespan.</p><h3 id="var/max_nutrition"><aside class="declaration">var </aside>max_nutrition
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L463">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 463"/></a></h3>
+        <p>max nutrition - i hate myself for haphazardly throwing this in but sue me</p><h3 id="var/min_age"><aside class="declaration">var </aside>min_age
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L181">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 181"/></a></h3>
+        <p>The minimum age a species is allowed to be played as. For our purposes, this is global.</p><h3 id="var/minimum_breath_pressure"><aside class="declaration">var </aside>minimum_breath_pressure
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L318">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 318"/></a></h3>
+        <p>Minimum required pressure for breath, in kPa</p><h3 id="var/mob_size"><aside class="declaration">var </aside>mob_size
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L151">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 151"/></a></h3>
+        <p>As above, but specifically for the antagHUD indicator.
+As above, but specifically for the antagHUD indicator.</p><h3 id="var/move_trail"><aside class="declaration">var </aside>move_trail
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/effect.html">effect</a>/<a href="obj/effect/debris.html">debris</a>/<a href="obj/effect/debris/cleanable/blood/tracks.html">cleanable/blood/tracks</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L348">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 348"/></a></h3>
+        <p>What marks are left when walking</p><h3 id="var/name"><aside class="declaration">var </aside>name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 75"/></a></h3>
+        <p>Species real name.</p><h3 id="var/name_language"><aside class="declaration">var </aside>name_language
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 61"/></a></h3>
+        <p>language our name is in - used for namegen; null to force stock ss13 namegen instead</p><h3 id="var/name_plural"><aside class="declaration">var </aside>name_plural
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 83"/></a></h3>
+        <p>Pluralized name (since &quot;[name]s&quot; is not always valid)</p><h3 id="var/organs_icon"><aside class="declaration">var </aside>organs_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 126"/></a></h3>
+        <p>Species specific internal organs icons.</p><h3 id="var/override_worn_legacy_bodytype"><aside class="declaration">var </aside>override_worn_legacy_bodytype
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 107"/></a></h3>
+        <p>override for bodytype</p><h3 id="var/oxy_mod"><aside class="declaration">var </aside>oxy_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L215">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 215"/></a></h3>
+        <p>Oxyloss modifier</p><h3 id="var/passive_temp_gain"><aside class="declaration">var </aside>passive_temp_gain
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L305">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 305"/></a></h3>
+        <p>Species will gain this much temperature every second</p><h3 id="var/pixel_offset_x"><aside class="declaration">var </aside>pixel_offset_x
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L141">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 141"/></a></h3>
+        <p>Used for offsetting large icons.</p><h3 id="var/pixel_offset_y"><aside class="declaration">var </aside>pixel_offset_y
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L143">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 143"/></a></h3>
+        <p>Used for offsetting large icons.</p><h3 id="var/pixel_offset_z"><aside class="declaration">var </aside>pixel_offset_z
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L145">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 145"/></a></h3>
+        <p>Used for offsetting large icons.</p><h3 id="var/poison_type"><aside class="declaration">var </aside>poison_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L250">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 250"/></a></h3>
+        <p>Poisonous air.</p><h3 id="var/preview_icon"><aside class="declaration">var </aside>preview_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 95"/></a></h3>
+        <p>Preview icon used in species selection.</p><h3 id="var/primitive_form"><aside class="declaration">var </aside>primitive_form
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L367">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 367"/></a></h3>
+        <p>Lesser form, if any (ie. monkey for humans)</p><h3 id="var/prone_icon"><aside class="declaration">var </aside>prone_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 118"/></a></h3>
+        <p>If set, draws this from icobase when mob is prone.</p><h3 id="var/push_flags"><aside class="declaration">var </aside>push_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L429">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 429"/></a></h3>
+        <p>What can we push?</p><h3 id="var/radiation_mod"><aside class="declaration">var </aside>radiation_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L219">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 219"/></a></h3>
+        <p>Radiation modifier</p><h3 id="var/rarity_value"><aside class="declaration">var </aside>rarity_value
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L376">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 376"/></a></h3>
+        <p>Relative rarity/collector value for this species.</p><h3 id="var/reagent_tag"><aside class="declaration">var </aside>reagent_tag
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L246">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 246"/></a></h3>
+        <p>Used for metabolizing reagents.</p><h3 id="var/sexybits_location"><aside class="declaration">var </aside>sexybits_location
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L423">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 423"/></a></h3>
+        <p>Organ tag where they are located if they can be kicked for increased pain.</p><h3 id="var/short_sighted"><aside class="declaration">var </aside>short_sighted
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L155">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 155"/></a></h3>
+        <p>Permanent weldervision.</p><h3 id="var/siemens_coefficient"><aside class="declaration">var </aside>siemens_coefficient
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L340">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 340"/></a></h3>
+        <p>The lower, the thicker the skin and better the insulation.</p><h3 id="var/slowdown"><aside class="declaration">var </aside>slowdown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L356">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 356"/></a></h3>
+        <p>Passive movement speed malus (or boost, if negative)</p><h3 id="var/snow_movement"><aside class="declaration">var </aside>snow_movement
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L360">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 360"/></a></h3>
+        <p>How much faster or slower the species is on snow</p><h3 id="var/sound_mod"><aside class="declaration">var </aside>sound_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L225">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 225"/></a></h3>
+        <p>Stun from sounds, I.E. flashbangs.</p><h3 id="var/species_appearance_flags"><aside class="declaration">var </aside>species_appearance_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 33"/></a></h3>
+        <p>Appearance/display related features.</p><h3 id="var/species_flags"><aside class="declaration">var </aside>species_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L346">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 346"/></a></h3>
+        <p>Various specific features.</p><h3 id="var/species_fluff_flags"><aside class="declaration">var </aside>species_fluff_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 49"/></a></h3>
+        <p>fluff flags</p><h3 id="var/species_spawn_flags"><aside class="declaration">var </aside>species_spawn_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 37"/></a></h3>
+        <p>Flags that specify who can spawn as this species</p><h3 id="var/speech_bubble_appearance"><aside class="declaration">var </aside>speech_bubble_appearance
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 101"/></a></h3>
+        <p>Part of icon_state to use for speech bubbles when talking.	See talk.dmi for available icons.</p><h3 id="var/speech_chance"><aside class="declaration">var </aside>speech_chance
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L189">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 189"/></a></h3>
+        <p>The likelihood of a speech sound playing.</p><h3 id="var/speech_sounds"><aside class="declaration">var </aside>speech_sounds
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L187">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 187"/></a></h3>
+        <p>A list of sounds to potentially play when speaking.</p><h3 id="var/suit_storage_icon"><aside class="declaration">var </aside>suit_storage_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 105"/></a></h3>
+        <p>Icons used for worn items in suit storage slot.</p><h3 id="var/swap_flags"><aside class="declaration">var </aside>swap_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L431">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 431"/></a></h3>
+        <p>What can we swap place with?</p><h3 id="var/tail"><aside class="declaration">var </aside>tail
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L129">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 129"/></a></h3>
+        <p>Name of tail state in species effects icon file.</p><h3 id="var/tail_animation"><aside class="declaration">var </aside>tail_animation
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L131">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 131"/></a></h3>
+        <p>If set, the icon to obtain tail animation states from.</p><h3 id="var/taste_sensitivity"><aside class="declaration">var </aside>taste_sensitivity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L178">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 178"/></a></h3>
+        <p>How sensitive the species is to minute tastes.</p><h3 id="var/thirst_factor"><aside class="declaration">var </aside>thirst_factor
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L174">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 174"/></a></h3>
+        <p>Multiplier for thirst.</p><h3 id="var/total_health"><aside class="declaration">var </aside>total_health
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L202">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 202"/></a></h3>
+        <p>Point at which the mob will enter crit.</p><h3 id="var/toxins_mod"><aside class="declaration">var </aside>toxins_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L217">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 217"/></a></h3>
+        <p>Toxloss modifier</p><h3 id="var/traits"><aside class="declaration">var </aside>traits
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L439">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 439"/></a></h3>
+        <p>traits</p><h3 id="var/uid"><aside class="declaration">var </aside>uid
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 26"/></a></h3>
+        <p>uid - <strong>must be unique</strong></p><h3 id="var/unarmed_attacks"><aside class="declaration">var </aside>unarmed_attacks
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L209">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 209"/></a></h3>
+        <p>For empty hand harm-intent attack</p><h3 id="var/unarmed_types"><aside class="declaration">var </aside>unarmed_types
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L204">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 204"/></a></h3>
+        <p>Possible unarmed attacks that the mob will use in combat,</p><h3 id="var/vision_flags"><aside class="declaration">var </aside>vision_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L229">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 229"/></a></h3>
+        <p>Same flags as glasses.</p><h3 id="var/vision_organ"><aside class="declaration">var </aside>vision_organ
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L395">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 395"/></a></h3>
+        <p>If set, this organ is required for vision. Defaults to &quot;eyes&quot; if the species has them.</p><h3 id="var/warning_high_pressure"><aside class="declaration">var </aside>warning_high_pressure
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L309">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 309"/></a></h3>
+        <p>High pressure warning.</p><h3 id="var/warning_low_pressure"><aside class="declaration">var </aside>warning_low_pressure
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L311">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 311"/></a></h3>
+        <p>Low pressure warning.</p><h3 id="var/water_movement"><aside class="declaration">var </aside>water_movement
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L358">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 358"/></a></h3>
+        <p>How much faster or slower the species is in water</p><h3 id="var/whitelist_languages"><aside class="declaration">var </aside>whitelist_languages
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 63"/></a></h3>
+        <p>languages we are always allowed to learn (overridden by intrinsic languages) even if restricted - list() or singular language</p><h2 id="proc">Proc Details</h2><h3 id="proc/clone"><aside class="declaration">proc </aside>clone<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L867">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 867"/></a></aside>
+        </h3>
+        <p>clones us into a new datum</p><h3 id="proc/copy_from"><aside class="declaration">proc </aside>copy_from<aside>(/<a href="datum.html">datum</a>/<a href="datum/species.html">species</a>/to_copy, /list/traits, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L879">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 879"/></a></aside>
+        </h3>
+        <p>completely clones us from another species, updating the provided human in the process</p>
+<p>@params
+to_copy - species copy
+traits - traits to add
+H - update this human</p><h3 id="proc/create_blood"><aside class="declaration">proc </aside>create_blood<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L665">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 665"/></a></aside>
+        </h3>
+        <p>called to ensure blood is consistent
+this is a destructive proc and will erase incompatible blood.</p><h3 id="proc/create_organs"><aside class="declaration">proc </aside>create_organs<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L609">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 609"/></a></aside>
+        </h3>
+        <p>called to ensure organs are consistent with our species's
+this is a destructive operation and will erase old organs!</p><h3 id="proc/get_effective_bodytype"><aside class="declaration">proc </aside>get_effective_bodytype<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I, slot_id) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species_getters.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species_getters.dm 18"/></a></aside>
+        </h3>
+        <p>get effective bodytype</p><h3 id="proc/get_exact_species_id"><aside class="declaration">proc </aside>get_exact_species_id<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species_getters.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species_getters.dm 11"/></a></aside>
+        </h3>
+        <p>get exact species id; subspecies does NOT return main species</p><h3 id="proc/get_species_id"><aside class="declaration">proc </aside>get_species_id<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species_getters.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species_getters.dm 5"/></a></aside>
+        </h3>
+        <p>get species id; subspecies returns main species</p><h3 id="proc/handle_post_spawn"><aside class="declaration">proc </aside>handle_post_spawn<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L734">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 734"/></a></aside>
+        </h3>
+        <p>called after a mob is <strong>fully</strong> spawned</p><h3 id="proc/on_apply"><aside class="declaration">proc </aside>on_apply<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L510">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 510"/></a></aside>
+        </h3>
+        <p>called when we apply to a mob</p>
+<p><strong>this does not create organs</strong></p>
+<p>handle_post_spawn() and create_organs() should be called manually if you are applying a species to a human being instantiated!</p><h3 id="proc/on_remove"><aside class="declaration">proc </aside>on_remove<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/species/species.dm#L535">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;species&#x2F;species.dm 535"/></a></aside>
+        </h3>
+        <p>called when we are removed from a mob</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

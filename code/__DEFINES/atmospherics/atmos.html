@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/atmospherics/atmos.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/atmospherics/atmos.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/R_IDEAL_GAS_EQUATION">R_IDEAL_GAS_EQUATION</a></th><td>kPa<em>L/(K</em>mol).</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/ONE_ATMOSPHERE">ONE_ATMOSPHERE</a></th><td>kPa.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/IDEAL_GAS_ENTROPY_CONSTANT">IDEAL_GAS_ENTROPY_CONSTANT</a></th><td>(mol^3 * s^3) / (kg^3 * L).</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/T0C">T0C</a></th><td>0.0 degrees celcius</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/T20C">T20C</a></th><td>20.0 degrees celcius</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/TCMB">TCMB</a></th><td>-270.3 degrees celcius</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/TN60C">TN60C</a></th><td>-60 degrees celcius</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/STEFAN_BOLTZMANN_CONSTANT">STEFAN_BOLTZMANN_CONSTANT</a></th><td>W/(m^2*K^4).</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/COSMIC_RADIATION_TEMPERATURE">COSMIC_RADIATION_TEMPERATURE</a></th><td>K.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/AVERAGE_SOLAR_RADIATION">AVERAGE_SOLAR_RADIATION</a></th><td>W/m^2. Kind of arbitrary. Really this should depend on the sun position much like solars.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/RADIATOR_OPTIMUM_PRESSURE">RADIATOR_OPTIMUM_PRESSURE</a></th><td>kPa at 20 C. This should be higher as gases aren't great conductors until they are dense. Used the critical pressure for air.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/GAS_CRITICAL_TEMPERATURE">GAS_CRITICAL_TEMPERATURE</a></th><td>K. The critical point temperature for air.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/RADIATOR_EXPOSED_SURFACE_AREA_RATIO">RADIATOR_EXPOSED_SURFACE_AREA_RATIO</a></th><td>(3 cm + 100 cm * sin(3deg))/(2*(3+100 cm)). Unitless ratio.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/HUMAN_EXPOSED_SURFACE_AREA">HUMAN_EXPOSED_SURFACE_AREA</a></th><td>m^2, surface area of 1.7m (H) x 0.46m (D) cylinder</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/MOLES_CELLSTANDARD">MOLES_CELLSTANDARD</a></th><td>Moles in a 2.5 m^3 cell at 101.325 kPa and 20 C.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/O2STANDARD">O2STANDARD</a></th><td>Percentage.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/MOLES_PHORON_VISIBLE">MOLES_PHORON_VISIBLE</a></th><td>Moles in a standard cell after which phoron is visible.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/MOLES_O2STANDARD">MOLES_O2STANDARD</a></th><td>O2 standard value (21%)</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/MOLES_N2STANDARD">MOLES_N2STANDARD</a></th><td>N2 standard value (79%)</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/BREATH_VOLUME">BREATH_VOLUME</a></th><td>Liters in a normal breath.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/BREATH_MOLES">BREATH_MOLES</a></th><td>Amount of air to take a from a tile</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/BREATH_PERCENTAGE">BREATH_PERCENTAGE</a></th><td>Amount of air needed before pass out/suffocation commences.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/HUMAN_HEAT_CAPACITY">HUMAN_HEAT_CAPACITY</a></th><td>J/K For 80kg person</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/PRESSURE_DAMAGE_COEFFICIENT">PRESSURE_DAMAGE_COEFFICIENT</a></th><td>The amount of pressure damage someone takes is equal to (pressure / HAZARD_HIGH_PRESSURE)*PRESSURE_DAMAGE_COEFFICIENT, with the maximum of MAX_PRESSURE_DAMAGE.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/MAX_HIGH_PRESSURE_DAMAGE">MAX_HIGH_PRESSURE_DAMAGE</a></th><td>This used to be 20... I got this much random rage for some stupid decision by polymorph?! Polymorph now lies in a pool of blood with a katana jammed in his spleen. ~Errorage --PS: The katana did less than 20 damage to him :(</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/LOW_PRESSURE_DAMAGE">LOW_PRESSURE_DAMAGE</a></th><td>The amount of damage someone takes when in a low pressure area. (The pressure threshold is so low that it doesn't make sense to do any calculations, so it just applies this flat value).</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/MINIMUM_MEANINGFUL_MOLES_DELTA">MINIMUM_MEANINGFUL_MOLES_DELTA</a></th><td>these control how &quot;similar&quot; air has to be before it's considered the same and just entirely equalized
+minimum moles of gas that has to move before we can stop ticking/just equalize</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/MINIMUM_MEANINGFUL_TEMPERATURE_DELTA">MINIMUM_MEANINGFUL_TEMPERATURE_DELTA</a></th><td>minimum temperature difference before we can stop ticking/just equalize</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/MINIMUM_MEANINGFUL_PRESSURE_DELTA">MINIMUM_MEANINGFUL_PRESSURE_DELTA</a></th><td>minimum pressure difference before we can stop ticking/just equalize</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/MINIMUM_MEANINGFUL_PRESSURE_VACUUM">MINIMUM_MEANINGFUL_PRESSURE_VACUUM</a></th><td>when checking for vacuum we're fine with pressure as long as it's below this</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/MINIMUM_MOLES_TO_DISSIPATE">MINIMUM_MOLES_TO_DISSIPATE</a></th><td>ZAS: if a sharer and our moles are below this, we nuke both to 0 because we consider it a vacuum</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/FLOOR_HEAT_TRANSFER_COEFFICIENT">FLOOR_HEAT_TRANSFER_COEFFICIENT</a></th><td>stupid shit below, all of this needsd redone
+not to say the rest of the file is good but these are especially bad
+currently unused and requires a rework - eventually we need superconduction
+stupid shit end</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/SPACE_HEAT_TRANSFER_COEFFICIENT">SPACE_HEAT_TRANSFER_COEFFICIENT</a></th><td>A hack to partly simulate radiative heat.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/WINDOW_HEAT_TRANSFER_COEFFICIENT">WINDOW_HEAT_TRANSFER_COEFFICIENT</a></th><td>A hack for now.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/PHORON_MINIMUM_BURN_TEMPERATURE">PHORON_MINIMUM_BURN_TEMPERATURE</a></th><td>400 K - autoignite temperature in tanks and canisters - enclosed environments I guess</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/PHORON_FLASHPOINT">PHORON_FLASHPOINT</a></th><td>519 K - autoignite temperature in air if that ever gets implemented.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/FIRE_REACTION_OXIDIZER_AMOUNT">FIRE_REACTION_OXIDIZER_AMOUNT</a></th><td>should be greater than the fuel amount if fires are going to spread much</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/LIQUIDFUEL_AMOUNT_TO_MOL">LIQUIDFUEL_AMOUNT_TO_MOL</a></th><td>mol/volume unit</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/NORMPIPERATE">NORMPIPERATE</a></th><td>Pipe-insulation rate divisor.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/HEATPIPERATE">HEATPIPERATE</a></th><td>Heat-exchange pipe insulation.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/FLOWFRAC">FLOWFRAC</a></th><td>Fraction of gas transfered per process.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/ATMOSTANK_NITROGEN">ATMOSTANK_NITROGEN</a></th><td>A lot of N2 is needed to produce air mix, that's why we keep 90MPa of it</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/ATMOSTANK_OXYGEN">ATMOSTANK_OXYGEN</a></th><td>O2 is also important for airmix, but not as much as N2 as it's only 21% of it.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/ATMOSTANK_CO2">ATMOSTANK_CO2</a></th><td>CO2 and PH are not critically important for station, only for toxins and alternative coolants, no need to store a lot of those.</td></tr>
+        <tr><th><a href="code/__DEFINES/atmospherics/atmos.html#define/ATMOSTANK_NITROUSOXIDE">ATMOSTANK_NITROUSOXIDE</a></th><td>N2O doesn't have a real useful use, i guess it's on station just to allow refilling of sec's riot control canisters?</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/ATMOSTANK_CO2"><aside class="declaration">#define </aside>ATMOSTANK_CO2
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L157">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 157"/></a>
+    </h3>
+    <p>CO2 and PH are not critically important for station, only for toxins and alternative coolants, no need to store a lot of those.</p><h3 id="define/ATMOSTANK_NITROGEN"><aside class="declaration">#define </aside>ATMOSTANK_NITROGEN
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L153">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 153"/></a>
+    </h3>
+    <p>A lot of N2 is needed to produce air mix, that's why we keep 90MPa of it</p><h3 id="define/ATMOSTANK_NITROUSOXIDE"><aside class="declaration">#define </aside>ATMOSTANK_NITROUSOXIDE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L160">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 160"/></a>
+    </h3>
+    <p>N2O doesn't have a real useful use, i guess it's on station just to allow refilling of sec's riot control canisters?</p><h3 id="define/ATMOSTANK_OXYGEN"><aside class="declaration">#define </aside>ATMOSTANK_OXYGEN
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L155">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 155"/></a>
+    </h3>
+    <p>O2 is also important for airmix, but not as much as N2 as it's only 21% of it.</p><h3 id="define/AVERAGE_SOLAR_RADIATION"><aside class="declaration">#define </aside>AVERAGE_SOLAR_RADIATION
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 22"/></a>
+    </h3>
+    <p>W/m^2. Kind of arbitrary. Really this should depend on the sun position much like solars.</p><h3 id="define/BREATH_MOLES"><aside class="declaration">#define </aside>BREATH_MOLES
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 53"/></a>
+    </h3>
+    <p>Amount of air to take a from a tile</p><h3 id="define/BREATH_PERCENTAGE"><aside class="declaration">#define </aside>BREATH_PERCENTAGE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 55"/></a>
+    </h3>
+    <p>Amount of air needed before pass out/suffocation commences.</p><h3 id="define/BREATH_VOLUME"><aside class="declaration">#define </aside>BREATH_VOLUME
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 51"/></a>
+    </h3>
+    <p>Liters in a normal breath.</p><h3 id="define/COSMIC_RADIATION_TEMPERATURE"><aside class="declaration">#define </aside>COSMIC_RADIATION_TEMPERATURE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 20"/></a>
+    </h3>
+    <p>K.</p><h3 id="define/FIRE_REACTION_OXIDIZER_AMOUNT"><aside class="declaration">#define </aside>FIRE_REACTION_OXIDIZER_AMOUNT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 126"/></a>
+    </h3>
+    <p>should be greater than the fuel amount if fires are going to spread much</p><h3 id="define/FLOOR_HEAT_TRANSFER_COEFFICIENT"><aside class="declaration">#define </aside>FLOOR_HEAT_TRANSFER_COEFFICIENT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 107"/></a>
+    </h3>
+    <p>stupid shit below, all of this needsd redone
+not to say the rest of the file is good but these are especially bad
+currently unused and requires a rework - eventually we need superconduction
+stupid shit end</p><h3 id="define/FLOWFRAC"><aside class="declaration">#define </aside>FLOWFRAC
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L146">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 146"/></a>
+    </h3>
+    <p>Fraction of gas transfered per process.</p><h3 id="define/GAS_CRITICAL_TEMPERATURE"><aside class="declaration">#define </aside>GAS_CRITICAL_TEMPERATURE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 26"/></a>
+    </h3>
+    <p>K. The critical point temperature for air.</p><h3 id="define/HEATPIPERATE"><aside class="declaration">#define </aside>HEATPIPERATE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L144">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 144"/></a>
+    </h3>
+    <p>Heat-exchange pipe insulation.</p><h3 id="define/HUMAN_EXPOSED_SURFACE_AREA"><aside class="declaration">#define </aside>HUMAN_EXPOSED_SURFACE_AREA
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 30"/></a>
+    </h3>
+    <p>m^2, surface area of 1.7m (H) x 0.46m (D) cylinder</p><h3 id="define/HUMAN_HEAT_CAPACITY"><aside class="declaration">#define </aside>HUMAN_HEAT_CAPACITY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 58"/></a>
+    </h3>
+    <p>J/K For 80kg person</p><h3 id="define/IDEAL_GAS_ENTROPY_CONSTANT"><aside class="declaration">#define </aside>IDEAL_GAS_ENTROPY_CONSTANT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 7"/></a>
+    </h3>
+    <p>(mol^3 * s^3) / (kg^3 * L).</p><h3 id="define/LIQUIDFUEL_AMOUNT_TO_MOL"><aside class="declaration">#define </aside>LIQUIDFUEL_AMOUNT_TO_MOL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L140">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 140"/></a>
+    </h3>
+    <p>mol/volume unit</p><h3 id="define/LOW_PRESSURE_DAMAGE"><aside class="declaration">#define </aside>LOW_PRESSURE_DAMAGE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 64"/></a>
+    </h3>
+    <p>The amount of damage someone takes when in a low pressure area. (The pressure threshold is so low that it doesn't make sense to do any calculations, so it just applies this flat value).</p><h3 id="define/MAX_HIGH_PRESSURE_DAMAGE"><aside class="declaration">#define </aside>MAX_HIGH_PRESSURE_DAMAGE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 62"/></a>
+    </h3>
+    <p>This used to be 20... I got this much random rage for some stupid decision by polymorph?! Polymorph now lies in a pool of blood with a katana jammed in his spleen. ~Errorage --PS: The katana did less than 20 damage to him :(</p><h3 id="define/MINIMUM_MEANINGFUL_MOLES_DELTA"><aside class="declaration">#define </aside>MINIMUM_MEANINGFUL_MOLES_DELTA
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 70"/></a>
+    </h3>
+    <p>these control how &quot;similar&quot; air has to be before it's considered the same and just entirely equalized
+minimum moles of gas that has to move before we can stop ticking/just equalize</p><h3 id="define/MINIMUM_MEANINGFUL_PRESSURE_DELTA"><aside class="declaration">#define </aside>MINIMUM_MEANINGFUL_PRESSURE_DELTA
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 74"/></a>
+    </h3>
+    <p>minimum pressure difference before we can stop ticking/just equalize</p><h3 id="define/MINIMUM_MEANINGFUL_PRESSURE_VACUUM"><aside class="declaration">#define </aside>MINIMUM_MEANINGFUL_PRESSURE_VACUUM
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 76"/></a>
+    </h3>
+    <p>when checking for vacuum we're fine with pressure as long as it's below this</p><h3 id="define/MINIMUM_MEANINGFUL_TEMPERATURE_DELTA"><aside class="declaration">#define </aside>MINIMUM_MEANINGFUL_TEMPERATURE_DELTA
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 72"/></a>
+    </h3>
+    <p>minimum temperature difference before we can stop ticking/just equalize</p><h3 id="define/MINIMUM_MOLES_TO_DISSIPATE"><aside class="declaration">#define </aside>MINIMUM_MOLES_TO_DISSIPATE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 78"/></a>
+    </h3>
+    <p>ZAS: if a sharer and our moles are below this, we nuke both to 0 because we consider it a vacuum</p><h3 id="define/MOLES_CELLSTANDARD"><aside class="declaration">#define </aside>MOLES_CELLSTANDARD
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 32"/></a>
+    </h3>
+    <p>Moles in a 2.5 m^3 cell at 101.325 kPa and 20 C.</p><h3 id="define/MOLES_N2STANDARD"><aside class="declaration">#define </aside>MOLES_N2STANDARD
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 42"/></a>
+    </h3>
+    <p>N2 standard value (79%)</p><h3 id="define/MOLES_O2STANDARD"><aside class="declaration">#define </aside>MOLES_O2STANDARD
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 40"/></a>
+    </h3>
+    <p>O2 standard value (21%)</p><h3 id="define/MOLES_PHORON_VISIBLE"><aside class="declaration">#define </aside>MOLES_PHORON_VISIBLE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 38"/></a>
+    </h3>
+    <p>Moles in a standard cell after which phoron is visible.</p><h3 id="define/NORMPIPERATE"><aside class="declaration">#define </aside>NORMPIPERATE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L142">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 142"/></a>
+    </h3>
+    <p>Pipe-insulation rate divisor.</p><h3 id="define/O2STANDARD"><aside class="declaration">#define </aside>O2STANDARD
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 34"/></a>
+    </h3>
+    <p>Percentage.</p><h3 id="define/ONE_ATMOSPHERE"><aside class="declaration">#define </aside>ONE_ATMOSPHERE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 5"/></a>
+    </h3>
+    <p>kPa.</p><h3 id="define/PHORON_FLASHPOINT"><aside class="declaration">#define </aside>PHORON_FLASHPOINT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L123">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 123"/></a>
+    </h3>
+    <p>519 K - autoignite temperature in air if that ever gets implemented.</p><h3 id="define/PHORON_MINIMUM_BURN_TEMPERATURE"><aside class="declaration">#define </aside>PHORON_MINIMUM_BURN_TEMPERATURE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L121">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 121"/></a>
+    </h3>
+    <p>400 K - autoignite temperature in tanks and canisters - enclosed environments I guess</p><h3 id="define/PRESSURE_DAMAGE_COEFFICIENT"><aside class="declaration">#define </aside>PRESSURE_DAMAGE_COEFFICIENT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 60"/></a>
+    </h3>
+    <p>The amount of pressure damage someone takes is equal to (pressure / HAZARD_HIGH_PRESSURE)*PRESSURE_DAMAGE_COEFFICIENT, with the maximum of MAX_PRESSURE_DAMAGE.</p><h3 id="define/RADIATOR_EXPOSED_SURFACE_AREA_RATIO"><aside class="declaration">#define </aside>RADIATOR_EXPOSED_SURFACE_AREA_RATIO
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 28"/></a>
+    </h3>
+    <p>(3 cm + 100 cm * sin(3deg))/(2*(3+100 cm)). Unitless ratio.</p><h3 id="define/RADIATOR_OPTIMUM_PRESSURE"><aside class="declaration">#define </aside>RADIATOR_OPTIMUM_PRESSURE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 24"/></a>
+    </h3>
+    <p>kPa at 20 C. This should be higher as gases aren't great conductors until they are dense. Used the critical pressure for air.</p><h3 id="define/R_IDEAL_GAS_EQUATION"><aside class="declaration">#define </aside>R_IDEAL_GAS_EQUATION
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 3"/></a>
+    </h3>
+    <p>kPa<em>L/(K</em>mol).</p><h3 id="define/SPACE_HEAT_TRANSFER_COEFFICIENT"><aside class="declaration">#define </aside>SPACE_HEAT_TRANSFER_COEFFICIENT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L111">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 111"/></a>
+    </h3>
+    <p>A hack to partly simulate radiative heat.</p><h3 id="define/STEFAN_BOLTZMANN_CONSTANT"><aside class="declaration">#define </aside>STEFAN_BOLTZMANN_CONSTANT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 18"/></a>
+    </h3>
+    <p>W/(m^2*K^4).</p><h3 id="define/T0C"><aside class="declaration">#define </aside>T0C
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 9"/></a>
+    </h3>
+    <p>0.0 degrees celcius</p><h3 id="define/T20C"><aside class="declaration">#define </aside>T20C
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 11"/></a>
+    </h3>
+    <p>20.0 degrees celcius</p><h3 id="define/TCMB"><aside class="declaration">#define </aside>TCMB
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 13"/></a>
+    </h3>
+    <p>-270.3 degrees celcius</p><h3 id="define/TN60C"><aside class="declaration">#define </aside>TN60C
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 15"/></a>
+    </h3>
+    <p>-60 degrees celcius</p><h3 id="define/WINDOW_HEAT_TRANSFER_COEFFICIENT"><aside class="declaration">#define </aside>WINDOW_HEAT_TRANSFER_COEFFICIENT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/atmospherics/atmos.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;atmospherics&#x2F;atmos.dm 114"/></a>
+    </h3>
+    <p>A hack for now.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

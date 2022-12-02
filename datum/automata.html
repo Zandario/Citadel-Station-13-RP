@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;automata - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/automata.html#var">Var Details</a> - <a href="datum/automata.html#proc">Proc Details</a></header>
+<main>
+<h1>automata <aside>/<a href="datum.html">datum</a>/<a href="datum/automata.html">automata</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/__automata.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;__automata.dm 4"/></a></h1>
+
+<p>automata datums for propagating turf effects</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/automata.html#var/automata_flags">automata_flags</a></th><td>automata flags</td></tr>
+            <tr><th><a href="datum/automata.html#var/delay">delay</a></th><td>delay in ds between ticks</td></tr>
+            <tr><th><a href="datum/automata.html#var/iteration">iteration</a></th><td>iteration</td></tr>
+            <tr><th><a href="datum/automata.html#var/last_tick">last_tick</a></th><td>last tick at</td></tr>
+            <tr><th><a href="datum/automata.html#var/next_tick">next_tick</a></th><td>next world.time we should tick</td></tr>
+            <tr><th><a href="datum/automata.html#var/on_finish">on_finish</a></th><td>callback to call when done</td></tr>
+            <tr><th><a href="datum/automata.html#var/start_at">start_at</a></th><td>start at</td></tr>
+            <tr><th><a href="datum/automata.html#var/ticking">ticking</a></th><td>are we ticking?</td></tr>
+            <tr><th><a href="datum/automata.html#var/turfs_acting">turfs_acting</a></th><td>turfs we're acting on</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/automata.html#proc/act_cross">act_cross</a></th><td>act on crossed atom</td></tr>
+            <tr><th><a href="datum/automata.html#proc/add_turf_acting">add_turf_acting</a></th><td>adds us to a turf's acting_automata</td></tr>
+            <tr><th><a href="datum/automata.html#proc/cleanup">cleanup</a></th><td>cleans up vars</td></tr>
+            <tr><th><a href="datum/automata.html#proc/cleanup_turfs_acting">cleanup_turfs_acting</a></th><td>cleans up turfs acting</td></tr>
+            <tr><th><a href="datum/automata.html#proc/setup_auto">setup_auto</a></th><td>sets up with a single turf and data
+you usually want to use this</td></tr>
+            <tr><th><a href="datum/automata.html#proc/start">start</a></th><td>start ticking</td></tr>
+            <tr><th><a href="datum/automata.html#proc/stop">stop</a></th><td>stop ticking</td></tr>
+            <tr><th><a href="datum/automata.html#proc/tick">tick</a></th><td>ticks
+call parent at the END of your proc.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/automata_flags"><aside class="declaration">var </aside>automata_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/__automata.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;__automata.dm 6"/></a></h3>
+        <p>automata flags</p><h3 id="var/delay"><aside class="declaration">var </aside>delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/__automata.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;__automata.dm 12"/></a></h3>
+        <p>delay in ds between ticks</p><h3 id="var/iteration"><aside class="declaration">var </aside>iteration
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/__automata.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;__automata.dm 14"/></a></h3>
+        <p>iteration</p><h3 id="var/last_tick"><aside class="declaration">var </aside>last_tick
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/__automata.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;__automata.dm 18"/></a></h3>
+        <p>last tick at</p><h3 id="var/next_tick"><aside class="declaration">var </aside>next_tick
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/__automata.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;__automata.dm 10"/></a></h3>
+        <p>next world.time we should tick</p><h3 id="var/on_finish"><aside class="declaration">var </aside>on_finish
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/callback.html">callback</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/__automata.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;__automata.dm 24"/></a></h3>
+        <p>callback to call when done</p><h3 id="var/start_at"><aside class="declaration">var </aside>start_at
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/__automata.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;__automata.dm 16"/></a></h3>
+        <p>start at</p><h3 id="var/ticking"><aside class="declaration">var </aside>ticking
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/__automata.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;__automata.dm 8"/></a></h3>
+        <p>are we ticking?</p><h3 id="var/turfs_acting"><aside class="declaration">var </aside>turfs_acting
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/__automata.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;__automata.dm 20"/></a></h3>
+        <p>turfs we're acting on</p><h2 id="proc">Proc Details</h2><h3 id="proc/act_cross"><aside class="declaration">proc </aside>act_cross<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/AM, power) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/__automata.dm#L91">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;__automata.dm 91"/></a></aside>
+        </h3>
+        <p>act on crossed atom</p><h3 id="proc/add_turf_acting"><aside class="declaration">proc </aside>add_turf_acting<aside>(/<a href="turf.html">turf</a>/T, power) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/__automata.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;__automata.dm 84"/></a></aside>
+        </h3>
+        <p>adds us to a turf's acting_automata</p><h3 id="proc/cleanup"><aside class="declaration">proc </aside>cleanup<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/__automata.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;__automata.dm 67"/></a></aside>
+        </h3>
+        <p>cleans up vars</p><h3 id="proc/cleanup_turfs_acting"><aside class="declaration">proc </aside>cleanup_turfs_acting<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/__automata.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;__automata.dm 74"/></a></aside>
+        </h3>
+        <p>cleans up turfs acting</p><h3 id="proc/setup_auto"><aside class="declaration">proc </aside>setup_auto<aside>(...) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/__automata.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;__automata.dm 38"/></a></aside>
+        </h3>
+        <p>sets up with a single turf and data
+you usually want to use this</p><h3 id="proc/start"><aside class="declaration">proc </aside>start<aside>(quickstart) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/__automata.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;__automata.dm 43"/></a></aside>
+        </h3>
+        <p>start ticking</p><h3 id="proc/stop"><aside class="declaration">proc </aside>stop<aside>(done) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/__automata.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;__automata.dm 55"/></a></aside>
+        </h3>
+        <p>stop ticking</p><h3 id="proc/tick"><aside class="declaration">proc </aside>tick<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/__automata.dm#L97">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;__automata.dm 97"/></a></aside>
+        </h3>
+        <p>ticks
+call parent at the END of your proc.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

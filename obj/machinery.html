@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery.html#var">Var Details</a> - <a href="obj/machinery.html#proc">Proc Details</a></header>
+<main>
+<h1>machinery <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/_machinery.dm#L100">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 100"/></a></h1>
+
+<p>! ## Machines in the world, such as computers, pipes, and airlocks.</p>
+<p>? Overview:</p>
+<ul>
+<li>
+<pre><code>Used to create objects that need a per step proc call.  Default definition of 'Initialize()'
+</code></pre>
+</li>
+<li>
+<pre><code>stores a reference to src machine in global 'machines list'.  Default definition
+</code></pre>
+</li>
+<li>
+<pre><code>of 'Destroy' removes reference to src machine in global 'machines list'.
+</code></pre>
+</li>
+</ul>
+<p>! ## Class Variables:</p>
+<p>? use_power (num)</p>
+<ul>
+<li>
+<pre><code>Current state of auto power use.
+</code></pre>
+</li>
+<li>
+<pre><code>Possible Values:
+</code></pre>
+</li>
+<li>
+<pre><code>    NO_POWER_USE --- //? Machine will not use power automatically.
+</code></pre>
+</li>
+<li>
+<pre><code>    IDLE_POWER_USE - //? Machine is using power at its idle power level.
+</code></pre>
+</li>
+<li>
+<pre><code>    ACTIVE_POWER_USE //? Machine is using power at its active power level.
+</code></pre>
+</li>
+</ul>
+<p>? active_power_usage (num)</p>
+<ul>
+<li>
+<pre><code>Value for the amount of power to use when in active power mode.
+</code></pre>
+</li>
+</ul>
+<p>? idle_power_usage (num)</p>
+<ul>
+<li>
+<pre><code>Value for the amount of power to use when in idle power mode.
+</code></pre>
+</li>
+</ul>
+<p>? power_channel (num)</p>
+<ul>
+<li>
+<pre><code>What channel to draw from when drawing power for power mode
+</code></pre>
+</li>
+<li>
+<pre><code>Possible Values:
+</code></pre>
+</li>
+<li>
+<pre><code>    EQUIP:0 - //? Equipment Channel.
+</code></pre>
+</li>
+<li>
+<pre><code>    LIGHT:2 - //? Lighting Channel.
+</code></pre>
+</li>
+<li>
+<pre><code>    ENVIRON:3 //? Environment Channel.
+</code></pre>
+</li>
+</ul>
+<p>? component_parts (list)</p>
+<ul>
+<li>
+<pre><code>A list of component parts of machine used by frame based machines.
+</code></pre>
+</li>
+</ul>
+<p>? panel_open (num)</p>
+<ul>
+<li>
+<pre><code>Whether the panel is open.
+</code></pre>
+</li>
+</ul>
+<p>? uid (num)</p>
+<ul>
+<li>
+<pre><code>Unique id of machine across all machines.
+</code></pre>
+</li>
+</ul>
+<p>? gl_uid (global num)</p>
+<ul>
+<li>
+<pre><code>Next uid value in sequence.
+</code></pre>
+</li>
+</ul>
+<p>? machine_stat (bitflag)</p>
+<ul>
+<li>
+<pre><code>Machine status bit flags.
+</code></pre>
+</li>
+<li>
+<pre><code>Possible bit flags:
+</code></pre>
+</li>
+<li>
+<pre><code>   BROKEN:1 - //? Machine is broken.
+</code></pre>
+</li>
+<li>
+<pre><code>   NOPOWER:2  //? No power is being supplied to machine.
+</code></pre>
+</li>
+<li>
+<pre><code>   POWEROFF:4 //? tbd
+</code></pre>
+</li>
+<li>
+<pre><code>   MAINT:8 -- //? Machine is currently under going maintenance.
+</code></pre>
+</li>
+<li>
+<pre><code>   EMPED:16 - //? Temporary broken by EMP pulse.
+</code></pre>
+</li>
+</ul>
+<p>! ## Class Procs:
+? Initialize()</p>
+<p>? Destroy()</p>
+<p>? auto_use_power()</p>
+<ul>
+<li>
+<pre><code>This proc determines how power mode power is deducted by the machine.
+</code></pre>
+</li>
+<li>
+<pre><code>'auto_use_power()' is called by the 'master_controller' game_controller every
+</code></pre>
+</li>
+<li>
+<pre><code>tick.
+</code></pre>
+</li>
+<li>
+<pre><code>Return Values:
+</code></pre>
+</li>
+<li>
+<pre><code>    return:TRUE  //? If object is powered.
+</code></pre>
+</li>
+<li>
+<pre><code>    return:FALSE //? If object is not powered.
+</code></pre>
+</li>
+<li>
+<pre><code>Default definition uses 'use_power', 'power_channel', 'active_power_usage',
+</code></pre>
+</li>
+<li>
+<pre><code>'idle_power_usage', 'powered()', and 'use_power()' implement behavior.
+</code></pre>
+</li>
+</ul>
+<p>? powered(chan = EQUIP)                       'modules/power/power.dm'
+Checks to see if area that contains the object has power available for power
+channel given in 'chan'.</p>
+<p>? use_power(amount, chan=EQUIP, autocalled)   'modules/power/power.dm'
+Deducts 'amount' from the power channel 'chan' of the area that contains the object.
+If it's autocalled then everything is normal, if something else calls use_power we are going to
+need to recalculate the power two ticks in a row.</p>
+<p>? power_change()                              'modules/power/power.dm'
+Called by the area that contains the object when ever that area under goes a
+power state change (area runs out of power, or area channel is turned off).</p>
+<p>? RefreshParts()                              'game/machinery/machine.dm'</p>
+<ul>
+<li>
+<pre><code>Called to refresh the variables in the machine that are contributed to by parts
+</code></pre>
+</li>
+<li>
+<pre><code>contained in the component_parts list. (example: glass and material amounts for
+</code></pre>
+</li>
+<li>
+<pre><code>the autolathe)
+</code></pre>
+</li>
+<li>Default definition does nothing.</li>
+</ul>
+<p>? assign_uid()                                'game/machinery/machine.dm'</p>
+<ul>
+<li>Called by machine to assign a value to the uid variable.</li>
+</ul>
+<p>? process()                                   'game/machinery/machine.dm'</p>
+<ul>
+<li>Called by the 'master_controller' once per game tick for each machine that is listed in the 'machines' list.</li>
+</ul>
+<p>! ## Compiled by Aygar
+! ## Formatted by Zandario</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery.html#var/active_power_usage">active_power_usage</a></th><td>active power usage in watts</td></tr>
+            <tr><th><a href="obj/machinery.html#var/clicksound">clicksound</a></th><td>Sound played on succesful interface. Just put it in the list of vars at the start.</td></tr>
+            <tr><th><a href="obj/machinery.html#var/clickvol">clickvol</a></th><td>Volume of interface sounds.</td></tr>
+            <tr><th><a href="obj/machinery.html#var/component_parts">component_parts</a></th><td>List of all the parts used to build it, if made from certain kinds of frames.</td></tr>
+            <tr><th><a href="obj/machinery.html#var/idle_power_usage">idle_power_usage</a></th><td>idle power usage in watts</td></tr>
+            <tr><th><a href="obj/machinery.html#var/interact_offline">interact_offline</a></th><td>Can the machine be interacted with while de-powered.</td></tr>
+            <tr><th><a href="obj/machinery.html#var/power_channel">power_channel</a></th><td>EQUIP, ENVIRON or LIGHT</td></tr>
+            <tr><th><a href="obj/machinery.html#var/speed_process">speed_process</a></th><td>If false, SSmachines. If true, SSfastprocess.</td></tr>
+            <tr><th><a href="obj/machinery.html#var/use_power">use_power</a></th><td>USE_POWER_OFF = dont run the auto
+USE_POWER_IDLE = run auto, use idle
+USE_POWER_ACTIVE = run auto, use active</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery.html#proc/adjust_item_drop_location">adjust_item_drop_location</a></th><td>Adjust item drop location to a 3x3 grid inside the tile, returns slot id from 0 to 8.</td></tr>
+            <tr><th><a href="obj/machinery.html#proc/try_put_in_hand">try_put_in_hand</a></th><td>Puts passed object in to user's hand</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/active_power_usage"><aside class="declaration">var </aside>active_power_usage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/_machinery.dm#L117">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 117"/></a></h3>
+        <p>active power usage in watts</p><h3 id="var/clicksound"><aside class="declaration">var </aside>clicksound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/_machinery.dm#L127">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 127"/></a></h3>
+        <p>Sound played on succesful interface. Just put it in the list of vars at the start.</p><h3 id="var/clickvol"><aside class="declaration">var </aside>clickvol
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/_machinery.dm#L129">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 129"/></a></h3>
+        <p>Volume of interface sounds.</p><h3 id="var/component_parts"><aside class="declaration">var </aside>component_parts
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/_machinery.dm#L122">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 122"/></a></h3>
+        <p>List of all the parts used to build it, if made from certain kinds of frames.</p><h3 id="var/idle_power_usage"><aside class="declaration">var </aside>idle_power_usage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/_machinery.dm#L115">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 115"/></a></h3>
+        <p>idle power usage in watts</p><h3 id="var/interact_offline"><aside class="declaration">var </aside>interact_offline
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/_machinery.dm#L131">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 131"/></a></h3>
+        <p>Can the machine be interacted with while de-powered.</p><h3 id="var/power_channel"><aside class="declaration">var </aside>power_channel
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/_machinery.dm#L119">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 119"/></a></h3>
+        <p>EQUIP, ENVIRON or LIGHT</p><h3 id="var/speed_process"><aside class="declaration">var </aside>speed_process
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/_machinery.dm#L134">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 134"/></a></h3>
+        <p>If false, SSmachines. If true, SSfastprocess.</p><h3 id="var/use_power"><aside class="declaration">var </aside>use_power
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/_machinery.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 113"/></a></h3>
+        <p>USE_POWER_OFF = dont run the auto
+USE_POWER_IDLE = run auto, use idle
+USE_POWER_ACTIVE = run auto, use active</p><h2 id="proc">Proc Details</h2><h3 id="proc/adjust_item_drop_location"><aside class="declaration">proc </aside>adjust_item_drop_location<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/dropped_atom) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/_machinery.dm#L533">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 533"/></a></aside>
+        </h3>
+        <p>Adjust item drop location to a 3x3 grid inside the tile, returns slot id from 0 to 8.</p><h3 id="proc/try_put_in_hand"><aside class="declaration">proc </aside>try_put_in_hand<aside>(/<a href="obj.html">obj</a>/object, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/_machinery.dm#L526">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;_machinery.dm 526"/></a></aside>
+        </h3>
+        <p>Puts passed object in to user's hand</p>
+<p>Puts the passed object in to the users hand if they are adjacent.
+If the user is not adjacent then place the object on top of the machine.</p>
+<p>Vars:</p>
+<ul>
+<li>object (obj) The object to be moved in to the users hand.</li>
+<li>user (mob/living) The user to recive the object</li>
+</ul></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

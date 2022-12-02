@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/inventory/procs.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/inventory/procs.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><p>flags for inventory ops</p></td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_OP_FORCE">INV_OP_FORCE</a></th><td>force; implies INV_OP_IGNORE_DELAY and INV_OP_IGNORE_REACHABILITY</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_OP_SHOULD_NOT_INTERCEPT">INV_OP_SHOULD_NOT_INTERCEPT</a></th><td>components that intercept to relocate should refrain - usually used with force</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_OP_SUPPRESS_SOUND">INV_OP_SUPPRESS_SOUND</a></th><td>no sound</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_OP_SUPPRESS_WARNING">INV_OP_SUPPRESS_WARNING</a></th><td>no warnings</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_OP_NO_LOGIC">INV_OP_NO_LOGIC</a></th><td>do not run logic like checking if you should drop something when something's unequipped</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_OP_NO_UPDATE_ICONS">INV_OP_NO_UPDATE_ICONS</a></th><td>do not updatei cons</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_OP_DIRECTLY_DROPPING">INV_OP_DIRECTLY_DROPPING</a></th><td>hint: we are directly dropping to ground/off omb</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_OP_REEQUIPPING">INV_OP_REEQUIPPING</a></th><td>hint: we are re-equipping between slots</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_OP_CREATION">INV_OP_CREATION</a></th><td>hint: we are doing this during outfit equip, antag creation, or otherwise roundstart operatoins</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_OP_IS_ACCESSORY">INV_OP_IS_ACCESSORY</a></th><td>hint: we are chained through by an accessory's parent</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_OP_DISALLOW_DELAY">INV_OP_DISALLOW_DELAY</a></th><td>do not allow delays when checking - if we need to sleep, immediately fail</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_OP_IGNORE_REACHABILITY">INV_OP_IGNORE_REACHABILITY</a></th><td>ignore reachability checks</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_OP_IGNORE_DELAY">INV_OP_IGNORE_DELAY</a></th><td>ignore equip/unequip delay</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_OP_NO_MERGE_STACKS">INV_OP_NO_MERGE_STACKS</a></th><td>do not merge stacks if possible</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_OP_IS_FINAL_CHECK">INV_OP_IS_FINAL_CHECK</a></th><td>used on can equip/unequip - this is the final check before point of no return, therefore side effects are permissible</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_OP_DIRECTLY_EQUIPPING">INV_OP_DIRECTLY_EQUIPPING</a></th><td>hint: we are directly equipping to on-mob instead of semantically just being put in hands</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_OP_DELETING">INV_OP_DELETING</a></th><td>hint: we're mid delete. maybe don't try to delete again?</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_OP_FATAL">INV_OP_FATAL</a></th><td>hint: we're currently mitigating a fatal error in an inventory proc, likely trying to revert state</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_OP_FLUFFLESS">INV_OP_FLUFFLESS</a></th><td>no delays and reachability checks entirely</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_OP_SILENT">INV_OP_SILENT</a></th><td>no sound, warnings, etc, entirely</td></tr>
+        <tr><td colspan="2"><p>return values from can_equip_conflict_check</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/CAN_EQUIP_SLOT_CONFLICT_NONE">CAN_EQUIP_SLOT_CONFLICT_NONE</a></th><td>yes</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/CAN_EQUIP_SLOT_CONFLICT_HARD">CAN_EQUIP_SLOT_CONFLICT_HARD</a></th><td>slot has another item, hell no</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/CAN_EQUIP_SLOT_CONFLICT_SOFT">CAN_EQUIP_SLOT_CONFLICT_SOFT</a></th><td>slot is semantically blocked by something else the user is wearing but you can force it on anyways</td></tr>
+        <tr><td colspan="2"><p>return values for _item_by_slot, _set_inv_slot</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INVENTORY_SLOT_DOES_NOT_EXIST">INVENTORY_SLOT_DOES_NOT_EXIST</a></th><td>this slot doesn't exist</td></tr>
+        <tr><td colspan="2"><p>return values for inv view/strip/access/panel procs:</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_VIEW_OBFUSCATE_HIDE_SLOT">INV_VIEW_OBFUSCATE_HIDE_SLOT</a></th><td>do not show slot</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_VIEW_OBFUSCATE_DISALLOW_INTERACT">INV_VIEW_OBFUSCATE_DISALLOW_INTERACT</a></th><td>do not allow operations</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_VIEW_OBFUSCATE_HIDE_ITEM_NAME">INV_VIEW_OBFUSCATE_HIDE_ITEM_NAME</a></th><td>do not allow viewing item name</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_VIEW_OBFUSCATE_HIDE_ITEM_EXISTENCE">INV_VIEW_OBFUSCATE_HIDE_ITEM_EXISTENCE</a></th><td>do not allow viewing if an item is there</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_VIEW_STRIP_IS_SILENT">INV_VIEW_STRIP_IS_SILENT</a></th><td>don't display messages when stripping</td></tr>
+        <tr><th><a href="code/__DEFINES/inventory/procs.html#define/INV_VIEW_STRIP_FUMBLE_ON_FAILURE">INV_VIEW_STRIP_FUMBLE_ON_FAILURE</a></th><td>display fumbling message on failure</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/CAN_EQUIP_SLOT_CONFLICT_HARD"><aside class="declaration">#define </aside>CAN_EQUIP_SLOT_CONFLICT_HARD
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 50"/></a>
+    </h3>
+    <p>slot has another item, hell no</p><h3 id="define/CAN_EQUIP_SLOT_CONFLICT_NONE"><aside class="declaration">#define </aside>CAN_EQUIP_SLOT_CONFLICT_NONE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 48"/></a>
+    </h3>
+    <p>yes</p><h3 id="define/CAN_EQUIP_SLOT_CONFLICT_SOFT"><aside class="declaration">#define </aside>CAN_EQUIP_SLOT_CONFLICT_SOFT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 52"/></a>
+    </h3>
+    <p>slot is semantically blocked by something else the user is wearing but you can force it on anyways</p><h3 id="define/INVENTORY_SLOT_DOES_NOT_EXIST"><aside class="declaration">#define </aside>INVENTORY_SLOT_DOES_NOT_EXIST
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 56"/></a>
+    </h3>
+    <p>this slot doesn't exist</p><h3 id="define/INV_OP_CREATION"><aside class="declaration">#define </aside>INV_OP_CREATION
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 19"/></a>
+    </h3>
+    <p>hint: we are doing this during outfit equip, antag creation, or otherwise roundstart operatoins</p><h3 id="define/INV_OP_DELETING"><aside class="declaration">#define </aside>INV_OP_DELETING
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 35"/></a>
+    </h3>
+    <p>hint: we're mid delete. maybe don't try to delete again?</p><h3 id="define/INV_OP_DIRECTLY_DROPPING"><aside class="declaration">#define </aside>INV_OP_DIRECTLY_DROPPING
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 15"/></a>
+    </h3>
+    <p>hint: we are directly dropping to ground/off omb</p><h3 id="define/INV_OP_DIRECTLY_EQUIPPING"><aside class="declaration">#define </aside>INV_OP_DIRECTLY_EQUIPPING
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 33"/></a>
+    </h3>
+    <p>hint: we are directly equipping to on-mob instead of semantically just being put in hands</p><h3 id="define/INV_OP_DISALLOW_DELAY"><aside class="declaration">#define </aside>INV_OP_DISALLOW_DELAY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 23"/></a>
+    </h3>
+    <p>do not allow delays when checking - if we need to sleep, immediately fail</p><h3 id="define/INV_OP_FATAL"><aside class="declaration">#define </aside>INV_OP_FATAL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 37"/></a>
+    </h3>
+    <p>hint: we're currently mitigating a fatal error in an inventory proc, likely trying to revert state</p><h3 id="define/INV_OP_FLUFFLESS"><aside class="declaration">#define </aside>INV_OP_FLUFFLESS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 40"/></a>
+    </h3>
+    <p>no delays and reachability checks entirely</p><h3 id="define/INV_OP_FORCE"><aside class="declaration">#define </aside>INV_OP_FORCE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 3"/></a>
+    </h3>
+    <p>force; implies INV_OP_IGNORE_DELAY and INV_OP_IGNORE_REACHABILITY</p><h3 id="define/INV_OP_IGNORE_DELAY"><aside class="declaration">#define </aside>INV_OP_IGNORE_DELAY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 27"/></a>
+    </h3>
+    <p>ignore equip/unequip delay</p><h3 id="define/INV_OP_IGNORE_REACHABILITY"><aside class="declaration">#define </aside>INV_OP_IGNORE_REACHABILITY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 25"/></a>
+    </h3>
+    <p>ignore reachability checks</p><h3 id="define/INV_OP_IS_ACCESSORY"><aside class="declaration">#define </aside>INV_OP_IS_ACCESSORY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 21"/></a>
+    </h3>
+    <p>hint: we are chained through by an accessory's parent</p><h3 id="define/INV_OP_IS_FINAL_CHECK"><aside class="declaration">#define </aside>INV_OP_IS_FINAL_CHECK
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 31"/></a>
+    </h3>
+    <p>used on can equip/unequip - this is the final check before point of no return, therefore side effects are permissible</p><h3 id="define/INV_OP_NO_LOGIC"><aside class="declaration">#define </aside>INV_OP_NO_LOGIC
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 11"/></a>
+    </h3>
+    <p>do not run logic like checking if you should drop something when something's unequipped</p><h3 id="define/INV_OP_NO_MERGE_STACKS"><aside class="declaration">#define </aside>INV_OP_NO_MERGE_STACKS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 29"/></a>
+    </h3>
+    <p>do not merge stacks if possible</p><h3 id="define/INV_OP_NO_UPDATE_ICONS"><aside class="declaration">#define </aside>INV_OP_NO_UPDATE_ICONS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 13"/></a>
+    </h3>
+    <p>do not updatei cons</p><h3 id="define/INV_OP_REEQUIPPING"><aside class="declaration">#define </aside>INV_OP_REEQUIPPING
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 17"/></a>
+    </h3>
+    <p>hint: we are re-equipping between slots</p><h3 id="define/INV_OP_SHOULD_NOT_INTERCEPT"><aside class="declaration">#define </aside>INV_OP_SHOULD_NOT_INTERCEPT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 5"/></a>
+    </h3>
+    <p>components that intercept to relocate should refrain - usually used with force</p><h3 id="define/INV_OP_SILENT"><aside class="declaration">#define </aside>INV_OP_SILENT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 42"/></a>
+    </h3>
+    <p>no sound, warnings, etc, entirely</p><h3 id="define/INV_OP_SUPPRESS_SOUND"><aside class="declaration">#define </aside>INV_OP_SUPPRESS_SOUND
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 7"/></a>
+    </h3>
+    <p>no sound</p><h3 id="define/INV_OP_SUPPRESS_WARNING"><aside class="declaration">#define </aside>INV_OP_SUPPRESS_WARNING
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 9"/></a>
+    </h3>
+    <p>no warnings</p><h3 id="define/INV_VIEW_OBFUSCATE_DISALLOW_INTERACT"><aside class="declaration">#define </aside>INV_VIEW_OBFUSCATE_DISALLOW_INTERACT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 63"/></a>
+    </h3>
+    <p>do not allow operations</p><h3 id="define/INV_VIEW_OBFUSCATE_HIDE_ITEM_EXISTENCE"><aside class="declaration">#define </aside>INV_VIEW_OBFUSCATE_HIDE_ITEM_EXISTENCE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 67"/></a>
+    </h3>
+    <p>do not allow viewing if an item is there</p><h3 id="define/INV_VIEW_OBFUSCATE_HIDE_ITEM_NAME"><aside class="declaration">#define </aside>INV_VIEW_OBFUSCATE_HIDE_ITEM_NAME
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 65"/></a>
+    </h3>
+    <p>do not allow viewing item name</p><h3 id="define/INV_VIEW_OBFUSCATE_HIDE_SLOT"><aside class="declaration">#define </aside>INV_VIEW_OBFUSCATE_HIDE_SLOT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 61"/></a>
+    </h3>
+    <p>do not show slot</p><h3 id="define/INV_VIEW_STRIP_FUMBLE_ON_FAILURE"><aside class="declaration">#define </aside>INV_VIEW_STRIP_FUMBLE_ON_FAILURE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 71"/></a>
+    </h3>
+    <p>display fumbling message on failure</p><h3 id="define/INV_VIEW_STRIP_IS_SILENT"><aside class="declaration">#define </aside>INV_VIEW_STRIP_IS_SILENT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/inventory/procs.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;inventory&#x2F;procs.dm 69"/></a>
+    </h3>
+    <p>don't display messages when stripping</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

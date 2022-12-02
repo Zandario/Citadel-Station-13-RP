@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;controllers&#x2F;throwing.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/controllers/throwing.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/controllers/throwing.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/throwing.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;throwing.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><p>thrownthing/throw_flags</p></td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/throwing.html#define/THROW_AT_DO_NOT_SPIN">THROW_AT_DO_NOT_SPIN</a></th><td>don't spin animation</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/throwing.html#define/THROW_AT_DIAGONALS_FIRST">THROW_AT_DIAGONALS_FIRST</a></th><td>do diagonals first</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/throwing.html#define/THROW_AT_IS_NEAT">THROW_AT_IS_NEAT</a></th><td>do not randomize pixel offsets/whatnot on land</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/throwing.html#define/THROW_AT_IS_GENTLE">THROW_AT_IS_GENTLE</a></th><td>do not do impact damage (receiving object must implement this)</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/throwing.html#define/THROW_AT_NO_AUTO_QUICKSTART">THROW_AT_NO_AUTO_QUICKSTART</a></th><td>do not immediately tick the first tick. Use this if you need to manually modify the thrownthing datum or just want it to lag a tick.</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/throwing.html#define/THROW_AT_NEVER_HIT_PUSH">THROW_AT_NEVER_HIT_PUSH</a></th><td>forcefully do not push the impacted atom, ignoring regular checks. Overrides always hit push.</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/throwing.html#define/THROW_AT_ALWAYS_HIT_PUSH">THROW_AT_ALWAYS_HIT_PUSH</a></th><td>forcefully always push the impacted atom, ignoring regular checks.</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/throwing.html#define/THROW_AT_QUICKSTARTED">THROW_AT_QUICKSTARTED</a></th><td>we already quickstarted</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/throwing.html#define/THROW_AT_NO_SCALE_DAMAGE">THROW_AT_NO_SCALE_DAMAGE</a></th><td>do not scale hit damage to standard speed at all; damage multiplier will still be obeyed.</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/throwing.html#define/THROW_AT_FORCE">THROW_AT_FORCE</a></th><td>force throw, ignoring resistances</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/throwing.html#define/THROW_AT_NO_USER_MODIFIERS">THROW_AT_NO_USER_MODIFIERS</a></th><td>don't do stuff like damage target zones/detecting user momentums</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/throwing.html#define/THROW_AT_OVERHAND">THROW_AT_OVERHAND</a></th><td>overhand - travel over stuff, don't hit anything unless we directly click on it</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/throwing.html#define/THROW_SPEED_CATCHABLE">THROW_SPEED_CATCHABLE</a></th><td>the throwing speed at which people can catch things on impact</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/throwing.html#define/THROWNOBJ_KNOCKBACK_SPEED">THROWNOBJ_KNOCKBACK_SPEED</a></th><td>The minumum speed of a w_class 2 thrown object that will cause living mobs it hits to be knocked back. Heavier objects can cause knockback at lower speeds.</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/throwing.html#define/THROWNOBJ_KNOCKBACK_DIVISOR">THROWNOBJ_KNOCKBACK_DIVISOR</a></th><td>Affects how much speed the mob is knocked back with.</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/throwing.html#define/THROW_SPEED_SCALING_CONSTANT_DEFAULT">THROW_SPEED_SCALING_CONSTANT_DEFAULT</a></th><td>multiplier = force &gt; resist? (force / resist) ** (p * 0.1) : 1 / (force / resist) ** (p * 0.1)</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/throwing.html#define/THROW_DAMAGE_SCALING_CONSTANT_DEFAULT">THROW_DAMAGE_SCALING_CONSTANT_DEFAULT</a></th><td>multiplier = force &gt; resist? (force / resist) ** (p * 0.1) : 1 / (force / resist) ** (p * 0.1)</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/throwing.html#define/MAX_THROWING_DAMAGE_MULTIPLIER">MAX_THROWING_DAMAGE_MULTIPLIER</a></th><td>used as a placeholder</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/throwing.html#define/OVERHAND_THROW_ITEM_DELAY">OVERHAND_THROW_ITEM_DELAY</a></th><td>time it takes to prep an overhand throw for items, multiplied by weight class</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/throwing.html#define/OVERHAND_THROW_MOB_DELAY">OVERHAND_THROW_MOB_DELAY</a></th><td>time to takes to prep an overhand throw for mobs</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/throwing.html#define/OVERHAND_THROW_FORCE_REDUCTION_FACTOR">OVERHAND_THROW_FORCE_REDUCTION_FACTOR</a></th><td>factor of 1/x for force of overhand throws</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/MAX_THROWING_DAMAGE_MULTIPLIER"><aside class="declaration">#define </aside>MAX_THROWING_DAMAGE_MULTIPLIER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/throwing.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;throwing.dm 56"/></a>
+    </h3>
+    <p>used as a placeholder</p><h3 id="define/OVERHAND_THROW_FORCE_REDUCTION_FACTOR"><aside class="declaration">#define </aside>OVERHAND_THROW_FORCE_REDUCTION_FACTOR
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/throwing.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;throwing.dm 64"/></a>
+    </h3>
+    <p>factor of 1/x for force of overhand throws</p><h3 id="define/OVERHAND_THROW_ITEM_DELAY"><aside class="declaration">#define </aside>OVERHAND_THROW_ITEM_DELAY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/throwing.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;throwing.dm 60"/></a>
+    </h3>
+    <p>time it takes to prep an overhand throw for items, multiplied by weight class</p><h3 id="define/OVERHAND_THROW_MOB_DELAY"><aside class="declaration">#define </aside>OVERHAND_THROW_MOB_DELAY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/throwing.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;throwing.dm 62"/></a>
+    </h3>
+    <p>time to takes to prep an overhand throw for mobs</p><h3 id="define/THROWNOBJ_KNOCKBACK_DIVISOR"><aside class="declaration">#define </aside>THROWNOBJ_KNOCKBACK_DIVISOR
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/throwing.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;throwing.dm 50"/></a>
+    </h3>
+    <p>Affects how much speed the mob is knocked back with.</p><h3 id="define/THROWNOBJ_KNOCKBACK_SPEED"><aside class="declaration">#define </aside>THROWNOBJ_KNOCKBACK_SPEED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/throwing.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;throwing.dm 48"/></a>
+    </h3>
+    <p>The minumum speed of a w_class 2 thrown object that will cause living mobs it hits to be knocked back. Heavier objects can cause knockback at lower speeds.</p><h3 id="define/THROW_AT_ALWAYS_HIT_PUSH"><aside class="declaration">#define </aside>THROW_AT_ALWAYS_HIT_PUSH
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/throwing.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;throwing.dm 15"/></a>
+    </h3>
+    <p>forcefully always push the impacted atom, ignoring regular checks.</p><h3 id="define/THROW_AT_DIAGONALS_FIRST"><aside class="declaration">#define </aside>THROW_AT_DIAGONALS_FIRST
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/throwing.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;throwing.dm 5"/></a>
+    </h3>
+    <p>do diagonals first</p><h3 id="define/THROW_AT_DO_NOT_SPIN"><aside class="declaration">#define </aside>THROW_AT_DO_NOT_SPIN
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/throwing.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;throwing.dm 3"/></a>
+    </h3>
+    <p>don't spin animation</p><h3 id="define/THROW_AT_FORCE"><aside class="declaration">#define </aside>THROW_AT_FORCE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/throwing.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;throwing.dm 21"/></a>
+    </h3>
+    <p>force throw, ignoring resistances</p><h3 id="define/THROW_AT_IS_GENTLE"><aside class="declaration">#define </aside>THROW_AT_IS_GENTLE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/throwing.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;throwing.dm 9"/></a>
+    </h3>
+    <p>do not do impact damage (receiving object must implement this)</p><h3 id="define/THROW_AT_IS_NEAT"><aside class="declaration">#define </aside>THROW_AT_IS_NEAT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/throwing.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;throwing.dm 7"/></a>
+    </h3>
+    <p>do not randomize pixel offsets/whatnot on land</p><h3 id="define/THROW_AT_NEVER_HIT_PUSH"><aside class="declaration">#define </aside>THROW_AT_NEVER_HIT_PUSH
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/throwing.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;throwing.dm 13"/></a>
+    </h3>
+    <p>forcefully do not push the impacted atom, ignoring regular checks. Overrides always hit push.</p><h3 id="define/THROW_AT_NO_AUTO_QUICKSTART"><aside class="declaration">#define </aside>THROW_AT_NO_AUTO_QUICKSTART
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/throwing.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;throwing.dm 11"/></a>
+    </h3>
+    <p>do not immediately tick the first tick. Use this if you need to manually modify the thrownthing datum or just want it to lag a tick.</p><h3 id="define/THROW_AT_NO_SCALE_DAMAGE"><aside class="declaration">#define </aside>THROW_AT_NO_SCALE_DAMAGE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/throwing.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;throwing.dm 19"/></a>
+    </h3>
+    <p>do not scale hit damage to standard speed at all; damage multiplier will still be obeyed.</p><h3 id="define/THROW_AT_NO_USER_MODIFIERS"><aside class="declaration">#define </aside>THROW_AT_NO_USER_MODIFIERS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/throwing.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;throwing.dm 23"/></a>
+    </h3>
+    <p>don't do stuff like damage target zones/detecting user momentums</p><h3 id="define/THROW_AT_OVERHAND"><aside class="declaration">#define </aside>THROW_AT_OVERHAND
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/throwing.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;throwing.dm 25"/></a>
+    </h3>
+    <p>overhand - travel over stuff, don't hit anything unless we directly click on it</p><h3 id="define/THROW_AT_QUICKSTARTED"><aside class="declaration">#define </aside>THROW_AT_QUICKSTARTED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/throwing.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;throwing.dm 17"/></a>
+    </h3>
+    <p>we already quickstarted</p><h3 id="define/THROW_DAMAGE_SCALING_CONSTANT_DEFAULT"><aside class="declaration">#define </aside>THROW_DAMAGE_SCALING_CONSTANT_DEFAULT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/throwing.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;throwing.dm 54"/></a>
+    </h3>
+    <p>multiplier = force &gt; resist? (force / resist) ** (p * 0.1) : 1 / (force / resist) ** (p * 0.1)</p><h3 id="define/THROW_SPEED_CATCHABLE"><aside class="declaration">#define </aside>THROW_SPEED_CATCHABLE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/throwing.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;throwing.dm 46"/></a>
+    </h3>
+    <p>the throwing speed at which people can catch things on impact</p><h3 id="define/THROW_SPEED_SCALING_CONSTANT_DEFAULT"><aside class="declaration">#define </aside>THROW_SPEED_SCALING_CONSTANT_DEFAULT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/throwing.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;throwing.dm 52"/></a>
+    </h3>
+    <p>multiplier = force &gt; resist? (force / resist) ** (p * 0.1) : 1 / (force / resist) ** (p * 0.1)</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

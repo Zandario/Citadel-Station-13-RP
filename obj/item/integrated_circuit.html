@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;integrated_circuit - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/integrated_circuit.html#var">Var Details</a> - <a href="obj/item/integrated_circuit.html#proc">Proc Details</a></header>
+<main>
+<h1>integrated_circuit <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/integrated_circuit.html">integrated_circuit</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/integrated_circuit.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;integrated_circuit.dm 6"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/integrated_circuit.html#var/action_flags">action_flags</a></th><td>Used for telling circuits that can do certain actions from other circuits.</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit.html#var/allow_multitool">allow_multitool</a></th><td>Allows additional multitool functionality</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit.html#var/assembly">assembly</a></th><td>Reference to the assembly holding this circuit, if any.</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit.html#var/category_text">category_text</a></th><td>To show up on circuit printer, and perhaps other places.</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit.html#var/complexity">complexity</a></th><td>This acts as a limitation on building machines, more resource-intensive components cost more 'space'.</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit.html#var/cooldown_per_use">cooldown_per_use</a></th><td>Circuits are limited in how many times they can be work()'d by this variable.</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit.html#var/cost">cost</a></th><td>This acts as a limitation on building machines, bigger components cost more 'space'. -1 for size 0</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit.html#var/ext_cooldown">ext_cooldown</a></th><td>Circuits are limited in how many times they can be work()'d with external world by this variable.</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit.html#var/inputs_default">inputs_default</a></th><td>Assoc list which will fill a pin with data upon creation.  e.g. &quot;2&quot; = 0 will set input pin 2 to equal 0 instead of null.</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit.html#var/next_use">next_use</a></th><td>Uses world.time</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit.html#var/outputs_default">outputs_default</a></th><td>Ditto, for output.</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit.html#var/power_draw_idle">power_draw_idle</a></th><td>How much power is drawn when doing nothing.</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit.html#var/power_draw_per_use">power_draw_per_use</a></th><td>How much power is drawn when work()'d.</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit.html#var/removable">removable</a></th><td>Determines if a circuit is removable from the assembly.</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit.html#var/spawn_flags">spawn_flags</a></th><td>Used for world initializing, see the #defines above.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/integrated_circuit.html#proc/additem">additem</a></th><td>Can be called via electronic_assembly/attackby()</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit.html#proc/check_power">check_power</a></th><td>Returns true if there's enough power to work().</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit.html#proc/check_target">check_target</a></th><td>Checks if the target object is reachable.  Useful for various manipulators and manipulator-like objects.</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit.html#proc/drop_location">drop_location</a></th><td>Returns the location to be used for dropping items.
+Same as the regular drop_location(), but with proc being run on assembly if there is any.</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit.html#proc/external_examine">external_examine</a></th><td>This should be used when someone is examining from an 'outside' perspective, e.g. reading a screen or LED.</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit.html#proc/get_object">get_object</a></th><td>Returns the object that is supposed to be used in attack messages, location checks, etc.</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit.html#proc/get_pin_linked_src">get_pin_linked_src</a></th><td>Returns a ref to the first linked pin.</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit.html#proc/internal_examine">internal_examine</a></th><td>This should be used when someone is examining while the case is opened.</td></tr>
+            <tr><th><a href="obj/item/integrated_circuit.html#proc/power_fail">power_fail</a></th><td>Override this for special behaviour when there's no power left.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/action_flags"><aside class="declaration">var </aside>action_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/integrated_circuit.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;integrated_circuit.dm 41"/></a></h3>
+        <p>Used for telling circuits that can do certain actions from other circuits.</p><h3 id="var/allow_multitool"><aside class="declaration">var </aside>allow_multitool
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/integrated_circuit.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;integrated_circuit.dm 48"/></a></h3>
+        <p>Allows additional multitool functionality</p><h3 id="var/assembly"><aside class="declaration">var </aside>assembly
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/electronic_assembly.html">electronic_assembly</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/integrated_circuit.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;integrated_circuit.dm 13"/></a></h3>
+        <p>Reference to the assembly holding this circuit, if any.</p><h3 id="var/category_text"><aside class="declaration">var </aside>category_text
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/integrated_circuit.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;integrated_circuit.dm 43"/></a></h3>
+        <p>To show up on circuit printer, and perhaps other places.</p><h3 id="var/complexity"><aside class="declaration">var </aside>complexity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/integrated_circuit.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;integrated_circuit.dm 26"/></a></h3>
+        <p>This acts as a limitation on building machines, more resource-intensive components cost more 'space'.</p><h3 id="var/cooldown_per_use"><aside class="declaration">var </aside>cooldown_per_use
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/integrated_circuit.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;integrated_circuit.dm 31"/></a></h3>
+        <p>Circuits are limited in how many times they can be work()'d by this variable.</p><h3 id="var/cost"><aside class="declaration">var </aside>cost
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/integrated_circuit.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;integrated_circuit.dm 29"/></a></h3>
+        <p>This acts as a limitation on building machines, bigger components cost more 'space'. -1 for size 0</p><h3 id="var/ext_cooldown"><aside class="declaration">var </aside>ext_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/integrated_circuit.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;integrated_circuit.dm 33"/></a></h3>
+        <p>Circuits are limited in how many times they can be work()'d with external world by this variable.</p><h3 id="var/inputs_default"><aside class="declaration">var </aside>inputs_default
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/integrated_circuit.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;integrated_circuit.dm 18"/></a></h3>
+        <p>Assoc list which will fill a pin with data upon creation.  e.g. &quot;2&quot; = 0 will set input pin 2 to equal 0 instead of null.</p><h3 id="var/next_use"><aside class="declaration">var </aside>next_use
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/integrated_circuit.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;integrated_circuit.dm 24"/></a></h3>
+        <p>Uses world.time</p><h3 id="var/outputs_default"><aside class="declaration">var </aside>outputs_default
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/integrated_circuit.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;integrated_circuit.dm 21"/></a></h3>
+        <p>Ditto, for output.</p><h3 id="var/power_draw_idle"><aside class="declaration">var </aside>power_draw_idle
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/integrated_circuit.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;integrated_circuit.dm 37"/></a></h3>
+        <p>How much power is drawn when doing nothing.</p><h3 id="var/power_draw_per_use"><aside class="declaration">var </aside>power_draw_per_use
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/integrated_circuit.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;integrated_circuit.dm 35"/></a></h3>
+        <p>How much power is drawn when work()'d.</p><h3 id="var/removable"><aside class="declaration">var </aside>removable
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/integrated_circuit.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;integrated_circuit.dm 45"/></a></h3>
+        <p>Determines if a circuit is removable from the assembly.</p><h3 id="var/spawn_flags"><aside class="declaration">var </aside>spawn_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/integrated_circuit.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;integrated_circuit.dm 39"/></a></h3>
+        <p>Used for world initializing, see the #defines above.</p><h2 id="proc">Proc Details</h2><h3 id="proc/additem"><aside class="declaration">proc </aside>additem<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/integrated_circuit.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;integrated_circuit.dm 56"/></a></aside>
+        </h3>
+        <p>Can be called via electronic_assembly/attackby()</p><h3 id="proc/check_power"><aside class="declaration">proc </aside>check_power<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/integrated_circuit.dm#L322">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;integrated_circuit.dm 322"/></a></aside>
+        </h3>
+        <p>Returns true if there's enough power to work().</p><h3 id="proc/check_target"><aside class="declaration">proc </aside>check_target<aside>(/<a href="atom.html">atom</a>/target, exclude_contents, exclude_components, exclude_self, exclude_outside) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/integrated_circuit.dm#L386">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;integrated_circuit.dm 386"/></a></aside>
+        </h3>
+        <p>Checks if the target object is reachable.  Useful for various manipulators and manipulator-like objects.</p><h3 id="proc/drop_location"><aside class="parent"><a title="/atom" href="atom.html#proc/drop_location">&uarr;</a></aside>drop_location<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/integrated_circuit.dm#L377">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;integrated_circuit.dm 377"/></a></aside>
+        </h3>
+        <p>Returns the location to be used for dropping items.
+Same as the regular drop_location(), but with proc being run on assembly if there is any.</p><h3 id="proc/external_examine"><aside class="declaration">proc </aside>external_examine<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/integrated_circuit.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;integrated_circuit.dm 75"/></a></aside>
+        </h3>
+        <p>This should be used when someone is examining from an 'outside' perspective, e.g. reading a screen or LED.</p><h3 id="proc/get_object"><aside class="declaration">proc </aside>get_object<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/integrated_circuit.dm#L367">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;integrated_circuit.dm 367"/></a></aside>
+        </h3>
+        <p>Returns the object that is supposed to be used in attack messages, location checks, etc.</p><h3 id="proc/get_pin_linked_src"><aside class="declaration">proc </aside>get_pin_linked_src<aside>(pin_type, pin_number) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/helpers.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;helpers.dm 42"/></a></aside>
+        </h3>
+        <p>Returns a ref to the first linked pin.</p><h3 id="proc/internal_examine"><aside class="declaration">proc </aside>internal_examine<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/integrated_circuit.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;integrated_circuit.dm 60"/></a></aside>
+        </h3>
+        <p>This should be used when someone is examining while the case is opened.</p><h3 id="proc/power_fail"><aside class="declaration">proc </aside>power_fail<aside>() 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/integrated_electronics/core/integrated_circuit.dm#L318">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;integrated_electronics&#x2F;core&#x2F;integrated_circuit.dm 318"/></a></aside>
+        </h3>
+        <p>Override this for special behaviour when there's no power left.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

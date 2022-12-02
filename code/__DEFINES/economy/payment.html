@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/economy/payment.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/economy/payment.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/economy/payment.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/economy/payment.html#define/PAYMENT_TYPE_COIN">PAYMENT_TYPE_COIN</a></th><td>coin</td></tr>
+        <tr><th><a href="code/__DEFINES/economy/payment.html#define/PAYMENT_TYPE_CASH">PAYMENT_TYPE_CASH</a></th><td>cash</td></tr>
+        <tr><th><a href="code/__DEFINES/economy/payment.html#define/PAYMENT_TYPE_HOLOCHIPS">PAYMENT_TYPE_HOLOCHIPS</a></th><td>holochips</td></tr>
+        <tr><th><a href="code/__DEFINES/economy/payment.html#define/PAYMENT_TYPE_BANK_CARD">PAYMENT_TYPE_BANK_CARD</a></th><td>some kind of bank card that's linked to an account</td></tr>
+        <tr><th><a href="code/__DEFINES/economy/payment.html#define/PAYMENT_TYPE_CHARGE_CARD">PAYMENT_TYPE_CHARGE_CARD</a></th><td>chargecard</td></tr>
+        <tr><th><a href="code/__DEFINES/economy/payment.html#define/PAYMENT_TYPE_BIOMETRIC">PAYMENT_TYPE_BIOMETRIC</a></th><td>not a method - example for something that can be blocked/filtered - this payment type requires biometric authentication</td></tr>
+        <tr><th><a href="code/__DEFINES/economy/payment.html#define/PAYMENT_TYPE_ALL">PAYMENT_TYPE_ALL</a></th><td>all payment types</td></tr>
+        <tr><th><a href="code/__DEFINES/economy/payment.html#define/PAYMENT_TYPES_ALLOW_ONLY">PAYMENT_TYPES_ALLOW_ONLY</a></th><td>only these types</td></tr>
+        <tr><th><a href="code/__DEFINES/economy/payment.html#define/PAYMENT_TYPES_EXCEPT_FOR">PAYMENT_TYPES_EXCEPT_FOR</a></th><td>prevent these types</td></tr>
+        <tr><th><a href="code/__DEFINES/economy/payment.html#define/NOT_STATIC_CURRENCY">NOT_STATIC_CURRENCY</a></th><td>not static currency</td></tr>
+        <tr><th><a href="code/__DEFINES/economy/payment.html#define/DISCRETE_STATIC_CURRENCY">DISCRETE_STATIC_CURRENCY</a></th><td>discrete object, e.g. coins, chargecards</td></tr>
+        <tr><th><a href="code/__DEFINES/economy/payment.html#define/PLURAL_STATIC_CURRENCY">PLURAL_STATIC_CURRENCY</a></th><td>stack, e.g. cash, holochips</td></tr>
+        <tr><th><a href="code/__DEFINES/economy/payment.html#define/PAYMENT_SUCCESS">PAYMENT_SUCCESS</a></th><td>successful - syntatically, even 0 is fine</td></tr>
+        <tr><th><a href="code/__DEFINES/economy/payment.html#define/PAYMENT_DYNAMIC_ERROR">PAYMENT_DYNAMIC_ERROR</a></th><td>errored</td></tr>
+        <tr><th><a href="code/__DEFINES/economy/payment.html#define/PAYMENT_NOT_CURRENCY">PAYMENT_NOT_CURRENCY</a></th><td>didn't try at all</td></tr>
+        <tr><th><a href="code/__DEFINES/economy/payment.html#define/PAYMENT_INSUFFICIENT">PAYMENT_INSUFFICIENT</a></th><td>not enough money - this is only for &quot;dumb&quot; currency, if it's a dynamic method use payment error for logical errors like &quot;bank account insufficient&quot; and return error</td></tr>
+        <tr><th><a href="code/__DEFINES/economy/payment.html#define/CHARGE_DETAIL_RECIPIENT">CHARGE_DETAIL_RECIPIENT</a></th><td>recipient identity</td></tr>
+        <tr><th><a href="code/__DEFINES/economy/payment.html#define/CHARGE_DETAIL_LOCATION">CHARGE_DETAIL_LOCATION</a></th><td>location as string - <strong>player facing</strong> so feel free to obfuscate this</td></tr>
+        <tr><th><a href="code/__DEFINES/economy/payment.html#define/CHARGE_DETAIL_DEVICE">CHARGE_DETAIL_DEVICE</a></th><td>machine/charge device identity</td></tr>
+        <tr><th><a href="code/__DEFINES/economy/payment.html#define/CHARGE_DETAIL_REASON">CHARGE_DETAIL_REASON</a></th><td>reason field</td></tr>
+        <tr><th><a href="code/__DEFINES/economy/payment.html#define/DYNAMIC_PAYMENT_DATA_FAIL_REASON">DYNAMIC_PAYMENT_DATA_FAIL_REASON</a></th><td>error message on failure</td></tr>
+        <tr><th><a href="code/__DEFINES/economy/payment.html#define/DYNAMIC_PAYMENT_DATA_PAID_AMOUNT">DYNAMIC_PAYMENT_DATA_PAID_AMOUNT</a></th><td>paid amount</td></tr>
+        <tr><th><a href="code/__DEFINES/economy/payment.html#define/DYNAMIC_PAYMENT_DATA_BANK_ACCOUNT">DYNAMIC_PAYMENT_DATA_BANK_ACCOUNT</a></th><td>bank account used if any</td></tr>
+        <tr><th><a href="code/__DEFINES/economy/payment.html#define/DYNAMIC_PAYMENT_DATA_CURRENCY_TYPE">DYNAMIC_PAYMENT_DATA_CURRENCY_TYPE</a></th><td>payment type used</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/CHARGE_DETAIL_DEVICE"><aside class="declaration">#define </aside>CHARGE_DETAIL_DEVICE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/economy/payment.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm 47"/></a>
+    </h3>
+    <p>machine/charge device identity</p><h3 id="define/CHARGE_DETAIL_LOCATION"><aside class="declaration">#define </aside>CHARGE_DETAIL_LOCATION
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/economy/payment.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm 45"/></a>
+    </h3>
+    <p>location as string - <strong>player facing</strong> so feel free to obfuscate this</p><h3 id="define/CHARGE_DETAIL_REASON"><aside class="declaration">#define </aside>CHARGE_DETAIL_REASON
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/economy/payment.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm 49"/></a>
+    </h3>
+    <p>reason field</p><h3 id="define/CHARGE_DETAIL_RECIPIENT"><aside class="declaration">#define </aside>CHARGE_DETAIL_RECIPIENT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/economy/payment.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm 43"/></a>
+    </h3>
+    <p>recipient identity</p><h3 id="define/DISCRETE_STATIC_CURRENCY"><aside class="declaration">#define </aside>DISCRETE_STATIC_CURRENCY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/economy/payment.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm 27"/></a>
+    </h3>
+    <p>discrete object, e.g. coins, chargecards</p><h3 id="define/DYNAMIC_PAYMENT_DATA_BANK_ACCOUNT"><aside class="declaration">#define </aside>DYNAMIC_PAYMENT_DATA_BANK_ACCOUNT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/economy/payment.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm 58"/></a>
+    </h3>
+    <p>bank account used if any</p><h3 id="define/DYNAMIC_PAYMENT_DATA_CURRENCY_TYPE"><aside class="declaration">#define </aside>DYNAMIC_PAYMENT_DATA_CURRENCY_TYPE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/economy/payment.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm 60"/></a>
+    </h3>
+    <p>payment type used</p><h3 id="define/DYNAMIC_PAYMENT_DATA_FAIL_REASON"><aside class="declaration">#define </aside>DYNAMIC_PAYMENT_DATA_FAIL_REASON
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/economy/payment.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm 54"/></a>
+    </h3>
+    <p>error message on failure</p><h3 id="define/DYNAMIC_PAYMENT_DATA_PAID_AMOUNT"><aside class="declaration">#define </aside>DYNAMIC_PAYMENT_DATA_PAID_AMOUNT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/economy/payment.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm 56"/></a>
+    </h3>
+    <p>paid amount</p><h3 id="define/NOT_STATIC_CURRENCY"><aside class="declaration">#define </aside>NOT_STATIC_CURRENCY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/economy/payment.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm 25"/></a>
+    </h3>
+    <p>not static currency</p><h3 id="define/PAYMENT_DYNAMIC_ERROR"><aside class="declaration">#define </aside>PAYMENT_DYNAMIC_ERROR
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/economy/payment.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm 35"/></a>
+    </h3>
+    <p>errored</p><h3 id="define/PAYMENT_INSUFFICIENT"><aside class="declaration">#define </aside>PAYMENT_INSUFFICIENT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/economy/payment.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm 39"/></a>
+    </h3>
+    <p>not enough money - this is only for &quot;dumb&quot; currency, if it's a dynamic method use payment error for logical errors like &quot;bank account insufficient&quot; and return error</p><h3 id="define/PAYMENT_NOT_CURRENCY"><aside class="declaration">#define </aside>PAYMENT_NOT_CURRENCY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/economy/payment.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm 37"/></a>
+    </h3>
+    <p>didn't try at all</p><h3 id="define/PAYMENT_SUCCESS"><aside class="declaration">#define </aside>PAYMENT_SUCCESS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/economy/payment.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm 33"/></a>
+    </h3>
+    <p>successful - syntatically, even 0 is fine</p><h3 id="define/PAYMENT_TYPES_ALLOW_ONLY"><aside class="declaration">#define </aside>PAYMENT_TYPES_ALLOW_ONLY
+            <aside>(types)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/economy/payment.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm 19"/></a>
+    </h3>
+    <p>only these types</p><h3 id="define/PAYMENT_TYPES_EXCEPT_FOR"><aside class="declaration">#define </aside>PAYMENT_TYPES_EXCEPT_FOR
+            <aside>(types)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/economy/payment.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm 21"/></a>
+    </h3>
+    <p>prevent these types</p><h3 id="define/PAYMENT_TYPE_ALL"><aside class="declaration">#define </aside>PAYMENT_TYPE_ALL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/economy/payment.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm 17"/></a>
+    </h3>
+    <p>all payment types</p><h3 id="define/PAYMENT_TYPE_BANK_CARD"><aside class="declaration">#define </aside>PAYMENT_TYPE_BANK_CARD
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/economy/payment.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm 9"/></a>
+    </h3>
+    <p>some kind of bank card that's linked to an account</p><h3 id="define/PAYMENT_TYPE_BIOMETRIC"><aside class="declaration">#define </aside>PAYMENT_TYPE_BIOMETRIC
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/economy/payment.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm 14"/></a>
+    </h3>
+    <p>not a method - example for something that can be blocked/filtered - this payment type requires biometric authentication</p><h3 id="define/PAYMENT_TYPE_CASH"><aside class="declaration">#define </aside>PAYMENT_TYPE_CASH
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/economy/payment.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm 5"/></a>
+    </h3>
+    <p>cash</p><h3 id="define/PAYMENT_TYPE_CHARGE_CARD"><aside class="declaration">#define </aside>PAYMENT_TYPE_CHARGE_CARD
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/economy/payment.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm 11"/></a>
+    </h3>
+    <p>chargecard</p><h3 id="define/PAYMENT_TYPE_COIN"><aside class="declaration">#define </aside>PAYMENT_TYPE_COIN
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/economy/payment.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm 3"/></a>
+    </h3>
+    <p>coin</p><h3 id="define/PAYMENT_TYPE_HOLOCHIPS"><aside class="declaration">#define </aside>PAYMENT_TYPE_HOLOCHIPS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/economy/payment.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm 7"/></a>
+    </h3>
+    <p>holochips</p><h3 id="define/PLURAL_STATIC_CURRENCY"><aside class="declaration">#define </aside>PLURAL_STATIC_CURRENCY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/economy/payment.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;economy&#x2F;payment.dm 29"/></a>
+    </h3>
+    <p>stack, e.g. cash, holochips</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

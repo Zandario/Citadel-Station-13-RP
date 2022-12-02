@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;controllers&#x2F;_subsystems.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/controllers/_subsystems.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/controllers/_subsystems.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/_subsystems.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;_subsystems.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><p>Defines for subsystems and overlays</p>
+<p>Lots of important stuff in here, make sure you have your brain switched on
+when editing this file</p>
+<h2 id="initialization-subsystem">Initialization subsystem</h2></td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/_subsystems.html#define/INITIALIZATION_INSSATOMS">INITIALIZATION_INSSATOMS</a></th><td>New should not call Initialize</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/_subsystems.html#define/INITIALIZATION_INNEW_MAPLOAD">INITIALIZATION_INNEW_MAPLOAD</a></th><td>New should call Initialize(TRUE)</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/_subsystems.html#define/INITIALIZATION_INNEW_REGULAR">INITIALIZATION_INNEW_REGULAR</a></th><td>New should call Initialize(FALSE)</td></tr>
+        <tr><td colspan="2"><h3 id="initialization-hints">Initialization hints</h3></td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/_subsystems.html#define/INITIALIZE_HINT_NORMAL">INITIALIZE_HINT_NORMAL</a></th><td>Nothing happens</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/_subsystems.html#define/INITIALIZE_HINT_LATELOAD">INITIALIZE_HINT_LATELOAD</a></th><td>call LateInitialize at the end of all atom Initalization</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/_subsystems.html#define/INITIALIZE_HINT_QDEL">INITIALIZE_HINT_QDEL</a></th><td>Call qdel on the atom after intialization</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/_subsystems.html#define/INITIALIZE_IMMEDIATE">INITIALIZE_IMMEDIATE</a></th><td>type and all subtypes should always immediately call Initialize in New()</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/_subsystems.html#define/RUNLEVEL_INIT">RUNLEVEL_INIT</a></th><td>&quot;Initialize Only&quot; - Used for subsystems that should never be fired (Should also have SS_NO_FIRE set)</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/_subsystems.html#define/RUNLEVEL_LOBBY">RUNLEVEL_LOBBY</a></th><td>Initial runlevel before setup.  Returns to here if setup fails.</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/_subsystems.html#define/RUNLEVEL_SETUP">RUNLEVEL_SETUP</a></th><td>While the gamemode setup is running.  I.E gameticker.setup()</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/_subsystems.html#define/RUNLEVEL_GAME">RUNLEVEL_GAME</a></th><td>After successful game ticker setup, while the round is running.</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/_subsystems.html#define/RUNLEVEL_POSTGAME">RUNLEVEL_POSTGAME</a></th><td>When round completes but before reboot</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/_subsystems.html#define/RUNLEVEL_FLAG_TO_INDEX">RUNLEVEL_FLAG_TO_INDEX</a></th><td>Convert from the runlevel bitfield constants to index in runlevel_flags list</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/_subsystems.html#define/INIT_ORDER_CHAT">INIT_ORDER_CHAT</a></th><td>Should be last to ensure chat remains smooth during init.</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/_subsystems.html#define/FIRE_PRIORITY_INPUT">FIRE_PRIORITY_INPUT</a></th><td>Never drop input</td></tr>
+        <tr><th><a href="code/__DEFINES/controllers/_subsystems.html#define/addtimer">addtimer</a></th><td>Create a new timer and add it to the queue.</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/FIRE_PRIORITY_INPUT"><aside class="declaration">#define </aside>FIRE_PRIORITY_INPUT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/_subsystems.dm#L147">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;_subsystems.dm 147"/></a>
+    </h3>
+    <p>Never drop input</p><h3 id="define/INITIALIZATION_INNEW_MAPLOAD"><aside class="declaration">#define </aside>INITIALIZATION_INNEW_MAPLOAD
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/_subsystems.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;_subsystems.dm 12"/></a>
+    </h3>
+    <p>New should call Initialize(TRUE)</p><h3 id="define/INITIALIZATION_INNEW_REGULAR"><aside class="declaration">#define </aside>INITIALIZATION_INNEW_REGULAR
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/_subsystems.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;_subsystems.dm 14"/></a>
+    </h3>
+    <p>New should call Initialize(FALSE)</p><h3 id="define/INITIALIZATION_INSSATOMS"><aside class="declaration">#define </aside>INITIALIZATION_INSSATOMS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/_subsystems.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;_subsystems.dm 10"/></a>
+    </h3>
+    <p>New should not call Initialize</p><h3 id="define/INITIALIZE_HINT_LATELOAD"><aside class="declaration">#define </aside>INITIALIZE_HINT_LATELOAD
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/_subsystems.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;_subsystems.dm 27"/></a>
+    </h3>
+    <p>call LateInitialize at the end of all atom Initalization</p>
+<p>The item will be added to the late_loaders list, this is iterated over after
+initalization of subsystems is complete and calls LateInitalize on the atom
+see <a href="atom.html#proc/LateInitialize">this file for the LateIntialize proc</a></p><h3 id="define/INITIALIZE_HINT_NORMAL"><aside class="declaration">#define </aside>INITIALIZE_HINT_NORMAL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/_subsystems.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;_subsystems.dm 19"/></a>
+    </h3>
+    <p>Nothing happens</p><h3 id="define/INITIALIZE_HINT_QDEL"><aside class="declaration">#define </aside>INITIALIZE_HINT_QDEL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/_subsystems.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;_subsystems.dm 30"/></a>
+    </h3>
+    <p>Call qdel on the atom after intialization</p><h3 id="define/INITIALIZE_IMMEDIATE"><aside class="declaration">#define </aside>INITIALIZE_IMMEDIATE
+            <aside>(X)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/_subsystems.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;_subsystems.dm 33"/></a>
+    </h3>
+    <p>type and all subtypes should always immediately call Initialize in New()</p><h3 id="define/INIT_ORDER_CHAT"><aside class="declaration">#define </aside>INIT_ORDER_CHAT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/_subsystems.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;_subsystems.dm 113"/></a>
+    </h3>
+    <p>Should be last to ensure chat remains smooth during init.</p><h3 id="define/RUNLEVEL_FLAG_TO_INDEX"><aside class="declaration">#define </aside>RUNLEVEL_FLAG_TO_INDEX
+            <aside>(flag)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/_subsystems.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;_subsystems.dm 58"/></a>
+    </h3>
+    <p>Convert from the runlevel bitfield constants to index in runlevel_flags list</p><h3 id="define/RUNLEVEL_GAME"><aside class="declaration">#define </aside>RUNLEVEL_GAME
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/_subsystems.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;_subsystems.dm 50"/></a>
+    </h3>
+    <p>After successful game ticker setup, while the round is running.</p><h3 id="define/RUNLEVEL_INIT"><aside class="declaration">#define </aside>RUNLEVEL_INIT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/_subsystems.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;_subsystems.dm 44"/></a>
+    </h3>
+    <p>&quot;Initialize Only&quot; - Used for subsystems that should never be fired (Should also have SS_NO_FIRE set)</p><h3 id="define/RUNLEVEL_LOBBY"><aside class="declaration">#define </aside>RUNLEVEL_LOBBY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/_subsystems.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;_subsystems.dm 46"/></a>
+    </h3>
+    <p>Initial runlevel before setup.  Returns to here if setup fails.</p><h3 id="define/RUNLEVEL_POSTGAME"><aside class="declaration">#define </aside>RUNLEVEL_POSTGAME
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/_subsystems.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;_subsystems.dm 52"/></a>
+    </h3>
+    <p>When round completes but before reboot</p><h3 id="define/RUNLEVEL_SETUP"><aside class="declaration">#define </aside>RUNLEVEL_SETUP
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/_subsystems.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;_subsystems.dm 48"/></a>
+    </h3>
+    <p>While the gamemode setup is running.  I.E gameticker.setup()</p><h3 id="define/addtimer"><aside class="declaration">#define </aside>addtimer
+            <aside>(args ...)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/controllers/_subsystems.dm#L156">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;controllers&#x2F;_subsystems.dm 156"/></a>
+    </h3>
+    <p>Create a new timer and add it to the queue.</p>
+<ul>
+<li>Arguments:</li>
+<li>
+<ul>
+<li>callback the callback to call on timer finish</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>wait deciseconds to run the timer for</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>flags flags for this timer, see: code__DEFINES\subsystems.dm</li>
+</ul>
+</li>
+</ul></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

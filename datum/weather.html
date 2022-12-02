@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;weather - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/weather.html#var">Var Details</a> - <a href="datum/weather.html#proc">Proc Details</a></header>
+<main>
+<h1>weather <aside>/<a href="datum.html">datum</a>/<a href="datum/weather.html">weather</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L186">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 186"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/weather.html#var/effect_message">effect_message</a></th><td>We are a list now! yay variety!</td></tr>
+            <tr><th><a href="datum/weather.html#var/flight_failure_modifier">flight_failure_modifier</a></th><td>Some types of weather make flying harder, and therefore make crashes more likely. (This is not implemented)</td></tr>
+            <tr><th><a href="datum/weather.html#var/holder">holder</a></th><td>Reference to the datum that manages the planet's weather.</td></tr>
+            <tr><th><a href="datum/weather.html#var/icon_state">icon_state</a></th><td>Icon to apply to turf undergoing weather.</td></tr>
+            <tr><th><a href="datum/weather.html#var/last_message">last_message</a></th><td>Keeps track of when the weather last tells EVERY player it's hitting them</td></tr>
+            <tr><th><a href="datum/weather.html#var/light_color">light_color</a></th><td>If set, changes how the day/night light looks.</td></tr>
+            <tr><th><a href="datum/weather.html#var/light_modifier">light_modifier</a></th><td>Lower numbers means more darkness.</td></tr>
+            <tr><th><a href="datum/weather.html#var/message_delay">message_delay</a></th><td>Delay in between weather hit messages</td></tr>
+            <tr><th><a href="datum/weather.html#var/observed_message">observed_message</a></th><td>What is shown to a player 'examining' the weather.</td></tr>
+            <tr><th><a href="datum/weather.html#var/show_message">show_message</a></th><td>Is set to TRUE and plays the messsage every [message_delay]</td></tr>
+            <tr><th><a href="datum/weather.html#var/sky_visible">sky_visible</a></th><td>If the sky can be clearly seen while this is occuring, used for flavor text when looking up.</td></tr>
+            <tr><th><a href="datum/weather.html#var/temp_high">temp_high</a></th><td>Temperature to apply when at noon.</td></tr>
+            <tr><th><a href="datum/weather.html#var/temp_low">temp_low</a></th><td>Temperature to apply when at midnight.</td></tr>
+            <tr><th><a href="datum/weather.html#var/timer_high_bound">timer_high_bound</a></th><td>How long this weather can run before it tries to change, in minutes</td></tr>
+            <tr><th><a href="datum/weather.html#var/timer_low_bound">timer_low_bound</a></th><td>How long this weather must run before it tries to change, in minutes</td></tr>
+            <tr><th><a href="datum/weather.html#var/transition_chances">transition_chances</a></th><td>Assoc list of weather identifiers and the odds to shift to a specific type of weather. Can contain its own identifier to prolong it.</td></tr>
+            <tr><th><a href="datum/weather.html#var/transition_messages">transition_messages</a></th><td>List of messages shown to all outdoor mobs when this weather is transitioned to, for flavor. Not shown if already this weather.</td></tr>
+            <tr><th><a href="datum/weather.html#var/wind_high">wind_high</a></th><td>Upper bound for mob slowdown when walking against the wind, and speedup when walking with it. Randomized between this and wind_low.</td></tr>
+            <tr><th><a href="datum/weather.html#var/wind_low">wind_low</a></th><td>Lower bound for above.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/weather.html#proc/hear_indoor_sounds">hear_indoor_sounds</a></th><td>Adds or removes someone from the indoor list.</td></tr>
+            <tr><th><a href="datum/weather.html#proc/hear_outdoor_sounds">hear_outdoor_sounds</a></th><td>Adds or removes someone from the outdoor list.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/effect_message"><aside class="declaration">var </aside>effect_message
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L217">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 217"/></a></h3>
+        <p>We are a list now! yay variety!</p><h3 id="var/flight_failure_modifier"><aside class="declaration">var </aside>flight_failure_modifier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L204">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 204"/></a></h3>
+        <p>Some types of weather make flying harder, and therefore make crashes more likely. (This is not implemented)</p><h3 id="var/holder"><aside class="declaration">var </aside>holder
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/weather_holder.html">weather_holder</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L208">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 208"/></a></h3>
+        <p>Reference to the datum that manages the planet's weather.</p><h3 id="var/icon_state"><aside class="declaration">var </aside>icon_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L190">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 190"/></a></h3>
+        <p>Icon to apply to turf undergoing weather.</p><h3 id="var/last_message"><aside class="declaration">var </aside>last_message
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L219">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 219"/></a></h3>
+        <p>Keeps track of when the weather last tells EVERY player it's hitting them</p><h3 id="var/light_color"><aside class="declaration">var </aside>light_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L202">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 202"/></a></h3>
+        <p>If set, changes how the day/night light looks.</p><h3 id="var/light_modifier"><aside class="declaration">var </aside>light_modifier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L200">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 200"/></a></h3>
+        <p>Lower numbers means more darkness.</p><h3 id="var/message_delay"><aside class="declaration">var </aside>message_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L221">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 221"/></a></h3>
+        <p>Delay in between weather hit messages</p><h3 id="var/observed_message"><aside class="declaration">var </aside>observed_message
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L228">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 228"/></a></h3>
+        <p>What is shown to a player 'examining' the weather.</p><h3 id="var/show_message"><aside class="declaration">var </aside>show_message
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L223">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 223"/></a></h3>
+        <p>Is set to TRUE and plays the messsage every [message_delay]</p><h3 id="var/sky_visible"><aside class="declaration">var </aside>sky_visible
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L214">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 214"/></a></h3>
+        <p>If the sky can be clearly seen while this is occuring, used for flavor text when looking up.</p><h3 id="var/temp_high"><aside class="declaration">var </aside>temp_high
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L192">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 192"/></a></h3>
+        <p>Temperature to apply when at noon.</p><h3 id="var/temp_low"><aside class="declaration">var </aside>temp_low
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L194">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 194"/></a></h3>
+        <p>Temperature to apply when at midnight.</p><h3 id="var/timer_high_bound"><aside class="declaration">var </aside>timer_high_bound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L212">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 212"/></a></h3>
+        <p>How long this weather can run before it tries to change, in minutes</p><h3 id="var/timer_low_bound"><aside class="declaration">var </aside>timer_low_bound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L210">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 210"/></a></h3>
+        <p>How long this weather must run before it tries to change, in minutes</p><h3 id="var/transition_chances"><aside class="declaration">var </aside>transition_chances
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L206">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 206"/></a></h3>
+        <p>Assoc list of weather identifiers and the odds to shift to a specific type of weather. Can contain its own identifier to prolong it.</p><h3 id="var/transition_messages"><aside class="declaration">var </aside>transition_messages
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L226">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 226"/></a></h3>
+        <p>List of messages shown to all outdoor mobs when this weather is transitioned to, for flavor. Not shown if already this weather.</p><h3 id="var/wind_high"><aside class="declaration">var </aside>wind_high
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L196">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 196"/></a></h3>
+        <p>Upper bound for mob slowdown when walking against the wind, and speedup when walking with it. Randomized between this and wind_low.</p><h3 id="var/wind_low"><aside class="declaration">var </aside>wind_low
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L198">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 198"/></a></h3>
+        <p>Lower bound for above.</p><h2 id="proc">Proc Details</h2><h3 id="proc/hear_indoor_sounds"><aside class="declaration">proc </aside>hear_indoor_sounds<aside>(/<a href="mob.html">mob</a>/M, adding) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L317">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 317"/></a></aside>
+        </h3>
+        <p>Adds or removes someone from the indoor list.</p><h3 id="proc/hear_outdoor_sounds"><aside class="declaration">proc </aside>hear_outdoor_sounds<aside>(/<a href="mob.html">mob</a>/M, adding) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/planet/weather.dm#L307">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;planet&#x2F;weather.dm 307"/></a></aside>
+        </h3>
+        <p>Adds or removes someone from the outdoor list.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__HELPERS&#x2F;global_lists.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+</header>
+<main>
+<h1>code/__HELPERS/global_lists.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/global_lists.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;global_lists.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th>/var/<a href="global.html#var/human_mob_list">human_mob_list</a></th>
+                <td>List of all human mobs and sub-types, including clientless.</td></tr>
+        <tr><th>/var/<a href="global.html#var/silicon_mob_list">silicon_mob_list</a></th>
+                <td>List of all silicon mobs, including clientless.</td></tr>
+        <tr><th>/var/<a href="global.html#var/ai_list">ai_list</a></th>
+                <td>List of all AIs, including clientless.</td></tr>
+        <tr><th>/var/<a href="global.html#var/living_mob_list">living_mob_list</a></th>
+                <td>List of all alive mobs, including clientless. Excludes /mob/new_player</td></tr>
+        <tr><th>/var/<a href="global.html#var/dead_mob_list">dead_mob_list</a></th>
+                <td>List of all dead mobs, including clientless. Excludes /mob/new_player</td></tr>
+        <tr><th>/var/<a href="global.html#var/listening_objects">listening_objects</a></th>
+                <td>List of all objects which care about receiving messages (communicators, radios, etc)</td></tr>
+        <tr><th>/var/<a href="global.html#var/cable_list">cable_list</a></th>
+                <td>Index for all cables, so that powernets don't have to look through the entire world all the time.</td></tr>
+        <tr><th>/var/<a href="global.html#var/side_effects">side_effects</a></th>
+                <td>List of all medical sideeffects types by thier names.</td></tr>
+        <tr><th>/var/<a href="global.html#var/mechas_list">mechas_list</a></th>
+                <td>List of all mechs. Used by hostile mobs target tracking.</td></tr>
+        <tr><td colspan="2"><p>Hairstyles</p></td></tr>
+        <tr><th>/var/<a href="global.html#var/hair_styles_list">hair_styles_list</a></th>
+                <td>Stores /datum/sprite_accessory/hair indexed by name</td></tr>
+        <tr><th>/var/<a href="global.html#var/facial_hair_styles_list">facial_hair_styles_list</a></th>
+                <td>Stores /datum/sprite_accessory/facial_hair indexed by name</td></tr>
+        <tr><td colspan="2"><p>Misc styles</p>
+</td></tr>
+        <tr><th>/var/<a href="global.html#var/body_marking_styles_list">body_marking_styles_list</a></th>
+                <td>Stores /datum/sprite_accessory/marking indexed by name</td></tr>
+        <tr><th>/var/<a href="global.html#var/ear_styles_list">ear_styles_list</a></th>
+                <td>Stores /datum/sprite_accessory/ears indexed by type</td></tr>
+        <tr><th>/var/<a href="global.html#var/tail_styles_list">tail_styles_list</a></th>
+                <td>Stores /datum/sprite_accessory/tail indexed by type</td></tr>
+        <tr><th>/var/<a href="global.html#var/wing_styles_list">wing_styles_list</a></th>
+                <td>Stores /datum/sprite_accessory/wing indexed by type</td></tr>
+        <tr><th>/var/<a href="global.html#var/horn_styles_list">horn_styles_list</a></th>
+                <td>Stores /datum/sprite_accessory/ears again indexed by type</td></tr>
+        <tr><td colspan="2"><p>Underwear</p>
+<p>Backpacks - The load order here is important to maintain. Don't go swapping these around.</p>
+</td></tr>
+        <tr><th>/var/<a href="global.html#var/string_part_flags">string_part_flags</a></th>
+                <td>Strings which corraspond to bodypart covering flags, useful for outputting what something covers.</td></tr>
+        <tr><th>/var/<a href="global.html#var/string_slot_flags">string_slot_flags</a></th>
+                <td>Strings which corraspond to slot flags, useful for outputting what slot something is.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/make_datum_reference_lists">make_datum_reference_lists</a></th>
+                <td>Initial Building</td></tr>
+        <tr><th>/var/<a href="global.html#var/hexNums">hexNums</a></th>
+                <td>Hexidecimal numbers</td></tr>
+        <tr><td colspan="2"><h2 id="traits">Traits</h2></td></tr>
+        <tr><th>/var/<a href="global.html#var/negative_traits">negative_traits</a></th>
+                <td>Negative custom species traits, indexed by path.</td></tr>
+        <tr><th>/var/<a href="global.html#var/neutral_traits">neutral_traits</a></th>
+                <td>Neutral custom species traits, indexed by path.</td></tr>
+        <tr><th>/var/<a href="global.html#var/everyone_traits">everyone_traits</a></th>
+                <td>Neutral traits available to all species, indexed by path.</td></tr>
+        <tr><th>/var/<a href="global.html#var/positive_traits">positive_traits</a></th>
+                <td>Positive custom species traits, indexed by path.</td></tr>
+        <tr><th>/var/<a href="global.html#var/traits_costs">traits_costs</a></th>
+                <td>Just path = cost list, saves time in char setup.</td></tr>
+        <tr><th>/var/<a href="global.html#var/all_traits">all_traits</a></th>
+                <td>All of 'em at once. (same instances)</td></tr>
+        <tr><th>/var/<a href="global.html#var/sensorpreflist">sensorpreflist</a></th>
+                <td>Suit Sensors global list.</td></tr>
+        <tr><th>/var/<a href="global.html#var/player_sizes_list">player_sizes_list</a></th>
+                <td>Stores numeric player size options indexed by name.</td></tr>
+        <tr><th>/var/<a href="global.html#var/vantag_choices_list">vantag_choices_list</a></th>
+                <td>Stores vantag settings indexed by name.</td></tr>
+        <tr><th>/var/<a href="global.html#var/classic_vore_sounds">classic_vore_sounds</a></th>
+                <td>Classic Vore sounds</td></tr>
+        <tr><th>/var/<a href="global.html#var/fancy_vore_sounds">fancy_vore_sounds</a></th>
+                <td>Poojy's Fancy Sounds</td></tr>
+        <tr><th>/var/<a href="global.html#var/remainless_species">remainless_species</a></th>
+                <td>For the mechanic of leaving remains. Ones listed below are basically ones that got no bones or leave no trace after death.</td></tr></table></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

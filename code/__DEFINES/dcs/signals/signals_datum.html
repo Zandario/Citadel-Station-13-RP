@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_datum.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/dcs/signals/signals_datum.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/dcs/signals/signals_datum.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_datum.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_datum.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><h2 id="datum-signals">/datum signals</h2></td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_datum.html#define/COMSIG_COMPONENT_ADDED">COMSIG_COMPONENT_ADDED</a></th><td>When a component is added to a datum: (/datum/component)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_datum.html#define/COMSIG_COMPONENT_REMOVING">COMSIG_COMPONENT_REMOVING</a></th><td>Before a component is removed from a datum because of ClearFromParent: (/datum/component)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_datum.html#define/COMSIG_PARENT_PREQDELETED">COMSIG_PARENT_PREQDELETED</a></th><td>Before a datum's Destroy() is called: (force), returning a nonzero value will cancel the qdel operation</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_datum.html#define/COMSIG_PARENT_QDELETING">COMSIG_PARENT_QDELETING</a></th><td>Just before a datum's Destroy() is called: (force), at this point none of the other components chose to interrupt qdel and Destroy will be called</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_datum.html#define/COMSIG_TOPIC">COMSIG_TOPIC</a></th><td>Generic topic handler (usr, href_list)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_datum.html#define/COMSIG_UI_ACT">COMSIG_UI_ACT</a></th><td>Handler for vv_do_topic (usr, href_list)
+/#define COMSIG_VV_TOPIC &quot;vv_topic&quot;
+/#define COMPONENT_VV_HANDLED (1&lt;&lt;0)
+From datum ui_act (usr, action)</td></tr>
+        <tr><td colspan="2"><h2 id="merger-datum-signals">Merger datum signals</h2><h2 id="gas-mixture-signals">Gas mixture signals</h2><h2 id="modular-computers-file-signals-tells-the-program-datum-something-is-going-on">Modular computer's file signals. Tells the program datum something is going on.</h2></td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/COMSIG_COMPONENT_ADDED"><aside class="declaration">#define </aside>COMSIG_COMPONENT_ADDED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_datum.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_datum.dm 9"/></a>
+    </h3>
+    <p>When a component is added to a datum: (/datum/component)</p><h3 id="define/COMSIG_COMPONENT_REMOVING"><aside class="declaration">#define </aside>COMSIG_COMPONENT_REMOVING
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_datum.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_datum.dm 11"/></a>
+    </h3>
+    <p>Before a component is removed from a datum because of ClearFromParent: (/datum/component)</p><h3 id="define/COMSIG_PARENT_PREQDELETED"><aside class="declaration">#define </aside>COMSIG_PARENT_PREQDELETED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_datum.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_datum.dm 13"/></a>
+    </h3>
+    <p>Before a datum's Destroy() is called: (force), returning a nonzero value will cancel the qdel operation</p><h3 id="define/COMSIG_PARENT_QDELETING"><aside class="declaration">#define </aside>COMSIG_PARENT_QDELETING
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_datum.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_datum.dm 15"/></a>
+    </h3>
+    <p>Just before a datum's Destroy() is called: (force), at this point none of the other components chose to interrupt qdel and Destroy will be called</p><h3 id="define/COMSIG_TOPIC"><aside class="declaration">#define </aside>COMSIG_TOPIC
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_datum.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_datum.dm 17"/></a>
+    </h3>
+    <p>Generic topic handler (usr, href_list)</p><h3 id="define/COMSIG_UI_ACT"><aside class="declaration">#define </aside>COMSIG_UI_ACT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_datum.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_datum.dm 22"/></a>
+    </h3>
+    <p>Handler for vv_do_topic (usr, href_list)
+/#define COMSIG_VV_TOPIC &quot;vv_topic&quot;
+/#define COMPONENT_VV_HANDLED (1&lt;&lt;0)
+From datum ui_act (usr, action)</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

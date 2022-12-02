@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;wires.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/wires.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/wires.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/wires.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;wires.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/wires.html#define/WIRE_EXPLODE">WIRE_EXPLODE</a></th><td>Explodes if pulsed or cut while active, defuses a bomb that isn't active on cut.</td></tr>
+        <tr><th><a href="code/__DEFINES/wires.html#define/WIRE_EXPLODE_DELAY">WIRE_EXPLODE_DELAY</a></th><td>Explodes immediately if cut, explodes 3 seconds later if pulsed.</td></tr>
+        <tr><th><a href="code/__DEFINES/wires.html#define/WIRE_DISARM">WIRE_DISARM</a></th><td>Explicit &quot;disarming&quot; wire.</td></tr>
+        <tr><th><a href="code/__DEFINES/wires.html#define/WIRE_BADDISARM">WIRE_BADDISARM</a></th><td>Disarming wire, except it blows up anyways.</td></tr>
+        <tr><th><a href="code/__DEFINES/wires.html#define/WIRE_BOMB_UNBOLT">WIRE_BOMB_UNBOLT</a></th><td>Unbolts the bomb if cut, hint on pulsed.</td></tr>
+        <tr><th><a href="code/__DEFINES/wires.html#define/WIRE_BOMB_DELAY">WIRE_BOMB_DELAY</a></th><td>Raises the timer on pulse, does nothing on cut.</td></tr>
+        <tr><th><a href="code/__DEFINES/wires.html#define/WIRE_BOMB_PROCEED">WIRE_BOMB_PROCEED</a></th><td>Lowers the timer, explodes if cut while the bomb is active.</td></tr>
+        <tr><th><a href="code/__DEFINES/wires.html#define/WIRE_BOMB_ACTIVATE">WIRE_BOMB_ACTIVATE</a></th><td>Will start a bombs timer if pulsed, will hint if pulsed while already active, will stop a timer a bomb on cut.</td></tr>
+        <tr><th><a href="code/__DEFINES/wires.html#define/WIRE_PARTICLE_POWER">WIRE_PARTICLE_POWER</a></th><td>Toggles whether the PA is on or not.</td></tr>
+        <tr><th><a href="code/__DEFINES/wires.html#define/WIRE_PARTICLE_STRENGTH">WIRE_PARTICLE_STRENGTH</a></th><td>Determines the strength of the PA.</td></tr>
+        <tr><th><a href="code/__DEFINES/wires.html#define/WIRE_PARTICLE_INTERFACE">WIRE_PARTICLE_INTERFACE</a></th><td>Determines the interface showing up.</td></tr>
+        <tr><th><a href="code/__DEFINES/wires.html#define/WIRE_PARTICLE_POWER_LIMIT">WIRE_PARTICLE_POWER_LIMIT</a></th><td>Determines how strong the PA can be.</td></tr>
+        <tr><th><a href="code/__DEFINES/wires.html#define/WIRE_SHIELD_CONTROL">WIRE_SHIELD_CONTROL</a></th><td>Cut to lock most shield controls. Mend to unlock them. Pulse does nothing.</td></tr>
+        <tr><th><a href="code/__DEFINES/wires.html#define/WIRE_SMES_RCON">WIRE_SMES_RCON</a></th><td>Remote control (AI and consoles), cut to disable</td></tr>
+        <tr><th><a href="code/__DEFINES/wires.html#define/WIRE_SMES_INPUT">WIRE_SMES_INPUT</a></th><td>Input wire, cut to disable input, pulse to disable for 60s</td></tr>
+        <tr><th><a href="code/__DEFINES/wires.html#define/WIRE_SMES_OUTPUT">WIRE_SMES_OUTPUT</a></th><td>Output wire, cut to disable output, pulse to disable for 60s</td></tr>
+        <tr><th><a href="code/__DEFINES/wires.html#define/WIRE_SMES_GROUNDING">WIRE_SMES_GROUNDING</a></th><td>Cut to quickly discharge causing sparks, pulse to only create few sparks</td></tr>
+        <tr><th><a href="code/__DEFINES/wires.html#define/WIRE_SMES_FAILSAFES">WIRE_SMES_FAILSAFES</a></th><td>Cut to disable failsafes, mend to reenable</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/WIRE_BADDISARM"><aside class="declaration">#define </aside>WIRE_BADDISARM
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/wires.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;wires.dm 70"/></a>
+    </h3>
+    <p>Disarming wire, except it blows up anyways.</p><h3 id="define/WIRE_BOMB_ACTIVATE"><aside class="declaration">#define </aside>WIRE_BOMB_ACTIVATE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/wires.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;wires.dm 78"/></a>
+    </h3>
+    <p>Will start a bombs timer if pulsed, will hint if pulsed while already active, will stop a timer a bomb on cut.</p><h3 id="define/WIRE_BOMB_DELAY"><aside class="declaration">#define </aside>WIRE_BOMB_DELAY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/wires.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;wires.dm 74"/></a>
+    </h3>
+    <p>Raises the timer on pulse, does nothing on cut.</p><h3 id="define/WIRE_BOMB_PROCEED"><aside class="declaration">#define </aside>WIRE_BOMB_PROCEED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/wires.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;wires.dm 76"/></a>
+    </h3>
+    <p>Lowers the timer, explodes if cut while the bomb is active.</p><h3 id="define/WIRE_BOMB_UNBOLT"><aside class="declaration">#define </aside>WIRE_BOMB_UNBOLT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/wires.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;wires.dm 72"/></a>
+    </h3>
+    <p>Unbolts the bomb if cut, hint on pulsed.</p><h3 id="define/WIRE_DISARM"><aside class="declaration">#define </aside>WIRE_DISARM
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/wires.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;wires.dm 68"/></a>
+    </h3>
+    <p>Explicit &quot;disarming&quot; wire.</p><h3 id="define/WIRE_EXPLODE"><aside class="declaration">#define </aside>WIRE_EXPLODE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/wires.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;wires.dm 64"/></a>
+    </h3>
+    <p>Explodes if pulsed or cut while active, defuses a bomb that isn't active on cut.</p><h3 id="define/WIRE_EXPLODE_DELAY"><aside class="declaration">#define </aside>WIRE_EXPLODE_DELAY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/wires.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;wires.dm 66"/></a>
+    </h3>
+    <p>Explodes immediately if cut, explodes 3 seconds later if pulsed.</p><h3 id="define/WIRE_PARTICLE_INTERFACE"><aside class="declaration">#define </aside>WIRE_PARTICLE_INTERFACE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/wires.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;wires.dm 90"/></a>
+    </h3>
+    <p>Determines the interface showing up.</p><h3 id="define/WIRE_PARTICLE_POWER"><aside class="declaration">#define </aside>WIRE_PARTICLE_POWER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/wires.dm#L86">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;wires.dm 86"/></a>
+    </h3>
+    <p>Toggles whether the PA is on or not.</p><h3 id="define/WIRE_PARTICLE_POWER_LIMIT"><aside class="declaration">#define </aside>WIRE_PARTICLE_POWER_LIMIT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/wires.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;wires.dm 92"/></a>
+    </h3>
+    <p>Determines how strong the PA can be.</p><h3 id="define/WIRE_PARTICLE_STRENGTH"><aside class="declaration">#define </aside>WIRE_PARTICLE_STRENGTH
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/wires.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;wires.dm 88"/></a>
+    </h3>
+    <p>Determines the strength of the PA.</p><h3 id="define/WIRE_SHIELD_CONTROL"><aside class="declaration">#define </aside>WIRE_SHIELD_CONTROL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/wires.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;wires.dm 113"/></a>
+    </h3>
+    <p>Cut to lock most shield controls. Mend to unlock them. Pulse does nothing.</p><h3 id="define/WIRE_SMES_FAILSAFES"><aside class="declaration">#define </aside>WIRE_SMES_FAILSAFES
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/wires.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;wires.dm 124"/></a>
+    </h3>
+    <p>Cut to disable failsafes, mend to reenable</p><h3 id="define/WIRE_SMES_GROUNDING"><aside class="declaration">#define </aside>WIRE_SMES_GROUNDING
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/wires.dm#L122">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;wires.dm 122"/></a>
+    </h3>
+    <p>Cut to quickly discharge causing sparks, pulse to only create few sparks</p><h3 id="define/WIRE_SMES_INPUT"><aside class="declaration">#define </aside>WIRE_SMES_INPUT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/wires.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;wires.dm 118"/></a>
+    </h3>
+    <p>Input wire, cut to disable input, pulse to disable for 60s</p><h3 id="define/WIRE_SMES_OUTPUT"><aside class="declaration">#define </aside>WIRE_SMES_OUTPUT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/wires.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;wires.dm 120"/></a>
+    </h3>
+    <p>Output wire, cut to disable output, pulse to disable for 60s</p><h3 id="define/WIRE_SMES_RCON"><aside class="declaration">#define </aside>WIRE_SMES_RCON
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/wires.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;wires.dm 116"/></a>
+    </h3>
+    <p>Remote control (AI and consoles), cut to disable</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

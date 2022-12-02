@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;global_iterator - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+</header>
+<main>
+<h1>global_iterator <aside>/<a href="datum.html">datum</a>/<a href="datum/global_iterator.html">global_iterator</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/datums/helper_datums/global_iterator.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;helper_datums&#x2F;global_iterator.dm 56"/></a></h1>
+
+<p>! DO NOT USE THIS. THIS IS BEING DEPRECATED BY PROCESSING SUBSYSTEMS (controllers/subsystems/processing) AND TIMERS.</p>
+<p>! README:</p>
+<p>The global_iterator datum is supposed to provide a simple and robust way to
+create some constantly &quot;looping&quot; processes with ability to stop and restart them at will.
+Generally, the only thing you want to play with (meaning, redefine) is the process() proc.
+It must contain all the things you want done.</p>
+<p>! Control functions:
+?	new - used to create datum. First argument (optional) - var list(to use in process() proc) as list,</p>
+<p>?	second (optional) - autostart control.</p>
+<p>?	If autostart == TRUE, the loop will be started immediately after datum creation.</p>
+<p>?	start(list/arguments) - starts the loop. Takes arguments(optional) as a list, which is then used
+?	by process() proc. Returns null if datum already active, 1 if loop started succesfully and 0 if there's
+?	an error in supplied arguments (not list or empty list).</p>
+<p>?	stop() - stops the loop. Returns null if datum is already inactive and 1 on success.</p>
+<p>?	set_delay(new_delay) - sets the delay between iterations. Pretty selfexplanatory.
+?	Returns 0 on error(new_delay is not numerical), 1 otherwise.</p>
+<p>?	set_process_args(list/arguments) - passes the supplied arguments to the process() proc.</p>
+<p>?	active() - Returns 1 if datum is active, 0 otherwise.</p>
+<p>?	toggle() - toggles datum state. Returns new datum state (see active()).</p>
+<p>! Misc functions:</p>
+<p>?	get_last_exec_time() - Returns the time of last iteration.</p>
+<p>?	get_last_exec_time_as_text() - Returns the time of last iteration as text</p>
+<p>! Control vars:</p>
+<p>?	delay - 	delay between iterations</p>
+<p>?	check_for_null - if equals TRUE, on each iteration the supplied arguments will be checked for nulls.
+?	If some varible equals null (and null only), the loop is stopped.
+?	Usefull, if some var unexpectedly becomes null - due to object deletion, for example.
+?	Of course, you can also check the variables inside process() proc to prevent runtime errors.</p>
+<p>! Data storage vars:</p>
+<p>?	result - stores the value returned by process() proc</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

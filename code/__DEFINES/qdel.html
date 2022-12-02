@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;qdel.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/qdel.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/qdel.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/qdel.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;qdel.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/qdel.html#define/QDEL_HINT_QUEUE">QDEL_HINT_QUEUE</a></th><td>qdel should queue the object for deletion.</td></tr>
+        <tr><th><a href="code/__DEFINES/qdel.html#define/QDEL_HINT_LETMELIVE">QDEL_HINT_LETMELIVE</a></th><td>qdel should let the object live after calling destory.</td></tr>
+        <tr><th><a href="code/__DEFINES/qdel.html#define/QDEL_HINT_IWILLGC">QDEL_HINT_IWILLGC</a></th><td>functionally the same as the above. qdel should assume the object will gc on its own, and not check it.</td></tr>
+        <tr><th><a href="code/__DEFINES/qdel.html#define/QDEL_HINT_HARDDEL">QDEL_HINT_HARDDEL</a></th><td>qdel should assume this object won't gc, and queue a hard delete using a hard reference.</td></tr>
+        <tr><th><a href="code/__DEFINES/qdel.html#define/QDEL_HINT_HARDDEL_NOW">QDEL_HINT_HARDDEL_NOW</a></th><td>qdel should assume this object won't gc, and hard del it post haste.</td></tr>
+        <tr><th><a href="code/__DEFINES/qdel.html#define/GC_QUEUE_COUNT">GC_QUEUE_COUNT</a></th><td>increase this when adding more steps.</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/GC_QUEUE_COUNT"><aside class="declaration">#define </aside>GC_QUEUE_COUNT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/qdel.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;qdel.dm 29"/></a>
+    </h3>
+    <p>increase this when adding more steps.</p><h3 id="define/QDEL_HINT_HARDDEL"><aside class="declaration">#define </aside>QDEL_HINT_HARDDEL
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/qdel.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;qdel.dm 11"/></a>
+    </h3>
+    <p>qdel should assume this object won't gc, and queue a hard delete using a hard reference.</p><h3 id="define/QDEL_HINT_HARDDEL_NOW"><aside class="declaration">#define </aside>QDEL_HINT_HARDDEL_NOW
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/qdel.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;qdel.dm 13"/></a>
+    </h3>
+    <p>qdel should assume this object won't gc, and hard del it post haste.</p><h3 id="define/QDEL_HINT_IWILLGC"><aside class="declaration">#define </aside>QDEL_HINT_IWILLGC
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/qdel.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;qdel.dm 9"/></a>
+    </h3>
+    <p>functionally the same as the above. qdel should assume the object will gc on its own, and not check it.</p><h3 id="define/QDEL_HINT_LETMELIVE"><aside class="declaration">#define </aside>QDEL_HINT_LETMELIVE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/qdel.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;qdel.dm 7"/></a>
+    </h3>
+    <p>qdel should let the object live after calling destory.</p><h3 id="define/QDEL_HINT_QUEUE"><aside class="declaration">#define </aside>QDEL_HINT_QUEUE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/qdel.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;qdel.dm 5"/></a>
+    </h3>
+    <p>qdel should queue the object for deletion.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

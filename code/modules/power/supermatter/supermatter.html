@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/modules/power/supermatter/supermatter.html#define">Define Details</a></header>
+<main>
+<h1>code/modules/power/supermatter/supermatter.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/power/supermatter/supermatter.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/modules/power/supermatter/supermatter.html#define/NITROGEN_SLOWING_FACTOR">NITROGEN_SLOWING_FACTOR</a></th><td>Higher == N2 slows reaction more</td></tr>
+        <tr><th><a href="code/modules/power/supermatter/supermatter.html#define/THERMAL_RELEASE_MODIFIER">THERMAL_RELEASE_MODIFIER</a></th><td>Higher == more heat released during reaction</td></tr>
+        <tr><th><a href="code/modules/power/supermatter/supermatter.html#define/PHORON_RELEASE_MODIFIER">PHORON_RELEASE_MODIFIER</a></th><td>Higher == less phoron released by reaction</td></tr>
+        <tr><th><a href="code/modules/power/supermatter/supermatter.html#define/OXYGEN_RELEASE_MODIFIER">OXYGEN_RELEASE_MODIFIER</a></th><td>Higher == less oxygen released at high temperature/power</td></tr>
+        <tr><th><a href="code/modules/power/supermatter/supermatter.html#define/REACTION_POWER_MODIFIER">REACTION_POWER_MODIFIER</a></th><td>Higher == more overall power</td></tr>
+        <tr><th><a href="code/modules/power/supermatter/supermatter.html#define/DECAY_FACTOR">DECAY_FACTOR</a></th><td>Affects how fast the supermatter power decays</td></tr>
+        <tr><th><a href="code/modules/power/supermatter/supermatter.html#define/CRITICAL_TEMPERATURE">CRITICAL_TEMPERATURE</a></th><td>K</td></tr>
+        <tr><th><a href="code/modules/power/supermatter/supermatter.html#define/DAMAGE_RATE_LIMIT">DAMAGE_RATE_LIMIT</a></th><td>damage rate cap at power = 300, scales linearly with power</td></tr>
+        <tr><th><a href="code/modules/power/supermatter/supermatter.html#define/DAMAGE_HARD_LIMIT">DAMAGE_HARD_LIMIT</a></th><td>max damage per tick, 1000 div 50 = 20 * 2 = 80 seconds</td></tr>
+        <tr><th><a href="code/modules/power/supermatter/supermatter.html#define/WARNING_DELAY">WARNING_DELAY</a></th><td>seconds between warnings.</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/CRITICAL_TEMPERATURE"><aside class="declaration">#define </aside>CRITICAL_TEMPERATURE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/power/supermatter/supermatter.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 27"/></a>
+    </h3>
+    <p>K</p><h3 id="define/DAMAGE_HARD_LIMIT"><aside class="declaration">#define </aside>DAMAGE_HARD_LIMIT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/power/supermatter/supermatter.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 32"/></a>
+    </h3>
+    <p>max damage per tick, 1000 div 50 = 20 * 2 = 80 seconds</p><h3 id="define/DAMAGE_RATE_LIMIT"><aside class="declaration">#define </aside>DAMAGE_RATE_LIMIT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/power/supermatter/supermatter.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 30"/></a>
+    </h3>
+    <p>damage rate cap at power = 300, scales linearly with power</p><h3 id="define/DECAY_FACTOR"><aside class="declaration">#define </aside>DECAY_FACTOR
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/power/supermatter/supermatter.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 25"/></a>
+    </h3>
+    <p>Affects how fast the supermatter power decays</p><h3 id="define/NITROGEN_SLOWING_FACTOR"><aside class="declaration">#define </aside>NITROGEN_SLOWING_FACTOR
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/power/supermatter/supermatter.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 3"/></a>
+    </h3>
+    <p>Higher == N2 slows reaction more</p><h3 id="define/OXYGEN_RELEASE_MODIFIER"><aside class="declaration">#define </aside>OXYGEN_RELEASE_MODIFIER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/power/supermatter/supermatter.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 9"/></a>
+    </h3>
+    <p>Higher == less oxygen released at high temperature/power</p><h3 id="define/PHORON_RELEASE_MODIFIER"><aside class="declaration">#define </aside>PHORON_RELEASE_MODIFIER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/power/supermatter/supermatter.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 7"/></a>
+    </h3>
+    <p>Higher == less phoron released by reaction</p><h3 id="define/REACTION_POWER_MODIFIER"><aside class="declaration">#define </aside>REACTION_POWER_MODIFIER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/power/supermatter/supermatter.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 11"/></a>
+    </h3>
+    <p>Higher == more overall power</p><h3 id="define/THERMAL_RELEASE_MODIFIER"><aside class="declaration">#define </aside>THERMAL_RELEASE_MODIFIER
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/power/supermatter/supermatter.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 5"/></a>
+    </h3>
+    <p>Higher == more heat released during reaction</p><h3 id="define/WARNING_DELAY"><aside class="declaration">#define </aside>WARNING_DELAY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/power/supermatter/supermatter.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;supermatter&#x2F;supermatter.dm 42"/></a>
+    </h3>
+    <p>seconds between warnings.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

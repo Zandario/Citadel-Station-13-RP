@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_storage.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/dcs/signals/signals_storage.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/dcs/signals/signals_storage.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_storage.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_storage.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><p>datum/component/storage Signals</p></td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_storage.html#define/COMSIG_STORAGE_ENTERED">COMSIG_STORAGE_ENTERED</a></th><td>() - returns bool.
+/#define COMSIG_CONTAINS_STORAGE &quot;is_storage&quot;
+(obj/item/inserting, mob/user, silent, force) - returns bool
+/#define COMSIG_TRY_STORAGE_INSERT &quot;storage_try_insert&quot;
+(mob/show_to, force) - returns bool.
+/#define COMSIG_TRY_STORAGE_SHOW &quot;storage_show_to&quot;
+(mob/hide_from) - returns bool
+/#define COMSIG_TRY_STORAGE_HIDE_FROM &quot;storage_hide_from&quot;
+Returns bool
+/#define COMSIG_TRY_STORAGE_HIDE_ALL &quot;storage_hide_all&quot;
+(newstate)
+/#define COMSIG_TRY_STORAGE_SET_LOCKSTATE &quot;storage_lock_set_state&quot;
+() - returns bool. MUST CHECK IF STORAGE IS THERE FIRST!
+/#define COMSIG_IS_STORAGE_LOCKED &quot;storage_get_lockstate&quot;
+(type, atom/destination, amount = INFINITY, check_adjacent, force, mob/user, list/inserted) - returns bool - type can be a list of types.
+/#define COMSIG_TRY_STORAGE_TAKE_TYPE &quot;storage_take_type&quot;
+(type, amount = INFINITY, force = FALSE). Force will ignore max_items, and amount is normally clamped to max_items.
+/#define COMSIG_TRY_STORAGE_FILL_TYPE &quot;storage_fill_type&quot;
+(obj, new_loc, force = FALSE) - returns bool
+/#define COMSIG_TRY_STORAGE_TAKE &quot;storage_take_obj&quot;
+(loc) - returns bool - if loc is null it will dump at parent location.
+/#define COMSIG_TRY_STORAGE_QUICK_EMPTY &quot;storage_quick_empty&quot;
+(list/list_to_inject_results_into, recursively_search_inside_storages = TRUE)
+/#define COMSIG_TRY_STORAGE_RETURN_INVENTORY &quot;storage_return_inventory&quot;
+(obj/item/insertion_candidate, mob/user, silent) - returns bool
+/#define COMSIG_TRY_STORAGE_CAN_INSERT &quot;storage_can_equip&quot;
+From base of atom/movable/on_enter_storage(): (datum/component/storage/concrete/master_storage)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_storage.html#define/COMSIG_STORAGE_EXITED">COMSIG_STORAGE_EXITED</a></th><td>From base of atom/movable/on_exit_storage(): (datum/component/storage/concrete/master_storage)</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/COMSIG_STORAGE_ENTERED"><aside class="declaration">#define </aside>COMSIG_STORAGE_ENTERED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_storage.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_storage.dm 36"/></a>
+    </h3>
+    <p>() - returns bool.
+/#define COMSIG_CONTAINS_STORAGE &quot;is_storage&quot;
+(obj/item/inserting, mob/user, silent, force) - returns bool
+/#define COMSIG_TRY_STORAGE_INSERT &quot;storage_try_insert&quot;
+(mob/show_to, force) - returns bool.
+/#define COMSIG_TRY_STORAGE_SHOW &quot;storage_show_to&quot;
+(mob/hide_from) - returns bool
+/#define COMSIG_TRY_STORAGE_HIDE_FROM &quot;storage_hide_from&quot;
+Returns bool
+/#define COMSIG_TRY_STORAGE_HIDE_ALL &quot;storage_hide_all&quot;
+(newstate)
+/#define COMSIG_TRY_STORAGE_SET_LOCKSTATE &quot;storage_lock_set_state&quot;
+() - returns bool. MUST CHECK IF STORAGE IS THERE FIRST!
+/#define COMSIG_IS_STORAGE_LOCKED &quot;storage_get_lockstate&quot;
+(type, atom/destination, amount = INFINITY, check_adjacent, force, mob/user, list/inserted) - returns bool - type can be a list of types.
+/#define COMSIG_TRY_STORAGE_TAKE_TYPE &quot;storage_take_type&quot;
+(type, amount = INFINITY, force = FALSE). Force will ignore max_items, and amount is normally clamped to max_items.
+/#define COMSIG_TRY_STORAGE_FILL_TYPE &quot;storage_fill_type&quot;
+(obj, new_loc, force = FALSE) - returns bool
+/#define COMSIG_TRY_STORAGE_TAKE &quot;storage_take_obj&quot;
+(loc) - returns bool - if loc is null it will dump at parent location.
+/#define COMSIG_TRY_STORAGE_QUICK_EMPTY &quot;storage_quick_empty&quot;
+(list/list_to_inject_results_into, recursively_search_inside_storages = TRUE)
+/#define COMSIG_TRY_STORAGE_RETURN_INVENTORY &quot;storage_return_inventory&quot;
+(obj/item/insertion_candidate, mob/user, silent) - returns bool
+/#define COMSIG_TRY_STORAGE_CAN_INSERT &quot;storage_can_equip&quot;
+From base of atom/movable/on_enter_storage(): (datum/component/storage/concrete/master_storage)</p><h3 id="define/COMSIG_STORAGE_EXITED"><aside class="declaration">#define </aside>COMSIG_STORAGE_EXITED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_storage.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_storage.dm 38"/></a>
+    </h3>
+    <p>From base of atom/movable/on_exit_storage(): (datum/component/storage/concrete/master_storage)</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

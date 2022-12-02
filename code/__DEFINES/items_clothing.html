@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;items_clothing.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/items_clothing.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/items_clothing.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/SHOES_SLOWDOWN">SHOES_SLOWDOWN</a></th><td>How much shoes slow you down by default. Negative values speed you up.</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/CANDLE_LUM">CANDLE_LUM</a></th><td>For how bright candles are.</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/HAZARD_HIGH_PRESSURE">HAZARD_HIGH_PRESSURE</a></th><td>This determines at what pressure the ultra-high pressure red icon is displayed. (This one is set as a constant)</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/WARNING_HIGH_PRESSURE">WARNING_HIGH_PRESSURE</a></th><td>This determines when the orange pressure icon is displayed (it is 0.7 * HAZARD_HIGH_PRESSURE)</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/WARNING_LOW_PRESSURE">WARNING_LOW_PRESSURE</a></th><td>This is when the gray low pressure icon is displayed. (it is 2.5 * HAZARD_LOW_PRESSURE)</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/HAZARD_LOW_PRESSURE">HAZARD_LOW_PRESSURE</a></th><td>This is when the black ultra-low pressure icon is displayed. (This one is set as a constant)</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/TEMPERATURE_DAMAGE_COEFFICIENT">TEMPERATURE_DAMAGE_COEFFICIENT</a></th><td>This is used in handle_temperature_damage() for humans, and in reagents that affect body temperature. Temperature damage is multiplied by this amount.</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/BODYTEMP_AUTORECOVERY_DIVISOR">BODYTEMP_AUTORECOVERY_DIVISOR</a></th><td>This is the divisor which handles how much of the temperature difference between the current body temperature and 310.15K (optimal temperature) humans auto-regenerate each tick. The higher the number, the slower the recovery. This is applied each tick, so long as the mob is alive.</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/BODYTEMP_AUTORECOVERY_MINIMUM">BODYTEMP_AUTORECOVERY_MINIMUM</a></th><td>Minimum amount of kelvin moved toward 310.15K per tick. So long as abs(310.15 - bodytemp) is more than 50.</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/BODYTEMP_COLD_DIVISOR">BODYTEMP_COLD_DIVISOR</a></th><td>Similar to the BODYTEMP_AUTORECOVERY_DIVISOR, but this is the divisor which is applied at the stage that follows autorecovery. This is the divisor which comes into play when the human's loc temperature is lower than their body temperature. Make it lower to lose bodytemp faster.</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/BODYTEMP_HEAT_DIVISOR">BODYTEMP_HEAT_DIVISOR</a></th><td>Similar to the BODYTEMP_AUTORECOVERY_DIVISOR, but this is the divisor which is applied at the stage that follows autorecovery. This is the divisor which comes into play when the human's loc temperature is higher than their body temperature. Make it lower to gain bodytemp faster.</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/BODYTEMP_COOLING_MAX">BODYTEMP_COOLING_MAX</a></th><td>The maximum number of degrees that your body can cool down in 1 tick, when in a cold area.</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/BODYTEMP_HEATING_MAX">BODYTEMP_HEATING_MAX</a></th><td>The maximum number of degrees that your body can heat up in 1 tick,   when in a hot  area.</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/BODYTEMP_HEAT_DAMAGE_LIMIT">BODYTEMP_HEAT_DAMAGE_LIMIT</a></th><td>The limit the human body can take before it starts taking damage from heat.</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/BODYTEMP_COLD_DAMAGE_LIMIT">BODYTEMP_COLD_DAMAGE_LIMIT</a></th><td>The limit the human body can take before it starts taking damage from coldness.</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE">SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE</a></th><td>What min_cold_protection_temperature is set to for space-helmet quality headwear. MUST NOT BE 0.</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE">SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE</a></th><td>What min_cold_protection_temperature is set to for space-suit quality jumpsuits or suits. MUST NOT BE 0.</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/HELMET_MIN_COLD_PROTECTION_TEMPERATURE">HELMET_MIN_COLD_PROTECTION_TEMPERATURE</a></th><td>For normal helmets.</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/ARMOR_MIN_COLD_PROTECTION_TEMPERATURE">ARMOR_MIN_COLD_PROTECTION_TEMPERATURE</a></th><td>For armor.</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/GLOVES_MIN_COLD_PROTECTION_TEMPERATURE">GLOVES_MIN_COLD_PROTECTION_TEMPERATURE</a></th><td>For some gloves.</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/SHOE_MIN_COLD_PROTECTION_TEMPERATURE">SHOE_MIN_COLD_PROTECTION_TEMPERATURE</a></th><td>For shoes.</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE">SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE</a></th><td>These need better heat protect, but not as good heat protect as firesuits.</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE">FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE</a></th><td>What max_heat_protection_temperature is set to for firesuit quality headwear. MUST NOT BE 0.</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE">FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE</a></th><td>For fire-helmet quality items. (Red and white hardhats)</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/HELMET_MAX_HEAT_PROTECTION_TEMPERATURE">HELMET_MAX_HEAT_PROTECTION_TEMPERATURE</a></th><td>For normal helmets.</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE">ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE</a></th><td>For armor.</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE">GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE</a></th><td>For some gloves.</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/SHOE_MAX_HEAT_PROTECTION_TEMPERATURE">SHOE_MAX_HEAT_PROTECTION_TEMPERATURE</a></th><td>For shoes.</td></tr>
+        <tr><th><a href="code/__DEFINES/items_clothing.html#define/FIRE_MAX_FIRESUIT_STACKS">FIRE_MAX_FIRESUIT_STACKS</a></th><td>If the number of stacks goes above this firesuits won't protect you anymore. If not, you can walk around while on fire like a badass.</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE"><aside class="declaration">#define </aside>ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 70"/></a>
+    </h3>
+    <p>For armor.</p><h3 id="define/ARMOR_MIN_COLD_PROTECTION_TEMPERATURE"><aside class="declaration">#define </aside>ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 56"/></a>
+    </h3>
+    <p>For armor.</p><h3 id="define/BODYTEMP_AUTORECOVERY_DIVISOR"><aside class="declaration">#define </aside>BODYTEMP_AUTORECOVERY_DIVISOR
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 34"/></a>
+    </h3>
+    <p>This is the divisor which handles how much of the temperature difference between the current body temperature and 310.15K (optimal temperature) humans auto-regenerate each tick. The higher the number, the slower the recovery. This is applied each tick, so long as the mob is alive.</p><h3 id="define/BODYTEMP_AUTORECOVERY_MINIMUM"><aside class="declaration">#define </aside>BODYTEMP_AUTORECOVERY_MINIMUM
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 36"/></a>
+    </h3>
+    <p>Minimum amount of kelvin moved toward 310.15K per tick. So long as abs(310.15 - bodytemp) is more than 50.</p><h3 id="define/BODYTEMP_COLD_DAMAGE_LIMIT"><aside class="declaration">#define </aside>BODYTEMP_COLD_DAMAGE_LIMIT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 48"/></a>
+    </h3>
+    <p>The limit the human body can take before it starts taking damage from coldness.</p><h3 id="define/BODYTEMP_COLD_DIVISOR"><aside class="declaration">#define </aside>BODYTEMP_COLD_DIVISOR
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 38"/></a>
+    </h3>
+    <p>Similar to the BODYTEMP_AUTORECOVERY_DIVISOR, but this is the divisor which is applied at the stage that follows autorecovery. This is the divisor which comes into play when the human's loc temperature is lower than their body temperature. Make it lower to lose bodytemp faster.</p><h3 id="define/BODYTEMP_COOLING_MAX"><aside class="declaration">#define </aside>BODYTEMP_COOLING_MAX
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 42"/></a>
+    </h3>
+    <p>The maximum number of degrees that your body can cool down in 1 tick, when in a cold area.</p><h3 id="define/BODYTEMP_HEATING_MAX"><aside class="declaration">#define </aside>BODYTEMP_HEATING_MAX
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 44"/></a>
+    </h3>
+    <p>The maximum number of degrees that your body can heat up in 1 tick,   when in a hot  area.</p><h3 id="define/BODYTEMP_HEAT_DAMAGE_LIMIT"><aside class="declaration">#define </aside>BODYTEMP_HEAT_DAMAGE_LIMIT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 46"/></a>
+    </h3>
+    <p>The limit the human body can take before it starts taking damage from heat.</p><h3 id="define/BODYTEMP_HEAT_DIVISOR"><aside class="declaration">#define </aside>BODYTEMP_HEAT_DIVISOR
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 40"/></a>
+    </h3>
+    <p>Similar to the BODYTEMP_AUTORECOVERY_DIVISOR, but this is the divisor which is applied at the stage that follows autorecovery. This is the divisor which comes into play when the human's loc temperature is higher than their body temperature. Make it lower to gain bodytemp faster.</p><h3 id="define/CANDLE_LUM"><aside class="declaration">#define </aside>CANDLE_LUM
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 5"/></a>
+    </h3>
+    <p>For how bright candles are.</p><h3 id="define/FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE"><aside class="declaration">#define </aside>FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 64"/></a>
+    </h3>
+    <p>What max_heat_protection_temperature is set to for firesuit quality headwear. MUST NOT BE 0.</p><h3 id="define/FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE"><aside class="declaration">#define </aside>FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 66"/></a>
+    </h3>
+    <p>For fire-helmet quality items. (Red and white hardhats)</p><h3 id="define/FIRE_MAX_FIRESUIT_STACKS"><aside class="declaration">#define </aside>FIRE_MAX_FIRESUIT_STACKS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 79"/></a>
+    </h3>
+    <p>If the number of stacks goes above this firesuits won't protect you anymore. If not, you can walk around while on fire like a badass.</p><h3 id="define/GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE"><aside class="declaration">#define </aside>GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 72"/></a>
+    </h3>
+    <p>For some gloves.</p><h3 id="define/GLOVES_MIN_COLD_PROTECTION_TEMPERATURE"><aside class="declaration">#define </aside>GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 58"/></a>
+    </h3>
+    <p>For some gloves.</p><h3 id="define/HAZARD_HIGH_PRESSURE"><aside class="declaration">#define </aside>HAZARD_HIGH_PRESSURE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 24"/></a>
+    </h3>
+    <p>This determines at what pressure the ultra-high pressure red icon is displayed. (This one is set as a constant)</p><h3 id="define/HAZARD_LOW_PRESSURE"><aside class="declaration">#define </aside>HAZARD_LOW_PRESSURE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 30"/></a>
+    </h3>
+    <p>This is when the black ultra-low pressure icon is displayed. (This one is set as a constant)</p><h3 id="define/HELMET_MAX_HEAT_PROTECTION_TEMPERATURE"><aside class="declaration">#define </aside>HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 68"/></a>
+    </h3>
+    <p>For normal helmets.</p><h3 id="define/HELMET_MIN_COLD_PROTECTION_TEMPERATURE"><aside class="declaration">#define </aside>HELMET_MIN_COLD_PROTECTION_TEMPERATURE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 54"/></a>
+    </h3>
+    <p>For normal helmets.</p><h3 id="define/SHOES_SLOWDOWN"><aside class="declaration">#define </aside>SHOES_SLOWDOWN
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 3"/></a>
+    </h3>
+    <p>How much shoes slow you down by default. Negative values speed you up.</p><h3 id="define/SHOE_MAX_HEAT_PROTECTION_TEMPERATURE"><aside class="declaration">#define </aside>SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 74"/></a>
+    </h3>
+    <p>For shoes.</p><h3 id="define/SHOE_MIN_COLD_PROTECTION_TEMPERATURE"><aside class="declaration">#define </aside>SHOE_MIN_COLD_PROTECTION_TEMPERATURE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 60"/></a>
+    </h3>
+    <p>For shoes.</p><h3 id="define/SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE"><aside class="declaration">#define </aside>SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 50"/></a>
+    </h3>
+    <p>What min_cold_protection_temperature is set to for space-helmet quality headwear. MUST NOT BE 0.</p><h3 id="define/SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE"><aside class="declaration">#define </aside>SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 62"/></a>
+    </h3>
+    <p>These need better heat protect, but not as good heat protect as firesuits.</p><h3 id="define/SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE"><aside class="declaration">#define </aside>SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 52"/></a>
+    </h3>
+    <p>What min_cold_protection_temperature is set to for space-suit quality jumpsuits or suits. MUST NOT BE 0.</p><h3 id="define/TEMPERATURE_DAMAGE_COEFFICIENT"><aside class="declaration">#define </aside>TEMPERATURE_DAMAGE_COEFFICIENT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 32"/></a>
+    </h3>
+    <p>This is used in handle_temperature_damage() for humans, and in reagents that affect body temperature. Temperature damage is multiplied by this amount.</p><h3 id="define/WARNING_HIGH_PRESSURE"><aside class="declaration">#define </aside>WARNING_HIGH_PRESSURE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 26"/></a>
+    </h3>
+    <p>This determines when the orange pressure icon is displayed (it is 0.7 * HAZARD_HIGH_PRESSURE)</p><h3 id="define/WARNING_LOW_PRESSURE"><aside class="declaration">#define </aside>WARNING_LOW_PRESSURE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/items_clothing.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;items_clothing.dm 28"/></a>
+    </h3>
+    <p>This is when the gray low pressure icon is displayed. (it is 2.5 * HAZARD_LOW_PRESSURE)</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;_lists.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/_lists.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/_lists.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_lists.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_lists.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/_lists.html#define/DEFAULTPICK">DEFAULTPICK</a></th><td>Picks from the list, with some safeties, and returns the &quot;default&quot; arg if it fails</td></tr>
+        <tr><th><a href="code/__DEFINES/_lists.html#define/LAZYINITLIST">LAZYINITLIST</a></th><td>Ensures L is initailized after this point</td></tr>
+        <tr><th><a href="code/__DEFINES/_lists.html#define/UNSETEMPTY">UNSETEMPTY</a></th><td>Sets a L back to null iff it is empty</td></tr>
+        <tr><th><a href="code/__DEFINES/_lists.html#define/LAZYREMOVE">LAZYREMOVE</a></th><td>Removes I from list L, and sets I to null if it is now empty</td></tr>
+        <tr><th><a href="code/__DEFINES/_lists.html#define/LAZYADD">LAZYADD</a></th><td>Adds I to L, initalizing I if necessary</td></tr>
+        <tr><th><a href="code/__DEFINES/_lists.html#define/LAZYDISTINCTADD">LAZYDISTINCTADD</a></th><td>Adds I to L, initalizing L if necessary, if I is not already in L</td></tr>
+        <tr><th><a href="code/__DEFINES/_lists.html#define/LAZYOR">LAZYOR</a></th><td>please use LAZYDISTINCTADD instead, this is juts an alias for tgcode ports</td></tr>
+        <tr><th><a href="code/__DEFINES/_lists.html#define/LAZYACCESS">LAZYACCESS</a></th><td>Reads I from L safely - Works with both associative and traditional lists.</td></tr>
+        <tr><th><a href="code/__DEFINES/_lists.html#define/LAZYSET">LAZYSET</a></th><td>Turns LAZYINITLIST(L) L[K] = V into ...  for associated lists</td></tr>
+        <tr><th><a href="code/__DEFINES/_lists.html#define/LAZYLEN">LAZYLEN</a></th><td>Reads the length of L, returning 0 if null</td></tr>
+        <tr><th><a href="code/__DEFINES/_lists.html#define/LAZYNULL">LAZYNULL</a></th><td>Sets a list to null</td></tr>
+        <tr><th><a href="code/__DEFINES/_lists.html#define/LAZYCLEARLIST">LAZYCLEARLIST</a></th><td>Null-safe L.Cut()</td></tr>
+        <tr><th><a href="code/__DEFINES/_lists.html#define/LAZYCOPY">LAZYCOPY</a></th><td>Null-safe L.Copy()</td></tr>
+        <tr><th><a href="code/__DEFINES/_lists.html#define/SANITIZE_LIST">SANITIZE_LIST</a></th><td>Reads L or an empty list if L is not a list.  Note: Does NOT assign, L may be an expression.</td></tr>
+        <tr><th><a href="code/__DEFINES/_lists.html#define/COMPARE_KEY">COMPARE_KEY</a></th><td>Passed into BINARY_INSERT to compare keys</td></tr>
+        <tr><th><a href="code/__DEFINES/_lists.html#define/COMPARE_VALUE">COMPARE_VALUE</a></th><td>Passed into BINARY_INSERT to compare values</td></tr>
+        <tr><th><a href="code/__DEFINES/_lists.html#define/BINARY_INSERT">BINARY_INSERT</a></th><td>Binary search sorted insert
+INPUT: Object to be inserted
+LIST: List to insert object into
+TYPECONT: The typepath of the contents of the list
+COMPARE: The object to compare against, usualy the same as INPUT
+COMPARISON: The variable on the objects to compare
+COMPTYPE: How should the values be compared? Either COMPARE_KEY or COMPARE_VALUE.</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/BINARY_INSERT"><aside class="declaration">#define </aside>BINARY_INSERT
+            <aside>(INPUT, LIST, TYPECONT, COMPARE, COMPARISON, COMPTYPE)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_lists.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_lists.dm 57"/></a>
+    </h3>
+    <p>Binary search sorted insert
+INPUT: Object to be inserted
+LIST: List to insert object into
+TYPECONT: The typepath of the contents of the list
+COMPARE: The object to compare against, usualy the same as INPUT
+COMPARISON: The variable on the objects to compare
+COMPTYPE: How should the values be compared? Either COMPARE_KEY or COMPARE_VALUE.</p><h3 id="define/COMPARE_KEY"><aside class="declaration">#define </aside>COMPARE_KEY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_lists.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_lists.dm 44"/></a>
+    </h3>
+    <p>Passed into BINARY_INSERT to compare keys</p><h3 id="define/COMPARE_VALUE"><aside class="declaration">#define </aside>COMPARE_VALUE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_lists.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_lists.dm 46"/></a>
+    </h3>
+    <p>Passed into BINARY_INSERT to compare values</p><h3 id="define/DEFAULTPICK"><aside class="declaration">#define </aside>DEFAULTPICK
+            <aside>(L, default)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_lists.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_lists.dm 5"/></a>
+    </h3>
+    <p>Picks from the list, with some safeties, and returns the &quot;default&quot; arg if it fails</p><h3 id="define/LAZYACCESS"><aside class="declaration">#define </aside>LAZYACCESS
+            <aside>(L, I)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_lists.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_lists.dm 20"/></a>
+    </h3>
+    <p>Reads I from L safely - Works with both associative and traditional lists.</p><h3 id="define/LAZYADD"><aside class="declaration">#define </aside>LAZYADD
+            <aside>(L, I)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_lists.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_lists.dm 13"/></a>
+    </h3>
+    <p>Adds I to L, initalizing I if necessary</p><h3 id="define/LAZYCLEARLIST"><aside class="declaration">#define </aside>LAZYCLEARLIST
+            <aside>(L)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_lists.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_lists.dm 28"/></a>
+    </h3>
+    <p>Null-safe L.Cut()</p><h3 id="define/LAZYCOPY"><aside class="declaration">#define </aside>LAZYCOPY
+            <aside>(L)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_lists.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_lists.dm 30"/></a>
+    </h3>
+    <p>Null-safe L.Copy()</p><h3 id="define/LAZYDISTINCTADD"><aside class="declaration">#define </aside>LAZYDISTINCTADD
+            <aside>(L, I)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_lists.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_lists.dm 15"/></a>
+    </h3>
+    <p>Adds I to L, initalizing L if necessary, if I is not already in L</p><h3 id="define/LAZYINITLIST"><aside class="declaration">#define </aside>LAZYINITLIST
+            <aside>(L)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_lists.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_lists.dm 7"/></a>
+    </h3>
+    <p>Ensures L is initailized after this point</p><h3 id="define/LAZYLEN"><aside class="declaration">#define </aside>LAZYLEN
+            <aside>(L)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_lists.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_lists.dm 24"/></a>
+    </h3>
+    <p>Reads the length of L, returning 0 if null</p><h3 id="define/LAZYNULL"><aside class="declaration">#define </aside>LAZYNULL
+            <aside>(L)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_lists.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_lists.dm 26"/></a>
+    </h3>
+    <p>Sets a list to null</p><h3 id="define/LAZYOR"><aside class="declaration">#define </aside>LAZYOR
+            <aside>(L, I)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_lists.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_lists.dm 17"/></a>
+    </h3>
+    <p>please use LAZYDISTINCTADD instead, this is juts an alias for tgcode ports</p><h3 id="define/LAZYREMOVE"><aside class="declaration">#define </aside>LAZYREMOVE
+            <aside>(L, I)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_lists.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_lists.dm 11"/></a>
+    </h3>
+    <p>Removes I from list L, and sets I to null if it is now empty</p><h3 id="define/LAZYSET"><aside class="declaration">#define </aside>LAZYSET
+            <aside>(L, K, V)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_lists.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_lists.dm 22"/></a>
+    </h3>
+    <p>Turns LAZYINITLIST(L) L[K] = V into ...  for associated lists</p><h3 id="define/SANITIZE_LIST"><aside class="declaration">#define </aside>SANITIZE_LIST
+            <aside>(L)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_lists.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_lists.dm 32"/></a>
+    </h3>
+    <p>Reads L or an empty list if L is not a list.  Note: Does NOT assign, L may be an expression.</p><h3 id="define/UNSETEMPTY"><aside class="declaration">#define </aside>UNSETEMPTY
+            <aside>(L)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/_lists.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_lists.dm 9"/></a>
+    </h3>
+    <p>Sets a L back to null iff it is empty</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

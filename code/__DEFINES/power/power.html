@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;power&#x2F;power.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/power/power.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/power/power.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/power/power.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;power&#x2F;power.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/power/power.html#define/ENUM_POWER_UNIT_GENERIC">ENUM_POWER_UNIT_GENERIC</a></th><td><strong>MASTER POWER/BALANCING FILE</strong></td></tr>
+        <tr><th>/proc/<a href="global.html#proc/render_power">render_power</a></th>
+                <td>renders power unit</td></tr>
+        <tr><th><a href="code/__DEFINES/power/power.html#define/POWER_UNIT_UNIVERSAL_ENERGY">POWER_UNIT_UNIVERSAL_ENERGY</a></th><td>used in drain_energy, use_energy</td></tr>
+        <tr><th><a href="code/__DEFINES/power/power.html#define/POWER_UNIT_UNIVERSAL_FLOW">POWER_UNIT_UNIVERSAL_FLOW</a></th><td>used in use_power</td></tr>
+        <tr><th><a href="code/__DEFINES/power/power.html#define/DYNAMIC_KJ_TO_CELL_UNITS">DYNAMIC_KJ_TO_CELL_UNITS</a></th><td>OLD CALCS
+translates Watt into Kilowattminutes with respect to machinery schedule_interval ~(2s<em>1W</em>1min/60s)
+#define SMESRATE 0.03333
+#define SMESMAXCHARGELEVEL 250000
+#define SMESMAXOUTPUT 250000</td></tr>
+        <tr><th><a href="code/__DEFINES/power/power.html#define/DYNAMIC_W_TO_CELL_UNITS">DYNAMIC_W_TO_CELL_UNITS</a></th><td>dt in seconds</td></tr>
+        <tr><th><a href="code/__DEFINES/power/power.html#define/DYNAMIC_KW_TO_CELL_UNITS">DYNAMIC_KW_TO_CELL_UNITS</a></th><td>dt in seconds</td></tr>
+        <tr><th><a href="code/__DEFINES/power/power.html#define/DYNAMIC_CELL_UNITS_TO_W">DYNAMIC_CELL_UNITS_TO_W</a></th><td>dt in &quot;seconds this will be drained over&quot; - usually 1</td></tr>
+        <tr><th><a href="code/__DEFINES/power/power.html#define/DYNAMIC_CELL_UNITS_TO_KW">DYNAMIC_CELL_UNITS_TO_KW</a></th><td>dt in &quot;seconds this will sbe drained over&quot; - usually 1</td></tr>
+        <tr><th><a href="code/__DEFINES/power/power.html#define/RECHARGER_CHEAT_FACTOR">RECHARGER_CHEAT_FACTOR</a></th><td>OLD CALCS FOR ABOVE
+Multiplier for watts per tick &lt;&gt; cell storage (e.g., 0.02 means if there is a load of 1000 watts, 20 units will be taken from a cell per second)
+= 50Ws/u
+#define CELLRATE 0.002 // It's a conversion constant. power_used*CELLRATE = charge_provided, or charge_used/CELLRATE = power_provided</td></tr>
+        <tr><th><a href="code/__DEFINES/power/power.html#define/KILOWATTS">KILOWATTS</a></th><td>LEGACY ENUMS</td></tr>
+        <tr><th><a href="code/__DEFINES/power/power.html#define/CELL_COST_SHIELD_DIFFUSION">CELL_COST_SHIELD_DIFFUSION</a></th><td>BALANCING - CELL AND EQUIPMENT
+cost of shield difussion</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/CELL_COST_SHIELD_DIFFUSION"><aside class="declaration">#define </aside>CELL_COST_SHIELD_DIFFUSION
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/power/power.dm#L225">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;power&#x2F;power.dm 225"/></a>
+    </h3>
+    <p>BALANCING - CELL AND EQUIPMENT
+cost of shield difussion</p><h3 id="define/DYNAMIC_CELL_UNITS_TO_KW"><aside class="declaration">#define </aside>DYNAMIC_CELL_UNITS_TO_KW
+            <aside>(U, DT)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/power/power.dm#L167">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;power&#x2F;power.dm 167"/></a>
+    </h3>
+    <p>dt in &quot;seconds this will sbe drained over&quot; - usually 1</p><h3 id="define/DYNAMIC_CELL_UNITS_TO_W"><aside class="declaration">#define </aside>DYNAMIC_CELL_UNITS_TO_W
+            <aside>(U, DT)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/power/power.dm#L165">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;power&#x2F;power.dm 165"/></a>
+    </h3>
+    <p>dt in &quot;seconds this will be drained over&quot; - usually 1</p><h3 id="define/DYNAMIC_KJ_TO_CELL_UNITS"><aside class="declaration">#define </aside>DYNAMIC_KJ_TO_CELL_UNITS
+            <aside>(KJ)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/power/power.dm#L156">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;power&#x2F;power.dm 156"/></a>
+    </h3>
+    <p>OLD CALCS
+translates Watt into Kilowattminutes with respect to machinery schedule_interval ~(2s<em>1W</em>1min/60s)
+#define SMESRATE 0.03333
+#define SMESMAXCHARGELEVEL 250000
+#define SMESMAXOUTPUT 250000</p><h3 id="define/DYNAMIC_KW_TO_CELL_UNITS"><aside class="declaration">#define </aside>DYNAMIC_KW_TO_CELL_UNITS
+            <aside>(KW, DT)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/power/power.dm#L163">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;power&#x2F;power.dm 163"/></a>
+    </h3>
+    <p>dt in seconds</p><h3 id="define/DYNAMIC_W_TO_CELL_UNITS"><aside class="declaration">#define </aside>DYNAMIC_W_TO_CELL_UNITS
+            <aside>(W, DT)</aside>
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/power/power.dm#L161">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;power&#x2F;power.dm 161"/></a>
+    </h3>
+    <p>dt in seconds</p><h3 id="define/ENUM_POWER_UNIT_GENERIC"><aside class="declaration">#define </aside>ENUM_POWER_UNIT_GENERIC
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/power/power.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;power&#x2F;power.dm 20"/></a>
+    </h3>
+    <p><strong>MASTER POWER/BALANCING FILE</strong></p>
+<p>floating point only goes up to 16 million for precision</p>
+<p>hence, everything uses its own units and converts around
+mostly, anyways
+there is a standard use power proc that is &quot;universal&quot;-ish, which uses kJ, as that's the best &quot;center&quot; for one-off uses, or ticked uses.</p>
+<p>WARNING:
+You CANNOT JUST CHANGE THE UNITS.
+Math is usually hardcoded for performance, and because things like storage units require a &quot;time&quot; factor for conversion.</p>
+<p>FAQ:</p>
+<ul>
+<li>&quot;Why is there parentheses vomit everywhere?&quot;
+Because order of operations is important and we want our macros to not mess up when someone does, say, capacity - charge in SMES.</li>
+</ul><h3 id="define/KILOWATTS"><aside class="declaration">#define </aside>KILOWATTS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/power/power.dm#L218">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;power&#x2F;power.dm 218"/></a>
+    </h3>
+    <p>LEGACY ENUMS</p>
+<p>D O N O T U S E T H E S E</p>
+<p>The only exception is kilowatts, since machines/apcs opeate on units scale, meaning 1 to 16 million are reasonable!
+However when you get to &quot;MEGAWATTS&quot; you are cutting it way too close to comfort
+If something uses more than 1 MW it shouldn't be APC wired at all!</p><h3 id="define/POWER_UNIT_UNIVERSAL_ENERGY"><aside class="declaration">#define </aside>POWER_UNIT_UNIVERSAL_ENERGY
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/power/power.dm#L119">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;power&#x2F;power.dm 119"/></a>
+    </h3>
+    <p>used in drain_energy, use_energy</p><h3 id="define/POWER_UNIT_UNIVERSAL_FLOW"><aside class="declaration">#define </aside>POWER_UNIT_UNIVERSAL_FLOW
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/power/power.dm#L121">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;power&#x2F;power.dm 121"/></a>
+    </h3>
+    <p>used in use_power</p><h3 id="define/RECHARGER_CHEAT_FACTOR"><aside class="declaration">#define </aside>RECHARGER_CHEAT_FACTOR
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/power/power.dm#L202">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;power&#x2F;power.dm 202"/></a>
+    </h3>
+    <p>OLD CALCS FOR ABOVE
+Multiplier for watts per tick &lt;&gt; cell storage (e.g., 0.02 means if there is a load of 1000 watts, 20 units will be taken from a cell per second)
+= 50Ws/u
+#define CELLRATE 0.002 // It's a conversion constant. power_used*CELLRATE = charge_provided, or charge_used/CELLRATE = power_provided</p>
+<p>misc</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

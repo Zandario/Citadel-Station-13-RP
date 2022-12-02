@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;PriorityQueue - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+</header>
+<main>
+<h1>PriorityQueue <aside>/<a href="PriorityQueue.html">PriorityQueue</a></aside><aside> inherits /<a href="datum.html">datum</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/AStar.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;AStar.dm 41"/></a></h1>
+
+<p>A Star pathfinding algorithm</p>
+<p>Returns a list of tiles forming a path from A to B, taking dense objects as well as walls, and the orientation of
+windows along the route into account.</p>
+<p>Use:
+your_list = AStar(start location, end location, adjacent turf proc, distance proc)
+For the adjacent turf proc i wrote:
+/turf/proc/AdjacentTurfs
+And for the distance one i wrote:
+/turf/proc/Distance</p>
+<p>So an example use might be:</p>
+<p>src.path_list = AStar(src.loc, target.loc, /turf/proc/AdjacentTurfs, /turf/proc/Distance)</p>
+<p>Note: The path is returned starting at the END node, so i wrote reverselist to reverse it for ease of use.</p>
+<p>src.path_list = reverselist(src.pathlist)</p>
+<p>Then to start on the path, all you need to do it:
+Step_to(src, src.path_list[1])
+src.path_list -= src.path_list[1] or equivilent to remove that node from the list.</p>
+<p>Optional extras to add on (in order):
+MaxNodes: The maximum number of nodes the returned path can be (0 = infinite)
+Maxnodedepth: The maximum number of nodes to search (default: 30, 0 = infinite)
+Mintargetdist: Minimum distance to the target before path returns, could be used to get
+near a target, but not right to it - for an AI mob with a gun, for example.
+Minnodedist: Minimum number of nodes to return in the path, could be used to give a path a minimum
+length to avoid portals or something i guess?? Not that they're counted right now but w/e.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;clonepod - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/clonepod.html#var">Var Details</a> - <a href="obj/machinery/clonepod.html#proc">Proc Details</a></header>
+<main>
+<h1>clonepod <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/clonepod.html">clonepod</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/cloning.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;cloning.dm 27"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/clonepod.html#var/attempting">attempting</a></th><td>One clone attempt at a time thanks.</td></tr>
+            <tr><th><a href="obj/machinery/clonepod.html#var/connected">connected</a></th><td>So we remember the connected clone machine.</td></tr>
+            <tr><th><a href="obj/machinery/clonepod.html#var/container_limit">container_limit</a></th><td>How many beakers can the machine hold?</td></tr>
+            <tr><th><a href="obj/machinery/clonepod.html#var/containers">containers</a></th><td>Beakers for our liquid biomass.</td></tr>
+            <tr><th><a href="obj/machinery/clonepod.html#var/eject_wait">eject_wait</a></th><td>Don't eject them as soon as they are created.</td></tr>
+            <tr><th><a href="obj/machinery/clonepod.html#var/heal_level">heal_level</a></th><td>The clone is released once its health reaches this level.</td></tr>
+            <tr><th><a href="obj/machinery/clonepod.html#var/mess">mess</a></th><td>Need to clean out it if it's full of exploded clone.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/clonepod.html#proc/connected_message">connected_message</a></th><td>Put messages in the connected computer's temp var for display.</td></tr>
+            <tr><th><a href="obj/machinery/clonepod.html#proc/growclone">growclone</a></th><td>Start growing a human clone in the pod!</td></tr>
+            <tr><th><a href="obj/machinery/clonepod.html#proc/process">process</a></th><td>Grow clones to maturity then kick them out.  FREELOADERS</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/attempting"><aside class="declaration">var </aside>attempting
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/cloning.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;cloning.dm 46"/></a></h3>
+        <p>One clone attempt at a time thanks.</p><h3 id="var/connected"><aside class="declaration">var </aside>connected
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/computer/cloning</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/cloning.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;cloning.dm 42"/></a></h3>
+        <p>So we remember the connected clone machine.</p><h3 id="var/container_limit"><aside class="declaration">var </aside>container_limit
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/cloning.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;cloning.dm 52"/></a></h3>
+        <p>How many beakers can the machine hold?</p><h3 id="var/containers"><aside class="declaration">var </aside>containers
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/cloning.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;cloning.dm 50"/></a></h3>
+        <p>Beakers for our liquid biomass.</p><h3 id="var/eject_wait"><aside class="declaration">var </aside>eject_wait
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/cloning.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;cloning.dm 48"/></a></h3>
+        <p>Don't eject them as soon as they are created.</p><h3 id="var/heal_level"><aside class="declaration">var </aside>heal_level
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/cloning.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;cloning.dm 38"/></a></h3>
+        <p>The clone is released once its health reaches this level.</p><h3 id="var/mess"><aside class="declaration">var </aside>mess
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/cloning.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;cloning.dm 44"/></a></h3>
+        <p>Need to clean out it if it's full of exploded clone.</p><h2 id="proc">Proc Details</h2><h3 id="proc/connected_message"><aside class="declaration">proc </aside>connected_message<aside>(message) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/cloning.dm#L287">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;cloning.dm 287"/></a></aside>
+        </h3>
+        <p>Put messages in the connected computer's temp var for display.</p><h3 id="proc/growclone"><aside class="declaration">proc </aside>growclone<aside>(/<a href="datum.html">datum</a>/dna2/record/R) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/cloning.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;cloning.dm 73"/></a></aside>
+        </h3>
+        <p>Start growing a human clone in the pod!</p><h3 id="proc/process"><aside class="parent"><a title="/datum" href="datum.html#proc/process">&uarr;</a></aside>process<aside>(delta_time) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/game/machinery/cloning.dm#L175">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;cloning.dm 175"/></a></aside>
+        </h3>
+        <p>Grow clones to maturity then kick them out.  FREELOADERS</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

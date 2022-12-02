@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_global.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/dcs/signals/signals_global.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/dcs/signals/signals_global.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_global.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_global.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_global.html#define/COMSIG_GLOB_NEW_Z">COMSIG_GLOB_NEW_Z</a></th><td>From /obj/item/computer_hardware/hard_drive/proc/store_file: ()
+/#define COMSIG_MODULAR_COMPUTER_FILE_ADDING &quot;comsig_modular_computer_file_adding&quot;
+From /obj/item/computer_hardware/hard_drive/proc/store_file: ()
+/#define COMSIG_MODULAR_COMPUTER_FILE_ADDED &quot;comsig_modular_computer_file_adding&quot;
+From /obj/item/computer_hardware/hard_drive/proc/remove_file: ()
+/#define COMSIG_MODULAR_COMPUTER_FILE_DELETING &quot;comsig_modular_computer_file_deleting&quot;
+From /obj/item/computer_hardware/hard_drive/proc/store_file: ()
+/#define COMSIG_MODULAR_COMPUTER_FILE_DELETED &quot;comsig_modular_computer_file_adding&quot;
+! ## Global Signals</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/COMSIG_GLOB_NEW_Z"><aside class="declaration">#define </aside>COMSIG_GLOB_NEW_Z
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_global.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_global.dm 14"/></a>
+    </h3>
+    <p>From /obj/item/computer_hardware/hard_drive/proc/store_file: ()
+/#define COMSIG_MODULAR_COMPUTER_FILE_ADDING &quot;comsig_modular_computer_file_adding&quot;
+From /obj/item/computer_hardware/hard_drive/proc/store_file: ()
+/#define COMSIG_MODULAR_COMPUTER_FILE_ADDED &quot;comsig_modular_computer_file_adding&quot;
+From /obj/item/computer_hardware/hard_drive/proc/remove_file: ()
+/#define COMSIG_MODULAR_COMPUTER_FILE_DELETING &quot;comsig_modular_computer_file_deleting&quot;
+From /obj/item/computer_hardware/hard_drive/proc/store_file: ()
+/#define COMSIG_MODULAR_COMPUTER_FILE_DELETED &quot;comsig_modular_computer_file_adding&quot;
+! ## Global Signals</p>
+<ul>
+<li>These are signals which can be listened to by any component on any parent.</li>
+<li>Start global signals with &quot;!&quot;, this used to be necessary but now it's just a formatting choice.</li>
+</ul>
+<p>! ## Format:</p>
+<ul>
+<li>When the signal is called: (signal arguments)</li>
+<li>All signals send the source datum of the signal as the first argument.
+Called after a successful area creation by a mob: (area/created_area, area/old_area, mob/creator)
+/#define COMSIG_AREA_CREATED &quot;!mob_created_area&quot;
+Sent when a new z-level is created: (name, traits, z_type)</li>
+</ul></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

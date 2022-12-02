@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;dbcore - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/dbcore.html#proc">Proc Details</a></header>
+<main>
+<h1>dbcore <aside>/<a href="datum.html">datum</a>/<a href="datum/controller.html">controller</a>/<a href="datum/controller/subsystem.html">subsystem</a>/<a href="datum/controller/subsystem/dbcore.html">dbcore</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/dbcore/_dbcore.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;dbcore&#x2F;_dbcore.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/dbcore.html#proc/ExecuteQuery">ExecuteQuery</a></th><td>makes, and runs a query</td></tr>
+            <tr><th><a href="datum/controller/subsystem/dbcore.html#proc/NewQuery">NewQuery</a></th><td>makes a query</td></tr>
+            <tr><th><a href="datum/controller/subsystem/dbcore.html#proc/RunQuery">RunQuery</a></th><td>immediately runs a sql query with selected arguments
+always uses async queries
+will block the caller.</td></tr></table><h2 id="proc">Proc Details</h2><h3 id="proc/ExecuteQuery"><aside class="declaration">proc </aside>ExecuteQuery<aside>(sql_query, arguments) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/dbcore/_dbcore.dm#L203">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;dbcore&#x2F;_dbcore.dm 203"/></a></aside>
+        </h3>
+        <p>makes, and runs a query</p>
+<p><strong>you must qdel this query yourself.</strong></p>
+<p>@params</p>
+<ul>
+<li>sql_query - the query. use :arg for arguments</li>
+<li>arguments - keyed list</li>
+</ul><h3 id="proc/NewQuery"><aside class="declaration">proc </aside>NewQuery<aside>(sql_query, arguments) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/dbcore/_dbcore.dm#L186">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;dbcore&#x2F;_dbcore.dm 186"/></a></aside>
+        </h3>
+        <p>makes a query</p>
+<p><strong>you must qdel this query yourself.</strong></p>
+<p>@params</p>
+<ul>
+<li>sql_query - the query. use :arg for arguments</li>
+<li>arguments - keyed list</li>
+</ul><h3 id="proc/RunQuery"><aside class="declaration">proc </aside>RunQuery<aside>(sql_query, arguments) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/controllers/subsystem/dbcore/_dbcore.dm#L218">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;dbcore&#x2F;_dbcore.dm 218"/></a></aside>
+        </h3>
+        <p>immediately runs a sql query with selected arguments
+always uses async queries
+will block the caller.</p>
+<p>! do not use this proc for new things, this proc is bad practice.</p>
+<p><strong>warning</strong>: will delete the query right after the current set of procs run. USE NewQuery IF YOU WANT TO MANAGE THIS YOURSELF.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

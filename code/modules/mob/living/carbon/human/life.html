@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/modules/mob/living/carbon/human/life.html#define">Define Details</a></header>
+<main>
+<h1>code/modules/mob/living/carbon/human/life.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/life.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/modules/mob/living/carbon/human/life.html#define/HUMAN_MAX_OXYLOSS">HUMAN_MAX_OXYLOSS</a></th><td>Defines how much oxyloss humans can get per tick. A tile with no air at all (such as space) applies this value, otherwise it's a percentage of it.</td></tr>
+        <tr><th><a href="code/modules/mob/living/carbon/human/life.html#define/HUMAN_CRIT_MAX_OXYLOSS">HUMAN_CRIT_MAX_OXYLOSS</a></th><td>The amount of damage you'll get when in critical condition. We want this to be a 5 minute deal = 300s. There are 50HP to get through, so (1/6)*last_tick_duration per second. Breaths however only happen every 4 ticks. last_tick_duration = ~2.0 on average</td></tr>
+        <tr><th><a href="code/modules/mob/living/carbon/human/life.html#define/HEAT_DAMAGE_SYNTH">HEAT_DAMAGE_SYNTH</a></th><td>Amount of damage applied for synths experiencing heat just above 360.15k such as space walking</td></tr>
+        <tr><th><a href="code/modules/mob/living/carbon/human/life.html#define/HEAT_DAMAGE_LEVEL_1">HEAT_DAMAGE_LEVEL_1</a></th><td>Amount of damage applied when your body temperature just passes the 360.15k safety point</td></tr>
+        <tr><th><a href="code/modules/mob/living/carbon/human/life.html#define/HEAT_DAMAGE_LEVEL_2">HEAT_DAMAGE_LEVEL_2</a></th><td>Amount of damage applied when your body temperature passes the 400K point</td></tr>
+        <tr><th><a href="code/modules/mob/living/carbon/human/life.html#define/HEAT_DAMAGE_LEVEL_3">HEAT_DAMAGE_LEVEL_3</a></th><td>Amount of damage applied when your body temperature passes the 1000K point</td></tr>
+        <tr><th><a href="code/modules/mob/living/carbon/human/life.html#define/COLD_DAMAGE_LEVEL_1">COLD_DAMAGE_LEVEL_1</a></th><td>Amount of damage applied when your body temperature just passes the 260.15k safety point</td></tr>
+        <tr><th><a href="code/modules/mob/living/carbon/human/life.html#define/COLD_DAMAGE_LEVEL_2">COLD_DAMAGE_LEVEL_2</a></th><td>Amount of damage applied when your body temperature passes the 200K point</td></tr>
+        <tr><th><a href="code/modules/mob/living/carbon/human/life.html#define/COLD_DAMAGE_LEVEL_3">COLD_DAMAGE_LEVEL_3</a></th><td>Amount of damage applied when your body temperature passes the 120K point</td></tr>
+        <tr><th><a href="code/modules/mob/living/carbon/human/life.html#define/HEAT_GAS_DAMAGE_LEVEL_1">HEAT_GAS_DAMAGE_LEVEL_1</a></th><td>Amount of damage applied when the current breath's temperature just passes the 360.15k safety point</td></tr>
+        <tr><th><a href="code/modules/mob/living/carbon/human/life.html#define/HEAT_GAS_DAMAGE_LEVEL_2">HEAT_GAS_DAMAGE_LEVEL_2</a></th><td>Amount of damage applied when the current breath's temperature passes the 400K point</td></tr>
+        <tr><th><a href="code/modules/mob/living/carbon/human/life.html#define/HEAT_GAS_DAMAGE_LEVEL_3">HEAT_GAS_DAMAGE_LEVEL_3</a></th><td>Amount of damage applied when the current breath's temperature passes the 1000K point</td></tr>
+        <tr><th><a href="code/modules/mob/living/carbon/human/life.html#define/COLD_GAS_DAMAGE_LEVEL_1">COLD_GAS_DAMAGE_LEVEL_1</a></th><td>Amount of damage applied when the current breath's temperature just passes the 260.15k safety point</td></tr>
+        <tr><th><a href="code/modules/mob/living/carbon/human/life.html#define/COLD_GAS_DAMAGE_LEVEL_2">COLD_GAS_DAMAGE_LEVEL_2</a></th><td>Amount of damage applied when the current breath's temperature passes the 200K point</td></tr>
+        <tr><th><a href="code/modules/mob/living/carbon/human/life.html#define/COLD_GAS_DAMAGE_LEVEL_3">COLD_GAS_DAMAGE_LEVEL_3</a></th><td>Amount of damage applied when the current breath's temperature passes the 120K point</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/COLD_DAMAGE_LEVEL_1"><aside class="declaration">#define </aside>COLD_DAMAGE_LEVEL_1
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/life.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life.dm 17"/></a>
+    </h3>
+    <p>Amount of damage applied when your body temperature just passes the 260.15k safety point</p><h3 id="define/COLD_DAMAGE_LEVEL_2"><aside class="declaration">#define </aside>COLD_DAMAGE_LEVEL_2
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/life.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life.dm 19"/></a>
+    </h3>
+    <p>Amount of damage applied when your body temperature passes the 200K point</p><h3 id="define/COLD_DAMAGE_LEVEL_3"><aside class="declaration">#define </aside>COLD_DAMAGE_LEVEL_3
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/life.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life.dm 21"/></a>
+    </h3>
+    <p>Amount of damage applied when your body temperature passes the 120K point</p><h3 id="define/COLD_GAS_DAMAGE_LEVEL_1"><aside class="declaration">#define </aside>COLD_GAS_DAMAGE_LEVEL_1
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/life.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life.dm 30"/></a>
+    </h3>
+    <p>Amount of damage applied when the current breath's temperature just passes the 260.15k safety point</p><h3 id="define/COLD_GAS_DAMAGE_LEVEL_2"><aside class="declaration">#define </aside>COLD_GAS_DAMAGE_LEVEL_2
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/life.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life.dm 32"/></a>
+    </h3>
+    <p>Amount of damage applied when the current breath's temperature passes the 200K point</p><h3 id="define/COLD_GAS_DAMAGE_LEVEL_3"><aside class="declaration">#define </aside>COLD_GAS_DAMAGE_LEVEL_3
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/life.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life.dm 34"/></a>
+    </h3>
+    <p>Amount of damage applied when the current breath's temperature passes the 120K point</p><h3 id="define/HEAT_DAMAGE_LEVEL_1"><aside class="declaration">#define </aside>HEAT_DAMAGE_LEVEL_1
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/life.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life.dm 11"/></a>
+    </h3>
+    <p>Amount of damage applied when your body temperature just passes the 360.15k safety point</p><h3 id="define/HEAT_DAMAGE_LEVEL_2"><aside class="declaration">#define </aside>HEAT_DAMAGE_LEVEL_2
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/life.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life.dm 13"/></a>
+    </h3>
+    <p>Amount of damage applied when your body temperature passes the 400K point</p><h3 id="define/HEAT_DAMAGE_LEVEL_3"><aside class="declaration">#define </aside>HEAT_DAMAGE_LEVEL_3
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/life.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life.dm 15"/></a>
+    </h3>
+    <p>Amount of damage applied when your body temperature passes the 1000K point</p><h3 id="define/HEAT_DAMAGE_SYNTH"><aside class="declaration">#define </aside>HEAT_DAMAGE_SYNTH
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/life.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life.dm 9"/></a>
+    </h3>
+    <p>Amount of damage applied for synths experiencing heat just above 360.15k such as space walking</p><h3 id="define/HEAT_GAS_DAMAGE_LEVEL_1"><aside class="declaration">#define </aside>HEAT_GAS_DAMAGE_LEVEL_1
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/life.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life.dm 24"/></a>
+    </h3>
+    <p>Amount of damage applied when the current breath's temperature just passes the 360.15k safety point</p><h3 id="define/HEAT_GAS_DAMAGE_LEVEL_2"><aside class="declaration">#define </aside>HEAT_GAS_DAMAGE_LEVEL_2
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/life.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life.dm 26"/></a>
+    </h3>
+    <p>Amount of damage applied when the current breath's temperature passes the 400K point</p><h3 id="define/HEAT_GAS_DAMAGE_LEVEL_3"><aside class="declaration">#define </aside>HEAT_GAS_DAMAGE_LEVEL_3
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/life.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life.dm 28"/></a>
+    </h3>
+    <p>Amount of damage applied when the current breath's temperature passes the 1000K point</p><h3 id="define/HUMAN_CRIT_MAX_OXYLOSS"><aside class="declaration">#define </aside>HUMAN_CRIT_MAX_OXYLOSS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/life.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life.dm 7"/></a>
+    </h3>
+    <p>The amount of damage you'll get when in critical condition. We want this to be a 5 minute deal = 300s. There are 50HP to get through, so (1/6)*last_tick_duration per second. Breaths however only happen every 4 ticks. last_tick_duration = ~2.0 on average</p><h3 id="define/HUMAN_MAX_OXYLOSS"><aside class="declaration">#define </aside>HUMAN_MAX_OXYLOSS
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/living/carbon/human/life.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life.dm 5"/></a>
+    </h3>
+    <p>Defines how much oxyloss humans can get per tick. A tile with no air at all (such as space) applies this value, otherwise it's a percentage of it.</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

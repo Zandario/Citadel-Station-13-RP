@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__HELPERS&#x2F;sorts&#x2F;comparators.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+</header>
+<main>
+<h1>code/__HELPERS/sorts/comparators.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__HELPERS/sorts/comparators.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;sorts&#x2F;comparators.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><p>Standard Sort</p></td></tr>
+        <tr><th>/proc/<a href="global.html#proc/cmp_auto_compare">cmp_auto_compare</a></th>
+                <td>Record the legth of the combined runs. If i is the 3rd last run now, also slide over the last run
+(which isn't involved in this merge). The current run (i+1) goes away in any case.</td></tr>
+        <tr><td colspan="2"><p>Numbers</p>
+<p>Text</p>
+</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/cmp_datum_numeric_asc">cmp_datum_numeric_asc</a></th>
+                <td>Datum cmp with vars is always slower than a specialist cmp proc, use your judgement.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/cmp_subsystem_display">cmp_subsystem_display</a></th>
+                <td>Sorts subsystems alphabetically.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/cmp_subsystem_init">cmp_subsystem_init</a></th>
+                <td>Sorts subsystems by init_order.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/cmp_subsystem_priority">cmp_subsystem_priority</a></th>
+                <td>Sorts subsystems by priority.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/cmp_qdel_item_time">cmp_qdel_item_time</a></th>
+                <td>Sorts qdel statistics recorsd by time and count.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/cmp_job_datums">cmp_job_datums</a></th>
+                <td>Sorts jobs by department, and then by flag within department.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/cmp_generic_stat_item_time">cmp_generic_stat_item_time</a></th>
+                <td>Sorts entries in a performance stats list.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/cmp_recipe_complexity_dsc">cmp_recipe_complexity_dsc</a></th>
+                <td>Compares complexity of recipes for use in cooking, etc.
+This is for telling which recipe to make, not for showing things to the player.</td></tr>
+        <tr><td colspan="2"><p>Line Profiling</p>
+<p>Preferences</p>
+</td></tr></table></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

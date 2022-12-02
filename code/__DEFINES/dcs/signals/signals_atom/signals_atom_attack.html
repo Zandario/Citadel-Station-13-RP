@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_attack.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_attack.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.html#define/COMSIG_ATOM_ATTACK_GHOST">COMSIG_ATOM_ATTACK_GHOST</a></th><td>! ## Atom Attack Signals. Format:</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/COMSIG_ATOM_ATTACK_GHOST"><aside class="declaration">#define </aside>COMSIG_ATOM_ATTACK_GHOST
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_attack.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_attack.dm 39"/></a>
+    </h3>
+    <p>! ## Atom Attack Signals. Format:</p>
+<ul>
+<li>When the signal is called: (signal arguments)</li>
+<li>All signals send the source datum of the signal as the first argument
+From base of atom/attackby(): (/obj/item, /mob/living, params)
+/#define COMSIG_PARENT_ATTACKBY &quot;atom_attackby&quot;
+From base of [atom/proc/attacby_secondary()]: (/obj/item/weapon, /mob/user, params)
+/#define COMSIG_PARENT_ATTACKBY_SECONDARY &quot;atom_attackby_secondary&quot;
+From base of [/atom/proc/attack_hand_secondary]: (mob/user, list/modifiers) - Called when the atom receives a secondary unarmed attack.
+/#define COMSIG_ATOM_ATTACK_HAND_SECONDARY &quot;atom_attack_hand_secondary&quot;
+? Return this in response if you don't want afterattack to be called
+/#define COMPONENT_NO_AFTERATTACK (1&lt;&lt;0)
+From base of atom/attack_hulk(): (/mob/living/carbon/human)
+/#define COMSIG_ATOM_HULK_ATTACK &quot;hulk_attack&quot;
+From base of atom/animal_attack(): (/mob/user)
+/#define COMSIG_ATOM_ATTACK_ANIMAL &quot;attack_animal&quot;
+From base of atom/attack_basic_mob(): (/mob/user)
+/#define COMSIG_ATOM_ATTACK_BASIC_MOB &quot;attack_basic_mob&quot;
+From /atom/proc/atom_break: ()
+/#define COMSIG_ATOM_BREAK &quot;atom_break&quot;
+From base of [/atom/proc/atom_fix]: ()
+/#define COMSIG_ATOM_FIX &quot;atom_fix&quot;
+From base of [/atom/proc/update_integrity]: (old_value, new_value)
+/#define COMSIG_ATOM_INTEGRITY_CHANGED &quot;atom_integrity_changed&quot;
+From base of [/atom/proc/take_damage]: (damage_amount, damage_type, damage_flag, sound_effect, attack_dir, aurmor_penetration)
+/#define COMSIG_ATOM_TAKE_DAMAGE &quot;atom_take_damage&quot;
+? Return bitflags for the above signal which prevents the atom taking any damage.
+/#define COMPONENT_NO_TAKE_DAMAGE (1&lt;&lt;0)
+tool_act -&gt; pre_attack -&gt; target.attackby (item.attack) -&gt; afterattack
+? Ends the attack chain. If sent early might cause posterior attacks not to happen.
+/#define COMPONENT_CANCEL_ATTACK_CHAIN (1&lt;&lt;0)
+? Skips the specific attack step, continuing for the next one to happen.
+/#define COMPONENT_SKIP_ATTACK (1&lt;&lt;1)
+From base of atom/attack_ghost(): (mob/observer/dead/ghost)</li>
+</ul></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

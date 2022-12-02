@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_movement.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_movement.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/dcs/signals/signals_atom/signals_atom_movement.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_movement.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_movement.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_movement.html#define/COMSIG_ATOM_DIR_CHANGE">COMSIG_ATOM_DIR_CHANGE</a></th><td>! ## Atom Movement Signals. Format:</td></tr>
+        <tr><td colspan="2"><h2 id="atom-area-signals">Atom Area Signals.</h2></td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_movement.html#define/COMSIG_ATOM_ENTER_AREA">COMSIG_ATOM_ENTER_AREA</a></th><td>From base of area/Entered(): (/area)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_movement.html#define/COMSIG_ATOM_EXIT_AREA">COMSIG_ATOM_EXIT_AREA</a></th><td>From base of area/Exited(): (/area)</td></tr>
+        <tr><td colspan="2"><p>Relaymoves</p>
+</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_movement.html#define/COMSIG_ATOM_RELAYMOVE_FROM_BUCKLED">COMSIG_ATOM_RELAYMOVE_FROM_BUCKLED</a></th><td>Called from relaymove from buckled: (mob/M, dir)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_movement.html#define/COMPONENT_RELAYMOVE_HANDLED">COMPONENT_RELAYMOVE_HANDLED</a></th><td>handled - skip other logic</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/COMPONENT_RELAYMOVE_HANDLED"><aside class="declaration">#define </aside>COMPONENT_RELAYMOVE_HANDLED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_movement.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_movement.dm 52"/></a>
+    </h3>
+    <p>handled - skip other logic</p><h3 id="define/COMSIG_ATOM_DIR_CHANGE"><aside class="declaration">#define </aside>COMSIG_ATOM_DIR_CHANGE
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_movement.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_movement.dm 31"/></a>
+    </h3>
+    <p>! ## Atom Movement Signals. Format:</p>
+<ul>
+<li>When the signal is called: (signal arguments)</li>
+<li>All signals send the source datum of the signal as the first argument
+Signal sent out by an atom when it checks if it can be pulled, for additional checks
+/#define COMSIG_ATOM_CAN_BE_PULLED &quot;movable_can_be_pulled&quot;
+/#define COMSIG_ATOM_CANT_PULL (1&lt;&lt;0)
+Signal sent out by an atom when it is no longer being pulled by something else
+/#define COMSIG_ATOM_NO_LONGER_PULLED &quot;movable_no_longer_pulled&quot;
+Called for each movable in a turf contents on /turf/zImpact(): (atom/movable/A, levels)
+/#define COMSIG_ATOM_INTERCEPT_Z_FALL &quot;movable_intercept_z_impact&quot;
+Called on a movable (NOT living) when it starts pulling (atom/movable/pulled, state, force)
+/#define COMSIG_ATOM_START_PULL &quot;movable_start_pull&quot;
+Called on /living when someone starts pulling (atom/movable/pulled, state, force)
+/#define COMSIG_LIVING_START_PULL &quot;living_start_pull&quot;
+Called on /living when someone is pulled (mob/living/puller)
+/#define COMSIG_LIVING_GET_PULLED &quot;living_start_pulled&quot;
+Called on /living, when pull is attempted, but before it completes, from base of <a href="mob/living.html#proc/start_pulling" title="/mob/living">/mob/living/start_pulling</a>: (atom/movable/thing, force)
+/#define COMSIG_LIVING_TRY_PULL &quot;living_try_pull&quot;
+/#define COMSIG_LIVING_CANCEL_PULL (1&lt;&lt;0)
+Called from /mob/living/update_pull_movespeed
+/#define COMSIG_LIVING_UPDATING_PULL_MOVESPEED &quot;living_updating_pull_movespeed&quot;
+Called from /mob/living/PushAM -- Called when this mob is about to push a movable, but before it moves
+(atom/movable/being_pushed)
+/#define COMSIG_LIVING_PUSHING_MOVABLE &quot;living_pushing_movable&quot;
+From base of [/atom/proc/interact]: (mob/user)
+/#define COMSIG_ATOM_UI_INTERACT &quot;atom_ui_interact&quot;
+From base of atom/setDir(): (old_dir, new_dir). Called before the direction changes.</li>
+</ul><h3 id="define/COMSIG_ATOM_ENTER_AREA"><aside class="declaration">#define </aside>COMSIG_ATOM_ENTER_AREA
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_movement.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_movement.dm 44"/></a>
+    </h3>
+    <p>From base of area/Entered(): (/area)</p><h3 id="define/COMSIG_ATOM_EXIT_AREA"><aside class="declaration">#define </aside>COMSIG_ATOM_EXIT_AREA
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_movement.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_movement.dm 46"/></a>
+    </h3>
+    <p>From base of area/Exited(): (/area)</p><h3 id="define/COMSIG_ATOM_RELAYMOVE_FROM_BUCKLED"><aside class="declaration">#define </aside>COMSIG_ATOM_RELAYMOVE_FROM_BUCKLED
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_movement.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_movement.dm 50"/></a>
+    </h3>
+    <p>Called from relaymove from buckled: (mob/M, dir)</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

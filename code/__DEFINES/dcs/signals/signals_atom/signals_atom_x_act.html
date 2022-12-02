@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_x_act.dm - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_x_act.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/dcs/signals/signals_atom/signals_atom_x_act.dm 
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_x_act.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_x_act.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><h2 id="x-act-signals">/x_act Signals.</h2></td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_x_act.html#define/COMSIG_ATOM_EX_ACT">COMSIG_ATOM_EX_ACT</a></th><td>from base of atom/ex_act: (power, dir, wave datum)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_x_act.html#define/COMSIG_ATOM_EMP_ACT">COMSIG_ATOM_EMP_ACT</a></th><td>From the [LEGACY_EX_ACT] wrapper macro: (severity, target)
+/#define COMSIG_ATOM_LEGACY_EX_ACT &quot;atom_legacy_ex_act&quot;
+From base of atom/emp_act(): (severity)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_atom/signals_atom_x_act.html#define/COMSIG_ATOM_INTERCEPT_TELEPORT">COMSIG_ATOM_INTERCEPT_TELEPORT</a></th><td>From base of atom/fire_act(): (exposed_temperature, exposed_volume)
+/#define COMSIG_ATOM_FIRE_ACT &quot;atom_fire_act&quot;
+From base of atom/bullet_act(): (/obj/projectile, def_zone)
+/#define COMSIG_ATOM_BULLET_ACT &quot;atom_bullet_act&quot;
+From base of atom/CheckParts(): (list/parts_list, datum/crafting_recipe/R)
+/#define COMSIG_ATOM_CHECKPARTS &quot;atom_checkparts&quot;
+From base of atom/CheckParts(): (atom/movable/new_craft) - The atom has just been used in a crafting recipe and has been moved inside new_craft.
+/#define COMSIG_ATOM_USED_IN_CRAFT &quot;atom_used_in_craft&quot;
+From base of atom/blob_act(): (/obj/structure/blob)
+/#define COMSIG_ATOM_BLOB_ACT &quot;atom_blob_act&quot;
+/#define COMPONENT_CANCEL_BLOB_ACT (1&lt;&lt;0)
+From base of atom/acid_act(): (acidpwr, acid_volume)
+/#define COMSIG_ATOM_ACID_ACT &quot;atom_acid_act&quot;
+From base of atom/emag_act(): (/mob/user)
+/#define COMSIG_ATOM_EMAG_ACT &quot;atom_emag_act&quot;
+From base of atom/narsie_act(): ()
+/#define COMSIG_ATOM_NARSIE_ACT &quot;atom_narsie_act&quot;
+From base of atom/ratvar_act(): ()
+/#define COMSIG_ATOM_RATVAR_ACT &quot;atom_ratvar_act&quot;
+From base of atom/rcd_act(): (/mob, /obj/item/construction/rcd, passed_mode)
+/#define COMSIG_ATOM_RCD_ACT &quot;atom_rcd_act&quot;
+From base of atom/singularity_pull(): (/datum/component/singularity, current_size)
+/#define COMSIG_ATOM_SING_PULL &quot;atom_sing_pull&quot;
+From obj/machinery/bsa/full/proc/fire(): ()
+/#define COMSIG_ATOM_BSA_BEAM &quot;atom_bsa_beam_pass&quot;
+/#define COMSIG_ATOM_BLOCKS_BSA_BEAM (1&lt;&lt;0)
+Called when teleporting into a protected turf: (channel, turf/origin)</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/COMSIG_ATOM_EMP_ACT"><aside class="declaration">#define </aside>COMSIG_ATOM_EMP_ACT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_x_act.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_x_act.dm 13"/></a>
+    </h3>
+    <p>From the [LEGACY_EX_ACT] wrapper macro: (severity, target)
+/#define COMSIG_ATOM_LEGACY_EX_ACT &quot;atom_legacy_ex_act&quot;
+From base of atom/emp_act(): (severity)</p><h3 id="define/COMSIG_ATOM_EX_ACT"><aside class="declaration">#define </aside>COMSIG_ATOM_EX_ACT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_x_act.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_x_act.dm 9"/></a>
+    </h3>
+    <p>from base of atom/ex_act: (power, dir, wave datum)</p><h3 id="define/COMSIG_ATOM_INTERCEPT_TELEPORT"><aside class="declaration">#define </aside>COMSIG_ATOM_INTERCEPT_TELEPORT
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/__DEFINES/dcs/signals/signals_atom/signals_atom_x_act.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_atom&#x2F;signals_atom_x_act.dm 43"/></a>
+    </h3>
+    <p>From base of atom/fire_act(): (exposed_temperature, exposed_volume)
+/#define COMSIG_ATOM_FIRE_ACT &quot;atom_fire_act&quot;
+From base of atom/bullet_act(): (/obj/projectile, def_zone)
+/#define COMSIG_ATOM_BULLET_ACT &quot;atom_bullet_act&quot;
+From base of atom/CheckParts(): (list/parts_list, datum/crafting_recipe/R)
+/#define COMSIG_ATOM_CHECKPARTS &quot;atom_checkparts&quot;
+From base of atom/CheckParts(): (atom/movable/new_craft) - The atom has just been used in a crafting recipe and has been moved inside new_craft.
+/#define COMSIG_ATOM_USED_IN_CRAFT &quot;atom_used_in_craft&quot;
+From base of atom/blob_act(): (/obj/structure/blob)
+/#define COMSIG_ATOM_BLOB_ACT &quot;atom_blob_act&quot;
+/#define COMPONENT_CANCEL_BLOB_ACT (1&lt;&lt;0)
+From base of atom/acid_act(): (acidpwr, acid_volume)
+/#define COMSIG_ATOM_ACID_ACT &quot;atom_acid_act&quot;
+From base of atom/emag_act(): (/mob/user)
+/#define COMSIG_ATOM_EMAG_ACT &quot;atom_emag_act&quot;
+From base of atom/narsie_act(): ()
+/#define COMSIG_ATOM_NARSIE_ACT &quot;atom_narsie_act&quot;
+From base of atom/ratvar_act(): ()
+/#define COMSIG_ATOM_RATVAR_ACT &quot;atom_ratvar_act&quot;
+From base of atom/rcd_act(): (/mob, /obj/item/construction/rcd, passed_mode)
+/#define COMSIG_ATOM_RCD_ACT &quot;atom_rcd_act&quot;
+From base of atom/singularity_pull(): (/datum/component/singularity, current_size)
+/#define COMSIG_ATOM_SING_PULL &quot;atom_sing_pull&quot;
+From obj/machinery/bsa/full/proc/fire(): ()
+/#define COMSIG_ATOM_BSA_BEAM &quot;atom_bsa_beam_pass&quot;
+/#define COMSIG_ATOM_BLOCKS_BSA_BEAM (1&lt;&lt;0)
+Called when teleporting into a protected turf: (channel, turf/origin)</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

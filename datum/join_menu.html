@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;join_menu - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/join_menu.html#proc">Proc Details</a></header>
+<main>
+<h1>join_menu <aside>/<a href="datum.html">datum</a>/<a href="datum/join_menu.html">join_menu</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/new_player/join_menu.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;new_player&#x2F;join_menu.dm 6"/></a></h1>
+
+<p>Global singleton for holding TGUI data for players joining.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/join_menu.html#proc/AttemptQueue">AttemptQueue</a></th><td>Return FALSE to block joining.</td></tr>
+            <tr><th><a href="datum/join_menu.html#proc/EffectiveDesc">EffectiveDesc</a></th><td>returns effective desc - used for alt titles - JOBS ONLY, not ghostroles</td></tr>
+            <tr><th><a href="datum/join_menu.html#proc/EffectiveTitle">EffectiveTitle</a></th><td>return effective title - used for alt titles - JOBS ONLY, not ghostroles</td></tr>
+            <tr><th><a href="datum/join_menu.html#proc/IsGhostroleAvailable">IsGhostroleAvailable</a></th><td>checks if ghostrole is available
+if not, it shouldn't even show</td></tr>
+            <tr><th><a href="datum/join_menu.html#proc/IsJobAvailable">IsJobAvailable</a></th><td>checks if job is available
+if not, it shouldn't even show</td></tr></table><h2 id="proc">Proc Details</h2><h3 id="proc/AttemptQueue"><aside class="declaration">proc </aside>AttemptQueue<aside>(/<a href="mob.html">mob</a>/<a href="mob/new_player.html">new_player</a>/N) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/new_player/join_menu.dm#L236">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;new_player&#x2F;join_menu.dm 236"/></a></aside>
+        </h3>
+        <p>Return FALSE to block joining.</p><h3 id="proc/EffectiveDesc"><aside class="declaration">proc </aside>EffectiveDesc<aside>(/<a href="datum.html">datum</a>/<a href="datum/job.html">job</a>/J, /<a href="mob.html">mob</a>/<a href="mob/new_player.html">new_player</a>/N) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/new_player/join_menu.dm#L155">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;new_player&#x2F;join_menu.dm 155"/></a></aside>
+        </h3>
+        <p>returns effective desc - used for alt titles - JOBS ONLY, not ghostroles</p><h3 id="proc/EffectiveTitle"><aside class="declaration">proc </aside>EffectiveTitle<aside>(/<a href="datum.html">datum</a>/<a href="datum/job.html">job</a>/J, /<a href="mob.html">mob</a>/<a href="mob/new_player.html">new_player</a>/N) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/new_player/join_menu.dm#L149">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;new_player&#x2F;join_menu.dm 149"/></a></aside>
+        </h3>
+        <p>return effective title - used for alt titles - JOBS ONLY, not ghostroles</p><h3 id="proc/IsGhostroleAvailable"><aside class="declaration">proc </aside>IsGhostroleAvailable<aside>(/<a href="datum.html">datum</a>/<a href="datum/ghostrole.html">ghostrole</a>/G, /<a href="mob.html">mob</a>/<a href="mob/new_player.html">new_player</a>/N) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/new_player/join_menu.dm#L143">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;new_player&#x2F;join_menu.dm 143"/></a></aside>
+        </h3>
+        <p>checks if ghostrole is available
+if not, it shouldn't even show</p><h3 id="proc/IsJobAvailable"><aside class="declaration">proc </aside>IsJobAvailable<aside>(/<a href="datum.html">datum</a>/<a href="datum/job.html">job</a>/J, /<a href="mob.html">mob</a>/<a href="mob/new_player.html">new_player</a>/N) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/mob/new_player/join_menu.dm#L136">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;new_player&#x2F;join_menu.dm 136"/></a></aside>
+        </h3>
+        <p>checks if job is available
+if not, it shouldn't even show</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

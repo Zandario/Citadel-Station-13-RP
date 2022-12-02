@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;automata&#x2F;wave - Citadel Station 13 - Roleplay</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Citadel Station 13 - Roleplay</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/automata/wave.html#var">Var Details</a> - <a href="datum/automata/wave.html#proc">Proc Details</a></header>
+<main>
+<h1>wave <aside>/<a href="datum.html">datum</a>/<a href="datum/automata.html">automata</a>/<a href="datum/automata/wave.html">wave</a></aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/_wave.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;_wave.dm 4"/></a></h1>
+
+<p>wave effects</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/automata/wave.html#var/edges">edges</a></th><td>current edges = dirs</td></tr>
+            <tr><th><a href="datum/automata/wave.html#var/last">last</a></th><td>last turfs, assoc list to true for fast hash lookup. makes sure we don't fold in on ourselves.</td></tr>
+            <tr><th><a href="datum/automata/wave.html#var/power_considered_dead">power_considered_dead</a></th><td>power at which the automata stops</td></tr>
+            <tr><th><a href="datum/automata/wave.html#var/power_initial">power_initial</a></th><td>initial power</td></tr>
+            <tr><th><a href="datum/automata/wave.html#var/powers">powers</a></th><td>current powers</td></tr>
+            <tr><th><a href="datum/automata/wave.html#var/wave_spread">wave_spread</a></th><td>type of spread</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/automata/wave.html#proc/act">act</a></th><td>acts on a turf
+returns new power.
+dirs are byond directions</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/edges"><aside class="declaration">var </aside>edges
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/_wave.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;_wave.dm 10"/></a></h3>
+        <p>current edges = dirs</p><h3 id="var/last"><aside class="declaration">var </aside>last
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/_wave.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;_wave.dm 8"/></a></h3>
+        <p>last turfs, assoc list to true for fast hash lookup. makes sure we don't fold in on ourselves.</p><h3 id="var/power_considered_dead"><aside class="declaration">var </aside>power_considered_dead
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/_wave.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;_wave.dm 16"/></a></h3>
+        <p>power at which the automata stops</p><h3 id="var/power_initial"><aside class="declaration">var </aside>power_initial
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/_wave.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;_wave.dm 14"/></a></h3>
+        <p>initial power</p><h3 id="var/powers"><aside class="declaration">var </aside>powers
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/_wave.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;_wave.dm 12"/></a></h3>
+        <p>current powers</p><h3 id="var/wave_spread"><aside class="declaration">var </aside>wave_spread
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/_wave.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;_wave.dm 6"/></a></h3>
+        <p>type of spread</p><h2 id="proc">Proc Details</h2><h3 id="proc/act"><aside class="declaration">proc </aside>act<aside>(/<a href="turf.html">turf</a>/T, dirs, power) 
+        
+    
+            <a href="https://github.com/Zandario/Citadel-Station-13-RP/blob/c34e6aca5d1b78375a406ed669b897cf0a26cf8c/code/modules/automata/_wave.dm#L343">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;automata&#x2F;_wave.dm 343"/></a></aside>
+        </h3>
+        <p>acts on a turf
+returns new power.
+dirs are byond directions</p></main>
+<footer>
+    citadel.dme
+    <a href="https://github.com/Zandario/Citadel-Station-13-RP/tree/c34e6aca5d1b78375a406ed669b897cf0a26cf8c">c34e6ac</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>
