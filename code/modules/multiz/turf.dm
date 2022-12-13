@@ -199,7 +199,8 @@
 // Override to make sure nothing is hidden
 /turf/simulated/open/levelupdate()
 	for(var/obj/O in src)
-		O.hide(0)
+		O.hide(FALSE)
+		SEND_SIGNAL(O, COMSIG_TURF_LEVELUPDATE, FALSE)
 
 /turf/simulated/open/examine(mob/user)
 	. = ..()

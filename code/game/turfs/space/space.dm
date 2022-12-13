@@ -44,7 +44,8 @@
 // Override for space turfs, since they should never hide anything
 /turf/space/levelupdate()
 	for(var/obj/O in src)
-		O.hide(0)
+		O.hide(FALSE)
+		SEND_SIGNAL(O, COMSIG_TURF_LEVELUPDATE, FALSE)
 
 /turf/space/is_solid_structure()
 	return locate(/obj/structure/lattice, src)	// Counts as solid structure if it has a lattice

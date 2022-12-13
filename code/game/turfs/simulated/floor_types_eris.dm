@@ -10,7 +10,7 @@
 	icon_base = "tiles"
 	has_damage_range = 2
 	damage_temperature = T0C+1400
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BREAK
+	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_HIDES_THINGS
 	build_type = /obj/item/stack/tile/floor/eris
 	can_paint = 1
 
@@ -895,7 +895,7 @@
 	descriptor = "reinforced plating"
 	icon = 'icons/turf/flooring/eris/plating.dmi'
 	icon_base = "plating"
-	flags = TURF_REMOVE_WRENCH | TURF_HAS_CORNERS | TURF_HAS_EDGES | TURF_CAN_BURN | TURF_CAN_BREAK
+	flags = TURF_REMOVE_WRENCH | TURF_HAS_CORNERS | TURF_HAS_EDGES | TURF_CAN_BURN | TURF_CAN_BREAK | TURF_HIDES_THINGS
 	can_paint = 1
 	has_base_range = 18
 	is_plating = TRUE

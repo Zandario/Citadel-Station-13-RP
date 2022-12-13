@@ -1,7 +1,7 @@
 /turf/simulated/floor
 	name = "plating"
 	desc = "Unfinished flooring."
-	icon = 'icons/turf/flooring/plating_vr.dmi'
+	icon = 'icons/turf/flooring/plating.dmi'
 	icon_state = "plating"
 	base_icon_state = "plating"
 	thermal_conductivity = 0.040
@@ -18,7 +18,7 @@
 	// Plating data.
 	var/base_name = "plating"
 	var/base_desc = "The naked hull."
-	var/base_icon = 'icons/turf/flooring/plating_vr.dmi'
+	var/base_icon = 'icons/turf/flooring/plating.dmi'
 	var/static/list/base_footstep_sounds = list("human" = list(
 		'sound/effects/footstep/plating1.ogg',
 		'sound/effects/footstep/plating2.ogg',
@@ -34,6 +34,9 @@
 	var/singleton/flooring/flooring
 	var/mineral = MAT_STEEL
 
+	// var/health = 100
+	// var/maxHealth = 100
+
 /turf/simulated/floor/is_plating()
 	return !flooring
 
@@ -42,7 +45,7 @@
 	if(!floortype && initial_flooring)
 		floortype = initial_flooring
 	if(floortype)
-		set_flooring(get_flooring_data(floortype), TRUE)
+		set_flooring(get_flooring_data(floortype), TRUE, FALSE)
 	else
 		footstep_sounds = base_footstep_sounds
 	if(mapload && can_dirty && can_start_dirty)
@@ -73,36 +76,56 @@
  * TODO: REWORK FLOORING GETTERS/INIT/SETTERS THIS IS BAD
  */
 
-/turf/simulated/floor/proc/set_flooring(singleton/flooring/newflooring, init)
-	make_plating(null, TRUE, TRUE)
+//If the update var is false we don't call update icons
+/turf/simulated/floor/proc/set_flooring(singleton/flooring/newflooring, init, update = TRUE)
+	make_plating(null, TRUE)
 	flooring = newflooring
+	name = flooring.name
 	footstep_sounds = newflooring.footstep_sounds
 	// We are plating switching to flooring, swap out old_decals for decals
 	var/list/overfloor_decals = old_decals
 	old_decals = decals
 	decals = overfloor_decals
+	// maxHealth = flooring.health
+	// health = maxHealth
+	flooring_override = null
+
+	/*This is passed false in the New() flooring set, so that we're not calling everything up to
+	nine times when the world is created. This saves on tons of roundstart processing*/
+	if (update)
+		update_icon(1)
 	if(!init)
 		QUEUE_SMOOTH(src)
 		QUEUE_SMOOTH_NEIGHBORS(src)
+
 	levelupdate()
 
-//This proc will set floor_type to null and the update_icon() proc will then change the icon_state of the turf
-//This proc auto corrects the grass tiles' siding.
-/turf/simulated/floor/proc/make_plating(place_product, defer_icon_update, strip_bare)
+//
+//
+/**
+ * This proc will set floor_type to null and the update_icon() proc will then change the icon_state of the turf
+ * This proc auto corrects the grass tiles' siding.
+ * Use strip_bare as an override to create a lattice instead of plating.
+ */
+/turf/simulated/floor/proc/make_plating(place_product, defer_icon_update, strip_bare = FALSE)
 
+	cut_overlays()
 	if(flooring)
-		// We are flooring switching to plating, swap out old_decals for decals.
-		var/list/underfloor_decals = old_decals
-		old_decals = decals
-		decals = underfloor_decals
+		if(islist(decals))
+			// We are flooring switching to plating, swap out old_decals for decals.
+			var/list/underfloor_decals = old_decals
+			old_decals = decals
+			decals = underfloor_decals
 
 		if(place_product)
 			flooring.drop_product(src)
-		var/newtype = flooring.get_plating_type()
-		if(newtype && !strip_bare) // Has a custom plating type to become
+		// We attempt to get whatever should be under this floor.
+		var/newtype = flooring.get_plating_type(src) // This will return null if there's nothing underneath.
+		if(newtype || !strip_bare) // Has a custom plating type to become
 			set_flooring(get_flooring_data(newtype))
 		else
 			flooring = null
+			ReplaceWithLattice() // IF there's nothing underneath, turn ourselves into an openspace.
 			// this branch is only if we don't set flooring because otherwise it'll do it for us
 			if(!defer_icon_update)
 				name = base_name
@@ -114,14 +137,17 @@
 				QUEUE_SMOOTH_NEIGHBORS(src)
 				levelupdate()
 
+	set_light(0)
 	broken = null
 	burnt = null
 	flooring_override = null
 
 
 /turf/simulated/floor/levelupdate()
-	for(var/obj/O in src)
-		O.hide(O.hides_under_flooring() && src.flooring)
+	if (flooring)
+		for(var/obj/O in src)
+			O.hide(O.hides_under_flooring() && (flooring.flags & TURF_HIDES_THINGS))
+			SEND_SIGNAL(O, COMSIG_TURF_LEVELUPDATE, (flooring.flags & TURF_HIDES_THINGS))
 
 /turf/simulated/floor/rcd_values(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	switch(passed_mode)

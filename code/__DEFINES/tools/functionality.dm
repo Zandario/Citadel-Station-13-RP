@@ -55,3 +55,12 @@ GLOBAL_REAL_VAR(_dyntool_image_states) = list(
 #define TOOL_LOCKING_STATIC 2
 /// automatically, if we only have one dynamic behavior, use that
 #define TOOL_LOCKING_AUTO 3
+
+//! Work time constants.
+#define WORKTIME_INSTANT        0
+#define WORKTIME_NEAR_INSTANT   30
+#define WORKTIME_FAST           60
+#define WORKTIME_NORMAL         90
+#define WORKTIME_SLOW           120
+#define WORKTIME_LONG           170
+#define WORKTIME_EXTREMELY_LONG 250

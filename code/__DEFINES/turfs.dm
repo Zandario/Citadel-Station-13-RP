@@ -1,13 +1,16 @@
-#define TURF_REMOVE_CROWBAR     1
-#define TURF_REMOVE_SCREWDRIVER 2
-#define TURF_REMOVE_SHOVEL      4
-#define TURF_REMOVE_WRENCH      8
-#define TURF_CAN_BREAK          16
-#define TURF_CAN_BURN           32
-#define TURF_HAS_EDGES          64
-#define TURF_HAS_CORNERS        128
-#define TURF_IS_FRAGILE         256
-#define TURF_ACID_IMMUNE        512
+#define TURF_REMOVE_CROWBAR     (1<<0)
+#define TURF_REMOVE_SCREWDRIVER (1<<1)
+#define TURF_REMOVE_SHOVEL      (1<<2)
+#define TURF_REMOVE_WRENCH      (1<<3)
+#define TURF_REMOVE_WELDER      (1<<4)
+#define TURF_CAN_BREAK          (1<<5)
+#define TURF_CAN_BURN           (1<<6)
+#define TURF_HAS_EDGES          (1<<7)
+#define TURF_HAS_CORNERS        (1<<8)
+#define TURF_HAS_INNER_CORNERS  (1<<9)
+#define TURF_IS_FRAGILE         (1<<10)
+#define TURF_ACID_IMMUNE        (1<<11)
+#define TURF_HIDES_THINGS       (1<<12)
 
 //Used for floor/wall smoothing
 ///Smooth only with itself

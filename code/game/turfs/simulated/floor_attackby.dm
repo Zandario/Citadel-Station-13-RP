@@ -146,6 +146,12 @@
 		make_plating(1)
 		playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
 		return 1
+	else if(istype(W, /obj/item/weldingtool) && flooring.flags & TURF_REMOVE_WELDER)
+		to_chat(user, SPAN_NOTICE("You start cutting through the [flooring.descriptor]."))
+		if(W.use_tool_standard(TOOL_WELDER, W, user, flooring.removal_time))
+			to_chat(user, SPAN_NOTICE("You cut through and remove the [flooring.descriptor]."))
+			make_plating(TRUE, null, TRUE)
+
 	return 0
 
 /turf/simulated/floor/proc/try_replace_tile(obj/item/stack/tile/T as obj, mob/user as mob)

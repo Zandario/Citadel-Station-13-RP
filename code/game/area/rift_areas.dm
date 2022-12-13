@@ -291,9 +291,13 @@
 	icon_state = "under2"
 /area/rift/surfacebase/underground/under1
 	icon_state = "under1"
+
+
 /area/rift/surfacebase/outside
 	name = "Outside - Surface"
 	ambience = AMBIENCE_LYTHIOS
+	area_flags = AREA_FLAG_EXTERNAL
+
 /area/rift/surfacebase/outside/outside1
 	icon_state = "outside1"
 /area/rift/surfacebase/outside/outside2
@@ -1042,6 +1046,3 @@ Do this eventually. */
 
 /area/rift/exterior/mineshaft
 	name = "\improper Abandoned Mineshaft"
-
-
-

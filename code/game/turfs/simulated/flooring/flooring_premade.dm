@@ -126,7 +126,7 @@
 
 /turf/simulated/floor/tiled/techfloor
 	name = "floor"
-	icon = 'icons/turf/flooring/techfloor_vr.dmi'
+	icon = 'icons/turf/flooring/techfloor.dmi'
 	icon_state = "techfloor_gray"
 	initial_flooring = /singleton/flooring/tiling/tech
 
@@ -449,7 +449,13 @@
 /turf/simulated/floor/beach/water/ocean
 */
 /turf/simulated/floor/airless/ceiling
+
 /turf/simulated/floor/plating
+	name = "plating"
+	icon = 'icons/turf/flooring/plating.dmi'
+	icon_state = "plating"
+	initial_flooring = /singleton/flooring/plating
+
 
 /turf/simulated/floor/plating/external
 	outdoors = TRUE
@@ -494,23 +500,23 @@
 #define FOOTSTEP_SPRITE_AMT 2
 
 /turf/snow/Entered(atom/A)
-    if(isliving(A))
-        var/mdir = "[A.dir]"
-        if(crossed_dirs[mdir])
-            crossed_dirs[mdir] = min(crossed_dirs[mdir] + 1, FOOTSTEP_SPRITE_AMT)
-        else
-            crossed_dirs[mdir] = 1
+	if(isliving(A))
+		var/mdir = "[A.dir]"
+		if(crossed_dirs[mdir])
+			crossed_dirs[mdir] = min(crossed_dirs[mdir] + 1, FOOTSTEP_SPRITE_AMT)
+		else
+			crossed_dirs[mdir] = 1
 
-        update_icon()
+		update_icon()
 
-    ..()
+	..()
 
 /turf/snow/update_icon()
-    cut_overlays()
-    for(var/d in crossed_dirs)
-        var/amt = crossed_dirs[d]
+	cut_overlays()
+	for(var/d in crossed_dirs)
+		var/amt = crossed_dirs[d]
 
-        for(var/i in 1 to amt)
-            add_overlay(image(icon, "footprint[i]", text2num(d)))
+		for(var/i in 1 to amt)
+			add_overlay(image(icon, "footprint[i]", text2num(d)))
 
 //**** Here ends snow ****

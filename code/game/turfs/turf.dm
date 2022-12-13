@@ -277,6 +277,7 @@
 /turf/proc/levelupdate()
 	for(var/obj/O in src)
 		O.hide(O.hides_under_flooring() && !is_plating())
+		SEND_SIGNAL(O, COMSIG_TURF_LEVELUPDATE, !is_plating())
 
 /turf/proc/AdjacentTurfs(var/check_blockage = TRUE)
 	. = list()
@@ -423,3 +424,53 @@
 			return TRUE
 */
 	return SSmapping.level_trait(z, ZTRAIT_GRAVITY)
+
+/// This fuzzy proc attempts to determine whether or not this tile is outside the station/ship.
+/proc/turf_is_external(turf/target_turf)
+	if (istype(target_turf, /turf/space) || target_turf.outdoors)
+		return TRUE
+
+	var/area/A = get_area(target_turf)
+	if (A.flags & AREA_FLAG_EXTERNAL)
+		return TRUE
+
+	var/datum/gas_mixture/environment = target_turf.return_air()
+	if (!environment || !environment.total_moles)
+		return TRUE
+
+	return FALSE
+
+
+/// Returns true if this tile is an upper hull tile of the ship/station. IE, a roof.
+/proc/turf_is_upper_hull(turf/target_turf)
+	var/turf/B = GetBelow(target_turf)
+	if (!B)
+		// Gotta be something below us if we're a roof.
+		return FALSE
+
+	if (!turf_is_external(target_turf))
+		// We must be outdoors. if there's something above us we're not the roof.
+		return FALSE
+
+	if (turf_is_external(B))
+		//Got to be containing something underneath us
+		return FALSE
+
+	return TRUE
+
+/// Returns TRUE if this is a lower hull of the ship/station. IE, a floor that has space underneath.
+/proc/turf_is_lower_hull(turf/target_turf)
+	if (turf_is_external(target_turf))
+		// We must be indoors.
+		return FALSE
+
+	var/turf/B = GetBelow(target_turf)
+	if (!B)
+		// If we're on the lowest zlevel, return TRUE.
+		return TRUE
+
+	if (turf_is_external(B))
+		// We must be outdoors. If there's something above us we're not the roof.
+		return TRUE
+
+	return FALSE

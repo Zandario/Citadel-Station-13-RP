@@ -180,6 +180,3 @@
 		new /obj/effect/debris/cleanable/blood/oil(src)
 	else if(ishuman(M))
 		add_blood(M)
-
-/turf/simulated/floor/plating
-	can_start_dirty = TRUE	// But let maints and decrepit areas have some randomness

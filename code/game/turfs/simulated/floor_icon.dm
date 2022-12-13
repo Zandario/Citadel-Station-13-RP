@@ -16,6 +16,7 @@ GLOBAL_LIST_EMPTY(turf_edge_cache)
 var/list/flooring_cache = list()
 
 /turf/simulated/floor/update_icon()
+	var/has_smooth = 0 // This is just the has_border bitfield inverted for easier logic.
 	cut_overlays()
 	if(flooring)
 		// Set initial icon and strings.
@@ -40,6 +41,10 @@ var/list/flooring_cache = list()
 					has_border |= step_dir
 					add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-edge-[step_dir]", "[flooring.icon_base]_edges", step_dir))
 
+			//TODO: New smoothing. @Zandario
+			//By doing &15 we only take the first four bits, which represent NORTH, SOUTH, EAST, WEST
+			has_smooth = ~(has_border & 15)
+
 			//Note: Doesn't actually check northeast, this is bitmath to check if we're edge'd (aka not smoothed) to NORTH and EAST
 			//North = 0001, East = 0100, Northeast = 0101, so (North|East) == Northeast, therefore (North|East)&Northeast == Northeast
 			if((has_border & NORTHEAST) == NORTHEAST)
@@ -51,24 +56,54 @@ var/list/flooring_cache = list()
 			if((has_border & SOUTHWEST) == SOUTHWEST)
 				add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-edge-[SOUTHWEST]", "[flooring.icon_base]_edges", SOUTHWEST))
 
+			//We can only have inner corners if we're smoothed with something
+			if (has_smooth)
+				if(flooring.flags & TURF_HAS_INNER_CORNERS)
+
+					//Quick way to check if we're smoothed with both north and east
+					if((has_smooth & NORTHEAST) == NORTHEAST)
+						//If we are, then check the diagonal tile
+						if (!flooring.test_link(src, get_step(src, NORTHEAST)))
+							//If we smooth with north and east, but don't smooth with the northeast diagonal, then we have an inner corner!
+							add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-corner-[NORTHEAST]", "[flooring.icon_base]_corners", NORTHEAST))
+
+					if((has_smooth & NORTHWEST) == NORTHWEST)
+						if (!flooring.test_link(src, get_step(src, NORTHWEST)))
+							add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-corner-[NORTHWEST]", "[flooring.icon_base]_corners", NORTHWEST))
+
+					if((has_smooth & SOUTHEAST) == SOUTHEAST)
+						if (!flooring.test_link(src, get_step(src, SOUTHEAST)))
+							add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-corner-[SOUTHEAST]", "[flooring.icon_base]_corners", SOUTHEAST))
+
+					if((has_smooth & SOUTHWEST) == SOUTHWEST)
+						if (!flooring.test_link(src, get_step(src, SOUTHWEST)))
+							add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-corner-[SOUTHWEST]", "[flooring.icon_base]_corners", SOUTHWEST))
+
+
+
 			if(flooring.flags & TURF_HAS_CORNERS)
 				//Like above but checking for NO similar bits rather than both similar bits.
 				if((has_border & NORTHEAST) == 0) //Are connected NORTH and EAST
 					var/turf/simulated/floor/T = get_step(src, NORTHEAST)
 					if(!flooring.test_link(src, T)) //But not NORTHEAST
 						add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-corner-[NORTHEAST]", "[flooring.icon_base]_corners", NORTHEAST))
+
 				if((has_border & NORTHWEST) == 0)
 					var/turf/simulated/floor/T = get_step(src, NORTHWEST)
 					if(!flooring.test_link(src, T))
 						add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-corner-[NORTHWEST]", "[flooring.icon_base]_corners", NORTHWEST))
+
 				if((has_border & SOUTHEAST) == 0)
 					var/turf/simulated/floor/T = get_step(src, SOUTHEAST)
 					if(!flooring.test_link(src, T))
 						add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-corner-[SOUTHEAST]", "[flooring.icon_base]_corners", SOUTHEAST))
+
 				if((has_border & SOUTHWEST) == 0)
 					var/turf/simulated/floor/T = get_step(src, SOUTHWEST)
 					if(!flooring.test_link(src, T))
 						add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-corner-[SOUTHWEST]", "[flooring.icon_base]_corners", SOUTHWEST))
+
+
 		if(!isnull(broken) && (flooring.flags & TURF_CAN_BREAK))
 			add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-broken-[broken]","broken[broken]"))
 		if(!isnull(burnt) && (flooring.flags & TURF_CAN_BURN))

@@ -22,15 +22,16 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/space
 	name = "\improper Space"
 	icon_state = "space"
-	requires_power = 1
-	always_unpowered = 1
-	dynamic_lighting = 0
+	requires_power = TRUE
+	always_unpowered = TRUE
+	dynamic_lighting = FALSE
 	has_gravity = FALSE
+	has_gravity = FALSE
+	ambience = AMBIENCE_SPACE
+	flags = AREA_FLAG_EXTERNAL
 	power_light = 0
-	has_gravity = 0
 	power_equip = 0
 	power_environ = 0
-	ambience = AMBIENCE_SPACE
 
 /area/space/atmosalert()
 	return

@@ -37,7 +37,8 @@
 // Walls always hide the stuff below them.
 /turf/simulated/wall/levelupdate()
 	for(var/obj/O in src)
-		O.hide(1)
+		O.hide(TRUE)
+		SEND_SIGNAL(O, COMSIG_TURF_LEVELUPDATE, TRUE)
 
 /turf/simulated/wall/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..()
