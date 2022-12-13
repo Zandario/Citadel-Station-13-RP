@@ -463,6 +463,15 @@
 /turf/simulated/floor/tiled/external
 	outdoors = TRUE
 
+/turf/simulated/floor/hull
+	name = "hull"
+	icon = 'icons/turf/flooring/hull.dmi'
+	icon_state = "hullcenter0"
+	initial_flooring = /singleton/flooring/hull
+
+/turf/simulated/floor/hull/airless
+	initial_gas_mix = GAS_STRING_VACUUM
+
 //**** Here lives snow ****
 /turf/simulated/floor/snow
 	name = "snow"

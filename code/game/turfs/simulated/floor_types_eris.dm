@@ -881,12 +881,13 @@
 
 	grass_types = list(
 		/obj/structure/flora/ausbushes/sparsegrass,
-		/obj/structure/flora/ausbushes/fullgrass
-		)
+		/obj/structure/flora/ausbushes/fullgrass,
+	)
+
 /turf/simulated/floor/outdoors/grass/heavy/interior
-    name = "heavy grass"
-    desc = "A dense sheet of harvested turf used in interior decoration."
-    outdoors = FALSE
+	name = "heavy grass"
+	desc = "A dense sheet of harvested turf used in interior decoration."
+	outdoors = FALSE
 
 //=========Eris Plating==========\\
 // This is the light grey tiles with random geometric shapes extruded
@@ -1001,11 +1002,3 @@
 	else
 		return null //This should never happen, hull plawell,ting should only be on the exterior
 */
-/turf/simulated/floor/hull
-	name = "hull"
-	icon = 'icons/turf/flooring/eris/hull.dmi'
-	icon_state = "hullcenter0"
-	initial_flooring = /singleton/flooring/eris_plating/hull
-
-/turf/simulated/floor/hull/airless
-	initial_gas_mix = GAS_STRING_VACUUM

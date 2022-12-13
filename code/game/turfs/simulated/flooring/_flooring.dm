@@ -145,7 +145,35 @@ var/list/flooring_types
 	name = "plating"
 	icon = 'icons/turf/flooring/plating.dmi'
 	icon_base = "plating"
+	plating_type = /singleton/flooring/hull
+
+/singleton/flooring/hull
+	name = "hull"
+	descriptor = "outer hull"
+	icon = 'icons/turf/flooring/hull.dmi'
+	icon_base = "hullcenter"
+	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_WRENCH | TURF_CAN_BURN | TURF_CAN_BREAK
+	has_base_range = 35
+	is_plating = FALSE
+	build_type = /obj/item/stack/material/plasteel
+
 	plating_type = null
+	removal_time = 1 MINUTES //Cutting through the hull is very slow work
+	wall_smooth = SMOOTH_ALL
+	space_smooth = SMOOTH_NONE
+	smooth_movable_atom = SMOOTH_NONE
+
+//Hull can upgrade to underplating
+/singleton/flooring/reinforced/plating/hull/can_build_floor(singleton/flooring/newfloor)
+	return FALSE //Not allowed to build directly on hull, you must first remove it and then build on the underplating
+
+/singleton/flooring/reinforced/plating/hull/get_plating_type(turf/location)
+	if (turf_is_lower_hull(location)) //Hull plating is only on the lowest level of the ship
+		return null
+	// else if (turf_is_upper_hull(location))
+	// 	return /singleton/flooring/reinforced/plating/under
+	else
+		return null //This should never happen, hull plating should only be on the exterior
 
 /singleton/flooring/grass
 	name = "grass"
