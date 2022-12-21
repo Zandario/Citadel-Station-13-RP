@@ -17,5 +17,5 @@
 /// Checks that every icon sent to vending machines is valid.
 // /datum/unit_test/focus_only/invalid_vending_machine_icon_states
 
-/// Checks that smoothing_groups and canSmoothWith are properly sorted in /atom/Initialize.
+/// Checks that smoothing_groups and can_smooth_with are properly sorted in /atom/Initialize.
 /datum/unit_test/focus_only/sorted_smoothing_groups

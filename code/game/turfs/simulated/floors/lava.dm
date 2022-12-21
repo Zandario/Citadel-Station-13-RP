@@ -17,7 +17,7 @@
 
 	// smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	smoothing_groups = (SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_FLOOR_LAVA)
-	canSmoothWith = (SMOOTH_GROUP_FLOOR_LAVA)
+	can_smooth_with = (SMOOTH_GROUP_FLOOR_LAVA)
 
 /turf/simulated/floor/outdoors/lava/indoors
 	outdoors = FALSE

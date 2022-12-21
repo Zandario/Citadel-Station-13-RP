@@ -69,7 +69,7 @@
 	/// Smoothing variable
 	var/bottom_right_corner
 	/**
-	 * What smoothing groups does this atom belongs to, to match canSmoothWith.
+	 * What smoothing groups does this atom belongs to, to match can_smooth_with.
 	 * If null, nobody can smooth with it.
 	 *! Must be sorted.
 	 */
@@ -79,7 +79,7 @@
 	 * If this is null and atom is smooth, it smooths only with itself.
 	 *! Must be sorted.
 	 */
-	var/list/canSmoothWith = null
+	var/list/can_smooth_with = null
 
 	//! ## Chemistry
 	var/datum/reagents/reagents = null

@@ -11,7 +11,7 @@
 
 	// smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = (SMOOTH_GROUP_LATTICE)
-	canSmoothWith = (SMOOTH_GROUP_LATTICE + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_OPEN_FLOOR)
+	can_smooth_with = (SMOOTH_GROUP_LATTICE + SMOOTH_GROUP_WALLS + SMOOTH_GROUP_OPEN_FLOOR)
 
 /obj/structure/lattice/Initialize(mapload)
 	. = ..()

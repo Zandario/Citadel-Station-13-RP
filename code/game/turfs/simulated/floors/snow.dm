@@ -8,7 +8,7 @@
 
 	// smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	smoothing_groups = (SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_EXTERIOR_SNOW)
-	canSmoothWith = (SMOOTH_GROUP_EXTERIOR_SNOW)
+	can_smooth_with = (SMOOTH_GROUP_EXTERIOR_SNOW)
 
 	var/list/crossed_dirs = list()
 

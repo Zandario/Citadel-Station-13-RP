@@ -12,7 +12,7 @@
 
 	// smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = (SMOOTH_GROUP_CATWALK + SMOOTH_GROUP_LATTICE + SMOOTH_GROUP_OPEN_FLOOR)
-	canSmoothWith = (SMOOTH_GROUP_CATWALK)
+	can_smooth_with = (SMOOTH_GROUP_CATWALK)
 
 	var/health = 100
 	var/maxhealth = 100

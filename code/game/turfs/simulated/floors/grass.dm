@@ -6,7 +6,7 @@
 
 	// smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = (SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_EXTERIOR_GRASS)
-	canSmoothWith = (SMOOTH_GROUP_EXTERIOR_GRASS + SMOOTH_GROUP_CLOSED_TURFS)
+	can_smooth_with = (SMOOTH_GROUP_EXTERIOR_GRASS + SMOOTH_GROUP_CLOSED_TURFS)
 
 	var/grass_chance = 20
 

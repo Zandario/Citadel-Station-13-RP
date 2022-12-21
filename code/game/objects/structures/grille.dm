@@ -13,7 +13,7 @@
 
 	// smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = (SMOOTH_GROUP_GRILLE)
-	canSmoothWith = (SMOOTH_GROUP_GRILLE)
+	can_smooth_with = (SMOOTH_GROUP_GRILLE)
 
 	var/health = 10
 	var/destroyed = 0

@@ -21,7 +21,7 @@
 
 	// smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	smoothing_groups = (SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_MINERAL_WALLS)
-	canSmoothWith = (SMOOTH_GROUP_MINERAL_WALLS)
+	can_smooth_with = (SMOOTH_GROUP_MINERAL_WALLS)
 
 	var/sand_icon = 'icons/turf/flooring/asteroid.dmi'
 	var/rock_side_icon_state = "rock_side"

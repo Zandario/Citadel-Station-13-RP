@@ -10,25 +10,29 @@
 	base_icon_state = "tiles"
 	has_damage_range = 2
 	damage_temperature = T0C+1400
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BREAK
+	flooring_flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_CROWBAR | TURF_CAN_BREAK
 	build_type = /obj/item/stack/tile/floor/eris
 	can_paint = 1
 
 	plating_type = /singleton/flooring/eris_plating/under
 
-	floor_smooth = SMOOTH_WHITELIST
-	flooring_whitelist = list(
-		/singleton/flooring/eris_plating/under
-	)
+	// floor_smooth = SMOOTH_WHITELIST
+	// flooring_whitelist = list(
+	// 	/singleton/flooring/eris_plating/under
+	// )
 
-	smooth_movable_atom = SMOOTH_GREYLIST
-	movable_atom_whitelist = list(
-		list(/obj/machinery/door/airlock, list(), 1) // Smooth Eris floors with airlocks
-	)
-	movable_atom_blacklist = list(
-		list(/obj/machinery/door/airlock/maintenance, list(), 2), // But not maintenance airlocks
-		list(/obj/structure/window, list("anchored" = TRUE, "fulltile" = TRUE), 2) // Don't blend under full windows
-	)
+	// smooth_movable_atom = SMOOTH_GREYLIST
+	// movable_atom_whitelist = list(
+	// 	list(/obj/machinery/door/airlock, list(), 1) // Smooth Eris floors with airlocks
+	// )
+	// movable_atom_blacklist = list(
+	// 	list(/obj/machinery/door/airlock/maintenance, list(), 2), // But not maintenance airlocks
+	// 	list(/obj/structure/window, list("anchored" = TRUE, "fulltile" = TRUE), 2) // Don't blend under full windows
+	// )
+
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = (SMOOTH_GROUP_UNDERPLATING + SMOOTH_GROUP_TURF_OPEN)
+	can_smooth_with = (SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_UNDERPLATING + SMOOTH_GROUP_CLOSED_TURFS)
 
 /singleton/flooring/tiling/eris/steel
 	name = "steel floor"
@@ -101,22 +105,25 @@
 	name = "flat bar floor"
 	base_icon_state = "bar_flat"
 	build_type = /obj/item/stack/tile/floor/eris/steel/bar_flat
-	floor_smooth = SMOOTH_NONE
-	smooth_movable_atom = SMOOTH_NONE
+	// floor_smooth = SMOOTH_NONE
+	// smooth_movable_atom = SMOOTH_NONE
+	smoothing_flags = NONE
 
 /singleton/flooring/tiling/eris/steel/bar_dance
 	name = "dancefloor"
 	base_icon_state = "bar_dance"
 	build_type = /obj/item/stack/tile/floor/eris/steel/bar_dance
-	floor_smooth = SMOOTH_NONE
-	smooth_movable_atom = SMOOTH_NONE
+	// floor_smooth = SMOOTH_NONE
+	// smooth_movable_atom = SMOOTH_NONE
+	smoothing_flags = NONE
 
 /singleton/flooring/tiling/eris/steel/bar_light
 	name = "lit bar floor"
 	base_icon_state = "bar_light"
 	build_type = /obj/item/stack/tile/floor/eris/steel/bar_light
-	floor_smooth = SMOOTH_NONE
-	smooth_movable_atom = SMOOTH_NONE
+	// floor_smooth = SMOOTH_NONE
+	// smooth_movable_atom = SMOOTH_NONE
+	smoothing_flags = NONE
 
 /singleton/flooring/tiling/eris/white
 	name = "white floor"
@@ -252,45 +259,41 @@
 	build_type = /obj/item/stack/tile/floor/eris/dark/monofloor
 	has_base_range = 15
 
-/singleton/flooring/tiling/eris/cafe
-	name = "linoleum floor"
-	base_icon_state = "cafe"
-	icon = 'icons/turf/flooring/eris/tiles.dmi'
-	build_type = /obj/item/stack/tile/floor/eris/cafe
-	floor_smooth = SMOOTH_NONE
-	smooth_movable_atom = SMOOTH_NONE
-
 /singleton/flooring/tiling/eris/techmaint
 	name = "techmaint floor"
 	base_icon_state = "techmaint"
 	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/techmaint
-	floor_smooth = SMOOTH_NONE
-	smooth_movable_atom = SMOOTH_NONE
+	// floor_smooth = SMOOTH_NONE
+	// smooth_movable_atom = SMOOTH_NONE
+	smoothing_flags = NONE
 
 /singleton/flooring/tiling/eris/techmaint_perforated
 	name = "techmaint floor"
 	base_icon_state = "techmaint_perforated"
 	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/techmaint/perforated
-	floor_smooth = SMOOTH_NONE
-	smooth_movable_atom = SMOOTH_NONE
+	// floor_smooth = SMOOTH_NONE
+	// smooth_movable_atom = SMOOTH_NONE
+	smoothing_flags = NONE
 
 /singleton/flooring/tiling/eris/techmaint_panels
 	name = "techmaint floor"
 	base_icon_state = "techmaint_panels"
 	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/techmaint/panels
-	floor_smooth = SMOOTH_NONE
-	smooth_movable_atom = SMOOTH_NONE
+	// floor_smooth = SMOOTH_NONE
+	// smooth_movable_atom = SMOOTH_NONE
+	smoothing_flags = NONE
 
 /singleton/flooring/tiling/eris/techmaint_cargo
 	name = "techmaint floor"
 	base_icon_state = "techmaint_cargo"
 	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/techmaint/cargo
-	floor_smooth = SMOOTH_NONE
-	smooth_movable_atom = SMOOTH_NONE
+	// floor_smooth = SMOOTH_NONE
+	// smooth_movable_atom = SMOOTH_NONE
+	smoothing_flags = NONE
 
 ///////////////////////
 /// TILE OBJS   ///////
@@ -832,11 +835,6 @@
 
 
 
-/turf/simulated/floor/tiled/eris/cafe
-	name = "floor"
-	icon = 'icons/turf/flooring/eris/tiles.dmi'
-	icon_state = "cafe"
-	initial_flooring = /singleton/flooring/tiling/eris/cafe
 
 /turf/simulated/floor/tiled/eris/techmaint
 	name = "floor"
@@ -866,7 +864,7 @@
 /singleton/flooring/grass/heavy
 	name = "heavy grass"
 	desc = "A dense ground coating of grass"
-	flags = TURF_REMOVE_SHOVEL
+	flooring_flags = TURF_REMOVE_SHOVEL
 	icon = 'icons/turf/outdoors.dmi'
 	base_icon_state = "grass-heavy"
 	has_base_range = 3
@@ -895,7 +893,7 @@
 	descriptor = "reinforced plating"
 	icon = 'icons/turf/flooring/eris/plating.dmi'
 	base_icon_state = "plating"
-	flags = TURF_REMOVE_WRENCH | TURF_HAS_CORNERS | TURF_HAS_EDGES | TURF_CAN_BURN | TURF_CAN_BREAK
+	flooring_flags = TURF_REMOVE_WRENCH | TURF_HAS_CORNERS | TURF_HAS_EDGES | TURF_CAN_BURN | TURF_CAN_BREAK
 	can_paint = 1
 	has_base_range = 18
 	is_plating = TRUE
@@ -933,14 +931,14 @@
 	icon = 'icons/turf/flooring/eris/plating.dmi'
 	descriptor = "support beams"
 	base_icon_state = "under"
-	flags = TURF_HAS_CORNERS | TURF_HAS_EDGES | TURF_CAN_BURN | TURF_CAN_BREAK | TURF_REMOVE_SCREWDRIVER
+	flooring_flags = TURF_HAS_CORNERS | TURF_HAS_EDGES | TURF_CAN_BURN | TURF_CAN_BREAK | TURF_REMOVE_SCREWDRIVER
 	has_base_range = 0
 	is_plating = TRUE
 
-	floor_smooth = SMOOTH_WHITELIST
-	flooring_whitelist = list(
-		/singleton/flooring/tiling/eris
-	)
+	// floor_smooth = SMOOTH_WHITELIST
+	// flooring_whitelist = list(
+	// 	/singleton/flooring/tiling/eris
+	// )
 
 	plating_type = null
 
@@ -971,7 +969,7 @@
 	descriptor = "outer hull"
 	icon = 'icons/turf/flooring/eris/hull.dmi'
 	base_icon_state = "hullcenter"
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_WRENCH | TURF_CAN_BURN | TURF_CAN_BREAK
+	flooring_flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_WRENCH | TURF_CAN_BURN | TURF_CAN_BREAK
 	has_base_range = 35
 	is_plating = FALSE
 	build_type = /obj/item/stack/material/plasteel

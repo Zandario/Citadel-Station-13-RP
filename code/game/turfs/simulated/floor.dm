@@ -7,9 +7,9 @@
 	thermal_conductivity = 0.040
 	heat_capacity = 10000
 
-	smoothing_flags = SMOOTH_CUSTOM
+	// smoothing_flags = SMOOTH_BITMASK | SMOOTH_OBJ
 	smoothing_groups = (SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_OPEN_FLOOR)
-	canSmoothWith = (SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_OPEN_FLOOR)
+	can_smooth_with = (SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_OPEN_FLOOR)
 
 	// Damage to flooring.
 	var/broken

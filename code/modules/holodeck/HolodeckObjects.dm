@@ -21,7 +21,7 @@
 
 	// smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = (SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET)
-	canSmoothWith = (SMOOTH_GROUP_CARPET)
+	can_smooth_with = (SMOOTH_GROUP_CARPET)
 
 /turf/simulated/floor/holofloor/tiled
 	name = "floor"

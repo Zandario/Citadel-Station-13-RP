@@ -48,7 +48,7 @@
 	color = "#824B28"
 
 	smoothing_groups = (SMOOTH_GROUP_WOOD_TABLES) //Don't smooth with SMOOTH_GROUP_TABLES
-	canSmoothWith = (SMOOTH_GROUP_WOOD_TABLES)
+	can_smooth_with = (SMOOTH_GROUP_WOOD_TABLES)
 
 /obj/structure/table/wooden_reinforced/Initialize(mapload)
 	material = get_material_by_name("wood")
@@ -60,7 +60,7 @@
 	color = "#824B28"
 
 	smoothing_groups = (SMOOTH_GROUP_WOOD_TABLES) //Don't smooth with SMOOTH_GROUP_TABLES
-	canSmoothWith = (SMOOTH_GROUP_WOOD_TABLES)
+	can_smooth_with = (SMOOTH_GROUP_WOOD_TABLES)
 
 /obj/structure/table/woodentable/Initialize(mapload)
 	material = get_material_by_name("wood")
@@ -71,7 +71,7 @@
 	color = "#824B28"
 
 	smoothing_groups = (SMOOTH_GROUP_WOOD_TABLES) //Don't smooth with SMOOTH_GROUP_TABLES
-	canSmoothWith = (SMOOTH_GROUP_WOOD_TABLES)
+	can_smooth_with = (SMOOTH_GROUP_WOOD_TABLES)
 
 /obj/structure/table/sifwoodentable/Initialize(mapload)
 	material = get_material_by_name("alien wood")
@@ -82,7 +82,7 @@
 	color = "#824B28"
 
 	smoothing_groups = (SMOOTH_GROUP_WOOD_TABLES) //Don't smooth with SMOOTH_GROUP_TABLES
-	canSmoothWith = (SMOOTH_GROUP_WOOD_TABLES)
+	can_smooth_with = (SMOOTH_GROUP_WOOD_TABLES)
 
 /obj/structure/table/sifwooden_reinforced/Initialize(mapload)
 	material = get_material_by_name("alien wood")
@@ -94,7 +94,7 @@
 	color = "#42291a"
 
 	smoothing_groups = (SMOOTH_GROUP_WOOD_TABLES) //Don't smooth with SMOOTH_GROUP_TABLES
-	canSmoothWith = (SMOOTH_GROUP_WOOD_TABLES)
+	can_smooth_with = (SMOOTH_GROUP_WOOD_TABLES)
 
 /obj/structure/table/hardwoodtable/Initialize(mapload)
 	material = get_material_by_name("hardwood")
@@ -114,7 +114,7 @@
 	alpha = 77 // 0.3 * 255
 
 	smoothing_groups = (SMOOTH_GROUP_GLASS_TABLES)
-	canSmoothWith = (SMOOTH_GROUP_GLASS_TABLES)
+	can_smooth_with = (SMOOTH_GROUP_GLASS_TABLES)
 
 /obj/structure/table/glass/Initialize(mapload)
 	material = get_material_by_name("glass")

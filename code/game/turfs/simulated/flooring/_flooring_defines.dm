@@ -10,14 +10,20 @@
  * [base_icon_state]_corners: directional overlays for non-edge corners.
  */
 /singleton/flooring
+	abstract_type = /singleton/flooring
+
 	var/name = "floor"
+	var/descriptor = "tiles"
 	var/desc
+
 	var/icon
 	var/base_icon_state
+	var/decal_layer = BUILTIN_DECAL_LAYER
 
 	var/has_base_range
 	var/has_damage_range
 	var/has_burn_range
+
 	var/damage_temperature
 	var/apply_thermal_conductivity
 	var/apply_heat_capacity
@@ -29,17 +35,14 @@
 	/// BYOND ticks.
 	var/build_time = 0
 
-	var/descriptor = "tiles"
-	var/flags
+	var/flooring_flags
 	var/can_paint = TRUE
 	/// key=species name, value = list of sounds
 	var/list/footstep_sounds = list() // TODO: Standardize footsteps. @Zandario
 	var/is_plating = FALSE
-	/// Cached overlays for our edges and corners and junk.
-	var/list/flooring_cache = list()
 
 	/// Plating types, can be overridden.
-	var/plating_type = null
+	var/plating_type = /singleton/flooring/plating
 
 	/// Resistance is subtracted from all incoming damage.
 	// var/resistance = RESISTANCE_FRAGILE
@@ -49,74 +52,28 @@
 
 	// var/removal_time = WORKTIME_FAST * 0.75
 
-	//!Flooring Icon vars
+	//! ## Icon Smoothing
+	/// Icon-smoothing behavior.
+	var/smoothing_flags = NONE
 	/**
-	 * If true, all smoothing logic is entirely skipped
-	 * True/false only, optimisation
+	 * What smoothing groups does this atom belongs to, to match can_smooth_with.
+	 * If null, nobody can smooth with it.
+	 *! Must be sorted.
 	 */
-	var/smooth_nothing = FALSE
-
+	var/list/smoothing_groups = null
 	/**
-	 *? The rest of these x_smooth vars use one of the following options:
-	 *  - SMOOTH_NONE:      Ignore all of type
-	 *  - SMOOTH_ALL:       Smooth with all of type
-	 *  - SMOOTH_WHITELIST: Ignore all except types on this list
-	 *  - SMOOTH_BLACKLIST: Smooth with all except types on this list
-	 *  - SMOOTH_GREYLIST:  Objects only: Use both lists
+	 * List of smoothing groups this atom can smooth with.
+	 * If this is null and atom is smooth, it smooths only with itself.
+	 *! Must be sorted.
 	 */
+	var/list/can_smooth_with = null
 
-	/// How we smooth with other flooring.
-	var/floor_smooth = SMOOTH_NONE
-	/// Smooth with nothing except the contents of this list.
-	var/list/flooring_whitelist = list()
-	/// Smooth with everything except the contents of this list.
-	var/list/flooring_blacklist = list()
 
-	/// How we smooth with walls.
-	var/wall_smooth = SMOOTH_NONE
-	/// There are no lists for walls at this time.
+/singleton/flooring/Initialize(mapload, ...)
+	. = ..()
 
-	/// How we smooth with space and openspace tiles.
-	var/space_smooth = SMOOTH_NONE
-	/// There are no lists for spaces.
-
-	/**
-	 * How we smooth with movable atoms
-	 * These are checked after the above turf based smoothing has been handled
-	 * SMOOTH_ALL or SMOOTH_NONE are treated the same here. Both of those will just ignore atoms
-	 * Using the white/blacklists will override what the turfs concluded, to force or deny smoothing
-	 *
-	 * Movable atom lists are much more complex, to account for many possibilities
-	 * Each entry in a list, is itself a list consisting of three items:
-	 *? Type:
-	 *  - The typepath to allow/deny. This will be checked against istype, so all subtypes are included.
-	 *
-	 *? Priority:
-	 *  - Used when items in two opposite lists conflict. The one with the highest priority wins out.
-	 *
-	 *? Vars:
-	 *  - An associative list of variables (varnames in text) and desired values.
-	 *  - Code will look for the desired vars on the target item and only call it a match if all desired values match.
-	 *  - This can be used, for example, to check that objects are dense and anchored.
-	 *  - There are no safety checks on this, it will probably throw runtimes if you make typos.
-	 *
-	 * Common example:
-	 * Don't smooth with dense anchored objects except airlocks
-	 *
-	 *  ```dm
-	 *  smooth_movable_atom = SMOOTH_GREYLIST
-	 *  movable_atom_blacklist = list(
-	 *  	list(/obj, list("density" = TRUE, "anchored" = TRUE), 1),
-	 *  )
-	 *  movable_atom_whitelist = list(
-	 *  	list(/obj/machinery/door/airlock, list(), 2),
-	 *  )
-	 *  ```
-	 *
-	 */
-	var/smooth_movable_atom = SMOOTH_NONE
-	var/list/movable_atom_whitelist = list()
-	var/list/movable_atom_blacklist = list()
+	// This is required so smoothing lists are properly setup.
+	SETUP_SMOOTHING()
 
 
 /singleton/flooring/proc/get_plating_type(turf/target_turf)
@@ -124,11 +81,11 @@
 
 
 /singleton/flooring/proc/get_flooring_overlay(cache_key, base_icon_state, icon_dir = 0, layer = BUILTIN_DECAL_LAYER)
-	if(!flooring_cache[cache_key])
+	if(!GLOB.flooring_cache[cache_key])
 		var/image/I = image(icon = icon, icon_state = base_icon_state, dir = icon_dir)
 		I.layer = layer
-		flooring_cache[cache_key] = I
-	return flooring_cache[cache_key]
+		GLOB.flooring_cache[cache_key] = I
+	return GLOB.flooring_cache[cache_key]
 
 
 /singleton/flooring/proc/drop_product(atom/A)

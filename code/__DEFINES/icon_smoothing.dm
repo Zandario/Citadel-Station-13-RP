@@ -71,58 +71,8 @@ DEFINE_BITFIELD(smoothing_junction, list(
  * # SMOOTHING GROUPS
  * Groups of things to smooth with.
  * * Contained in the `list/smoothing_groups` variable.
- * * Matched with the `list/canSmoothWith` variable to check whether smoothing is possible or not.
+ * * Matched with the `list/can_smooth_with` variable to check whether smoothing is possible or not.
  */
-
-// Not any different from the number itself, but kept this way in case someone wants to expand it by adding stuff before it.
-#define S_TURF(num) (#num + ",")
-
-
-/* /turf only */
-
-#define SMOOTH_GROUP_TURF_OPEN               S_TURF(0)  /// /turf/simulated/floor
-#define SMOOTH_GROUP_TURF_CHASM              S_TURF(1)  // // /turf/open/chasm, /turf/open/floor/fakepit
-#define SMOOTH_GROUP_FLOOR_LAVA              S_TURF(2)  /// /turf/simulated/floor/outdoors/lava
-#define SMOOTH_GROUP_FLOOR_TRANSPARENT_GLASS S_TURF(3)  // // /turf/open/floor/glass
-
-
-#define SMOOTH_GROUP_EXTERIOR                S_TURF(10)  /// /turf/exterior
-#define SMOOTH_GROUP_EXTERIOR_GRASS          S_TURF(12)  /// /turf/exterior/grass || /turf/simulated/floor/outdoors/grass
-#define SMOOTH_GROUP_EXTERIOR_SNOW           S_TURF(13)  /// /turf/exterior/snow  || /turf/simulated/floor/outdoors/snow
-
-#define SMOOTH_GROUP_EXTERIOR_ASH            S_TURF(13)  // // /turf/open/misc/ashplanet/ash
-#define SMOOTH_GROUP_EXTERIOR_ASH_ROCKY      S_TURF(14)  // // /turf/open/misc/ashplanet/rocky
-
-
-#define SMOOTH_GROUP_OPEN_FLOOR              S_TURF(20)  /// /turf/simulated/floor
-#define SMOOTH_GROUP_FLOOR_SNOWED            S_TURF(21)  // // /turf/open/floor/plating/snowed
-
-
-#define SMOOTH_GROUP_CARPET                  S_TURF(30) /// /turf/simulated/floor/carpet
-#define SMOOTH_GROUP_CARPET_BLACK            S_TURF(31) // // /turf/open/floor/carpet/black
-#define SMOOTH_GROUP_CARPET_BLUE             S_TURF(32) // // /turf/open/floor/carpet/blue
-#define SMOOTH_GROUP_CARPET_CYAN             S_TURF(33) // // /turf/open/floor/carpet/cyan
-#define SMOOTH_GROUP_CARPET_GREEN            S_TURF(34) // // /turf/open/floor/carpet/green
-#define SMOOTH_GROUP_CARPET_ORANGE           S_TURF(35) // // /turf/open/floor/carpet/orange
-#define SMOOTH_GROUP_CARPET_PURPLE           S_TURF(36) // // /turf/open/floor/carpet/purple
-#define SMOOTH_GROUP_CARPET_RED              S_TURF(37) // // /turf/open/floor/carpet/red
-#define SMOOTH_GROUP_CARPET_ROYAL_BLACK      S_TURF(38) // // /turf/open/floor/carpet/royalblack
-#define SMOOTH_GROUP_CARPET_ROYAL_BLUE       S_TURF(39) // // /turf/open/floor/carpet/royalblue
-#define SMOOTH_GROUP_CARPET_EXECUTIVE        S_TURF(40) // // /turf/open/floor/carpet/executive
-#define SMOOTH_GROUP_CARPET_STELLAR          S_TURF(41) // // /turf/open/floor/carpet/stellar
-#define SMOOTH_GROUP_CARPET_DONK             S_TURF(42) // // /turf/open/floor/carpet/donk
-
-
-#define SMOOTH_GROUP_CLOSED_TURFS            S_TURF(50) /// /turf/simulated/wall
-#define SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS S_TURF(51) // // /turf/closed/wall/mineral/titanium/survival
-#define SMOOTH_GROUP_HOTEL_WALLS             S_TURF(52) // // /turf/closed/indestructible/hotelwall
-#define SMOOTH_GROUP_MINERAL_WALLS           S_TURF(53) /// /turf/simulated/mineral, /turf/unsimulated/mineral
-#define SMOOTH_GROUP_BOSS_WALLS              S_TURF(54) // // /turf/closed/indestructible/riveted/boss
-
-
-#define MAX_S_TURF 54 //!Always match this value with the one above it.
-
-
 
 #define S_OBJ(num) ("-" + #num + ",")
 
@@ -171,3 +121,56 @@ DEFINE_BITFIELD(smoothing_junction, list(
 #define SMOOTH_GROUP_INDUSTRIAL_LIFT              S_OBJ(30) // // /obj/structure/industrial_lift
 
 #define SMOOTH_GROUP_GAS_TANK                     S_OBJ(31)
+
+// Not any different from the number itself, but kept this way in case someone wants to expand it by adding stuff before it.
+#define S_TURF(num) (#num + ",")
+
+
+/* /turf only */
+
+#define SMOOTH_GROUP_TURF_OPEN               S_TURF(0)  /// /turf/simulated/floor
+#define SMOOTH_GROUP_TURF_CHASM              S_TURF(1)  // // /turf/open/chasm, /turf/open/floor/fakepit
+#define SMOOTH_GROUP_FLOOR_LAVA              S_TURF(2)  /// /turf/simulated/floor/outdoors/lava
+#define SMOOTH_GROUP_FLOOR_TRANSPARENT_GLASS S_TURF(3)  // // /turf/open/floor/glass
+
+
+#define SMOOTH_GROUP_EXTERIOR                S_TURF(10)  /// /turf/exterior
+#define SMOOTH_GROUP_EXTERIOR_GRASS          S_TURF(12)  /// /turf/exterior/grass || /turf/simulated/floor/outdoors/grass
+#define SMOOTH_GROUP_EXTERIOR_SNOW           S_TURF(13)  /// /turf/exterior/snow  || /turf/simulated/floor/outdoors/snow
+
+#define SMOOTH_GROUP_EXTERIOR_ASH            S_TURF(13)  // // /turf/open/misc/ashplanet/ash
+#define SMOOTH_GROUP_EXTERIOR_ASH_ROCKY      S_TURF(14)  // // /turf/open/misc/ashplanet/rocky
+
+
+#define SMOOTH_GROUP_UNDERPLATING            S_TURF(20)
+#define SMOOTH_GROUP_PLATING                 S_TURF(21)
+
+#define SMOOTH_GROUP_OPEN_FLOOR              S_TURF(30)  /// /turf/simulated/floor
+#define SMOOTH_GROUP_CAFE_FLOOR              S_TURF(31)  /// /turf/simulated/floor
+#define SMOOTH_GROUP_FLOOR_SNOWED            S_TURF(32)  // // /turf/open/floor/plating/snowed
+
+
+
+#define SMOOTH_GROUP_CARPET                  S_TURF(40) /// /turf/simulated/floor/carpet
+#define SMOOTH_GROUP_CARPET_BLACK            S_TURF(41) // // /turf/open/floor/carpet/black
+#define SMOOTH_GROUP_CARPET_BLUE             S_TURF(42) // // /turf/open/floor/carpet/blue
+#define SMOOTH_GROUP_CARPET_CYAN             S_TURF(43) // // /turf/open/floor/carpet/cyan
+#define SMOOTH_GROUP_CARPET_GREEN            S_TURF(44) // // /turf/open/floor/carpet/green
+#define SMOOTH_GROUP_CARPET_ORANGE           S_TURF(45) // // /turf/open/floor/carpet/orange
+#define SMOOTH_GROUP_CARPET_PURPLE           S_TURF(46) // // /turf/open/floor/carpet/purple
+#define SMOOTH_GROUP_CARPET_RED              S_TURF(47) // // /turf/open/floor/carpet/red
+#define SMOOTH_GROUP_CARPET_ROYAL_BLACK      S_TURF(48) // // /turf/open/floor/carpet/royalblack
+#define SMOOTH_GROUP_CARPET_ROYAL_BLUE       S_TURF(49) // // /turf/open/floor/carpet/royalblue
+#define SMOOTH_GROUP_CARPET_EXECUTIVE        S_TURF(50) // // /turf/open/floor/carpet/executive
+#define SMOOTH_GROUP_CARPET_STELLAR          S_TURF(51) // // /turf/open/floor/carpet/stellar
+#define SMOOTH_GROUP_CARPET_DONK             S_TURF(52) // // /turf/open/floor/carpet/donk
+
+
+#define SMOOTH_GROUP_CLOSED_TURFS            S_TURF(60) /// /turf/simulated/wall
+#define SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS S_TURF(61) // // /turf/closed/wall/mineral/titanium/survival
+#define SMOOTH_GROUP_HOTEL_WALLS             S_TURF(62) // // /turf/closed/indestructible/hotelwall
+#define SMOOTH_GROUP_MINERAL_WALLS           S_TURF(63) /// /turf/simulated/mineral, /turf/unsimulated/mineral
+#define SMOOTH_GROUP_BOSS_WALLS              S_TURF(64) // // /turf/closed/indestructible/riveted/boss
+
+
+#define MAX_S_TURF 54 //!Always match this value with the one above it.
