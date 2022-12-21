@@ -1,19 +1,19 @@
 /**
  * State values:
- * [icon_base]: initial base icon_state without edges or corners.
+ * [base_icon_state]: initial base icon_state without edges or corners.
  * if has_base_range is set, append 0-has_base_range ie.
- *   [icon_base][has_base_range]
- * [icon_base]_broken: damaged overlay.
+ *   [base_icon_state][has_base_range]
+ * [base_icon_state]_broken: damaged overlay.
  * if has_damage_range is set, append 0-damage_range for state ie.
- *   [icon_base]_broken[has_damage_range]
- * [icon_base]_edges: directional overlays for edges.
- * [icon_base]_corners: directional overlays for non-edge corners.
+ *   [base_icon_state]_broken[has_damage_range]
+ * [base_icon_state]_edges: directional overlays for edges.
+ * [base_icon_state]_corners: directional overlays for non-edge corners.
  */
 /singleton/flooring
 	var/name = "floor"
 	var/desc
 	var/icon
-	var/icon_base
+	var/base_icon_state
 
 	var/has_base_range
 	var/has_damage_range
@@ -123,9 +123,9 @@
 	return plating_type
 
 
-/singleton/flooring/proc/get_flooring_overlay(cache_key, icon_base, icon_dir = 0, layer = BUILTIN_DECAL_LAYER)
+/singleton/flooring/proc/get_flooring_overlay(cache_key, base_icon_state, icon_dir = 0, layer = BUILTIN_DECAL_LAYER)
 	if(!flooring_cache[cache_key])
-		var/image/I = image(icon = icon, icon_state = icon_base, dir = icon_dir)
+		var/image/I = image(icon = icon, icon_state = base_icon_state, dir = icon_dir)
 		I.layer = layer
 		flooring_cache[cache_key] = I
 	return flooring_cache[cache_key]

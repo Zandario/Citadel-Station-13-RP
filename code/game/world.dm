@@ -90,11 +90,9 @@ GLOBAL_LIST(topic_status_cache)
 
 	. = ..()
 
+	// TODO: Convert these list initializers with GLOBAL_LIST_INIT()'s
 	// Create frame types.
 	populate_frame_types()
-
-	// Create floor types.
-	populate_flooring_types()
 
 	// Create robolimbs for chargen.
 	populate_robolimb_list()
