@@ -60,8 +60,7 @@ var/explosion_in_progress = 0
 
 	explosion_in_progress = 0
 
-/turf
-	var/explosion_resistance
+/turf/var/explosion_resistance
 
 /turf/space
 	explosion_resistance = 3

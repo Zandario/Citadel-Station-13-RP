@@ -7,8 +7,8 @@
 	baseturfs = /turf/simulated/floor/outdoors/dirt
 
 	// smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
-	smoothing_groups = (SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_FLOOR_SNOW)
-	canSmoothWith = (SMOOTH_GROUP_FLOOR_SNOW)
+	smoothing_groups = (SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_EXTERIOR_SNOW)
+	canSmoothWith = (SMOOTH_GROUP_EXTERIOR_SNOW)
 
 	var/list/crossed_dirs = list()
 

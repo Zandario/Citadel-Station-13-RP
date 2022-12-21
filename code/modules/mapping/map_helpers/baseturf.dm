@@ -2,11 +2,11 @@
 	name = "baseturf editor"
 	icon = 'icons/mapping/helpers/mapping_helpers.dmi'
 	icon_state = ""
+	layer = ABOVE_WINDOW_LAYER
 
 	var/list/baseturf_to_replace
 	var/baseturf
 
-	layer = ABOVE_WINDOW_LAYER
 
 /obj/effect/baseturf_helper/Initialize(mapload)
 	. = ..()
@@ -79,4 +79,3 @@
 // /obj/effect/baseturf_helper/lava_land/surface
 // 	name = "lavaland baseturf editor"
 // 	baseturf = /turf/open/lava/smooth/lava_land_surface
-
