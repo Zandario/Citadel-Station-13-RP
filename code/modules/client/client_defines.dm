@@ -85,6 +85,8 @@
 		////////////////
 		//ADMIN THINGS//
 		////////////////
+	/// Hides the byond verb panel as we use our own custom version.
+	show_verb_panel = FALSE
 	///Contains admin info. Null if client is not an admin.
 	var/datum/admins/holder = null
 	var/datum/admins/deadmin_holder = null
@@ -178,3 +180,11 @@
 
 	/// If this client has been fully initialized or not
 	var/fully_created = FALSE
+
+	/// Our current tab.
+	var/stat_tab
+
+	/// List of all tabs.
+	var/list/panel_tabs = list()
+	/// List of tabs containing spells and abilities.
+	var/list/spell_tabs = list()

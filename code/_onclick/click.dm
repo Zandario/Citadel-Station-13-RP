@@ -265,7 +265,8 @@
 			listed_turf = null
 		else if(TurfAdjacent(T))
 			listed_turf = T
-			client.statpanel = T.name
+			// client.statpanel = T.name
+			client.stat_panel.send_message("create_listedturf", "Turf - [T.name]")
 
 /atom/proc/AltClick(var/mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_ALT, user)

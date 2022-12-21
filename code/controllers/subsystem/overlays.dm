@@ -5,7 +5,8 @@ SUBSYSTEM_DEF(overlays)
 	priority = FIRE_PRIORITY_OVERLAYS
 	init_order = INIT_ORDER_OVERLAY
 
-	var/list/queue						// Queue of atoms needing overlay compiling (TODO-VERIFY!)
+	/// Queue of atoms needing overlay compiling (TODO-VERIFY!)
+	var/list/queue
 	var/list/stats
 
 /datum/controller/subsystem/overlays/PreInit(recovering)
@@ -17,8 +18,11 @@ SUBSYSTEM_DEF(overlays)
 	fire(mc_check = FALSE)
 	return ..()
 
-/datum/controller/subsystem/overlays/stat_entry()
-	..("Ov:[length(queue)]")
+
+/datum/controller/subsystem/overlays/stat_entry(msg)
+	msg = "Queued Atoms: [queue.len]"
+	return ..()
+
 
 /datum/controller/subsystem/overlays/Shutdown()
 	text2file(render_stats(stats), "[GLOB.log_directory]/overlay.log")

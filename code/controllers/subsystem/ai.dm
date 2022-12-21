@@ -11,10 +11,9 @@ SUBSYSTEM_DEF(ai)
 	var/list/busy_z_levels = list()
 	var/slept_mobs = 0
 
-/datum/controller/subsystem/ai/stat_entry(msg_prefix)
-	var/list/msg = list(msg_prefix)
-	msg += "P:[processing.len]"
-	..(msg.Join())
+/datum/controller/subsystem/ai/stat_entry(msg)
+	msg = "Processing: [processing.len] | Sleeping: [slept_mobs]"
+	return ..()
 
 /datum/controller/subsystem/ai/fire(resumed = 0)
 	if (!resumed)

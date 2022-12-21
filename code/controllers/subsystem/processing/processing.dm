@@ -6,13 +6,15 @@ SUBSYSTEM_DEF(processing)
 	subsystem_flags = SS_BACKGROUND|SS_POST_FIRE_TIMING|SS_NO_INIT
 	wait = 1 SECONDS
 
-	var/stat_tag = "P" //Used for logging
+	var/stat_tag = "Processing" //Used for logging
 	var/list/processing = list()
 	var/list/currentrun = list()
 
+
 /datum/controller/subsystem/processing/stat_entry(msg)
-	msg = "[stat_tag]:[length(processing)]"
+	msg = "[stat_tag]:[processing.len]"
 	return ..()
+
 
 /datum/controller/subsystem/processing/fire(resumed = FALSE)
 	if (!resumed)

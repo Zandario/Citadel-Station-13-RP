@@ -1,48 +1,69 @@
 SUBSYSTEM_DEF(supply)
 	name = "Supply"
 	wait = 300
-	// Supply Points
+
+	//! Supply Points
 	var/points = 50
 	var/points_per_second = 1.5 / 30
 	var/points_per_slip = 2
-	var/points_per_money = 0.02 // 1 point for $50
-	var/points_per_trash = 0.1 // Weighted value, tentative.
-	// Control
+	/// 1 point for $50
+	var/points_per_money = 0.02
+	/// Weighted value, tentative.
+	var/points_per_trash = 0.1
+
+	//! Control
 	var/ordernum
-	var/list/shoppinglist = list()			// Approved orders
-	var/list/supply_pack = list()			// All supply packs
-	var/list/exported_crates = list()		// Crates sent from the station
-	var/list/order_history = list()			// History of orders, showing edits made by users
-	var/list/adm_order_history = list()		// Complete history of all orders, for admin use
-	var/list/adm_export_history = list()	// Complete history of all crates sent back on the shuttle, for admin use
-	// Shuttle Movement
+	/// Approved orders.
+	var/list/shoppinglist = list()
+	/// All supply packs.
+	var/list/supply_pack = list()
+	/// Crates sent from the station.
+	var/list/exported_crates = list()
+	/// History of orders, showing edits made by users.
+	var/list/order_history = list()
+	/// Complete history of all orders, for admin use.
+	var/list/adm_order_history = list()
+	/// Complete history of all crates sent back on the shuttle, for admin use.
+	var/list/adm_export_history = list()
+
+	//! Shuttle Movement
 	var/movetime = 1200
 	var/datum/shuttle/autodock/ferry/supply/shuttle
-	var/list/material_points_conversion = list(	// Any materials not named in this list are worth 0 points
-			MAT_PHORON = 5,
-			MAT_PLATINUM = 5,
-			MAT_GOLD = 2,		// CIT CHANGE: Gold is now worth 2 cargo points per sheet
-			MAT_SILVER = 2,	// CIT CHANGE: Silver is now worth 2 cargo points per sheet
-			MAT_URANIUM = 1	// CIT CHANGE: Uranium is now worth 1 cargo point per sheet
-		)
+	/// Any materials not named in this list are worth 0 points
+	var/list/material_points_conversion = list(
+		MAT_PHORON   = 5,
+		MAT_PLATINUM = 5,
+		MAT_GOLD     = 2,   // CIT CHANGE: Gold is now worth 2 cargo points per sheet
+		MAT_SILVER   = 2,   // CIT CHANGE: Silver is now worth 2 cargo points per sheet
+		MAT_URANIUM  = 1,   // CIT CHANGE: Uranium is now worth 1 cargo point per sheet
+	)
 
 // TODO - Refactor to use the Supply Subsystem (SSsupply)
 
 // Supply packs are in /code/datums/supplypacks
 // Computers are in /code/game/machinery/computer/supply.dm
-
 /datum/supply_order
-	var/ordernum							// Unfabricatable index
-	var/index								// Fabricatable index
+	/// Unfabricatable index
+	var/ordernum
+	/// Fabricatable index
+	var/index
 	var/datum/supply_pack/object = null
-	var/cost								// Cost of the supply pack (Fabricatable) (Changes not reflected when purchasing supply packs, this is cosmetic only)
-	var/name								// Name of the supply pack datum (Fabricatable)
-	var/ordered_by = null					// Who requested the order
-	var/comment = null						// What reason was given for the order
-	var/approved_by = null					// Who approved the order
-	var/ordered_at							// Date and time the order was requested at
-	var/approved_at							// Date and time the order was approved at
-	var/status								// [Requested, Accepted, Denied, Shipped]
+	/// Cost of the supply pack (Fabricatable) (Changes not reflected when purchasing supply packs, this is cosmetic only)
+	var/cost
+	/// Name of the supply pack datum (Fabricatable)
+	var/name
+	/// Who requested the order
+	var/ordered_by = null
+	/// What reason was given for the order
+	var/comment = null
+	/// Who approved the order
+	var/approved_by = null
+	/// Date and time the order was requested at
+	var/ordered_at
+	/// Date and time the order was approved at
+	var/approved_at
+	/// [Requested, Accepted, Denied, Shipped]
+	var/status
 
 /datum/exported_crate
 	var/name
@@ -55,6 +76,10 @@ SUBSYSTEM_DEF(supply)
 	for(var/typepath in subtypesof(/datum/supply_pack))
 		var/datum/supply_pack/P = new typepath()
 		supply_pack[P.name] = P
+	return ..()
+
+/datum/controller/subsystem/supply/stat_entry(msg)
+	msg = "Points: [points]"
 	return ..()
 
 // Supply shuttle SSticker - handles supply point regeneration

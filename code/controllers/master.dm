@@ -17,18 +17,18 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 /datum/controller/master
 	name = "Master"
 
-	// Are we processing (higher values increase the processing delay by n ticks)
+	/// Are we processing (higher values increase the processing delay by n ticks).
 	var/processing = TRUE
-	// How many times have we ran
+	/// How many times have we ran.
 	var/iteration = 0
 
-	// world.time of last fire, for tracking lag outside of the mc
+	/// world.time of last fire, for tracking lag outside of the mc
 	var/last_run
 
-	// List of subsystems to process().
+	/// List of subsystems to process().
 	var/list/subsystems
 
-	// Vars for keeping track of tick drift.
+	//! Vars for keeping track of tick drift.
 	var/init_timeofday
 	var/init_time
 	var/tickdrift = 0
@@ -37,18 +37,25 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 	var/make_runtime = 0
 
-	var/initializations_finished_with_no_players_logged_in	//I wonder what this could be?
+	/// I wonder what this could be?
+	var/initializations_finished_with_no_players_logged_in
 
-	// The type of the last subsystem to be process()'d.
+	/// The type of the last subsystem to be process()'d.
 	var/last_type_processed
 
-	var/datum/controller/subsystem/queue_head //Start of queue linked list
-	var/datum/controller/subsystem/queue_tail //End of queue linked list (used for appending to the list)
-	var/queue_priority_count = 0 //Running total so that we don't have to loop thru the queue each run to split up the tick
-	var/queue_priority_count_bg = 0 //Same, but for background subsystems
-	var/map_loading = FALSE	//Are we loading in a new map?
+	/// Start of queue linked list.
+	var/datum/controller/subsystem/queue_head
+	/// End of queue linked list (used for appending to the list).
+	var/datum/controller/subsystem/queue_tail
+	/// Running total so that we don't have to loop thru the queue each run to split up the tick.
+	var/queue_priority_count = 0
+	/// Same, but for background subsystems.
+	var/queue_priority_count_bg = 0
+	/// Are we loading in a new map?
+	var/map_loading = FALSE
 
-	var/current_runlevel	//for scheduling different subsystems for different stages of the round
+	/// For scheduling different subsystems for different stages of the round.
+	var/current_runlevel
 	var/sleep_offline_after_initializations = TRUE
 
 	var/static/restart_clear = 0
@@ -57,8 +64,10 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 	var/static/random_seed
 
-	//current tick limit, assigned before running a subsystem.
-	//used by CHECK_TICK as well so that the procs subsystems call can obey that SS's tick limits
+	/**
+	 * current tick limit, assigned before running a subsystem.
+	 * used by CHECK_TICK as well so that the procs subsystems call can obey that SS's tick limits.
+	 */
 	var/static/current_ticklimit = TICK_LIMIT_RUNNING
 
 /datum/controller/master/New()
@@ -263,7 +272,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		message_admins("Failed to recreate MC (Error code: [rtn2]), it's up to the failsafe now")
 		Failsafe.defcon = 2
 
-// Main loop.
+/// Main loop.
 /datum/controller/master/proc/Loop()
 	. = -1
 	//Prep the loop (most of this is because we want MC restarts to reset as much state as we can, and because
@@ -437,7 +446,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	. = 1
 
 
-// Run thru the queue of subsystems to run, running them while balancing out their allocated tick precentage
+/// Run thru the queue of subsystems to run, running them while balancing out their allocated tick precentage.
 /datum/controller/master/proc/RunQueue()
 	. = 0
 	var/datum/controller/subsystem/queue_node
@@ -561,8 +570,10 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 	. = 1
 
-//resets the queue, and all subsystems, while filtering out the subsystem lists
-//	called if any mc's queue procs runtime or exit improperly.
+
+/**
+ * resets the queue, and all subsystems, while filtering out the subsystem lists called if any mc's queue procs runtime or exit improperly.
+ */
 /datum/controller/master/proc/SoftReset(list/SSticker_SS, list/runlevel_SS)
 	. = 0
 	log_world("MC: SoftReset called, resetting MC queue state.")
@@ -603,12 +614,14 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	log_world("MC: SoftReset: Finished.")
 	. = 1
 
-/datum/controller/master/stat_entry()
+/datum/controller/master/stat_entry(msg)
 	if(!statclick)
 		statclick = new/obj/effect/statclick/debug(null, "Initializing...", src)
 
-	stat("Byond:", "(FPS:[world.fps]) (TickCount:[world.time/world.tick_lag]) (TickDrift:[round(Master.tickdrift,1)]([round((Master.tickdrift/(world.time/world.tick_lag))*100,0.1)]%)) (Internal Tick Usage: [round(MAPTICK_LAST_INTERNAL_TICK_USAGE,0.1)]%)")
-	stat("Master Controller:", statclick.update("(TickRate:[Master.processing]) (Iteration:[Master.iteration])"))
+	msg = "Byond: (FPS:[world.fps]) (TickCount:[world.time/world.tick_lag]) (TickDrift:[round(Master.tickdrift,1)]([round((Master.tickdrift/(world.time/world.tick_lag))*100,0.1)]%)) (Internal Tick Usage: [round(MAPTICK_LAST_INTERNAL_TICK_USAGE,0.1)]%)"
+	msg += "Master Controller: [statclick.update("(TickRate:[Master.processing]) (Iteration:[Master.iteration])")]"
+
+	return ..()
 
 /datum/controller/master/StartLoadingMap()
 	//disallow more than one map to load at once, multithreading it will just cause race conditions

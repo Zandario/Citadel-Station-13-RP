@@ -111,6 +111,10 @@
 	// if(new_character.client) //TODO: Eye Contact
 	// 	LAZYCLEARLIST(new_character.client.recent_examines)
 
+	if(new_character.client)
+		new_character.client.init_verbs() // re-initialize character specific verbs
+
+
 /datum/mind/proc/store_memory(new_text)
 	if((length(memory) + length(new_text)) <= MAX_MESSAGE_LEN)
 		memory += "[new_text]<BR>"
@@ -506,7 +510,7 @@
 		mind.name = real_name
 	mind.current = src
 	if(player_is_antag(mind))
-		src.client.verbs += /client/proc/aooc
+		add_verb(client, /client/proc/aooc)
 
 //HUMAN
 /mob/living/carbon/human/mind_initialize()

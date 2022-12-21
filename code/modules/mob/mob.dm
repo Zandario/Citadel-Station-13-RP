@@ -715,6 +715,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
  * calculates client ping, round id, server time, time dilation and other data about the round
  * and puts it in the mob status panel on a regular loop
  */
+/*
 /mob/Stat()
 	..()
 
@@ -788,6 +789,18 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 				for(var/i in GLOB.sdql2_queries)
 					var/datum/SDQL2_query/Q = i
 					Q.generate_stat()
+*/
+
+/// Adds this list to the output to the stat browser.
+/mob/proc/get_status_tab_items()
+	. = list()
+
+/// Gets all relevant proc holders for the browser statpenl.
+/mob/proc/get_proc_holders()
+	. = list()
+	//if(mind)
+		//. += get_spells_for_statpanel(mind.spell_list)
+	//. += get_spells_for_statpanel(mob_spell_list)
 
 
 /// Not sure what to call this. Used to check if humans are wearing an AI-controlled exosuit and hence don't need to fall over yet.

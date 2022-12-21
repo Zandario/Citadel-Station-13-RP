@@ -57,6 +57,10 @@ SUBSYSTEM_DEF(shuttle)
 	var/list/unary_engines = list()
 	var/list/ion_engines = list()
 
+/datum/controller/subsystem/shuttle/stat_entry(msg)
+	msg = "Shuttles:[process_shuttles.len]/[shuttles.len], Ships:[ships.len], L:[registered_shuttle_landmarks.len][overmap_halted ? ", HALT" : ""]"
+	return ..()
+
 /datum/controller/subsystem/shuttle/Initialize(timeofday)
 	last_landmark_registration_time = world.time
 	// Find all declared shuttle datums and initailize them. (Okay, queue them for initialization a few lines further down)
@@ -207,6 +211,3 @@ SUBSYSTEM_DEF(shuttle)
 	for(var/ship in ships)
 		var/obj/effect/overmap/visitable/ship/ship_effect = ship
 		overmap_halted ? ship_effect.halt() : ship_effect.unhalt()
-
-/datum/controller/subsystem/shuttle/stat_entry()
-	..("Shuttles:[process_shuttles.len]/[shuttles.len], Ships:[ships.len], L:[registered_shuttle_landmarks.len][overmap_halted ? ", HALT" : ""]")

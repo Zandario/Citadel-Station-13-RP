@@ -150,30 +150,30 @@
 
 
 
-/mob/new_player/Stat()
-	..()
+/mob/new_player/get_status_tab_items()
+	. = ..()
+	. += ""
 
-	if(SSticker.current_state == GAME_STATE_PREGAME)
-		if(statpanel("Status"))
-			if(SSticker.hide_mode)
-				stat("Game Mode:", "Secret")
-			else
-				if(SSticker.hide_mode == 0)
-					stat("Game Mode:", "[config_legacy.mode_names[master_mode]]")	// Old setting for showing the game mode
-			var/time_remaining = SSticker.GetTimeLeft()
-			if(time_remaining > 0)
-				stat(null, "Time To Start: [round(time_remaining/10)]s")
-			else if(time_remaining == -10)
-				stat(null, "Time To Start: DELAYED")
-			else
-				stat(null, "Time To Start: SOON")
-			stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
-			totalPlayers = 0
-			totalPlayersReady = 0
-			for(var/mob/new_player/player in GLOB.player_list)
-				stat("[player.key]", (player.ready)?("(Playing)"):(null))
-				totalPlayers++
-				if(player.ready)totalPlayersReady++
+	. += "Game Mode: [SSticker.hide_mode ? "Secret" : "[config_legacy.mode_names[master_mode]]"]"
+
+	if(SSvote.mode)
+		. += "Vote: [capitalize(SSvote.mode)] Time Left: [SSvote.time_remaining] s"
+
+	if(SSticker.current_state == GAME_STATE_INIT)
+		. += "Time To Start: Server Initializing"
+
+	else if(SSticker.current_state == GAME_STATE_PREGAME)
+		// . += "Time To Start: [round(SSticker.GetTimeLeft()/10)]s[round_progressing ? "" : " (DELAYED)"]"
+		. += "Time To Start: [round(SSticker.GetTimeLeft()/10)]s"
+		. += "Players: [totalPlayers]"
+		. += "Players Ready: [totalPlayersReady]"
+		totalPlayers = 0
+		totalPlayersReady = 0
+		for(var/mob/new_player/player in GLOB.player_list)
+			. += "[player.key] [(player.ready)?("(Playing)"):(null)]"
+			totalPlayers++
+			if(player.ready)
+				totalPlayersReady++
 
 /mob/new_player/Topic(href, href_list[])
 	if(src != usr)
@@ -274,8 +274,9 @@
 				client.prefs.real_name = random_name(client.prefs.identifying_gender)
 			observer.real_name = client.prefs.real_name
 			observer.name = observer.real_name
-			if(!client.holder && !config_legacy.antag_hud_allowed)			// For new ghosts we remove the verb from even showing up if it's not allowed.
-				observer.verbs -= /mob/observer/dead/verb/toggle_antagHUD	// Poor guys, don't know what they are missing!
+			observer.client.init_verbs()
+			if(!client.holder && !config_legacy.antag_hud_allowed)             // For new ghosts we remove the verb from even showing up if it's not allowed.
+				remove_verb(observer, /mob/observer/dead/verb/toggle_antagHUD) // Poor guys, don't know what they are missing!
 			observer.key = key
 			observer.client?.holder?.update_stealth_ghost()
 			observer.set_respawn_timer(time_till_respawn())	// Will keep their existing time if any, or return 0 and pass 0 into set_respawn_timer which will use the defaults
@@ -538,9 +539,12 @@
 		data_core.manifest_inject(character)
 		SSticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 
+
 		//Grab some data from the character prefs for use in random news procs.
 
 		AnnounceArrival(character, rank, SP.RenderAnnounceMessage(character, name = character.mind.name, job_name = (character.mind.role_alt_title || rank)))
+
+	character.client.init_verbs() // init verbs for the late join
 
 	qdel(src)
 
@@ -605,6 +609,7 @@
 		mind.transfer_to(new_character)				// Won't transfer key since the mind is not active
 
 	new_character.name = real_name
+	client.init_verbs()
 	new_character.dna.ready_dna(new_character)
 	new_character.dna.b_type = client.prefs.b_type
 	new_character.sync_organ_dna()

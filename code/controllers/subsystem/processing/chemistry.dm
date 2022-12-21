@@ -47,3 +47,7 @@ PROCESSING_SUBSYSTEM_DEF(chemistry)
 		if(!D.name)
 			continue
 		chemical_reagents[D.id] = D
+
+/datum/controller/subsystem/processing/chemistry/stat_entry(msg)
+	msg = "Reagent Count: [chemical_reagents.len] | Reaction Count: [chemical_reactions.len]"
+	return ..()

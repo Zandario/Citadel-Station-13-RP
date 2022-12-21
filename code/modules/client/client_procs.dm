@@ -85,6 +85,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			log_href("[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")
 		return
 
+	if(href_list["reload_statbrowser"])
+		stat_panel.reinitialize()
+
 	//Logs all hrefs
 	log_href("[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")
 
@@ -151,7 +154,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	///////////
 
 /client/New(TopicData)
-	//! pre-connect-ish
+	//! -- pre-connect-ish
 	// set appadmin for profiling or it might not work (?) (this is old code we just assume it's here for a reason)
 	world.SetConfig("APP/admin", ckey, "role=admin")
 	// block client.Topic() calls from connect
@@ -170,16 +173,19 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
 
-	//! Resolve storage datums
+	//! -- Resolve storage datums
 	// resolve persistent data
 	persistent = resolve_client_data(ckey)
 	// todo: move resolve database data up here but above preferences
 	// todo: move preferences up here but above persistent
 
-	//! Setup user interface
+	//! -- Setup user interface
 	// todo: move top level menu here, for now it has to be under prefs.
-	// Instantiate tgui panel
+	//! Instantiate tgui panel.
 	tgui_panel = new(src, "browseroutput")
+	//! Instantiate stat panel.
+	stat_panel = new(src, "statbrowser")
+	stat_panel.subscribe(src, .proc/on_stat_panel_message)
 
 	//! Setup admin tooling
 	GLOB.ahelp_tickets.ClientLogin(src)
@@ -324,12 +330,20 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	// 	inline_css = file2text('html/statbrowser.css'),
 	// )
 
-	// Initialize tgui panel
+	//! Initialize tgui panel.
 	tgui_panel.initialize()
 
 	//if(alert_mob_dupe_login)
 	//	spawn()
 	//		alert(mob, "You have logged in already with another key this round, please log out of this one NOW or risk being banned!")
+
+	//! Initialize stat panel.
+	stat_panel.initialize(
+		inline_html = file2text('html/statbrowser.html'),
+		inline_js = file2text('html/statbrowser.js'),
+		inline_css = file2text('html/statbrowser.css'),
+	)
+
 
 	connection_time = world.time
 	connection_realtime = world.realtime
@@ -916,3 +930,43 @@ GLOBAL_VAR_INIT(log_clicks, FALSE)
 	window_flash(src)
 	src << browse(message,"window=dropmessage;size=480x360;can_close=1")
 	qdel(src)
+
+/// compiles a full list of verbs and sends it to the browser
+/client/proc/init_verbs()
+	if(IsAdminAdvancedProcCall())
+		return
+	var/list/verblist = list()
+	panel_tabs.Cut()
+	for(var/thing in (verbs + mob?.verbs))
+		var/procpath/verb_to_init = thing
+		if(!verb_to_init)
+			continue
+		if(verb_to_init.hidden)
+			continue
+		if(!istext(verb_to_init.category))
+			continue
+		panel_tabs |= verb_to_init.category
+		verblist[++verblist.len] = list(verb_to_init.category, verb_to_init.name)
+	src.stat_panel.send_message("init_verbs", list(panel_tabs = panel_tabs, verblist = verblist))
+
+/client/proc/check_panel_loaded()
+	if(stat_panel && stat_panel.is_ready())
+		return
+	to_chat(src, SPAN_BOLDANNOUNCE("Statpanel failed to load, click <a href='?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel. If this does not work, reconnecting will reassign a new panel."))
+
+/**
+ * Handles incoming messages from the stat-panel TGUI.
+ */
+/client/proc/on_stat_panel_message(type, payload)
+	switch(type)
+		if("Update-Verbs")
+			init_verbs()
+		if("Remove-Tabs")
+			panel_tabs -= payload["tab"]
+		if("Send-Tabs")
+			panel_tabs |= payload["tab"]
+		if("Reset-Tabs")
+			panel_tabs = list()
+		if("Set-Tab")
+			stat_tab = payload["tab"]
+			SSstatpanels.immediate_send_stat_data(src)

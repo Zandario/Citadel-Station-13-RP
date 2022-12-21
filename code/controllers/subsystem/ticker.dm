@@ -463,6 +463,7 @@ SUBSYSTEM_DEF(ticker)
 					qdel(player)
 				if(istype(new_char) && !(new_char.mind.assigned_role=="Cyborg"))
 					data_core.manifest_inject(new_char)
+				new_char.client.init_verbs()
 
 
 /datum/controller/subsystem/ticker/proc/collect_minds()
@@ -628,3 +629,29 @@ SUBSYSTEM_DEF(ticker)
 			Reboot("Round ended.", "proper completion")
 	else
 		CRASH("Attempted standard reboot without ticker roundend completion")
+
+/datum/controller/subsystem/ticker/stat_entry(msg)
+	switch(current_state)
+		if(GAME_STATE_INIT)
+			..()
+		if(GAME_STATE_PREGAME) // RUNLEVEL_LOBBY
+			// msg = "START [round_progressing ? "[round(pregame_timeleft)]s" : "(PAUSED)"]"
+			msg = "START"
+		if(GAME_STATE_SETTING_UP) // RUNLEVEL_SETUP
+			msg = "SETUP"
+		if(GAME_STATE_PLAYING) // RUNLEVEL_GAME
+			msg = "GAME"
+		if(GAME_STATE_FINISHED) // RUNLEVEL_POSTGAME
+			msg = "END"
+			// switch(end_game_state)
+			// 	if(END_GAME_MODE_FINISHED)
+			// 		msg = "MODE OVER, WAITING"
+			// 	if(END_GAME_READY_TO_END)
+			// 		msg = "ENDGAME PROCESSING"
+			// 	if(END_GAME_ENDING)
+			// 		msg = "END IN [round(restart_timeleft/10)]s"
+			// 	if(END_GAME_DELAYED)
+			// 		msg = "END PAUSED"
+			// 	else
+			// 		msg = "ENDGAME ERROR:[end_game_state]"
+	return ..()

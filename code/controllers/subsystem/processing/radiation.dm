@@ -10,6 +10,10 @@ PROCESSING_SUBSYSTEM_DEF(radiation)
 	/// waves about to be sent out on next tick; list [ turf = list(burst) ]
 	var/static/list/queued_waves = list()
 
+/datum/controller/subsystem/processing/radiation/stat_entry(msg)
+	msg = "Queued Waves:[queued_waves.len]"
+	return ..()
+
 /datum/controller/subsystem/processing/radiation/fire(resumed)
 	if(!resumed)
 		flush_queue()

@@ -40,16 +40,25 @@
 	holder_type = /obj/item/holder/borer
 	ai_holder_type = null // This is player-controlled, always.
 
-	var/chemicals = 10							// A resource used for reproduction and powers.
-	var/max_chemicals = 250						// Max of said resource.
-	var/mob/living/carbon/human/host = null		// The humanoid host for the brain worm.
-	var/true_name = null						// String used when speaking among other worms.
-	var/mob/living/captive_brain/host_brain		// Used for swapping control of the body back and forth.
-	var/controlling = FALSE						// Used in human death ceck.
-	var/docile = FALSE							// Sugar can stop borers from acting.
+	/// A resource used for reproduction and powers.
+	var/chemicals = 10
+	/// Max of said resource.
+	var/max_chemicals = 250
+	/// The humanoid host for the brain worm.
+	var/mob/living/carbon/human/host = null
+	/// String used when speaking among other worms.
+	var/true_name = null
+	/// Used for swapping control of the body back and forth.
+	var/mob/living/captive_brain/host_brain
+	/// Used in human death ceck.
+	var/controlling = FALSE
+	/// Sugar can stop borers from acting.
+	var/docile = FALSE
 	var/has_reproduced = FALSE
-	var/roundstart = FALSE						// If true, spawning won't try to pull a ghost.
-	var/used_dominate							// world.time when the dominate power was last used.
+	/// If true, spawning won't try to pull a ghost.
+	var/roundstart = FALSE
+	/// world.time when the dominate power was last used.
+	var/used_dominate
 
 
 /mob/living/simple_mob/animal/borer/roundstart
@@ -63,8 +72,8 @@
 /mob/living/simple_mob/animal/borer/Initialize(mapload)
 	add_language("Cortical Link")
 
-	verbs += /mob/living/proc/ventcrawl
-	verbs += /mob/living/proc/hide
+	add_verb(src, /mob/living/proc/ventcrawl)
+	add_verb(src, /mob/living/proc/hide)
 
 	true_name = "[pick("Primary","Secondary","Tertiary","Quaternary")] [rand(1000,9999)]"
 

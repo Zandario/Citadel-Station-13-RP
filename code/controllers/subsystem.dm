@@ -257,8 +257,6 @@
 	if(!statclick)
 		statclick = new/obj/effect/statclick/debug(null, "Initializing...", src)
 
-
-
 	if(can_fire && !(SS_NO_FIRE & subsystem_flags))
 		msg = "[round(cost,1)]ms|[round(tick_usage,1)]%([round(tick_overrun,1)]%)|[round(ticks,0.1)]\t[msg]"
 	else
@@ -268,7 +266,7 @@
 	if (can_fire)
 		title = "\[[state_letter()]][title]"
 
-	stat(title, statclick.update(msg))
+	return msg
 
 /datum/controller/subsystem/proc/state_letter()
 	switch (state)
