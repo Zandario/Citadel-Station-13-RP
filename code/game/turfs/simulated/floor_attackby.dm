@@ -1,160 +1,54 @@
-/turf/simulated/floor/attackby(obj/item/C as obj, mob/user as mob)
+/turf/simulated/floor/attackby(obj/item/object, mob/living/user, params)
+	if(!object || !user)
+		return TRUE
+	. = ..()
+	if(.)
+		return .
+	if(overfloor_placed && istype(object, /obj/item/stack/tile))
+		try_replace_tile(object, user, params)
+		return TRUE
+	//! Not yet.
+	// if((user.a_intent == INTENT_HARM) && istype(object, /obj/item/stack/sheet))
+	// 	var/obj/item/stack/sheet/sheets = object
+	// 	return sheets.on_attack_floor(user, params)
+	return FALSE
 
-	if(!C || !user)
-		return 0
+/turf/simulated/floor/crowbar_act(mob/living/user, obj/item/I)
+	if(overfloor_placed && pry_tile(I, user))
+		return TRUE
 
-	if(isliving(user) && istype(C, /obj/item))
-		var/mob/living/L = user
-		if(L.a_intent != INTENT_HELP)
-			attack_tile(C, L) // Be on help intent if you want to decon something.
-			return
-
-	if(istype(C, /obj/item/stack/tile/roofing))
-		var/expended_tile = FALSE // To track the case. If a ceiling is built in a multiz zlevel, it also necessarily roofs it against weather
-		var/turf/T = GetAbove(src)
-		var/obj/item/stack/tile/roofing/R = C
-
-		// Patch holes in the ceiling
-		if(T)
-			if(istype(T, /turf/simulated/open) || istype(T, /turf/space))
-			 	// Must be build adjacent to an existing floor/wall, no floating floors
-				var/list/cardinalTurfs = list() // Up a Z level
-				for(var/dir in GLOB.cardinal)
-					var/turf/B = get_step(T, dir)
-					if(B)
-						cardinalTurfs += B
-
-				var/turf/simulated/A = locate(/turf/simulated/floor) in cardinalTurfs
-				if(!A)
-					A = locate(/turf/simulated/wall) in cardinalTurfs
-				if(!A)
-					to_chat(user, "<span class='warning'>There's nothing to attach the ceiling to!</span>")
-					return
-
-				if(R.use(1)) // Cost of roofing tiles is 1:1 with cost to place lattice and plating
-					T.ReplaceWithLattice()
-					T.ChangeTurf(/turf/simulated/floor, flags = CHANGETURF_INHERIT_AIR | CHANGETURF_PRESERVE_OUTDOORS)
-					playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-					user.visible_message("<span class='notice'>[user] patches a hole in the ceiling.</span>", "<span class='notice'>You patch a hole in the ceiling.</span>")
-					expended_tile = TRUE
-			else
-				to_chat(user, "<span class='warning'>There aren't any holes in the ceiling to patch here.</span>")
-				return
-
-		// Create a ceiling to shield from the weather
-		if(outdoors)
-			for(var/dir in GLOB.cardinal)
-				var/turf/A = get_step(src, dir)
-				if(A && !A.outdoors)
-					if(expended_tile || R.use(1))
-						make_indoors()
-						playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-						user.visible_message("<span class='notice'>[user] roofs a tile, shielding it from the elements.</span>", "<span class='notice'>You roof this tile, shielding it from the elements.</span>")
-					break
+/turf/simulated/floor/proc/try_replace_tile(obj/item/stack/tile/T, mob/user, params)
+	if(T.turf_type == type && T.turf_dir == dir)
 		return
+	var/obj/item/tool/crowbar/CB = user.is_holding_item_of_type(/obj/item/tool/crowbar)
+	if(!CB)
+		return
+	var/turf/simulated/floor/plating/P = pry_tile(CB, user, TRUE)
+	if(!istype(P))
+		return
+	P.attackby(T, user, params)
 
-	if(flooring)
-		if(istype(C, /obj/item))
-			try_deconstruct_tile(C, user)
-			return
-		else if(istype(C, /obj/item/stack/cable_coil))
-			to_chat(user, "<span class='warning'>You must remove the [flooring.descriptor] first.</span>")
-			return
-		else if(istype(C, /obj/item/stack/tile))
-			try_replace_tile(C, user)
-			return
+/turf/simulated/floor/proc/pry_tile(obj/item/I, mob/user, silent = FALSE)
+	// I.play_tool_sound(src, 80)
+	return remove_tile(user, silent)
+
+/turf/simulated/floor/proc/remove_tile(mob/user, silent = FALSE, make_tile = TRUE, force_plating)
+	if(broken || burnt)
+		broken = FALSE
+		burnt = FALSE
+		if(user && !silent)
+			to_chat(user, SPAN_NOTICE("You remove the broken plating."))
 	else
+		if(user && !silent)
+			to_chat(user, SPAN_NOTICE("You remove the floor tile."))
+		if(make_tile)
+			spawn_tile()
+	return make_plating(force_plating)
 
-		if(istype(C, /obj/item/stack/cable_coil))
-			if(broken || burnt)
-				to_chat(user, "<span class='warning'>This section is too damaged to support anything. Use a welder to fix the damage.</span>")
-				return
-			var/obj/item/stack/cable_coil/coil = C
-			coil.turf_place(src, user)
-			return
-		else if(istype(C, /obj/item/stack))
-			if(broken || burnt)
-				to_chat(user, "<span class='warning'>This section is too damaged to support anything. Use a welder to fix the damage.</span>")
-				return
-			var/obj/item/stack/S = C
-			var/singleton/flooring/use_flooring
-			var/list/singletons = GET_SINGLETON_SUBTYPE_MAP(/singleton/flooring)
-			for(var/flooring_type in singletons)
-				var/singleton/flooring/F = singletons[flooring_type]
-				if(!F.build_type)
-					continue
-				if((S.type == F.build_type) || (S.build_type == F.build_type))
-					use_flooring = F
-					break
-			if(!use_flooring)
-				return
-			// Do we have enough?
-			if(use_flooring.build_cost && S.amount < use_flooring.build_cost)
-				to_chat(user, "<span class='warning'>You require at least [use_flooring.build_cost] [S.name] to complete the [use_flooring.descriptor].</span>")
-				return
-			// Stay still and focus...
-			if(use_flooring.build_time && !do_after(user, use_flooring.build_time))
-				return
-			if(flooring || !S || !user || !use_flooring)
-				return
-			if(S.use(use_flooring.build_cost))
-				set_flooring(use_flooring)
-				playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
-				return
-		// Repairs.
-		else if(istype(C, /obj/item/weldingtool))
-			var/obj/item/weldingtool/welder = C
-			if(welder.isOn() && (is_plating()))
-				if(broken || burnt)
-					if(welder.remove_fuel(0,user))
-						to_chat(user, "<span class='notice'>You fix some dents on the broken plating.</span>")
-						playsound(src, welder.tool_sound, 80, 1)
-						icon_state = "plating"
-						burnt = null
-						broken = null
-					else
-						to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
+/turf/simulated/floor/proc/has_tile()
+	return floor_tile
 
-/turf/simulated/floor/proc/try_deconstruct_tile(obj/item/W as obj, mob/user as mob)
-	if(W.is_crowbar())
-		if(broken || burnt)
-			to_chat(user, "<span class='notice'>You remove the broken [flooring.descriptor].</span>")
-			make_plating()
-		else if(flooring.flooring_flags & TURF_IS_FRAGILE)
-			to_chat(user, "<span class='danger'>You forcefully pry off the [flooring.descriptor], destroying them in the process.</span>")
-			make_plating()
-		else if(flooring.flooring_flags & TURF_REMOVE_CROWBAR)
-			to_chat(user, "<span class='notice'>You lever off the [flooring.descriptor].</span>")
-			make_plating(1)
-		else
-			return 0
-		playsound(src, W.tool_sound, 80, 1)
-		return 1
-	else if(W.is_screwdriver() && (flooring.flooring_flags & TURF_REMOVE_SCREWDRIVER))
-		if(broken || burnt)
-			return 0
-		to_chat(user, "<span class='notice'>You unscrew and remove the [flooring.descriptor].</span>")
-		make_plating(1)
-		playsound(src, W.tool_sound, 80, 1)
-		return 1
-	else if(W.is_wrench() && (flooring.flooring_flags & TURF_REMOVE_WRENCH))
-		to_chat(user, "<span class='notice'>You unwrench and remove the [flooring.descriptor].</span>")
-		make_plating(1)
-		playsound(src, W.tool_sound, 80, 1)
-		return 1
-	else if(istype(W, /obj/item/shovel) && (flooring.flooring_flags & TURF_REMOVE_SHOVEL))
-		to_chat(user, "<span class='notice'>You shovel off the [flooring.descriptor].</span>")
-		make_plating(1)
-		playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
-		return 1
-	return 0
-
-/turf/simulated/floor/proc/try_replace_tile(obj/item/stack/tile/T as obj, mob/user as mob)
-	if(T.type == flooring.build_type)
-		return
-	var/obj/item/W = user.get_inactive_held_item()
-	if(!try_deconstruct_tile(W, user))
-		return
-	if(flooring)
-		return
-	attackby(T, user)
+/turf/simulated/floor/proc/spawn_tile()
+	if(!has_tile())
+		return null
+	return new floor_tile(src)

@@ -3,7 +3,8 @@
 	icon = 'icons/turf/flooring/cafe.dmi'
 	icon_state = "cafe-255"
 	base_icon_state = "cafe"
-	initial_flooring = /singleton/flooring/tiling/cafe
+	floor_tile = /obj/item/stack/tile/floor/eris/cafe
+	// initial_flooring = /singleton/flooring/tiling/cafe
 
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_OBJ
 	smoothing_groups = (SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CAFE_FLOOR)

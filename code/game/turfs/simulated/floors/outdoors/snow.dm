@@ -1,10 +1,10 @@
 /turf/simulated/floor/outdoors/snow
 	name = "snow"
-	icon = 'icons/turf/flooring/exterior/snow.dmi'
+	icon = 'icons/turf/flooring/snow.dmi'
 	icon_state = "snow-255"
 	base_icon_state = "snow"
 	movement_cost = 2
-	initial_flooring = /singleton/flooring/snow
+	// initial_flooring = /singleton/flooring/snow
 	baseturfs = /turf/simulated/floor/outdoors/dirt
 
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
@@ -12,6 +12,13 @@
 	can_smooth_with = (SMOOTH_GROUP_EXTERIOR_SNOW)
 
 	var/list/crossed_dirs = list()
+
+/turf/simulated/floor/outdoors/snow/Initialize(mapload)
+	. = ..()
+	if(smoothing_flags)
+		var/matrix/translation = new
+		translation.Translate(-4, -4)
+		transform = translation
 
 /turf/simulated/floor/outdoors/snow/Entered(atom/A)
 	if(isliving(A))
@@ -48,7 +55,6 @@
 	return
 
 /turf/simulated/floor/outdoors/snow/noblend
-	initial_flooring = /singleton/flooring/snow/no_blend
 
 /turf/simulated/floor/outdoors/snow/noblend/indoors
 	outdoors = FALSE
@@ -86,5 +92,5 @@
 	icon = 'icons/turf/snow_new.dmi'
 	icon_state = "gravsnow"
 	desc = "A layer of coarse ice pebbles and assorted gravel."
-	initial_flooring = /singleton/flooring/gravsnow
+	// initial_flooring = /singleton/flooring/gravsnow
 	baseturfs = /turf/simulated/floor/outdoors/dirt

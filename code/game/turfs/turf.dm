@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(station_turfs)
+
 /// Any floor or wall. What makes up the station and the rest of the map.
 /turf
 	icon = 'icons/turf/floors.dmi'
@@ -5,6 +7,11 @@
 	plane = TURF_PLANE
 	luminosity = 1
 	level = 1
+
+	/// If there's a tile over a basic floor that can be ripped out
+	var/overfloor_placed = FALSE
+	/// How accessible underfloor pieces such as wires, pipes, etc are on this turf. Can be HIDDEN, VISIBLE, or INTERACTABLE.
+	var/underfloor_accessibility = UNDERFLOOR_HIDDEN
 
 	/// turf flags
 	var/turf_flags = NONE
@@ -280,7 +287,13 @@
 	return
 
 /turf/proc/is_plating()
-	return 0
+	return FALSE
+
+/turf/proc/burn_tile()
+	return
+
+/turf/proc/break_tile()
+	return
 
 /turf/proc/levelupdate()
 	for(var/obj/O in src)

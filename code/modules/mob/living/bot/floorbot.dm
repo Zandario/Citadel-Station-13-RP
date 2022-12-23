@@ -31,7 +31,7 @@
 	var/eattiles = FALSE
 	var/maketiles = FALSE
 	var/targetdirection = null
-	var/floor_build_type = /singleton/flooring/tiling // Basic steel floor.
+	var/floor_build_type = /turf/simulated/floor/tiled // Basic steel floor.
 	var/toolbox = /obj/item/storage/toolbox/mechanical
 	skin = "blue" // Blue Toolbox is the default
 
@@ -148,6 +148,7 @@
 /mob/living/bot/floorbot/handleAdjacentTarget()
 	if(get_turf(target) == src.loc)
 		UnarmedAttack(target)
+
 
 /mob/living/bot/floorbot/lookForTargets()
 	if(emagged) // Time to griff
@@ -287,7 +288,7 @@
 			visible_message("<span class='notice'>\The [src] begins to improve the floor.</span>")
 			if(do_after(src, 50))
 				if(!F.flooring)
-					F.set_flooring(GET_SINGLETON(floor_build_type))
+					F.PlaceOnTop(floor_build_type, flags = CHANGETURF_INHERIT_AIR)
 					addTiles(-1)
 			target = null
 			busy = 0

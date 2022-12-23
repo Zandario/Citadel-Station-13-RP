@@ -13,6 +13,7 @@
 	icon_state = "rock"
 	smoothing_flags = SMOOTH_CUSTOM
 	initial_gas_mix = GAS_STRING_VACUUM
+	layer = HIGH_TURF_LAYER
 	opacity = 1
 	density = 1
 	blocks_air = 1
@@ -116,6 +117,7 @@
 	opacity = 0
 	blocks_air = 0
 	can_build_into_floor = TRUE
+	layer = TURF_LAYER
 
 //Alternative sand floor sprite.
 /turf/simulated/mineral/floor/light
@@ -150,6 +152,7 @@
 		return
 	density = FALSE
 	opacity = FALSE
+	layer = TURF_LAYER
 	recalc_atom_opacity()
 	reconsider_lights()
 	blocks_air = FALSE
@@ -164,6 +167,7 @@
 		return
 	density = TRUE
 	opacity = TRUE
+	layer = HIGH_TURF_LAYER
 	recalc_atom_opacity()
 	reconsider_lights()
 	blocks_air = TRUE

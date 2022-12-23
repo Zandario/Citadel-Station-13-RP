@@ -1,7 +1,7 @@
 /singleton/flooring/grass
 	name = "grass"
 	desc = "A patch of grass."
-	icon = 'icons/turf/flooring/exterior/grass.dmi'
+	icon = 'icons/turf/flooring/grass.dmi'
 	base_icon_state = "grass"
 	flooring_layer = HIGH_TURF_LAYER
 
@@ -20,7 +20,7 @@
 /singleton/flooring/snow
 	name = "snow"
 	desc = "A layer of many tiny bits of frozen water. It's hard to tell how deep it is."
-	icon = 'icons/turf/flooring/exterior/snow.dmi'
+	icon = 'icons/turf/flooring/snow.dmi'
 	base_icon_state = "snow"
 	flooring_layer = HIGH_TURF_LAYER
 

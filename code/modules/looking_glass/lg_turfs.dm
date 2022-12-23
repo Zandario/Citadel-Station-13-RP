@@ -11,7 +11,7 @@
 	name = "looking glass surface"
 	icon = 'icons/turf/flooring/lg_origin.dmi'
 	icon_state = "origin_arrow"
-	initial_flooring = /singleton/flooring/looking_glass
+	// initial_flooring = /singleton/flooring/looking_glass
 	appearance_flags = TILE_BOUND
 	dynamic_lighting = FALSE
 

@@ -4,53 +4,88 @@
 // Holographic racks are in code/modules/tables/rack.dm
 
 /turf/simulated/floor/holofloor
+	icon_state = "floor"
+	// holodeck_compatible = TRUE
 	thermal_conductivity = 0
+	turf_flags = NONE
+	var/direction = SOUTH
 
 /turf/simulated/floor/holofloor/attackby(obj/item/W as obj, mob/user as mob)
 	return
 	// HOLOFLOOR DOES NOT GIVE A FUCK
 
-/turf/simulated/floor/holofloor/set_flooring()
+/turf/simulated/floor/holofloor/tool_act(mob/living/user, obj/item/I, tool_type)
 	return
+
+/turf/simulated/floor/holofloor/burn_tile()
+	return //you can't burn a hologram!
+
+/turf/simulated/floor/holofloor/break_tile()
+	return //you can't break a hologram!
+
+/turf/simulated/floor/holofloor/plating
+	name = "holodeck projector floor"
+	icon_state = "engine"
+
+/turf/simulated/floor/holofloor/chapel
+	name = "chapel floor"
+	icon_state = "chapel"
+
+/turf/simulated/floor/holofloor/chapel/bottom_left
+	direction = WEST
+
+/turf/simulated/floor/holofloor/chapel/top_right
+	direction = EAST
+
+/turf/simulated/floor/holofloor/chapel/bottom_right
+
+/turf/simulated/floor/holofloor/chapel/top_left
+	direction = NORTH
+
+/turf/simulated/floor/holofloor/chapel/Initialize(mapload)
+	. = ..()
+	if (direction != SOUTH)
+		setDir(direction)
 
 /turf/simulated/floor/holofloor/carpet
 	name = "carpet"
+	desc = "Electrically inviting."
 	icon = 'icons/turf/flooring/carpet.dmi'
-	icon_state = "carpet"
-	initial_flooring = /singleton/flooring/carpet
-
-	// smoothing_flags = SMOOTH_BITMASK
+	icon_state = "carpet-255"
+	base_icon_state = "carpet"
+	floor_tile = /obj/item/stack/tile/carpet
+	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = (SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_CARPET)
-	can_smooth_with = (SMOOTH_GROUP_CARPET)
+
 
 /turf/simulated/floor/holofloor/tiled
 	name = "floor"
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_state = "steel"
-	initial_flooring = /singleton/flooring/tiling
+	// initial_flooring = /singleton/flooring/tiling
 
 /turf/simulated/floor/holofloor/tiled/dark
 	name = "dark floor"
 	icon_state = "dark"
-	initial_flooring = /singleton/flooring/tiling/dark
+	// initial_flooring = /singleton/flooring/tiling/dark
 
 /turf/simulated/floor/holofloor/lino
 	name = "lino"
 	icon = 'icons/turf/flooring/linoleum.dmi'
 	icon_state = "lino"
-	initial_flooring = /singleton/flooring/linoleum
+	// initial_flooring = /singleton/flooring/linoleum
 
 /turf/simulated/floor/holofloor/wood
 	name = "wooden floor"
 	icon = 'icons/turf/flooring/wood.dmi'
 	icon_state = "wood"
-	initial_flooring = /singleton/flooring/wood
+	// initial_flooring = /singleton/flooring/wood
 
 /turf/simulated/floor/holofloor/grass
 	name = "lush grass"
 	icon = 'icons/turf/flooring/grass.dmi'
 	icon_state = "grass0"
-	initial_flooring = /singleton/flooring/grass
+	// initial_flooring = /singleton/flooring/grass
 
 /turf/simulated/floor/holofloor/snow
 	name = "snow"
@@ -68,16 +103,17 @@
 
 /turf/simulated/floor/holofloor/reinforced
 	icon = 'icons/turf/flooring/tiles.dmi'
-	initial_flooring = /singleton/flooring/reinforced
+	// initial_flooring = /singleton/flooring/reinforced
 	name = "reinforced holofloor"
 	icon_state = "reinforced"
 
 /turf/simulated/floor/holofloor/beach
-	desc = "Uncomfortably gritty for a hologram."
-	base_desc = "Uncomfortably gritty for a hologram."
+	gender = PLURAL
+	name = "sand"
 	icon = 'icons/misc/beach.dmi'
-	base_icon = 'icons/misc/beach.dmi'
-	initial_flooring = null
+	icon_state = "sand"
+	// bullet_bounce_sound = null
+	// tiled_dirt = FALSE
 
 /turf/simulated/floor/holofloor/beach/sand
 	name = "sand"
@@ -85,6 +121,7 @@
 	base_icon_state = "desert"
 
 /turf/simulated/floor/holofloor/beach/coastline
+	gender = NEUTER
 	name = "coastline"
 	icon = 'icons/misc/beach2.dmi'
 	icon_state = "sandwater"
@@ -96,6 +133,7 @@
 	base_icon_state = "seashallow"
 
 /turf/simulated/floor/holofloor/desert
+	gender = PLURAL
 	name = "desert sand"
 	base_name = "desert sand"
 	desc = "Uncomfortably gritty for a hologram."
@@ -104,7 +142,7 @@
 	base_icon_state = "asteroid"
 	icon = 'icons/turf/flooring/asteroid.dmi'
 	base_icon = 'icons/turf/flooring/asteroid.dmi'
-	initial_flooring = null
+	// initial_flooring = null
 
 /turf/simulated/floor/holofloor/desert/Initialize(mapload)
 	. = ..()

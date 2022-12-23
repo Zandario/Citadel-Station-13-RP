@@ -19,6 +19,17 @@
 	drop_sound = 'sound/items/drop/axe.ogg'
 	pickup_sound = 'sound/items/pickup/axe.ogg'
 
+	/// What type of turf does this tile produce.
+	var/turf_type = /turf/simulated/floor/tiled
+	/// What dir will the turf have?
+	var/turf_dir = SOUTH
+	/// Cached associative lazy list to hold the radial options for tile reskinning. See tile_reskinning.dm for more information. Pattern: list[type] -> image
+	// var/list/tile_reskin_types
+	/// Cached associative lazy list to hold the radial options for tile dirs. See tile_reskinning.dm for more information.
+	// var/list/tile_rotate_dirs
+	/// Allows us to replace the plating we are attacking if our baseturfs are the same.
+	// var/replace_plating = FALSE
+
 /obj/item/stack/tile/Initialize(mapload, new_amount, merge)
 	. = ..()
 	pixel_x = rand(-7, 7)
@@ -99,7 +110,7 @@ var/global/list/datum/stack_recipe/grass_recipes = list( \
  */
 /obj/item/stack/tile/carpet
 	name = "carpet"
-	singular_name = "carpet"
+	singular_name = "carpet tile"
 	desc = "A piece of carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-carpet"
 	force = 1.0
@@ -109,54 +120,94 @@ var/global/list/datum/stack_recipe/grass_recipes = list( \
 	no_variants = FALSE
 	drop_sound = 'sound/items/drop/cloth.ogg'
 	pickup_sound = 'sound/items/pickup/cloth.ogg'
+	turf_type = /turf/simulated/floor/carpet
 
 /obj/item/stack/tile/carpet/teal
 	name = "teal carpet"
 	singular_name = "teal carpet"
-	desc = "A piece of teal carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-tealcarpet"
 	no_variants = FALSE
 
+// /obj/item/stack/tile/carpet/black
 /obj/item/stack/tile/carpet/bcarpet
 	name = "black carpet"
 	singular_name = "black carpet"
-	desc = "A piece of black carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-bcarpet"
+	turf_type = /turf/simulated/floor/carpet/bcarpet
+
+// /obj/item/stack/tile/carpet/blue
 /obj/item/stack/tile/carpet/blucarpet
 	name = "blue carpet"
 	singular_name = "blue carpet"
-	desc = "A piece of blue carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-blucarpet"
+	turf_type = /turf/simulated/floor/carpet/blucarpet
+
+/obj/item/stack/tile/carpet/cyan
+	name = "cyan carpet"
+	icon_state = "tile-carpet-cyan"
+	// inhand_icon_state = "tile-carpet-cyan"
+	turf_type = /turf/simulated/floor/carpet/cyan
+	// tableVariant = /obj/structure/table/wood/fancy/cyan
+	// merge_type = /obj/item/stack/tile/carpet/cyan
+
 /obj/item/stack/tile/carpet/turcarpet
 	name = "tur carpet"
 	singular_name = "tur carpet"
-	desc = "A piece of turquoise carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-turcarpet"
+	turf_type = /turf/simulated/floor/carpet/turcarpet
+
 /obj/item/stack/tile/carpet/sblucarpet
 	name = "silver-blue carpet"
 	singular_name = "silver-blue carpet"
-	desc = "A piece of silver-blue carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-sblucarpet"
+	turf_type = /turf/simulated/floor/carpet/sblucarpet
+
 /obj/item/stack/tile/carpet/gaycarpet
 	name = "funny carpet"
 	singular_name = "funny carpet"
 	desc = "A piece of funny carpet. Perfect for clowning around on."
 	icon_state = "tile-gaycarpet"
+	turf_type = /turf/simulated/floor/carpet/gaycarpet
+
 /obj/item/stack/tile/carpet/purcarpet
 	name = "purple carpet"
 	singular_name = "purple carpet"
-	desc = "A piece of purple carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-purcarpet"
+	turf_type = /turf/simulated/floor/carpet/purcarpet
+
 /obj/item/stack/tile/carpet/oracarpet
 	name = "orange carpet"
 	singular_name = "orange carpet"
-	desc = "A piece of orange carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-oracarpet"
+	turf_type = /turf/simulated/floor/carpet/oracarpet
+
 /obj/item/stack/tile/carpet/arcadecarpet
 	name = "arcadey carpet"
 	singular_name = "arcadey carpet"
-	desc = "A piece of arcadey carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile-carpet-arcade"
+	turf_type = /turf/simulated/floor/carpet/arcadecarpet
+
+/obj/item/stack/tile/carpet/executive
+	name = "executive carpet"
+	icon_state = "tile_carpet_executive"
+	// inhand_icon_state = "tile-carpet-royalblue"
+	turf_type = /turf/simulated/floor/carpet/executive
+	// merge_type = /obj/item/stack/tile/carpet/executive
+
+/obj/item/stack/tile/carpet/stellar
+	name = "stellar carpet"
+	icon_state = "tile_carpet_stellar"
+	// inhand_icon_state = "tile-carpet-royalblue"
+	turf_type = /turf/simulated/floor/carpet/stellar
+	// merge_type = /obj/item/stack/tile/carpet/stellar
+
+/obj/item/stack/tile/carpet/donk
+	name = "\improper Donk Co. promotional carpet"
+	icon_state = "tile_carpet_donk"
+	// inhand_icon_state = "tile-carpet-orange"
+	turf_type = /turf/simulated/floor/carpet/donk
+	// merge_type = /obj/item/stack/tile/carpet/donk
+
 
 /obj/item/stack/tile/floor
 	name = "floor tile"

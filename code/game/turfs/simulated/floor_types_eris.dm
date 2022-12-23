@@ -16,20 +16,6 @@
 
 	plating_type = /singleton/flooring/eris_plating/under
 
-	// floor_smooth = SMOOTH_WHITELIST
-	// flooring_whitelist = list(
-	// 	/singleton/flooring/eris_plating/under
-	// )
-
-	// smooth_movable_atom = SMOOTH_GREYLIST
-	// movable_atom_whitelist = list(
-	// 	list(/obj/machinery/door/airlock, list(), 1) // Smooth Eris floors with airlocks
-	// )
-	// movable_atom_blacklist = list(
-	// 	list(/obj/machinery/door/airlock/maintenance, list(), 2), // But not maintenance airlocks
-	// 	list(/obj/structure/window, list("anchored" = TRUE, "fulltile" = TRUE), 2) // Don't blend under full windows
-	// )
-
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = (SMOOTH_GROUP_UNDERPLATING + SMOOTH_GROUP_TURF_OPEN)
 	can_smooth_with = (SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_UNDERPLATING + SMOOTH_GROUP_CLOSED_TURFS)

@@ -2,7 +2,8 @@
 	name = "dirt"
 	desc = "Quite dirty!"
 	icon_state = "dirt-dark"
-	initial_flooring = /singleton/flooring/outdoors/dirt
+	base_icon_state = "dirt-dark"
+	// initial_flooring = /singleton/flooring/outdoors/dirt
 	baseturfs = /turf/baseturf_bottom
 
 /turf/simulated/floor/outdoors/dirt

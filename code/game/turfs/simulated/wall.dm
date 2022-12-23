@@ -43,6 +43,8 @@
 /turf/simulated/wall/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..()
 	icon_state = "blank"
+	if(is_station_level(z))
+		GLOB.station_turfs += src
 	if(!materialtype)
 		materialtype = MAT_STEEL
 	material = get_material_by_name(materialtype)
@@ -61,6 +63,8 @@
 	material = get_material_by_name("placeholder")
 	reinf_material = null
 	girder_material = null
+	if(is_station_level(z))
+		GLOB.station_turfs -= src
 	return ..()
 
 /turf/simulated/wall/process(delta_time)

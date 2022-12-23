@@ -4,6 +4,9 @@
 	icon = 'icons/turf/flooring/plating.dmi'
 	icon_state = "plating"
 	base_icon_state = "plating"
+	// flags = NO_SCREENTIPS
+	// turf_flags = CAN_BE_DIRTY
+
 	thermal_conductivity = 0.040
 	heat_capacity = 10000
 
@@ -11,11 +14,17 @@
 	smoothing_groups = (SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_OPEN_FLOOR)
 	can_smooth_with = (SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_OPEN_FLOOR)
 
-	// Damage to flooring.
-	var/broken
-	var/burnt
+	//! Damage to flooring.
+	var/broken = FALSE
+	var/burnt = FALSE
 
-	// Plating data.
+	//! Damage overlay data.
+	/// Determines the type of damage overlay that will be used for the tile
+	var/damaged_dmi = 'icons/turf/damaged.dmi'
+	var/list/broken_states
+	var/list/burnt_states
+
+	//! Plating data.
 	var/base_name = "plating"
 	var/base_desc = "The naked hull."
 	var/base_icon = 'icons/turf/flooring/plating_vr.dmi'
@@ -29,35 +38,63 @@
 
 	var/list/old_decals = null // Remember what decals we had between being pried up and replaced.
 
-	// Flooring data.
+	/// Path of the tile that this floor drops.
+	var/floor_tile = null
+
+	//! Flooring data.
 	var/flooring_override
 	var/initial_flooring
 	var/singleton/flooring/flooring
 	var/mineral = MAT_STEEL
 
-/turf/simulated/floor/is_plating()
-	return !flooring
 
 /turf/simulated/floor/Initialize(mapload, floortype)
 	. = ..()
-	if(!floortype && initial_flooring)
-		floortype = initial_flooring
-	if(floortype)
-		set_flooring(GET_SINGLETON(floortype), TRUE)
+	if (broken_states)
+		stack_trace("broken_states defined at the object level for [type], move it to setup_broken_states()")
 	else
-		footstep_sounds = base_footstep_sounds
+		broken_states = string_list(setup_broken_states())
+	if (burnt_states)
+		stack_trace("burnt_states defined at the object level for [type], move it to setup_burnt_states()")
+	else
+		var/list/new_burnt_states = setup_burnt_states()
+		if(new_burnt_states)
+			burnt_states = string_list(new_burnt_states)
+	if(!broken && broken_states && (icon_state in broken_states))
+		broken = TRUE
+	if(!burnt && burnt_states && (icon_state in burnt_states))
+		burnt = TRUE
 	if(mapload && can_dirty && can_start_dirty)
 		if(prob(dirty_prob))
 			dirt += rand(50,100)
 			update_dirt() //5% chance to start with dirt on a floor tile- give the janitor something to do
+	if(is_station_level(z))
+		GLOB.station_turfs += src
+
+
+/turf/simulated/floor/Destroy()
+	if(is_station_level(z))
+		GLOB.station_turfs -= src
+	return ..()
+
+
+/turf/simulated/floor/is_plating()
+	return (initial(baseturfs) == /turf/baseturf_bottom)
+
 
 /turf/simulated/proc/make_outdoors()
 	outdoors = TRUE
 	SSplanets.addTurf(src)
 
+
 /turf/simulated/proc/make_indoors()
 	outdoors = FALSE
 	SSplanets.removeTurf(src)
+
+
+/turf/open/floor/blob_act(obj/structure/blob/B)
+	return
+
 
 /turf/simulated/AfterChange(flags, oldType)
 	. = ..()
@@ -70,59 +107,59 @@
 		else
 			make_indoors()
 
-/**
- * TODO: REWORK FLOORING GETTERS/INIT/SETTERS THIS IS BAD
- */
 
-/turf/simulated/floor/proc/set_flooring(singleton/flooring/newflooring, init)
-	make_plating(null, TRUE, TRUE)
-	flooring = newflooring
-	footstep_sounds = newflooring.footstep_sounds
-	// We are plating switching to flooring, swap out old_decals for decals
-	var/list/overfloor_decals = old_decals
-	old_decals = decals
-	decals = overfloor_decals
-	if(!init)
-		QUEUE_SMOOTH(src)
-		QUEUE_SMOOTH_NEIGHBORS(src)
-	levelupdate()
+/turf/simulated/floor/attack_hand(mob/user, list/modifiers)
+	. = ..()
+	if(.)
+		return
 
-//This proc will set floor_type to null and the update_icon() proc will then change the icon_state of the turf
-//This proc auto corrects the grass tiles' siding.
-/turf/simulated/floor/proc/make_plating(place_product, defer_icon_update, strip_bare)
+	// SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, user, modifiers)
 
-	if(flooring)
-		// We are flooring switching to plating, swap out old_decals for decals.
-		var/list/underfloor_decals = old_decals
-		old_decals = decals
-		decals = underfloor_decals
 
-		if(place_product)
-			flooring.drop_product(src)
-		var/newtype = flooring.get_plating_type()
-		if(newtype && !strip_bare) // Has a custom plating type to become
-			set_flooring(GET_SINGLETON(newtype))
+
+
+/turf/simulated/floor/break_tile()
+	if(broken)
+		return
+	broken = TRUE
+	update_appearance()
+
+
+/turf/simulated/floor/burn_tile()
+	if(burnt)
+		return
+	burnt = TRUE
+	update_appearance()
+
+
+/turf/simulated/floor/proc/setup_broken_states()
+	return list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+
+
+/turf/simulated/floor/proc/setup_burnt_states()
+	return
+
+
+/turf/simulated/floor/update_overlays()
+	. = ..()
+	if(broken)
+		. += mutable_appearance(damaged_dmi, pick(broken_states))
+	else if(burnt)
+		if(LAZYLEN(burnt_states))
+			. += mutable_appearance(damaged_dmi, pick(burnt_states))
 		else
-			flooring = null
-			// this branch is only if we don't set flooring because otherwise it'll do it for us
-			if(!defer_icon_update)
-				name = base_name
-				desc = base_desc
-				icon = base_icon
-				icon_state = base_icon_state
-				footstep_sounds = base_footstep_sounds
-				QUEUE_SMOOTH(src)
-				QUEUE_SMOOTH_NEIGHBORS(src)
-				levelupdate()
+			. += mutable_appearance(damaged_dmi, pick(broken_states))
 
-	broken = null
-	burnt = null
-	flooring_override = null
+
+/// Things seem to rely on this actually returning plating. Override it if you have other baseturfs.
+/turf/simulated/floor/proc/make_plating(force = FALSE)
+	return ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 
 
 /turf/simulated/floor/levelupdate()
 	for(var/obj/O in src)
 		O.hide(O.hides_under_flooring() && src.flooring)
+
 
 /turf/simulated/floor/rcd_values(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	switch(passed_mode)

@@ -89,6 +89,11 @@
 
 	// This is required so smoothing lists are properly setup.
 	SETUP_SMOOTHING()
+	stack_trace("Flooring [type] was used!")
+
+/singleton/flooring/New()
+	. = ..()
+	stack_trace("Flooring [type] was used!")
 
 
 /singleton/flooring/proc/get_plating_type(turf/target_turf)
