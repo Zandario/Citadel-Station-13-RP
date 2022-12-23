@@ -27,9 +27,6 @@ VIRGO3B_TURF_CREATE_UN(/turf/simulated/floor/tiled/kafel_full/yellow)
 
 
 
-/turf/simulated/open/virgo3b
-	edge_blending_priority = 0.5 //Turfs which also have e_b_p and higher than this will plop decorative edges onto this turf
-
 /turf/simulated/floor/virgo3b_indoors
 	initial_gas_mix = ATMOSPHERE_ID_VIRGO3B
 
@@ -113,4 +110,3 @@ VIRGO3B_TURF_CREATE_UN(/turf/simulated/floor/tiled/kafel_full/yellow)
 	if(mineral_name && (mineral_name in GLOB.ore_data))
 		mineral = GLOB.ore_data[mineral_name]
 		UpdateMineral()
-

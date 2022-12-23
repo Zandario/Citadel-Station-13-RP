@@ -1,10 +1,12 @@
 /turf/simulated/floor/outdoors/grass
 	name = "grass"
-	icon_state = "grass"
+	icon = 'icons/turf/flooring/exterior/grass.dmi'
+	icon_state = "grass-255"
+	base_icon_state = "grass"
 	initial_flooring = /singleton/flooring/outdoors/grass
 	baseturfs = /turf/simulated/floor/outdoors/dirt
 
-	// smoothing_flags = SMOOTH_BITMASK
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	smoothing_groups = (SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_EXTERIOR_GRASS)
 	can_smooth_with = (SMOOTH_GROUP_EXTERIOR_GRASS + SMOOTH_GROUP_CLOSED_TURFS)
 
@@ -46,7 +48,6 @@
 /turf/simulated/floor/outdoors/grass/Initialize(mapload)
 	if(prob(50))
 		icon_state = "[initial(icon_state)]2"
-		//edge_blending_priority++
 
 	if(grass_chance && prob(grass_chance) && !check_density())
 		var/grass_type = pickweight(grass_types)

@@ -1,12 +1,13 @@
 /turf/simulated/floor/outdoors/snow
 	name = "snow"
-	icon_state = "snow"
-	edge_blending_priority = 1
+	icon = 'icons/turf/flooring/exterior/snow.dmi'
+	icon_state = "snow-255"
+	base_icon_state = "snow"
 	movement_cost = 2
 	initial_flooring = /singleton/flooring/snow
 	baseturfs = /turf/simulated/floor/outdoors/dirt
 
-	// smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	smoothing_groups = (SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_EXTERIOR_SNOW)
 	can_smooth_with = (SMOOTH_GROUP_EXTERIOR_SNOW)
 
@@ -47,7 +48,7 @@
 	return
 
 /turf/simulated/floor/outdoors/snow/noblend
-	edge_blending_priority = 0
+	initial_flooring = /singleton/flooring/snow/no_blend
 
 /turf/simulated/floor/outdoors/snow/noblend/indoors
 	outdoors = FALSE
@@ -56,7 +57,6 @@
 	name = "ice"
 	icon_state = "ice"
 	desc = "Looks slippery."
-	edge_blending_priority = 0
 
 /turf/simulated/floor/outdoors/ice/Entered(var/mob/living/M)
 	. = ..()
@@ -72,7 +72,6 @@
 	icon_state = "ice"
 	desc = "Looks slippery."
 	movement_cost = 4
-	edge_blending_priority = 0
 
 // Ice that is safe to walk on.
 /turf/simulated/floor/outdoors/safeice
@@ -80,7 +79,6 @@
 	icon_state = "ice"
 	desc = "Seems safe enough to walk on."
 	movement_cost = 2
-	edge_blending_priority = 0
 
 // Snowy gravel
 /turf/simulated/floor/outdoors/gravsnow
@@ -88,6 +86,5 @@
 	icon = 'icons/turf/snow_new.dmi'
 	icon_state = "gravsnow"
 	desc = "A layer of coarse ice pebbles and assorted gravel."
-	edge_blending_priority = 0
-	initial_flooring = /singleton/flooring/snow/gravsnow
+	initial_flooring = /singleton/flooring/gravsnow
 	baseturfs = /turf/simulated/floor/outdoors/dirt

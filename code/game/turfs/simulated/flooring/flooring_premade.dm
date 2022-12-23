@@ -232,6 +232,10 @@
 	icon_state = "reinforced"
 	initial_flooring = /singleton/flooring/reinforced
 
+	smoothing_groups = (SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_NO_BLEND + SMOOTH_GROUP_OPEN_FLOOR)
+	can_smooth_with = (SMOOTH_GROUP_TURF_OPEN + SMOOTH_GROUP_NO_BLEND + SMOOTH_GROUP_OPEN_FLOOR)
+
+
 /turf/simulated/floor/reinforced/airless
 	initial_gas_mix = GAS_STRING_VACUUM
 
@@ -449,10 +453,6 @@
 /turf/simulated/floor/beach/water/ocean
 */
 /turf/simulated/floor/airless/ceiling
-/turf/simulated/floor/plating
-
-/turf/simulated/floor/plating/external
-	outdoors = TRUE
 
 /turf/simulated/floor/tiled/external
 	outdoors = TRUE

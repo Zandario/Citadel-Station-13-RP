@@ -12,45 +12,35 @@
 /singleton/flooring
 	abstract_type = /singleton/flooring
 
+	//! ## General
 	var/name = "floor"
 	var/descriptor = "tiles"
 	var/desc
 
+	//! ## Icon
 	var/icon
 	var/base_icon_state
-	var/decal_layer = BUILTIN_DECAL_LAYER
 
+	//! ## Ranges
 	var/has_base_range
 	var/has_damage_range
 	var/has_burn_range
 
+	//! ## Damage
 	var/damage_temperature
 	var/apply_thermal_conductivity
 	var/apply_heat_capacity
 
-	/// Unbuildable if not set. Must be /obj/item/stack.
-	var/build_type
-	/// Stack units.
-	var/build_cost = 1
-	/// BYOND ticks.
-	var/build_time = 0
+	//! ## Layers
+	var/flooring_layer = BUILTIN_DECAL_LAYER
 
-	var/flooring_flags
-	var/can_paint = TRUE
-	/// key=species name, value = list of sounds
-	var/list/footstep_sounds = list() // TODO: Standardize footsteps. @Zandario
-	var/is_plating = FALSE
-
-	/// Plating types, can be overridden.
-	var/plating_type = /singleton/flooring/plating
-
-	/// Resistance is subtracted from all incoming damage.
-	// var/resistance = RESISTANCE_FRAGILE
-
-	/// Damage the floor can take before being destroyed.
-	// var/health = 50
-
-	// var/removal_time = WORKTIME_FAST * 0.75
+	//! ## Pixel Offsets
+	/// Optimization Variable to skip Offset logic.
+	var/has_pixel_offsets = FALSE
+	/// Default pixel x shifting for the flooring's icon.
+	var/base_pixel_x
+	/// Default pixel y shifting for the flooring's icon.
+	var/base_pixel_y
 
 	//! ## Icon Smoothing
 	/// Icon-smoothing behavior.
@@ -68,6 +58,31 @@
 	 */
 	var/list/can_smooth_with = null
 
+	//! ## Building
+	/// Unbuildable if not set. Must be /obj/item/stack.
+	var/build_type
+	/// Stack units.
+	var/build_cost = 1
+	/// BYOND ticks.
+	var/build_time = 0
+
+	//! ## Misc
+	var/flooring_flags
+	var/can_paint = TRUE
+	/// key=species name, value = list of sounds
+	var/list/footstep_sounds = list() // TODO: Standardize footsteps. @Zandario
+	var/is_plating = FALSE
+
+	/// Plating types, can be overridden.
+	var/plating_type = /singleton/flooring/plating
+
+	/// Resistance is subtracted from all incoming damage.
+	// var/resistance = RESISTANCE_FRAGILE
+
+	/// Damage the floor can take before being destroyed.
+	// var/health = 50
+
+	// var/removal_time = WORKTIME_FAST * 0.75
 
 /singleton/flooring/Initialize(mapload, ...)
 	. = ..()
@@ -78,14 +93,6 @@
 
 /singleton/flooring/proc/get_plating_type(turf/target_turf)
 	return plating_type
-
-
-/singleton/flooring/proc/get_flooring_overlay(cache_key, base_icon_state, icon_dir = 0, layer = BUILTIN_DECAL_LAYER)
-	if(!GLOB.flooring_cache[cache_key])
-		var/image/I = image(icon = icon, icon_state = base_icon_state, dir = icon_dir)
-		I.layer = layer
-		GLOB.flooring_cache[cache_key] = I
-	return GLOB.flooring_cache[cache_key]
 
 
 /singleton/flooring/proc/drop_product(atom/A)

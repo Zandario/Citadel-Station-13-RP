@@ -78,8 +78,9 @@
 				return
 			var/obj/item/stack/S = C
 			var/singleton/flooring/use_flooring
-			for(var/flooring_type in GLOB.flooring_cache)
-				var/singleton/flooring/F = GLOB.flooring_cache[flooring_type]
+			var/list/singletons = GET_SINGLETON_SUBTYPE_MAP(/singleton/flooring)
+			for(var/flooring_type in singletons)
+				var/singleton/flooring/F = singletons[flooring_type]
 				if(!F.build_type)
 					continue
 				if((S.type == F.build_type) || (S.build_type == F.build_type))

@@ -8,6 +8,7 @@
 	desc = "A huge chunk of iron used to separate rooms."
 	icon = 'icons/turf/wall_masks.dmi'
 	icon_state = "generic"
+	layer = CLOSED_TURF_LAYER
 	opacity = TRUE
 	density = TRUE
 	blocks_air = TRUE
@@ -16,7 +17,6 @@
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
 	baseturfs = /turf/simulated/floor/plating
-	edge_blending_priority = INFINITY		// let's not have floors render onto us mmkay?
 
 	smoothing_flags = SMOOTH_CUSTOM
 	smoothing_groups = (SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS)

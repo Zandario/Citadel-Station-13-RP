@@ -138,8 +138,10 @@
 #define TURF_PLANE -45
 
 #define WATER_FLOOR_LAYER   (TURF_LAYER)      /// The 'bottom' of water tiles.
-#define BUILTIN_DECAL_LAYER (TURF_LAYER+0.01) /// For floors that automatically add decal overlays.
-#define MAPPER_DECAL_LAYER  (TURF_LAYER+0.02) /// For intentionally placed floor decal overlays.
+#define HIGH_TURF_LAYER     (TURF_LAYER+0.01) /// For things like grass and snow that bleed over onto other turfs.
+#define BUILTIN_DECAL_LAYER (TURF_LAYER+0.02) /// For floors that automatically add decal overlays.
+#define MAPPER_DECAL_LAYER  (TURF_LAYER+0.03) /// For intentionally placed floor decal overlays.
+#define CLOSED_TURF_LAYER   (TURF_LAYER+0.05) /// For things like walls, so flooring stuff never render over us.
 #define UNDERWATER_LAYER    (TURF_LAYER+0.5)  /// Anything on this layer will render under the water layer.
 //! Turf/Obj layer boundary
 #define WATER_LAYER         (OBJ_LAYER)       /// Layer for water overlays.

@@ -872,7 +872,6 @@
 /turf/simulated/floor/outdoors/grass/heavy
 	name = "heavy grass"
 	icon_state = "grass-heavy0"
-	edge_blending_priority = 0
 	initial_flooring = /singleton/flooring/grass/heavy
 	baseturfs = /turf/simulated/floor/outdoors/dirt
 	grass_chance = 40

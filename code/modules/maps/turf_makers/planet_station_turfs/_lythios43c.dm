@@ -58,9 +58,6 @@ LYTHIOS43C_TURF_CREATE_UN(/turf/simulated/mineral/icerock/ignore_cavegen)
 LYTHIOS43C_TURF_CREATE_UN(/turf/simulated/mineral/icerock/floor/ignore_cavegen)
 
 
-/turf/simulated/open/lythios43c
-	edge_blending_priority = 0.5 //Turfs which also have e_b_p and higher than this will plop decorative edges onto this turf
-
 /turf/simulated/mineral/icerock/ignore_cavegen/lythios43c
 	baseturfs = /turf/simulated/mineral/icerock/floor/ignore_cavegen/lythios43c
 

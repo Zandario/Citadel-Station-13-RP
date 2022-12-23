@@ -1709,6 +1709,7 @@
 #include "code\game\turfs\simulated\floors\lava.dm"
 #include "code\game\turfs\simulated\floors\outdoors.dm"
 #include "code\game\turfs\simulated\floors\outdoors_attackby.dm"
+#include "code\game\turfs\simulated\floors\plating.dm"
 #include "code\game\turfs\simulated\floors\sky.dm"
 #include "code\game\turfs\simulated\floors\snow.dm"
 #include "code\game\turfs\simulated\floors\tiles.dm"

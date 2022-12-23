@@ -1,7 +1,7 @@
 /turf/simulated/floor
 	name = "plating"
 	desc = "Unfinished flooring."
-	icon = 'icons/turf/flooring/plating_vr.dmi'
+	icon = 'icons/turf/flooring/plating.dmi'
 	icon_state = "plating"
 	base_icon_state = "plating"
 	thermal_conductivity = 0.040
@@ -43,7 +43,7 @@
 	if(!floortype && initial_flooring)
 		floortype = initial_flooring
 	if(floortype)
-		set_flooring(get_flooring_data(floortype), TRUE)
+		set_flooring(GET_SINGLETON(floortype), TRUE)
 	else
 		footstep_sounds = base_footstep_sounds
 	if(mapload && can_dirty && can_start_dirty)
@@ -101,7 +101,7 @@
 			flooring.drop_product(src)
 		var/newtype = flooring.get_plating_type()
 		if(newtype && !strip_bare) // Has a custom plating type to become
-			set_flooring(get_flooring_data(newtype))
+			set_flooring(GET_SINGLETON(newtype))
 		else
 			flooring = null
 			// this branch is only if we don't set flooring because otherwise it'll do it for us

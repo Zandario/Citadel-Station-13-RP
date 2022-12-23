@@ -7,6 +7,7 @@
 	blocks_air = TRUE
 
 	//! NOTICE: UNSIMULATED TURFS DO NOT SMOOTH, THIS IS MORESO FOR OTHER TURFS
+	can_smooth_with = (SMOOTH_GROUP_WALLS)
 	smoothing_groups = (SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS)
 
 /turf/unsimulated/wall/fakeglass

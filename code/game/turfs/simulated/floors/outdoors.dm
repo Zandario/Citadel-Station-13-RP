@@ -3,7 +3,6 @@
 	desc = "Rather boring."
 	icon = 'icons/turf/outdoors.dmi'
 	icon_state = null
-	edge_blending_priority = 1
 	outdoors = TRUE					// This variable is used for weather effects.
 	can_dirty = FALSE				// Looks hideous with dirt on it.
 	can_build_into_floor = TRUE

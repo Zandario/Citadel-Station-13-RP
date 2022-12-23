@@ -1,4 +1,5 @@
 GLOBAL_DATUM_INIT(no_ceiling_image, /image, generate_no_ceiling_image())
+GLOBAL_LIST_EMPTY(flooring_cache)
 
 /proc/generate_no_ceiling_image()
 	var/image/I = image(icon = 'icons/turf/open_space.dmi', icon_state = "no_ceiling")
@@ -11,41 +12,49 @@ GLOBAL_DATUM_INIT(no_ceiling_image, /image, generate_no_ceiling_image())
 
 	cut_overlays()
 
-	var/singleton/flooring/our_flooring_data = get_flooring_data(flooring)
+	flooring = GET_SINGLETON(flooring)
 	// Set initial icon and strings.
-	name = our_flooring_data.name
-	desc = our_flooring_data.desc
-	icon = our_flooring_data.icon
+	name = flooring.name
+	desc = flooring.desc
+	icon = flooring.icon
 
 	if(flooring_override)
 		icon_state = flooring_override
 	else
-		base_icon_state = our_flooring_data.base_icon_state
-		if(our_flooring_data.has_base_range)
-			icon_state = "[base_icon_state][rand(0, our_flooring_data.has_base_range)]"
+		base_icon_state = flooring.base_icon_state
+		if(flooring.has_base_range)
+			icon_state = "[base_icon_state][rand(0, flooring.has_base_range)]"
 			flooring_override = icon_state
 		else
-			icon_state = our_flooring_data.base_icon_state
+			icon_state = flooring.base_icon_state
 
 	if(is_plating() && !(isnull(broken) && isnull(burnt)))
-		if(our_flooring_data.plating_type)
-			var/singleton/flooring/our_plating = our_flooring_data.plating_type
-			icon       = our_plating.icon
-			icon_state = our_plating.base_icon_state
+		if(flooring.plating_type)
+			flooring = GET_SINGLETON(flooring.plating_type)
+			icon       = flooring.icon
+			icon_state = flooring.base_icon_state
+			layer      = flooring.flooring_layer
 
-			smoothing_flags  = our_plating.smoothing_flags
-			smoothing_groups = our_plating.smoothing_groups
-			can_smooth_with  = our_plating.can_smooth_with
+			smoothing_flags  = flooring.smoothing_flags
+			smoothing_groups = flooring.smoothing_groups
+			can_smooth_with  = flooring.can_smooth_with
 		else
 			icon = 'icons/turf/flooring/plating.dmi'
 			icon_state = "dmg[rand(1,4)]"
 			smoothing_flags  = NONE
 			smoothing_groups = null
 			can_smooth_with  = null
+			layer            = initial(layer)
 	else
-		smoothing_flags  = our_flooring_data.smoothing_flags
-		smoothing_groups = our_flooring_data.smoothing_groups
-		can_smooth_with  = our_flooring_data.can_smooth_with
+		smoothing_flags  = flooring.smoothing_flags
+		smoothing_groups = flooring.smoothing_groups
+		can_smooth_with  = flooring.can_smooth_with
+		layer            = flooring.flooring_layer
+		// Plating should never have a pixel offset. But if you ever want that for some reason, just tab this block down. @Zandario
+		if(flooring.has_pixel_offsets)
+			var/matrix/translation = new
+			translation.Translate(flooring.base_pixel_x, flooring.base_pixel_y)
+			transform = translation
 
 	if(IS_SMOOTH(src))
 		QUEUE_SMOOTH(src)
@@ -55,10 +64,10 @@ GLOBAL_DATUM_INIT(no_ceiling_image, /image, generate_no_ceiling_image())
 	if(LAZYLEN(decals))
 		add_overlay(decals)
 
-	if(!isnull(broken) && (our_flooring_data.flooring_flags & TURF_CAN_BREAK))
+	if(!isnull(broken) && (flooring.flooring_flags & TURF_CAN_BREAK))
 		add_overlay(get_damage_overlay("broken[broken]", BLEND_MULTIPLY))
 
-	if(!isnull(burnt) && (our_flooring_data.flooring_flags & TURF_CAN_BURN))
+	if(!isnull(burnt) && (flooring.flooring_flags & TURF_CAN_BURN))
 		add_overlay(get_damage_overlay("burned[burnt]"))
 
 	// Show 'ceilingless' overlay.

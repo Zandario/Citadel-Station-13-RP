@@ -129,9 +129,10 @@ DEFINE_BITFIELD(smoothing_junction, list(
 /* /turf only */
 
 #define SMOOTH_GROUP_TURF_OPEN               S_TURF(0)  /// /turf/simulated/floor
-#define SMOOTH_GROUP_TURF_CHASM              S_TURF(1)  // // /turf/open/chasm, /turf/open/floor/fakepit
-#define SMOOTH_GROUP_FLOOR_LAVA              S_TURF(2)  /// /turf/simulated/floor/outdoors/lava
-#define SMOOTH_GROUP_FLOOR_TRANSPARENT_GLASS S_TURF(3)  // // /turf/open/floor/glass
+#define SMOOTH_GROUP_NO_BLEND                S_TURF(1)  //! This is used to replace old no_blend behavior.
+#define SMOOTH_GROUP_TURF_CHASM              S_TURF(2)  // // /turf/open/chasm, /turf/open/floor/fakepit
+#define SMOOTH_GROUP_FLOOR_LAVA              S_TURF(3)  /// /turf/simulated/floor/outdoors/lava
+#define SMOOTH_GROUP_FLOOR_TRANSPARENT_GLASS S_TURF(4)  // // /turf/open/floor/glass
 
 
 #define SMOOTH_GROUP_EXTERIOR                S_TURF(10)  /// /turf/exterior
