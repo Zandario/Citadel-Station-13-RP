@@ -59,7 +59,10 @@ var/list/floor_decals = list()
 		T.update_icon()
 	qdel(src)
 
+// TODO: Repath this
+
 /obj/effect/floor_decal/corner
+	icon = 'icons/turf/flooring/decals/corners.dmi'
 	icon_state = "corner_white"
 
 /obj/effect/floor_decal/corner/black
@@ -1041,6 +1044,7 @@ var/list/floor_decals = list()
 	icon_state = "steel_grid_full"
 
 /obj/effect/floor_decal/borderfloor
+	icon = 'icons/turf/flooring/decals/corners.dmi'
 	name = "border floor"
 	icon_state = "borderfloor"
 
@@ -1058,6 +1062,7 @@ var/list/floor_decals = list()
 
 /obj/effect/floor_decal/borderfloorblack
 	name = "border floor"
+	icon = 'icons/turf/flooring/decals/corners.dmi'
 	icon_state = "borderfloor_black"
 
 /obj/effect/floor_decal/borderfloorblack/corner
@@ -1074,6 +1079,7 @@ var/list/floor_decals = list()
 
 /obj/effect/floor_decal/borderfloorwhite
 	name = "border floor"
+	icon = 'icons/turf/flooring/decals/corners.dmi'
 	icon_state = "borderfloor_white"
 
 /obj/effect/floor_decal/borderfloorwhite/corner
@@ -1197,7 +1203,9 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/industrial/outline/red
 	name = "red outline"
 	color = COLOR_RED
+
 /obj/effect/floor_decal/borderfloor/shifted
+	icon = 'icons/turf/flooring/decals/corners.dmi'
 	icon_state = "borderfloor_shifted"
 
 /obj/effect/floor_decal/borderfloorblack/shifted

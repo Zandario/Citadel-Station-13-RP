@@ -15,7 +15,8 @@ GLOBAL_LIST_EMPTY(turf_edge_cache)
 
 var/list/flooring_cache = list()
 
-/turf/simulated/floor/update_icon()
+
+/turf/simulated/floor/update_appearance(updates)
 	var/has_smooth = 0 // This is just the has_border bitfield inverted for easier logic.
 	cut_overlays()
 	if(flooring)
@@ -108,6 +109,7 @@ var/list/flooring_cache = list()
 			add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-broken-[broken]","broken[broken]"))
 		if(!isnull(burnt) && (flooring.flags & TURF_CAN_BURN))
 			add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-burned-[burnt]","burned[burnt]"))
+
 	else
 		// no flooring - just handle plating stuff
 		if(is_plating() && !(isnull(broken) && isnull(burnt))) //temp, todo

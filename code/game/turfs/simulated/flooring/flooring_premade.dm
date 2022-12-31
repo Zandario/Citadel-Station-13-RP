@@ -106,7 +106,7 @@
 /turf/simulated/floor/tiled
 	name = "floor"
 	icon = 'icons/turf/flooring/tiles.dmi'
-	icon_state = "tiled"
+	icon_state = "steel"
 	initial_flooring = /singleton/flooring/tiling
 
 /turf/simulated/floor/tiled/techmaint
@@ -452,9 +452,13 @@
 
 /turf/simulated/floor/plating
 	name = "plating"
+	plane = PLATING_PLANE
 	icon = 'icons/turf/flooring/plating.dmi'
-	icon_state = "plating"
+	icon_state = "plating_preview"
 	initial_flooring = /singleton/flooring/plating
+
+/turf/simulated/floor/plating/is_plating()
+	return TRUE
 
 
 /turf/simulated/floor/plating/external

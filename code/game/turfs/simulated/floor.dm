@@ -2,7 +2,7 @@
 	name = "plating"
 	desc = "Unfinished flooring."
 	icon = 'icons/turf/flooring/plating.dmi'
-	icon_state = "plating"
+	icon_state = "plating_preview"
 	base_icon_state = "plating"
 	thermal_conductivity = 0.040
 	heat_capacity = 10000

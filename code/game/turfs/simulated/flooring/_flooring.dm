@@ -144,7 +144,7 @@ var/list/flooring_types
 /singleton/flooring/plating
 	name = "plating"
 	icon = 'icons/turf/flooring/plating.dmi'
-	icon_base = "plating"
+	icon_base = "plating_preview"
 	plating_type = /singleton/flooring/hull
 
 /singleton/flooring/hull

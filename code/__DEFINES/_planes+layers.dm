@@ -68,7 +68,7 @@ What is the naming convention for planes or layers?
 //Turf Planes
 // todo: kill these too because frankly, fuck off.
 ///Plating
-#define PLATING_PLANE			-44
+#define PLATING_PLANE			-46
 	///Under objects, even when planeswapped
 	#define DISPOSAL_LAYER		2.1
 	///Under objects, even when planeswapped
@@ -79,6 +79,8 @@ What is the naming convention for planes or layers?
 	#define ATMOS_LAYER			2.4
 	///Above stuff like pipes and wires
 	#define ABOVE_UTILITY		2.5
+	/// The very top of platings.
+	#define PLATING_FRAME_LAYER 3
 ///Turfs themselves, most flooring
 #define TURF_PLANE				-45
 	///The 'bottom' of water tiles.

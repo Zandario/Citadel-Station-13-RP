@@ -108,7 +108,7 @@
 					if(welder.remove_fuel(0,user))
 						to_chat(user, "<span class='notice'>You fix some dents on the broken plating.</span>")
 						playsound(src, welder.tool_sound, 80, 1)
-						icon_state = "plating"
+						icon_state = "plating_preview"
 						burnt = null
 						broken = null
 					else

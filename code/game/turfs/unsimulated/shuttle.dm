@@ -22,5 +22,5 @@
 
 /turf/unsimulated/shuttle/plating
 	name = "plating"
-	icon = 'icons/turf/floors.dmi'
-	icon_state = "plating"
+	icon = 'icons/turf/flooring/plating.dmi'
+	icon_state = "plating_preview"
