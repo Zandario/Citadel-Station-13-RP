@@ -1,15 +1,19 @@
 // Based on railing.dmi from https://github.com/Endless-Horizon/CEV-Eris
 /obj/structure/railing
 	name = "railing"
-	desc = "A standard steel railing.  Play stupid games, win stupid prizes."
-	icon = 'icons/obj/railing.dmi'
+	desc = "A railing to stop people from falling"
+	icon = 'icons/obj/structures/railing.dmi'
+	icon_state = "railing0"
+	base_icon_state = "" // Yes.
 	density = TRUE
 	pass_flags_self = ATOM_PASS_THROWN | ATOM_PASS_CLICK | ATOM_PASS_TABLE | ATOM_PASS_OVERHEAD_THROW | ATOM_PASS_CLICK
 	climbable = TRUE
-	layer = WINDOW_LAYER
+	plane = MOB_PLANE
+	layer = BELOW_MOB_LAYER
 	anchored = TRUE
 	atom_flags = ATOM_BORDER
-	icon_state = "railing0"
+	max_integrity = 250
+
 	var/broken = FALSE
 	var/health = 70
 	var/maxhealth = 70
@@ -17,24 +21,35 @@
 
 /obj/structure/railing/grey
 	name = "grey railing"
-	desc = "A standard steel railing. Prevents stupid people from falling to their doom."
 	icon_state = "grey_railing0"
+	base_icon_state = "grey_"
+
+/obj/structure/railing/handrail
+	name = "handrail"
+	desc = "A waist high handrail, perhaps you could climb over it."
+	icon_state = "hand_railing0"
+	base_icon_state = "hand_"
+	max_integrity = 100
+
+/obj/structure/railing/handrail/unachored
+	anchored = FALSE
+
 
 /obj/structure/railing/Initialize(mapload, constructed = FALSE)
 	. = ..()
 	// TODO - "constructed" is not passed to us. We need to find a way to do this safely.
 	if (constructed) // player-constructed railings
-		anchored = 0
+		anchored = FALSE
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
-	if(src.anchored)
-		update_icon(0)
+	if(anchored)
+		update_appearance(update_neighbors = FALSE)
 
 /obj/structure/railing/Destroy()
 	var/turf/location = loc
 	. = ..()
 	for(var/obj/structure/railing/R in orange(location, 1))
-		R.update_icon()
+		R.update_appearance()
 
 /obj/structure/railing/CanAllowThrough(atom/movable/mover, turf/target)
 	if(!(get_dir(mover, target) & turn(dir, 180)))
@@ -67,7 +82,8 @@
 		new /obj/item/stack/rods(get_turf(src))
 		qdel(src)
 
-/obj/structure/railing/proc/NeighborsCheck(var/UpdateNeighbors = 1)
+// What is this recursive Bullshit. @Zandario
+/obj/structure/railing/proc/neighbor_check(update_neighbors = TRUE)
 	check = 0
 	//if (!anchored) return
 	var/Rturn = turn(src.dir, -90)
@@ -76,63 +92,82 @@
 	for(var/obj/structure/railing/R in src.loc)
 		if ((R.dir == Lturn) && R.anchored)
 			check |= 32
-			if (UpdateNeighbors)
-				R.update_icon()
+			if (update_neighbors)
+				R.update_appearance(update_neighbors = FALSE)
 		if ((R.dir == Rturn) && R.anchored)
 			check |= 2
-			if (UpdateNeighbors)
-				R.update_icon()
+			if (update_neighbors)
+				R.update_appearance(update_neighbors = FALSE)
 
 	for (var/obj/structure/railing/R in get_step(src, Lturn))
 		if ((R.dir == src.dir) && R.anchored)
 			check |= 16
-			if (UpdateNeighbors)
-				R.update_icon()
+			if (update_neighbors)
+				R.update_appearance(update_neighbors = FALSE)
 	for (var/obj/structure/railing/R in get_step(src, Rturn))
 		if ((R.dir == src.dir) && R.anchored)
 			check |= 1
-			if (UpdateNeighbors)
-				R.update_icon()
+			if (update_neighbors)
+				R.update_appearance(update_neighbors = FALSE)
 
 	for (var/obj/structure/railing/R in get_step(src, (Lturn + src.dir)))
 		if ((R.dir == Rturn) && R.anchored)
 			check |= 64
-			if (UpdateNeighbors)
-				R.update_icon()
+			if (update_neighbors)
+				R.update_appearance(update_neighbors = FALSE)
 	for (var/obj/structure/railing/R in get_step(src, (Rturn + src.dir)))
 		if ((R.dir == Lturn) && R.anchored)
 			check |= 4
-			if (UpdateNeighbors)
-				R.update_icon()
+			if (update_neighbors)
+				R.update_appearance(update_neighbors = FALSE)
 
-/obj/structure/railing/update_icon(UpdateNeighgors = TRUE)
-	NeighborsCheck(UpdateNeighgors)
-	//layer = (dir == SOUTH) ? FLY_LAYER : initial(layer) // wtf does this even do
-	cut_overlays()
-	var/list/overlays_to_add = list()
+/obj/structure/railing/update_appearance(updates, update_neighbors = TRUE)
+	neighbor_check(update_neighbors)
 
-	if (!check || !anchored)//|| !anchored
-		icon_state = "railing0"
+	// Ensure layering is appropriate to direction.
+	switch (dir)
+		if (NORTH)
+			layer = BELOW_MOB_LAYER
+		if (SOUTH)
+			layer = ABOVE_MOB_LAYER
+		if (EAST)
+			layer = BELOW_MOB_LAYER
+		if (WEST)
+			layer = BELOW_MOB_LAYER
+
+	return ..()
+
+/obj/structure/railing/update_icon_state()
+	. = ..()
+
+	if (!check || !anchored)
+		icon_state = "[base_icon_state]railing0"
 	else
-		icon_state = "railing1"
-		if (check & 32)
-			overlays_to_add += image ('icons/obj/railing.dmi', src, "corneroverlay")
-		if ((check & 16) || !(check & 32) || (check & 64))
-			overlays_to_add += image ('icons/obj/railing.dmi', src, "frontoverlay_l")
-		if (!(check & 2) || (check & 1) || (check & 4))
-			overlays_to_add += image ('icons/obj/railing.dmi', src, "frontoverlay_r")
-			if(check & 4)
-				switch (src.dir)
-					if (NORTH)
-						overlays_to_add += image ('icons/obj/railing.dmi', src, "mcorneroverlay", pixel_x = 32)
-					if (SOUTH)
-						overlays_to_add += image ('icons/obj/railing.dmi', src, "mcorneroverlay", pixel_x = -32)
-					if (EAST)
-						overlays_to_add += image ('icons/obj/railing.dmi', src, "mcorneroverlay", pixel_y = -32)
-					if (WEST)
-						overlays_to_add += image ('icons/obj/railing.dmi', src, "mcorneroverlay", pixel_y = 32)
+		icon_state = "[base_icon_state]railing1"
 
-	add_overlay(overlays_to_add)
+/obj/structure/railing/update_overlays()
+	. = ..()
+
+	var/list/overlays_to_add = list()
+	if (check || anchored)
+		if (check & 32)
+			overlays_to_add += image(icon, src, "[base_icon_state]corneroverlay")
+		if ((check & 16) || !(check & 32) || (check & 64))
+			overlays_to_add += image(icon, src, "[base_icon_state]frontoverlay_l")
+		if (!(check & 2) || (check & 1) || (check & 4))
+			overlays_to_add += image(icon, src, "[base_icon_state]frontoverlay_r")
+			if(check & 4)
+				switch (dir)
+					if (NORTH)
+						overlays_to_add += image (icon, src, "[base_icon_state]mcorneroverlay", pixel_x = 32)
+					if (SOUTH)
+						overlays_to_add += image (icon, src, "[base_icon_state]mcorneroverlay", pixel_x = -32)
+					if (EAST)
+						overlays_to_add += image (icon, src, "[base_icon_state]mcorneroverlay", pixel_y = -32)
+					if (WEST)
+						overlays_to_add += image (icon, src, "[base_icon_state]mcorneroverlay", pixel_y = 32)
+
+	. += overlays_to_add
 
 /obj/structure/railing/verb/rotate_counterclockwise()
 	set name = "Rotate Railing Counter-Clockwise"
@@ -150,7 +185,7 @@
 		return 0
 
 	src.setDir(turn(src.dir, 90))
-	update_icon()
+	update_appearance()
 	return
 
 /obj/structure/railing/verb/rotate_clockwise()
@@ -169,7 +204,7 @@
 		return 0
 
 	src.setDir(turn(src.dir, 270))
-	update_icon()
+	update_appearance()
 	return
 
 /obj/structure/railing/verb/flip() // This will help push railing to remote places, such as open space turfs
@@ -194,7 +229,7 @@
 
 	src.loc = get_step(src, src.dir)
 	setDir(turn(dir, 180))
-	update_icon()
+	update_appearance()
 	return
 
 /obj/structure/railing/attackby(obj/item/W as obj, mob/user as mob)
@@ -224,7 +259,7 @@
 		if(do_after(user, 10, src))
 			to_chat(user, (anchored ? "<span class='notice'>You have unfastened \the [src] from the floor.</span>" : "<span class='notice'>You have fastened \the [src] to the floor.</span>"))
 			anchored = !anchored
-			update_icon()
+			update_appearance()
 			return
 
 	// Handle harm intent grabbing/tabling.
