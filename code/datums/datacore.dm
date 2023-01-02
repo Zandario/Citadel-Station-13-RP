@@ -424,7 +424,8 @@ GLOBAL_LIST_EMPTY(PDA_Manifest)
 	return
 
 /proc/generate_record_id()
-	return add_zero(num2hex(rand(1, 65535)), 4)	//no point generating higher numbers because of the limitations of num2hex
+	var/our_hex = rand(1, 65535)
+	return add_zero(num2hex(our_hex, our_hex), 4)	//no point generating higher numbers because of the limitations of num2hex
 
 /datum/datacore/proc/CreateGeneralRecord(mob/living/carbon/human/H, id, hidden)
 	ResetPDAManifest()
@@ -439,7 +440,8 @@ GLOBAL_LIST_EMPTY(PDA_Manifest)
 		side = icon('html/images/no_image32.png')
 
 	if(!id)
-		id = text("[]", add_zero(num2hex(rand(1, 65536)), 4))
+		var/our_hex = rand(1, 65535)
+		id = text("[]", add_zero(num2hex(our_hex, our_hex), 4))
 	var/datum/data/record/G = new /datum/data/record()
 	G.name = "Employee Record #[id]"
 	G.fields["name"] = "New Record"

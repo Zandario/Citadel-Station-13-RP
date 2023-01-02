@@ -31,7 +31,7 @@
 	load_settings()
 
 /datum/nifsoft/soulcatcher/Destroy()
-	QDEL_LIST_NULL(brainmobs)
+	QDEL_LIST(brainmobs)
 	return ..()
 
 /datum/nifsoft/soulcatcher/activate()
@@ -51,7 +51,7 @@
 			nif.human.verbs |= /mob/living/carbon/human/proc/nme
 
 /datum/nifsoft/soulcatcher/uninstall()
-	QDEL_LIST_NULL(brainmobs)
+	QDEL_LIST(brainmobs)
 	if((. = ..()) && nif?.human) //Sometimes NIFs are deleted outside of a human
 		nif.human.verbs -= /mob/living/carbon/human/proc/nsay
 		nif.human.verbs -= /mob/living/carbon/human/proc/nme

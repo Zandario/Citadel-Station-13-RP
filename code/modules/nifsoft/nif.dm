@@ -126,7 +126,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 //Destructor cleans up references
 /obj/item/nif/Destroy()
 	human = null
-	QDEL_LIST_NULL(nifsofts)
+	QDEL_LIST(nifsofts)
 	QDEL_NULL(comm)
 	nifsofts_life.Cut()
 	return ..()
@@ -183,7 +183,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 /obj/item/nif/proc/unimplant(var/mob/living/carbon/human/H)
 	var/datum/nifsoft/soulcatcher/SC = imp_check(NIF_SOULCATCHER)
 	if(SC) //Clean up stored people, this is dirty but the easiest way.
-		QDEL_LIST_NULL(SC.brainmobs)
+		QDEL_LIST(SC.brainmobs)
 		SC.brainmobs = list()
 	stat = NIF_PREINSTALL
 	vis_update()

@@ -60,7 +60,7 @@
 	for(var/organ in organs)
 		qdel(organ)
 	QDEL_NULL(nif)
-	QDEL_LIST_NULL(vore_organs)
+	QDEL_LIST(vore_organs)
 	cleanup_world_bender_hud()
 	return ..()
 

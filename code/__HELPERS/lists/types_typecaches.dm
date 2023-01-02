@@ -16,9 +16,6 @@
 			return TRUE
 	return FALSE
 
-/proc/subtypesof(prototype)
-	return (typesof(prototype) - prototype)
-
 /**
  *! Typecaches,
  *? Specially formatted lists used to check for types with priority to speed rather than memory efficiency.

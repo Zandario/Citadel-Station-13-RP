@@ -151,7 +151,7 @@
 	return I
 
 /obj/item/cassette_tape/proc/kill_iterators()
-	QDEL_LIST_NULL(iterators)
+	QDEL_LIST(iterators)
 	QDEL_NULL(recording_lock)
 
 /obj/item/cassette_tape/proc/iterator_killed(datum/cassette_tape_iterator/I)
