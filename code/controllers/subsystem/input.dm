@@ -25,7 +25,7 @@ SUBSYSTEM_DEF(input)
 	initialized = TRUE
 	refresh_client_macro_sets()
 
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/input/Recover()
 	initialized = SSinput.initialized

@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(mapping)
 #endif
 	stat_map_name = config.map_name
 
-/datum/controller/subsystem/mapping/Initialize(timeofday)
+/datum/controller/subsystem/mapping/Initialize()
 	report_progress("Initializing [name] subsystem...")
 	// shim: this goes at the top
 	world.max_z_changed(0, world.maxz) // This is to set up the player z-level list, maxz hasn't actually changed (probably)
@@ -79,7 +79,8 @@ SUBSYSTEM_DEF(mapping)
 	populate_spawn_points()
 
 	repopulate_sorted_areas()
-	return ..()
+
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/mapping/proc/LoadGroup(list/errorList, name, path, files, list/traits, list/default_traits, silent = FALSE, orientation = SOUTH)
 /*

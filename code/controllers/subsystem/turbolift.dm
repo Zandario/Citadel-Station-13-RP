@@ -4,6 +4,9 @@ SUBSYSTEM_DEF(turbolifts)
 	wait = 10
 	var/static/list/moving_lifts = list()
 
+/datum/controller/subsystem/turbolifts/Initialize()
+	return SS_INIT_SUCCESS
+
 /datum/controller/subsystem/turbolifts/fire(resumed)
 	for(var/liftref in moving_lifts)
 		if(world.time < moving_lifts[liftref])

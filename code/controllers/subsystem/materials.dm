@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(materials)
 
 /datum/controller/subsystem/materials/Initialize()
 	initialize_materials()
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/materials/Recover()
 	initialize_materials()

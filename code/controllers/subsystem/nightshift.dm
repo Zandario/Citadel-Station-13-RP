@@ -19,7 +19,7 @@ SUBSYSTEM_DEF(nightshift)
 		can_fire = FALSE
 	//if(CONFIG_GET(flag/randomized_start_time_enabled))
 		//GLOB.gametime_offset = rand(0, 23) HOURS
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/nightshift/fire(resumed = FALSE)
 	if(world.time - round_duration_in_ds < nightshift_first_check)

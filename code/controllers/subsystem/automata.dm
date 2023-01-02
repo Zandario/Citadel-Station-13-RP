@@ -11,6 +11,9 @@ SUBSYSTEM_DEF(automata)
 	/// all active automata
 	var/static/list/datum/automata/ticking = list()
 
+/datum/controller/subsystem/automata/Initialize()
+	return SS_INIT_SUCCESS
+
 /datum/controller/subsystem/automata/fire(resumed)
 	// we can optimize this for slow tickers later
 	for(var/datum/automata/A as anything in ticking)

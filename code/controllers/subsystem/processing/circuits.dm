@@ -9,21 +9,29 @@ PROCESSING_SUBSYSTEM_DEF(circuit)
 
 	var/cipherkey
 
-	var/list/all_components = list()								// Associative list of [component_name]:[component_path] pairs
-	var/list/cached_components = list()								// Associative list of [component_path]:[component] pairs
-	var/list/all_assemblies = list()								// Associative list of [assembly_name]:[assembly_path] pairs
-	var/list/cached_assemblies = list()								// Associative list of [assembly_path]:[assembly] pairs
-	var/list/all_circuits = list()									// Associative list of [circuit_name]:[circuit_path] pairs
-	var/list/circuit_fabricator_recipe_list = list()				// Associative list of [category_name]:[list_of_circuit_paths] pairs
-//	var/cost_multiplier = MINERAL_MATERIAL_AMOUNT / 10 // Each circuit cost unit is 200cm3
+	/// Associative list of [component_name]:[component_path] pairs.
+	var/list/all_components = list()
+	/// Associative list of [component_path]:[component] pairs.
+	var/list/cached_components = list()
+	/// Associative list of [assembly_name]:[assembly_path] pairs.
+	var/list/all_assemblies = list()
+	/// Associative list of [assembly_path]:[assembly] pairs.
+	var/list/cached_assemblies = list()
+	/// Associative list of [circuit_name]:[circuit_path] pairs.
+	var/list/all_circuits = list()
+	/// Associative list of [category_name]:[list_of_circuit_paths] pairs.
+	var/list/circuit_fabricator_recipe_list = list()
+	/// Each circuit cost unit is 200cm3.
+//	var/cost_multiplier = MINERAL_MATERIAL_AMOUNT / 10
 
 /datum/controller/subsystem/processing/circuit/Recover()
 	subsystem_flags |= SS_NO_INIT // Make extra sure we don't initialize twice.
 
-/datum/controller/subsystem/processing/circuit/Initialize(timeofday)
+/datum/controller/subsystem/processing/circuit/Initialize()
 	SScircuit.cipherkey = uppertext(random_string(2000+rand(0,10), GLOB.alphabet))
 	circuits_init()
-	return ..()
+
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/processing/circuit/proc/circuits_init()
 	//Cached lists for free performance

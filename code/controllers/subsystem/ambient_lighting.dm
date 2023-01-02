@@ -11,6 +11,9 @@ SUBSYSTEM_DEF(ambient_lighting)
 /datum/controller/subsystem/ambient_lighting/stat_entry()
 	..("Queue:[length(queued)]")
 
+/datum/controller/subsystem/ambient_lighting/Initialize()
+	return SS_INIT_SUCCESS
+
 /datum/controller/subsystem/ambient_lighting/fire(resumed = FALSE, no_mc_tick = FALSE)
 	var/list/curr = queued
 	while (curr.len)

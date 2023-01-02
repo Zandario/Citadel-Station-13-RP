@@ -3,6 +3,9 @@ SUBSYSTEM_DEF(inactivity)
 	wait = 600
 	subsystem_flags = SS_BACKGROUND | SS_NO_TICK_CHECK
 
+/datum/controller/subsystem/inactivity/Initialize()
+	return SS_INIT_SUCCESS
+
 /datum/controller/subsystem/inactivity/fire()
 	if(config_legacy.kick_inactive)
 		for(var/i in GLOB.clients)

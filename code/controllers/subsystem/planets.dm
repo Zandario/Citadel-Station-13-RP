@@ -17,12 +17,12 @@ SUBSYSTEM_DEF(planets)
 	var/static/list/needs_sun_update = list()
 	var/static/list/needs_temp_update = list()
 
-/datum/controller/subsystem/planets/Initialize(timeofday)
+/datum/controller/subsystem/planets/Initialize()
 	report_progress("Initializing planetary weather.")
 	createPlanets()
 	allocateTurfs(TRUE)
 	fire() // Fire once to preemptively set up weather and planetary ambient lighting.
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/planets/proc/createPlanets()
 	var/list/planet_datums = GLOB.using_map.planet_datums_to_make

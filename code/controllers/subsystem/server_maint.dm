@@ -12,6 +12,9 @@ SUBSYSTEM_DEF(server_maint)
 	var/list/currentrun
 	var/cleanup_SSticker = 0
 
+/datum/controller/subsystem/server_maint/Initialize()
+	return SS_INIT_SUCCESS
+
 /datum/controller/subsystem/server_maint/fire(resumed = FALSE)
 	if(!resumed)
 		if(listclearnulls(GLOB.clients))

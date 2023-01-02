@@ -146,11 +146,12 @@ SUBSYSTEM_DEF(zmimic)
 	while (idx <= zlev_maximums.len)
 	return jointext(zmx, ", ")
 
-/datum/controller/subsystem/zmimic/Initialize(timeofday)
+/datum/controller/subsystem/zmimic/Initialize()
 	calculate_zstack_limits()
 	// Flush the queue.
 	fire(FALSE, TRUE)
-	return ..()
+
+	return SS_INIT_SUCCESS
 
 // If you add a new Zlevel or change Z-connections, call this.
 /datum/controller/subsystem/zmimic/proc/calculate_zstack_limits()

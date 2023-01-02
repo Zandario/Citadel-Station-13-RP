@@ -5,16 +5,26 @@
 SUBSYSTEM_DEF(gamemaster)
 	name = "Game Master"
 	wait = 600
-	var/suspended = TRUE 				// If true, it will not do anything.
-	var/ignore_time_restrictions = FALSE// Useful for debugging without needing to wait 20 minutes each time.
-	var/list/available_actions = list()	// A list of 'actions' that the GM has access to, to spice up a round, such as events.
-	var/danger = 0						// The GM's best guess at how chaotic the round is.  High danger makes it hold back.
-	var/staleness = -20					// Determines liklihood of the GM doing something, increases over time.
-	var/danger_modifier = 1				// Multiplier for how much 'danger' is accumulated.
-	var/staleness_modifier = 1			// Ditto.  Higher numbers generally result in more events occuring in a round.
-	var/ticks_completed = 0				// Counts amount of ticks completed.  Note that this ticks once a minute.
-	var/next_action = 0					// Minimum amount of time of nothingness until the GM can pick something again.
-	var/last_department_used = null		// If an event was done for a specific department, it is written here, so it doesn't do it again.
+	/// If true, it will not do anything.
+	var/suspended = TRUE
+	/// Useful for debugging without needing to wait 20 minutes each time.
+	var/ignore_time_restrictions = FALSE
+	/// A list of 'actions' that the GM has access to, to spice up a round, such as events.
+	var/list/available_actions = list()
+	/// The GM's best guess at how chaotic the round is.  High danger makes it hold back.
+	var/danger = 0
+	/// Determines liklihood of the GM doing something, increases over time.
+	var/staleness = -20
+	/// Multiplier for how much 'danger' is accumulated.
+	var/danger_modifier = 1
+	/// Ditto.  Higher numbers generally result in more events occuring in a round.
+	var/staleness_modifier = 1
+	/// Counts amount of ticks completed.  Note that this ticks once a minute.
+	var/ticks_completed = 0
+	/// Minimum amount of time of nothingness until the GM can pick something again.
+	var/next_action = 0
+	/// If an event was done for a specific department, it is written here, so it doesn't do it again.
+	var/last_department_used = null
 
 /datum/controller/subsystem/gamemaster/Initialize()
 	available_actions = init_subtypes(/datum/gm_action)
@@ -30,7 +40,8 @@ SUBSYSTEM_DEF(gamemaster)
 					suspended = FALSE
 			else
 				sleep(30 SECONDS)
-	return ..()
+
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/gamemaster/fire(resumed)
 	if(SSticker && SSticker.current_state == GAME_STATE_PLAYING && !suspended)

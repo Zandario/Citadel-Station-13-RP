@@ -55,7 +55,7 @@ SUBSYSTEM_DEF(supply)
 	for(var/typepath in subtypesof(/datum/supply_pack))
 		var/datum/supply_pack/P = new typepath()
 		supply_pack[P.name] = P
-	return ..()
+	return SS_INIT_SUCCESS
 
 // Supply shuttle SSticker - handles supply point regeneration
 // This is called by the process scheduler every thirty seconds

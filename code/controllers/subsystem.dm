@@ -241,21 +241,12 @@
 
 /datum/controller/subsystem/proc/subsystem_log(msg)
 	return log_subsystem(name, msg)
-
-/// Used to initialize the subsystem AFTER the map has loaded.
+/**
+ * Used to initialize the subsystem.
+ * This is expected to be overriden by subtypes.
+ */
 /datum/controller/subsystem/Initialize()
-	initialized = TRUE
-	SEND_SIGNAL(src, COMSIG_SUBSYSTEM_POST_INITIALIZE)
-
-	var/time = rustg_time_milliseconds(SS_INIT_TIMER_KEY)
-	var/seconds = round(time / 1000, 0.01)
-
-	var/msg = "Initialized [name] subsystem within [seconds] second[seconds == 1 ? "" : "s"]!"
-	to_chat(world, SPAN_BOLDANNOUNCE("[msg]"))
-	log_world(msg)
-	log_subsystem("INIT", msg)
-	// SSblackbox.record_feedback("tally", "subsystem_initialize", time, name)
-	return seconds
+	return SS_INIT_NONE
 
 //hook for printing stats to the "MC" statuspanel for admins to see performance and related stats etc.
 /datum/controller/subsystem/stat_entry(msg)

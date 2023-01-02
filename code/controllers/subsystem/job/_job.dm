@@ -26,7 +26,8 @@ SUBSYSTEM_DEF(job)
 	if(!length(occupations))
 		setup_occupations()
 	reconstruct_job_ui_caches()
-	return ..()
+
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/job/Recover()
 	occupations = SSjob.occupations

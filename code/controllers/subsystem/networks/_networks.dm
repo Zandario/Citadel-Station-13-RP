@@ -7,3 +7,6 @@ SUBSYSTEM_DEF(networks)
 	// Simple networks
 	/// id lookup to a list of devices
 	var/static/list/simple_network_lookup = list()
+
+/datum/controller/subsystem/networks/Initialize()
+	return SS_INIT_SUCCESS

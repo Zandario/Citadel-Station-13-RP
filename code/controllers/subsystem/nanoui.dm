@@ -6,6 +6,9 @@ SUBSYSTEM_DEF(nanoui)
 	// a list of current open /nanoui UIs, not grouped, for use in processing
 	var/list/processing_uis = list()
 
+/datum/controller/subsystem/nanoui/Initialize()
+	return SS_INIT_SUCCESS
+
 /datum/controller/subsystem/nanoui/Recover()
 	if(SSnanoui.open_uis)
 		open_uis |= SSnanoui.open_uis

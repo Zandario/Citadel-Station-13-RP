@@ -329,6 +329,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 			message_prefix = "Initialized [subsystem.name] subsystem within"
 		if(SS_INIT_NO_NEED)
 			// This SS is disabled or is otherwise shy.
+			to_chat(world, SPAN_BOLDANNOUNCE("[subsystem.name] subsystem disabled! Skipping init!"))
 			return
 		else
 			// SS_INIT_NONE or an invalid value.
@@ -340,6 +341,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 	to_chat(world, chat_message)
 	log_world(message)
+	log_subsystem("INIT", message)
+
 /datum/controller/master/proc/SetRunLevel(new_runlevel)
 	var/old_runlevel = current_runlevel
 	if(isnull(old_runlevel))

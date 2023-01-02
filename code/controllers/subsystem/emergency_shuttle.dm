@@ -23,6 +23,9 @@ SUBSYSTEM_DEF(emergencyshuttle)
 /datum/controller/subsystem/emergencyshuttle/PreInit(recovering)
 	escape_pods = list()
 
+/datum/controller/subsystem/emergencyshuttle/Initialize()
+	return SS_INIT_SUCCESS
+
 /datum/controller/subsystem/emergencyshuttle/fire()
 	if (wait_for_launch)
 		if (evac && auto_recall && world.time >= auto_recall_time)

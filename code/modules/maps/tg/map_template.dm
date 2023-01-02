@@ -114,6 +114,7 @@
 	initTemplateBounds(bounds)
 	log_game("Z-level [name] loaded at at [x],[y],[world.maxz]")
 	on_map_loaded(world.maxz)
+	smooth_zlevel(world.maxz)
 	return TRUE
 
 /datum/map_template/proc/load(turf/T, centered = FALSE, orientation = SOUTH)

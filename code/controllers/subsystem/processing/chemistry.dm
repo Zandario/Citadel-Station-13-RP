@@ -3,9 +3,13 @@ PROCESSING_SUBSYSTEM_DEF(chemistry)
 	wait = 10
 	subsystem_flags = SS_BACKGROUND|SS_POST_FIRE_TIMING
 	init_order = INIT_ORDER_CHEMISTRY
+
 	var/list/chemical_reactions = list()
 	var/list/chemical_reactions_by_reagent = list()
 	var/list/chemical_reagents = list()
+
+/datum/controller/subsystem/processing/chemistry/Initialize()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/processing/chemistry/Recover()
 	chemical_reactions = SSchemistry.chemical_reactions

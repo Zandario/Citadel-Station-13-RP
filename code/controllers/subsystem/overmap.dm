@@ -7,7 +7,7 @@ SUBSYSTEM_DEF(overmaps)
 	if(GLOB.using_map.use_overmap)
 		GLOB.overmap_event_handler.create_events(GLOB.using_map.overmap_z, GLOB.using_map.overmap_size, GLOB.using_map.overmap_event_areas)
 	rebuild_helm_computers()
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/overmaps/proc/rebuild_helm_computers()
 	for(var/obj/machinery/computer/ship/helm/H in GLOB.machines)

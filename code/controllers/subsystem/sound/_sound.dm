@@ -7,4 +7,5 @@ SUBSYSTEM_DEF(sounds)
 /datum/controller/subsystem/sounds/Initialize()
 	setup_available_channels()
 	setup_soundbytes()
-	return ..()
+
+	return SS_INIT_SUCCESS

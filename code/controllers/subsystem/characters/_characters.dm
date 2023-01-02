@@ -26,7 +26,8 @@ SUBSYSTEM_DEF(characters)
 			stack_trace("what?")
 			continue
 		P.Initialize()
-	return ..()
+
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/characters/Recover()
 	. = ..()
@@ -63,5 +64,3 @@ SUBSYSTEM_DEF(characters)
 
 /datum/controller/subsystem/characters/proc/queue_preferences_save(var/datum/preferences/prefs)
 	save_queue |= prefs
-
-

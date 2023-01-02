@@ -59,9 +59,10 @@ SUBSYSTEM_DEF(air)
 				continue
 			generated_atmospheres[id] = SSair.generated_atmospheres[id]
 
-/datum/controller/subsystem/air/Initialize(timeofday)
-#ifndef FASTBOOT_DISABLE_ZONES
-	report_progress("Initializing [name] subsystem...")
+/datum/controller/subsystem/air/Initialize()
+#ifdef FASTBOOT_DISABLE_ZONES
+	return SS_INIT_NO_NEED
+#endif
 
 	current_cycle = 0
 	var/simulated_turf_count = 0
@@ -83,15 +84,17 @@ SUBSYSTEM_DEF(air)
 		subsystem_log("Active Edges on ZAS Startup\n" + edge_log.Join("\n"))
 		startup_active_edge_log = edge_log.Copy()
 
+	var/time = rustg_time_milliseconds(SS_INIT_TIMER_KEY)
+	var/seconds = round(time / 1000, 0.01)
+
 	//! Fancy blockquote of data.
-	var/time = (REALTIMEOFDAY - timeofday) / 10
 	var/list/blockquote_data = list(
-		SPAN_BOLDANNOUNCE("Initialized [name] subsystem within [time] second[time == 1 ? "" : "s"]!<hr>"),
+		SPAN_BOLDANNOUNCE("Initialized [name] subsystem within [seconds] second[seconds == 1 ? "" : "s"]!<hr>"),
 		SPAN_DEBUGINFO("<b>Total Zones:</b> [zones.len]"),
 		SPAN_DEBUGINFO("\n<b>Total Edges:</b> [edges.len]"),
 		SPAN_DEBUGINFO("\n<b>Total Active Edges:</b> [active_edges.len ? SPAN_DANGER("[active_edges.len]") : "None"]"),
 		SPAN_DEBUGINFO("\n<b>Total Simulated Turfs:</b> [simulated_turf_count]"),
-		SPAN_DEBUGINFO("\n<b>Total Unsimulated Turfs:</b> [world.maxx*world.maxy*world.maxz - simulated_turf_count]")
+		SPAN_DEBUGINFO("\n<b>Total Unsimulated Turfs:</b> [world.maxx*world.maxy*world.maxz - simulated_turf_count]"),
 	)
 
 	to_chat(
@@ -100,8 +103,7 @@ SUBSYSTEM_DEF(air)
 		type   = MESSAGE_TYPE_DEBUG,
 	)
 
-#endif
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/air/fire(resumed = FALSE)
 	var/timer

@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(early_assets)
 	init_order = INIT_ORDER_EARLY_ASSETS
 	subsystem_flags = SS_NO_FIRE
 
-/datum/controller/subsystem/early_assets/Initialize(timeofday)
+/datum/controller/subsystem/early_assets/Initialize()
 	for (var/datum/asset/asset_type as anything in subtypesof(/datum/asset))
 		if (initial(asset_type._abstract) == asset_type)
 			continue
@@ -23,4 +23,4 @@ SUBSYSTEM_DEF(early_assets)
 
 		CHECK_TICK
 
-	return ..()
+	return SS_INIT_SUCCESS

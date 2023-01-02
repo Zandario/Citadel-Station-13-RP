@@ -40,12 +40,12 @@ SUBSYSTEM_DEF(machines)
 	)
 	..(jointext(msg, "\n"))
 
-/datum/controller/subsystem/machines/Initialize(timeofday)
+/datum/controller/subsystem/machines/Initialize()
 	makepowernets()
 	report_progress("Initializing atmos machinery...")
 	setup_atmos_machinery(GLOB.machines)
 	fire()
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/machines/fire(resumed = 0)
 	var/timer = TICK_USAGE

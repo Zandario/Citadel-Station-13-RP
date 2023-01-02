@@ -6,6 +6,9 @@ SUBSYSTEM_DEF(parallax)
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 	var/list/currentrun
 
+/datum/controller/subsystem/parallax/Initialize()
+	return SS_INIT_SUCCESS
+
 /datum/controller/subsystem/parallax/fire(resumed = FALSE)
 	if (!resumed)
 		src.currentrun = GLOB.clients.Copy()

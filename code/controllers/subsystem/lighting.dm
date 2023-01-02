@@ -79,7 +79,7 @@ SUBSYSTEM_DEF(lighting)
 	if (!instant_ctr)
 		force_queued = FALSE
 
-/datum/controller/subsystem/lighting/Initialize(timeofday)
+/datum/controller/subsystem/lighting/Initialize()
 	var/overlaycount = 0
 	var/starttime = REALTIMEOFDAY
 
@@ -109,7 +109,7 @@ SUBSYSTEM_DEF(lighting)
 	)
 	log_subsystem("lighting", "NOv:[overlaycount] L:[processed_lights] C:[processed_corners] O:[processed_overlays]")
 
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/lighting/proc/InitializeZlev(zlev)
 	for (var/thing in Z_ALL_TURFS(zlev))

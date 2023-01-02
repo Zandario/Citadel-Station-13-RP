@@ -14,7 +14,8 @@ SUBSYSTEM_DEF(prototypes)
 
 /datum/controller/subsystem/prototypes/Initialize()
 	Reload()
-	return ..()
+
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/prototypes/Recover()
 	Reload()
