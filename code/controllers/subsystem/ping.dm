@@ -5,15 +5,16 @@
 
 SUBSYSTEM_DEF(ping)
 	name = "Ping"
-	priority = FIRE_PRIORITY_PING
 	wait = 4 SECONDS
+	init_stage = INITSTAGE_EARLY
+	priority = FIRE_PRIORITY_PING
 	subsystem_flags = SS_NO_INIT
 	runlevels = RUNLEVEL_LOBBY | RUNLEVEL_SETUP | RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 
 	var/list/currentrun = list()
 
 /datum/controller/subsystem/ping/stat_entry()
-	..("P:[GLOB.clients.len]")
+	..("P:[LAZYLEN(GLOB.clients)]")
 
 /datum/controller/subsystem/ping/fire(resumed = FALSE)
 	// Prepare the new batch of clients

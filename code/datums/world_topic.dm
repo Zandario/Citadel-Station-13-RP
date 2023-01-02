@@ -165,7 +165,7 @@
 	. = list()
 	.["mode"] = master_mode
 	// .["round_id"] = null // GLOB.round_id
-	.["players"] = GLOB.clients.len
+	.["players"] = LAZYLEN(GLOB.clients)
 	var/list/adm = get_admin_counts()
 	var/list/presentmins = adm["present"]
 	var/list/afkmins = adm["afk"]
@@ -314,7 +314,7 @@
 	.["ai"] = config_legacy.allow_ai
 	.["host"] = host || null
 	.["round_id"] = GLOB.round_id
-	.["players"] = GLOB.clients.len
+	.["players"] = LAZYLEN(GLOB.clients)
 	.["revision"] = GLOB.revdata.commit
 	.["revision_date"] = GLOB.revdata.date
 

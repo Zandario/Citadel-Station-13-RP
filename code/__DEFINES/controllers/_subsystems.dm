@@ -4,6 +4,9 @@
  *? Lots of important stuff in here, make sure you have your brain switched on when editing this file!
  */
 
+/// Used to trigger object removal from a processing list.
+#define PROCESS_KILL 26
+
 //! ## Initialization subsystem
 
 /// New should not call Initialize.
@@ -65,6 +68,24 @@ DEFINE_BITFIELD(runlevels, list(
 	BITFIELD(RUNLEVEL_GAME),
 	BITFIELD(RUNLEVEL_POSTGAME),
 ))
+
+//! ### SS initialization hints
+/**
+ * Negative values incidate a failure or warning of some kind, positive are good.
+ * 0 and 1 are unused so that TRUE and FALSE are guarenteed to be invalid values.
+ */
+
+/// Subsystem failed to initialize entirely. Print a warning, log, and disable firing.
+#define SS_INIT_FAILURE -2
+
+/// The default return value which must be overriden. Will succeed with a warning.
+#define SS_INIT_NONE -1
+
+/// Subsystem initialized sucessfully.
+#define SS_INIT_SUCCESS 2
+
+/// Successful, but don't print anything. Useful if subsystem was disabled.
+#define SS_INIT_NO_NEED 3
 
 
 /**
@@ -166,3 +187,6 @@ DEFINE_BITFIELD(runlevels, list(
  * * atom_flags atom_flags for this timer, see: code\__DEFINES\subsystems.dm
  */
 #define addtimer(args...) _addtimer(args, file = __FILE__, line = __LINE__)
+
+/// The timer key used to know how long subsystem initialization takes
+#define SS_INIT_TIMER_KEY "ss_init"

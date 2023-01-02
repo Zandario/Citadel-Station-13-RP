@@ -405,7 +405,7 @@ GLOBAL_LIST(topic_status_cache)
 
 	. += "[get_security_level()] alert, "
 
-	. += "[GLOB.clients.len] players"
+	. += "[LAZYLEN(GLOB.clients)] players"
 
 	status = .
 

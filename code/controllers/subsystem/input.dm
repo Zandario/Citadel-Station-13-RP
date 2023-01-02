@@ -1,9 +1,10 @@
 SUBSYSTEM_DEF(input)
 	name = "Input"
-	wait = 1 //SS_TICKER means this runs every tick
+	wait = 1 // SS_TICKER means this runs every tick
+	init_stage = INITSTAGE_EARLY
 	init_order = INIT_ORDER_INPUT
-	subsystem_flags = SS_TICKER
 	priority = FIRE_PRIORITY_INPUT
+	subsystem_flags = SS_TICKER
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
 
 	/// Classic mode input focused macro set. Manually set because we can't define ANY or ANY+UP for classic.

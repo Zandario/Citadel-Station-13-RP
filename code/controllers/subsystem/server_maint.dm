@@ -3,10 +3,12 @@
 SUBSYSTEM_DEF(server_maint)
 	name = "Server Tasks"
 	wait = 6
-	subsystem_flags = SS_POST_FIRE_TIMING
-	priority = FIRE_PRIORITY_SERVER_MAINT
+	init_stage = INITSTAGE_EARLY
 	init_order = INIT_ORDER_SERVER_MAINT
+	priority = FIRE_PRIORITY_SERVER_MAINT
+	subsystem_flags = SS_POST_FIRE_TIMING
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
+
 	var/list/currentrun
 	var/cleanup_SSticker = 0
 
@@ -90,7 +92,7 @@ SUBSYSTEM_DEF(server_maint)
 
 	var/max_pop = CONFIG_GET(number/max_hub_pop)
 
-	if(GLOB.clients.len > max_pop)
+	if(LAZYLEN(GLOB.clients) > max_pop)
 		world.update_hub_visibility(FALSE)
 	else
 		world.update_hub_visibility(TRUE)

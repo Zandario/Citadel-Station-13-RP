@@ -17,7 +17,7 @@
 	var/subsystem_flags = NONE
 
 	/// Which stage does this subsystem init at. Earlier stages can fire while later stages init.
-	//var/init_stage = INITSTAGE_MAIN
+	var/init_stage = INITSTAGE_MAIN
 
 	/// This var is set to TRUE after the subsystem has been initialized.
 	var/initialized = FALSE
@@ -243,14 +243,19 @@
 	return log_subsystem(name, msg)
 
 /// Used to initialize the subsystem AFTER the map has loaded.
-/datum/controller/subsystem/Initialize(start_timeofday)
+/datum/controller/subsystem/Initialize()
 	initialized = TRUE
-	var/time = (REALTIMEOFDAY - start_timeofday) / 10
-	var/msg = "Initialized [name] subsystem within [time] second[time == 1 ? "" : "s"]!"
+	SEND_SIGNAL(src, COMSIG_SUBSYSTEM_POST_INITIALIZE)
+
+	var/time = rustg_time_milliseconds(SS_INIT_TIMER_KEY)
+	var/seconds = round(time / 1000, 0.01)
+
+	var/msg = "Initialized [name] subsystem within [seconds] second[seconds == 1 ? "" : "s"]!"
 	to_chat(world, SPAN_BOLDANNOUNCE("[msg]"))
 	log_world(msg)
 	log_subsystem("INIT", msg)
-	return time
+	// SSblackbox.record_feedback("tally", "subsystem_initialize", time, name)
+	return seconds
 
 //hook for printing stats to the "MC" statuspanel for admins to see performance and related stats etc.
 /datum/controller/subsystem/stat_entry(msg)
@@ -259,7 +264,7 @@
 
 
 
-	if(can_fire && !(SS_NO_FIRE & subsystem_flags))
+	if(can_fire && !(SS_NO_FIRE & subsystem_flags) && init_stage <= Master.init_stage_completed)
 		msg = "[round(cost,1)]ms|[round(tick_usage,1)]%([round(tick_overrun,1)]%)|[round(ticks,0.1)]\t[msg]"
 	else
 		msg = "OFFLINE\t[msg]"

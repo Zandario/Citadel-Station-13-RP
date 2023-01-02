@@ -45,8 +45,7 @@ Will print: "/mob/living/carbon/human/death" (you can optionally embed it in a s
 #define MAX_CLIENT_FPS	200
 
 // Some arbitrary defines to be used by self-pruning global lists. (see master_controller)
-/// Used to trigger removal from a processing list.
-#define PROCESS_KILL	26
+
 /// Used in chargen for accessory loadout limit.
 #define MAX_GEAR_COST					20
 /// Used in chargen for accessory loadout limit on holidays.

@@ -79,7 +79,7 @@ SUBSYSTEM_DEF(vote)
 			greatest_votes = votes
 
 	if(!config_legacy.vote_no_default && choices.len) // Default-vote for everyone who didn't vote
-		var/non_voters = (GLOB.clients.len - total_votes)
+		var/non_voters = (LAZYLEN(GLOB.clients) - total_votes)
 		if(non_voters > 0)
 			if(mode == VOTE_RESTART)
 				choices["Continue Playing"] += non_voters
@@ -184,6 +184,10 @@ SUBSYSTEM_DEF(vote)
 			current_votes[ckey] = null
 
 /datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key, automatic = FALSE, time = config_legacy.vote_period)
+	if(!MC_RUNNING(init_stage))
+		to_chat(usr, SPAN_WARNING("Cannot start vote, server is not done initializing."))
+		return FALSE
+
 	if(!mode)
 		if(started_time != null && !(check_rights(R_ADMIN) || automatic))
 			var/next_allowed_time = (started_time + config_legacy.vote_delay)
