@@ -153,7 +153,7 @@ var/list/flooring_types
 /singleton/flooring/snow
 	name = "snow"
 	desc = "A layer of many tiny bits of frozen water. It's hard to tell how deep it is."
-	icon = 'icons/turf/snow_new.dmi'
+	icon = 'icons/turf/snow.dmi'
 	icon_base = "snow"
 	footstep_sounds = list("human" = list(
 		'sound/effects/footstep/snow1.ogg',
@@ -165,7 +165,7 @@ var/list/flooring_types
 /singleton/flooring/snow/gravsnow
 	name = "snowy gravel"
 	desc = "A layer of coarse ice pebbles and assorted gravel."
-	icon = 'icons/turf/snow_new.dmi'
+	icon = 'icons/turf/snow.dmi'
 	icon_base = "gravsnow"
 	footstep_sounds = list("human" = list(
 		'sound/effects/footstep/snow1.ogg',
@@ -279,7 +279,7 @@ var/list/flooring_types
 
 /singleton/flooring/tiling/tech
 	desc = "Scuffed from the passage of countless greyshirts."
-	icon = 'icons/turf/flooring/techfloor_vr.dmi'
+	icon = 'icons/turf/flooring/techfloor.dmi'
 	icon_base = "techfloor_gray"
 	build_type = /obj/item/stack/tile/floor/techgrey
 	can_paint = null
@@ -495,7 +495,7 @@ var/list/flooring_types
 /singleton/flooring/wood
 	name = "wooden floor"
 	desc = "Polished redwood planks."
-	icon = 'icons/turf/flooring/wood_vr.dmi'
+	icon = 'icons/turf/flooring/wood.dmi'
 	icon_base = "wood"
 	has_damage_range = 6
 	damage_temperature = T0C+200
@@ -623,7 +623,7 @@ var/list/flooring_types
 /turf/simulated/floor/flesh
 	name = "flesh"
 	desc = "This slick flesh ripples and squishes under your touch"
-	icon = 'icons/turf/stomach_vr.dmi'
+	icon = 'icons/turf/flesh.dmi'
 	icon_state = "flesh_floor"
 	initial_flooring = /singleton/flooring/flesh
 
@@ -637,7 +637,7 @@ var/list/flooring_types
 /singleton/flooring/flesh
 	name = "flesh"
 	desc = "This slick flesh ripples and squishes under your touch"
-	icon = 'icons/turf/stomach_vr.dmi'
+	icon = 'icons/turf/flesh.dmi'
 	icon_base = "flesh_floor"
 
 /singleton/flooring/outdoors/beach/sand/desert
@@ -655,7 +655,7 @@ var/list/flooring_types
 /singleton/flooring/trap
 	name = "suspicious flooring"
 	desc = "There's something off about this tile."
-	icon = 'icons/turf/flooring/plating_vr.dmi'
+	icon = 'icons/turf/flooring/plating.dmi'
 	icon_base = "plating"
 	build_type = null
 	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK

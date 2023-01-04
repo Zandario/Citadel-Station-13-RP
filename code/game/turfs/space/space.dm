@@ -179,7 +179,7 @@
 // Desert jump turf!
 /turf/space/sandyscroll
 	name = "sand transit"
-	icon = 'icons/turf/transit_vr.dmi'
+	icon = 'icons/turf/transit.dmi'
 	icon_state = "desert_ns"
 
 /turf/space/sandyscroll/Initialize(mapload)

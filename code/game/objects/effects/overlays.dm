@@ -89,19 +89,19 @@
 	icon_state = "snow_surround"
 
 /obj/effect/overlay/snow/floor/edges_new
-	icon = 'icons/turf/snow_new.dmi'
+	icon = 'icons/turf/snow.dmi'
 	icon_state = "snow_edges"
 
 /obj/effect/overlay/snow/floor/surround_new
-	icon = 'icons/turf/snow_new.dmi'
+	icon = 'icons/turf/snow.dmi'
 	icon_state = "snow_surround"
 
 /obj/effect/overlay/snow/floor/grav_edges
-	icon = 'icons/turf/snow_new.dmi'
+	icon = 'icons/turf/snow.dmi'
 	icon_state = "gravsnow_edges"
 
 /obj/effect/overlay/snow/floor/grav_surround
-	icon = 'icons/turf/snow_new.dmi'
+	icon = 'icons/turf/snow.dmi'
 	icon_state = "gravsnow_surround"
 
 /obj/effect/overlay/snow/airlock

@@ -73,7 +73,7 @@
 
 /turf/simulated/floor/wood
 	name = "wooden floor"
-	icon = 'icons/turf/flooring/wood_vr.dmi'
+	icon = 'icons/turf/flooring/wood.dmi'
 	icon_state = "wood"
 	initial_flooring = /singleton/flooring/wood
 
@@ -126,7 +126,7 @@
 
 /turf/simulated/floor/tiled/techfloor
 	name = "floor"
-	icon = 'icons/turf/flooring/techfloor_vr.dmi'
+	icon = 'icons/turf/flooring/techfloor.dmi'
 	icon_state = "techfloor_gray"
 	initial_flooring = /singleton/flooring/tiling/tech
 
@@ -460,13 +460,13 @@
 //**** Here lives snow ****
 /turf/simulated/floor/snow
 	name = "snow"
-	icon = 'icons/turf/snow_new.dmi'
+	icon = 'icons/turf/snow.dmi'
 	icon_state = "snow"
 	var/list/crossed_dirs = list()
 
 /turf/simulated/floor/snow/gravsnow
 	name = "snowy gravel"
-	icon = 'icons/turf/snow_new.dmi'
+	icon = 'icons/turf/snow.dmi'
 	icon_state = "gravsnow"
 
 /turf/simulated/floor/snow/snow2

@@ -102,10 +102,3 @@
 	if(istype(C, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = C
 		coil.turf_place(src, user)
-
-
-/obj/effect/abstract/over_openspace_darkness
-	icon = 'icons/turf/open_space.dmi'
-	icon_state = "black_open"
-	plane = OVER_OPENSPACE_PLANE
-	layer = TURF_LAYER

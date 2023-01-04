@@ -783,7 +783,7 @@
 /area/unknown/dorm3)
 "cq" = (
 /turf/simulated/floor/maglev{
-	icon = 'icons/turf/transit_vr.dmi'
+	icon = 'icons/turf/transit.dmi'
 	},
 /area/space)
 "cr" = (
@@ -1052,7 +1052,7 @@
 /area/unknown/dorm6)
 "dg" = (
 /turf/unsimulated/wall{
-	icon = 'icons/turf/transit_vr.dmi'
+	icon = 'icons/turf/transit.dmi'
 	},
 /area/space)
 "dh" = (
@@ -2209,7 +2209,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi';
+	icon = 'icons/turf/transit.dmi';
 	initial_flooring = null
 	},
 /area/space)
@@ -2233,7 +2233,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi';
+	icon = 'icons/turf/transit.dmi';
 	initial_flooring = null
 	},
 /area/space)
@@ -2245,7 +2245,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi';
+	icon = 'icons/turf/transit.dmi';
 	initial_flooring = null
 	},
 /area/space)
@@ -2344,7 +2344,7 @@
 	name = "Escape Transit"
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi';
+	icon = 'icons/turf/transit.dmi';
 	initial_flooring = null
 	},
 /area/space)
@@ -2403,7 +2403,7 @@
 	tiles = 0
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi';
+	icon = 'icons/turf/transit.dmi';
 	initial_flooring = null
 	},
 /area/space)
@@ -2465,7 +2465,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi';
+	icon = 'icons/turf/transit.dmi';
 	initial_flooring = null
 	},
 /area/space)
@@ -2497,7 +2497,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi';
+	icon = 'icons/turf/transit.dmi';
 	initial_flooring = null
 	},
 /area/space)
@@ -2671,7 +2671,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi';
+	icon = 'icons/turf/transit.dmi';
 	initial_flooring = null
 	},
 /area/space)
@@ -2807,7 +2807,7 @@
 	tiles = 0
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi';
+	icon = 'icons/turf/transit.dmi';
 	initial_flooring = null
 	},
 /area/space)
@@ -2858,7 +2858,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi';
+	icon = 'icons/turf/transit.dmi';
 	initial_flooring = null
 	},
 /area/space)
@@ -2929,7 +2929,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi';
+	icon = 'icons/turf/transit.dmi';
 	initial_flooring = null
 	},
 /area/space)
@@ -3007,7 +3007,7 @@
 "uG" = (
 /obj/effect/step_trigger/lost_in_space/tram,
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi';
+	icon = 'icons/turf/transit.dmi';
 	initial_flooring = null
 	},
 /area/space)
@@ -3027,7 +3027,7 @@
 	tiles = 0
 	},
 /turf/simulated/floor/maglev{
-	icon = 'icons/turf/transit_vr.dmi'
+	icon = 'icons/turf/transit.dmi'
 	},
 /area/space)
 "vG" = (
@@ -3279,7 +3279,7 @@
 "yk" = (
 /obj/effect/step_trigger/lost_in_space/tram,
 /turf/simulated/floor/maglev{
-	icon = 'icons/turf/transit_vr.dmi'
+	icon = 'icons/turf/transit.dmi'
 	},
 /area/space)
 "ym" = (
@@ -3439,7 +3439,7 @@
 	dir = 8
 	},
 /turf/unsimulated/mineral{
-	icon = 'icons/turf/transit_vr.dmi';
+	icon = 'icons/turf/transit.dmi';
 	icon_state = "rock"
 	},
 /area/space)
@@ -3767,7 +3767,7 @@
 	dir = 4
 	},
 /turf/unsimulated/mineral{
-	icon = 'icons/turf/transit_vr.dmi';
+	icon = 'icons/turf/transit.dmi';
 	icon_state = "rock"
 	},
 /area/space)
@@ -3843,7 +3843,7 @@
 /area/centcom/simulated/medical)
 "FT" = (
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi';
+	icon = 'icons/turf/transit.dmi';
 	initial_flooring = null
 	},
 /area/space)
@@ -3853,7 +3853,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi';
+	icon = 'icons/turf/transit.dmi';
 	initial_flooring = null
 	},
 /area/space)
@@ -3969,7 +3969,7 @@
 /area/centcom/simulated/restaurant)
 "Hy" = (
 /turf/unsimulated/mineral{
-	icon = 'icons/turf/transit_vr.dmi';
+	icon = 'icons/turf/transit.dmi';
 	icon_state = "rock"
 	},
 /area/space)
@@ -4082,7 +4082,7 @@
 	tiles = 0
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi';
+	icon = 'icons/turf/transit.dmi';
 	initial_flooring = null
 	},
 /area/space)
@@ -4309,7 +4309,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi';
+	icon = 'icons/turf/transit.dmi';
 	initial_flooring = null
 	},
 /area/space)
@@ -4532,7 +4532,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi';
+	icon = 'icons/turf/transit.dmi';
 	initial_flooring = null
 	},
 /area/space)
@@ -4546,7 +4546,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi';
+	icon = 'icons/turf/transit.dmi';
 	initial_flooring = null
 	},
 /area/space)
@@ -4815,7 +4815,7 @@
 	tiles = 0
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi';
+	icon = 'icons/turf/transit.dmi';
 	initial_flooring = null
 	},
 /area/space)

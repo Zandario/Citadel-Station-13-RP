@@ -1186,12 +1186,12 @@ var/list/floor_decals = list()
 
 /obj/effect/floor_decal/flesh
 	name = "flesh"
-	icon = 'icons/turf/stomach_vr.dmi'
+	icon = 'icons/turf/flesh.dmi'
 	icon_state = "flesh_floor_edges"
 
 /obj/effect/floor_decal/flesh/colour
 	name = "flesh"
-	icon = 'icons/turf/stomach_vr.dmi'
+	icon = 'icons/turf/flesh.dmi'
 	icon_state = "c_flesh_floor_edges"
 
 /obj/effect/floor_decal/industrial/outline/red
@@ -1286,7 +1286,7 @@ var/list/floor_decals = list()
 	icon_state = "bordercolor_shifted"
 
 /obj/effect/floor_decal/transit/orange
-	icon = 'icons/turf/transit_vr.dmi'
+	icon = 'icons/turf/transit.dmi'
 	icon_state = "transit_techfloororange_edges"
 
 /obj/effect/transit/light

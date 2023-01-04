@@ -204,7 +204,7 @@
 /turf/simulated/floor/outdoors/snow/classp
 	name = "snow"
 	desc = "A layer of many tiny bits of frozen water. It's hard to tell how deep it is."
-	icon = 'icons/turf/snow_new.dmi'
+	icon = 'icons/turf/snow.dmi'
 	icon_state = "snow"
 	outdoors = 1
 	var/tree_chance = 10

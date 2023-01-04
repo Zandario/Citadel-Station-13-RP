@@ -13,7 +13,7 @@
 /area/ninja_dojo/dojo)
 "ae" = (
 /turf/unsimulated/floor{
-	icon = 'icons/turf/snow_new.dmi';
+	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
 	name = "snow"
 	},
@@ -21,7 +21,7 @@
 "af" = (
 /obj/effect/floor_decal/asteroid,
 /turf/unsimulated/floor{
-	icon = 'icons/turf/snow_new.dmi';
+	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
 	name = "snow"
 	},
@@ -535,7 +535,7 @@
 "bn" = (
 /obj/structure/flora/tree/pine,
 /turf/unsimulated/floor{
-	icon = 'icons/turf/snow_new.dmi';
+	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
 	name = "snow"
 	},
@@ -543,7 +543,7 @@
 "bo" = (
 /obj/structure/flora/ausbushes/palebush,
 /turf/unsimulated/floor{
-	icon = 'icons/turf/snow_new.dmi';
+	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
 	name = "snow"
 	},
@@ -554,7 +554,7 @@
 	health = 1e+006
 	},
 /turf/unsimulated/floor{
-	icon = 'icons/turf/snow_new.dmi';
+	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
 	name = "snow"
 	},
@@ -586,7 +586,7 @@
 	dir = 8
 	},
 /turf/unsimulated/floor{
-	icon = 'icons/turf/snow_new.dmi';
+	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
 	name = "snow"
 	},

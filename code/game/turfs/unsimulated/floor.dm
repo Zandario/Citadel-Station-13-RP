@@ -20,7 +20,7 @@
 
 /turf/unsimulated/floor/techfloor_grid
 	name = "floor"
-	icon = 'icons/turf/flooring/techfloor_vr.dmi'
+	icon = 'icons/turf/flooring/techfloor.dmi'
 	icon_state = "techfloor_grid"
 
 /turf/unsimulated/floor/maglev
@@ -30,4 +30,4 @@
 	icon_state = "maglevup"
 
 /turf/unsimulated/floor/transit
-	icon = 'icons/turf/transit_vr.dmi'
+	icon = 'icons/turf/transit.dmi'

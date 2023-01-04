@@ -511,5 +511,5 @@
 	name = "flesh door"
 	desc = "This door pulses and twitches as if it's alive. It is."
 
-	icon = 'icons/turf/stomach_vr.dmi'
+	icon = 'icons/turf/flesh.dmi'
 	icon_state = "fleshclosed"

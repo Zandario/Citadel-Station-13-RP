@@ -23,4 +23,4 @@
 	icon_state = "1"
 
 /turf/unsimulated/wall/transit
-	icon = 'icons/turf/transit_vr.dmi'
+	icon = 'icons/turf/transit.dmi'
