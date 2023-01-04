@@ -6,7 +6,7 @@
 /area
 	level = null
 	name = "Unknown"
-	icon = 'icons/turf/areas.dmi'
+	icon = 'icons/areas/areas.dmi'
 	icon_state = "unknown"
 	plane = ABOVE_LIGHTING_PLANE //In case we color them
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT

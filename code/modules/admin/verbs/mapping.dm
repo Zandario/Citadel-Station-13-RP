@@ -33,7 +33,6 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 	src.pixel_y = -224
 
 /obj/effect/debugging/marker
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "yellow"
 
 /obj/effect/debugging/marker/Move()

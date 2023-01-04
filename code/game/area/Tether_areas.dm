@@ -12,15 +12,15 @@
 
 // Tether Areas itself
 /area/tether/surfacebase/tether
-	icon = 'icons/turf/areas_tether.dmi'
+	icon = 'icons/areas/areas_tether.dmi'
 	icon_state = "tether1"
 
 /area/tether/transit/tether
-	icon = 'icons/turf/areas_tether.dmi'
+	icon = 'icons/areas/areas_tether.dmi'
 	icon_state = "tether2"
 
 /area/tether/space/tether
-	icon = 'icons/turf/areas_tether.dmi'
+	icon = 'icons/areas/areas_tether.dmi'
 	icon_state = "tether3"
 
 /area/turbolift/tether/transit
@@ -134,8 +134,6 @@
 //
 
 /area/tether/surfacebase
-	icon = 'icons/turf/areas.dmi'
-
 
 /area/tether/surfacebase/outside
 	name = "Outside - Surface"
@@ -144,10 +142,13 @@
 
 /area/tether/surfacebase/outside/outside1
 	icon_state = "outside1"
+
 /area/tether/surfacebase/outside/outside2
 	icon_state = "outside2"
+
 /area/tether/surfacebase/outside/outside3
 	icon_state = "outside3"
+
 
 /area/tether/surfacebase/old_tram
 	name = "\improper Construction Tram LL-26"
@@ -248,7 +249,7 @@
 	name = "\improper Vacant Prep Area"
 /area/vacant/vacant_site/gateway/lower
 	name = "\improper Lower Vacant Prep Area"
-//TFF 5/4/20 - Mining Ops move	TODO Change all Vacant areas to construction_site per vermin event location announcement.
+
 /area/construction/vacant_mining_ops
 	name = "\improper Vacant Mining Operations"
 
@@ -265,41 +266,52 @@
 /area/tether/surfacebase/emergency_storage/atrium
 	name = "\improper Atrium Emergency Storage"
 
-//TFF 7/4/20 - New areas for Surface Cargo bits as well as the Mining Outpost. Some former ones deleted. Others renamed.
 // Surface Cargo/Mining EVA/Warehouse/Mining Outpost adadditions
 /area/tether/surfacebase/cargo
 	name = "Surface Cargo Foyer"
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "quartstorage"
+
 /area/tether/surfacebase/cargo/mining	//TODO: Change to medical airlock access
 	name = "\improper Mining Equipment Storage"
 	icon_state = "outpost_mine_main"
+
 /area/tether/surfacebase/cargo/mining/airlock	//TODO: Change to medical airlock
 	name = "\improper Mining Airlock"
+
 /area/tether/surfacebase/cargo/warehouse
 	name = "\improper Surface Cargo Warehouse"
 	sound_env = LARGE_ENCLOSED
+
 /area/tether/surfacebase/cargo/office
 	name = "\improper Surface Cargo Office"
 	lightswitch = 0
+
 /area/tether/surfacebase/mining_main
 	icon_state = "outpost_mine_main"
+
 /area/tether/surfacebase/mining_main/eva
 	name = "\improper Mining EVA"
+
 /area/tether/surfacebase/lowernortheva/external
 	name = "\improper Mining External"
+
 /area/tether/surfacebase/mining_main/break_room
 	name = "\improper Mining Crew Area"
+
 /area/tether/surfacebase/mining_main/bathroom
 	name = "\improper Mining Bathroom"
+
 /area/outpost/mining_main/hangar
 	name = "\improper Mining Outpost Shuttle Hangar"
 	ambience = AMBIENCE_HANGAR
 	sound_env = LARGE_ENCLOSED
+
 /area/outpost/mining_main/secondary_gear_storage
 	name = "\improper Mining Outpost Gear Storage"
+
 /area/outpost/mining_main/drill_equipment
 	name = "\improper Mining Equipment Storage"
+
 
 // Mining Underdark
 /area/mine/unexplored/underdark
@@ -370,114 +382,132 @@
 	icon_state = "yellow"
 	lightswitch = 0
 
+
 /area/tether/surfacebase/medical
 	icon_state = "medical"
+
 /area/tether/surfacebase/medical/lobby
 	name = "\improper Medical Lobby"
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "medbay3"
+
 /area/tether/surfacebase/medical/triage
 	name = "\improper Triage"
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "medbay_triage"
+
 /area/tether/surfacebase/medical/admin
 	name = "\improper Medical Admin"
+
 /area/tether/surfacebase/medical/first_aid_west
 	name = "\improper First Aid West"
+
 /area/tether/surfacebase/medical/chemistry
 	name = "\improper Chemistry"
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "chem"
+
 /area/tether/surfacebase/medical/resleeving
 	name = "\improper Resleeving"
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "cloning"
+
 /area/tether/surfacebase/medical/surgery1
 	name = "\improper Surgery OR 1"
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "surgery_1"
+
 /area/tether/surfacebase/medical/surgery2
 	name = "\improper Surgery OR 2"
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "surgery_2"
+
 /area/tether/surfacebase/medical/patient
 	name = "\improper Surface Patient Recovery Rooms"
+
 /area/tether/surfacebase/medical/patient_a
 	name = "\improper Patient Room A"
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "medbay_patient_room_a"
+
 /area/tether/surfacebase/medical/patient_b
 	name = "\improper Patient Room B"
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "medbay_patient_room_b"
+
 /area/tether/surfacebase/medical/patient_c
 	name = "\improper Patient Room C"
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "medbay_patient_room_c"
+
 /area/tether/surfacebase/medical/recoveryward
 	name = "\improper Medbay Recovery Ward"
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "crew_quarters"
+
 /area/tether/surfacebase/medical/recoveryward/storage
 	name = "\improper Medbay Recovery Storage"
+
 /area/tether/surfacebase/medical/bathroom
 	name = "\improper Medbay Staff Bathroom"
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "medbay_restroom"
+
 /area/tether/surfacebase/medical/mentalhealth
 	name = "\improper Mental Health"
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "medbay_mentalhealth"
+
 /area/tether/surfacebase/medical/mentalhealthwaiting
 	name = "\improper Mental Health Waiting Room"
+
 /area/tether/surfacebase/medical/cmo
 	name = "\improper Chief Medical Officer's Office"
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "CMO"
+
 /area/tether/surfacebase/medical/morgue
 	name = "\improper Morgue"
+
 /area/tether/surfacebase/medical/viro
 	name = "\improper Virology"
+
 /area/tether/surfacebase/medical/viroairlock
 	name = "\improper Virology Airlock"
+
 /area/tether/surfacebase/medical/viro/viroward
 	name = "\improper Virology Ward"
+
 /area/tether/surfacebase/medical/upperhall
 	name = "\improper Medical Upper Hall"
+
 /area/tether/surfacebase/medical/centralhall
 	name = "\improper Medical Central Hall"
+
 /area/tether/surfacebase/medical/lowerhall
 	name = "\improper Medical Lower Hall"
 	//North SurfMed3-2 Stairwell
+
 /area/tether/surfacebase/medical/uppernorthstairwell
 	name = "\improper Medical Stairwell"
 	icon_state = "north"
 	///South SufMed3-2 Stairwell
+
 /area/tether/surfacebase/medical/uppersouthstairwell
 	name = "\improper Upper Medical Stairwell"
 	icon_state = "south"
 	//Central Surfmet2-1 Stairwell
+
 /area/tether/surfacebase/medical/centralstairwell
 	name = "\improper Central Medical Stairwell"
 	icon_state = "center"
+
 /area/tether/surfacebase/medical/storage
 	name = "\improper Medical Storage"
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "medbay_primary_storage"
+
 /area/tether/surfacebase/medical/examroom
 	name = "\improper Medical Exam Room"
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "exam_room"
+
 /area/tether/surfacebase/medical/paramed
 	name = "\improper Emergency Medical Bay"
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "medbay_emt_bay"
+
 /area/tether/surfacebase/medical/breakroom
 	name = "\improper Medical Break Room"
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "medbay_breakroom"
+
 /area/tether/surfacebase/medical/maints
 	name = "\improper Mining Upper Maintenance"
+
 
 /area/tether/surfacebase/library/study
 	name = "\improper Library Private Study"
@@ -621,7 +651,6 @@
 
 /area/maintenance/readingrooms
 	name = "\improper Southeast Maintenance"
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "green"
 	sound_env = SMALL_SOFTFLOOR
 
@@ -916,24 +945,30 @@
 	name = "\improper Hallway First Floor West"
 	icon_state = "hallC1"
 
+
 /area/storage/surface_eva
 	icon_state = "storage"
 	name = "\improper Surface EVA"
+
 /area/storage/surface_eva/external
 	name = "\improper Surface EVA Access"
 
+
 /area/tether/surfacebase/shuttle_pad
 	name = "\improper Tether Shuttle Pad"
+
 /area/tether/surfacebase/reading_room
 	name = "\improper Reading Room"
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "green"
 	area_flags = AREA_RAD_SHIELDED
+
 /area/tether/surfacebase/vacant_site
 	name = "\improper Vacant Site"
 
+
 /area/crew_quarters/freezer
 	name = "\improper Kitchen Freezer"
+
 /area/crew_quarters/panic_shelter
 	name = "\improper Panic Shelter"
 	area_flags = AREA_RAD_SHIELDED	//It just makes sense
@@ -1439,7 +1474,6 @@
 
 /area/tether/elevator
 	name = "\improper Tether Elevator"
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "elevator"
 	dynamic_lighting = FALSE
 

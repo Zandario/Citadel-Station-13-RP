@@ -195,7 +195,6 @@
 
 /area/tether_away/beach/cavebase
 	name = "\improper Away Mission - Virgo 4 Mysterious Cave"
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "orawhicir"
 	area_flags = AREA_RAD_SHIELDED
 

@@ -2,7 +2,7 @@
 
 /area/talon
 	name = "\improper ITV Talon"
-	icon = 'icons/turf/areas_talon.dmi'
+	icon = 'icons/areas/areas_talon.dmi'
 	icon_state = "dark"
 
 /area/talon/maintenance/deckone_port

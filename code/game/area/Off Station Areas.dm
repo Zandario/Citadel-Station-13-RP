@@ -361,7 +361,6 @@
 
 /area/debrisfield
 	name = "Away Mission - Debris Field"
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "dark"
 
 /area/space/debrisfield/explored
@@ -411,7 +410,6 @@
 
 /area/piratebase
 	name = "Away Mission - Pirate Base"
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "dark"
 
 /area/piratebase/facility
@@ -441,7 +439,6 @@
 
 /area/tradeport
 	name = "Away Mission - Trade Port"
-	icon = 'icons/turf/areas.dmi'
 	icon_state = "dark"
 	area_flags = AREA_RAD_SHIELDED
 	requires_power = 1
