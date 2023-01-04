@@ -38,8 +38,8 @@
 	. = text
 	if(!CONFIG_GET(flag/emojis))
 		return
-	var/list/emojis = icon_states(icon('icons/ui_icons/emoji/emoji.dmi'))
-	emojis |= icon_states(icon('icons/ui_icons/emoji/emoji32.dmi'))
+	var/list/emojis = icon_states(icon(EMOJI_SET))
+	emojis |= icon_states(icon(EMOJI32_SET))
 	var/final = "" //only tags are added to this
 	var/pos = 1
 	var/search = 0
