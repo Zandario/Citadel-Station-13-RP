@@ -165,7 +165,6 @@ var/list/flooring_types
 /singleton/flooring/snow/gravsnow
 	name = "snowy gravel"
 	desc = "A layer of coarse ice pebbles and assorted gravel."
-	icon = 'icons/turf/snow.dmi'
 	icon_base = "gravsnow"
 	footstep_sounds = list("human" = list(
 		'sound/effects/footstep/snow1.ogg',
@@ -177,13 +176,11 @@ var/list/flooring_types
 /singleton/flooring/snow/snow2
 	name = "snow"
 	desc = "A layer of many tiny bits of frozen water. It's hard to tell how deep it is."
-	icon = 'icons/turf/snow.dmi'
 	icon_base = "snow"
 	flags = TURF_HAS_EDGES
 
 /singleton/flooring/snow/gravsnow2
 	name = "gravsnow"
-	icon = 'icons/turf/snow.dmi'
 	icon_base = "gravsnow"
 
 /singleton/flooring/snow/plating
