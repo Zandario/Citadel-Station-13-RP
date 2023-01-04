@@ -12,13 +12,15 @@
 
 // Tether Areas itself
 /area/tether/surfacebase/tether
-	icon = 'icons/turf/areas.dmi'
+	icon = 'icons/turf/areas_tether.dmi'
 	icon_state = "tether1"
+
 /area/tether/transit/tether
-	icon = 'icons/turf/areas.dmi'
+	icon = 'icons/turf/areas_tether.dmi'
 	icon_state = "tether2"
+
 /area/tether/space/tether
-	icon = 'icons/turf/areas.dmi'
+	icon = 'icons/turf/areas_tether.dmi'
 	icon_state = "tether3"
 
 /area/turbolift/tether/transit

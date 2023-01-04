@@ -2080,12 +2080,8 @@
 "hQ" = (
 /obj/structure/catwalk,
 /obj/machinery/shield_diffuser,
-/obj/item/sign{
-	dir = 1;
-	icon = 'icons/turf/flooring/decals_vr.dmi';
-	icon_override = 'icons/turf/flooring/decals_vr.dmi';
-	icon_state = "warning";
-	name = "hazard stripes"
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
 	},
 /turf/simulated/floor/airless/ceiling,
 /area/space)
@@ -7284,17 +7280,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/engineering/atmos)
-"AD" = (
-/obj/structure/catwalk,
-/obj/machinery/shield_diffuser,
-/obj/item/sign{
-	icon = 'icons/turf/flooring/decals_vr.dmi';
-	icon_override = 'icons/turf/flooring/decals_vr.dmi';
-	icon_state = "warning";
-	name = "hazard stripes"
-	},
-/turf/simulated/floor/airless/ceiling,
-/area/space)
 "AE" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red,
 /turf/simulated/floor/tiled/techmaint,
@@ -9133,12 +9118,8 @@
 /area/maintenance/engineering)
 "GY" = (
 /obj/structure/catwalk,
-/obj/item/sign{
-	dir = 8;
-	icon = 'icons/turf/flooring/decals_vr.dmi';
-	icon_override = 'icons/turf/flooring/decals_vr.dmi';
-	icon_state = "warning";
-	name = "hazard stripes"
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
 	},
 /obj/machinery/shield_diffuser,
 /turf/simulated/floor/airless/ceiling,
@@ -14347,18 +14328,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/engineering/hallway/lower)
-"Zy" = (
-/obj/structure/catwalk,
-/obj/machinery/shield_diffuser,
-/obj/item/sign{
-	dir = 8;
-	icon = 'icons/turf/flooring/decals_vr.dmi';
-	icon_override = 'icons/turf/flooring/decals_vr.dmi';
-	icon_state = "warning";
-	name = "hazard stripes"
-	},
-/turf/simulated/floor/airless/ceiling,
-/area/space)
 "Zz" = (
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/workshop)
@@ -17960,7 +17929,7 @@ fN
 fN
 LO
 ID
-AD
+hQ
 Zj
 Zj
 Zj
@@ -23769,8 +23738,8 @@ fN
 fN
 iC
 dX
-Zy
-Zy
+hQ
+hQ
 ID
 ID
 OC
@@ -26943,7 +26912,7 @@ gD
 Tx
 Tx
 Tx
-AD
+hQ
 fN
 fN
 vg
@@ -27085,7 +27054,7 @@ jC
 Tx
 vQ
 cL
-AD
+hQ
 fN
 fN
 fN

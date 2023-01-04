@@ -12,7 +12,6 @@
 
 /area/tether_away/fueldepot
 	name = "Away Mission - Fuel Depot"
-	icon = 'icons/turf/areas_vr.dmi'
 	icon_state = "dark"
 	lightswitch = FALSE
 

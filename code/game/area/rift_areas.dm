@@ -283,7 +283,6 @@
 	icon_state = "dk_yellow"
 
 /area/rift/surfacebase
-	icon = 'icons/turf/areas_vr.dmi'
 
 /area/rift/surfacebase/underground
 	name = "Outside - Underground"

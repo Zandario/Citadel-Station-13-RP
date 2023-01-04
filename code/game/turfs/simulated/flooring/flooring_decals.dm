@@ -5,7 +5,7 @@ var/list/floor_decals = list()
 
 /obj/effect/floor_decal
 	name = "floor decal"
-	icon = 'icons/turf/flooring/decals_vr.dmi'
+	icon = 'icons/turf/flooring/decals.dmi'
 	plane = TURF_PLANE
 	layer = TURF_DETAIL_LAYER
 	var/supplied_dir
