@@ -12,15 +12,8 @@ var/list/flooring_types
 		flooring_types["[flooring_path]"] = new flooring_path
 	return flooring_types["[flooring_path]"]
 
-// State values:
-// [icon_base]: initial base icon_state without edges or corners.
-// if has_base_range is set, append 0-has_base_range ie.
-//   [icon_base][has_base_range]
-// [icon_base]_broken: damaged overlay.
-// if has_damage_range is set, append 0-damage_range for state ie.
-//   [icon_base]_broken[has_damage_range]
-// [icon_base]_edges: directional overlays for edges.
-// [icon_base]_corners: directional overlays for non-edge corners.
+
+// TODO: Slowly kill this off.
 
 /singleton/flooring
 	var/name = "floor"
@@ -118,7 +111,7 @@ var/list/flooring_types
 /singleton/flooring/proc/get_plating_type(turf/T)
 	return plating_type
 
-/singleton/flooring/proc/get_flooring_overlay(cache_key, icon_base, icon_dir = 0, layer = TURF_DETAIL_LAYER)
+/singleton/flooring/proc/get_flooring_overlay(cache_key, icon_base, icon_dir = 0, layer = DECAL_LAYER)
 	if(!flooring_cache[cache_key])
 		var/image/I = image(icon = icon, icon_state = icon_base, dir = icon_dir)
 		I.layer = layer
@@ -260,7 +253,7 @@ var/list/flooring_types
 /singleton/flooring/tiling
 	name = "floor"
 	desc = "Scuffed from the passage of countless greyshirts."
-	icon = 'icons/turf/flooring/tiles_vr.dmi' // More ERIS Sprites... For now...
+	icon = 'icons/turf/flooring/tiles.dmi' // More ERIS Sprites... For now...
 	icon_base = "tiled"
 	has_damage_range = 2
 	damage_temperature = T0C+1400

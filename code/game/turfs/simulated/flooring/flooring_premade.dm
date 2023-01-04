@@ -105,13 +105,13 @@
 
 /turf/simulated/floor/tiled
 	name = "floor"
-	icon = 'icons/turf/flooring/tiles_vr.dmi'
+	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_state = "tiled"
 	initial_flooring = /singleton/flooring/tiling
 
 /turf/simulated/floor/tiled/techmaint
 	name = "floor"
-	icon = 'icons/turf/flooring/tiles_vr.dmi'
+	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_state = "techmaint"
 	initial_flooring = /singleton/flooring/tiling/new_tile/techmaint
 
@@ -120,7 +120,7 @@
 
 /turf/simulated/floor/tiled/monofloor
 	name = "floor"
-	icon = 'icons/turf/flooring/tiles_vr.dmi'
+	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_state = "monofloor"
 	initial_flooring = /singleton/flooring/tiling/new_tile/monofloor
 
@@ -132,25 +132,25 @@
 
 /turf/simulated/floor/tiled/monotile
 	name = "floor"
-	icon = 'icons/turf/flooring/tiles_vr.dmi'
+	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_state = "monotile"
 	initial_flooring = /singleton/flooring/tiling/new_tile/monotile
 
 /turf/simulated/floor/tiled/monowhite
 	name = "floor"
-	icon = 'icons/turf/flooring/tiles_vr.dmi'
+	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_state = "monowhite"
 	initial_flooring = /singleton/flooring/tiling/new_tile/monowhite
 
 /turf/simulated/floor/tiled/steel_grid
 	name = "floor"
-	icon = 'icons/turf/flooring/tiles_vr.dmi'
+	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_state = "steel_grid"
 	initial_flooring = /singleton/flooring/tiling/new_tile/steel_grid
 
 /turf/simulated/floor/tiled/steel_ridged
 	name = "floor"
-	icon = 'icons/turf/flooring/tiles_vr.dmi'
+	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_state = "steel_ridged"
 	initial_flooring = /singleton/flooring/tiling/new_tile/steel_ridged
 

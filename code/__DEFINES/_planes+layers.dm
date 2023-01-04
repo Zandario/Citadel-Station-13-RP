@@ -122,38 +122,39 @@
 #define PIPE_LAYER                  (AREA_LAYER+0.5)
 #define WIRE_LAYER                  (AREA_LAYER+0.6)
 #define WIRE_TERMINAL_LAYER         (AREA_LAYER+0.7)
-#define ATMOS_LAYER                 (AREA_LAYER+0.8)  /// Pipe-like atmos machinery that goes on the floor, like filters.
-#define BELOW_TURF_LAYER            (AREA_LAYER+0.9)  /// Above stuff like pipes and wires.
+#define ATMOS_LAYER                 (AREA_LAYER+0.8)   /// Pipe-like atmos machinery that goes on the floor, like filters.
+#define BELOW_TURF_LAYER            (AREA_LAYER+0.9)   /// Above stuff like pipes and wires.
 
 //? ABOVE PLATING
 
-#define WATER_FLOOR_LAYER           (TURF_LAYER)      /// The 'bottom' of water tiles.
-#define TURF_DETAIL_LAYER           (TURF_LAYER+0.01) /// For floors that automatically add decal overlays.
+#define WATER_FLOOR_LAYER           (TURF_LAYER)       /// The 'bottom' of water tiles.
+// #define TURF_DETAIL_LAYER           (TURF_LAYER+0.01)  /// For floors that automatically add decal overlays.
 
 //? ABOVE TURF
 
-#define DECAL_LAYER                 (TURF_LAYER+0.03) /// For intentionally placed floor decal overlays.
-#define AO_LAYER                    (TURF_LAYER+0.04) /// Ambient Occlusion layer.
+#define HIGH_TURF_LAYER             (TURF_LAYER+0.03)  /// Mainly for turfs that bleed onto others.
+#define DECAL_LAYER                 (TURF_LAYER+0.039) /// For intentionally placed floor decal overlays.
+#define AO_LAYER                    (TURF_LAYER+0.04)  /// Ambient Occlusion layer.
 #define EXPOSED_PIPE_LAYER          (TURF_LAYER+0.06)
 #define EXPOSED_WIRE_LAYER          (TURF_LAYER+0.07)
 #define EXPOSED_WIRE_TERMINAL_LAYER (TURF_LAYER+0.08)
-#define EXPOSED_ATMOS_LAYER         (TURF_LAYER+0.09) /// Pipe-like atmos machinery that goes on the floor, like filters.
+#define EXPOSED_ATMOS_LAYER         (TURF_LAYER+0.09)  /// Pipe-like atmos machinery that goes on the floor, like filters.
 #define CATWALK_LAYER               (TURF_LAYER+0.10)
 #define PLANT_LAYER                 (TURF_LAYER+0.12)
 
 //? HIDING MOB
 
-#define HIDING_LAYER                (TURF_LAYER+0.14) /// Layer at which mobs hide to be under things like tables.
-#define UNDERWATER_LAYER            (TURF_LAYER+0.15) /// Anything on this layer will render under the water layer.
+#define HIDING_LAYER                (TURF_LAYER+0.14)  /// Layer at which mobs hide to be under things like tables.
+#define UNDERWATER_LAYER            (TURF_LAYER+0.15)  /// Anything on this layer will render under the water layer.
 
 //! Turf/Obj layer boundary
 
-#define WATER_LAYER                 (OBJ_LAYER)      /// Layer for water overlays.
-#define ABOVE_TURF_LAYER            (OBJ_LAYER+0.1)  /// Snow and wallmounted/floormounted equipment.
+#define WATER_LAYER                 (OBJ_LAYER)       /// Layer for water overlays.
+#define ABOVE_TURF_LAYER            (OBJ_LAYER+0.1)   /// Snow and wallmounted/floormounted equipment.
 
 //! Obj/Mob layer boundary
 
-#define MIMICED_LIGHTING_LAYER      (MOB_LAYER+0.22) /// Z-Mimic-managed lighting
+#define MIMICED_LIGHTING_LAYER      (MOB_LAYER+0.22)  /// Z-Mimic-managed lighting
 
 
 /**
