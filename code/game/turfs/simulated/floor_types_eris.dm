@@ -16,20 +16,6 @@
 
 	plating_type = /singleton/flooring/eris_plating/under
 
-	floor_smooth = SMOOTH_WHITELIST
-	flooring_whitelist = list(
-		/singleton/flooring/eris_plating/under
-	)
-
-	smooth_movable_atom = SMOOTH_GREYLIST
-	movable_atom_whitelist = list(
-		list(/obj/machinery/door/airlock, list(), 1) // Smooth Eris floors with airlocks
-	)
-	movable_atom_blacklist = list(
-		list(/obj/machinery/door/airlock/maintenance, list(), 2), // But not maintenance airlocks
-		list(/obj/structure/window, list("anchored" = TRUE, "fulltile" = TRUE), 2) // Don't blend under full windows
-	)
-
 /singleton/flooring/tiling/eris/steel
 	name = "steel floor"
 	icon_base = "tiles"
@@ -101,22 +87,16 @@
 	name = "flat bar floor"
 	icon_base = "bar_flat"
 	build_type = /obj/item/stack/tile/floor/eris/steel/bar_flat
-	floor_smooth = SMOOTH_NONE
-	smooth_movable_atom = SMOOTH_NONE
 
 /singleton/flooring/tiling/eris/steel/bar_dance
 	name = "dancefloor"
 	icon_base = "bar_dance"
 	build_type = /obj/item/stack/tile/floor/eris/steel/bar_dance
-	floor_smooth = SMOOTH_NONE
-	smooth_movable_atom = SMOOTH_NONE
 
 /singleton/flooring/tiling/eris/steel/bar_light
 	name = "lit bar floor"
 	icon_base = "bar_light"
 	build_type = /obj/item/stack/tile/floor/eris/steel/bar_light
-	floor_smooth = SMOOTH_NONE
-	smooth_movable_atom = SMOOTH_NONE
 
 /singleton/flooring/tiling/eris/white
 	name = "white floor"
@@ -257,40 +237,30 @@
 	icon_base = "cafe"
 	icon = 'icons/turf/flooring/eris/tiles.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/cafe
-	floor_smooth = SMOOTH_NONE
-	smooth_movable_atom = SMOOTH_NONE
 
 /singleton/flooring/tiling/eris/techmaint
 	name = "techmaint floor"
 	icon_base = "techmaint"
 	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/techmaint
-	floor_smooth = SMOOTH_NONE
-	smooth_movable_atom = SMOOTH_NONE
 
 /singleton/flooring/tiling/eris/techmaint_perforated
 	name = "techmaint floor"
 	icon_base = "techmaint_perforated"
 	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/techmaint/perforated
-	floor_smooth = SMOOTH_NONE
-	smooth_movable_atom = SMOOTH_NONE
 
 /singleton/flooring/tiling/eris/techmaint_panels
 	name = "techmaint floor"
 	icon_base = "techmaint_panels"
 	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/techmaint/panels
-	floor_smooth = SMOOTH_NONE
-	smooth_movable_atom = SMOOTH_NONE
 
 /singleton/flooring/tiling/eris/techmaint_cargo
 	name = "techmaint floor"
 	icon_base = "techmaint_cargo"
 	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/techmaint/cargo
-	floor_smooth = SMOOTH_NONE
-	smooth_movable_atom = SMOOTH_NONE
 
 ///////////////////////
 /// TILE OBJS   ///////
@@ -904,19 +874,6 @@
 
 	plating_type = /singleton/flooring/eris_plating/under
 
-	/*
-	footstep_sound = "plating"
-	space_smooth = FALSE
-	removal_time = 150
-	health = 100
-
-	floor_smooth = SMOOTH_BLACKLIST
-	flooring_blacklist = list(/singleton/flooring/reinforced/plating/under,/singleton/flooring/reinforced/plating/hull) //Smooth with everything except the contents of this list
-	smooth_movable_atom = SMOOTH_GREYLIST
-	movable_atom_blacklist = list(list(/obj, list("density" = TRUE, "anchored" = TRUE), 1))
-	movable_atom_whitelist = list(list(/obj/machinery/door/airlock, list(), 2))
-	*/
-
 /turf/simulated/floor/plating/eris
 	name = "reinforced plating"
 	icon = 'icons/turf/flooring/eris/plating.dmi'
@@ -937,24 +894,9 @@
 	has_base_range = 0
 	is_plating = TRUE
 
-	floor_smooth = SMOOTH_WHITELIST
-	flooring_whitelist = list(
-		/singleton/flooring/tiling/eris
-	)
-
 	plating_type = null
 
 	//build_type = /obj/item/stack/material/underplating
-
-	/* Eris features we lack on flooring decls
-	removal_time = 250
-	health = 200
-	resistance = RESISTANCE_ARMOURED
-	footstep_sound = "catwalk"
-	space_smooth = SMOOTH_ALL
-	floor_smooth = SMOOTH_NONE
-	smooth_movable_atom = SMOOTH_NONE
-	*/
 
 /turf/simulated/floor/plating/eris/under
 	name = "underplating"

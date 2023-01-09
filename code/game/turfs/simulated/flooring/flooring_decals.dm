@@ -592,9 +592,17 @@ var/list/floor_decals = list()
 	name = "grey outline"
 	color = "#808080"
 
+// TODO: Repath to loading_area
 /obj/effect/floor_decal/industrial/loading
 	name = "loading area"
 	icon_state = "loadingarea"
+
+/obj/effect/floor_decal/industrial/loading/white
+	icon_state = "loadingarea_white"
+
+/obj/effect/floor_decal/industrial/loading/red
+	icon_state = "loadingarea_red"
+
 
 /obj/effect/floor_decal/industrial/halfstair
 	name = "half stairs"

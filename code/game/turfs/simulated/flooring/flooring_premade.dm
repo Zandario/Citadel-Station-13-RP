@@ -99,7 +99,7 @@
 
 /turf/simulated/floor/grass
 	name = "grass patch"
-	icon = 'icons/turf/flooring/grass.dmi'
+	icon = 'icons/turf/floors.dmi'
 	icon_state = "grass0"
 	initial_flooring = /singleton/flooring/grass
 
@@ -449,6 +449,7 @@
 /turf/simulated/floor/beach/water/ocean
 */
 /turf/simulated/floor/airless/ceiling
+
 /turf/simulated/floor/plating
 
 /turf/simulated/floor/plating/external
