@@ -435,8 +435,10 @@ SUBSYSTEM_DEF(ticker)
 	//Otherwise if its a verb it will continue on afterwards.
 	sleep(300)
 
-	if(cinematic)	qdel(cinematic)		//end the cinematic
-	if(temp_buckle)	qdel(temp_buckle)	//release everybody
+	if(cinematic)
+		qdel(cinematic)		//end the cinematic
+	if(temp_buckle)
+		qdel(temp_buckle)	//release everybody
 	return
 
 
@@ -468,6 +470,7 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/collect_minds()
 	for(var/mob/living/player in GLOB.player_list)
 		if(player.mind)
+			CHECK_TICK
 			minds += player.mind
 
 
@@ -475,6 +478,7 @@ SUBSYSTEM_DEF(ticker)
 	var/captainless=1
 	for(var/mob/living/carbon/human/player in GLOB.player_list)
 		if(player && player.mind && player.mind.assigned_role)
+			CHECK_TICK
 			if(player.mind.assigned_role == "Facility Director")
 				captainless=0
 			if(!player_is_antag(player.mind, only_offstation_roles = 1))
@@ -484,7 +488,7 @@ SUBSYSTEM_DEF(ticker)
 		for(var/mob/M in GLOB.player_list)
 			if(!istype(M,/mob/new_player))
 				to_chat(M, "Facility Directorship not forced on anyone.")
-
+				CHECK_TICK
 
 /datum/controller/subsystem/ticker/proc/round_process()
 	if(current_state != GAME_STATE_PLAYING)

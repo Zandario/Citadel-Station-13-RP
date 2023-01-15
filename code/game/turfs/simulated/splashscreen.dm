@@ -2,6 +2,7 @@
 	name = null
 	desc = null
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	permit_ao = FALSE
 
 /turf/simulated/splashscreen
 	name = "Space Station 13"
@@ -10,6 +11,7 @@
 	icon_state = ""
 	pixel_x = -64
 	plane = SPLASHSCREEN_PLANE
+	permit_ao = FALSE
 
 INITIALIZE_IMMEDIATE(/turf/simulated/splashscreen)
 

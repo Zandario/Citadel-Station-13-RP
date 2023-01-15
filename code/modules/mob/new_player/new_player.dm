@@ -24,12 +24,22 @@
 	GLOB.mob_list += src
 	atom_flags |= ATOM_INITIALIZED
 
+	if(client && SSticker.current_state == GAME_STATE_INIT)
+		var/atom/movable/screen/splash/S = new(null, client, TRUE, TRUE)
+		S.Fade(TRUE)
+
 	if(length(GLOB.newplayer_start))
 		forceMove(pick(GLOB.newplayer_start))
 	else
 		forceMove(locate(1,1,1))
 
+	GLOB.new_player_list += src
+
 	return INITIALIZE_HINT_NORMAL
+
+/mob/new_player/Destroy()
+	SHOULD_CALL_PARENT(FALSE) // "yes i know what I'm doing"
+	GLOB.new_player_list -= src
 
 /mob/new_player/verb/new_player_panel()
 	set src = usr

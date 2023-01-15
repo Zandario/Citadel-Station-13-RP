@@ -16,6 +16,9 @@
 	GLOB.player_list |= src
 
 	new_player_panel()
+
+	sight |= SEE_TURFS
+
 	spawn(40)
 		if(client)
 			handle_privacy_poll()
