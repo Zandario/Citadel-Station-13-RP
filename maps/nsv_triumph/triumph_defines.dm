@@ -39,9 +39,6 @@
 
 	zlevel_datum_type = /datum/map_z_level/triumph
 
-	lobby_icon = 'icons/misc/title_vr.dmi'
-	lobby_screens = list("title1", "title2", "title3", "title4", "title5", "title6", "title7", "title8", "title9")
-
 	admin_levels = list()
 	sealed_levels = list()
 	empty_levels = null

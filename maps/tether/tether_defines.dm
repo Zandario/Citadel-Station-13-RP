@@ -32,22 +32,6 @@
 #define NETWORK_EXPLORATION "Exploration"
 #define NETWORK_XENOBIO "Xenobiology"
 
-/datum/map/tether/New()
-	..()
-	var/choice = pickweight(list(
-		"title1" = 50,
-		"title2" = 10,
-		"title3" = 50,
-		"title4" = 50,
-		"title5" = 20,
-		"title6" = 20,
-		"title7" = 20,
-		"title8" = 1,
-		"title9" = 1
-	))
-	if(choice)
-		lobby_screens = list(choice)
-
 /datum/map/tether
 	name = "Virgo"
 	full_name = "NSB Adephagia"
@@ -61,8 +45,6 @@
 
 	zlevel_datum_type = /datum/map_z_level/tether
 
-	lobby_icon = 'icons/misc/title_vr.dmi'
-	lobby_screens = list("tether2_night")
 	id_hud_icons = 'icons/mob/hud_jobs_cit.dmi'
 
 	holomap_smoosh = list(list(

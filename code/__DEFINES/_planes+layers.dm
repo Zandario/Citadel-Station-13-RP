@@ -330,6 +330,14 @@
  */
 #define PLANE_AUGMENTED 40
 
+
+/**
+ *# -- Splashscreen Plane
+ *? Plane of the "splash" icon used that shows on the lobby screen.
+ */
+#define SPLASHSCREEN_PLANE 50
+
+
 /**
  *! -- Fullscreen Plane
  *? Fullscreen overlays.

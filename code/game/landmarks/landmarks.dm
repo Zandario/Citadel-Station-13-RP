@@ -1,5 +1,6 @@
 GLOBAL_LIST_EMPTY(landmarks_list)
 GLOBAL_LIST_EMPTY(landmarks_keyed)
+GLOBAL_LIST_EMPTY(newplayer_start)
 
 /proc/landmarks_by_key(key)
 	var/list/L = GLOB.landmarks_keyed[key]

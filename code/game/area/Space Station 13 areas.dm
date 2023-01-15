@@ -52,10 +52,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/arrival
 	requires_power = 0
 
-/area/arrival/start
-	name = "\improper Arrival Area"
-	icon_state = "start"
-
 /area/admin
 	name = "\improper Admin room"
 	icon_state = "start"

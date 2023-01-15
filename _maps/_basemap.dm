@@ -3,6 +3,7 @@
 
 /**
  * This map is 25x25x1.
+ * The only thing on this zlevel is the lobby.
  * The zlevel will expand as the world loads.
  */
 #include "map_files\generic\reservation_base_level.dmm"

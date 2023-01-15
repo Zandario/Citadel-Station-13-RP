@@ -53,9 +53,6 @@
 		Z_LEVEL_WEST_DEEP,
 		Z_LEVEL_WEST_CAVERN)
 
-	lobby_icon = 'icons/misc/title_vr.dmi'
-	lobby_screens = list("title1", "title2", "title3", "title4", "title5", "title6", "title7", "title8", "bnny")
-
 	admin_levels = list()
 	sealed_levels = list()
 	empty_levels = null

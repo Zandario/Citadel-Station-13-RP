@@ -56,6 +56,8 @@
 /// File location for cult shuttle curse descriptions
 #define CULT_SHUTTLE_CURSE "cult_shuttle_curse.json"
 */
+/// File loation for title splashes
+#define SPLASH_FILE "splashes.json"
 
 //! Maptext
 /// Prepares a text to be used for maptext. Use this so it doesn't look hideous.

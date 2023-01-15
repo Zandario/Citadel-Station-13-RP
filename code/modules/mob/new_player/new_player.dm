@@ -1,9 +1,12 @@
 /mob/new_player
 	var/ready = 0
-	var/spawning = 0			// Referenced when you want to delete the new_player later on in the code.
-	var/totalPlayers = 0		// Player counts for the Lobby tab
+	/// Referenced when you want to delete the new_player later on in the code.
+	var/spawning = 0
+	/// Player counts for the Lobby tab.
+	var/totalPlayers = 0
 	var/totalPlayersReady = 0
-	var/show_hidden_jobs = 0	// Show jobs that are set to "Never" in preferences
+	/// Show jobs that are set to "Never" in preferences.
+	var/show_hidden_jobs = 0
 	var/datum/browser/panel
 	var/age_gate_result
 	universal_speak = 1
@@ -14,12 +17,18 @@
 	stat = DEAD
 	canmove = 0
 
-	anchored = 1	// Don't get pushed around
+	anchored = 1 // Don't get pushed around
 
 /mob/new_player/Initialize(mapload)
-	SHOULD_CALL_PARENT(FALSE)	// "yes i know what I'm doing"
+	SHOULD_CALL_PARENT(FALSE) // "yes i know what I'm doing"
 	GLOB.mob_list += src
 	atom_flags |= ATOM_INITIALIZED
+
+	if(length(GLOB.newplayer_start))
+		forceMove(pick(GLOB.newplayer_start))
+	else
+		forceMove(locate(1,1,1))
+
 	return INITIALIZE_HINT_NORMAL
 
 /mob/new_player/verb/new_player_panel()
@@ -746,7 +755,3 @@
 		spawn()
 			alert(src,"There were problems with spawning your character. Check your message log for details.","Error","OK")
 	return pass
-
-/mob/new_player/make_perspective()
-	. = ..()
-	self_perspective.AddScreen(GLOB.lobby_image)

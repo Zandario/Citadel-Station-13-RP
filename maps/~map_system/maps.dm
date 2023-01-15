@@ -116,9 +116,6 @@ var/list/all_maps = list()
 	var/overmap_z = 0			// If 0 will generate overmap zlevel on init. Otherwise will populate the zlevel provided.
 	var/overmap_event_areas = 0	// How many event "clouds" will be generated
 
-	var/lobby_icon = 'icons/misc/title.dmi'			// The icon which contains the lobby image(s)
-	var/list/lobby_screens = list("mockingjay00")	// The list of lobby screen to pick() from. If left unset the first icon state is always selected.
-
 	var/default_law_type = /datum/ai_laws/nanotrasen	// The default lawset use by synth units, if not overriden by their laws var.
 
 	// Some maps include areas for that map only and don't exist when not compiled, so Travis needs this to learn of new areas that are specific to a map.
