@@ -1,8 +1,9 @@
 /obj/structure/grille
 	name = "grille"
 	desc = "A flimsy lattice of metal rods, with screws to secure it to the floor."
-	icon = 'icons/obj/structures_vr.dmi'
-	icon_state = "grille"
+	icon = 'icons/obj/structures/grille.dmi'
+	icon_state = "grille-0"
+	base_icon_state = "grille"
 	density = TRUE
 	anchored = TRUE
 	pass_flags_self = ATOM_PASS_GRILLE
@@ -11,8 +12,9 @@
 	plane = TURF_PLANE
 	layer = TABLE_LAYER
 	explosion_resistance = 1
+	color = "#666666"
 
-	// smoothing_flags = SMOOTH_BITMASK
+	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = (SMOOTH_GROUP_GRILLE)
 	canSmoothWith = (SMOOTH_GROUP_GRILLE)
 
@@ -22,12 +24,6 @@
 
 /obj/structure/grille/legacy_ex_act(severity)
 	qdel(src)
-
-/obj/structure/grille/update_icon()
-	if(destroyed)
-		icon_state = "[initial(icon_state)]-b"
-	else
-		icon_state = initial(icon_state)
 
 /obj/structure/grille/Bumped(atom/user)
 	if(ismob(user)) shock(user, 70)

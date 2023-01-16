@@ -1,7 +1,7 @@
 /obj/structure/window
 	name = "window"
 	desc = "A window."
-	icon = 'icons/obj/structures_vr.dmi'
+	icon = 'icons/obj/structures/windows.dmi'
 	density = TRUE
 	pass_flags_self = ATOM_PASS_GLASS
 	CanAtmosPass = ATMOS_PASS_PROC
@@ -441,21 +441,6 @@
 	//this way it will only update full-tile ones
 	cut_overlays()
 	var/list/overlays_to_add = list()
-	if(!is_fulltile())
-		icon_state = "[basestate]"
-		return
-	var/list/dirs = list()
-	if(anchored)
-		for(var/obj/structure/window/W in orange(src,1))
-			if(W.anchored && W.density && W.glasstype == src.glasstype && W.is_fulltile()) //Only counts anchored, not-destroyed fill-tile windows.
-				dirs += get_dir(src, W)
-
-	var/list/connections = dirs_to_corner_states(dirs)
-
-	icon_state = ""
-	for(var/i = 1 to 4)
-		var/image/I = image(icon, "[basestate][connections[i]]", dir = 1<<(i-1))
-		overlays_to_add += I
 
 	// Damage overlays.
 	var/ratio = health / maxhealth
@@ -582,11 +567,13 @@
 	force_threshold = 3
 
 /obj/structure/window/basic/full
-	icon_state = "window-full"
+	icon = 'icons/obj/structures/window.dmi'
+	icon_state = "window-0"
+	base_icon_state = "window"
 	maxhealth = 24
 	fulltile = TRUE
 
-	// smoothing_flags = SMOOTH_BITMASK
+	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = (SMOOTH_GROUP_WINDOW_FULLTILE)
 	canSmoothWith = (SMOOTH_GROUP_SHUTTERS_BLASTDOORS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS)
 
@@ -647,11 +634,13 @@
 	force_threshold = 6
 
 /obj/structure/window/reinforced/full
-	icon_state = "rwindow-full"
+	icon = 'icons/obj/structures/window.dmi'
+	icon_state = "window-0"
+	base_icon_state = "window"
 	maxhealth = 80
 	fulltile = TRUE
 
-	// smoothing_flags = SMOOTH_BITMASK
+	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = (SMOOTH_GROUP_WINDOW_FULLTILE)
 	canSmoothWith = (SMOOTH_GROUP_SHUTTERS_BLASTDOORS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS)
 
