@@ -13,6 +13,8 @@
 
 	#ifdef IN_MAP_EDITOR // Display disposal pipes etc. above walls in map editors.
 	layer = PLATING_LAYER
+	#else
+	layer = WALL_BASE_LAYER
 	#endif
 
 	opacity = TRUE
@@ -29,16 +31,17 @@
 	smoothing_groups = (SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS)
 	canSmoothWith = (SMOOTH_GROUP_SHUTTERS_BLASTDOORS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_LOW_WALL + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS)
 
-	/// This is a var we are temporarily using until we have falsewall structures, until then we'll store our previous icon_state so we don't need to resmooth every time.
-	// TODO: Remove this when falsewalls are implemented.
-	var/cached_wall_state
-
-	var/damage = 0
-	var/damage_overlay = 0
-	/// damage overlays are cached
-	var/static/list/damage_overlays = generate_wall_damage_overlays()
 	var/active
 	var/can_open = FALSE
+
+	/// This is a var we are temporarily using until we have falsewall structures, until then we'll store our previous icon_state so we don't need to resmooth every time.
+	// TODO: Remove this when falsewalls are implemented.
+	var/cached_icon_state
+
+	var/damage = 0
+	var/tmp/image/damage_overlay
+	// Damage overlays are cached.
+	var/global/damage_overlays[16]
 
 	var/datum/material/material
 	var/datum/material/reinf_material

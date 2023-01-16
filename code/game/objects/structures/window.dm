@@ -8,6 +8,7 @@
 	w_class = ITEMSIZE_NORMAL
 	rad_flags = RAD_BLOCK_CONTENTS | RAD_NO_CONTAMINATE
 
+	plane = TURF_PLANE
 	layer = WINDOW_LAYER
 	pressure_resistance = 4*ONE_ATMOSPHERE
 	anchored = TRUE

@@ -9,6 +9,7 @@
 	opacity = 1
 	density = 1
 	CanAtmosPass = ATMOS_PASS_PROC
+	plane = TURF_PLANE
 	layer = DOOR_OPEN_LAYER
 	rad_flags = RAD_BLOCK_CONTENTS
 	// todo: rad_insulation_open/closed

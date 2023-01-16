@@ -254,6 +254,8 @@
 	occupied_icon_state = "door_closed"
 	on_enter_visible_message = "steps into the"
 
+	smoothing_groups = (SMOOTH_GROUP_AIRLOCK)
+
 	time_till_despawn = 600 //1 minute. We want to be much faster then normal cryo, since waiting in an elevator for half an hour is a special kind of hell.
 
 	allow_occupant_types = list(/mob/living/silicon/robot,/mob/living/carbon/human)

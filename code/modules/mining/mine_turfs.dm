@@ -19,7 +19,7 @@
 	can_dirty = FALSE
 	has_resources = 1
 
-	// smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
+	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	smoothing_groups = (SMOOTH_GROUP_CLOSED_TURFS + SMOOTH_GROUP_MINERAL_WALLS)
 	canSmoothWith = (SMOOTH_GROUP_MINERAL_WALLS)
 

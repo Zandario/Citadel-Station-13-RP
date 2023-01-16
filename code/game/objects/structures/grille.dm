@@ -8,6 +8,7 @@
 	pass_flags_self = ATOM_PASS_GRILLE
 	pressure_resistance = 5*ONE_ATMOSPHERE
 	rad_flags = RAD_BLOCK_CONTENTS
+	plane = TURF_PLANE
 	layer = TABLE_LAYER
 	explosion_resistance = 1
 

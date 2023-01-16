@@ -307,5 +307,12 @@ SUBSYSTEM_DEF(overlays)
 		overlays |= cached_other
 
 /atom
-	var/tmp/list/our_overlays	//! our local copy of (non-priority) overlays without byond magic. Use procs in SSoverlays to manipulate
-	var/tmp/list/priority_overlays	//! overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
+	/**
+	 * Our local copy of (non-priority) overlays without byond magic.
+	 * Use procs in SSoverlays to manipulate.
+	 */
+	var/tmp/list/our_overlays
+	/**
+	 * Overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
+	 */
+	var/tmp/list/priority_overlays

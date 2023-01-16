@@ -147,6 +147,7 @@
 	icon_reinf = 'icons/turf/walls/reinforced_solid.dmi'
 	icon_colour = "#666666"
 	table_icon_base = "metal"
+	icon_reinf_directionals = TRUE
 
 /datum/material/steel/hull
 	id = "steel_hull"
@@ -154,7 +155,7 @@
 	stack_type = /obj/item/stack/material/steel/hull
 	integrity = 250
 	explosion_resistance = 10
-	icon_base = 'icons/turf/walls/hull.dmi'
+	icon_base = 'icons/turf/walls/metal.dmi'
 	icon_reinf = 'icons/turf/walls/reinforced_mesh.dmi'
 	icon_colour = "#666677"
 
@@ -201,13 +202,14 @@
 	composite_material = list(MAT_STEEL = SHEET_MATERIAL_AMOUNT, MAT_PLATINUM = SHEET_MATERIAL_AMOUNT) //todo
 	radiation_resistance = 14
 	table_icon_base = "metal"
+	icon_reinf_directionals = TRUE
 
 /datum/material/plasteel/hull
 	id = "plasteel_hull"
 	name = MAT_PLASTEELHULL
 	stack_type = /obj/item/stack/material/plasteel/hull
 	integrity = 600
-	icon_base = 'icons/turf/walls/hull.dmi'
+	icon_base = 'icons/turf/walls/metal.dmi'
 	icon_reinf = 'icons/turf/walls/reinforced_mesh.dmi'
 	icon_colour = "#777788"
 	explosion_resistance = 40
@@ -237,7 +239,7 @@
 /datum/material/durasteel/hull //The 'Hardball' of starship hulls.
 	id = "durasteel_hull"
 	name = MAT_DURASTEELHULL
-	icon_base = 'icons/turf/walls/hull.dmi'
+	icon_base = 'icons/turf/walls/metal.dmi'
 	icon_reinf = 'icons/turf/walls/reinforced_mesh.dmi'
 	icon_colour = "#45829a"
 	explosion_resistance = 90
@@ -261,7 +263,7 @@
 	id = "titanium_hull"
 	name = MAT_TITANIUMHULL
 	stack_type = null
-	icon_base = 'icons/turf/walls/hull.dmi'
+	icon_base = 'icons/turf/walls/metal.dmi'
 	icon_reinf = 'icons/turf/walls/reinforced_mesh.dmi'
 
 /datum/material/glass
@@ -431,6 +433,7 @@
 	conductivity = 2 // For the sake of material armor diversity, we're gonna pretend this plastic is a good insulator.
 	melting_point = T0C+371 //assuming heat resistant plastic
 	stack_origin_tech = list(TECH_MATERIAL = 3)
+	icon_reinf_directionals = TRUE
 
 /datum/material/plastic/holographic
 	name = "holoplastic"
@@ -561,7 +564,7 @@
 	name = MAT_MORPHIUMHULL
 	id = "morphium_hull"
 	stack_type = /obj/item/stack/material/morphium/hull
-	icon_base = 'icons/turf/walls/hull.dmi'
+	icon_base = 'icons/turf/walls/metal.dmi'
 	icon_reinf = 'icons/turf/walls/reinforced_mesh.dmi'
 
 /datum/material/valhollide
@@ -759,6 +762,7 @@
 	destruction_desc = "crumples"
 	radiation_resistance = 1
 	pass_stack_colors = TRUE
+	icon_reinf_directionals = TRUE
 
 /datum/material/snow
 	id = "snow"
@@ -778,6 +782,7 @@
 	sheet_singular_name = "pile"
 	sheet_plural_name = "pile" //Just a bigger pile
 	radiation_resistance = 1
+	icon_reinf_directionals = TRUE
 
 /datum/material/snowbrick //only slightly stronger than snow, used to make igloos mostly
 	id = "snow_packed"

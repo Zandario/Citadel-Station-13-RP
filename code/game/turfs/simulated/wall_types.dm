@@ -3,61 +3,61 @@
 	icon_state = "rgeneric"
 	rad_insulation = RAD_INSULATION_SUPER
 
-	material        = /datum/material/plasteel
+	material        = /datum/material/steel
 	reinf_material  = /datum/material/plasteel
 	girder_material = null
 
 /turf/simulated/wall/shull
-	icon = 'icons/turf/walls/hull.dmi'
+	icon = 'icons/turf/walls/metal.dmi'
 	color = "#666677"
 	material        = /datum/material/steel/hull
 	reinf_material  = null
 	girder_material = /datum/material/steel/hull
 
 /turf/simulated/wall/rshull
-	icon = 'icons/turf/walls/hull.dmi'
+	icon = 'icons/turf/walls/metal.dmi'
 	color = "#666677"
 	material        = /datum/material/steel/hull
 	reinf_material  = /datum/material/steel/hull
 	girder_material = /datum/material/steel/hull
 
 /turf/simulated/wall/pshull
-	icon = 'icons/turf/walls/hull.dmi'
+	icon = 'icons/turf/walls/metal.dmi'
 	color = "#777788"
 	material        = /datum/material/plasteel/hull
 	reinf_material  = null
 	girder_material = /datum/material/plasteel/hull
 
 /turf/simulated/wall/rpshull
-	icon = 'icons/turf/walls/hull.dmi'
+	icon = 'icons/turf/walls/metal.dmi'
 	color = "#777788"
 	material        = /datum/material/plasteel/hull
 	reinf_material  = /datum/material/plasteel/hull
 	girder_material = /datum/material/plasteel/hull
 
 /turf/simulated/wall/dshull
-	icon = 'icons/turf/walls/hull.dmi'
+	icon = 'icons/turf/walls/metal.dmi'
 	color = "#45829a"
 	material        = /datum/material/durasteel/hull
 	reinf_material  = null
 	girder_material = /datum/material/durasteel/hull
 
 /turf/simulated/wall/rdshull
-	icon = 'icons/turf/walls/hull.dmi'
+	icon = 'icons/turf/walls/metal.dmi'
 	color = "#45829a"
 	material        = /datum/material/durasteel/hull
 	reinf_material  = /datum/material/durasteel/hull
 	girder_material = /datum/material/durasteel/hull
 
 /turf/simulated/wall/thull
-	icon = 'icons/turf/walls/hull.dmi'
+	icon = 'icons/turf/walls/metal.dmi'
 	color = "#D1E6E3"
 	material        = /datum/material/plasteel/titanium/hull
 	reinf_material  = null
 	girder_material = /datum/material/plasteel/titanium/hull
 
 /turf/simulated/wall/rthull
-	icon = 'icons/turf/walls/hull.dmi'
+	icon = 'icons/turf/walls/metal.dmi'
 	color = "#D1E6E3"
 	material        = /datum/material/plasteel/titanium/hull
 	reinf_material  = /datum/material/plasteel/titanium/hull

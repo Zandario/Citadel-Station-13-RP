@@ -180,14 +180,20 @@
 #define ABOVE_WINDOW_LAYER (OBJ_LAYER+0.4) /// Above full tile windows so wall items are clickable.
 #define MID_LANDMARK_LAYER (OBJ_LAYER+0.5)
 
+#define WALL_BASE_LAYER    (OBJ_LAYER+0.8) /// For things like walls.
+#define WALL_REINF_LAYER   (OBJ_LAYER+0.9)
+
+//! Obk/Mob layer boundary
+
+#define WALL_TOPPER_LAYER  (MOB_LAYER+0.2)
 
 /**
  *! -- Mob Plane
 */
 #define MOB_PLANE -25
 
-#define BELOW_MOB_LAYER (OBJ_LAYER+0.9)
-#define ABOVE_MOB_LAYER (MOB_LAYER+0.1)
+#define BELOW_MOB_LAYER    (OBJ_LAYER+0.9)
+#define ABOVE_MOB_LAYER    (MOB_LAYER+0.1)
 
 /**
  *! -- Cloaked Plane
