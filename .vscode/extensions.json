@@ -1,12 +1,16 @@
 {
 	"recommendations": [
+		// Core BYOND Dev Extensions
 		"platymuus.dm-langclient",
-		"editorconfig.editorconfig",
+		"donkie.vscode-tgstation-test-adapter",
+		"anturk.dmi-editor",
+
+		// Quality of Life Extensions
+		"EditorConfig.EditorConfig",
 		"arcanis.vscode-zipfs",
 		"dbaeumer.vscode-eslint",
 		"stylemistake.auto-comment-blocks",
-		"donkie.vscode-tgstation-test-adapter",
-		"anturk.dmi-editor",
-		"aaron-bond.better-comments"
+		"aaron-bond.better-comments",
+		"esbenp.prettier-vscode"
 	]
 }
