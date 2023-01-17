@@ -2021,6 +2021,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/marked@npm:^4.0.3":
+  version: 4.0.8
+  resolution: "@types/marked@npm:4.0.8"
+  checksum: 68278fa7acaa5d920cdc239d675b5daf842e0ad4779e4848cd617d9baf2ac1afccb5a264c331e37d80031d647e1640cb983cd31e73d45b28552670b4853fad8e
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:*":
   version: 15.14.9
   resolution: "@types/node@npm:15.14.9"
@@ -3537,10 +3544,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:^3.16.1":
-  version: 3.16.1
-  resolution: "core-js@npm:3.16.1"
-  checksum: 7924fa2a7f00e3a33bbe92fe42ba59fbbe7e01557a59824d000976300be3ba224cca20161f61654b3861ea80d244d6adfee6ed3ae6d6d9931210a37510fb7c9b
+"core-js@npm:^3.27.1":
+  version: 3.27.1
+  resolution: "core-js@npm:3.27.1"
+  checksum: d50b5f88aea4302512ad9446c18e90f4d35dea1e6d8d3f87337690677061565ff11a670f1e0c87de57aa6074375fbb25ed5784076c040d3c4de8b4bce7d2ebeb
   languageName: node
   linkType: hard
 
@@ -5170,6 +5177,13 @@ __metadata:
     capital-case: ^1.0.4
     tslib: ^2.0.3
   checksum: 571c83eeb25e8130d172218712f807c0b96d62b020981400bccc1503a7cf14b09b8b10498a962d2739eccf231d950e3848ba7d420b58a6acd2f9283439546cd9
+  languageName: node
+  linkType: hard
+
+"highlight.js@npm:^11.5.1":
+  version: 11.7.0
+  resolution: "highlight.js@npm:11.7.0"
+  checksum: 19e3fb8b56f4b361b057a8523b989dfeb6479bbd1e29cec3fac6fa5c78d09927d5fa61b7dba6631fdb57cfdca9b3084aa4da49405ceaf4a67f67beae2ed5b77d
   languageName: node
   linkType: hard
 
@@ -9396,7 +9410,7 @@ resolve@^2.0.0-next.3:
   version: 0.0.0-use.local
   resolution: "tgui-polyfill@workspace:packages/tgui-polyfill"
   dependencies:
-    core-js: ^3.16.1
+    core-js: ^3.27.1
     regenerator-runtime: ^0.13.9
     terser: ^5.14.2
     unfetch: ^4.2.0
@@ -9454,9 +9468,11 @@ resolve@^2.0.0-next.3:
   resolution: "tgui@workspace:packages/tgui"
   dependencies:
     "@popperjs/core": ^2.9.3
+    "@types/marked": ^4.0.3
     common: "workspace:*"
     dateformat: ^4.5.1
     dompurify: ^2.3.1
+    highlight.js: ^11.5.1
     inferno: ^7.4.8
     inferno-vnode-flags: ^7.4.8
     js-yaml: ^4.1.0
