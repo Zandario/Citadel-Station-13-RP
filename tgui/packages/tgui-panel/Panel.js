@@ -30,7 +30,7 @@ export const Panel = (props, context) => {
     }
   }
   return (
-    <Pane theme={settings.theme === 'default' ? 'light' : settings.theme}>
+    <Pane theme={settings.theme}>
       <Stack fill vertical>
         <Stack.Item>
           <Section fitted>
@@ -106,7 +106,7 @@ export const Panel = (props, context) => {
 const HoboPanel = (props, context) => {
   const settings = useSettings(context);
   return (
-    <Pane theme={settings.theme === 'default' ? 'light' : settings.theme}>
+    <Pane theme={settings.theme}>
       <Pane.Content scrollable>
         <Button
           style={{
@@ -116,8 +116,7 @@ const HoboPanel = (props, context) => {
             'z-index': 1000,
           }}
           selected={settings.visible}
-          onClick={() => settings.toggle()}
-        >
+          onClick={() => settings.toggle()}>
           Settings
         </Button>
         {(settings.visible && <SettingsPanel />) || (

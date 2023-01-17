@@ -52,7 +52,11 @@ export const findCacheRoot = async () => {
     logger.log('querying windows registry');
     let userpath = await regQuery('HKCU\\Software\\Dantom\\BYOND', 'userpath');
     if (userpath) {
-      cacheRoot = userpath.replace(/\\$/, '').replace(/\\/g, '/') + '/cache';
+      // prettier-ignore
+      cacheRoot = userpath
+        .replace(/\\$/, '')
+        .replace(/\\/g, '/')
+        + '/cache';
       onCacheRootFound(cacheRoot);
       return cacheRoot;
     }
@@ -62,7 +66,7 @@ export const findCacheRoot = async () => {
 
 const onCacheRootFound = (cacheRoot) => {
   logger.log(`found cache at '${cacheRoot}'`);
-  // Plant a dummy
+  // Plant a dummy browser window file, we'll be using this to avoid world topic. For byond 514.
   fs.closeSync(fs.openSync(cacheRoot + '/dummy', 'w'));
 };
 
@@ -94,6 +98,9 @@ export const reloadByondCache = async (bundleDir) => {
       './*.+(bundle|chunk|hot-update).*'
     );
     try {
+      // Plant a dummy browser window file, we'll be using this to avoid world topic. For byond 515.
+      fs.closeSync(fs.openSync(cacheDir + '/dummy', 'w'));
+
       for (let file of garbage) {
         fs.unlinkSync(file);
       }
