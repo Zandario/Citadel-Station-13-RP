@@ -197,7 +197,7 @@ SUBSYSTEM_DEF(lighting)
 		var/atom/movable/lighting_overlay/O = curr_overlays[oq_idex++]
 
 		if (!QDELETED(O) && O.needs_update)
-			O.update_overlay()
+			O.update()
 			O.needs_update = FALSE
 
 			processed_overlays++

@@ -33,7 +33,7 @@
 			C.active = TRUE
 
 	if (update_now)
-		update_overlay()
+		update()
 		needs_update = FALSE
 	else
 		needs_update = TRUE
@@ -58,14 +58,14 @@
 	(red_corner.cache_g == green_corner.cache_g && green_corner.cache_g == blue_corner.cache_g && blue_corner.cache_g == alpha_corner.cache_g) && \
 	(red_corner.cache_b == green_corner.cache_b && green_corner.cache_b == blue_corner.cache_b && blue_corner.cache_b == alpha_corner.cache_b)
 
-/atom/movable/lighting_overlay/proc/update_overlay()
+/atom/movable/lighting_overlay/proc/update()
 	var/turf/T = loc
 	if (!isturf(T)) // Erm...
 		if (loc)
-			stack_trace("A lighting overlay realised its loc was NOT a turf (actual loc: [loc], [loc.type]) in update_overlay() and got deleted!")
+			stack_trace("A lighting overlay realised its loc was NOT a turf (actual loc: [loc], [loc.type]) in update() and got deleted!")
 
 		else
-			stack_trace("A lighting overlay realised it was in nullspace in update_overlay() and got deleted!")
+			stack_trace("A lighting overlay realised it was in nullspace in update() and got deleted!")
 
 		qdel(src, TRUE)
 		return
