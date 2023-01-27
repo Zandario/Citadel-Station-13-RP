@@ -12,7 +12,7 @@
 #define TURF_HAS_CORNERS        (1<<7)
 #define TURF_IS_FRAGILE         (1<<8)
 #define TURF_ACID_IMMUNE        (1<<9)
-#define TURF_MZ_ON_BREAK        (1<<10)
+#define TURF_SEE_BELOW_ON_BREAK (1<<10)
 
 //Used for floor/wall smoothing
 ///Smooth only with itself

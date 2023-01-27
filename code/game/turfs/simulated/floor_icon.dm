@@ -17,18 +17,20 @@ var/list/flooring_cache = list()
 
 /turf/simulated/floor/update_icon()
 	cut_overlays()
+
 	if(flooring)
 		// Set initial icon and strings.
 		name = flooring.name
 		desc = flooring.desc
-		icon = flooring.icon
+		if (icon != flooring.icon)
+			icon = flooring.icon
 
 		if(flooring_override)
 			icon_state = flooring_override
 		else
 			icon_state = flooring.icon_base
 			if(flooring.has_base_range)
-				icon_state = "[icon_state][rand(0,flooring.has_base_range)]"
+				icon_state = "[icon_state][rand(0, flooring.has_base_range)]"
 				flooring_override = icon_state
 
 		// Apply edges, corners, and inner corners.
@@ -69,15 +71,20 @@ var/list/flooring_cache = list()
 					var/turf/simulated/floor/T = get_step(src, SOUTHWEST)
 					if(!flooring.test_link(src, T))
 						add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-corner-[SOUTHWEST]", "[flooring.icon_base]_corners", SOUTHWEST))
+
 		if(!isnull(broken) && (flooring.flooring_flags & TURF_CAN_BREAK))
-			add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-broken-[broken]","broken[broken]"))
-		if(!isnull(burnt) && (flooring.flooring_flags & TURF_CAN_BURN))
-			add_overlay(flooring.get_flooring_overlay("[flooring.icon_base]-burned-[burnt]","burned[burnt]"))
-	else
-		// no flooring - just handle plating stuff
-		if(is_plating() && !(isnull(broken) && isnull(burnt))) //temp, todo
-			icon = 'icons/turf/flooring/plating.dmi'
-			icon_state = "dmg[rand(1,4)]"
+			icon_state = "[flooring.icon_base]_broken[broken]"
+			if (flooring.flooring_flags & TURF_SEE_BELOW_ON_BREAK)
+				enable_zmimic(MZ_ATMOS_DOWN)
+		else if(!isnull(burnt) && (flooring.flooring_flags & TURF_CAN_BURN))
+			icon_state = "[flooring.icon_base]_burned[burnt]"
+		// If we don't have any damage and we have the MZ flag, disable MZ.
+		else if ((flooring.flooring_flags & TURF_SEE_BELOW_ON_BREAK))
+			disable_zmimic()
+
+	else if ((broken || burnt) && is_plating())
+		icon = 'icons/turf/flooring/plating.dmi'
+		icon_state = "dmg[rand(1,4)]"
 
 	// Re-apply floor decals
 	if(LAZYLEN(decals))
