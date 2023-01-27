@@ -126,40 +126,64 @@
 	name = "Protanopia"
 	desc = "You have a form of red-green colorblindness. You cannot see reds, and have trouble distinguishing them from yellows and greens."
 
-	client_color = MATRIX_Protanopia
 	wire_colors_replace = PROTANOPIA_COLOR_REPLACE
+	client_color = list(
+		0.57, 0.43, 0,
+		0.56, 0.44, 0,
+		0,    0.24, 0.76
+	)
 
 /datum/modifier/trait/colorblind_deuteranopia
 	name = "Deuteranopia"
 	desc = "You have a form of red-green colorblindness. You cannot see greens, and have trouble distinguishing them from yellows and reds."
 
-	client_color = MATRIX_Deuteranopia
 	wire_colors_replace = DEUTERANOPIA_COLOR_REPLACE
+	client_color = list(
+		0.63, 0.38, 0,
+		0.70, 0.30, 0,
+		0,    0.30, 0.70
+	)
 
 /datum/modifier/trait/colorblind_tritanopia
 	name = "Tritanopia"
 	desc = "You have a form of blue-yellow colorblindness. You have trouble distinguishing between blues, greens, and yellows, and see blues and violets as dim."
 
-	client_color = MATRIX_Tritanopia
 	wire_colors_replace = TRITANOPIA_COLOR_REPLACE
+	client_color = list(
+		0.95, 0.05, 0,
+		0,    0.43, 0.57,
+		0,    0.48, 0.53
+	)
 
 /datum/modifier/trait/colorblind_taj
 	name = "Colorblind - Blue-red"
 	desc = "You are colorblind. You have a minor issue with blue colors and have difficulty recognizing them from red colors."
 
-	client_color = MATRIX_Taj_Colorblind
 	wire_colors_replace = TRITANOPIA_COLOR_REPLACE
+	client_color = list(
+		0.40, 0.20, 0.40,
+		0.40, 0.60, 0,
+		0.20, 0.20, 0.60
+	)
 
 /datum/modifier/trait/colorblind_vulp
 	name = "Colorblind - Red-green"
 	desc = "You are colorblind. You have a severe issue with green colors and have difficulty recognizing them from red colors."
 
-	client_color = MATRIX_Vulp_Colorblind
 	wire_colors_replace = PROTANOPIA_COLOR_REPLACE
+	client_color = list(
+		0.50, 0.40, 0.10,
+		0.50, 0.40, 0.10,
+		0,    0.20, 0.80
+	)
 
 /datum/modifier/trait/colorblind_monochrome
 	name = "Monochromacy"
 	desc = "You are fully colorblind. Your condition is rare, but you can see no colors at all."
 
-	client_color = MATRIX_Monochromia
 	wire_colors_replace = GREYSCALE_COLOR_REPLACE
+	client_color = list(
+		0.33, 0.33, 0.33,
+		0.59, 0.59, 0.59,
+		0.11, 0.11, 0.11
+	)

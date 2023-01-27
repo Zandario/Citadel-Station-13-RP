@@ -298,6 +298,8 @@
 #include "code\__HELPERS\vector.dm"
 #include "code\__HELPERS\verbs.dm"
 #include "code\__HELPERS\view.dm"
+#include "code\__HELPERS\color_matrix\color_matrix.dm"
+#include "code\__HELPERS\color_matrix\methods.dm"
 #include "code\__HELPERS\datastructs\armor.dm"
 #include "code\__HELPERS\datastructs\bodytypes.dm"
 #include "code\__HELPERS\files\client_io.dm"

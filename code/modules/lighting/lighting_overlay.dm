@@ -52,8 +52,11 @@
 
 	return ..()
 
-// This is a macro PURELY so that the if below is actually readable.
-#define ALL_EQUAL ((rr == gr && gr == br && br == ar) && (rg == gg && gg == bg && bg == ag) && (rb == gb && gb == bb && bb == ab))
+// These macros exist PURELY so that the if below is actually readable.
+#define ALL_EQUAL \
+	(red_corner.cache_r == green_corner.cache_r && green_corner.cache_r == blue_corner.cache_r && blue_corner.cache_r == alpha_corner.cache_r) && \
+	(red_corner.cache_g == green_corner.cache_g && green_corner.cache_g == blue_corner.cache_g && blue_corner.cache_g == alpha_corner.cache_g) && \
+	(red_corner.cache_b == green_corner.cache_b && green_corner.cache_b == blue_corner.cache_b && blue_corner.cache_b == alpha_corner.cache_b)
 
 /atom/movable/lighting_overlay/proc/update_overlay()
 	var/turf/T = loc
@@ -69,70 +72,43 @@
 
 	// See LIGHTING_CORNER_DIAGONAL in lighting_corner.dm for why these values are what they are.
 	var/list/corners = T.corners
-	var/datum/lighting_corner/cr = dummy_lighting_corner
-	var/datum/lighting_corner/cg = dummy_lighting_corner
-	var/datum/lighting_corner/cb = dummy_lighting_corner
-	var/datum/lighting_corner/ca = dummy_lighting_corner
+	var/datum/lighting_corner/red_corner   = dummy_lighting_corner
+	var/datum/lighting_corner/green_corner = dummy_lighting_corner
+	var/datum/lighting_corner/blue_corner  = dummy_lighting_corner
+	var/datum/lighting_corner/alpha_corner = dummy_lighting_corner
 	if (corners)
-		cr = corners[3] || dummy_lighting_corner
-		cg = corners[2] || dummy_lighting_corner
-		cb = corners[4] || dummy_lighting_corner
-		ca = corners[1] || dummy_lighting_corner
+		red_corner   = corners[3] || dummy_lighting_corner
+		green_corner = corners[2] || dummy_lighting_corner
+		blue_corner  = corners[4] || dummy_lighting_corner
+		alpha_corner = corners[1] || dummy_lighting_corner
 
-	var/max = max(cr.cache_mx, cg.cache_mx, cb.cache_mx, ca.cache_mx)
+	var/max = max(red_corner.cache_mx, green_corner.cache_mx, blue_corner.cache_mx, alpha_corner.cache_mx)
 	luminosity = max > LIGHTING_SOFT_THRESHOLD
 
-	var/rr = cr.cache_r
-	var/rg = cr.cache_g
-	var/rb = cr.cache_b
 
-	var/gr = cg.cache_r
-	var/gg = cg.cache_g
-	var/gb = cg.cache_b
-
-	var/br = cb.cache_r
-	var/bg = cb.cache_g
-	var/bb = cb.cache_b
-
-	var/ar = ca.cache_r
-	var/ag = ca.cache_g
-	var/ab = ca.cache_b
-
-	if(rr + rg + rb + gr + gg + gb + br + bg + bb + ar + ag + ab >= 12)
+	if(red_corner.cache_r & green_corner.cache_r & blue_corner.cache_r & alpha_corner.cache_r && \
+		   (red_corner.cache_g + green_corner.cache_g + blue_corner.cache_g + alpha_corner.cache_g + \
+		    red_corner.cache_b + green_corner.cache_b + blue_corner.cache_b + alpha_corner.cache_b == 8))
 		icon_state = LIGHTING_TRANSPARENT_ICON_STATE
 		color = null
 	else if (!luminosity)
 		icon_state = LIGHTING_DARKNESS_ICON_STATE
 		color = null
-	else if (rr == LIGHTING_DEFAULT_TUBE_R && rg == LIGHTING_DEFAULT_TUBE_G && rb == LIGHTING_DEFAULT_TUBE_B && ALL_EQUAL)
-		icon_state = LIGHTING_STATION_ICON_STATE
+	else if (red_corner.cache_r == LIGHTING_DEFAULT_TUBE_R && red_corner.cache_g == LIGHTING_DEFAULT_TUBE_G && red_corner.cache_b == LIGHTING_DEFAULT_TUBE_B && ALL_EQUAL)
+		icon_state = LIGHTING_HALOGEN_ICON_STATE
+		color = null
+	else if (red_corner.cache_r == LIGHTING_NIGHTSHIT_TUBE_R && red_corner.cache_g == LIGHTING_NIGHTSHIT_TUBE_G && red_corner.cache_b == LIGHTING_NIGHTSHIT_TUBE_B && ALL_EQUAL)
+		icon_state = LIGHTING_NIGHT_SHIFT_ICON_STATE
 		color = null
 	else
 		icon_state = LIGHTING_BASE_ICON_STATE
-		if (islist(color))
-			// Does this even save a list alloc?
-			var/list/c_list = color
-			c_list[CL_MATRIX_RR] = rr
-			c_list[CL_MATRIX_RG] = rg
-			c_list[CL_MATRIX_RB] = rb
-			c_list[CL_MATRIX_GR] = gr
-			c_list[CL_MATRIX_GG] = gg
-			c_list[CL_MATRIX_GB] = gb
-			c_list[CL_MATRIX_BR] = br
-			c_list[CL_MATRIX_BG] = bg
-			c_list[CL_MATRIX_BB] = bb
-			c_list[CL_MATRIX_AR] = ar
-			c_list[CL_MATRIX_AG] = ag
-			c_list[CL_MATRIX_AB] = ab
-			color = c_list
-		else
-			color = list(
-				rr, rg, rb, 0,
-				gr, gg, gb, 0,
-				br, bg, bb, 0,
-				ar, ag, ab, 0,
-				0, 0, 0, 1
-			)
+		color = list(
+			red_corner.cache_r, red_corner.cache_g, red_corner.cache_b, 00,
+			green_corner.cache_r, green_corner.cache_g, green_corner.cache_b, 00,
+			blue_corner.cache_r, blue_corner.cache_g, blue_corner.cache_b, 00,
+			alpha_corner.cache_r, alpha_corner.cache_g, alpha_corner.cache_b, 00,
+			00, 00, 00, 01
+		)
 
 	// If there's a Z-turf above us, update its shadower.
 	if (T.above)
@@ -143,7 +119,7 @@
 
 #undef ALL_EQUAL
 
-// Variety of overrides so the overlays don't get affected by weird things.
+// Variety of overed_cornerides so the overlays don't get affected by weird things.
 
 /atom/movable/lighting_overlay/ex_act(severity)
 	SHOULD_CALL_PARENT(FALSE)
@@ -161,7 +137,7 @@
 /atom/movable/lighting_overlay/can_fall()
 	return FALSE
 
-// Override here to prevent things accidentally moving around overlays.
+// Overed_corneride here to prevent things accidentally moving around overlays.
 /atom/movable/lighting_overlay/forceMove(atom/destination, harderforce = FALSE)
 	if(QDELING(src))
 		. = ..()

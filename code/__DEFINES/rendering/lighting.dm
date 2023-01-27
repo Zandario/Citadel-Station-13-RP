@@ -7,15 +7,17 @@
 #define LIGHTING_HEIGHT 1
 /// Z diff is multiplied by this and LIGHTING_HEIGHT to get the final height of a light source. Affects how much darker A Z light gets with each level transitioned.
 #define LIGHTING_Z_FACTOR 10
-/// Value used to round lumcounts, values smaller than 1/255 don't matter (if they do, thanks sinking points), greater values will make lighting less precise, but in turn increase performance, VERY SLIGHTLY.
-#define LIGHTING_ROUND_VALUE (1 / 200)
+/// Value used to round lumcounts, values smaller than 1/129 don't matter (if they do, thanks sinking points), greater values will make lighting less precise, but in turn increase performance, VERY SLIGHTLY.
+#define LIGHTING_ROUND_VALUE (1 / 256)
 
 /// Icon used for lighting shading effects
-#define LIGHTING_ICON 'icons/effects/lighting_overlay.dmi'
+#define LIGHTING_ICON 'icons/effects/lighting/lighting_overlay.dmi'
 /// icon_state used for normal color-matrix based lighting overlays.
 #define LIGHTING_BASE_ICON_STATE "matrix"
 /// icon_state used for lighting overlays that are just displaying standard station lighting.
-#define LIGHTING_STATION_ICON_STATE "tubedefault"
+#define LIGHTING_HALOGEN_ICON_STATE "tubedefault"
+/// icon_state used for lighting overlays during nightshift.
+#define LIGHTING_NIGHT_SHIFT_ICON_STATE "nightshift"
 /// icon_state used for lighting overlays with no luminosity.
 #define LIGHTING_DARKNESS_ICON_STATE "black"
 #define LIGHTING_TRANSPARENT_ICON_STATE "blank"
@@ -43,14 +45,13 @@
 
 //! If I were you I'd leave this alone.
 #define LIGHTING_BASE_MATRIX \
-	list            \
-	(               \
+	list(           \
 		1, 1, 1, 0, \
 		1, 1, 1, 0, \
 		1, 1, 1, 0, \
 		1, 1, 1, 0, \
 		0, 0, 0, 1  \
-	)               \
+	)
 
 // Helpers so we can (more easily) control the colour matrices.
 #define CL_MATRIX_RR 1
@@ -85,9 +86,15 @@
  * Tube lights are a bluish-white, so we can't just assume 1-1-1 is full-illumination.
  * -- If you want to change these, find them *by checking in-game*, just converting tubes' RGB color into floats will not work!
  */
-#define LIGHTING_DEFAULT_TUBE_R 0.96
-#define LIGHTING_DEFAULT_TUBE_G 1
-#define LIGHTING_DEFAULT_TUBE_B 1
+#define LIGHTING_DEFAULT_TUBE_R 0.94
+#define LIGHTING_DEFAULT_TUBE_G 0.98
+#define LIGHTING_DEFAULT_TUBE_B 0.98
+
+#define LIGHTING_NIGHTSHIT_TUBE_R 0.94
+#define LIGHTING_NIGHTSHIT_TUBE_G 0.8
+#define LIGHTING_NIGHTSHIT_TUBE_B 0.53
+
+
 
 //! Some angle presets for directional lighting.
 #define LIGHT_OMNI null
