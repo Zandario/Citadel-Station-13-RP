@@ -11,12 +11,13 @@
 	var/turf/source_turf
 	/// The turf the top_atom _appears_ to be on
 	var/turf/pixel_turf
+
+	/// The colour of the light, string, decomposed by parse_light_color()
+	var/light_color
 	/// Intensity of the emitter light.
 	var/light_power
 	/// The range of the emitted light.
 	var/light_range
-	/// The colour of the light, string, decomposed by parse_light_color()
-	var/light_color
 	/// The light's emission angle, in degrees.
 	var/light_angle
 
