@@ -112,7 +112,7 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
 	var/old_affecting_lights = affecting_lights
 	var/old_lighting_overlay = lighting_overlay
 	var/old_dynamic_lighting = TURF_IS_DYNAMICALLY_LIT_UNSAFE(src)
-	var/old_corners          = corners
+	var/old_corners          = corner
 	var/old_ao_neighbors     = ao_neighbors
 	// var/old_is_open          = is_open()
 	var/old_ambience =         ambient_light
@@ -183,7 +183,7 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
 		recalc_atom_opacity()
 		lighting_overlay = old_lighting_overlay
 		affecting_lights = old_affecting_lights
-		corners = old_corners
+		corner = old_corners
 		if (old_opacity != opacity || dynamic_lighting != old_dynamic_lighting)
 			reconsider_lights()
 			updateVisibility(src)

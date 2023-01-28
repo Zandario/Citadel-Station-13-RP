@@ -351,12 +351,12 @@
 	else if (needs_update == LIGHTING_CHECK_UPDATE)
 		return	// No change.
 
-	var/list/datum/lighting_corner/corners = list()
-	var/list/turf/turfs                    = list()
+	var/datum/lighting_corner/corner
+	var/list/turf/turfs = list()
 	var/thing
 	var/datum/lighting_corner/C
 	var/turf/T
-	var/list/Tcorners
+	var/Tcorner
 	var/Sx = pixel_turf.x	// these are used by APPLY_CORNER_BY_HEIGHT
 	var/Sy = pixel_turf.y
 	var/Sz = pixel_turf.z
@@ -379,25 +379,23 @@
 				continue
 
 		if (TURF_IS_DYNAMICALLY_LIT_UNSAFE(T) || T.light_source_solo || T.light_source_multi)
-			Tcorners = T.corners
+			Tcorner = T.corner
 			if (!T.lighting_corners_initialised)
 				T.lighting_corners_initialised = TRUE
 
-				if (!Tcorners)
-					T.corners = list(null, null, null, null)
-					Tcorners = T.corners
+				if (!Tcorner)
+					T.corner = null
+					Tcorner = T.corner
 
-				for (var/i = 1 to 4)
-					if (Tcorners[i])
-						continue
+				if (Tcorner)
+					continue
 
-					Tcorners[i] = new /datum/lighting_corner(T, LIGHTING_CORNER_DIAGONAL[i], i)
+					Tcorner = new /datum/lighting_corner(T, LIGHTING_CORNER_DIAGONAL)
 
 			if (!T.has_opaque_atom)
-				for (var/v in 1 to 4)
-					var/val = Tcorners[v]
-					if (val)
-						corners[val] = 0
+				var/val = Tcorner
+				if (val)
+					corner = null
 
 		turfs += T
 
@@ -424,7 +422,7 @@
 
 	LAZYINITLIST(effect_str)
 	if (needs_update == LIGHTING_VIS_UPDATE)
-		for (thing in corners - effect_str)
+		for (thing in corner - effect_str)
 			C = thing
 			LAZYADD(C.affecting, src)
 			if (!C.active)
@@ -433,7 +431,7 @@
 
 			APPLY_CORNER_BY_HEIGHT(now)
 	else
-		L = corners - effect_str
+		L = corner - effect_str
 		for (thing in L)
 			C = thing
 			LAZYADD(C.affecting, src)
@@ -443,7 +441,7 @@
 
 			APPLY_CORNER_BY_HEIGHT(now)
 
-		for (thing in corners - L)
+		for (thing in corner - L)
 			C = thing
 			if (!C.active)
 				effect_str[C] = 0
@@ -451,7 +449,7 @@
 
 			APPLY_CORNER_BY_HEIGHT(now)
 
-	L = effect_str - corners
+	L = effect_str - corner
 	for (thing in L)
 		C = thing
 		REMOVE_CORNER(C, now)

@@ -69,9 +69,7 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 
 	var/has_ambience = FALSE
 
-	t1 = new_turf
 	z = new_turf.z
-	t1i = oi
 
 	if (new_turf.ambient_light)
 		has_ambience = TRUE
@@ -81,48 +79,6 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 
 	x = new_turf.x + (horizontal == EAST  ? 0.5 : -0.5)
 	y = new_turf.y + (vertical   == NORTH ? 0.5 : -0.5)
-
-	// My initial plan was to make this loop through a list of all the dirs (horizontal, vertical, diagonal).
-	// Issue being that the only way I could think of doing it was very messy, slow and honestly overengineered.
-	// So we'll have this hardcode instead.
-	var/turf/T
-
-
-	// Diagonal one is easy.
-	T = get_step(new_turf, diagonal)
-	if (T) // In case we're on the map's border.
-		if (!T.corners)
-			T.corners = new(4)
-
-		t2 = T
-		t2i = REVERSE_LIGHTING_CORNER_DIAGONAL[diagonal]
-		T.corners[t2i] = src
-		if (T.ambient_light)
-			has_ambience = TRUE
-
-	// Now the horizontal one.
-	T = get_step(new_turf, horizontal)
-	if (T) // Ditto.
-		if (!T.corners)
-			T.corners = new(4)
-
-		t3 = T
-		t3i = REVERSE_LIGHTING_CORNER_DIAGONAL[((T.x > x) ? EAST : WEST) | ((T.y > y) ? NORTH : SOUTH)] // Get the dir based on coordinates.
-		T.corners[t3i] = src
-		if (T.ambient_light)
-			has_ambience = TRUE
-
-	// And finally the vertical one.
-	T = get_step(new_turf, vertical)
-	if (T)
-		if (!T.corners)
-			T.corners = new(4)
-
-		t4 = T
-		t4i = REVERSE_LIGHTING_CORNER_DIAGONAL[((T.x > x) ? EAST : WEST) | ((T.y > y) ? NORTH : SOUTH)] // Get the dir based on coordinates.
-		T.corners[t4i] = src
-		if (T.ambient_light)
-			has_ambience = TRUE
 
 	update_active()
 	if (has_ambience)
@@ -184,23 +140,11 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 	UPDATE_APPARENT(src, b)
 
 	var/turf/T
-	var/Ti
-	// Grab the first master that's a Z-turf, if one exists.
-	if (t1 && (T = t1.above || GET_ABOVE(t1)) && (T.mz_flags & MZ_ALLOW_LIGHTING))
-		Ti = t1i
-	else if (t2 && (T = t2.above || GET_ABOVE(t2)) && (T.mz_flags & MZ_ALLOW_LIGHTING))
-		Ti = t2i
-	else if (t3 && (T = t3.above || GET_ABOVE(t3)) && (T.mz_flags & MZ_ALLOW_LIGHTING))
-		Ti = t3i
-	else if (t4 && (T = t4.above || GET_ABOVE(t4)) && (T.mz_flags & MZ_ALLOW_LIGHTING))
-		Ti = t4i
-	else // Nothing above us that cares about below light.
-		T = null
 
 	if (TURF_IS_DYNAMICALLY_LIT(T))
-		if (!T.corners || !T.corners[Ti])
+		if (!T.corner)
 			T.generate_missing_corners()
-		var/datum/lighting_corner/above = T.corners[Ti]
+		var/datum/lighting_corner/above = T.corner
 		above.update_below_lumcount(delta_r, delta_g, delta_b, now)
 
 	// This needs to be down here instead of the above if so the lum values are properly updated.
@@ -245,23 +189,7 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 	UPDATE_APPARENT(src, b)
 
 	var/turf/T
-	var/Ti
 
-	if (t1)
-		T = t1
-		Ti = t1i
-	else if (t2)
-		T = t2
-		Ti = t2i
-	else if (t3)
-		T = t3
-		Ti = t3i
-	else if (t4)
-		T = t4
-		Ti = t4i
-	else
-		// This should be impossible to reach -- how do we exist without at least one master turf?
-		CRASH("Corner has no masters!")
 
 	var/datum/lighting_corner/below = src
 
@@ -271,12 +199,12 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 	while ((lasT = T) && (T = GET_BELOW(T)) && (lasT.mz_flags & MZ_ALLOW_LIGHTING) && TURF_IS_DYNAMICALLY_LIT_UNSAFE(T))
 		T.ambient_has_indirect = TRUE
 
-		if (!T.corners || !T.corners[Ti])
+		if (!T.corner)
 			T.generate_missing_corners()
 
-		ASSERT(T.corners?.len)
+		ASSERT(T.corner)
 
-		below = T.corners[Ti]
+		below = T.corner
 		below.above_ambient_r += delta_r
 		below.above_ambient_g += delta_g
 		below.above_ambient_b += delta_b
