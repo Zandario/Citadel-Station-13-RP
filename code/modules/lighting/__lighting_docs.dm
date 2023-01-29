@@ -4,7 +4,6 @@
 	Documentation is present in most of the code files.
 		lighting_atom.dm -> procs/vars for tracking/managing lights attached to objects.
 		lighting_turf.dm -> procs/vars for managing lighting overlays bound to turfs, tracking lights affecting said turf, and getting information about the turf's light level.
-		lighting_corner.dm -> contains code for tracking per-corner lighting data.
 		lighting_source.dm -> contains actual light emitter datum & core lighting calculations. Directional lights and Z-lights are implemented here.
 		lighting_area.dm -> contains area vars/procs for managing an area's dynamic lighting state.
 

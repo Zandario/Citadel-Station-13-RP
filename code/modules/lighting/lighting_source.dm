@@ -51,8 +51,6 @@
 	var/tmp/test_y_offset
 	var/tmp/facing_opaque = FALSE
 
-	/// List used to store how much we're affecting corners.
-	var/list/datum/lighting_corner/effect_str
 	var/list/turf/affecting_turfs
 
 	/// Whether we have applied our light yet or not.
@@ -231,31 +229,6 @@
 
 	affecting_turfs = null
 
-	for (thing in effect_str)
-		var/datum/lighting_corner/C = thing
-		REMOVE_CORNER(C,now)
-
-		LAZYREMOVE(C.affecting, src)
-
-	effect_str = null
-
-/datum/light_source/proc/recalc_corner(datum/lighting_corner/C, now = FALSE)
-	LAZYINITLIST(effect_str)
-	if (effect_str[C]) // Already have one.
-		REMOVE_CORNER(C,now)
-		effect_str[C] = 0
-
-	var/actual_range = light_range
-
-	var/Sx = pixel_turf.x
-	var/Sy = pixel_turf.y
-	var/Sz = pixel_turf.z
-
-	var/height = C.z == Sz ? LIGHTING_HEIGHT : CALCULATE_CORNER_HEIGHT(C.z, Sz)
-	APPLY_CORNER(C, now, Sx, Sy, height)
-
-	UNSETEMPTY(effect_str)
-
 /datum/light_source/proc/update_corners(now = FALSE)
 	var/update = FALSE
 
@@ -351,16 +324,9 @@
 	else if (needs_update == LIGHTING_CHECK_UPDATE)
 		return	// No change.
 
-	var/datum/lighting_corner/corner
 	var/list/turf/turfs = list()
 	var/thing
-	var/datum/lighting_corner/C
 	var/turf/T
-	var/Tcorner
-	var/Sx = pixel_turf.x	// these are used by APPLY_CORNER_BY_HEIGHT
-	var/Sy = pixel_turf.y
-	var/Sz = pixel_turf.z
-	var/corner_height = LIGHTING_HEIGHT
 	var/actual_range = (light_angle && facing_opaque) ? light_range * LIGHTING_BLOCKED_FACTOR : light_range
 	var/test_x
 	var/test_y
@@ -377,25 +343,6 @@
 			// If the signs of these are the same, then the point is within the cone.
 			if ((DETERMINANT(limit_a_x, limit_a_y, test_x, test_y) > 0) || DETERMINANT(test_x, test_y, limit_b_x, limit_b_y) > 0)
 				continue
-
-		if (TURF_IS_DYNAMICALLY_LIT_UNSAFE(T) || T.light_source_solo || T.light_source_multi)
-			Tcorner = T.corner
-			if (!T.lighting_corners_initialised)
-				T.lighting_corners_initialised = TRUE
-
-				if (!Tcorner)
-					T.corner = null
-					Tcorner = T.corner
-
-				if (Tcorner)
-					continue
-
-					Tcorner = new /datum/lighting_corner(T, LIGHTING_CORNER_DIAGONAL)
-
-			if (!T.has_opaque_atom)
-				var/val = Tcorner
-				if (val)
-					corner = null
 
 		turfs += T
 
@@ -420,48 +367,10 @@
 		T = thing
 		LAZYREMOVE(T.affecting_lights, src)
 
-	LAZYINITLIST(effect_str)
-	if (needs_update == LIGHTING_VIS_UPDATE)
-		for (thing in corner - effect_str)
-			C = thing
-			LAZYADD(C.affecting, src)
-			if (!C.active)
-				effect_str[C] = 0
-				continue
-
-			APPLY_CORNER_BY_HEIGHT(now)
-	else
-		L = corner - effect_str
-		for (thing in L)
-			C = thing
-			LAZYADD(C.affecting, src)
-			if (!C.active)
-				effect_str[C] = 0
-				continue
-
-			APPLY_CORNER_BY_HEIGHT(now)
-
-		for (thing in corner - L)
-			C = thing
-			if (!C.active)
-				effect_str[C] = 0
-				continue
-
-			APPLY_CORNER_BY_HEIGHT(now)
-
-	L = effect_str - corner
-	for (thing in L)
-		C = thing
-		REMOVE_CORNER(C, now)
-		LAZYREMOVE(C.affecting, src)
-
-	effect_str -= L
-
 	applied_lum_r = lum_r
 	applied_lum_g = lum_g
 	applied_lum_b = lum_b
 
-	UNSETEMPTY(effect_str)
 	UNSETEMPTY(affecting_turfs)
 
 #undef INTELLIGENT_UPDATE

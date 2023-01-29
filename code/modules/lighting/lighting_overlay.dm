@@ -28,9 +28,6 @@
 	T.lighting_overlay = src
 	T.luminosity       = 0
 
-	if (T.corner)
-		T.corner.active = TRUE
-
 	if (update_now)
 		update_overlay()
 		needs_update = FALSE
@@ -62,32 +59,6 @@
 
 		qdel(src, TRUE)
 		return
-
-	// See LIGHTING_CORNER_DIAGONAL in lighting_corner.dm for why these values are what they are.
-	var/datum/lighting_corner/cr = T.corner || dummy_lighting_corner
-	var/datum/lighting_corner/cg = T.corner || dummy_lighting_corner
-	var/datum/lighting_corner/cb = T.corner || dummy_lighting_corner
-	var/datum/lighting_corner/ca = T.corner || dummy_lighting_corner
-
-
-	var/max = max(cr.cache_mx, cg.cache_mx, cb.cache_mx, ca.cache_mx)
-	luminosity = max > LIGHTING_SOFT_THRESHOLD
-
-	var/rr = cr.cache_r
-	var/rg = cr.cache_g
-	var/rb = cr.cache_b
-
-	var/gr = cg.cache_r
-	var/gg = cg.cache_g
-	var/gb = cg.cache_b
-
-	var/br = cb.cache_r
-	var/bg = cb.cache_g
-	var/bb = cb.cache_b
-
-	var/ar = ca.cache_r
-	var/ag = ca.cache_g
-	var/ab = ca.cache_b
 
 	icon_state = LIGHTING_BASE_ICON_STATE
 	color = LIGHTING_BASE_MATRIX

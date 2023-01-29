@@ -7,13 +7,11 @@
 	/// The power of the above is multiplied by this. Setting too high may drown out normal lights on the same turf.
 	var/ambient_light_multiplier = 0.3
 
-	var/tmp/lighting_corners_initialised = FALSE
-
 	/// List of light sources affecting this turf.
 	var/tmp/list/datum/light_source/affecting_lights
 	/// Our lighting overlay.
 	var/tmp/atom/movable/lighting_overlay/lighting_overlay
-	var/tmp/datum/lighting_corner/corner
+
 	/// Not to be confused with opacity, this will be TRUE if there's any opaque atom on the tile.
 	var/tmp/has_opaque_atom = FALSE
 	/// If this is TRUE, an above turf's ambient light is affecting this turf.
@@ -65,15 +63,9 @@
 	if (ambient_r + ambient_g + ambient_b == 0)
 		return
 
-	if (!corner || !lighting_corners_initialised)
-		if (TURF_IS_DYNAMICALLY_LIT_UNSAFE(src))
-			generate_missing_corners()
-		else
-			return
-
-	// This list can contain nulls on things like space turfs -- they only have their neighbors' corners.
-	if (corner)
-		corner.update_ambient_lumcount(ambient_r, ambient_g, ambient_b, no_corner_update)
+	// // This list can contain nulls on things like space turfs -- they only have their neighbors' corners.
+	// if (corner)
+	// 	corner.update_ambient_lumcount(ambient_r, ambient_g, ambient_b, no_corner_update)
 
 	if (ambient_light_old == null && ambient_light != ambient_light_old)
 		SSlighting.total_ambient_turfs += 1
@@ -104,26 +96,14 @@
 		qdel(lighting_overlay, TRUE)
 		lighting_overlay = null
 
-	if (corner)
-		corner.update_active()
-
 // Builds a lighting overlay for us, but only if our area is dynamic.
 /turf/proc/lighting_build_overlay(now = FALSE)
 	if (lighting_overlay)
 		CRASH("Attempted to create lighting_overlay on tile that already had one.")
 
 	if (TURF_IS_DYNAMICALLY_LIT_UNSAFE(src))
-		if (!lighting_corners_initialised || !corner)
-			generate_missing_corners()
-
 		new /atom/movable/lighting_overlay(src, now)
 
-		if (corner && !corner.active) // We would activate the corner, calculate the lighting for it.
-			for (var/L in corner.affecting)
-				var/datum/light_source/S = L
-				S.recalc_corner(corner, TRUE)
-
-			corner.active = TRUE
 
 // Returns the average color of this tile. Roughly corresponds to the color of a single old-style lighting overlay.
 /turf/proc/get_avg_color()
@@ -133,11 +113,6 @@
 	var/lum_r
 	var/lum_g
 	var/lum_b
-
-	if (corner)
-		lum_r += corner.apparent_r
-		lum_g += corner.apparent_g
-		lum_b += corner.apparent_b
 
 	lum_r = CLAMP01(lum_r / 4) * 255
 	lum_g = CLAMP01(lum_g / 4) * 255
@@ -153,8 +128,6 @@
 		return 0.5
 
 	var/totallums = 0
-	if (corner)
-		totallums += corner.apparent_r + corner.apparent_b + corner.apparent_g
 
 	totallums /= 12 // 4 corners, each with 3 channels, get the average.
 
@@ -194,22 +167,3 @@
 	if (Obj.opacity)
 		recalc_atom_opacity() // Make sure to do this before reconsider_lights(), incase we're on instant updates.
 		reconsider_lights()
-
-// This block isn't needed now, but it's here if supporting area dyn lighting changes is needed later.
-
-// /turf/change_area(area/old_area, area/new_area)
-// 	if (new_area.dynamic_lighting != old_area.dynamic_lighting)
-// 		if (TURF_IS_DYNAMICALLY_LIT_UNSAFE(src))
-// 			lighting_build_overlay()
-// 		else
-// 			lighting_clear_overlay()
-
-// This is inlined in lighting_source.dm.
-// Update it too if you change this.
-/turf/proc/generate_missing_corners()
-	if (!TURF_IS_DYNAMICALLY_LIT_UNSAFE(src) && !light_source_solo && !light_source_multi && !(mz_flags & MZ_ALLOW_LIGHTING) && !ambient_light && !ambient_has_indirect)
-		return
-
-	lighting_corners_initialised = TRUE
-	if (!corner)
-		corner = new/datum/lighting_corner(src, LIGHTING_CORNER_DIAGONAL)
