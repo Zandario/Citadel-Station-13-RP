@@ -3,7 +3,7 @@
 	anchored = TRUE
 	atom_flags = ATOM_ABSTRACT
 
-	icon = LIGHTING_ICON
+	icon = NORMAL_MAP_ICON
 	icon_state = LIGHTING_BASE_ICON_STATE
 
 	plane = LIGHTING_PLANE

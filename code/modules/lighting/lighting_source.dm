@@ -2,6 +2,14 @@
 // These are the main datums that emit light.
 
 /datum/light_source
+	/**
+	 * XYZ is used to store the position of the light source.
+	 * This is important and used to calculate the normalised vector of the light source.
+	 */
+	var/x
+	var/y
+	var/z
+
 	/// The atom we're emitting light from (for example a mob if we're from a flashlight that's being held).
 	var/atom/top_atom
 	/// The atom that we belong to.
@@ -57,6 +65,47 @@
 	var/applied = FALSE
 
 	var/needs_update = LIGHTING_NO_UPDATE
+
+/**
+ *
+ * Putting normal map rendering rambling here while my eyes hurt, /lightly/ drinking, and tired. But in the pursuit of this, it's worth it.
+ *
+ * Okay so everything will have a normal map, R being X vector. G being Y vector. B being Z vector.
+ *
+ * Okay? Cool, so we have a funny xyz vector color, how we use this to make actual lights, and not look like everyone in TRON became trans (congrats on the transition, btw).
+ *
+ * This is where the mind blowing part comes in. If we give each light source its own xyz position, we can calculate the normalised vector of the light source to our lighting overlay.
+ *
+ * Now what does this solve you may ask? Well if we turn this vector into normalised RGB values, we can multiply this against our normal map and we get a greyscale shadow map.
+ *
+ * *Boom mic drop*
+ *
+ * **BUT WAIT THERE'S MORE**
+ *
+ * These multiplication steps can be done on planes/layers, we don't NEED to actually calculate these colors, this allows us to do a lot of cool things.
+ *
+ * Two words: Realtime lighting.
+ *
+ * That is all. Thanks for coming to my COMMENT Talk.
+ *
+ * @Zandario - 2023/01/28
+ *
+ * Edit: I think I've forgotten that's suppsoed to be -1 to 1 vectors and not 0 to 1 vectors for the actual multiplication. - 2 minutes later
+ */
+
+/**
+ * But yeah, isolated idea that doesn't require normals:
+ *
+ * light_source wants to update!
+ *
+ * 1. We need to go through our affecting_turfs!
+ *
+ * 2. We need to check if we're on the same turf as the light_source.
+ *
+ *
+ *
+ *
+ */
 
 // This macro will only offset up to 1 tile, but anything with a greater offset is an outlier and probably should handle its own lighting offsets.
 // Anything pixelshifted 16px or more will be considered on the next tile.

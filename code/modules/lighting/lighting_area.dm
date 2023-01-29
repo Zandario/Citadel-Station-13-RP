@@ -17,7 +17,7 @@
 	if (new_dynamic_lighting)
 		for (var/turf/T in src)
 			if (T.dynamic_lighting)
-				T.lighting_build_overlay()
+				T.lighting_build_overlays()
 
 	else
 		for (var/turf/T in src)

@@ -215,7 +215,17 @@
 #define SQUARE(x) (x*x)
 
 //Vector Algebra
-#define SQUAREDNORM(x, y) (x*x+y*y)
-#define NORM(x, y) (sqrt(SQUAREDNORM(x,y)))
+#define NORMLENGTH(x, y) (x*x+y*y)
+#define NORM(x, y) (sqrt(NORMLENGTH(x,y)))
 #define ISPOWEROFTWO(x) ((x & (x - 1)) == 0)
 #define ROUNDUPTOPOWEROFTWO(x) (2 ** -round(-log(2,x)))
+#define DOT(a, b) (a.x * b.x + a.y * b.y + a.z * b.z)
+
+#define VECTOR_LENGTH(x, y, z) (sqrt(x * x + y * y + z * z))
+
+/// Please pass vars and not values.
+/proc/normalize_vectors(x, y, z)
+	var/mag = VECTOR_LENGTH(x, y, z)
+	x /= mag
+	y /= mag
+	z /= mag

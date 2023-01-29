@@ -188,7 +188,7 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
 
 		if (dynamic_lighting != old_dynamic_lighting)
 			if (IS_DYNAMIC_LIGHTING(src))
-				lighting_build_overlay()
+				lighting_build_overlays()
 			else
 				lighting_clear_overlay()
 

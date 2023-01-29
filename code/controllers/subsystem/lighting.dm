@@ -6,6 +6,7 @@ SUBSYSTEM_DEF(lighting)
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
 
 	var/total_lighting_overlays = 0
+	var/total_normal_maps = 0
 	var/total_lighting_sources = 0
 	var/total_ambient_turfs = 0
 
@@ -122,7 +123,7 @@ SUBSYSTEM_DEF(lighting)
 /datum/controller/subsystem/lighting/proc/InitializeTurfs(list/targets)
 	for (var/turf/T in (targets || world))
 		if (TURF_IS_DYNAMICALLY_LIT_UNSAFE(T))
-			T.lighting_build_overlay()
+			T.lighting_build_overlays()
 
 		// If this isn't here, BYOND will set-background us.
 		CHECK_TICK

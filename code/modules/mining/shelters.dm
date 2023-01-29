@@ -48,7 +48,7 @@
 /datum/map_template/shelter/proc/update_lighting(turf/deploy_location)
 	var/affected = get_affected_turfs(deploy_location, centered=TRUE)
 	for(var/turf/T in affected)
-		T.lighting_build_overlay()
+		T.lighting_build_overlays()
 
 /datum/map_template/shelter/alpha
 	name = "Shelter Alpha"

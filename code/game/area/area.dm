@@ -221,7 +221,7 @@
 		// Handle dynamic lighting update if
 		if(T.dynamic_lighting && old_area.dynamic_lighting != A.dynamic_lighting)
 			if(A.dynamic_lighting)
-				T.lighting_build_overlay()
+				T.lighting_build_overlays()
 			else
 				T.lighting_clear_overlay()
 		for(var/atom/movable/AM in T)

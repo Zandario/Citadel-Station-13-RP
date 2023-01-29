@@ -11,6 +11,8 @@
 	var/tmp/list/datum/light_source/affecting_lights
 	/// Our lighting overlay.
 	var/tmp/atom/movable/lighting_overlay/lighting_overlay
+	/// Our normal map.
+	var/tmp/atom/movable/normal_map/normal_map
 
 	/// Not to be confused with opacity, this will be TRUE if there's any opaque atom on the tile.
 	var/tmp/has_opaque_atom = FALSE
@@ -97,12 +99,13 @@
 		lighting_overlay = null
 
 // Builds a lighting overlay for us, but only if our area is dynamic.
-/turf/proc/lighting_build_overlay(now = FALSE)
+/turf/proc/lighting_build_overlays(now = FALSE)
 	if (lighting_overlay)
 		CRASH("Attempted to create lighting_overlay on tile that already had one.")
 
 	if (TURF_IS_DYNAMICALLY_LIT_UNSAFE(src))
 		new /atom/movable/lighting_overlay(src, now)
+
 
 
 // Returns the average color of this tile. Roughly corresponds to the color of a single old-style lighting overlay.

@@ -274,9 +274,10 @@
  */
 #define LIGHTING_PLANE 10
 
-#define LIGHTBULB_LAYER      0 // Unused.
-#define LIGHTING_LAYER       1
-#define ABOVE_LIGHTING_LAYER 2
+#define LIGHTING_NORMAL_LAYER 1
+#define LIGHTING_LAYER        2
+
+#define ABOVE_LIGHTING_LAYER  6
 
 
 /**

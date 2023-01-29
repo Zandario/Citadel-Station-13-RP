@@ -11,14 +11,15 @@
 #define LIGHTING_ROUND_VALUE (1 / 200)
 
 /// Icon used for lighting shading effects
-#define LIGHTING_ICON 'icons/effects/lighting_overlay.dmi'
+#define LIGHTING_ICON 'icons/effects/lighting/lighting_overlay.dmi'
 /// icon_state used for normal color-matrix based lighting overlays.
 #define LIGHTING_BASE_ICON_STATE "matrix"
-/// icon_state used for lighting overlays that are just displaying standard station lighting.
-#define LIGHTING_STATION_ICON_STATE "tubedefault"
 /// icon_state used for lighting overlays with no luminosity.
 #define LIGHTING_DARKNESS_ICON_STATE "black"
 #define LIGHTING_TRANSPARENT_ICON_STATE "blank"
+
+/// Icon used for normal-based effects
+#define NORMAL_MAP_ICON 'icons/effects/lighting/normal_map.dmi'
 
 /// If the max of the lighting lumcounts of each spectrum drops below this, disable luminosity on the lighting overlays.
 #define LIGHTING_SOFT_THRESHOLD 0.001
