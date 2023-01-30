@@ -431,7 +431,13 @@ var/global/list/light_type_cache = list()
 		if(LIGHT_BROKEN)
 			icon_state = "[base_icon_state]-broken"
 			on = 0
+	add_normalized_overlay()
 	return
+
+/atom/proc/add_normalized_overlay()
+	var/mutable_appearance/MA = mutable_appearance('icons/effects/normals/light_directions.dmi', "normalised_total", layer, 11)
+	MA.blend_mode = BLEND_MULTIPLY
+	add_overlay(MA)
 
 /obj/machinery/light/flamp/update_icon()
 	if(lamp_shade)

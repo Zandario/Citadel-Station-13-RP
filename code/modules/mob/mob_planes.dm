@@ -41,6 +41,8 @@
 	plane_masters[VIS_PARALLAX] = new /atom/movable/screen/plane_master/parallax{plane = PARALLAX_PLANE}
 	plane_masters[VIS_SPACE] = new /atom/movable/screen/plane_master/parallax_white{plane = SPACE_PLANE}
 	plane_masters[VIS_SONAR] = new /atom/movable/screen/plane_master{plane = SONAR_PLANE}
+	plane_masters[VIS_NORMAL] = new /atom/movable/screen/plane_master/normal_maps
+	plane_masters[VIS_NORMAL_POINT] = new /atom/movable/screen/plane_master/normal_point_map
 
 /datum/plane_holder/Destroy()
 	my_mob = null
@@ -182,6 +184,7 @@
 
 /atom/movable/screen/plane_master/lighting/Initialize(mapload)
 	. = ..()
+	add_filter("normal_highlights", 4, layering_filter(render_source = NORMAL_LIGHTING_RENDER_TARGET, blend_mode = BLEND_MULTIPLY))
 	add_filter("emissives", 1, alpha_mask_filter(render_source = EMISSIVE_RENDER_TARGET, flags = MASK_INVERSE))
 	// add_filter("object_lighting", 2, alpha_mask_filter(render_source = O_LIGHTING_VISUAL_RENDER_TARGET, flags = MASK_INVERSE))
 
@@ -267,3 +270,37 @@
 	// 	entopic_users -= my_mob
 	// 	if(my_mob.client)
 	// 		my_mob.client.images -= entopic_images
+
+/atom/movable/screen/plane_master/normal_maps
+	name = "normal plane master"
+	plane = NORMAL_LIGHTING_PLANE
+	layer = NORMAL_LIGHTING_LAYER
+	render_target = NORMAL_LIGHTING_RENDER_TARGET
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	blend_mode = BLEND_OVERLAY
+	color = list(
+		0.7, 0.7, 0.7, 0,
+		0.7, 0.7, 0.7, 0,
+		0.7, 0.7, 0.7, 0,
+		0,   0,   0,   1,
+	)
+
+/atom/movable/screen/plane_master/normal_maps/Initialize(mapload)
+	. = ..()
+	add_filter("layer", 1, layering_filter(render_source = NORMAL_POINT_MAP_RENDER_TARGET, blend_mode = BLEND_MULTIPLY))
+
+/atom/movable/screen/plane_master/normal_maps/proc/update_intensity(intensity, offset)
+	color = list(
+		intensity, intensity, intensity, 0,
+		intensity, intensity, intensity, 0,
+		intensity, intensity, intensity, 0,
+		offset,       offset   , offset, 1,
+	)
+
+/atom/movable/screen/plane_master/normal_point_map
+	name = "normal point map master"
+	plane = NORMAL_POINT_MAP_PLANE
+	layer = NORMAL_POINT_MAP_LAYER
+	render_target = NORMAL_POINT_MAP_RENDER_TARGET
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	blend_mode = BLEND_MULTIPLY

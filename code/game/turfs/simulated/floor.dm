@@ -45,6 +45,8 @@
 
 /turf/simulated/floor/Initialize(mapload, floortype)
 	. = ..()
+
+
 	if(!floortype && initial_flooring)
 		floortype = initial_flooring
 	if(floortype)
@@ -55,6 +57,12 @@
 		if(prob(dirty_prob))
 			dirt += rand(50,100)
 			update_dirt() //5% chance to start with dirt on a floor tile- give the janitor something to do
+
+
+/atom/proc/add_floor_normal()
+	//DEBUG
+	var/mutable_appearance/MA = mutable_appearance('icons/effects/normals/turf_normals.dmi', "floor_normalised_total", layer, NORMAL_LIGHTING_PLANE)
+	add_overlay(MA)
 
 /turf/simulated/proc/make_outdoors()
 	outdoors = TRUE
