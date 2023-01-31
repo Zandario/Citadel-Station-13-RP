@@ -8,28 +8,61 @@
 
 #define isweakref(D) (istype(D, /datum/weakref))
 
-//Datums
 
-#define isTaurTail(A)	istype(A, /datum/sprite_accessory/tail/taur)
+/**
+ * ! Datums
+ */
 
-//Turfs
+#define isTaurTail(A) (istype(A, /datum/sprite_accessory/tail/taur))
 
-#define isfloorturf(A) (istype(A, /turf/simulated/floor))
 
-#define isopenturf(A) istype(A, /turf/simulated/open)
+/**
+ * ! Turfs
+ */
+
+//#define isturf(A) (istype(A, /turf)) This is actually a byond built-in. Added here for completeness sake.
+
+GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
+	/turf/space,
+	/turf/simulated/open,
+	/turf/simulated/floor/water,
+	/turf/simulated/floor/outdoors/lava,
+)))
+
+#define isgroundlessturf(A) (is_type_in_typecache(A, GLOB.turfs_without_ground))
+
+GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
+	/turf/simulated/open,
+)))
+
+#define isopenspaceturf(A) (is_type_in_typecache(A, GLOB.turfs_openspace))
+
+#define isopenturf(A) (istype(A, /turf/simulated/open))
+
+#define isclosedturf(A) (istype(A, /turf) && A.density) // Fucking stupid but it works.
+// #define isclosedturf(A) (istype(A, /turf/closed))
+
+#define istransparentturf(A) (HAS_TRAIT(A, TURF_Z_TRANSPARENT_TRAIT))
 
 #define isspaceturf(A) istype(A, /turf/space)
 
+#define isfloorturf(A) (istype(A, /turf/simulated/floor))
+
 #define ismineralturf(A) istype(A, /turf/simulated/mineral)
 
-//Objs
-///override the byond proc because it returns true on children of /atom/movable that aren't objs
+
+/**
+ * ! Objs
+ */
+
+/// Override the byond proc because it returns true on children of /atom/movable that aren't objs
 #define isobj(A) istype(A, /obj)
+
 #define isitem(A) (istype(A, /obj/item))
 
 #define isclothing(A) (istype(A, /obj/item/clothing))
 
-#define isstorage(A)	istype(A, /obj/item/storage)
+#define isstorage(A) (istype(A, /obj/item/storage))
 
 #define isstructure(A) (istype(A, /obj/structure))
 
@@ -39,17 +72,23 @@
 
 #define isvehicle(A) (istype(A, /obj/vehicle_old) || istype(A, /obj/vehicle) || istype(A, /obj/mecha))
 
-#define isorgan(A) istype(A, /obj/item/organ/external)
+#define isorgan(A) (istype(A, /obj/item/organ/external))
 
-#define isairlock(A) istype(A, /obj/machinery/door/airlock)
+#define isairlock(A) (istype(A, /obj/machinery/door/airlock))
 
-#define isbelly(A) istype(A, /obj/belly)
+#define isbelly(A) (istype(A, /obj/belly)) // I hate that we need this. @Zandario
 
 #define is_reagent_container(O) (istype(O, /obj/item/reagent_containers))
 
-//Areas
 
-//Mobs
+/**
+ * ! Areas
+ */
+
+
+/**
+ * ! Mobs
+ */
 
 #define isAI(A) istype(A, /mob/living/silicon/ai)
 
@@ -101,4 +140,4 @@
 	var/mob/living/carbon/human/H = A
 	return istype(H.species, path)
 
-#define fast_is_species_type(H, path)	istype(H.species, path)
+#define fast_is_species_type(H, path) (istype(H.species, path))
