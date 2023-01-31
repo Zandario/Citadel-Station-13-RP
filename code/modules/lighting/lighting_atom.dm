@@ -1,111 +1,114 @@
-
 /atom
-	var/light_power = 1 // Intensity of the light.
-	var/light_range = 0 // Range in tiles of the light.
-	var/light_color     // Hexadecimal RGB string representing the colour of the light.
+	var/atom/movable/light/light_obj
+	var/light_type = LIGHT_SOFT
+	var/light_power = 1
+	var/light_range = 0
+	var/light_color = "#F4FFFA"
 
-	var/tmp/datum/light_source/light // Our light source. Don't fuck with this directly unless you have a good reason!
-	var/tmp/list/light_sources       // Any light sources that are "inside" of us, for example, if src here was a mob that's carrying a flashlight, that flashlight's light source would be part of this list.
+/atom/Destroy()
+	if(light_obj)
+		qdel(light_obj)
+		light_obj = null
+	return ..()
 
-// The proc you should always use to set the light of this atom.
-// Nonesensical value for l_color default, so we can detect if it gets set to null.
-#define NONSENSICAL_VALUE -99999
-/atom/proc/set_light(var/l_range, var/l_power, var/l_color = NONSENSICAL_VALUE)
-	if(l_range > 0 && l_range < MINIMUM_USEFUL_LIGHT_RANGE)
-		l_range = MINIMUM_USEFUL_LIGHT_RANGE	//Brings the range up to 1.4, which is just barely brighter than the soft lighting that surrounds players.
-	if (l_power != null)
-		light_power = l_power
+/**
+ * Used to change hard BYOND opacity.
+ * This means a lot of updates are needed.
+ */
+/atom/proc/set_opacity(newopacity)
+	opacity = newopacity ? TRUE : FALSE
+	var/turf/T = get_turf(src)
+	if(istype(T))
+		T.blocks_light = -1
+		for(var/atom/movable/light/L in range(get_turf(src), world.view)) //view(world.view, dview_mob))
+			L.cast_light()
 
-	if (l_range != null)
-		light_range = l_range
+/atom/proc/copy_light(atom/other)
+	light_range = other.light_range
+	light_power = other.light_power
+	light_color = other.light_color
+	set_light()
 
-	if (l_color != NONSENSICAL_VALUE)
-		light_color = l_color
+/atom/proc/update_all_lights()
+	if(light_obj && !QDELETED(light_obj))
+		light_obj.follow_holder()
 
-	SEND_SIGNAL(src, COMSIG_ATOM_SET_LIGHT, l_range, l_power, l_color)
 
-	update_light()
-
-#undef NONSENSICAL_VALUE
-
-// Will update the light (duh).
-// Creates or destroys it if needed, makes it update values, makes sure it's got the correct source turf...
-/atom/proc/update_light()
-	set waitfor = FALSE
-	if (QDELETED(src))
-		return
-
-	if (!light_power || !light_range) // We won't emit light anyways, destroy the light source.
-		QDEL_NULL(light)
-	else
-		if (!ismovable(loc)) // We choose what atom should be the top atom of the light here.
-			. = src
-		else
-			. = loc
-
-		if (light) // Update the light or create it if it does not exist.
-			light.update(.)
-		else
-			light = new/datum/light_source(src, .)
-
-// If we have opacity, make sure to tell (potentially) affected light sources.
-/atom/movable/Destroy()
-	var/turf/T = loc
+/atom/movable/setDir(newdir)
 	. = ..()
-	if (opacity && istype(T))
-		var/old_has_opaque_atom = T.has_opaque_atom
-		T.recalc_atom_opacity()
-		if (old_has_opaque_atom != T.has_opaque_atom)
-			T.reconsider_lights()
+	update_contained_lights()
 
-// Should always be used to change the opacity of an atom.
-// It notifies (potentially) affected light sources so they can update (if needed).
-/atom/proc/set_opacity(var/new_opacity)
-	if (new_opacity == opacity)
-		return
+/atom/movable/Move()
+	. = ..()
+	update_contained_lights()
 
-	opacity = new_opacity
-	var/turf/T = loc
-	if (!isturf(T))
-		return
-
-	if (new_opacity == TRUE)
-		T.has_opaque_atom = TRUE
-		T.reconsider_lights()
-	else
-		var/old_has_opaque_atom = T.has_opaque_atom
-		T.recalc_atom_opacity()
-		if (old_has_opaque_atom != T.has_opaque_atom)
-			T.reconsider_lights()
-
+/atom/movable/forceMove()
+	. = ..()
+	update_contained_lights()
 
 /atom/movable/Moved(atom/OldLoc, Dir)
 	. = ..()
-	var/datum/light_source/L
-	var/thing
-	for (thing in light_sources) // Cycle through the light sources on this atom and tell them to update.
-		L = thing
-		L.source_atom.set_light()
+	if(opacity)
+		var/turf/T = OldLoc
+		if(istype(T))
+			T.blocks_light = -1
+			T.force_light_update()
+
+/atom/proc/update_contained_lights(list/specific_contents)
+	if(!specific_contents)
+		specific_contents = contents
+	for(var/thing in (specific_contents + src))
+		var/atom/A = thing
+		spawn()
+			if(A && !QDELETED(A))
+				A.update_all_lights()
 
 /atom/vv_edit_var(var_name, var_value)
-	switch (var_name)
-		if (NAMEOF(src, light_range))
-			set_light(l_range=var_value)
+	switch(var_name)
+		if("light_range")
+			set_light(l_range = var_value)
 			datum_flags |= DF_VAR_EDITED
 			return TRUE
 
-		if (NAMEOF(src, light_power))
-			set_light(l_power=var_value)
+		if("light_power")
+			set_light(l_power = var_value)
 			datum_flags |= DF_VAR_EDITED
 			return TRUE
 
-		if (NAMEOF(src, light_color))
-			set_light(l_color=var_value)
+		if("light_color")
+			set_light(l_color = var_value)
+			datum_flags |= DF_VAR_EDITED
+			return TRUE
+
+		if("light_type")
+			set_light(l_type = var_value)
 			datum_flags |= DF_VAR_EDITED
 			return TRUE
 
 	return ..()
 
+/area/dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
+
+/area/proc/set_dynamic_lighting(new_dynamic_lighting = DYNAMIC_LIGHTING_ENABLED)
+	if (new_dynamic_lighting == dynamic_lighting)
+		return FALSE
+
+	dynamic_lighting = new_dynamic_lighting
+
+	if(IS_DYNAMIC_LIGHTING(src))
+		cut_overlay(/obj/effect/fullbright)
+
+	else
+		add_overlay(/obj/effect/fullbright)
+
+	return TRUE
+
+/area/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if("dynamic_lighting")
+			set_dynamic_lighting(var_value)
+			return TRUE
+	return ..()
 
 /atom/proc/flash_lighting_fx(_range = FLASH_LIGHT_RANGE, _power = FLASH_LIGHT_POWER, _color = LIGHT_COLOR_WHITE, _duration = FLASH_LIGHT_DURATION, _reset_lighting = TRUE)
 	return

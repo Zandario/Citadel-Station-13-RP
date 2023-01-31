@@ -1,125 +1,109 @@
-/turf
-	var/tmp/lighting_corners_initialised = FALSE
-
-	var/tmp/list/datum/light_source/affecting_lights       // List of light sources affecting this turf.
-	var/tmp/atom/movable/lighting_object/lighting_object // Our lighting object.
-	var/tmp/datum/lighting_corner/lc_topleft
-	var/tmp/datum/lighting_corner/lc_topright
-	var/tmp/datum/lighting_corner/lc_bottomleft
-	var/tmp/datum/lighting_corner/lc_bottomright
-	var/tmp/has_opaque_atom = FALSE // Not to be confused with opacity, this will be TRUE if there's any opaque atom on the tile.
-
-// counterclockwisse 0 to 360
-#define PROC_ON_CORNERS(operation) lc_topright?.##operation;lc_bottomright?.##operation;lc_bottomleft?.##operation;lc_topleft?.##operation
-
-// Causes any affecting light sources to be queued for a visibility update, for example a door got opened.
-/turf/proc/reconsider_lights()
-	var/datum/light_source/L
-	var/thing
-	for (thing in affecting_lights)
-		L = thing
-		L.vis_update()
-
-/turf/proc/lighting_clear_overlay()
-	if (lighting_object)
-		qdel(lighting_object, TRUE)
-
-	PROC_ON_CORNERS(update_active())
-
-// Builds a lighting object for us, but only if our area is dynamic.
-/turf/proc/lighting_build_overlay()
-	if (lighting_object)
-		qdel(lighting_object,force=TRUE) //Shitty fix for lighting objects persisting after death
-
-	var/area/A = loc
-	if (!IS_DYNAMIC_LIGHTING(A) && !light_sources)
-		return
-
-	if (!lighting_corners_initialised)
-		generate_missing_corners()
-
-	new/atom/movable/lighting_object(src)
-
-	var/datum/light_source/S
-	var/i
-#define OPERATE(corner) \
-	if(corner && !corner.active) { \
-		for(i in corner.affecting) { \
-			S = i ; \
-			S.recalc_corner(corner) \
-		} \
-		corner.active = TRUE \
-	}
-	OPERATE(lc_topright)
-	OPERATE(lc_bottomright)
-	OPERATE(lc_bottomleft)
-	OPERATE(lc_topleft)
-#undef OPERATE
-
-// Used to get a scaled lumcount.
-/turf/proc/get_lumcount(minlum = 0, maxlum = 1)
-	if(!lighting_object)
-		return 1
-
-	var/totallums = (lc_topright? (lc_topright.lum_r + lc_topright.lum_g + lc_topright.lum_b) : 0) \
-	+ (lc_bottomright? (lc_bottomright.lum_r + lc_bottomright.lum_g + lc_bottomright.lum_b) : 0) \
-	+ (lc_bottomleft? (lc_bottomleft.lum_r + lc_bottomleft.lum_g + lc_bottomleft.lum_b) : 0) \
-	+ (lc_topleft? (lc_topleft.lum_r + lc_topleft.lum_g + lc_topleft.lum_b) : 0)
-
-	totallums /= 12 // 4 corners, each with 3 channels, get the average.
-
-	totallums = (totallums - minlum) / (maxlum - minlum)
-
-	return CLAMP01(totallums)
-
-// Returns a boolean whether the turf is on soft lighting.
-// Soft lighting being the threshold at which point the overlay considers
-// itself as too dark to allow sight and see_in_dark becomes useful.
-// So basically if this returns true the tile is unlit black.
-/turf/proc/is_softly_lit()
-	if (!lighting_object)
-		return FALSE
-
-	return !lighting_object.luminosity
-
-// Can't think of a good name, this proc will recalculate the has_opaque_atom variable.
-/turf/proc/recalc_atom_opacity()
-	has_opaque_atom = opacity
-	if (!has_opaque_atom)
-		for (var/atom/A in src.contents) // Loop through every movable atom on our tile PLUS ourselves (we matter too...)
-			if (A.opacity)
-				has_opaque_atom = TRUE
-				break
-
-/turf/Exited(atom/movable/Obj, atom/newloc)
+/// Flags the turf to recalc blocks_light next call since opacity has changed.
+/turf/set_opacity()
+	var/old_opacity = opacity
 	. = ..()
+	if(opacity != old_opacity) blocks_light = -1
 
-	if (Obj && Obj.opacity)
-		blocks_light = TRUE // Make sure to do this before reconsider_lights(), incase we're on instant updates. Guaranteed to be on in this case.
-		force_light_update()
-		// recalc_atom_opacity() // Make sure to do this before reconsider_lights(), incase we're on instant updates.
-		// reconsider_lights()
+/turf/proc/get_lumcount()
+	if(lumcount == -1)
+		lumcount = 0
+		var/list/affectedlightcache = affecting_lights
+		if(!affectedlightcache || !affectedlightcache.len)
+			return lumcount // Either we're null or we aren't affected by any lights.
+		var/highestlightrange = 0
+		for(var/atom/movable/light/L in affectedlightcache)
+			highestlightrange = max(highestlightrange, L.light_range)
+		var/list/objectsinview = view(highestlightrange, src)
+		for(var/atom/movable/light/L in affectedlightcache)
+			if(!(L in objectsinview)) // On the player's end, we don't appear to be affected by this light, so dont even bother.
+				continue
+			lumcount += (max(L.light_range - get_dist(get_turf(L), src), 0.1)/L.light_range)*L.light_power
+		lumcount = clamp(lumcount, 0, 10)
+	return lumcount
 
-/turf/proc/change_area(var/area/old_area, var/area/new_area)
-	if(SSlighting.initialized)
-		if (new_area.dynamic_lighting != old_area.dynamic_lighting)
-			if (new_area.dynamic_lighting)
-				lighting_build_overlay()
-			else
-				lighting_clear_overlay()
+/// Checks if the turf contains an occluding object or is itself an occluding object.
+/turf/proc/check_blocks_light()
+	if(blocks_light == -1)
+		blocks_light = 0
+		if(opacity)
+			blocks_light = 1
+		else
+			for(var/atom/movable/AM in contents)
+				if(AM.opacity)
+					blocks_light = 1
+					break
+	return blocks_light
 
-/turf/proc/generate_missing_corners()
-	if (!IS_DYNAMIC_LIGHTING(src) && !light_sources)
-		return
-	lighting_corners_initialised = TRUE
-	// counterclockwise from 0 to 360.
-	if(!lc_topright)
-		new /datum/lighting_corner(src, NORTHEAST)
-	if(!lc_bottomright)
-		new /datum/lighting_corner(src, SOUTHEAST)
-	if(!lc_bottomleft)
-		new /datum/lighting_corner(src, SOUTHWEST)
-	if(!lc_topleft)
-		new /datum/lighting_corner(src, NORTHWEST)
+/turf/proc/force_light_update()
+	for(var/atom/movable/light/L in affecting_lights)
+		L.cast_light()
 
-#undef PROC_ON_CORNERS
+/**
+ * Returns a list of occluding corners based on the angle of the light to the turf
+ * as well as the available edges of clear space around the turf. Calculated and
+ * called in light_effect_cast.dm.
+ *
+ * Should theoretically be possible to override this down the track to generate
+ * directional shadow casting points for non-full-turf objects or structures.
+ */
+/turf/proc/get_corner_offsets(check_angle, check_dirs)
+	var/list/offsets = list(0, 0, 0, 0)
+	if(abs(check_angle) == 180) // Source is west.
+		if(check_dirs & NORTH)
+			offsets[1] = -1
+			offsets[2] =  1
+		if(check_dirs & SOUTH)
+			offsets[3] = -1
+			offsets[4] = -1
+	else if(check_angle == 90)  // Source is south.
+		if(check_dirs & WEST)
+			offsets[1] = -1
+			offsets[2] = -1
+		if(check_dirs & EAST)
+			offsets[3] =  1
+			offsets[4] = -1
+	else if(check_angle == 0)   // Source is east.
+		if(check_dirs & SOUTH)
+			offsets[1] =  1
+			offsets[2] = -1
+		if(check_dirs & NORTH)
+			offsets[3] =  1
+			offsets[4] =  1
+	else if(check_angle == -90) // Source is north.
+		if(check_dirs & EAST)
+			offsets[1] =  1
+			offsets[2] =  1
+		if(check_dirs & WEST)
+			offsets[3] = -1
+			offsets[4] =  1
+	else
+		switch(check_angle)
+			if(-179 to -89)      // Source is northwest.
+				if(check_dirs & EAST)
+					offsets[1] =   1
+					offsets[2] =   1
+				if(check_dirs & SOUTH)
+					offsets[3] =  -1
+					offsets[4] =  -1
+			if(-90 to -1)         // Source is northeast.
+				if(check_dirs & SOUTH)
+					offsets[1] =   1
+					offsets[2] =  -1
+				if(check_dirs & WEST)
+					offsets[3] =  -1
+					offsets[4] =   1
+			if(0 to 89)          // Source is southeast.
+				if(check_dirs & WEST)
+					offsets[1] =  -1
+					offsets[2] =  -1
+				if(check_dirs & NORTH)
+					offsets[3] =   1
+					offsets[4] =   1
+			if(90 to 179)        // Source is southwest.
+				if(check_dirs & NORTH)
+					offsets[1] =  -1
+					offsets[2] =   1
+				if(check_dirs & EAST)
+					offsets[3] =   1
+					offsets[4] =  -1
+	return offsets
