@@ -274,10 +274,11 @@
  */
 #define LIGHTING_PLANE 10
 
-#define LIGHTING_NORMAL_LAYER 1
-#define LIGHTING_LAYER        2
-
-#define ABOVE_LIGHTING_LAYER  6
+#define LIGHTING_BASE_LAYER     1 //! Base plane layer.
+#define LIGHTING_SHADOW_LAYER   2 //! Base shadow templates.
+#define LIGHTING_WALL_LAYER     3 //! Wall lighting overlays.
+#define LIGHTING_FALLOFF_LAYER  4 //! Light falloff overlay.
+#define LIGHTING_SUBTRACT_LAYER 5 //! Subtractive light layer.
 
 
 /**
@@ -286,9 +287,10 @@
  */
 #define ABOVE_LIGHTING_PLANE 15
 
-#define EYE_GLOW_LAYER         1
-#define BEAM_PROJECTILE_LAYER  2
-#define SUPERMATTER_WALL_LAYER 3
+#define ABOVE_LIGHTING_LAYER   1
+#define EYE_GLOW_LAYER         2
+#define BEAM_PROJECTILE_LAYER  3
+#define SUPERMATTER_WALL_LAYER 4
 
 
 /**
