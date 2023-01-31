@@ -7,11 +7,18 @@
 
 #define MINIMUM_USEFUL_LIGHT_RANGE 1.4
 
+#define LIGHTING_FALLOFF    1 //! Type of falloff to use for lighting; 1 for circular, 2 for square.
+#define LIGHTING_LAMBERTIAN 0 //! Use lambertian shading for light sources.
+#define LIGHTING_HEIGHT     1 //! Height off the ground of light sources on the pseudo-z-axis, you should probably leave this alone.
 
-/// Height off the ground of light sources on the pseudo-z-axis, you should probably leave this alone.
-#define LIGHTING_HEIGHT 1
-/// Z diff is multiplied by this and LIGHTING_HEIGHT to get the final height of a light source. Affects how much darker A Z light gets with each level transitioned.
+/**
+ * Z diff is multiplied by this and LIGHTING_HEIGHT to get the final height of a light source.
+ * Affects how much darker A Z light gets with each level transitioned.
+ */
 #define LIGHTING_Z_FACTOR 10
+
+
+
 
 /**
  * ? Value used to round lumcounts.
@@ -19,12 +26,12 @@
  * ! PLEASE READ THIS BEFORE TOUCHING ANYTHING BELOW THIS COMMENT.
  * ! MANY PEOPLE MISUNDERSTAND THIS AND ITS FOR GOOD REASON.
  *
- * ? 1/255 is the smallest value that can be represented in BYOND's color system.
+ * Basically we just used to as a threshold for when to round up or down.
  *
- * ? Values smaller than 1/255 DON'T MATTER! (if they do, thanks sinking points)
- * ? Values greater than 1/255 will make lighting less precise, but in turn increase performance, VERY SLIGHTLY.
+ * ? Values smaller than 1/129 DON'T MATTER! (if they do, thanks sinking points)
+ * ? Values greater than 1/129 will make lighting less precise, but in turn increase performance, VERY SLIGHTLY.
  */
-#define LIGHTING_ROUND_VALUE (1 / 200)
+#define LIGHTING_ROUND_VALUE (1 / 64)
 
 
 /**

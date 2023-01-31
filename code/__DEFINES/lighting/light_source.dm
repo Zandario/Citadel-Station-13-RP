@@ -13,9 +13,9 @@
 /**
  *! Lighting Types
  */
-#define LIGHT_SOFT         1
-#define LIGHT_SOFT_FLICKER 2
-#define LIGHT_DIRECTIONAL  3
+#define LIGHT_TYPE_SOFT         1
+#define LIGHT_TYPE_SOFT_FLICKER 2
+#define LIGHT_TYPE_DIRECTIONAL  3
 
 /// How many tiles standard fires glow.
 #define LIGHT_RANGE_FIRE 3
