@@ -14,12 +14,12 @@
 #define LIGHTING_POWER_FACTOR 2
 ///How much power emergency lights will consume per tick
 #define LIGHT_EMERGENCY_POWER_USE 0.2
-var/global/list/light_type_cache = list()
-/proc/get_light_type_instance(var/light_type)
-	. = light_type_cache[light_type]
+var/global/list/bulb_type_cache = list()
+/proc/get_bulb_type_instance(var/bulb_type)
+	. = bulb_type_cache[bulb_type]
 	if(!.)
-		. = new light_type
-		light_type_cache[light_type] = .
+		. = new bulb_type
+		bulb_type_cache[bulb_type] = .
 
 /obj/machinery/light_construct
 	name = "light fixture frame"
@@ -252,7 +252,7 @@ var/global/list/light_type_cache = list()
 	var/status = LIGHT_OK
 	var/flickering = 0
 	/// the type of light item
-	var/light_type = /obj/item/light/tube
+	var/bulb_type = /obj/item/light/tube
 	var/construct_type = /obj/machinery/light_construct
 	/**
 	 * Count of number of times switched on/off
@@ -308,7 +308,7 @@ var/global/list/light_type_cache = list()
 	icon_state = "bulb1"
 	base_icon_state = "bulb"
 	desc = "A small lighting fixture."
-	light_type = /obj/item/light/bulb
+	bulb_type = /obj/item/light/bulb
 	construct_type = /obj/machinery/light_construct/small
 	shows_alerts = FALSE
 
@@ -327,7 +327,7 @@ var/global/list/light_type_cache = list()
 	icon_state = "fairy1"
 	base_icon_state = "fairy"
 	desc = "Soft white lights that flicker and dance to and fro."
-	light_type = /obj/item/light/bulb/fairy
+	bulb_type = /obj/item/light/bulb/fairy
 	construct_type = /obj/machinery/light_construct/fairy
 	shows_alerts = FALSE
 
@@ -338,7 +338,7 @@ var/global/list/light_type_cache = list()
 	plane = OBJ_PLANE
 	layer = OBJ_LAYER
 	desc = "A floor lamp."
-	light_type = /obj/item/light/bulb
+	bulb_type = /obj/item/light/bulb
 	construct_type = /obj/machinery/light_construct/flamp
 	shows_alerts = FALSE
 	var/lamp_shade = 1
@@ -357,14 +357,14 @@ var/global/list/light_type_cache = list()
 	auto_flicker = TRUE
 
 /obj/machinery/light/small/emergency
-	light_type = /obj/item/light/bulb/red
+	bulb_type = /obj/item/light/bulb/red
 
 /obj/machinery/light/small/emergency/flicker
 	auto_flicker = TRUE
 
 /obj/machinery/light/spot
 	name = "spotlight"
-	light_type = /obj/item/light/tube/large
+	bulb_type = /obj/item/light/tube/large
 	shows_alerts = FALSE
 
 /obj/machinery/light/spot/flicker
@@ -379,15 +379,15 @@ var/global/list/light_type_cache = list()
 /obj/machinery/light/Initialize(mapload, obj/machinery/light_construct/construct)
 	. = ..(mapload)
 
-	switch (dir)
-		if (NORTH)
-			light_offset_y = WORLD_ICON_SIZE * 0.5
-		if (SOUTH)
-			light_offset_y = WORLD_ICON_SIZE * -0.5
-		if (EAST)
-			light_offset_x = WORLD_ICON_SIZE * 0.5
-		if (WEST)
-			light_offset_x = WORLD_ICON_SIZE * -0.5
+	// switch (dir)
+	// 	if (NORTH)
+	// 		light_offset_y = WORLD_ICON_SIZE * 0.5
+	// 	if (SOUTH)
+	// 		light_offset_y = WORLD_ICON_SIZE * -0.5
+	// 	if (EAST)
+	// 		light_offset_x = WORLD_ICON_SIZE * 0.5
+	// 	if (WEST)
+	// 		light_offset_x = WORLD_ICON_SIZE * -0.5
 
 	if(construct)
 		start_with_cell = FALSE
@@ -398,7 +398,7 @@ var/global/list/light_type_cache = list()
 	else
 		if(start_with_cell && !no_emergency)
 			cell = new/obj/item/cell/emergency_light(src)
-		var/obj/item/light/L = get_light_type_instance(light_type)
+		var/obj/item/light/L = get_bulb_type_instance(bulb_type)
 		update_from_bulb(L)
 		if(prob(L.broken_chance))
 			broken(1)
@@ -576,7 +576,7 @@ var/global/list/light_type_cache = list()
 		to_chat(user, "Its backup power charge meter reads [round((cell.charge / cell.maxcharge) * 100, 0.1)]%.")
 
 /obj/machinery/light/proc/get_fitting_name()
-	var/obj/item/light/L = light_type
+	var/obj/item/light/L = bulb_type
 	return initial(L.name)
 
 /obj/machinery/light/proc/update_from_bulb(obj/item/light/L)
@@ -609,7 +609,7 @@ var/global/list/light_type_cache = list()
 		explode()
 
 /obj/machinery/light/proc/remove_bulb()
-	. = new light_type(src.loc, src)
+	. = new bulb_type(src.loc, src)
 
 	switchcount = 0
 	status = LIGHT_EMPTY
@@ -630,7 +630,7 @@ var/global/list/light_type_cache = list()
 		if(status != LIGHT_EMPTY)
 			to_chat(user, "There is a [get_fitting_name()] already inserted.")
 			return
-		if(!istype(W, light_type))
+		if(!istype(W, bulb_type))
 			to_chat(user, "This type of light requires a [get_fitting_name()].")
 			return
 

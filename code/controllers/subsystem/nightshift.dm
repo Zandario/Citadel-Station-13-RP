@@ -60,11 +60,7 @@ SUBSYSTEM_DEF(nightshift)
 		else
 			announce("Good morning, crew. As it is now day time, all of the lights aboard the station have been restored to their former brightness.")
 
-	SSlighting.pause_instant()
-
 	for(var/obj/machinery/power/apc/apc in GLOB.apcs)
 		if(apc.z in GLOB.using_map.station_levels)
 			apc.set_nightshift(active, TRUE)
 			CHECK_TICK
-
-	SSlighting.resume_instant()

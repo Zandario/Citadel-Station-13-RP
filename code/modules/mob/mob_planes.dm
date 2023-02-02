@@ -14,7 +14,8 @@
 	//It'd be nice to lazy init these but some of them are important to just EXIST. Like without ghost planemaster, you can see ghosts. Go figure.
 
 	// 'Utility' planes
-	plane_masters[VIS_FULLBRIGHT] 	= new /atom/movable/screen/plane_master/fullbright						//Lighting system (lighting_overlay objects)
+	plane_masters[VIS_LIGHTING_BACKDROP] = new /atom/movable/screen/plane_master/lighting_backdrop	//Lighting system (but different
+	plane_masters[VIS_FULLBRIGHT] 	= new /atom/movable/screen/plane_master/fullbright						//Lighting system (light_obj objects)
 	plane_masters[VIS_LIGHTING] 	= new /atom/movable/screen/plane_master/lighting						//Lighting system (but different
 	plane_masters[VIS_EMISSIVE]     = new /atom/movable/screen/plane_master/emissive
 	plane_masters[VIS_GHOSTS] 		= new /atom/movable/screen/plane_master/ghosts							//Ghosts!
@@ -164,8 +165,19 @@
 	invisibility = 101
 	invis_toggle = TRUE
 
+/atom/movable/screen/plane_master/lighting_backdrop
+	plane = LIGHTING_PLANE
+	layer = LIGHTING_BACKGROUND_LAYER
+	icon = 'icons/mob/screen1.dmi'
+	icon_state = "flash"
+	color = null //To break lighting when visible (this is sorta backwards)
+	color = "#000"
+	blend_mode = BLEND_OVERLAY
+	invisibility = INVISIBILITY_LIGHTING
+
 /atom/movable/screen/plane_master/lighting
 	plane = LIGHTING_PLANE
+	layer = LIGHTING_BASE_LAYER
 	blend_mode = BLEND_MULTIPLY
 	alpha = 255
 

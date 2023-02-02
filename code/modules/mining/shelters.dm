@@ -46,9 +46,9 @@
 	admin_notice("<span class='danger'>Annihilated [deleted_atoms] plants.</span>", R_DEBUG)
 
 /datum/map_template/shelter/proc/update_lighting(turf/deploy_location)
-	var/affected = get_affected_turfs(deploy_location, centered=TRUE)
-	for(var/turf/T in affected)
-		T.lighting_build_overlays()
+	// var/affected = get_affected_turfs(deploy_location, centered=TRUE)
+	// for(var/turf/T in affected)
+	// 	T.lighting_build_overlays()
 
 /datum/map_template/shelter/alpha
 	name = "Shelter Alpha"

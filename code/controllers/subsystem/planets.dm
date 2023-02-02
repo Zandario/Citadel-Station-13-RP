@@ -182,11 +182,11 @@ SUBSYSTEM_DEF(planets)
 
 /datum/controller/subsystem/planets/proc/updateSunlight(datum/planet/P)
 	// Calculate new values to apply
-	var/new_brightness = P.sun["brightness"] * (P.sun_position * P.sun_brightness_modifier)
-	var/new_color = P.sun["color"]
-	for(var/turf/simulated/T as anything in P.planet_floors)
-		T.set_ambient_light(new_color, new_brightness)
-		CHECK_TICK
+	// var/new_brightness = P.sun["brightness"] * (P.sun_position * P.sun_brightness_modifier)
+	// var/new_color = P.sun["color"]
+	// for(var/turf/simulated/T as anything in P.planet_floors)
+	// 	// T.set_ambient_light(new_color, new_brightness)
+	// 	CHECK_TICK
 
 /datum/controller/subsystem/planets/proc/updateTemp(datum/planet/P)
 	//Set new temperatures

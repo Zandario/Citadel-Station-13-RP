@@ -3,7 +3,7 @@
 /// Disable automatic roundstart icon smoothing.
 // #define FASTBOOT_DISABLE_SMOOTHING (1<<0)
 /// Disable loading late maps.
-// #define FASTBOOT_DISABLE_LATELOAD (1<<1)
+#define FASTBOOT_DISABLE_LATELOAD (1<<1)
 /// Disable atmospherics zone build.
 // #define FASTBOOT_DISABLE_ZONES (1<<2)
 

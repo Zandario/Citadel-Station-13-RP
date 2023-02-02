@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(ambient_lighting)
 
 	// If we're not outside, we don't show ambient light.
 	if(!is_outside())
-		clear_ambient_light()
+		// clear_ambient_light()
 		return FALSE
 
 	// If we're dynamically lit, we want ambient light regardless of neighbors.
@@ -50,8 +50,8 @@ SUBSYSTEM_DEF(ambient_lighting)
 				return TRUE
 		else
 			if(CONFIG_GET(flag/starlight))
-				set_ambient_light(COLOR_WHITE, 1)
+				// set_ambient_light(COLOR_WHITE, 1)
 				return TRUE
 
-	clear_ambient_light()
+	// clear_ambient_light()
 	return FALSE

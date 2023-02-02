@@ -7,7 +7,7 @@
 	slot_flags = SLOT_BELT
 	matter = list(MAT_STEEL = 50, MAT_GLASS = 20)
 	action_button_name = "Toggle Flashlight"
-	light_wedge = LIGHT_WIDE
+	// light_wedge = LIGHT_WIDE
 
 	var/on = FALSE
 	/// Luminosity when on
@@ -75,10 +75,10 @@
 		update_appearance()
 
 /obj/item/flashlight/proc/set_flashlight()
-	if(light_wedge)
-		setDir(pick(NORTH, SOUTH, EAST, WEST))
-		if(spawn_dir)
-			setDir(spawn_dir)
+	// if(light_wedge)
+	// 	setDir(pick(NORTH, SOUTH, EAST, WEST))
+	// 	if(spawn_dir)
+	// 		setDir(spawn_dir)
 	if (on)
 		if(brightness_level == "low")
 			set_light(flashlight_range/2, flashlight_power*0.75, light_color)
@@ -237,7 +237,7 @@
 	w_class = ITEMSIZE_TINY
 	power_use = 0
 	flashlight_range = 2
-	light_wedge = LIGHT_OMNI
+	// light_wedge = LIGHT_OMNI
 
 /obj/item/flashlight/color	//Default color is blue, just roll with it.
 	name = "blue flashlight"
@@ -270,7 +270,7 @@
 	matter = list(MAT_STEEL = 200, MAT_GLASS = 50)
 	hitsound = "swing_hit"
 	light_color = LIGHT_COLOR_FLUORESCENT_FLASHLIGHT
-	light_wedge = LIGHT_NARROW
+	// light_wedge = LIGHT_NARROW
 
 /obj/item/flashlight/drone
 	name = "low-power flashlight"
@@ -292,7 +292,7 @@
 	w_class = ITEMSIZE_LARGE
 	power_use = 0
 	on = 1
-	light_wedge = LIGHT_OMNI
+	// light_wedge = LIGHT_OMNI
 	light_color = LIGHT_COLOR_FIRE
 	flashlight_range = 4
 
@@ -324,7 +324,7 @@
 	brightness_on = 8 // Pretty bright.
 	flashlight_power = 0.8
 	flashlight_range = 5
-	light_wedge = LIGHT_OMNI
+	// light_wedge = LIGHT_OMNI
 	light_color = LIGHT_COLOR_FLARE
 
 	action_button_name = null //just pull it manually, neckbeard.
@@ -393,7 +393,7 @@
 	item_state = "glowstick"
 	var/fuel = 0
 	power_use = 0
-	light_wedge = LIGHT_OMNI
+	// light_wedge = LIGHT_OMNI
 	light_color = LIGHT_COLOR_GREEN
 	flashlight_power = 0.9
 	flashlight_range = 3

@@ -190,7 +190,7 @@
 			ADD_TRAIT(helmet, TRAIT_ITEM_NODROP, TOGGLE_CLOTHING_TRAIT)
 			to_chat(H, "<span class='info'>You deploy your suit helmet, sealing you off from the world.</span>")
 			playsound(src, 'sound/items/helmetdeploy.ogg', 40, 1)
-	helmet.update_light(H)
+	helmet.set_light(H)
 
 /obj/item/clothing/suit/space/void/verb/toggle_magboots()
 	set name = "Toggle Magboots"

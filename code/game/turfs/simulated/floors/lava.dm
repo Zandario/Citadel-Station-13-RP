@@ -21,8 +21,8 @@
 
 
 /turf/simulated/floor/outdoors/lava/Initialize(mapload)
-	ambient_light = LIGHT_COLOR_LAVA
-	ambient_light_multiplier = 0.6
+	// ambient_light = LIGHT_COLOR_LAVA
+	// ambient_light_multiplier = 0.6
 
 	// For maximum pedantry.
 	if(!outdoors)

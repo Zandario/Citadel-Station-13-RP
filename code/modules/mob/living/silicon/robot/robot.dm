@@ -55,8 +55,8 @@
 	zmm_flags = ZMM_MANGLE_PLANES
 
 	// Wideborgs are offset, but their light shouldn't be. This disables offset because of how the math works (1 is less than 16).
-	light_offset_x = 1
-	light_offset_y = 1
+	// light_offset_x = 1
+	// light_offset_y = 1
 
 	can_be_antagged = TRUE
 

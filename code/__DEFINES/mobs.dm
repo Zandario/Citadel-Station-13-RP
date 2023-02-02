@@ -336,8 +336,9 @@
 #define VIS_SPACE			16
 #define VIS_SONAR			17
 #define VIS_EMISSIVE		18
+#define VIS_LIGHTING_BACKDROP 19
 ///Must be highest number from above.
-#define VIS_COUNT			18
+#define VIS_COUNT			19
 
 // Clothing flags, organized in roughly top-bottom
 #define EXAMINE_SKIPHELMET			0x0001

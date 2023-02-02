@@ -746,7 +746,7 @@
 					//Move the objects. Not forceMove because the object isn't "moving" really, it's supposed to be on the "same" turf.
 					for(var/obj/O in T)
 						O.loc = X
-						O.update_light()
+						O.set_light()
 						if(z_level_change) // The objects still need to know if their z-level changed.
 							O.onTransitZ(T.z, X.z)
 
@@ -1481,7 +1481,7 @@ var/list/WALLITEMS = list(
 	. = list()
 
 	//! 'Utility' planes
-	/// Lighting system (lighting_overlay objects)
+	/// Lighting system (light_obj objects)
 	. += new /atom/movable/screen/plane_master/fullbright
 	/// Lighting system (but different!)
 	. += new /atom/movable/screen/plane_master/lighting

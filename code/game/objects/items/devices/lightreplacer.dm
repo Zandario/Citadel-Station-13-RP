@@ -190,7 +190,7 @@
 			target.status = LIGHT_EMPTY
 			target.update()
 
-		var/obj/item/light/L = new target.light_type()
+		var/obj/item/light/L = new target.bulb_type()
 		target.insert_bulb(L)
 
 /obj/item/lightreplacer/emag_act(var/remaining_charges, var/mob/user)

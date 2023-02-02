@@ -274,11 +274,12 @@
  */
 #define LIGHTING_PLANE 10
 
-#define LIGHTING_BASE_LAYER     1 //! Base plane layer.
-#define LIGHTING_SHADOW_LAYER   2 //! Base shadow templates.
-#define LIGHTING_WALL_LAYER     3 //! Wall lighting overlays.
-#define LIGHTING_FALLOFF_LAYER  4 //! Light falloff overlay.
-#define LIGHTING_SUBTRACT_LAYER 5 //! Subtractive light layer.
+#define LIGHTING_BACKGROUND_LAYER 1 //! Background plane layer.
+#define LIGHTING_BASE_LAYER       2 //! Base plane layer.
+#define LIGHTING_SHADOW_LAYER     3 //! Base shadow templates.
+#define LIGHTING_WALL_LAYER       4 //! Wall lighting overlays.
+#define LIGHTING_FALLOFF_LAYER    5 //! Light falloff overlay.
+#define LIGHTING_SUBTRACT_LAYER   6 //! Subtractive light layer.
 
 
 /**

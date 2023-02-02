@@ -14,7 +14,7 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
 
 /turf/proc/empty(turf_type=/turf/space, baseturf_type, list/ignore_typecache, flags)
 	// Remove all atoms except observers, landmarks, docking ports
-	var/static/list/ignored_atoms = typecacheof(list(/mob/observer, /obj/landmark, /atom/movable/lighting_overlay, /obj/effect/shuttle_landmark))
+	var/static/list/ignored_atoms = typecacheof(list(/mob/observer, /obj/landmark, /atom/movable/light_obj, /obj/effect/shuttle_landmark))
 	var/list/allowed_contents = typecache_filter_list_reverse(get_all_contents_ignoring(ignore_typecache), ignored_atoms)
 	allowed_contents -= src
 	for(var/i in 1 to allowed_contents.len)
@@ -109,13 +109,13 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
 	// store lighting
 	var/old_opacity          = opacity
 	var/old_above            = above
-	var/old_affecting_lights = affecting_lights
-	var/old_lighting_overlay = lighting_overlay
+	// var/old_affecting_lights = affecting_lights
+	var/old_lighting_overlay = light_obj
 	var/old_dynamic_lighting = TURF_IS_DYNAMICALLY_LIT_UNSAFE(src)
 	var/old_ao_neighbors     = ao_neighbors
 	// var/old_is_open          = is_open()
-	var/old_ambience =         ambient_light
-	var/old_ambience_mult =    ambient_light_multiplier
+	// var/old_ambience =         ambient_light
+	// var/old_ambience_mult =    ambient_light_multiplier
 
 	// store/invalidae atmos
 	var/atom/movable/fire/old_fire = fire
@@ -179,21 +179,21 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
 	// restore lighting
 	W.ao_neighbors = old_ao_neighbors
 	if(SSlighting.initialized)
-		recalc_atom_opacity()
-		lighting_overlay = old_lighting_overlay
-		affecting_lights = old_affecting_lights
+		// recalc_atom_opacity()
+		light_obj = old_lighting_overlay
+		// affecting_lights = old_affecting_lights
 		if (old_opacity != opacity || dynamic_lighting != old_dynamic_lighting)
-			reconsider_lights()
+			// reconsider_lights()
 			updateVisibility(src)
 
-		if (dynamic_lighting != old_dynamic_lighting)
-			if (IS_DYNAMIC_LIGHTING(src))
-				lighting_build_overlays()
-			else
-				lighting_clear_overlay()
+		// if (dynamic_lighting != old_dynamic_lighting)
+		// 	if (IS_DYNAMIC_LIGHTING(src))
+		// 		lighting_build_overlays()
+		// 	else
+		// 		lighting_clear_overlay()
 
-		if (old_ambience != ambient_light || old_ambience_mult != ambient_light_multiplier)
-			update_ambient_light(FALSE)
+		// if (old_ambience != ambient_light || old_ambience_mult != ambient_light_multiplier)
+		// 	update_ambient_light(FALSE)
 
 
 

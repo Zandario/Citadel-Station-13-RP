@@ -91,11 +91,11 @@
 		if (!isloc(T.loc) || !TURF_IS_DYNAMICALLY_LIT_UNSAFE(T))
 			continue
 
-		set_ambient_light(COLOR_WHITE)
+		// set_ambient_light(COLOR_WHITE)
 		return
 
-	if (ambient_light)
-		clear_ambient_light()
+	// if (ambient_light)
+	// 	clear_ambient_light()
 
 
 /turf/space/attackby(obj/item/C as obj, mob/user as mob)

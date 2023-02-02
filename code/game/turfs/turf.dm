@@ -15,7 +15,7 @@
 	var/mz_flags = MZ_ATMOS_UP | MZ_OPEN_UP
 
 	var/holy = 0
-
+	var/has_opaque_atom = FALSE
 	//! atmospherics
 	/**
 	 * the gas we start out as
@@ -152,7 +152,7 @@
 		add_overlay(/obj/effect/fullbright)
 
 	if (light_power && light_range)
-		update_light()
+		set_light()
 
 	SSambient_lighting.queued += src
 

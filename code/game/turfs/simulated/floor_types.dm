@@ -134,8 +134,8 @@
 
 /turf/simulated/shuttle/floor/alien/Initialize(mapload)
 
-	ambient_light = COLOR_LUMINOL
-	ambient_light_multiplier = 0.6
+	// ambient_light = COLOR_LUMINOL
+	// ambient_light_multiplier = 0.6
 
 	icon_state = "alienpod[rand(1, 9)]"
 
