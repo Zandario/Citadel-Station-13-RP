@@ -20,10 +20,10 @@ GLOBAL_LIST_EMPTY(auxtools_initialized)
 		GLOB.auxtools_initialized[LIB] = FALSE;\
 	}\
 
-// #define AUXTOOLS_YAML (world.system_type == MS_WINDOWS? "auxyaml.dll" : null)
+#define AUXYAML "auxyaml.dll"
 
-// /proc/yaml_encode(content)
-// 	CRASH("auxtools didn't hook this")
+/proc/yaml_encode(content)
+	CRASH("auxtools didn't hook this")
 
-// /proc/yaml_decode(content)
-// 	CRASH("auxtools didn't hook this")
+/proc/yaml_decode(content)
+	CRASH("auxtools didn't hook this")

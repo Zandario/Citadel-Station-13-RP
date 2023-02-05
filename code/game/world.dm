@@ -32,6 +32,7 @@ GLOBAL_LIST(topic_status_cache)
  * All atoms in both compiled and uncompiled maps are initialized()
  */
 /world/New()
+	AUXTOOLS_CHECK(AUXYAML)
 #ifdef USE_BYOND_TRACY
 	#warn USE_BYOND_TRACY is enabled
 	init_byond_tracy()
@@ -293,7 +294,7 @@ GLOBAL_LIST(topic_status_cache)
 	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
 
 	//! Shutdown Auxtools
-	// AUXTOOLS_SHUTDOWN(AUXTOOLS_YAML)
+	AUXTOOLS_SHUTDOWN(AUXYAML)
 
 	//! Finale
 	// hmmm let's sleep for one (1) second incase rust_g threads are running for whatever reason
