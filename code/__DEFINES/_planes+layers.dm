@@ -52,7 +52,7 @@
  *
  * ! Misc Layers
  * EFFECTS_LAYER    5000
- * TOPDOWN_LAYER    10000
+ * TOPDOWN_LAYER    10000 //? You are supposed to add this to the layer, not set it to this.
  * BACKGROUND_LAYER 20000
  */
 
@@ -123,42 +123,47 @@
 #define PIPE_LAYER                  (AREA_LAYER+0.5)
 #define WIRE_LAYER                  (AREA_LAYER+0.6)
 #define WIRE_TERMINAL_LAYER         (AREA_LAYER+0.7)
-#define ATMOS_LAYER                 (AREA_LAYER+0.8)  /// Pipe-like atmos machinery that goes on the floor, like filters.
-#define BELOW_TURF_LAYER            (AREA_LAYER+0.9)  /// Above stuff like pipes and wires.
+#define ATMOS_LAYER                 (AREA_LAYER+0.8)  //! Pipe-like atmos machinery that goes on the floor, like filters.
+#define BELOW_TURF_LAYER            (AREA_LAYER+0.9)  //! Above stuff like pipes and wires.
 
 //? ABOVE PLATING
 
-#define WATER_FLOOR_LAYER           (TURF_LAYER)      /// The 'bottom' of water tiles.
-#define FLOOR_DECAL_LAYER           (TURF_LAYER+0.01) /// For floors that automatically add decal overlays.
+#define WATER_FLOOR_LAYER           (TURF_LAYER)      //! The 'bottom' of water tiles.
+#define FLOOR_DECAL_LAYER           (TURF_LAYER+0.01) //! For floors that automatically add decal overlays.
 
 //? ABOVE FLOOR
 
-#define DECAL_LAYER                 (TURF_LAYER+0.03)  /// For intentionally placed floor decal overlays.
-#define TURF_DAMAGE_LAYER           (TURF_LAYER+0.035) /// Layer at which turf damage overlays are placed.
-#define TURF_AO_LAYER               (TURF_LAYER+0.04)  /// Ambient Occlusion layer.
-#define EDGE_LAYER                  (TURF_LAYER+0.05)  /// Floor edge overlay layer.
+#define DECAL_LAYER                 (TURF_LAYER+0.03)  //! For intentionally placed floor decal overlays.
+#define TURF_DAMAGE_LAYER           (TURF_LAYER+0.035) //! Layer at which turf damage overlays are placed.
+#define TURF_AO_LAYER               (TURF_LAYER+0.04)  //! Ambient Occlusion layer.
+#define EDGE_LAYER                  (TURF_LAYER+0.05)  //! Floor edge overlay layer.
 #define EXPOSED_PIPE_LAYER          (TURF_LAYER+0.06)
 #define EXPOSED_WIRE_LAYER          (TURF_LAYER+0.07)
 #define EXPOSED_WIRE_TERMINAL_LAYER (TURF_LAYER+0.08)
-#define EXPOSED_ATMOS_LAYER         (TURF_LAYER+0.09)  /// Pipe-like atmos machinery that goes on the floor, like filters.
+#define EXPOSED_ATMOS_LAYER         (TURF_LAYER+0.09)  //! Pipe-like atmos machinery that goes on the floor, like filters.
 #define CATWALK_LAYER               (TURF_LAYER+0.10)
 #define PLANT_LAYER                 (TURF_LAYER+0.12)
 
 //? HIDING MOB
 
-#define HIDING_LAYER                (TURF_LAYER+0.14) /// Layer at which mobs hide to be under things like tables.
-#define UNDERWATER_LAYER            (TURF_LAYER+0.15) /// Anything on this layer will render under the water layer.
+#define HIDING_LAYER                (TURF_LAYER+0.14) //! Layer at which mobs hide to be under things like tables.
+#define UNDERWATER_LAYER            (TURF_LAYER+0.15) //! Anything on this layer will render under the water layer.
 
-#define BELOW_OBJ_LAYER             (TURF_LAYER+0.90)
+//? WALL TURFS
 
-//! Turf/Obj layer boundary
+#define WALL_LAYER                  (TURF_LAYER+0.3) //! For walls.
 
-#define WATER_LAYER                 (OBJ_LAYER)      /// Layer for water overlays.
-#define ABOVE_TURF_LAYER            (OBJ_LAYER+0.1)  /// Snow and wallmounted/floormounted equipment.
 
-//! Obj/Mob layer boundary
+#define BELOW_OBJ_LAYER             (TURF_LAYER+0.99)
 
-#define MIMICED_LIGHTING_LAYER      (MOB_LAYER+0.22) /// Z-Mimic-managed lighting
+//? Turf/Obj layer boundary
+
+#define WATER_LAYER                 (OBJ_LAYER)      //! Layer for water overlays.
+#define ABOVE_TURF_LAYER            (OBJ_LAYER+0.1)  //! Snow and wallmounted/floormounted equipment.
+
+//? Obj/Mob layer boundary
+
+#define MIMICED_LIGHTING_LAYER      (MOB_LAYER+0.22) //! Z-Mimic-managed lighting
 
 
 /**
@@ -166,20 +171,19 @@
  */
 #define OBJ_PLANE -35
 
-#define DEBRIS_LAYER       (TURF_LAYER+0.4) /// Cleanable debris.
-#define STAIRS_LAYER       (TURF_LAYER+0.5) /// Layer for stairs.
-#define DOOR_OPEN_LAYER    (TURF_LAYER+0.7) /// Under all objects if opened. 2.7 due to tables being at 2.6.
-#define TABLE_LAYER        (TURF_LAYER+0.8) /// Just under stuff that wants to be slightly below common objects.
-#define PROJECTILE_HIT_THRESHOLD_LAYER 2.8
-#define UNDER_JUNK_LAYER   (TURF_LAYER+0.9) /// Things that want to be slightly below common objects.
+#define DEBRIS_LAYER       (TURF_LAYER+0.13) //! Cleanable debris.
+#define STAIRS_LAYER       (TURF_LAYER+0.14) //! Layer for stairs.
+#define TABLE_LAYER        (TURF_LAYER+0.15) //! Just under stuff that wants to be slightly below common objects.
+#define PROJECTILE_HIT_THRESHOLD_LAYER (TURF_LAYER+0.15)
+#define UNDER_JUNK_LAYER   (TURF_LAYER+0.9) //! Things that want to be slightly below common objects.
 
 //! Turf/Obj layer boundary
 
-#define ABOVE_JUNK_LAYER   (OBJ_LAYER+0.1) /// Things that want to be slightly above common objects.
-#define DOOR_CLOSED_LAYER  (OBJ_LAYER+0.1) /// Doors when closed.
-#define WINDOW_LAYER       (OBJ_LAYER+0.2) /// Windows.
-#define ON_WINDOW_LAYER    (OBJ_LAYER+0.3) /// Ontop of a window.
-#define ABOVE_WINDOW_LAYER (OBJ_LAYER+0.4) /// Above full tile windows so wall items are clickable.
+#define ABOVE_JUNK_LAYER   (OBJ_LAYER+0.1) //! Things that want to be slightly above common objects.
+#define DOOR_CLOSED_LAYER  (OBJ_LAYER+0.1) //! Doors when closed.
+#define WINDOW_LAYER       (OBJ_LAYER+0.2) //! Windows.
+#define ON_WINDOW_LAYER    (OBJ_LAYER+0.3) + TOPDOWN_LAYER //! Ontop of a window.
+#define ABOVE_WINDOW_LAYER (OBJ_LAYER+0.4) + TOPDOWN_LAYER //! Above full tile windows so wall items are clickable.
 #define MID_LANDMARK_LAYER (OBJ_LAYER+0.5)
 
 

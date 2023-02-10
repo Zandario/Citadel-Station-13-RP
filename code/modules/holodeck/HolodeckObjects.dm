@@ -204,8 +204,10 @@
 		if(W.damtype == BRUTE || W.damtype == BURN)
 			hit(W.force)
 			if(health <= 7)
-				anchored = 0
-				update_nearby_icons()
+				set_anchored(FALSE)
+				if(is_fulltile())
+					QUEUE_SMOOTH(src)
+					QUEUE_SMOOTH_NEIGHBORS(src)
 				step(src, get_dir(user, src))
 		else
 			playsound(loc, 'sound/effects/Glasshit.ogg', 75, 1)

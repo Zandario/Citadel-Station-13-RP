@@ -39,7 +39,7 @@ GLOBAL_LIST_EMPTY(air_alarms)
 	desc = "Used to control various station atmospheric systems. The light indicates the current air status of the area."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "alarm0"
-	plane = TURF_PLANE
+	// plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
 	anchored = TRUE
 	use_power = USE_POWER_IDLE

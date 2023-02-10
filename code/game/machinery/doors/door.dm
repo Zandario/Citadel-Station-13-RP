@@ -9,12 +9,13 @@
 	opacity = 1
 	density = 1
 	CanAtmosPass = ATMOS_PASS_PROC
-	layer = DOOR_OPEN_LAYER
+	plane = TURF_PLANE
+	layer = WALL_LAYER
 	rad_flags = RAD_BLOCK_CONTENTS
 	// todo: rad_insulation_open/closed
 	pass_flags_self = NONE
-	var/open_layer = DOOR_OPEN_LAYER
-	var/closed_layer = DOOR_CLOSED_LAYER
+	var/open_layer = WALL_LAYER
+	var/closed_layer = WALL_LAYER
 
 	var/visible = 1
 	var/p_open = 0//[bool]is the door open?

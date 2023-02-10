@@ -6,6 +6,7 @@
 	turf = /turf/space/basic
 	area = /area/space
 	view = "15x15"
+	map_format = SIDE_MAP
 	hub = "Exadv1.spacestation13"
 	hub_password = "kMZy3U5jJHSiBQjr"
 	name = "Citadel Station 13 - Roleplay"

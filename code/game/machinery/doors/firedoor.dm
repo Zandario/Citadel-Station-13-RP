@@ -15,12 +15,14 @@
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas."
 	icon = 'icons/obj/doors/DoorHazard.dmi'
 	icon_state = "door_open"
-	req_one_access = list(access_eva)	//access_atmospherics, access_engine_equip)
-	opacity = 0
-	density = 0
-	layer = DOOR_OPEN_LAYER - 0.01
-	open_layer = DOOR_OPEN_LAYER - 0.01 // Just below doors when open
-	closed_layer = DOOR_CLOSED_LAYER + 0.01 // Just above doors when closed
+	req_one_access = list(access_eva) //access_atmospherics, access_engine_equip)
+	opacity = FALSE
+	density = FALSE
+
+	plane = TURF_PLANE
+	layer = WALL_LAYER
+	open_layer = WALL_LAYER - 0.001// Just below doors when open
+	closed_layer = WALL_LAYER + 0.001 // Just above doors when closed
 
 	//These are frequenly used with windows, so make sure zones can pass.
 	//Generally if a firedoor is at a place where there should be a zone boundery then there will be a regular door underneath it.

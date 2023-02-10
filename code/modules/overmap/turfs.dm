@@ -65,6 +65,7 @@ var/global/list/map_sectors = list()
 	for(var/i = 1 to numbers.len)
 		var/image/I = image('icons/effects/numbers.dmi',numbers[i])
 		I.pixel_x = 5*i - 2
+		#warn redo this
 		I.pixel_y = world.icon_size/2 - 3
 		if(y == 1)
 			I.pixel_y = 3

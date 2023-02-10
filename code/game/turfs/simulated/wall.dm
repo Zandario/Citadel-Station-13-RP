@@ -6,11 +6,13 @@
 /turf/simulated/wall
 	name = "wall"
 	desc = "A huge chunk of iron used to separate rooms."
+
 	icon = 'icons/turf/walls/solid.dmi'
 	icon_state = "wall-0"
 	base_icon_state = "wall"
 	color = "#666666"
 
+	layer = WALL_LAYER
 	#ifdef IN_MAP_EDITOR // Display disposal pipes etc. above walls in map editors.
 	layer = PLATING_LAYER
 	#endif
@@ -27,7 +29,7 @@
 
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = (SMOOTH_GROUP_WALLS + SMOOTH_GROUP_CLOSED_TURFS)
-	canSmoothWith = (SMOOTH_GROUP_SHUTTERS_BLASTDOORS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_LOW_WALL + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS)
+	canSmoothWith = (SMOOTH_GROUP_SHUTTERS_BLASTDOORS + SMOOTH_GROUP_AIRLOCK + SMOOTH_GROUP_LOW_WALL + SMOOTH_GROUP_GRILLE + SMOOTH_GROUP_WINDOW_FULLTILE + SMOOTH_GROUP_WALLS)
 
 	/// This is a var we are temporarily using until we have falsewall structures, until then we'll store our previous icon_state so we don't need to resmooth every time.
 	// TODO: Remove this when falsewalls are implemented.
