@@ -21,6 +21,8 @@
 	window_id  = REF(src)
 	width      = n_width
 	height     = n_height
+	if (n_assets)
+		assets = n_assets
 
 /datum/oracle_ui/Destroy()
 	close_all()
@@ -42,7 +44,7 @@
 
 /datum/oracle_ui/proc/test_viewer(mob/target, updating)
 	//If the target is null or does not have a client, remove from viewers and return
-	if(!target | !target.client | !can_view(target))
+	if(!target || !target.client || !can_view(target))
 		viewers -= target
 		if(viewers.len < 1 && datum_flags & DF_ISPROCESSING)
 			STOP_PROCESSING(SSobj, src)  //No more viewers, stop polling
@@ -65,7 +67,7 @@
 		return
 	//Send assets
 	if(!updating && assets)
-		assets.send(target)
+		assets.send(target.client)
 	//Add them to the viewers if they aren't there already
 	viewers |= target
 	if(!(datum_flags & DF_ISPROCESSING) && (auto_refresh | auto_check_view))

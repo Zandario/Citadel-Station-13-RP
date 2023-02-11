@@ -231,7 +231,7 @@
 
 // ai as human but can't flush
 /obj/machinery/disposal/attack_ai(mob/user as mob)
-	interact(user, 1)
+	ui_interact(user, 1)
 
 // human interact with machine
 /obj/machinery/disposal/attack_hand(mob/user as mob)
@@ -245,7 +245,7 @@
 
 	// Clumsy folks can only flush it.
 	if(user.IsAdvancedToolUser(1))
-		interact(user, 0)
+		ui_interact(user, 0)
 	else
 		flush = !flush
 		update()

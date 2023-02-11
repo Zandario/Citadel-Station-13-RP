@@ -1,4 +1,5 @@
 /datum/asset/simple/oui_theme_nano
+	keep_local_name = TRUE
 	assets = list(
 		// JavaScript
 		"sui-nano-common.js"     = 'html/oracle_ui/themes/nano/sui-nano-common.js',
@@ -8,6 +9,7 @@
 	)
 
 /datum/asset/simple/oui_theme_paper
+	keep_local_name = TRUE
 	assets = list(
 		// JavaScript
 		"sui-paper-common.js"   = 'html/oracle_ui/themes/paper/sui-paper-common.js',
