@@ -19,21 +19,38 @@
 	anchored = TRUE
 	density = TRUE
 	pass_flags_self = ATOM_PASS_OVERHEAD_THROW
-	var/datum/gas_mixture/air_contents	// internal reservoir
-	var/mode = 1	// item mode 0=off 1=charging 2=charged
-	var/flush = FALSE	// true if flush handle is pulled
-	var/obj/structure/disposalpipe/trunk/trunk = null // the attached pipe trunk
-	var/flushing = FALSE	// true if flushing in progress
-	var/flush_every_ticks = 30 //Every 30 ticks it will look whether it is ready to flush
-	var/flush_count = 0 //this var adds 1 once per tick. When it reaches flush_every_ticks it resets and tries to flush.
-	var/last_sound = 0
 	active_power_usage = 2200	//the pneumatic pump power. 3 HP ~ 2200W
 	idle_power_usage = 100
+
+	/// Internal reservoir.
+	var/datum/gas_mixture/air_contents
+	/// Item mode 0=off 1=charging 2=charged
+	var/mode = 1
+	/// True if flush handle is pulled
+	var/flush = FALSE
+	/// The attached pipe trunk
+	var/obj/structure/disposalpipe/trunk/trunk = null
+	/// True if flushing in progress
+	var/flushing = FALSE
+	/// Every 30 ticks it will look whether it is ready to flush.
+	var/flush_every_ticks = 30
+	/// This var adds 1 once per tick. When it reaches flush_every_ticks it resets and tries to flush.
+	var/flush_count = 0
+	var/last_sound = 0
+
+	var/datum/oracle_ui/themed/nano/ui
+
+	var/pressure_charging = TRUE
+	var/full_pressure = FALSE
 
 // create a new disposal
 // find the attached trunk (if present) and init gas resvr.
 /obj/machinery/disposal/Initialize(mapload, newdir)
 	. = ..()
+	ui = new /datum/oracle_ui/themed/nano(src, 330, 190, "disposal_bin")
+	ui.auto_refresh = TRUE
+	ui.can_resize = FALSE
+
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/disposal/LateInitialize()
@@ -235,84 +252,68 @@
 	return
 
 // user interaction
-/obj/machinery/disposal/interact(mob/user, var/ai=0)
-
-	src.add_fingerprint(user)
+/obj/machinery/disposal/ui_interact(mob/user, state)
 	if(machine_stat & BROKEN)
-		user.unset_machine()
 		return
 
-	var/dat = "<head><title>Waste Disposal Unit</title></head><body><TT><B>Waste Disposal Unit</B><HR>"
-
-	if(!ai)  // AI can't pull flush handle
-		if(flush)
-			dat += "Disposal handle: <A href='?src=\ref[src];handle=0'>Disengage</A> <B>Engaged</B>"
-		else
-			dat += "Disposal handle: <B>Disengaged</B> <A href='?src=\ref[src];handle=1'>Engage</A>"
-
-		dat += "<BR><HR><A href='?src=\ref[src];eject=1'>Eject contents</A><HR>"
-
-	if(mode <= 0)
-		dat += "Pump: <B>Off</B> <A href='?src=\ref[src];pump=1'>On</A><BR>"
-	else if(mode == 1)
-		dat += "Pump: <A href='?src=\ref[src];pump=0'>Off</A> <B>On</B> (pressurizing)<BR>"
-	else
-		dat += "Pump: <A href='?src=\ref[src];pump=0'>Off</A> <B>On</B> (idle)<BR>"
-
-	var/per = 100* air_contents.return_pressure() / (SEND_PRESSURE)
-
-	dat += "Pressure: [round(per, 1)]%<BR></body>"
-
-
-	user.set_machine(src)
-	user << browse(dat, "window=disposal;size=360x170")
-	onclose(user, "disposal")
-
-// handle machine interaction
-
-/obj/machinery/disposal/Topic(href, href_list)
-	if(usr.loc == src)
-		to_chat(usr, "<font color='red'>You cannot reach the controls from inside.</font>")
+	if(user.loc == src)
+		to_chat(user, "<span class='warning'>You cannot reach the controls from inside!</span>")
 		return
+	ui.render(user)
 
-	if(mode==-1 && !href_list["eject"]) // only allow ejecting if mode is -1
-		to_chat(usr, "<font color='red'>The disposal units power is disabled.</font>")
-		return
+/obj/machinery/disposal/oui_canview(mob/user)
+	if(user.loc == src)
+		return FALSE
+	if(machine_stat & BROKEN)
+		return FALSE
+	if(Adjacent(user))
+		return TRUE
+	return ..()
+
+/obj/machinery/disposal/oui_data(mob/user)
+	var/list/data = list()
+	pressure_charging = (mode == 1)
+	full_pressure = (mode == 2)
+	data["flush"] = flush ? ui.act("Disengage", user, "handle-0", class="active") : ui.act("Engage", user, "handle-1")
+	data["full_pressure"] = full_pressure ? "Ready" : (pressure_charging ? "Pressurizing" : "Off")
+	data["pressure_charging"] = pressure_charging ? ui.act("Turn Off", user, "pump-0", class="active", disabled=full_pressure) : ui.act("Turn On", user, "pump-1", disabled=full_pressure)
+	var/per = full_pressure ? 100 : clamp(100* air_contents.return_pressure() / (SEND_PRESSURE), 0, 99)
+	data["per"] = "[round(per, 1)]%"
+	data["contents"] = ui.act("Eject Contents", user, "eject", disabled=contents.len < 1)
+	data["isai"] = isAI(user)
+	return data
+
+/obj/machinery/disposal/oui_act(mob/user, action, list/params)
 	if(..())
 		return
 
-	if(machine_stat & BROKEN)
-		return
-	if(usr.stat || usr.restrained() || src.flushing)
-		return
+	pressure_charging = (mode == 1)
+	full_pressure = (mode == 2)
+	switch(action)
+		if("handle-0")
+			flush = FALSE
+			update_icon()
+			. = TRUE
+		if("handle-1")
+			if(!panel_open)
+				flush = TRUE
+				update_icon()
+			. = TRUE
+		if("pump-0")
+			if(pressure_charging)
+				pressure_charging = FALSE
+				update_icon()
+			. = TRUE
+		if("pump-1")
+			if(!pressure_charging)
+				pressure_charging = TRUE
+				update_icon()
+			. = TRUE
+		if("eject")
+			eject()
+			. = TRUE
+	ui.soft_update_fields()
 
-	if(istype(src.loc, /turf))
-		usr.set_machine(src)
-
-		if(href_list["close"])
-			usr.unset_machine()
-			usr << browse(null, "window=disposal")
-			return
-
-		if(href_list["pump"])
-			if(text2num(href_list["pump"]))
-				mode = 1
-			else
-				mode = 0
-			update()
-
-		if(!isAI(usr))
-			if(href_list["handle"])
-				flush = text2num(href_list["handle"])
-				update()
-
-			if(href_list["eject"])
-				eject()
-	else
-		usr << browse(null, "window=disposal")
-		usr.unset_machine()
-		return
-	return
 
 // eject the contents of the disposal unit
 /obj/machinery/disposal/proc/eject()
@@ -329,6 +330,8 @@
 		mode = 0
 		flush = 0
 		return
+
+	ui.soft_update_fields()
 
 	var/list/overlays_to_add = list()
 
@@ -369,7 +372,7 @@
 					flush()
 		flush_count = 0
 
-	src.updateDialog()
+	ui.soft_update_fields()
 
 	if(flush && air_contents.return_pressure() >= SEND_PRESSURE )	// flush can happen even without power
 		flush()
