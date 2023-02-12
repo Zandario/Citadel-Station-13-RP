@@ -35,10 +35,10 @@
 
 /**
  *# No Implementation.
-
  * Called when a hyperlink is clicked in the UI.
  */
 /datum/proc/oui_act(mob/user, action, list/params)
+	return
 
 
 /atom/oui_canview(mob/user)

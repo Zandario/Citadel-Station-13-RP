@@ -22,6 +22,9 @@
 	active_power_usage = 2200	//the pneumatic pump power. 3 HP ~ 2200W
 	idle_power_usage = 100
 
+	obj_flags = CAN_BE_HIT
+	oui = /datum/oracle_ui/themed/nano
+
 	/// Internal reservoir.
 	var/datum/gas_mixture/air_contents
 	/// Item mode 0=off 1=charging 2=charged
@@ -38,8 +41,6 @@
 	var/flush_count = 0
 	var/last_sound = 0
 
-	var/datum/oracle_ui/themed/nano/ui
-
 	var/pressure_charging = TRUE
 	var/full_pressure = FALSE
 
@@ -47,11 +48,12 @@
 // find the attached trunk (if present) and init gas resvr.
 /obj/machinery/disposal/Initialize(mapload, newdir)
 	. = ..()
-	ui = new /datum/oracle_ui/themed/nano(src, 330, 190, "disposal_bin")
-	ui.auto_refresh = TRUE
-	ui.can_resize = FALSE
 
-	return INITIALIZE_HINT_LATELOAD
+	oui = new /datum/oracle_ui/themed/nano(src, 330, 190, "disposal_bin")
+	oui.auto_refresh = TRUE
+	oui.can_resize = FALSE
+
+	return INITIALIZE_HINT_LATELOAD //we need turfs to have air
 
 /obj/machinery/disposal/LateInitialize()
 	. = ..()
@@ -259,7 +261,7 @@
 	if(user.loc == src)
 		to_chat(user, "<span class='warning'>You cannot reach the controls from inside!</span>")
 		return
-	ui.render(user)
+	oui.render(user)
 
 /obj/machinery/disposal/oui_canview(mob/user)
 	if(user.loc == src)
@@ -272,47 +274,54 @@
 
 /obj/machinery/disposal/oui_data(mob/user)
 	var/list/data = list()
+
+	// TODO: Dispoal Bin backend-update. @Zandario
 	pressure_charging = (mode == 1)
-	full_pressure = (mode == 2)
-	data["flush"] = flush ? ui.act("Disengage", user, "handle-0", class="active") : ui.act("Engage", user, "handle-1")
+	full_pressure     = (mode == 2)
+
+	data["flush"] = flush ? oui.act("Disengage", user, "handle-0", class="active") : oui.act("Engage", user, "handle-1")
 	data["full_pressure"] = full_pressure ? "Ready" : (pressure_charging ? "Pressurizing" : "Off")
-	data["pressure_charging"] = pressure_charging ? ui.act("Turn Off", user, "pump-0", class="active", disabled=full_pressure) : ui.act("Turn On", user, "pump-1", disabled=full_pressure)
+	data["pressure_charging"] = pressure_charging ? oui.act("Turn Off", user, "pump-0", class="active", disabled=full_pressure) : oui.act("Turn On", user, "pump-1", disabled=full_pressure)
 	var/per = full_pressure ? 100 : clamp(100* air_contents.return_pressure() / (SEND_PRESSURE), 0, 99)
 	data["per"] = "[round(per, 1)]%"
-	data["contents"] = ui.act("Eject Contents", user, "eject", disabled=contents.len < 1)
+	data["contents"] = oui.act("Eject Contents", user, "eject", disabled=contents.len < 1)
 	data["isai"] = isAI(user)
+
 	return data
 
 /obj/machinery/disposal/oui_act(mob/user, action, list/params)
 	if(..())
 		return
 
+	// TODO: Dispoal Bin backend-update. @Zandario
 	pressure_charging = (mode == 1)
-	full_pressure = (mode == 2)
+	full_pressure     = (mode == 2)
+
 	switch(action)
 		if("handle-0")
 			flush = FALSE
-			update_icon()
+			update_appearance()
 			. = TRUE
 		if("handle-1")
 			if(!panel_open)
 				flush = TRUE
-				update_icon()
+				update_appearance()
 			. = TRUE
 		if("pump-0")
 			if(pressure_charging)
 				pressure_charging = FALSE
-				update_icon()
+				update_appearance()
 			. = TRUE
 		if("pump-1")
 			if(!pressure_charging)
 				pressure_charging = TRUE
-				update_icon()
+				update_appearance()
 			. = TRUE
 		if("eject")
 			eject()
 			. = TRUE
-	ui.soft_update_fields()
+
+	oui.soft_update_fields()
 
 
 // eject the contents of the disposal unit
@@ -331,7 +340,7 @@
 		flush = 0
 		return
 
-	ui.soft_update_fields()
+	oui.soft_update_fields()
 
 	var/list/overlays_to_add = list()
 
@@ -372,7 +381,7 @@
 					flush()
 		flush_count = 0
 
-	ui.soft_update_fields()
+	oui.soft_update_fields()
 
 	if(flush && air_contents.return_pressure() >= SEND_PRESSURE )	// flush can happen even without power
 		flush()

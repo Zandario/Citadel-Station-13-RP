@@ -203,6 +203,11 @@ Works together with spawning an observer, noted above.
 				H.exit_vr()
 				return 0
 		var/mob/observer/dead/ghost = new(src)	//Transfer safety to observer spawning proc.
+
+		SSnanoui.user_transferred(src, ghost)
+		SStgui.on_transfer(src, ghost)
+		SSoracleui.transfer_uis(src, ghost)
+
 		ghost.can_reenter_corpse = can_reenter_corpse
 		ghost.timeofdeath = src.timeofdeath //BS12 EDIT
 		ghost.key = key
@@ -274,6 +279,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(prevent_respawns.Find(mind.name))
 		to_chat(usr,"<span class='warning'>You already quit this round as this character, sorry!</span>")
 		return
+
+	SSnanoui.user_transferred(src, mind.current)
+	SStgui.on_transfer(src, mind.current)
+	SSoracleui.transfer_uis(src, mind.current)
+
 	if(mind.current.ajourn && mind.current.stat != DEAD) //check if the corpse is astral-journeying (it's client ghosted using a cultist rune).
 		var/found_rune
 		for(var/obj/effect/rune/R in mind.current.loc)   //whilst corpse is alive, we can only reenter the body if it's on the rune

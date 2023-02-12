@@ -1,8 +1,8 @@
 function replaceContent(body) {
-    var maincontent = document.getElementById('maincontent');
-    if(maincontent) {
-      maincontent.innerHTML = body;
-    }
+	var maincontent = document.getElementById('maincontent');
+	if(maincontent) {
+		maincontent.innerHTML = body;
+	}
 }
 
 function updateProgressLabels() {
@@ -15,7 +15,7 @@ function updateProgressLabels() {
 		if(!progressFill)
 			continue;
 		var width = parseInt(getComputedStyle(progressFill).width);
-	    var maxWidth = parseInt(getComputedStyle(progressBar).width);
+		var maxWidth = parseInt(getComputedStyle(progressBar).width);
 		var progressLabel = progressBar.getElementsByClassName("progressLabel")[0];
 		if(progressLabel)
 			progressLabel.innerHTML = Math.round((width / maxWidth) * 100) + '%';
@@ -25,7 +25,7 @@ function updateProgressLabels() {
 if(getComputedStyle) { setInterval(updateProgressLabels, 50); } //Fallback
 
 function updateFields(json) {
-    var fields = JSON.parse(json);
+	var fields = JSON.parse(json);
 	for (var key in fields) {
 		let value = fields[key];
 		var element = document.getElementById(key);

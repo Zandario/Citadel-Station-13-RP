@@ -70,7 +70,7 @@ GLOBAL_LIST_EMPTY(oui_file_cache)
  * Returns the templated content to be inserted into the main template for the specified target mob.
  */
 /datum/oracle_ui/themed/proc/get_inner_content(mob/target)
-	var/list/data = call(datasource, "oui_data")(target)
+	var/list/data = datasource.oui_data(target)
 	return process_template(get_content_file(current_page), data)
 
 /**
@@ -84,15 +84,15 @@ GLOBAL_LIST_EMPTY(oui_file_cache)
  * For all viewers, updates the fields in the template via the `updateFields` javaScript function.
  */
 /datum/oracle_ui/themed/proc/soft_update_fields()
-	for(var/viewer in viewers)
-		var/json = json_encode(call(datasource, "oui_data")(viewer))
+	for(var/viewer as anything in viewers)
+		var/json = json_encode(datasource.oui_data(viewer))
 		call_js(viewer, "updateFields", list(json))
 
 /**
  * For all viewers, updates the content body in the template via the `replaceContent` javaScript function.
  */
 /datum/oracle_ui/themed/proc/soft_update_all()
-	for(var/viewer in viewers)
+	for(var/viewer as anything in viewers)
 		call_js(viewer, "replaceContent", list(get_inner_content(viewer)))
 
 /**

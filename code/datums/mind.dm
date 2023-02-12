@@ -118,7 +118,11 @@
 		current.mind = null
 		characteristics?.disassociate_from_mob(current)
 
-		SSnanoui.user_transferred(current, new_character) // transfer active NanoUI instances to new user
+		// Transfer active UI instances to new user.
+		SSnanoui.user_transferred(current, new_character)
+		SStgui.on_transfer(current, new_character)
+		SSoracleui.transfer_uis(current, new_character)
+
 	if(new_character.mind)		//remove any mind currently in our new body's mind variable
 		new_character.mind.current = null
 

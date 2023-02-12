@@ -1,3 +1,10 @@
+/datum
+	//? Oracle UI doesn't really support non-themed UIs anyway, so, fuck it.
+	var/datum/oracle_ui/themed/oui
+
+/mob
+	var/list/open_oracle_uis = list()
+
 
 /**
  * The main datum which handles the UI for Oracle UI windows.
@@ -54,8 +61,9 @@
 
 /datum/oracle_ui/Destroy()
 	close_all()
-	if(src.datum_flags & DF_ISPROCESSING)
-		STOP_PROCESSING(SSobj, src)
+	datasource.oui = null
+	if((src.datum_flags & DF_ISPROCESSING))
+		STOP_PROCESSING(SSoracleui, src)
 	return ..()
 
 /datum/oracle_ui/process()
@@ -70,32 +78,32 @@
  * This proc is not used in the themed subclass.
  */
 /datum/oracle_ui/proc/get_content(mob/target)
-	return call(datasource, "oui_getcontent")(target)
+	return datasource.oui_getcontent(target)
 
 /**
  * Returns whether the specified target mob can view the UI.
  * Calls `oui_canview` on the datasource to get the return value.
  */
 /datum/oracle_ui/proc/can_view(mob/target)
-	return call(datasource, "oui_canview")(target)
+	return datasource.oui_canview(target)
 
 /**
  * Tests whether the client is valid and can view the UI.
  * If updating is TRUE, checks to see if they still have the UI window open.
  */
 /datum/oracle_ui/proc/test_viewer(mob/target, updating)
-	// If the target is null or does not have a client, remove from viewers and return.
+	//If the target is null or does not have a client, remove from viewers and return
 	if(!target || !target.client || !can_view(target))
 		viewers -= target
 		if(viewers.len < 1 && (src.datum_flags & DF_ISPROCESSING))
-			STOP_PROCESSING(SSobj, src) // No more viewers, stop polling.
+			STOP_PROCESSING(SSoracleui, src)  //No more viewers, stop polling
 		close(target)
 		return FALSE
-	// If this is an update, and they have closed the window, remove from viewers and return.
+	//If this is an update, and they have closed the window, remove from viewers and return
 	if(updating && winget(target, window_id, "is-visible") != "true")
 		viewers -= target
 		if(viewers.len < 1 && (src.datum_flags & DF_ISPROCESSING))
-			STOP_PROCESSING(SSobj, src) // No more viewers, stop polling.
+			STOP_PROCESSING(SSoracleui, src) //No more viewers, stop polling
 		return FALSE
 	return TRUE
 
@@ -104,20 +112,25 @@
  * If updating is TRUE, will only do it to clients which still have the window open.
  */
 /datum/oracle_ui/proc/render(mob/target, updating = FALSE)
-	set waitfor = FALSE // Makes this an async call.
+	set waitfor = FALSE //Makes this an async call
 	if(!can_view(target))
+		target.open_oracle_uis -= src
 		return
-	// Check to see if they have the window open still if updating.
+	//Check to see if they have the window open still if updating
 	if(updating && !test_viewer(target, updating))
+		target.open_oracle_uis -= src
 		return
-	// Send assets.
+	//Send assets
 	if(!updating && assets)
 		assets.send(target.client)
-	// Add them to the viewers if they aren't there already.
-	viewers |= target
+	//Add them to the viewers if they aren't there already
+	if(!(target in viewers))
+		viewers += target
+		target.open_oracle_uis.Add(src)
+
 	if(!(src.datum_flags & DF_ISPROCESSING) && (auto_refresh | auto_check_view))
-		START_PROCESSING(SSobj, src) // Start processing to poll for viewability.
-	// Send the content.
+		START_PROCESSING(SSoracleui, src) //Start processing to poll for viewability
+	//Send the content
 	if(updating)
 		target << output(get_content(target), "[window_id].browser")
 	else
@@ -128,13 +141,14 @@
  * Does the same as render, but for all viewers and with updating set to TRUE.
  */
 /datum/oracle_ui/proc/render_all()
-	for(var/viewer in viewers)
+	for(var/viewer as anything in viewers)
 		render(viewer, TRUE)
 
 /**
  * Closes the UI for the specified target mob.
  */
 /datum/oracle_ui/proc/close(mob/target)
+	target?.open_oracle_uis -= src
 	if(target && target.client)
 		target << browse(null, "window=[window_id]")
 
@@ -215,8 +229,23 @@
 
 /datum/oracle_ui/Topic(href, parameters)
 	var/action = parameters["sui_action"]
-	var/mob/current_user = locate(parameters["sui_user"])
-	if(!call(datasource, "oui_canuse")(current_user))
+	if(!action)
 		return
-	if(datasource)
-		call(datasource, "oui_act")(current_user, action, parameters);
+	var/mob/current_user = locate(parameters["sui_user"])
+	if(!ismob(current_user))
+		return
+	if(current_user.client != usr.client)
+		message_admins("[current_user.client?.ckey] may have attempted to use an href exploit.")
+		return
+	if(QDELETED(datasource))
+		CRASH("[src] has no datasource.")
+	if(!datasource.oui_canuse(current_user))
+		return
+
+	datasource.oui_act(current_user, action, parameters)
+
+/client/verb/oracle_ui_debug(atom/thing as obj)
+	set name = "Oracle UI Debug"
+	set category = "IC"
+
+	to_chat(mob, html_decode(thing.oui_data_debug(mob)))
