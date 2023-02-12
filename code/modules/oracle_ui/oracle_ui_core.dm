@@ -48,16 +48,12 @@
  * * n_height     - The height of the UI window.
  * * n_assets     - The asset datum to send to the client.
  */
-/datum/oracle_ui/New(atom/n_datasource, n_width = 512, n_height = 512, datum/asset/n_assets)
+/datum/oracle_ui/New(atom/n_datasource = datasource, n_width = width, n_height = height, datum/asset/n_assets = assets)
 	window_id = REF(src)
-	if (!isnull(n_datasource))
-		datasource = n_datasource
-	if (!isnull(n_width))
-		width = n_width
-	if (!isnull(n_height))
-		height = n_height
-	if (!isnull(n_assets))
-		assets = n_assets
+	datasource = n_datasource
+	width = n_width
+	height = n_height
+	assets = n_assets
 
 /datum/oracle_ui/Destroy()
 	close_all()
