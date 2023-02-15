@@ -7,14 +7,14 @@
 	icon_state = LIGHTING_BASE_ICON_STATE
 
 	plane = LIGHTING_PLANE
-	layer = LIGHTING_LAYER
+	layer = LIGHTING_LAYER_BASE
 	color = LIGHTING_BASE_MATRIX
 
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	invisibility = INVISIBILITY_LIGHTING
 	// simulated = FALSE
 
-	var/needs_update = FALSE
+	needs_update = FALSE
 
 	#if WORLD_ICON_SIZE != 32
 	transform = matrix(WORLD_ICON_SIZE / 32, 0, (WORLD_ICON_SIZE - 32) / 2, 0, WORLD_ICON_SIZE / 32, (WORLD_ICON_SIZE - 32) / 2)

@@ -229,6 +229,6 @@
 /atom/movable/screen/fullscreen/special/see_through_darkness
 	icon_state = "nightvision"
 	plane = LIGHTING_PLANE
-	layer = LIGHTING_LAYER
+	layer = LIGHTING_LAYER_BASE
 	blend_mode = BLEND_ADD
 	show_when_dead = TRUE

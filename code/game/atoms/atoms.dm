@@ -221,7 +221,7 @@
 		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 
 	if(light_power && light_range)
-		update_light()
+		update_light(src)
 
 	SETUP_SMOOTHING()
 

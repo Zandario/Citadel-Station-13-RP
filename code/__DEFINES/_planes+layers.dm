@@ -274,9 +274,11 @@
  */
 #define LIGHTING_PLANE 10
 
-#define LIGHTBULB_LAYER      0 // Unused.
-#define LIGHTING_LAYER       1
-#define ABOVE_LIGHTING_LAYER 2
+#define LIGHTING_LAYER_ROBUST           0
+#define LIGHTING_LAYER_BASE             1
+#define LIGHTING_LAYER_FULLBRIGHT       2
+#define LIGHTING_LAYER_DARKNESS_EFFECTS 3
+
 
 
 /**
@@ -285,9 +287,10 @@
  */
 #define ABOVE_LIGHTING_PLANE 15
 
-#define EYE_GLOW_LAYER         1
-#define BEAM_PROJECTILE_LAYER  2
-#define SUPERMATTER_WALL_LAYER 3
+#define ABOVE_LIGHTING_LAYER   1
+#define EYE_GLOW_LAYER         2
+#define BEAM_PROJECTILE_LAYER  3
+#define SUPERMATTER_WALL_LAYER 4
 
 
 /**

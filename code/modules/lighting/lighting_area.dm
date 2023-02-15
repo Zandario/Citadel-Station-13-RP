@@ -1,6 +1,6 @@
 /area
 	luminosity = TRUE
-	var/dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 
 /area/Initialize()
 	. = ..()

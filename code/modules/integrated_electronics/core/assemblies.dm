@@ -568,14 +568,14 @@
 	for(var/obj/item/integrated_circuit/IC in assembly_components)
 		IC.ext_moved(oldloc, dir)
 	if(light) //Update lighting objects (From light circuits).
-		update_light()
+		update_light(src)
 
 /obj/item/electronic_assembly/Moved(oldloc, dir)
 	. = ..()
 	for(var/obj/item/integrated_circuit/IC in assembly_components)
 		IC.ext_moved(oldloc, dir)
 	if(light) //Update lighting objects (From light circuits).
-		update_light()
+		update_light(src)
 
 /obj/item/electronic_assembly/stop_pulling()
 	for(var/I in assembly_components)

@@ -152,7 +152,7 @@
 		add_overlay(/obj/effect/fullbright)
 
 	if (light_power && light_range)
-		update_light()
+		update_light(src)
 
 	if (!mapload)
 		SSambient_lighting.queued += src

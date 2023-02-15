@@ -5,7 +5,7 @@
  */
 
 //! /datum/element/light_eater
-/// From base of [/datum/element/light_eater/proc/table_buffet]: (list/light_queue, datum/light_eater)
+/// From base of [/datum/element/light_eater/proc/table_buffet]: (list/light_update_queue, datum/light_eater)
 ////#define COMSIG_LIGHT_EATER_QUEUE "light_eater_queue"
 /// From base of [/datum/element/light_eater/proc/devour]: (datum/light_eater)
 ////#define COMSIG_LIGHT_EATER_ACT "light_eater_act"

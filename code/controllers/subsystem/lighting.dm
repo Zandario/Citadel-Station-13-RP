@@ -8,20 +8,15 @@ SUBSYSTEM_DEF(lighting)
 	var/total_lighting_overlays = 0
 	var/total_lighting_sources = 0
 	var/total_ambient_turfs = 0
-	var/total_lighting_corners = 0
 
 	/// lighting sources  queued for update.
-	var/list/light_queue   = list()
+	var/list/light_update_queue = list()
 	var/lq_idex = 1
-	/// lighting corners  queued for update.
-	var/list/corner_queue  = list()
-	var/cq_idex = 1
 	/// lighting overlays queued for update.
 	var/list/overlay_queue = list()
 	var/oq_idex = 1
 
 	var/tmp/processed_lights = 0
-	var/tmp/processed_corners = 0
 	var/tmp/processed_overlays = 0
 
 	var/total_ss_updates = 0
@@ -40,9 +35,9 @@ SUBSYSTEM_DEF(lighting)
 #ifdef USE_INTELLIGENT_LIGHTING_UPDATES
 		"IUR: [total_ss_updates ? round(total_instant_updates/(total_instant_updates+total_ss_updates)*100, 0.1) : "NaN"]% Instant: [force_queued ? "Disabled" : "Allowed"] <br>",
 #endif
-		"&emsp;T: { L: [total_lighting_sources] C: [total_lighting_corners] O:[total_lighting_overlays] A: [total_ambient_turfs] }<br>",
-		"&emsp;P: { L: [light_queue.len - (lq_idex - 1)] C: [corner_queue.len - (cq_idex - 1)] O: [overlay_queue.len - (oq_idex - 1)] }<br>",
-		"&emsp;L: { L: [processed_lights] C: [processed_corners] O: [processed_overlays]}<br>"
+		"&emsp;T: { L: [total_lighting_sources] O:[total_lighting_overlays] A: [total_ambient_turfs] }<br>",
+		"&emsp;P: { L: [light_update_queue.len - (lq_idex - 1)] O: [overlay_queue.len - (oq_idex - 1)] }<br>",
+		"&emsp;L: { L: [processed_lights] O: [processed_overlays]}<br>"
 	)
 	return ..() + out.Join()
 
@@ -136,25 +131,40 @@ SUBSYSTEM_DEF(lighting)
 /datum/controller/subsystem/lighting/fire(resumed = FALSE, no_mc_tick = FALSE)
 	if (!resumed)
 		processed_lights = 0
-		processed_corners = 0
-		processed_overlays = 0
 
 	MC_SPLIT_TICK_INIT(3)
 	if (!no_mc_tick)
 		MC_SPLIT_TICK
 
-	var/list/curr_lights = light_queue
-	var/list/curr_corners = corner_queue
-	var/list/curr_overlays = overlay_queue
+	var/list/curr_lights = light_update_queue
 
 	while (lq_idex <= curr_lights.len)
-		var/datum/light_source/L = curr_lights[lq_idex++]
+		var/datum/light/L = curr_lights[lq_idex++]
 
-		if (L.needs_update != LIGHTING_NO_UPDATE)
-			total_ss_updates += 1
-			L.update_corners()
+		if (L && L.dirty_flags != NONE)
 
-			L.needs_update = LIGHTING_NO_UPDATE
+			if (L.dirty_flags & D_ENABLE)
+				if (L.enabled)
+					L.disable(queued_run = 1)
+					L.dirty_flags &= ~D_ENABLE
+
+			if (L.dirty_flags & D_BRIGHT)
+				L.set_brightness(L.brightness_des, queued_run = 1)
+			if (L.dirty_flags & D_COLOR)
+				L.set_color(L.r_des,L.g_des,L.b_des, queued_run = 1)
+			if (L.dirty_flags & D_HEIGHT)
+				L.set_height(L.height_des, queued_run = 1)
+
+			if (L.dirty_flags & D_MOVE)
+				L.move(L.x_des,L.y_des,L.z_des,L.dir_des, queued_run = 1)
+
+
+			if (L.dirty_flags & D_ENABLE)
+				if (!L.enabled)
+					L.enable(queued_run = 1)
+					L.dirty_flags &= ~D_ENABLE
+
+			L.dirty_flags = NONE
 
 			processed_lights++
 
@@ -163,60 +173,14 @@ SUBSYSTEM_DEF(lighting)
 		else if (MC_TICK_CHECK)
 			break
 
-	if (lq_idex > 1)
-		curr_lights.Cut(1, lq_idex)
-		lq_idex = 1
 
-	if (!no_mc_tick)
-		MC_SPLIT_TICK
 
-	while (cq_idex <= curr_corners.len)
-		var/datum/lighting_corner/C = curr_corners[cq_idex++]
-
-		if (C.needs_update)
-			C.update_overlays()
-
-			C.needs_update = FALSE
-
-			processed_corners++
-
-		if (no_mc_tick)
-			CHECK_TICK
-		else if (MC_TICK_CHECK)
-			break
-
-	if (cq_idex > 1)
-		curr_corners.Cut(1, cq_idex)
-		cq_idex = 1
-
-	if (!no_mc_tick)
-		MC_SPLIT_TICK
-
-	while (oq_idex <= curr_overlays.len)
-		var/atom/movable/lighting_overlay/O = curr_overlays[oq_idex++]
-
-		if (!QDELETED(O) && O.needs_update)
-			O.update_overlay()
-			O.needs_update = FALSE
-
-			processed_overlays++
-
-		if (no_mc_tick)
-			CHECK_TICK
-		else if (MC_TICK_CHECK)
-			break
-
-	if (oq_idex > 1)
-		curr_overlays.Cut(1, oq_idex)
-		oq_idex = 1
 
 /datum/controller/subsystem/lighting/Recover()
-	total_lighting_corners = SSlighting.total_lighting_corners
 	total_lighting_overlays = SSlighting.total_lighting_overlays
 	total_lighting_sources = SSlighting.total_lighting_sources
 
-	light_queue = SSlighting.light_queue
-	corner_queue = SSlighting.corner_queue
+	light_update_queue = SSlighting.light_update_queue
 	overlay_queue = SSlighting.overlay_queue
 
 	lq_idex = SSlighting.lq_idex
@@ -224,12 +188,8 @@ SUBSYSTEM_DEF(lighting)
 	oq_idex = SSlighting.oq_idex
 
 	if (lq_idex > 1)
-		light_queue.Cut(1, lq_idex)
+		light_update_queue.Cut(1, lq_idex)
 		lq_idex = 1
-
-	if (cq_idex > 1)
-		corner_queue.Cut(1, cq_idex)
-		cq_idex = 1
 
 	if (oq_idex > 1)
 		overlay_queue.Cut(1, oq_idex)
