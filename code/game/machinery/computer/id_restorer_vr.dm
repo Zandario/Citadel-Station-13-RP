@@ -3,7 +3,7 @@
 	desc = "A terminal for restoration of damaged IDs. Mostly used for aftermath of unfortunate falls into vats of acid."
 	icon_state = "restorer"
 	icon_keyboard = null
-	light_color = "#11cc00"
+	// light_color = "#11cc00"
 	layer = ABOVE_WINDOW_LAYER
 	icon_keyboard = null
 	icon = 'icons/obj/machines/id_restorer_vr.dmi'

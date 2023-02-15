@@ -6,7 +6,7 @@
 /turf/simulated/floor/holofloor
 	thermal_conductivity = 0
 
-/turf/simulated/floor/holofloor/get_lumcount(minlum = 0, maxlum = 1)
+/turf/simulated/floor/holofloor/RL_GetBrightness(minlum = 0, maxlum = 1)
 	return 0.8
 
 /turf/simulated/floor/holofloor/attackby(obj/item/W as obj, mob/user as mob)
@@ -482,7 +482,7 @@
 
 /mob/living/simple_mob/animal/space/carp/holodeck/Initialize(mapload)
 	. = ..()
-	set_light(2) //hologram lighting
+	// set_light(2) //hologram lighting
 
 /mob/living/simple_mob/animal/space/carp/holodeck/proc/set_safety(var/safe)
 	if (safe)

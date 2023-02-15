@@ -138,9 +138,9 @@
 	if(rag)
 		var/underlay_image = image(icon='icons/obj/drinks.dmi', icon_state=rag.on_fire? "[rag_underlay]_lit" : rag_underlay)
 		underlays += underlay_image
-		set_light(rag.light_range, rag.light_power, rag.light_color)
+		// set_light(rag.light_range, rag.light_power, rag.light_color)
 	else
-		set_light(0)
+		// set_light(0)
 
 /obj/item/reagent_containers/food/drinks/bottle/melee_mob_hit(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	. = ..()

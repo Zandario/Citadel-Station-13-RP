@@ -118,7 +118,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "1"
-	light_color = "#ED9200"
+	// light_color = "#ED9200"
 	layer = TURF_LAYER
 
 	var/firelevel = 1 //Calculated by gas_mixture.calculate_firelevel()
@@ -133,7 +133,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 	var/datum/gas_mixture/air_contents = loc.return_air()
 	color = fire_color(air_contents.temperature)
-	set_light(3, 1, color)
+	// set_light(3, 1, color)
 
 	firelevel = fl
 	air_master.active_hotspots.Add(src)
@@ -145,7 +145,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 /atom/movable/fire/proc/RemoveFire()
 	var/turf/T = loc
 	if (istype(T))
-		set_light(0)
+		// set_light(0)
 		if(T.fire == src)
 			T.fire = null
 		else
@@ -165,13 +165,13 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 	if(firelevel > 6)
 		icon_state = "3"
-		set_light(7, 3)
+		// set_light(7, 3)
 	else if(firelevel > 2.5)
 		icon_state = "2"
-		set_light(5, 2)
+		// set_light(5, 2)
 	else
 		icon_state = "1"
-		set_light(3, 1)
+		// set_light(3, 1)
 
 	for(var/mob/living/L in loc)
 		L.FireBurn(firelevel, air_contents.temperature, air_contents.return_pressure())  //Burn the mobs!
@@ -210,7 +210,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 				enemy_tile.adjacent_fire_act(loc, air_contents, air_contents.temperature, air_contents.volume)
 
 	animate(src, color = fire_color(air_contents.temperature), 5)
-	set_light(l_color = color)
+	// set_light(l_color = color)
 
 /atom/movable/fire/proc/fire_color(var/env_temperature)
 	CACHE_VSC_PROP(atmos_vsc, /atmos/fire/firelevel_multiplier, firelevel_multiplier)

@@ -11,7 +11,7 @@
 
 /obj/item/spell/modifier/Initialize(mapload)
 	. = ..()
-	set_light(spell_light_range, spell_light_intensity, l_color = light_color)
+	// set_light(spell_light_range, spell_light_intensity, l_color = light_color)
 
 /obj/item/spell/modifier/on_melee_cast(atom/hit_atom, mob/user)
 	if(istype(hit_atom, /mob/living))

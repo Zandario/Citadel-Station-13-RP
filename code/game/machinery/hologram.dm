@@ -131,10 +131,10 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	hologram.layer = FLY_LAYER//Above all the other objects/mobs. Or the vast majority of them.
 	hologram.anchored = 1//So space wind cannot drag it.
 	hologram.name = "[A.name] (Hologram)"//If someone decides to right click.
-	hologram.set_light(2)	//hologram lighting
+	// hologram.set_light(2)	//hologram lighting
 	hologram.color = color //painted holopad gives coloured holograms
 	masters[A] = hologram
-	set_light(2)			//pad lighting
+	// set_light(2)			//pad lighting
 	icon_state = "holopad1"
 	A.holo = src
 	return TRUE
@@ -145,7 +145,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	qdel(masters[user])//Get rid of user's hologram
 	masters -= user //Discard AI from the list of those who use holopad
 	if(!masters.len)//If no users left
-		set_light(0)			//pad lighting (hologram lighting will be handled automatically since its owner was deleted)
+		// set_light(0)			//pad lighting (hologram lighting will be handled automatically since its owner was deleted)
 		icon_state = "holopad0"
 	return TRUE
 

@@ -79,7 +79,7 @@
 	taser_effect = 1
 	agony = 55
 	damage_type = HALLOSS
-	light_color = "#8837A3"
+	// light_color = "#8837A3"
 
 	muzzle_type = /obj/effect/projectile/muzzle/darkmatterstun
 	tracer_type = /obj/effect/projectile/tracer/darkmatterstun
@@ -93,7 +93,7 @@
 	armor_penetration = 35
 	damage_type = BRUTE
 	check_armour = "energy"
-	light_color = "#8837A3"
+	// light_color = "#8837A3"
 
 	embed_chance = 0
 
@@ -109,7 +109,7 @@
 	armor_penetration = 35
 	damage_type = BRUTE
 	check_armour = "energy"
-	light_color = "#8837A3"
+	// light_color = "#8837A3"
 
 	embed_chance = 0
 

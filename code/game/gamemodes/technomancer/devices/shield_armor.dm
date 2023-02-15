@@ -83,9 +83,9 @@
 /obj/item/clothing/suit/armor/shield/update_icon()
 	icon_state = "shield_armor_[active]"
 	item_state = "shield_armor_[active]"
-	if(active)
-		set_light(2, 1, l_color = "#006AFF")
-	else
-		set_light(0, 0, l_color = "#000000")
-	..()
+	// if(active)
+	// 	set_light(2, 1, l_color = "#006AFF")
+	// else
+	// 	set_light(0, 0, l_color = "#000000")
+	// ..()
 	return

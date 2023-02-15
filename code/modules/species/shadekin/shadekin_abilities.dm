@@ -49,7 +49,7 @@
 		to_chat(src, SPAN_WARNING("You can't use that here!"))
 		return FALSE
 
-	var/brightness = T.get_lumcount() //Brightness in 0.0 to 1.0
+	var/brightness = T.RL_GetBrightness() //Brightness in 0.0 to 1.0
 	darkness = 1-brightness //Invert
 
 	var/watcher = 0
@@ -305,12 +305,12 @@
 	holder.glow_range = 8
 	holder.glow_intensity = -10
 	holder.glow_color = "#FFFFFF"
-	holder.set_light(8, -10, "#FFFFFF")
+	// holder.set_light(8, -10, "#FFFFFF")
 
 /datum/modifier/shadekin/create_shade/on_expire()
 	holder.glow_toggle = initial(holder.glow_toggle)
 	holder.glow_range = initial(holder.glow_range)
 	holder.glow_intensity = initial(holder.glow_intensity)
 	holder.glow_color = initial(holder.glow_color)
-	holder.set_light(0)
+	// holder.set_light(0)
 	my_kin = null

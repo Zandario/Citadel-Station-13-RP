@@ -31,7 +31,7 @@
 	if(map_pad_id)
 		mapped_hyper_pads[map_pad_id] = src
 		detect()
-	set_light(3, 1, newcolor)
+	// set_light(3, 1, newcolor)
 
 /obj/machinery/hyperpad/operable()
 	return 1

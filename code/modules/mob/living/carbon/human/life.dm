@@ -273,19 +273,19 @@
 				gene.OnMobLife(src)
 	// no radiation: stop
 	if(!radiation)
-		if(species.species_appearance_flags & RADIATION_GLOWS)
-			set_light(0)
+		// if(species.species_appearance_flags & RADIATION_GLOWS)
+		// 	set_light(0)
 		return
 	// todo: SPECIES GLOWS - probably refactor this shit
 	if(species.species_appearance_flags & RADIATION_GLOWS)
 		var/lrange = clamp(sqrt(radiation) / 8, 0, 7)
 		var/lpower = clamp(sqrt(radiation) / 40, 0, 1)
-		var/lcolor = species.get_flesh_colour(src)
+		// var/lcolor = species.get_flesh_colour(src)
 		if(glow_toggle)
 			lpower = max(lpower, glow_intensity)
 			lrange = max(lrange, glow_range)
-			lcolor = glow_color
-		set_light(lrange, lpower, lcolor)
+			// lcolor = glow_color
+		// set_light(lrange, lpower, lcolor)
 	// todo: DIONA - probably refactor this shit
 	var/obj/item/organ/internal/diona/nutrients/rad_organ = locate() in internal_organs
 	if(rad_organ && !rad_organ.is_broken())
@@ -995,7 +995,7 @@
 		var/light_amount = 0
 		if(isturf(loc))
 			var/turf/T = loc
-			light_amount = T.get_lumcount() * 10
+			light_amount = T.RL_GetBrightness() * 10
 		if(light_amount > species.light_dam) //if there's enough light, start dying
 			take_overall_damage(1,1)
 		else //heal in the dark
@@ -1621,7 +1621,7 @@
 	//0.1% chance of playing a scary sound to someone who's in complete darkness
 	if(isturf(loc) && rand(1,1000) == 1)
 		var/turf/T = loc
-		if(T.get_lumcount() <= 0)
+		if(T.RL_GetBrightness() <= 0)
 			playsound_local(src,pick(scarySounds),50, 1, -1)
 
 /mob/living/carbon/human/handle_stomach()

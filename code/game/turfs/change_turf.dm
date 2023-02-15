@@ -109,10 +109,10 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
 	// store lighting
 	var/old_opacity          = opacity
 	var/old_above            = above
-	var/old_affecting_lights = affecting_lights
+	// var/old_affecting_lights = affecting_lights
 	var/old_lighting_overlay = lighting_overlay
-	var/old_dynamic_lighting = TURF_IS_DYNAMICALLY_LIT_UNSAFE(src)
-	var/old_corners          = corners
+	// var/old_dynamic_lighting = TURF_IS_DYNAMICALLY_LIT_UNSAFE(src)
+	// var/old_corners          = corners
 	var/old_ao_neighbors     = ao_neighbors
 	// var/old_is_open          = is_open()
 
@@ -178,19 +178,19 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
 	// restore lighting
 	W.ao_neighbors = old_ao_neighbors
 	if(SSlighting.initialized)
-		recalc_atom_opacity()
+		// recalc_atom_opacity()
 		lighting_overlay = old_lighting_overlay
-		affecting_lights = old_affecting_lights
-		corners = old_corners
-		if (old_opacity != opacity || dynamic_lighting != old_dynamic_lighting)
-			reconsider_lights()
+		// affecting_lights = old_affecting_lights
+		// corners = old_corners
+		if (old_opacity != opacity /*|| dynamic_lighting != old_dynamic_lighting*/)
+			// reconsider_lights()
 			updateVisibility(src)
 
-		if (dynamic_lighting != old_dynamic_lighting)
-			if (IS_DYNAMIC_LIGHTING(src))
-				lighting_build_overlay()
-			else
-				lighting_clear_overlay()
+		// if (dynamic_lighting != old_dynamic_lighting)
+		// 	if (IS_DYNAMIC_LIGHTING(src))
+		// 		lighting_build_overlay()
+		// 	else
+		// 		lighting_clear_overlay()
 
 	QUEUE_SMOOTH(src)
 	QUEUE_SMOOTH_NEIGHBORS(src)

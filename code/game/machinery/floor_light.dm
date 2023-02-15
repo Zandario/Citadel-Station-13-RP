@@ -53,7 +53,7 @@ var/list/floor_light_cache = list()
 		var/newcolor = input("","Enter a new color.") as text|null //ask for text input of what the color should be e.g. green, blue, yellow, etc
 		src.default_light_colour = newcolor
 		src.color = newcolor
-		src.light_color = newcolor
+		// src.light_color = newcolor
 		update_brightness()
 		visible_message(SPAN_NOTICE("\The [user] has changed \the [src] color."))
 	else if(W.force && user.a_intent == "hurt")
@@ -107,15 +107,15 @@ var/list/floor_light_cache = list()
 		update_brightness()
 
 /obj/machinery/floor_light/proc/update_brightness()
-	if(on && use_power == USE_POWER_ACTIVE)
-		if(light_range != default_light_range || light_power != default_light_power || light_color != default_light_colour)
-			set_light(default_light_range, default_light_power, default_light_colour)
-	else
-		update_use_power(USE_POWER_OFF)
-		if(light_range || light_power)
-			set_light(0)
+	// if(on && use_power == USE_POWER_ACTIVE)
+	// 	if(light_range != default_light_range || light_power != default_light_power || light_color != default_light_colour)
+	// 		set_light(default_light_range, default_light_power, default_light_colour)
+	// else
+	// 	update_use_power(USE_POWER_OFF)
+	// 	if(light_range || light_power)
+	// 		set_light(0)
 
-	active_power_usage = ((light_range + light_power) * 10)
+	// active_power_usage = ((light_range + light_power) * 10)
 	update_icon()
 
 /obj/machinery/floor_light/update_icon()

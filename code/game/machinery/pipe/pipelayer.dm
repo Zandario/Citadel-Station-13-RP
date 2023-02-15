@@ -5,7 +5,6 @@
 	density = 1
 	circuit = /obj/item/circuitboard/pipelayer
 	var/turf/old_turf		// Last turf we were on.
-	var/old_dir				// Last direction we were facing.
 	var/on = 0				// Pipelaying online?
 	var/a_dis = 0			// Auto-dismantling - If enabled it will remove floor tiles
 	var/P_type = null		// Currently selected pipe type

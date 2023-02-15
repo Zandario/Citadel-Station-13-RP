@@ -12,7 +12,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 60
 	active_power_usage = 10000	//10 kW. It's a big all-body scanner.
-	light_color = "#00FF00"
+	// light_color = "#00FF00"
 	var/obj/machinery/body_scanconsole/console
 
 /obj/machinery/bodyscanner/Initialize(mapload, newdir)
@@ -27,9 +27,9 @@
 /obj/machinery/bodyscanner/power_change()
 	..()
 	if(!(machine_stat & (BROKEN|NOPOWER)))
-		set_light(2)
+		// set_light(2)
 	else
-		set_light(0)
+		// set_light(0)
 
 /obj/machinery/bodyscanner/attackby(var/obj/item/G, user as mob)
 	if(!istype(G))
@@ -636,7 +636,7 @@
 /obj/machinery/bodyscanner/update_icon()
 	if(machine_stat & (NOPOWER|BROKEN))
 		icon_state = "scanner_off"
-		set_light(0)
+		// set_light(0)
 	else
 		var/h_ratio
 		if(occupant)
@@ -644,42 +644,42 @@
 			switch(h_ratio)
 				if(1.000)
 					icon_state = "scanner_green"
-					set_light(l_range = 1.5, l_power = 2, l_color = COLOR_LIME)
+					// set_light(l_range = 1.5, l_power = 2, l_color = COLOR_LIME)
 				if(0.001 to 0.999)
 					icon_state = "scanner_yellow"
-					set_light(l_range = 1.5, l_power = 2, l_color = COLOR_YELLOW)
+					// set_light(l_range = 1.5, l_power = 2, l_color = COLOR_YELLOW)
 				if(-0.999 to 0.000)
 					icon_state = "scanner_red"
-					set_light(l_range = 1.5, l_power = 2, l_color = COLOR_RED)
+					// set_light(l_range = 1.5, l_power = 2, l_color = COLOR_RED)
 				else
 					icon_state = "scanner_death"
-					set_light(l_range = 1.5, l_power = 2, l_color = COLOR_RED)
+					// set_light(l_range = 1.5, l_power = 2, l_color = COLOR_RED)
 		else
 			icon_state = "scanner_open"
-			set_light(0)
+			// set_light(0)
 		if(console)
 			console.update_icon(h_ratio)
 
 /obj/machinery/body_scanconsole/update_icon(var/h_ratio)
 	if(machine_stat & (NOPOWER|BROKEN))
 		icon_state = "scanner_terminal_off"
-		set_light(0)
+		// set_light(0)
 	else
 		if(scanner)
 			if(h_ratio)
 				switch(h_ratio)
 					if(1.000)
 						icon_state = "scanner_terminal_green"
-						set_light(l_range = 1.5, l_power = 2, l_color = COLOR_LIME)
+						// set_light(l_range = 1.5, l_power = 2, l_color = COLOR_LIME)
 					if(-0.999 to 0.000)
 						icon_state = "scanner_terminal_red"
-						set_light(l_range = 1.5, l_power = 2, l_color = COLOR_RED)
+						// set_light(l_range = 1.5, l_power = 2, l_color = COLOR_RED)
 					else
 						icon_state = "scanner_terminal_dead"
-						set_light(l_range = 1.5, l_power = 2, l_color = COLOR_RED)
+						// set_light(l_range = 1.5, l_power = 2, l_color = COLOR_RED)
 			else
 				icon_state = "scanner_terminal_blue"
-				set_light(l_range = 1.5, l_power = 2, l_color = COLOR_BLUE)
+				// set_light(l_range = 1.5, l_power = 2, l_color = COLOR_BLUE)
 		else
 			icon_state = "scanner_terminal_off"
-			set_light(0)
+			// set_light(0)

@@ -200,14 +200,14 @@
 		return
 
 	START_PROCESSING(SSobj, src)
-	set_light(2, null, "#E38F46")
+	// set_light(2, null, "#E38F46")
 	on_fire = 1
 	update_name()
 	update_icon()
 
 /obj/item/reagent_containers/glass/rag/proc/extinguish()
 	STOP_PROCESSING(SSobj, src)
-	set_light(0)
+	// set_light(0)
 	on_fire = 0
 
 	//rags sitting around with 1 second of burn time left is dumb.

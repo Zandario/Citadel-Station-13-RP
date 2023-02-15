@@ -15,13 +15,13 @@
 	name = "\proper space"
 	icon = 'icons/turf/space.dmi'
 	icon_state = "0"
-	dynamic_lighting = FALSE
+	// dynamic_lighting = FALSE
 
 /turf/unsimulated/fake_space/Initialize(mapload)
 	icon_state = SPACE_ICON_STATE(x, y, z) // So realistic!
 	. = ..()
 
-/turf/unsimulated/get_lumcount(minlum = 0,maxlum = 1)
+/turf/unsimulated/RL_GetBrightness(minlum = 0,maxlum = 1)
 	return 0.8
 
 // Better nip this just in case.

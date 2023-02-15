@@ -6,7 +6,7 @@
 	drop_sound = 'sound/items/drop/gloves.ogg'
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
 	w_class = ITEMSIZE_TINY
-	light_color = "#E09D37"
+	// light_color = "#E09D37"
 	var/wax = 2000
 	var/icon_type = "candle"
 
@@ -47,7 +47,7 @@
 	if(!lit)
 		lit = TRUE
 		visible_message(flavor_text)
-		set_light(CANDLE_LUM)
+		// set_light(CANDLE_LUM)
 		START_PROCESSING(SSobj, src)
 
 /obj/item/flame/candle/process(delta_time)
@@ -65,7 +65,7 @@
 	if(lit)
 		lit = 0
 		update_icon()
-		set_light(0)
+		// set_light(0)
 
 /obj/item/flame/candle/small
 	name = "small red candle"

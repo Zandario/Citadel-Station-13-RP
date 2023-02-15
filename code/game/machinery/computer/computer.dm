@@ -103,9 +103,9 @@
 	..()
 	update_icon()
 	if(machine_stat & NOPOWER)
-		set_light(0)
+		// set_light(0)
 	else
-		set_light(light_range_on, light_power_on)
+		// set_light(light_range_on, light_power_on)
 
 /obj/machinery/computer/proc/set_broken()
 	machine_stat |= BROKEN

@@ -42,7 +42,7 @@
 	update_mood()
 	if(rad_glow)
 		rad_glow = clamp(rad_glow,0,250)
-		set_light(max(1,min(5,rad_glow/15)), max(1,min(10,rad_glow/25)), color)
+		// set_light(max(1,min(5,rad_glow/15)), max(1,min(10,rad_glow/25)), color)
 	return ..()
 
 /mob/living/simple_mob/slime/promethean/update_icon()
@@ -53,7 +53,7 @@
 	humanform = null
 	vore_organs = null
 	vore_selected = null
-	set_light(0)
+	// set_light(0)
 	return ..()
 
 /mob/living/carbon/human/Destroy()
@@ -70,9 +70,9 @@
 /mob/living/simple_mob/slime/promethean/handle_special() // Should disable default slime healing, we'll use nutrition based heals instead.
 	if(rad_glow)
 		rad_glow = clamp(rad_glow,0,250)
-		set_light(max(1,min(5,rad_glow/15)), max(1,min(10,rad_glow/25)), color)
-	else
-		set_light(0)
+	// 	set_light(max(1,min(5,rad_glow/15)), max(1,min(10,rad_glow/25)), color)
+	// else
+	// 	set_light(0)
 	update_icon()
 
 	if(!humanform) // If we somehow have a blob with no human, lets just clean up.
@@ -192,7 +192,7 @@
 	rad_glow += severity
 	rad_glow = clamp(rad_glow,0,250)
 	if(rad_glow > 1)
-		set_light(max(1,min(5,rad_glow/15)), max(1,min(10,rad_glow/25)), color)
+		// set_light(max(1,min(5,rad_glow/15)), max(1,min(10,rad_glow/25)), color)
 		update_icon()
 
 /mob/living/simple_mob/slime/promethean/bullet_act(obj/item/projectile/P)
@@ -384,8 +384,8 @@
 	if(radiation > 0)
 		blob.rad_glow = clamp(radiation / 5, 0, 250)
 		blob.radiation = radiation
-		set_light(0)
-		blob.set_light(max(1,min(5,radiation/15)), max(1,min(10,radiation/25)), blob.color)
+		// set_light(0)
+		// blob.set_light(max(1,min(5,radiation/15)), max(1,min(10,radiation/25)), blob.color)
 		blob.handle_light()
 	if(has_hat)
 		blob.hat = new_hat
@@ -463,7 +463,7 @@
 	shapeshifter_set_colour(blob_color)
 	if(blob.radiation > 0)
 		radiation = blob.radiation
-		set_light(max(1,min(5,radiation/15)), max(1,min(10,radiation/25)), species.get_flesh_colour(src))
+		// set_light(max(1,min(5,radiation/15)), max(1,min(10,radiation/25)), species.get_flesh_colour(src))
 	update_icon()
 
 	//Transfer vore organs
@@ -480,7 +480,7 @@
 
 	//Get rid of friend blob
 	stored_blob = blob
-	blob.set_light(0)
+	// blob.set_light(0)
 	blob.moveToNullspace()
 	//qdel(blob)
 

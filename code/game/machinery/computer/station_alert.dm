@@ -4,7 +4,7 @@
 	desc = "Used to access the station's automated alert system."
 	icon_keyboard = "tech_key"
 	icon_screen = "alert:0"
-	light_color = "#e6ffff"
+	// light_color = "#e6ffff"
 	circuit = /obj/item/circuitboard/stationalert_engineering
 	var/datum/tgui_module/alarm_monitor/alarm_monitor
 	var/monitor_type = /datum/tgui_module/alarm_monitor/engineering

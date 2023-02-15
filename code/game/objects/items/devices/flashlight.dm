@@ -7,7 +7,7 @@
 	slot_flags = SLOT_BELT
 	matter = list(MAT_STEEL = 50, MAT_GLASS = 20)
 	action_button_name = "Toggle Flashlight"
-	light_wedge = LIGHT_WIDE
+	// light_wedge = LIGHT_WIDE
 
 	var/on = FALSE
 	/// Luminosity when on
@@ -51,7 +51,7 @@
 	if(brightness_level && power_usage)
 		if(cell.use(power_usage) != power_usage) //We weren't able to use our full power_usage amount!
 			visible_message(SPAN_WARNING("\The [src] flickers before going dull."))
-			set_light(FALSE)
+			// set_light(FALSE)
 			playsound(src.loc, 'sound/effects/sparks3.ogg', 10, 1, -3) //Small cue that your light went dull in your pocket.
 			on = FALSE
 			update_appearance()
@@ -75,19 +75,19 @@
 		update_appearance()
 
 /obj/item/flashlight/proc/set_flashlight()
-	if(light_wedge)
-		setDir(pick(NORTH, SOUTH, EAST, WEST))
-		if(spawn_dir)
-			setDir(spawn_dir)
+	// if(light_wedge)
+	// 	setDir(pick(NORTH, SOUTH, EAST, WEST))
+	// 	if(spawn_dir)
+	// 		setDir(spawn_dir)
 	if (on)
 		if(brightness_level == "low")
-			set_light(flashlight_range/2, flashlight_power*0.75, light_color)
+			// set_light(flashlight_range/2, flashlight_power*0.75, light_color)
 		else if(brightness_level == "high")
-			set_light(flashlight_range*1.5, flashlight_power*1.1, light_color)
+			// set_light(flashlight_range*1.5, flashlight_power*1.1, light_color)
 		else
-			set_light(flashlight_range, flashlight_power, light_color)
+			// set_light(flashlight_range, flashlight_power, light_color)
 	else
-		set_light(0)
+		// set_light(0)
 
 /obj/item/flashlight/update_appearance(updates)
 	. = ..()
@@ -237,7 +237,7 @@
 	w_class = ITEMSIZE_TINY
 	power_use = 0
 	flashlight_range = 2
-	light_wedge = LIGHT_OMNI
+	// light_wedge = LIGHT_OMNI
 
 /obj/item/flashlight/color	//Default color is blue, just roll with it.
 	name = "blue flashlight"
@@ -269,8 +269,8 @@
 	attack_verb = list ("smacked", "thwacked", "thunked")
 	matter = list(MAT_STEEL = 200, MAT_GLASS = 50)
 	hitsound = "swing_hit"
-	light_color = LIGHT_COLOR_FLUORESCENT_FLASHLIGHT
-	light_wedge = LIGHT_NARROW
+	// light_color = LIGHT_COLOR_FLUORESCENT_FLASHLIGHT
+	// light_wedge = LIGHT_NARROW
 
 /obj/item/flashlight/drone
 	name = "low-power flashlight"
@@ -292,8 +292,8 @@
 	w_class = ITEMSIZE_LARGE
 	power_use = 0
 	on = 1
-	light_wedge = LIGHT_OMNI
-	light_color = LIGHT_COLOR_FIRE
+	// light_wedge = LIGHT_OMNI
+	// light_color = LIGHT_COLOR_FIRE
 	flashlight_range = 4
 
 
@@ -302,7 +302,7 @@
 	desc = "A classic green-shaded desk lamp."
 	icon_state = "lampgreen"
 	brightness_on = 5
-	light_color = LIGHT_COLOR_TUNGSTEN
+	// light_color = LIGHT_COLOR_TUNGSTEN
 
 /obj/item/flashlight/lamp/verb/toggle_light()
 	set name = "Toggle light"
@@ -324,8 +324,8 @@
 	brightness_on = 8 // Pretty bright.
 	flashlight_power = 0.8
 	flashlight_range = 5
-	light_wedge = LIGHT_OMNI
-	light_color = LIGHT_COLOR_FLARE
+	// light_wedge = LIGHT_OMNI
+	// light_color = LIGHT_COLOR_FLARE
 
 	action_button_name = null //just pull it manually, neckbeard.
 	power_use = 0
@@ -393,8 +393,8 @@
 	item_state = "glowstick"
 	var/fuel = 0
 	power_use = 0
-	light_wedge = LIGHT_OMNI
-	light_color = LIGHT_COLOR_GREEN
+	// light_wedge = LIGHT_OMNI
+	// light_color = LIGHT_COLOR_GREEN
 	flashlight_power = 0.9
 	flashlight_range = 3
 
@@ -432,28 +432,28 @@
 	desc = "A red military-grade glowstick."
 	icon_state = "glowstick_red"
 	item_state = "glowstick_red"
-	light_color = LIGHT_COLOR_RED
+	// light_color = LIGHT_COLOR_RED
 
 /obj/item/flashlight/glowstick/blue
 	name = "blue glowstick"
 	desc = "A blue military-grade glowstick."
 	icon_state = "glowstick_blue"
 	item_state = "glowstick_blue"
-	light_color = LIGHT_COLOR_BLUE
+	// light_color = LIGHT_COLOR_BLUE
 
 /obj/item/flashlight/glowstick/orange
 	name = "orange glowstick"
 	desc = "A orange military-grade glowstick."
 	icon_state = "glowstick_orange"
 	item_state = "glowstick_orange"
-	light_color = LIGHT_COLOR_ORANGE
+	// light_color = LIGHT_COLOR_ORANGE
 
 /obj/item/flashlight/glowstick/yellow
 	name = "yellow glowstick"
 	desc = "A yellow military-grade glowstick."
 	icon_state = "glowstick_yellow"
 	item_state = "glowstick_yellow"
-	light_color = LIGHT_COLOR_YELLOW
+	// light_color = LIGHT_COLOR_YELLOW
 
 /obj/item/flashlight/slime
 	gender = PLURAL
@@ -462,7 +462,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "floor1" //not a slime extract sprite but... something close enough!
 	item_state = "slime"
-	light_color = LIGHT_COLOR_YELLOW
+	// light_color = LIGHT_COLOR_YELLOW
 	w_class = ITEMSIZE_TINY
 	brightness_on = 6
 	on = TRUE //Bio-luminesence has one setting, on.
@@ -470,7 +470,7 @@
 
 /obj/item/flashlight/slime/Initialize(mapload)
 	. = ..()
-	set_light(brightness_on, flashlight_power, light_color)
+	// set_light(brightness_on, flashlight_power, light_color)
 
 /obj/item/flashlight/slime/update_appearance(updates = ~UPDATE_ICON_STATE)
 	return ..()

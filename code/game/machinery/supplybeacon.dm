@@ -78,7 +78,7 @@
 	if(surplus() < 0.5)
 		if(user) to_chat(user, "<span class='notice'>The connected wire doesn't have enough current.</span>")
 		return
-	set_light(3, 3, "#00CCAA")
+	// set_light(3, 3, "#00CCAA")
 	icon_state = "beacon_active"
 	use_power = USE_POWER_IDLE
 	if(user) to_chat(user, "<span class='notice'>You activate the beacon. The supply drop will be dispatched soon.</span>")
@@ -89,7 +89,7 @@
 		icon_state = "beacon_depleted"
 	else
 		icon_state = "beacon"
-	set_light(0)
+	// set_light(0)
 	use_power = USE_POWER_OFF
 	target_drop_time = null
 	if(user) to_chat(user, "<span class='notice'>You deactivate the beacon.</span>")

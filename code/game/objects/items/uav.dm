@@ -19,8 +19,8 @@
 
 	//light_system = MOVABLE_LIGHT_DIRECTIONAL
 	//light_cone_y_offset = 5
-	light_range = 4
-	light_power = 4
+	// light_range = 4
+	// light_power = 4
 
 	var/power_per_process = 50 // About 6.5 minutes of use on a high-cell (10,000)
 	var/state = UAV_OFF
@@ -232,7 +232,7 @@
 	state = UAV_ON
 	update_icon()
 	start_hover()
-	set_light("#ffffff")
+	// set_light("#ffffff")
 	START_PROCESSING(SSobj, src)
 	no_masters_time = 0
 	visible_message(SPAN_NOTICE("[nickname] buzzes and lifts into the air."))
@@ -244,7 +244,7 @@
 	state = UAV_OFF
 	update_icon()
 	stop_hover()
-	set_light(0)
+	// set_light(0)
 	LAZYCLEARLIST(masters)
 	STOP_PROCESSING(SSobj, src)
 	visible_message(SPAN_NOTICE("[nickname] gracefully settles onto the ground."))

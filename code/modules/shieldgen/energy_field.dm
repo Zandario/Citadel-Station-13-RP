@@ -123,10 +123,10 @@
 	// Icon_state and Glow
 	if(density)
 		icon_state = "shield"
-		set_light(3, 3, "#66FFFF")
+		// set_light(3, 3, "#66FFFF")
 	else
 		icon_state = "shield_broken"
-		set_light(3, 5, "#FF9900")
+		// set_light(3, 5, "#FF9900")
 
 	var/list/overlays_to_add = list()
 	// Edge overlays

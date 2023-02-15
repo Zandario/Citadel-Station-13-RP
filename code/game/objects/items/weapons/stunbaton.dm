@@ -67,9 +67,9 @@
 		icon_state = "[initial(icon_state)]"
 
 	if(icon_state == "[initial(icon_state)]_active")
-		set_light(2, 1, lightcolor)
+		// set_light(2, 1, lightcolor)
 	else
-		set_light(0)
+		// set_light(0)
 
 /obj/item/melee/baton/examine(mob/user)
 	. = ..()

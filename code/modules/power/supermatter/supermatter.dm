@@ -52,7 +52,7 @@
 	density = 1
 	anchored = 0
 	rad_flags = RAD_NO_CONTAMINATE | RAD_BLOCK_CONTENTS
-	light_range = 4
+	// light_range = 4
 
 	var/gasefficency = 0.25
 
@@ -69,7 +69,7 @@
 	var/emergency_alert = "CRYSTAL DELAMINATION IMMINENT."
 	var/explosion_point = 1000
 
-	light_color = "#8A8A00"
+	// light_color = "#8A8A00"
 	var/warning_color = "#B8B800"
 	var/emergency_color = "#D9D900"
 
@@ -180,8 +180,8 @@
 
 //Changes color and luminosity of the light to these values if they were not already set
 /obj/machinery/power/supermatter/proc/shift_light(var/lum, var/clr)
-	if(lum != light_range || clr != light_color)
-		set_light(lum, l_color = clr)
+	// if(lum != light_range || clr != light_color)
+	// 	set_light(lum, l_color = clr)
 
 /obj/machinery/power/supermatter/proc/get_integrity()
 	var/integrity = damage / explosion_point
@@ -264,8 +264,8 @@
 			shift_light(7, emergency_color)
 		if(!istype(L, /turf/space) && (world.timeofday - lastwarning) >= WARNING_DELAY * 10)
 			announce_warning()
-	else
-		shift_light(4,initial(light_color))
+	// else
+	// 	shift_light(4,initial(light_color))
 	if(grav_pulling)
 		supermatter_pull(src)
 	// Vary volume by power produced.

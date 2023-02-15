@@ -13,7 +13,7 @@
 	use_power = TRUE
 	idle_power_usage = 15
 	active_power_usage = 200
-	light_color = "#FF0000"
+	// light_color = "#FF0000"
 
 /obj/machinery/vr_sleeper/Initialize(mapload)
 	. = ..()

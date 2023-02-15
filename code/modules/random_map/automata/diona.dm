@@ -53,7 +53,7 @@
 
 /obj/structure/diona/bulb/Initialize(mapload)
 	. = ..()
-	set_light(3,3,"#557733")
+	// set_light(3,3,"#557733")
 
 /datum/random_map/automata/diona
 	iterations = 3

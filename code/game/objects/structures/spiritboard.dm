@@ -56,7 +56,7 @@
 	//lighting check
 	var/light_amount = 0
 	var/turf/T = get_turf(src)
-	light_amount = T.get_lumcount()
+	light_amount = T.RL_GetBrightness()
 
 
 	if(light_amount > 0.2)

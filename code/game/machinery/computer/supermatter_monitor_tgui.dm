@@ -7,7 +7,7 @@
 	desc = "Allows to monitor nearby Supermatter crystals."
 	icon_keyboard = "generic_key"
 	icon_screen = "smmon_0"
-	light_color = "#00b000"
+	// light_color = "#00b000"
 	density = TRUE
 	anchored = TRUE
 	circuit = /obj/item/circuitboard/sm_monitor

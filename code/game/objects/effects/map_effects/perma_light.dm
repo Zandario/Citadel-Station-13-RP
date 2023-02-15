@@ -4,6 +4,6 @@
 	name = "permanent light"
 	icon_state = "permalight"
 
-	light_range = 3
-	light_power = 1
-	light_color = "#FFFFFF"
+	// light_range = 3
+	// light_power = 1
+	// light_color = "#FFFFFF"

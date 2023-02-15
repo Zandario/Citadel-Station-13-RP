@@ -7,7 +7,7 @@
 	desc = "Control the station's atmospheric systems from afar! Certified atmospherics technicians only."
 	icon_keyboard = "generic_key"
 	icon_screen = "comm_logs"
-	light_color = "#00b000"
+	// light_color = "#00b000"
 	density = TRUE
 	anchored = TRUE
 	circuit = /obj/item/circuitboard/atmoscontrol
@@ -25,7 +25,7 @@
 	icon_state = "pcu_engi"
 	icon_keyboard = "pcu_key"
 	density = FALSE
-	light_color = "#00cc00"
+	// light_color = "#00cc00"
 
 /obj/machinery/computer/atmoscontrol/attack_ai(mob/user)
 	ui_interact(user)

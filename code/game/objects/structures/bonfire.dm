@@ -219,10 +219,10 @@
 			I.appearance_flags = RESET_COLOR
 			overlays_to_add += I
 
-		var/light_strength = max(get_fuel_amount() / 2, 2)
-		set_light(light_strength, light_strength, "#FF9933")
-	else
-		set_light(0)
+		// var/light_strength = max(get_fuel_amount() / 2, 2)
+	// 	set_light(light_strength, light_strength, "#FF9933")
+	// else
+	// 	set_light(0)
 
 	if(grill)
 		var/image/grille_image = image(icon, "bonfire_grill")
@@ -386,10 +386,10 @@
 		I.appearance_flags = RESET_COLOR
 		add_overlay(I)
 
-		var/light_strength = max(get_fuel_amount() / 2, 2)
-		set_light(light_strength, light_strength, "#FF9933")
+		// var/light_strength = max(get_fuel_amount() / 2, 2)
+		// set_light(light_strength, light_strength, "#FF9933")
 	else
-		set_light(0)
+		// set_light(0)
 
 /obj/structure/fireplace/process(delta_time)
 	if(!check_oxygen())

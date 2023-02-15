@@ -12,7 +12,7 @@
 	density = 1
 	anchored = 1
 	animate_movement=1
-	light_range = 3
+	// light_range = 3
 
 	buckle_allowed = TRUE
 	buckle_flags = BUCKLING_PASS_PROJECTILES_UPWARDS
@@ -185,7 +185,7 @@
 	if(powered && cell.charge < charge_use)
 		return FALSE
 	on = 1
-	set_light(initial(light_range))
+	// set_light(initial(light_range))
 	update_icon()
 	return TRUE
 
@@ -193,7 +193,7 @@
 	if(!mechanical)
 		return FALSE
 	on = 0
-	set_light(0)
+	// set_light(0)
 	update_icon()
 
 /obj/vehicle_old/emag_act(var/remaining_charges, mob/user as mob)

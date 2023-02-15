@@ -183,13 +183,12 @@
 	icon_state = "particle-heavy"
 	damage = 80 // same as a laser cannon
 	armor_penetration = 25 //it explodes on the surface of things, so less armor pen than the laser cannon
-	light_range = 3
-	light_power = 1
-	light_color = "#CCFFFF"
+	// light_range = 3
+	// light_power = 1
+	// light_color = "#CCFFFF"
 
 /turf/simulated/mineral/bullet_act(var/obj/item/projectile/Proj)
 	if(istype(Proj, /obj/item/projectile/bullet/particle))
 		if(prob(Proj.damage))
 			GetDrilled()
 	..()
-

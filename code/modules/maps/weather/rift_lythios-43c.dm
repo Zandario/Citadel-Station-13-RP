@@ -433,7 +433,7 @@ var/datum/planet/lythios43c/planet_lythios43c = null
 /datum/weather/lythios43c/blood_moon
 	name = "blood moon"
 	light_modifier = 0.5
-	light_color = "#FF0000"
+	// light_color = "#FF0000"
 	flight_failure_modifier = 25
 	transition_chances = list(
 		WEATHER_BLOODMOON = 100
@@ -447,7 +447,7 @@ var/datum/planet/lythios43c/planet_lythios43c = null
 	name = "fallout"
 	icon_state = "fallout"
 	light_modifier = 0.7
-	light_color = "#CCFFCC"
+	// light_color = "#CCFFCC"
 	flight_failure_modifier = 30
 	transition_chances = list(
 		WEATHER_FALLOUT = 100

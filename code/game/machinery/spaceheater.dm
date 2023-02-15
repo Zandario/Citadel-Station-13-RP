@@ -24,9 +24,9 @@
 	if(panel_open)
 		add_overlay("sheater-open")
 	if(on)
-		set_light(3, 3, "#FFCC00")
+		// set_light(3, 3, "#FFCC00")
 	else
-		set_light(0)
+		// set_light(0)
 
 /obj/machinery/space_heater/examine(mob/user)
 	. = ..()

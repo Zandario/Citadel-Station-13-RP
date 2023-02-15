@@ -721,7 +721,7 @@ var/list/ai_verbs_default = list(
 	to_chat(src, "Camera lights [camera_light_on ? "activated" : "deactivated"].")
 	if(!camera_light_on)
 		if(camera)
-			camera.set_light(0)
+			// camera.set_light(0)
 			camera = null
 	else
 		lightNearbyCamera()
@@ -738,23 +738,23 @@ var/list/ai_verbs_default = list(
 		if(src.camera)
 			var/obj/machinery/camera/camera = near_range_camera(src.eyeobj)
 			if(camera && src.camera != camera)
-				src.camera.set_light(0)
+				// src.camera.set_light(0)
 				if(!camera.light_disabled)
 					src.camera = camera
-					src.camera.set_light(AI_CAMERA_LUMINOSITY)
+					// src.camera.set_light(AI_CAMERA_LUMINOSITY)
 				else
 					src.camera = null
 			else if(isnull(camera))
-				src.camera.set_light(0)
+				// src.camera.set_light(0)
 				src.camera = null
 		else
 			var/obj/machinery/camera/camera = near_range_camera(src.eyeobj)
 			if(camera && !camera.light_disabled)
 				src.camera = camera
-				src.camera.set_light(AI_CAMERA_LUMINOSITY)
+				// src.camera.set_light(AI_CAMERA_LUMINOSITY)
 		camera_light_on = world.timeofday + 1 * 20 // Update the light every 2 seconds.
 	else if(camera)
-		camera.set_light(0)
+		// camera.set_light(0)
 		camera = null
 
 /mob/living/silicon/ai/attackby(obj/item/W as obj, mob/user as mob)
@@ -855,13 +855,13 @@ var/list/ai_verbs_default = list(
 
 	if(stat == DEAD)
 		icon_state = selected_sprite.dead_icon
-		set_light(3, 1, selected_sprite.dead_light)
+		// set_light(3, 1, selected_sprite.dead_light)
 	else if(aiRestorePowerRoutine)
 		icon_state = selected_sprite.nopower_icon
-		set_light(1, 1, selected_sprite.nopower_light)
+		// set_light(1, 1, selected_sprite.nopower_light)
 	else
 		icon_state = selected_sprite.alive_icon
-		set_light(1, 1, selected_sprite.alive_light)
+		// set_light(1, 1, selected_sprite.alive_light)
 
 // Pass lying down or getting up to our pet human, if we're in a rig.
 /mob/living/silicon/ai/lay_down()

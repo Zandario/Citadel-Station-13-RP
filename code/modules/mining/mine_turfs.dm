@@ -150,8 +150,8 @@
 		return
 	density = FALSE
 	opacity = FALSE
-	recalc_atom_opacity()
-	reconsider_lights()
+	// recalc_atom_opacity()
+	// reconsider_lights()
 	regenerate_ao()
 	blocks_air = FALSE
 	can_build_into_floor = TRUE
@@ -165,8 +165,8 @@
 		return
 	density = TRUE
 	opacity = TRUE
-	recalc_atom_opacity()
-	reconsider_lights()
+	// recalc_atom_opacity()
+	// reconsider_lights()
 	regenerate_ao()
 	blocks_air = TRUE
 	can_build_into_floor = FALSE

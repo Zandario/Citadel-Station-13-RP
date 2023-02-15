@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 	name = "helm control console"
 	icon_keyboard = "teleport_key"
 	icon_screen = "helm"
-	light_color = "#7faaff"
+	// light_color = "#7faaff"
 	circuit = /obj/item/circuitboard/helm
 	core_skill = /datum/skill/pilot
 	var/autopilot = 0
@@ -38,7 +38,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 	icon_keyboard = null
 	icon_state = "adv_helm"
 	icon_screen = "adv_helm_screen"
-	light_color = "#70ffa0"
+	// light_color = "#70ffa0"
 
 /obj/machinery/computer/ship/helm/Initialize(mapload)
 	. = ..()
@@ -287,8 +287,8 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 /obj/machinery/computer/ship/navigation/telescreen/update_icon()
 	if(machine_stat & NOPOWER || machine_stat & BROKEN)
 		icon_state = "tele_off"
-		set_light(0)
+		// set_light(0)
 	else
 		icon_state = "tele_nav"
-		set_light(light_range_on, light_power_on)
+		// set_light(light_range_on, light_power_on)
 	..()

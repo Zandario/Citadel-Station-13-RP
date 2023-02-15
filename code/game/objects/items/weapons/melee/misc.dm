@@ -281,10 +281,10 @@
 		icon_state = initial(icon_state)
 
 	// Lights
-	if(active && flame_intensity)
-		set_light(flame_intensity, flame_intensity, flame_color)
-	else
-		set_light(0)
+	// if(active && flame_intensity)
+	// 	set_light(flame_intensity, flame_intensity, flame_color)
+	// else
+	// 	set_light(0)
 
 	var/mob/M = loc
 	if(istype(M))
@@ -519,10 +519,10 @@
 		item_state = initial(item_state)
 
 	// Lights
-	if(active && flame_intensity)
-		set_light(flame_intensity, flame_intensity, flame_color)
-	else
-		set_light(0)
+	// if(active && flame_intensity)
+	// 	set_light(flame_intensity, flame_intensity, flame_color)
+	// else
+	// 	set_light(0)
 
 	var/mob/M = loc
 	if(istype(M))

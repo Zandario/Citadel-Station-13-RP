@@ -11,7 +11,7 @@
 
 /turf/simulated/sky/Initialize(mapload)
 	. = ..()
-	set_light(2, 2, "#FFFFFF")
+	// set_light(2, 2, "#FFFFFF")
 
 /turf/simulated/sky/north
 	dir = NORTH
@@ -46,7 +46,7 @@
 
 /turf/simulated/sky/virgo3b/Initialize(mapload)
 	. = ..()
-	set_light(2, 2, src.color)
+	// set_light(2, 2, src.color)
 
 /turf/simulated/sky/virgo3b/north
 	dir = NORTH
@@ -76,7 +76,7 @@
 
 /turf/simulated/sky/lythios43c/Initialize()
 	. = ..()
-	set_light(2, 2, src.color)
+	// set_light(2, 2, src.color)
 
 /turf/simulated/sky/lythios43c/north
 	dir = NORTH
@@ -105,7 +105,7 @@
 
 /turf/simulated/sky/triumph/Initialize(mapload)
 	. = ..()
-	set_light(2, 2, src.color)
+	// set_light(2, 2, src.color)
 
 /turf/simulated/sky/triumph/north
 	dir = NORTH

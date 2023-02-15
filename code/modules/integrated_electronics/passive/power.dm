@@ -22,7 +22,7 @@
 
 /obj/item/integrated_circuit/passive/power/solar_cell/make_energy()
 	var/turf/T = get_turf(src)
-	var/light_amount = T ? T.get_lumcount() : 0
+	var/light_amount = T ? T.RL_GetBrightness() : 0
 	var/adjusted_power = max(max_power * light_amount, 0)
 	adjusted_power = round(adjusted_power, 0.1)
 	if(adjusted_power)

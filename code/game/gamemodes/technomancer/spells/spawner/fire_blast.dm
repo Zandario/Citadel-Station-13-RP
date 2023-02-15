@@ -24,9 +24,9 @@
 	desc = "Run!"
 	icon_state = "at_shield1"
 	time_to_die = 2.5 SECONDS // After which we go boom.
-	light_range = 4
-	light_power = 5
-	light_color = "#FF6A00"
+	// light_range = 4
+	// light_power = 5
+	// light_color = "#FF6A00"
 
 /obj/effect/temporary_effect/fire_blast/Destroy()
 	explosion(get_turf(src), -1, 1, 2, 5, adminlog = 1)

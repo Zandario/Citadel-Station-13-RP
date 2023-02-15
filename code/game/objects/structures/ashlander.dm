@@ -322,10 +322,10 @@
 /obj/machinery/appliance/cooker/grill/spit/update_icon()
 	. = ..()
 	if(lit)
-		set_light(3, 2, "#FF9933")
+		// set_light(3, 2, "#FF9933")
 		icon_state = "[on_icon]"
 	else
-		set_light(0)
+		// set_light(0)
 		icon_state = "[off_icon]"
 
 /obj/structure/ashlander/statue
@@ -335,7 +335,7 @@
 
 /obj/structure/ashlander/statue/Initialize(mapload)
 	. = ..()
-	set_light(3, 2, "#9463bb")
+	// set_light(3, 2, "#9463bb")
 
 /obj/structure/ashlander/statue/attack_hand(mob/user)
 	var/choice = tgui_alert(user, "Do you wish to pray to the statue?", "Interact With the Statue", list("Yes", "No"))

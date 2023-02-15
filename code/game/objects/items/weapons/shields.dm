@@ -362,9 +362,9 @@
 	if(active)
 		add_overlay(blade_overlay)
 		item_state = "[icon_state]_blade"
-		set_light(lrange, lpower, lcolor)
+		// set_light(lrange, lpower, lcolor)
 	else
-		set_light(0)
+		// set_light(0)
 		item_state = "[icon_state]"
 
 /obj/item/shield/energy/AltClick(mob/living/user)

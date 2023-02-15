@@ -350,7 +350,7 @@
 		if(!T)
 			update_xenochimera_hud(H, danger, feral_state)
 			return //Nullspace
-		var/darkish = T.get_lumcount() <= 0.1
+		var/darkish = T.RL_GetBrightness() <= 0.1
 
 		//Don't bother doing heavy lifting if we weren't going to give emotes anyway.
 		if(!prob(1))

@@ -2,7 +2,7 @@
 	name = "sensors console"
 	icon_keyboard = "teleport_key"
 	icon_screen = "teleport"
-	light_color = "#77fff8"
+	// light_color = "#77fff8"
 	circuit = /obj/item/circuitboard/sensors
 	extra_view = 4
 	var/obj/machinery/shipsensors/sensors
@@ -12,7 +12,7 @@
 	icon_keyboard = null
 	icon_state = "adv_sensors"
 	icon_screen = "adv_sensors_screen"
-	light_color = "#05A6A8"
+	// light_color = "#05A6A8"
 
 /obj/machinery/computer/ship/sensors/attempt_hook_up(obj/effect/overmap/visitable/ship/sector)
 	if(!(. = ..()))
@@ -127,11 +127,11 @@
 	..()
 	if(!linked)
 		return
-	if(sensors && sensors.use_power && sensors.powered())
-		var/sensor_range = round(sensors.range*1.5) + 1
-		linked.set_light(sensor_range + 0.5, 4)
-	else
-		linked.set_light(0)
+	// if(sensors && sensors.use_power && sensors.powered())
+	// 	var/sensor_range = round(sensors.range*1.5) + 1
+	// 	linked.set_light(sensor_range + 0.5, 4)
+	// else
+	// 	linked.set_light(0)
 
 /obj/machinery/shipsensors
 	name = "sensors suite"

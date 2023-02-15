@@ -462,7 +462,7 @@
 /datum/weather/virgo3b/blood_moon
 	name = "blood moon"
 	light_modifier = 0.5
-	light_color = "#FF0000"
+	// light_color = "#FF0000"
 	flight_failure_modifier = 25
 	transition_chances = list(
 		WEATHER_BLOODMOON = 100

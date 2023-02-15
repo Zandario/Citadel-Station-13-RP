@@ -10,7 +10,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 	anchored = 1
 	density = 1
 	plane = ABOVE_PLANE
-	light_range = 6
+	// light_range = 6
 	unacidable = 1 //Don't comment this out.
 
 	var/current_size = 1

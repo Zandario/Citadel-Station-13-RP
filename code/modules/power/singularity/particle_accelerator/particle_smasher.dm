@@ -111,21 +111,21 @@
 	else
 		icon_state = initial(icon_state)
 
-	if(target && energy)
-		var/power_percent = round((energy / max_energy) * 100)
-		light_color = target.material.icon_colour
-		switch(power_percent)
-			if(0 to 25)
-				light_range = 1
-			if(26 to 50)
-				light_range = 2
-			if(51 to 75)
-				light_range = 3
-			if(76 to INFINITY)
-				light_range = 4
-		set_light(light_range, 2, light_color)
-	else
-		set_light(0, 0, "#FFFFFF")
+	// if(target && energy)
+	// 	var/power_percent = round((energy / max_energy) * 100)
+	// 	light_color = target.material.icon_colour
+	// 	switch(power_percent)
+	// 		if(0 to 25)
+	// 			light_range = 1
+	// 		if(26 to 50)
+	// 			light_range = 2
+	// 		if(51 to 75)
+	// 			light_range = 3
+	// 		if(76 to INFINITY)
+	// 			light_range = 4
+	// 	set_light(light_range, 2, light_color)
+	// else
+	// 	set_light(0, 0, "#FFFFFF")
 
 /obj/machinery/particle_smasher/bullet_act(var/obj/item/projectile/Proj)
 	if(istype(Proj, /obj/item/projectile/beam))

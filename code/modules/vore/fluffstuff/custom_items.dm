@@ -1399,9 +1399,9 @@
 	icon_state = "[base_icon][wielded][status]"
 	item_state = icon_state
 	if(status==1)
-		set_light(2, 2, lightcolor)
+		// set_light(2, 2, lightcolor)
 	else
-		set_light(0)
+		// set_light(0)
 
 /obj/item/melee/baton/fluff/stunstaff/dropped(mob/user, flags, atom/newLoc)
 	..()

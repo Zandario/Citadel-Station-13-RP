@@ -22,8 +22,8 @@
 	desc = "A floating crystal that hums with an unearthly energy."
 	icon_state = "pylon"
 	var/isbroken = 0
-	light_range = 5
-	light_color = "#3e0000"
+	// light_range = 5
+	// light_color = "#3e0000"
 	var/obj/item/wepon = null
 
 	var/shatter_message = "The pylon shatters!"
@@ -61,7 +61,7 @@
 			isbroken = 1
 			density = 0
 			icon_state = "[initial(icon_state)]-broken"
-			set_light(0)
+			// set_light(0)
 
 /obj/structure/cult/pylon/proc/attackpylon(mob/user as mob, var/damage)
 	if(!isbroken)
@@ -77,7 +77,7 @@
 			isbroken = 1
 			density = 0
 			icon_state = "[initial(icon_state)]-broken"
-			set_light(0)
+			// set_light(0)
 		else
 			to_chat(user, "You hit \the [src]!")
 			playsound(get_turf(src),impact_sound, 75, 1)
@@ -96,7 +96,7 @@
 		isbroken = 0
 		density = 1
 		icon_state = initial(icon_state)
-		set_light(5)
+		// set_light(5)
 
 // Returns 1 if the pylon does something special.
 /obj/structure/cult/pylon/proc/pylon_unique()
@@ -133,8 +133,8 @@
 	var/spawnable = null
 
 /obj/effect/gateway/active
-	light_range=5
-	light_color="#ff0000"
+	// light_range=5
+	// light_color="#ff0000"
 	spawnable=list(
 		/mob/living/simple_mob/animal/space/bats,
 		/mob/living/simple_mob/creature,
@@ -142,8 +142,8 @@
 	)
 
 /obj/effect/gateway/active/cult
-	light_range=5
-	light_color="#ff0000"
+	// light_range=5
+	// light_color="#ff0000"
 	spawnable=list(
 		/mob/living/simple_mob/animal/space/bats/cult,
 		/mob/living/simple_mob/creature/cult,

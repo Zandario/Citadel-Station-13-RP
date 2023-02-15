@@ -70,9 +70,9 @@
 	fire_sound = 'sound/weapons/Gunshot2.ogg'
 	taser_effect = 1
 	agony = 40
-	light_range = 2
-	light_power = 0.5
-	light_color = "#FFFFFF"
+	// light_range = 2
+	// light_power = 0.5
+	// light_color = "#FFFFFF"
 	//Damage will be handled on the MOB side, to prevent window shattering.
 
 /obj/item/projectile/energy/electrode/strong
@@ -94,9 +94,9 @@
 	nodamage = 1
 	damage_type = CLONE
 	irradiate = 40
-	light_range = 2
-	light_power = 0.5
-	light_color = "#33CC00"
+	// light_range = 2
+	// light_power = 0.5
+	// light_color = "#33CC00"
 
 	combustion = FALSE
 
@@ -160,9 +160,9 @@
 	damage = 20
 	damage_type = TOX
 	irradiate = 20
-	light_range = 2
-	light_power = 0.5
-	light_color = "#33CC00"
+	// light_range = 2
+	// light_power = 0.5
+	// light_color = "#33CC00"
 
 	combustion = FALSE
 
@@ -215,7 +215,7 @@
 	pass_flags = ATOM_PASS_TABLE | ATOM_PASS_GLASS | ATOM_PASS_GRILLE
 	damage_type = BURN
 	check_armour = "energy"
-	light_color = "#0000FF"
+	// light_color = "#0000FF"
 
 	embed_chance = 0
 	muzzle_type = /obj/effect/projectile/muzzle/pulse

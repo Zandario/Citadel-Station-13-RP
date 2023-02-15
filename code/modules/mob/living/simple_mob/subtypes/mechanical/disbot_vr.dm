@@ -39,7 +39,7 @@
 	harm_intent_damage = 3
 	melee_damage_lower = 6
 	melee_damage_upper = 9
-	light_color = "#8a0707"
+	// light_color = "#8a0707"
 	attacktext = "drugged"
 	attack_sound = 'sound/weapons/bite.ogg'
 

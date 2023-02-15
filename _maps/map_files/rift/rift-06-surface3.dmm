@@ -4696,8 +4696,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/light{
-	dir = 8;
-	light_range = 12
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/general)
@@ -6637,8 +6636,7 @@
 /area/hydroponics)
 "mG" = (
 /obj/machinery/light{
-	dir = 8;
-	light_range = 12
+	dir = 8
 	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -7016,8 +7014,7 @@
 	dir = 4
 	},
 /obj/machinery/light{
-	dir = 8;
-	light_range = 12
+	dir = 8
 	},
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock{
 	frequency = 1379;
@@ -7061,8 +7058,7 @@
 	uid = "exploration"
 	},
 /obj/machinery/light{
-	dir = 8;
-	light_range = 12
+	dir = 8
 	},
 /obj/item/storage/toolbox/mechanical,
 /obj/item/tank/phoron,
@@ -17817,8 +17813,7 @@
 	pixel_x = -32
 	},
 /obj/machinery/light{
-	dir = 8;
-	light_range = 12
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/cockpit)
@@ -20823,8 +20818,7 @@
 	pixel_x = -24
 	},
 /obj/machinery/light{
-	dir = 8;
-	light_range = 12
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/general)

@@ -3403,8 +3403,7 @@
 /area/medical/virologymaint)
 "cyU" = (
 /obj/machinery/light{
-	dir = 8;
-	light_range = 12
+	dir = 8
 	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -19595,8 +19594,7 @@
 /area/maintenance/starboard)
 "mKQ" = (
 /obj/machinery/light{
-	dir = 8;
-	light_range = 12
+	dir = 8
 	},
 /obj/machinery/firealarm{
 	dir = 4;

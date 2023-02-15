@@ -184,7 +184,7 @@
 	var/image/eye_glow = image(icon,"glow-[icon_state]")
 	eye_glow.plane = ABOVE_LIGHTING_PLANE
 	add_overlay(eye_glow)
-	set_light(2, -2, l_color = "#FFFFFF")
+	// set_light(2, -2, l_color = "#FFFFFF")
 
 /mob/living/simple_mob/construct/proc/remove_glow()
 	cut_overlays()

@@ -9,7 +9,7 @@ var/global/list/minor_air_alarms = list()
 	circuit = /obj/item/circuitboard/atmos_alert
 	icon_keyboard = "atmos_key"
 	icon_screen = "alert:0"
-	light_color = "#e6ffff"
+	// light_color = "#e6ffff"
 
 /obj/machinery/computer/atmos_alert/Initialize(mapload)
 	. = ..()

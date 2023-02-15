@@ -26,14 +26,14 @@
 		if (bound_overlay && bound_overlay.dir != dir)
 			bound_overlay.setDir(dir)
 
-	if (light_source_solo)
-		update_light(light_source_solo.source_atom)
-	else if (light_source_multi)
-		var/datum/light_source/L
-		var/thing
-		for (thing in light_source_multi)
-			L = thing
-			update_light(L.source_atom)
+	// if (light_source_solo)
+	// 	update_light(light_source_solo.source_atom)
+	// else if (light_source_multi)
+	// 	var/datum/light_source/L
+	// 	var/thing
+	// 	for (thing in light_source_multi)
+	// 		L = thing
+	// 		update_light(L.source_atom)
 
 /atom/movable/setDir(ndir)
 	. = ..()

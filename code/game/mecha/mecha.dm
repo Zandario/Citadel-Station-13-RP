@@ -533,10 +533,10 @@
 			log_message("Now taking air from [use_internal_tank?"internal airtank":"environment"].")
 		if("Toggle Light")
 			lights = !lights
-			if(lights)
-				set_light(light_range + lights_power)
-			else
-				set_light(light_range - lights_power)
+			// if(lights)
+			// 	set_light(light_range + lights_power)
+			// else
+			// 	set_light(light_range - lights_power)
 			occupant_message("Toggled lights [lights?"on":"off"].")
 			log_message("Toggled lights [lights?"on":"off"].")
 			playsound(src, 'sound/mecha/heavylightswitch.ogg', 50, 1)
@@ -1738,8 +1738,10 @@
 /obj/mecha/verb/lights()
 	if(usr!=occupant)	return
 	lights = !lights
-	if(lights)	set_light(light_range + lights_power)
-	else		set_light(light_range - lights_power)
+	// if(lights)
+	// 	set_light(light_range + lights_power)
+	// else
+	// 	set_light(light_range - lights_power)
 	src.occupant_message("Toggled lights [lights?"on":"off"].")
 	log_message("Toggled lights [lights?"on":"off"].")
 	playsound(src, 'sound/mecha/heavylightswitch.ogg', 50, 1)

@@ -35,10 +35,10 @@
 /obj/machinery/power/grid_checker/update_icon()
 	if(power_failing)
 		icon_state = "gridchecker_off"
-		set_light(2, 2, "#F86060")
+		// set_light(2, 2, "#F86060")
 	else
 		icon_state = "gridchecker_on"
-		set_light(2, 2, "#A8B0F8")
+		// set_light(2, 2, "#A8B0F8")
 
 /obj/machinery/power/grid_checker/attackby(obj/item/W, mob/user)
 	if(!user)

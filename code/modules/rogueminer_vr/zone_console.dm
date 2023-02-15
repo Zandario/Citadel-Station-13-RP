@@ -8,7 +8,7 @@
 	desc = "Used to monitor the nearby asteroid belt and detect new areas."
 	icon_keyboard = "tech_key"
 	icon_screen = "request"
-	light_color = "#315ab4"
+	// light_color = "#315ab4"
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 250
 	active_power_usage = 500

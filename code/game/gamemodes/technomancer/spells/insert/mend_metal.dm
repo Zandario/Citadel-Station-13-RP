@@ -13,7 +13,7 @@
 	icon_state = "mend_wounds"
 	cast_methods = CAST_MELEE
 	aspect = ASPECT_BIOMED
-	light_color = "#FF5C5C"
+	// light_color = "#FF5C5C"
 	inserting = /obj/item/inserted_spell/mend_metal
 
 /obj/item/inserted_spell/mend_metal/on_insert()

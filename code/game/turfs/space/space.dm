@@ -5,7 +5,7 @@
 	plane = SPACE_PLANE
 	mz_flags = MZ_ATMOS_BOTH | MZ_OPEN_BOTH
 
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	// dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	permit_ao = FALSE
 
 	initial_gas_mix = GAS_STRING_VACUUM
@@ -86,16 +86,16 @@
 	if(!(CONFIG_GET(flag/starlight)))
 		return
 
-	for (var/turf/T in RANGE_TURFS(1, src))
+	// for (var/turf/T in RANGE_TURFS(1, src))
 		// Fuck if I know how these turfs are located in an area that is not an area.
-		if (!isloc(T.loc) || !TURF_IS_DYNAMICALLY_LIT_UNSAFE(T))
-			continue
+	// 	if (!isloc(T.loc) || !TURF_IS_DYNAMICALLY_LIT_UNSAFE(T))
+	// 		continue
 
-		set_ambient_light(COLOR_WHITE)
-		return
+	// 	set_ambient_light(COLOR_WHITE)
+	// 	return
 
-	if (TURF_IS_AMBIENT_LIT_UNSAFE(src))
-		clear_ambient_light()
+	// if (TURF_IS_AMBIENT_LIT_UNSAFE(src))
+	// 	clear_ambient_light()
 
 
 /turf/space/attackby(obj/item/C as obj, mob/user as mob)

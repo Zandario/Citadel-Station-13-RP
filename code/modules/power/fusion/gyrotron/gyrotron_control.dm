@@ -2,7 +2,7 @@
 	name = "gyrotron control console"
 	icon = 'icons/obj/machines/power/fusion.dmi'
 	icon_state = "engine"
-	light_color = COLOR_BLUE
+	// light_color = COLOR_BLUE
 	circuit = /obj/item/circuitboard/gyrotron_control
 
 	var/id_tag
@@ -106,14 +106,14 @@
 	if(machine_stat & (BROKEN))
 		icon = 'icons/obj/computer.dmi'
 		icon_state = "broken"
-		set_light(0)
+		// set_light(0)
 
 	if(machine_stat & (NOPOWER))
 		icon = 'icons/obj/computer.dmi'
 		icon_state = "computer"
-		set_light(0)
+		// set_light(0)
 
 	if(!(machine_stat & (BROKEN|NOPOWER)))
 		icon = initial(icon)
 		icon_state = initial(icon_state)
-		set_light(light_range_on, light_power_on)
+		// set_light(light_range_on, light_power_on)

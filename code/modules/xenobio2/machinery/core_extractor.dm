@@ -91,11 +91,11 @@
 
 /obj/machinery/slime/extractor/proc/update_light_color()
 	if(src.occupant && !(inuse))
-		set_light(2, 2, occupiedcolor)
+		// set_light(2, 2, occupiedcolor)
 	else if(src.occupant)
-		set_light(2, 2, operatingcolor)
+		// set_light(2, 2, operatingcolor)
 	else
-		set_light(2, 2, emptycolor)
+		// set_light(2, 2, emptycolor)
 
 /obj/machinery/slime/extractor/proc/extract_cores()
 	if(!src.occupant)

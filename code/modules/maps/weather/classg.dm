@@ -131,7 +131,7 @@
 	name = "fallout"
 	icon_state = "fallout"
 	light_modifier = 0.7
-	light_color = "#CCFFCC"
+	// light_color = "#CCFFCC"
 	flight_failure_modifier = 30
 	transition_chances = list(
 		WEATHER_CLEAR	= 50,

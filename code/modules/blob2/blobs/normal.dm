@@ -2,7 +2,7 @@
 	name = "normal blob"
 	base_name = "blob"
 	icon_state = "blob"
-	light_range = 0
+	// light_range = 0
 	integrity = 21 //doesn't start at full health
 	max_integrity = 25
 	health_regen = 1

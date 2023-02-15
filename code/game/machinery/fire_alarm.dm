@@ -37,29 +37,29 @@ FIRE ALARM
 	cut_overlays()
 
 	if(panel_open)
-		set_light(0)
+		// set_light(0)
 		return
 
 	if(machine_stat & BROKEN)
 		icon_state = "firex"
-		set_light(0)
+		// set_light(0)
 	else if(machine_stat & NOPOWER)
 		icon_state = "firep"
-		set_light(0)
+		// set_light(0)
 	else
 		if(!detecting)
 			icon_state = "fire1"
-			set_light(l_range = 4, l_power = 0.9, l_color = "#ff0000")
+			// set_light(l_range = 4, l_power = 0.9, l_color = "#ff0000")
 		else
 			icon_state = "fire0"
-			switch(seclevel)
-				if("green")	set_light(l_range = 2, l_power = 0.25, l_color = "#00ff00")
-				if("yellow")	set_light(l_range = 2, l_power = 0.25, l_color = "#ffff00")
-				if("violet")	set_light(l_range = 2, l_power = 0.25, l_color = "#9933ff")
-				if("orange")	set_light(l_range = 2, l_power = 0.25, l_color = "#ff9900")
-				if("blue")	set_light(l_range = 2, l_power = 0.25, l_color = "#1024A9")
-				if("red")	set_light(l_range = 4, l_power = 0.9, l_color = "#ff0000")
-				if("delta")	set_light(l_range = 4, l_power = 0.9, l_color = "#FF6633")
+			// switch(seclevel)
+			// 	if("green")		set_light(l_range = 2, l_power = 0.25, l_color = "#00ff00")
+			// 	if("yellow")	set_light(l_range = 2, l_power = 0.25, l_color = "#ffff00")
+			// 	if("violet")	set_light(l_range = 2, l_power = 0.25, l_color = "#9933ff")
+			// 	if("orange")	set_light(l_range = 2, l_power = 0.25, l_color = "#ff9900")
+			// 	if("blue")		set_light(l_range = 2, l_power = 0.25, l_color = "#1024A9")
+			// 	if("red")		set_light(l_range = 4, l_power = 0.9, l_color = "#ff0000")
+			// 	if("delta")		set_light(l_range = 4, l_power = 0.9, l_color = "#FF6633")
 		add_overlay("overlay_[seclevel]")
 
 /obj/machinery/firealarm/fire_act(datum/gas_mixture/air, temperature, volume)

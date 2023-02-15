@@ -43,7 +43,7 @@
 
 /obj/item/spell/aura/Initialize(mapload)
 	. = ..()
-	set_light(7, 4, l_color = glow_color)
+	// set_light(7, 4, l_color = glow_color)
 	START_PROCESSING(SSobj, src)
 
 /obj/item/spell/aura/Destroy()

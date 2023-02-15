@@ -229,9 +229,9 @@
 	icon = 'icons/obj/survival_pod_vend.dmi'
 	icon_on = "donkvendor"
 	icon_off = "donkvendor"
-	light_range = 5
-	light_power = 1.2
-	light_color = "#DDFFD3"
+	// light_range = 5
+	// light_power = 1.2
+	// light_color = "#DDFFD3"
 	pixel_y = -4
 	max_n_of_items = 100
 

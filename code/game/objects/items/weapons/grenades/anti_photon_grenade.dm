@@ -8,14 +8,14 @@
 
 /obj/item/grenade/anti_photon/detonate()
 	playsound(src.loc, 'sound/effects/phasein.ogg', 50, 1, 5)
-	set_light(10, -10, "#FFFFFF")
+	// set_light(10, -10, "#FFFFFF")
 
 	var/extra_delay = rand(0,90)
 
 	spawn(extra_delay)
-		spawn(200)
-			if(prob(10+extra_delay))
-				set_light(10, 10, "#[num2hex(rand(64,255))][num2hex(rand(64,255))][num2hex(rand(64,255))]")
+		// spawn(200)
+		// 	if(prob(10+extra_delay))
+		// 		set_light(10, 10, "#[num2hex(rand(64,255))][num2hex(rand(64,255))][num2hex(rand(64,255))]")
 		spawn(210)
 			..()
 			playsound(src.loc, 'sound/effects/bang.ogg', 50, 1, 5)

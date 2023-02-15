@@ -9,7 +9,7 @@
 	idle_power_usage = 10
 	active_power_usage = 2000
 	circuit = /obj/item/circuitboard/tele_pad
-	light_color = LIGHT_COLOR_BLUEGREEN
+	// light_color = LIGHT_COLOR_BLUEGREEN
 	var/obj/machinery/computer/teleporter/com
 
 /obj/machinery/tele_pad/Initialize(mapload)
@@ -29,9 +29,9 @@
 		I.plane = ABOVE_LIGHTING_PLANE
 		I.layer = ABOVE_LIGHTING_LAYER
 		add_overlay(I)
-		set_light(0.4, 1.2, 4, 10)
+		// set_light(0.4, 1.2, 4, 10)
 	else
-		set_light(0)
+		// set_light(0)
 		update_use_power(USE_POWER_IDLE)
 		if(operable())
 			var/image/I = image(icon, src, "[initial(icon_state)]_idle_overlay")

@@ -6,7 +6,7 @@
 	icon_state = "mend_all"
 	cast_methods = CAST_MELEE
 	aspect = ASPECT_BIOMED
-	light_color = "#FF5C5C"
+	// light_color = "#FF5C5C"
 	modifier_type = /datum/modifier/technomancer/mend_life
 	modifier_duration = 1 MINUTE
 

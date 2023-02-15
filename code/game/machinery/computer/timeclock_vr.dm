@@ -10,7 +10,7 @@
 	icon = 'icons/obj/machines/timeclock_vr.dmi'
 	icon_state = "timeclock"
 	icon_keyboard = null
-	light_color = "#0099ff"
+	// light_color = "#0099ff"
 	light_power_on = 0.5
 	layer = ABOVE_WINDOW_LAYER
 	density = FALSE
@@ -46,9 +46,9 @@
 	if(old_stat != machine_stat)
 		update_icon()
 	if(machine_stat & NOPOWER)
-		set_light(0)
+		// set_light(0)
 	else
-		set_light(light_range_on, light_power_on)
+		// set_light(light_range_on, light_power_on)
 
 /obj/machinery/computer/timeclock/attackby(obj/I, mob/user)
 	if(istype(I, /obj/item/card/id))

@@ -367,8 +367,8 @@
 							to_chat(M, "<font color=#4F49AF>\The [piece] [is_sealing ? "cinches tight again your chest" : "releases your chest"].</font>")
 						if("helmet")
 							to_chat(M, "<font color=#4F49AF>\The [piece] hisses [is_sealing ? "closed" : "open"].</font>")
-							if(helmet)
-								update_light(helmet)
+							// if(helmet)
+							// 	update_light(helmet)
 
 					//sealed pieces become airtight, protecting against diseases
 					if (is_sealing)
@@ -871,8 +871,8 @@
 			else
 				to_chat(H, "<span class='notice'>Your [use_obj.name] [use_obj.gender == PLURAL ? "deploy" : "deploys"] swiftly.</span>")
 
-	if(piece == "helmet" && helmet)
-		update_light(helmet)
+	// if(piece == "helmet" && helmet)
+	// 	update_light(helmet)
 
 /obj/item/rig/proc/deploy(mob/M,var/sealed)
 

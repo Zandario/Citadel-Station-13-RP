@@ -468,7 +468,7 @@
 		//Shadekin
 		if("darkness")
 			var/turf/T = get_turf(usr)
-			var/darkness = round(1 - T.get_lumcount(),0.1)
+			var/darkness = round(1 - T.RL_GetBrightness(),0.1)
 			to_chat(usr,"<span class='notice'><b>Darkness:</b> [darkness]</span>")
 		if("energy")
 			var/mob/living/simple_mob/shadekin/SK = usr
@@ -502,7 +502,7 @@
 						feral_passing = FALSE
 					if(feral_passing)
 						var/turf/T = get_turf(H)
-						if(T.get_lumcount() <= 0.1)
+						if(T.RL_GetBrightness() <= 0.1)
 							to_chat(usr, "<span class='notice'>You are slowly calming down in darkness' safety...</span>")
 						else
 							to_chat(usr, "<span class='notice'>You are slowly calming down... But safety of darkness is much preferred.</span>")

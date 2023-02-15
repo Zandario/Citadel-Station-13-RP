@@ -127,9 +127,9 @@
 		icon_state = "[default_icon_state][on]"
 
 	if(on)
-		set_light(2, 1, baton_glow)
+		// set_light(2, 1, baton_glow)
 	else
-		set_light(0)
+		// set_light(0)
 
 /mob/living/bot/secbot/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

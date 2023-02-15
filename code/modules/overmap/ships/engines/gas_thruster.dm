@@ -195,7 +195,7 @@
 	name = "engine exhaust"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
-	light_color = "#ed9200"
+	// light_color = "#ed9200"
 	anchored = 1
 
 /obj/effect/engine_exhaust/Initialize(mapload, ndir, flame)
@@ -205,7 +205,7 @@
 		var/turf/T = loc
 		if(istype(T))
 			T.hotspot_expose(1000,125)
-		set_light(0.5, 3)
+		// set_light(0.5, 3)
 	setDir(ndir)
 	QDEL_IN(src, 20)
 

@@ -54,11 +54,11 @@
 
 /obj/machinery/slime/replicator/proc/update_light_color()
 	if(src.core && !(inuse))
-		set_light(2, 2, occupiedcolor)
+		// set_light(2, 2, occupiedcolor)
 	else if(src.core)
-		set_light(2, 2, operatingcolor)
+		// set_light(2, 2, operatingcolor)
 	else
-		set_light(2, 2, emptycolor)
+		// set_light(2, 2, emptycolor)
 
 /obj/machinery/slime/replicator/proc/replicate_slime()
 	if(!src.core)
@@ -145,4 +145,3 @@
 							/obj/item/stock_parts/matter_bin = 1,
 							/obj/item/stock_parts/micro_laser = 1
 							)
-

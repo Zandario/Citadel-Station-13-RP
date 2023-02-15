@@ -5,7 +5,7 @@
 	desc = "Used to command and control the station. Can relay long-range communications."
 	icon_keyboard = "tech_key"
 	icon_screen = "comm"
-	light_color = "#0099ff"
+	// light_color = "#0099ff"
 	req_access = list(access_heads)
 	circuit = /obj/item/circuitboard/communications
 	var/prints_intercept = 1

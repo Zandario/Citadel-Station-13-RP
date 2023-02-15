@@ -154,7 +154,7 @@
 	name = "ash storm"
 	icon_state = "ashfall"
 	light_modifier = 0.5
-	light_color = "#1a1111ff"
+	// light_color = "#1a1111ff"
 	temp_high = 323.15	// 50c
 	temp_low = 313.15	// 40c
 	wind_high = 6

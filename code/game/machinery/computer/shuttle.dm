@@ -3,7 +3,7 @@
 	desc = "For shuttle control."
 	icon_keyboard = "tech_key"
 	icon_screen = "shuttle"
-	light_color = "#00ffff"
+	// light_color = "#00ffff"
 	var/auth_need = 3
 	var/list/authorized = list(  )
 

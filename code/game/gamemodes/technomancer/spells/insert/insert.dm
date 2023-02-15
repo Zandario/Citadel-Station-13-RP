@@ -13,7 +13,7 @@
 
 /obj/item/spell/insert/Initialize(mapload)
 	. = ..()
-	set_light(spell_light_range, spell_light_intensity, l_color = light_color)
+	// set_light(spell_light_range, spell_light_intensity, l_color = light_color)
 
 /obj/item/inserted_spell
 	var/mob/living/carbon/human/origin = null
@@ -25,7 +25,7 @@
 	host = loc
 	origin = user
 	if(light_color)
-		set_light(inserter.spell_light_range, inserter.spell_light_intensity, inserter.spell_color)
+		// set_light(inserter.spell_light_range, inserter.spell_light_intensity, inserter.spell_color)
 	on_insert()
 
 /obj/item/inserted_spell/proc/on_insert()

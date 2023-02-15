@@ -27,11 +27,11 @@
 		return
 
 	// If the cell is almost empty rarely "flicker" the light. Aesthetic only.
-	if((cell.percent() < 10) && prob(5))
-		set_light(brightness_on/2, brightness_on/4)
-		spawn(20)
-			if(on)
-				set_light(brightness_on, brightness_on/2)
+	// if((cell.percent() < 10) && prob(5))
+	// 	set_light(brightness_on/2, brightness_on/4)
+	// 	spawn(20)
+	// 		if(on)
+	// 			set_light(brightness_on, brightness_on/2)
 
 	cell.use(DYNAMIC_W_TO_CELL_UNITS(use, 1))
 
@@ -43,7 +43,7 @@
 		return FALSE
 
 	on = TRUE
-	set_light(brightness_on, brightness_on / 2)
+	// set_light(brightness_on, brightness_on / 2)
 	update_icon()
 	if(loud)
 		visible_message("\The [src] turns on.")
@@ -51,7 +51,7 @@
 
 /obj/machinery/floodlight/proc/turn_off(loud = FALSE)
 	on = FALSE
-	set_light(0, 0)
+	// set_light(0, 0)
 	update_icon()
 	if(loud)
 		visible_message("\The [src] shuts down.")
@@ -75,7 +75,7 @@
 
 		cell = null
 		on = FALSE
-		set_light(0)
+		// set_light(0)
 		to_chat(user, "You remove the power cell")
 		update_icon()
 		return

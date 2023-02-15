@@ -240,8 +240,8 @@ var/global/list/light_type_cache = list()
 	active_power_usage = 10
 	power_channel = LIGHT // Lights are calc'd via area so they dont need to be in the machine list
 
-	light_range = 8
-	light_power = 0.8
+	// light_range = 8
+	// light_power = 0.8
 
 	/// 1 if on, 0 if off
 	var/on = 0
@@ -379,15 +379,15 @@ var/global/list/light_type_cache = list()
 /obj/machinery/light/Initialize(mapload, obj/machinery/light_construct/construct)
 	. = ..(mapload)
 
-	switch (dir)
-		if (NORTH)
-			light_offset_y = WORLD_ICON_SIZE * 0.5
-		if (SOUTH)
-			light_offset_y = WORLD_ICON_SIZE * -0.5
-		if (EAST)
-			light_offset_x = WORLD_ICON_SIZE * 0.5
-		if (WEST)
-			light_offset_x = WORLD_ICON_SIZE * -0.5
+	// switch (dir)
+	// 	if (NORTH)
+	// 		light_offset_y = WORLD_ICON_SIZE * 0.5
+	// 	if (SOUTH)
+	// 		light_offset_y = WORLD_ICON_SIZE * -0.5
+	// 	if (EAST)
+	// 		light_offset_x = WORLD_ICON_SIZE * 0.5
+	// 	if (WEST)
+	// 		light_offset_x = WORLD_ICON_SIZE * -0.5
 
 	if(construct)
 		start_with_cell = FALSE
@@ -483,38 +483,39 @@ var/global/list/light_type_cache = list()
 		playsound(src.loc, 'sound/effects/lighton.ogg', 65, 1)
 		needsound = FALSE // Don't play sound again until we've been turned off
 
-	if(on)
-		var/correct_range = nightshift_enabled ? brightness_range_ns : brightness_range
-		var/correct_power = nightshift_enabled ? brightness_power_ns : brightness_power
-		var/correct_color = nightshift_enabled ? brightness_color_ns : brightness_color
-		if(light_range != correct_range || light_power != correct_power || light_color != correct_color)
-			if(!auto_flicker)
-				switchcount++
-			if(rigged)
-				if(status == LIGHT_OK && trigger)
+	// if(on)
+	// 	var/correct_range = nightshift_enabled ? brightness_range_ns : brightness_range
+	// 	var/correct_power = nightshift_enabled ? brightness_power_ns : brightness_power
+	// 	var/correct_color = nightshift_enabled ? brightness_color_ns : brightness_color
+	// 	if(light_range != correct_range || light_power != correct_power || light_color != correct_color)
+	// 		if(!auto_flicker)
+	// 			switchcount++
+	// 		if(rigged)
+	// 			if(status == LIGHT_OK && trigger)
 
-					log_admin("LOG: Rigged light explosion, last touched by [fingerprintslast]")
-					message_admins("LOG: Rigged light explosion, last touched by [fingerprintslast]")
+	// 				log_admin("LOG: Rigged light explosion, last touched by [fingerprintslast]")
+	// 				message_admins("LOG: Rigged light explosion, last touched by [fingerprintslast]")
 
-					explode()
-			else if( prob( min(60, switchcount*switchcount*0.01) ) )
-				if(status == LIGHT_OK && trigger)
-					status = LIGHT_BURNED
-					update_icon()
-					on = 0
-					set_light(0)
-			else
-				update_use_power(USE_POWER_ACTIVE)
-				set_light(correct_range, correct_power, correct_color)
-	else if(has_emergency_power(LIGHT_EMERGENCY_POWER_USE) && !turned_off())
+	// 				explode()
+	// 		else if( prob( min(60, switchcount*switchcount*0.01) ) )
+	// 			if(status == LIGHT_OK && trigger)
+	// 				status = LIGHT_BURNED
+	// 				update_icon()
+	// 				on = 0
+	// 				set_light(0)
+	// 		else
+	// 			update_use_power(USE_POWER_ACTIVE)
+	// 			set_light(correct_range, correct_power, correct_color)
+	// else if(has_emergency_power(LIGHT_EMERGENCY_POWER_USE) && !turned_off())
+	if(has_emergency_power(LIGHT_EMERGENCY_POWER_USE) && !turned_off())
 		update_use_power(USE_POWER_IDLE)
 		emergency_mode = TRUE
 		START_PROCESSING(SSobj, src)
 	else
 		update_use_power(USE_POWER_IDLE)
-		set_light(0)
+		// set_light(0)
 
-	active_power_usage = ((light_range * light_power) * LIGHTING_POWER_FACTOR)
+	// active_power_usage = ((light_range * light_power) * LIGHTING_POWER_FACTOR)
 
 /obj/machinery/light/proc/nightshift_mode(var/state)
 	if(!nightshift_allowed)
@@ -742,7 +743,7 @@ var/global/list/light_type_cache = list()
 		status = LIGHT_BURNED
 		return FALSE
 	cell.use(pwr)
-	set_light(brightness_range * bulb_emergency_brightness_mul, max(bulb_emergency_pow_min, bulb_emergency_pow_mul * (cell.charge / cell.maxcharge)), bulb_emergency_colour)
+	// set_light(brightness_range * bulb_emergency_brightness_mul, max(bulb_emergency_pow_min, bulb_emergency_pow_mul * (cell.charge / cell.maxcharge)), bulb_emergency_colour)
 	return TRUE
 
 

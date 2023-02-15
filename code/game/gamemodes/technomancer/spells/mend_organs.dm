@@ -14,7 +14,7 @@
 	icon_state = "mend_wounds"
 	cast_methods = CAST_MELEE
 	aspect = ASPECT_BIOMED
-	light_color = "#FF5C5C"
+	// light_color = "#FF5C5C"
 
 /obj/item/spell/mend_organs/on_melee_cast(atom/hit_atom, mob/living/user, def_zone)
 	if(isliving(hit_atom))

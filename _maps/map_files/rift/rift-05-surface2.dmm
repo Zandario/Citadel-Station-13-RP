@@ -13,8 +13,7 @@
 /area/medical/sleeper)
 "aaU" = (
 /obj/machinery/light{
-	dir = 8;
-	light_range = 12
+	dir = 8
 	},
 /obj/machinery/light_switch{
 	dir = 8;
@@ -3321,8 +3320,7 @@
 "cxh" = (
 /obj/machinery/photocopier,
 /obj/machinery/light{
-	dir = 8;
-	light_range = 12
+	dir = 8
 	},
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 8
@@ -5485,8 +5483,7 @@
 	dir = 4
 	},
 /obj/machinery/light{
-	dir = 8;
-	light_range = 12
+	dir = 8
 	},
 /turf/simulated/open,
 /area/rift/station/public_garden/gantry)
@@ -7628,8 +7625,7 @@
 "fIH" = (
 /obj/structure/railing,
 /obj/machinery/light{
-	dir = 8;
-	light_range = 12
+	dir = 8
 	},
 /turf/simulated/open,
 /area/rift/station/public_garden/gantry)
@@ -24686,8 +24682,7 @@
 	dir = 1
 	},
 /obj/machinery/light{
-	dir = 8;
-	light_range = 12
+	dir = 8
 	},
 /turf/simulated/open,
 /area/rift/station/public_garden/gantry)

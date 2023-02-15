@@ -55,10 +55,10 @@
 /mob/living/simple_mob/hostile/blob/spore/update_icons()
 	if(overmind)
 		color = overmind.blob_type.complementary_color
-		set_light(3, 5, color)
+		// set_light(3, 5, color)
 	else
 		color = null
-		set_light(0)
+		// set_light(0)
 
 	if(is_infesting)
 		cut_overlays()

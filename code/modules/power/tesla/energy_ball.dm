@@ -26,8 +26,8 @@
 /obj/singularity/energy_ball/Initialize(mapload, starting_energy = 50, is_miniball = FALSE)
 	miniball = is_miniball
 	. = ..()
-	if(!is_miniball)
-		set_light(10, 7, "#EEEEFF")
+	// if(!is_miniball)
+	// 	set_light(10, 7, "#EEEEFF")
 
 /obj/singularity/energy_ball/legacy_ex_act(severity, target)
 	return

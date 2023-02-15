@@ -21,11 +21,11 @@
 /obj/item/uv_light/attack_self(var/mob/user)
 	on = !on
 	if(on)
-		set_light(range, 2, "#007fff")
+		// set_light(range, 2, "#007fff")
 		START_PROCESSING(SSobj, src)
 		icon_state = "uv_on"
 	else
-		set_light(0)
+		// set_light(0)
 		clear_last_scan()
 		STOP_PROCESSING(SSobj, src)
 		icon_state = "uv_off"

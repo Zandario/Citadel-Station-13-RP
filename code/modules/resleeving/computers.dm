@@ -4,7 +4,7 @@
 						/datum/category_item/catalogue/technology/resleeving)
 	icon_keyboard = "med_key"
 	icon_screen = "dna"
-	light_color = "#315ab4"
+	// light_color = "#315ab4"
 	circuit = /obj/item/circuitboard/resleeving_control
 	req_access = list(access_heads) //Only used for record deletion right now.
 	var/list/pods = list() //Linked grower pods.

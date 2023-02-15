@@ -114,9 +114,9 @@
 /obj/item/clothing/head/hood/winter/ratvar
 	icon_state = "winterhood_ratvar"
 	desc = "A brass-plated winter hood that glows softly, hinting at its divinity."
-	light_range = 3
-	light_power = 1
-	light_color = "#B18B25" //clockwork slab background top color
+	// light_range = 3
+	// light_power = 1
+	// light_color = "#B18B25" //clockwork slab background top color
 
 /obj/item/clothing/head/hood/winter/narsie
 	desc = "A black winter hood full of whispering secrets that only She shall ever know."

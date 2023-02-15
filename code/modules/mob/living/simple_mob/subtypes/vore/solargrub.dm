@@ -83,7 +83,7 @@ GLOBAL_LIST_EMPTY(solargrubs)
 /mob/living/simple_mob/vore/solargrub/BiologicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
-	
+
 	if(stat != CONSCIOUS)
 		return
 
@@ -164,7 +164,7 @@ GLOBAL_LIST_EMPTY(solargrubs)
 
 /mob/living/simple_mob/vore/solargrub/death()
 	src.anchored = 0
-	set_light(0)
+	// set_light(0)
 	..()
 //	This funny bit is questionable atm
 // /mob/living/simple_mob/vore/solargrub/Destroy()
@@ -174,7 +174,7 @@ GLOBAL_LIST_EMPTY(solargrubs)
 /mob/living/simple_mob/vore/solargrub/handle_light()
 	. = ..()
 	if(. == 0 && !is_dead())
-		set_light(2.5, 1, COLOR_YELLOW)
+		// set_light(2.5, 1, COLOR_YELLOW)
 		return 1
 
 /datum/ai_holder/simple_mob/retaliate/solargrub/react_to_attack(atom/movable/attacker)

@@ -215,9 +215,9 @@
 
 /obj/item/kinetic_crusher/proc/update_brightness(mob/user = null)
 	if(light_on)
-		set_light(brightness_on)
+		// set_light(brightness_on)
 	else
-		set_light(0)
+		// set_light(0)
 
 /obj/item/kinetic_crusher/update_icon_state()
 	. = ..()

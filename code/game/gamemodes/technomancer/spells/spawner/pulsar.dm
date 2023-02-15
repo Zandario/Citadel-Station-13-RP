@@ -15,7 +15,7 @@
 
 /obj/item/spell/spawner/pulsar/Initialize(mapload)
 	. = ..()
-	set_light(3, 2, l_color = "#2ECCFA")
+	// set_light(3, 2, l_color = "#2ECCFA")
 
 /obj/item/spell/spawner/pulsar/on_ranged_cast(atom/hit_atom, mob/user)
 	if(within_range(hit_atom) && pay_energy(4000))
@@ -52,17 +52,10 @@
 	desc = "Not a real pulsar, but still emits loads of EMP."
 	icon_state = "shield2"
 	time_to_die = null
-	light_range = 4
-	light_power = 5
-	light_color = "#2ECCFA"
+	// light_range = 4
+	// light_power = 5
+	// light_color = "#2ECCFA"
 	pulses_remaining = 3
 
 /obj/effect/temporary_effect/pulse/pulsar/on_pulse()
 	empulse(src, 1, 1, 2, 2, log = 1)
-
-
-
-
-
-
-

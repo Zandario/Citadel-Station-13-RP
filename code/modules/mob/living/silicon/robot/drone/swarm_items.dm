@@ -117,9 +117,9 @@
 	desc = "This is something you do not want to near."
 	icon = 'icons/mob/swarmbot.dmi'
 	icon_state = "disintegrate_pulse"
-	light_range = 4
-	light_power = 5
-	light_color = "#00B4D9"
+	// light_range = 4
+	// light_power = 5
+	// light_color = "#00B4D9"
 	pulses_remaining = 5
 	pulse_delay = 2 SECONDS
 

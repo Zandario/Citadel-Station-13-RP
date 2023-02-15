@@ -755,10 +755,10 @@ GLOBAL_LIST_EMPTY(PDAs)
 		if("Light")
 			if(fon)
 				fon = 0
-				set_light(0)
+				// set_light(0)
 			else
 				fon = 1
-				set_light(f_lum)
+				// set_light(f_lum)
 		if("Medical Scan")
 			if(scanmode == 1)
 				scanmode = 0

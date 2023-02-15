@@ -71,7 +71,7 @@
 	edge = 1
 	w_class = active_w_class
 	playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
-	set_light(lrange, lpower, lcolor)
+	// set_light(lrange, lpower, lcolor)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 
@@ -89,7 +89,7 @@
 	sharp = initial(sharp)
 	edge = initial(edge)
 	w_class = initial(w_class)
-	set_light(0,0)
+	// set_light(0,0)
 	attack_verb = list()
 
 

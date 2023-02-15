@@ -151,7 +151,7 @@
 	icon_state = "furnace"
 	density = TRUE
 	anchored = TRUE
-	light_range = 3
+	// light_range = 3
 	speed_process = TRUE
 	var/tick = 0
 	var/obj/machinery/mineral/input = null

@@ -239,12 +239,12 @@
 
 /mob/living/simple_mob/animal/passive/furnacegrub/death()
 	src.anchored = 0
-	set_light(3, 3, "#FFCC00")
+	// set_light(3, 3, "#FFCC00")
 
 /mob/living/simple_mob/animal/passive/furnacegrub/handle_light()
 	. = ..()
 	if(. == 0 && !is_dead())
-		set_light(2.5, 1, COLOR_ORANGE)
+		// set_light(2.5, 1, COLOR_ORANGE)
 		return 1
 
 

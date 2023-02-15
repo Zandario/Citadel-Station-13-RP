@@ -186,7 +186,7 @@
 	name = "purple sac"
 	desc = "Weird purple octopus-like thing."
 	layer = ABOVE_TURF_LAYER+0.01
-	light_range = NODERANGE
+	// light_range = NODERANGE
 	var/node_range = NODERANGE
 
 	var/set_color = null

@@ -13,7 +13,7 @@
 	icon_state = "origin_arrow"
 	initial_flooring = /singleton/flooring/looking_glass
 	appearance_flags = TILE_BOUND
-	dynamic_lighting = FALSE
+	// dynamic_lighting = FALSE
 
 	var/center = FALSE
 	var/optional = FALSE

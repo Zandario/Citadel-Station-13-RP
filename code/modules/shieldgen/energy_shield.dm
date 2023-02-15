@@ -51,9 +51,9 @@
 
 /obj/effect/shield/proc/update_glow()
 	if(density)
-		set_light(3, 3, "#66FFFF")
+		// set_light(3, 3, "#66FFFF")
 	else
-		set_light(0)
+		// set_light(0)
 
 /obj/effect/shield/proc/update_opacity()
 	if(gen?.check_flag(MODEFLAG_PHOTONIC) && !disabled_for && !diffused_for)

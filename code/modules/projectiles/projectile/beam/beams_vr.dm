@@ -5,7 +5,7 @@
     taser_effect = 1
     agony = 100 //One shot stuns for the time being until adjustments are fully made.
     damage_type = HALLOSS
-    light_color = "#00CECE"
+    // light_color = "#00CECE"
 
     muzzle_type = /obj/effect/projectile/muzzle/laser_omni
     tracer_type = /obj/effect/projectile/tracer/laser_omni
@@ -20,7 +20,7 @@
 	nodamage = 1
 	agony = 5
 	damage_type = HALLOSS
-	light_color = "#00CC33"
+	// light_color = "#00CC33"
 
 	muzzle_type = /obj/effect/projectile/muzzle/xray
 	tracer_type = /obj/effect/projectile/tracer/xray
@@ -36,7 +36,7 @@
 
 /obj/item/projectile/beam/stun/blue
 	icon_state = "bluelaser"
-	light_color = "#0066FF"
+	// light_color = "#0066FF"
 
 	muzzle_type = /obj/effect/projectile/muzzle/laser_blue
 	tracer_type = /obj/effect/projectile/tracer/laser_blue
@@ -50,7 +50,7 @@
 	no_attack_log = TRUE
 	damage_type = BURN
 	check_armour = "laser"
-	light_color = "#80F5FF"
+	// light_color = "#80F5FF"
 
 	combustion = FALSE
 

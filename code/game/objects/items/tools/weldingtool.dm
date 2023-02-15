@@ -222,10 +222,10 @@
 	add_overlay(overlays_to_add)
 
 	// Lights
-	if(welding && flame_intensity)
-		set_light(flame_intensity, flame_intensity, flame_color)
-	else
-		set_light(0)
+	// if(welding && flame_intensity)
+	// 	set_light(flame_intensity, flame_intensity, flame_color)
+	// else
+	// 	set_light(0)
 
 //	icon_state = welding ? "[icon_state]1" : "[initial(icon_state)]"
 	var/mob/M = loc

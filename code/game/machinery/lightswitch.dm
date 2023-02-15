@@ -42,12 +42,12 @@
 	cut_overlays()
 	if(machine_stat & NOPOWER)
 		icon_state = "light-p"
-		set_light(0)
+		// set_light(0)
 	else
 		icon_state = "light[on]"
 		overlay.icon_state = "light[on]-overlay"
 		add_overlay(overlay)
-		set_light(2, 0.1, on ? "#82FF4C" : "#F86060")
+		// set_light(2, 0.1, on ? "#82FF4C" : "#F86060")
 
 /obj/machinery/light_switch/examine(mob/user)
 	. += SPAN_NOTICE("A light switch. It is [on? "on" : "off"].")

@@ -44,10 +44,10 @@
 /obj/machinery/power/shield_generator/update_icon()
 	if(running)
 		icon_state = "generator1"
-		set_light(1, 2, "#66FFFF")
+		// set_light(1, 2, "#66FFFF")
 	else
 		icon_state = "generator0"
-		set_light(0)
+		// set_light(0)
 
 
 /obj/machinery/power/shield_generator/Initialize(mapload)

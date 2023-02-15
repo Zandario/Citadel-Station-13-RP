@@ -3,7 +3,7 @@
 	desc = "A small pod."
 	icon = 'icons/mob/swarmbot.dmi'
 	icon_state = "pod"
-	light_color = "#00B2B2"
+	// light_color = "#00B2B2"
 
 	shatter_message = "The energetic field shatters!"
 	impact_sound = 'sound/effects/Glasshit.ogg'
@@ -41,7 +41,7 @@
 			isbroken = 1
 			density = 0
 			icon_state = "[initial(icon_state)]-broken"
-			set_light(0)
+			// set_light(0)
 
 /obj/structure/cult/pylon/swarm/attackpylon(mob/user as mob, var/damage)
 	if(!isbroken)
@@ -57,7 +57,7 @@
 			isbroken = 1
 			density = 0
 			icon_state = "[initial(icon_state)]-broken"
-			set_light(0)
+			// set_light(0)
 		else
 			to_chat(user, "You hit \the [src]!")
 			playsound(get_turf(src),impact_sound, 75, 1)
@@ -121,7 +121,7 @@
 			isbroken = 1
 			density = 0
 			icon_state = "[initial(icon_state)]-broken"
-			set_light(0)
+			// set_light(0)
 
 /obj/structure/cult/pylon/swarm/defender/attackpylon(mob/user as mob, var/damage)
 	if(!isbroken)
@@ -137,7 +137,7 @@
 			isbroken = 1
 			density = 0
 			icon_state = "[initial(icon_state)]-broken"
-			set_light(0)
+			// set_light(0)
 		else
 			to_chat(user, "You hit \the [src]!")
 			playsound(get_turf(src),impact_sound, 75, 1)

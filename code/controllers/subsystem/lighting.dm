@@ -77,22 +77,13 @@ SUBSYSTEM_DEF(lighting)
 	var/overlaycount = 0
 	var/starttime = REALTIMEOFDAY
 
-	// Generate overlays.
-	for (var/zlevel = 1 to world.maxz)
-		overlaycount += InitializeZlev(zlevel)
-
-	var/overlay_blurb = "Created [overlaycount] lighting overlays in [(REALTIMEOFDAY - starttime)/10] seconds!"
-
-	starttime = REALTIMEOFDAY
 	// Tick once to clear most lights.
 	fire(FALSE, TRUE)
 
 	var/time = (REALTIMEOFDAY - starttime) / 10
 	var/list/blockquote_data = list(
-		SPAN_BOLDANNOUNCE("[overlay_blurb]\n"),
 		SPAN_BOLDANNOUNCE("Lighting pre-bake completed within [time] second[time == 1 ? "" : "s"]!<hr>"),
 		SPAN_DEBUGINFO("Processed [processed_lights] light sources."),
-		SPAN_DEBUGINFO("\nProcessed [processed_corners] light corners."),
 		SPAN_DEBUGINFO("\nProcessed [processed_overlays] light overlays."),
 	)
 
@@ -101,32 +92,9 @@ SUBSYSTEM_DEF(lighting)
 		html   = SPAN_BLOCKQUOTE(JOINTEXT(blockquote_data), "info"),
 		type   = MESSAGE_TYPE_DEBUG,
 	)
-	log_subsystem("lighting", "NOv:[overlaycount] L:[processed_lights] C:[processed_corners] O:[processed_overlays]")
+	log_subsystem("lighting", "NOv:[overlaycount] L:[processed_lights] O:[processed_overlays]")
 
 	return ..()
-
-/datum/controller/subsystem/lighting/proc/InitializeZlev(zlev)
-	for (var/thing in Z_ALL_TURFS(zlev))
-		var/turf/T = thing
-		if (TURF_IS_DYNAMICALLY_LIT_UNSAFE(T))
-			if (T.lighting_overlay)
-				log_subsystem(name, "Found unexpected lighting overlay at [T.x],[T.y],[T.z]")
-			else
-				new /atom/movable/lighting_overlay(T)
-				. += 1
-			if (TURF_IS_AMBIENT_LIT_UNSAFE(T))
-				T.generate_missing_corners()	// Forcibly generate corners.
-
-		CHECK_TICK
-
-// It's safe to pass a list of non-turfs to this list - it'll only check turfs.
-/datum/controller/subsystem/lighting/proc/InitializeTurfs(list/targets)
-	for (var/turf/T in (targets || world))
-		if (TURF_IS_DYNAMICALLY_LIT_UNSAFE(T))
-			T.lighting_build_overlay()
-
-		// If this isn't here, BYOND will set-background us.
-		CHECK_TICK
 
 /datum/controller/subsystem/lighting/fire(resumed = FALSE, no_mc_tick = FALSE)
 	if (!resumed)
@@ -184,7 +152,6 @@ SUBSYSTEM_DEF(lighting)
 	overlay_queue = SSlighting.overlay_queue
 
 	lq_idex = SSlighting.lq_idex
-	cq_idex = SSlighting.cq_idex
 	oq_idex = SSlighting.oq_idex
 
 	if (lq_idex > 1)

@@ -378,7 +378,7 @@
 /datum/weather/virgo4/blood_moon
 	name = "blood moon"
 	light_modifier = 0.5
-	light_color = "#FF0000"
+	// light_color = "#FF0000"
 	temp_high = 293.15	// 20c
 	temp_low = 283.15	// 10c
 	flight_failure_modifier = 25
@@ -397,7 +397,7 @@
 	name = "emberfall"
 	icon_state = "ashfall_light"
 	light_modifier = 0.7
-	light_color = "#880000"
+	// light_color = "#880000"
 	temp_high = 293.15	// 20c
 	temp_low = 283.15	// 10c
 	flight_failure_modifier = 20
@@ -416,7 +416,7 @@
 	name = "ash storm"
 	icon_state = "ashfall_heavy"
 	light_modifier = 0.1
-	light_color = "#FF0000"
+	// light_color = "#FF0000"
 	temp_high = 323.15	// 50c
 	temp_low = 313.15	// 40c
 	wind_high = 6
@@ -450,7 +450,7 @@
 	name = "fallout"
 	icon_state = "fallout"
 	light_modifier = 0.7
-	light_color = "#CCFFCC"
+	// light_color = "#CCFFCC"
 	flight_failure_modifier = 30
 	transition_chances = list(
 		WEATHER_FALLOUT = 100

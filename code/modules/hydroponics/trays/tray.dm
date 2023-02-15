@@ -634,7 +634,7 @@
 		if(closed_system && mechanical)
 			light_string = "that the internal lights are set to [tray_light] lumens"
 		else
-			var/light_available = T.get_lumcount() * 5
+			var/light_available = T.RL_GetBrightness() * 5
 			light_string = "a light level of [light_available] lumens"
 
 		. += "The tray's sensor suite is reporting [light_string] and a temperature of [environment.temperature]K at [environment.return_pressure()] kPa in the [environment_type] environment"

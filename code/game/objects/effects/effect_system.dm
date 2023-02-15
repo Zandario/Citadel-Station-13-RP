@@ -211,7 +211,7 @@ steam.start() -- spawns the effect
 /obj/effect/particle_effect/smoke/illumination/Initialize(mapload, lifetime = 10, range, power, color)
 	time_to_live=lifetime
 	. = ..(mapload)
-	set_light(range, power, color)
+	// set_light(range, power, color)
 
 /////////////////////////////////////////////
 // Bad smoke
@@ -282,9 +282,9 @@ steam.start() -- spawns the effect
 	name = "burning cloud"
 	desc = "A cloud of something that is on fire."
 	color = "#FF9933"
-	light_color = "#FF0000"
-	light_range = 2
-	light_power = 5
+	// light_color = "#FF0000"
+	// light_range = 2
+	// light_power = 5
 
 /obj/effect/particle_effect/smoke/elemental/fire/affect(mob/living/L)
 	L.inflict_heat_damage(strength)

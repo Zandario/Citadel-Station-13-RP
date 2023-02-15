@@ -11,7 +11,7 @@
 	desc = "Used to monitor a linked fission core."
 	icon_keyboard = "tech_key"
 	icon_screen = "power_monitor"
-	light_color = "#ffcc33"
+	// light_color = "#ffcc33"
 	use_power = 1
 	idle_power_usage = 250
 	active_power_usage = 500

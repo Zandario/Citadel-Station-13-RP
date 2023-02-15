@@ -3,8 +3,8 @@
 	name = "blob"
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blob"
-	light_range = 2
-	light_color = "#b5ff5b"
+	// light_range = 2
+	// light_color = "#b5ff5b"
 	desc = "Some blob creature thingy"
 	density = 1
 	opacity = 0
@@ -153,8 +153,8 @@
 	name = "blob core"
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blob_core"
-	light_range = 3
-	light_color = "#ffc880"
+	// light_range = 3
+	// light_color = "#ffc880"
 	maxHealth = 200
 	brute_resist = 2
 	fire_resist = 2
@@ -182,7 +182,7 @@
 	name = "strong blob"
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blob_idle"
-	light_range = 3
+	// light_range = 3
 	desc = "Some blob creature thingy"
 	maxHealth = 60
 	brute_resist = 1

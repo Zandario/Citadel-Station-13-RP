@@ -211,22 +211,22 @@
 	if(instability >= TECHNOMANCER_INSTABILITY_MIN_GLOW)
 		var/distance = round(sqrt(instability / 2))
 		if(distance)
-			set_light(distance, distance * 4, l_color = "#660066")
+			// set_light(distance, distance * 4, l_color = "#660066")
 			return TRUE
 
 	else if(on_fire)
-		set_light(min(round(fire_stacks), 3), round(fire_stacks), l_color = "#FF9933")
+		// set_light(min(round(fire_stacks), 3), round(fire_stacks), l_color = "#FF9933")
 		return TRUE
 
 	else if(glow_toggle)
-		set_light(glow_range, glow_intensity, glow_color)
+		// set_light(glow_range, glow_intensity, glow_color)
 
 	else
 		if(istype(src, /mob/living/carbon))
 			var/mob/living/carbon/C = src
 			if(C.species?.species_appearance_flags & RADIATION_GLOWS)
 				return FALSE//When we glow with rads this is handled in handle_mutations_and_radiation()
-		set_light(0)
+		// set_light(0)
 		return FALSE
 
 /mob/living/proc/handle_darksight()
@@ -243,14 +243,14 @@
 
 	if(isturf(loc))
 		var/turf/T = loc //Will be true 99% of the time, thus avoiding the whole elif chain
-		brightness = T.get_lumcount()
+		brightness = T.RL_GetBrightness()
 
 	//Snowflake treatment of potential locations
 	else if(istype(loc,/obj/mecha)) //I imagine there's like displays and junk in there. Use the lights!
 		brightness = 1
 	else if(istype(loc,/obj/item/holder)) //Poor carried teshari and whatnot should adjust appropriately
 		var/turf/T = get_turf(src)
-		brightness = T.get_lumcount()
+		brightness = T.RL_GetBrightness()
 
 	var/darkness = 1-brightness					//Silly, I know, but 'alpha' and 'darkness' go the same direction on a number line
 	var/adjust_to = min(darkness,darksightedness)//Capped by how darksighted they are

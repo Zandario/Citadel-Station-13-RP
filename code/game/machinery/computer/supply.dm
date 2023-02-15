@@ -27,7 +27,7 @@
 	name = "supply control console"
 	icon_keyboard = "tech_key"
 	icon_screen = "supply"
-	light_color = "#b88b2e"
+	// light_color = "#b88b2e"
 	req_access = list(access_cargo)
 	circuit = /obj/item/circuitboard/supplycomp/control
 	authorization = SUP_SEND_SHUTTLE | SUP_ACCEPT_ORDERS

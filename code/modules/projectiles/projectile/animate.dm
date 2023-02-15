@@ -5,9 +5,9 @@
 	damage_type = BURN
 	nodamage = 1
 	check_armour = "energy"
-	light_range = 2
-	light_power = 0.5
-	light_color = "#55AAFF"
+	// light_range = 2
+	// light_power = 0.5
+	// light_color = "#55AAFF"
 	combustion = FALSE
 
 /obj/item/projectile/animate/Bump(var/atom/change)

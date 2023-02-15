@@ -88,10 +88,10 @@
 		log_debug("update_sunlight(): apparent == next, not bothering")
 		return
 
-	for (var/turf/simulated/T as anything in planet_floors)
-		T.replace_ambient_light(sun_apparent_color, sun_next_color, sun_apparent_brightness, sun_next_brightness)
+	// for (var/turf/simulated/T as anything in planet_floors)
+	// 	T.replace_ambient_light(sun_apparent_color, sun_next_color, sun_apparent_brightness, sun_next_brightness)
 
-		CHECK_TICK
+	// 	CHECK_TICK
 
 	sun_apparent_color = sun_next_color
 	sun_apparent_brightness = sun_next_brightness

@@ -4,7 +4,7 @@ var/list/blobs = list()
 	name = "blob"
 	icon = 'icons/mob/blob.dmi'
 	desc = "A thick wall of writhing tendrils."
-	light_range = 2
+	// light_range = 2
 	density = FALSE // This is false because blob mob AI's walk_to() proc appears to never attempt to move onto dense objects even if allowed by CanPass().
 	pass_flags_self = ATOM_PASS_BLOB
 	opacity = FALSE
@@ -40,11 +40,11 @@ var/list/blobs = list()
 	if(overmind)
 		name = "[overmind.blob_type.name] [base_name]" // This is in update_icon() because inert blobs can turn into other blobs with magic if another blob core claims it with pulsing.
 		color = overmind.blob_type.color
-		set_light(3, 3, color)
+		// set_light(3, 3, color)
 	else
 		name = "inert [base_name]"
 		color = null
-		set_light(0)
+		// set_light(0)
 
 // Blob tiles are not actually dense so we need Special Code(tm).
 /obj/structure/blob/CanAllowThrough(atom/movable/mover, turf/target)

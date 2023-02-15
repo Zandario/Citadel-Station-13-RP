@@ -40,7 +40,7 @@
 	w_class = active_w_class
 	playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
 	update_icon()
-	set_light(lrange, lpower, lcolor)
+	// set_light(lrange, lpower, lcolor)
 	to_chat(user, "<span class='notice'>Alt-click to recolor it.</span>")
 
 /obj/item/melee/energy/proc/deactivate(mob/living/user)
@@ -56,7 +56,7 @@
 	edge = initial(edge)
 	w_class = initial(w_class)
 	update_icon()
-	set_light(0,0)
+	// set_light(0,0)
 
 /obj/item/melee/energy/proc/use_charge(var/cost)
 	if(active)
@@ -508,7 +508,7 @@
 	spark_system.attach(src)
 
 	START_PROCESSING(SSobj, src)
-	set_light(lrange, lpower, lcolor)
+	// set_light(lrange, lpower, lcolor)
 
 /obj/item/melee/energy/blade/Destroy()
 	STOP_PROCESSING(SSobj, src)

@@ -12,7 +12,7 @@
 	icon_state = "generic"
 	cast_methods = CAST_RANGED
 	aspect = ASPECT_BIOMED
-	light_color = "#FF5C5C"
+	// light_color = "#FF5C5C"
 	inserting = /obj/item/inserted_spell/asphyxiation
 
 // maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss

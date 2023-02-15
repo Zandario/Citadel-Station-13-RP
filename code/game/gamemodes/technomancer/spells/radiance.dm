@@ -18,7 +18,7 @@
 
 /obj/item/spell/radiance/Initialize(mapload)
 	. = ..()
-	set_light(7, 4, l_color = "#D9D900")
+	// set_light(7, 4, l_color = "#D9D900")
 	START_PROCESSING(SSobj, src)
 	log_and_message_admins("has casted [src].")
 

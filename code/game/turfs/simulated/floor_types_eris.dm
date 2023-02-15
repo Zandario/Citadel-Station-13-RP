@@ -689,7 +689,7 @@
 
 /turf/simulated/floor/tiled/eris/steel/bar_light/Initialize(mapload)
 	. = ..()
-	set_light(3,4,"#00AAFF")
+	// set_light(3,4,"#00AAFF")
 
 
 

@@ -11,7 +11,7 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 	alpha = 1
 	plane = MOB_PLANE
 	layer = 4
-	light_color = "#cc7700"
+	// light_color = "#cc7700"
 
 	var/size = 1
 	var/energy = 0
@@ -52,7 +52,7 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 		/obj/machinery/camera
 	))
 
-	set_light(light_min_range,light_min_power)
+	// set_light(light_min_range,light_min_power)
 	last_range = light_min_range
 	last_power = light_min_power
 
@@ -177,7 +177,7 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 		use_power = light_min_power + CEILING((light_max_power-light_min_power)*temp_mod, 1)
 
 	if(last_range != use_range || last_power != use_power)
-		set_light(use_range,use_power)
+		// set_light(use_range,use_power)
 		last_range = use_range
 		last_power = use_power
 
@@ -478,7 +478,7 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 			AddParticles(reactant, react_pool[reactant])
 
 /obj/effect/fusion_em_field/Destroy()
-	set_light(0)
+	// set_light(0)
 	RadiateAll()
 	for(var/obj/effect/fusion_particle_catcher/catcher in particle_catchers)
 		qdel(catcher)
@@ -526,30 +526,30 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 	for(var/i=1,i < plasma_temperature / 35, i++)
 		alpha = i
 	if(plasma_temperature > 60000) //high ultraviolet - magenta
-		light_color = "#cc005f"
+		// light_color = "#cc005f"
 		light_max_range = alpha / 5
 		light_max_power = alpha / 5
 	else if(plasma_temperature > 12000) //ultraviolet - blue
-		light_color = "#1b00cc"
+		// light_color = "#1b00cc"
 		light_max_range = alpha / 15
 		light_max_power = alpha / 15
 	else if(plasma_temperature > 8000) //nearing ultraviolet - cyan
-		light_color = "#00cccc"
+		// light_color = "#00cccc"
 		light_max_range = alpha / 20
 		light_max_power = alpha / 20
 	else if(plasma_temperature > 4000) // green
-		light_color = "#1ab705"
+		// light_color = "#1ab705"
 		light_max_range = alpha / 25
 		light_max_power = alpha / 25
 	else if(plasma_temperature > 2000) //orange
-		light_color = "#cc7700"
+		// light_color = "#cc7700"
 		light_max_range = alpha / 30
 		light_max_power = alpha / 30
 	return
 //moved the flare to a proc for various reasons. Called on line 225.
 /obj/effect/fusion_em_field/proc/emflare()
 		radiation += plasma_temperature/2
-		light_color = "#ff0000"
+		// light_color = "#ff0000"
 		light_max_power = alpha
 		light_min_power = alpha
 		light_min_range = alpha
@@ -564,7 +564,7 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 
 /obj/effect/fusion_em_field/proc/Rupture()
 	visible_message("<span class='danger'>\The [src] shudders like a dying animal before flaring to eye-searing brightness and rupturing!</span>")
-	set_light(15, 15, "#CCCCFF")
+	// set_light(15, 15, "#CCCCFF")
 	empulse(get_turf(src), CEILING(plasma_temperature/1000, 1), CEILING(plasma_temperature/300, 1))
 	GLOB.global_announcer.autosay("WARNING: FIELD RUPTURE IMMINENT!", "Containment Monitor")
 	RadiateAll()
@@ -593,7 +593,7 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 /obj/effect/fusion_em_field/proc/MRC() //spews electromagnetic pulses in an area around the core.
 	visible_message("<span class='danger'>\The [src] glows an extremely bright pink and flares out of existance!</span>")
 	GLOB.global_announcer.autosay("Warning! Magnetic Resonance Cascade detected! Brace for electronic system distruption.", "Field Stability Monitor")
-	set_light(15, 15, "#ff00d8")
+	// set_light(15, 15, "#ff00d8")
 	var/list/things_in_range = range(15, owned_core)
 	var/list/turfs_in_range = list()
 	var/turf/T
@@ -645,7 +645,7 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 
 /obj/effect/fusion_em_field/proc/BluespaceQuenchEvent() //!!FUN!! causes a number of explosions in an area around the core. Will likely destory or heavily damage the reactor.
 	visible_message("<span class='danger'>\The [src] shudders like a dying animal before flaring to eye-searing brightness and rupturing!</span>")
-	set_light(15, 15, "#CCCCFF")
+	// set_light(15, 15, "#CCCCFF")
 	empulse(get_turf(src), CEILING(plasma_temperature/1000, 1), CEILING(plasma_temperature/300, 1))
 	GLOB.global_announcer.autosay("WARNING: FIELD RUPTURE IMMINENT!", "Containment Monitor")
 	RadiateAll()

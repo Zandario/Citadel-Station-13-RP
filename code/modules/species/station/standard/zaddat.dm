@@ -125,7 +125,7 @@
 	var/light_amount = 0 //how much light there is in the place, affects damage
 	if(isturf(H.loc)) //else, there's considered to be no light
 		var/turf/T = H.loc
-		light_amount = T.get_lumcount() * 5
+		light_amount = T.RL_GetBrightness() * 5
 
 
 	for(var/K in damageable)

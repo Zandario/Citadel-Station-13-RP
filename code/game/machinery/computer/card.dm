@@ -4,7 +4,7 @@
 	desc = "Terminal for programming employee ID cards to access parts of the station."
 	icon_keyboard = "id_key"
 	icon_screen = "id"
-	light_color = "#0099ff"
+	// light_color = "#0099ff"
 	req_access = list(access_change_ids)
 	circuit = /obj/item/circuitboard/card
 	var/obj/item/card/id/scan = null

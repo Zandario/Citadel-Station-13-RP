@@ -5,7 +5,7 @@
 
 	icon_keyboard = "security_key"
 	icon_screen = "cameras"
-	light_color = "#a91515"
+	// light_color = "#a91515"
 	circuit = /obj/item/circuitboard/security
 
 	var/mapping = 0//For the overview file, interesting bit of code.
@@ -71,7 +71,7 @@
 	desc = "Damn, why do they never have anything interesting on these things?"
 	icon = 'icons/obj/status_display.dmi'
 	icon_screen = "entertainment"
-	light_color = "#FFEEDB"
+	// light_color = "#FFEEDB"
 	light_range_on = 2
 	network = list(NETWORK_THUNDER)
 	circuit = /obj/item/circuitboard/security/telescreen/entertainment
@@ -101,7 +101,7 @@
 	icon_keyboard = null
 	icon_screen = "detective_tv"
 	circuit = /obj/item/circuitboard/security/tv
-	light_color = "#3848B3"
+	// light_color = "#3848B3"
 	light_power_on = 0.5
 
 /obj/machinery/computer/security/mining
@@ -111,7 +111,7 @@
 	icon_screen = "mining"
 	network = list("Mining Outpost")
 	circuit = /obj/item/circuitboard/security/mining
-	light_color = "#F9BBFC"
+	// light_color = "#F9BBFC"
 
 /obj/machinery/computer/security/engineering
 	name = "engineering camera monitor"
@@ -119,7 +119,7 @@
 	icon_keyboard = "power_key"
 	icon_screen = "engie_cams"
 	circuit = /obj/item/circuitboard/security/engineering
-	light_color = "#FAC54B"
+	// light_color = "#FAC54B"
 
 /obj/machinery/computer/security/engineering/get_default_networks()
 	. = engineering_networks.Copy()
@@ -142,7 +142,7 @@
 	icon_screen = "mining"
 	network = list(NETWORK_XENOBIO)
 	circuit = /obj/item/circuitboard/security/xenobio
-	light_color = "#F9BBFC"
+	// light_color = "#F9BBFC"
 
 /obj/item/circuitboard/security/xenobio
 //	name = T_BOARD("xenobiology camera monitor")  // Macro is loaded after this, dont want to mess with changing its location so just gonna manually name this one

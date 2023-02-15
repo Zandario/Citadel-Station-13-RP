@@ -59,7 +59,7 @@
 	. = ..()
 	var/turf/T = get_turf(src)
 	if(T && destination && T.lighting_overlay)
-		if(T.get_lumcount()<0.1 && destination.get_lumcount()<0.1) // No one can see us in the darkness, right?
+		if(T.RL_GetBrightness()<0.1 && destination.RL_GetBrightness()<0.1) // No one can see us in the darkness, right?
 			return null
 		if(T == destination)
 			destination = null
@@ -67,7 +67,7 @@
 /datum/ai_holder/simple_mob/statue/can_attack(atom/movable/the_target)
 	. = ..()
 	var/turf/T = get_turf(src)
-	if(T.get_lumcount()<0.1)
+	if(T.RL_GetBrightness()<0.1)
 		if(isliving(the_target))
 			var/mob/living/L = the_target
 			if(!L.client && !L.ckey)
@@ -116,7 +116,7 @@
 	// Check for darkness
 	var/turf/T = get_turf(loc)
 	if(T && destination && T.lighting_overlay)
-		if(T.get_lumcount()<0.1 && destination.get_lumcount()<0.1) // No one can see us in the darkness, right?
+		if(T.RL_GetBrightness()<0.1 && destination.RL_GetBrightness()<0.1) // No one can see us in the darkness, right?
 			return null
 		if(T == destination)
 			destination = null

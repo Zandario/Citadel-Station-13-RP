@@ -3,7 +3,7 @@
 	desc = "One of those Ward-Takahashi holoplants! Give your space a bit of the comfort of being outdoors, by buying this blue buddy. A rugged case guarantees that your flower will outlive you, and variety of plant types won't let you to get bored along the way!"
 	icon = 'icons/obj/holoplants.dmi'
 	icon_state = "holopot"
-	light_color = "#3C94C5"
+	// light_color = "#3C94C5"
 	anchored = TRUE
 	idle_power_usage = 0
 	active_power_usage = 5
@@ -47,13 +47,13 @@
 
 	plant = prepare_icon(emagged ? "emagged" : null)
 	add_overlay(plant)
-	set_light(2)
+	// set_light(2)
 	use_power = USE_POWER_ACTIVE
 
 /obj/machinery/holoplant/proc/deactivate()
 	cut_overlay(plant)
 	QDEL_NULL(plant)
-	set_light(0)
+	// set_light(0)
 	use_power = USE_POWER_OFF
 
 /obj/machinery/holoplant/power_change()
@@ -67,16 +67,16 @@
 	interference = TRUE
 	spawn(0)
 		cut_overlay(plant)
-		set_light(0)
+		// set_light(0)
 		sleep(rand(2,4))
 		add_overlay(plant)
-		set_light(2)
+		// set_light(2)
 		sleep(rand(2,4))
 		cut_overlay(plant)
-		set_light(0)
+		// set_light(0)
 		sleep(rand(2,4))
 		add_overlay(plant)
-		set_light(2)
+		// set_light(2)
 		interference = FALSE
 
 /obj/machinery/holoplant/proc/prepare_icon(state)

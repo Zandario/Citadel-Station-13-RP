@@ -50,7 +50,7 @@ GLOBAL_LIST_EMPTY(air_alarms)
 	clicksound = "button"
 	clickvol = 30
 	//blocks_emissive = NONE
-	light_power = 0.25
+	// light_power = 0.25
 	var/alarm_id = null
 	///Whether to use automatic breach detection or not
 	var/breach_detection = TRUE
@@ -330,12 +330,12 @@ GLOBAL_LIST_EMPTY(air_alarms)
 
 	if(panel_open)
 		icon_state = "alarmx"
-		set_light(0)
+		// set_light(0)
 		//set_light_on(FALSE)
 		return
 	if((machine_stat & (NOPOWER|BROKEN)) || shorted)
 		icon_state = "alarmp"
-		set_light(0)
+		// set_light(0)
 		//set_light_on(FALSE)
 		return
 
@@ -343,25 +343,25 @@ GLOBAL_LIST_EMPTY(air_alarms)
 	if(alarm_area?.atmosalm)
 		icon_level = max(icon_level, 1)	//if there's an atmos alarm but everything is okay locally, no need to go past yellow
 
-	var/new_color = null
+	// var/new_color = null
 	switch(icon_level)
 		if(0)
 			icon_state = "alarm0"
 			//add_overlay(mutable_appearance(icon, "alarm_ov0"))
 			//add_overlay(emissive_appearance(icon, "alarm_ov0"))
-			new_color = "#03A728"
+			// new_color = "#03A728"
 		if(1)
 			icon_state = "alarm2" //yes, alarm2 is yellow alarm
 			//add_overlay(mutable_appearance(icon, "alarm_ov2"))
 			//add_overlay(emissive_appearance(icon, "alarm_ov2"))
-			new_color = "#EC8B2F"
+			// new_color = "#EC8B2F"
 		if(2)
 			icon_state = "alarm1"
 			//add_overlay(mutable_appearance(icon, "alarm_ov1"))
 			//add_overlay(emissive_appearance(icon, "alarm_ov1"))
-			new_color = "#DA0205"
-
-	set_light(l_range = 2, l_power = 0.25, l_color = new_color)
+			// new_color = "#DA0205"
+//
+	// set_light(l_range = 2, l_power = 0.25, l_color = new_color)
 	//set_light_on(TRUE)
 
 /obj/machinery/alarm/receive_signal(datum/signal/signal)

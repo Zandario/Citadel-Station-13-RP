@@ -182,8 +182,8 @@
 	if(!state_append)
 		return
 	var/mutable_appearance/MA = mutable_appearance(icon, "[icon_state]_[state_append]")
-	if(light_color)
-		MA.color = light_color
+	// if(light_color)
+	// 	MA.color = light_color
 	. += MA
 
 /obj/item/switchtool/proc/tool_function_to_enum(function)
@@ -323,7 +323,7 @@
 	var/brightness_min = 2
 	deploy_sound = "sound/weapons/switchsound.ogg"
 	undeploy_sound = "sound/weapons/switchsound.ogg"
-	light_color =  LIGHT_COLOR_CYAN
+	// light_color =  LIGHT_COLOR_CYAN
 	tool_speed = 0.8
 	tools = list(
 		/obj/item/surgical/scalpel/laser3/holoswitch = SWITCHTOOL_SCALPEL,
@@ -361,25 +361,25 @@
 
 /obj/item/switchtool/holo/Initialize(mapload)
 	. = ..()
-	add_atom_colour(light_color, FIXED_COLOUR_PRIORITY)
+	// add_atom_colour(light_color, FIXED_COLOUR_PRIORITY)
 
 /obj/item/switchtool/holo/deploy(var/obj/item/module) //We lightin' it up in here
 	..()
 	if(get_switchtool_enum(module) == SWITCHTOOL_LIGHT)
-		set_light(brightness_max, 4, light_color)
+		// set_light(brightness_max, 4, light_color)
 	else
-		set_light(brightness_min, 1, light_color)
+		// set_light(brightness_min, 1, light_color)
 
 /obj/item/switchtool/holo/undeploy()
 	..()
-	set_light(0)
+	// set_light(0)
 
 /obj/item/switchtool/holo/CE
 	name = "holotool"
 	icon_state = "holoswitchtool"
 	item_state = "holoswitchtool"
 	desc = "A finely crafted device that uses a micro-scale hardlight emitter to form hardlight manipulators in the form of tools. Can also operate in low-power mode as a flashlight and in high-power mode as a UV cleaner."
-	light_color = "#FED8B1" //lightcolororange sucks lmao
+	// light_color = "#FED8B1" //lightcolororange sucks lmao
 	tools = list(
 		/obj/item/tool/screwdriver/holoswitch = SWITCHTOOL_SCREWDRIVER,
 		/obj/item/tool/wrench/holoswitch = SWITCHTOOL_WRENCH,

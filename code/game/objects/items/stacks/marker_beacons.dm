@@ -83,8 +83,8 @@ var/list/marker_beacon_colors = list(
 	icon_state = "marker"
 //	layer = BELOW_OPEN_DOOR_LAYER
 	anchored = TRUE
-	light_range = 2
-	light_power = 0.8
+	// light_range = 2
+	// light_power = 0.8
 	var/remove_speed = 15
 	var/picked_color
 
@@ -101,7 +101,7 @@ var/list/marker_beacon_colors = list(
 	while(!picked_color || !marker_beacon_colors[picked_color])
 		picked_color = pick(marker_beacon_colors)
 	icon_state = "[initial(icon_state)][lowertext(picked_color)]-on"
-	set_light(light_range, light_power, marker_beacon_colors[picked_color])
+	// set_light(light_range, light_power, marker_beacon_colors[picked_color])
 
 /obj/structure/marker_beacon/attack_hand(mob/living/user)
 	to_chat(user, "<span class='notice'>You start picking [src] up...</span>")
@@ -146,18 +146,18 @@ var/list/marker_beacon_colors = list(
 	while(!picked_color || !marker_beacon_colors[picked_color])
 		picked_color = "Burgundy"
 	icon_state = "[initial(icon_state)][lowertext(picked_color)]-on"
-	set_light(light_range, light_power, marker_beacon_colors[picked_color])
+	// set_light(light_range, light_power, marker_beacon_colors[picked_color])
 
 /obj/structure/marker_beacon/yellow
 	picked_color = "Yellow"
 
 /obj/structure/marker_beacon/yellow/update_icon()
 	icon_state = "[initial(icon_state)][lowertext(picked_color)]-on"
-	set_light(light_range, light_power, marker_beacon_colors[picked_color])
+	// set_light(light_range, light_power, marker_beacon_colors[picked_color])
 
 /obj/structure/marker_beacon/green
 	picked_color = "Green"
 
 /obj/structure/marker_beacon/green/update_icon()
 	icon_state = "[initial(icon_state)][lowertext(picked_color)]-on"
-	set_light(light_range, light_power, marker_beacon_colors[picked_color])
+	// set_light(light_range, light_power, marker_beacon_colors[picked_color])

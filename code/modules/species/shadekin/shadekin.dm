@@ -179,7 +179,7 @@
 		dark_gains = 0
 		return
 
-	var/brightness = T.get_lumcount() //Brightness in 0.0 to 1.0
+	var/brightness = T.RL_GetBrightness() //Brightness in 0.0 to 1.0
 	darkness = 1-brightness //Invert
 	var/is_dark = (darkness >= 0.5)
 
@@ -245,7 +245,7 @@
 
 		H.shadekin_display.invisibility = 0
 		if(T)
-			var/brightness = T.get_lumcount() //Brightness in 0.0 to 1.0
+			var/brightness = T.RL_GetBrightness() //Brightness in 0.0 to 1.0
 			var/darkness = 1-brightness //Invert
 			switch(darkness)
 				if(0.80 to 1.00)

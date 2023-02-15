@@ -71,7 +71,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	var/recipient = "";
 	/// Priority of the message being sent.
 	var/priority = -1 ;
-	light_range = 0
+	// light_range = 0
 	var/datum/legacy_announcement/announcement = new
 
 /obj/machinery/requests_console/power_change()
@@ -101,7 +101,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	if(departmentType & RC_INFO)
 		req_console_information |= department
 
-	set_light(1)
+	// set_light(1)
 
 /obj/machinery/requests_console/Destroy()
 	allConsoles -= src
@@ -216,7 +216,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 				if(Console.department == department)
 					Console.newmessagepriority = 0
 					Console.icon_state = "req_comp0"
-					Console.set_light(1)
+					// Console.set_light(1)
 		if(tempScreen == RCS_MAINMENU)
 			reset_message()
 		screen = tempScreen

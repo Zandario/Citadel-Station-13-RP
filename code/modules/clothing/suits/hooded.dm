@@ -321,8 +321,8 @@
 	desc = "A starry winter coat that even glows softly."
 	icon_state = "coatcosmic"
 	hoodtype = /obj/item/clothing/head/hood/winter/cosmic
-	light_power = 1.8
-	light_range = 1.2
+	// light_power = 1.8
+	// light_range = 1.2
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/janitor
 	name = "janitors winter coat"
@@ -359,9 +359,9 @@
 /obj/item/clothing/head/hood/winter/ratvar
 	icon_state = "winterhood_ratvar"
 	desc = "A brass-plated winter hood that glows softly, hinting at its divinity."
-	light_range = 3
-	light_power = 1
-	light_color = "#B18B25" //clockwork slab background top color
+	// light_range = 3
+	// light_power = 1
+	// light_color = "#B18B25" //clockwork slab background top color
 
 /*
 /obj/item/clothing/suit/storage/hooded/wintercoat/ratvar/equipped(mob/living/user,slot)

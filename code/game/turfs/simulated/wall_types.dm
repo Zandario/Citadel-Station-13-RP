@@ -323,9 +323,9 @@
 	icon = 'icons/turf/shuttle_alien.dmi'
 	icon_state = "alien"
 	base_state = "alien"
-	light_range = 3
-	light_power = 0.75
-	light_color = "#ff0066" // Pink-ish
+	// light_range = 3
+	// light_power = 0.75
+	// light_color = "#ff0066" // Pink-ish
 	block_tele = TRUE // Will be used for dungeons so this is needed to stop cheesing with handteles.
 
 /turf/simulated/shuttle/wall/alien/hard_corner

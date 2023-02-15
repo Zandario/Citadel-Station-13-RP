@@ -120,10 +120,10 @@
 
 /obj/item/gun/proc/toggle_flashlight()
 	if(gun_light)
-		set_light(0)
+		// set_light(0)
 		gun_light = FALSE
 	else
-		set_light(light_brightness)
+		// set_light(light_brightness)
 		gun_light = TRUE
 
 	playsound(src, 'sound/machines/button.ogg', 25)
@@ -441,9 +441,9 @@
 
 	if(muzzle_flash)
 		if(gun_light)
-			set_light(light_brightness)
+			// set_light(light_brightness)
 		else
-			set_light(0)
+			// set_light(0)
 
 // Similar to the above proc, but does not require a user, which is ideal for things like turrets.
 /obj/item/gun/proc/Fire_userless(atom/target)
@@ -482,8 +482,8 @@
 
 			play_fire_sound()
 
-			if(muzzle_flash)
-				set_light(muzzle_flash)
+			// if(muzzle_flash)
+			// 	set_light(muzzle_flash)
 			update_icon()
 
 		//process_accuracy(projectile, user, target, acc, disp)
@@ -516,8 +516,8 @@
 
 	accuracy = initial(accuracy)	//Reset the gun's accuracy
 
-	if(muzzle_flash)
-		set_light(0)
+	// if(muzzle_flash)
+	// 	set_light(0)
 
 //obtains the next projectile to fire
 /obj/item/gun/proc/consume_next_projectile()
@@ -564,8 +564,8 @@
 			"You hear a [fire_sound_text]!"
 			)
 
-	if(muzzle_flash)
-		set_light(muzzle_flash)
+	// if(muzzle_flash)
+	// 	set_light(muzzle_flash)
 
 	if(one_handed_penalty)
 		if(!src.is_held_twohanded(user))

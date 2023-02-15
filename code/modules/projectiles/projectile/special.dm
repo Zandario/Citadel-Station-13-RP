@@ -6,9 +6,9 @@
 	damage_type = BURN
 	nodamage = 1
 	check_armour = "energy"
-	light_range = 2
-	light_power = 0.5
-	light_color = "#55AAFF"
+	// light_range = 2
+	// light_power = 0.5
+	// light_color = "#55AAFF"
 
 	combustion = FALSE
 
@@ -55,9 +55,9 @@
 	nodamage = 1
 	check_armour = "energy" // It actually checks heat/cold protection.
 	var/target_temperature = 50
-	light_range = 2
-	light_power = 0.5
-	light_color = "#55AAFF"
+	// light_range = 2
+	// light_power = 0.5
+	// light_color = "#55AAFF"
 
 	combustion = FALSE
 
@@ -127,9 +127,9 @@
 	damage_type = TOX
 	nodamage = 1
 	check_armour = "energy"
-	light_range = 2
-	light_power = 0.5
-	light_color = "#33CC00"
+	// light_range = 2
+	// light_power = 0.5
+	// light_color = "#33CC00"
 
 	combustion = FALSE
 
@@ -184,9 +184,9 @@
 	damage_type = TOX
 	nodamage = 1
 	check_armour = "energy"
-	light_range = 2
-	light_power = 0.5
-	light_color = "#FFFFFF"
+	// light_range = 2
+	// light_power = 0.5
+	// light_color = "#FFFFFF"
 
 /obj/item/projectile/energy/florayield/on_hit(var/atom/target, var/blocked = 0)
 	var/mob/M = target
@@ -264,9 +264,9 @@
 	damage = 70
 	damage_type = BURN
 	check_armour = "laser"
-	light_range = 4
-	light_power = 3
-	light_color = "#3300ff"
+	// light_range = 4
+	// light_power = 3
+	// light_color = "#3300ff"
 
 	muzzle_type = /obj/effect/projectile/tungsten/muzzle
 	tracer_type = /obj/effect/projectile/tungsten/tracer

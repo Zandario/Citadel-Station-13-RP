@@ -160,7 +160,7 @@
 /mob/living/simple_animal/slime/update_icon()
 	if(stat == DEAD)
 		icon_state = "[icon_state_override ? "[icon_state_override] slime" : "slime"] [is_adult ? "adult" : "baby"] dead"
-		set_light(0)
+		// set_light(0)
 	else
 		if(incapacitated(INCAPACITATION_DISABLED))
 			icon_state = "[icon_state_override ? "[icon_state_override] slime" : "slime"] [is_adult ? "adult" : "baby"] dead"
@@ -184,7 +184,7 @@
 		overlays_to_add += I
 
 		if(glows)
-			set_light(3, 2, color)
+			// set_light(3, 2, color)
 
 	if(hat)
 		var/hat_state = hat.item_state ? hat.item_state : hat.icon_state

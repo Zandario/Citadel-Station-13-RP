@@ -615,7 +615,7 @@ var/RL_Suspended = FALSE
 		if (light.enabled)
 			light.apply()
 	for (var/turf/T in world)
-		LAGCHECK(LAG_HIGH)
+		CHECK_TICK
 		RL_UPDATE_LIGHT(T)
 
 /proc/RL_Suspend()
@@ -830,7 +830,7 @@ var/RL_Suspended = FALSE
 			light.move(src.x + light.attach_x, src.y + light.attach_y, src.z, src.dir)
 
 
-/atom/movable/setLoc(atom/target)
+/atom/movable/proc/setLoc(atom/target)
 	if (opacity)
 		var/list/datum/light/lights = list()
 		for (var/turf/T in view(RL_MaxRadius, src))
@@ -847,8 +847,6 @@ var/RL_Suspended = FALSE
 		var/turf/NL = target
 		if(istype(NL)) ++NL.opaque_atom_count
 
-		. = ..()
-
 		for (var/datum/light/light as anything in lights)
 			if (light.enabled)
 				affected |= light.apply()
@@ -856,7 +854,7 @@ var/RL_Suspended = FALSE
 			for (var/turf/T as anything in affected)
 				RL_UPDATE_LIGHT(T)
 	else
-		. = ..()
+		return
 
 	if (src.RL_Attached) // TODO: defer updates and update all affected tiles at once?
 		var/dont_queue = (loc == null) //if we are being thrown to a null loc, dont queue this move. we need it Now.

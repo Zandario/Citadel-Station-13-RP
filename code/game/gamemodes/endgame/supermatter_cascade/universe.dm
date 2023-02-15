@@ -85,11 +85,6 @@ The access requirements on the Asteroid Shuttles' consoles have now been revoked
 
 /datum/universal_state/supermatter_cascade/OverlayAndAmbientSet()
 	spawn(0)
-		for(var/datum/lighting_corner/L in world)
-			if(L.z in GLOB.using_map.admin_levels)
-				L.update_lumcount(1,1,1)
-			else
-				L.update_lumcount(0.0, 0.4, 1)
 		for(var/turf/space/T in world)
 			T.color = "#0066FF"
 

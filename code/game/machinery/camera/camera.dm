@@ -92,7 +92,7 @@
 		if(!affected_by_emp_until || (world.time > affected_by_emp_until))
 			affected_by_emp_until = max(affected_by_emp_until, world.time + (90 SECONDS / severity))
 			machine_stat |= EMPED
-			set_light(0)
+			// set_light(0)
 			triggerCameraAlarm()
 			update_icon()
 			update_coverage()

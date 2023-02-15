@@ -167,8 +167,8 @@
 	name = "Juggerwall"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "m_shield_cult"
-	light_color = "#B40000"
-	light_range = 2
+	// light_color = "#B40000"
+	// light_range = 2
 	invisibility = 0
 
 /obj/effect/forcefield/cult/cultify()
@@ -573,9 +573,9 @@
 	damage_type = BURN
 	check_armour = "laser"
 	armor_penetration = 60
-	light_range = 2
-	light_power = -2
-	light_color = "#FFFFFF"
+	// light_range = 2
+	// light_power = -2
+	// light_color = "#FFFFFF"
 	antimagic_check = TRUE
 	antimagic_damage_factor = 0.66
 
@@ -606,9 +606,9 @@
 	desc = "A portal to some hellish place. Its screams wrack your body with pain.."
 	icon_state = "red_static_sphere"
 	time_to_die = null
-	light_range = 4
-	light_power = 5
-	light_color = "#FF0000"
+	// light_range = 4
+	// light_power = 5
+	// light_color = "#FF0000"
 	pulses_remaining = 10
 	pulse_delay = 1 SECOND
 
@@ -628,8 +628,8 @@
 	icon_state = "mend_wounds"
 	cast_methods = CAST_MELEE
 	aspect = ASPECT_UNHOLY
-	light_color = "#FF5C5C"
-	light_power = -2
+	// light_color = "#FF5C5C"
+	// light_power = -2
 
 /obj/item/spell/construct/mend_occult/on_melee_cast(atom/hit_atom, mob/living/user, def_zone)
 	if(isliving(hit_atom))
@@ -644,8 +644,8 @@
 	icon_state = "toggled_old"
 	cast_methods = CAST_MELEE
 	aspect = ASPECT_UNHOLY
-	light_color = "#FF5C5C"
-	light_power = -2
+	// light_color = "#FF5C5C"
+	// light_power = -2
 	cooldown = 15
 
 /obj/item/spell/construct/slam/on_melee_cast(atom/hit_atom, mob/living/user, def_zone)

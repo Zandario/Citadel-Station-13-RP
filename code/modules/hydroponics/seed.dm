@@ -175,11 +175,11 @@
 		var/obj/effect/plant/splat = new splat_type(T, src)
 		if(!istype(splat)) // Plants handle their own stuff.
 			splat.name = "[thrown.name] [pick("smear","smudge","splatter")]"
-			if(get_trait(TRAIT_BIOLUM))
-				var/clr
-				if(get_trait(TRAIT_BIOLUM_COLOUR))
-					clr = get_trait(TRAIT_BIOLUM_COLOUR)
-				splat.set_light(get_trait(TRAIT_BIOLUM), l_color = clr)
+			// if(get_trait(TRAIT_BIOLUM))
+			// 	var/clr
+			// 	if(get_trait(TRAIT_BIOLUM_COLOUR))
+			// 		clr = get_trait(TRAIT_BIOLUM_COLOUR)
+			// 	splat.set_light(get_trait(TRAIT_BIOLUM), l_color = clr)
 			var/flesh_colour = get_trait(TRAIT_FLESH_COLOUR)
 			if(!flesh_colour) flesh_colour = get_trait(TRAIT_PRODUCT_COLOUR)
 			if(flesh_colour) splat.color = get_trait(TRAIT_PRODUCT_COLOUR)
@@ -302,7 +302,7 @@
 
 	// Handle light requirements.
 	if(!light_supplied)
-		light_supplied = current_turf.get_lumcount() * 5
+		light_supplied = current_turf.RL_GetBrightness() * 5
 	if(light_supplied)
 		if(abs(light_supplied - get_trait(TRAIT_IDEAL_LIGHT)) > get_trait(TRAIT_LIGHT_TOLERANCE))
 			health_change += rand(1,3) * HYDRO_SPEED_MULTIPLIER
@@ -729,11 +729,11 @@
 				product.name += "?"
 				product.desc += " On second thought, something about this one looks strange."
 
-			if(get_trait(TRAIT_BIOLUM))
-				var/clr
-				if(get_trait(TRAIT_BIOLUM_COLOUR))
-					clr = get_trait(TRAIT_BIOLUM_COLOUR)
-				product.set_light(get_trait(TRAIT_BIOLUM), l_color = clr)
+			// if(get_trait(TRAIT_BIOLUM))
+			// 	var/clr
+			// 	if(get_trait(TRAIT_BIOLUM_COLOUR))
+			// 		clr = get_trait(TRAIT_BIOLUM_COLOUR)
+			// 	product.set_light(get_trait(TRAIT_BIOLUM), l_color = clr)
 
 			if(get_trait(TRAIT_STINGS))
 				product.force = 1

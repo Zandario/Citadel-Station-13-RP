@@ -160,7 +160,7 @@
 		var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing
 		if(isturf(H.loc)) //else, there's considered to be no light
 			var/turf/T = H.loc
-			light_amount = T.get_lumcount() * 10
+			light_amount = T.RL_GetBrightness() * 10
 		H.nutrition += light_amount
 		H.shock_stage -= light_amount
 

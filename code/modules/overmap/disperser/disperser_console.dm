@@ -5,7 +5,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "security_key"
 	icon_screen = "disperser"
-	light_color = "#7faaff"
+	// light_color = "#7faaff"
 	circuit = /obj/item/circuitboard/disperser
 
 	core_skill = /datum/skill/pilot

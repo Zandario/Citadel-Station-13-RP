@@ -15,9 +15,9 @@
 
 /obj/item/melee/baton/robot/arm/update_icon()
 	if(status)
-		set_light(1.5, 1, lightcolor)
+		// set_light(1.5, 1, lightcolor)
 	else
-		set_light(0)
+		// set_light(0)
 
 /obj/item/borg/overdrive
 	name = "overdrive"

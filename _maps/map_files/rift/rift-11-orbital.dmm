@@ -4181,8 +4181,7 @@
 	},
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/machinery/light{
-	dir = 8;
-	light_range = 12
+	dir = 8
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/shuttle/escape)
@@ -5054,8 +5053,7 @@
 /obj/machinery/computer/med_data{
 	icon_keyboard = "laptop_key";
 	icon_screen = "medlaptop";
-	icon_state = "laptop";
-	light_color = "#00b000"
+	icon_state = "laptop"
 	},
 /obj/effect/floor_decal/corner/paleblue{
 	dir = 6

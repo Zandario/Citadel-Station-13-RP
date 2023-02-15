@@ -2,7 +2,7 @@
 	name = "\improper R-UST Mk. 8 core control"
 	icon = 'icons/obj/machines/power/fusion.dmi'
 	icon_state = "core_control"
-	light_color = COLOR_ORANGE
+	// light_color = COLOR_ORANGE
 	circuit = /obj/item/circuitboard/fusion_core_control
 	var/id_tag
 	var/scan_range = 25
@@ -183,14 +183,14 @@
 	if(machine_stat & (BROKEN))
 		icon = 'icons/obj/computer.dmi'
 		icon_state = "broken"
-		set_light(0)
+		// set_light(0)
 
 	if(machine_stat & (NOPOWER))
 		icon = 'icons/obj/computer.dmi'
 		icon_state = "computer"
-		set_light(0)
+		// set_light(0)
 
 	if(!(machine_stat & (BROKEN|NOPOWER)))
 		icon = initial(icon)
 		icon_state = initial(icon_state)
-		set_light(light_range_on, light_power_on)
+		// set_light(light_range_on, light_power_on)

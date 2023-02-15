@@ -38,7 +38,7 @@
 /turf/proc/get_avg_color()
 	desc: Gets the average color of this tile as a hexadecimal color string. Used by cameras.
 
-/turf/proc/get_lumcount(minlum = 0, maxlum = 1)
+/turf/proc/RL_GetBrightness(minlum = 0, maxlum = 1)
 	desc: Gets the brightness of this tile. If not dynamically lit, always returns 0.5, otherwise returns the average brightness of all 4 corners, scaled between minlum and maxlum.
 	args:
 		minlum -> the low-bound of the scalar.

@@ -266,14 +266,14 @@
 /obj/machinery/shield_gen/update_icon()
 	if(machine_stat & BROKEN)
 		icon_state = "broke"
-		set_light(0)
+		// set_light(0)
 	else
 		if (src.active)
 			icon_state = "generator1"
-			set_light(4, 2, "#00CCFF")
+			// set_light(4, 2, "#00CCFF")
 		else
 			icon_state = "generator0"
-			set_light(0)
+			// set_light(0)
 
 //grab the border tiles in a circle around this machine
 /obj/machinery/shield_gen/proc/get_shielded_turfs()

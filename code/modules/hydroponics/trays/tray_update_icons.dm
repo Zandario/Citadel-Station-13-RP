@@ -86,11 +86,11 @@
 	// Update bioluminescence.
 	if(seed)
 		if(seed.get_trait(TRAIT_BIOLUM))
-			var/clr
-			if(seed.get_trait(TRAIT_BIOLUM_COLOUR))
-				clr = seed.get_trait(TRAIT_BIOLUM_COLOUR)
-			set_light(round(seed.get_trait(TRAIT_POTENCY)/10), l_color = clr)
+			// var/clr
+			// if(seed.get_trait(TRAIT_BIOLUM_COLOUR))
+			// 	clr = seed.get_trait(TRAIT_BIOLUM_COLOUR)
+			// set_light(round(seed.get_trait(TRAIT_POTENCY)/10), l_color = clr)
 			return
 
-	set_light(0)
+	// set_light(0)
 	return

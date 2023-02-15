@@ -15,10 +15,10 @@
 	. = ..()
 	if(does_skyfall && !LAZYLEN(skyfall_levels))
 		log_world("[x],[y],[z], [get_area(src)] doesn't have skyfall_levels defined! Can't skyfall!")
-	if(locate(/turf/simulated) in orange(src,1))
-		set_light(2, 2, color)
+	// if(locate(/turf/simulated) in orange(src,1))
+	// 	set_light(2, 2, color)
 
-/turf/simulated/floor/sky/Entered(atom/movable/AM,atom/oldloc)
+/turf/simulated/floor/sky/Entered(atom/movable/AM, atom/oldloc)
 	..()
 	if(!does_skyfall)
 		return //We don't do that
@@ -88,7 +88,7 @@
 
 /turf/simulated/floor/sky/depths/Initialize(mapload)
 	. = ..()
-	set_light(0, 0, "#FFFFFF")
+	// set_light(0, 0, "#FFFFFF")
 
 /turf/simulated/floor/sky/depths/Initialize(mapload)
 	skyfall_levels = list(z - 1)

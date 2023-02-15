@@ -159,9 +159,9 @@
 	unbuckle_all_mobs(BUCKLE_OP_FORCE)
 	for(var/atom/movable/AM in contents)
 		qdel(AM)
-	var/turf/un_opaque
-	if(opacity && isturf(loc))
-		un_opaque = loc
+	// var/turf/un_opaque
+	// if(opacity && isturf(loc))
+	// 	un_opaque = loc
 	// kick perspectives before moving
 	if(self_perspective)
 		QDEL_NULL(self_perspective)
@@ -176,8 +176,8 @@
 	. = ..()
 
 	moveToNullspace()
-	if(un_opaque)
-		un_opaque.recalc_atom_opacity()
+	// if(un_opaque)
+	// 	un_opaque.recalc_atom_opacity()
 
 /atom/movable/CanAllowThrough(atom/movable/mover, turf/target)
 	if(mover in buckled_mobs)

@@ -32,7 +32,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	desc = "Science, in a computer! Experiment results not guaranteed."
 	icon_keyboard = "rd_key"
 	icon_screen = "rdcomp"
-	light_color = "#a97faa"
+	// light_color = "#a97faa"
 	circuit = /obj/item/circuitboard/rdconsole
 	var/datum/research/files							//Stores all the collected research data.
 	var/obj/item/disk/tech_disk/t_disk = null	//Stores the technology disk.

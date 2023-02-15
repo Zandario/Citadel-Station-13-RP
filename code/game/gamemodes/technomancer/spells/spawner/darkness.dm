@@ -20,11 +20,11 @@
 
 /obj/item/spell/spawner/darkness/Initialize(mapload)
 	. = ..()
-	set_light(6, -20, l_color = "#FFFFFF")
+	// set_light(6, -20, l_color = "#FFFFFF")
 
 /obj/effect/temporary_effect/darkness
 	name = "darkness"
 	time_to_die = 2 MINUTES
 	invisibility = 101
-	light_range = 6
-	light_power = -20
+	// light_range = 6
+	// light_power = -20

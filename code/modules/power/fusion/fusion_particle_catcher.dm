@@ -6,7 +6,7 @@
 	var/obj/effect/fusion_em_field/parent
 	var/mysize = 0
 
-	light_color = COLOR_BLUE
+	// light_color = COLOR_BLUE
 
 /obj/effect/fusion_particle_catcher/Destroy()
 	. =..()

@@ -116,7 +116,7 @@
 	density = FALSE
 	icon_state = "[base_state]_stump"
 	cut_overlays() // For the Sif tree and other future glowy trees.
-	set_light(0)
+	// set_light(0)
 
 /obj/structure/flora/tree/legacy_ex_act(var/severity)
 	adjust_health(-(max_health / severity), TRUE)
@@ -287,7 +287,7 @@
 	update_icon()
 
 /obj/structure/flora/tree/sif/update_icon()
-	set_light(5 - light_shift, 1, "#33ccff")	// 5 variants, missing bulbs. 5th has no bulbs, so no glow.
+	// set_light(5 - light_shift, 1, "#33ccff")	// 5 variants, missing bulbs. 5th has no bulbs, so no glow.
 	var/image/glow = image(icon = icon, icon_state = "[base_state][light_shift]_glow")
 	glow.plane = ABOVE_LIGHTING_PLANE
 	add_overlay(glow)

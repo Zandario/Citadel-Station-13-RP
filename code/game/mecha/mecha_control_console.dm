@@ -3,7 +3,7 @@
 	desc = "Used to track exosuits, as well as view their logs and activate EMP beacons."
 	icon_keyboard = "rd_key"
 	icon_screen = "mecha"
-	light_color = "#a97faa"
+	// light_color = "#a97faa"
 	req_access = list(access_robotics)
 	circuit = /obj/item/circuitboard/mecha_control
 	var/list/located = list()

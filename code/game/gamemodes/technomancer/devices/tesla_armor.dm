@@ -63,11 +63,11 @@
 	if(active && ready)
 		icon_state = ready_icon_state
 		item_state = ready_icon_state
-		set_light(2, 1, l_color = "#006AFF")
+		// set_light(2, 1, l_color = "#006AFF")
 	else
 		icon_state = normal_icon_state
 		item_state = normal_icon_state
-		set_light(0, 0, l_color = "#000000")
+		// set_light(0, 0, l_color = "#000000")
 
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc

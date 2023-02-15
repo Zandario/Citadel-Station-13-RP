@@ -72,7 +72,7 @@
 				to_chat(user, "<span class='warning'>Teleportation doesn't seem to work here.</span>")
 				return
 			visible_message("<span class='warning'>\The [user] starts glowing!</span>")
-			var/light_intensity = 2
+			// var/light_intensity = 2
 			var/time_left = 3
 			if(check_for_scepter())
 				time_left = 2
@@ -81,8 +81,8 @@
 					visible_message("<span class='notice'>\The [user]'s glow fades.</span>")
 					to_chat(user, "<span class='danger'>You cannot Recall while incapacitated!</span>")
 					return 0
-				light_intensity++
-				set_light(light_intensity, light_intensity, l_color = "#006AFF")
+				// light_intensity++
+				// set_light(light_intensity, light_intensity, l_color = "#006AFF")
 				time_left--
 				sleep(1 SECOND)
 
@@ -108,4 +108,3 @@
 	else
 		to_chat(user, "<span class='warning'>You can't afford the energy cost!</span>")
 		return 0
-

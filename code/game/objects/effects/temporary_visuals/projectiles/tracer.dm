@@ -15,12 +15,12 @@
 		light_color_override = color
 	PB.apply_vars(angle_between_points(starting, ending), midpoint.return_px(), midpoint.return_py(), color, pixel_length_between_points(starting, ending) / world.icon_size, midpoint.return_turf(), 0)
 	. = PB
-	if(isnull(light_intensity) && !isnull(PB.light_power))
-		light_intensity = PB.light_power
-	if(isnull(light_range) && !isnull(PB.light_range))
-		light_range = PB.light_range
-	if(isnull(light_color_override) && !isnull(PB.light_color))
-		light_color_override = PB.light_color
+	// if(isnull(light_intensity) && !isnull(PB.light_power))
+	// 	light_intensity = PB.light_power
+	// if(isnull(light_range) && !isnull(PB.light_range))
+	// 	// light_range = PB.light_range
+	// if(isnull(light_color_override) && !isnull(PB.light_color))
+	// 	light_color_override = PB.light_color
 	if(light_range > 0 && light_intensity > 0)
 		var/list/turf/line = getline(starting.return_turf(), ending.return_turf())
 		tracing_line:
@@ -39,86 +39,86 @@
 
 /obj/effect/projectile/tracer/stun
 	icon_state = "stun"
-	light_range = 2
-	light_power = 0.5
-	light_color = "#FFFFFF"
+	// light_range = 2
+	// light_power = 0.5
+	// light_color = "#FFFFFF"
 
 /obj/effect/projectile/tracer/lightning
 	icon_state = "lightning"
-	light_range = 2
-	light_power = 0.5
-	light_color = "#00C6FF"
+	// light_range = 2
+	// light_power = 0.5
+	// light_color = "#00C6FF"
 
 /obj/effect/projectile/tracer/laser_pulse
 	icon_state = "u_laser"
-	light_range = 2
-	light_power = 0.5
-	light_color = "#0066FF"
+	// light_range = 2
+	// light_power = 0.5
+	// light_color = "#0066FF"
 
 /obj/effect/projectile/tracer/emitter
 	icon_state = "emitter"
-	light_range = 2
-	light_power = 0.5
-	light_color = "#00CC33"
+	// light_range = 2
+	// light_power = 0.5
+	// light_color = "#00CC33"
 
 /obj/effect/projectile/tracer/darkmatterstun
 	icon_state = "darkt"
-	light_range = 2
-	light_power = 0.5
-	light_color = "#8837A3"
+	// light_range = 2
+	// light_power = 0.5
+	// light_color = "#8837A3"
 
 /obj/effect/projectile/tracer/laser_omni
 	icon_state = "beam_omni"
-	light_range = 2
-	light_power = 0.5
-	light_color = "#00C6FF"
+	// light_range = 2
+	// light_power = 0.5
+	// light_color = "#00C6FF"
 
 /obj/effect/projectile/tracer/xray
 	icon_state = "xray"
-	light_range = 2
-	light_power = 0.5
-	light_color = "#00CC33"
+	// light_range = 2
+	// light_power = 0.5
+	// light_color = "#00CC33"
 
 /obj/effect/projectile/tracer/laser_heavy
 	icon_state = "beam_heavy"
-	light_range = 3
-	light_power = 1
-	light_color = "#FF0D00"
+	// light_range = 3
+	// light_power = 1
+	// light_color = "#FF0D00"
 
 /obj/effect/projectile/tracer/darkmatter
 	icon_state = "darkb"
-	light_range = 2
-	light_power = 0.5
-	light_color = "#8837A3"
+	// light_range = 2
+	// light_power = 0.5
+	// light_color = "#8837A3"
 
 /obj/effect/projectile/tracer/inversion
 	icon_state = "invert"
-	light_range = 2
-	light_power = -2
-	light_color = "#FFFFFF"
+	// light_range = 2
+	// light_power = -2
+	// light_color = "#FFFFFF"
 
 /obj/effect/projectile/tracer/laser
 	icon_state = "beam"
-	light_range = 2
-	light_power = 0.5
-	light_color = "#FF0D00"
+	// light_range = 2
+	// light_power = 0.5
+	// light_color = "#FF0D00"
 
 /obj/effect/projectile/tracer/laser_blue
 	icon_state = "beam_blue"
-	light_range = 2
-	light_power = 0.5
-	light_color = "#0066FF"
+	// light_range = 2
+	// light_power = 0.5
+	// light_color = "#0066FF"
 
 /obj/effect/projectile/tungsten/tracer
 	icon_state = "mhd_laser"
-	light_range = 4
-	light_power = 3
-	light_color = "#3300ff"
+	// light_range = 4
+	// light_power = 3
+	// light_color = "#3300ff"
 
 // Medigun
 /obj/effect/projectile/tracer/medigun
 	icon = 'icons/obj/projectiles_vr.dmi'
 	icon_state = "medbeam"
-	light_range = 2
-	light_power = 0.5
-	light_color = "#80F5FF"
+	// light_range = 2
+	// light_power = 0.5
+	// light_color = "#80F5FF"

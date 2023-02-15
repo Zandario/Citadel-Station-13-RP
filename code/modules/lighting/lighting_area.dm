@@ -1,6 +1,6 @@
 /area
 	luminosity = TRUE
-	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
+	var/dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 
 /area/Initialize()
 	. = ..()
@@ -14,15 +14,15 @@
 
 	dynamic_lighting = new_dynamic_lighting
 
-	if (new_dynamic_lighting)
-		for (var/turf/T in src)
-			if (T.dynamic_lighting)
-				T.lighting_build_overlay()
+	// if (new_dynamic_lighting)
+	// 	for (var/turf/T in src)
+	// 		if (T.dynamic_lighting)
+	// 			T.lighting_build_overlay()
 
-	else
-		for (var/turf/T in src)
-			if (T.lighting_overlay)
-				T.lighting_clear_overlay()
+	// else
+	// 	for (var/turf/T in src)
+	// 		if (T.lighting_overlay)
+	// 			T.lighting_clear_overlay()
 
 	return TRUE
 

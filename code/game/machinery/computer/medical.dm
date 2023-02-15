@@ -17,7 +17,7 @@
 	icon_keyboard = "med_key"
 	icon_screen = "medcomp"
 	density = TRUE
-	light_color = "#315ab4"
+	// light_color = "#315ab4"
 	req_one_access = list(access_medical, access_forensics_lockers, access_robotics)
 	circuit = /obj/item/circuitboard/med_data
 	var/obj/item/card/id/scan = null
@@ -504,7 +504,7 @@
 	icon_screen = "pcu_generic"
 	icon_state = "pcu_med"
 	icon_keyboard = "pcu_key"
-	light_color = "#5284e7"
+	// light_color = "#5284e7"
 	circuit = /obj/item/circuitboard/med_data/pcu
 	density = FALSE
 

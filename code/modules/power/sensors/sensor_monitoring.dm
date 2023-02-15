@@ -7,7 +7,7 @@
 	desc = "Computer designed to remotely monitor power levels around the station"
 	icon_keyboard = "power_key"
 	icon_screen = "power_monitor"
-	light_color = "#ffcc33"
+	// light_color = "#ffcc33"
 
 	//computer stuff
 	density = TRUE

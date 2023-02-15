@@ -178,12 +178,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		var/turf/T = get_turf(src)
 		T.visible_message(flavor_text)
 		update_icon()
-		set_light(2, 0.25, "#E38F46")
+		// set_light(2, 0.25, "#E38F46")
 		START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/mask/smokable/proc/die(var/nomessage = 0)
 	var/turf/T = get_turf(src)
-	set_light(0)
+	// set_light(0)
 	STOP_PROCESSING(SSobj, src)
 	if (type_butt)
 		var/obj/item/butt = new type_butt(T)
@@ -615,7 +615,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 					user.apply_damage(2,BURN,"r_hand")
 				user.visible_message("<span class='notice'>After a few attempts, [user] manages to light the [src], they however burn their finger in the process.</span>")
 
-		set_light(2)
+		// set_light(2)
 		START_PROCESSING(SSobj, src)
 	else
 		lit = 0
@@ -627,7 +627,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		else
 			user.visible_message("<span class='notice'>[user] quietly shuts off the [src].</span>")
 
-		set_light(0)
+		// set_light(0)
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/flame/lighter/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)

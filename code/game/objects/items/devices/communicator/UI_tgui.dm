@@ -427,7 +427,7 @@
 
 		if("Light")
 			fon = !fon
-			set_light(fon * flum)
+			// set_light(fon * flum)
 
 		if("newsfeed")
 			newsfeed_channel = text2num(params["newsfeed"])

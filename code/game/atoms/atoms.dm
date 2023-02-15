@@ -220,14 +220,14 @@
 	if(color)
 		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 
-	if(light_power && light_range)
-		update_light(src)
+	// if(light_power && light_range)
+		// update_light(src)
 
 	SETUP_SMOOTHING()
 
-	if(opacity && isturf(loc))
-		var/turf/T = loc
-		T.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guranteed to be on afterwards anyways.
+	// if(opacity && isturf(loc))
+	// 	var/turf/T = loc
+	// 	T.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guranteed to be on afterwards anyways.
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -269,8 +269,8 @@
 	LAZYCLEARLIST(overlays)
 	LAZYNULL(managed_overlays)
 
-	if(light)
-		QDEL_NULL(light)
+	// if(light)
+	// 	QDEL_NULL(light)
 
 	if(smoothing_flags & SMOOTH_QUEUED)
 		SSicon_smooth.remove_from_queues(src)

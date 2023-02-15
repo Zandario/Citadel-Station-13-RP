@@ -499,7 +499,7 @@
 		M.Turn(original_angle)
 		thing.transform = M
 		thing.color = color
-		thing.set_light(muzzle_flash_range, muzzle_flash_intensity, muzzle_flash_color_override? muzzle_flash_color_override : color)
+		// thing.set_light(muzzle_flash_range, muzzle_flash_intensity, muzzle_flash_color_override? muzzle_flash_color_override : color)
 		beam_components.beam_components += thing
 	if(impacting && impact_type && duration > 0)
 		var/datum/point/p = beam_segments[beam_segments[beam_segments.len]]
@@ -509,7 +509,7 @@
 		M.Turn(Angle)
 		thing.transform = M
 		thing.color = color
-		thing.set_light(impact_light_range, impact_light_intensity, impact_light_color_override? impact_light_color_override : color)
+		// thing.set_light(impact_light_range, impact_light_intensity, impact_light_color_override? impact_light_color_override : color)
 		beam_components.beam_components += thing
 	QDEL_IN(beam_components, duration)
 

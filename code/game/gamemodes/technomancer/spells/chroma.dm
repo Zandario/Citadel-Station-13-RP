@@ -16,7 +16,7 @@
 
 /obj/item/spell/chroma/Initialize(mapload)
 	. = ..()
-	set_light(6, 5, l_color = color_to_use)
+	// set_light(6, 5, l_color = color_to_use)
 
 /obj/effect/chroma
 	name = "chroma"
@@ -26,7 +26,7 @@
 
 /obj/effect/chroma/Initialize(mapload, new_color = "#FFFFFF")
 	. = ..()
-	set_light(6, 5, l_color = new_color)
+	// set_light(6, 5, l_color = new_color)
 	if(time_to_die)
 		QDEL_IN(src, time_to_die)
 
@@ -41,4 +41,4 @@
 	var/new_color = input(user, "Choose the color you want your light to be.", "Color selection") as null|color
 	if(new_color)
 		color_to_use = new_color
-		set_light(6, 5, l_color = new_color)
+		// set_light(6, 5, l_color = new_color)

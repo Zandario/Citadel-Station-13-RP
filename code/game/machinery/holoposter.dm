@@ -45,18 +45,18 @@ GLOBAL_LIST_EMPTY(holoposters)
 	if(machine_stat & NOPOWER)
 		icon_state = "off"
 		examine_addon = "It appears to be powered off."
-		set_light(0)
+		// set_light(0)
 		return
-	var/new_color = LIGHT_COLOR_HALOGEN
+	// var/new_color = LIGHT_COLOR_HALOGEN
 	if(machine_stat & BROKEN)
 		icon_state = "glitch"
 		examine_addon = "It appears to be malfunctioning."
-		new_color = "#6A6C71"
+		// new_color = "#6A6C71"
 	else
 		if((z in GLOB.using_map.station_levels) && GLOB.security_level) // 0 is fine, everything higher is alert levels
 			icon_state = "attention"
 			examine_addon = "It warns you to remain calm and contact your supervisor as soon as possible."
-			new_color =  "#AA7039"
+			// new_color =  "#AA7039"
 			alerting = TRUE
 		else if(alerting && !GLOB.security_level) // coming out of alert
 			alerting = FALSE
@@ -64,10 +64,10 @@ GLOBAL_LIST_EMPTY(holoposters)
 			return
 		else if(icon_state in postertypes)
 			var/list/settings = postertypes[icon_state]
-			new_color = settings[1]
+			// new_color = settings[1]
 			examine_addon = settings[2]
 
-	set_light(l_range = 2, l_power = 2, l_color = new_color)
+	// set_light(l_range = 2, l_power = 2, l_color = new_color)
 
 /obj/machinery/holoposter/proc/set_rand_sprite()
 	if(alerting)

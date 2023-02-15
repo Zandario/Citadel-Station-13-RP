@@ -157,7 +157,7 @@
 	// Shock nearby things that aren't ourselves.
 	for(var/i = 1 to 10)
 		energy_ball.adjust_scale(0.5 + (i/10))
-		energy_ball.set_light(i/2, i/2, "#0000FF")
+		// energy_ball.set_light(i/2, i/2, "#0000FF")
 		for(var/thing in range(3, src))
 			// This is stupid because mechs are stupid and not mobs.
 			if(isliving(thing))
@@ -255,9 +255,9 @@
 	desc = "It's sucking everything in!"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "bhole3"
-	light_range = 4
-	light_power = 5
-	light_color = "#2ECCFA"
+	// light_range = 4
+	// light_power = 5
+	// light_color = "#2ECCFA"
 	pulses_remaining = 10
 	pulse_delay = 0.5 SECONDS
 	var/pull_radius = 3

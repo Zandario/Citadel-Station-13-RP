@@ -20,7 +20,7 @@
 
 /obj/item/spell/shield/Initialize(mapload)
 	. = ..()
-	set_light(3, 2, l_color = "#006AFF")
+	// set_light(3, 2, l_color = "#006AFF")
 	spark_system = new /datum/effect_system/spark_spread()
 	spark_system.set_up(5, 0, src)
 

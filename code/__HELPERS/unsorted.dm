@@ -746,7 +746,7 @@
 					//Move the objects. Not forceMove because the object isn't "moving" really, it's supposed to be on the "same" turf.
 					for(var/obj/O in T)
 						O.loc = X
-						update_light(O)
+						// update_light(O)
 						if(z_level_change) // The objects still need to know if their z-level changed.
 							O.onTransitZ(T.z, X.z)
 
@@ -1160,7 +1160,7 @@ var/list/WALLITEMS = list(
 /atom/proc/get_light_and_color(atom/origin)
 	if(origin)
 		color = origin.color
-		set_light(origin.light_range, origin.light_power, origin.light_color)
+		// set_light(origin.light_range, origin.light_power, origin.light_color)
 
 /// Call to generate a stack trace and print to runtime logs.
 /proc/crash_with(msg)

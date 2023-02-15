@@ -17,7 +17,7 @@
 	var/use_auto_lights = 1
 	var/light_power_on = 1
 	var/light_range_on = 2
-	light_color = "#64C864"
+	// light_color = "#64C864"
 
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
@@ -158,9 +158,9 @@
 	update_icon()
 	// TODO - Port use_auto_lights from /vg - For now implement it manually here
 	if(machine_stat & NOPOWER)
-		set_light(0)
+		// set_light(0)
 	else
-		set_light(light_range_on, light_power_on)
+		// set_light(light_range_on, light_power_on)
 
 /obj/machinery/station_map/proc/set_broken()
 	machine_stat |= BROKEN

@@ -227,7 +227,7 @@
 		anchored = 1
 		density = 1
 		unacidable = 1
-		light_range = 3
+		// light_range = 3
 		var/needs_power = 0
 		var/active = 1
 //		var/power = 10

@@ -7,7 +7,7 @@
 	icon_keyboard = "stockmarket_key"
 	var/logged_in = "Cargo Department"
 	var/vmode = 1
-	light_color = LIGHT_COLOR_GREEN
+	// light_color = LIGHT_COLOR_GREEN
 
 /obj/machinery/computer/stockexchange/Initialize()
 	. = ..()

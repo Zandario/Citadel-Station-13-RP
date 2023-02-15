@@ -121,12 +121,12 @@
 	holder.glow_range = 4
 	holder.glow_intensity = -10
 	holder.glow_color = "#FFFFFF"
-	holder.set_light(4, -10, "#FFFFFF")
+	// holder.set_light(4, -10, "#FFFFFF")
 
 /datum/modifier/crew_shadekin/create_shade/on_expire()
 	holder.glow_toggle = initial(holder.glow_toggle)
 	holder.glow_range = initial(holder.glow_range)
 	holder.glow_intensity = initial(holder.glow_intensity)
 	holder.glow_color = initial(holder.glow_color)
-	holder.set_light(0)
+	// holder.set_light(0)
 	my_kin = null

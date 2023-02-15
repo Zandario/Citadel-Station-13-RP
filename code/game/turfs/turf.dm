@@ -147,18 +147,18 @@
 	for(var/atom/movable/AM in src)
 		Entered(AM)
 
-	var/area/A = loc
-	if(!TURF_IS_DYNAMICALLY_LIT_UNSAFE(src))
-		add_overlay(/obj/effect/fullbright)
+	// var/area/A = loc
+	// if(!TURF_IS_DYNAMICALLY_LIT_UNSAFE(src))
+	// 	add_overlay(/obj/effect/fullbright)
 
-	if (light_power && light_range)
-		update_light(src)
+	// if (light_power && light_range)
+	// 	update_light(src)
 
 	if (!mapload)
 		SSambient_lighting.queued += src
 
-	if (opacity)
-		has_opaque_atom = TRUE
+	// if (opacity)
+	// 	has_opaque_atom = TRUE
 
 	if (mapload && permit_ao)
 		queue_ao()
@@ -166,8 +166,8 @@
 	if (mz_flags & MZ_MIMIC_BELOW)
 		setup_zmimic(mapload)
 
-	if(isnull(outdoors))
-		outdoors = A.initial_outdoors
+	// if(isnull(outdoors))
+	// 	outdoors = A.initial_outdoors
 
 	return INITIALIZE_HINT_NORMAL
 

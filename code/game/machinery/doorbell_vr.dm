@@ -22,10 +22,10 @@
 	use_power(active_power_usage)
 	playsound(src.loc, chime_sound, 75)
 	icon_state = "dbchime-active"
-	set_light(2, 0.5, "#33FF33")
+	// set_light(2, 0.5, "#33FF33")
 	visible_message("\The [src]'s light flashes.")
 	sleep(30)
-	set_light(0)
+	// set_light(0)
 	update_icon()
 
 /obj/machinery/doorbell_chime/power_change()
