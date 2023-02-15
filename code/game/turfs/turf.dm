@@ -166,6 +166,8 @@
 	if (mz_flags & MZ_MIMIC_BELOW)
 		setup_zmimic(mapload)
 
+	if(SSticker.current_state < GAME_STATE_PLAYING)
+		RL_Init()
 	// if(isnull(outdoors))
 	// 	outdoors = A.initial_outdoors
 
