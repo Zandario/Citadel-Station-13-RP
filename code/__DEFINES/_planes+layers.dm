@@ -279,6 +279,8 @@
 #define ABOVE_LIGHTING_LAYER 2
 
 
+#define LIGHTING_PLANE_ADDITIVE 11
+
 /**
  *! -- Lighting Plane
  *? For glowy eyes etc. that shouldn't be affected by darkness.

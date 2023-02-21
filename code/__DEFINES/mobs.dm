@@ -316,28 +316,29 @@
 // todo: kill this shit, why are we using ordered indexed lists for something only on players and therefore cheap to spam?
 #define VIS_FULLBRIGHT		1
 #define VIS_LIGHTING		2
-#define VIS_GHOSTS			3
-#define VIS_AI_EYE			4
+#define VIS_ADDLIGHTING		3
+#define VIS_GHOSTS			4
+#define VIS_AI_EYE			5
 
-#define VIS_ADMIN1			5
-#define VIS_ADMIN2			6
-#define VIS_ADMIN3			7
+#define VIS_ADMIN1			6
+#define VIS_ADMIN2			7
+#define VIS_ADMIN3			8
 
-#define VIS_MESONS			8
+#define VIS_MESONS			9
 
-#define VIS_TURFS			9
-#define VIS_OBJS			10
-#define VIS_MOBS			11
+#define VIS_TURFS			10
+#define VIS_OBJS			11
+#define VIS_MOBS			12
 
-#define VIS_AUGMENTED		12
-#define VIS_CLOAKED			13
-#define VIS_PARALLAX		14
-#define VIS_STATUS			15
-#define VIS_SPACE			16
-#define VIS_SONAR			17
-#define VIS_EMISSIVE		18
+#define VIS_AUGMENTED		13
+#define VIS_CLOAKED			14
+#define VIS_PARALLAX		15
+#define VIS_STATUS			16
+#define VIS_SPACE			17
+#define VIS_SONAR			18
+#define VIS_EMISSIVE		19
 ///Must be highest number from above.
-#define VIS_COUNT			18
+#define VIS_COUNT			19
 
 // Clothing flags, organized in roughly top-bottom
 #define EXAMINE_SKIPHELMET			0x0001

@@ -1,14 +1,14 @@
-var/global/datum/lighting_corner/dummy/dummy_lighting_corner = new
-// Because we can control each corner of every lighting overlay.
-// And corners get shared between multiple turfs (unless you're on the corners of the map, then 1 corner doesn't).
-// For the record: these should never ever ever be deleted, even if the turf doesn't have dynamic lighting.
-
 // This list is what the code that assigns corners listens to, the order in this list is the order in which corners are added to the /turf/corners list.
 var/global/list/LIGHTING_CORNER_DIAGONAL = list(NORTHEAST, SOUTHEAST, SOUTHWEST, NORTHWEST)
 
 // This is the reverse of the above - the position in the array is a dir. Update this if the above changes.
 var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 2, 1)
 
+/**
+ * Because we can control each corner of every lighting overlay.
+ * And corners get shared between multiple turfs (unless you're on the corners of the map, then 1 corner doesn't).
+ * For the record: these should never ever ever be deleted, even if the turf doesn't have dynamic lighting.
+ */
 /datum/lighting_corner
 	// t1 through t4 are our masters, in no particular order.
 	// They are split into vars like this in the interest of reducing memory usage.
@@ -63,6 +63,12 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 
 	/// Used for planet lighting. Probably needs a better system to prevent over-updating when not needed at some point.
 	var/update_gen = 0
+
+	//additive light values
+	var/add_r = 0
+	var/add_g = 0
+	var/add_b = 0
+	var/applying_additive = FALSE
 
 /datum/lighting_corner/New(turf/new_turf, diagonal, oi)
 	SSlighting.total_lighting_corners += 1
@@ -185,6 +191,12 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 	UPDATE_APPARENT(src, g)
 	UPDATE_APPARENT(src, b)
 
+	add_r = clamp((apparent_r - 1.4) * 0.5, 0, 0.3)
+	add_g = clamp((apparent_g - 1.4) * 0.5, 0, 0.3)
+	add_b = clamp((apparent_b - 1.4) * 0.5, 0, 0.3)
+
+	applying_additive = add_r || add_b || add_g
+
 	var/turf/T
 	var/Ti
 	// Grab the first master that's a Z-turf, if one exists.
@@ -227,6 +239,12 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 	UPDATE_APPARENT(src, g)
 	UPDATE_APPARENT(src, b)
 
+	add_r = clamp((apparent_r - 1.4) * 0.5, 0, 0.3)
+	add_g = clamp((apparent_g - 1.4) * 0.5, 0, 0.3)
+	add_b = clamp((apparent_b - 1.4) * 0.5, 0, 0.3)
+
+	applying_additive = add_r || add_b || add_g
+
 	// This needs to be down here instead of the above if so the lum values are properly updated.
 	if (needs_update)
 		return
@@ -245,6 +263,12 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 	UPDATE_APPARENT(src, r)
 	UPDATE_APPARENT(src, g)
 	UPDATE_APPARENT(src, b)
+
+	add_r = clamp((apparent_r - 1.4) * 0.5, 0, 0.3)
+	add_g = clamp((apparent_g - 1.4) * 0.5, 0, 0.3)
+	add_b = clamp((apparent_b - 1.4) * 0.5, 0, 0.3)
+
+	applying_additive = add_r || add_b || add_g
 
 	var/turf/T
 	var/Ti

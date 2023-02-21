@@ -3,18 +3,23 @@
 	anchored = TRUE
 	atom_flags = ATOM_ABSTRACT
 
-	icon = LIGHTING_ICON
-	icon_state = LIGHTING_BASE_ICON_STATE
-
-	plane = LIGHTING_PLANE
-	layer = LIGHTING_LAYER
-	color = LIGHTING_BASE_MATRIX
+	// plane = LIGHTING_PLANE
+	// layer = LIGHTING_LAYER
+	// color = LIGHTING_BASE_MATRIX
 
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	invisibility = INVISIBILITY_LIGHTING
 	// simulated = FALSE
 
 	var/needs_update = FALSE
+
+	///the turf that our light is applied to
+	var/turf/affected_turf
+
+
+	///the overlay we are currently applying to our turf to apply light
+	var/mutable_appearance/current_underlay
+	var/mutable_appearance/additive_underlay
 
 	#if WORLD_ICON_SIZE != 32
 	transform = matrix(WORLD_ICON_SIZE / 32, 0, (WORLD_ICON_SIZE - 32) / 2, 0, WORLD_ICON_SIZE / 32, (WORLD_ICON_SIZE - 32) / 2)
@@ -24,12 +29,16 @@
 	atom_flags |= ATOM_INITIALIZED
 	SSlighting.total_lighting_overlays += 1
 
-	var/turf/T         = loc // If this runtimes atleast we'll know what's creating overlays in things that aren't turfs.
-	T.lighting_overlay = src
-	T.luminosity       = 0
+	affected_turf = loc // If this runtimes atleast we'll know what's creating overlays in things that aren't turfs.
+	affected_turf.lighting_overlay = src
+	affected_turf.luminosity = 0
 
-	if (T.corners && T.corners.len)
-		for (var/datum/lighting_corner/C in T.corners)
+	current_underlay  = mutable_appearance(LIGHTING_ICON, LIGHTING_BASE_ICON_STATE, LIGHTING_LAYER, LIGHTING_PLANE, 255, RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM)
+	additive_underlay = mutable_appearance(LIGHTING_ICON, LIGHTING_BASE_ICON_STATE, LIGHTING_LAYER, LIGHTING_PLANE_ADDITIVE, 255, RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM)
+	// additive_underlay.blend_mode = BLEND_ADD
+
+	if (affected_turf.corners && affected_turf.corners.len)
+		for (var/datum/lighting_corner/C in affected_turf.corners)
 			C.active = TRUE
 
 	if (update_now)
@@ -45,19 +54,19 @@
 
 	SSlighting.total_lighting_overlays -= 1
 
-	var/turf/T   = loc
-	if (istype(T))
-		T.lighting_overlay = null
-		T.luminosity = 1
-
+	if (isturf(affected_turf))
+		affected_turf.lighting_overlay = null
+		affected_turf.luminosity = 1
+		affected_turf.overlays -= current_underlay
+		affected_turf.overlays -= additive_underlay
+	affected_turf = null
 	return ..()
 
 // This is a macro PURELY so that the if below is actually readable.
 #define ALL_EQUAL ((rr == gr && gr == br && br == ar) && (rg == gg && gg == bg && bg == ag) && (rb == gb && gb == bb && bb == ab))
 
 /atom/movable/lighting_overlay/proc/update_overlay()
-	var/turf/T = loc
-	if (!isturf(T)) // Erm...
+	if (!isturf(affected_turf)) // Erm...
 		if (loc)
 			stack_trace("A lighting overlay realised its loc was NOT a turf (actual loc: [loc], [loc.type]) in update_overlay() and got deleted!")
 
@@ -67,51 +76,55 @@
 		qdel(src, TRUE)
 		return
 
+	var/static/datum/lighting_corner/dummy/dummy_lighting_corner = new
+
 	// See LIGHTING_CORNER_DIAGONAL in lighting_corner.dm for why these values are what they are.
-	var/list/corners = T.corners
-	var/datum/lighting_corner/cr = dummy_lighting_corner
-	var/datum/lighting_corner/cg = dummy_lighting_corner
-	var/datum/lighting_corner/cb = dummy_lighting_corner
-	var/datum/lighting_corner/ca = dummy_lighting_corner
-	if (corners)
-		cr = corners[3] || dummy_lighting_corner
-		cg = corners[2] || dummy_lighting_corner
-		cb = corners[4] || dummy_lighting_corner
-		ca = corners[1] || dummy_lighting_corner
+	var/datum/lighting_corner/red_corner   = affected_turf.corners[3] || dummy_lighting_corner
+	var/datum/lighting_corner/green_corner = affected_turf.corners[2] || dummy_lighting_corner
+	var/datum/lighting_corner/blue_corner  = affected_turf.corners[4] || dummy_lighting_corner
+	var/datum/lighting_corner/alpha_corner = affected_turf.corners[1] || dummy_lighting_corner
 
-	var/max = max(cr.cache_mx, cg.cache_mx, cb.cache_mx, ca.cache_mx)
-	luminosity = max > 0
+	var/max = max(red_corner.cache_mx, green_corner.cache_mx, blue_corner.cache_mx, alpha_corner.cache_mx)
 
-	var/rr = cr.cache_r
-	var/rg = cr.cache_g
-	var/rb = cr.cache_b
+	var/rr = red_corner.cache_r
+	var/rg = red_corner.cache_g
+	var/rb = red_corner.cache_b
 
-	var/gr = cg.cache_r
-	var/gg = cg.cache_g
-	var/gb = cg.cache_b
+	var/gr = green_corner.cache_r
+	var/gg = green_corner.cache_g
+	var/gb = green_corner.cache_b
 
-	var/br = cb.cache_r
-	var/bg = cb.cache_g
-	var/bb = cb.cache_b
+	var/br = blue_corner.cache_r
+	var/bg = blue_corner.cache_g
+	var/bb = blue_corner.cache_b
 
-	var/ar = ca.cache_r
-	var/ag = ca.cache_g
-	var/ab = ca.cache_b
+	var/ar = alpha_corner.cache_r
+	var/ag = alpha_corner.cache_g
+	var/ab = alpha_corner.cache_b
+
+	var/set_luminosity = max > 1e-6
 
 	if(rr + rg + rb + gr + gg + gb + br + bg + bb + ar + ag + ab >= 12)
-		icon_state = LIGHTING_TRANSPARENT_ICON_STATE
-		color = null
+		affected_turf.underlays -= current_underlay
+		current_underlay.icon_state = LIGHTING_TRANSPARENT_ICON_STATE
+		current_underlay.color = null
+		affected_turf.underlays += current_underlay
 	else if (!luminosity)
-		icon_state = LIGHTING_DARKNESS_ICON_STATE
-		color = null
+		affected_turf.underlays -= current_underlay
+		current_underlay.icon_state = LIGHTING_DARKNESS_ICON_STATE
+		current_underlay.color = null
+		affected_turf.underlays += current_underlay
 	else if (rr == LIGHTING_DEFAULT_TUBE_R && rg == LIGHTING_DEFAULT_TUBE_G && rb == LIGHTING_DEFAULT_TUBE_B && ALL_EQUAL)
-		icon_state = LIGHTING_STATION_ICON_STATE
-		color = null
+		affected_turf.underlays -= current_underlay
+		current_underlay.icon_state = LIGHTING_STATION_ICON_STATE
+		current_underlay.color = null
+		affected_turf.underlays += current_underlay
 	else
-		icon_state = LIGHTING_BASE_ICON_STATE
-		if (islist(color))
+		affected_turf.underlays -= current_underlay
+		current_underlay.icon_state = LIGHTING_BASE_ICON_STATE
+		if(islist(current_underlay.color))
 			// Does this even save a list alloc?
-			var/list/c_list = color
+			var/list/c_list = current_underlay.color
 			c_list[CL_MATRIX_RR] = rr
 			c_list[CL_MATRIX_RG] = rg
 			c_list[CL_MATRIX_RB] = rb
@@ -124,26 +137,76 @@
 			c_list[CL_MATRIX_AR] = ar
 			c_list[CL_MATRIX_AG] = ag
 			c_list[CL_MATRIX_AB] = ab
-			color = c_list
+			current_underlay.color = c_list
 		else
-			color = list(
-				rr, rg, rb, 0,
-				gr, gg, gb, 0,
-				br, bg, bb, 0,
-				ar, ag, ab, 0,
-				0, 0, 0, 1
+			current_underlay.color = list(
+				rr, rg, rb, 00,
+				gr, gg, gb, 00,
+				br, bg, bb, 00,
+				ar, ag, ab, 00,
+				00, 00, 00, 01
 			)
+		affected_turf.underlays += current_underlay
+
+	if(red_corner.applying_additive || green_corner.applying_additive || blue_corner.applying_additive || alpha_corner.applying_additive)
+		affected_turf.underlays -= additive_underlay
+		additive_underlay.icon_state = LIGHTING_BASE_ICON_STATE
+		var/a_rr = red_corner.add_r
+		var/a_rg = red_corner.add_g
+		var/a_rb = red_corner.add_b
+
+		var/a_gr = green_corner.add_r
+		var/a_gg = green_corner.add_g
+		var/a_gb = green_corner.add_b
+
+		var/a_br = blue_corner.add_r
+		var/a_bg = blue_corner.add_g
+		var/a_bb = blue_corner.add_b
+
+		var/a_ar = alpha_corner.add_r
+		var/a_ag = alpha_corner.add_g
+		var/a_ab = alpha_corner.add_b
+
+		if(islist(additive_underlay.color))
+			// Does this even save a list alloc?
+			var/list/c_list = additive_underlay.color
+			c_list[CL_MATRIX_RR] = a_rr
+			c_list[CL_MATRIX_RG] = a_rg
+			c_list[CL_MATRIX_RB] = a_rb
+			c_list[CL_MATRIX_GR] = a_gr
+			c_list[CL_MATRIX_GG] = a_gg
+			c_list[CL_MATRIX_GB] = a_gb
+			c_list[CL_MATRIX_BR] = a_br
+			c_list[CL_MATRIX_BG] = a_bg
+			c_list[CL_MATRIX_BB] = a_bb
+			c_list[CL_MATRIX_AR] = a_ar
+			c_list[CL_MATRIX_AG] = a_ag
+			c_list[CL_MATRIX_AB] = a_ab
+			additive_underlay.color = c_list
+		else
+			additive_underlay.color = list(
+				a_rr, a_rg, a_rb, 00,
+				a_gr, a_gg, a_gb, 00,
+				a_br, a_bg, a_bb, 00,
+				a_ar, a_ag, a_ab, 00,
+				00, 00, 00, 01
+			)
+		affected_turf.underlays += additive_underlay
+	else
+		affected_turf.underlays -= additive_underlay
+
+	affected_turf.luminosity = set_luminosity
 
 	// If there's a Z-turf above us, update its shadower.
-	if (T.above)
-		if (T.above.shadower)
-			T.above.shadower.copy_lighting(src)
+	if (affected_turf.above)
+		if (affected_turf.above.shadower)
+			affected_turf.above.shadower.copy_lighting(src)
 		else
-			T.above.update_mimic()
+			affected_turf.above.update_mimic()
 
 #undef ALL_EQUAL
 
-// Variety of overrides so the overlays don't get affected by weird things.
+// Variety of overrides so the underlays don't get affected by weird things.
 
 /atom/movable/lighting_overlay/ex_act(severity)
 	SHOULD_CALL_PARENT(FALSE)
@@ -161,7 +224,7 @@
 /atom/movable/lighting_overlay/can_fall()
 	return FALSE
 
-// Override here to prevent things accidentally moving around overlays.
+// Override here to prevent things accidentally moving around underlays.
 /atom/movable/lighting_overlay/forceMove(atom/destination, harderforce = FALSE)
 	if(QDELING(src))
 		. = ..()
