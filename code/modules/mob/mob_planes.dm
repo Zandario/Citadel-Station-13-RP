@@ -193,6 +193,11 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	alpha = 255
 
+/atom/movable/screen/plane_master/additive_lighting/Initialize(mapload)
+	. = ..()
+	add_filter("emissives", 1, alpha_mask_filter(render_source = EMISSIVE_RENDER_TARGET, flags = MASK_INVERSE))
+	// add_filter("object_lighting", 2, alpha_mask_filter(render_source = O_LIGHTING_VISUAL_RENDER_TARGET, flags = MASK_INVERSE))
+
 
 /**
  * Handles emissive overlays and emissive blockers.

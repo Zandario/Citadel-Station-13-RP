@@ -12,7 +12,7 @@
 	/// List of light sources affecting this turf.
 	var/tmp/list/datum/light_source/affecting_lights
 	/// Our lighting overlay.
-	var/tmp/atom/movable/lighting_overlay/lighting_overlay
+	var/tmp/datum/lighting_object/lighting_overlay
 	var/tmp/list/datum/lighting_corner/corners
 	/// Not to be confused with opacity, this will be TRUE if there's any opaque atom on the tile.
 	var/tmp/has_opaque_atom = FALSE
@@ -164,11 +164,7 @@
 
 /turf/proc/lighting_clear_overlay()
 	if (lighting_overlay)
-		if (lighting_overlay.loc != src)
-			stack_trace("Lighting overlay variable on turf [log_info_line(src)] is insane, lighting overlay actually located on [log_info_line(lighting_overlay.loc)]!")
-
-		qdel(lighting_overlay, TRUE)
-		lighting_overlay = null
+		QDEL_NULL(lighting_overlay)
 
 	for (var/datum/lighting_corner/C in corners)
 		C.update_active()
@@ -182,7 +178,7 @@
 		if (!lighting_corners_initialised || !corners)
 			generate_missing_corners()
 
-		new /atom/movable/lighting_overlay(src, now)
+		new /datum/lighting_object(src, now)
 
 		for (var/datum/lighting_corner/C in corners)
 			if (!C.active) // We would activate the corner, calculate the lighting for it.

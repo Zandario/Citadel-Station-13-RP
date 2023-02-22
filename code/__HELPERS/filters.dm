@@ -133,7 +133,15 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 			"WAVE_SIDEWAYS" = WAVE_SIDEWAYS,
 			"WAVE_BOUNDED" = WAVE_BOUNDED
 		)
-	)
+	),
+	"bloom" = list(
+		"defaults" = list(
+			"threshold" = COLOR_WHITE,
+			"size" = 1,
+			"offset" = 0,
+			"alpha" = 255,
+		)
+	),
 ))
 
 #undef ICON_NOT_SET

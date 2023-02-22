@@ -6,7 +6,7 @@ GLOBAL_REAL_MANAGED(radiation_full_ignore, /list) = __radiation_full_ignore()
 	return typecacheof(list(
 		/mob/new_player,
 		/mob/observer,
-		/atom/movable/lighting_overlay,
+		/datum/lighting_object,
 		/obj/item/projectile,
 		/obj/effect,
 		/obj/mob_spawner,

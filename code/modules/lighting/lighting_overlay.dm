@@ -1,23 +1,12 @@
-/atom/movable/lighting_overlay
-	name = ""
-	anchored = TRUE
-	atom_flags = ATOM_ABSTRACT
+/datum/lighting_object
 
-	// plane = LIGHTING_PLANE
-	// layer = LIGHTING_LAYER
-	// color = LIGHTING_BASE_MATRIX
-
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	invisibility = INVISIBILITY_LIGHTING
-	// simulated = FALSE
-
+	/// Whether we are already in the SSlighting.objects_queue list
 	var/needs_update = FALSE
 
-	///the turf that our light is applied to
+	/// The turf that our light is applied to
 	var/turf/affected_turf
 
-
-	///the overlay we are currently applying to our turf to apply light
+	/// The overlay we are currently applying to our turf to apply light
 	var/mutable_appearance/current_underlay
 	var/mutable_appearance/additive_underlay
 
@@ -25,11 +14,15 @@
 	transform = matrix(WORLD_ICON_SIZE / 32, 0, (WORLD_ICON_SIZE - 32) / 2, 0, WORLD_ICON_SIZE / 32, (WORLD_ICON_SIZE - 32) / 2)
 	#endif
 
-/atom/movable/lighting_overlay/New(newloc, update_now = FALSE)
-	atom_flags |= ATOM_INITIALIZED
+/datum/lighting_object/New(turf/source, update_now = FALSE)
+	if(!isturf(source))
+		qdel(src, force=TRUE)
+		stack_trace("a lighting object was assigned to [source], a non turf! ")
+		return
+	. = ..()
 	SSlighting.total_lighting_overlays += 1
 
-	affected_turf = loc // If this runtimes atleast we'll know what's creating overlays in things that aren't turfs.
+	affected_turf = source // If this runtimes atleast we'll know what's creating overlays in things that aren't turfs.
 	affected_turf.lighting_overlay = src
 	affected_turf.luminosity = 0
 
@@ -48,7 +41,7 @@
 		needs_update = TRUE
 		SSlighting.overlay_queue += src
 
-/atom/movable/lighting_overlay/Destroy(force = FALSE)
+/datum/lighting_object/Destroy(force = FALSE)
 	if (!force)
 		return QDEL_HINT_LETMELIVE	// STOP DELETING ME
 
@@ -62,19 +55,7 @@
 	affected_turf = null
 	return ..()
 
-// This is a macro PURELY so that the if below is actually readable.
-#define ALL_EQUAL ((rr == gr && gr == br && br == ar) && (rg == gg && gg == bg && bg == ag) && (rb == gb && gb == bb && bb == ab))
-
-/atom/movable/lighting_overlay/proc/update_overlay()
-	if (!isturf(affected_turf)) // Erm...
-		if (loc)
-			stack_trace("A lighting overlay realised its loc was NOT a turf (actual loc: [loc], [loc.type]) in update_overlay() and got deleted!")
-
-		else
-			stack_trace("A lighting overlay realised it was in nullspace in update_overlay() and got deleted!")
-
-		qdel(src, TRUE)
-		return
+/datum/lighting_object/proc/update_overlay()
 
 	var/static/datum/lighting_corner/dummy/dummy_lighting_corner = new
 
@@ -104,19 +85,15 @@
 
 	var/set_luminosity = max > 1e-6
 
-	if(rr + rg + rb + gr + gg + gb + br + bg + bb + ar + ag + ab >= 12)
+	if((rr & gr & br & ar) && (rg + gg + bg + ag + rb + gb + bb + ab == 8))
+		//anything that passes the first case is very likely to pass the second, and addition is a little faster in this case
 		affected_turf.underlays -= current_underlay
 		current_underlay.icon_state = LIGHTING_TRANSPARENT_ICON_STATE
 		current_underlay.color = null
 		affected_turf.underlays += current_underlay
-	else if (!luminosity)
+	else if (!set_luminosity)
 		affected_turf.underlays -= current_underlay
 		current_underlay.icon_state = LIGHTING_DARKNESS_ICON_STATE
-		current_underlay.color = null
-		affected_turf.underlays += current_underlay
-	else if (rr == LIGHTING_DEFAULT_TUBE_R && rg == LIGHTING_DEFAULT_TUBE_G && rb == LIGHTING_DEFAULT_TUBE_B && ALL_EQUAL)
-		affected_turf.underlays -= current_underlay
-		current_underlay.icon_state = LIGHTING_STATION_ICON_STATE
 		current_underlay.color = null
 		affected_turf.underlays += current_underlay
 	else
@@ -203,28 +180,3 @@
 			affected_turf.above.shadower.copy_lighting(src)
 		else
 			affected_turf.above.update_mimic()
-
-#undef ALL_EQUAL
-
-// Variety of overrides so the underlays don't get affected by weird things.
-
-/atom/movable/lighting_overlay/ex_act(severity)
-	SHOULD_CALL_PARENT(FALSE)
-	return
-
-/atom/movable/lighting_overlay/singularity_act()
-	return
-
-/atom/movable/lighting_overlay/singularity_pull()
-	return
-
-/atom/movable/lighting_overlay/singuloCanEat()
-	return FALSE
-
-/atom/movable/lighting_overlay/can_fall()
-	return FALSE
-
-// Override here to prevent things accidentally moving around underlays.
-/atom/movable/lighting_overlay/forceMove(atom/destination, harderforce = FALSE)
-	if(QDELING(src))
-		. = ..()

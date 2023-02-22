@@ -117,7 +117,7 @@ SUBSYSTEM_DEF(lighting)
 			if (T.lighting_overlay)
 				log_subsystem(name, "Found unexpected lighting overlay at [T.x],[T.y],[T.z]")
 			else
-				new /atom/movable/lighting_overlay(T)
+				new /datum/lighting_object(T)
 				. += 1
 			if (TURF_IS_AMBIENT_LIT_UNSAFE(T))
 				T.generate_missing_corners()	// Forcibly generate corners.
@@ -193,7 +193,7 @@ SUBSYSTEM_DEF(lighting)
 		MC_SPLIT_TICK
 
 	while (oq_idex <= curr_overlays.len)
-		var/atom/movable/lighting_overlay/O = curr_overlays[oq_idex++]
+		var/datum/lighting_object/O = curr_overlays[oq_idex++]
 
 		if (!QDELETED(O) && O.needs_update)
 			O.update_overlay()

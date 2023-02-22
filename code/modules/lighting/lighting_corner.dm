@@ -191,9 +191,9 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 	UPDATE_APPARENT(src, g)
 	UPDATE_APPARENT(src, b)
 
-	add_r = clamp((apparent_r - 1.4) * 0.5, 0, 0.3)
-	add_g = clamp((apparent_g - 1.4) * 0.5, 0, 0.3)
-	add_b = clamp((apparent_b - 1.4) * 0.5, 0, 0.3)
+	add_r = clamp((apparent_r - 2) * 0.5, 0, 0.1)
+	add_g = clamp((apparent_g - 2) * 0.5, 0, 0.1)
+	add_b = clamp((apparent_b - 2) * 0.5, 0, 0.1)
 
 	applying_additive = add_r || add_b || add_g
 
@@ -239,9 +239,9 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 	UPDATE_APPARENT(src, g)
 	UPDATE_APPARENT(src, b)
 
-	add_r = clamp((apparent_r - 1.4) * 0.5, 0, 0.3)
-	add_g = clamp((apparent_g - 1.4) * 0.5, 0, 0.3)
-	add_b = clamp((apparent_b - 1.4) * 0.5, 0, 0.3)
+	add_r = clamp((apparent_r - 2) * 0.5, 0, 0.1)
+	add_g = clamp((apparent_g - 2) * 0.5, 0, 0.1)
+	add_b = clamp((apparent_b - 2) * 0.5, 0, 0.1)
 
 	applying_additive = add_r || add_b || add_g
 
@@ -264,9 +264,9 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 	UPDATE_APPARENT(src, g)
 	UPDATE_APPARENT(src, b)
 
-	add_r = clamp((apparent_r - 1.4) * 0.5, 0, 0.3)
-	add_g = clamp((apparent_g - 1.4) * 0.5, 0, 0.3)
-	add_b = clamp((apparent_b - 1.4) * 0.5, 0, 0.3)
+	add_r = clamp((apparent_r - 2) * 0.5, 0, 0.1)
+	add_g = clamp((apparent_g - 2) * 0.5, 0, 0.1)
+	add_b = clamp((apparent_b - 2) * 0.5, 0, 0.1)
 
 	applying_additive = add_r || add_b || add_g
 
@@ -355,7 +355,7 @@ var/global/list/REVERSE_LIGHTING_CORNER_DIAGONAL = list(0, 0, 0, 0, 3, 4, 0, 0, 
 			if (3) T = t3
 			if (4) T = t4
 
-		var/atom/movable/lighting_overlay/Ov
+		var/datum/lighting_object/Ov
 		if (T && (Ov = T.lighting_overlay))
 			if (now)
 				Ov.update_overlay()
