@@ -93,6 +93,7 @@ function set_style_sheet(sheet) {
 
 	#stat_content {
 		padding: 7px 7px 7px 7px;
+		/* border-left: 3px solid; */
 	}
 
 	a {
@@ -199,11 +200,6 @@ function set_style_sheet(sheet) {
 		margin-right: -15px;
 	}
 
-	/* .dark .grid-container {
-		background-color: #131313;
-		border-color: #131313;
-	} */
-
 	.grid-item {
 		border: 0;
 		border-radius: 5px;
@@ -250,14 +246,14 @@ function set_style_sheet(sheet) {
 		}
 	}
 
-	.dark .grid-item {
+	.grid-item:hover {
+		z-index: 1;
+	}
+
+	.dark .grid-item:hover {
 		background-color: #202020;
 		border-color: #202020;
 		color: rgba(255, 255, 255, 0.5);
-	}
-
-	.grid-item:hover {
-		z-index: 1;
 	}
 
 	.grid-item-text {
@@ -288,7 +284,6 @@ function set_style_sheet(sheet) {
 	}
 
 	.dark .grid-item:hover .grid-item-text {
-		width: max(calc(100%), auto);
 		color: #FFF;
 		background-color: #2e2e2e;
 		border-color: #2e2e2e;
