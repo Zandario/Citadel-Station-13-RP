@@ -49,7 +49,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 					    font-size:13px;
 					    background-image:url('uiBackground.png');
 					    background-repeat:repeat-x;
-					    background-color:#272727;
+					    background-color:#202020;
 						background-position:center top;
 					}
 					table {
