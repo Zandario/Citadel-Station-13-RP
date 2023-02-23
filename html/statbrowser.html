@@ -65,6 +65,7 @@ function set_style_sheet(sheet) {
 		padding: 0 !important;
 		overflow-x: hidden;
 		overflow-y: scroll;
+		background-color: #E6E6E6;
 	}
 
 	body.dark {
@@ -80,8 +81,7 @@ function set_style_sheet(sheet) {
 	}
 
 	#stat_menu {
-		/* background-color: #F0F0F0; */
-		background-color: #FFFFFF;
+		background-color: #E6E6E6;
 		position: fixed;
 		width: 100%;
 		z-index: 100;
@@ -93,7 +93,7 @@ function set_style_sheet(sheet) {
 
 	#stat_content {
 		padding: 7px 7px 7px 7px;
-		/* border-left: 3px solid; */
+		border-bottom: 0;
 	}
 
 	a {
@@ -122,7 +122,6 @@ function set_style_sheet(sheet) {
 
 	li a {
 		display: block;
-		color: white;
 		text-align: center;
 		padding: 14px 16px;
 		text-decoration: none;
@@ -141,14 +140,17 @@ function set_style_sheet(sheet) {
 		white-space: pre-wrap;
 		padding: 8px 5px;
 		border-bottom: 3px solid;
-		border-color: #666666;
+		border-color: #fff;
 	}
 
+	.dark .button-container {
+		border-color: #a6a6a6;
+	}
 
 	.button {
 		border: 0;
-		border-color: #FFFFFF;
-		background-color: #FFFFFF;
+		border-color: #E6E6E6;
+		background-color: #E6E6E6;
 		color: rgba(0, 0, 0, 0.7);
 		padding: 6px 4px 4px;
 		border-radius: 5px;
@@ -203,8 +205,8 @@ function set_style_sheet(sheet) {
 	.grid-item {
 		border: 0;
 		border-radius: 5px;
-		border-color: #FFFFFF;
-		background-color: #FFFFFF;
+		border-color: #E6E6E6;
+		background-color: #E6E6E6;
 		color: rgba(0, 0, 0, 0.7);
 		border: 0;
 		text-align: left;
