@@ -63,7 +63,7 @@
 	statpanel_dispose()
 	sleep(1)
 	src << browse("RELOADING", "window=statbrowser")
-	src << browse(file('html/statbrowser.html'), "window=statbrowser")
+	src << browse(file("html/statbrowser.html"), "window=statbrowser")
 	sleep(1)
 	statpanel_boot()
 
