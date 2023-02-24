@@ -2,7 +2,7 @@
 NanoBaseHelpers = function ()
 {
 	var _baseHelpers = {
-            // change ui styling to "syndicate mode"
+			// change ui styling to "syndicate mode"
 			syndicateMode: function() {
 				$('body').css("background-color","#8f1414");
 				$('body').css("background-image","url('uiBackground-Syndicate.png')");
@@ -95,27 +95,27 @@ NanoBaseHelpers = function ()
 			displayBar: function(value, rangeMin, rangeMax, styleClass, showText, difClass, direction) {
 
 				if (rangeMin < rangeMax)
-                {
-                    if (value < rangeMin)
-                    {
-                        value = rangeMin;
-                    }
-                    else if (value > rangeMax)
-                    {
-                        value = rangeMax;
-                    }
-                }
-                else
-                {
-                    if (value > rangeMin)
-                    {
-                        value = rangeMin;
-                    }
-                    else if (value < rangeMax)
-                    {
-                        value = rangeMax;
-                    }
-                }
+				{
+					if (value < rangeMin)
+					{
+						value = rangeMin;
+					}
+					else if (value > rangeMax)
+					{
+						value = rangeMax;
+					}
+				}
+				else
+				{
+					if (value > rangeMin)
+					{
+						value = rangeMin;
+					}
+					else if (value < rangeMax)
+					{
+						value = rangeMax;
+					}
+				}
 
 				if (typeof styleClass == 'undefined' || !styleClass)
 				{
@@ -126,12 +126,12 @@ NanoBaseHelpers = function ()
 				{
 					showText = '';
 				}
-				
+
 				if (typeof difClass == 'undefined' || !difClass)
 				{
 					difClass = ''
 				}
-				
+
 				if(typeof direction == 'undefined' || !direction)
 				{
 					direction = 'width'
@@ -140,25 +140,25 @@ NanoBaseHelpers = function ()
 				{
 					direction = 'height'
 				}
-				
+
 				var percentage = Math.round((value - rangeMin) / (rangeMax - rangeMin) * 100);
-				
+
 				return '<div class="displayBar' + difClass + ' ' + styleClass + '"><div class="displayBar' + difClass + 'Fill ' + styleClass + '" style="' + direction + ': ' + percentage + '%;"></div><div class="displayBar' + difClass + 'Text ' + styleClass + '">' + showText + '</div></div>';
 			},
 			// Display DNA Blocks (for the DNA Modifier UI)
 			displayDNABlocks: function(dnaString, selectedBlock, selectedSubblock, blockSize, paramKey) {
-			    if (!dnaString)
+				if (!dnaString)
 				{
 					return '<div class="notice">Please place a valid subject into the DNA modifier.</div>';
 				}
 
 				var characters = dnaString.split('');
 
-                var html = '<div class="dnaBlock"><div class="link dnaBlockNumber">1</div>';
-                var block = 1;
-                var subblock = 1;
-                for (index in characters)
-                {
+				var html = '<div class="dnaBlock"><div class="link dnaBlockNumber">1</div>';
+				var block = 1;
+				var subblock = 1;
+				for (index in characters)
+				{
 					if (!characters.hasOwnProperty(index) || typeof characters[index] === 'object')
 					{
 						continue;
@@ -174,38 +174,38 @@ NanoBaseHelpers = function ()
 						parameters = { 'selectSEBlock' : block, 'selectSESubblock' : subblock };
 					}
 
-                    var status = 'linkActive';
-                    if (block == selectedBlock && subblock == selectedSubblock)
-                    {
-                        status = 'selected';
-                    }
+					var status = 'linkActive';
+					if (block == selectedBlock && subblock == selectedSubblock)
+					{
+						status = 'selected';
+					}
 
-                    html += '<div class="link ' + status + ' dnaSubBlock" data-href="' + NanoUtility.generateHref(parameters) + '" id="dnaBlock' + index + '">' + characters[index] + '</div>'
+					html += '<div class="link ' + status + ' dnaSubBlock" data-href="' + NanoUtility.generateHref(parameters) + '" id="dnaBlock' + index + '">' + characters[index] + '</div>'
 
-                    index++;
-                    if (index % blockSize == 0 && index < characters.length)
-                    {
+					index++;
+					if (index % blockSize == 0 && index < characters.length)
+					{
 						block++;
-                        subblock = 1;
-                        html += '</div><div class="dnaBlock"><div class="link dnaBlockNumber">' + block + '</div>';
-                    }
-                    else
-                    {
-                        subblock++;
-                    }
-                }
+						subblock = 1;
+						html += '</div><div class="dnaBlock"><div class="link dnaBlockNumber">' + block + '</div>';
+					}
+					else
+					{
+						subblock++;
+					}
+				}
 
-                html += '</div>';
+				html += '</div>';
 
 				return html;
 			}
 		};
-		
+
 	return {
-        addHelpers: function ()
+		addHelpers: function ()
 		{
-            NanoTemplate.addHelpers(_baseHelpers);
-        },
+			NanoTemplate.addHelpers(_baseHelpers);
+		},
 		removeHelpers: function ()
 		{
 			for (var helperKey in _baseHelpers)
@@ -214,14 +214,7 @@ NanoBaseHelpers = function ()
 				{
 					NanoTemplate.removeHelper(helperKey);
 				}
-			}            
-        }
+			}
+		}
 	};
 } ();
- 
-
-
-
-
-
-
