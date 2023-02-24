@@ -497,7 +497,7 @@ var/global/list/default_infomorph_software = list()
 
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open, key_state)
 	if (!ui)
-		ui = new(user, src, ui_key, "pai_interface.tmpl", "Card Software Interface", 450, 600, state = key_state)
+		ui = new(user, src, ui_key, "pai_interface.jst", "Card Software Interface", 450, 600, state = key_state)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

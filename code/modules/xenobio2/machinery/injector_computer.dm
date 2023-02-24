@@ -83,7 +83,7 @@
 
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "xenobio_computer.tmpl", "Injector Control Console UI", 470, 450)
+		ui = new(user, src, ui_key, "xenobio_computer.jst", "Injector Control Console UI", 470, 450)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

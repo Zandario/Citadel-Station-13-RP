@@ -84,7 +84,7 @@
 
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "dish_incubator.tmpl", src.name, 400, 600)
+		ui = new(user, src, ui_key, "dish_incubator.jst", src.name, 400, 600)
 		ui.set_initial_data(data)
 		ui.open()
 

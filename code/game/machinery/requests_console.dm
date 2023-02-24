@@ -147,7 +147,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "request_console.tmpl", "[department] Request Console", 520, 410)
+		ui = new(user, src, ui_key, "request_console.jst", "[department] Request Console", 520, 410)
 		ui.set_initial_data(data)
 		ui.open()
 

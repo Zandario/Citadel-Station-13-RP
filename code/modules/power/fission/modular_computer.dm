@@ -87,7 +87,7 @@
 
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "fission_monitor_prog.tmpl", "Nuclear Fission Core", 500, 600, state = state)
+		ui = new(user, src, ui_key, "fission_monitor_prog.jst", "Nuclear Fission Core", 500, 600, state = state)
 		if(host.update_layout())
 			ui.auto_update_layout = 1
 		ui.set_initial_data(data)

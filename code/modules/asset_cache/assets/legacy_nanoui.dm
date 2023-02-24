@@ -16,7 +16,7 @@
 		"css",
 		"html",
 		"gif",
-		"tmpl",
+		"jst",
 		"png",
 	)
 	// DO NOT recurse

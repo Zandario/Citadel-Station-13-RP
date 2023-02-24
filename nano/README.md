@@ -37,6 +37,6 @@ TODO - This documentation is incomplete.
 `{{#def.atmosphericScan}}`
 
 - You first must have added a template to the ui server side in your DM code:
-`ui.add_template("atmosphericScan", "atmospheric_scan.tmpl")`
+`ui.add_template("atmosphericScan", "atmospheric_scan.jst")`
 
 - Then you can reference it in the main template.  The tag will be replaced by the contents of the named template.  All tags in the named template are evaluated as normal.
