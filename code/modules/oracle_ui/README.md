@@ -2,7 +2,7 @@
 
 This datum is a replacement for tgui which does not use any Node.js dependencies, and works entirely through raw HTML, JS and CSS. It's designed to be reasonably easy to port something from tgui to oracle_ui.
 
-### How to create a UI
+## How to create a UI
 
 For this example, we're going to port the disposals bin from tgui to oracle_ui.
 
@@ -13,6 +13,7 @@ In order to create a UI, you will first need to create an instance of `/datum/or
 You need to pass in `src`, the width of the window, the height of the window, and the template to render from. You can optionally set some flags to disallow window resizing and whether to automatically refresh the UI.
 
 `code/modules/recycling/disposal-unit.dm`
+
 ```dm
 /obj/machinery/disposal/bin/Initialize(mapload, obj/structure/disposalconstruct/make_from)
 	. = ..()
@@ -28,6 +29,7 @@ You will now need to make a template in `html/oracle_ui/content/{template_name}`
 Values defined as `@{value}` will get replaced at runtime by oracle_ui.
 
 `html/oracle_ui/content/disposal_bin/index.html`
+
 ```html
 <div class='display'>
 	<section>
@@ -67,6 +69,7 @@ The `act` proc generates a hyperlink that will result in `oui_act` getting calle
 Calling `soft_update_fields` will result in the UI being updated on all clients, which is useful when the object changes state.
 
 `code/modules/recycling/disposal-unit.dm`
+
 ```dm
 /obj/machinery/disposal/bin/oui_data(mob/user)
 	var/list/data = list()
@@ -113,6 +116,7 @@ Calling `soft_update_fields` will result in the UI being updated on all clients,
 You now need to hook in and ensure oracle_ui is invoked upon clicking. `render` should be used to open the UI for a user, typically on click.
 
 `code/modules/recycling/disposal-unit.dm`
+
 ```dm
 /obj/machinery/disposal/bin/ui_interact(mob/user, state)
 	if(stat & BROKEN)
