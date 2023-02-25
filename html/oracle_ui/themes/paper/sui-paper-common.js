@@ -1,21 +1,23 @@
-export function replaceContent(body) {
-	const maincontent = document.getElementById("maincontent");
+function replaceContent(body) {
+	var maincontent = document.getElementById("maincontent");
 	if (maincontent) {
 		maincontent.innerHTML = body;
 	}
 }
 
 function updateProgressLabels() {
-	const progressBars = document.getElementsByClassName("progressBar");
+	var progressBars = document.getElementsByClassName("progressBar");
 	for (let i = 0; i < progressBars.length; i++) {
-		const progressBar = progressBars[i];
-		if (!progressBar) continue;
-		const progressFill =
+		var progressBar = progressBars[i];
+		if (!progressBar)
+			continue;
+		var progressFill =
 			progressBar.getElementsByClassName("progressFill")[0];
-		if (!progressFill) continue;
-		const width = parseInt(getComputedStyle(progressFill).width);
-		const maxWidth = parseInt(getComputedStyle(progressBar).width);
-		const progressLabel =
+		if (!progressFill)
+			continue;
+		var width = parseInt(getComputedStyle(progressFill).width);
+		var maxWidth = parseInt(getComputedStyle(progressBar).width);
+		var progressLabel =
 			progressBar.getElementsByClassName("progressLabel")[0];
 		if (progressLabel)
 			progressLabel.innerHTML =
@@ -27,20 +29,20 @@ if (getComputedStyle) {
 	setInterval(updateProgressLabels, 50);
 } //Fallback
 
-export function updateFields(json) {
-	const fields = JSON.parse(json);
-	for (const key in fields) {
-		const value = fields[key];
-		const element = document.getElementById(key);
+function updateFields(json) {
+	var fields = JSON.parse(json);
+	for (var key in fields) {
+		var value = fields[key];
+		var element = document.getElementById(key);
 		if (element == null) {
 			continue;
 		} else if (element.classList.contains("progressBar")) {
-			const progressFill =
+			var progressFill =
 				element.getElementsByClassName("progressFill")[0];
 			if (progressFill) progressFill.style["width"] = value;
 			if (!getComputedStyle) {
 				//Fallback
-				const progressLabel =
+				var progressLabel =
 					element.getElementsByClassName("progressLabel")[0];
 				if (progressLabel) progressLabel.innerHTML = value;
 			}
