@@ -1,24 +1,23 @@
-/datum
-	//? Oracle UI doesn't really support non-themed UIs anyway, so, fuck it.
-	var/datum/oracle_ui/themed/oui
-
-/mob
-	var/list/open_oracle_uis = list()
-
-
 /**
  * The main datum which handles the UI for Oracle UI windows.
  */
 /datum/oracle_ui
 	/// The list of mobs which can view the UI.
-	var/viewers[0]
+	var/mob/viewers[0]
 	/// The atom which is the data source for the UI window.
 	var/atom/datasource
 	/// The asset datum to send to the client.
 	var/datum/asset/assets
-	/// The ID of the UI window.
+	/**
+	 * The ID of the UI window.
+	 * Also used for remembering the window geometry.
+	 */
 	var/window_id
 
+	/// The title of the UI.
+	var/title
+	/// The interface (template) to be used for this UI.
+	var/interface
 	/// The width of the UI window.
 	var/width  = 512
 	/// The height of the UI window.
@@ -37,32 +36,38 @@
 	/// Whether the UI window should be refreshed automatically.
 	var/auto_refresh = FALSE
 
+	/// Stops further updates when close() was called.
+	var/closing = FALSE
+
 /**
  * public
  *
  * Creates a new Oracle UI window.
  *
- * Arguments:
- * * n_datasource - The atom which is the data source for the UI window.
- * * n_width      - The width of the UI window.
- * * n_height     - The height of the UI window.
- * * n_assets     - The asset datum to send to the client.
  */
 /datum/oracle_ui/New(atom/n_datasource = datasource, n_width = width, n_height = height, datum/asset/n_assets = assets)
-	window_id = REF(src)
 	datasource = n_datasource
 	width = n_width
 	height = n_height
 	assets = n_assets
+	window_id = "[REF(datasource)]-[REF(src)]"
 
 /datum/oracle_ui/Destroy()
 	close_all()
 	datasource.oui = null
 	if((src.datum_flags & DF_ISPROCESSING))
 		STOP_PROCESSING(SSoracleui, src)
+	viewers = null
 	return ..()
 
+/**
+ * private
+ *
+ * Run an update cycle for this UI. Called internally by SSoracleui every second or so.
+ */
 /datum/oracle_ui/process()
+	if(closing)
+		return
 	if(auto_check_view)
 		check_view_all()
 	if(auto_refresh)
@@ -119,6 +124,9 @@
 	//Send assets
 	if(!updating && assets)
 		assets.send(target.client)
+		var/datum/asset/font_awesome = get_asset_datum(/datum/asset/simple/namespaced/fontawesome)
+		font_awesome.send(target.client)
+
 	//Add them to the viewers if they aren't there already
 	if(!(target in viewers))
 		viewers += target
@@ -144,6 +152,9 @@
  * Closes the UI for the specified target mob.
  */
 /datum/oracle_ui/proc/close(mob/target)
+	if(closing)
+		return
+	closing = TRUE
 	target?.open_oracle_uis -= src
 	if(target && target.client)
 		target << browse(null, "window=[window_id]")

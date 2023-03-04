@@ -1,25 +1,25 @@
+GLOBAL_LIST_EMPTY(oui_template_variables)
+GLOBAL_LIST_EMPTY(oui_file_cache)
+
 /**
  * A subclass which supports templating and theming.
  */
 /datum/oracle_ui/themed
 	var/theme = ""
-	var/content_root = ""
 	var/current_page = "index.html"
 	var/root_template = ""
 
-/datum/oracle_ui/themed/New(atom/n_datasource, n_width = 512, n_height = 512, n_content_root = "")
+/datum/oracle_ui/themed/New(atom/n_datasource, n_width = width, n_height = height)
 	root_template = get_themed_file("index.html")
-	content_root = n_content_root
-	return ..(n_datasource, n_width, n_height, get_asset_datum(/datum/asset/simple/oui_theme_nano))
+	return ..(n_datasource, n_width, n_height, get_asset_datum(assets))
 
 /datum/oracle_ui/themed/process()
+	if(closing)
+		return
 	if(auto_check_view)
 		check_view_all()
 	if(auto_refresh)
 		soft_update_fields()
-
-GLOBAL_LIST_EMPTY(oui_template_variables)
-GLOBAL_LIST_EMPTY(oui_file_cache)
 
 /**
  * Loads a file from disk and returns the contents.
@@ -33,15 +33,15 @@ GLOBAL_LIST_EMPTY(oui_file_cache)
 		GLOB.oui_file_cache[path] = data
 		return data
 	else
-		var/errormsg = "MISSING PATH '[path]'"
-		log_world(errormsg)
-		return errormsg
+		stack_trace("MISSING PATH '[path]'")
+		// TODO: TGUI-Inspired error page.
+		return "MISSING PATH '[path]'"
 
 /**
  * Loads a file from the current content folder and returns the contents.
  */
 /datum/oracle_ui/themed/proc/get_content_file(filename)
-	return get_file("./html/oracle_ui/content/[content_root]/[filename]")
+	return get_file("./html/oracle_ui/content/[interface]/[filename]")
 
 /**
  * Loads a file from the current theme folder and returns the contents.
@@ -73,11 +73,25 @@ GLOBAL_LIST_EMPTY(oui_file_cache)
 	var/list/data = datasource.oui_data(target)
 	return process_template(get_content_file(current_page), data)
 
+/proc/upperCaseFirst(str)
+	var/list/string = splittext(str, "")
+	string[1] = uppertext(string[1])
+	return jointext(string, "")
+
+/proc/capitalize_title(str)
+	var/list/title = splittext(str, " ")
+	for(var/i = 1 to length(title))
+		title[i] = upperCaseFirst(title[i])
+	return jointext(title, " ")
+
 /**
  * Processes the page for the specified target mob.
  */
 /datum/oracle_ui/themed/get_content(mob/target)
-	var/list/template_data = list("title" = datasource.name, "body" = get_inner_content(target))
+	var/list/template_data = list(
+		"title" = capitalize_title("[datasource.name]"),
+		"body"  = get_inner_content(target),
+	)
 	return process_template(root_template, template_data)
 
 /**
@@ -105,15 +119,15 @@ GLOBAL_LIST_EMPTY(oui_file_cache)
 	render_all()
 
 /**
-  * returns a fully formed hyperlink for the specified user
-  *
-  * Arguments:
-  * * label: hyperlink label
-  * * action: passed to oui_act
-  * * parameters: passed to oui_act
-  * * class: CSS classes to apply to the hyperlink
-  * * disabled: disables the hyperlink label
-  */
+ * returns a fully formed hyperlink for the specified user
+ *
+ * Arguments:
+ * * label: hyperlink label
+ * * action: passed to oui_act
+ * * parameters: passed to oui_act
+ * * class: CSS classes to apply to the hyperlink
+ * * disabled: disables the hyperlink label
+ */
 /datum/oracle_ui/themed/proc/act(label, mob/user, action, list/parameters = list(), class = "", disabled = FALSE)
 	if(disabled)
 		return "<a class=\"disabled\">[label]</a>"
@@ -122,6 +136,8 @@ GLOBAL_LIST_EMPTY(oui_file_cache)
 
 /datum/oracle_ui/themed/nano
 	theme = "nano"
+	assets = /datum/asset/simple/oui_theme_nano
 
 /datum/oracle_ui/themed/paper
 	theme = "paper"
+	assets = /datum/asset/simple/oui_theme_paper

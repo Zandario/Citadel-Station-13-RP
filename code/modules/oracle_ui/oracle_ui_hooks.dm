@@ -1,3 +1,20 @@
+//? Oracle UI doesn't really support non-themed UIs anyway, so, fuck it.
+/datum/var/datum/oracle_ui/themed/oui
+
+/**
+ * global
+ *
+ * Associative list of JSON-encoded shared states that were set by oui clients.
+ */
+/datum/var/list/oui_shared_states
+
+/**
+ * global
+ *
+ * Tracks open UIs for a user.
+ */
+/mob/var/list/open_oracle_uis = list()
+
 /**
  * Returns whether the specified user can view the UI at this time.
  */

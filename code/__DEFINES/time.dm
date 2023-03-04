@@ -17,6 +17,13 @@
 #define TICK *world.tick_lag
 #define TICKS *world.tick_lag
 
+/// In-universe, SS13 is set 540 years in the future from the real-world day, hence this number for determining the year-offset for the in-game year.
+/// Though on CitRP we're 544 years in the future, so we use that instead.
+#define STATION_YEAR_OFFSET 544
+
+/// Define that just has the current in-universe year for use in whatever context you might want to display that in. (For example, 2022 -> 2562 given a 540 year offset)
+#define CURRENT_STATION_YEAR (GLOB.year_integer + STATION_YEAR_OFFSET)
+
 #define GAMETIMESTAMP(format, wtime) time2text(wtime, format)
 #define WORLDTIME2TEXT(format) GAMETIMESTAMP(format, world.time)
 #define WORLDTIMEOFDAY2TEXT(format) GAMETIMESTAMP(format, world.timeofday)

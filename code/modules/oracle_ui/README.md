@@ -36,7 +36,7 @@ Values defined as `@{value}` will get replaced at runtime by oracle_ui.
 		<span class='label'>State:</span>
 		<div class='content' id="full_pressure">@{full_pressure}</div>
 	</section>
-    <section>
+	<section>
 		<span class='label'>Pressure:</span>
 		<div class='content'>
 			<div class='progressBar' id='per'>
@@ -45,7 +45,7 @@ Values defined as `@{value}` will get replaced at runtime by oracle_ui.
 			</div>
 		</div>
 	</section>
-    <section>
+	<section>
 		<span class='label'>Handle:</span>
 		<div class='content' id="flush">@{flush}</div>
 	</section>

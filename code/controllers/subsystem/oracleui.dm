@@ -1,6 +1,12 @@
+/**
+ * oui subsystem
+ *
+ * Contains all tgui state and subsystem code.
+ *
+ */
 PROCESSING_SUBSYSTEM_DEF(oracleui)
 	name = "OracleUI"
-	wait = 1 SECONDS
+	wait = 9
 	subsystem_flags = SS_NO_INIT
 	priority = FIRE_PRIORITY_ORACLEUI
 

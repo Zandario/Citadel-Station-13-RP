@@ -16,7 +16,7 @@
 		forceMove(get_turf(A))
 //		update_parallax_contents()
 
-/client/var/inquisitive_ghost = 1
+/client/var/inquisitive_ghost = 0
 /mob/observer/dead/verb/toggle_inquisition() // warning: unexpected inquisition
 	set name = "Toggle Inquisitiveness"
 	set desc = "Sets whether your ghost examines everything on click by default"

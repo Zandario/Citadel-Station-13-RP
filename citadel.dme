@@ -3453,6 +3453,7 @@
 #include "code\modules\oracle_ui\oracle_ui_core.dm"
 #include "code\modules\oracle_ui\oracle_ui_hooks.dm"
 #include "code\modules\oracle_ui\themed.dm"
+#include "code\modules\oracle_ui\templates\disposal_bin.dm"
 #include "code\modules\organs\_organ_defines.dm"
 #include "code\modules\organs\blood.dm"
 #include "code\modules\organs\external_defines.dm"

@@ -23,7 +23,7 @@
 	idle_power_usage = 100
 
 	obj_flags = CAN_BE_HIT
-	oui = /datum/oracle_ui/themed/nano
+	oui = /datum/oracle_ui/themed/nano/disposal_bin
 
 	/// Internal reservoir.
 	var/datum/gas_mixture/air_contents
@@ -49,9 +49,7 @@
 /obj/machinery/disposal/Initialize(mapload, newdir)
 	. = ..()
 
-	oui = new /datum/oracle_ui/themed/nano(src, 330, 190, "disposal_bin")
-	oui.auto_refresh = TRUE
-	oui.can_resize = FALSE
+	oui = new /datum/oracle_ui/themed/nano/disposal_bin(src)
 
 	return INITIALIZE_HINT_LATELOAD //we need turfs to have air
 

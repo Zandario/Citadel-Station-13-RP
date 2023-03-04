@@ -67,7 +67,9 @@
 		current_location = SSshuttle.get_landmark(current_location)
 	if(!istype(current_location))
 		log_debug(SPAN_DEBUGERROR("UM whoops, no initial? [src]"))
+		#ifndef FASTBOOT_DISABLE_LATELOAD
 		CRASH("Shuttle '[name]' could not find its starting location landmark [current_location].")
+		#endif
 
 	if(src.name in SSshuttle.shuttles)
 		CRASH(SPAN_DEBUGERROR("A shuttle with the name '[name]' is already defined."))

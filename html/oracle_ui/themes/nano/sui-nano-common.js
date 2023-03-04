@@ -1,50 +1,59 @@
+"use strict";
+
 function replaceContent(body) {
-	var maincontent = document.getElementById("maincontent");
+	let maincontent = document.getElementById("maincontent");
 	if (maincontent) {
 		maincontent.innerHTML = body;
 	}
 }
 
 function updateProgressLabels() {
-	var progressBars = document.getElementsByClassName("progressBar");
+	let progressBars = document.getElementsByClassName("progressBar");
 	for (let i = 0; i < progressBars.length; i++) {
-		var progressBar = progressBars[i];
-		if (!progressBar)
+		let progressBar = progressBars[i];
+		if (!progressBar) {
 			continue;
-		var progressFill =
+		}
+		let progressFill =
 			progressBar.getElementsByClassName("progressFill")[0];
-		if (!progressFill)
+		if (!progressFill) {
 			continue;
-		var width = parseInt(getComputedStyle(progressFill).width);
-		var maxWidth = parseInt(getComputedStyle(progressBar).width);
-		var progressLabel =
+		}
+		let width = parseInt(getComputedStyle(progressFill).width);
+		let maxWidth = parseInt(getComputedStyle(progressBar).width);
+		let progressLabel =
 			progressBar.getElementsByClassName("progressLabel")[0];
-		if (progressLabel)
+		if (progressLabel) {
 			progressLabel.innerHTML =
 				Math.round((width / maxWidth) * 100) + "%";
+		}
 	}
 }
 
 if (getComputedStyle) {
 	setInterval(updateProgressLabels, 50);
-} //Fallback
+} // Fallback
 
 function updateFields(json) {
-	var fields = JSON.parse(json);
-	for (var key in fields) {
-		var value = fields[key];
-		var element = document.getElementById(key);
+	let fields = JSON.parse(json);
+	for (let key in fields) {
+		let value = fields[key];
+		let element = document.getElementById(key);
 		if (element == null) {
 			continue;
 		} else if (element.classList.contains("progressBar")) {
-			var progressFill =
+			let progressFill =
 				element.getElementsByClassName("progressFill")[0];
-			if (progressFill) progressFill.style["width"] = value;
+			if (progressFill) {
+				progressFill.style["width"] = value;
+			}
 			if (!getComputedStyle) {
-				//Fallback
-				var progressLabel =
+				// Fallback
+				let progressLabel =
 					element.getElementsByClassName("progressLabel")[0];
-				if (progressLabel) progressLabel.innerHTML = value;
+				if (progressLabel) {
+					progressLabel.innerHTML = value;
+				}
 			}
 		} else {
 			element.innerHTML = value;
