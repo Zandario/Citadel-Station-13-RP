@@ -148,7 +148,7 @@
 							/mob/living/silicon/robot/modules/syndicate,
 							/mob/living/silicon/robot/modules/syndicate/medical,
 							/mob/living/silicon/robot/modules/syndicate/saboteur,
-							200;/mob/living/simple_animal/drone/polymorphed)
+							200;/mob/living/simple/drone/polymorphed)
 			new_mob = new robot(M.loc)
 			if(issilicon(new_mob))
 				new_mob.gender = M.gender
@@ -162,47 +162,47 @@
 				Robot.clear_zeroth_law(0)
 
 		if("slime")
-			new_mob = new /mob/living/simple_animal/slime/random(M.loc)
+			new_mob = new /mob/living/simple/slime/random(M.loc)
 
 		if("xeno")
 			var/Xe
 			if(M.ckey)
 				Xe = pick(/mob/living/complex/alien/humanoid/hunter,/mob/living/complex/alien/humanoid/sentinel)
 			else
-				Xe = pick(/mob/living/complex/alien/humanoid/hunter,/mob/living/simple_animal/hostile/alien/sentinel)
+				Xe = pick(/mob/living/complex/alien/humanoid/hunter,/mob/living/simple/hostile/alien/sentinel)
 			new_mob = new Xe(M.loc)
 
 		if("animal")
-			var/path = pick(/mob/living/simple_animal/hostile/carp,
-							/mob/living/simple_animal/hostile/bear,
-							/mob/living/simple_animal/hostile/mushroom,
-							/mob/living/simple_animal/hostile/retaliate/bat,
-							/mob/living/simple_animal/hostile/retaliate/goat,
-							/mob/living/simple_animal/hostile/killertomato,
-							/mob/living/simple_animal/hostile/poison/giant_spider,
-							/mob/living/simple_animal/hostile/poison/giant_spider/hunter,
-							/mob/living/simple_animal/hostile/blob/blobbernaut/independent,
-							/mob/living/simple_animal/hostile/asteroid/basilisk/watcher,
-							/mob/living/simple_animal/hostile/asteroid/goliath/beast,
-							/mob/living/simple_animal/hostile/morph,
-							/mob/living/simple_animal/hostile/stickman,
-							/mob/living/simple_animal/hostile/stickman/dog,
-							/mob/living/simple_animal/hostile/megafauna/dragon/lesser,
-							/mob/living/simple_animal/hostile/gorilla,
-							/mob/living/simple_animal/parrot,
-							/mob/living/simple_animal/pet/dog/corgi,
-							/mob/living/simple_animal/crab,
-							/mob/living/simple_animal/pet/dog/pug,
-							/mob/living/simple_animal/pet/cat,
-							/mob/living/simple_animal/mouse,
-							/mob/living/simple_animal/chicken,
-							/mob/living/simple_animal/cow,
-							/mob/living/simple_animal/hostile/lizard,
-							/mob/living/simple_animal/pet/fox,
-							/mob/living/simple_animal/butterfly,
-							/mob/living/simple_animal/pet/cat/cak,
-							/mob/living/simple_animal/chick,
-							/mob/living/simple_animal/pickle)
+			var/path = pick(/mob/living/simple/hostile/carp,
+							/mob/living/simple/hostile/bear,
+							/mob/living/simple/hostile/mushroom,
+							/mob/living/simple/hostile/retaliate/bat,
+							/mob/living/simple/hostile/retaliate/goat,
+							/mob/living/simple/hostile/killertomato,
+							/mob/living/simple/hostile/poison/giant_spider,
+							/mob/living/simple/hostile/poison/giant_spider/hunter,
+							/mob/living/simple/hostile/blob/blobbernaut/independent,
+							/mob/living/simple/hostile/asteroid/basilisk/watcher,
+							/mob/living/simple/hostile/asteroid/goliath/beast,
+							/mob/living/simple/hostile/morph,
+							/mob/living/simple/hostile/stickman,
+							/mob/living/simple/hostile/stickman/dog,
+							/mob/living/simple/hostile/megafauna/dragon/lesser,
+							/mob/living/simple/hostile/gorilla,
+							/mob/living/simple/parrot,
+							/mob/living/simple/pet/dog/corgi,
+							/mob/living/simple/crab,
+							/mob/living/simple/pet/dog/pug,
+							/mob/living/simple/pet/cat,
+							/mob/living/simple/mouse,
+							/mob/living/simple/chicken,
+							/mob/living/simple/cow,
+							/mob/living/simple/hostile/lizard,
+							/mob/living/simple/pet/fox,
+							/mob/living/simple/butterfly,
+							/mob/living/simple/pet/cat/cak,
+							/mob/living/simple/chick,
+							/mob/living/simple/pickle)
 			new_mob = new path(M.loc)
 
 		if("humanoid")
@@ -262,7 +262,7 @@
 			var/obj/structure/statue/petrified/P = src
 			if(P.petrified_mob)
 				var/mob/living/L = P.petrified_mob
-				var/mob/living/simple_animal/hostile/statue/S = new(P.loc, owner)
+				var/mob/living/simple/hostile/statue/S = new(P.loc, owner)
 				S.name = "statue of [L.name]"
 				if(owner)
 					S.faction = list("[REF(owner)]")
@@ -280,13 +280,13 @@
 		else
 			var/obj/O = src
 			if(istype(O, /obj/item/gun))
-				new /mob/living/simple_animal/hostile/mimic/copy/ranged(loc, src, owner)
+				new /mob/living/simple/hostile/mimic/copy/ranged(loc, src, owner)
 			else
-				new /mob/living/simple_animal/hostile/mimic/copy(loc, src, owner)
+				new /mob/living/simple/hostile/mimic/copy(loc, src, owner)
 
-	else if(istype(src, /mob/living/simple_animal/hostile/mimic/copy))
+	else if(istype(src, /mob/living/simple/hostile/mimic/copy))
 		// Change our allegiance!
-		var/mob/living/simple_animal/hostile/mimic/copy/C = src
+		var/mob/living/simple/hostile/mimic/copy/C = src
 		if(owner)
 			C.ChangeOwner(owner)
 */

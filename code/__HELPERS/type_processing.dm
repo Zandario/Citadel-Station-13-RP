@@ -26,7 +26,7 @@
 			// /turf/closed = "CLOSED",
 			/turf = "T",
 			/mob/living/complex = "CARBON",
-			/mob/living/simple_animal = "SIMPLE",
+			/mob/living/simple = "SIMPLE",
 			/mob/living = "LIVING",
 			/mob = "M",
 		)

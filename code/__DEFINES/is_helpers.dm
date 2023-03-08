@@ -55,7 +55,7 @@
 
 #define isalien(A) istype(A, /mob/living/complex/alien)
 
-#define isanimal(A) istype(A, /mob/living/simple_animal)
+#define isanimal(A) istype(A, /mob/living/simple)
 
 #define isbrain(A) istype(A, /mob/living/complex/brain)
 

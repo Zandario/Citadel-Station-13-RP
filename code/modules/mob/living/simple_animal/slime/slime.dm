@@ -1,4 +1,4 @@
-/mob/living/simple_animal/slime
+/mob/living/simple/slime
 	name = "slime"
 	desc = "The most basic of slimes.  The grey slime has no remarkable qualities, however it remains one of the most useful colors for scientists."
 	tt_desc = "A Macrolimbus vulgaris"
@@ -108,10 +108,10 @@
 	var/coretype = /obj/item/slime_extract/grey
 	/// List of potential slime color mutations. This must have exactly four types.
 	var/list/slime_mutation = list(
-		/mob/living/simple_animal/slime/orange,
-		/mob/living/simple_animal/slime/metal,
-		/mob/living/simple_animal/slime/blue,
-		/mob/living/simple_animal/slime/purple
+		/mob/living/simple/slime/orange,
+		/mob/living/simple/slime/metal,
+		/mob/living/simple/slime/blue,
+		/mob/living/simple/slime/purple
 	)
 	/// Set this if you want dying slimes to split into a specific type and not their type.
 	var/type_on_death = null
@@ -123,7 +123,7 @@
 	var/injection_amount = 5
 
 
-/mob/living/simple_animal/slime/Initialize(mapload, start_as_adult = FALSE)
+/mob/living/simple/slime/Initialize(mapload, start_as_adult = FALSE)
 	. = ..()
 	add_verb(src, /mob/living/proc/ventcrawl)
 	if(start_as_adult)
@@ -134,12 +134,12 @@
 	number = rand(1, 1000)
 	update_name()
 
-/mob/living/simple_animal/slime/Destroy()
+/mob/living/simple/slime/Destroy()
 	if(hat)
 		drop_hat()
 	return ..()
 
-/mob/living/simple_animal/slime/proc/make_adult()
+/mob/living/simple/slime/proc/make_adult()
 	if(is_adult)
 		return
 
@@ -151,13 +151,13 @@
 	update_icon()
 	update_name()
 
-/mob/living/simple_animal/slime/proc/update_name()
+/mob/living/simple/slime/proc/update_name()
 	if(docile) // Docile slimes are generally named, so we shouldn't mess with it.
 		return
 	name = "[slime_color] [is_adult ? "adult" : "baby"] [initial(name)] ([number])"
 	real_name = name
 
-/mob/living/simple_animal/slime/update_icon()
+/mob/living/simple/slime/update_icon()
 	if(stat == DEAD)
 		icon_state = "[icon_state_override ? "[icon_state_override] slime" : "slime"] [is_adult ? "adult" : "baby"] dead"
 		set_light(0)
@@ -198,7 +198,7 @@
 
 	add_overlay(overlays_to_add)
 
-/mob/living/simple_animal/slime/proc/update_mood()
+/mob/living/simple/slime/proc/update_mood()
 	var/old_mood = mood
 	if(incapacitated(INCAPACITATION_DISABLED))
 		mood = "sad"
@@ -216,7 +216,7 @@
 		update_icon()
 
 // Makes the slime very angry and dangerous.
-/mob/living/simple_animal/slime/proc/enrage()
+/mob/living/simple/slime/proc/enrage()
 	if(docile)
 		return
 	rabid = TRUE
@@ -224,7 +224,7 @@
 	visible_message("<span class='danger'>\The [src] enrages!</span>")
 
 // Makes the slime safe and harmless.
-/mob/living/simple_animal/slime/proc/pacify()
+/mob/living/simple/slime/proc/pacify()
 	rabid = FALSE
 	docile = TRUE
 	hostile = FALSE
@@ -237,11 +237,11 @@
 
 	update_mood()
 
-/mob/living/simple_animal/slime/proc/unify()
+/mob/living/simple/slime/proc/unify()
 	unity = TRUE
 	attack_same = FALSE
 
-/mob/living/simple_animal/slime/examine(mob/user)
+/mob/living/simple/slime/examine(mob/user)
 	. = list("<span class='info'>This is [icon2html(src, user)] \a <EM>[src]</EM>!")
 	if(hat)
 		. += "It is wearing \a [hat]." //slime hat. slat? hlime?
@@ -260,10 +260,10 @@
 		. += "It appears to have been pacified."
 	. += "</span>"
 
-/mob/living/simple_animal/slime/water_act(amount) // This is called if a slime enters a water tile.
+/mob/living/simple/slime/water_act(amount) // This is called if a slime enters a water tile.
 	adjustBruteLoss(40 * amount)
 
-/mob/living/simple_animal/slime/proc/adjust_discipline(amount, silent)
+/mob/living/simple/slime/proc/adjust_discipline(amount, silent)
 	if(amount > 0)
 		if(!rabid)
 			var/justified = is_justified_to_discipline()
@@ -285,7 +285,7 @@
 
 	discipline = clamp( discipline + amount, 0,  10)
 
-/mob/living/simple_animal/slime/movement_delay()
+/mob/living/simple/slime/movement_delay()
 	if(bodytemperature >= 330.23) // 135 F or 57.08 C
 		return -1	// slimes become supercharged at high temperatures
 
@@ -300,10 +300,10 @@
 
 	. += config_legacy.slime_delay
 
-/mob/living/simple_animal/slime/Process_Spacemove()
+/mob/living/simple/slime/Process_Spacemove()
 	return 2
 
-/mob/living/simple_animal/slime/verb/evolve()
+/mob/living/simple/slime/verb/evolve()
 	set category = "Slime"
 	set desc = "This will let you evolve from baby to adult slime."
 
@@ -323,7 +323,7 @@
 	else
 		to_chat(src, "<span class='notice'>I have already evolved...</span>")
 
-/mob/living/simple_animal/slime/verb/reproduce()
+/mob/living/simple/slime/verb/reproduce()
 	set category = "Slime"
 	set desc = "This will make you split into four Slimes."
 
@@ -360,7 +360,7 @@
 			for(var/i = 1 to 4)
 				babies.Add(make_new_slime())
 
-			var/mob/living/simple_animal/slime/new_slime = pick(babies)
+			var/mob/living/simple/slime/new_slime = pick(babies)
 			new_slime.universal_speak = universal_speak
 			if(src.mind)
 				src.mind.transfer_to(new_slime)
@@ -373,25 +373,25 @@
 		to_chat(src, "<span class='notice'>I am not old enough to reproduce yet...</span>")
 
 // Used for reproducing and dying.
-/mob/living/simple_animal/slime/proc/make_new_slime(var/desired_type)
+/mob/living/simple/slime/proc/make_new_slime(var/desired_type)
 	var/t = src.type
 	if(desired_type)
 		t = desired_type
 	if(prob(mutation_chance / 10))
-		t = /mob/living/simple_animal/slime/rainbow
+		t = /mob/living/simple/slime/rainbow
 
 	else if(prob(mutation_chance) && slime_mutation.len)
 		t = slime_mutation[rand(1, slime_mutation.len)]
-	var/mob/living/simple_animal/slime/baby = new t(loc)
+	var/mob/living/simple/slime/baby = new t(loc)
 
 	// Handle 'inheriting' from parent slime.
 	baby.mutation_chance = mutation_chance
 	baby.power_charge = round(power_charge / 4)
 	baby.resentment = max(resentment - 1, 0)
-	if(!istype(baby, /mob/living/simple_animal/slime/light_pink))
+	if(!istype(baby, /mob/living/simple/slime/light_pink))
 		baby.discipline = max(discipline - 1, 0)
 		baby.obedience = max(obedience - 1, 0)
-	if(!istype(baby, /mob/living/simple_animal/slime/rainbow))
+	if(!istype(baby, /mob/living/simple/slime/rainbow))
 		baby.unity = unity
 	baby.faction = faction
 	baby.attack_same = attack_same
@@ -402,16 +402,16 @@
 	step_away(baby, src)
 	return baby
 
-/mob/living/simple_animal/slime/speech_bubble_appearance()
+/mob/living/simple/slime/speech_bubble_appearance()
 	return "slime"
 
 // Called after they finish eatting someone.
-/mob/living/simple_animal/slime/proc/befriend(var/mob/living/friend)
+/mob/living/simple/slime/proc/befriend(var/mob/living/friend)
 	if(!(friend in friends))
 		friends |= friend
 		say("[friend]... friend...")
 
-/mob/living/simple_animal/slime/proc/can_command(var/mob/living/commander)
+/mob/living/simple/slime/proc/can_command(var/mob/living/commander)
 	if(rabid)
 		return FALSE
 	if(docile)
@@ -424,7 +424,7 @@
 		return SLIME_COMMAND_OBEY
 	return FALSE
 
-/mob/living/simple_animal/slime/proc/give_hat(var/obj/item/clothing/head/new_hat, var/mob/living/user)
+/mob/living/simple/slime/proc/give_hat(var/obj/item/clothing/head/new_hat, var/mob/living/user)
 	if(!istype(new_hat))
 		to_chat(user, "<span class='warning'>\The [new_hat] isn't a hat.</span>")
 		return
@@ -439,7 +439,7 @@
 		update_icon()
 		return
 
-/mob/living/simple_animal/slime/proc/remove_hat(var/mob/living/user)
+/mob/living/simple/slime/proc/remove_hat(var/mob/living/user)
 	if(!hat)
 		to_chat(user, "<span class='warning'>\The [src] doesn't have a hat to remove.</span>")
 	else
@@ -449,7 +449,7 @@
 		hat = null
 		update_icon()
 
-/mob/living/simple_animal/slime/proc/drop_hat()
+/mob/living/simple/slime/proc/drop_hat()
 	if(!hat)
 		return
 	hat.forceMove(get_turf(src))
@@ -457,7 +457,7 @@
 	update_icon()
 
 // Checks if disciplining the slime would be 'justified' right now.
-/mob/living/simple_animal/slime/proc/is_justified_to_discipline()
+/mob/living/simple/slime/proc/is_justified_to_discipline()
 	if(rabid)
 		return TRUE
 	if(target_mob)
@@ -469,7 +469,7 @@
 	return FALSE
 
 
-/mob/living/simple_animal/slime/get_description_interaction(mob/user)
+/mob/living/simple/slime/get_description_interaction(mob/user)
 	var/list/results = list()
 
 	if(!stat)
@@ -479,7 +479,7 @@
 
 	return results
 
-/mob/living/simple_animal/slime/get_description_info()
+/mob/living/simple/slime/get_description_info()
 	var/list/lines = list()
 	var/intro_line = "Slimes are generally the test subjects of Xenobiology, with different colors having different properties.  \
 	They can be extremely dangerous if not handled properly."
@@ -488,7 +488,7 @@
 
 	var/list/rewards = list()
 	for(var/potential_color in slime_mutation)
-		var/mob/living/simple_animal/slime/S = potential_color
+		var/mob/living/simple/slime/S = potential_color
 		rewards.Add(initial(S.slime_color))
 	var/reward_line = "This color of slime can mutate into [english_list(rewards)] colors, when it reproduces.  It will do so when it has eatten enough."
 	lines.Add(reward_line)

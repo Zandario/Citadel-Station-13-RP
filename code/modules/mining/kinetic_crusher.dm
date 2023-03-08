@@ -404,7 +404,7 @@
 	return "mark detonation to prevent certain creatures from using certain attacks for <b>[bonus_value*0.1]</b> second\s"
 /obj/item/crusher_trophy/watcher_wing/on_mark_detonation(mob/living/target, mob/living/user)
 	if(ishostile(target))
-		var/mob/living/simple_animal/hostile/H = target
+		var/mob/living/simple/hostile/H = target
 		if(H.ranged) //briefly delay ranged attacks
 			if(H.ranged_cooldown >= world.time)
 				H.ranged_cooldown += bonus_value
