@@ -49,7 +49,7 @@
 /mob/living/simple_mob/vore/aggressive/rat/tame		//not quite tame but does not attack on sight
 	name = "curious giant rat"
 	desc = "In what passes for a hierarchy among verminous rodents, this one is king. It seems to be more interested on scavenging."
-	var/mob/living/carbon/human/food
+	var/mob/living/complex/human/food
 	var/hunger = 0
 
 /mob/living/simple_mob/vore/aggressive/rat/maurice

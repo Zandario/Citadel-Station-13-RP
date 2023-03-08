@@ -1,6 +1,6 @@
 /mob/var/suiciding = 0
 
-/mob/living/carbon/human/verb/suicide()
+/mob/living/complex/human/verb/suicide()
 	set hidden = 1
 
 	if (stat == DEAD)
@@ -88,7 +88,7 @@
 		adjustOxyLoss(max(175 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 		updatehealth()
 
-/mob/living/carbon/brain/verb/suicide()
+/mob/living/complex/brain/verb/suicide()
 	set hidden = 1
 
 	if (stat == 2)

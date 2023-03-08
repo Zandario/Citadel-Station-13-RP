@@ -40,7 +40,7 @@
 		/datum/unarmed_attack/punch,
 	)
 
-/datum/species/golem/handle_post_spawn(mob/living/carbon/human/H)
+/datum/species/golem/handle_post_spawn(mob/living/complex/human/H)
 	if(H.mind)
 		H.mind.assigned_role = SPECIES_GOLEM
 		H.mind.special_role = SPECIES_GOLEM

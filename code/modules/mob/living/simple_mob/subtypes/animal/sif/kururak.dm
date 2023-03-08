@@ -106,7 +106,7 @@
 		if(issilicon(L))	// Metal things are usually reflective, or in general aggrivating.
 			return FALSE
 		if(ishuman(L))	// Might be metal, but they're humanoid shaped.
-			var/mob/living/carbon/human/H = L
+			var/mob/living/complex/human/H = L
 			if(H.get_active_held_item())
 				var/obj/item/I = H.get_active_held_item()
 				if(I.force >= 1.20 * melee_damage_upper)
@@ -159,7 +159,7 @@
 
 	if(!A && src.client)
 		var/list/choices = list()
-		for(var/mob/living/carbon/C in view(1,src))
+		for(var/mob/living/complex/C in view(1,src))
 			if(src.Adjacent(C))
 				choices += C
 
@@ -176,14 +176,14 @@
 	visible_message(SPAN_ALIEN("\The [src] flares its tails!"))
 	if(isliving(A))
 		var/mob/living/L = A
-		if(iscarbon(L))
-			var/mob/living/carbon/C = L
+		if(iscomplexmob(L))
+			var/mob/living/complex/C = L
 			if(C.stat != DEAD)
 				var/safety = C.eyecheck()
 				if(safety <= 0)
 					var/flash_strength = 5
 					if(ishuman(C))
-						var/mob/living/carbon/human/H = C
+						var/mob/living/complex/human/H = C
 						flash_strength *= H.species.flash_mod
 						if(flash_strength > 0)
 							to_chat(H, SPAN_ALIEN("You are disoriented by \the [src]!"))
@@ -214,7 +214,7 @@
 			L.flash_eyes()
 
 	else
-		for(var/mob/living/carbon/C in oviewers(special_attack_max_range, null))
+		for(var/mob/living/complex/C in oviewers(special_attack_max_range, null))
 			var/safety = C.eyecheck()
 			if(!safety)
 				if(!C.blinded)
@@ -246,7 +246,7 @@
 
 	if(!A && src.client)
 		var/list/choices = list()
-		for(var/mob/living/carbon/C in view(1,src))
+		for(var/mob/living/complex/C in view(1,src))
 			if(src.Adjacent(C))
 				choices += C
 
@@ -269,7 +269,7 @@
 		visible_message(SPAN_DANGER("\The [src] rakes its claws across [A]."))
 		var/mob/living/L = A
 		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
+			var/mob/living/complex/human/H = L
 			H.apply_damage(damage_to_apply, BRUTE, BP_TORSO, 0, 0, "Animal claws")
 
 		else
@@ -367,8 +367,8 @@
 		if(holder.Adjacent(L))
 			holder.a_intent = INTENT_GRAB
 
-		if(iscarbon(L))
-			var/mob/living/carbon/C = L
+		if(iscomplexmob(L))
+			var/mob/living/complex/C = L
 			if(!C.eyecheck())
 				if(holder.a_intent != INTENT_GRAB)
 					holder.a_intent = INTENT_DISARM

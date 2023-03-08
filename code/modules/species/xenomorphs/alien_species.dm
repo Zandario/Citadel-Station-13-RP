@@ -92,16 +92,16 @@
 
 /datum/species/xenos/can_understand(var/mob/other)
 
-	if(istype(other,/mob/living/carbon/alien/larva))
+	if(istype(other,/mob/living/complex/alien/larva))
 		return 1
 
 	return 0
 
-/datum/species/xenos/hug(var/mob/living/carbon/human/H,var/mob/living/target)
+/datum/species/xenos/hug(var/mob/living/complex/human/H,var/mob/living/target)
 	H.visible_message("<span class='notice'>[H] caresses [target] with its scythe-like arm.</span>", \
 					"<span class='notice'>You caress [target] with your scythe-like arm.</span>")
 
-/datum/species/xenos/handle_post_spawn(var/mob/living/carbon/human/H)
+/datum/species/xenos/handle_post_spawn(var/mob/living/complex/human/H)
 
 	if(H.mind)
 		H.mind.assigned_role = "Alien"
@@ -113,7 +113,7 @@
 
 	..()
 
-/datum/species/xenos/handle_environment_special(var/mob/living/carbon/human/H)
+/datum/species/xenos/handle_environment_special(var/mob/living/complex/human/H)
 
 	var/turf/T = H.loc
 	if(!T) return
@@ -127,7 +127,7 @@
 			P.stored_plasma = min(max(P.stored_plasma,0),P.max_plasma)
 	..()
 
-/datum/species/xenos/proc/regenerate(var/mob/living/carbon/human/H)
+/datum/species/xenos/proc/regenerate(var/mob/living/complex/human/H)
 	var/heal_rate = weeds_heal_rate
 	var/mend_prob = 10
 	if (!H.resting)
@@ -162,11 +162,11 @@
 
 	return 0
 /*
-/datum/species/xenos/handle_login_special(var/mob/living/carbon/human/H)
+/datum/species/xenos/handle_login_special(var/mob/living/complex/human/H)
 	H.AddInfectionImages()
 	..()
 
-/datum/species/xenos/handle_logout_special(var/mob/living/carbon/human/H)
+/datum/species/xenos/handle_logout_special(var/mob/living/complex/human/H)
 	H.RemoveInfectionImages()
 	..()
 */
@@ -197,17 +197,17 @@
 
 	inherent_verbs = list(
 		/mob/living/proc/ventcrawl,
-		/mob/living/carbon/human/proc/regurgitate,
-		/mob/living/carbon/human/proc/plant,
-		/mob/living/carbon/human/proc/transfer_plasma,
-		/mob/living/carbon/human/proc/evolve,
-		/mob/living/carbon/human/proc/resin,
-		/mob/living/carbon/human/proc/corrosive_acid
+		/mob/living/complex/human/proc/regurgitate,
+		/mob/living/complex/human/proc/plant,
+		/mob/living/complex/human/proc/transfer_plasma,
+		/mob/living/complex/human/proc/evolve,
+		/mob/living/complex/human/proc/resin,
+		/mob/living/complex/human/proc/corrosive_acid
 		)
 
-/datum/species/xenos/drone/handle_post_spawn(var/mob/living/carbon/human/H)
+/datum/species/xenos/drone/handle_post_spawn(var/mob/living/complex/human/H)
 
-	var/mob/living/carbon/human/A = H
+	var/mob/living/complex/human/A = H
 	if(!istype(A))
 		return ..()
 	..()
@@ -236,11 +236,11 @@
 
 	inherent_verbs = list(
 		/mob/living/proc/ventcrawl,
-		/mob/living/carbon/human/proc/tackle,
-		/mob/living/carbon/human/proc/gut,
-		/mob/living/carbon/human/proc/leap,
-		/mob/living/carbon/human/proc/psychic_whisper,
-		/mob/living/carbon/human/proc/regurgitate
+		/mob/living/complex/human/proc/tackle,
+		/mob/living/complex/human/proc/gut,
+		/mob/living/complex/human/proc/leap,
+		/mob/living/complex/human/proc/psychic_whisper,
+		/mob/living/complex/human/proc/regurgitate
 		)
 
 /datum/species/xenos/sentinel
@@ -268,12 +268,12 @@
 
 	inherent_verbs = list(
 		/mob/living/proc/ventcrawl,
-		/mob/living/carbon/human/proc/tackle,
-		/mob/living/carbon/human/proc/regurgitate,
-		/mob/living/carbon/human/proc/transfer_plasma,
-		/mob/living/carbon/human/proc/corrosive_acid,
-		/mob/living/carbon/human/proc/neurotoxin,
-		/mob/living/carbon/human/proc/acidspit
+		/mob/living/complex/human/proc/tackle,
+		/mob/living/complex/human/proc/regurgitate,
+		/mob/living/complex/human/proc/transfer_plasma,
+		/mob/living/complex/human/proc/corrosive_acid,
+		/mob/living/complex/human/proc/neurotoxin,
+		/mob/living/complex/human/proc/acidspit
 		)
 
 /datum/species/xenos/queen
@@ -307,18 +307,18 @@
 
 	inherent_verbs = list(
 		/mob/living/proc/ventcrawl,
-		/mob/living/carbon/human/proc/psychic_whisper,
-		/mob/living/carbon/human/proc/regurgitate,
-		/mob/living/carbon/human/proc/lay_egg,
-		/mob/living/carbon/human/proc/plant,
-		/mob/living/carbon/human/proc/transfer_plasma,
-		/mob/living/carbon/human/proc/corrosive_acid,
-		/mob/living/carbon/human/proc/neurotoxin,
-		/mob/living/carbon/human/proc/acidspit,
-		/mob/living/carbon/human/proc/resin
+		/mob/living/complex/human/proc/psychic_whisper,
+		/mob/living/complex/human/proc/regurgitate,
+		/mob/living/complex/human/proc/lay_egg,
+		/mob/living/complex/human/proc/plant,
+		/mob/living/complex/human/proc/transfer_plasma,
+		/mob/living/complex/human/proc/corrosive_acid,
+		/mob/living/complex/human/proc/neurotoxin,
+		/mob/living/complex/human/proc/acidspit,
+		/mob/living/complex/human/proc/resin
 		)
 
-/datum/species/xenos/queen/handle_login_special(var/mob/living/carbon/human/H)
+/datum/species/xenos/queen/handle_login_special(var/mob/living/complex/human/H)
 	..()
 	// Make sure only one official queen exists at any point.
 	if(!alien_queen_exists(1,H))

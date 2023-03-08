@@ -1,7 +1,7 @@
 // Pretty much everything here is stolen from the dna scanner FYI
 
 /obj/machinery/bodyscanner
-	var/mob/living/carbon/occupant
+	var/mob/living/complex/occupant
 	var/locked
 	name = "Body Scanner"
 	icon = 'icons/obj/medical/cryogenic2.dmi'
@@ -66,7 +66,7 @@
 		if(default_deconstruction_crowbar(user, G))
 			return
 
-/obj/machinery/bodyscanner/MouseDroppedOnLegacy(mob/living/carbon/O, mob/user as mob)
+/obj/machinery/bodyscanner/MouseDroppedOnLegacy(mob/living/complex/O, mob/user as mob)
 	if(!istype(O))
 		return FALSE //not a mob
 	if(user.incapacitated())
@@ -273,7 +273,7 @@
 		var/occupantData[0]
 		if(scanner.occupant && ishuman(scanner.occupant))
 			update_icon() // Update health display for consoles with light and such.
-			var/mob/living/carbon/human/H = scanner.occupant
+			var/mob/living/complex/human/H = scanner.occupant
 			occupantData["name"] = H.name
 			occupantData["stat"] = H.stat
 			occupantData["health"] = H.health
@@ -438,7 +438,7 @@
 	var/dat = ""
 
 	if(scanner)
-		var/mob/living/carbon/human/occupant = scanner.occupant
+		var/mob/living/complex/human/occupant = scanner.occupant
 		dat = "<font color=#4F49AF><b>Occupant Statistics:</b></font><br>" //Blah obvious
 		if(istype(occupant)) //is there REALLY someone in there?
 			var/t1
@@ -612,7 +612,7 @@
 
 	printing_text = dat
 
-/obj/machinery/bodyscanner/proc/get_occupant_data_vr(list/incoming,mob/living/carbon/human/H)
+/obj/machinery/bodyscanner/proc/get_occupant_data_vr(list/incoming,mob/living/complex/human/H)
 	var/humanprey = 0
 	var/livingprey = 0
 	var/objectprey = 0

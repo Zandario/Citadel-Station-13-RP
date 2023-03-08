@@ -52,7 +52,7 @@
 /atom/proc/get_catalogue_data()
 	return catalogue_data
 
-/mob/living/carbon/human/get_catalogue_data()
+/mob/living/complex/human/get_catalogue_data()
 	var/list/data = list()
 	// First, handle robot-ness.
 	var/beep_boop = get_FBP_type()

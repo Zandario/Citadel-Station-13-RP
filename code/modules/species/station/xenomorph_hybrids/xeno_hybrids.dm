@@ -49,11 +49,11 @@
 	inherent_verbs = list(
 		/mob/living/proc/shred_limb,
 		/mob/living/proc/toggle_pass_table,
-		/mob/living/carbon/human/proc/tie_hair,
-		/mob/living/carbon/human/proc/sonar_ping,
-		/mob/living/carbon/human/proc/psychic_whisper,
-		/mob/living/carbon/human/proc/hybrid_resin,
-		/mob/living/carbon/human/proc/hybrid_plant//replaced from the normal weed node to place a singular weed
+		/mob/living/complex/human/proc/tie_hair,
+		/mob/living/complex/human/proc/sonar_ping,
+		/mob/living/complex/human/proc/psychic_whisper,
+		/mob/living/complex/human/proc/hybrid_resin,
+		/mob/living/complex/human/proc/hybrid_plant//replaced from the normal weed node to place a singular weed
 		)
 
 	total_health = 110	//Exoskeleton makes you tougher than baseline
@@ -102,7 +102,7 @@
 /datum/species/xenohybrid/can_breathe_water()
 	return TRUE	//they dont quite breathe
 
-/datum/species/xenohybrid/handle_environment_special(var/mob/living/carbon/human/H)
+/datum/species/xenohybrid/handle_environment_special(var/mob/living/complex/human/H)
 	var/heal_amount = min(H.nutrition, 200) / 50 //Not to much else we might as well give them a diona like healing
 	H.nutrition = max(H.nutrition-heal_amount,0)
 

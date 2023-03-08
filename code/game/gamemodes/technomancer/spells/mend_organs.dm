@@ -26,7 +26,7 @@
 		L.adjust_instability(5)
 
 		if(ishuman(hit_atom))
-			var/mob/living/carbon/human/H = hit_atom
+			var/mob/living/complex/human/H = hit_atom
 
 			user.adjust_instability(5)
 			L.adjust_instability(5)

@@ -167,7 +167,7 @@
 	var/obj/item/organ/external/E
 	var/nopain
 	if(ishuman(victim) && user.zone_sel.selecting != "groin" && user.zone_sel.selecting != "chest")
-		var/mob/living/carbon/human/H = victim
+		var/mob/living/complex/human/H = victim
 		E = H.get_organ(user.zone_sel.selecting)
 		if(!E || E.species.species_flags & NO_PAIN)
 			nopain = 2

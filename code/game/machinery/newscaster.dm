@@ -265,7 +265,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	if(!user.IsAdvancedToolUser())
 		return FALSE
 
-	if(istype(user, /mob/living/carbon/human) || istype(user,/mob/living/silicon))
+	if(istype(user, /mob/living/complex/human) || istype(user,/mob/living/silicon))
 		var/mob/living/human_or_robot_user = user
 		var/dat
 		dat = text("<HEAD><TITLE>Newscaster</TITLE></HEAD><H3>Newscaster Unit #[unit_no]</H3>")
@@ -814,7 +814,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 
 /obj/item/newspaper/attack_self(mob/user)
 	if(ishuman(user))
-		var/mob/living/carbon/human/human_user = user
+		var/mob/living/complex/human/human_user = user
 		var/dat
 		pages = 0
 		switch(screen)
@@ -941,8 +941,8 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 ////////////////////////////////////helper procs
 
 /obj/machinery/newscaster/proc/scan_user(mob/living/user)
-	if(istype(user,/mob/living/carbon/human))                       //User is a human
-		var/mob/living/carbon/human/human_user = user
+	if(istype(user,/mob/living/complex/human))                       //User is a human
+		var/mob/living/complex/human/human_user = user
 		var/obj/item/card/id/I = human_user.GetIdCard()
 		if(I)
 			scanned_user = GetNameAndAssignmentFromId(I)

@@ -214,19 +214,19 @@ About Reagents:
 		touch_turf(turf/T)
 			How reagent reacts with turfs.
 
-		on_mob_life(var/mob/living/carbon/M, var/alien, var/location)
+		on_mob_life(var/mob/living/complex/M, var/alien, var/location)
 			Makes necessary checks and calls one of affect procs.
 
-		affect_blood(mob/living/carbon/M, alien, removed)
+		affect_blood(mob/living/complex/M, alien, removed)
 			How reagent affects mob when injected. [removed] is the amount of reagent that has been removed this tick. [alien] is the mob's reagent flag.
 
-		affect_ingest(mob/living/carbon/M, alien, removed)
+		affect_ingest(mob/living/complex/M, alien, removed)
 			Ditto, ingested. Defaults to affect_blood with halved dose.
 
-		affect_touch(mob/living/carbon/M, alien, removed)
+		affect_touch(mob/living/complex/M, alien, removed)
 			Ditto, touching.
 
-		overdose(mob/living/carbon/M, alien)
+		overdose(mob/living/complex/M, alien)
 			Called when dose is above overdose. Defaults to M.adjustToxLoss(REM).
 
 		initialize_data(newdata)

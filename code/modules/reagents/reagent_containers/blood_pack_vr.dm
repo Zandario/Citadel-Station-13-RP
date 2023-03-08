@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/blood/attack_self(mob/living/user as mob)
-	if(istype(user, /mob/living/carbon/human))
-		var/mob/living/carbon/human/human_user = user
+	if(istype(user, /mob/living/complex/human))
+		var/mob/living/complex/human/human_user = user
 		if(human_user.species.is_vampire)
 			if(user.a_intent == INTENT_HARM)
 				if(reagents.total_volume && volume)

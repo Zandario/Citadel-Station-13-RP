@@ -2,7 +2,7 @@
  * Check that standard food items fit on the serving tray
  */
 /datum/unit_test/servingtray/Run()
-	var/mob/living/carbon/human/human = allocate(/mob/living/carbon/human)
+	var/mob/living/complex/human/human = allocate(/mob/living/complex/human)
 	var/obj/structure/table/the_table = allocate(/obj/structure/table)
 	var/obj/item/storage/bag/tray/test_tray = allocate(/obj/item/storage/bag/tray)
 	var/obj/item/reagent_containers/food/banana = allocate(/obj/item/food/rationpack)
@@ -44,4 +44,3 @@
 	test_tray.melee_attack_chain(human, human)
 
 	TEST_ASSERT_EQUAL(test_tray.contents.len, 0, "The serving tray did not drop all items on hitting a human")
-

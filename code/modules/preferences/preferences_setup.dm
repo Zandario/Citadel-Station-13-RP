@@ -1,6 +1,6 @@
 /datum/preferences
 	//The mob should have a gender you want before running this proc. Will run fine without H
-/datum/preferences/proc/randomize_appearance_and_body_for(var/mob/living/carbon/human/H)
+/datum/preferences/proc/randomize_appearance_and_body_for(var/mob/living/complex/human/H)
 	var/datum/species/current_species = real_species_datum()
 	set_biological_gender(pick(current_species.genders))
 
@@ -191,7 +191,7 @@
 	g_skin = green
 	b_skin = blue
 
-/datum/preferences/proc/dress_preview_mob(var/mob/living/carbon/human/mannequin)
+/datum/preferences/proc/dress_preview_mob(var/mob/living/complex/human/mannequin)
 	copy_to(mannequin)
 
 	if(!equip_preview_mob)
@@ -234,7 +234,7 @@
 		previewJob.equip_preview(mannequin, get_job_alt_title_name(previewJob))
 
 /datum/preferences/proc/update_preview_icon()
-	var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)
+	var/mob/living/complex/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)
 	mannequin.delete_inventory(TRUE)
 	if(regen_limbs)
 		var/datum/species/current_species = real_species_datum()
@@ -247,7 +247,7 @@
 	update_character_previews(new /mutable_appearance(mannequin))
 
 //TFF 5/8/19 - add randomised sensor setting for random button clicking
-/datum/preferences/randomize_appearance_and_body_for(var/mob/living/carbon/human/H)
+/datum/preferences/randomize_appearance_and_body_for(var/mob/living/complex/human/H)
 	sensorpref = rand(1,5)
 
 /datum/preferences/proc/get_valid_hairstyles()
@@ -279,7 +279,7 @@
 	return valid_facialhairstyles
 
 /datum/preferences/update_preview_icon() // Lines up and un-overlaps character edit previews. Also un-splits taurs.
-	var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)
+	var/mob/living/complex/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)
 	if(!mannequin.dna) // Special handling for preview icons before SSAtoms has initailized.
 		mannequin.dna = new /datum/dna(null)
 	mannequin.delete_inventory(TRUE)

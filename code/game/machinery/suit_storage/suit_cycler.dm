@@ -31,7 +31,7 @@
 	var/target_department
 	var/target_species
 
-	var/mob/living/carbon/human/occupant = null
+	var/mob/living/complex/human/occupant = null
 	var/obj/item/clothing/suit/space/void/suit = null
 	var/obj/item/clothing/head/helmet/space/helmet = null
 

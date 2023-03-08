@@ -288,16 +288,16 @@
 	SSnanoui.update_uis(src)
 	add_fingerprint(usr)
 
-/obj/machinery/computer/cloning/proc/scan_mob(mob/living/carbon/human/subject as mob)
+/obj/machinery/computer/cloning/proc/scan_mob(mob/living/complex/human/subject as mob)
 	var/brain_skip = 0
-	if (istype(subject, /mob/living/carbon/brain)) //Brain scans.
+	if (istype(subject, /mob/living/complex/brain)) //Brain scans.
 		brain_skip = 1
 	if ((isnull(subject)) || (!(ishuman(subject)) && !brain_skip) || (!subject.dna))
 		scantemp = "Error: Unable to locate valid genetic data."
 		return
 	if (!subject.has_brain() && !brain_skip)
-		if(istype(subject, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = subject
+		if(istype(subject, /mob/living/complex/human))
+			var/mob/living/complex/human/H = subject
 			if(H.should_have_organ("brain"))
 				scantemp = "Error: No signs of intelligence detected."
 		else

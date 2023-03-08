@@ -137,14 +137,14 @@
 /datum/species/crew_shadekin/can_breathe_water()
 	return TRUE	//they dont quite breathe
 
-/datum/species/crew_shadekin/handle_environment_special(mob/living/carbon/human/H)
+/datum/species/crew_shadekin/handle_environment_special(mob/living/complex/human/H)
 	handle_shade(H)
 
-/datum/species/crew_shadekin/add_inherent_verbs(mob/living/carbon/human/H)
+/datum/species/crew_shadekin/add_inherent_verbs(mob/living/complex/human/H)
 	..()
 	add_crew_shadekin_abilities(H)
 
-/datum/species/crew_shadekin/proc/add_crew_shadekin_abilities(mob/living/carbon/human/H)
+/datum/species/crew_shadekin/proc/add_crew_shadekin_abilities(mob/living/complex/human/H)
 	if(!H.ability_master || !istype(H.ability_master, /atom/movable/screen/movable/ability_master/crew_shadekin))
 		H.ability_master = null
 		H.ability_master = new /atom/movable/screen/movable/ability_master/crew_shadekin(H)
@@ -159,7 +159,7 @@
 				arguments = list()
 			)
 
-/datum/species/crew_shadekin/proc/handle_shade(mob/living/carbon/human/H)
+/datum/species/crew_shadekin/proc/handle_shade(mob/living/complex/human/H)
 	//Shifted kin don't gain/lose energy (and save time if we're at the cap)
 	var/darkness = 1
 	var/dark_gains = 0
@@ -192,42 +192,42 @@
 	//Update huds
 	update_crew_shadekin_hud(H)
 
-/datum/species/crew_shadekin/proc/get_energy(mob/living/carbon/human/H)
+/datum/species/crew_shadekin/proc/get_energy(mob/living/complex/human/H)
 	var/obj/item/organ/internal/brain/shadekin/crewkin/shade_organ = H.internal_organs_by_name[O_BRAIN]
 	if(!istype(shade_organ))
 		return FALSE
 
 	return shade_organ.dark_energy
 
-/datum/species/crew_shadekin/proc/get_max_energy(mob/living/carbon/human/H)
+/datum/species/crew_shadekin/proc/get_max_energy(mob/living/complex/human/H)
 	var/obj/item/organ/internal/brain/shadekin/crewkin/shade_organ = H.internal_organs_by_name[O_BRAIN]
 	if(!istype(shade_organ))
 		return FALSE
 
 	return shade_organ.max_dark_energy
 
-/datum/species/crew_shadekin/proc/set_energy(mob/living/carbon/human/H, new_energy)
+/datum/species/crew_shadekin/proc/set_energy(mob/living/complex/human/H, new_energy)
 	var/obj/item/organ/internal/brain/shadekin/crewkin/shade_organ = H.internal_organs_by_name[O_BRAIN]
 	if(!istype(shade_organ))
 		return
 
 	shade_organ.dark_energy = clamp(new_energy, 0, get_max_energy(H))
 
-/datum/species/crew_shadekin/proc/set_max_energy(mob/living/carbon/human/H, new_max_energy)
+/datum/species/crew_shadekin/proc/set_max_energy(mob/living/complex/human/H, new_max_energy)
 	var/obj/item/organ/internal/brain/shadekin/crewkin/shade_organ = H.internal_organs_by_name[O_BRAIN]
 	if(!istype(shade_organ))
 		return FALSE
 
 	shade_organ.max_dark_energy = new_max_energy
 
-/datum/species/crew_shadekin/proc/check_infinite_energy(mob/living/carbon/human/H)
+/datum/species/crew_shadekin/proc/check_infinite_energy(mob/living/complex/human/H)
 	var/obj/item/organ/internal/brain/shadekin/crewkin/shade_organ = H.internal_organs_by_name[O_BRAIN]
 	if(!istype(shade_organ))
 		return FALSE
 
 	return shade_organ.dark_energy_infinite
 
-/datum/species/crew_shadekin/proc/update_crew_shadekin_hud(mob/living/carbon/human/H)
+/datum/species/crew_shadekin/proc/update_crew_shadekin_hud(mob/living/complex/human/H)
 	var/turf/T = get_turf(H)
 	if(H.shadekin_display)
 		var/l_icon = 0

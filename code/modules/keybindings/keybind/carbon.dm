@@ -3,7 +3,7 @@
 	weight = WEIGHT_MOB
 
 /datum/keybinding/carbon/can_use(client/user)
-	return iscarbon(user.mob)
+	return iscomplexmob(user.mob)
 
 /datum/keybinding/carbon/toggle_throw_mode
 	hotkey_keys = list("R", "Southwest") // END
@@ -13,7 +13,7 @@
 	category = CATEGORY_CARBON
 
 /datum/keybinding/carbon/toggle_throw_mode/down(client/user)
-	var/mob/living/carbon/C = user.mob
+	var/mob/living/complex/C = user.mob
 	C.toggle_throw_mode()
 	return TRUE
 
@@ -25,7 +25,7 @@
 	category = CATEGORY_CARBON
 
 /datum/keybinding/carbon/overhand_throw_mode/down(client/user)
-	var/mob/living/carbon/C = user.mob
+	var/mob/living/complex/C = user.mob
 	C.toggle_throw_mode(TRUE)
 	return TRUE
 

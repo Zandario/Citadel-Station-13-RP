@@ -593,7 +593,7 @@
 
 	if(href_list["b_mode"])
 		var/list/menu_list = selected.digest_modes.Copy()
-		if(istype(usr,/mob/living/carbon/human))
+		if(istype(usr,/mob/living/complex/human))
 			menu_list += DM_TRANSFORM
 
 		var/new_mode = input("Choose Mode (currently [selected.digest_mode])") as null|anything in menu_list

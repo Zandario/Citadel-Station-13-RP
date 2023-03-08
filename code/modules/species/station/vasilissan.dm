@@ -24,12 +24,12 @@
 	silk_max_reserve = 1000
 
 	inherent_verbs = list(
-		/mob/living/carbon/human/proc/check_silk_amount,
-		/mob/living/carbon/human/proc/set_silk_color,
-		/mob/living/carbon/human/proc/tie_hair,
-		/mob/living/carbon/human/proc/toggle_silk_production,
-		/mob/living/carbon/human/proc/weave_item,
-		/mob/living/carbon/human/proc/weave_structure,
+		/mob/living/complex/human/proc/check_silk_amount,
+		/mob/living/complex/human/proc/set_silk_color,
+		/mob/living/complex/human/proc/tie_hair,
+		/mob/living/complex/human/proc/toggle_silk_production,
+		/mob/living/complex/human/proc/weave_item,
+		/mob/living/complex/human/proc/weave_structure,
 	)
 
 	max_age = 80
@@ -68,7 +68,7 @@
 		/datum/unarmed_attack/bite/sharp/numbing,
 	)
 
-/datum/species/vasilissan/handle_environment_special(mob/living/carbon/human/H)
+/datum/species/vasilissan/handle_environment_special(mob/living/complex/human/H)
 	if(H.stat == DEAD) // If they're dead they won't need anything.
 		return
 

@@ -36,7 +36,7 @@
 	if (!ishuman(target))
 		return
 
-	var/mob/living/carbon/human/H = target
+	var/mob/living/complex/human/H = target
 	if(istype(H))
 		var/obj/item/organ/external/affected = H.get_organ(user.zone_sel.selecting)
 		if(!affected)
@@ -62,7 +62,7 @@
 	do_injection(H, user)
 
 // This does the actual injection and transfer.
-/obj/item/reagent_containers/hypospray/proc/do_injection(mob/living/carbon/human/H, mob/living/user)
+/obj/item/reagent_containers/hypospray/proc/do_injection(mob/living/complex/human/H, mob/living/user)
 	if(!istype(H) || !istype(user))
 		return FALSE
 
@@ -157,7 +157,7 @@
 	atom_flags &= ~OPENCONTAINER
 	icon_state = "[initial(icon_state)]0"
 
-/obj/item/reagent_containers/hypospray/autoinjector/do_injection(mob/living/carbon/human/H, mob/living/user)
+/obj/item/reagent_containers/hypospray/autoinjector/do_injection(mob/living/complex/human/H, mob/living/user)
 	. = ..()
 	if(.) // Will occur if successfully injected.
 		atom_flags &= ~OPENCONTAINER
@@ -352,7 +352,7 @@
 	the growth of the virus inside."
 	filled_reagents = list("virusfood" = 15)
 
-/obj/item/reagent_containers/hypospray/autoinjector/biginjector/contaminated/do_injection(mob/living/carbon/human/H, mob/living/user)
+/obj/item/reagent_containers/hypospray/autoinjector/biginjector/contaminated/do_injection(mob/living/complex/human/H, mob/living/user)
 	. = ..()
 	if(.) // Will occur if successfully injected.
 		infect_mob_random_lesser(H)
@@ -413,7 +413,7 @@
 		do_injection(target, user)
 		return
 
-/obj/item/reagent_containers/hypospray/glukoz/do_injection(mob/living/carbon/human/H, mob/living/user)
+/obj/item/reagent_containers/hypospray/glukoz/do_injection(mob/living/complex/human/H, mob/living/user)
 	. = ..()
 	if(.) // Will occur if successfully injected.
 		atom_flags &= ~OPENCONTAINER

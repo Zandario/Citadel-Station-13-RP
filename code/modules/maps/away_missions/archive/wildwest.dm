@@ -20,14 +20,14 @@
 	var/chargesa = 1
 	var/insistinga = 0
 
-/obj/machinery/wish_granter_dark/attack_hand(var/mob/living/carbon/human/user as mob)
+/obj/machinery/wish_granter_dark/attack_hand(var/mob/living/complex/human/user as mob)
 	usr.set_machine(src)
 
 	if(chargesa <= 0)
 		to_chat(user, "The Wish Granter lies silent.")
 		return
 
-	else if(!istype(user, /mob/living/carbon/human))
+	else if(!istype(user, /mob/living/complex/human))
 		to_chat(user, "You feel a dark stirring inside of the Wish Granter, something you want nothing of. Your instincts are better than any man's.")
 		return
 
@@ -69,7 +69,7 @@
 			if("Immortality")
 				to_chat(user, "<B>Your wish is granted, but at a terrible cost...</B>")
 				to_chat(user, "The Wish Granter punishes you for your selfishness, claiming your soul and warping your body to match the darkness in your heart.")
-				add_verb(user, /mob/living/carbon/proc/immortality)
+				add_verb(user, /mob/living/complex/proc/immortality)
 				user.dna.mutantrace = "shadow"
 				user.update_mutantrace()
 			if("To Kill")
@@ -119,7 +119,7 @@
 
 	if(triggered) return
 
-	if(istype(M, /mob/living/carbon/human) || istype(M, /mob/living/carbon/monkey))
+	if(istype(M, /mob/living/complex/human) || istype(M, /mob/living/complex/monkey))
 		for(var/mob/O in viewers(world.view, src.loc))
 			to_chat(O, "<font color='red'>[M] triggered the \icon[src] [src]</font>")
 		triggered = 1
@@ -142,11 +142,11 @@
 
 /////For the Wishgranter///////////
 
-/mob/living/carbon/proc/immortality()
+/mob/living/complex/proc/immortality()
 	set category = "Immortality"
 	set name = "Resurrection"
 
-	var/mob/living/carbon/C = usr
+	var/mob/living/complex/C = usr
 	if(!C.stat)
 		to_chat(C, "<span class='notice'>You're not dead yet!</span>")
 		return

@@ -168,7 +168,7 @@
 	//would check is_broken() and is_malfunctioning() here too but is_malfunctioning()
 	//is probabilistic so we can't do that and it would be unfair to just check one.
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/complex/human/H = M
 		var/obj/item/organ/external/hand = H.organs_by_name[check_hand]
 		if(istype(hand) && hand.is_usable())
 			return TRUE
@@ -274,7 +274,7 @@
 		return
 
 	if (hasorgans(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
 		if (H.hand)
 			temp = H.organs_by_name["l_hand"]
@@ -444,10 +444,10 @@
 		return
 	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
 		return
-	if((!istype(usr, /mob/living/carbon)) || (istype(usr, /mob/living/carbon/brain)))//Is humanoid, and is not a brain
+	if((!istype(usr, /mob/living/complex)) || (istype(usr, /mob/living/complex/brain)))//Is humanoid, and is not a brain
 		to_chat(usr, "<span class='warning'>You can't pick things up!</span>")
 		return
-	var/mob/living/carbon/C = usr
+	var/mob/living/complex/C = usr
 	if( usr.stat || usr.restrained() )//Is not asleep/dead and is not restrained
 		to_chat(usr, "<span class='warning'>You can't pick things up!</span>")
 		return
@@ -484,10 +484,10 @@
 		L = L.loc
 	return loc
 
-/obj/item/proc/eyestab(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/proc/eyestab(mob/living/complex/M as mob, mob/living/complex/user as mob)
 
-	var/mob/living/carbon/human/H = M
-	var/mob/living/carbon/human/U = user
+	var/mob/living/complex/human/H = M
+	var/mob/living/complex/human/U = user
 	if(istype(H))
 		for(var/obj/item/protection in list(H.head, H.wear_mask, H.glasses))
 			if(protection && (protection.body_cover_flags & EYES))
@@ -577,7 +577,7 @@
 		blood_overlay.color = COLOR_LUMINOL
 		update_icon()
 
-/obj/item/add_blood(mob/living/carbon/human/M as mob)
+/obj/item/add_blood(mob/living/complex/human/M as mob)
 	if (!..())
 		return 0
 
@@ -620,7 +620,7 @@ GLOBAL_LIST_EMPTY(blood_overlay_cache)
 	for (var/mob/M in view(user))
 		M.show_message("[user] holds up [src]. <a HREF=?src=\ref[M];lookitem=\ref[src]>Take a closer look.</a>",1)
 
-/mob/living/carbon/verb/showoff()
+/mob/living/complex/verb/showoff()
 	set name = "Show Held Item"
 	set category = "Object"
 
@@ -631,7 +631,7 @@ GLOBAL_LIST_EMPTY(blood_overlay_cache)
 /*
 For zooming with scope or binoculars. This is called from
 modules/mob/mob_movement.dm if you move you will be zoomed out
-modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
+modules/mob/living/complex/human/life.dm if you die, you will be zoomed out.
 */
 //Looking through a scope or binoculars should /not/ improve your periphereal vision. Still, increase viewsize a tiny bit so that sniping isn't as restricted to NSEW
 
@@ -647,7 +647,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	var/cannotzoom
 
-	if((user.stat && !zoom) || !(istype(user,/mob/living/carbon/human)))
+	if((user.stat && !zoom) || !(istype(user,/mob/living/complex/human)))
 		to_chat(user, "You are unable to focus through the [devicename]")
 		cannotzoom = 1
 	else if(!zoom && (GLOB.global_hud.darkMask[1] in user.client.screen))
@@ -660,7 +660,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		to_chat(user, "You need to wear the [devicename] to look through it properly")
 		cannotzoom = 1
 	//We checked above if they are a human and returned already if they weren't.
-	var/mob/living/carbon/human/H = user
+	var/mob/living/complex/human/H = user
 	if(!zoom && !cannotzoom)
 		H.ensure_self_perspective()
 		H.self_perspective.set_augmented_view(viewsize - 2, viewsize - 2)

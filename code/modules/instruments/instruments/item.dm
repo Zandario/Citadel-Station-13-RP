@@ -59,7 +59,7 @@
 /*
 /obj/item/instrument/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/musicaltuner))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		if (HAS_TRAIT(H, TRAIT_MUSICIAN))
 			if (!is_tuned())
 				H.visible_message("[H] tunes the [src] to perfection!", "<span class='notice'>You tune the [src] to perfection!</span>")

@@ -88,7 +88,7 @@
 		return UI_UPDATE
 */
 
-/mob/living/carbon/human/nano_default_can_use_topic(var/src_object)
+/mob/living/complex/human/nano_default_can_use_topic(var/src_object)
 	. = shared_nano_interaction(src_object)
 	if(. != UI_CLOSE)
 		. = min(., shared_living_nano_distance(src_object))

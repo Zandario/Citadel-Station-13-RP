@@ -66,29 +66,29 @@
 	Oh yeah you'd rather not delete all the spiders in maintenace. Only that one room the spiders were
 	spawned in.
 
-	"DELETE /mob/living/carbon/superior_animal/giant_spider WHERE loc.loc == marked"
+	"DELETE /mob/living/complex/superior_animal/giant_spider WHERE loc.loc == marked"
 
 	Here I used VV to mark the area they were in, and since loc.loc = area, voila.
 	Only the spiders in a specific area are gone.
 
 	Or you know if you want to catch spiders that crawled into lockers too (how even?)
 
-	"DELETE /mob/living/carbon/superior_animal/giant_spider WHERE global.get_area(src) == marked"
+	"DELETE /mob/living/complex/superior_animal/giant_spider WHERE global.get_area(src) == marked"
 
 	What else can you do?
 
 	Well suppose you'd rather gib those spiders instead of simply flat deleting them...
 
-	"CALL gib() ON /mob/living/carbon/superior_animal/giant_spider WHERE global.get_area(src) == marked"
+	"CALL gib() ON /mob/living/complex/superior_animal/giant_spider WHERE global.get_area(src) == marked"
 
 	Or you can have some fun..
 
-	"CALL forceMove(marked) ON /mob/living/carbon/superior_animal"
+	"CALL forceMove(marked) ON /mob/living/complex/superior_animal"
 
 	You can also run multiple queries sequentially:
 
-	"CALL forceMove(marked) ON /mob/living/carbon/superior_animal; CALL gib() ON
-	/mob/living/carbon/superior_animal"
+	"CALL forceMove(marked) ON /mob/living/complex/superior_animal; CALL gib() ON
+	/mob/living/complex/superior_animal"
 
 	And finally, you can directly modify variables on objects.
 
@@ -96,7 +96,7 @@
 
 	Don't crash the server, OK?
 
-	"UPDATE /mob/living/carbon/monkey SET #null = forceMove(usr.loc)"
+	"UPDATE /mob/living/complex/monkey SET #null = forceMove(usr.loc)"
 
 	Writing "#null" in front of the "=" will call the proc and discard the return value.
 

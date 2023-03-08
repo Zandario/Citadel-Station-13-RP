@@ -1,4 +1,4 @@
-/mob/living/carbon/human/proc/lick_wounds(var/mob/living/carbon/M in living_mobs(1))
+/mob/living/complex/human/proc/lick_wounds(var/mob/living/complex/M in living_mobs(1))
 	set name = "Lick Wounds"
 	set category = "Abilities"
 	set desc = "Disinfect and heal small wounds with your saliva."
@@ -7,13 +7,13 @@
 		to_chat(src, "<span class='warning'>You need more energy to produce antiseptic enzymes. Eat something and try again.</span>")
 		return
 
-	if ( ! (istype(src, /mob/living/carbon/human) || \
+	if ( ! (istype(src, /mob/living/complex/human) || \
 			istype(src, /mob/living/silicon)) )
 		to_chat(src, "<span class='warning'>If you even have a tongue, it doesn't work that way.</span>")
 		return
 
-	if (istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(M, /mob/living/complex/human))
+		var/mob/living/complex/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(zone_sel.selecting)
 
 		if(!affecting)

@@ -55,7 +55,7 @@
 
 	var/undress = 1	//Does the outfit undress the mob upon equp?
 
-/datum/outfit/proc/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/proc/pre_equip(mob/living/complex/human/H)
 	if(flags & OUTFIT_HAS_BACKPACK)
 		switch(H.backbag)
 			if(2) back = backpack
@@ -66,7 +66,7 @@
 			if(7) back = dufflebag
 			else  back = null
 
-/datum/outfit/proc/post_equip(mob/living/carbon/human/H)
+/datum/outfit/proc/post_equip(mob/living/complex/human/H)
 	if(flags & OUTFIT_HAS_JETPACK)
 		var/obj/item/tank/jetpack/J = locate(/obj/item/tank/jetpack) in H
 		if(!J)
@@ -74,7 +74,7 @@
 		J.toggle()
 		J.toggle_valve()
 
-/datum/outfit/proc/equip(mob/living/carbon/human/H, rank, assignment)
+/datum/outfit/proc/equip(mob/living/complex/human/H, rank, assignment)
 	equip_base(H)
 
 	rank = rank || id_pda_assignment
@@ -96,7 +96,7 @@
 		H.set_id_info(W)
 	return 1
 
-/datum/outfit/proc/equip_base(mob/living/carbon/human/H)
+/datum/outfit/proc/equip_base(mob/living/complex/human/H)
 	pre_equip(H)
 
 	//Start with uniform,suit,backpack for additional slots
@@ -144,7 +144,7 @@
 	if(H.species)
 		H.species.equip_survival_gear(H, flags&OUTFIT_EXTENDED_SURVIVAL, flags&OUTFIT_COMPREHENSIVE_SURVIVAL)
 
-/datum/outfit/proc/equip_id(mob/living/carbon/human/H, rank, assignment)
+/datum/outfit/proc/equip_id(mob/living/complex/human/H, rank, assignment)
 	if(!id_slot || !id_type)
 		return
 	var/obj/item/card/id/W = new id_type(H)
@@ -157,7 +157,7 @@
 	if(H.equip_to_slot_or_del(W, id_slot))
 		return W
 
-/datum/outfit/proc/equip_pda(mob/living/carbon/human/H, rank, assignment)
+/datum/outfit/proc/equip_pda(mob/living/complex/human/H, rank, assignment)
 	if(!pda_slot || !pda_type)
 		return
 	var/obj/item/pda/pda = new pda_type(H)
@@ -194,7 +194,7 @@
 	suit = /obj/item/clothing/suit/armor/combat/JSDF
 	belt = /obj/item/storage/belt/security/tactical
 
-/datum/outfit/JSDF/Marine/equip_id(mob/living/carbon/human/H)
+/datum/outfit/JSDF/Marine/equip_id(mob/living/complex/human/H)
 	var/obj/item/card/id/C = ..()
 	C.name = "[H?.real_name]'s military ID Card"
 	C.icon_state = "lifetime"
@@ -214,7 +214,7 @@
 	r_hand = /obj/item/clothing/accessory/holster/hip
 	l_hand = /obj/item/clothing/accessory/tie/black
 
-/datum/outfit/JSDF/Officer/equip_id(mob/living/carbon/human/H)
+/datum/outfit/JSDF/Officer/equip_id(mob/living/complex/human/H)
 	var/obj/item/card/id/C = ..()
 	C.name = "[H.real_name]'s military ID Card"
 	C.icon_state = "lifetime"
@@ -233,7 +233,7 @@
 	r_hand = /obj/item/pda/centcom
 	l_hand = /obj/item/clipboard
 
-/datum/outfit/oricon/representative/equip_id(mob/living/carbon/human/H)
+/datum/outfit/oricon/representative/equip_id(mob/living/complex/human/H)
 	var/obj/item/card/id/C = ..()
 	C.name = "[H.real_name]'s OriCon ID Card"
 	C.icon_state = "lifetime"

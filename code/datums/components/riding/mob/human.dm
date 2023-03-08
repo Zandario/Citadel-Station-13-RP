@@ -1,5 +1,5 @@
 /datum/component/riding_filter/mob/human
-	expected_typepath = /mob/living/carbon/human
+	expected_typepath = /mob/living/complex/human
 	handler_typepath = /datum/component/riding_handler/mob/human
 	offhand_requirements_are_rigid = FALSE
 
@@ -29,7 +29,7 @@
 	. = max(., semantic == BUCKLE_SEMANTIC_HUMAN_FIREMAN? ridden_offhands_needed_fireman : 0)
 
 /datum/component/riding_handler/mob/human
-	expected_typepath = /mob/living/carbon/human
+	expected_typepath = /mob/living/complex/human
 	riding_handler_flags = CF_RIDING_HANDLER_EPHEMERAL
 	rider_check_flags = CF_RIDING_CHECK_INCAPACITATED
 	ridden_check_flags = CF_RIDING_CHECK_INCAPACITATED | CF_RIDING_CHECK_LYING

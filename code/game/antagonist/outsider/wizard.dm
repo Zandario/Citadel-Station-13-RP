@@ -70,7 +70,7 @@ var/datum/antagonist/wizard/wizards
 	wizard.current.real_name = "[pick(GLOB.wizard_first)] [pick(GLOB.wizard_second)]"
 	wizard.current.name = wizard.current.real_name
 
-/datum/antagonist/wizard/equip(mob/living/carbon/human/wizard_mob)
+/datum/antagonist/wizard/equip(mob/living/complex/human/wizard_mob)
 
 	if(!..())
 		return 0
@@ -124,7 +124,7 @@ var/datum/antagonist/wizard/wizards
 /**
  * Humans can wear clothes.
  */
-/mob/living/carbon/human/wearing_wiz_garb()
+/mob/living/complex/human/wearing_wiz_garb()
 	if(!is_wiz_garb(src.wear_suit))
 		to_chat(src, SPAN_WARNING("I don't feel strong enough without my robe."))
 		return FALSE

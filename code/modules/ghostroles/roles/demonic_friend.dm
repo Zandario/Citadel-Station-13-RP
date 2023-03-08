@@ -41,7 +41,7 @@
 
 /datum/ghostrole_instantiator/human/random/demonic_friend/Equip(client/C, mob/M, list/params)
 	. = ..()
-	var/mob/living/carbon/human/H = .
+	var/mob/living/complex/human/H = .
 	if(!istype(H))
 		return
 	var/obj/item/card/id/ID = H.wear_id?.GetID()

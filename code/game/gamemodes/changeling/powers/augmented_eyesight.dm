@@ -20,7 +20,7 @@
 	src.mind.changeling.chem_charges -= 5
 	src.sight |= SEE_MOBS
 	/*
-	var/mob/living/carbon/human/C = src
+	var/mob/living/complex/human/C = src
 
 	active = !active
 	if(active)

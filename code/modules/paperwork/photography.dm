@@ -92,7 +92,7 @@ var/global/photo_count = 0
 	can_hold = list(/obj/item/photo)
 
 /obj/item/storage/photo_album/OnMouseDropLegacy(obj/over_object as obj)
-	if((istype(usr, /mob/living/carbon/human)))
+	if((istype(usr, /mob/living/complex/human)))
 		if(!( istype(over_object, /atom/movable/screen) ))
 			return ..()
 		playsound(loc, "rustle", 50, 1, -5)
@@ -204,7 +204,7 @@ var/global/photo_count = 0
 
 /obj/item/camera/proc/get_mobs(turf/the_turf as turf)
 	var/mob_detail
-	for(var/mob/living/carbon/A in the_turf)
+	for(var/mob/living/complex/A in the_turf)
 		if(A.invisibility) continue
 		var/holding = null
 		if(A.l_hand || A.r_hand)

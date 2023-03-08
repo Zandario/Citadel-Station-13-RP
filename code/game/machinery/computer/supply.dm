@@ -247,7 +247,7 @@
 			var/idname = "*None Provided*"
 			var/idrank = "*None Provided*"
 			if(ishuman(user))
-				var/mob/living/carbon/human/H = user
+				var/mob/living/complex/human/H = user
 				idname = H.get_authentification_name()
 				idrank = H.get_assignment()
 			else if(issilicon(user))

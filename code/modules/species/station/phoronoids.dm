@@ -79,7 +79,7 @@
 
 	body_temperature = T20C
 
-/datum/species/phoronoid/handle_environment_special(mob/living/carbon/human/H)
+/datum/species/phoronoid/handle_environment_special(mob/living/complex/human/H)
 	var/turf/T = H.loc
 	if(!T)
 		return
@@ -105,7 +105,7 @@
 			H.IgniteMob()
 	enviroment_bad = FALSE
 
-/datum/species/phoronoid/equip_survival_gear(mob/living/carbon/human/H, extendedtank = FALSE, comprehensive = FALSE)
+/datum/species/phoronoid/equip_survival_gear(mob/living/complex/human/H, extendedtank = FALSE, comprehensive = FALSE)
 	. = ..()
 	var/suit = /obj/item/clothing/suit/space/plasman
 	var/helm = /obj/item/clothing/head/helmet/space/plasman

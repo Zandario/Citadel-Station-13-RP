@@ -65,7 +65,7 @@
 		return
 	if(!ishuman(user))
 		return
-	var/mob/living/carbon/human/H = user
+	var/mob/living/complex/human/H = user
 	if(H.gloves)
 		to_chat(user, "<span class='warning'>Take \the [H.gloves] off first.</span>")
 		return
@@ -84,7 +84,7 @@
 		user.action_feedback(SPAN_WARNING("[src] is full!"), src)
 		return
 
-	var/mob/living/carbon/human/H = target
+	var/mob/living/complex/human/H = target
 
 	if(H.gloves)
 		to_chat(user, "<span class='warning'>\The [H] is wearing gloves.</span>")

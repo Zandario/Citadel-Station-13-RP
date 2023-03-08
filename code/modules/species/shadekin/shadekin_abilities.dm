@@ -1,6 +1,6 @@
 /datum/power/shadekin
 
-/mob/living/carbon/human/is_incorporeal()
+/mob/living/complex/human/is_incorporeal()
 	if(ability_flags & AB_PHASE_SHIFTED) //Shadekin
 		return TRUE
 	return ..()
@@ -23,10 +23,10 @@
 /datum/power/shadekin/phase_shift
 	name = "Phase Shift (100)"
 	desc = "Shift yourself out of alignment with realspace to travel quickly to different areas."
-	verbpath = /mob/living/carbon/human/proc/phase_shift
+	verbpath = /mob/living/complex/human/proc/phase_shift
 	ability_icon_state = "wiz_jaunt"
 
-/mob/living/carbon/human/proc/phase_shift()
+/mob/living/complex/human/proc/phase_shift()
 	set name = "Phase Shift (100)"
 	set desc = "Shift yourself out of alignment with realspace to travel quickly to different areas."
 	set category = "Shadekin"
@@ -53,7 +53,7 @@
 	darkness = 1-brightness //Invert
 
 	var/watcher = 0
-	for(var/mob/living/carbon/human/watchers in oview(7,src ))	// If we can see them...
+	for(var/mob/living/complex/human/watchers in oview(7,src ))	// If we can see them...
 		if(watchers in oviewers(7,src))	// And they can see us...
 			if(!(watchers.stat) && !isbelly(watchers.loc) && !istype(watchers.loc, /obj/item/holder))	// And they are alive and not being held by someone...
 				watcher++	// They are watching us!
@@ -169,7 +169,7 @@
 		force_max_speed = TRUE
 
 /*
-/mob/living/carbon/human/MouseDroppedOnLegacy(atom/dropping, mob/user)
+/mob/living/complex/human/MouseDroppedOnLegacy(atom/dropping, mob/user)
 	if(ability_flags & AB_PHASE_SHIFTED)
 		return FALSE	//Nope!
 
@@ -187,10 +187,10 @@
 /datum/power/shadekin/regenerate_other
 	name = "Regenerate Other (50)"
 	desc = "Spend energy to heal physical wounds in another creature."
-	verbpath = /mob/living/carbon/human/proc/regenerate_other
+	verbpath = /mob/living/complex/human/proc/regenerate_other
 	ability_icon_state = "tech_biomedaura"
 
-/mob/living/carbon/human/proc/regenerate_other()
+/mob/living/complex/human/proc/regenerate_other()
 	set name = "Regenerate Other (50)"
 	set desc = "Spend energy to heal physical wounds in another creature."
 	set category = "Shadekin"
@@ -255,10 +255,10 @@
 /datum/power/shadekin/create_shade
 	name = "Create Shade (25)"
 	desc = "Create a field of darkness that follows you."
-	verbpath = /mob/living/carbon/human/proc/create_shade
+	verbpath = /mob/living/complex/human/proc/create_shade
 	ability_icon_state = "tech_dispelold"
 
-/mob/living/carbon/human/proc/create_shade()
+/mob/living/complex/human/proc/create_shade()
 	set name = "Create Shade (25)"
 	set desc = "Create a field of darkness that follows you."
 	set category = "Shadekin"

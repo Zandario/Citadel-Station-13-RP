@@ -26,7 +26,7 @@ var/global/list/uplink_locations = list("PDA", "Headset", "None")
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
-	var/mob/living/carbon/human/character = M
+	var/mob/living/complex/human/character = M
 	character.exploit_record = pref.exploit_record
 	character.antag_faction = pref.antag_faction
 	character.antag_vis = pref.antag_vis

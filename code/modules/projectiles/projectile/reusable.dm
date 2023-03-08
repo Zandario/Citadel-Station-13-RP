@@ -99,7 +99,7 @@
 
 /obj/item/projectile/bullet/reusable/plunger/on_hit(atom/hit_atom)
 	. = ..()
-	var/mob/living/carbon/H = hit_atom
+	var/mob/living/complex/H = hit_atom
 	var/obj/item/plunger/P
 	if(!H.wear_mask)
 		H.equip_to_slot_if_possible(P, SLOT_MASK)

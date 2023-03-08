@@ -29,7 +29,7 @@
 
 /obj/spawner/corpse/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
 	SHOULD_NOT_SLEEP(TRUE)	// HMMM MOB INIT ISSUES?
-	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)
+	var/mob/living/complex/human/M = new /mob/living/complex/human (src.loc)
 	. = M
 	M.set_species(species)
 	M.real_name = src.name

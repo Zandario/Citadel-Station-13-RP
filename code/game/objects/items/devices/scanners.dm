@@ -93,8 +93,8 @@ HALOGEN COUNTER	- Radcount on mobs
 		var/tdelta = round(world.time - M.timeofdeath)
 		if(tdelta < (DEFIB_TIME_LIMIT * 10))
 			dat += SPAN_BOLDNOTICE("\nSubject died [DisplayTimeText(tdelta)] ago - resuscitation may be possible!")
-	if(istype(M, /mob/living/carbon/human) && mode == 1)
-		var/mob/living/carbon/human/H = M
+	if(istype(M, /mob/living/complex/human) && mode == 1)
+		var/mob/living/complex/human/H = M
 		var/list/damaged = H.get_damaged_organs(1,1)
 		dat += 	SPAN_NOTICE("\nLocalized Damage, Brute/Burn:")
 		if(length(damaged)>0)
@@ -130,8 +130,8 @@ HALOGEN COUNTER	- Radcount on mobs
 		else
 			dat += SPAN_WARNING("\nRadiation detected.")
 
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
+	if(iscomplexmob(M))
+		var/mob/living/complex/C = M
 		if(C.reagents.total_volume)
 			var/unknown = 0
 			var/reagentdata[0]
@@ -224,7 +224,7 @@ HALOGEN COUNTER	- Radcount on mobs
 	else if (M.getBrainLoss() >= 1 && advscan >= 2 && showadvscan == 1)
 		dat += SPAN_WARNING("\nMinor brain damage detected.")
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/complex/human/H = M
 		for(var/obj/item/organ/internal/appendix/a in H.internal_organs)
 			var/severity = ""
 			if(a.inflamed > 3)

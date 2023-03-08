@@ -89,7 +89,7 @@
 /datum/category_item/player_setup_item/background/real_species/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
 	if(!ishuman(M))
 		return TRUE
-	var/mob/living/carbon/human/H = M
+	var/mob/living/complex/human/H = M
 	// we construct character species
 	H.set_species(SScharacters.construct_character_species(prefs.get_character_data(CHARACTER_DATA_CHAR_SPECIES)))
 

@@ -182,14 +182,14 @@
 /mob/living/var/holder_type
 
 /mob/living/OnMouseDropLegacy(var/atom/over_object)
-	var/mob/living/carbon/human/H = over_object
+	var/mob/living/complex/human/H = over_object
 	if((usr == over_object || usr == src) && holder_type && issmall(src) && istype(H) && !H.lying && Adjacent(H) && (src.a_intent == INTENT_HELP && H.a_intent == INTENT_HELP))
-		if(!issmall(H) || !istype(src, /mob/living/carbon/human))
+		if(!issmall(H) || !istype(src, /mob/living/complex/human))
 			get_scooped(H, (usr == src))
 		return
 	return ..()
 
-/mob/living/proc/get_scooped(var/mob/living/carbon/grabber, var/self_grab)
+/mob/living/proc/get_scooped(var/mob/living/complex/grabber, var/self_grab)
 
 	if(!holder_type || buckled || pinned.len)
 		return
@@ -223,7 +223,7 @@
 
 /obj/item/holder/human/sync(var/mob/living/M)
 	// Generate appropriate on-mob icons.
-	var/mob/living/carbon/human/owner = M
+	var/mob/living/complex/human/owner = M
 	if(istype(owner) && owner.species)
 
 		var/skin_colour = rgb(owner.r_skin, owner.g_skin, owner.b_skin)

@@ -20,9 +20,9 @@
 //////////////////////////////Capturing////////////////////////////////////////////////////////
 
 /obj/item/soulstone/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
-	if(!istype(target, /mob/living/carbon/human))//If target is not a human.
+	if(!istype(target, /mob/living/complex/human))//If target is not a human.
 		return ..()
-	if(istype(target, /mob/living/carbon/human/dummy))
+	if(istype(target, /mob/living/complex/human/dummy))
 		return ..()
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
 	if(jobban_isbanned(target, "cultist"))
@@ -100,7 +100,7 @@
 
 
 ////////////////////////////Proc for moving soul in and out off stone//////////////////////////////////////
-/obj/item/soulstone/proc/transfer_human(var/mob/living/carbon/human/T,var/mob/U)
+/obj/item/soulstone/proc/transfer_human(var/mob/living/complex/human/T,var/mob/U)
 	if(!istype(T))
 		return;
 	if(src.imprinted != "empty")

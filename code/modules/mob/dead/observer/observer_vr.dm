@@ -4,7 +4,7 @@
 	set desc = "Select a player with a working NIF + Soulcatcher NIFSoft to join into it."
 
 	var/list/filtered = list()
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
+	for(var/mob/living/complex/human/H in GLOB.player_list)
 		if(!H.nif?.imp_check(NIF_SOULCATCHER))
 			continue
 		var/datum/nifsoft/soulcatcher/SC = H.nif.imp_check(NIF_SOULCATCHER)
@@ -23,7 +23,7 @@
 		to_chat(src,"<span class='warning'>[picked] isn't in a humanoid mob at the moment.</span>")
 		return
 
-	var/mob/living/carbon/human/H = picked
+	var/mob/living/complex/human/H = picked
 
 	if(H.stat || !H.client)
 		to_chat(src,"<span class='warning'>[H] isn't awake/alive at the moment.</span>")

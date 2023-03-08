@@ -17,7 +17,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	origin_tech = list(TECH_BIO = 3)
 	attack_verb = list("attacked", "slapped", "whacked")
 	var/clone_source = FALSE
-	var/mob/living/carbon/brain/brainmob = null
+	var/mob/living/complex/brain/brainmob = null
 	var/can_assist = TRUE
 
 /obj/item/organ/internal/brain/Initialize(mapload, ...)
@@ -66,7 +66,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 			owner.Confuse(2)
 
 /obj/item/organ/internal/brain/proc/replace_self_with(replace_path)
-	var/mob/living/carbon/human/tmp_owner = owner
+	var/mob/living/complex/human/tmp_owner = owner
 	qdel(src)
 	if(tmp_owner)
 		tmp_owner.internal_organs_by_name[organ_tag] = new replace_path(tmp_owner, 1)
@@ -76,7 +76,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	if(brainmob && brainmob.client)
 		brainmob.client.screen.len = null //clear the hud
 
-/obj/item/organ/internal/brain/proc/transfer_identity(var/mob/living/carbon/H)
+/obj/item/organ/internal/brain/proc/transfer_identity(var/mob/living/complex/H)
 
 	if(!brainmob)
 		brainmob = new(src)
@@ -119,7 +119,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 
 	var/obj/item/organ/internal/brain/B = src
 	if(istype(B) && owner)
-		if(istype(owner, /mob/living/carbon))
+		if(istype(owner, /mob/living/complex))
 			B.transfer_identity(owner)
 
 	..()
@@ -187,7 +187,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 
 /obj/item/organ/internal/brain/slime/proc/sync_color()
 	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
+		var/mob/living/complex/human/H = owner
 		color = rgb(min(H.r_skin + 40, 255), min(H.g_skin + 40, 255), min(H.b_skin + 40, 255))
 
 /obj/item/organ/internal/brain/slime/removed(mob/living/user)
@@ -238,7 +238,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 		if(istype(modifier_type, /datum/modifier/no_clone))
 			return FALSE
 
-	var/mob/living/carbon/human/H = new /mob/living/carbon/human(get_turf(src), R.dna.species)
+	var/mob/living/complex/human/H = new /mob/living/complex/human(get_turf(src), R.dna.species)
 
 	if(!R.dna)
 		H.dna = new /datum/dna()
@@ -311,5 +311,5 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 
 /obj/item/organ/internal/brain/grey/colormatch/proc/sync_color()
 	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
+		var/mob/living/complex/human/H = owner
 		color = H.species.blood_color

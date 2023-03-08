@@ -94,7 +94,7 @@
 		return PROCESS_KILL
 	for(var/mob/living/simple_mob/slime/AM in range(1, src))
 		auto_insert(AM)
-	for(var/mob/living/carbon/human/AM in range(1, src))
+	for(var/mob/living/complex/human/AM in range(1, src))
 		auto_insert(AM)
 
 /obj/machinery/processor/proc/begin_processing()
@@ -126,8 +126,8 @@
 		to_be_processed.Remove(S)
 		qdel(S)
 
-	if(istype(AM, /mob/living/carbon/human))
-		var/mob/living/carbon/human/M = AM
+	if(istype(AM, /mob/living/complex/human))
+		var/mob/living/complex/human/M = AM
 		playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
 		to_be_processed.Remove(M)
 		qdel(M)
@@ -142,8 +142,8 @@
 		if(S.stat != DEAD)
 			return FALSE
 		return TRUE
-	if(istype(AM, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = AM
+	if(istype(AM, /mob/living/complex/human))
+		var/mob/living/complex/human/H = AM
 		if(!istype(H.species, /datum/species/monkey))
 			return FALSE
 		if(H.stat != DEAD)

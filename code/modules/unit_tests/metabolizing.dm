@@ -2,14 +2,14 @@
 	// Pause natural mob life so it can be handled entirely by the test
 	SSmobs.pause()
 
-	var/mob/living/carbon/human/human = allocate(/mob/living/carbon/human)
-	var/mob/living/carbon/monkey/monkey = allocate(/mob/living/carbon/monkey)
+	var/mob/living/complex/human/human = allocate(/mob/living/complex/human)
+	var/mob/living/complex/monkey/monkey = allocate(/mob/living/complex/monkey)
 
 	for (var/reagent_type in subtypesof(/datum/reagent))
 		test_reagent(human, reagent_type)
 		test_reagent(monkey, reagent_type)
 
-/datum/unit_test/metabolization/proc/test_reagent(mob/living/carbon/C, reagent_type)
+/datum/unit_test/metabolization/proc/test_reagent(mob/living/complex/C, reagent_type)
 	C.reagents.add_reagent(reagent_type, 10)
 	C.reagents.metabolize(C, can_overdose = TRUE)
 	C.reagents.clear_reagents()
@@ -19,7 +19,7 @@
 	return ..()
 
 /datum/unit_test/on_mob_end_metabolize/Run()
-	var/mob/living/carbon/human/user = allocate(/mob/living/carbon/human)
+	var/mob/living/complex/human/user = allocate(/mob/living/complex/human)
 	var/obj/item/reagent_containers/pill/pill = allocate(/obj/item/reagent_containers/pill)
 	var/datum/reagent/drug/methamphetamine/meth = /datum/reagent/drug/methamphetamine
 

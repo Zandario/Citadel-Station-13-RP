@@ -37,6 +37,6 @@
 	r_pocket = /obj/item/pda/centcom
 	flags = OUTFIT_EXTENDED_SURVIVAL|OUTFIT_COMPREHENSIVE_SURVIVAL
 
-/datum/outfit/job/station/emergency_responder/post_equip(var/mob/living/carbon/human/H)
+/datum/outfit/job/station/emergency_responder/post_equip(var/mob/living/complex/human/H)
 	..()
 	ert.add_antagonist(H.mind)

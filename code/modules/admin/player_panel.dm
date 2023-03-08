@@ -226,7 +226,7 @@
 
 			if(isliving(M))
 
-				if(iscarbon(M)) //Carbon stuff
+				if(iscomplexmob(M)) //Carbon stuff
 					if(ishuman(M))
 						M_job = M.job
 					else if(isslime(M))
@@ -350,8 +350,8 @@
 			dat += "<td>Unknown</td>"
 
 
-		if(istype(M,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
+		if(istype(M,/mob/living/complex/human))
+			var/mob/living/complex/human/H = M
 			if(H.mind && H.mind.assigned_role)
 				dat += "<td>[H.mind.assigned_role]</td>"
 		else

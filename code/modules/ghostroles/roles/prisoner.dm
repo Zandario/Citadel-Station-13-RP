@@ -14,7 +14,7 @@
 /datum/ghostrole_instantiator/human/random/lavaland_prisoner
 	equip_outfit = /datum/outfit/lavalandprisoner
 
-/datum/ghostrole_instantiator/human/random/lavaland_prisoner/Randomize(mob/living/carbon/human/H, list/params)
+/datum/ghostrole_instantiator/human/random/lavaland_prisoner/Randomize(mob/living/complex/human/H, list/params)
 	. = ..()
 	H.real_name = "NTP #LL-0[rand(111,999)]" //Nanotrasen Prisoner #Lavaland-(numbers)
 	H.name = H.real_name

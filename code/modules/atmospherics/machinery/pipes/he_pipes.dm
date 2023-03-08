@@ -97,7 +97,7 @@
 
 				var/heat_limit = 1000
 
-				var/mob/living/carbon/human/H = L
+				var/mob/living/complex/human/H = L
 				if(istype(H) && H.species)
 					heat_limit = H.species.heat_level_3
 

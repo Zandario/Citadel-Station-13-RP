@@ -31,14 +31,14 @@
 /datum/reagent/blood/touch_turf(turf/simulated/T)
 	if(!istype(T) || volume < 3)
 		return
-	if(!data["donor"] || istype(data["donor"], /mob/living/carbon/human))
+	if(!data["donor"] || istype(data["donor"], /mob/living/complex/human))
 		blood_splatter(T, src, 1)
-	else if(istype(data["donor"], /mob/living/carbon/alien))
+	else if(istype(data["donor"], /mob/living/complex/alien))
 		var/obj/effect/debris/cleanable/blood/B = blood_splatter(T, src, 1)
 		if(B)
 			B.blood_DNA["UNKNOWN DNA STRUCTURE"] = "X*"
 
-/datum/reagent/blood/affect_ingest(mob/living/carbon/M, alien, removed)
+/datum/reagent/blood/affect_ingest(mob/living/complex/M, alien, removed)
 
 	var/effective_dose = dose
 	if(issmall(M)) effective_dose *= 2
@@ -74,9 +74,9 @@
 				if(V.spreadtype == "Contact")
 					infect_virus2(M, V.getcopy())
 
-/datum/reagent/blood/affect_touch(mob/living/carbon/M, alien, removed)
+/datum/reagent/blood/affect_touch(mob/living/complex/M, alien, removed)
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/complex/human/H = M
 		if(H.isSynthetic())
 			return
 	if(alien == IS_SLIME)
@@ -92,7 +92,7 @@
 	if(data && data["antibodies"])
 		M.antibodies |= data["antibodies"]
 
-/datum/reagent/blood/affect_blood(mob/living/carbon/M, alien, removed)
+/datum/reagent/blood/affect_blood(mob/living/complex/M, alien, removed)
 	if(alien == IS_SLIME) //They don't have blood, so it seems weird that they would instantly 'process' the chemical like another species does.
 		affect_ingest(M, alien, removed)
 		return
@@ -101,7 +101,7 @@
 		return
 
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/complex/human/H = M
 
 		var/datum/reagent/blood/recipient = H.get_blood(H.vessel)
 
@@ -150,7 +150,7 @@
 	color = "#0050F0"
 	mrate_static = TRUE
 
-/datum/reagent/antibodies/affect_blood(mob/living/carbon/M, alien, removed)
+/datum/reagent/antibodies/affect_blood(mob/living/complex/M, alien, removed)
 	if(src.data)
 		M.antibodies |= src.data["antibodies"]
 	..()
@@ -220,7 +220,7 @@
 	var/effective = amount || 10
 	L.clean_radiation(RAD_CONTAMINATION_CLEANSE_POWER * (effective / 10), RAD_CONTAMINATION_CLEANSE_FACTOR ** (1 / (effective / 10)))
 
-/datum/reagent/water/affect_ingest(mob/living/carbon/M, alien, removed)
+/datum/reagent/water/affect_ingest(mob/living/complex/M, alien, removed)
 	//if(alien == IS_SLIME)
 	//	M.adjustToxLoss(6 * removed)
 	//else
@@ -243,7 +243,7 @@
 	remove_self(amount)
 	return
 
-/datum/reagent/fuel/affect_blood(mob/living/carbon/M, alien, removed)
+/datum/reagent/fuel/affect_blood(mob/living/complex/M, alien, removed)
 	if(issmall(M)) removed *= 2
 	M.adjustToxLoss(4 * removed)
 

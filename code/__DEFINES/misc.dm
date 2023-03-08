@@ -1,9 +1,9 @@
 // These get to go at the top, because they're special
 //You can use these defines to get the typepath of the currently running proc/verb (yes procs + verbs are objects)
 /* eg:
-/mob/living/carbon/human/death()
+/mob/living/complex/human/death()
 	to_chat(world, THIS_PROC_TYPE_STR)	// You can only output the string versions
-Will print: "/mob/living/carbon/human/death" (you can optionally embed it in a string with () (eg: the _WITH_ARGS defines) to make it look nicer)
+Will print: "/mob/living/complex/human/death" (you can optionally embed it in a string with () (eg: the _WITH_ARGS defines) to make it look nicer)
 */
 #define THIS_PROC_TYPE .....
 /// Because you can only obtain a string of THIS_PROC_TYPE using "[]", and it's nice to just +/+= strings

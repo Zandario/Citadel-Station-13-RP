@@ -30,7 +30,7 @@
 
 /obj/structure/morgue/proc/get_occupants()
 	occupants.Cut()
-	for(var/mob/living/carbon/human/H in contents)
+	for(var/mob/living/complex/human/H in contents)
 		occupants += H
 	for(var/obj/structure/closet/body_bag/B in contents)
 		occupants += B.get_occupants()
@@ -42,7 +42,7 @@
 		if (src.contents.len)
 			src.icon_state = "morgue2"
 			get_occupants()
-			for (var/mob/living/carbon/human/H in occupants)
+			for (var/mob/living/complex/human/H in occupants)
 				if(H.isSynthetic() || H.suiciding || !H.ckey || !H.client || (MUTATION_NOCLONE in H.mutations) || (H.species && H.species.species_flags & NO_SCAN))
 					src.icon_state = "morgue2"
 					break
@@ -311,10 +311,10 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 
 		for(var/mob/living/M in contents)
 			if (M.stat!=2)
-				if (!iscarbon(M))
+				if (!iscomplexmob(M))
 					M.emote("scream")
 				else
-					var/mob/living/carbon/C = M
+					var/mob/living/complex/C = M
 					if (C.can_feel_pain())
 						C.emote("scream")
 
@@ -402,10 +402,10 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 
 		for(var/mob/living/M in contents)
 			if (M.stat!=2)
-				if (!iscarbon(M))
+				if (!iscomplexmob(M))
 					M.emote("scream")
 				else
-					var/mob/living/carbon/C = M
+					var/mob/living/complex/C = M
 					if (C.can_feel_pain())
 						C.emote("scream")
 

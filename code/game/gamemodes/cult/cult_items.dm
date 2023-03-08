@@ -25,7 +25,7 @@
 
 	var/zone = (L.hand ? "l_arm":"r_arm")
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		var/obj/item/organ/external/affecting = H.get_organ(zone)
 		to_chat(user, "<span class='danger'>An inexplicable force rips through your [affecting.name], tearing the sword from your grasp!</span>")
 		//random amount of damage between half of the blade's force and the full force of the blade.

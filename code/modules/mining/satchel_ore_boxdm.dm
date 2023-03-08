@@ -68,7 +68,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(!istype(usr, /mob/living/carbon/human) && !istype(usr, /mob/living/silicon/robot)) //Only living, intelligent creatures with gripping aparatti can empty ore boxes.
+	if(!istype(usr, /mob/living/complex/human) && !istype(usr, /mob/living/silicon/robot)) //Only living, intelligent creatures with gripping aparatti can empty ore boxes.
 		to_chat(usr,"<span class='warning'>You are physically incapable of emptying the ore box.</span>")
 		return
 

@@ -16,7 +16,7 @@
 	if(!ishuman(M))
 		return
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/complex/human/H = M
 
 	if(H.wear_suit)
 		if(H.wear_suit.body_cover_flags & ARMS)

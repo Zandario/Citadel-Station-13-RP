@@ -8,9 +8,9 @@
 	circuit = /obj/item/circuitboard/arcade/amputation
 
 /obj/machinery/computer/arcade/amputation/attack_hand(mob/user, list/modifiers)
-	if(!iscarbon(user))
+	if(!iscomplexmob(user))
 		return
-	var/mob/living/carbon/c_user = user
+	var/mob/living/complex/c_user = user
 	if(!c_user.get_organ(BP_L_ARM) && !c_user.get_organ(BP_R_ARM))
 		return
 	to_chat(c_user, SPAN_WARNING("You move your hand towards the machine, and begin to hesitate as a bloodied guillotine emerges from inside of it..."))

@@ -255,7 +255,7 @@
 		turn_on()
 		return
 
-/obj/vehicle_old/proc/insert_cell(var/obj/item/cell/C, var/mob/living/carbon/human/H)
+/obj/vehicle_old/proc/insert_cell(var/obj/item/cell/C, var/mob/living/complex/human/H)
 	if(!mechanical)
 		return
 	if(cell)
@@ -269,7 +269,7 @@
 	powercheck()
 	to_chat(usr, "<span class='notice'>You install [C] in [src].</span>")
 
-/obj/vehicle_old/proc/remove_cell(var/mob/living/carbon/human/H)
+/obj/vehicle_old/proc/remove_cell(var/mob/living/complex/human/H)
 	if(!mechanical)
 		return
 	if(!cell)

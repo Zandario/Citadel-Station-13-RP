@@ -14,7 +14,7 @@
 	set desc = "Removes handcuffs and legcuffs instantly."
 
 	var/escape_cooldown = 5 MINUTES		//This is used later to prevent spamming
-	var/mob/living/carbon/human/C = src
+	var/mob/living/complex/human/C = src
 	var/datum/changeling/changeling = changeling_power(40,0,100,CONSCIOUS)
 	if(!changeling)
 		return 0
@@ -30,7 +30,7 @@
 	to_chat(C,"<span class='notice'>We contort our extremities and slip our cuffs.</span>")
 	playsound(src, 'sound/effects/blobattack.ogg', 30, 1)
 
-	var/mob/living/carbon/human/H = C
+	var/mob/living/complex/human/H = C
 
 	H.handcuffed?.forceMove(drop_location())
 	H.legcuffed?.forceMove(drop_location())

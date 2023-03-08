@@ -117,22 +117,22 @@ var/datum/species/shapeshifter/promethean/prometheans
 	inherent_verbs = list(
 		/mob/living/proc/eat_trash,
 		/mob/living/proc/set_size,
-		/mob/living/carbon/human/proc/promethean_select_opaqueness,
-		/mob/living/carbon/human/proc/prommie_blobform,
-		/mob/living/carbon/human/proc/regenerate,
-		/mob/living/carbon/human/proc/shapeshifter_select_colour,
-		/mob/living/carbon/human/proc/shapeshifter_select_ears,
-		/mob/living/carbon/human/proc/shapeshifter_select_horns,
-		/mob/living/carbon/human/proc/shapeshifter_select_gender,
-		/mob/living/carbon/human/proc/shapeshifter_select_hair_colors,
-		/mob/living/carbon/human/proc/shapeshifter_select_hair,
-		/mob/living/carbon/human/proc/shapeshifter_select_shape,
-		/mob/living/carbon/human/proc/shapeshifter_select_tail,
-		/mob/living/carbon/human/proc/shapeshifter_select_wings,
-		/mob/living/carbon/human/proc/slime_feed,
-		/mob/living/carbon/human/proc/succubus_drain_finalize,
-		/mob/living/carbon/human/proc/succubus_drain_lethal,
-		/mob/living/carbon/human/proc/succubus_drain,
+		/mob/living/complex/human/proc/promethean_select_opaqueness,
+		/mob/living/complex/human/proc/prommie_blobform,
+		/mob/living/complex/human/proc/regenerate,
+		/mob/living/complex/human/proc/shapeshifter_select_colour,
+		/mob/living/complex/human/proc/shapeshifter_select_ears,
+		/mob/living/complex/human/proc/shapeshifter_select_horns,
+		/mob/living/complex/human/proc/shapeshifter_select_gender,
+		/mob/living/complex/human/proc/shapeshifter_select_hair_colors,
+		/mob/living/complex/human/proc/shapeshifter_select_hair,
+		/mob/living/complex/human/proc/shapeshifter_select_shape,
+		/mob/living/complex/human/proc/shapeshifter_select_tail,
+		/mob/living/complex/human/proc/shapeshifter_select_wings,
+		/mob/living/complex/human/proc/slime_feed,
+		/mob/living/complex/human/proc/succubus_drain_finalize,
+		/mob/living/complex/human/proc/succubus_drain_lethal,
+		/mob/living/complex/human/proc/succubus_drain,
 	)
 
 	valid_transform_species = list(
@@ -153,7 +153,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	..()
 	prometheans = src
 
-/datum/species/shapeshifter/promethean/equip_survival_gear(mob/living/carbon/human/H)
+/datum/species/shapeshifter/promethean/equip_survival_gear(mob/living/complex/human/H)
 	var/boxtype = pick(list(
 		/obj/item/storage/toolbox/lunchbox,
 		/obj/item/storage/toolbox/lunchbox/heart,
@@ -172,13 +172,13 @@ var/datum/species/shapeshifter/promethean/prometheans
 	else
 		H.equip_to_slot_or_del(L, /datum/inventory_slot_meta/abstract/put_in_backpack)
 
-/datum/species/shapeshifter/promethean/hug(mob/living/carbon/human/H, mob/living/target)
+/datum/species/shapeshifter/promethean/hug(mob/living/complex/human/H, mob/living/target)
 
 	if(H.zone_sel.selecting == "head" || H.zone_sel.selecting == "r_hand" || H.zone_sel.selecting == "l_hand")
 		return ..()
 	var/t_him = "them"
 	if(ishuman(target))
-		var/mob/living/carbon/human/T = target
+		var/mob/living/complex/human/T = target
 		switch(T.identifying_gender)
 			if(MALE)
 				t_him = "him"
@@ -198,18 +198,18 @@ var/datum/species/shapeshifter/promethean/prometheans
 
 	H.apply_stored_shock_to(target)
 
-/datum/species/shapeshifter/promethean/handle_death(mob/living/carbon/human/H)
+/datum/species/shapeshifter/promethean/handle_death(mob/living/complex/human/H)
 	spawn(1)
 		if(H)
 			H.gib()
 
-/datum/species/shapeshifter/promethean/get_blood_colour(mob/living/carbon/human/H)
+/datum/species/shapeshifter/promethean/get_blood_colour(mob/living/complex/human/H)
 	return (H ? rgb(H.r_skin, H.g_skin, H.b_skin) : ..())
 
-/datum/species/shapeshifter/promethean/get_flesh_colour(mob/living/carbon/human/H)
+/datum/species/shapeshifter/promethean/get_flesh_colour(mob/living/complex/human/H)
 	return (H ? rgb(H.r_skin, H.g_skin, H.b_skin) : ..())
 
-/datum/species/shapeshifter/promethean/get_additional_examine_text(mob/living/carbon/human/H)
+/datum/species/shapeshifter/promethean/get_additional_examine_text(mob/living/complex/human/H)
 
 	if(!stored_shock_by_ref["\ref[H]"])
 		return
@@ -234,7 +234,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 		if(35 to INFINITY)
 			return SPAN_DANGER("[t_she] radiating massive levels of electrical activity!")
 
-/mob/living/carbon/human/proc/prommie_blobform()
+/mob/living/complex/human/proc/prommie_blobform()
 	set name = "Toggle Blobform"
 	set desc = "Switch between amorphous and humanoid forms."
 	set category = "Abilities"

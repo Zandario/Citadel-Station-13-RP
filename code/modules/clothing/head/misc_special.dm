@@ -120,7 +120,7 @@
 
 	var/turf/location = src.loc
 	if(istype(location, /mob/))
-		var/mob/living/carbon/human/M = location
+		var/mob/living/complex/human/M = location
 		if(M.is_holding(src) || M.head == src)
 			location = M.loc
 
@@ -231,7 +231,7 @@
 	to_chat(wearer, "<span class='danger'>The inside of your head hurts...</span>")
 	wearer.adjustBrainLoss(brainloss_cost)
 
-/obj/item/clothing/head/psy_crown/equipped(var/mob/living/carbon/human/H)
+/obj/item/clothing/head/psy_crown/equipped(var/mob/living/complex/human/H)
 	..()
 	if(istype(H) && H.head == src && H.is_sentient())
 		START_PROCESSING(SSobj, src)
@@ -240,7 +240,7 @@
 /obj/item/clothing/head/psy_crown/dropped(mob/user, flags, atom/newLoc)
 	..()
 	STOP_PROCESSING(SSobj, src)
-	var/mob/living/carbon/human/H = user
+	var/mob/living/complex/human/H = user
 	if(!ishuman(H))
 		return
 	if(H.is_sentient())

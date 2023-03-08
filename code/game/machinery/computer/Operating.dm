@@ -8,7 +8,7 @@
 	icon_screen = "crew"
 	circuit = /obj/item/circuitboard/operating
 	var/obj/machinery/optable/table = null
-	var/mob/living/carbon/human/victim = null
+	var/mob/living/complex/human/victim = null
 	///General speaker toggle.
 	var/verbose = TRUE
 	///Healther announcer toggle
@@ -62,7 +62,7 @@
 
 /obj/machinery/computer/operating/ui_data(mob/user)
 	var/data[0]
-	var/mob/living/carbon/human/occupant
+	var/mob/living/complex/human/occupant
 	if(table)
 		occupant = table.victim
 	data["hasOccupant"] = occupant ? 1 : 0

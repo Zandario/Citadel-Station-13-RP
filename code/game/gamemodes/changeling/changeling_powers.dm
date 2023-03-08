@@ -110,7 +110,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	for(var/language in languages)
 		mind.changeling.absorbed_languages |= language
 
-	var/mob/living/carbon/human/H = src
+	var/mob/living/complex/human/H = src
 	if(istype(H))
 		var/datum/absorbed_dna/newDNA = new(H.real_name, H.dna, H.species.name, H.languages, H.identifying_gender, H.flavor_texts)
 		absorbDNA(newDNA)
@@ -134,7 +134,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 
 	if(!src.mind)
 		return
-	if(!iscarbon(src))
+	if(!iscomplexmob(src))
 		return
 
 	var/datum/changeling/changeling = src.mind.changeling
@@ -234,9 +234,9 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 		return
 
 	var/list/victims = list()
-	for(var/mob/living/carbon/C in oview(changeling.sting_range))
+	for(var/mob/living/complex/C in oview(changeling.sting_range))
 		victims += C
-	var/mob/living/carbon/T = input(src, "Who will we sting?") as null|anything in victims
+	var/mob/living/complex/T = input(src, "Who will we sting?") as null|anything in victims
 
 	if(!T)
 		return

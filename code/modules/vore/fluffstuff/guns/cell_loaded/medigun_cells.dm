@@ -20,7 +20,7 @@
 	tracer_type = /obj/effect/projectile/tracer/medigun
 	impact_type = /obj/effect/projectile/impact/medigun
 
-/obj/item/projectile/beam/medical_cell/on_hit(var/mob/living/carbon/human/target) //what does it do when it hits someone?
+/obj/item/projectile/beam/medical_cell/on_hit(var/mob/living/complex/human/target) //what does it do when it hits someone?
 	return
 
 /obj/item/ammo_casing/microbattery/medical/brute
@@ -29,8 +29,8 @@
 	type_name = "<span style='color:#BF0000;font-weight:bold;'>BRUTE</span>"
 	projectile_type = /obj/item/projectile/beam/medical_cell/brute
 
-/obj/item/projectile/beam/medical_cell/brute/on_hit(var/mob/living/carbon/human/target)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/medical_cell/brute/on_hit(var/mob/living/complex/human/target)
+	if(istype(target, /mob/living/complex/human))
 		target.adjustBruteLoss(-10)
 	else
 		return 1
@@ -41,8 +41,8 @@
 	type_name = "<span style='color:#FF8000;font-weight:bold;'>BURN</span>"
 	projectile_type = /obj/item/projectile/beam/medical_cell/burn
 
-/obj/item/projectile/beam/medical_cell/burn/on_hit(var/mob/living/carbon/human/target)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/medical_cell/burn/on_hit(var/mob/living/complex/human/target)
+	if(istype(target, /mob/living/complex/human))
 		target.adjustFireLoss(-10)
 	else
 		return 1
@@ -53,8 +53,8 @@
 	type_name = "<span style='color:#0080FF;font-weight:bold;'>STABILIZE</span>"
 	projectile_type = /obj/item/projectile/beam/medical_cell/stabilize
 
-/obj/item/projectile/beam/medical_cell/stabilize/on_hit(var/mob/living/carbon/human/target)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/medical_cell/stabilize/on_hit(var/mob/living/complex/human/target)
+	if(istype(target, /mob/living/complex/human))
 		target.adjustOxyLoss(-30)
 		for(var/name in list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO))
 			var/obj/item/organ/external/O = target.organs_by_name[name]
@@ -81,8 +81,8 @@
 	type_name = "<span style='color:#00A000;font-weight:bold;'>TOXIN</span>"
 	projectile_type = /obj/item/projectile/beam/medical_cell/toxin
 
-/obj/item/projectile/beam/medical_cell/toxin/on_hit(var/mob/living/carbon/human/target)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/medical_cell/toxin/on_hit(var/mob/living/complex/human/target)
+	if(istype(target, /mob/living/complex/human))
 		target.adjustToxLoss(-10)
 	else
 		return 1
@@ -93,8 +93,8 @@
 	type_name = "<span style='color:#8040FF;font-weight:bold;'>OMNI</span>"
 	projectile_type = /obj/item/projectile/beam/medical_cell/omni
 
-/obj/item/projectile/beam/medical_cell/omni/on_hit(var/mob/living/carbon/human/target)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/medical_cell/omni/on_hit(var/mob/living/complex/human/target)
+	if(istype(target, /mob/living/complex/human))
 		target.adjustBruteLoss(-2.5)
 		target.adjustFireLoss(-2.5)
 		target.adjustToxLoss(-2.5)
@@ -108,8 +108,8 @@
 	type_name = "<span style='color:#008000;font-weight:bold;'>ANTIRAD</span>"
 	projectile_type = /obj/item/projectile/beam/medical_cell/antirad
 
-/obj/item/projectile/beam/medical_cell/antirad/on_hit(var/mob/living/carbon/human/target)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/medical_cell/antirad/on_hit(var/mob/living/complex/human/target)
+	if(istype(target, /mob/living/complex/human))
 		target.adjustToxLoss(-2.5)
 		target.cure_radiation(RAD_MOB_CURE_STRENGTH_MEDIGUN)
 	else
@@ -121,8 +121,8 @@
 	type_name = "<span style='color:#BF0000;font-weight:bold;'>BRUTE-II</span>"
 	projectile_type = /obj/item/projectile/beam/medical_cell/brute2
 
-/obj/item/projectile/beam/medical_cell/brute2/on_hit(var/mob/living/carbon/human/target)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/medical_cell/brute2/on_hit(var/mob/living/complex/human/target)
+	if(istype(target, /mob/living/complex/human))
 		target.adjustBruteLoss(-20)
 	else
 		return 1
@@ -133,8 +133,8 @@
 	type_name = "<span style='color:#FF8000;font-weight:bold;'>BURN-II</span>"
 	projectile_type = /obj/item/projectile/beam/medical_cell/burn2
 
-/obj/item/projectile/beam/medical_cell/burn2/on_hit(var/mob/living/carbon/human/target)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/medical_cell/burn2/on_hit(var/mob/living/complex/human/target)
+	if(istype(target, /mob/living/complex/human))
 		target.adjustFireLoss(-20)
 	else
 		return 1
@@ -145,8 +145,8 @@
 	type_name = "<span style='color:#0080FF;font-weight:bold;'>STABILIZE-II</span>"
 	projectile_type = /obj/item/projectile/beam/medical_cell/stabilize2
 
-/obj/item/projectile/beam/medical_cell/stabilize2/on_hit(var/mob/living/carbon/human/target)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/medical_cell/stabilize2/on_hit(var/mob/living/complex/human/target)
+	if(istype(target, /mob/living/complex/human))
 		target.adjustOxyLoss(-200)
 		for(var/name in list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO))
 			var/obj/item/organ/external/O = target.organs_by_name[name]
@@ -168,8 +168,8 @@
 	type_name = "<span style='color:#8040FF;font-weight:bold;'>OMNI-II</span>"
 	projectile_type = /obj/item/projectile/beam/medical_cell/omni2
 
-/obj/item/projectile/beam/medical_cell/omni2/on_hit(var/mob/living/carbon/human/target)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/medical_cell/omni2/on_hit(var/mob/living/complex/human/target)
+	if(istype(target, /mob/living/complex/human))
 		target.adjustBruteLoss(-5)
 		target.adjustFireLoss(-5)
 		target.adjustToxLoss(-5)
@@ -183,8 +183,8 @@
 	type_name = "<span style='color:#00A000;font-weight:bold;'>TOXIN-II</span>"
 	projectile_type = /obj/item/projectile/beam/medical_cell/toxin2
 
-/obj/item/projectile/beam/medical_cell/toxin2/on_hit(var/mob/living/carbon/human/target)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/medical_cell/toxin2/on_hit(var/mob/living/complex/human/target)
+	if(istype(target, /mob/living/complex/human))
 		target.adjustToxLoss(-20)
 	else
 		return 1
@@ -195,8 +195,8 @@
 	type_name = "<span style='color:#FF3300;font-weight:bold;'>HASTE</span>"
 	projectile_type = /obj/item/projectile/beam/medical_cell/haste
 
-/obj/item/projectile/beam/medical_cell/haste/on_hit(var/mob/living/carbon/human/target)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/medical_cell/haste/on_hit(var/mob/living/complex/human/target)
+	if(istype(target, /mob/living/complex/human))
 		target.add_modifier(/datum/modifier/ml3mhaste, 20 SECONDS)
 	else
 		return 1
@@ -215,8 +215,8 @@
 	type_name = "<span style='color:#555555;font-weight:bold;'>RESIST</span>"
 	projectile_type = /obj/item/projectile/beam/medical_cell/resist
 
-/obj/item/projectile/beam/medical_cell/resist/on_hit(var/mob/living/carbon/human/target)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/medical_cell/resist/on_hit(var/mob/living/complex/human/target)
+	if(istype(target, /mob/living/complex/human))
 		target.add_modifier(/datum/modifier/resistance, 20 SECONDS)
 	else
 		return 1
@@ -235,8 +235,8 @@
 	type_name = "<span style='color:#669900;font-weight:bold;'>CORPSE MEND</span>"
 	projectile_type = /obj/item/projectile/beam/medical_cell/corpse_mend
 
-/obj/item/projectile/beam/medical_cell/corpse_mend/on_hit(var/mob/living/carbon/human/target)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/medical_cell/corpse_mend/on_hit(var/mob/living/complex/human/target)
+	if(istype(target, /mob/living/complex/human))
 		if(target.stat == DEAD)
 			target.adjustBruteLoss(-50)
 			target.adjustFireLoss(-50)
@@ -251,8 +251,8 @@
 	type_name = "<span style='color:#BF0000;font-weight:bold;'>BRUTE-III</span>"
 	projectile_type = /obj/item/projectile/beam/medical_cell/brute3
 
-/obj/item/projectile/beam/medical_cell/brute3/on_hit(var/mob/living/carbon/human/target)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/medical_cell/brute3/on_hit(var/mob/living/complex/human/target)
+	if(istype(target, /mob/living/complex/human))
 		target.adjustBruteLoss(-40)
 	else
 		return 1
@@ -263,8 +263,8 @@
 	type_name = "<span style='color:#FF8000;font-weight:bold;'>BURN-III</span>"
 	projectile_type = /obj/item/projectile/beam/medical_cell/burn3
 
-/obj/item/projectile/beam/medical_cell/burn3/on_hit(var/mob/living/carbon/human/target)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/medical_cell/burn3/on_hit(var/mob/living/complex/human/target)
+	if(istype(target, /mob/living/complex/human))
 		target.adjustFireLoss(-40)
 	else
 		return 1
@@ -275,8 +275,8 @@
 	type_name = "<span style='color:#00A000;font-weight:bold;'>TOXIN-III</span>"
 	projectile_type = /obj/item/projectile/beam/medical_cell/toxin3
 
-/obj/item/projectile/beam/medical_cell/toxin3/on_hit(var/mob/living/carbon/human/target)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/medical_cell/toxin3/on_hit(var/mob/living/complex/human/target)
+	if(istype(target, /mob/living/complex/human))
 		target.adjustToxLoss(-40)
 	else
 		return 1
@@ -287,8 +287,8 @@
 	type_name = "<span style='color:#8040FF;font-weight:bold;'>OMNI-III</span>"
 	projectile_type = /obj/item/projectile/beam/medical_cell/omni3
 
-/obj/item/projectile/beam/medical_cell/omni3/on_hit(var/mob/living/carbon/human/target)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/medical_cell/omni3/on_hit(var/mob/living/complex/human/target)
+	if(istype(target, /mob/living/complex/human))
 		target.adjustBruteLoss(-10)
 		target.adjustFireLoss(-10)
 		target.adjustToxLoss(-10)
@@ -303,8 +303,8 @@
 	type_name = "<span style='color:#910ffc;font-weight:bold;'>SHRINK</span>"
 	projectile_type = /obj/item/projectile/beam/medical_cell/shrink
 
-/obj/item/projectile/beam/medical_cell/shrink/on_hit(var/mob/living/carbon/human/target)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/medical_cell/shrink/on_hit(var/mob/living/complex/human/target)
+	if(istype(target, /mob/living/complex/human))
 		target.resize(0.5)
 		target.show_message("<font color=#4F49AF>The beam fires into your body, changing your size!</font>")
 		target.updateicon()
@@ -317,8 +317,8 @@
 	type_name = "<span style='color:#fc0fdc;font-weight:bold;'>GROW</span>"
 	projectile_type = /obj/item/projectile/beam/medical_cell/grow
 
-/obj/item/projectile/beam/medical_cell/grow/on_hit(var/mob/living/carbon/human/target)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/medical_cell/grow/on_hit(var/mob/living/complex/human/target)
+	if(istype(target, /mob/living/complex/human))
 		target.resize(2.0)
 		target.show_message("<font color=#4F49AF>The beam fires into your body, changing your size!</font>")
 		target.updateicon()
@@ -331,8 +331,8 @@
 	type_name = "<span style='color:#C70FEC;font-weight:bold;'>NORMALSIZE</span>"
 	projectile_type = /obj/item/projectile/beam/medical_cell/normalsize
 
-/obj/item/projectile/beam/medical_cell/normalsize/on_hit(var/mob/living/carbon/human/target)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/medical_cell/normalsize/on_hit(var/mob/living/complex/human/target)
+	if(istype(target, /mob/living/complex/human))
 		target.resize(1)
 		target.show_message("<font color=#4F49AF>The beam fires into your body, changing your size!</font>")
 		target.updateicon()

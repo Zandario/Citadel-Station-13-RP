@@ -29,7 +29,7 @@
 	SStranscore.implants -= src
 	return ..()
 
-/obj/item/implant/backup/post_implant(var/mob/living/carbon/human/H)
+/obj/item/implant/backup/post_implant(var/mob/living/complex/human/H)
 	if(istype(H))
 		SStranscore.implants |= src
 		return 1
@@ -93,7 +93,7 @@
 /obj/item/backup_implanter/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
-	if (!istype(target, /mob/living/carbon))
+	if (!istype(target, /mob/living/complex))
 		return
 	if (user && imps.len)
 		target.visible_message("<span class='notice'>[user] is injecting a backup implant into [target].</span>")

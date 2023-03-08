@@ -106,7 +106,7 @@
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	if(!used && ishuman(target))
-		var/mob/living/carbon/human/H = target
+		var/mob/living/complex/human/H = target
 		if(H.isSynthetic())
 			if(H.nutrition <= amount)
 				use(user,H)

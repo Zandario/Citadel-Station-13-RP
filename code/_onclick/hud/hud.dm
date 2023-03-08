@@ -206,7 +206,7 @@ GLOBAL_DATUM_INIT(global_hud, /datum/global_hud, new)
 /datum/hud/proc/hidden_inventory_update()
 	if(!mymob) return
 	if(ishuman(mymob))
-		var/mob/living/carbon/human/H = mymob
+		var/mob/living/complex/human/H = mymob
 		for(var/gear_slot in H.species.hud.gear)
 			var/list/hud_data = H.species.hud.gear[gear_slot]
 			if(inventory_shown && hud_shown)
@@ -256,7 +256,7 @@ GLOBAL_DATUM_INIT(global_hud, /datum/global_hud, new)
 		return
 
 	if(ishuman(mymob))
-		var/mob/living/carbon/human/H = mymob
+		var/mob/living/complex/human/H = mymob
 		for(var/gear_slot in H.species.hud.gear)
 			var/list/hud_data = H.species.hud.gear[gear_slot]
 			if(hud_shown)

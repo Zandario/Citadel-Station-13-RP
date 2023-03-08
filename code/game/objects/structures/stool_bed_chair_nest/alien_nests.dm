@@ -50,8 +50,8 @@
 	if ( !ismob(M) || (get_dist(src, user) > 1) || (M.loc != src.loc) || user.restrained() || user.stat || M.buckled || istype(user, /mob/living/silicon/pai) )
 		return
 
-	var/mob/living/carbon/xenos = user
-	var/mob/living/carbon/victim = M
+	var/mob/living/complex/xenos = user
+	var/mob/living/complex/victim = M
 
 	if(istype(victim) && locate(/obj/item/organ/internal/xenos/hivenode) in victim.internal_organs)
 		return

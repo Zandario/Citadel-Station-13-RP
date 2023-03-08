@@ -296,7 +296,7 @@
 	if(M != user)
 		return TRUE
 	. = FALSE
-	INVOKE_ASYNC(user, /mob/living/carbon/human/proc/escape_straight_jacket)
+	INVOKE_ASYNC(user, /mob/living/complex/human/proc/escape_straight_jacket)
 
 /obj/item/clothing/suit/straight_jacket/equipped(var/mob/living/user,var/slot)
 	. = ..()

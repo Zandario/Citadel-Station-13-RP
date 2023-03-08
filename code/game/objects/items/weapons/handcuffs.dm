@@ -21,7 +21,7 @@
 	var/use_time = 30
 
 /obj/item/handcuffs/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
-	var/mob/living/carbon/C = target
+	var/mob/living/complex/C = target
 	if(!istype(C))
 		return
 	if(!user.IsAdvancedToolUser())
@@ -55,9 +55,9 @@
 				return 1
 	return 0
 
-/obj/item/handcuffs/proc/place_handcuffs(var/mob/living/carbon/target, var/mob/user)
+/obj/item/handcuffs/proc/place_handcuffs(var/mob/living/complex/target, var/mob/user)
 
-	var/mob/living/carbon/human/H = target
+	var/mob/living/complex/human/H = target
 	if(!istype(H))
 		return 0
 
@@ -104,11 +104,11 @@
 		user.stop_pulling()
 
 var/last_chew = 0
-/mob/living/carbon/human/RestrainedClickOn(var/atom/A)
+/mob/living/complex/human/RestrainedClickOn(var/atom/A)
 	if (A != src) return ..()
 	if (last_chew + 26 > world.time) return
 
-	var/mob/living/carbon/human/H = A
+	var/mob/living/complex/human/H = A
 	if (!H.handcuffed) return
 	if (H.a_intent != INTENT_HARM) return
 	if (H.zone_sel.selecting != O_MOUTH) return
@@ -226,7 +226,7 @@ var/last_chew = 0
 	cuff_sound = 'sound/weapons/handcuffs.ogg' //This shold work for now.
 
 /obj/item/handcuffs/legcuffs/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
-	var/mob/living/carbon/C = target
+	var/mob/living/complex/C = target
 	if(!istype(C))
 		return
 	if(!user.IsAdvancedToolUser())
@@ -248,10 +248,10 @@ var/last_chew = 0
 		else
 			to_chat(user, "<span class='danger'>You need to have a firm grip on [C] before you can put \the [src] on!</span>")
 
-/obj/item/handcuffs/legcuffs/proc/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
+/obj/item/handcuffs/legcuffs/proc/place_legcuffs(var/mob/living/complex/target, var/mob/user)
 	playsound(src.loc, cuff_sound, 30, 1, -2)
 
-	var/mob/living/carbon/human/H = target
+	var/mob/living/complex/human/H = target
 	if(!istype(H))
 		return 0
 
@@ -322,10 +322,10 @@ var/last_chew = 0
 	var/mob/living/L = target
 	place_legcuffs(L, user)
 
-/obj/item/handcuffs/legcuffs/bola/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
+/obj/item/handcuffs/legcuffs/bola/place_legcuffs(var/mob/living/complex/target, var/mob/user)
 	playsound(src.loc, cuff_sound, 30, 1, -2)
 
-	var/mob/living/carbon/human/H = target
+	var/mob/living/complex/human/H = target
 	if(!istype(H))
 		return FALSE
 
@@ -359,7 +359,7 @@ var/last_chew = 0
 		to_chat(user, "<span class='warning'>The bola seems to take on a life of its own!</span>")
 		place_legcuffs(user)
 
-/obj/item/handcuffs/legcuffs/bola/cult/throw_impact(var/atom/target, var/mob/user, mob/living/carbon/human/H)
+/obj/item/handcuffs/legcuffs/bola/cult/throw_impact(var/atom/target, var/mob/user, mob/living/complex/human/H)
 	if(iscultist(user))
 		return
 	if(H.mind.isholy)

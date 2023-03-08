@@ -237,7 +237,7 @@
 	dispose_unassigned()
 	return 1
 
-/datum/controller/subsystem/job/proc/EquipRank(mob/living/carbon/human/H, rank, joined_late = 0)
+/datum/controller/subsystem/job/proc/EquipRank(mob/living/complex/human/H, rank, joined_late = 0)
 	if(!H)
 		return null
 

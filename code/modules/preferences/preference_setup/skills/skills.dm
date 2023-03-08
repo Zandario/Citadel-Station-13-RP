@@ -56,7 +56,7 @@
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
-	var/mob/living/carbon/human/character = M
+	var/mob/living/complex/human/character = M
 	character.skills			= pref.skills
 	character.used_skillpoints	= pref.used_skillpoints
 	return TRUE

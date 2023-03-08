@@ -40,8 +40,8 @@
 			"icon_state" = "[is_left_hand? "l_hand" : "r_hand"]_hud_handcuffs"
 		)
 	cut_overlays()
-	if(iscarbon(hud?.mymob))
-		var/mob/living/carbon/C = hud.mymob
+	if(iscomplexmob(hud?.mymob))
+		var/mob/living/complex/C = hud.mymob
 		if(C.handcuffed)
 			add_overlay(handcuff_overlay)
 

@@ -98,8 +98,8 @@
 		user.visible_message("<span class='warning'>[src] has no effect on [user]!</span>")
 		return
 	user.revive(full_heal = 1)
-	if(iscarbon(user))
-		var/mob/living/carbon/C = user
+	if(iscomplexmob(user))
+		var/mob/living/complex/C = user
 		C.regenerate_limbs()
 		C.regenerate_organs()
 	to_chat(user, "<span class='notice'>You feel great!</span>")

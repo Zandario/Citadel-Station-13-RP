@@ -58,7 +58,7 @@
 	var/eye_icon_state = null //Default, changed in init
 	var/eye_desc //Eye color description added to examine
 
-	var/mob/living/carbon/human/henlo_human //Human we're stalking currently
+	var/mob/living/complex/human/henlo_human //Human we're stalking currently
 
 	//Behavior
 	var/stalker = TRUE //Do we creep up on humans
@@ -373,7 +373,7 @@
 	hud_elements |= energyhud
 
 // When someone clicks us with an empty hand
-/mob/living/simple_mob/shadekin/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/simple_mob/shadekin/attack_hand(mob/living/complex/human/M as mob)
 	. = ..()
 	if(M.a_intent == INTENT_HELP)
 		shy_approach = FALSE //ACCLIMATED

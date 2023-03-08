@@ -552,7 +552,7 @@
 	if(isnull(M)) return
 	if(isnull(M.key)) return
 	if (ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/complex/human/H = M
 		if (!istype(H.dna, /datum/dna))
 			return 0
 		if (H.gloves)
@@ -595,7 +595,7 @@
 				fingerprintslast = M.key
 			return 0		//Now, lets get to the dirty work.
 		//First, make sure their DNA makes sense.
-		var/mob/living/carbon/human/H = M
+		var/mob/living/complex/human/H = M
 		if (!istype(H.dna, /datum/dna) || !H.dna.uni_identity || (length(H.dna.uni_identity) != 32))
 			if(!istype(H.dna, /datum/dna))
 				H.dna = new /datum/dna(null)
@@ -702,7 +702,7 @@
 
 
 /// Returns 1 if made bloody, returns 0 otherwise
-/atom/proc/add_blood(mob/living/carbon/human/M as mob)
+/atom/proc/add_blood(mob/living/complex/human/M as mob)
 
 	if(atom_flags & NOBLOODY)
 		return 0
@@ -722,7 +722,7 @@
 	. = 1
 	return 1
 
-/atom/proc/add_vomit_floor(mob/living/carbon/M as mob, var/toxvomit = 0)
+/atom/proc/add_vomit_floor(mob/living/complex/M as mob, var/toxvomit = 0)
 	if( istype(src, /turf/simulated) )
 		var/obj/effect/debris/cleanable/vomit/this = new /obj/effect/debris/cleanable/vomit(src)
 		this.virus2 = virus_copylist(M.virus2)

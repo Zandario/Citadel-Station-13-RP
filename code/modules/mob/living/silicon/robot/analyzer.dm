@@ -33,7 +33,7 @@
 	var/scan_type
 	if(istype(M, /mob/living/silicon/robot))
 		scan_type = "robot"
-	else if(istype(M, /mob/living/carbon/human))
+	else if(istype(M, /mob/living/complex/human))
 		scan_type = "prosthetics"
 	else
 		to_chat(user, "<font color='red'>You can't analyze non-robotic things!</font>")
@@ -69,7 +69,7 @@
 
 		if("prosthetics")
 
-			var/mob/living/carbon/human/H = M
+			var/mob/living/complex/human/H = M
 			to_chat(user, "<span class='notice'>Analyzing Results for \the [H]:</span>")
 			if(H.isSynthetic())
 				to_chat(user, "System instability: <font color='green'>[H.getToxLoss()]</font>")

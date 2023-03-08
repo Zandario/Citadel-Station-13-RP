@@ -115,8 +115,8 @@
 		else
 			return
 
-	if(istype(owner, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = owner
+	if(istype(owner, /mob/living/complex/human))
+		var/mob/living/complex/human/H = owner
 		H.add_modifier(/datum/modifier/melee_surge, 0.75 MINUTES)
 
 // The toolkit / multi-tool implant.

@@ -77,8 +77,8 @@
 	)
 
 	inherent_verbs = list(
-		/mob/living/carbon/human/proc/diona_split_nymph,
-		/mob/living/carbon/human/proc/regenerate,
+		/mob/living/complex/human/proc/diona_split_nymph,
+		/mob/living/complex/human/proc/regenerate,
 	)
 
 	warning_low_pressure = 10
@@ -107,20 +107,20 @@
 
 
 /datum/species/diona/can_understand(mob/other)
-	var/mob/living/carbon/alien/diona/D = other
+	var/mob/living/complex/alien/diona/D = other
 	if(istype(D))
 		return TRUE
 	return FALSE
 
-/datum/species/diona/equip_survival_gear(mob/living/carbon/human/H)
+/datum/species/diona/equip_survival_gear(mob/living/complex/human/H)
 	if(H.backbag == 1)
 		H.equip_to_slot_or_del(new /obj/item/flashlight/flare(H), /datum/inventory_slot_meta/abstract/hand/right)
 	else
 		H.equip_to_slot_or_del(new /obj/item/flashlight/flare(H.back), /datum/inventory_slot_meta/abstract/put_in_backpack)
 
-/datum/species/diona/handle_death(mob/living/carbon/human/H)
+/datum/species/diona/handle_death(mob/living/complex/human/H)
 
-	var/mob/living/carbon/alien/diona/S = new(get_turf(H))
+	var/mob/living/complex/alien/diona/S = new(get_turf(H))
 
 	if(H.mind)
 		H.mind.transfer_to(S)
@@ -133,12 +133,12 @@
 			qdel(Org)
 
 		// Purge the diona verbs.
-		remove_verb(H, /mob/living/carbon/human/proc/diona_split_nymph)
-		remove_verb(H, /mob/living/carbon/human/proc/regenerate)
+		remove_verb(H, /mob/living/complex/human/proc/diona_split_nymph)
+		remove_verb(H, /mob/living/complex/human/proc/regenerate)
 
 		return
 
-	for(var/mob/living/carbon/alien/diona/D in H.contents)
+	for(var/mob/living/complex/alien/diona/D in H.contents)
 		if(D.client)
 			D.forceMove(get_turf(H))
 		else
@@ -150,7 +150,7 @@
 		SPAN_HEAR("You hear a wet slithering noise!"),
 	)
 
-/datum/species/diona/handle_environment_special(mob/living/carbon/human/H)
+/datum/species/diona/handle_environment_special(mob/living/complex/human/H)
 	if(H.inStasisNow())
 		return
 

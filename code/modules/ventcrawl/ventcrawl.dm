@@ -60,12 +60,12 @@ var/list/ventcrawl_machinery = list(
 	if((listed && !is_holding(carried_item)) || !is_in_inventory(carried_item))
 		return 1
 
-/mob/living/carbon/is_allowed_vent_crawl_item(var/obj/item/carried_item)
+/mob/living/complex/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	if(carried_item in internal_organs)
 		return 1
 	return ..()
 
-/mob/living/carbon/human/is_allowed_vent_crawl_item(var/obj/item/carried_item)
+/mob/living/complex/human/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	if(carried_item in organs)
 		return 1
 	return ..()
@@ -99,7 +99,7 @@ var/list/ventcrawl_machinery = list(
 	if(canmove && pipe)
 		return pipe
 
-/mob/living/carbon/alien/ventcrawl_carry()
+/mob/living/complex/alien/ventcrawl_carry()
 	return 1
 
 /mob/living/var/ventcrawl_layer = 3

@@ -1,6 +1,6 @@
 var/global/list/wing_icon_cache = list()
 
-/mob/living/carbon/human/proc/get_ears_overlay()
+/mob/living/complex/human/proc/get_ears_overlay()
 	if(ear_style && !(head && (head.inv_hide_flags & BLOCKHEADHAIR)))
 		var/icon/ears_s = new/icon("icon" = ear_style.icon, "icon_state" = ear_style.icon_state)
 		if(ear_style.do_colouration)
@@ -21,7 +21,7 @@ var/global/list/wing_icon_cache = list()
 		return ears_s
 	return null
 
-/mob/living/carbon/human/proc/get_horns_overlay()
+/mob/living/complex/human/proc/get_horns_overlay()
 	if(horn_style && !(head && (head.inv_hide_flags & BLOCKHEADHAIR)))
 		var/icon/horn_s = new/icon("icon" = horn_style.icon, "icon_state" = horn_style.icon_state)
 		if(horn_style.do_colouration)
@@ -42,7 +42,7 @@ var/global/list/wing_icon_cache = list()
 		return horn_s
 	return null
 
-/mob/living/carbon/human/proc/get_tail_image(front)
+/mob/living/complex/human/proc/get_tail_image(front)
 	//If you are FBP with tail style and didn't set a custom one
 	var/datum/robolimb/model = isSynthetic()
 	if(istype(model) && model.includes_tail && !tail_style)

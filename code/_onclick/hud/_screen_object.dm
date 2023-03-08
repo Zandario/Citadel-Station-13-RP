@@ -198,7 +198,7 @@
 			if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
 				return 1
 			if(ishuman(usr))
-				var/mob/living/carbon/human/H = usr
+				var/mob/living/complex/human/H = usr
 				H.quick_equip()
 
 		if("resist")
@@ -209,8 +209,8 @@
 		if("mov_intent")
 			// todo: reworks
 			if(isliving(usr))
-				if(iscarbon(usr))
-					var/mob/living/carbon/C = usr
+				if(iscomplexmob(usr))
+					var/mob/living/complex/C = usr
 					if(C.legcuffed)
 						to_chat(C, "<span class='notice'>You are legcuffed! You cannot run until you get [C.legcuffed] removed!</span>")
 						C.m_intent = "walk"	//Just incase
@@ -241,8 +241,8 @@
 		if("Reset Machine")
 			usr.unset_machine()
 		if("internal")
-			if(iscarbon(usr))
-				var/mob/living/carbon/C = usr
+			if(iscomplexmob(usr))
+				var/mob/living/complex/C = usr
 				if(!C.stat && !C.stunned && !C.paralysis && !C.restrained())
 					if(C.internal)
 						C.internal = null
@@ -253,7 +253,7 @@
 
 						var/no_mask
 						if(!(C.wear_mask && C.wear_mask.clothing_flags & ALLOWINTERNALS))
-							var/mob/living/carbon/human/H = C
+							var/mob/living/complex/human/H = C
 							if(!(H.head && H.head.clothing_flags & ALLOWINTERNALS))
 								no_mask = 1
 
@@ -278,7 +278,7 @@
 									tanks += R.air_supply
 							// now, slots
 							if(ishuman(C))
-								var/mob/living/carbon/human/H = C
+								var/mob/living/complex/human/H = C
 								// suit storage
 								locnames += "on your suit"
 								tanks += H.s_store
@@ -474,12 +474,12 @@
 			var/mob/living/simple_mob/shadekin/SK = usr
 			if(istype(SK))
 				to_chat(usr,"<span class='notice'><b>Energy:</b> [SK.energy] ([SK.dark_gains])</span>")
-			var/mob/living/carbon/human/H = usr
+			var/mob/living/complex/human/H = usr
 			if(istype(H) && istype(H.species, /datum/species/shadekin))
 				to_chat(usr,"<span class='notice'><b>Energy:</b> [H.shadekin_get_energy(H)]</span>")
 
 		if("danger level")
-			var/mob/living/carbon/human/H = usr
+			var/mob/living/complex/human/H = usr
 			if(istype(H) && istype(H.species, /datum/species/shapeshifter/xenochimera))
 				if(H.feral > 50)
 					to_chat(usr, "<span class='warning'>You are currently <b>completely feral.</b></span>")

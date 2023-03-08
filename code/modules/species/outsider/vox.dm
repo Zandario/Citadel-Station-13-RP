@@ -108,14 +108,14 @@
 	inherent_verbs = list(
 		/mob/living/proc/shred_limb,
 		/mob/living/proc/eat_trash,
-		/mob/living/carbon/human/proc/tie_hair,
+		/mob/living/complex/human/proc/tie_hair,
 		)
 
 /datum/species/vox/get_random_name(gender)
 	var/datum/language/species_language = SScharacters.resolve_language(default_language)
 	return species_language.get_random_name(gender)
 
-/datum/species/vox/equip_survival_gear(mob/living/carbon/human/H, extendedtank = FALSE, comprehensive = FALSE)
+/datum/species/vox/equip_survival_gear(mob/living/complex/human/H, extendedtank = FALSE, comprehensive = FALSE)
 	. = ..()
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), SLOT_ID_MASK, INV_OP_SILENT | INV_OP_FLUFFLESS)

@@ -21,7 +21,7 @@
 
 /spell/targeted/chimera/cast(list/targets, mob/user)
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		var/nut = (H.nutrition * nutrition_cost_proportional) / 100
 		var/final_cost
 		if(nut > nutrition_cost_minimum)
@@ -56,12 +56,12 @@
 
 /spell/targeted/chimera/thermal_sight/cast(list/targets, mob/user = usr)
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		toggle_sight(user)
 		addtimer(CALLBACK(src, .proc/toggle_sight,H), duration, TIMER_UNIQUE)
 		..()
 
-/spell/targeted/chimera/thermal_sight/proc/toggle_sight(mob/living/carbon/human/H)
+/spell/targeted/chimera/thermal_sight/proc/toggle_sight(mob/living/complex/human/H)
 	if(!active)
 		to_chat(H, "<span class='notice'>We focus outward, gaining a keen sense of all those around us.</span>")
 		H.species.vision_flags |= SEE_MOBS
@@ -95,7 +95,7 @@
 /spell/targeted/chimera/voice_mimic/cast(list/targets, mob/user = usr)
 	if(user.stat != DEAD)
 		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
+			var/mob/living/complex/human/H = user
 			if(!active)
 				var/mimic_voice = sanitize(input(usr, "Enter a name to mimic. Leave blank to cancel.", "Mimic Voice", null), MAX_NAME_LEN)
 				if(!mimic_voice)
@@ -137,7 +137,7 @@
 /spell/targeted/chimera/regenerate/cast_check(skipcharge = 0,mob/user = usr)
 	if(..())
 		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
+			var/mob/living/complex/human/H = user
 			if((nutrition_cost_minimum > H.nutrition) || nutrition_cost_minimum > ((H.nutrition * nutrition_cost_proportional) / 100) )
 				to_chat(H,"<span class = 'notice'>We don't have enough nutriment. This ability is costly...</span>")
 				return FALSE
@@ -145,7 +145,7 @@
 
 /spell/targeted/chimera/regenerate/cast(list/targets, mob/user = usr)
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		if(do_after(H, delay, null, FALSE, TRUE, INCAPACITATION_DISABLED))
 			H.restore_blood()
 			H.species.create_organs(H)
@@ -207,7 +207,7 @@
 
 /spell/targeted/chimera/hatch/cast(list/targets, mob/user = usr)
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		if(H.stat == DEAD)
 			H.visible_message("<span class = 'warning'> [H] lays eerily still. Something about them seems off, even when dead.</span>","<span class = 'notice'>We begin to gather up whatever is left to begin regrowth.</span>")
 		else
@@ -226,7 +226,7 @@
 
 /spell/targeted/chimera/hatch/proc/add_pop(mob/user = usr)
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		H.visible_message("<span class = 'warning'> <b>[H] looks ready to burst!</b></span>")
 		to_chat(H,"<span class = 'notice'><b>We are ready.</b></span>")
 		var/spell/targeted/chimera/hatch_pop/S = new /spell/targeted/chimera/hatch_pop(H)
@@ -252,7 +252,7 @@
 	nutrition_cost_proportional = 1
 
 /spell/targeted/chimera/hatch_pop/cast(list/targets, mob/user = usr)
-	var/mob/living/carbon/human/H = user
+	var/mob/living/complex/human/H = user
 
 	var/braindamage = (H.brainloss * 0.6) //Can only heal half brain damage.
 
@@ -275,7 +275,7 @@
 	playsound(T, 'sound/effects/splat.ogg')
 
 /spell/targeted/chimera/hatch_pop/after_cast(list/targets, mob/user = usr)
-	var/mob/living/carbon/human/H = user
+	var/mob/living/complex/human/H = user
 	H.remove_spell(src)
 	qdel(src)
 
@@ -301,12 +301,12 @@
 
 /spell/targeted/chimera/no_breathe/cast(list/targets, mob/user = usr)
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		toggle_breath(user)
 		addtimer(CALLBACK(src, .proc/toggle_breath,H), duration, TIMER_UNIQUE)
 	..()
 
-/spell/targeted/chimera/no_breathe/proc/toggle_breath(mob/living/carbon/human/H)
+/spell/targeted/chimera/no_breathe/proc/toggle_breath(mob/living/complex/human/H)
 	if(!active)
 		to_chat(H, "<span class='notice'>We preserve the air we have, no longer needing to breathe.</span>")
 		H.does_not_breathe = TRUE
@@ -344,7 +344,7 @@
 
 /spell/aoe_turf/dissonant_shriek/before_cast(list/targets, mob/user = usr)
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		if(H.is_muzzled())
 			to_chat(src, "<span class='danger'>Mmmf mrrfff!</span>")
 			return
@@ -362,7 +362,7 @@
 
 /spell/aoe_turf/dissonant_shriek/cast(list/targets, mob/user = usr)
 	for(var/mob/living/T in targets)
-		if(iscarbon(T))
+		if(iscomplexmob(T))
 			if(T.mind)
 				if(T.get_ear_protection() >= 2 || T == user)
 					continue

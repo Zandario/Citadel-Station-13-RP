@@ -58,7 +58,7 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right),
 	)
 
-/datum/species/monkey/handle_npc(mob/living/carbon/human/H)
+/datum/species/monkey/handle_npc(mob/living/complex/human/H)
 	if(H.stat != CONSCIOUS)
 		return
 	if(prob(33) && H.canmove && isturf(H.loc) && !H.pulledby) //won't move if being pulled
@@ -186,14 +186,14 @@
 //INSERT CODE HERE SO MONKEYS CAN BE SPAWNED.
 //Also, M was added to the end of the spawn names to signify that it's a monkey, since some names were conflicting.
 
-/mob/living/carbon/human/sharkm/Initialize(mapload)
+/mob/living/complex/human/sharkm/Initialize(mapload)
 	..(mapload, SPECIES_MONKEY_AKULA)
 
-/mob/living/carbon/human/sergallingm/Initialize(mapload)
+/mob/living/complex/human/sergallingm/Initialize(mapload)
 	..(mapload, SPECIES_MONKEY_SERGAL)
 
-/mob/living/carbon/human/sparram/Initialize(mapload)
+/mob/living/complex/human/sparram/Initialize(mapload)
 	..(mapload, SPECIES_MONKEY_NEVREAN)
 
-/mob/living/carbon/human/wolpin/Initialize(mapload)
+/mob/living/complex/human/wolpin/Initialize(mapload)
 	..(mapload, SPECIES_MONKEY_VULPKANIN)

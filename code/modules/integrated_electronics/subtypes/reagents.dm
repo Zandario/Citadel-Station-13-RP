@@ -165,7 +165,7 @@
 								"<span class='userdanger'>[acting_object] is trying to take a blood sample from you!</span>")
 			busy = TRUE
 			if(do_atom(src, L, extra_checks=CALLBACK(L, /mob/living/proc/can_inject,null,0)))
-				var/mob/living/carbon/LB = L
+				var/mob/living/complex/LB = L
 				if(LB.take_blood(src, tramount))
 					L.visible_message("<span class='danger'>[acting_object] takes a blood sample from [L]!</span>", \
 					"<span class='userdanger'>[acting_object] takes a blood sample from you!</span>")
@@ -668,5 +668,3 @@
 		activate_pin(3)
 	push_vol()
 	activate_pin(2)
-
-

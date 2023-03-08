@@ -129,7 +129,7 @@ var/global/floorIsLava = 0
 				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Animalize</A> | "
 
 			// DNA2 - Admin Hax
-			if(M.dna && iscarbon(M))
+			if(M.dna && iscomplexmob(M))
 				body += "<br><br>"
 				body += "<b>DNA Blocks:</b><br><table border='0'><tr><th>&nbsp;</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>"
 				var/bname
@@ -1275,14 +1275,14 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 		to_chat(usr, "Error: you are not an admin!")
 		return
 
-	var/mob/living/carbon/human/M = input("Select mob.", "Select mob.") as null|anything in human_mob_list
+	var/mob/living/complex/human/M = input("Select mob.", "Select mob.") as null|anything in human_mob_list
 	if(!M) return
 
 	show_skill_window(usr, M)
 
 	return
 */
-/client/proc/update_mob_sprite(mob/living/carbon/human/H as mob)
+/client/proc/update_mob_sprite(mob/living/complex/human/H as mob)
 	set category = "Admin"
 	set name = "Update Mob Sprite"
 	set desc = "Should fix any mob sprite update errors."
@@ -1436,7 +1436,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 				msg = "has unparalyzed [key_name(H)]."
 				log_and_message_admins(msg)
 
-/datum/admins/proc/set_tcrystals(mob/living/carbon/human/H as mob)
+/datum/admins/proc/set_tcrystals(mob/living/complex/human/H as mob)
 	set category = "Debug"
 	set name = "Set Telecrystals"
 	set desc = "Allows admins to change telecrystals of a user."
@@ -1452,7 +1452,7 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	else
 		to_chat(usr, "You do not have access to this command.")
 
-/datum/admins/proc/add_tcrystals(mob/living/carbon/human/H as mob)
+/datum/admins/proc/add_tcrystals(mob/living/complex/human/H as mob)
 	set category = "Debug"
 	set name = "Add Telecrystals"
 	set desc = "Allows admins to change telecrystals of a user by addition."

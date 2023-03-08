@@ -20,7 +20,7 @@
 /obj/item/inserted_spell/asphyxiation/on_insert()
 	spawn(1)
 		if(ishuman(host))
-			var/mob/living/carbon/human/H = host
+			var/mob/living/complex/human/H = host
 			if(H.isSynthetic() || H.does_not_breathe) // It's hard to choke a robot or something that doesn't breathe.
 				on_expire()
 				return
@@ -44,7 +44,7 @@
 
 // if((getOxyLoss() > (species.total_health/2)) || (health <= config_legacy.health_threshold_crit))
 
-/obj/item/inserted_spell/asphyxiation/proc/predict_crit(var/pulses_remaining, var/mob/living/carbon/human/victim, var/previous_damage = 0)
+/obj/item/inserted_spell/asphyxiation/proc/predict_crit(var/pulses_remaining, var/mob/living/complex/human/victim, var/previous_damage = 0)
 	if(pulses_remaining <= 0) // Infinite loop protection
 		return 0
 	var/health_lost

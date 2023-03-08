@@ -91,7 +91,7 @@
 	fail_message = "<span class='warning'>IMPLANT CHECK FAILED.</span>"
 	var/obj/item/implant/req_implant = null
 
-/obj/item/firing_pin/implant/pin_auth(mob/living/carbon/human/user)
+/obj/item/firing_pin/implant/pin_auth(mob/living/complex/human/user)
 	if(user)
 		for(var/obj/item/organ/external/E in user.organs)
 			for(var/obj/item/implant/I in E.implants)
@@ -118,19 +118,19 @@
 
 /obj/item/firing_pin/dna/afterattack(atom/target, mob/user, proximity_flag)
 	. = ..()
-	if(proximity_flag && iscarbon(target))
-		var/mob/living/carbon/M = target
+	if(proximity_flag && iscomplexmob(target))
+		var/mob/living/complex/M = target
 		if(M.dna && M.dna.unique_enzymes)
 			unique_enzymes = M.dna.unique_enzymes
 			to_chat(user, "<span class='notice'>DNA-LOCK SET.</span>")
 
-/obj/item/firing_pin/dna/pin_auth(mob/living/carbon/user)
+/obj/item/firing_pin/dna/pin_auth(mob/living/complex/user)
 	if(user && user.dna && user.dna.unique_enzymes)
 		if(user.dna.unique_enzymes == unique_enzymes)
 			return TRUE
 	return FALSE
 
-/obj/item/firing_pin/dna/auth_fail(mob/living/carbon/user)
+/obj/item/firing_pin/dna/auth_fail(mob/living/complex/user)
 	if(!unique_enzymes)
 		if(user && user.dna && user.dna.unique_enzymes)
 			unique_enzymes = user.dna.unique_enzymes
@@ -152,7 +152,7 @@
 
 /obj/item/firing_pin/tag/pin_auth(mob/living/user)
 	if(ishuman(user))
-		var/mob/living/carbon/human/M = user
+		var/mob/living/complex/human/M = user
 		if(istype(M.wear_suit, suit_requirement))
 			return TRUE
 	to_chat(user, "<span class='warning'>You need to be wearing [tagcolor] laser tag armor!</span>")

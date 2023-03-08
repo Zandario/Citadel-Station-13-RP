@@ -72,11 +72,11 @@
 	var/obj/item/bodypart/bodypart = L.get_bodypart(check_zone(def_zone))
 
 	var/list/equipment_items = list()
-	if(iscarbon(L))
-		var/mob/living/carbon/C = L
+	if(iscomplexmob(L))
+		var/mob/living/complex/C = L
 		equipment_items += list(C.head, C.wear_mask, C.back, C.gloves, C.shoes, C.glasses, C.ears)
 		if(ishuman(C))
-			var/mob/living/carbon/human/H = C
+			var/mob/living/complex/human/H = C
 			equipment_items += list(H.wear_suit, H.w_uniform, H.belt, H.s_store, H.wear_id)
 
 	for(var/bp in equipment_items)

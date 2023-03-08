@@ -78,10 +78,10 @@
 	// todo: remove this lol
 	if(isnull(snowflake_worn_state))
 		snowflake_worn_state = item_state_slots?[SLOT_ID_UNIFORM] || item_state || icon_state
-	var/mob/living/carbon/human/H = loc
+	var/mob/living/complex/human/H = loc
 	init_sensors(istype(H)? H : null)
 
-/obj/item/clothing/under/proc/init_sensors(mob/living/carbon/human/H)
+/obj/item/clothing/under/proc/init_sensors(mob/living/complex/human/H)
 	if(has_sensors == UNIFORM_HAS_LOCKED_SENSORS)
 		return
 	if(H)
@@ -120,7 +120,7 @@
 /obj/item/clothing/under/proc/update_rolldown(updating)
 	var/has_roll
 	var/detected_bodytype = BODYTYPE_DEFAULT
-	var/mob/living/carbon/human/H = worn_mob()
+	var/mob/living/complex/human/H = worn_mob()
 	if(istype(H))
 		detected_bodytype = H.species.get_effective_bodytype(H, src, worn_slot)
 	switch(worn_has_rolldown)
@@ -144,7 +144,7 @@
 /obj/item/clothing/under/proc/update_rollsleeve(updating)
 	var/has_sleeves
 	var/detected_bodytype = BODYTYPE_DEFAULT
-	var/mob/living/carbon/human/H = worn_mob()
+	var/mob/living/complex/human/H = worn_mob()
 	if(istype(H))
 		detected_bodytype = H.species.get_effective_bodytype(H, src, worn_slot)
 	switch(worn_has_rollsleeve)
@@ -308,7 +308,7 @@
 
 /obj/item/clothing/under/rank
 
-/obj/item/clothing/under/rank/init_sensors(mob/living/carbon/human/H)
+/obj/item/clothing/under/rank/init_sensors(mob/living/complex/human/H)
 	if(!H)
 		sensor_mode = pick(SUIT_SENSOR_OFF, SUIT_SENSOR_BINARY, SUIT_SENSOR_VITAL, SUIT_SENSOR_TRACKING)	//Select a random setting
 	return ..()

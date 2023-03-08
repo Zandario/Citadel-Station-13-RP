@@ -13,7 +13,7 @@
 
 	Otherwise pretty standard.
 */
-/mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
+/mob/living/complex/human/UnarmedAttack(atom/A, proximity)
 	// if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
 	// 	if(src == A)
 	// 		check_self_for_injuries()
@@ -73,10 +73,10 @@
 	return (ui_interact(user) || nano_ui_interact(user))
 	// return FALSE
 
-/mob/living/carbon/human/RestrainedClickOn(var/atom/A)
+/mob/living/complex/human/RestrainedClickOn(var/atom/A)
 	return
 
-/mob/living/carbon/human/RangedAttack(atom/A)
+/mob/living/complex/human/RangedAttack(atom/A)
 	. = ..()
 	if(.)
 		return
@@ -114,10 +114,10 @@
 	Aliens
 */
 
-/mob/living/carbon/alien/RestrainedClickOn(var/atom/A)
+/mob/living/complex/alien/RestrainedClickOn(var/atom/A)
 	return
 
-/mob/living/carbon/alien/UnarmedAttack(atom/A)
+/mob/living/complex/alien/UnarmedAttack(atom/A)
 	if(!..())
 		return FALSE
 

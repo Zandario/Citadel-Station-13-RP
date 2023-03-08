@@ -68,7 +68,7 @@
 	..()
 
 /obj/item/deck/attack_hand(mob/user as mob)
-	var/mob/living/carbon/human/H = user
+	var/mob/living/complex/human/H = user
 	if(istype(src.loc, /obj/item/storage) || src == H.r_store || src == H.l_store || src.loc == user) // so objects can be removed from storage containers or pockets. also added a catch-all, so if it's in the mob you'll pick it up.
 		..()
 	else // but if they're not, or are in your hands, you can still draw cards.
@@ -81,7 +81,7 @@
 	set desc = "Draw a card from a deck."
 	set src in view(1)
 
-	var/mob/living/carbon/user = usr
+	var/mob/living/complex/user = usr
 
 	if(usr.stat || !Adjacent(usr)) return
 
@@ -89,7 +89,7 @@
 		to_chat(user,"<span class='notice'>Your hands are full!</span>")
 		return
 
-	if(!istype(usr,/mob/living/carbon))
+	if(!istype(usr,/mob/living/complex))
 		return
 
 	if(!cards.len)
@@ -242,7 +242,7 @@
 	if((user == usr && (!( usr.restrained() ) && (!( usr.stat ) && (usr.contents.Find(src) || in_range(src, usr))))))
 		if(!istype(usr, /mob/living/simple_mob))
 			if( !usr.get_active_held_item() )		//if active hand is empty
-				var/mob/living/carbon/human/H = user
+				var/mob/living/complex/human/H = user
 				var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
 
 				if (H.hand)
@@ -258,7 +258,7 @@
 	if((user == usr && (!( usr.restrained() ) && (!( usr.stat ) && (usr.contents.Find(src) || in_range(src, usr))))))
 		if(!istype(usr, /mob/living/simple_mob))
 			if( !usr.get_active_held_item() )		//if active hand is empty
-				var/mob/living/carbon/human/H = user
+				var/mob/living/complex/human/H = user
 				var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
 
 				if (H.hand)
@@ -362,7 +362,7 @@
 	set desc = "Remove a card from the hand."
 	set src in view(1)
 
-	var/mob/living/carbon/user = usr
+	var/mob/living/complex/user = usr
 
 	if(user.stat || !Adjacent(user)) return
 

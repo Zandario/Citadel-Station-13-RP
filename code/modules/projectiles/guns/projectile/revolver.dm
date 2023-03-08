@@ -218,7 +218,7 @@
 	set category = "Object"
 	set desc = "Click to swap from one method of firing to another."
 
-	var/mob/living/carbon/human/M = usr
+	var/mob/living/complex/human/M = usr
 	if(!M.mind)
 		return 0
 

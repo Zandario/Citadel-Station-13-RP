@@ -29,8 +29,8 @@
 
 /obj/item/reagent_containers/pill/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(target == user)
-		if(istype(target, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = target
+		if(istype(target, /mob/living/complex/human))
+			var/mob/living/complex/human/H = target
 			if(!H.check_has_mouth())
 				to_chat(user, "Where do you intend to put \the [src]? You don't have a mouth!")
 				return CLICKCHAIN_DO_NOT_PROPAGATE
@@ -47,9 +47,9 @@
 			qdel(src)
 			return CLICKCHAIN_DO_NOT_PROPAGATE
 
-	else if(istype(target, /mob/living/carbon/human))
+	else if(istype(target, /mob/living/complex/human))
 
-		var/mob/living/carbon/human/H = target
+		var/mob/living/complex/human/H = target
 		if(!H.check_has_mouth())
 			to_chat(user, "Where do you intend to put \the [src]? \The [H] doesn't have a mouth!")
 			return CLICKCHAIN_DO_NOT_PROPAGATE

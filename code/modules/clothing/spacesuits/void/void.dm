@@ -100,7 +100,7 @@
 /obj/item/clothing/suit/space/void/equipped(mob/M)
 	..()
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/complex/human/H = M
 
 	if(!istype(H)) return
 
@@ -168,7 +168,7 @@
 		to_chat(usr, "There is no helmet installed.")
 		return
 
-	var/mob/living/carbon/human/H = usr
+	var/mob/living/complex/human/H = usr
 
 	if(!istype(H))
 		return
@@ -204,7 +204,7 @@
 		to_chat(usr, "There are no magboots installed.")
 		return
 
-	var/mob/living/carbon/human/H = usr
+	var/mob/living/complex/human/H = usr
 
 	if(!istype(H))
 		return
@@ -239,7 +239,7 @@
 		to_chat(usr, "There is no tank or cooling unit inserted.")
 		return
 
-	var/mob/living/carbon/human/H = usr
+	var/mob/living/complex/human/H = usr
 
 	if(!istype(H))
 		return

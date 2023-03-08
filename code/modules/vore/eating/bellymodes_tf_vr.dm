@@ -5,11 +5,11 @@
 	*/
 
 	//Cast here for reduced duplication
-	var/mob/living/carbon/human/O = owner
+	var/mob/living/complex/human/O = owner
 
 ///////////////////////////// DM_TRANSFORM_HAIR_AND_EYES /////////////////////////////
 	if(mode == DM_TRANSFORM_HAIR_AND_EYES)
-		for (var/mob/living/carbon/human/P in touchable_mobs)
+		for (var/mob/living/complex/human/P in touchable_mobs)
 			if(P.stat == DEAD)
 				continue
 
@@ -23,7 +23,7 @@
 
 ///////////////////////////// DM_TRANSFORM_MALE /////////////////////////////
 	else if(mode == DM_TRANSFORM_MALE)
-		for (var/mob/living/carbon/human/P in touchable_mobs)
+		for (var/mob/living/complex/human/P in touchable_mobs)
 			if(P.stat == DEAD)
 				continue
 
@@ -45,7 +45,7 @@
 
 ///////////////////////////// DM_TRANSFORM_FEMALE /////////////////////////////
 	else if(mode == DM_TRANSFORM_FEMALE)
-		for (var/mob/living/carbon/human/P in touchable_mobs)
+		for (var/mob/living/complex/human/P in touchable_mobs)
 			if(P.stat == DEAD)
 				continue
 
@@ -67,7 +67,7 @@
 
 ///////////////////////////// DM_TRANSFORM_KEEP_GENDER  /////////////////////////////
 	else if(mode == DM_TRANSFORM_KEEP_GENDER)
-		for (var/mob/living/carbon/human/P in touchable_mobs)
+		for (var/mob/living/complex/human/P in touchable_mobs)
 			if(P.stat == DEAD)
 				continue
 
@@ -85,7 +85,7 @@
 
 ///////////////////////////// DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR  /////////////////////////////
 	else if(mode == DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR)
-		for (var/mob/living/carbon/human/P in touchable_mobs)
+		for (var/mob/living/complex/human/P in touchable_mobs)
 			if(P.stat == DEAD)
 				continue
 
@@ -101,7 +101,7 @@
 
 ///////////////////////////// DM_TRANSFORM_REPLICA /////////////////////////////
 	else if(mode == DM_TRANSFORM_REPLICA)
-		for (var/mob/living/carbon/human/P in touchable_mobs)
+		for (var/mob/living/complex/human/P in touchable_mobs)
 			if(P.stat == DEAD)
 				continue
 
@@ -126,7 +126,7 @@
 
 ///////////////////////////// DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG /////////////////////////////
 	else if(mode == DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG)
-		for (var/mob/living/carbon/human/P in touchable_mobs)
+		for (var/mob/living/complex/human/P in touchable_mobs)
 			if(P.stat == DEAD)
 				continue
 
@@ -142,7 +142,7 @@
 
 ///////////////////////////// DM_TRANSFORM_KEEP_GENDER_EGG  /////////////////////////////
 	else if(mode == DM_TRANSFORM_KEEP_GENDER_EGG)
-		for (var/mob/living/carbon/human/P in touchable_mobs)
+		for (var/mob/living/complex/human/P in touchable_mobs)
 			if(P.stat == DEAD)
 				continue
 
@@ -160,7 +160,7 @@
 
 ///////////////////////////// DM_TRANSFORM_REPLICA_EGG /////////////////////////////
 	else if(mode == DM_TRANSFORM_REPLICA_EGG)
-		for (var/mob/living/carbon/human/P in touchable_mobs)
+		for (var/mob/living/complex/human/P in touchable_mobs)
 			if(P.stat == DEAD)
 				continue
 
@@ -185,7 +185,7 @@
 
 ///////////////////////////// DM_TRANSFORM_MALE_EGG /////////////////////////////
 	else if(mode == DM_TRANSFORM_MALE_EGG)
-		for (var/mob/living/carbon/human/P in touchable_mobs)
+		for (var/mob/living/complex/human/P in touchable_mobs)
 			if(P.stat == DEAD)
 				continue
 
@@ -207,7 +207,7 @@
 
 ///////////////////////////// DM_TRANSFORM_FEMALE_EGG /////////////////////////////
 	else if(mode == DM_TRANSFORM_FEMALE_EGG)
-		for (var/mob/living/carbon/human/P in touchable_mobs)
+		for (var/mob/living/complex/human/P in touchable_mobs)
 			if(P.stat == DEAD)
 				continue
 
@@ -229,9 +229,8 @@
 
 ///////////////////////////// DM_EGG /////////////////////////////
 	else if(mode == DM_EGG)
-		for (var/mob/living/carbon/human/P in touchable_mobs)
+		for (var/mob/living/complex/human/P in touchable_mobs)
 			if(P.absorbed || P.stat == DEAD)
 				continue
 
 			put_in_egg(P,1)
-

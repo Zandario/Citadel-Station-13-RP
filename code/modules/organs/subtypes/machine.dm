@@ -46,7 +46,7 @@
 
 /obj/item/organ/internal/mmi_holder/Initialize(mapload, internal)
 	. = ..()
-	var/mob/living/carbon/human/dummy/mannequin/M = loc
+	var/mob/living/complex/human/dummy/mannequin/M = loc
 	if(istype(M))
 		return
 	stored_mmi = new brain_type(src)

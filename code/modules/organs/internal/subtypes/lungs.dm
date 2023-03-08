@@ -60,6 +60,6 @@
 
 /obj/item/organ/internal/lungs/grey/colormatch/proc/sync_color()
 	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
+		var/mob/living/complex/human/H = owner
 		if(H.species.blood_color)
 			add_atom_colour(H.species.blood_color, FIXED_COLOUR_PRIORITY)

@@ -1,12 +1,12 @@
 /datum/unit_test/space_suffocation
 	var/startOxyloss
 	var/endOxyloss
-	var/mob/living/carbon/human/H
+	var/mob/living/complex/human/H
 
 /datum/unit_test/space_suffocation/Run()
 	var/turf/space/T = locate()
 
-	H = allocate(/mob/living/carbon/human, T)
+	H = allocate(/mob/living/complex/human, T)
 	startOxyloss = H.getOxyLoss()
 	sleep(10 SECONDS)
 	endOxyloss = H.getOxyLoss()

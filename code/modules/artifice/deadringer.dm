@@ -10,8 +10,8 @@
 	var/timer = 0
 	var/bruteloss_prev = 999999
 	var/fireloss_prev = 999999
-	var/mob/living/carbon/human/corpse = null
-	var/mob/living/carbon/human/watchowner = null
+	var/mob/living/complex/human/corpse = null
+	var/mob/living/complex/human/watchowner = null
 
 /obj/item/deadringer/Initialize(mapload)
 	. = ..()
@@ -30,7 +30,7 @@
 
 /obj/item/deadringer/attack_self(var/mob/living/user as mob)
 	var/mob/living/H = src.loc
-	if (!istype(H, /mob/living/carbon/human))
+	if (!istype(H, /mob/living/complex/human))
 		to_chat(H,"<font color=#4F49AF>You have no clue what to do with this thing.</font>")
 		return
 	if(!activated)
@@ -51,7 +51,7 @@
 /obj/item/deadringer/process(delta_time)
 	if(activated)
 		if (ismob(src.loc))
-			var/mob/living/carbon/human/H = src.loc
+			var/mob/living/complex/human/H = src.loc
 			watchowner = H
 			if(H.getBruteLoss() > bruteloss_prev || H.getFireLoss() > fireloss_prev)
 				deathprevent()
@@ -91,10 +91,10 @@
 		playsound(get_turf(src), 'sound/effects/uncloak.ogg', 35, 1, -1)
 	return
 
-/obj/item/deadringer/proc/makeacorpse(var/mob/living/carbon/human/H)
+/obj/item/deadringer/proc/makeacorpse(var/mob/living/complex/human/H)
 	if(H.isSynthetic())
 		return
-	corpse = new /mob/living/carbon/human(H.loc)
+	corpse = new /mob/living/complex/human(H.loc)
 	corpse.setDNA(H.dna.Clone())
 	corpse.death(1) //Kills the new mob
 	var/obj/item/clothing/temp = null

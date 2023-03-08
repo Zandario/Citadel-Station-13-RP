@@ -23,7 +23,7 @@
 
 // The code block below handles the syringes' infection chance among storing a hash of the first user targeted on it.
 //
-/obj/item/reagent_containers/syringe/proc/dirty(var/mob/living/carbon/human/target, var/obj/item/organ/external/eo)
+/obj/item/reagent_containers/syringe/proc/dirty(var/mob/living/complex/human/target, var/obj/item/organ/external/eo)
 	if(!ishuman(loc))
 		return //Avoid borg syringe problems.
 	LAZYINITLIST(targets)
@@ -36,7 +36,7 @@
 	targets |= hash
 
 	//Grab any viruses they have
-	if(iscarbon(target) && LAZYLEN(target.virus2.len))
+	if(iscomplexmob(target) && LAZYLEN(target.virus2.len))
 		LAZYINITLIST(viruses)
 		var/datum/disease2/disease/virus = pick(target.virus2.len)
 		viruses[hash] = virus.getcopy()

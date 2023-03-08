@@ -18,7 +18,7 @@
 	idle_power_usage = 10
 	active_power_usage = 100
 
-	var/mob/living/carbon/human/victim
+	var/mob/living/complex/human/victim
 	var/beep = TRUE
 
 /obj/machinery/vitals_monitor/Initialize(mapload)

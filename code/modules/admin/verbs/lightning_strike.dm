@@ -92,8 +92,8 @@
 		// Deafen them.
 		if(L.get_ear_protection() < 2)
 			L.AdjustSleeping(-100)
-			if(iscarbon(L))
-				var/mob/living/carbon/C = L
+			if(iscomplexmob(L))
+				var/mob/living/complex/C = L
 				C.ear_deaf += 10
 			to_chat(L, SPAN_DANGER("Lightning struck nearby, and the thunderclap is deafening!"))
 

@@ -41,7 +41,7 @@
 	l_ear = /obj/item/radio/headset/headset_service
 	backpack_contents = list(/obj/item/clothing/accessory/permit/gun/bar = 1)
 
-/datum/outfit/job/station/bartender/post_equip(mob/living/carbon/human/H)
+/datum/outfit/job/station/bartender/post_equip(mob/living/complex/human/H)
 	..()
 	for(var/obj/item/clothing/accessory/permit/gun/bar/permit in H.back.contents)
 		permit.set_name(H.real_name)
@@ -50,4 +50,3 @@
 	name = OUTFIT_JOB_NAME("Barista")
 	id_pda_assignment = "Barista"
 	backpack_contents = null
-

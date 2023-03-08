@@ -52,7 +52,7 @@
  * * gamer_skill: skill of the gamer, because gamers gods can lessen the effects of the emagged machine
  * * gamer_skill_level: skill level of the gamer, another way to measure emag downside avoidance
  */
-/datum/orion_event/proc/emag_effect(obj/machinery/computer/arcade/orion_trail/game, mob/living/carbon/gamer)
+/datum/orion_event/proc/emag_effect(obj/machinery/computer/arcade/orion_trail/game, mob/living/complex/gamer)
 	if(emag_message)
 		game.audible_message(emag_message)
 	if(emag_sound)
@@ -112,7 +112,7 @@
 	event_responses.Cut()
 	..()
 
-/datum/orion_event/electronic_part/emag_effect(obj/machinery/computer/arcade/orion_trail/game, mob/living/carbon/gamer)
+/datum/orion_event/electronic_part/emag_effect(obj/machinery/computer/arcade/orion_trail/game, mob/living/complex/gamer)
 	playsound(game, 'sound/effects/empulse.ogg', 50, TRUE)
 	game.visible_message("<span class='danger'>[src] malfunctions, randomizing in-game stats!</span>")
 	var/oldfood = game.food
@@ -156,7 +156,7 @@
 	event_responses.Cut()
 	..()
 /*
-/datum/orion_event/hull_part/emag_effect(obj/machinery/computer/arcade/orion_trail/game, mob/living/carbon/gamer)
+/datum/orion_event/hull_part/emag_effect(obj/machinery/computer/arcade/orion_trail/game, mob/living/complex/gamer)
 	if(prob(10+gamer_skill))
 		game.say("Something slams into the floor around [src] - luckily, it didn't get through!")
 		playsound(game, 'sound/effects/bang.ogg', 50, TRUE)
@@ -189,7 +189,7 @@
 		return ..()
 	game.encounter_event(/datum/orion_event/exploring_derelict)
 
-/datum/orion_event/old_ship/emag_effect(obj/machinery/computer/arcade/orion_trail/game, mob/living/carbon/gamer)
+/datum/orion_event/old_ship/emag_effect(obj/machinery/computer/arcade/orion_trail/game, mob/living/complex/gamer)
 	return //do nothing because this leads into an event where we actually will do something.
 
 #define BUTTON_WELCOME_ABOARD "Welcome aboard."
@@ -257,7 +257,7 @@
 	else
 		text += "Fortunately, you fended them off without any trouble."
 /*
-/datum/orion_event/raiders/emag_effect(obj/machinery/computer/arcade/orion_trail/game, mob/living/carbon/gamer)
+/datum/orion_event/raiders/emag_effect(obj/machinery/computer/arcade/orion_trail/game, mob/living/complex/gamer)
 	if(prob(50-gamer_skill))
 		to_chat(usr, "<span class='userdanger'>You hear battle shouts. The tramping of boots on cold metal. Screams of agony. The rush of venting air. Are you going insane?</span>")
 		gamer.hallucination += 30
@@ -277,7 +277,7 @@
 	var/deadname = game.remove_crewmember()
 	text = "A deadly illness has been contracted! [deadname] was killed by the disease."
 /*
-/datum/orion_event/illness/emag_effect(obj/machinery/computer/arcade/orion_trail/game, mob/living/carbon/gamer)
+/datum/orion_event/illness/emag_effect(obj/machinery/computer/arcade/orion_trail/game, mob/living/complex/gamer)
 	var/maxSeverity = 3
 
 	if(gamer_skill_level >= SKILL_LEVEL_EXPERT)
@@ -316,7 +316,7 @@
 		game.fuel -= 5
 		..()
 /*
-/datum/orion_event/flux/emag_effect(obj/machinery/computer/arcade/orion_trail/game, mob/living/carbon/gamer)
+/datum/orion_event/flux/emag_effect(obj/machinery/computer/arcade/orion_trail/game, mob/living/complex/gamer)
 	if(prob(25 + gamer_skill))//withstand the wind with your GAMER SKILL
 		to_chat(gamer, SPAN_USERDANGER("A violent gale blows past you, and you barely manage to stay standing!"))
 		return
@@ -434,7 +434,7 @@
 	game.set_game_over(usr, "You were swept away into the black hole.")
 	..()
 /*
-/datum/orion_event/black_hole_death/emag_effect(obj/machinery/computer/arcade/orion_trail/game, mob/living/carbon/gamer)
+/datum/orion_event/black_hole_death/emag_effect(obj/machinery/computer/arcade/orion_trail/game, mob/living/complex/gamer)
 	if(game.obj_flags & EMAGGED)
 		playsound(game.loc, 'sound/effects/supermatter.ogg', 100, TRUE)
 		game.say("A miniature black hole suddenly appears in front of [game], devouring [gamer] alive!")

@@ -71,7 +71,7 @@
 	var/data[0]
 
 	var/obj/machinery/sleeper/S = sleeper
-	var/mob/living/carbon/human/occupant = sleeper.occupant
+	var/mob/living/complex/human/occupant = sleeper.occupant
 
 	data["power"] = S.machine_stat & (NOPOWER|BROKEN) ? FALSE : TRUE
 
@@ -96,8 +96,8 @@
 				data["stat"] = "<font color='red'>Dead</font>"
 		data["health"] = occupant.health
 		data["maxHealth"] = occupant.getMaxHealth()
-		if(iscarbon(occupant))
-			var/mob/living/carbon/C = occupant
+		if(iscomplexmob(occupant))
+			var/mob/living/complex/C = occupant
 			data["pulse"] = C.get_pulse(GETPULSE_TOOL)
 		data["brute"] = occupant.getBruteLoss()
 		data["burn"] = occupant.getFireLoss()
@@ -165,7 +165,7 @@
 	density = TRUE
 	anchored = TRUE
 	circuit = /obj/item/circuitboard/sleeper
-	var/mob/living/carbon/human/occupant = null
+	var/mob/living/complex/human/occupant = null
 	var/list/available_chemicals = list()
 	var/list/base_chemicals = list("inaprovaline" = "Inaprovaline", "paracetamol" = "Paracetamol", "anti_toxin" = "Dylovene", "dexalin" = "Dexalin")
 	var/obj/item/reagent_containers/glass/beaker = null

@@ -90,7 +90,7 @@
 /datum/modifier/agonize/tick()
 	spawn()
 		if(ishuman(holder))
-			var/mob/living/carbon/human/H = holder
+			var/mob/living/complex/human/H = holder
 			H.apply_effect(20, AGONY)
 			if(prob(10))
 				to_chat(H, "<span class='warning'>Just make it stop!</span>")
@@ -119,7 +119,7 @@
 				L.adjustFireLoss(-2)
 
 			if(ishuman(holder))
-				var/mob/living/carbon/human/H = holder
+				var/mob/living/complex/human/H = holder
 
 				for(var/obj/item/organ/O in H.internal_organs)
 					if(O.damage > 0) // Fix internal damage
@@ -171,7 +171,7 @@
 		return FALSE
 
 	else
-		var/mob/living/carbon/human/H = L
+		var/mob/living/complex/human/H = L
 		if(H.species.get_species_id() == SPECIES_ID_DIONA)
 			to_chat(L, "<span class='warning'>You feel strange for a moment, but it passes.</span>")
 			return FALSE // Happy trees aren't affected by incredible hunger.
@@ -181,7 +181,7 @@
 /datum/modifier/gluttonyregeneration/tick()
 	spawn()
 		if(ishuman(holder))
-			var/mob/living/carbon/human/H = holder
+			var/mob/living/complex/human/H = holder
 			var/starting_nutrition = H.nutrition
 			H.nutrition = max(0, H.nutrition - 10)
 			var/healing_amount = starting_nutrition - H.nutrition

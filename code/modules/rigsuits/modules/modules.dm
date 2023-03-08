@@ -227,7 +227,7 @@
 /obj/item/rig_module/proc/accepts_item(var/obj/item/input_device)
 	return 0
 
-/mob/living/carbon/human/statpanel_data(client/C)
+/mob/living/complex/human/statpanel_data(client/C)
 	. = ..()
 	if(istype(back,/obj/item/rig))
 		var/obj/item/rig/R = back

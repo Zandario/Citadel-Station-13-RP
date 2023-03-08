@@ -23,7 +23,7 @@
 	var/list/datum/objective/assassinate/missions = list()
 
 	for(var/datum/mind/target in SSticker.minds)
-		if((target != traitor) && istype(target.current, /mob/living/carbon/human))
+		if((target != traitor) && istype(target.current, /mob/living/complex/human))
 			if(target && target.current)
 				var/datum/objective/target_obj = new /datum/objective/assassinate(null,job,target)
 				missions += target_obj
@@ -34,7 +34,7 @@
 	var/list/datum/objective/frame/missions = list()
 
 	for(var/datum/mind/target in SSticker.minds)
-		if((target != traitor) && istype(target.current, /mob/living/carbon/human))
+		if((target != traitor) && istype(target.current, /mob/living/complex/human))
 			if(target && target.current)
 				var/datum/objective/target_obj = new /datum/objective/frame(null,job,target)
 				missions += target_obj
@@ -45,7 +45,7 @@
 	var/list/datum/objective/frame/missions = list()
 
 	for(var/datum/mind/target in SSticker.minds)
-		if((target != traitor) && istype(target.current, /mob/living/carbon/human))
+		if((target != traitor) && istype(target.current, /mob/living/complex/human))
 			if(target && target.current)
 				var/datum/objective/target_obj = new /datum/objective/protection(null,job,target)
 				missions += target_obj
@@ -388,7 +388,7 @@ datum
 
 			find_target_by_role(var/role)
 				for(var/datum/mind/possible_target in SSticker.minds)
-					if((possible_target != owner) && istype(possible_target.current, /mob/living/carbon/human) && (possible_target.assigned_role == role))
+					if((possible_target != owner) && istype(possible_target.current, /mob/living/complex/human) && (possible_target.assigned_role == role))
 						target = possible_target
 						break
 
@@ -404,7 +404,7 @@ datum
 				var/list/possible_targets = list()
 
 				for(var/datum/mind/possible_target in SSticker.minds)
-					if((possible_target != owner) && istype(possible_target.current, /mob/living/carbon/human))
+					if((possible_target != owner) && istype(possible_target.current, /mob/living/complex/human))
 						possible_targets += possible_target
 
 				if(possible_targets.len > 0)
@@ -439,7 +439,7 @@ datum
 
 			find_target_by_role(var/role)
 				for(var/datum/mind/possible_target in SSticker.minds)
-					if((possible_target != owner) && istype(possible_target.current, /mob/living/carbon/human) && (possible_target.assigned_role == role))
+					if((possible_target != owner) && istype(possible_target.current, /mob/living/complex/human) && (possible_target.assigned_role == role))
 						target = possible_target
 						break
 
@@ -1292,7 +1292,7 @@ datum
 							if(P.client && P.ready && P.mind!=owner)
 								n_p ++
 					else if (SSticker.current_state == GAME_STATE_PLAYING)
-						for(var/mob/living/carbon/human/P in world)
+						for(var/mob/living/complex/human/P in world)
 							if(P.client && !(P.mind in SSticker.mode.changelings) && P.mind!=owner)
 								n_p ++
 					target_amount = min(target_amount, n_p)
@@ -1336,8 +1336,8 @@ datum
 
 				var/current_amount
 				var/obj/item/rig/S
-				if(istype(owner.current,/mob/living/carbon/human))
-					var/mob/living/carbon/human/H = owner.current
+				if(istype(owner.current,/mob/living/complex/human))
+					var/mob/living/complex/human/H = owner.current
 					S = H.back
 				if(!S || !istype(S) || !S.stored_research.len)
 					return 0
@@ -1426,20 +1426,20 @@ datum
 			check_completion()//Basically runs through all the mobs in the area to determine how much they are worth.
 				var/captured_amount = 0
 				var/area/centcom/holding/A = locate()
-				for(var/mob/living/carbon/human/M in A)//Humans.
+				for(var/mob/living/complex/human/M in A)//Humans.
 					if(M.stat==2)//Dead folks are worth less.
 						captured_amount+=0.5
 						continue
 					captured_amount+=1
-				for(var/mob/living/carbon/monkey/M in A)//Monkeys are almost worthless, you failure.
+				for(var/mob/living/complex/monkey/M in A)//Monkeys are almost worthless, you failure.
 					captured_amount+=0.1
-				for(var/mob/living/carbon/alien/larva/M in A)//Larva are important for research.
+				for(var/mob/living/complex/alien/larva/M in A)//Larva are important for research.
 					if(M.stat==2)
 						captured_amount+=0.5
 						continue
 					captured_amount+=1
-				for(var/mob/living/carbon/alien/humanoid/M in A)//Aliens are worth twice as much as humans.
-					if(istype(M, /mob/living/carbon/alien/humanoid/queen))//Queens are worth three times as much as humans.
+				for(var/mob/living/complex/alien/humanoid/M in A)//Aliens are worth twice as much as humans.
+					if(istype(M, /mob/living/complex/alien/humanoid/queen))//Queens are worth three times as much as humans.
 						if(M.stat==2)
 							captured_amount+=1.5
 						else

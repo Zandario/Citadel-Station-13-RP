@@ -17,7 +17,7 @@
 	UnregisterSignal(target, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 	user_by_item -= target
 
-/datum/element/earhealing/proc/equippedChanged(datum/source, mob/living/carbon/user, slot)
+/datum/element/earhealing/proc/equippedChanged(datum/source, mob/living/complex/user, slot)
 	if(slot == SLOT_EARS && istype(user))
 		user_by_item[source] = user
 	else
@@ -25,7 +25,7 @@
 
 /datum/element/earhealing/process(delta_time)
 	for(var/i in user_by_item)
-		var/mob/living/carbon/user = user_by_item[i]
+		var/mob/living/complex/user = user_by_item[i]
 		if(HAS_TRAIT(user, TRAIT_DEAF))
 			continue
 		var/obj/item/organ/ears/ears = user.getorganslot(ORGAN_SLOT_EARS)

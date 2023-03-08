@@ -120,7 +120,7 @@
 
 /obj/item/trash/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
+		var/mob/living/complex/human/H = target
 		if(H.species.trashcan == 1)
 			if(!user.attempt_insert_item_for_installation(src, H.vore_selected))
 				return

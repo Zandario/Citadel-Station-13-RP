@@ -50,11 +50,11 @@
 /mob/living/silicon/say_understands(var/other,var/datum/language/speaking = null)
 	//These only pertain to common. Languages are handled by mob/say_understands()
 	if (!speaking)
-		if (istype(other, /mob/living/carbon))
+		if (istype(other, /mob/living/complex))
 			return 1
 		if (istype(other, /mob/living/silicon))
 			return 1
-		if (istype(other, /mob/living/carbon/brain))
+		if (istype(other, /mob/living/complex/brain))
 			return 1
 	if(speaking && translation_context.can_translate(speaking, require_perfect = TRUE))
 		return TRUE

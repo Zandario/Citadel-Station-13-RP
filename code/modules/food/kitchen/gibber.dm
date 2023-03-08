@@ -123,11 +123,11 @@
 		to_chat(user, "<span class='danger'>The gibber is locked and running, wait for it to finish.</span>")
 		return
 
-	if(!(istype(victim, /mob/living/carbon)) && !(istype(victim, /mob/living/simple_mob)) )
+	if(!(istype(victim, /mob/living/complex)) && !(istype(victim, /mob/living/simple_mob)) )
 		to_chat(user, "<span class='danger'>This is not suitable for the gibber!</span>")
 		return
 
-	if(istype(victim,/mob/living/carbon/human) && !emagged)
+	if(istype(victim,/mob/living/complex/human) && !emagged)
 		to_chat(user, "<span class='danger'>The gibber safety guard is engaged!</span>")
 		return
 
@@ -190,8 +190,8 @@
 			slab_count = critter.meat_amount
 		if(critter.meat_type)
 			slab_type = critter.meat_type
-	else if(istype(src.occupant,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = occupant
+	else if(istype(src.occupant,/mob/living/complex/human))
+		var/mob/living/complex/human/H = occupant
 		slab_name = src.occupant.real_name
 		slab_type = H.isSynthetic() ? /obj/item/stack/material/steel : H.species.meat_type
 

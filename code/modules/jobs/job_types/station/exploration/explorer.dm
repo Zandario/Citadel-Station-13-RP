@@ -58,7 +58,7 @@
 
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
 
-/datum/outfit/job/station/explorer2/post_equip(mob/living/carbon/human/H)
+/datum/outfit/job/station/explorer2/post_equip(mob/living/complex/human/H)
 	..()
 	for(var/obj/item/clothing/accessory/permit/gun/planetside/permit in H.back.contents)
 		permit.set_name(H.real_name)

@@ -278,8 +278,8 @@
 		src.icon_state = "sword0"
 		src.w_class = ITEMSIZE_SMALL
 
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
+	if(istype(user,/mob/living/complex/human))
+		var/mob/living/complex/human/H = user
 		H.update_inv_l_hand()
 		H.update_inv_r_hand()
 
@@ -332,7 +332,7 @@
 	if(H.is_incorporeal())
 		return
 	if((ishuman(H))) //i guess carp and shit shouldn't set them off
-		var/mob/living/carbon/M = H
+		var/mob/living/complex/M = H
 		if(M.m_intent == "run")
 			to_chat(M, "<span class='warning'>You step on the snap pop!</span>")
 

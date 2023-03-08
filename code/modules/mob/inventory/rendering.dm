@@ -395,7 +395,7 @@
 	return data
 
 /obj/item/proc/debug_worn_assets(slot_or_id, mob/M = worn_mob(), bodytype)
-	var/mob/living/carbon/human/H = ishuman(M)? M : null
+	var/mob/living/complex/human/H = ishuman(M)? M : null
 	var/datum/inventory_slot_meta/slot_meta
 	if(isnull(slot_or_id))
 		slot_or_id = worn_slot

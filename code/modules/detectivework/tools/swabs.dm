@@ -19,7 +19,7 @@
 	if(is_used())
 		return
 
-	var/mob/living/carbon/human/H = target
+	var/mob/living/complex/human/H = target
 	var/sample_type
 
 	. = CLICKCHAIN_DO_NOT_PROPAGATE

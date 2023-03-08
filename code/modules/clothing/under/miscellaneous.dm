@@ -1823,7 +1823,7 @@
 	if (!ishuman(usr))
 		return
 
-	var/mob/living/carbon/human/H = usr
+	var/mob/living/complex/human/H = usr
 
 	if (H.stat || H.restrained())
 		return
@@ -1864,7 +1864,7 @@
 /obj/item/clothing/under/bluespace/unequipped(mob/user, slot, flags)
 	. = ..()
 	if(. && ishuman(user) && original_size)
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		H.resize(original_size)
 		original_size = null
 		H.visible_message("<span class='warning'>The space around [H] distorts as they return to their original size!</span>","<span class='notice'>The space around you distorts as you return to your original size!</span>")

@@ -482,11 +482,11 @@
 		moblist.Add(M)
 	for(var/mob/living/silicon/robot/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/living/carbon/human/M in sortmob)
+	for(var/mob/living/complex/human/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/living/carbon/brain/M in sortmob)
+	for(var/mob/living/complex/brain/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/living/carbon/alien/M in sortmob)
+	for(var/mob/living/complex/alien/M in sortmob)
 		moblist.Add(M)
 	for(var/mob/observer/dead/M in sortmob)
 		moblist.Add(M)
@@ -1075,7 +1075,7 @@
  * check if mob is lying down on something we can operate him on.
  * The RNG with table/rollerbeds comes into play in do_surgery() so that fail_step() can be used instead.
  */
-/proc/can_operate(mob/living/carbon/M)
+/proc/can_operate(mob/living/complex/M)
 	return M.lying
 
 /// Returns an instance of a valid surgery surface.

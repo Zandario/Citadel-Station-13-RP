@@ -63,8 +63,8 @@
 		else
 			D.wear_hat(src)
 			success = 1
-	else if(istype(user, /mob/living/carbon/alien/diona))
-		var/mob/living/carbon/alien/diona/D = user
+	else if(istype(user, /mob/living/complex/alien/diona))
+		var/mob/living/complex/alien/diona/D = user
 		if(D.hat)
 			success = 2
 		else
@@ -80,7 +80,7 @@
 	return 1
 
 /obj/item/clothing/head/update_icon()
-	var/mob/living/carbon/human/H = worn_mob()
+	var/mob/living/complex/human/H = worn_mob()
 
 	if(on)
 		// Generate object icon.

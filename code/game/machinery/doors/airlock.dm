@@ -93,8 +93,8 @@
 	..()
 
 /obj/machinery/door/airlock/attack_alien(var/mob/user) //Familiar, right? Doors. -Mechoid
-	if(istype(user, /mob/living/carbon/human))
-		var/mob/living/carbon/human/X = user
+	if(istype(user, /mob/living/complex/human))
+		var/mob/living/complex/human/X = user
 		if(istype(X.species, /datum/species/xenos))
 			if(src.locked || src.welded)
 				visible_message("<span class='green'>\The [user] begins digging into \the [src] internals!</span>")
@@ -978,8 +978,8 @@ About the new airlock wires panel:
 			if(src.shock(user, 100))
 				return
 
-	if(istype(user, /mob/living/carbon/human))
-		var/mob/living/carbon/human/X = user
+	if(istype(user, /mob/living/complex/human))
+		var/mob/living/complex/human/X = user
 		if(istype(X.species, /datum/species/xenos))
 			src.attack_alien(user)
 			return
@@ -1335,7 +1335,7 @@ About the new airlock wires panel:
 	var/turf/T = get_turf(src)
 	T.add_blood(src)
 
-/mob/living/carbon/airlock_crush(var/crush_damage)
+/mob/living/complex/airlock_crush(var/crush_damage)
 	. = ..()
 	if(can_feel_pain())
 		emote("scream")

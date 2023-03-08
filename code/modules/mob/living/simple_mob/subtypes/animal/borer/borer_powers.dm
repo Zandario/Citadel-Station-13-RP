@@ -52,7 +52,7 @@
 		return
 
 	var/list/choices = list()
-	for(var/mob/living/carbon/C in view(1,src))
+	for(var/mob/living/complex/C in view(1,src))
 		if(src.Adjacent(C))
 			choices += C
 
@@ -60,7 +60,7 @@
 		to_chat(src, "There are no viable hosts within range...")
 		return
 
-	var/mob/living/carbon/M = input(src,"Who do you wish to infest?") in null|choices
+	var/mob/living/complex/M = input(src,"Who do you wish to infest?") in null|choices
 
 	if(!M || !src) return
 
@@ -70,8 +70,8 @@
 		to_chat(src, "You cannot infest someone who is already infested!")
 		return
 
-	if(istype(M,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if(istype(M,/mob/living/complex/human))
+		var/mob/living/complex/human/H = M
 
 		var/obj/item/organ/external/E = H.organs_by_name[BP_HEAD]
 		if(!E || E.is_stump())
@@ -110,8 +110,8 @@
 		if(host.mind)
 			borers.add_antagonist_mind(host.mind, 1, borers.faction_role_text, borers.faction_welcome)
 
-		if(istype(M,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
+		if(istype(M,/mob/living/complex/human))
+			var/mob/living/complex/human/H = M
 			var/obj/item/organ/I = H.internal_organs_by_name["brain"]
 			if(!I) // No brain organ, so the borer moves in and replaces it permanently.
 				replace_brain()
@@ -154,7 +154,7 @@
 // BRAIN WORM ZOMBIES AAAAH.
 /mob/living/simple_mob/animal/borer/proc/replace_brain()
 
-	var/mob/living/carbon/human/H = host
+	var/mob/living/complex/human/H = host
 
 	if(!istype(host))
 		to_chat(src, "This host does not have a suitable brain.")
@@ -165,11 +165,11 @@
 	H.add_language("Cortical Link")
 
 	if(host.stat == 2)
-		add_verb(H, /mob/living/carbon/human/proc/jumpstart)
+		add_verb(H, /mob/living/complex/human/proc/jumpstart)
 
-	add_verb(H, /mob/living/carbon/human/proc/psychic_whisper)
-	add_verb(H, /mob/living/carbon/human/proc/tackle)
-	add_verb(H, /mob/living/carbon/proc/spawn_larvae)
+	add_verb(H, /mob/living/complex/human/proc/psychic_whisper)
+	add_verb(H, /mob/living/complex/human/proc/tackle)
+	add_verb(H, /mob/living/complex/proc/spawn_larvae)
 
 	if(H.client)
 		H.ghostize(0)
@@ -244,7 +244,7 @@
 		return
 
 	var/list/choices = list()
-	for(var/mob/living/carbon/C in view(3,src))
+	for(var/mob/living/complex/C in view(3,src))
 		if(C.stat != 2)
 			choices += C
 
@@ -252,7 +252,7 @@
 		to_chat(src, "You cannot use that ability again so soon.")
 		return
 
-	var/mob/living/carbon/M = input(src,"Who do you wish to dominate?") in null|choices
+	var/mob/living/complex/M = input(src,"Who do you wish to dominate?") in null|choices
 
 	if(!M || !src) return
 
@@ -330,13 +330,13 @@
 
 			controlling = 1
 
-			add_verb(host, /mob/living/carbon/proc/release_control)
-			add_verb(host, /mob/living/carbon/proc/punish_host)
-			add_verb(host, /mob/living/carbon/proc/spawn_larvae)
+			add_verb(host, /mob/living/complex/proc/release_control)
+			add_verb(host, /mob/living/complex/proc/punish_host)
+			add_verb(host, /mob/living/complex/proc/spawn_larvae)
 
 			return
 
-/mob/living/carbon/human/proc/jumpstart()
+/mob/living/complex/human/proc/jumpstart()
 	set category = "Abilities"
 	set name = "Revive Host"
 	set desc = "Send a jolt of electricity through your host, reviving them."
@@ -345,7 +345,7 @@
 		to_chat(usr, "Your host is already alive.")
 		return
 
-	remove_verb(src, /mob/living/carbon/human/proc/jumpstart)
+	remove_verb(src, /mob/living/complex/human/proc/jumpstart)
 	visible_message("<span class='warning'>With a hideous, rattling moan, [src] shudders back to life!</span>")
 
 	rejuvenate()

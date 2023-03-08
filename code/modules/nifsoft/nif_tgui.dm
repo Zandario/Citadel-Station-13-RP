@@ -46,7 +46,7 @@
 			UnregisterSignal(screen_icon, COMSIG_CLICK)
 			QDEL_NULL(screen_icon)
 		if(ishuman(parent))
-			remove_verb(owner, /mob/living/carbon/human/proc/nif_menu)
+			remove_verb(owner, /mob/living/complex/human/proc/nif_menu)
 
 
 /datum/component/nif_menu/proc/create_mob_button(mob/user)
@@ -60,10 +60,10 @@
 	LAZYADD(HUD.other_important, screen_icon)
 	user.client?.screen += screen_icon
 
-	add_verb(user, /mob/living/carbon/human/proc/nif_menu)
+	add_verb(user, /mob/living/complex/human/proc/nif_menu)
 
 /datum/component/nif_menu/proc/nif_menu_click(source, location, control, params, user)
-	var/mob/living/carbon/human/H = user
+	var/mob/living/complex/human/H = user
 	if(istype(H) && H.nif)
 		INVOKE_ASYNC(H.nif, .proc/ui_interact, user)
 
@@ -84,7 +84,7 @@
 /**
  * Verb to open the interface
  */
-/mob/living/carbon/human/proc/nif_menu()
+/mob/living/complex/human/proc/nif_menu()
 	set name = "NIF Menu"
 	set category = "IC"
 	set desc = "Open the NIF user interface."

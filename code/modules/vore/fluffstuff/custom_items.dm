@@ -143,7 +143,7 @@
 	if(isliving(user))
 		user.visible_message("<span class='warning'>[user] flashes their golden security badge.\nIt reads:NT Security.</span>","<span class='warning'>You display the faded badge.\nIt reads: NT Security.</span>")
 
-/obj/item/card/id/centcom/station/fluff/joanbadge/attack(mob/living/carbon/human/M, mob/living/user)
+/obj/item/card/id/centcom/station/fluff/joanbadge/attack(mob/living/complex/human/M, mob/living/user)
 	if(isliving(user))
 		user.visible_message("<span class='warning'>[user] invades [M]'s personal space, thrusting [src] into their face insistently.</span>","<span class='warning'>You invade [M]'s personal space, thrusting [src] into their face insistently.</span>")
 
@@ -678,7 +678,7 @@
 
 /obj/item/fluff/dragor_dot/attack_self(mob/user)
 	if(user.ckey == "pontifexminimus")
-		add_verb(user, /mob/living/carbon/human/proc/shapeshifter_select_gender)
+		add_verb(user, /mob/living/complex/human/proc/shapeshifter_select_gender)
 	else
 		return
 
@@ -1221,7 +1221,7 @@
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
 	if(usr == target) //Is the person using it on theirself?
 		if(ishuman(target)) //If so, monkify them.
-			var/mob/living/carbon/human/H = user
+			var/mob/living/complex/human/H = user
 			H.monkeyize()
 			qdel(src) //One time use.
 	else //If not, do nothing.
@@ -1237,7 +1237,7 @@
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
 	if(usr == target) //Is the person using it on theirself?
 		if(ishuman(target)) //Give them numbing bites.
-			var/mob/living/carbon/human/H = user
+			var/mob/living/complex/human/H = user
 			H.species.give_numbing_bite() //This was annoying, but this is the easiest way of performing it.
 			qdel(src) //One time use.
 	else //If not, do nothing.
@@ -1282,9 +1282,9 @@
 	var/short_emote_descriptor = list("lays", "forces out", "pushes out")
 	self_emote_descriptor = list("lay", "force out", "push out")
 	random_emote = list("hisses softly with a blush on his face", "yelps in embarrassment", "grunts a little")
-	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_evian
+	assigned_proc = /mob/living/complex/human/proc/use_reagent_implant_evian
 
-/obj/item/implant/reagent_generator/evian/post_implant(mob/living/carbon/source)
+/obj/item/implant/reagent_generator/evian/post_implant(mob/living/complex/source)
 	START_PROCESSING(SSobj, src)
 	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
 	add_verb(source, assigned_proc)
@@ -1293,7 +1293,7 @@
 /obj/item/implanter/reagent_generator/evian
 	implant_type = /obj/item/implant/reagent_generator/evian
 
-/mob/living/carbon/human/proc/use_reagent_implant_evian()
+/mob/living/complex/human/proc/use_reagent_implant_evian()
 	set name = "Lay Egg"
 	set desc = "Force Evian to lay an egg by squeezing into his lower body! This makes the lizard extremely embarrassed, and it looks funny."
 	set category = "Object"
@@ -1489,8 +1489,8 @@
 	else
 		activate(user)
 
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
+	if(istype(user,/mob/living/complex/human))
+		var/mob/living/complex/human/H = user
 		H.update_inv_l_hand()
 		H.update_inv_r_hand()
 
@@ -1641,7 +1641,7 @@
 	else
 		icon_state = "jazzcamcorder"
 		item_state = "jazzcamcorder"
-	var/mob/living/carbon/human/H = loc
+	var/mob/living/complex/human/H = loc
 	if(istype(H))
 		H.update_inv_r_hand()
 		H.update_inv_l_hand()

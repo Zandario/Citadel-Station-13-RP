@@ -349,7 +349,7 @@
 
 /obj/item/clothing/suit/storage/trek/ds9/equipped(mob/user, slot, flags)
 	..()
-	var/mob/living/carbon/human/H = loc
+	var/mob/living/complex/human/H = loc
 	if(istype(H) && H.wear_suit == src)
 		if(H.species.get_species_id() == SPECIES_ID_VOX)
 			icon_override = 'icons/mob/clothing/species/vox/suits.dmi'
@@ -372,7 +372,7 @@
 
 /obj/item/clothing/under/rank/trek/command/ds9/equipped(mob/user, slot, flags) // Cit change to take into account weirdness with defines. When put on it forces the correct sprite sheet. However when removed it shows a missing sprite for either uniform or suit depending on if it's the overcoat or uniform. Don't know how to fix
 	..()
-	var/mob/living/carbon/human/H = loc
+	var/mob/living/complex/human/H = loc
 	if(istype(H) && H.w_uniform == src)
 		if(H.species.get_species_id() == SPECIES_ID_VOX)
 			icon_override = 'icons/mob/clothing/species/vox/uniform.dmi'
@@ -387,7 +387,7 @@
 
 /obj/item/clothing/under/rank/trek/engsec/ds9/equipped(mob/user, slot, flags) // Cit change, ditto
 	..()
-	var/mob/living/carbon/human/H = loc
+	var/mob/living/complex/human/H = loc
 	if(istype(H) && H.w_uniform == src)
 		if(H.species.get_species_id() == SPECIES_ID_VOX)
 			icon_override = 'icons/mob/clothing/species/vox/uniform.dmi'
@@ -402,7 +402,7 @@
 
 /obj/item/clothing/under/rank/trek/medsci/ds9/equipped(mob/user, slot, flags) // Cit change, ditto
 	..()
-	var/mob/living/carbon/human/H = loc
+	var/mob/living/complex/human/H = loc
 	if(istype(H) && H.w_uniform == src)
 		if(H.species.get_species_id() == SPECIES_ID_VOX)
 			icon_override = 'icons/mob/clothing/species/vox/uniform.dmi'

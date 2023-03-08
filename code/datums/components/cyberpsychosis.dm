@@ -33,7 +33,7 @@ Initial Design Goals (X = Complete, / = WIP):
 
 //This proc will tabulate the number of prosthetic limbs, organs, augments, and implants into a number.
 /datum/component/cyberpsychosis/proc/count_cybernetics()
-	var/mob/living/carbon/human/H = parent
+	var/mob/living/complex/human/H = parent
 	. = 0
 	if(counted)
 		return
@@ -52,7 +52,7 @@ Initial Design Goals (X = Complete, / = WIP):
 		adjusted = 1
 
 /datum/component/cyberpsychosis/proc/update_medication()
-	var/mob/living/carbon/human/H = parent
+	var/mob/living/complex/human/H = parent
 	if(!medicated && H.reagents.has_reagent("neuratrextate", 1))
 		medicated = 1
 	if(medicated && !H.reagents.has_reagent("neuratrextate", 1))
@@ -71,7 +71,7 @@ Initial Design Goals (X = Complete, / = WIP):
 		last_symptom = world.time
 
 /datum/component/cyberpsychosis/proc/fire_symptoms()
-	var/mob/living/carbon/human/H = parent
+	var/mob/living/complex/human/H = parent
 	if(capacity <= 95) //This level is benign in terms of capacity loss. Don't want to just dump symptoms on them on the daily.
 		var/message_t1 = rand(1,6)
 		switch(message_t1)

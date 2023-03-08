@@ -19,11 +19,11 @@
 	if(usr == src) return
 	if(!Adjacent(usr)) return
 	if(istype(M,/mob/living/silicon/ai)) return
-	for(var/mob/living/carbon/human/O in contents)
+	for(var/mob/living/complex/human/O in contents)
 		O.request_strip_menu(usr)
 
 /obj/item/holder/micro/attack_self(var/mob/living/user)
-	for(var/mob/living/carbon/human/M in contents)
+	for(var/mob/living/complex/human/M in contents)
 		M.help_shake_act(user)
 
 /obj/item/holder/micro/update_state()
@@ -38,5 +38,5 @@
 
 /obj/item/holder/micro/sync(var/mob/living/M)
 	..()
-	for(var/mob/living/carbon/human/I in contents)
+	for(var/mob/living/complex/human/I in contents)
 		item_state = lowertext(I.species.name)

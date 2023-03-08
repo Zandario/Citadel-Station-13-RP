@@ -6,7 +6,7 @@
 
 	//gas stuff
 	var/obj/item/tank/tank
-	var/mob/living/carbon/human/breather
+	var/mob/living/complex/human/breather
 	var/obj/item/clothing/mask/breath/contained
 
 	var/spawn_type = null
@@ -15,7 +15,7 @@
 	var/is_loosen = TRUE
 	var/valve_opened = FALSE
 	//blood stuff
-	var/mob/living/carbon/attached
+	var/mob/living/complex/attached
 	var/mode = 1 // 1 is injecting, 0 is taking blood.
 	var/obj/item/reagent_containers/beaker
 	var/list/transfer_amounts = list(REM, 1, 2)
@@ -93,7 +93,7 @@
 	if(Adjacent(user))
 		attack_hand(user)
 
-/obj/structure/medical_stand/OnMouseDropLegacy(var/mob/living/carbon/human/target, src_location, over_location)
+/obj/structure/medical_stand/OnMouseDropLegacy(var/mob/living/complex/human/target, src_location, over_location)
 	..()
 	if(istype(target))
 		if(usr.stat == DEAD || !CanMouseDrop(target))
@@ -243,7 +243,7 @@
 	if(N)
 		transfer_amount = N
 
-/obj/structure/medical_stand/proc/attach_mask(var/mob/living/carbon/C)
+/obj/structure/medical_stand/proc/attach_mask(var/mob/living/complex/C)
 	if(C && istype(C))
 		if(C.equip_to_slot_if_possible(contained, SLOT_ID_MASK, INV_OP_SUPPRESS_WARNING))
 			if(tank)
@@ -251,7 +251,7 @@
 			breather = C
 			return TRUE
 
-/obj/structure/medical_stand/proc/can_apply_to_target(var/mob/living/carbon/human/target, var/mob/user)
+/obj/structure/medical_stand/proc/can_apply_to_target(var/mob/living/complex/human/target, var/mob/user)
 	if(!user)
 		user = target
 	// Check target validity
@@ -410,7 +410,7 @@
 				if(prob(5)) visible_message("\The [src] pings.")
 				return
 
-			var/mob/living/carbon/human/H = attached
+			var/mob/living/complex/human/H = attached
 			if(!istype(H))
 				return
 			if(!H.dna)

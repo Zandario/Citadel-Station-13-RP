@@ -44,7 +44,7 @@
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
-	var/mob/living/carbon/human/character = M
+	var/mob/living/complex/human/character = M
 	character.weight			= pref.weight_vr
 	character.weight_gain		= pref.weight_gain
 	character.weight_loss		= pref.weight_loss

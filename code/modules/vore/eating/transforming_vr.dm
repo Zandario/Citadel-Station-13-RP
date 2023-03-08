@@ -1,11 +1,11 @@
-/obj/belly/proc/check_eyes(var/mob/living/carbon/human/M)
-	var/mob/living/carbon/human/O = owner
+/obj/belly/proc/check_eyes(var/mob/living/complex/human/M)
+	var/mob/living/complex/human/O = owner
 	if(!istype(M) || !istype(O))
 		return 0
 	return (M.r_eyes != O.r_eyes || M.g_eyes != O.g_eyes || M.b_eyes != O.b_eyes)
 
-/obj/belly/proc/change_eyes(var/mob/living/carbon/human/M, message=0)
-	var/mob/living/carbon/human/O = owner
+/obj/belly/proc/change_eyes(var/mob/living/complex/human/M, message=0)
+	var/mob/living/complex/human/O = owner
 	if(!istype(M) || !istype(O))
 		return
 
@@ -18,8 +18,8 @@
 		to_chat(M, "<span class='notice'>You feel lightheaded and drowsy...</span>")
 		to_chat(O, "<span class='notice'>You feel warm as you make subtle changes to your captive's body.</span>")
 
-/obj/belly/proc/check_hair(var/mob/living/carbon/human/M)
-	var/mob/living/carbon/human/O = owner
+/obj/belly/proc/check_hair(var/mob/living/complex/human/M)
+	var/mob/living/complex/human/O = owner
 	if(!istype(M) || !istype(O))
 		return 0
 
@@ -31,8 +31,8 @@
 		return 1
 	return 0
 
-/obj/belly/proc/change_hair(var/mob/living/carbon/human/M, message=0)
-	var/mob/living/carbon/human/O = owner
+/obj/belly/proc/change_hair(var/mob/living/complex/human/M, message=0)
+	var/mob/living/complex/human/O = owner
 	if(!istype(M) || !istype(O))
 		return
 
@@ -49,15 +49,15 @@
 		to_chat(M, "<span class='notice'>Your body tingles all over...</span>")
 		to_chat(O, "<span class='notice'>You tingle as you make noticeable changes to your captive's body.</span>")
 
-/obj/belly/proc/check_skin(var/mob/living/carbon/human/M)
-	var/mob/living/carbon/human/O = owner
+/obj/belly/proc/check_skin(var/mob/living/complex/human/M)
+	var/mob/living/complex/human/O = owner
 	if(!istype(M) || !istype(O))
 		return 0
 
 	return (M.r_skin != O.r_skin || M.g_skin != O.g_skin || M.b_skin != O.b_skin)
 
-/obj/belly/proc/change_skin(var/mob/living/carbon/human/M, message=0)
-	var/mob/living/carbon/human/O = owner
+/obj/belly/proc/change_skin(var/mob/living/complex/human/M, message=0)
+	var/mob/living/complex/human/O = owner
 	if(!istype(M) || !istype(O))
 		return
 
@@ -71,8 +71,8 @@
 		to_chat(M, "<span class='notice'>Your body tingles all over...</span>")
 		to_chat(O, "<span class='notice'>You tingle as you make noticeable changes to your captive's body.</span>")
 
-/obj/belly/proc/check_gender(var/mob/living/carbon/human/M, target_gender)
-	var/mob/living/carbon/human/O = owner
+/obj/belly/proc/check_gender(var/mob/living/complex/human/M, target_gender)
+	var/mob/living/complex/human/O = owner
 	if(!istype(M) || !istype(O))
 		return 0
 
@@ -81,8 +81,8 @@
 
 	return (M.gender != target_gender || M.identifying_gender != target_gender)
 
-/obj/belly/proc/change_gender(var/mob/living/carbon/human/M, target_gender, message=0)
-	var/mob/living/carbon/human/O = owner
+/obj/belly/proc/change_gender(var/mob/living/complex/human/M, target_gender, message=0)
+	var/mob/living/complex/human/O = owner
 	if(!istype(M) || !istype(O))
 		return
 
@@ -99,8 +99,8 @@
 		to_chat(M, "<span class='notice'>Your body feels very strange...</span>")
 		to_chat(O, "<span class='notice'>You feel strange as you alter your captive's gender.</span>")
 
-/obj/belly/proc/check_tail(var/mob/living/carbon/human/M)
-	var/mob/living/carbon/human/O = owner
+/obj/belly/proc/check_tail(var/mob/living/complex/human/M)
+	var/mob/living/complex/human/O = owner
 	if(!istype(M) || !istype(O))
 		return 0
 
@@ -110,8 +110,8 @@
 		return 1
 	return 0
 
-/obj/belly/proc/change_tail(var/mob/living/carbon/human/M, message=0)
-	var/mob/living/carbon/human/O = owner
+/obj/belly/proc/change_tail(var/mob/living/complex/human/M, message=0)
+	var/mob/living/complex/human/O = owner
 	if(!istype(M) || !istype(O))
 		return
 
@@ -124,15 +124,15 @@
 		to_chat(M, "<span class='notice'>Your body tingles all over...</span>")
 		to_chat(O, "<span class='notice'>You tingle as you make noticeable changes to your captive's body.</span>")
 
-/obj/belly/proc/check_tail_nocolor(var/mob/living/carbon/human/M)
-	var/mob/living/carbon/human/O = owner
+/obj/belly/proc/check_tail_nocolor(var/mob/living/complex/human/M)
+	var/mob/living/complex/human/O = owner
 	if(!istype(M) || !istype(O))
 		return 0
 
 	return (M.tail_style != O.tail_style)
 
-/obj/belly/proc/change_tail_nocolor(var/mob/living/carbon/human/M, message=0)
-	var/mob/living/carbon/human/O = owner
+/obj/belly/proc/change_tail_nocolor(var/mob/living/complex/human/M, message=0)
+	var/mob/living/complex/human/O = owner
 	if(!istype(M) || !istype(O))
 		return
 
@@ -142,8 +142,8 @@
 		to_chat(M, "<span class='notice'>Your body tingles all over...</span>")
 		to_chat(O, "<span class='notice'>You tingle as you make noticeable changes to your captive's body.</span>")
 
-/obj/belly/proc/check_wing(var/mob/living/carbon/human/M)
-	var/mob/living/carbon/human/O = owner
+/obj/belly/proc/check_wing(var/mob/living/complex/human/M)
+	var/mob/living/complex/human/O = owner
 	if(!istype(M) || !istype(O))
 		return 0
 
@@ -153,8 +153,8 @@
 		return 1
 	return 0
 
-/obj/belly/proc/change_wing(var/mob/living/carbon/human/M, message=0)
-	var/mob/living/carbon/human/O = owner
+/obj/belly/proc/change_wing(var/mob/living/complex/human/M, message=0)
+	var/mob/living/complex/human/O = owner
 	if(!istype(M) || !istype(O))
 		return
 
@@ -167,15 +167,15 @@
 		to_chat(M, "<span class='notice'>Your body tingles all over...</span>")
 		to_chat(O, "<span class='notice'>You tingle as you make noticeable changes to your captive's body.</span>")
 
-/obj/belly/proc/check_wing_nocolor(var/mob/living/carbon/human/M)
-	var/mob/living/carbon/human/O = owner
+/obj/belly/proc/check_wing_nocolor(var/mob/living/complex/human/M)
+	var/mob/living/complex/human/O = owner
 	if(!istype(M) || !istype(O))
 		return 0
 
 	return (M.wing_style != O.wing_style)
 
-/obj/belly/proc/change_wing_nocolor(var/mob/living/carbon/human/M, message=0)
-	var/mob/living/carbon/human/O = owner
+/obj/belly/proc/change_wing_nocolor(var/mob/living/complex/human/M, message=0)
+	var/mob/living/complex/human/O = owner
 	if(!istype(M) || !istype(O))
 		return
 
@@ -185,23 +185,23 @@
 		to_chat(M, "<span class='notice'>Your body tingles all over...</span>")
 		to_chat(O, "<span class='notice'>You tingle as you make noticeable changes to your captive's body.</span>")
 
-/obj/belly/proc/check_ears(var/mob/living/carbon/human/M)
-	var/mob/living/carbon/human/O = owner
+/obj/belly/proc/check_ears(var/mob/living/complex/human/M)
+	var/mob/living/complex/human/O = owner
 	if(!istype(M) || !istype(O))
 		return 0
 
 	return (M.ear_style != O.ear_style)
 
-/obj/belly/proc/change_ears(var/mob/living/carbon/human/M, message=0)
-	var/mob/living/carbon/human/O = owner
+/obj/belly/proc/change_ears(var/mob/living/complex/human/M, message=0)
+	var/mob/living/complex/human/O = owner
 	if(!istype(M) || !istype(O))
 		return
 
 	M.ear_style = O.ear_style
 	M.update_hair()
 
-/obj/belly/proc/check_species(var/mob/living/carbon/human/M)
-	var/mob/living/carbon/human/O = owner
+/obj/belly/proc/check_species(var/mob/living/complex/human/M)
+	var/mob/living/complex/human/O = owner
 	if(!istype(M) || !istype(O))
 		return 0
 
@@ -209,8 +209,8 @@
 		return 1
 	return 0
 
-/obj/belly/proc/change_species(var/mob/living/carbon/human/M, message=0, color_action = 0)	//color_action: 0 for default species, 1 to preserve, 2 to transfer from pred
-	var/mob/living/carbon/human/O = owner
+/obj/belly/proc/change_species(var/mob/living/complex/human/M, message=0, color_action = 0)	//color_action: 0 for default species, 1 to preserve, 2 to transfer from pred
+	var/mob/living/complex/human/O = owner
 	if(!istype(M) || !istype(O))
 		return
 
@@ -246,7 +246,7 @@
 		to_chat(O, "<span class='notice'>Your body shifts as you make dramatic changes to your captive's body.</span>")
 
 /obj/belly/proc/put_in_egg(var/atom/movable/M, message=0)
-	var/mob/living/carbon/human/O = owner
+	var/mob/living/complex/human/O = owner
 	var/egg_path = /obj/structure/closet/secure_closet/egg
 	var/egg_name = "odd egg"
 

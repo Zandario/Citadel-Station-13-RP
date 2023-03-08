@@ -434,7 +434,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		cartridge = new default_cartridge(src)
 	new /obj/item/pen(src)
 	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
+		var/mob/living/complex/human/H = loc
 		var/pdachoice = H.pdachoice
 		switch(pdachoice)
 			if(1) icon = 'icons/obj/pda.dmi'
@@ -1341,8 +1341,8 @@ GLOBAL_LIST_EMPTY(PDAs)
 			to_chat(user, "<span class='notice'>You slot \the [C] into \the [src].</span>")
 
 /obj/item/pda/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
-	var/mob/living/carbon/C = target
-	if (istype(C, /mob/living/carbon))
+	var/mob/living/complex/C = target
+	if (istype(C, /mob/living/complex))
 		switch(scanmode)
 			if(1)
 
@@ -1361,8 +1361,8 @@ GLOBAL_LIST_EMPTY(PDAs)
 				user.show_message("<span class='notice'>    Body Temperature: [C.bodytemperature-T0C]&deg;C ([C.bodytemperature*1.8-459.67]&deg;F)</span>", 1)
 				if(C.tod && (C.stat == DEAD || (C.status_flags & FAKEDEATH)))
 					user.show_message("<span class='notice'>    Time of Death: [C.tod]</span>")
-				if(istype(C, /mob/living/carbon/human))
-					var/mob/living/carbon/human/H = C
+				if(istype(C, /mob/living/complex/human))
+					var/mob/living/complex/human/H = C
 					var/list/damaged = H.get_damaged_organs(1,1)
 					user.show_message("<span class='notice'>Localized Damage, Brute/Burn:</span>",1)
 					if(length(damaged)>0)

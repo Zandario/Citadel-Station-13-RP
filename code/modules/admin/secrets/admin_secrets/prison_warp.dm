@@ -5,7 +5,7 @@
 	. = ..()
 	if(!.)
 		return
-	for(var/mob/living/carbon/human/H in GLOB.mob_list)
+	for(var/mob/living/complex/human/H in GLOB.mob_list)
 		var/turf/T = get_turf(H)
 		var/security = 0
 		if((T && (T in GLOB.using_map.admin_levels)) || prisonwarped.Find(H))

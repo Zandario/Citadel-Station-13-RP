@@ -270,7 +270,7 @@
 			user.visible_message("<span class='notice'>\The [user] affectionally licks all over [target]'s face!</span>", "<span class='notice'>You affectionally lick all over [target]'s face!</span>")
 			playsound(src.loc, 'sound/effects/attackblob.ogg', 50, 1)
 			water.use_charge(5)
-			var/mob/living/carbon/human/H = target
+			var/mob/living/complex/human/H = target
 			if(H.species.lightweight == 1)
 				H.Weaken(3)
 	else
@@ -422,7 +422,7 @@
 		return
 
 	if(ishuman(T))
-		var/mob/living/carbon/human/H = T
+		var/mob/living/complex/human/H = T
 		if(H.species.lightweight == 1)
 			H.Weaken(3)
 			return
@@ -442,7 +442,7 @@
 	var/obj/item/implant/mirror/imp = null
 
 /obj/item/dogborg/mirrortool/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
-	var/mob/living/carbon/human/H = target
+	var/mob/living/complex/human/H = target
 	if(!istype(H))
 		return
 	if(target_zone == BP_TORSO && imp == null)

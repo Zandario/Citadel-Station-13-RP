@@ -31,7 +31,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 
 /mob/proc/contaminate()
 
-/mob/living/carbon/human/contaminate()
+/mob/living/complex/human/contaminate()
 	//See if anything can be contaminated.
 
 	if(!pl_suit_protected())
@@ -47,7 +47,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 
 /mob/proc/pl_effects()
 
-/mob/living/carbon/human/pl_effects()
+/mob/living/complex/human/pl_effects()
 	GET_VSC_PROP(atmos_vsc, /atmos/phoron/contamination, clothing_contamination)
 	GET_VSC_PROP(atmos_vsc, /atmos/phoron/skin_burns, skin_burns)
 	GET_VSC_PROP(atmos_vsc, /atmos/phoron/eye_burns, eye_burns)
@@ -101,7 +101,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 			to_chat(src, "<span class='danger'>High levels of toxins cause you to spontaneously mutate!</span>")
 			domutcheck(src,null)
 
-/mob/living/carbon/human/proc/burn_eyes()
+/mob/living/complex/human/proc/burn_eyes()
 	var/obj/item/organ/internal/eyes/E = internal_organs_by_name[O_EYES]
 	if(E)
 		if(isSynthetic())
@@ -114,7 +114,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 			to_chat(src, "<span class='danger'>You are blinded!</span>")
 			Blind(20)
 
-/mob/living/carbon/human/proc/pl_head_protected()
+/mob/living/complex/human/proc/pl_head_protected()
 	CACHE_VSC_PROP(atmos_vsc, /atmos/phoron/phoronguard_only, phoronguard_only)
 	//Checks if the head is adequately sealed.	//This is just odd. TODO: Make this respect the body_cover_flags stuff like thermal gear does.
 	if(head)
@@ -125,7 +125,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 			return 1
 	return 0
 
-/mob/living/carbon/human/proc/pl_suit_protected()
+/mob/living/complex/human/proc/pl_suit_protected()
 	CACHE_VSC_PROP(atmos_vsc, /atmos/phoron/phoronguard_only, phoronguard_only)
 
 	//Checks if the suit is adequately sealed.	//This is just odd. TODO: Make this respect the body_cover_flags stuff like thermal gear does.
@@ -142,7 +142,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 
 	return BIT_TEST_ALL(coverage, UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS)
 
-/mob/living/carbon/human/proc/suit_contamination()
+/mob/living/complex/human/proc/suit_contamination()
 	//Runs over the things that can be contaminated and does so.
 	if(w_uniform)
 		w_uniform.contaminate()

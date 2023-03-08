@@ -20,7 +20,7 @@
 
 /datum/gene/basic/remoteview/activate(mob/M, connected, flags)
 	..(M,connected,flags)
-	add_verb(M, /mob/living/carbon/human/proc/remoteobserve)
+	add_verb(M, /mob/living/complex/human/proc/remoteobserve)
 
 /datum/gene/basic/regenerate
 	name = "Regenerate"
@@ -48,7 +48,7 @@
 
 /datum/gene/basic/remotetalk/activate(mob/M, connected, flags)
 	..(M,connected,flags)
-	add_verb(M, /mob/living/carbon/human/proc/remotesay)
+	add_verb(M, /mob/living/complex/human/proc/remotesay)
 
 /datum/gene/basic/morph
 	name = "Morph"
@@ -60,7 +60,7 @@
 
 /datum/gene/basic/morph/activate(mob/M)
 	..(M)
-	add_verb(M, /mob/living/carbon/human/proc/morph)
+	add_verb(M, /mob/living/complex/human/proc/morph)
 
 /* Not used on bay
 /datum/gene/basic/heat_resist
@@ -165,7 +165,7 @@
 	else
 		return "hulk_[g]_s"
 
-/datum/gene/basic/hulk/OnMobLife(mob/living/carbon/human/M)
+/datum/gene/basic/hulk/OnMobLife(mob/living/complex/human/M)
 	if(!istype(M))
 		return
 	if(M.health <= 25)

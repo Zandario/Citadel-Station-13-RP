@@ -95,6 +95,6 @@
 /mob/living/simple_mob/mechanical/viscerator/apidean/IIsAlly(mob/living/L)
 	. = ..()
 	if(!.)
-		if(istype(L, /mob/living/carbon/human/apidaen))
+		if(istype(L, /mob/living/complex/human/apidaen))
 			return TRUE
 		return L.assess_perp(src, FALSE, FALSE, TRUE, FALSE) <= 3

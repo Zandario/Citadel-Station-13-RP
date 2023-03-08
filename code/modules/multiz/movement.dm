@@ -93,7 +93,7 @@
 /mob/living/can_overcome_gravity()
 	return hovering
 
-/mob/living/carbon/human/can_overcome_gravity()
+/mob/living/complex/human/can_overcome_gravity()
 	. = ..()
 	if(!.)
 		return species && species.can_overcome_gravity(src)
@@ -133,7 +133,7 @@
 		return FALSE
 	return (hovering || is_incorporeal())
 
-/mob/living/carbon/human/can_ztravel()
+/mob/living/complex/human/can_ztravel()
 	if(incapacitated())
 		return FALSE
 
@@ -230,7 +230,7 @@
 			else
 				return
 		else if(ishuman(H)) //Needed to prevent 2 people from grabbing eachother in the air.
-			var/mob/living/carbon/human/F = H
+			var/mob/living/complex/human/F = H
 			if(F.grabbed_by.len) //If you're grabbed (presumably by someone flying) let's not have you fall. This also allows people to grab onto you while you jump over a railing to prevent you from falling!
 				var/obj/item/grab/G = F.get_active_held_item()
 				var/obj/item/grab/J = F.get_inactive_held_item()
@@ -300,7 +300,7 @@
 		return FALSE
 	return ..()
 
-/mob/living/carbon/human/can_fall()
+/mob/living/complex/human/can_fall()
 	if(..())
 		return species.can_fall(src)
 
@@ -336,7 +336,7 @@
 /atom/movable/proc/special_fall_handle(atom/A)
 	return FALSE
 
-/mob/living/carbon/human/special_fall_handle(atom/A)
+/mob/living/complex/human/special_fall_handle(atom/A)
 	if(species)
 		return species.fall_impact_special(src, A)
 	return FALSE
@@ -358,7 +358,7 @@
 	if(landing.CheckFall(src))
 		return landing
 
-/mob/living/carbon/human/find_fall_target(turf/landing)
+/mob/living/complex/human/find_fall_target(turf/landing)
 	if(species)
 		var/atom/A = species.find_fall_target_special(src, landing)
 		if(A)
@@ -450,7 +450,7 @@
 		Weaken(4)
 		updatehealth()
 
-/mob/living/carbon/human/fall_impact(atom/hit_atom, damage_min, damage_max, silent, planetary)
+/mob/living/complex/human/fall_impact(atom/hit_atom, damage_min, damage_max, silent, planetary)
 	if(!species?.handle_falling(src, hit_atom, damage_min, damage_max, silent, planetary))
 		..()
 
@@ -484,7 +484,7 @@
 	return parachuting
 
 /// For humans, this needs to be a wee bit more complicated.
-/mob/living/carbon/human/CanParachute()
+/mob/living/complex/human/CanParachute()
 	// Certain slots don't really need to be checked for parachute ability, i.e. pockets, ears, etc. If this changes, just add them to the loop, I guess?
 	// This is done in Priority Order, so items lower down the list don't call handleParachute() unless they're actually used.
 	if(back && back.isParachute())

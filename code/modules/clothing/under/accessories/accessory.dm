@@ -13,7 +13,7 @@
 	var/image/mob_overlay = null
 	var/overlay_state = null
 	var/concealed_holster = 0
-	var/mob/living/carbon/human/wearer = null 	// To check if the wearer changes, so species spritesheets change properly.
+	var/mob/living/complex/human/wearer = null 	// To check if the wearer changes, so species spritesheets change properly.
 	var/list/on_rolled = list()					// Used when jumpsuit sleevels are rolled ("rolled" entry) or it's rolled down ("down"). Set to "none" to hide in those states.
 	sprite_sheets = list(
 		BODYTYPE_STRING_TESHARI = 'icons/mob/clothing/species/teshari/ties.dmi', //Teshari can into webbing, too!
@@ -195,7 +195,7 @@
 	icon_state = "stethoscope"
 	slot = ACCESSORY_SLOT_TIE
 
-/obj/item/clothing/accessory/stethoscope/do_surgery(mob/living/carbon/human/M, mob/living/user)
+/obj/item/clothing/accessory/stethoscope/do_surgery(mob/living/complex/human/M, mob/living/user)
 	if(user.a_intent != INTENT_HELP) //in case it is ever used as a surgery tool
 		return ..()
 	return TRUE
@@ -204,7 +204,7 @@
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	if(ishuman(target) && isliving(user))
-		var/mob/living/carbon/human/H = target
+		var/mob/living/complex/human/H = target
 		if(user.a_intent == INTENT_HELP)
 			var/body_part = parse_zone(user.zone_sel.selecting)
 			if(body_part)
@@ -573,7 +573,7 @@
 	setUniqueSpeciesSprite()
 
 /obj/item/clothing/accessory/collar/proc/setUniqueSpeciesSprite()
-	var/mob/living/carbon/human/H = loc
+	var/mob/living/complex/human/H = loc
 	if(!istype(H))
 		if(istype(has_suit) && ishuman(has_suit.loc))
 			H = has_suit.loc
@@ -659,7 +659,7 @@
 /obj/item/clothing/accessory/collar/shock/Topic(href, href_list)
 	if(usr.stat || usr.restrained())
 		return
-	if(((istype(usr, /mob/living/carbon/human) && ((!( SSticker ) || (SSticker && SSticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
+	if(((istype(usr, /mob/living/complex/human) && ((!( SSticker ) || (SSticker && SSticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
 		usr.set_machine(src)
 		if(href_list["freq"])
 			var/new_frequency = sanitize_frequency(frequency + text2num(href_list["freq"]))
@@ -721,7 +721,7 @@
 	return
 
 /obj/item/clothing/accessory/collar/shock/attack_self(mob/user as mob, flag1)
-	if(!istype(user, /mob/living/carbon/human))
+	if(!istype(user, /mob/living/complex/human))
 		return
 	user.set_machine(src)
 	var/dat = {"<TT>

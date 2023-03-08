@@ -180,20 +180,20 @@ steam.start() -- spawns the effect
 	if(time_to_live)
 		QDEL_IN(src, time_to_live)
 
-/obj/effect/particle_effect/smoke/Crossed(mob/living/carbon/M as mob )
+/obj/effect/particle_effect/smoke/Crossed(mob/living/complex/M as mob )
 	if(M.is_incorporeal())
 		return
 	..()
 	if(istype(M))
 		affect(M)
 
-/obj/effect/particle_effect/smoke/proc/affect(var/mob/living/carbon/M)
+/obj/effect/particle_effect/smoke/proc/affect(var/mob/living/complex/M)
 	if (!istype(M))
 		return 0
 	if(M.wear_mask && (M.wear_mask.clothing_flags & ALLOWINTERNALS))
 		return 0
-	if(istype(M,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if(istype(M,/mob/living/complex/human))
+		var/mob/living/complex/human/H = M
 		if(H.head && (H.head.clothing_flags & ALLOWINTERNALS))
 			return 0
 	return 1

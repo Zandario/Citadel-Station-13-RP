@@ -56,7 +56,7 @@
 	)
 
 	inherent_verbs = list(
-		/mob/living/carbon/human/proc/tie_hair,
+		/mob/living/complex/human/proc/tie_hair,
 	)
 
 	color_mult = 1

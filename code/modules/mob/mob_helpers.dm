@@ -1,7 +1,7 @@
 // fun if you want to typecast humans/monkeys/etc without writing long path-filled lines.
 /proc/isxenomorph(A)
-	if(istype(A, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = A
+	if(istype(A, /mob/living/complex/human))
+		var/mob/living/complex/human/H = A
 		return istype(H.species, /datum/species/xenos)
 	return 0
 
@@ -39,7 +39,7 @@
 /mob/proc/isMonkey()
 	return 0
 
-/mob/living/carbon/human/isMonkey()
+/mob/living/complex/human/isMonkey()
 	return istype(species, /datum/species/monkey)
 
 /proc/isdeaf(A)
@@ -61,21 +61,21 @@
 	return ishuman(A)
 
 /proc/iscuffed(A)
-	if(istype(A, /mob/living/carbon))
-		var/mob/living/carbon/C = A
+	if(istype(A, /mob/living/complex))
+		var/mob/living/complex/C = A
 		if(C.handcuffed)
 			return 1
 	return 0
 
 /proc/hassensorlevel(A, var/level)
-	var/mob/living/carbon/human/H = A
+	var/mob/living/complex/human/H = A
 	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = H.w_uniform
 		return U.sensor_mode >= level
 	return 0
 
 /proc/getsensorlevel(A)
-	var/mob/living/carbon/human/H = A
+	var/mob/living/complex/human/H = A
 	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = H.w_uniform
 		return U.sensor_mode
@@ -264,8 +264,8 @@ var/list/intents = list(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
 				hud_used.action_intent.icon_state = INTENT_HELP
 
 /proc/is_blind(A)
-	if(istype(A, /mob/living/carbon))
-		var/mob/living/carbon/C = A
+	if(istype(A, /mob/living/complex))
+		var/mob/living/complex/C = A
 		if(C.sdisabilities & SDISABILITY_NERVOUS || C.blinded)
 			return 1
 	return 0
@@ -445,13 +445,13 @@ var/list/intents = list(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
 
 	return FALSE
 
-/mob/living/carbon/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
+/mob/living/complex/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
 	if(handcuffed)
 		return SAFE_PERP
 
 	return ..()
 
-/mob/living/carbon/human/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
+/mob/living/complex/human/assess_perp(obj/access_obj, check_access, auth_weapons, check_records, check_arrest)
 	var/threatcount = ..()
 	if(. == SAFE_PERP)
 		return SAFE_PERP
@@ -515,7 +515,7 @@ var/list/intents = list(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
 		threatcount += 4
 /*
 	if(discipline && !rabid)
-		if(!target_mob || istype(target_mob, /mob/living/carbon/human/monkey))
+		if(!target_mob || istype(target_mob, /mob/living/complex/human/monkey))
 			return SAFE_PERP
 
 	if(target_mob)

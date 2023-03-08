@@ -40,7 +40,7 @@
 	return
 
 /obj/item/implanter/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
-	if (!istype(target, /mob/living/carbon))
+	if (!istype(target, /mob/living/complex))
 		return ..()
 	if(active)
 		if (imp)
@@ -60,7 +60,7 @@
 						imp.post_implant(target)
 
 						if(ishuman(target))
-							var/mob/living/carbon/human/H = target
+							var/mob/living/complex/human/H = target
 							H.update_hud_sec_implants()
 					src.imp = null
 					update()

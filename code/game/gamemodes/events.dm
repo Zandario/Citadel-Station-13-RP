@@ -3,7 +3,7 @@ var/eventchance = 10 // Percent chance per 5 minutes.
 var/hadevent    = 0
 
 /proc/appendicitis()
-	for(var/mob/living/carbon/human/H in shuffle(living_mob_list))
+	for(var/mob/living/complex/human/H in shuffle(living_mob_list))
 		if(H.client && H.appendicitis())
 			break
 
@@ -22,7 +22,7 @@ var/hadevent    = 0
 		var/obj/vent = pick(vents)
 		var/candidate = pick(candidates)
 
-		var/mob/living/carbon/alien/larva/new_xeno = new(vent.loc)
+		var/mob/living/complex/alien/larva/new_xeno = new(vent.loc)
 		new_xeno.key = candidate
 
 		candidates -= candidate
@@ -41,13 +41,13 @@ var/hadevent    = 0
 
 	sleep(100)
 */
-	for(var/mob/living/carbon/human/H in living_mob_list)
+	for(var/mob/living/complex/human/H in living_mob_list)
 		var/turf/T = get_turf(H)
 		if(!T)
 			continue
 		if(isNotStationLevel(T.z))
 			continue
-		if(istype(H,/mob/living/carbon/human))
+		if(istype(H,/mob/living/complex/human))
 			H.afflict_radiation(rand(200, 1000))
 			if (prob(5))
 				H.afflict_radiation(rand(200, 1000))
@@ -167,7 +167,7 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 			var/allergysev = pick("deathly", "mildly", "severely", "contagiously")
 			var/crew
 			var/list/pos_crew = list()
-			for(var/mob/living/carbon/human/pos in GLOB.player_list)
+			for(var/mob/living/complex/human/pos in GLOB.player_list)
 				pos_crew += pos.real_name
 			if(pos_crew.len)
 				crew = pick(pos_crew)

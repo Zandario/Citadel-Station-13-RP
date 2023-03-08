@@ -36,7 +36,7 @@
 
 /datum/nifsoft/painkillers/on_life()
 	if((. = ..()))
-		var/mob/living/carbon/human/H = nif.human
+		var/mob/living/complex/human/H = nif.human
 		H.bloodstr.add_reagent("numbenzyme",0.5)
 
 /datum/nifsoft/hardclaws
@@ -85,7 +85,7 @@ var/global/datum/unarmed_attack/hardclaws/unarmed_hardclaws = new()
 			deactivate()
 			return FALSE
 
-		var/mob/living/carbon/human/H = nif.human
+		var/mob/living/complex/human/H = nif.human
 		H.adjustHalLoss(30)
 		var/obj/item/gun/energy/gun/martin/dazzle/dgun = new(get_turf(H))
 		H.put_in_hands(dgun)

@@ -33,7 +33,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive/otie
 	say_list_type = /datum/say_list/otie
 
-	var/mob/living/carbon/human/friend
+	var/mob/living/complex/human/friend
 	var/tamed = 0
 	var/tame_chance = 50 //It's a fiddy-fiddy default you may get a buddy pal or you may get mauled and ate. Win-win!
 
@@ -213,13 +213,13 @@
 
 /mob/living/simple_mob/otie/security/proc/target_name(mob/living/T)
 	if(ishuman(T))
-		var/mob/living/carbon/human/H = T
+		var/mob/living/complex/human/H = T
 		return H.get_id_name("unidentified person")
 	return "unidentified lifeform"
 
 //Pet 4 friendly
 
-/mob/living/simple_mob/otie/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/simple_mob/otie/attack_hand(mob/living/complex/human/M as mob)
 
 	switch(M.a_intent)
 		if(INTENT_HELP)

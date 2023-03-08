@@ -69,7 +69,7 @@ var/list/sacrificed = list()
 		if (istype(user, /mob/living))
 			user.take_overall_damage(5, 0)
 		qdel(src)
-	for(var/mob/living/carbon/C in orange(1,src))
+	for(var/mob/living/complex/C in orange(1,src))
 		if(iscultist(C) && !C.stat)
 			culcount++
 	if(culcount>=3)
@@ -107,8 +107,8 @@ var/list/sacrificed = list()
 //! THIRD RUNE
 /obj/effect/rune/proc/convert()
 	var/mob/attacker = usr
-	var/mob/living/carbon/target = null
-	for(var/mob/living/carbon/M in src.loc)
+	var/mob/living/complex/target = null
+	for(var/mob/living/complex/M in src.loc)
 		if(!iscultist(M) && M.stat < DEAD && !(M in converting))
 			target = M
 			break
@@ -196,7 +196,7 @@ var/list/sacrificed = list()
 	for(var/mob/M in range(1,src))
 		if(iscultist(M) && !M.stat)
 			M.say("Tok-lyr rqa'nap g[pick("'","`")]lt-ulotf!")
-			if(istype(M, /mob/living/carbon/human/dummy)) //No manifest cheese.
+			if(istype(M, /mob/living/complex/human/dummy)) //No manifest cheese.
 				continue
 			cultists.Add(M)
 	if(cultists.len >= 9)
@@ -241,7 +241,7 @@ var/list/sacrificed = list()
 	var/drain = 0
 	for(var/obj/effect/rune/R in rune_list)
 		if(R.word1==cultwords["travel"] && R.word2==cultwords["blood"] && R.word3==cultwords["self"])
-			for(var/mob/living/carbon/D in R.loc)
+			for(var/mob/living/complex/D in R.loc)
 				if(D.stat!=2)
 					add_attack_logs(usr,D,"Blood drain rune")
 					var/bdrain = rand(1,25)
@@ -274,7 +274,7 @@ var/list/sacrificed = list()
 		sleep(2)
 		user.heal_organ_damage(5, 0)
 		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
+			var/mob/living/complex/human/H = user
 			for(var/obj/item/organ/I in H.internal_organs)
 				if(I.damage > 0)
 					I.damage = max(I.damage - 5, 0)		//Heals 5 damage per organ per use
@@ -312,11 +312,11 @@ var/list/sacrificed = list()
 //! EIGHTH RUNE
 
 /obj/effect/rune/proc/raise()
-	var/mob/living/carbon/human/corpse_to_raise
-	var/mob/living/carbon/human/body_to_sacrifice
+	var/mob/living/complex/human/corpse_to_raise
+	var/mob/living/complex/human/body_to_sacrifice
 
 	var/is_sacrifice_target = 0
-	for(var/mob/living/carbon/human/M in src.loc)
+	for(var/mob/living/complex/human/M in src.loc)
 		if(M.stat == DEAD)
 			if(cult && M.mind == cult.sacrifice_target)
 				is_sacrifice_target = 1
@@ -334,7 +334,7 @@ var/list/sacrificed = list()
 	find_sacrifice:
 		for(var/obj/effect/rune/R in rune_list)
 			if(R.word1==cultwords["blood"] && R.word2==cultwords["join"] && R.word3==cultwords["hell"])
-				for(var/mob/living/carbon/human/N in R.loc)
+				for(var/mob/living/complex/human/N in R.loc)
 					if(cult && N.mind && N.mind == cult.sacrifice_target)
 						is_sacrifice_target = 1
 					else
@@ -421,7 +421,7 @@ var/list/sacrificed = list()
 
 /obj/effect/rune/proc/ajourney() //some bits copypastaed from admin tools - Urist
 	if(usr.loc==src.loc)
-		var/mob/living/carbon/human/L = usr
+		var/mob/living/complex/human/L = usr
 		var/datum/gender/TU = GLOB.gender_datums[L.get_visible_gender()]
 		usr.say("Fwe[pick("'","`")]sh mah erl nyag r'ya!")
 		usr.visible_message("<span class='warning'>[usr]'s eyes glow blue as [TU.he] freeze[TU.s] in place, absolutely motionless.</span>", \
@@ -459,7 +459,7 @@ var/list/sacrificed = list()
 		return this_rune.fizzle()
 
 	usr.say("Gal'h'rfikk harfrandid mud[pick("'","`")]gib!")
-	var/mob/living/carbon/human/dummy/D = new(this_rune.loc)
+	var/mob/living/complex/human/dummy/D = new(this_rune.loc)
 	usr.visible_message("<span class='warning'>A shape forms in the center of the rune. A shape of... a man.</span>", \
 	"<span class='warning'>A shape forms in the center of the rune. A shape of... a man.</span>", \
 	"<span class='warning'>You hear liquid flowing.</span>")
@@ -629,9 +629,9 @@ var/list/sacrificed = list()
 
 //! FIFTEENTH RUNE
 /obj/effect/rune/proc/sacrifice()
-	var/list/mob/living/carbon/human/cultsinrange = list()
-	var/list/mob/living/carbon/human/victims = list()
-	for(var/mob/living/carbon/human/V in src.loc)//Checks for non-cultist humans to sacrifice
+	var/list/mob/living/complex/human/cultsinrange = list()
+	var/list/mob/living/complex/human/victims = list()
+	for(var/mob/living/complex/human/V in src.loc)//Checks for non-cultist humans to sacrifice
 		if(ishuman(V))
 			if(!(iscultist(V)))
 				victims += V//Checks for cult status and mob type
@@ -645,7 +645,7 @@ var/list/sacrificed = list()
 		else if(istype(I,/obj/item/aicard))
 			for(var/mob/living/silicon/ai/A in I)
 				victims += A
-	for(var/mob/living/carbon/C in orange(1,src))
+	for(var/mob/living/complex/C in orange(1,src))
 		if(iscultist(C) && !C.stat)
 			cultsinrange += C
 			C.say("Barhah hra zar[pick("'","`")]garis!")
@@ -653,8 +653,8 @@ var/list/sacrificed = list()
 	for(var/mob/H in victims)
 
 		var/worth = 0
-		if(istype(H,/mob/living/carbon/human))
-			var/mob/living/carbon/human/lamb = H
+		if(istype(H,/mob/living/complex/human))
+			var/mob/living/complex/human/lamb = H
 			if(lamb.species.rarity_value > 3)
 				worth = 1
 
@@ -805,17 +805,17 @@ var/list/sacrificed = list()
 //! EIGHTTEENTH RUNE
 /obj/effect/rune/proc/freedom()
 	var/mob/living/user = usr
-	var/list/mob/living/carbon/cultists = new
+	var/list/mob/living/complex/cultists = new
 	for(var/datum/mind/H in cult.current_antagonists)
-		if (istype(H.current,/mob/living/carbon))
+		if (istype(H.current,/mob/living/complex))
 			cultists+=H.current
-	var/list/mob/living/carbon/users = new
-	for(var/mob/living/carbon/C in orange(1,src))
+	var/list/mob/living/complex/users = new
+	for(var/mob/living/complex/C in orange(1,src))
 		if(iscultist(C) && !C.stat)
 			users+=C
 	var/dam = round(15 / users.len)
 	if(users.len>=3)
-		var/mob/living/carbon/cultist = input("Choose the one who you want to free", "Followers of Geometer") as null|anything in (cultists - users)
+		var/mob/living/complex/cultist = input("Choose the one who you want to free", "Followers of Geometer") as null|anything in (cultists - users)
 		if(!cultist)
 			return fizzle()
 		if (cultist == user) //just to be sure.
@@ -845,7 +845,7 @@ var/list/sacrificed = list()
 			var/obj/machinery/dna_scannernew/S = cultist.loc
 			S.locked = FALSE
 			S.update_appearance()
-		for(var/mob/living/carbon/C in users)
+		for(var/mob/living/complex/C in users)
 			user.take_overall_damage(dam, 0)
 			C.say("Khari[pick("'","`")]d! Gual'te nikka!")
 		qdel(src)
@@ -855,16 +855,16 @@ var/list/sacrificed = list()
 
 /obj/effect/rune/proc/cultsummon()
 	var/mob/living/user = usr
-	var/list/mob/living/carbon/cultists = new
+	var/list/mob/living/complex/cultists = new
 	for(var/datum/mind/H in cult.current_antagonists)
-		if (istype(H.current,/mob/living/carbon))
+		if (istype(H.current,/mob/living/complex))
 			cultists+=H.current
-	var/list/mob/living/carbon/users = new
-	for(var/mob/living/carbon/C in orange(1,src))
+	var/list/mob/living/complex/users = new
+	for(var/mob/living/complex/C in orange(1,src))
 		if(iscultist(C) && !C.stat)
 			users += C
 	if(users.len>=3)
-		var/mob/living/carbon/cultist = input("Choose the one who you want to summon", "Followers of Geometer") as null|anything in (cultists - user)
+		var/mob/living/complex/cultist = input("Choose the one who you want to summon", "Followers of Geometer") as null|anything in (cultists - user)
 		if(!cultist)
 			return fizzle()
 		if (cultist == user) //just to be sure.
@@ -879,7 +879,7 @@ var/list/sacrificed = list()
 
 		var/dam = round(25 / (users.len/2))	//More people around the rune less damage everyone takes. Minimum is 3 cultists
 
-		for(var/mob/living/carbon/human/C in users)
+		for(var/mob/living/complex/human/C in users)
 			if(iscultist(C) && !C.stat)
 				C.say("N'ath reth sh'yro eth d[pick("'","`")]rekkathnor!")
 				C.take_overall_damage(dam, 0)
@@ -896,7 +896,7 @@ var/list/sacrificed = list()
 /obj/effect/rune/proc/deafen()
 	if(istype(src,/obj/effect/rune))
 		var/list/affected = new()
-		for(var/mob/living/carbon/C in range(7,src))
+		for(var/mob/living/complex/C in range(7,src))
 			if (iscultist(C))
 				continue
 			var/obj/item/nullrod/N = locate() in C
@@ -916,7 +916,7 @@ var/list/sacrificed = list()
 			return fizzle()
 	else
 		var/list/affected = new()
-		for(var/mob/living/carbon/C in range(7,usr))
+		for(var/mob/living/complex/C in range(7,usr))
 			if (iscultist(C))
 				continue
 			var/obj/item/nullrod/N = locate() in C
@@ -939,7 +939,7 @@ var/list/sacrificed = list()
 /obj/effect/rune/proc/blind()
 	if(istype(src,/obj/effect/rune))
 		var/list/affected = new()
-		for(var/mob/living/carbon/C in viewers(src))
+		for(var/mob/living/complex/C in viewers(src))
 			if (iscultist(C))
 				continue
 			var/obj/item/nullrod/N = locate() in C
@@ -962,7 +962,7 @@ var/list/sacrificed = list()
 			return fizzle()
 	else
 		var/list/affected = new()
-		for(var/mob/living/carbon/C in view(2,usr))
+		for(var/mob/living/complex/C in view(2,usr))
 			if (iscultist(C))
 				continue
 			var/obj/item/nullrod/N = locate() in C
@@ -983,19 +983,19 @@ var/list/sacrificed = list()
 /// Cultists need at least one DANGEROUS rune. Even if they're all stealthy.
 /obj/effect/rune/proc/bloodboil()
 
-	// var/list/mob/living/carbon/cultists = new
+	// var/list/mob/living/complex/cultists = new
 	// for(var/datum/mind/H in SSticker.mode.cult)
-	// 	if (istype(H.current,/mob/living/carbon))
+	// 	if (istype(H.current,/mob/living/complex))
 	// 		cultists+=H.current
 
 	var/list/cultists = new //also, wording for it is old wording for obscure rune, which is now hide-see-blood.
 	var/list/victims = new
 	// var/list/cultboil = list(cultists-usr) //and for this words are destroy-see-blood.
-	for(var/mob/living/carbon/C in orange(1,src))
+	for(var/mob/living/complex/C in orange(1,src))
 		if(iscultist(C) && !C.stat)
 			cultists+=C
 	if(cultists.len>=3)
-		for(var/mob/living/carbon/M in viewers(usr))
+		for(var/mob/living/complex/M in viewers(usr))
 			if(iscultist(M))
 				continue
 			var/obj/item/nullrod/N = locate() in M
@@ -1010,7 +1010,7 @@ var/list/sacrificed = list()
 		for(var/obj/effect/rune/R in view(src))
 			if(prob(10))
 				explosion(R.loc, -1, 0, 1, 5)
-		for(var/mob/living/carbon/human/C in orange(1,src))
+		for(var/mob/living/complex/human/C in orange(1,src))
 			if(iscultist(C) && !C.stat)
 				C.say("Dedo ol[pick("'","`")]btoh!")
 				C.take_overall_damage(15, 0)
@@ -1024,7 +1024,7 @@ var/list/sacrificed = list()
 // WIP rune, I'll wait for Rastaf0 to add limited blood.
 /obj/effect/rune/proc/burningblood()
 	var/culcount = 0
-	for(var/mob/living/carbon/C in orange(1,src))
+	for(var/mob/living/complex/C in orange(1,src))
 		if(iscultist(C) && !C.stat)
 			culcount++
 	if(culcount >= 5)
@@ -1053,8 +1053,8 @@ var/list/sacrificed = list()
 	if(istype(src,/obj/effect/rune)) // When invoked as rune, flash and stun everyone around.
 		usr.say("Fuu ma[pick("'","`")]jin!")
 		for(var/mob/living/L in viewers(src))
-			if(iscarbon(L))
-				var/mob/living/carbon/C = L
+			if(iscomplexmob(L))
+				var/mob/living/complex/C = L
 				C.flash_eyes()
 				if(C.stuttering < 1 && (!(MUTATION_HULK in C.mutations)))
 					C.stuttering = 1
@@ -1082,8 +1082,8 @@ var/list/sacrificed = list()
 			if(issilicon(T))
 				T.Weaken(15)
 				add_attack_logs(usr,T,"Stun rune")
-			else if(iscarbon(T))
-				var/mob/living/carbon/C = T
+			else if(iscomplexmob(T))
+				var/mob/living/complex/C = T
 				C.flash_eyes()
 				if (!(MUTATION_HULK in C.mutations))
 					C.silent += 15
@@ -1094,7 +1094,7 @@ var/list/sacrificed = list()
 
 //! TWENTY-FIFTH RUNE
 /obj/effect/rune/proc/armor()
-	var/mob/living/carbon/human/user = usr
+	var/mob/living/complex/human/user = usr
 	if(istype(src,/obj/effect/rune))
 		usr.say("N'ath reth sh'yro eth d[pick("'","`")]raggathnor!")
 	else

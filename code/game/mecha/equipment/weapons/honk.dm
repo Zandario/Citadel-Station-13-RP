@@ -18,8 +18,8 @@
 
 	playsound(src, 'sound/items/airhorn.ogg', 100, 1, 30)
 	chassis.occupant_message("<span class='warning'>You emit a high-pitched noise from the mech.</span>")
-	for(var/mob/living/carbon/M in ohearers(6, chassis))
-		if(istype(M, /mob/living/carbon/human))
+	for(var/mob/living/complex/M in ohearers(6, chassis))
+		if(istype(M, /mob/living/complex/human))
 			var/ear_safety = 0
 			ear_safety = M.get_ear_protection()
 			if(ear_safety > 0)

@@ -23,7 +23,7 @@
 		return
 
 	if(ishuman(AM))
-		var/mob/living/carbon/human/H = AM
+		var/mob/living/complex/human/H = AM
 		if(HAS_TRAIT(H, TRAIT_PIERCEIMMUNE))
 			return
 

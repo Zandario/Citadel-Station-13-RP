@@ -237,7 +237,7 @@ GLOBAL_LIST_INIT(default_medbay_channels, list(
 				to_chat(usr, SPAN_NOTICE("Loadspeaker disabled."))
 			. = TRUE
 
-	if(. && iscarbon(usr))
+	if(. && iscomplexmob(usr))
 		playsound(src, "button", 10)
 
 /obj/item/radio/proc/list_channels(var/mob/user)
@@ -394,11 +394,11 @@ GLOBAL_LIST_INIT(default_medbay_channels, list(
 
 	// --- Human: use their actual job ---
 	if (ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/complex/human/H = M
 		jobname = H.get_assignment()
 
 	// --- Carbon Nonhuman ---
-	else if (iscarbon(M)) // Nonhuman carbon mob
+	else if (iscomplexmob(M)) // Nonhuman carbon mob
 		jobname = "No id"
 
 	// --- AI ---
@@ -829,7 +829,7 @@ GLOBAL_LIST_INIT(default_medbay_channels, list(
 	set name = "Toggle Handset"
 	set category = "Object"
 
-	var/mob/living/carbon/human/user = usr
+	var/mob/living/complex/human/user = usr
 	if(!handset)
 		to_chat(user, "<span class='warning'>The handset is missing!</span>")
 		return

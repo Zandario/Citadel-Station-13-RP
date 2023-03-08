@@ -85,7 +85,7 @@ FLOOR SAFES
 
 /obj/structure/safe/Topic(href, href_list)
 	if(!ishuman(usr))	return
-	var/mob/living/carbon/human/user = usr
+	var/mob/living/complex/human/user = usr
 
 	var/canhear = 0
 	if(user.get_held_item_of_type(/obj/item/clothing/accessory/stethoscope))

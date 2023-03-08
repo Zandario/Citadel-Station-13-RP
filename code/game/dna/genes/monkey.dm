@@ -5,13 +5,13 @@
 	block = DNABLOCK_MONKEY
 
 /datum/gene/monkey/can_activate(mob/M, flags)
-	return istype(M, /mob/living/carbon/human) || istype(M,/mob/living/carbon/monkey)
+	return istype(M, /mob/living/complex/human) || istype(M,/mob/living/complex/monkey)
 
 /datum/gene/monkey/activate(mob/living/M, connected, flags)
-	if(!istype(M,/mob/living/carbon/human))
+	if(!istype(M,/mob/living/complex/human))
 		//testing("Cannot monkey-ify [M], type is [M.type].")
 		return
-	var/mob/living/carbon/human/H = M
+	var/mob/living/complex/human/H = M
 	H.transforming = 1
 	var/list/implants = list() //Try to preserve implants.
 	for(var/obj/item/implant/W in H)
@@ -36,7 +36,7 @@
 		qdel(animation)
 
 
-	var/mob/living/carbon/monkey/O = null
+	var/mob/living/complex/monkey/O = null
 	if(H.species.primitive)
 		O = new H.species.primitive(src)
 	else
@@ -79,10 +79,10 @@
 	return
 
 /datum/gene/monkey/deactivate(mob/living/M, connected, flags)
-	if(!istype(M,/mob/living/carbon/monkey))
+	if(!istype(M,/mob/living/complex/monkey))
 		// testing("Cannot humanize [M], type is [M.type].")
 		return
-	var/mob/living/carbon/monkey/Mo = M
+	var/mob/living/complex/monkey/Mo = M
 	Mo.transforming = 1
 	var/list/implants = list() //Still preserving implants
 	for(var/obj/item/implant/W in Mo)
@@ -103,7 +103,7 @@
 		sleep(48)
 		qdel(animation)
 
-	var/mob/living/carbon/human/O
+	var/mob/living/complex/human/O
 	if(Mo.greaterform)
 		O = new(src, Mo.greaterform)
 	else

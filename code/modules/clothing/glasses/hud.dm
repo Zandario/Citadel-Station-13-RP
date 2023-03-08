@@ -116,14 +116,14 @@
 	if(!ishuman(user))
 		return
 
-	var/mob/living/carbon/human/H = user
+	var/mob/living/complex/human/H = user
 	if(!H.glasses || !(H.glasses == src))
 		to_chat(user, "<span class='warning'>You must be wearing the [src] to see the display.</span>")
 	else
 		if(!ar_interact(H))
 			to_chat(user, "<span class='warning'>The [src] does not have any kind of special display.</span>")
 
-/obj/item/clothing/glasses/omnihud/proc/ar_interact(var/mob/living/carbon/human/user)
+/obj/item/clothing/glasses/omnihud/proc/ar_interact(var/mob/living/complex/human/user)
 	return 0 //The base models do nothing.
 
 /obj/item/clothing/glasses/omnihud/prescription
@@ -144,7 +144,7 @@
 	. = ..()
 	AddElement(/datum/element/clothing/hud_granter, list(DATA_HUD_ID_JOB, DATA_HUD_MEDICAL), list(SLOT_ID_GLASSES))
 
-/obj/item/clothing/glasses/omnihud/med/ar_interact(var/mob/living/carbon/human/user)
+/obj/item/clothing/glasses/omnihud/med/ar_interact(var/mob/living/complex/human/user)
 	if(tgarscreen)
 		tgarscreen.ui_interact(user)
 	return 1
@@ -164,7 +164,7 @@
 	. = ..()
 	AddElement(/datum/element/clothing/hud_granter, list(DATA_HUD_SECURITY_ADVANCED), list(SLOT_ID_GLASSES))
 
-/obj/item/clothing/glasses/omnihud/sec/ar_interact(var/mob/living/carbon/human/user)
+/obj/item/clothing/glasses/omnihud/sec/ar_interact(var/mob/living/complex/human/user)
 	if(arscreen)
 		arscreen.nano_ui_interact(user,"main",null,1,glasses_state)
 	return 1
@@ -179,7 +179,7 @@
 	action_button_name = "AR Console (Station Alerts)"
 	arscreen_path = /datum/nano_module/alarm_monitor/engineering
 
-/obj/item/clothing/glasses/omnihud/eng/ar_interact(var/mob/living/carbon/human/user)
+/obj/item/clothing/glasses/omnihud/eng/ar_interact(var/mob/living/complex/human/user)
 	if(arscreen)
 		arscreen.nano_ui_interact(user,"main",null,1,glasses_state)
 	return 1

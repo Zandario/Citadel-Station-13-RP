@@ -159,7 +159,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 				if(I.restricted_species)
 					if(ishuman(user))
 						var/is_inaccessible = TRUE
-						var/mob/living/carbon/human/H = user
+						var/mob/living/complex/human/H = user
 						for(var/F in I.restricted_species)
 							if(F == H.dna.species.id)
 								is_inaccessible = FALSE
@@ -271,7 +271,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 
 // Pen signal responses
 
-/datum/component/uplink/proc/pen_rotation(datum/source, degrees, mob/living/carbon/user)
+/datum/component/uplink/proc/pen_rotation(datum/source, degrees, mob/living/complex/user)
 	var/obj/item/pen/master = parent
 	previous_attempts += degrees
 	if(length(previous_attempts) > PEN_ROTATIONS)

@@ -108,7 +108,7 @@
 		attack_log = body.attack_log	//preserve our attack logs by copying them to our ghost
 
 		if (ishuman(body))
-			var/mob/living/carbon/human/H = body
+			var/mob/living/complex/human/H = body
 			icon = H.icon
 			icon_state = H.icon_state
 			if(H.overlays_standing)
@@ -198,7 +198,7 @@ Works together with spawning an observer, noted above.
 /mob/proc/ghostize(var/can_reenter_corpse = 1)
 	if(key)
 		if(ishuman(src))
-			var/mob/living/carbon/human/H = src
+			var/mob/living/complex/human/H = src
 			if(H.vr_holder && !can_reenter_corpse)
 				H.exit_vr()
 				return 0

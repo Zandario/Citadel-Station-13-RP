@@ -49,7 +49,7 @@
 		var/mob/M = mover
 		add_fingerprint(M)
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/complex/human/H = M
 			if(H.m_intent == "walk")
 				to_chat(H, "<span class='warning'>You stop at the edge of \the [src.name].</span>")
 				return FALSE
@@ -70,7 +70,7 @@
 /obj/structure/closet/grave/proc/fall_in(mob/living/L)	//Only called on humans for now, but still
 	L.Weaken(5)
 	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
+		var/mob/living/complex/human/H = L
 		var/limb_damage = rand(5,25)
 		H.adjustBruteLoss(limb_damage)
 
@@ -158,7 +158,7 @@
 /obj/structure/closet/grave/return_air_for_internal_lifeform(var/mob/living/L)
 	var/gasid = /datum/gas/carbon_dioxide
 	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
+		var/mob/living/complex/human/H = L
 		if(H.species && H.species.exhale_type)
 			gasid = H.species.exhale_type
 	var/datum/gas_mixture/grave_breath = new()

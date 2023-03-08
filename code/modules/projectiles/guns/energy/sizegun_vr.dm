@@ -76,7 +76,7 @@
 		M.visible_message("<span class='warning'>[src] has no effect on [M].</span>")
 		return
 	if(ishuman(target))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/complex/human/H = M
 		H.resize(set_size, TRUE)
 		H.show_message("<font color=#4F49AF> The beam fires into your body, changing your size!</font>")
 		H.updateicon()

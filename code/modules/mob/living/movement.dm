@@ -46,7 +46,7 @@
 	return ..()
 
 //Called when something steps onto us. This allows for mulebots and vehicles to run things over. <3
-/mob/living/Crossed(var/atom/movable/AM) // Transplanting this from /mob/living/carbon/human/Crossed()
+/mob/living/Crossed(var/atom/movable/AM) // Transplanting this from /mob/living/complex/human/Crossed()
 	if(AM == src || AM.is_incorporeal()) // We're not going to run over ourselves or ghosts
 		return
 
@@ -168,7 +168,7 @@
 
 	// sigh
 	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
+		var/mob/living/complex/human/H = L
 		if(H.species.lightweight && prob(50))
 			H.Weaken(5)
 			H.visible_message(SPAN_WARNING("[src] bumps into [H], knocking them to the floor!"))

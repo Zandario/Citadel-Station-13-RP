@@ -64,7 +64,7 @@
 
 /obj/item/weldingtool/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(ishuman(target) && user.a_intent == INTENT_HELP)
-		var/mob/living/carbon/human/H = target
+		var/mob/living/complex/human/H = target
 		var/obj/item/organ/external/S = H.organs_by_name[user.zone_sel.selecting]
 
 		if(!S || S.robotic < ORGAN_ROBOT || S.open == 3)
@@ -278,13 +278,13 @@
 
 //Decides whether or not to damage a player's eyes based on what they're wearing as protection
 //Note: This should probably be moved to mob
-/obj/item/weldingtool/proc/eyecheck(mob/living/carbon/user)
+/obj/item/weldingtool/proc/eyecheck(mob/living/complex/user)
 	if(!istype(user))
 		return 1
 	var/safety = user.eyecheck()
 	safety = clamp( safety + eye_safety_modifier, -1,  2)
-	if(istype(user, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
+	if(istype(user, /mob/living/complex/human))
+		var/mob/living/complex/human/H = user
 		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
 		if(!E)
 			return
@@ -490,10 +490,10 @@
 
 /obj/item/weldingtool/tubefed/process(delta_time)
 	if(mounted_pack)
-		if(!istype(mounted_pack.loc,/mob/living/carbon/human))
+		if(!istype(mounted_pack.loc,/mob/living/complex/human))
 			mounted_pack.return_nozzle()
 		else
-			var/mob/living/carbon/human/H = mounted_pack.loc
+			var/mob/living/complex/human/H = mounted_pack.loc
 			if(H.back != mounted_pack)
 				mounted_pack.return_nozzle()
 
@@ -655,7 +655,7 @@
 	if(istype(src.loc, /obj/item/rig_module))
 		var/obj/item/rig_module/module = src.loc
 		if(module.holder && module.holder.wearer)
-			var/mob/living/carbon/human/H = module.holder.wearer
+			var/mob/living/complex/human/H = module.holder.wearer
 			if(istype(H) && H.back)
 				var/obj/item/rig/suit = H.back
 				if(istype(suit))

@@ -55,7 +55,7 @@
 	/// forced id
 	var/forced_id
 	/// mob path
-	var/mob_path = /mob/living/carbon/human
+	var/mob_path = /mob/living/complex/human
 	/// forced instantiator path
 	var/instantiator_path
 
@@ -73,7 +73,7 @@
 	if(instantiator_path)
 		G.instantiator = new instantiator_path
 	else
-		G.instantiator = ispath(mob_path, /mob/living/carbon/human)? new /datum/ghostrole_instantiator/human/random/species : new /datum/ghostrole_instantiator/simple
+		G.instantiator = ispath(mob_path, /mob/living/complex/human)? new /datum/ghostrole_instantiator/human/random/species : new /datum/ghostrole_instantiator/simple
 	return G
 
 /obj/structure/ghost_role_spawner/custom/proc/GenerateParams()
@@ -85,7 +85,7 @@
 	.["mob"] = mob_path
 
 /obj/structure/ghost_role_spawner/custom/human
-	mob_path = /mob/living/carbon/human
+	mob_path = /mob/living/complex/human
 	/// outfit path
 	var/outfit_path = /datum/outfit/job/station/assistant
 	/// species path

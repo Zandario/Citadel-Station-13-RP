@@ -123,7 +123,7 @@
 
 /mob/proc/CanMobAutoclick(object, location, params)
 
-/mob/living/carbon/CanMobAutoclick(atom/object, location, params)
+/mob/living/complex/CanMobAutoclick(atom/object, location, params)
 	if(!object.IsAutoclickable())
 		return
 	var/obj/item/h = get_active_held_item()
@@ -132,7 +132,7 @@
 
 /mob/proc/canMobMousedown(atom/object, location, params)
 
-/mob/living/carbon/canMobMousedown(atom/object, location, params)
+/mob/living/complex/canMobMousedown(atom/object, location, params)
 	var/obj/item/H = get_active_held_item()
 	if(H)
 		. = H.canItemMouseDown(object, location, params)

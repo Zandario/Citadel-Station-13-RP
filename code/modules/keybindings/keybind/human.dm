@@ -12,7 +12,7 @@
 	description = "Quickly puts an item in the best slot available"
 
 /datum/keybinding/human/quick_equip/down(client/user)
-	var/mob/living/carbon/human/H = user.mob
+	var/mob/living/complex/human/H = user.mob
 	H.quick_equip()
 	return TRUE
 
@@ -23,7 +23,7 @@
 	description = "Put held thing in belt or take out most recent thing from belt"
 
 /datum/keybinding/human/quick_equipbelt/down(client/user)
-	var/mob/living/carbon/human/H = user.mob
+	var/mob/living/complex/human/H = user.mob
 	H.smart_equipbelt()
 	return TRUE
 
@@ -34,6 +34,6 @@
 	description = "Put held thing in backpack or take out most recent thing from backpack"
 
 /datum/keybinding/human/bag_equip/down(client/user)
-	var/mob/living/carbon/human/H = user.mob
+	var/mob/living/complex/human/H = user.mob
 	H.smart_equipbag()
 	return TRUE

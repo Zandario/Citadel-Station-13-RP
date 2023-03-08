@@ -24,7 +24,7 @@
 		for(var/mob/living/simple_mob/slime/M in T)
 			M.adjustToxLoss(rand(5, 10))
 
-/datum/reagent/space_cleaner/affect_touch(mob/living/carbon/M, alien, removed)
+/datum/reagent/space_cleaner/affect_touch(mob/living/complex/M, alien, removed)
 	if(M.r_hand)
 		M.r_hand.clean_blood()
 	if(M.l_hand)
@@ -33,7 +33,7 @@
 		if(M.wear_mask.clean_blood())
 			M.update_inv_wear_mask(0)
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/complex/human/H = M
 		if(alien == IS_SLIME)
 			M.adjustToxLoss(rand(5, 10))
 		if(H.head)
@@ -53,7 +53,7 @@
 			return
 	M.clean_blood()
 
-/datum/reagent/space_cleaner/affect_ingest(mob/living/carbon/M, alien, removed)
+/datum/reagent/space_cleaner/affect_ingest(mob/living/complex/M, alien, removed)
 	if(alien == IS_SLIME)
 		M.adjustToxLoss(6 * removed)
 	else

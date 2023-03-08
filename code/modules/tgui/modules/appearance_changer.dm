@@ -3,7 +3,7 @@
 	name = "Appearance Editor"
 	tgui_id = "AppearanceChanger"
 	var/flags = APPEARANCE_ALL_HAIR
-	var/mob/living/carbon/human/owner = null
+	var/mob/living/complex/human/owner = null
 	var/list/valid_species = list()
 	var/list/valid_hairstyles = list()
 	var/list/valid_facial_hairstyles = list()
@@ -29,7 +29,7 @@
 
 /datum/tgui_module_old/appearance_changer/New(
 		var/host,
-		mob/living/carbon/human/H,
+		mob/living/complex/human/H,
 		check_species_whitelist = 1,
 		list/species_whitelist = list(),
 		list/species_blacklist = list())
@@ -82,7 +82,7 @@
 	if(..())
 		return TRUE
 
-	var/mob/living/carbon/human/target = owner
+	var/mob/living/complex/human/target = owner
 	if(customize_usr)
 		if(!ishuman(usr))
 			return TRUE
@@ -276,7 +276,7 @@
 	return FALSE
 
 /datum/tgui_module_old/appearance_changer/ui_interact(mob/user, datum/tgui/ui = null, datum/tgui/parent_ui = null, datum/ui_state/custom_state)
-	var/mob/living/carbon/human/target = owner
+	var/mob/living/complex/human/target = owner
 	if(customize_usr)
 		if(!ishuman(user))
 			return TRUE
@@ -332,7 +332,7 @@
 
 	generate_data(user)
 
-	var/mob/living/carbon/human/target = owner
+	var/mob/living/complex/human/target = owner
 	if(customize_usr)
 		if(!ishuman(usr))
 			return TRUE
@@ -416,7 +416,7 @@
 	local_skybox.set_position("CENTER", "CENTER", (world.maxx>>1) - newturf.x, (world.maxy>>1) - newturf.y)
 
 /datum/tgui_module_old/appearance_changer/proc/update_dna()
-	var/mob/living/carbon/human/target = owner
+	var/mob/living/complex/human/target = owner
 	if(customize_usr)
 		if(!ishuman(usr))
 			return TRUE
@@ -426,7 +426,7 @@
 		target.update_dna()
 
 /datum/tgui_module_old/appearance_changer/proc/can_change(var/flag)
-	var/mob/living/carbon/human/target = owner
+	var/mob/living/complex/human/target = owner
 	if(customize_usr)
 		if(!ishuman(usr))
 			return TRUE
@@ -435,7 +435,7 @@
 	return target && (flags & flag)
 
 /datum/tgui_module_old/appearance_changer/proc/can_change_skin_tone()
-	var/mob/living/carbon/human/target = owner
+	var/mob/living/complex/human/target = owner
 	if(customize_usr)
 		if(!ishuman(usr))
 			return TRUE
@@ -444,7 +444,7 @@
 	return target && (flags & APPEARANCE_SKIN) && target.species.species_appearance_flags & HAS_SKIN_TONE
 
 /datum/tgui_module_old/appearance_changer/proc/can_change_skin_color()
-	var/mob/living/carbon/human/target = owner
+	var/mob/living/complex/human/target = owner
 	if(customize_usr)
 		if(!ishuman(usr))
 			return TRUE
@@ -461,7 +461,7 @@
 	valid_wingstyles.Cut()
 
 /datum/tgui_module_old/appearance_changer/proc/generate_data(mob/user)
-	var/mob/living/carbon/human/target = owner
+	var/mob/living/complex/human/target = owner
 	if(customize_usr)
 		if(!ishuman(user))
 			return TRUE
@@ -510,7 +510,7 @@
 				)))
 
 /datum/tgui_module_old/appearance_changer/proc/get_genders()
-	var/mob/living/carbon/human/target = owner
+	var/mob/living/complex/human/target = owner
 	if(customize_usr)
 		if(!ishuman(usr))
 			return TRUE
@@ -527,7 +527,7 @@
 /datum/tgui_module_old/appearance_changer/proc/changed_hook(flag)
 	return
 
-/datum/tgui_module_old/appearance_changer/proc/can_use_sprite(datum/sprite_accessory/X, mob/living/carbon/human/target, mob/user)
+/datum/tgui_module_old/appearance_changer/proc/can_use_sprite(datum/sprite_accessory/X, mob/living/complex/human/target, mob/user)
 	if(X.apply_restrictions && !(target.species.name in X.species_allowed))
 		return FALSE
 

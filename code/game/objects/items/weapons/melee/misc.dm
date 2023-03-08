@@ -58,7 +58,7 @@
 	item_state = icon_state
 	update_icon()
 	if(ishuman(src.loc))
-		var/mob/living/carbon/human/H = src.loc
+		var/mob/living/complex/human/H = src.loc
 		H.update_inv_l_hand(0)
 		H.update_inv_r_hand()
 

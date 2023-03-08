@@ -401,7 +401,7 @@ var/datum/planet/sif/planet_sif = null
 /datum/weather/sif/hail/process_effects()
 	..()
 	for(var/humie in human_mob_list)
-		var/mob/living/carbon/human/H = humie
+		var/mob/living/complex/human/H = humie
 		if(H.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(H)
 			if(!T.outdoors)

@@ -25,7 +25,7 @@
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
-	var/mob/living/carbon/human/character = M
+	var/mob/living/complex/human/character = M
 	character.autohiss_mode = pref.autohiss
 	character.autohiss_type = pref.autohiss_type
 	return TRUE

@@ -305,14 +305,14 @@
 
 //? Unsorted
 
-/datum/role/job/proc/equip(var/mob/living/carbon/human/H, var/alt_title)
+/datum/role/job/proc/equip(var/mob/living/complex/human/H, var/alt_title)
 	var/datum/outfit/outfit = get_outfit(H, alt_title)
 	if(!outfit)
 		return FALSE
 	. = outfit.equip(H, title, alt_title)
 	return 1
 
-/datum/role/job/proc/get_outfit(var/mob/living/carbon/human/H, var/alt_title)
+/datum/role/job/proc/get_outfit(var/mob/living/complex/human/H, var/alt_title)
 	if(alt_title && alt_titles)
 		var/datum/prototype/alt_title/A = alt_titles[alt_title]
 		if(A && initial(A.title_outfit))
@@ -327,7 +327,7 @@
 	var/datum/department/D = SSjob.get_primary_department_of_job(src)
 	return economy_payscale * (istype(D)? D.economy_payscale : 1)
 
-/datum/role/job/proc/setup_account(var/mob/living/carbon/human/H)
+/datum/role/job/proc/setup_account(var/mob/living/complex/human/H)
 	if(!account_allowed || (H.mind && H.mind.initial_account))
 		return
 
@@ -351,7 +351,7 @@
 	to_chat(H, "<span class='notice'><b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b></span>")
 
 // Overrideable separately so AIs/borgs can have cardborg hats without unneccessary new()/qdel()
-/datum/role/job/proc/equip_preview(mob/living/carbon/human/H, var/alt_title)
+/datum/role/job/proc/equip_preview(mob/living/complex/human/H, var/alt_title)
 	var/datum/outfit/outfit = get_outfit(H, alt_title)
 	if(!outfit)
 		return FALSE
@@ -371,14 +371,14 @@
 		return max(0, minimal_player_age - C.player_age)
 	return 0
 
-/datum/role/job/proc/apply_fingerprints(var/mob/living/carbon/human/target)
+/datum/role/job/proc/apply_fingerprints(var/mob/living/complex/human/target)
 	if(!istype(target))
 		return 0
 	for(var/obj/item/item in target.contents)
 		apply_fingerprints_to_item(target, item)
 	return 1
 
-/datum/role/job/proc/apply_fingerprints_to_item(var/mob/living/carbon/human/holder, var/obj/item/item)
+/datum/role/job/proc/apply_fingerprints_to_item(var/mob/living/complex/human/holder, var/obj/item/item)
 	item.add_fingerprint(holder,1)
 	if(item.contents.len)
 		for(var/obj/item/sub_item in item.contents)
@@ -404,7 +404,7 @@
 
 /datum/role/job/proc/get_job_icon()
 	if(!SSjob.job_icons[title])
-		var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin("#job_icon")
+		var/mob/living/complex/human/dummy/mannequin/mannequin = get_mannequin("#job_icon")
 		dress_mannequin(mannequin)
 		mannequin.dir = SOUTH
 		mannequin.compile_overlays()
@@ -415,7 +415,7 @@
 
 	return SSjob.job_icons[title]
 
-/datum/role/job/proc/dress_mannequin(mob/living/carbon/human/dummy/mannequin/mannequin)
+/datum/role/job/proc/dress_mannequin(mob/living/complex/human/dummy/mannequin/mannequin)
 	mannequin.delete_inventory(TRUE)
 	equip_preview(mannequin)
 	if(mannequin.back)
@@ -425,7 +425,7 @@
 /datum/role/job/proc/player_has_enough_pto(client/C)
 	return timeoff_factor >= 0 || (C && LAZYACCESS(C.department_hours, pto_type) > 0)
 
-/datum/role/job/proc/equip_backpack(mob/living/carbon/human/H)
+/datum/role/job/proc/equip_backpack(mob/living/complex/human/H)
 	switch(H.backbag)
 		if(2)
 			H.equip_to_slot_or_del(new /obj/item/storage/backpack(H), SLOT_ID_BACK)

@@ -11,7 +11,7 @@
 	idle_power_usage = 1
 	active_power_usage = 5
 	surgery_odds = 100
-	var/mob/living/carbon/human/victim = null
+	var/mob/living/complex/human/victim = null
 	var/strapped = FALSE
 	var/obj/machinery/computer/operating/computer = null
 
@@ -52,8 +52,8 @@
 		qdel(src)
 
 /obj/machinery/optable/proc/check_victim()
-	if(locate(/mob/living/carbon/human, src.loc))
-		var/mob/living/carbon/human/M = locate(/mob/living/carbon/human, src.loc)
+	if(locate(/mob/living/complex/human, src.loc))
+		var/mob/living/complex/human/M = locate(/mob/living/complex/human, src.loc)
 		if(M.lying)
 			victim = M
 			icon_state = M.pulse ? "table2-active" : "table2-idle"
@@ -65,7 +65,7 @@
 /obj/machinery/optable/process(delta_time)
 	check_victim()
 
-/obj/machinery/optable/proc/take_victim(mob/living/carbon/C, mob/living/carbon/user)
+/obj/machinery/optable/proc/take_victim(mob/living/complex/C, mob/living/complex/user)
 	if(C == user)
 		user.visible_message("[user] climbs on \the [src].","You climb on \the [src].")
 	else
@@ -78,7 +78,7 @@
 	*/
 	add_fingerprint(user)
 	if(ishuman(C))
-		var/mob/living/carbon/human/H = C
+		var/mob/living/complex/human/H = C
 		victim = H
 		icon_state = H.pulse ? "table2-active" : "table2-idle"
 	else
@@ -87,7 +87,7 @@
 /obj/machinery/optable/MouseDroppedOnLegacy(mob/target, mob/user)
 
 	var/mob/living/M = user
-	if(user.stat || user.restrained() || !check_table(user) || !iscarbon(target))
+	if(user.stat || user.restrained() || !check_table(user) || !iscomplexmob(target))
 		return
 	if(istype(M))
 		take_victim(target,user)
@@ -104,15 +104,15 @@
 
 	take_victim(usr,usr)
 
-/obj/machinery/optable/attackby(obj/item/W, obj/item/I, mob/living/carbon/user)
+/obj/machinery/optable/attackby(obj/item/W, obj/item/I, mob/living/complex/user)
 	if(istype(W, /obj/item/grab))
 		var/obj/item/grab/G = W
-		if(iscarbon(G.affecting) && check_table(G.affecting))
+		if(iscomplexmob(G.affecting) && check_table(G.affecting))
 			take_victim(G.affecting,usr)
 			qdel(W)
 			return
 
-/obj/machinery/optable/proc/check_table(mob/living/carbon/patient)
+/obj/machinery/optable/proc/check_table(mob/living/complex/patient)
 	check_victim()
 	if(victim && get_turf(victim) == get_turf(src) && victim.lying)
 		to_chat(usr, SPAN_WARNING("\The [src] is already occupied!"))

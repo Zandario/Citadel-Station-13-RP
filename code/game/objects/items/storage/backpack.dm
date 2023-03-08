@@ -493,7 +493,7 @@
 	if(!istype(src.loc, /mob/living))
 		return
 
-	var/mob/living/carbon/human/H = usr
+	var/mob/living/complex/human/H = usr
 
 	if(!istype(H))
 		return
@@ -558,7 +558,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	var/mob/living/carbon/human/H
+	var/mob/living/complex/human/H
 	if(istype(H) && istype(H.tail_style, taurtype))
 		if(H.size_multiplier >= RESIZE_BIG) //Are they a macro?
 			slowdown = 0
@@ -593,7 +593,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	var/mob/living/carbon/human/H
+	var/mob/living/complex/human/H
 	var/datum/sprite_accessory/tail/taur/TT = H.tail_style
 	if(istype(H) && istype(TT, /datum/sprite_accessory/tail/taur/horse))
 		item_state = "[icon_base]_Horse"

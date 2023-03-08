@@ -23,7 +23,7 @@
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
-	var/mob/living/carbon/human/character = M
+	var/mob/living/complex/human/character = M
 	if(pref.sensorpref > 5 || pref.sensorpref < 1)
 		pref.sensorpref = 5
 	character.sensorpref = pref.sensorpref

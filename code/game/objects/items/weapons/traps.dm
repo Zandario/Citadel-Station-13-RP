@@ -23,7 +23,7 @@
 
 /obj/item/beartrap/equipped(mob/user, slot, flags)
 	if(ishuman(src.loc))
-		var/mob/living/carbon/human/H = src.loc
+		var/mob/living/complex/human/H = src.loc
 		if(H.wear_mask == src)
 			add_verb(H, /mob/living/proc/shred_limb_temp)
 		else

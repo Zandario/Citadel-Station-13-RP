@@ -216,7 +216,7 @@ Add those other swinging traps you mentioned above!
 
 /obj/effect/trap/pit/bone_breaker/proc/break_legs(mob/victim as mob)
 	var/broken_legs = 0
-	var/mob/living/carbon/human/target = victim
+	var/mob/living/complex/human/target = victim
 	var/obj/item/organ/external/left_leg = target.get_organ(BP_L_LEG)
 	var/obj/item/organ/external/right_leg = target.get_organ(BP_R_LEG)
 	playsound(src, 'sound/effects/bang.ogg', 100, 1)

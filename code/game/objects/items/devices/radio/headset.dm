@@ -63,7 +63,7 @@
 	if (aiOverride)
 		return ..(freq, level)
 	if(ishuman(src.loc))
-		var/mob/living/carbon/human/H = src.loc
+		var/mob/living/complex/human/H = src.loc
 		if(H.l_ear == src || H.r_ear == src)
 			return ..(freq, level)
 	return -1

@@ -78,7 +78,7 @@
 			M = ai_camera.ai
 	add_hiddenprint(M)
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/complex/human/H = M
 		add_fibers(H)
 		if(H.gloves) //Check if the gloves (if any) hide fingerprints
 			var/obj/item/clothing/gloves/G = H.gloves
@@ -99,7 +99,7 @@
 		fibers[i] = i
 	return TRUE
 
-/datum/component/forensics/proc/add_fibers(mob/living/carbon/human/M)
+/datum/component/forensics/proc/add_fibers(mob/living/complex/human/M)
 	var/fibertext
 	var/item_multiplier = isitem(src)?1.2:1
 	if(M.wear_suit)
@@ -152,7 +152,7 @@
 		return
 	var/hasgloves = ""
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/complex/human/H = M
 		if(H.gloves)
 			hasgloves = "(gloves)"
 	var/current_time = time_stamp()

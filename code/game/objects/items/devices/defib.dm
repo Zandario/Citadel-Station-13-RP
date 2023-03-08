@@ -111,7 +111,7 @@
 	set name = "Toggle Paddles"
 	set category = "Object"
 
-	var/mob/living/carbon/human/user = usr
+	var/mob/living/complex/human/user = usr
 	if(!paddles)
 		to_chat(user, "<span class='warning'>The paddles are missing!</span>")
 		return
@@ -254,7 +254,7 @@
 	return 1
 
 //Checks for various conditions to see if the mob is revivable
-/obj/item/shockpaddles/proc/can_defib(mob/living/carbon/human/H) //This is checked before doing the defib operation
+/obj/item/shockpaddles/proc/can_defib(mob/living/complex/human/H) //This is checked before doing the defib operation
 	if((H.species.species_flags & NO_DEFIB))
 		return "buzzes, \"Alien physiology. Operation aborted. Consider alternative resucitation methods.\""
 	else if(H.isSynthetic() && !use_on_synthetic)
@@ -270,7 +270,7 @@
 
 	return null
 
-/obj/item/shockpaddles/proc/can_revive(mob/living/carbon/human/H) //This is checked right before attempting to revive
+/obj/item/shockpaddles/proc/can_revive(mob/living/complex/human/H) //This is checked right before attempting to revive
 
 	H.updatehealth()
 
@@ -293,14 +293,14 @@
 
 	return null
 
-/obj/item/shockpaddles/proc/check_contact(mob/living/carbon/human/H)
+/obj/item/shockpaddles/proc/check_contact(mob/living/complex/human/H)
 	if(!combat)
 		for(var/obj/item/clothing/cloth in list(H.wear_suit, H.w_uniform))
 			if((cloth.body_cover_flags & UPPER_TORSO) && (cloth.clothing_flags & THICKMATERIAL))
 				return FALSE
 	return TRUE
 
-/obj/item/shockpaddles/proc/check_vital_organs(mob/living/carbon/human/H)
+/obj/item/shockpaddles/proc/check_vital_organs(mob/living/complex/human/H)
 	for(var/organ_tag in H.species.has_organ)
 		var/obj/item/organ/O = H.species.has_organ[organ_tag]
 		var/name = initial(O.name)
@@ -313,7 +313,7 @@
 				return "buzzes, \"Resuscitation failed - Excessive damage to vital organ ([name]).\""
 	return null
 
-/obj/item/shockpaddles/proc/check_blood_level(mob/living/carbon/human/H)
+/obj/item/shockpaddles/proc/check_blood_level(mob/living/complex/human/H)
 	if(!H.should_have_organ(O_HEART))
 		return FALSE
 
@@ -337,7 +337,7 @@
 	return 0
 
 /obj/item/shockpaddles/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
-	var/mob/living/carbon/human/H = target
+	var/mob/living/complex/human/H = target
 	if(!istype(H) || user.a_intent == INTENT_HARM)
 		return ..() //Do a regular attack. Harm intent shocking happens as a hit effect
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
@@ -363,7 +363,7 @@
 	return ..()
 
 // This proc is used so that we can return out of the revive process while ensuring that busy and update_icon() are handled
-/obj/item/shockpaddles/proc/do_revive(mob/living/carbon/human/H, mob/user)
+/obj/item/shockpaddles/proc/do_revive(mob/living/complex/human/H, mob/user)
 	if(!H.client && !H.teleop)
 		for(var/mob/observer/dead/ghost in GLOB.player_list)
 			if(ghost.mind == H.mind)
@@ -431,7 +431,7 @@
 	log_and_message_admins("used \a [src] to revive [key_name(H)].")
 
 
-/obj/item/shockpaddles/proc/do_electrocute(mob/living/carbon/human/H, mob/user, var/target_zone)
+/obj/item/shockpaddles/proc/do_electrocute(mob/living/complex/human/H, mob/user, var/target_zone)
 	var/obj/item/organ/external/affecting = H.get_organ(target_zone)
 	if(!affecting)
 		to_chat(user, "<span class='warning'>They are missing that body part!</span>")
@@ -469,7 +469,7 @@
 
 	add_attack_logs(user,H,"Shocked using [name]")
 
-/obj/item/shockpaddles/proc/make_alive(mob/living/carbon/human/M) //This revives the mob
+/obj/item/shockpaddles/proc/make_alive(mob/living/complex/human/M) //This revives the mob
 	dead_mob_list.Remove(M)
 	if((M in living_mob_list) || (M in dead_mob_list))
 		WARNING("Mob [M] was defibbed but already in the living or dead list still!")

@@ -15,12 +15,12 @@ var/const/RESIZE_A_NORMALSMALL = (RESIZE_NORMAL + RESIZE_SMALL) / 2
 var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 
 // Adding needed defines to /mob/living
-// Note: Polaris had this on /mob/living/carbon/human We need it higher up for animals and stuff.
+// Note: Polaris had this on /mob/living/complex/human We need it higher up for animals and stuff.
 /mob/living
 	var/holder_default
 
 // Define holder_type on types we want to be scoop-able
-/mob/living/carbon/human
+/mob/living/complex/human
 	holder_type = /obj/item/holder/micro
 
 // The reverse lookup of player_sizes_list, number to name.
@@ -33,7 +33,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 
 /**
  * Scale up the size of a mob's icon by the size_multiplier.
- * NOTE: mob/living/carbon/human/update_icons() has a more complicated system and
+ * NOTE: mob/living/complex/human/update_icons() has a more complicated system and
  * 	is already applying this transform.   BUT, it does not call ..()
  *	as long as that is true, we should be fine.  If that changes we need to
  *	re-evaluate.
@@ -84,7 +84,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 	else
 		update_transform() //Lame way
 
-/mob/living/carbon/human/resize(var/new_size, var/animate = TRUE)
+/mob/living/complex/human/resize(var/new_size, var/animate = TRUE)
 	. = ..()
 	if(LAZYLEN(hud_list))
 		var/new_y_offset = 32 * (size_multiplier - 1)
@@ -93,7 +93,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 			HI.pixel_y = new_y_offset
 
 // Optimize mannequins - never a point to animating or doing HUDs on these.
-/mob/living/carbon/human/dummy/mannequin/resize(var/new_size, var/animate = TRUE)
+/mob/living/complex/human/dummy/mannequin/resize(var/new_size, var/animate = TRUE)
 	size_multiplier = new_size
 
 /**
@@ -189,14 +189,14 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 	return diff > 0? THEY_RAN_BETWEEN_OUR_LEGS : WE_RAN_BETWEEN_THEIR_LEGS
 
 /mob/living/proc/inform_someone_you_just_stepped_over_them(mob/living/micro)
-	var/mob/living/carbon/human/H
+	var/mob/living/complex/human/H
 	var/datum/sprite_accessory/tail/taur/tail
 	tail = ishuman(src)? ((H = src) && isTaurTail(H.tail_style) && H.tail_style) : null
 	to_chat(src, tail? STEP_TEXT_OWNER_NON_SHITCODE(tail.msg_owner_help_run, micro) : "You carefully step over [micro].")
 	to_chat(micro, tail? STEP_TEXT_PREY_NON_SHITCODE(tail.msg_prey_help_run, src) : "[src] carefully steps over you.")
 
 /mob/living/proc/inform_someone_they_just_ran_under_you(mob/living/micro)
-	var/mob/living/carbon/human/H
+	var/mob/living/complex/human/H
 	var/datum/sprite_accessory/tail/taur/tail
 	tail = ishuman(src)? ((H = src) && isTaurTail(H.tail_style) && H.tail_style) : null
 	to_chat(micro, tail? STEP_TEXT_OWNER_NON_SHITCODE(tail.msg_prey_stepunder, src) : "You run between [src]'s legs.")
@@ -215,7 +215,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 	. = ..()
 	if(isliving(AM))
 		var/fetish_content_check = stupid_fucking_micro_canpass_fetish_check(mover)
-		var/mob/living/carbon/human/H
+		var/mob/living/complex/human/H
 		var/datum/sprite_accessory/tail/taur/tail
 		switch(fetish_content_check)
 			if(NEITHER_OF_US_ARE_FETISH_CONTENT, WE_ARE_BOTH_MICROS)
@@ -262,13 +262,13 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 
 	//If they're flying, don't do any special interactions.
 	if(ishuman(src))
-		var/mob/living/carbon/human/P = src
+		var/mob/living/complex/human/P = src
 		if(P.flying)
 			return
 
 	//If the prey is flying, don't smush them.
 	if(ishuman(tmob))
-		var/mob/living/carbon/human/D = tmob
+		var/mob/living/complex/human/D = tmob
 		if(D.flying)
 			return
 
@@ -277,14 +277,14 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 		return
 
 	//Test/set if human
-	var/mob/living/carbon/human/H
+	var/mob/living/complex/human/H
 	if(ishuman(src))
 		H = src
 	else
 		//If we're not human, can't do the steppy
 		return FALSE
 
-	var/mob/living/carbon/human/Ht
+	var/mob/living/complex/human/Ht
 	if(ishuman(tmob))
 		Ht = tmob
 	else

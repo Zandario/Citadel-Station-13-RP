@@ -35,7 +35,7 @@
 
 /obj/item/organ/internal/heart/grey/colormatch/proc/sync_color()
 	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
+		var/mob/living/complex/human/H = owner
 		color = H.species.blood_color
 
 /obj/item/organ/internal/heart/machine

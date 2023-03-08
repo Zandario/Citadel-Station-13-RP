@@ -81,5 +81,5 @@
 
 	inherent_verbs = list(
 		/mob/living/proc/shred_limb,
-		/mob/living/carbon/human/proc/tie_hair,
+		/mob/living/complex/human/proc/tie_hair,
 	)

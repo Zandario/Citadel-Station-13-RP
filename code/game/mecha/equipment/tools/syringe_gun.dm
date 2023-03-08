@@ -77,9 +77,9 @@
 				break
 			if(step_towards(S,trg))
 				var/list/mobs = new
-				for(var/mob/living/carbon/M in S.loc)
+				for(var/mob/living/complex/M in S.loc)
 					mobs += M
-				var/mob/living/carbon/M = SAFEPICK(mobs)
+				var/mob/living/complex/M = SAFEPICK(mobs)
 				if(M)
 					S.icon_state = initial(S.icon_state)
 					S.icon = initial(S.icon)
@@ -451,7 +451,7 @@
 		L.cure_radiation(rad_heal)
 
 		if(ishuman(L) && bone_heal)
-			var/mob/living/carbon/human/H = L
+			var/mob/living/complex/human/H = L
 
 			if(H.bad_external_organs.len)
 				for(var/obj/item/organ/external/E in H.bad_external_organs)

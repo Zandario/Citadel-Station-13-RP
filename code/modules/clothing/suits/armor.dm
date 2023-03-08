@@ -21,7 +21,7 @@
 	if(!ishuman(M))
 		return
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/complex/human/H = M
 
 	for(var/obj/item/clothing/I in list(H.gloves, H.shoes))
 		if(I && (src.body_cover_flags & ARMS && I.body_cover_flags & ARMS) )
@@ -581,7 +581,7 @@
 	if(!ishuman(M))
 		return
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/complex/human/H = M
 
 	if(H.gloves)
 		if(H.gloves.body_cover_flags & ARMS)
@@ -748,7 +748,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	var/mob/living/carbon/human/H
+	var/mob/living/complex/human/H
 	if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
 		return
 	else

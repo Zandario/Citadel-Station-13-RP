@@ -15,6 +15,6 @@
 	amt_confused = 300
 	amt_stuttering = 300
 
-	compatible_mobs = list(/mob/living/carbon/human)
+	compatible_mobs = list(/mob/living/complex/human)
 
 	hud_state = "wiz_subj"

@@ -99,7 +99,7 @@
 ////#define COMSIG_ITEM_ON_COMPOSTED "on_composted"
 /// Called when an item is dried by a drying rack:
 ////#define COMSIG_ITEM_DRIED "item_dried"
-/// From base of mob/living/carbon/attacked_by(): (mob/living/carbon/target, mob/living/user, hit_zone)
+/// From base of mob/living/complex/attacked_by(): (mob/living/complex/target, mob/living/user, hit_zone)
 ////#define COMSIG_ITEM_ATTACK_ZONE "item_attack_zone"
 ///return a truthy value to prevent ensouling, checked in /obj/effect/proc_holder/spell/targeted/lichdom/cast(): (mob/user)
 ////#define COMSIG_ITEM_IMBUE_SOUL "item_imbue_soul"
@@ -139,11 +139,11 @@
 ////#define COMSIG_ARMOR_PLATED "armor_plated"
 /// Called when an item gets recharged by the ammo powerup
 ////#define COMSIG_ITEM_RECHARGED "item_recharged"
-/// Called when an item is being offered, from [/obj/item/proc/on_offered(mob/living/carbon/offerer)]
+/// Called when an item is being offered, from [/obj/item/proc/on_offered(mob/living/complex/offerer)]
 ////#define COMSIG_ITEM_OFFERING "item_offering"
 	///? Interrupts the offer proc
 	////#define COMPONENT_OFFER_INTERRUPT (1<<0)
-/// Called when an someone tries accepting an offered item, from [/obj/item/proc/on_offer_taken(mob/living/carbon/offerer, mob/living/carbon/taker)]
+/// Called when an someone tries accepting an offered item, from [/obj/item/proc/on_offer_taken(mob/living/complex/offerer, mob/living/complex/taker)]
 ////#define COMSIG_ITEM_OFFER_TAKEN "item_offer_taken"
 	///? Interrupts the offer acceptance
 	////#define COMPONENT_OFFER_TAKE_INTERRUPT (1<<0)
@@ -208,7 +208,7 @@
 ////#define COMSIG_ITEM_SPLIT_PROFIT_DRY "item_split_profits_dry"
 
 //! /obj/item/clothing signals
-/// From [/mob/living/carbon/human/Move]: ()
+/// From [/mob/living/complex/human/Move]: ()
 ////#define COMSIG_SHOES_STEP_ACTION "shoes_step_action"
 /// From base of /obj/item/clothing/suit/space/proc/toggle_spacesuit(): (obj/item/clothing/suit/space/suit)
 ////#define COMSIG_SUIT_SPACE_TOGGLE "suit_space_toggle"
@@ -261,7 +261,7 @@
 
 //! /obj/item/pen signals
 
-/// Called after rotation in /obj/item/pen/attack_self(): (rotation, mob/living/carbon/user)
+/// Called after rotation in /obj/item/pen/attack_self(): (rotation, mob/living/complex/user)
 ////#define COMSIG_PEN_ROTATED "pen_rotated"
 
 //! /obj/item/gun signals

@@ -24,7 +24,7 @@
 	. = ..()
 	hud = new /obj/item/clothing/glasses/hud/health/mech(src)
 
-/obj/mecha/medical/odysseus/moved_inside(var/mob/living/carbon/human/H as mob)
+/obj/mecha/medical/odysseus/moved_inside(var/mob/living/complex/human/H as mob)
 	if(..())
 		if(H.glasses)
 			occupant_message("<font color='red'>[H.glasses] prevent you from using [src] [hud]</font>")
@@ -37,7 +37,7 @@
 
 /obj/mecha/medical/odysseus/go_out()
 	if(ishuman(occupant))
-		var/mob/living/carbon/human/H = occupant
+		var/mob/living/complex/human/H = occupant
 		if(H.glasses == hud)
 			H.glasses = null
 			H.recalculate_vis()
@@ -89,7 +89,7 @@
 		if(!M.client)	return
 		var/client/C = M.client
 		var/image/holder
-		for(var/mob/living/carbon/human/patient in view(M.loc))
+		for(var/mob/living/complex/human/patient in view(M.loc))
 			if(M.see_invisible < patient.invisibility)
 				continue
 			var/foundVirus = 0

@@ -10,7 +10,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 */ //////////////////////////////
 
 //Holder on humans to prevent having to 'find' it every time
-/mob/living/carbon/human/var/obj/item/nif/nif
+/mob/living/complex/human/var/obj/item/nif/nif
 
 GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 
@@ -43,7 +43,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 	/// Nifsoft adds to this
 	var/tmp/power_usage = 0
 	/// Our owner!
-	var/tmp/mob/living/carbon/human/human
+	var/tmp/mob/living/complex/human/human
 	/// All our nifsofts
 	var/tmp/list/nifsofts[TOTAL_NIF_SOFTWARE]
 	/// Ones that want to be talked to on life()
@@ -108,7 +108,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 
 	//If given a human on spawn (probably from persistence)
 	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
+		var/mob/living/complex/human/H = loc
 		if(!quick_implant(H))
 			WARNING("NIF spawned in [H] failed to implant")
 			spawn(0)
@@ -132,7 +132,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 	return ..()
 
 //Being implanted in some mob
-/obj/item/nif/proc/implant(var/mob/living/carbon/human/H)
+/obj/item/nif/proc/implant(var/mob/living/complex/human/H)
 	var/obj/item/organ/brain = H.internal_organs_by_name[O_BRAIN]
 	if(istype(brain))
 		should_be_in = brain.parent_organ
@@ -144,7 +144,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 		human = H
 		human.nif = src
 		stat = NIF_INSTALLING
-		add_verb(H, /mob/living/carbon/human/proc/set_nif_examine)
+		add_verb(H, /mob/living/complex/human/proc/set_nif_examine)
 		menu = H.AddComponent(/datum/component/nif_menu)
 		if(starting_software)
 			for(var/path in starting_software)
@@ -155,7 +155,7 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 	return FALSE
 
 //For debug or antag purposes
-/obj/item/nif/proc/quick_implant(var/mob/living/carbon/human/H)
+/obj/item/nif/proc/quick_implant(var/mob/living/complex/human/H)
 	if(istype(H))
 		var/obj/item/organ/external/parent
 		//Try to find their brain and put it near that
@@ -180,14 +180,14 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 	return FALSE
 
 //Being removed from some mob
-/obj/item/nif/proc/unimplant(var/mob/living/carbon/human/H)
+/obj/item/nif/proc/unimplant(var/mob/living/complex/human/H)
 	var/datum/nifsoft/soulcatcher/SC = imp_check(NIF_SOULCATCHER)
 	if(SC) //Clean up stored people, this is dirty but the easiest way.
 		QDEL_LIST_NULL(SC.brainmobs)
 		SC.brainmobs = list()
 	stat = NIF_PREINSTALL
 	vis_update()
-	remove_verb(H, /mob/living/carbon/human/proc/set_nif_examine)
+	remove_verb(H, /mob/living/complex/human/proc/set_nif_examine)
 	QDEL_NULL(menu)
 	H.nif = null
 	human = null
@@ -648,8 +648,8 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 	if(!ishuman(target) || !ishuman(user) || (target == user))
 		return ..()
 
-	var/mob/living/carbon/human/U = user
-	var/mob/living/carbon/human/T = target
+	var/mob/living/complex/human/U = user
+	var/mob/living/complex/human/T = target
 
 	if(istype(T.species,/datum/species/shapeshifter/promethean) && U.zone_sel.selecting == BP_TORSO)
 		. = CLICKCHAIN_DO_NOT_PROPAGATE
@@ -672,13 +672,13 @@ GLOBAL_LIST_INIT(nif_id_lookup, init_nif_id_lookup())
 	else
 		return ..()
 
-/mob/living/carbon/human/proc/set_nif_examine()
+/mob/living/complex/human/proc/set_nif_examine()
 	set name = "NIF Appearance"
 	set desc = "If your NIF alters your appearance in some way, describe it here."
 	set category = "OOC"
 
 	if(!nif)
-		remove_verb(src, /mob/living/carbon/human/proc/set_nif_examine)
+		remove_verb(src, /mob/living/complex/human/proc/set_nif_examine)
 		to_chat(src,"<span class='warning'>You don't have a NIF, not sure why this was here.</span>")
 		return
 

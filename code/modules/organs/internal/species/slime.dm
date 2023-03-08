@@ -34,7 +34,7 @@
 
 /obj/item/organ/internal/regennetwork/Initialize(mapload)
 	. = ..()
-	var/mob/living/carbon/human/H = null
+	var/mob/living/complex/human/H = null
 	spawn(15)
 		if(ishuman(owner))
 			H = owner

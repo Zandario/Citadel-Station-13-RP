@@ -419,7 +419,7 @@
 
 /datum/blob_type/cryogenic_goo/on_attack(obj/structure/blob/B, mob/living/victim)
 	if(ishuman(victim))
-		var/mob/living/carbon/human/H = victim
+		var/mob/living/complex/human/H = victim
 		var/protection = H.get_cold_protection(50)
 		if(protection < 1)
 			var/temp_change = 80 // Each hit can reduce temperature by up to 80 kelvin.
@@ -622,8 +622,8 @@
 	resource_type = /obj/structure/blob/resource/sluggish
 
 /datum/blob_type/volatile_alluvium/on_received_damage(var/obj/structure/blob/B, damage, damage_type, mob/living/attacker)
-	if(damage > 0 && attacker && get_dist(B, attacker) <= 2 && prob(min(damage, 70)) && istype(attacker, /mob/living/carbon/human)) // Melee weapons of any type carried by a human will have a high chance of being stolen.
-		var/mob/living/carbon/human/H = attacker
+	if(damage > 0 && attacker && get_dist(B, attacker) <= 2 && prob(min(damage, 70)) && istype(attacker, /mob/living/complex/human)) // Melee weapons of any type carried by a human will have a high chance of being stolen.
+		var/mob/living/complex/human/H = attacker
 		var/obj/item/I = H.get_active_held_item()
 		if(!I)
 			return ..()

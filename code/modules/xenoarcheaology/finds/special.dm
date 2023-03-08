@@ -55,7 +55,7 @@
 /obj/item/vampiric/process(delta_time)
 	//see if we've identified anyone nearby
 	if(world.time - last_bloodcall > bloodcall_interval && nearby_mobs.len)
-		var/mob/living/carbon/human/M = pop(nearby_mobs)
+		var/mob/living/complex/human/M = pop(nearby_mobs)
 		if(M in view(7,src) && M.health > 20)
 			if(prob(50))
 				bloodcall(M)
@@ -115,7 +115,7 @@
 	if(world.time - last_bloodcall >= bloodcall_interval && (M in view(7, src)))
 		bloodcall(M)
 
-/obj/item/vampiric/proc/bloodcall(var/mob/living/carbon/human/M)
+/obj/item/vampiric/proc/bloodcall(var/mob/living/complex/human/M)
 	last_bloodcall = world.time
 	if(istype(M))
 		playsound(loc, pick('sound/hallucinations/wail.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/far_noise.ogg'), 50, 1, -3)
@@ -173,7 +173,7 @@
 /obj/effect/shadow_wight/process(delta_time)
 	if(loc)
 		loc = get_turf(pick(orange(1,src)))
-		var/mob/living/carbon/M = locate() in loc
+		var/mob/living/complex/M = locate() in loc
 		if(M)
 			playsound(loc, pick('sound/hallucinations/behind_you1.ogg',\
 			'sound/hallucinations/behind_you2.ogg',\

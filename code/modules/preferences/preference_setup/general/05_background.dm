@@ -22,7 +22,7 @@
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
-	var/mob/living/carbon/human/character = M
+	var/mob/living/complex/human/character = M
 	character.med_record		= pref.med_record
 	character.sec_record		= pref.sec_record
 	character.gen_record		= pref.gen_record

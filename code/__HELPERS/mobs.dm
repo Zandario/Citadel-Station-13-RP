@@ -164,7 +164,7 @@
 /atom/proc/human_mobs(range = world.view)
 	var/list/viewers = oviewers(src,range)
 	var/list/humans = list()
-	for(var/mob/living/carbon/human/H in viewers)
+	for(var/mob/living/complex/human/H in viewers)
 		humans += H
 
 	return humans

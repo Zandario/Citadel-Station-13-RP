@@ -85,7 +85,7 @@
 /obj/structure/trash_pile/attack_hand(mob/user)
 	//Human mob
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		H.visible_message("[user] searches through \the [src].","<span class='notice'>You search through \the [src].</span>")
 		if(hider)
 			to_chat(hider,"<span class='warning'>[user] is searching the trash pile you're in!</span>")

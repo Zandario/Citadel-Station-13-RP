@@ -17,7 +17,7 @@
 //Increases macimum chemical storage
 /mob/proc/changeling_endoarmor()
 	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
+		var/mob/living/complex/human/H = src
 		H.add_modifier(/datum/modifier/endoarmor)
 	//	H.maxHealth += 50
 	return 1

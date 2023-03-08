@@ -600,8 +600,8 @@ BLIND     // can't see anything
 	flash_protection = FLASH_PROTECTION_REDUCED
 
 /obj/item/clothing/glasses/thermal/emp_act(severity)
-	if(istype(src.loc, /mob/living/carbon/human))
-		var/mob/living/carbon/human/M = src.loc
+	if(istype(src.loc, /mob/living/complex/human))
+		var/mob/living/complex/human/M = src.loc
 		to_chat(M, "<font color='red'>The Optical Thermal Scanner overloads and blinds you!</font>")
 		if(M.glasses == src)
 			M.Blind(3)
@@ -751,7 +751,7 @@ BLIND     // can't see anything
 	icon_state = "modkit"
 	var/scrip_loaded = 0
 
-/obj/item/glasses_kit/afterattack(var/target, var/mob/living/carbon/human/user, var/proximity)
+/obj/item/glasses_kit/afterattack(var/target, var/mob/living/complex/human/user, var/proximity)
 	if(!proximity)
 		return
 	if(!istype(user))
@@ -775,7 +775,7 @@ BLIND     // can't see anything
 
 	//We're getting a prescription
 	else if(ishuman(target))
-		var/mob/living/carbon/human/T = target
+		var/mob/living/complex/human/T = target
 		if(T.glasses || (T.head && T.head.inv_hide_flags & HIDEEYES))
 			to_chat(user, "<span class='warning'>The person's eyes can't be covered!</span>")
 			return

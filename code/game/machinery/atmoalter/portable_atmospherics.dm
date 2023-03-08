@@ -137,7 +137,7 @@
 		var/obj/item/analyzer/A = W
 		A.analyze_gases(src, user)
 
-/obj/machinery/portable_atmospherics/MouseDroppedOnLegacy(mob/living/carbon/O, mob/user as mob)
+/obj/machinery/portable_atmospherics/MouseDroppedOnLegacy(mob/living/complex/O, mob/user as mob)
 	if(!istype(O))
 		return 0 //not a mob
 	if(user.incapacitated())

@@ -11,7 +11,7 @@
 	if(inhands)
 		return
 	if(blood_DNA && blood_sprite_state && ishuman(loc))
-		var/mob/living/carbon/human/H = loc
+		var/mob/living/complex/human/H = loc
 		var/image/bloodsies = image(icon = H.species.get_blood_mask(H), icon_state = blood_sprite_state)
 		bloodsies.color = blood_color
 		MA.add_overlay(bloodsies)
@@ -31,7 +31,7 @@
 	if(inhands)
 		return
 	if(blood_DNA && blood_sprite_state && ishuman(loc))
-		var/mob/living/carbon/human/H = loc
+		var/mob/living/complex/human/H = loc
 		var/image/bloodsies = image(icon = H.species.get_blood_mask(H), icon_state = "[blood_overlay_type]blood")
 		bloodsies.color = blood_color
 		MA.add_overlay(bloodsies)

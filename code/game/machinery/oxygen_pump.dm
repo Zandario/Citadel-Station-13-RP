@@ -7,7 +7,7 @@
 	anchored = TRUE
 
 	var/obj/item/tank/tank
-	var/mob/living/carbon/breather
+	var/mob/living/complex/breather
 	var/obj/item/clothing/mask/breath/contained
 
 	var/spawn_type = /obj/item/tank/emergency/oxygen/engi
@@ -38,7 +38,7 @@
 		QDEL_NULL(contained)
 	return ..()
 
-/obj/machinery/oxygen_pump/OnMouseDropLegacy(mob/living/carbon/human/target, src_location, over_location)
+/obj/machinery/oxygen_pump/OnMouseDropLegacy(mob/living/complex/human/target, src_location, over_location)
 	..()
 	if(istype(target) && CanMouseDrop(target))
 		if(!can_apply_to_target(target, usr)) // There is no point in attempting to apply a mask if it's impossible.
@@ -77,7 +77,7 @@
 /obj/machinery/oxygen_pump/attack_ai(mob/user)
 	nano_ui_interact(user)
 
-/obj/machinery/oxygen_pump/proc/attach_mask(mob/living/carbon/C)
+/obj/machinery/oxygen_pump/proc/attach_mask(mob/living/complex/C)
 	if(C && istype(C))
 		if(!C.equip_to_slot_if_possible(contained, SLOT_ID_MASK, INV_OP_FLUFFLESS | INV_OP_SUPPRESS_WARNING))
 			return
@@ -90,7 +90,7 @@
 				breather.internals.icon_state = "internal1"
 		update_use_power(USE_POWER_ACTIVE)
 
-/obj/machinery/oxygen_pump/proc/can_apply_to_target(mob/living/carbon/human/target, mob/user)
+/obj/machinery/oxygen_pump/proc/can_apply_to_target(mob/living/complex/human/target, mob/user)
 	if(!user)
 		user = target
 	// Check target validity
@@ -294,7 +294,7 @@
 
 		if(breather)	// Safety.
 			if(ishuman(breather))
-				var/mob/living/carbon/human/H = breather
+				var/mob/living/complex/human/H = breather
 
 				if(H.stat == DEAD)
 					H.add_modifier(/datum/modifier/bloodpump_corpse, 6 SECONDS)

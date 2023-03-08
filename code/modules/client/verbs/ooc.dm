@@ -198,7 +198,7 @@
 		display_name = mob.name
 	// Resleeving shenanigan prevention.
 	if(ishuman(mob))
-		var/mob/living/carbon/human/H = mob
+		var/mob/living/complex/human/H = mob
 		if(H.original_player && H.original_player != H.ckey) //In a body not their own
 			display_name = "[H.mind.name] (as [H.name])"
 

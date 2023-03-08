@@ -187,7 +187,7 @@
 #define BORG_BRAINTYPE_AI_SHELL "AI Shell"
 
 
-//* CARBON TASTE SENSITIVITY *// Used in mob/living/carbon/proc/ingest
+//* CARBON TASTE SENSITIVITY *// Used in mob/living/complex/proc/ingest
 ///anything below 5%
 #define TASTE_HYPERSENSITIVE 3
 ///anything below 7%

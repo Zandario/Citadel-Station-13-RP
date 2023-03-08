@@ -270,7 +270,7 @@
 		return
 	var/mob/sitter = buckled_mobs[1] // You have to be sitting on the copier/buckled to it and either be a xeno or a human without clothes on that cover your ass.
 	if(ishuman(sitter)) // Suit checks are in can_buckle_mobs at the bottom of the file.
-		var/mob/living/carbon/human/H = sitter // All human subtypes.
+		var/mob/living/complex/human/H = sitter // All human subtypes.
 		var/species_to_check = H.species.get_true_name()
 		if(species_to_check == SPECIES_CUSTOM || species_to_check == SPECIES_XENOCHIMERA) // Are we a custom species, or Xenochimera? If so, what is the base icon sprite for our species?
 			species_to_check = H.species.base_species // Grab the base species and use that as the 'species' for the purpose of printing off your asscheeks.
@@ -327,7 +327,7 @@
 				temp_img = icon('icons/obj/butts.dmi', "human")
 	else if(istype(sitter,/mob/living/silicon/robot/drone)) // Are we a drone?
 		temp_img = icon('icons/obj/butts.dmi', "drone")
-	else if(istype(sitter,/mob/living/carbon/alien/diona)) // Are we a nymph, instead of a full-grown Diona?
+	else if(istype(sitter,/mob/living/complex/alien/diona)) // Are we a nymph, instead of a full-grown Diona?
 		temp_img = icon('icons/obj/butts.dmi', "nymph")
 	else
 		return

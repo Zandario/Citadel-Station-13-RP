@@ -16,7 +16,7 @@
 	var/injection_cooldown = 600
 	var/replenish_cooldown = 6000
 	var/replenishing = 0
-	var/mob/living/carbon/occupant = null
+	var/mob/living/complex/occupant = null
 	var/injecting = 0
 
 
@@ -97,8 +97,8 @@
 	return
 
 
-/obj/machinery/implantchair/proc/put_mob(mob/living/carbon/M)
-	if(!iscarbon(M))
+/obj/machinery/implantchair/proc/put_mob(mob/living/complex/M)
+	if(!iscomplexmob(M))
 		to_chat(usr, "<span class='warning'>\The [src] cannot hold this!</span>")
 		return
 	if(occupant)
@@ -113,7 +113,7 @@
 
 
 /obj/machinery/implantchair/proc/implant(mob/M)
-	if (!istype(M, /mob/living/carbon))
+	if (!istype(M, /mob/living/complex))
 		return
 	if(!implant_list.len)
 		return

@@ -210,7 +210,7 @@
 	if(!ishuman(M))
 		return TRUE
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/complex/human/H = M
 
 	switch(slot)
 		if(SLOT_ID_LEFT_POCKET, SLOT_ID_RIGHT_POCKET)

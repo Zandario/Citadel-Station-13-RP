@@ -380,7 +380,7 @@
 							temp = "Error: Mind incompatible with body."
 
 						var/list/subtargets = list()
-						for(var/mob/living/carbon/human/H in sleever.occupant)
+						for(var/mob/living/complex/human/H in sleever.occupant)
 							if(H.resleeve_lock && active_mr.ckey != H.resleeve_lock)
 								continue
 							subtargets += H

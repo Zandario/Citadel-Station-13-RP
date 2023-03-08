@@ -98,7 +98,7 @@
 
 	if(ishuman(occupant))
 
-		var/mob/living/carbon/human/H = occupant
+		var/mob/living/complex/human/H = occupant
 		//var/repaired_organ
 
 		// Replace limbs for crystalline species.
@@ -110,7 +110,7 @@
 						crystal_debrittle_crystals(H)
 		//else//damage non adherent
 
-/obj/structure/adherent_bath/proc/crystal_restore_limbs(mob/living/carbon/human/patient)
+/obj/structure/adherent_bath/proc/crystal_restore_limbs(mob/living/complex/human/patient)
 	for(var/limb_type in patient.species.has_limbs)
 		var/obj/item/organ/external/E = patient.organs_by_name[limb_type]
 		if(E && !E.is_usable())// && !(E.limb_flags))
@@ -128,7 +128,7 @@
 			patient.update_icons()
 			return TRUE//return true to end the healing chain for this process call
 
-/obj/structure/adherent_bath/proc/crystal_heal_internal_organs(mob/living/carbon/human/patient)
+/obj/structure/adherent_bath/proc/crystal_heal_internal_organs(mob/living/complex/human/patient)
 	for(var/thing in patient.internal_organs)
 		var/obj/item/organ/internal/I = thing
 		if(BP_IS_CRYSTAL(I) && I.damage)
@@ -136,7 +136,7 @@
 			to_chat(patient, "<span class='notice'>The mineral-rich bath mends your [I.name].</span>")
 			return TRUE
 
-/obj/structure/adherent_bath/proc/crystal_heal_damage(mob/living/carbon/human/patient)
+/obj/structure/adherent_bath/proc/crystal_heal_damage(mob/living/complex/human/patient)
 	patient.cure_radiation(RAD_MOB_CURE_ADHERENT_BATH)
 	for(var/thing in patient.organs)
 		var/obj/item/organ/external/E = thing
@@ -149,7 +149,7 @@
 				to_chat(patient, "<span class='notice'>The mineral-rich bath mends your [E.name].</span>")
 				return TRUE
 
-/obj/structure/adherent_bath/proc/crystal_remove_shrapn(mob/living/carbon/human/patient)
+/obj/structure/adherent_bath/proc/crystal_remove_shrapn(mob/living/complex/human/patient)
 	for(var/thing in patient.organs)
 		var/obj/item/organ/external/E = thing
 		if(BP_IS_CRYSTAL(E))
@@ -161,7 +161,7 @@
 					return TRUE
 
 
-/obj/structure/adherent_bath/proc/crystal_debrittle_crystals(mob/living/carbon/human/patient)
+/obj/structure/adherent_bath/proc/crystal_debrittle_crystals(mob/living/complex/human/patient)
 	for(var/thing in patient.organs)
 		if(istype(thing, /obj/item/organ))
 			var/obj/item/organ/O = thing
@@ -179,5 +179,3 @@ if(prob(50))//The mineral rich bath soaked into you to dissolve the implanted ob
 		E.status |= ORGAN_BRITTLE
 
 */
-
-

@@ -76,7 +76,7 @@
 
 				var/race = "unknown"
 				if(ishuman(M))
-					var/mob/living/carbon/human/H = M
+					var/mob/living/complex/human/H = M
 					race = "[H.species.name]"
 					log.parameters["intelligible"] = 1
 				else if(isbrain(M))

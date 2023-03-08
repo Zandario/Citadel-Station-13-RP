@@ -74,11 +74,11 @@
 	)
 
 	inherent_verbs = list(
-		/mob/living/carbon/human/proc/nectar_select,
-		/mob/living/carbon/human/proc/nectar_pick,
+		/mob/living/complex/human/proc/nectar_select,
+		/mob/living/complex/human/proc/nectar_pick,
 		/mob/living/proc/flying_toggle,
 		/mob/living/proc/start_wings_hovering,
-		/mob/living/carbon/human/proc/tie_hair,
+		/mob/living/complex/human/proc/tie_hair,
 	)
 
 // Did you know it's actually called a honey stomach? I didn't!
@@ -127,7 +127,7 @@
 		reagents.add_reagent(reagent, generated_reagents[reagent])
 
 /// So if someone doesn't want to vomit jelly, they don't have to.
-/mob/living/carbon/human/proc/nectar_select()
+/mob/living/complex/human/proc/nectar_select()
 	set name = "Produce Honey"
 	set desc = "Begin producing honey."
 	set category = "Abilities"
@@ -141,15 +141,15 @@
 		var/selection = input(src, "Choose your character's nectar. Choosing nothing will result in a default of honey.", "Nectar Type", honey_stomach.nectar_type) as null|anything in acceptable_nectar_types
 		if(selection)
 			honey_stomach.nectar_type = selection
-		add_verb(src, /mob/living/carbon/human/proc/nectar_pick)
-		remove_verb(src, /mob/living/carbon/human/proc/nectar_select)
+		add_verb(src, /mob/living/complex/human/proc/nectar_pick)
+		remove_verb(src, /mob/living/complex/human/proc/nectar_select)
 		honey_stomach.emote_descriptor = list("nectar fresh from [honey_stomach.owner]!", "nectar from [honey_stomach.owner]!")
 
 	else
 		to_chat(src, SPAN_NOTICE("You lack the organ required to produce nectar."))
 		return
 
-/mob/living/carbon/human/proc/nectar_pick()
+/mob/living/complex/human/proc/nectar_pick()
 	set name = "Collect Waxcomb"
 	set desc = "Coax waxcomb from [src]."
 	set category = "Abilities"

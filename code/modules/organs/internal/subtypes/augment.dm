@@ -11,7 +11,7 @@
 	parent_organ = BP_TORSO
 
 	/// Verbs added by the organ when present in the body.
-	organ_verbs = list(/mob/living/carbon/human/proc/augment_menu)
+	organ_verbs = list(/mob/living/complex/human/proc/augment_menu)
 	/// Is the parent supposed to be organic, robotic, assisted?
 	target_parent_classes = list()
 	/// Will the organ give its verbs when it isn't a perfect match? I.E., assisted in organic, synthetic in organic.
@@ -165,14 +165,14 @@
 
 // The next two procs simply handle the radial menu for augment activation.
 
-/mob/living/carbon/human/proc/augment_menu()
+/mob/living/complex/human/proc/augment_menu()
 	set name = "Open Augment Menu"
 	set desc = "Toggle your augment menu."
 	set category = "Augments"
 
 	enable_augments(usr)
 
-/mob/living/carbon/human/proc/enable_augments(mob/living/L)
+/mob/living/complex/human/proc/enable_augments(mob/living/L)
 	var/list/options = list()
 
 	var/list/present_augs = list()
@@ -203,14 +203,14 @@
  * destroy_on_drop is the default value for the object to be deleted if it is removed from their person, if equipping is a path, however, this will be set to TRUE,
  * cling_to_organ is a reference to the organ object itself, so they can easily return to their organ when removed by any means.
  */
-/mob/living/carbon/human/proc/equip_augment_item(var/slot, var/obj/item/equipping = null, var/make_sound = TRUE, var/destroy_on_drop = FALSE, var/obj/item/organ/cling_to_organ = null)
+/mob/living/complex/human/proc/equip_augment_item(var/slot, var/obj/item/equipping = null, var/make_sound = TRUE, var/destroy_on_drop = FALSE, var/obj/item/organ/cling_to_organ = null)
 	if(!ishuman(src))
 		return FALSE
 
 	if(!equipping)
 		return FALSE
 
-	var/mob/living/carbon/human/M = src
+	var/mob/living/complex/human/M = src
 
 	if(buckled)
 		var/obj/Ob = buckled

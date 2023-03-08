@@ -42,8 +42,8 @@
 			if(damtype == "brute")
 				step_away(M,src,15)
 
-			if(istype(target, /mob/living/carbon/human))
-				var/mob/living/carbon/human/H = target
+			if(istype(target, /mob/living/complex/human))
+				var/mob/living/complex/human/H = target
 	//			if (M.health <= 0) return
 
 				var/obj/item/organ/external/temp = H.get_organ(pick(BP_TORSO, BP_TORSO, BP_TORSO, BP_HEAD))
@@ -120,7 +120,7 @@
 // override move_inside() so only micro crew can use them
 
 /obj/mecha/micro/move_inside()
-	var/mob/living/carbon/C = usr
+	var/mob/living/complex/C = usr
 	if (C.size_multiplier >= 0.5)
 		to_chat(C, "<span class='warning'>You can't fit in this suit!</span>")
 		return
@@ -128,7 +128,7 @@
 		..()
 
 /obj/mecha/micro/move_inside_passenger()
-	var/mob/living/carbon/C = usr
+	var/mob/living/complex/C = usr
 	if (C.size_multiplier >= 0.5)
 		to_chat(C, "<span class='warning'>You can't fit in this suit!</span>")
 		return
@@ -156,4 +156,3 @@
 
 /obj/effect/decal/mecha_wreckage/micro
 	icon = 'icons/mecha/micro.dmi'
-

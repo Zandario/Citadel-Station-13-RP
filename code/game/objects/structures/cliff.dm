@@ -222,7 +222,7 @@ two tiles on initialization, and which way a cliff is facing may change during m
 /obj/structure/cliff/can_climb(mob/living/user, post_climb_check = FALSE)
 	// Cliff climbing requires climbing gear.
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		var/obj/item/clothing/shoes/shoes = H.shoes
 		if(shoes && shoes.rock_climbing)
 			return ..() // Do the other checks too.

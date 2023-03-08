@@ -93,7 +93,7 @@
 	if(new_spawn_point_type && prefs.persistence_settings & PERSIST_SPAWN)
 		prefs.spawnpoint = initial(new_spawn_point_type.display_name)
 	if(ishuman(occupant) && occupant.stat != DEAD)
-		var/mob/living/carbon/human/H = occupant
+		var/mob/living/complex/human/H = occupant
 		testing("Persist (PID): Saving stuff from [H] to [prefs] (\ref[prefs]).")
 		if(prefs.persistence_settings & PERSIST_ORGANS)
 			apply_organs_to_prefs(H, prefs)
@@ -109,7 +109,7 @@
 
 // Saves mob's current organ state to prefs.
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/general/body/copy_to_mob() ~Leshana
-/proc/apply_organs_to_prefs(var/mob/living/carbon/human/character, var/datum/preferences/prefs)
+/proc/apply_organs_to_prefs(var/mob/living/complex/human/character, var/datum/preferences/prefs)
 	if(!istype(character) || !character.species) return
 	// Checkify the limbs!
 	for(var/name in character.species.has_limbs)
@@ -140,7 +140,7 @@
 
 // Saves mob's current body markings state to prefs.
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/general/body/copy_to_mob() ~Leshana
-/proc/apply_markings_to_prefs(var/mob/living/carbon/human/character, var/datum/preferences/prefs)
+/proc/apply_markings_to_prefs(var/mob/living/complex/human/character, var/datum/preferences/prefs)
 	if(!istype(character)) return
 	var/list/new_body_markings = list()
 	for(var/N in character.organs_by_name)
@@ -168,7 +168,7 @@
 * Normally this would slowly apply during the round; once we get to the end
 * we need to apply it all at once.
 */
-/proc/resolve_excess_nutrition(var/mob/living/carbon/C)
+/proc/resolve_excess_nutrition(var/mob/living/complex/C)
 	if(C.stat == DEAD)
 		return // You don't metabolize if dead
 	if(!C.metabolism || !C.species || !C.species.hunger_factor)
@@ -190,7 +190,7 @@
 * towards future shenanigans such as upgradable NIFs or different types or things of that nature,
 * without invoking the need for a bunch of different save file variables.
 */
-/proc/persist_nif_data(var/mob/living/carbon/human/H,var/datum/preferences/prefs)
+/proc/persist_nif_data(var/mob/living/complex/human/H,var/datum/preferences/prefs)
 	if(!istype(H))
 		stack_trace("Persist (NIF): Given a nonhuman: [H]")
 		return

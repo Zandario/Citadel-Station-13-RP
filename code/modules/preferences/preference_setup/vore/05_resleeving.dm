@@ -25,8 +25,8 @@
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
-	var/mob/living/carbon/human/character = M
-	if(character && !istype(character,/mob/living/carbon/human/dummy))
+	var/mob/living/complex/human/character = M
+	if(character && !istype(character,/mob/living/complex/human/dummy))
 		spawn(50)
 			if(QDELETED(character) || QDELETED(pref))
 				return // They might have been deleted during the wait

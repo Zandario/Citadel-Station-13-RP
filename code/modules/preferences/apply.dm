@@ -5,7 +5,7 @@
 			. = FALSE
 
 // todo: at some point we should support nonhuman copy to's better.
-/datum/preferences/proc/copy_to(mob/living/carbon/human/character, flags)
+/datum/preferences/proc/copy_to(mob/living/complex/human/character, flags)
 	// Sanitizing rather than saving as someone might still be editing when copy_to occurs.
 	player_setup.sanitize_setup()
 	sanitize_everything()

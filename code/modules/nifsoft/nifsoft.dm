@@ -94,7 +94,7 @@
 		qdel(src)
 
 ///Called every life() tick on a mob on active implants
-/datum/nifsoft/proc/on_life(var/mob/living/carbon/human/human)
+/datum/nifsoft/proc/on_life(var/mob/living/complex/human/human)
 	return TRUE
 
 ///Called when attempting to activate an implant (could be a 'pulse' activation or toggling it on)
@@ -123,7 +123,7 @@
 		nif.set_flag(other_flags,NIF_FLAGS_OTHER)
 
 		if(vision_exclusive)
-			var/mob/living/carbon/human/H = nif.human
+			var/mob/living/complex/human/H = nif.human
 			if(H && istype(H))
 				H.recalculate_vis()
 
@@ -151,7 +151,7 @@
 		nif.clear_flag(other_flags,NIF_FLAGS_OTHER)
 
 		if(vision_exclusive)
-			var/mob/living/carbon/human/H = nif.human
+			var/mob/living/complex/human/H = nif.human
 			if(H && istype(H))
 				H.recalculate_vis()
 
@@ -163,7 +163,7 @@
 	return
 
 ///Called when installed from a disk
-/datum/nifsoft/proc/disk_install(var/mob/living/carbon/human/target,var/mob/living/carbon/human/user)
+/datum/nifsoft/proc/disk_install(var/mob/living/complex/human/target,var/mob/living/complex/human/user)
 	return TRUE
 
 ///Status text for menu
@@ -218,8 +218,8 @@
 	if(!ishuman(user) || !ishuman(target))
 		return
 
-	var/mob/living/carbon/human/Ht = target
-	var/mob/living/carbon/human/Hu = user
+	var/mob/living/complex/human/Ht = target
+	var/mob/living/complex/human/Hu = user
 
 	if(!Ht.nif || Ht.nif.stat != NIF_WORKING)
 		to_chat(user,"<span class='warning'>Either they don't have a NIF, or the uploader can't connect.</span>")

@@ -689,7 +689,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 
 /mob/proc/pull_damage()
 	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
+		var/mob/living/complex/human/H = src
 		if(H.health - H.halloss <= config_legacy.health_threshold_softcrit)
 			for(var/name in H.organs_by_name)
 				var/obj/item/organ/external/e = H.organs_by_name[name]
@@ -834,7 +834,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 		remove_verb(src, /mob/proc/yank_out_object)
 
 	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
+		var/mob/living/complex/human/H = src
 		var/obj/item/organ/external/affected
 
 		for(var/obj/item/organ/external/organ in H.organs) //Grab the organ holding the implant.
@@ -851,7 +851,7 @@ GLOBAL_VAR_INIT(exploit_warn_spam_prevention, 0)
 			H.custom_pain("Something tears wetly in your [affected] as [selection] is pulled free!", 50)
 
 		if (ishuman(U))
-			var/mob/living/carbon/human/human_user = U
+			var/mob/living/complex/human/human_user = U
 			human_user.bloody_hands(H)
 
 	else if(issilicon(src))

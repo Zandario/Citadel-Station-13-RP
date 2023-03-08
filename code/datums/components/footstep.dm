@@ -23,8 +23,8 @@
 			playsound(T, 'sound/effects/footstep/crawl1.ogg', 15 * v)
 		return
 
-	if(iscarbon(LM))
-		var/mob/living/carbon/C = LM
+	if(iscomplexmob(LM))
+		var/mob/living/complex/C = LM
 		if(!C.get_bodypart(BODY_ZONE_L_LEG) && !C.get_bodypart(BODY_ZONE_R_LEG))
 			return
 		if(ishuman(C) && C.m_intent == MOVE_INTENT_WALK)
@@ -84,7 +84,7 @@
 				GLOB.footstep[T.footstep][3] + e)
 			return
 		if(ishuman(LM)) //for proper humans, they're special
-			var/mob/living/carbon/human/H = LM
+			var/mob/living/complex/human/H = LM
 			var/feetCover = (H.wear_suit && (H.wear_suit.body_cover_flags & FEET)) || (H.w_uniform && (H.w_uniform.body_cover_flags & FEET))
 
 			if(H.shoes || feetCover) //are we wearing shoes

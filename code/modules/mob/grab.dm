@@ -64,7 +64,7 @@
 
 	var/atom/movable/screen/grab/hud = null
 	var/mob/living/affecting = null
-	var/mob/living/carbon/human/assailant = null
+	var/mob/living/complex/human/assailant = null
 	var/state = GRAB_PASSIVE
 
 	var/allow_upgrade = 1
@@ -163,7 +163,7 @@
 	if(state >= GRAB_AGGRESSIVE)
 		affecting.drop_all_held_items()
 
-		if(iscarbon(affecting))
+		if(iscomplexmob(affecting))
 			handle_eye_mouth_covering(affecting, assailant, assailant.zone_sel.selecting)
 
 		if(force_down)
@@ -183,7 +183,7 @@
 
 	adjust_position()
 
-/obj/item/grab/proc/handle_eye_mouth_covering(mob/living/carbon/target, mob/user, var/target_zone)
+/obj/item/grab/proc/handle_eye_mouth_covering(mob/living/complex/target, mob/user, var/target_zone)
 	var/announce = (target_zone != last_hit_zone) //only display messages when switching between different target zones
 	last_hit_zone = target_zone
 
@@ -346,7 +346,7 @@
 	//clicking on the victim while grabbing them
 	if(target == affecting)
 		if(ishuman(affecting))
-			var/mob/living/carbon/human/H = affecting
+			var/mob/living/complex/human/H = affecting
 			var/hit_zone = assailant.zone_sel.selecting
 			flick(hud.icon_state, hud)
 			switch(assailant.a_intent)
@@ -442,7 +442,7 @@
 	return ..()
 
 
-/obj/item/grab/proc/inspect_organ(mob/living/carbon/human/H, mob/user, var/target_zone)
+/obj/item/grab/proc/inspect_organ(mob/living/complex/human/H, mob/user, var/target_zone)
 
 	var/obj/item/organ/external/E = H.get_organ(target_zone)
 
@@ -484,7 +484,7 @@
 		if(!bad)
 			to_chat(user, "<span class='notice'>[H]'s skin is normal.</span>")
 
-/obj/item/grab/proc/jointlock(mob/living/carbon/human/target, mob/attacker, var/target_zone)
+/obj/item/grab/proc/jointlock(mob/living/complex/human/target, mob/attacker, var/target_zone)
 	if(state < GRAB_AGGRESSIVE)
 		to_chat(attacker, "<span class='warning'>You require a better grab to do this.</span>")
 		return
@@ -506,7 +506,7 @@
 		var/max_halloss = round(target.species.total_health * 0.8) //up to 80% of passing out
 		affecting.adjustHalLoss(clamp(0, max_halloss - affecting.halloss, 30))
 
-/obj/item/grab/proc/attack_eye(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
+/obj/item/grab/proc/attack_eye(mob/living/complex/human/target, mob/living/complex/human/attacker)
 	if(!istype(attacker))
 		return
 
@@ -529,7 +529,7 @@
 
 	attack.handle_eye_attack(attacker, target)
 
-/obj/item/grab/proc/headbutt(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
+/obj/item/grab/proc/headbutt(mob/living/complex/human/target, mob/living/complex/human/attacker)
 	if(!istype(attacker))
 		return
 	if(target.lying)
@@ -556,7 +556,7 @@
 
 	qdel(src)
 
-/obj/item/grab/proc/dislocate(mob/living/carbon/human/target, mob/living/attacker, var/target_zone)
+/obj/item/grab/proc/dislocate(mob/living/complex/human/target, mob/living/attacker, var/target_zone)
 	if(state < GRAB_NECK)
 		to_chat(attacker, "<span class='warning'>You require a better grab to do this.</span>")
 		return
@@ -594,7 +594,7 @@
 	if((MUTATION_FAT in user.mutations) && ismini(target))
 		can_eat = 1
 	else
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		if(istype(H) && H.species.gluttonous)
 			if(H.species.gluttonous == 2)
 				can_eat = 2
@@ -602,7 +602,7 @@
 				can_eat = 1
 
 	if(can_eat)
-		var/mob/living/carbon/attacker = user
+		var/mob/living/complex/attacker = user
 		user.visible_message("<span class='danger'>[user] is attempting to devour [target]!</span>")
 		if(can_eat == 2)
 			if(!do_mob(user, target)||!do_after(user, 30)) return

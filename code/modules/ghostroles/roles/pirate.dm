@@ -49,7 +49,7 @@
 
 /datum/ghostrole_instantiator/human/random/species/pirate/GetOutfit(client/C, mob/M, list/params)
 	var/datum/outfit/outfit = ..()
-	//var/mob/M = /mob/living/carbon/human/H
+	//var/mob/M = /mob/living/complex/human/H
 	M.faction = "pirate"
 	switch(params["fluff"])
 		if("immigrant")

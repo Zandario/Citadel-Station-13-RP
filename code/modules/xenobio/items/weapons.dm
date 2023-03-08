@@ -23,7 +23,7 @@
 
 		// Now for prommies.
 		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
+			var/mob/living/complex/human/H = L
 			if(H.species && H.species.get_species_id() == SPECIES_ID_PROMETHEAN)
 				var/agony_to_apply = 60 - agonyforce
 				H.apply_damage(agony_to_apply, HALLOSS)
@@ -102,7 +102,7 @@
 				L.Weaken(round(agony/2))
 
 		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
+			var/mob/living/complex/human/H = L
 			if(H.species && H.species.get_species_id() == SPECIES_ID_PROMETHEAN)
 				if(agony == initial(agony)) // ??????
 					agony = round((14 * agony) - agony) //60-4 = 56, 56 / 4 = 14. Prior was flat 60 - agony of the beam to equate to 60.

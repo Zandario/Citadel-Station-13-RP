@@ -15,7 +15,7 @@
 /**
  * get effective bodytype
  */
-/datum/species/proc/get_effective_bodytype(mob/living/carbon/human/H, obj/item/I, slot_id)
+/datum/species/proc/get_effective_bodytype(mob/living/complex/human/H, obj/item/I, slot_id)
 	return default_bodytype
 
 //? Languages
@@ -58,61 +58,61 @@
 
 //? misc
 
-/datum/species/proc/get_valid_shapeshifter_forms(mob/living/carbon/human/H)
+/datum/species/proc/get_valid_shapeshifter_forms(mob/living/complex/human/H)
 	return list()
 
-/datum/species/proc/get_additional_examine_text(mob/living/carbon/human/H)
+/datum/species/proc/get_additional_examine_text(mob/living/complex/human/H)
 	return
 
-/datum/species/proc/get_tail(mob/living/carbon/human/H)
+/datum/species/proc/get_tail(mob/living/complex/human/H)
 	return tail
 
-/datum/species/proc/get_tail_animation(mob/living/carbon/human/H)
+/datum/species/proc/get_tail_animation(mob/living/complex/human/H)
 	return tail_animation
 
-/datum/species/proc/get_tail_hair(mob/living/carbon/human/H)
+/datum/species/proc/get_tail_hair(mob/living/complex/human/H)
 	return tail_hair
 
-/datum/species/proc/get_blood_mask(mob/living/carbon/human/H)
+/datum/species/proc/get_blood_mask(mob/living/complex/human/H)
 	return blood_mask
 
-/datum/species/proc/get_damage_overlays(mob/living/carbon/human/H)
+/datum/species/proc/get_damage_overlays(mob/living/complex/human/H)
 	return damage_overlays
 
-/datum/species/proc/get_damage_mask(mob/living/carbon/human/H)
+/datum/species/proc/get_damage_mask(mob/living/complex/human/H)
 	return damage_mask
 
-/datum/species/proc/get_icobase(mob/living/carbon/human/H, get_deform)
+/datum/species/proc/get_icobase(mob/living/complex/human/H, get_deform)
 	return (get_deform ? deform : icobase)
 
-/datum/species/proc/get_husk_icon(mob/living/carbon/human/H)
+/datum/species/proc/get_husk_icon(mob/living/complex/human/H)
 	return husk_icon
 
 // used for limb caching
 // todo: rework limbs and get rid of this, numerical static keys are dumb as fuck,
 // limbs should use their own types!
-/datum/species/proc/get_race_key(mob/living/carbon/human/H)
+/datum/species/proc/get_race_key(mob/living/complex/human/H)
 	return real_race_key(H)
 
-/datum/species/proc/real_race_key(mob/living/carbon/human/H)
+/datum/species/proc/real_race_key(mob/living/complex/human/H)
 	return name
 
-/datum/species/proc/get_bodytype_legacy(mob/living/carbon/human/H)
+/datum/species/proc/get_bodytype_legacy(mob/living/complex/human/H)
 	return name
 
-/datum/species/proc/get_worn_legacy_bodytype(mob/living/carbon/human/H)
+/datum/species/proc/get_worn_legacy_bodytype(mob/living/complex/human/H)
 	return override_worn_legacy_bodytype || name
 
-/datum/species/proc/get_knockout_message(mob/living/carbon/human/H)
+/datum/species/proc/get_knockout_message(mob/living/complex/human/H)
 	return ((H && H.isSynthetic()) ? "encounters a hardware fault and suddenly reboots!" : knockout_message)
 
-/datum/species/proc/get_death_message(mob/living/carbon/human/H)
+/datum/species/proc/get_death_message(mob/living/complex/human/H)
 	if(config_legacy.show_human_death_message)
 		return ((H && H.isSynthetic()) ? "gives one shrill beep before falling lifeless." : death_message)
 	else
 		return "no message"
 
-/datum/species/proc/get_ssd(mob/living/carbon/human/H)
+/datum/species/proc/get_ssd(mob/living/complex/human/H)
 	if(H)
 		if(H.looksSynthetic())
 			return "flashing a 'system offline' light"
@@ -121,7 +121,7 @@
 		else
 			return
 
-/datum/species/proc/get_blood_colour(mob/living/carbon/human/H)
+/datum/species/proc/get_blood_colour(mob/living/complex/human/H)
 	if(H)
 		var/datum/robolimb/company = H.isSynthetic()
 		if(company)
@@ -129,7 +129,7 @@
 		else
 			return blood_color
 
-/datum/species/proc/get_blood_name(mob/living/carbon/human/H)
+/datum/species/proc/get_blood_name(mob/living/complex/human/H)
 	if(H)
 		var/datum/robolimb/company = H.isSynthetic()
 		if(company)
@@ -137,13 +137,13 @@
 		else
 			return blood_name
 
-/datum/species/proc/get_virus_immune(mob/living/carbon/human/H)
+/datum/species/proc/get_virus_immune(mob/living/complex/human/H)
 	return ((H && H.isSynthetic()) ? 1 : virus_immune)
 
-/datum/species/proc/get_flesh_colour(mob/living/carbon/human/H)
+/datum/species/proc/get_flesh_colour(mob/living/complex/human/H)
 	return ((H && H.isSynthetic()) ? SYNTH_FLESH_COLOUR : flesh_color)
 
-/datum/species/proc/get_environment_discomfort(mob/living/carbon/human/H, msg_type)
+/datum/species/proc/get_environment_discomfort(mob/living/complex/human/H, msg_type)
 
 	if(!prob(5))
 		return
@@ -178,24 +178,24 @@
 		return "unknown"
 	return species_language.get_random_name(gender)
 
-/datum/species/proc/get_vision_flags(mob/living/carbon/human/H)
+/datum/species/proc/get_vision_flags(mob/living/complex/human/H)
 	return vision_flags
 
-/datum/species/proc/get_wing_hair(mob/living/carbon/human/H) //I have no idea what this is even used for other than teshari, but putting it in just in case.
+/datum/species/proc/get_wing_hair(mob/living/complex/human/H) //I have no idea what this is even used for other than teshari, but putting it in just in case.
 	return wing_hair //Since the tail has it.
 
-/datum/species/proc/get_wing(mob/living/carbon/human/H)
+/datum/species/proc/get_wing(mob/living/complex/human/H)
 	return wing
 
-/datum/species/proc/get_wing_animation(mob/living/carbon/human/H)
+/datum/species/proc/get_wing_animation(mob/living/complex/human/H)
 	return wing_animation
 
 //! ## Names
-/datum/species/proc/get_true_name(mob/living/carbon/human/H)
+/datum/species/proc/get_true_name(mob/living/complex/human/H)
 	return name
 
-/datum/species/proc/get_display_name(mob/living/carbon/human/H)
+/datum/species/proc/get_display_name(mob/living/complex/human/H)
 	return display_name || name
 
-/datum/species/proc/get_examine_name(mob/living/carbon/human/H)
+/datum/species/proc/get_examine_name(mob/living/complex/human/H)
 	return examine_name || name

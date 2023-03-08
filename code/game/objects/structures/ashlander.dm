@@ -346,7 +346,7 @@
 		Bless()
 
 /obj/structure/ashlander/statue/proc/Bless(mob/user)
-	var/mob/living/carbon/human/H = usr
+	var/mob/living/complex/human/H = usr
 	if(!H.faction == "lavaland")
 		to_chat(user, "<span class='danger'>You feel as if an eye briefly regards you, and then turns away.</span>")
 	else

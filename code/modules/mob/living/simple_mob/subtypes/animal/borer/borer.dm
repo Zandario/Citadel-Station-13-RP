@@ -42,7 +42,7 @@
 
 	var/chemicals = 10							// A resource used for reproduction and powers.
 	var/max_chemicals = 250						// Max of said resource.
-	var/mob/living/carbon/human/host = null		// The humanoid host for the brain worm.
+	var/mob/living/complex/human/host = null		// The humanoid host for the brain worm.
 	var/true_name = null						// String used when speaking among other worms.
 	var/mob/living/captive_brain/host_brain		// Used for swapping control of the body back and forth.
 	var/controlling = FALSE						// Used in human death ceck.
@@ -114,8 +114,8 @@
 	if(!host || !controlling)
 		return
 
-	if(istype(host, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = host
+	if(istype(host, /mob/living/complex/human))
+		var/mob/living/complex/human/H = host
 		var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
 		if(head)
 			head.implants -= src
@@ -123,9 +123,9 @@
 	controlling = FALSE
 
 	host.remove_language("Cortical Link")
-	remove_verb(host, /mob/living/carbon/proc/release_control)
-	remove_verb(host, /mob/living/carbon/proc/punish_host)
-	remove_verb(host, /mob/living/carbon/proc/spawn_larvae)
+	remove_verb(host, /mob/living/complex/proc/release_control)
+	remove_verb(host, /mob/living/complex/proc/punish_host)
+	remove_verb(host, /mob/living/complex/proc/spawn_larvae)
 
 	if(host_brain)
 		// these are here so bans and multikey warnings are not triggered on the wrong people when ckey is changed.
@@ -176,8 +176,8 @@
 
 	machine = null
 
-	if(istype(host, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = host
+	if(istype(host, /mob/living/complex/human))
+		var/mob/living/complex/human/H = host
 		var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
 		if(head)
 			head.implants -= src

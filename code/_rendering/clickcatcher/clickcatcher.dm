@@ -37,8 +37,8 @@
 
 /atom/movable/screen/click_catcher/Click(location, control, params)
 	var/list/modifiers = params2list(params)
-	if(modifiers["middle"] && iscarbon(usr))
-		var/mob/living/carbon/C = usr
+	if(modifiers["middle"] && iscomplexmob(usr))
+		var/mob/living/complex/C = usr
 		C.swap_hand()
 	else
 		var/turf/T = Parse(modifiers["screen-loc"], get_turf(usr.client?.eye || usr), usr.client)

@@ -818,8 +818,8 @@
 
 	add_fingerprint(user)
 
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
+	if(istype(user,/mob/living/complex/human))
+		var/mob/living/complex/human/H = user
 		switch(H.a_intent)
 			if(INTENT_HELP)
 				visible_message("<span class='notice'>[H] pets [src].</span>")
@@ -867,8 +867,8 @@
 	//check if it doesn't require any access at all
 	if(check_access(null))
 		return 1
-	if(istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if(istype(M, /mob/living/complex/human))
+		var/mob/living/complex/human/H = M
 		//if they are holding or wearing a card that has access, that works
 		if(check_access(H.get_active_held_item()) || check_access(H.wear_id))
 			return 1
@@ -1098,8 +1098,8 @@
 					else if(istype(A, /obj/item))
 						var/obj/item/cleaned_item = A
 						cleaned_item.clean_blood()
-					else if(istype(A, /mob/living/carbon/human))
-						var/mob/living/carbon/human/cleaned_human = A
+					else if(istype(A, /mob/living/complex/human))
+						var/mob/living/complex/human/cleaned_human = A
 						if(cleaned_human.lying)
 							if(cleaned_human.head)
 								cleaned_human.head.clean_blood()
@@ -1142,8 +1142,8 @@
 				for(var/A in tile)
 					if(istype(A,/obj/effect/rune) || istype(A,/obj/effect/debris/cleanable) || istype(A,/obj/effect/overlay))
 						qdel(A)
-					else if(istype(A, /mob/living/carbon/human))
-						var/mob/living/carbon/human/cleaned_human = A
+					else if(istype(A, /mob/living/complex/human))
+						var/mob/living/complex/human/cleaned_human = A
 						if(cleaned_human.lying)
 							if(cleaned_human.head)
 								cleaned_human.head.clean_blood()

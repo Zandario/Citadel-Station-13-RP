@@ -273,11 +273,11 @@
 		return TRUE
 	if(user.lying || user.stat)
 		return TRUE
-	if(!(istype(user, /mob/living/carbon/human) || istype(user, /mob/living/silicon)))
+	if(!(istype(user, /mob/living/complex/human) || istype(user, /mob/living/silicon)))
 		to_chat(user, SPAN_WARNING("You don't have the dexterity to do this!"))
 		return TRUE
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		if(H.getBrainLoss() >= 55)
 			visible_message(SPAN_WARNING("[H] stares cluelessly at [src]."))
 			return TRUE
@@ -285,7 +285,7 @@
 			to_chat(user, SPAN_WARNING("You momentarily forget how to use [src]."))
 			return TRUE
 
-	if(clicksound && istype(user, /mob/living/carbon))
+	if(clicksound && istype(user, /mob/living/complex))
 		playsound(src, clicksound, clickvol)
 
 	return ..()
@@ -311,7 +311,7 @@
 				return FALSE
 /*
 		if(!Adjacent(user)) // Next make sure we are next to the machine unless we have telekinesis
-			var/mob/living/carbon/H = L
+			var/mob/living/complex/H = L
 			if(!(istype(H) && H.has_dna() && H.dna.check_mutation(MUTATION_TELEKINESIS)))
 				return FALSE
 */

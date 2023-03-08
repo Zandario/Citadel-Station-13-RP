@@ -88,7 +88,7 @@
 		if(can_move(T))
 			forceMove(T)
 			setDir(move_dir)
-			for(var/mob/living/carbon/C in loc)
+			for(var/mob/living/complex/C in loc)
 				dust_mobs(C)
 			sleep(sleep_time) // So movement is smooth
 
@@ -154,12 +154,12 @@
 		var/mob/living/L = A
 		if(L.incorporeal_move)
 			return
-	if(!iscarbon(A))
+	if(!iscomplexmob(A))
 		return
 	for(var/obj/machinery/power/grounding_rod/GR in orange(src, 2))
 		if(GR.anchored)
 			return
-	var/mob/living/carbon/C = A
+	var/mob/living/complex/C = A
 	// C.dust() - Changing to do fatal elecrocution instead
 	C.electrocute_act(500, src, def_zone = BP_TORSO)
 

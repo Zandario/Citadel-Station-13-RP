@@ -135,7 +135,7 @@
 			if(L.can_inject(src, null, target_zone))
 				blood_drink(L, target_zone)
 
-/mob/living/simple_mob/animal/gutshank/proc/blood_drink(var/mob/living/carbon/human/M)
+/mob/living/simple_mob/animal/gutshank/proc/blood_drink(var/mob/living/complex/human/M)
 	if(istype(M))
 		to_chat(M, "<span class='warning'>The [src] pierces your flesh! You feel a sickening suction!</span>")
 		M.vessel.remove_reagent("blood",rand(10,20))
@@ -243,7 +243,7 @@
 			if(L.can_inject(src, null, target_zone))
 				blood_drink(L, target_zone)
 
-/mob/living/simple_mob/animal/shank/proc/blood_drink(var/mob/living/carbon/human/M)
+/mob/living/simple_mob/animal/shank/proc/blood_drink(var/mob/living/complex/human/M)
 	if(istype(M))
 		to_chat(M, "<span class='warning'>The [src] pierces your flesh! You feel a sickening suction!</span>")
 		M.vessel.remove_reagent("blood",rand(20,25))

@@ -648,13 +648,13 @@
 	stack_type = /obj/item/stack/material/resin
 
 /datum/material/resin/can_open_material_door(var/mob/living/user)
-	var/mob/living/carbon/M = user
+	var/mob/living/complex/M = user
 	if(istype(M) && locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs)
 		return 1
 	return 0
 
 /datum/material/resin/wall_touch_special(var/turf/simulated/wall/W, var/mob/living/L)
-	var/mob/living/carbon/M = L
+	var/mob/living/complex/M = L
 	if(istype(M) && locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs)
 		to_chat(M, "<span class='alien'>\The [W] shudders under your touch, starting to become porous.</span>")
 		playsound(W, 'sound/effects/attackblob.ogg', 50, 1)
@@ -851,13 +851,13 @@
 	stack_origin_tech = list(TECH_MATERIAL = 8, TECH_PHORON = 4, TECH_BLUESPACE = 4, TECH_BIO = 7)
 
 /datum/material/flesh/can_open_material_door(var/mob/living/user)
-	var/mob/living/carbon/M = user
+	var/mob/living/complex/M = user
 	if(istype(M))
 		return 1
 	return 0
 
 /datum/material/flesh/wall_touch_special(var/turf/simulated/wall/W, var/mob/living/L)
-	var/mob/living/carbon/M = L
+	var/mob/living/complex/M = L
 	if(istype(M) && L.mind.isholy)
 		to_chat(M, "<span class = 'notice'>\The [W] shudders under your touch, starting to become porous.</span>")
 		playsound(W, 'sound/effects/attackblob.ogg', 50, 1)
@@ -886,7 +886,7 @@
 	table_icon_base = "stone"
 
 /datum/material/bone/wall_touch_special(var/turf/simulated/wall/W, var/mob/living/L)
-	var/mob/living/carbon/M = L
+	var/mob/living/complex/M = L
 	if(istype(M) && L.mind.isholy)
 		to_chat(M, "<span class = 'notice'>\The [W] shudders under your touch, starting to become porous.</span>")
 		playsound(W, 'sound/effects/attackblob.ogg', 50, 1)

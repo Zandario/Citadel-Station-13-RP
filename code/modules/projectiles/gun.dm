@@ -658,8 +658,8 @@
 
 	//shooting while in shock
 	var/forcespread
-	if(istype(user, /mob/living/carbon))
-		var/mob/living/carbon/mob = user
+	if(istype(user, /mob/living/complex))
+		var/mob/living/complex/mob = user
 		if(mob.shock_stage > 120)
 			forcespread = rand(50, 50)
 		else if(mob.shock_stage > 70)
@@ -690,7 +690,7 @@
 /obj/item/gun/proc/handle_suicide(mob/living/user)
 	if(!ishuman(user))
 		return
-	var/mob/living/carbon/human/M = user
+	var/mob/living/complex/human/M = user
 
 	mouthshoot = 1
 	M.visible_message("<font color='red'>[user] sticks their gun in their mouth, ready to pull the trigger...</font>")

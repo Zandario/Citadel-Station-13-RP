@@ -132,10 +132,10 @@
 	)*/
 	..()
 
-/datum/species/proc/post_organ_rejuvenate(obj/item/organ/org, mob/living/carbon/human/H)
+/datum/species/proc/post_organ_rejuvenate(obj/item/organ/org, mob/living/complex/human/H)
 	return
 
-/datum/species/adherent/can_overcome_gravity(mob/living/carbon/human/H)
+/datum/species/adherent/can_overcome_gravity(mob/living/complex/human/H)
 	. = FALSE
 	if(H && H.stat == CONSCIOUS)
 		for(var/obj/item/organ/internal/powered/float/float in H.internal_organs)
@@ -143,18 +143,18 @@
 				. = TRUE
 				break
 
-/datum/species/adherent/can_fall(mob/living/carbon/human/H)
+/datum/species/adherent/can_fall(mob/living/complex/human/H)
 	. = !can_overcome_gravity(H)
 /*
-/datum/species/adherent/get_slowdown(var/mob/living/carbon/human/H)
+/datum/species/adherent/get_slowdown(var/mob/living/complex/human/H)
 	return slowdown
 */
-/datum/species/adherent/handle_environment_special(mob/living/carbon/human/H)
+/datum/species/adherent/handle_environment_special(mob/living/complex/human/H)
 	for(var/i in H.overlays_standing)
 		H.cut_overlay(i)
 	//Todo: find a better way to adjust clothing, than to wipe all overlays
 
-/datum/species/adherent/handle_fall_special(mob/living/carbon/human/H, turf/landing)
+/datum/species/adherent/handle_fall_special(mob/living/complex/human/H, turf/landing)
 	var/float_is_usable = FALSE
 	if(H && H.stat == CONSCIOUS)
 		for(var/obj/item/organ/internal/powered/float/float in H.internal_organs)
@@ -177,7 +177,7 @@
 		if(2000 to 8000) . =  4
 		else             . =  8
 */
-/datum/species/adherent/get_additional_examine_text(mob/living/carbon/human/H)
+/datum/species/adherent/get_additional_examine_text(mob/living/complex/human/H)
 	if(can_overcome_gravity(H))
 		return "They are floating on a cloud of shimmering distortion."
 
@@ -191,5 +191,5 @@
 		SLOT_ID_BELT     = list("loc" = ui_belt,      "name" = "Belt",     "slot" = SLOT_ID_BELT,     "state" = "belt"),
 	)
 
-/datum/species/adherent/post_organ_rejuvenate(obj/item/organ/org, mob/living/carbon/human/H)
+/datum/species/adherent/post_organ_rejuvenate(obj/item/organ/org, mob/living/complex/human/H)
 	org.robotic = ORGAN_CRYSTAL

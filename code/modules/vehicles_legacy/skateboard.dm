@@ -82,7 +82,7 @@
 	if(A.density && has_buckled_mobs())
 		var/mob/living/H = buckled_mobs[1]
 		playsound(src, 'sound/effects/bang.ogg', 40, TRUE)
-		if(!iscarbon(H) || grinding || world.time < next_crash|| prob(60))
+		if(!iscomplexmob(H) || grinding || world.time < next_crash|| prob(60))
 			var/list/throw_dirs = list(1, 2, 4, 8, 5, 6, 9, 10)
 			var/turf/T2 = get_step(A, pick(throw_dirs))
 			unload(H)
@@ -113,7 +113,7 @@
 /* // Putting this in for reference if I want the door to open later.
 /obj/vehicle_old/train/security/engine/Bump(atom/Obstacle)
 	var/obj/machinery/door/D = Obstacle
-	var/mob/living/carbon/human/H = load
+	var/mob/living/complex/human/H = load
 	if(istype(D) && istype(H))
 		D.Bumped(H)		//a little hacky, but hey, it works, and respects access rights
 
@@ -147,7 +147,7 @@
 
 /obj/vehicle_old/skateboard/OnMouseDropLegacy(atom/over_object)
 	. = ..()
-	var/mob/living/carbon/M = usr
+	var/mob/living/complex/M = usr
 	if(!istype(M) || M.incapacitated() || !Adjacent(M))
 		return
 	if(has_buckled_mobs() && over_object == M)
@@ -227,7 +227,7 @@
 	if(A.density && has_buckled_mobs())
 		var/mob/living/H = buckled_mobs[1]
 		playsound(src, 'sound/effects/bang.ogg', 40, TRUE)
-		if(!iscarbon(H) || grinding || world.time < next_crash|| prob(30))
+		if(!iscomplexmob(H) || grinding || world.time < next_crash|| prob(30))
 			var/list/throw_dirs = list(1, 2, 4, 8, 5, 6, 9, 10)
 			var/turf/T2 = get_step(A, pick(throw_dirs))
 			unload(H)
@@ -288,7 +288,7 @@
 	if(A.density && has_buckled_mobs())
 		var/mob/living/H = buckled_mobs[1]
 		playsound(src, 'sound/effects/bang.ogg', 40, TRUE)
-		if(!iscarbon(H) || grinding || world.time < next_crash|| prob(10))
+		if(!iscomplexmob(H) || grinding || world.time < next_crash|| prob(10))
 			var/list/throw_dirs = list(1, 2, 4, 8, 5, 6, 9, 10)
 			var/turf/T2 = get_step(A, pick(throw_dirs))
 			unload(H)
@@ -317,7 +317,7 @@
 	if(A.density && has_buckled_mobs())
 		var/mob/living/H = buckled_mobs[1]
 		playsound(src, 'sound/effects/bang.ogg', 40, TRUE)
-		if(!iscarbon(H) || grinding || world.time < next_crash|| prob(1))
+		if(!iscomplexmob(H) || grinding || world.time < next_crash|| prob(1))
 			var/list/throw_dirs = list(1, 2, 4, 8, 5, 6, 9, 10)
 			var/turf/T2 = get_step(A, pick(throw_dirs))
 			unload(H)
@@ -508,7 +508,7 @@
 		new /obj/item/stack/rods(drop_location(), 2)
 		to_chat(user, "<span class='notice'>You remove the handlebars from [src].</span>")
 		if(has_buckled_mobs())
-			var/mob/living/carbon/H = buckled_mobs[1]
+			var/mob/living/complex/H = buckled_mobs[1]
 			unbuckle_mob(H)
 			S.buckle_mob(H)
 		qdel(src)
@@ -576,7 +576,7 @@
 		new /obj/item/scooter_frame(T)
 		qdel(src)
 	if(has_buckled_mobs())
-		var/mob/living/carbon/H = buckled_mobs[1]
+		var/mob/living/complex/H = buckled_mobs[1]
 		unbuckle_mob(H)
 	return
 

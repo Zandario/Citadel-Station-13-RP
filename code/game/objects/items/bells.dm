@@ -67,7 +67,7 @@
 
 /obj/item/deskbell/proc/check_ability(mob/user)
 	if (ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
 		if (H.hand)
 			temp = H.organs_by_name["l_hand"]

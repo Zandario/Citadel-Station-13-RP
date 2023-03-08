@@ -214,7 +214,7 @@
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
-	var/mob/living/carbon/human/character = M
+	var/mob/living/complex/human/character = M
 	var/datum/sprite_accessory/S = GLOB.sprite_accessory_ears[pref.ear_style_id]
 	character.ear_style = S
 	S = GLOB.sprite_accessory_tails[pref.tail_style_id]

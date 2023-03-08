@@ -273,7 +273,7 @@
 
 /obj/item/organ/external/head/removed()
 	if(owner)
-		if(iscarbon(owner))
+		if(iscomplexmob(owner))
 			name = "[owner.real_name]'s head"
 			spawn(1)
 				owner.update_hair()

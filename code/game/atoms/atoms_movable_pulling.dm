@@ -106,7 +106,7 @@
 			if (M.lying && (prob(M.getBruteLoss() / 6)))
 				var/bloodtrail = 1	//Checks if it's possible to even spill blood
 				if(ishuman(M))
-					var/mob/living/carbon/human/H = M
+					var/mob/living/complex/human/H = M
 					if(H.species.species_flags & NO_BLOOD)
 						bloodtrail = 0
 					else
@@ -131,7 +131,7 @@
 					if (istype(location, /turf/simulated))
 						var/bloodtrail = 1	//Checks if it's possible to even spill blood
 						if(ishuman(M))
-							var/mob/living/carbon/human/H = M
+							var/mob/living/complex/human/H = M
 							if(H.species.species_flags & NO_BLOOD)
 								bloodtrail = 0
 							else

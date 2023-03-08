@@ -294,7 +294,7 @@
 		return TURRET_NOT_TARGET
 
 	if(ishuman(L))
-		var/mob/living/carbon/human/M = L
+		var/mob/living/complex/human/M = L
 		if(istype(M.wear_suit, /obj/item/clothing/suit/redtag) && check_synth) // Checks if they are a red player
 			return TURRET_PRIORITY_TARGET
 
@@ -810,7 +810,7 @@
 
 	return TURRET_PRIORITY_TARGET	//if the perp has passed all previous tests, congrats, it is now a "shoot-me!" nominee
 
-/obj/machinery/porta_turret/proc/assess_perp(mob/living/carbon/human/H)
+/obj/machinery/porta_turret/proc/assess_perp(mob/living/complex/human/H)
 	if(!H || !istype(H))
 		return 0
 

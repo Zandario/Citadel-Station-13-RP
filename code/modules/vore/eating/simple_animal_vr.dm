@@ -32,7 +32,7 @@
 	set category = "OOC"
 	set src in oview(1)
 
-	var/mob/living/carbon/human/user = usr
+	var/mob/living/complex/human/user = usr
 	if(!istype(user) || user.stat) return
 
 	if(!vore_selected)

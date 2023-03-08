@@ -62,8 +62,8 @@
 		general.fields["name"] = I.registered_name
 		general.fields["sex"] = I.sex
 	else
-		var/mob/living/carbon/human/H
-		if(istype(user,/mob/living/carbon/human))
+		var/mob/living/complex/human/H
+		if(istype(user,/mob/living/complex/human))
 			H = user
 			general.fields["age"] = H.age
 		else

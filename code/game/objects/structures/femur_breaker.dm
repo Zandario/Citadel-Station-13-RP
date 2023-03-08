@@ -62,7 +62,7 @@
 					else
 						current_action = 0
 				else
-					var/mob/living/carbon/human/H = buckled_mobs[1]
+					var/mob/living/complex/human/H = buckled_mobs[1]
 
 					if (H)
 						H.regenerate_icons()
@@ -72,7 +72,7 @@
 				slat_status = BREAKER_SLAT_DROPPED
 				icon_state = "breaker_drop"
 
-/obj/structure/femur_breaker/proc/damage_leg(mob/living/carbon/human/H)
+/obj/structure/femur_breaker/proc/damage_leg(mob/living/complex/human/H)
 	var/where_we_snappin_boys = pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 	H.emote("scream")
 	H.apply_damage(150, BRUTE, where_we_snappin_boys)
@@ -88,7 +88,7 @@
 
 /obj/structure/femur_breaker/proc/drop_slat(mob/user)
 	if (buckled_mobs.len)
-		var/mob/living/carbon/human/H = buckled_mobs[1]
+		var/mob/living/complex/human/H = buckled_mobs[1]
 
 		if (!H)
 			return
@@ -106,7 +106,7 @@
 		to_chat(usr, "<span class='warning'>The [src] needs to be wrenched to the floor!</span>")
 		return FALSE
 
-	if (!istype(M, /mob/living/carbon/human))
+	if (!istype(M, /mob/living/complex/human))
 		to_chat(usr, "<span class='warning'>It doesn't look like [M.p_they()] can fit into this properly!</span>")
 		return FALSE
 
@@ -117,10 +117,10 @@
 	return ..(M, force, FALSE)
 
 /obj/structure/femur_breaker/post_buckle_mob(mob/living/M)
-	if (!istype(M, /mob/living/carbon/human))
+	if (!istype(M, /mob/living/complex/human))
 		return
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/complex/human/H = M
 
 	if (H.dna)
 		if (H.dna.species)

@@ -323,7 +323,7 @@
 	LE.preparePixelProjectile(A, src, params)
 	LE.fire()
 
-/mob/living/carbon/human/LaserEyes(atom/A, params)
+/mob/living/complex/human/LaserEyes(atom/A, params)
 	if(nutrition>0)
 		..()
 		nutrition = max(nutrition - rand(1,5),0)
@@ -373,8 +373,8 @@
 
 /atom/movable/screen/click_catcher/Click(location, control, params)
 	var/list/modifiers = params2list(params)
-	if(modifiers["middle"] && istype(usr, /mob/living/carbon))
-		var/mob/living/carbon/C = usr
+	if(modifiers["middle"] && istype(usr, /mob/living/complex))
+		var/mob/living/complex/C = usr
 		C.swap_hand()
 	else
 		var/turf/T = screen_loc2turf(screen_loc, get_turf(usr))

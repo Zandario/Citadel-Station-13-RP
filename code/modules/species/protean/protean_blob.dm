@@ -44,7 +44,7 @@
 	movement_cooldown = 0.5
 	base_attack_cooldown = 10
 
-	var/mob/living/carbon/human/humanform
+	var/mob/living/complex/human/humanform
 	var/obj/item/organ/internal/nano/refactory/refactory
 	var/datum/modifier/healing
 
@@ -60,7 +60,7 @@
 	emote_see = list("shifts wetly","undulates placidly")
 
 //Constructor allows passing the human to sync damages
-/mob/living/simple_mob/protean_blob/Initialize(mapload, mob/living/carbon/human/H)
+/mob/living/simple_mob/protean_blob/Initialize(mapload, mob/living/complex/human/H)
 	. = ..()
 	mob_radio = new(src)
 	access_card = new(src)
@@ -268,7 +268,7 @@
 
 /mob/living/simple_mob/protean_blob/OnMouseDropLegacy(var/atom/over_object)
 	if(ishuman(over_object) && usr == src && src.Adjacent(over_object))
-		var/mob/living/carbon/human/H = over_object
+		var/mob/living/complex/human/H = over_object
 		get_scooped(H, TRUE)
 	else
 		return ..()
@@ -285,7 +285,7 @@
 	..()
 
 // Helpers - Unsafe, WILL perform change.
-/mob/living/carbon/human/proc/nano_intoblob()
+/mob/living/complex/human/proc/nano_intoblob()
 	if(loc == /obj/item/rig/protean)
 		return
 	handle_grasp() //It's possible to blob out before some key parts of the life loop. This results in things getting dropped at null. TODO: Fix the code so this can be done better.
@@ -448,7 +448,7 @@
 	else
 		to_chat(src, "You are not in RIG form.")
 
-/mob/living/carbon/human/proc/nano_outofblob(var/mob/living/simple_mob/protean_blob/blob)
+/mob/living/complex/human/proc/nano_outofblob(var/mob/living/simple_mob/protean_blob/blob)
 	if(!istype(blob))
 		return
 	if(blob.loc == /obj/item/rig/protean)
@@ -546,7 +546,7 @@
 	if(holder.temporary_form?.resting)
 		return
 	var/dt = 2	// put it on param sometime but for now assume 2
-	var/mob/living/carbon/human/H = holder
+	var/mob/living/complex/human/H = holder
 	var/obj/item/organ/external/E = H.get_organ(BP_TORSO)
 	var/heal = 5 * dt
 	var/brute_heal_left = max(0, heal - E.brute_dam)

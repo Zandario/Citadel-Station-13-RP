@@ -219,8 +219,8 @@
 		L.ExtinguishMob()
 		L.fire_stacks = -20 //Douse ourselves with water to avoid fire more easily
 
-	if(iscarbon(O))
-		var/mob/living/carbon/M = O
+	if(iscomplexmob(O))
+		var/mob/living/complex/M = O
 		if(M.r_hand)
 			M.r_hand.clean_blood()
 		if(M.l_hand)
@@ -235,7 +235,7 @@
 			M.touching.remove_any(remove_amount)
 
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/complex/human/H = M
 			var/washgloves = 1
 			var/washshoes = 1
 			var/washmask = 1
@@ -334,7 +334,7 @@
 	M.bodytemperature += temp_adj
 
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/complex/human/H = M
 		if(temperature >= H.species.heat_level_1)
 			to_chat(H, "<span class='danger'>The water is searing hot!</span>")
 		else if(temperature <= H.species.cold_level_1)
@@ -370,7 +370,7 @@
 
 /obj/structure/sink/attack_hand(mob/user as mob)
 	if (ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
 		if (H.hand)
 			temp = H.organs_by_name["l_hand"]
@@ -542,12 +542,12 @@
 		return CLICKCHAIN_DO_NOT_PROPAGATE
 	return ..()
 
-/obj/item/plunger/throw_impact(atom/hit_atom, mob/living/carbon/human/target, target_zone)
+/obj/item/plunger/throw_impact(atom/hit_atom, mob/living/complex/human/target, target_zone)
 	. = ..()
 	if(target_zone != BP_HEAD)
 		return
-	if(iscarbon(hit_atom))
-		var/mob/living/carbon/H = hit_atom
+	if(iscomplexmob(hit_atom))
+		var/mob/living/complex/H = hit_atom
 		if(!H.wear_mask)
 			H.equip_to_slot_if_possible(src, SLOT_MASK, INV_OP_SUPPRESS_WARNING)
 			H.visible_message("<span class='warning'>The plunger slams into [H]'s face!</span>", "<span class='warning'>The plunger suctions to your face!</span>")

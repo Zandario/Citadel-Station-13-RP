@@ -182,7 +182,7 @@ var/global/list/datum/gene/dna_genes[0]
 		UpdateUI()
 
 
-/datum/dna/proc/ResetUIFrom(mob/living/carbon/human/character)
+/datum/dna/proc/ResetUIFrom(mob/living/complex/human/character)
 	// INITIALIZE!
 	ResetUI(1)
 	//! Hair
@@ -298,7 +298,7 @@ var/global/list/datum/gene/dna_genes[0]
 	SetUIValueRange(DNA_UI_BEARD_STYLE, beard, GLOB.legacy_facial_hair_lookup.len,1)
 
 	body_markings.Cut()
-	
+
 	for(var/obj/item/organ/external/E in character.organs)
 		E.s_base = s_base
 		if(E.markings.len)
@@ -571,7 +571,7 @@ var/global/list/datum/gene/dna_genes[0]
  *!BACK-COMPAT!
  * Just checks our character has all the crap it needs.
  */
-/datum/dna/proc/check_integrity(mob/living/carbon/human/character)
+/datum/dna/proc/check_integrity(mob/living/complex/human/character)
 	if(character)
 		if(UI.len != DNA_UI_LENGTH)
 			ResetUIFrom(character)
@@ -592,7 +592,7 @@ var/global/list/datum/gene/dna_genes[0]
  * !BACK-COMPAT!
  * Initial DNA setup.  I'm kind of wondering why the hell this doesn't just call the above.
  */
-/datum/dna/proc/ready_dna(mob/living/carbon/human/character)
+/datum/dna/proc/ready_dna(mob/living/complex/human/character)
 	ResetUIFrom(character)
 
 	ResetSE()

@@ -46,7 +46,7 @@
 	name = "humanoid filter"
 	desc = "Only allow refs belonging to humanoids (dead or alive) through."
 	icon_state = "filter_humanoid"
-	filter_type = /mob/living/carbon/human
+	filter_type = /mob/living/complex/human
 
 /obj/item/integrated_circuit/filter/ref/obj
 	name = "object filter"

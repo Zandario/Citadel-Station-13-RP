@@ -115,7 +115,7 @@
 	name = OUTFIT_JOB_NAME("Nurse")
 	suit = null
 
-/datum/outfit/job/station/medical_doctor/nurse/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/station/medical_doctor/nurse/pre_equip(mob/living/complex/human/H)
 	if(H.gender == FEMALE)
 		if(prob(50))
 			uniform = /obj/item/clothing/under/rank/nursesuit

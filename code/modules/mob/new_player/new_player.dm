@@ -265,7 +265,7 @@
 			if(!client)	return 1
 
 			// Make a new mannequin quickly, and allow the observer to take the appearance
-			var/mob/living/carbon/human/dummy/mannequin = new()
+			var/mob/living/complex/human/dummy/mannequin = new()
 			client.prefs.dress_preview_mob(mannequin)
 			var/mob/observer/dead/observer = new(mannequin)
 			observer.moveToNullspace()	// Let's not stay in our doomed mannequin
@@ -590,7 +590,7 @@
 	spawning = 1
 	close_spawn_windows()
 
-	var/mob/living/carbon/human/new_character
+	var/mob/living/complex/human/new_character
 
 	var/use_species_name
 	var/datum/species/chosen_species = client.prefs.real_species_datum()

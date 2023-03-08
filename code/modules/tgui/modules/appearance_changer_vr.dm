@@ -21,7 +21,7 @@
 	QDEL_IN(src, 1)
 
 /datum/tgui_module_old/appearance_changer/vore/changed_hook(flag)
-	var/mob/living/carbon/human/M = owner
+	var/mob/living/complex/human/M = owner
 	var/mob/living/O = usr
 
 	switch(flag)

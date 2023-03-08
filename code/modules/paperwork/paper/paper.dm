@@ -104,7 +104,7 @@
 	return
 
 /obj/item/paper/proc/show_content(var/mob/user, var/forceshow=0)
-	if(!(istype(user, /mob/living/carbon/human) || istype(user, /mob/observer/dead) || istype(user, /mob/living/silicon)) && !forceshow)
+	if(!(istype(user, /mob/living/complex/human) || istype(user, /mob/observer/dead) || istype(user, /mob/living/silicon)) && !forceshow)
 		user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
 		onclose(user, "[name]")
 	else
@@ -171,7 +171,7 @@
 		target.examinate(src)
 	else if(user.zone_sel.selecting == O_MOUTH) // lipstick wiping
 		if(ishuman(target))
-			var/mob/living/carbon/human/H = target
+			var/mob/living/complex/human/H = target
 			if(H == user)
 				to_chat(user, "<span class='notice'>You wipe off the lipstick with [src].</span>")
 				H.lip_style = null

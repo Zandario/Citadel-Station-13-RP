@@ -93,7 +93,7 @@
 	else
 		affected_mob.add_overlay(image('icons/mob/alien.dmi', loc = affected_mob, icon_state = "burst_stand"))
 	spawn(6)
-		var/mob/living/carbon/alien/larva/new_xeno = new(affected_mob.loc)
+		var/mob/living/complex/alien/larva/new_xeno = new(affected_mob.loc)
 		new_xeno.key = picked
 		SEND_SOUND(new_xeno, sound('sound/voice/hiss5.ogg',0,0,0,100))	//To get the player's attention
 		if(gib_on_success)
@@ -106,7 +106,7 @@ Des: Removes all infection images from aliens and places an infection image on a
 ----------------------------------------*/
 /obj/item/alien_embryo/proc/RefreshInfectionImage()
 
-	for(var/mob/living/carbon/alien in GLOB.player_list)
+	for(var/mob/living/complex/alien in GLOB.player_list)
 
 		if(!locate(/obj/item/organ/internal/xenos/hivenode) in alien.internal_organs)
 			continue
@@ -116,7 +116,7 @@ Des: Removes all infection images from aliens and places an infection image on a
 				if(dd_hasprefix_case(I.icon_state, "infected"))
 					qdel(I)
 			for(var/mob/living/L in GLOB.mob_list)
-				if(iscorgi(L) || iscarbon(L))
+				if(iscorgi(L) || iscomplexmob(L))
 					if(L.status_flags & TRAIT_XENO_HOST)
 						var/I = image('icons/mob/alien.dmi', loc = L, icon_state = "infected[stage]")
 						alien.client.images += I
@@ -128,7 +128,7 @@ Des: Checks if the passed mob (C) is infected with the alien egg, then gives eac
 /obj/item/alien_embryo/proc/AddInfectionImages(var/mob/living/C)
 	if(C)
 
-		for(var/mob/living/carbon/alien in GLOB.player_list)
+		for(var/mob/living/complex/alien in GLOB.player_list)
 
 			if(!locate(/obj/item/organ/internal/xenos/hivenode) in alien.internal_organs)
 				continue
@@ -147,7 +147,7 @@ Des: Removes the alien infection image from all aliens in the world located in p
 
 	if(C)
 
-		for(var/mob/living/carbon/alien in GLOB.player_list)
+		for(var/mob/living/complex/alien in GLOB.player_list)
 
 			if(!locate(/obj/item/organ/internal/xenos/hivenode) in alien.internal_organs)
 				continue

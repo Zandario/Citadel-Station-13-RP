@@ -89,11 +89,11 @@
 		flip_mobs()
 	..()
 
-/obj/item/bikehorn/golden/proc/flip_mobs(mob/living/carbon/M, mob/user)
+/obj/item/bikehorn/golden/proc/flip_mobs(mob/living/complex/M, mob/user)
 	var/turf/T = get_turf(src)
 	for(M in ohearers(7, T))
 		if(ishuman(M) && M.can_hear())
-			var/mob/living/carbon/human/H = M
+			var/mob/living/complex/human/H = M
 			if(istype(H.ears, /obj/item/clothing/ears/earmuffs))
 				continue
 		M.emote("flip")
@@ -228,8 +228,8 @@
 		force = 3
 		attack_verb = list("hit", "poked", "prodded")
 
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
+	if(istype(user,/mob/living/complex/human))
+		var/mob/living/complex/human/H = user
 		H.update_inv_l_hand()
 		H.update_inv_r_hand()
 

@@ -21,7 +21,7 @@
 /**
  * called after the mob is instantiated and the player is transferred in
  */
-/datum/ghostrole_instantiator/proc/AfterSpawn(mob/created, mob/living/carbon/human/H, list/params)
+/datum/ghostrole_instantiator/proc/AfterSpawn(mob/created, mob/living/complex/human/H, list/params)
 	SHOULD_CALL_PARENT(TRUE)
 
 /datum/ghostrole_instantiator/simple
@@ -44,13 +44,13 @@
 	var/equip_outfit
 
 /datum/ghostrole_instantiator/human/Create(client/C, atom/location, list/params)
-	var/mob/living/carbon/human/H = new(location)
+	var/mob/living/complex/human/H = new(location)
 	for(var/trait in mob_traits)
 		ADD_TRAIT(H, trait, GHOSTROLE_TRAIT)
 	return H
 
 /datum/ghostrole_instantiator/human/Equip(client/C, mob/M, list/params)
-	var/mob/living/carbon/human/H = M
+	var/mob/living/complex/human/H = M
 
 	// H.dna.species.before_equip_job(null, H)
 
@@ -85,7 +85,7 @@
 	var/can_change_appearance = TRUE
 
 /datum/ghostrole_instantiator/human/random/Create(client/C, atom/location, list/params)
-	var/mob/living/carbon/human/H = ..()
+	var/mob/living/complex/human/H = ..()
 	Randomize(H, params)
 	return H
 
@@ -97,12 +97,12 @@
 	if(can_change_appearance) //I think it's either this or the line above.
 		INVOKE_ASYNC(src, /datum/ghostrole_instantiator/human/random/proc/PickAppearance, created, params)
 
-/datum/ghostrole_instantiator/human/random/proc/PickAppearance(mob/living/carbon/human/H)
+/datum/ghostrole_instantiator/human/random/proc/PickAppearance(mob/living/complex/human/H)
 	var/new_name = input(H, "Your mind feels foggy, and you recall your name might be [H.real_name]. Would you like to change your name?")
 	H.fully_replace_character_name(H.real_name, new_name)
 	H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = 1)
 
-/datum/ghostrole_instantiator/human/random/proc/Randomize(mob/living/carbon/human/H, list/params)
+/datum/ghostrole_instantiator/human/random/proc/Randomize(mob/living/complex/human/H, list/params)
 	return			// tgcode does this automatically
 
 /datum/ghostrole_instantiator/human/random/species
@@ -120,7 +120,7 @@
 		// /datum/species/ipc
 	)
 
-/datum/ghostrole_instantiator/human/random/species/proc/GetSpeciesPath(mob/living/carbon/human/H, list/params)
+/datum/ghostrole_instantiator/human/random/species/proc/GetSpeciesPath(mob/living/complex/human/H, list/params)
 	var/override = params["species"]
 	if(istext(override))
 		override = text2path(override)
@@ -128,7 +128,7 @@
 		return override
 	return SAFEPICK(possible_species) || /datum/species/human
 
-/datum/ghostrole_instantiator/human/random/species/Randomize(mob/living/carbon/human/H, list/params)
+/datum/ghostrole_instantiator/human/random/species/Randomize(mob/living/complex/human/H, list/params)
 	. = ..()
 	var/species = pick(GetSpeciesPath(H, params))
 	H.set_species(species)
@@ -157,7 +157,7 @@
 	var/equip_traits = TRUE
 
 /datum/ghostrole_instantiator/human/player_static/Create(client/C, atom/location, list/params)
-	var/mob/living/carbon/human/H = ..()
+	var/mob/living/complex/human/H = ..()
 	var/list/errors = list()
 	// todo: respect warnings; we ignore them right now so we don't block joins.
 	if(!C.prefs.spawn_checks(PREF_COPY_TO_FOR_GHOSTROLE, errors))
@@ -167,7 +167,7 @@
 	LoadSavefile(C, H)
 	return H
 
-/datum/ghostrole_instantiator/human/player_static/proc/LoadSavefile(client/C, mob/living/carbon/human/H)
+/datum/ghostrole_instantiator/human/player_static/proc/LoadSavefile(client/C, mob/living/complex/human/H)
 	C.prefs.copy_to(H)
 	SSjob.EquipRank(H, USELESS_JOB)
 	// if(equip_loadout)

@@ -20,7 +20,7 @@
 /obj/item/inserted_spell/mend_organs/on_insert()
 	spawn(1)
 		if(ishuman(host))
-			var/mob/living/carbon/human/H = host
+			var/mob/living/complex/human/H = host
 			var/heal_power = host == origin ? 2 : 5
 			heal_power = round(heal_power * spell_power_at_creation, 1)
 			origin.adjust_instability(15)

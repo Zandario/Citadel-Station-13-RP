@@ -103,7 +103,7 @@
 
 			//Handle 'human'
 			if(ishuman(L))
-				var/mob/living/carbon/human/H = L
+				var/mob/living/complex/human/H = L
 
 				//Numbing flag
 				if(mode_flags & DM_FLAG_NUMBING)

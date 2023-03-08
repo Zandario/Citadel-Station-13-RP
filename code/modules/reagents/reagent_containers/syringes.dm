@@ -81,9 +81,9 @@
 					to_chat(user, "<span class='notice'>There is already a blood sample in this syringe.</span>")
 					return
 
-				if(istype(target, /mob/living/carbon))
+				if(istype(target, /mob/living/complex))
 					var/amount = reagents.get_free_space()
-					var/mob/living/carbon/T = target
+					var/mob/living/complex/T = target
 					if(!T.dna)
 						to_chat(user, "<span class='warning'>You are unable to locate any blood. (To be specific, your target seems to be missing their DNA datum).</span>")
 						return
@@ -101,8 +101,8 @@
 
 					var/datum/reagent/B
 					drawing = 1
-					if(istype(T, /mob/living/carbon/human))
-						var/mob/living/carbon/human/H = T
+					if(istype(T, /mob/living/complex/human))
+						var/mob/living/complex/human/H = T
 						if(H.species && !H.should_have_organ(O_HEART))
 							H.reagents.trans_to_obj(src, amount)
 						else
@@ -162,7 +162,7 @@
 				to_chat(user, "<span class='notice'>[target] is full.</span>")
 				return
 
-			var/mob/living/carbon/human/H = target
+			var/mob/living/complex/human/H = target
 			var/obj/item/organ/external/affected
 			if(istype(H))
 				affected = H.get_organ(user.zone_sel.selecting)
@@ -232,10 +232,10 @@
 
 	return
 
-/obj/item/reagent_containers/syringe/proc/syringestab(mob/living/carbon/target as mob, mob/living/carbon/user as mob)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/reagent_containers/syringe/proc/syringestab(mob/living/complex/target as mob, mob/living/complex/user as mob)
+	if(istype(target, /mob/living/complex/human))
 
-		var/mob/living/carbon/human/H = target
+		var/mob/living/complex/human/H = target
 
 		var/target_zone = ran_zone(check_zone(user.zone_sel.selecting, target))
 		var/obj/item/organ/external/affecting = H.get_organ(target_zone)
@@ -272,7 +272,7 @@
 	add_attack_logs(user,target,"Stabbed with [src.name] containing [contained], trasferred [trans] units")
 	break_syringe(target, user)
 
-/obj/item/reagent_containers/syringe/proc/break_syringe(mob/living/carbon/target, mob/living/carbon/user)
+/obj/item/reagent_containers/syringe/proc/break_syringe(mob/living/complex/target, mob/living/complex/user)
 	desc += " It is broken."
 	mode = SYRINGE_BROKEN
 	if(target)

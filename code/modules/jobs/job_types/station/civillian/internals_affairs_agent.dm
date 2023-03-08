@@ -23,7 +23,7 @@
 	title = "Regulatory Affairs Agent"
 
 /*
-/datum/role/job/station/lawyer/equip(var/mob/living/carbon/human/H)
+/datum/role/job/station/lawyer/equip(var/mob/living/complex/human/H)
 	. = ..()
 	if(.)
 		H.implant_loyalty(H)

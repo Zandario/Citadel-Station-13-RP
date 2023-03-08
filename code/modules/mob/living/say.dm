@@ -77,7 +77,7 @@ var/list/channel_to_radio_key = new
 	if (!ishuman(src))
 		return
 
-	var/mob/living/carbon/human/H = src
+	var/mob/living/complex/human/H = src
 	if (H.l_ear || H.r_ear)
 		var/obj/item/radio/headset/dongle
 		if(istype(H.l_ear,/obj/item/radio/headset))

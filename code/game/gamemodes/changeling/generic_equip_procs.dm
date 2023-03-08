@@ -4,7 +4,7 @@
 	if(!ishuman(src))
 		return 0
 
-	var/mob/living/carbon/human/M = src
+	var/mob/living/complex/human/M = src
 
 	if(istype(M.wear_suit, armor_type) || istype(M.head, helmet_type) || istype(M.shoes, boot_type))
 		chem_cost = 0
@@ -62,7 +62,7 @@
 	if(!ishuman(src))
 		return 0
 
-	var/mob/living/carbon/human/M = src
+	var/mob/living/complex/human/M = src
 
 	var/success = 0
 
@@ -241,7 +241,7 @@
 	if(!ishuman(src))
 		return 0
 
-	var/mob/living/carbon/human/M = src
+	var/mob/living/complex/human/M = src
 
 	if(M.hands_full()) //Make sure our hands aren't full.
 		to_chat(src, SPAN_WARNING("Our hands are full.  Drop something first."))

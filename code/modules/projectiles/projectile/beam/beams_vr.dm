@@ -59,8 +59,8 @@
 	impact_type = /obj/effect/projectile/impact/medigun
 
 /obj/item/projectile/beam/medigun/on_hit(var/atom/target, var/blocked = 0)
-	if(istype(target, /mob/living/carbon/human))
-		var/mob/living/carbon/human/M = target
+	if(istype(target, /mob/living/complex/human))
+		var/mob/living/complex/human/M = target
 		if(M.health < M.maxHealth)
 			var/obj/effect/overlay/pulse = new /obj/effect/overlay(get_turf(M))
 			pulse.icon = 'icons/effects/effects.dmi'

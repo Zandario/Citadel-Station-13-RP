@@ -106,7 +106,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	smoketime -= amount
 	if(reagents && reagents.total_volume) // check if it has any reagents at all
 		if(ishuman(loc))
-			var/mob/living/carbon/human/C = loc
+			var/mob/living/complex/human/C = loc
 			if (src == C.wear_mask && C.check_has_mouth()) // if it's in the human/monkey mouth, transfer reagents to the mob
 				reagents.trans_to_mob(C, REM, CHEM_INGEST, 0.2) // Most of it is not inhaled... balance reasons.
 		else // else just remove some of the reagents
@@ -217,7 +217,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	update_icon()
 
 /obj/item/clothing/mask/smokable/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
-	var/mob/living/carbon/human/H = target
+	var/mob/living/complex/human/H = target
 	if(lit && H == user && istype(H))
 		var/obj/item/blocked = H.check_mouth_coverage()
 		if(blocked)
@@ -631,7 +631,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/flame/lighter/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
-	var/mob/living/carbon/human/H = target
+	var/mob/living/complex/human/H = target
 	if(!istype(H))
 		return ..()
 	if(lit == 1)

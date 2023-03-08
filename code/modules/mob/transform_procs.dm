@@ -1,4 +1,4 @@
-/mob/living/carbon/human/proc/monkeyize()
+/mob/living/complex/human/proc/monkeyize()
 	if (transforming)
 		return
 	drop_inventory(TRUE, TRUE, TRUE)
@@ -40,7 +40,7 @@
 	spawning = 1
 	return ..()
 
-/mob/living/carbon/human/AIize(move=1) // 'move' argument needs defining here too because BYOND is dumb
+/mob/living/complex/human/AIize(move=1) // 'move' argument needs defining here too because BYOND is dumb
 	if (transforming)
 		return
 	for(var/t in organs)
@@ -48,7 +48,7 @@
 
 	return ..(move)
 
-/mob/living/carbon/AIize()
+/mob/living/complex/AIize()
 	if (transforming)
 		return
 	drop_inventory(TRUE, TRUE, TRUE)
@@ -98,7 +98,7 @@
 	return O
 
 /// Human -> Robot
-/mob/living/carbon/human/proc/Robotize()
+/mob/living/complex/human/proc/Robotize()
 	if (transforming)
 		return
 	drop_inventory(TRUE, TRUE, TRUE)
@@ -155,7 +155,7 @@
 	return O
 
 //human -> alien
-/mob/living/carbon/human/proc/Alienize()
+/mob/living/complex/human/proc/Alienize()
 	if (transforming)
 		return
 	drop_inventory(TRUE, TRUE, TRUE)
@@ -168,7 +168,7 @@
 		qdel(t)
 
 	var/alien_caste = pick("Hunter","Sentinel","Drone")
-	var/mob/living/carbon/human/new_xeno = create_new_xenomorph(alien_caste,loc)
+	var/mob/living/complex/human/new_xeno = create_new_xenomorph(alien_caste,loc)
 
 	new_xeno.a_intent = INTENT_HARM
 	new_xeno.key = key
@@ -178,7 +178,7 @@
 	return
 
 
-/mob/living/carbon/human/proc/corgize()
+/mob/living/complex/human/proc/corgize()
 	if (transforming)
 		return
 	drop_inventory(TRUE, TRUE, TRUE)
@@ -198,7 +198,7 @@
 	qdel(src)
 	return
 
-/mob/living/carbon/human/Animalize()
+/mob/living/complex/human/Animalize()
 
 	var/list/mobtypes = typesof(/mob/living/simple_mob)
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes

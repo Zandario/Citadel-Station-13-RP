@@ -25,7 +25,7 @@
 		to_chat(user, "<span class='warning'>You club yourself over the head.</span>")
 		user.Weaken(3 * force)
 		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
+			var/mob/living/complex/human/H = user
 			H.apply_damage(2*force, BRUTE, BP_HEAD)
 		else
 			L.take_organ_damage(2*force)
@@ -77,8 +77,8 @@
 		w_class = ITEMSIZE_SMALL
 		force = off_force //not so robust now
 		attack_verb = list("poked", "jabbed")
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
+	if(istype(user,/mob/living/complex/human))
+		var/mob/living/complex/human/H = user
 		H.update_inv_l_hand()
 		H.update_inv_r_hand()
 	playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
@@ -98,7 +98,7 @@
 			to_chat(user, "<span class='warning'>You club yourself over the head.</span>")
 			user.Weaken(3 * force)
 			if(ishuman(user))
-				var/mob/living/carbon/human/H = user
+				var/mob/living/complex/human/H = user
 				H.apply_damage(2*force, BRUTE, BP_HEAD)
 			else if(isliving(user))
 				var/mob/living/L = user
@@ -319,7 +319,7 @@
 	var/mob/living/L = target
 	if(!istype(L))
 		return
-	var/mob/living/carbon/human/H = L
+	var/mob/living/complex/human/H = L
 	var/list/fluffmessages = list("[user] clubs [H] with [src]!", \
 									"[user] smacks [H] with the butt of [src]!", \
 									"[user] broadsides [H] with [src]!", \

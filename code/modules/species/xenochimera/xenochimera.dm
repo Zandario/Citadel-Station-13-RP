@@ -108,34 +108,34 @@
 	)
 
 	inherent_verbs = list( //Xenochimera get all the special verbs since they can't select traits.
-		/mob/living/carbon/human/proc/sonar_ping,
-		/mob/living/carbon/human/proc/succubus_drain,
-		/mob/living/carbon/human/proc/succubus_drain_finalize,
-		/mob/living/carbon/human/proc/succubus_drain_lethal,
-		/mob/living/carbon/human/proc/bloodsuck,
-		/mob/living/carbon/human/proc/tie_hair,
+		/mob/living/complex/human/proc/sonar_ping,
+		/mob/living/complex/human/proc/succubus_drain,
+		/mob/living/complex/human/proc/succubus_drain_finalize,
+		/mob/living/complex/human/proc/succubus_drain_lethal,
+		/mob/living/complex/human/proc/bloodsuck,
+		/mob/living/complex/human/proc/tie_hair,
 		/mob/living/proc/shred_limb,
 		/mob/living/proc/flying_toggle,
 		/mob/living/proc/start_wings_hovering,
-		/mob/living/carbon/human/proc/tie_hair,
+		/mob/living/complex/human/proc/tie_hair,
 		/mob/living/proc/eat_trash,
 		/mob/living/proc/glow_toggle,
 		/mob/living/proc/glow_color,
-		/mob/living/carbon/human/proc/lick_wounds,
-		/mob/living/carbon/human/proc/resp_biomorph,
-		/mob/living/carbon/human/proc/biothermic_adapt,
-		/mob/living/carbon/human/proc/atmos_biomorph,
-		/mob/living/carbon/human/proc/shapeshifter_select_hair,
-		/mob/living/carbon/human/proc/shapeshifter_select_hair_colors,
-		/mob/living/carbon/human/proc/shapeshifter_select_colour,
-		/mob/living/carbon/human/proc/shapeshifter_select_eye_colour,
-		/mob/living/carbon/human/proc/shapeshifter_select_gender,
-		/mob/living/carbon/human/proc/shapeshifter_select_wings,
-		/mob/living/carbon/human/proc/shapeshifter_select_tail,
-		/mob/living/carbon/human/proc/shapeshifter_select_ears,
-		/mob/living/carbon/human/proc/shapeshifter_select_horns,
-		/mob/living/carbon/human/proc/shapeshifter_select_shape,
-		/mob/living/carbon/human/proc/commune,
+		/mob/living/complex/human/proc/lick_wounds,
+		/mob/living/complex/human/proc/resp_biomorph,
+		/mob/living/complex/human/proc/biothermic_adapt,
+		/mob/living/complex/human/proc/atmos_biomorph,
+		/mob/living/complex/human/proc/shapeshifter_select_hair,
+		/mob/living/complex/human/proc/shapeshifter_select_hair_colors,
+		/mob/living/complex/human/proc/shapeshifter_select_colour,
+		/mob/living/complex/human/proc/shapeshifter_select_eye_colour,
+		/mob/living/complex/human/proc/shapeshifter_select_gender,
+		/mob/living/complex/human/proc/shapeshifter_select_wings,
+		/mob/living/complex/human/proc/shapeshifter_select_tail,
+		/mob/living/complex/human/proc/shapeshifter_select_ears,
+		/mob/living/complex/human/proc/shapeshifter_select_horns,
+		/mob/living/complex/human/proc/shapeshifter_select_shape,
+		/mob/living/complex/human/proc/commune,
 	)
 
 	inherent_spells = list(
@@ -154,7 +154,7 @@
 
 	var/has_feral_spells = FALSE
 
-/datum/species/shapeshifter/xenochimera/handle_environment_special(mob/living/carbon/human/H)
+/datum/species/shapeshifter/xenochimera/handle_environment_special(mob/living/complex/human/H)
 	//If they're KO'd/dead, they're probably not thinking a lot about much of anything.
 	if(!H.stat)
 		handle_feralness(H)
@@ -182,7 +182,7 @@
 			H.eye_blurry = max(5,H.eye_blurry)
 	..()
 
-/datum/species/shapeshifter/xenochimera/add_inherent_spells(var/mob/living/carbon/human/H)
+/datum/species/shapeshifter/xenochimera/add_inherent_spells(var/mob/living/complex/human/H)
 	var/master_type = /atom/movable/screen/movable/spell_master/chimera
 	var/atom/movable/screen/movable/spell_master/chimera/new_spell_master = new master_type
 
@@ -198,7 +198,7 @@
 		var/spell/S = new spell_to_add(H)
 		H.add_spell(S, "cult", master_type)
 
-/datum/species/shapeshifter/xenochimera/proc/add_feral_spells(var/mob/living/carbon/human/H)
+/datum/species/shapeshifter/xenochimera/proc/add_feral_spells(var/mob/living/complex/human/H)
 	if(!has_feral_spells)
 		var/check = FALSE
 		var/master_type = /atom/movable/screen/movable/spell_master/chimera
@@ -213,18 +213,18 @@
 	else
 		return
 
-/datum/species/shapeshifter/xenochimera/proc/remove_feral_spells(var/mob/living/carbon/human/H)
+/datum/species/shapeshifter/xenochimera/proc/remove_feral_spells(var/mob/living/complex/human/H)
 	for(var/spell/S as anything in removable_spells)
 		S.remove_self(H)
 	removable_spells.Cut()
 	has_feral_spells = FALSE
 
-/datum/species/shapeshifter/xenochimera/handle_post_spawn(mob/living/carbon/human/H)
+/datum/species/shapeshifter/xenochimera/handle_post_spawn(mob/living/complex/human/H)
 	..()
 	for(var/spell/S as anything in feral_spells)
 		S = new S(H)
 
-/datum/species/shapeshifter/xenochimera/proc/handle_feralness(var/mob/living/carbon/human/H)
+/datum/species/shapeshifter/xenochimera/proc/handle_feralness(var/mob/living/complex/human/H)
 
 	//Low-ish nutrition has messages and eventually feral
 	var/hungry = H.nutrition <= 200
@@ -423,11 +423,11 @@
 /datum/species/shapeshifter/xenochimera/get_bodytype_legacy()
 	return base_species
 
-/datum/species/shapeshifter/xenochimera/get_race_key(mob/living/carbon/human/H)
+/datum/species/shapeshifter/xenochimera/get_race_key(mob/living/complex/human/H)
 	var/datum/species/real = SScharacters.resolve_species_name(base_species)
 	return real.real_race_key(H)
 
-/datum/species/shapeshifter/xenochimera/proc/update_xenochimera_hud(var/mob/living/carbon/human/H, var/danger, var/feral)
+/datum/species/shapeshifter/xenochimera/proc/update_xenochimera_hud(var/mob/living/complex/human/H, var/danger, var/feral)
 	if(H.xenochimera_danger_display)
 		H.xenochimera_danger_display.invisibility = 0
 		if(danger && feral)
@@ -452,7 +452,7 @@
 
 //Verbs Follow
 
-/mob/living/carbon/human/proc/resp_biomorph(mob/living/carbon/human/target in view(1))
+/mob/living/complex/human/proc/resp_biomorph(mob/living/complex/human/target in view(1))
 	set name = "Respiratory Biomorph"
 	set desc = "Changes the gases we need to breathe."
 	set category = "Abilities"
@@ -508,7 +508,7 @@
 			)
 
 
-/mob/living/carbon/human/proc/biothermic_adapt(mob/living/carbon/human/target in view(1))
+/mob/living/complex/human/proc/biothermic_adapt(mob/living/complex/human/target in view(1))
 	set name = "Biothermic Adaptation"
 	set desc = "Changes our core body temperature."
 	set category = "Abilities"
@@ -605,7 +605,7 @@
 				SPAN_WARNING("The sensation fades. You feel made anew."),
 			)
 
-/mob/living/carbon/human/proc/atmos_biomorph(mob/living/carbon/human/target in view(1))
+/mob/living/complex/human/proc/atmos_biomorph(mob/living/complex/human/target in view(1))
 	set name = "Atmospheric Biomorph"
 	set desc = "Changes our sensitivity to atmospheric pressure."
 	set category = "Abilities"

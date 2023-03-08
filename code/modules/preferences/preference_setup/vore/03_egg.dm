@@ -33,7 +33,7 @@ var/XENOMORPH_EGG 	= SPECIES_XENO
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
-	var/mob/living/carbon/human/character = M
+	var/mob/living/complex/human/character = M
 	character.vore_egg_type	= pref.vore_egg_type
 	return TRUE
 

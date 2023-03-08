@@ -37,7 +37,7 @@
 	/// Mech type for resetting icon. Only used for reskinning kits (see custom items).
 	var/initial_icon = null
 	var/can_move = 1
-	var/mob/living/carbon/occupant = null
+	var/mob/living/complex/occupant = null
 
 	/// Make a step in step_in/10 sec.
 	var/step_in = 10
@@ -653,7 +653,7 @@
 
 /obj/mecha/relaymove(mob/user,direction)
 	if(user != src.occupant) //While not "realistic", this piece is player friendly.
-		if(istype(user,/mob/living/carbon/brain))
+		if(istype(user,/mob/living/complex/brain))
 			to_chat(user, "<span class='warning'>You try to move, but you are not the pilot! The exosuit doesn't respond.</span>")
 			return 0
 		user.forceMove(get_turf(src))
@@ -1030,8 +1030,8 @@
 	else
 		temp_deflect_chance = round(ArmC.get_efficiency() * ArmC.deflect_chance + (defence_mode ? 25 : 0))
 
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
+	if(istype(user,/mob/living/complex/human))
+		var/mob/living/complex/human/H = user
 		if(H.species.can_shred(user))
 			if(!prob(temp_deflect_chance))
 				src.take_damage(15)	//The take_damage() proc handles armor values
@@ -1822,8 +1822,8 @@
 		return
 
 	src.log_message("[usr] tries to move in.")
-	if(iscarbon(usr))
-		var/mob/living/carbon/C = usr
+	if(iscomplexmob(usr))
+		var/mob/living/complex/C = usr
 		if(C.handcuffed)
 			to_chat(usr, "<span class='danger'>Kinda hard to climb in while handcuffed don't you think?</span>")
 			return
@@ -1871,7 +1871,7 @@
 			to_chat(usr, "You stop entering the exosuit.")
 	return
 
-/obj/mecha/proc/moved_inside(var/mob/living/carbon/human/H as mob)
+/obj/mecha/proc/moved_inside(var/mob/living/complex/human/H as mob)
 	if(H && H.client && (H in range(1)))
 		H.stop_pulling()
 		H.forceMove(src)
@@ -1977,8 +1977,8 @@
 	if(ishuman(occupant))
 		mob_container = src.occupant
 		RemoveActions(occupant, human_occupant=1)//AEIOU
-	else if(istype(occupant, /mob/living/carbon/brain))
-		var/mob/living/carbon/brain/brain = occupant
+	else if(istype(occupant, /mob/living/complex/brain))
+		var/mob/living/complex/brain/brain = occupant
 		mob_container = brain.container
 	else
 		return
@@ -2013,14 +2013,14 @@
 ////// Access stuff /////
 /////////////////////////
 
-/obj/mecha/proc/operation_allowed(mob/living/carbon/human/H)
+/obj/mecha/proc/operation_allowed(mob/living/complex/human/H)
 	for(var/ID in list(H.get_active_held_item(), H.wear_id, H.belt))
 		if(src.check_access(ID,src.operation_req_access))
 			return 1
 	return 0
 
 
-/obj/mecha/proc/internals_access_allowed(mob/living/carbon/human/H)
+/obj/mecha/proc/internals_access_allowed(mob/living/complex/human/H)
 	if(istype(H))
 		for(var/atom/ID in list(H.get_active_held_item(), H.wear_id, H.belt))
 			if(src.check_access(ID,src.internals_req_access))
@@ -2515,7 +2515,7 @@
 		return
 	if(href_list["dna_lock"])
 		if(usr != src.occupant)	return
-		if(istype(occupant, /mob/living/carbon/brain))
+		if(istype(occupant, /mob/living/complex/brain))
 			occupant_message("You are a brain. No.")
 			return
 		if(src.occupant)

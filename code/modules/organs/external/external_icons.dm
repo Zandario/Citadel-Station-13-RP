@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY(limb_icon_cache)
 				add_overlay(child.mob_icon)
 		add_overlay(organ.mob_icon)
 
-/obj/item/organ/external/proc/sync_colour_to_human(var/mob/living/carbon/human/human)
+/obj/item/organ/external/proc/sync_colour_to_human(var/mob/living/complex/human/human)
 	s_tone = null
 	s_col = null
 	h_col = null
@@ -45,7 +45,7 @@ GLOBAL_LIST_EMPTY(limb_icon_cache)
 		s_col = list(dna.GetUIValue(DNA_UI_SKIN_R), dna.GetUIValue(DNA_UI_SKIN_G), dna.GetUIValue(DNA_UI_SKIN_B))
 	h_col = list(dna.GetUIValue(DNA_UI_HAIR_R),dna.GetUIValue(DNA_UI_HAIR_G),dna.GetUIValue(DNA_UI_HAIR_B))
 
-/obj/item/organ/external/head/sync_colour_to_human(var/mob/living/carbon/human/human)
+/obj/item/organ/external/head/sync_colour_to_human(var/mob/living/complex/human/human)
 	..()
 	var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[O_EYES]
 	if(eyes) eyes.update_colour()
@@ -57,7 +57,7 @@ GLOBAL_LIST_EMPTY(limb_icon_cache)
 	cut_overlays()
 
 	//Every 'addon' below requires information from species
-	if(!iscarbon(owner) || !owner.species)
+	if(!iscomplexmob(owner) || !owner.species)
 		return
 
 	///? Holds eye icon to render over markings later.
@@ -146,7 +146,7 @@ GLOBAL_LIST_EMPTY(limb_icon_cache)
 /obj/item/organ/external/proc/get_icon(var/skeletal)
 
 	if(owner && ishuman(owner))
-		var/mob/living/carbon/human/H = owner
+		var/mob/living/complex/human/H = owner
 		s_base = LAZYACCESS(species.base_skin_colours, H.s_base)
 	var/gender = "f"
 	if(owner && owner.gender == MALE)

@@ -78,7 +78,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	return
 
 /// Currently, on_mob_life is called on carbons. Any interaction with non-carbon mobs (lube) will need to be done in touch_mob.
-/datum/reagent/proc/on_mob_life(var/mob/living/carbon/M, var/alien, var/datum/reagents/metabolism/location, speed_mult = 1, force_allow_dead)
+/datum/reagent/proc/on_mob_life(var/mob/living/complex/M, var/alien, var/datum/reagents/metabolism/location, speed_mult = 1, force_allow_dead)
 	if(!istype(M))
 		return
 	if(!affects_dead && M.stat == DEAD && !force_allow_dead)
@@ -112,7 +112,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 		ingest_rem_mult *= speed_mult
 
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/complex/human/H = M
 			if(!H.isSynthetic())
 				if(H.species.has_organ[O_HEART] && (active_metab.metabolism_class == CHEM_BLOOD))
 					var/obj/item/organ/internal/heart/Pump = H.internal_organs_by_name[O_HEART]
@@ -194,14 +194,14 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	remove_self(removed)
 	return
 
-/datum/reagent/proc/affect_blood(mob/living/carbon/M, alien, removed)
+/datum/reagent/proc/affect_blood(mob/living/complex/M, alien, removed)
 	return
 
-/datum/reagent/proc/affect_ingest(mob/living/carbon/M, alien, removed)
+/datum/reagent/proc/affect_ingest(mob/living/complex/M, alien, removed)
 	M.bloodstr.add_reagent(id, removed)
 	return
 
-/datum/reagent/proc/handle_vampire(var/mob/living/carbon/M, var/alien, var/removed, var/is_vampire)
+/datum/reagent/proc/handle_vampire(var/mob/living/complex/M, var/alien, var/removed, var/is_vampire)
 	if(blood_content > 0 && is_vampire)
 		#define blud_warn_timer 3000
 		if(blood_content < 4) //Are we drinking real blood or something else?
@@ -212,14 +212,14 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 				return
 		M.nutrition += removed * blood_content //We should always be able to process real blood.
 
-/datum/reagent/proc/affect_touch(mob/living/carbon/M, alien, removed)
+/datum/reagent/proc/affect_touch(mob/living/complex/M, alien, removed)
 	return
 
-/datum/reagent/proc/overdose(var/mob/living/carbon/M, var/alien, var/removed) // Overdose effect.
+/datum/reagent/proc/overdose(var/mob/living/complex/M, var/alien, var/removed) // Overdose effect.
 	if(alien == IS_DIONA)
 		return
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/complex/human/H = M
 		overdose_mod *= H.species.chemOD_mod
 	M.adjustToxLoss(removed * overdose_mod)
 

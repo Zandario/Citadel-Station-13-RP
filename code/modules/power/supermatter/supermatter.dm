@@ -165,9 +165,9 @@
 	for(var/mob/living/mob in living_mob_list)
 		var/turf/T = get_turf(mob)
 		if(T && (loc.z == T.z))
-			if(istype(mob, /mob/living/carbon/human))
+			if(istype(mob, /mob/living/complex/human))
 				//Hilariously enough, running into a closet should make you get hit the hardest.
-				var/mob/living/carbon/human/H = mob
+				var/mob/living/complex/human/H = mob
 				if(H.isSynthetic())
 					continue
 				H.hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(mob, src) + 1)) ) )
@@ -350,7 +350,7 @@
 
 		env.merge(removed)
 
-	for(var/mob/living/carbon/human/l in view(src, min(7, round(sqrt(power/6))))) // If they can see it without mesons on.  Bad on them.
+	for(var/mob/living/complex/human/l in view(src, min(7, round(sqrt(power/6))))) // If they can see it without mesons on.  Bad on them.
 		if(l.isSynthetic() || (PLANE_MESONS in l.planes_visible))
 			continue
 		if(!istype(l.glasses, /obj/item/clothing/glasses/meson)) // Only mesons can protect you!

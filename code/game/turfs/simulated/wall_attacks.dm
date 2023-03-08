@@ -118,8 +118,8 @@
 		else
 			fail_smash(user)
 			return 1
-	if(iscarbon(user))
-		var/mob/living/carbon/M = user
+	if(iscomplexmob(user))
+		var/mob/living/complex/M = user
 		switch(M.a_intent)
 			if(INTENT_HELP)
 				return
@@ -129,7 +129,7 @@
 				//since only humans have organs_by_name but carbons still have intents this check only applies to humans
 				//it's hacky but it works
 				if(ishuman(user))
-					var/mob/living/carbon/human/H = user
+					var/mob/living/complex/human/H = user
 					var/obj/item/organ/external/E = H.organs_by_name[M.hand ? BP_L_HAND : BP_R_HAND]
 					if (!(E.is_usable()))
 						to_chat(user, SPAN_WARNING("You can't use that hand."))

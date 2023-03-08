@@ -4,9 +4,9 @@
 /datum/component/spooky/Initialize()
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK, .proc/spectral_attack)
 
-/datum/component/spooky/proc/spectral_attack(datum/source, mob/living/carbon/C, mob/user)
+/datum/component/spooky/proc/spectral_attack(datum/source, mob/living/complex/C, mob/user)
 	if(ishuman(user)) //this weapon wasn't meant for mortals.
-		var/mob/living/carbon/human/U = user
+		var/mob/living/complex/human/U = user
 		if(!istype(U.dna.species, /datum/species/skeleton))
 			U.adjustStaminaLoss(35) //Extra Damage
 			U.Jitter(35)
@@ -17,7 +17,7 @@
 			return
 
 	if(ishuman(C))
-		var/mob/living/carbon/human/H = C
+		var/mob/living/complex/human/H = C
 		if(istype(H.dna.species, /datum/species/skeleton))
 			return //undeads are unaffected by the spook-pocalypse.
 		if(istype(H.dna.species, /datum/species/zombie))
@@ -34,7 +34,7 @@
 		C.Jitter(15)
 		C.stuttering = 20
 
-/datum/component/spooky/proc/spectral_change(mob/living/carbon/human/H, mob/user)
+/datum/component/spooky/proc/spectral_change(mob/living/complex/human/H, mob/user)
 	if((H.getStaminaLoss() > 95) && (!istype(H.dna.species, /datum/species/skeleton)) && (!istype(H.dna.species, /datum/species/golem)) && (!istype(H.dna.species, /datum/species/android)) && (!istype(H.dna.species, /datum/species/jelly)))
 		H.Paralyze(20)
 		H.set_species(/datum/species/skeleton)
@@ -53,7 +53,7 @@
 		to_chat(H, "A new life and identity has begun. Help your fellow skeletons into bringing out the spooky-pocalypse. You haven't forgotten your past life, and are still beholden to  past loyalties.")
 		change_name(H)	//time for a new name!
 
-/datum/component/spooky/proc/change_name(mob/living/carbon/human/H)
+/datum/component/spooky/proc/change_name(mob/living/complex/human/H)
 	var/t = sanitize_species_name(stripped_input(H, "Enter your new skeleton name", H.real_name, null, MAX_NAME_LEN))
 	if(!t)
 		t = "spooky skeleton"

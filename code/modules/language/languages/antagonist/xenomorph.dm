@@ -25,7 +25,7 @@
 
 /datum/language/xenos/check_special_condition(var/mob/other)
 
-	var/mob/living/carbon/M = other
+	var/mob/living/complex/M = other
 	if(!istype(M))
 		return 1
 	if(locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs)

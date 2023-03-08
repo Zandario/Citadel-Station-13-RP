@@ -76,8 +76,8 @@
 			continue
 
 		var/flash_time = strength
-		if(istype(O, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = O
+		if(istype(O, /mob/living/complex/human))
+			var/mob/living/complex/human/H = O
 			if(!H.eyecheck() <= 0)
 				continue
 			flash_time *= H.species.flash_mod
@@ -105,8 +105,8 @@
 	if((disable) || (last_flash && world.time < last_flash + 150))
 		return
 
-	if(istype(AM, /mob/living/carbon))
-		var/mob/living/carbon/M = AM
+	if(istype(AM, /mob/living/complex))
+		var/mob/living/complex/M = AM
 		if((M.m_intent != "walk") && (anchored))
 			flash()
 

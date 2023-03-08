@@ -361,8 +361,8 @@
 					qdel(stomachContent)
 				else
 					var/mob/living/L = stomachContent
-					if(iscarbon(L))
-						var/mob/living/carbon/C = L
+					if(iscomplexmob(L))
+						var/mob/living/complex/C = L
 						var/damage_cycles = rand(3, 5)
 						for(var/I = 0, I < damage_cycles, I++)
 							C.apply_damage(damage = rand(10,20), damagetype = BIOACID, def_zone = pick(BP_ALL))

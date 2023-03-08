@@ -25,7 +25,7 @@
 
 /datum/nifsoft/medichines_org/on_life()
 	if((. = ..()))
-		var/mob/living/carbon/human/H = nif.human
+		var/mob/living/complex/human/H = nif.human
 		var/HP_percent = H.health/H.getMaxHealth()
 
 		//Mode changing state machine
@@ -187,7 +187,7 @@
 
 /datum/nifsoft/mindbackup/activate()
 	if((. = ..()))
-		var/mob/living/carbon/human/H = nif.human
+		var/mob/living/complex/human/H = nif.human
 		SStranscore.m_backup(H.mind,H.nif,one_time = TRUE)
 		persist_nif_data(H)
 		nif.notify("Mind backed up!")

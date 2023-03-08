@@ -60,7 +60,7 @@
 
 /obj/item/clothing/accessory/poncho/equipped(mob/user, slot, flags) //Solution for race-specific sprites for an accessory which is also a suit. Suit icons break if you don't use icon override which then also overrides race-specific sprites.
 	..()
-	var/mob/living/carbon/human/H = loc
+	var/mob/living/complex/human/H = loc
 	if(istype(H) && H.wear_suit == src)
 		if(H.species.get_species_id() == SPECIES_ID_TESHARI)
 			icon_override = 'icons/mob/clothing/species/teshari/suits.dmi'
@@ -396,7 +396,7 @@
 
 /obj/item/clothing/accessory/sweater/equipped(mob/user, slot, flags) // Solution for race-specific sprites for an accessory which is also a suit. Suit icons break if you don't use icon override which then also overrides race-specific sprites.
 	..()
-	var/mob/living/carbon/human/H = loc
+	var/mob/living/complex/human/H = loc
 	if(istype(H) && H.wear_suit == src)
 		if(H.species.get_effective_bodytype(H, src, SLOT_ID_SUIT) == BODYTYPE_TESHARI)
 			icon_override = 'icons/mob/clothing/species/teshari/ties.dmi'

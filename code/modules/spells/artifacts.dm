@@ -134,8 +134,8 @@
 	return
 
 /obj/singularity/wizard/attack_tk(mob/user)
-	if(iscarbon(user))
-		var/mob/living/carbon/C = user
+	if(iscomplexmob(user))
+		var/mob/living/complex/C = user
 		var/datum/component/mood/insaneinthemembrane = C.GetComponent(/datum/component/mood)
 		if(insaneinthemembrane.sanity < 15)
 			return //they've already seen it and are about to die, or are just too insane to care
@@ -145,7 +145,7 @@
 			C.gain_trauma(lore)
 		addtimer(CALLBACK(src, /obj/singularity/wizard.proc/deranged, C), 100)
 
-/obj/singularity/wizard/proc/deranged(mob/living/carbon/C)
+/obj/singularity/wizard/proc/deranged(mob/living/complex/C)
 	if(!C || C.stat == DEAD)
 		return
 	C.vomit(0, TRUE, TRUE, 3, TRUE)
@@ -173,7 +173,7 @@
 	unlimited = 1
 
 /obj/item/necromantic_stone/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
-	var/mob/living/carbon/human/H = target
+	var/mob/living/complex/human/H = target
 	if(!istype(H))
 		return ..()
 
@@ -211,7 +211,7 @@
 		if(!ishuman(X))
 			spooky_scaries.Remove(X)
 			continue
-		var/mob/living/carbon/human/H = X
+		var/mob/living/complex/human/H = X
 		if(H.stat == DEAD)
 			H.dust(TRUE)
 			spooky_scaries.Remove(X)
@@ -219,7 +219,7 @@
 	listclearnulls(spooky_scaries)
 
 //Funny gimmick, skeletons always seem to wear roman/ancient armour
-/obj/item/necromantic_stone/proc/equip_roman_skeleton(mob/living/carbon/human/H)
+/obj/item/necromantic_stone/proc/equip_roman_skeleton(mob/living/complex/human/H)
 	for(var/obj/item/I in H)
 		//H.dropItemtoGround(I) //Just gonna disable this until I figure out what it does.
 
@@ -239,8 +239,8 @@
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "voodoo"
 	item_state = "electronic"
-	var/mob/living/carbon/human/target = null
-	var/list/mob/living/carbon/human/possible
+	var/mob/living/complex/human/target = null
+	var/list/mob/living/complex/human/possible
 	var/obj/item/voodoo_link = null
 	var/cooldown_time = 30 //3s
 	var/cooldown = 0
@@ -319,7 +319,7 @@
 	possible = null
 	if(!voodoo_link)
 		return
-	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
+	for(var/mob/living/complex/human/H in GLOB.alive_mob_list)
 		if(md5(H.dna.uni_identity) in voodoo_link.fingerprints)
 
 /obj/item/voodoo/proc/GiveHint(mob/victim,force=0)
@@ -330,7 +330,7 @@
 		var/area/A = get_area(src)
 		to_chat(victim, "<span class='notice'>You feel a dark presence from [A.name]</span>")
 
-/obj/item/voodoo/suicide_act(mob/living/carbon/user)
+/obj/item/voodoo/suicide_act(mob/living/complex/user)
 	user.visible_message("<span class='suicide'>[user] links the voodoo doll to [user.p_them()]self and sits on it, infinitely crushing [user.p_them()]self! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	user.gib()
 	return(BRUTELOSS)
@@ -359,15 +359,15 @@
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "whistle"
 	var/on_cooldown = 0 //0: usable, 1: in use, 2: on cooldown
-	var/mob/living/carbon/last_user
+	var/mob/living/complex/last_user
 
-/obj/item/warpwhistle/proc/interrupted(mob/living/carbon/user)
+/obj/item/warpwhistle/proc/interrupted(mob/living/complex/user)
 	if(!user || QDELETED(src) || user.mob_transforming)
 		on_cooldown = FALSE
 		return TRUE
 	return FALSE
 
-/obj/item/warpwhistle/proc/end_effect(mob/living/carbon/user)
+/obj/item/warpwhistle/proc/end_effect(mob/living/complex/user)
 	user.invisibility = initial(user.invisibility)
 	user.status_flags &= ~GODMODE
 	REMOVE_TRAIT(user, TRAIT_MOBILITY_NOMOVE, src)
@@ -375,7 +375,7 @@
 	REMOVE_TRAIT(user, TRAIT_MOBILITY_NOPICKUP, src)
 	user.update_mobility()
 
-/obj/item/warpwhistle/attack_self(mob/living/carbon/user)
+/obj/item/warpwhistle/attack_self(mob/living/complex/user)
 	if(!istype(user) || on_cooldown)
 		return
 	var/turf/T = get_turf(user)

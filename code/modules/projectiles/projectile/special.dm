@@ -136,7 +136,7 @@
 /obj/item/projectile/energy/floramut/on_hit(var/atom/target, var/blocked = 0)
 	var/mob/living/M = target
 	if(ishuman(target))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/complex/human/H = M
 		if((H.species.species_flags & IS_PLANT) && (M.nutrition < 500))
 			if(prob(15))
 				// todo: less stunlock capability
@@ -159,7 +159,7 @@
 				M.show_message("<font color='red'>The radiation beam singes you!</font>")
 			//	for (var/mob/V in viewers(src))
 			//		V.show_message("<font color='red'>[M] is singed by the radiation beam.</font>", 3, "<font color='red'> You hear the crackle of burning leaves.</font>", 2)
-	else if(istype(target, /mob/living/carbon/))
+	else if(istype(target, /mob/living/complex/))
 	//	for (var/mob/V in viewers(src))
 	//		V.show_message("The radiation beam dissipates harmlessly through [M]", 3)
 		M.show_message("<font color=#4F49AF>The radiation beam dissipates harmlessly through your body.</font>")
@@ -191,10 +191,10 @@
 /obj/item/projectile/energy/florayield/on_hit(var/atom/target, var/blocked = 0)
 	var/mob/M = target
 	if(ishuman(target)) //These rays make plantmen fat.
-		var/mob/living/carbon/human/H = M
+		var/mob/living/complex/human/H = M
 		if((H.species.species_flags & IS_PLANT) && (M.nutrition < 500))
 			M.nutrition += 30
-	else if (istype(target, /mob/living/carbon/))
+	else if (istype(target, /mob/living/complex/))
 		M.show_message("<font color=#4F49AF>The radiation beam dissipates harmlessly through your body.</font>")
 	else
 		return 1
@@ -207,7 +207,7 @@
 
 /obj/item/projectile/beam/mindflayer/on_hit(var/atom/target, var/blocked = 0)
 	if(ishuman(target))
-		var/mob/living/carbon/human/M = target
+		var/mob/living/complex/human/M = target
 		M.Confuse(rand(5,8))
 
 /obj/item/projectile/chameleon
@@ -231,7 +231,7 @@
 
 /obj/item/projectile/bola/on_hit(var/atom/target, var/blocked = 0)
 	if(ishuman(target))
-		var/mob/living/carbon/human/M = target
+		var/mob/living/complex/human/M = target
 		var/obj/item/handcuffs/legcuffs/bola/B = new(src.loc)
 		if(!B.place_legcuffs(M,firer))
 			if(B)
@@ -277,7 +277,7 @@
 		var/mob/living/L = target
 		L.add_modifier(/datum/modifier/grievous_wounds, 30 SECONDS)
 		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
+			var/mob/living/complex/human/H = L
 
 			var/target_armor = H.run_mob_armor(def_zone, check_armour)
 			var/obj/item/organ/external/target_limb = H.get_organ(def_zone)

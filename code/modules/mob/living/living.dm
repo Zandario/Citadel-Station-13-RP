@@ -127,13 +127,13 @@ default behaviour is:
 
 //sort of a legacy burn method for /electrocute, /shock, and the e_chair
 /mob/living/proc/burn_skin(burn_amount)
-	if(istype(src, /mob/living/carbon/human))
+	if(istype(src, /mob/living/complex/human))
 		//to_chat(world, "DEBUG: burn_skin(), mutations=[mutations]")
 		if(MUTATION_NOSHOCK in src.mutations) //shockproof
 			return 0
 		if (MUTATION_COLD_RESIST in src.mutations) //fireproof
 			return 0
-		var/mob/living/carbon/human/H = src	//make this damage method divide the damage to be done among all the body parts, then burn each body part for that much damage. will have better effect then just randomly picking a body part
+		var/mob/living/complex/human/H = src	//make this damage method divide the damage to be done among all the body parts, then burn each body part for that much damage. will have better effect then just randomly picking a body part
 		var/divided_damage = (burn_amount)/(H.organs.len)
 		var/extradam = 0	//added to when organ is at max dam
 		for(var/obj/item/organ/external/affecting in H.organs)
@@ -161,7 +161,7 @@ default behaviour is:
 		temperature -= change
 		if(actual < desired)
 			temperature = desired
-//	if(istype(src, /mob/living/carbon/human))
+//	if(istype(src, /mob/living/complex/human))
 //		to_chat(world, "[src] ~ [src.bodytemperature] ~ [temperature]")
 	return temperature
 
@@ -621,8 +621,8 @@ default behaviour is:
 //	if(buckled)			// Throws an error when you try to rejuvinate someone riding a vehicle @ktoma36
 //		buckled.unbuckle_mob()
 
-	if(iscarbon(src))
-		var/mob/living/carbon/C = src
+	if(iscomplexmob(src))
+		var/mob/living/complex/C = src
 		C.drop_slots_to_ground(list(SLOT_ID_HANDCUFFED, SLOT_ID_LEGCUFFED), INV_OP_FORCE)
 
 	ExtinguishMob()
@@ -817,7 +817,7 @@ default behaviour is:
 				to_chat(src, "<span class='warning'>You feel nauseous...</span>")
 
 				if(ishuman(src))
-					var/mob/living/carbon/human/Hu = src
+					var/mob/living/complex/human/Hu = src
 					if(CE_ANTACID in Hu.chem_effects)
 						if(prob(min(90, Hu.chem_effects[CE_ANTACID] * 15)))
 							spawn(rand(30 SECONDS, 2 MINUTES))
@@ -833,7 +833,7 @@ default behaviour is:
 					//Damaged livers cause you to vomit blood.
 					if(!blood_vomit)
 						if(ishuman(src))
-							var/mob/living/carbon/human/H = src
+							var/mob/living/complex/human/H = src
 							if(!H.isSynthetic())
 								var/obj/item/organ/internal/liver/L = H.internal_organs_by_name["liver"]
 								if(!L || L.is_broken())

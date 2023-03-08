@@ -57,7 +57,7 @@
 	pda_type = /obj/item/pda/heads/hop
 	l_hand = /obj/item/clipboard
 
-/datum/outfit/job/station/command_secretary/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/station/command_secretary/pre_equip(mob/living/complex/human/H)
 	..()
 	if(H.gender == FEMALE)
 		uniform = /obj/item/clothing/under/suit_jacket/female/skirt
@@ -74,7 +74,7 @@
 	suit = /obj/item/clothing/suit/storage/bridgeofficer
 	glasses = /obj/item/clothing/glasses/sunglasses
 
-/datum/outfit/job/station/command_secretary/bridge_officer/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/station/command_secretary/bridge_officer/pre_equip(mob/living/complex/human/H)
 	..()
 	if(H.gender == FEMALE)
 		uniform = /obj/item/clothing/under/bridgeofficerskirt

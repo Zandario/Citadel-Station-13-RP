@@ -1,4 +1,4 @@
-/mob/living/carbon/human/proc/reconstitute_form() //Scree's race ability.in exchange for: No cloning.
+/mob/living/complex/human/proc/reconstitute_form() //Scree's race ability.in exchange for: No cloning.
 	set name = "Reconstitute Form"
 	set category = "Abilities"
 
@@ -8,7 +8,7 @@
 	if(confirm == "Yes")
 		chimera_regenerate()
 
-/mob/living/carbon/human/proc/chimera_regenerate()
+/mob/living/complex/human/proc/chimera_regenerate()
 	//If they're already regenerating
 	switch(revive_ready)
 		if(REVIVING_NOW)
@@ -42,7 +42,7 @@
 				// Was dead, still dead.
 				else
 					to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch.</span>")
-					add_verb(src, /mob/living/carbon/human/proc/hatch)
+					add_verb(src, /mob/living/complex/human/proc/hatch)
 					revive_ready = REVIVING_DONE
 
 		//Dead until nutrition injected.
@@ -60,13 +60,13 @@
 			//If they're still alive after regenning.
 			if(stat != DEAD)
 				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>")
-				add_verb(src, /mob/living/carbon/human/proc/hatch)
+				add_verb(src, /mob/living/complex/human/proc/hatch)
 				revive_ready = REVIVING_DONE
 
 			//Was alive, now dead
 			else if(hasnutriment())
 				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>")
-				add_verb(src, /mob/living/carbon/human/proc/hatch)
+				add_verb(src, /mob/living/complex/human/proc/hatch)
 				revive_ready = REVIVING_DONE
 
 			//Dead until nutrition injected.
@@ -74,17 +74,17 @@
 				to_chat(src, "<span class='warning'>Your body was unable to regenerate, what few living cells remain require additional nutrients to complete the process.</span>")
 				revive_ready = REVIVING_READY //reset their cooldown
 
-/mob/living/carbon/human/proc/hasnutriment()
+/mob/living/complex/human/proc/hasnutriment()
 	return (nutrition+ bloodstr.get_reagent("protein") * 10 + bloodstr.get_reagent("nutriment") * 5 + ingested.get_reagent("protein") * 5 + ingested.get_reagent("nutriment") * 2.5) > 425
 
 
-/mob/living/carbon/human/proc/hatch()
+/mob/living/complex/human/proc/hatch()
 	set name = "Hatch"
 	set category = "Abilities"
 
 	if(revive_ready != REVIVING_DONE)
 		//Hwhat?
-		remove_verb(src, /mob/living/carbon/human/proc/hatch)
+		remove_verb(src, /mob/living/complex/human/proc/hatch)
 		return
 
 	var/confirm = alert(usr, "Are you sure you want to hatch right now? This will be very obvious to anyone in view.", "Confirm Regeneration", "Yes", "No")
@@ -102,8 +102,8 @@
 			chimera_hatch()
 			visible_message("<span class='danger'><p><font size=4>The dormant husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>") //Bloody hell...
 
-/mob/living/carbon/human/proc/chimera_hatch()
-	remove_verb(src, /mob/living/carbon/human/proc/hatch)
+/mob/living/complex/human/proc/chimera_hatch()
+	remove_verb(src, /mob/living/complex/human/proc/hatch)
 	to_chat(src, "<span class='notice'>Your new body awakens, bursting free from your old skin.</span>")
 
 	//Modify and record values (half nutrition and braindamage)
@@ -130,20 +130,20 @@
 
 	revive_ready = world.time + 1 HOUR //set the cooldown
 
-/mob/living/carbon/human/proc/revivingreset() // keep this as a debug proc or potential future use
+/mob/living/complex/human/proc/revivingreset() // keep this as a debug proc or potential future use
 		revive_ready = REVIVING_READY
 
 /obj/effect/gibspawner/human/xenochimera
 	fleshcolor = "#14AD8B"
 	bloodcolor = "#14AD8B"
 
-/mob/living/carbon/human/proc/getlightlevel() //easier than having the same code in like three places
+/mob/living/complex/human/proc/getlightlevel() //easier than having the same code in like three places
 	if(isturf(src.loc)) //else, there's considered to be no light
 		var/turf/T = src.loc
 		return T.get_lumcount() * 5
 	else return 0
 
-/mob/living/carbon/human/proc/handle_feral()
+/mob/living/complex/human/proc/handle_feral()
 	if(handling_hal) return
 	handling_hal = 1
 
@@ -166,8 +166,8 @@
 						var/list/slots_free = list(ui_lhand,ui_rhand)
 						if(l_hand) slots_free -= ui_lhand
 						if(r_hand) slots_free -= ui_rhand
-						if(istype(src,/mob/living/carbon/human))
-							var/mob/living/carbon/human/H = src
+						if(istype(src,/mob/living/complex/human))
+							var/mob/living/complex/human/H = src
 							if(!H.belt) slots_free += ui_belt
 							if(!H.l_store) slots_free += ui_storage1
 							if(!H.r_store) slots_free += ui_storage2
@@ -336,7 +336,7 @@
 	return
 
 
-/mob/living/carbon/human/proc/bloodsuck()
+/mob/living/complex/human/proc/bloodsuck()
 	set name = "Partially Drain prey of blood"
 	set desc = "Bites prey and drains them of a significant portion of blood, feeding you in the process. You may only do this once per minute."
 	set category = "Abilities"
@@ -370,7 +370,7 @@
 	src.visible_message("<font color='red'><b>[src] leans in close to [B]...</b></font>")
 	B.add_fingerprint(src)
 	add_attack_logs(src,B,"used bloodsuck() on [B]")
-	if(istype(B,/mob/living/carbon/human) && istype(src,/mob/living/carbon))
+	if(istype(B,/mob/living/complex/human) && istype(src,/mob/living/complex))
 		if(do_after(src, 50, B)) //Five seconds seems best
 			if(!Adjacent(B)) return
 			if(!src.isSynthetic())
@@ -382,7 +382,7 @@
 				to_chat(B, "<span class='danger'>You feel light headed as your blood is being drained!</span>")
 			else
 				to_chat(B, "<span class='danger'>Your sensors flare wildly as your power is being drained!</span>")
-			var/mob/living/carbon/human/H = B
+			var/mob/living/complex/human/H = B
 			H.drip(80) //Remove enough blood to make them a bit woozy, but not take oxyloss.
 			sleep(50)
 			H.drip(1)
@@ -400,7 +400,7 @@
 			if(B.nutrition < 100)
 				B.apply_damage(15, BRUTE, BP_TORSO) // if they have nothing to give, this just harms them
 			B.bitten = 1 //debuff tracking for balance
-	else if(!istype(B,/mob/living/carbon) && src.isSynthetic() || istype(B,/mob/living/carbon) && B.isSynthetic() && src.isSynthetic()) // for synths to feed on robots and other synths
+	else if(!istype(B,/mob/living/complex) && src.isSynthetic() || istype(B,/mob/living/complex) && B.isSynthetic() && src.isSynthetic()) // for synths to feed on robots and other synths
 		if(do_after(src, 50, B))
 			if(!Adjacent(B)) return
 			src.visible_message("<font color='red'><b>[src] suddenly lunges at [B]!</b></font>")
@@ -415,19 +415,19 @@
 
 
 //Welcome to the adapted changeling absorb code.
-/mob/living/carbon/human/proc/succubus_drain()
+/mob/living/complex/human/proc/succubus_drain()
 	set name = "Drain prey of nutrition"
 	set desc = "Slowly drain prey of all the nutrition in their body, feeding you in the process. You may only do this to one person at a time."
 	set category = "Abilities"
 	if(!ishuman(src))
 		return //If you're not a human you don't have permission to do this.
-	var/mob/living/carbon/human/C = src
+	var/mob/living/complex/human/C = src
 	var/obj/item/grab/G = src.get_active_held_item()
 	if(!istype(G))
 		to_chat(C, "<span class='warning'>You must be grabbing a creature in your active hand to absorb them.</span>")
 		return
 
-	var/mob/living/carbon/human/T = G.affecting // I must say, this is a quite ingenious way of doing it. Props to the original coders.
+	var/mob/living/complex/human/T = G.affecting // I must say, this is a quite ingenious way of doing it. Props to the original coders.
 	if(!istype(T)) // Allows for synths to be drained solargrub style
 		to_chat(src, "<span class='warning'>\The [T] is not able to be drained.</span>")
 		return
@@ -492,7 +492,7 @@
 			C.absorbing_prey = 0
 			return
 
-/mob/living/carbon/human/proc/succubus_drain_lethal()
+/mob/living/complex/human/proc/succubus_drain_lethal()
 	set name = "Lethally drain prey" //Provide a warning that THIS WILL KILL YOUR PREY.
 	set desc = "Slowly drain prey of all the nutrition in their body, feeding you in the process. Once prey run out of nutrition, you will begin to drain them lethally. You may only do this to one person at a time."
 	set category = "Abilities"
@@ -504,7 +504,7 @@
 		to_chat(src, "<span class='warning'>You must be grabbing a creature in your active hand to drain them.</span>")
 		return
 
-	var/mob/living/carbon/human/T = G.affecting // I must say, this is a quite ingenious way of doing it. Props to the original coders.
+	var/mob/living/complex/human/T = G.affecting // I must say, this is a quite ingenious way of doing it. Props to the original coders.
 	if(!istype(T))
 		to_chat(src, "<span class='warning'>\The [T] is not able to be drained.</span>")
 		return
@@ -610,19 +610,19 @@
 			absorbing_prey = 0
 			return
 
-/mob/living/carbon/human/proc/slime_feed()
+/mob/living/complex/human/proc/slime_feed()
 	set name = "Feed prey with self"
 	set desc = "Slowly feed prey with your body, draining you in the process. You may only do this to one person at a time."
 	set category = "Abilities"
 	if(!ishuman(src))
 		return //If you're not a human you don't have permission to do this.
-	var/mob/living/carbon/human/C = src
+	var/mob/living/complex/human/C = src
 	var/obj/item/grab/G = src.get_active_held_item()
 	if(!istype(G))
 		to_chat(C, "<span class='warning'>You must be grabbing a creature in your active hand to feed them.</span>")
 		return
 
-	var/mob/living/carbon/human/T = G.affecting // I must say, this is a quite ingenious way of doing it. Props to the original coders.
+	var/mob/living/complex/human/T = G.affecting // I must say, this is a quite ingenious way of doing it. Props to the original coders.
 	if(!istype(T) || T.isSynthetic())
 		to_chat(src, "<span class='warning'>\The [T] is not able to be fed.</span>")
 		return
@@ -671,19 +671,19 @@
 			C.absorbing_prey = 0
 			return
 
-/mob/living/carbon/human/proc/succubus_drain_finalize()
+/mob/living/complex/human/proc/succubus_drain_finalize()
 	set name = "Drain/Feed Finalization"
 	set desc = "Toggle to allow for draining to be prolonged. Turn this on to make it so prey will be knocked out/die while being drained, or you will feed yourself to the prey's selected stomach if you're feeding them. Can be toggled at any time."
 	set category = "Abilities"
 
-	var/mob/living/carbon/human/C = src
+	var/mob/living/complex/human/C = src
 	C.drain_finalized = !C.drain_finalized
 	to_chat(C, "<span class='notice'>You will [C.drain_finalized?"now":"not"] finalize draining/feeding.</span>")
 
 
 //Test to see if we can shred a mob. Some child override needs to pass us a target. We'll return it if you can.
 /mob/living/var/vore_shred_time = 45 SECONDS
-/mob/living/proc/can_shred(var/mob/living/carbon/human/target)
+/mob/living/proc/can_shred(var/mob/living/complex/human/target)
 	//Needs to have organs to be able to shred them.
 	if(!istype(target))
 		to_chat(src,"<span class='warning'>You can't shred that type of creature.</span>")
@@ -704,8 +704,8 @@
 	return target
 
 //Human test for shreddability, returns the mob if they can be shredded.
-/mob/living/carbon/human/vore_shred_time = 10 SECONDS
-/mob/living/carbon/human/can_shred()
+/mob/living/complex/human/vore_shred_time = 10 SECONDS
+/mob/living/complex/human/can_shred()
 	//Humans need a grab
 	var/obj/item/grab/G = get_active_held_item()
 	if(!istype(G))
@@ -718,10 +718,10 @@
 	return ..(G.affecting)
 
 //PAIs, borgs, and animals don't need a grab or anything
-/mob/living/silicon/pai/can_shred(var/mob/living/carbon/human/target)
+/mob/living/silicon/pai/can_shred(var/mob/living/complex/human/target)
 	if(!target)
 		var/list/choices = list()
-		for(var/mob/living/carbon/human/M in oviewers(1))
+		for(var/mob/living/complex/human/M in oviewers(1))
 			choices += M
 
 		if(!choices.len)
@@ -733,10 +733,10 @@
 
 	return ..(target)
 
-/mob/living/silicon/robot/can_shred(var/mob/living/carbon/human/target)
+/mob/living/silicon/robot/can_shred(var/mob/living/complex/human/target)
 	if(!target)
 		var/list/choices = list()
-		for(var/mob/living/carbon/human/M in oviewers(1))
+		for(var/mob/living/complex/human/M in oviewers(1))
 			choices += M
 
 		if(!choices.len)
@@ -748,10 +748,10 @@
 
 	return ..(target)
 
-/mob/living/simple_mob/can_shred(var/mob/living/carbon/human/target)
+/mob/living/simple_mob/can_shred(var/mob/living/complex/human/target)
 	if(!target)
 		var/list/choices = list()
-		for(var/mob/living/carbon/human/M in oviewers(1))
+		for(var/mob/living/complex/human/M in oviewers(1))
 			choices += M
 
 		if(!choices.len)
@@ -769,7 +769,7 @@
 	set category = "Abilities"
 
 	//can_shred() will return a mob we can shred, if we can shred any.
-	var/mob/living/carbon/human/T = can_shred()
+	var/mob/living/complex/human/T = can_shred()
 	if(!istype(T))
 		return //Silent, because can_shred does messages.
 
@@ -848,7 +848,7 @@
 	set desc = "While flying over open spaces, you will use up some nutrition. If you run out nutrition, you will fall. Additionally, you can't fly if you are too heavy."
 	set category = "Abilities"
 
-	var/mob/living/carbon/human/C = src
+	var/mob/living/complex/human/C = src
 	if(C.incapacitated(INCAPACITATION_ALL))
 		to_chat(src, "You cannot fly in this state!")
 		return
@@ -869,7 +869,7 @@
 	set desc = "Allows you to stop gliding and hover. This will take a fair amount of nutrition to perform."
 	set category = "Abilities"
 
-	var/mob/living/carbon/human/C = src
+	var/mob/living/complex/human/C = src
 	if(!C.flying)
 		to_chat(src, "You must be flying to hover!")
 		return
@@ -900,7 +900,7 @@
 	pass_flags ^= ATOM_PASS_TABLE //I dunno what this fancy ^= is but Aronai gave it to me.
 	to_chat(src, "You [pass_flags&ATOM_PASS_TABLE ? "will" : "will NOT"] move over tables/railings/trays!")
 
-/mob/living/carbon/human/proc/check_silk_amount()
+/mob/living/complex/human/proc/check_silk_amount()
 	set name = "Check Silk Amount"
 	set category = "Abilities"
 
@@ -909,7 +909,7 @@
 	else
 		to_chat(src, "<span class='warning'>You are not a weaver! How are you doing this? Tell a developer!</span>")
 
-/mob/living/carbon/human/proc/toggle_silk_production()
+/mob/living/complex/human/proc/toggle_silk_production()
 	set name = "Toggle Silk Production"
 	set category = "Abilities"
 
@@ -919,7 +919,7 @@
 	else
 		to_chat(src, "<span class='warning'>You are not a weaver! How are you doing this? Tell a developer!</span>")
 
-/mob/living/carbon/human/proc/weave_structure()
+/mob/living/complex/human/proc/weave_structure()
 	set name = "Weave Structure"
 	set category = "Abilities"
 
@@ -979,7 +979,7 @@
 		O.color = species.silk_color
 
 
-/mob/living/carbon/human/proc/weave_item()
+/mob/living/complex/human/proc/weave_item()
 	set name = "Weave Item"
 	set category = "Abilities"
 
@@ -1033,7 +1033,7 @@
 		var/atom/O = new desired_result.result_type(src.loc)
 		O.color = species.silk_color
 
-/mob/living/carbon/human/proc/set_silk_color()
+/mob/living/complex/human/proc/set_silk_color()
 	set name = "Set Silk Color"
 	set category = "Abilities"
 

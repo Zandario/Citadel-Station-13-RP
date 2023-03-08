@@ -100,7 +100,7 @@
 	var/data[0]
 	uses = user.mind.tcrystals
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		faction = H.antag_faction
 
 	data["welcome"] = welcome

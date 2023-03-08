@@ -104,7 +104,7 @@
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
-	var/mob/living/carbon/human/character = M
+	var/mob/living/complex/human/character = M
 	character.custom_species = pref.custom_species
 	character.custom_say     = lowertext(trim(pref.custom_say))
 	character.custom_ask     = lowertext(trim(pref.custom_ask))

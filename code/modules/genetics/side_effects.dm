@@ -1,4 +1,4 @@
-/proc/trigger_side_effect(mob/living/carbon/human/H)
+/proc/trigger_side_effect(mob/living/complex/human/H)
 	spawn
 		if(!istype(H))
 			return
@@ -29,11 +29,11 @@
 	/// Delay between start() and finish().
 	var/duration = 0
 
-/datum/genetics/side_effect/proc/start(mob/living/carbon/human/H)
+/datum/genetics/side_effect/proc/start(mob/living/complex/human/H)
 	// start the side effect, this should give some cue as to what's happening,
 	// such as gasping. These cues need to be unique among side-effects.
 
-/datum/genetics/side_effect/proc/finish(mob/living/carbon/human/H)
+/datum/genetics/side_effect/proc/finish(mob/living/complex/human/H)
 	// Finish the side-effect. This should first check whether the cure has been
 	// applied, and if not, cause bad things to happen.
 
@@ -44,10 +44,10 @@
 	effect = "Subject's skin burns."
 	duration = 10*30
 
-/datum/genetics/side_effect/genetic_burn/start(mob/living/carbon/human/H)
+/datum/genetics/side_effect/genetic_burn/start(mob/living/complex/human/H)
 	H.emote("me", 1, "starts turning very red..")
 
-/datum/genetics/side_effect/genetic_burn/finish(mob/living/carbon/human/H)
+/datum/genetics/side_effect/genetic_burn/finish(mob/living/complex/human/H)
 	if(!H.reagents.has_reagent("dexalin"))
 		for(var/organ_name in BP_ALL)
 			var/obj/item/organ/external/E = H.get_organ(organ_name)
@@ -60,10 +60,10 @@
 	effect = "Subject's bone breaks."
 	duration = 10*60
 
-/datum/genetics/side_effect/bone_snap/start(mob/living/carbon/human/H)
+/datum/genetics/side_effect/bone_snap/start(mob/living/complex/human/H)
 		H.emote("me", 1, "'s limbs start shivering uncontrollably.")
 
-/datum/genetics/side_effect/bone_snap/finish(mob/living/carbon/human/H)
+/datum/genetics/side_effect/bone_snap/finish(mob/living/complex/human/H)
 	if(!H.reagents.has_reagent("bicaridine"))
 		var/organ_name = pick(BP_ALL)
 		var/obj/item/organ/external/E = H.get_organ(organ_name)
@@ -77,10 +77,10 @@
 	effect = "Subject turns into monkey."
 	duration = 10*90
 
-/datum/genetics/side_effect/monkey/start(mob/living/carbon/human/H)
+/datum/genetics/side_effect/monkey/start(mob/living/complex/human/H)
 		H.emote("me", 1, "has drool running down from [H.gender == MALE ? "his" : H.gender == FEMALE ? "her" : "their"] mouth.")
 
-/datum/genetics/side_effect/monkey/finish(mob/living/carbon/human/H)
+/datum/genetics/side_effect/monkey/finish(mob/living/complex/human/H)
 		if(!H.reagents.has_reagent("anti_toxin"))
 			H.monkeyize()**/
 
@@ -91,10 +91,10 @@
 	effect = "Subject becomes confused."
 	duration = 10*30
 
-/datum/genetics/side_effect/confuse/start(mob/living/carbon/human/H)
+/datum/genetics/side_effect/confuse/start(mob/living/complex/human/H)
 	var/datum/gender/T = GLOB.gender_datums[H.get_visible_gender()]
 	H.emote("me", 1, "has drool running down from [T.his] mouth.")
 
-/datum/genetics/side_effect/confuse/finish(mob/living/carbon/human/H)
+/datum/genetics/side_effect/confuse/finish(mob/living/complex/human/H)
 	if(!H.reagents.has_reagent("anti_toxin"))
 		H.Confuse(100)

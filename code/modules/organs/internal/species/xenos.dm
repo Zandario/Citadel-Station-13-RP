@@ -19,7 +19,7 @@
 
 /obj/item/organ/internal/xenos/eggsac/grey/colormatch/proc/sync_color()
 	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
+		var/mob/living/complex/human/H = owner
 		if(H.species.blood_color)
 			add_atom_colour(H.species.blood_color, FIXED_COLOUR_PRIORITY)
 
@@ -32,7 +32,7 @@
 	var/max_plasma = 500
 
 	organ_verbs = list(
-		/mob/living/carbon/human/proc/transfer_plasma
+		/mob/living/complex/human/proc/transfer_plasma
 		)
 
 /obj/item/organ/internal/xenos/plasmavessel/handle_organ_proc_special()
@@ -62,7 +62,7 @@
 
 /obj/item/organ/internal/xenos/plasmavessel/grey/colormatch/proc/sync_color()
 	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
+		var/mob/living/complex/human/H = owner
 		if(H.species.blood_color)
 			add_atom_colour(H.species.blood_color, FIXED_COLOUR_PRIORITY)
 
@@ -87,9 +87,9 @@
 	organ_tag = O_ACID
 
 	organ_verbs = list(
-		/mob/living/carbon/human/proc/corrosive_acid,
-		/mob/living/carbon/human/proc/neurotoxin,
-		/mob/living/carbon/human/proc/acidspit
+		/mob/living/complex/human/proc/corrosive_acid,
+		/mob/living/complex/human/proc/neurotoxin,
+		/mob/living/complex/human/proc/acidspit
 		)
 
 /obj/item/organ/internal/xenos/acidgland/grey
@@ -101,7 +101,7 @@
 
 /obj/item/organ/internal/xenos/acidgland/grey/colormatch/proc/sync_color()
 	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
+		var/mob/living/complex/human/H = owner
 		if(H.species.blood_color)
 			add_atom_colour(H.species.blood_color, FIXED_COLOUR_PRIORITY)
 
@@ -120,7 +120,7 @@
 
 /obj/item/organ/internal/xenos/hivenode/grey/colormatch/proc/sync_color()
 	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
+		var/mob/living/complex/human/H = owner
 		if(H.species.blood_color)
 			add_atom_colour(H.species.blood_color, FIXED_COLOUR_PRIORITY)
 
@@ -131,8 +131,8 @@
 	organ_tag = O_RESIN
 
 	/*organ_verbs = list(
-		/mob/living/carbon/human/proc/resin,
-		/mob/living/carbon/human/proc/plant
+		/mob/living/complex/human/proc/resin,
+		/mob/living/complex/human/proc/plant
 		)
 	edit because the xenos that use it have the verbs anyways and hybrids dont want the plant verb*/
 
@@ -145,6 +145,6 @@
 
 /obj/item/organ/internal/xenos/resinspinner/grey/colormatch/proc/sync_color()
 	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
+		var/mob/living/complex/human/H = owner
 		if(H.species.blood_color)
 			add_atom_colour(H.species.blood_color, FIXED_COLOUR_PRIORITY)

@@ -6,7 +6,7 @@
 	icon_state = "sleeper"
 	w_class = ITEMSIZE_TINY
 	item_flags = ITEM_NOBLUDGEON
-	var/mob/living/carbon/patient = null
+	var/mob/living/complex/patient = null
 	var/mob/living/silicon/robot/hound = null
 	var/inject_amount = 10
 	var/min_health = -100
@@ -103,7 +103,7 @@
 				update_patient()
 			return
 		else if(ishuman(target))
-			var/mob/living/carbon/human/trashman = target
+			var/mob/living/complex/human/trashman = target
 			if(patient)
 				to_chat(user, "<span class='warning'>Your [src.name] is already occupied.</span>")
 				return
@@ -128,7 +128,7 @@
 		return
 
 	else if(ishuman(target))
-		var/mob/living/carbon/human/H = target
+		var/mob/living/complex/human/H = target
 		if(H.buckled)
 			to_chat(user, "<span class='warning'>The user is buckled and can not be put into your [src.name].</span>")
 			return
@@ -160,7 +160,7 @@
 		hound.visible_message("<span class='warning'>[hound.name] empties out their contents via their [eject_port] port.</span>", "<span class='notice'>You empty your contents via your [eject_port] port.</span>")
 		for(var/C in contents)
 			if(ishuman(C))
-				var/mob/living/carbon/human/person = C
+				var/mob/living/complex/human/person = C
 				person.forceMove(get_turf(src))
 				person.update_perspective()
 			else
@@ -344,7 +344,7 @@
 			hound.visible_message("<span class='warning'>[hound.name] empties out their cargo compartment via their [eject_port] port.</span>", "<span class='notice'>You empty your cargo compartment via your [eject_port] port.</span>")
 			for(var/C in deliverylists[delivery_tag])
 				if(ishuman(C))
-					var/mob/living/carbon/human/person = C
+					var/mob/living/complex/human/person = C
 					person.forceMove(get_turf(src))
 					person.update_perspective()
 				else
@@ -438,7 +438,7 @@
 
 	//Check for a new patient
 	else
-		for(var/mob/living/carbon/human/C in contents)
+		for(var/mob/living/complex/human/C in contents)
 			patient = C
 			if(cleaning)
 				hound.sleeper_r = TRUE
@@ -564,7 +564,7 @@
 						else
 							T.transfer_item_to_loc(I, src, INV_OP_FORCE)
 					if(ishuman(T))
-						var/mob/living/carbon/human/Prey = T
+						var/mob/living/complex/human/Prey = T
 						volume = (Prey.bloodstr.total_volume + Prey.ingested.total_volume + Prey.touching.total_volume + Prey.weight) * Prey.size_multiplier
 						water.add_charge(volume)
 					if(T.reagents)

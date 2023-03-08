@@ -13,7 +13,7 @@
 
 	flags = OUTFIT_HAS_BACKPACK
 
-/datum/outfit/job/equip_id(mob/living/carbon/human/H, rank, assignment)
+/datum/outfit/job/equip_id(mob/living/complex/human/H, rank, assignment)
 	var/obj/item/card/id/C = ..()
 	if(!C)
 		return

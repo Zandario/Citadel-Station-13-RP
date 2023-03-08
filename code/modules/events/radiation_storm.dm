@@ -34,14 +34,14 @@
 	for(var/z in GLOB.using_map.station_levels)
 		z_radiation(null, z, radiation_level, z_radiate_flags = Z_RADIATE_CHECK_AREA_SHIELD)
 
-	for(var/mob/living/carbon/C in living_mob_list)
+	for(var/mob/living/complex/C in living_mob_list)
 		var/area/A = get_area(C)
 		if(!A)
 			continue
 		if(A.area_flags & AREA_RAD_SHIELDED)
 			continue
-		if(istype(C,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = C
+		if(istype(C,/mob/living/complex/human))
+			var/mob/living/complex/human/H = C
 			if(prob(5))
 				if (prob(75))
 					randmutb(H) // Applies bad mutation

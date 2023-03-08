@@ -311,7 +311,7 @@
 /mob/living/proc/show_pudge()
 	return TRUE //Can override if you want.
 
-/mob/living/carbon/human/show_pudge()
+/mob/living/complex/human/show_pudge()
 	//A uniform could hide it.
 	if(istype(w_uniform,/obj/item/clothing))
 		var/obj/item/clothing/under = w_uniform
@@ -356,13 +356,13 @@
 		taste_message += "[vore_taste]"
 	else
 		if(ishuman(src))
-			var/mob/living/carbon/human/H = src
+			var/mob/living/complex/human/H = src
 			taste_message += "a normal [H.custom_species ? H.custom_species : H.species.name]"
 		else
 			taste_message += "a plain old normal [src]"
 
 	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
+		var/mob/living/complex/human/H = src
 		if(H.touching.reagent_list.len) // Just the first one otherwise I'll go insane.
 			var/datum/reagent/R = H.touching.reagent_list[1]
 			taste_message += " You also get the flavor of [R.taste_description] from something on them"
@@ -392,7 +392,7 @@
 		smell_message += "[vore_smell]"
 	else
 		if(ishuman(src))
-			var/mob/living/carbon/human/H = src
+			var/mob/living/complex/human/H = src
 			smell_message += "a normal [H.custom_species ? H.custom_species : H.species.name]"
 		else
 			smell_message += "a plain old normal [src]"
@@ -505,7 +505,7 @@
 	if(delay)
 		swallow_time = delay
 	else
-		swallow_time = istype(prey, /mob/living/carbon/human) ? belly.human_prey_swallow_time : belly.nonhuman_prey_swallow_time
+		swallow_time = istype(prey, /mob/living/complex/human) ? belly.human_prey_swallow_time : belly.nonhuman_prey_swallow_time
 
 	//Timer and progress bar
 	if(!do_after(user, swallow_time, prey))
@@ -559,8 +559,8 @@
 	set waitfor = FALSE
 	ASSERT(loc == C)
 
-	if(ishuman(C.loc)) //In a /mob/living/carbon/human
-		var/mob/living/carbon/human/H = C.loc
+	if(ishuman(C.loc)) //In a /mob/living/complex/human
+		var/mob/living/complex/human/H = C.loc
 		if(H.shoes == C) //Being worn
 			to_chat(src,"<font color=#4F49AF> You start to climb around the larger creature's feet and ankles!</font>")
 			to_chat(H,"<font color='red'>Something is trying to climb out of your [C]!</font>")
@@ -653,7 +653,7 @@
 			var/obj/item/pda/P = I
 			if(P.owner)
 				var/watching = FALSE
-				for(var/mob/living/carbon/human/H in view(src))
+				for(var/mob/living/complex/human/H in view(src))
 					if(H.real_name == P.owner && H.client)
 						watching = TRUE
 						break
@@ -756,7 +756,7 @@
 	if(showvoreprefs && ckey) //ckey so non-controlled mobs don't display it.
 		. += SPAN_BOLDNOTICE("<a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a>")
 
-/mob/living/Topic(href, href_list)	//Can't find any instances of Topic() being overridden by /mob/living in polaris' base code, even though /mob/living/carbon/human's Topic() has a ..() call
+/mob/living/Topic(href, href_list)	//Can't find any instances of Topic() being overridden by /mob/living in polaris' base code, even though /mob/living/complex/human's Topic() has a ..() call
 	if(href_list["vore_prefs"])
 		display_voreprefs(usr)
 		return TRUE

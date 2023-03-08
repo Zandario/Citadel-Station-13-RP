@@ -78,7 +78,7 @@
 	if(istype(src.loc, /obj/item/rig_module))
 		var/obj/item/rig_module/module = src.loc
 		if(module.holder && module.holder.wearer)
-			var/mob/living/carbon/human/H = module.holder.wearer
+			var/mob/living/complex/human/H = module.holder.wearer
 			if(istype(H) && H.back)
 				var/obj/item/rig/suit = H.back
 				if(istype(suit))
@@ -176,19 +176,19 @@
 
 	// NIF
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/complex/human/H = M
 		if(H.nif && H.nif.flag_check(NIF_V_FLASHPROT,NIF_FLAGS_VISION))
 			flashfail = 1
 			H.nif.notify("High intensity light detected, and blocked!",TRUE)
 
-	if(iscarbon(M) && !flashfail)
-		var/mob/living/carbon/C = M
+	if(iscomplexmob(M) && !flashfail)
+		var/mob/living/complex/C = M
 		if(C.stat != DEAD)
 			var/safety = C.eyecheck()
 			if(safety <= 0)
 				var/flash_strength = 10
 				if(ishuman(C))
-					var/mob/living/carbon/human/H = C
+					var/mob/living/complex/human/H = C
 					flash_strength *= H.species.flash_mod
 
 					if(flash_strength > 0)
@@ -237,7 +237,7 @@
 	else
 		user.visible_message("<span class='notice'>[user] fails to blind [M] with the flash!</span>")
 
-/obj/item/flash/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
+/obj/item/flash/attack_self(mob/living/complex/user as mob, flag = 0, emp = 0)
 	if(!user || !clown_check(user))
 		return
 
@@ -265,7 +265,7 @@
 			sleep(5)
 			qdel(animation)
 
-	for(var/mob/living/carbon/C in oviewers(3, null))
+	for(var/mob/living/complex/C in oviewers(3, null))
 		var/safety = C.eyecheck()
 		if(!safety)
 			if(!C.blinded)
@@ -279,8 +279,8 @@
 	if(!check_capacitor())
 		return
 
-	if(istype(loc, /mob/living/carbon))
-		var/mob/living/carbon/C = loc
+	if(istype(loc, /mob/living/complex))
+		var/mob/living/complex/C = loc
 		var/safety = C.eyecheck()
 		if(safety <= 0)
 			C.adjustHalLoss(halloss_per_flash)
@@ -306,7 +306,7 @@
 		to_chat(user, "<span class='warning'>The bulb has burnt out!</span>")
 		update_icon()
 
-/obj/item/flash/synthetic/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
+/obj/item/flash/synthetic/attack_self(mob/living/complex/user as mob, flag = 0, emp = 0)
 	..()
 	if(!broken)
 		broken = 1

@@ -26,7 +26,7 @@
 	color = "#1C1300"
 	ingest_met = REM * 5
 
-/datum/reagent/carbon/affect_ingest(mob/living/carbon/M, alien, removed)
+/datum/reagent/carbon/affect_ingest(mob/living/complex/M, alien, removed)
 	if(alien == IS_DIONA)
 		return
 	if(M.ingested && M.ingested.reagent_list.len > 1) // Need to have at least 2 reagents - cabon and something to remove
@@ -53,10 +53,10 @@
 	reagent_state = REAGENT_GAS
 	color = "#d1db77"
 
-/datum/reagent/chlorine/affect_blood(mob/living/carbon/M, alien, removed)
+/datum/reagent/chlorine/affect_blood(mob/living/complex/M, alien, removed)
 	M.take_organ_damage(1*REM, 0)
 
-/datum/reagent/chlorine/affect_touch(mob/living/carbon/M, alien, removed)
+/datum/reagent/chlorine/affect_touch(mob/living/complex/M, alien, removed)
 	M.take_organ_damage(1*REM, 0)
 
 /datum/reagent/copper
@@ -93,7 +93,7 @@
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 15)
 
-/datum/reagent/ethanol/affect_blood(mob/living/carbon/M, alien, removed) //This used to do just toxin. That's boring. Let's make this FUN.
+/datum/reagent/ethanol/affect_blood(mob/living/complex/M, alien, removed) //This used to do just toxin. That's boring. Let's make this FUN.
 	if(issmall(M)) removed *= 2
 	var/strength_mod = 3 //Alcohol is 3x stronger when injected into the veins.
 	if(alien == IS_SKRELL)
@@ -141,7 +141,7 @@
 	if(halluci)
 		M.hallucination = max(M.hallucination, halluci*3)
 
-/datum/reagent/ethanol/affect_ingest(mob/living/carbon/M, alien, removed)
+/datum/reagent/ethanol/affect_ingest(mob/living/complex/M, alien, removed)
 	if(issmall(M)) removed *= 2
 	M.adjust_nutrition(nutriment_factor * removed)
 	M.adjust_hydration(hydration_factor * removed)
@@ -214,10 +214,10 @@
 	reagent_state = REAGENT_GAS
 	color = "#808080"
 
-/datum/reagent/fluorine/affect_blood(mob/living/carbon/M, alien, removed)
+/datum/reagent/fluorine/affect_blood(mob/living/complex/M, alien, removed)
 	M.adjustToxLoss(removed)
 
-/datum/reagent/fluorine/affect_touch(mob/living/carbon/M, alien, removed)
+/datum/reagent/fluorine/affect_touch(mob/living/complex/M, alien, removed)
 	M.adjustToxLoss(removed)
 
 /datum/reagent/hydrogen
@@ -236,7 +236,7 @@
 	reagent_state = REAGENT_SOLID
 	color = "#353535"
 
-/datum/reagent/iron/affect_ingest(mob/living/carbon/M, alien, removed)
+/datum/reagent/iron/affect_ingest(mob/living/complex/M, alien, removed)
 	if(alien != IS_DIONA)
 		M.add_chemical_effect(CE_BLOODRESTORE, 8 * removed)
 
@@ -248,7 +248,7 @@
 	reagent_state = REAGENT_SOLID
 	color = "#808080"
 
-/datum/reagent/lithium/affect_blood(mob/living/carbon/M, alien, removed)
+/datum/reagent/lithium/affect_blood(mob/living/complex/M, alien, removed)
 	if(alien != IS_DIONA)
 		if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
 			step(M, pick(GLOB.cardinal))
@@ -263,7 +263,7 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#484848"
 
-/datum/reagent/mercury/affect_blood(mob/living/carbon/M, alien, removed)
+/datum/reagent/mercury/affect_blood(mob/living/complex/M, alien, removed)
 	if(alien != IS_DIONA)
 		if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
 			step(M, pick(GLOB.cardinal))
@@ -287,7 +287,7 @@
 	reagent_state = REAGENT_GAS
 	color = "#808080"
 
-/datum/reagent/oxygen/affect_blood(mob/living/carbon/M, alien, removed)
+/datum/reagent/oxygen/affect_blood(mob/living/complex/M, alien, removed)
 	if(alien == IS_VOX)
 		M.adjustToxLoss(removed * 3)
 
@@ -299,7 +299,7 @@
 	reagent_state = REAGENT_SOLID
 	color = "#832828"
 
-/datum/reagent/phosphorus/affect_blood(mob/living/carbon/M, alien, removed)
+/datum/reagent/phosphorus/affect_blood(mob/living/complex/M, alien, removed)
 	if(alien == IS_ALRAUNE)
 		if(prob(5))
 			to_chat(M, "<span class='vox'>You feel a rush of nutrients fill your body.</span>")
@@ -321,7 +321,7 @@
 	reagent_state = REAGENT_SOLID
 	color = "#C7C7C7"
 
-/datum/reagent/radium/affect_blood(mob/living/carbon/M, alien, removed)
+/datum/reagent/radium/affect_blood(mob/living/complex/M, alien, removed)
 	if(issmall(M))
 		removed *= 2
 	M.afflict_radiation(RAD_MOB_AFFLICT_STRENGTH_RADIUM(removed))
@@ -351,13 +351,13 @@
 	var/power = 5
 	var/meltdose = 10 // How much is needed to melt
 
-/datum/reagent/acid/affect_blood(mob/living/carbon/M, alien, removed)
+/datum/reagent/acid/affect_blood(mob/living/complex/M, alien, removed)
 	if(issmall(M)) removed *= 2
 	M.take_organ_damage(0, removed * power * 2)
 
-/datum/reagent/acid/affect_touch(mob/living/carbon/M, alien, removed) // This is the most interesting
+/datum/reagent/acid/affect_touch(mob/living/complex/M, alien, removed) // This is the most interesting
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/complex/human/H = M
 		if(H.head)
 			if(H.head.unacidable)
 				to_chat(H, "<span class='danger'>Your [H.head] protects you from the acid.</span>")
@@ -402,8 +402,8 @@
 		M.take_organ_damage(0, removed * power * 0.2) //burn damage, since it causes chemical burns. Acid doesn't make bones shatter, like brute trauma would.
 		return
 	if(!M.unacidable && removed > 0)
-		if(istype(M, /mob/living/carbon/human) && volume >= meltdose)
-			var/mob/living/carbon/human/H = M
+		if(istype(M, /mob/living/complex/human) && volume >= meltdose)
+			var/mob/living/complex/human/H = M
 			var/obj/item/organ/external/affecting = H.get_organ(BP_HEAD)
 			if(affecting)
 				if(affecting.take_damage(0, removed * power * 0.1))
@@ -455,7 +455,7 @@
 	glass_desc = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
 	glass_icon = DRINK_ICON_NOISY
 
-/datum/reagent/sugar/affect_blood(mob/living/carbon/M, alien, removed)
+/datum/reagent/sugar/affect_blood(mob/living/complex/M, alien, removed)
 	M.nutrition += removed * 3
 
 	var/effective_dose = dose

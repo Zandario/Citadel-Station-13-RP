@@ -147,7 +147,7 @@
 	var/stun = stunforce
 	var/obj/item/organ/external/affecting = null
 	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
+		var/mob/living/complex/human/H = L
 		affecting = H.get_organ(target_zone)
 
 	if(user.a_intent == INTENT_HARM)
@@ -173,7 +173,7 @@
 		msg_admin_attack("[key_name(user)] stunned [key_name(L)] with the [src].")
 
 		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
+			var/mob/living/complex/human/H = L
 			H.forcesay(hit_appends)
 	powercheck(hitcost)
 
@@ -322,7 +322,7 @@
 	var/mob/living/L = target
 	if(!istype(L))
 		return
-	var/mob/living/carbon/human/H
+	var/mob/living/complex/human/H
 	if(ishuman(L))
 		H = L
 		if(!status)

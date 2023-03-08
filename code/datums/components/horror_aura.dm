@@ -32,12 +32,12 @@ It also serves the purposes of portraying the Lore accurate effect of "Acausal L
 	aura_effect()
 
 /datum/component/horror_aura/proc/aura_effect()
-	for(var/mob/living/carbon/human/H in range(radius, parent))
+	for(var/mob/living/complex/human/H in range(radius, parent))
 		if(!iscultist(H) && !istype(H.head, /obj/item/clothing/head/helmet/para))
 			H.hallucination += 15
 	var/turf/T = get_turf(parent)
 	empulse(T, 0, 0, 0, emp_radius)
-	
+
 /datum/component/horror_aura/weak
 	radius = 2
 	emp_radius = 2

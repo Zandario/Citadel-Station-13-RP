@@ -74,7 +74,7 @@
 
 	var/exclude_mode = ("exclude" in species_restricted)
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/complex/human/H = M
 
 	if(!istype(H))
 		return exclude_mode
@@ -99,7 +99,7 @@
 		recent_struggle = 0
 
 	if(ishuman(src.loc))
-		var/mob/living/carbon/human/H = src.loc
+		var/mob/living/complex/human/H = src.loc
 		if(H.shoes == src)
 			to_chat(H, "<font color='red'>[user]'s tiny body presses against you in \the [src], squirming!</font>")
 			to_chat(user, "<font color='red'>Your body presses out against [H]'s form! Well, what little you can get to!</font>")

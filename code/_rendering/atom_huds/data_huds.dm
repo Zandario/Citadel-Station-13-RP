@@ -94,7 +94,7 @@
 /mob/proc/update_hud_sec_job()
 	return
 
-/mob/living/carbon/human/update_hud_sec_job()
+/mob/living/complex/human/update_hud_sec_job()
 	. = ..()
 	var/image/holder = hud_list[ID_HUD]
 	if(!holder)
@@ -112,7 +112,7 @@
 	var/image/holder = hud_list[WANTED_HUD]
 	holder?.icon_state = ""
 
-/mob/living/carbon/human/update_hud_sec_status()
+/mob/living/complex/human/update_hud_sec_status()
 	var/image/holder = hud_list[WANTED_HUD]
 	if(!holder)
 		return
@@ -161,5 +161,5 @@
 /mob/proc/check_viruses()
 	return FALSE
 
-/mob/living/carbon/human/check_viruses()
+/mob/living/complex/human/check_viruses()
 	return !!length(virus2 & virusDB)

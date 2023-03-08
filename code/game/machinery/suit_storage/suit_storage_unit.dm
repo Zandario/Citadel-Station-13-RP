@@ -10,7 +10,7 @@
 	icon_state = "suitstorage000000100" //order is: [has helmet][has suit][has human][is open][is locked][is UV cycling][is powered][is dirty/broken] [is superUVcycling]
 	anchored = 1
 	density = 1
-	var/mob/living/carbon/human/occupant = null
+	var/mob/living/complex/human/occupant = null
 	var/obj/item/clothing/suit/space/suit_stored = null
 	var/suit_stored_TYPE = null
 	var/obj/item/clothing/head/helmet/space/helmet_stored = null
@@ -173,7 +173,7 @@
 
 /obj/machinery/suit_storage_unit/proc/toggleUV(mob/user as mob)
 //	var/protected = 0
-//	var/mob/living/carbon/human/H = user
+//	var/mob/living/complex/human/H = user
 	if(!panelopen)
 		return
 
@@ -199,7 +199,7 @@
 
 /obj/machinery/suit_storage_unit/proc/togglesafeties(mob/user as mob)
 //	var/protected = 0
-//	var/mob/living/carbon/human/H = user
+//	var/mob/living/complex/human/H = user
 	if(!panelopen) //Needed check due to bugs
 		return
 

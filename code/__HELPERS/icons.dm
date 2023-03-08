@@ -864,7 +864,7 @@ GLOBAL_LIST_EMPTY(friendly_animal_types)
 /proc/get_flat_human_icon(icon_id, datum/role/job/J, datum/preferences/prefs, dummy_key, showDirs = GLOB.cardinals, outfit_override = null)
 	var/static/list/humanoid_icon_cache = list()
 	if(!icon_id || !humanoid_icon_cache[icon_id])
-		var/mob/living/carbon/human/dummy/body = generate_or_wait_for_human_dummy(dummy_key)
+		var/mob/living/complex/human/dummy/body = generate_or_wait_for_human_dummy(dummy_key)
 
 		if(prefs)
 			prefs.copy_to(body,TRUE,FALSE)

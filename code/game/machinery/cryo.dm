@@ -17,7 +17,7 @@
 	buckle_dir = SOUTH
 
 	var/temperature_archived
-	var/mob/living/carbon/occupant = null
+	var/mob/living/complex/occupant = null
 	var/obj/item/reagent_containers/glass/beaker = null
 
 	var/current_heat_capacity = 50
@@ -286,7 +286,7 @@
 	update_use_power(USE_POWER_IDLE)
 	return
 
-/obj/machinery/atmospherics/component/unary/cryo_cell/proc/put_mob(mob/living/carbon/M as mob)
+/obj/machinery/atmospherics/component/unary/cryo_cell/proc/put_mob(mob/living/complex/M as mob)
 	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(usr, SPAN_WARNING("The cryo cell is not functioning."))
 		return

@@ -130,7 +130,7 @@ GLOBAL_LIST_INIT(moth_lore_data, init_moth_lore())
 	inherent_verbs = list(
 		/mob/living/proc/flying_toggle,
 		/mob/living/proc/start_wings_hovering,
-		/mob/living/carbon/human/proc/tie_hair,
+		/mob/living/complex/human/proc/tie_hair,
 	)
 
 	color_mult = 1

@@ -28,7 +28,7 @@
 	damage_type = OXY
 	nodamage = 1
 
-/obj/item/projectile/magic/resurrection/on_hit(mob/living/carbon/target)
+/obj/item/projectile/magic/resurrection/on_hit(mob/living/complex/target)
 	. = ..()
 	if(isliving(target))
 		if(target.anti_magic_check())
@@ -141,7 +141,7 @@
 	var/randomize = pick("monkey","robot","slime","xeno","humanoid","animal")
 	switch(randomize)
 		if("monkey")
-			new_mob = new /mob/living/carbon/monkey(M.loc)
+			new_mob = new /mob/living/complex/monkey(M.loc)
 
 		if("robot")
 			var/robot = pick(200;/mob/living/silicon/robot,
@@ -167,9 +167,9 @@
 		if("xeno")
 			var/Xe
 			if(M.ckey)
-				Xe = pick(/mob/living/carbon/alien/humanoid/hunter,/mob/living/carbon/alien/humanoid/sentinel)
+				Xe = pick(/mob/living/complex/alien/humanoid/hunter,/mob/living/complex/alien/humanoid/sentinel)
 			else
-				Xe = pick(/mob/living/carbon/alien/humanoid/hunter,/mob/living/simple_animal/hostile/alien/sentinel)
+				Xe = pick(/mob/living/complex/alien/humanoid/hunter,/mob/living/simple_animal/hostile/alien/sentinel)
 			new_mob = new Xe(M.loc)
 
 		if("animal")
@@ -207,15 +207,15 @@
 
 		if("humanoid")
 			if(prob(50))
-				new_mob = new /mob/living/carbon/human(M.loc)
+				new_mob = new /mob/living/complex/human(M.loc)
 			else
-				var/hooman = pick(subtypesof(/mob/living/carbon/human/species))
+				var/hooman = pick(subtypesof(/mob/living/complex/human/species))
 				new_mob =new hooman(M.loc)
 
 			var/datum/preferences/A = new()	//Randomize appearance for the human
 			A.copy_to(new_mob, FALSE)
 
-			var/mob/living/carbon/human/H = new_mob
+			var/mob/living/complex/human/H = new_mob
 			H.update_body()
 			H.update_hair()
 			H.update_body_parts()
@@ -535,13 +535,13 @@
 
 /obj/item/projectile/magic/spellcard/book/spark/on_hit(atom/target, blocked = FALSE)
 	. = ..()
-	var/mob/living/carbon/M = target
+	var/mob/living/complex/M = target
 	if(ismob(target))
 		if(M.anti_magic_check())
 			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
 			return
 
-	if(iscarbon(target))
+	if(iscomplexmob(target))
 		M.adjust_fire_stacks(fire_stacks)
 		M.IgniteMob()
 		return
@@ -561,12 +561,12 @@
 
 /obj/item/projectile/magic/spellcard/book/heal/on_hit(atom/target, blocked = FALSE)
 	. = ..()
-	var/mob/living/carbon/M = target
+	var/mob/living/complex/M = target
 	if(ismob(target))
 		if(M.anti_magic_check())
 			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
 			return
-	if(iscarbon(target))
+	if(iscomplexmob(target))
 		M.visible_message("<span class='warning'>[src] mends [target]!</span>")
 		M.adjustBruteLoss(-5) //HEALS
 		M.adjustOxyLoss(-5)

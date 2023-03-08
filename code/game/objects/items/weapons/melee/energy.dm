@@ -91,8 +91,8 @@
 	else
 		activate(user)
 
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
+	if(istype(user,/mob/living/complex/human))
+		var/mob/living/complex/human/H = user
 		H.update_inv_l_hand()
 		H.update_inv_r_hand()
 
@@ -156,8 +156,8 @@
 	cut_overlays()		//So that it doesn't keep stacking overlays non-stop on top of each other
 	if(active)
 		add_overlay(blade_overlay)
-	if(istype(usr,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = usr
+	if(istype(usr,/mob/living/complex/human))
+		var/mob/living/complex/human/H = usr
 		H.update_inv_l_hand()
 		H.update_inv_r_hand()
 
@@ -525,7 +525,7 @@
 	if(!creator || loc != creator || !creator.is_holding(src))
 		// Tidy up a bit.
 		if(istype(loc,/mob/living))
-			var/mob/living/carbon/human/host = loc
+			var/mob/living/complex/human/host = loc
 			if(istype(host))
 				for(var/obj/item/organ/external/organ in host.organs)
 					for(var/obj/item/O in organ.implants)
@@ -720,7 +720,7 @@
 */
 /*
 /obj/item/melee/energy/hfmachete/proc/mob_moved(atom/movable/mover)
-	if(iscarbon(mover) && active)
+	if(iscomplexmob(mover) && active)
 		for(var/obj/effect/plantsegment/P in range(mover,0))
 			qdel(P)
 

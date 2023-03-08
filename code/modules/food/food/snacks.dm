@@ -61,13 +61,13 @@
 		qdel(src)
 		return 0
 
-	if(istype(M, /mob/living/carbon))
+	if(istype(M, /mob/living/complex))
 		//TODO: replace with standard_feed_mob() call.
 
 		var/fullness = M.nutrition + (M.reagents.get_reagent_amount("nutriment") * 25)
 		if(M == user)								//If you're eating it yourself
-			if(istype(M,/mob/living/carbon/human))
-				var/mob/living/carbon/human/H = M
+			if(istype(M,/mob/living/complex/human))
+				var/mob/living/complex/human/H = M
 				if(!H.check_has_mouth())
 					to_chat(user, "Where do you intend to put \the [src]? You don't have a mouth!")
 					return
@@ -107,8 +107,8 @@
 				return 0*/
 
 		else
-			if(istype(M,/mob/living/carbon/human))
-				var/mob/living/carbon/human/H = M
+			if(istype(M,/mob/living/complex/human))
+				var/mob/living/complex/human/H = M
 				if(!H.check_has_mouth())
 					to_chat(user, "Where do you intend to put \the [src]? \The [H] doesn't have a mouth!")
 					return
@@ -1841,7 +1841,7 @@
 
 /obj/item/reagent_containers/food/snacks/monkeycube/proc/Expand()
 	src.visible_message("<span class='notice'>\The [src] expands!</span>")
-	var/mob/living/carbon/human/H = new(get_turf(src))
+	var/mob/living/complex/human/H = new(get_turf(src))
 	H.set_species(monkey_type)
 	H.real_name = H.species.get_random_name()
 	H.name = H.real_name
@@ -1858,7 +1858,7 @@
 
 /obj/item/reagent_containers/food/snacks/monkeycube/On_Consume(var/mob/M)
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/complex/human/H = M
 		H.visible_message("<span class='warning'>A screeching creature bursts out of [M]'s chest!</span>")
 		var/obj/item/organ/external/organ = H.get_organ(BP_TORSO)
 		organ.take_damage(50, 0, 0, "Animal escaping the ribcage")
@@ -4101,10 +4101,10 @@ END CITADEL CHANGE */
 /mob/living/simple_animal/adultslime
 	composition_reagent = "slimejelly"
 
-/mob/living/carbon/slime
+/mob/living/complex/slime
 	composition_reagent = "slimejelly"
 
-/mob/living/carbon/alien/diona
+/mob/living/complex/alien/diona
 	composition_reagent = "nutriment"//Dionae are plants, so eating them doesn't give animal protein
 
 /mob/living/simple_mob/slime

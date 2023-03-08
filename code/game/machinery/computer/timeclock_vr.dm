@@ -188,7 +188,7 @@
 		card.last_job_switch = world.time
 		callHook("reassign_employee", list(card))
 		newjob.current_positions++
-		var/mob/living/carbon/human/H = usr
+		var/mob/living/complex/human/H = usr
 		H.mind.assigned_role = card.rank
 		H.mind.role_alt_title = card.assignment
 		announce.autosay("[card.registered_name] has moved On-Duty as [card.assignment].", "Employee Oversight", channel, zlevels = GLOB.using_map.get_map_levels(get_z(src)))
@@ -213,7 +213,7 @@
 		data_core.manifest_modify(card.registered_name, card.assignment, card.rank)
 		card.last_job_switch = world.time
 		callHook("reassign_employee", list(card))
-		var/mob/living/carbon/human/H = usr
+		var/mob/living/complex/human/H = usr
 		H.mind.assigned_role = ptojob.title
 		H.mind.role_alt_title = ptojob.title
 		foundjob.current_positions--
@@ -233,7 +233,7 @@
 	if(!card)
 		to_chat(usr, "<span class='notice'>No ID is inserted.</span>")
 		return FALSE
-	var/mob/living/carbon/human/H = usr
+	var/mob/living/complex/human/H = usr
 	if(!(istype(H)))
 		to_chat(usr, "<span class='warning'>Invalid user detected. Access denied.</span>")
 		return FALSE

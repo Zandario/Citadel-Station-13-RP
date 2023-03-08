@@ -30,26 +30,26 @@
 	has_organ =     list(O_BRAIN = /obj/item/organ/internal/brain/slime, O_EYES = /obj/item/organ/internal/eyes) // Slime core.
 	heal_rate = 0		// Avatars don't naturally heal like prometheans, at least not for now
 	inherent_verbs = list(
-		/mob/living/carbon/human/proc/shapeshifter_select_shape,
-		/mob/living/carbon/human/proc/shapeshifter_select_colour,
-		/mob/living/carbon/human/proc/shapeshifter_select_hair,
-		/mob/living/carbon/human/proc/shapeshifter_select_hair_colors,
-		/mob/living/carbon/human/proc/shapeshifter_select_gender,
-		/mob/living/carbon/human/proc/regenerate,
-		// /mob/living/carbon/human/proc/shapeshifter_change_opacity,	GO FUCK YOURSELF, THAT ENTIRE PROC WAS A DUMPSTER FIRE AND YOU SHOULD KNOW BETTER
-		/mob/living/carbon/human/proc/exit_vr
+		/mob/living/complex/human/proc/shapeshifter_select_shape,
+		/mob/living/complex/human/proc/shapeshifter_select_colour,
+		/mob/living/complex/human/proc/shapeshifter_select_hair,
+		/mob/living/complex/human/proc/shapeshifter_select_hair_colors,
+		/mob/living/complex/human/proc/shapeshifter_select_gender,
+		/mob/living/complex/human/proc/regenerate,
+		// /mob/living/complex/human/proc/shapeshifter_change_opacity,	GO FUCK YOURSELF, THAT ENTIRE PROC WAS A DUMPSTER FIRE AND YOU SHOULD KNOW BETTER
+		/mob/living/complex/human/proc/exit_vr
 		)
 
 
-/datum/species/shapeshifter/promethean/avatar/handle_death(var/mob/living/carbon/human/H)
+/datum/species/shapeshifter/promethean/avatar/handle_death(var/mob/living/complex/human/H)
 	return
 
-/datum/species/shapeshifter/promethean/avatar/handle_environment_special(var/mob/living/carbon/human/H)
+/datum/species/shapeshifter/promethean/avatar/handle_environment_special(var/mob/living/complex/human/H)
 	return
 
 /* NO. YOU CAN HAVE THIS BACK WHEN THIS DOESNT SWAP SPECIES TO CHANGE OPACITY
 	FUCK OFF
-/mob/living/carbon/human/proc/shapeshifter_change_opacity()
+/mob/living/complex/human/proc/shapeshifter_change_opacity()
 
 	set name = "Toggle Opacity"
 	set category = "Abilities"
@@ -68,7 +68,7 @@
 */
 
 // enter_vr is called on the original mob, and puts the mind into the supplied vr mob
-/mob/living/carbon/human/proc/enter_vr(var/mob/living/carbon/human/avatar) // Avatar is currently a human, because we have preexisting setup code for appearance manipulation, etc.
+/mob/living/complex/human/proc/enter_vr(var/mob/living/complex/human/avatar) // Avatar is currently a human, because we have preexisting setup code for appearance manipulation, etc.
 	if(!istype(avatar))
 		return
 
@@ -84,7 +84,7 @@
 	to_chat(avatar, "<span class='notice'> You black out for a moment, and wake to find yourself in a new body in virtual reality.</span>") // So this is what VR feels like?
 
 // exit_vr is called on the vr mob, and puts the mind back into the original mob
-/mob/living/carbon/human/proc/exit_vr()
+/mob/living/complex/human/proc/exit_vr()
 	set name = "Exit Virtual Reality"
 	set category = "Abilities"
 
@@ -96,7 +96,7 @@
 	var/total_damage
 	// Tally human damage
 	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
+		var/mob/living/complex/human/H = src
 		total_damage = H.getBruteLoss() + H.getFireLoss() + H.getOxyLoss() + H.getToxLoss()
 
 	// Move the mind back to the original mob
@@ -106,7 +106,7 @@
 	// Two-thirds damage is transferred as agony for /humans
 	// Getting hurt in VR doesn't damage the physical body, but you still got hurt.
 	if(ishuman(vr_holder) && total_damage)
-		var/mob/living/carbon/human/V = vr_holder
+		var/mob/living/complex/human/V = vr_holder
 		V.stun_effect_act(0, total_damage*2/3, null)												// 200 damage leaves the user in paincrit for several seconds, agony reaches 0 after around 2m.
 		to_chat(vr_holder, "<span class='warning'>Pain from your time in VR lingers.</span>")		// 250 damage leaves the user unconscious for several seconds in addition to paincrit
 

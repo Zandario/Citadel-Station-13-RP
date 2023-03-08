@@ -31,7 +31,7 @@
 
 	//Get the DNA and generate a new mob
 	var/datum/dna2/record/R = current_project.mydna
-	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src)
+	var/mob/living/complex/human/H = new /mob/living/complex/human(src)
 	H.set_species(R.dna.species)
 	H.dna.base_species = R.dna.base_species //! Hacky way to get the DNA to work.
 	if(current_project.locked)
@@ -259,7 +259,7 @@
 
 	//Get the DNA and generate a new mob
 	var/datum/dna2/record/R = current_project.mydna
-	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src, R.dna.species)
+	var/mob/living/complex/human/H = new /mob/living/complex/human(src, R.dna.species)
 	if(current_project.locked)
 		H.resleeve_lock = current_project.ckey
 
@@ -411,7 +411,7 @@
 	var/blur_amount
 	var/confuse_amount
 
-	var/mob/living/carbon/human/occupant = null
+	var/mob/living/complex/human/occupant = null
 	var/connected = null
 
 	var/sleevecards = 2
@@ -469,7 +469,7 @@
 		if(!ismob(G.affecting))
 			return
 /*
-		for(var/mob/living/carbon/slime/M in range(1, G.affecting))
+		for(var/mob/living/complex/slime/M in range(1, G.affecting))
 			if(M.Victim == G.affecting)
 				to_chat(usr, "[G.affecting:name] will not fit into the [src.name] because they have a slime latched onto their head.")
 				return
@@ -487,7 +487,7 @@
 		sleevecards++
 		to_chat(user, SPAN_NOTICE("You store \the [C] in \the [src]."))
 
-/obj/machinery/transhuman/resleever/MouseDroppedOnLegacy(mob/living/carbon/O, mob/user)
+/obj/machinery/transhuman/resleever/MouseDroppedOnLegacy(mob/living/complex/O, mob/user)
 	if(!istype(O))
 		return FALSE //not a mob
 	if(user.incapacitated())
@@ -523,7 +523,7 @@
 		return
 	put_mob(target)
 
-/obj/machinery/transhuman/resleever/proc/putmind(datum/transhuman/mind_record/MR, mode = 1, mob/living/carbon/human/override = null)
+/obj/machinery/transhuman/resleever/proc/putmind(datum/transhuman/mind_record/MR, mode = 1, mob/living/complex/human/override = null)
 	if((!occupant || !istype(occupant) || occupant.stat >= DEAD) && mode == 1)
 		return 0
 
@@ -534,7 +534,7 @@
 		return 1
 
 	//If we're sleeving a subtarget, briefly swap them to not need to duplicate tons of code.
-	var/mob/living/carbon/human/original_occupant
+	var/mob/living/complex/human/original_occupant
 	if(override)
 		original_occupant = occupant
 		occupant = override
@@ -603,7 +603,7 @@
 	icon_state = "implantchair"
 	return
 
-/obj/machinery/transhuman/resleever/proc/put_mob(mob/living/carbon/human/M as mob)
+/obj/machinery/transhuman/resleever/proc/put_mob(mob/living/complex/human/M as mob)
 	if(!ishuman(M))
 		to_chat(usr, SPAN_WARNING("\The [src] cannot hold this!"))
 		return

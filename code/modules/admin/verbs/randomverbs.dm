@@ -33,8 +33,8 @@
 		M.Unconscious(5)
 		sleep(5)	//so they black out before warping
 		M.loc = pick(prisonwarp)
-		if(istype(M, /mob/living/carbon/human))
-			var/mob/living/carbon/human/prisoner = M
+		if(istype(M, /mob/living/complex/human))
+			var/mob/living/complex/human/prisoner = M
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/prison(prisoner), SLOT_ID_UNIFORM)
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), SLOT_ID_SHOES)
 		spawn(50)
@@ -461,7 +461,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/picked_ckey = picked_client.ckey
 	var/picked_slot = picked_client.prefs.default_slot
 
-	var/mob/living/carbon/human/new_character
+	var/mob/living/complex/human/new_character
 	var/spawnloc
 
 	//Where did you want to spawn them?

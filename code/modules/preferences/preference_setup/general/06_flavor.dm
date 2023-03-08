@@ -41,7 +41,7 @@
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
-	var/mob/living/carbon/human/character = M
+	var/mob/living/complex/human/character = M
 	character.flavor_texts["general"]	= pref.flavor_texts["general"]
 	character.flavor_texts["head"]		= pref.flavor_texts["head"]
 	character.flavor_texts["face"]		= pref.flavor_texts["face"]

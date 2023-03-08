@@ -57,7 +57,7 @@ var/datum/antagonist/cultist/cult
 	sacrifice_target = sacrifice.target
 	global_objectives |= sacrifice
 
-/datum/antagonist/cultist/equip(var/mob/living/carbon/human/player)
+/datum/antagonist/cultist/equip(var/mob/living/complex/human/player)
 	if(!..())
 		return 0
 
@@ -76,7 +76,7 @@ var/datum/antagonist/cultist/cult
 		return 0
 	grant_runeword(player.current)
 
-/datum/antagonist/cultist/proc/grant_runeword(mob/living/carbon/human/cult_mob, var/word)
+/datum/antagonist/cultist/proc/grant_runeword(mob/living/complex/human/cult_mob, var/word)
 
 	if (!word)
 		if(startwords.len > 0)

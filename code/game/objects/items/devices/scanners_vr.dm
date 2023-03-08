@@ -1,4 +1,4 @@
-var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
+var/global/mob/living/complex/human/dummy/mannequin/sleevemate_mob
 
 //SleeveMate!
 /obj/item/sleevemate
@@ -42,7 +42,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		if("Cancel")
 			return
 
-/obj/item/sleevemate/proc/scan_mob(mob/living/carbon/human/H, mob/living/user)
+/obj/item/sleevemate/proc/scan_mob(mob/living/complex/human/H, mob/living/user)
 	var/output = ""
 
 	output += "<br><br><span class='notice'><b>[src.name] Scan Results</b></span><br>"
@@ -104,7 +104,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		if(SC)
 			output += "<br>"
 			output += "<b>Soulcatcher detected ([SC.brainmobs.len] minds)</b><br>"
-			for(var/mob/living/carbon/brain/caught_soul/mind in SC.brainmobs)
+			for(var/mob/living/complex/brain/caught_soul/mind in SC.brainmobs)
 				output += "<i>[mind.name]: </i> [mind.transient == FALSE ? "\[<a href='?src=\ref[src];target=\ref[H];mindrelease=[mind.name]'>Load</a>\]" : "<span class='warning'>Incompatible</span>"]<br>"
 
 			if(stored_mind)
@@ -138,7 +138,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 
 		var/nif
 		if(ishuman(target))
-			var/mob/living/carbon/human/H = target
+			var/mob/living/complex/human/H = target
 			nif = H.nif
 			persist_nif_data(H)
 
@@ -156,7 +156,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 			to_chat(usr,"<span class='warning'>Target is not of an acceeptable body type.</span>")
 			return
 
-		var/mob/living/carbon/human/H = target
+		var/mob/living/complex/human/H = target
 
 		usr.visible_message("[usr] begins scanning [target]'s body.","<span class='notice'>You begin scanning [target]'s body.</span>")
 		if(do_after(usr,8 SECONDS,target))
@@ -196,7 +196,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 			to_chat(usr,"<span class='warning'>\The [src] no longer has a stored mind.</span>")
 			return
 
-		var/mob/living/carbon/human/H = target
+		var/mob/living/complex/human/H = target
 
 		if(!istype(target))
 			return //href hacking only
@@ -227,8 +227,8 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		if(!istype(target))
 			return
 
-		if(istype(target, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = target
+		if(istype(target, /mob/living/complex/human))
+			var/mob/living/complex/human/H = target
 			if(H.resleeve_lock && stored_mind.loaded_from_ckey  != H.resleeve_lock)
 				to_chat(usr,"<span class='warning'>\[H] is protected from impersonation!</span>")
 				return
@@ -248,11 +248,11 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		if(stored_mind)
 			to_chat(usr,"<span class='warning'>There is already someone's mind stored inside</span>")
 			return
-		var/mob/living/carbon/human/H = target
+		var/mob/living/complex/human/H = target
 		var/datum/nifsoft/soulcatcher/SC = H.nif.imp_check(NIF_SOULCATCHER)
 		if(!SC)
 			return
-		for(var/mob/living/carbon/brain/caught_soul/soul in SC.brainmobs)
+		for(var/mob/living/complex/brain/caught_soul/soul in SC.brainmobs)
 			if(soul.name == href_list["mindrelease"])
 				stored_mind = soul.mind
 				stored_mind.current = null

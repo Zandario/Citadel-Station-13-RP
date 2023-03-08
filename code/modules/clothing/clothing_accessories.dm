@@ -80,7 +80,7 @@
 			A.attack_hand(user)
 		return
 	if (ishuman(user) && src.loc == user)
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		if(src == H.w_uniform) // Un-equip on single click, but not on uniform.
 			return
 	return ..()

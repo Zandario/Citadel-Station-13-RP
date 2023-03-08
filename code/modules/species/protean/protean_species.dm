@@ -115,36 +115,36 @@ I redid the calculations, as the burn weakness has been changed. This should be 
 
 	//These verbs are hidden, for hotkey use only
 	inherent_verbs = list(
-		/mob/living/carbon/human/proc/nano_regenerate, //These verbs are hidden so you can macro them,
-		/mob/living/carbon/human/proc/nano_partswap,
-		/mob/living/carbon/human/proc/nano_metalnom,
-		/mob/living/carbon/human/proc/nano_blobform,
-		/mob/living/carbon/human/proc/nano_set_size,
-		/mob/living/carbon/human/proc/nano_change_fitting, //These verbs are displayed normally,
-		/mob/living/carbon/human/proc/shapeshifter_select_hair,
-		/mob/living/carbon/human/proc/shapeshifter_select_hair_colors,
-		/mob/living/carbon/human/proc/shapeshifter_select_colour,
-		/mob/living/carbon/human/proc/shapeshifter_select_eye_colour,
-		/mob/living/carbon/human/proc/shapeshifter_select_gender,
-		/mob/living/carbon/human/proc/shapeshifter_select_wings,
-		/mob/living/carbon/human/proc/shapeshifter_select_tail,
-		/mob/living/carbon/human/proc/shapeshifter_select_ears,
-		/mob/living/carbon/human/proc/shapeshifter_select_horns,
+		/mob/living/complex/human/proc/nano_regenerate, //These verbs are hidden so you can macro them,
+		/mob/living/complex/human/proc/nano_partswap,
+		/mob/living/complex/human/proc/nano_metalnom,
+		/mob/living/complex/human/proc/nano_blobform,
+		/mob/living/complex/human/proc/nano_set_size,
+		/mob/living/complex/human/proc/nano_change_fitting, //These verbs are displayed normally,
+		/mob/living/complex/human/proc/shapeshifter_select_hair,
+		/mob/living/complex/human/proc/shapeshifter_select_hair_colors,
+		/mob/living/complex/human/proc/shapeshifter_select_colour,
+		/mob/living/complex/human/proc/shapeshifter_select_eye_colour,
+		/mob/living/complex/human/proc/shapeshifter_select_gender,
+		/mob/living/complex/human/proc/shapeshifter_select_wings,
+		/mob/living/complex/human/proc/shapeshifter_select_tail,
+		/mob/living/complex/human/proc/shapeshifter_select_ears,
+		/mob/living/complex/human/proc/shapeshifter_select_horns,
 		/mob/living/proc/eat_trash,
-		/mob/living/carbon/human/proc/sonar_ping,
-		/mob/living/carbon/human/proc/succubus_drain,
-		/mob/living/carbon/human/proc/succubus_drain_finalize,
-		/mob/living/carbon/human/proc/succubus_drain_lethal,
-		/mob/living/carbon/human/proc/bloodsuck,
-		/mob/living/carbon/human/proc/tie_hair,
+		/mob/living/complex/human/proc/sonar_ping,
+		/mob/living/complex/human/proc/succubus_drain,
+		/mob/living/complex/human/proc/succubus_drain_finalize,
+		/mob/living/complex/human/proc/succubus_drain_lethal,
+		/mob/living/complex/human/proc/bloodsuck,
+		/mob/living/complex/human/proc/tie_hair,
 		/mob/living/proc/shred_limb,
 		/mob/living/proc/flying_toggle,
 		/mob/living/proc/start_wings_hovering,
-		/mob/living/carbon/human/proc/tie_hair,
+		/mob/living/complex/human/proc/tie_hair,
 		/mob/living/proc/glow_toggle,
 		/mob/living/proc/glow_color,
-		/mob/living/carbon/human/proc/lick_wounds,
-		/mob/living/carbon/human/proc/rig_transform,
+		/mob/living/complex/human/proc/lick_wounds,
+		/mob/living/complex/human/proc/rig_transform,
 		/mob/living/proc/usehardsuit) //prots get all the special verbs since they can't select traits.
 	species_statpanel = TRUE
 	var/global/list/abilities = list()
@@ -158,7 +158,7 @@ I redid the calculations, as the burn weakness has been changed. This should be 
 		for(var/path in powertypes)
 			abilities += new path()
 
-/datum/species/protean/create_organs(var/mob/living/carbon/human/H)
+/datum/species/protean/create_organs(var/mob/living/complex/human/H)
 	var/obj/item/nif/saved_nif = H.nif
 	if(saved_nif)
 		H.nif.unimplant(H) //Needs reference to owner to unimplant right.
@@ -167,20 +167,20 @@ I redid the calculations, as the burn weakness has been changed. This should be 
 	if(saved_nif)
 		saved_nif.quick_implant(H)
 
-/datum/species/protean/get_effective_bodytype(mob/living/carbon/human/H, obj/item/I, slot_id)
+/datum/species/protean/get_effective_bodytype(mob/living/complex/human/H, obj/item/I, slot_id)
 	if(H)
 		return H.impersonate_bodytype || ..()
 	return ..()
 
-/datum/species/protean/get_bodytype_legacy(var/mob/living/carbon/human/H)
+/datum/species/protean/get_bodytype_legacy(var/mob/living/complex/human/H)
 	if(H)
 		return H.impersonate_bodytype_legacy || ..()
 	return ..()
 
-/datum/species/protean/get_worn_legacy_bodytype(mob/living/carbon/human/H)
+/datum/species/protean/get_worn_legacy_bodytype(mob/living/complex/human/H)
 	return H?.impersonate_bodytype_legacy || ..()
 
-/datum/species/protean/create_organs(mob/living/carbon/human/H)
+/datum/species/protean/create_organs(mob/living/complex/human/H)
 	H.synth_color = TRUE
 	. = ..()
 
@@ -195,7 +195,7 @@ I redid the calculations, as the burn weakness has been changed. This should be 
 	var/obj/item/rig/protean/prig = new /obj/item/rig/protean(H)
 	prig.myprotean = H
 
-/datum/species/protean/equip_survival_gear(var/mob/living/carbon/human/H)
+/datum/species/protean/equip_survival_gear(var/mob/living/complex/human/H)
 	var/obj/item/storage/box/box = new /obj/item/storage/box/survival/synth(H)
 	var/obj/item/stack/material/steel/metal_stack = new(box)
 	metal_stack.amount = 3 // Less starting steel due to regen changes
@@ -208,16 +208,16 @@ I redid the calculations, as the burn weakness has been changed. This should be 
 	else
 		H.equip_to_slot_or_del(box, /datum/inventory_slot_meta/abstract/put_in_backpack)
 
-/datum/species/protean/hug(var/mob/living/carbon/human/H, var/mob/living/target)
+/datum/species/protean/hug(var/mob/living/complex/human/H, var/mob/living/target)
 	return ..() //Wut
 
-/datum/species/protean/get_blood_colour(var/mob/living/carbon/human/H)
+/datum/species/protean/get_blood_colour(var/mob/living/complex/human/H)
 	return rgb(80,80,80,230)
 
-/datum/species/protean/get_flesh_colour(var/mob/living/carbon/human/H)
+/datum/species/protean/get_flesh_colour(var/mob/living/complex/human/H)
 	return rgb(80,80,80,230)
 
-/datum/species/protean/handle_death(var/mob/living/carbon/human/H, gibbed)		// citadel edit - FUCK YOU ACTUALLY GIB THE MOB AFTER REMOVING IT FROM THE BLOB HOW HARD CAN THIS BE!!
+/datum/species/protean/handle_death(var/mob/living/complex/human/H, gibbed)		// citadel edit - FUCK YOU ACTUALLY GIB THE MOB AFTER REMOVING IT FROM THE BLOB HOW HARD CAN THIS BE!!
 	var/deathmsg = "<span class='userdanger'>You have died as a Protean. You may be revived by nanite chambers (once available), but otherwise, you may roleplay as your disembodied posibrain or respawn on another character.</span>"
 	if(istype(H.temporary_form, /mob/living/simple_mob/protean_blob))
 		var/mob/living/simple_mob/protean_blob/B = H.temporary_form
@@ -226,11 +226,11 @@ I redid the calculations, as the burn weakness has been changed. This should be 
 		to_chat(H)
 		H.gib()
 
-/datum/species/protean/proc/getActualDamage(mob/living/carbon/human/H)
+/datum/species/protean/proc/getActualDamage(mob/living/complex/human/H)
 	var/obj/item/organ/external/E = H.get_organ(BP_TORSO)
 	return E.brute_dam + E.burn_dam
 
-/datum/species/protean/handle_environment_special(var/mob/living/carbon/human/H)
+/datum/species/protean/handle_environment_special(var/mob/living/complex/human/H)
 	if((getActualDamage(H) > damage_to_blob) && isturf(H.loc)) //So, only if we're not a blob (we're in nullspace) or in someone (or a locker, really, but whatever).
 		H.nano_intoblob()
 		return ..() //Any instakill shot runtimes since there are no organs after this. No point to not skip these checks, going to nullspace anyway.
@@ -260,10 +260,10 @@ I redid the calculations, as the burn weakness has been changed. This should be 
 
 	return ..()
 
-/datum/species/protean/get_additional_examine_text(var/mob/living/carbon/human/H)
+/datum/species/protean/get_additional_examine_text(var/mob/living/complex/human/H)
 	return ..() //Hmm, what could be done here?
 
-/datum/species/protean/statpanel_status(client/C, mob/living/carbon/human/H)
+/datum/species/protean/statpanel_status(client/C, mob/living/complex/human/H)
 	. = ..()
 	var/obj/item/organ/internal/nano/refactory/refactory = H.nano_get_refactory()
 	if(refactory && !(refactory.status & ORGAN_DEAD))
@@ -375,7 +375,7 @@ I redid the calculations, as the burn weakness has been changed. This should be 
 /datum/modifier/protean/steel/tick()
 	..()
 	var/dt = 2	// put it on param sometime but for now assume 2
-	var/mob/living/carbon/human/H = holder
+	var/mob/living/complex/human/H = holder
 	var/obj/item/organ/external/E = H.get_organ(BP_TORSO)
 	var/heal = 1 * dt
 	var/brute_heal_left = max(0, heal - E.brute_dam)
@@ -388,7 +388,7 @@ I redid the calculations, as the burn weakness has been changed. This should be 
 	holder.adjustToxLoss(-3.6) // With them now having tox immunity, this is redundant, along with the rad regen, but I'm keeping it in, in case they do somehow get some system instability
 	holder.radiation = max(RAD_MOB_CURE_PROTEAN_REGEN)
 
-/proc/protean_requires_healing(mob/living/carbon/human/H)
+/proc/protean_requires_healing(mob/living/complex/human/H)
 	if(!istype(H))
 		return FALSE
 	return H.getActualBruteLoss() || H.getActualFireLoss() || H.getToxLoss()
@@ -405,7 +405,7 @@ I redid the calculations, as the burn weakness has been changed. This should be 
 		src.name += " ([new_name])"
 		desc += "\nVALID THROUGH END OF: [time2text(world.timeofday, "Month") +" "+ num2text(text2num(time2text(world.timeofday, "YYYY"))+544)]\nREGISTRANT: [new_name]"
 
-/mob/living/carbon/human/proc/rig_transform()
+/mob/living/complex/human/proc/rig_transform()
 	set name = "Modify Form - Hardsuit"
 	set desc = "Allows a protean to solidify its form into one extremely similar to a hardsuit."
 	set category = "Abilities"

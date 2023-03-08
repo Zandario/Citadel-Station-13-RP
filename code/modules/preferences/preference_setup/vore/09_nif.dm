@@ -38,9 +38,9 @@
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
-	var/mob/living/carbon/human/character = M
+	var/mob/living/complex/human/character = M
 	//If you had a NIF...
-	if((character.type == /mob/living/carbon/human) && pref.nif_id && pref.nif_durability)
+	if((character.type == /mob/living/complex/human) && pref.nif_id && pref.nif_durability)
 		var/nif_path = GLOB.nif_id_lookup[pref.nif_id]
 		new nif_path(character,pref.nif_durability,pref.nif_savedata)
 	return TRUE

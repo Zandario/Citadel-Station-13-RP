@@ -17,7 +17,7 @@
 	var/succ_int = 500
 	var/next_succ = 0
 	var/survivalfood = FALSE
-	var/mob/living/carbon/owner
+	var/mob/living/complex/owner
 	var/mutable_appearance/head
 	var/headcolor = rgb(0, 0, 0)
 	volume = 20
@@ -46,11 +46,11 @@
 		qdel(src)
 		return
 
-	if(istype(target, /mob/living/carbon))
+	if(istype(target, /mob/living/complex))
 		var/fullness = target.nutrition + (target.reagents.get_reagent_amount("nutriment") * 25)
 		if(target == user)								//If you're eating it yourself
-			if(istype(target,/mob/living/carbon/human))
-				var/mob/living/carbon/human/H = target
+			if(istype(target,/mob/living/complex/human))
+				var/mob/living/complex/human/H = target
 				if(!H.check_has_mouth())
 					to_chat(user, "Where do you intend to put \the [src]? You don't have a mouth!")
 					return
@@ -90,8 +90,8 @@
 				return 0*/
 
 		else
-			if(istype(target,/mob/living/carbon/human))
-				var/mob/living/carbon/human/H = target
+			if(istype(target,/mob/living/complex/human))
+				var/mob/living/complex/human/H = target
 				if(!H.check_has_mouth())
 					to_chat(user, "Where do you intend to put \the [src]? \The [H] doesn't have a mouth!")
 					return
@@ -134,7 +134,7 @@
 
 /obj/item/reagent_containers/hard_candy/equipped(mob/user, var/slot)
 	. = ..()
-	if(!iscarbon(user))
+	if(!iscomplexmob(user))
 		return
 	if(slot != SLOT_ID_MASK)
 		owner = null

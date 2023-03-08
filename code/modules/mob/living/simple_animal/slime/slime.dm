@@ -462,7 +462,7 @@
 		return TRUE
 	if(target_mob)
 		if(ishuman(target_mob))
-			var/mob/living/carbon/human/H = target_mob
+			var/mob/living/complex/human/H = target_mob
 			if(istype(H.species, /datum/species/monkey))
 				return FALSE
 		return TRUE

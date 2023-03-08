@@ -28,12 +28,12 @@
 	amount = MIASMA_CORPSE_MOLES
 
 /datum/component/rot/corpse/Initialize()
-	if(!iscarbon(parent))
+	if(!iscomplexmob(parent))
 		return COMPONENT_INCOMPATIBLE
 	. = ..()
 
 /datum/component/rot/corpse/process(delta_time)
-	var/mob/living/carbon/C = parent
+	var/mob/living/complex/C = parent
 	if(C.stat != DEAD)
 		qdel(src)
 		return

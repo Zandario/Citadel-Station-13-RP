@@ -32,14 +32,14 @@
 	if(!istype(victim))
 		return
 
-	if(istype(victim, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = victim
+	if(istype(victim, /mob/living/complex/human))
+		var/mob/living/complex/human/H = victim
 		if(istype(H.species, /datum/species/monkey))
 			meat_type = H.species.meat_type
 			icon_state = "spikebloody"
 		else
 			return 0
-	else if(istype(victim, /mob/living/carbon/alien))
+	else if(istype(victim, /mob/living/complex/alien))
 		meat_type = /obj/item/reagent_containers/food/snacks/xenomeat
 		icon_state = "spikebloodygreen"
 	else

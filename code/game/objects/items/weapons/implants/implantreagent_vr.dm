@@ -13,7 +13,7 @@
 	var/list/emote_descriptor = list("tranfers something") //In format of [x] [emote_descriptor] into [container]
 	var/list/self_emote_descriptor = list("transfer") //In format of You [self_emote_descriptor] some [generated_reagent] into [container]
 	var/list/random_emote = list() //An emote the person with the implant may be forced to perform after a prob check, such as [X] meows.
-	var/assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant
+	var/assigned_proc = /mob/living/complex/human/proc/use_reagent_implant
 	var/verb_name = "Transfer From Reagent Implant"
 	var/verb_desc = "Remove reagents from an internal reagent into a container"
 
@@ -29,7 +29,7 @@
 	imp = new implant_type(src)
 	update()
 
-/obj/item/implant/reagent_generator/post_implant(mob/living/carbon/source)
+/obj/item/implant/reagent_generator/post_implant(mob/living/complex/source)
 	START_PROCESSING(SSobj, src)
 	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
 	assigned_proc = new assigned_proc(source, verb_name, verb_desc)
@@ -59,7 +59,7 @@
 	for(var/reagent in generated_reagents)
 		reagents.add_reagent(reagent, generated_reagents[reagent])
 
-/mob/living/carbon/human/proc/use_reagent_implant()
+/mob/living/complex/human/proc/use_reagent_implant()
 	set name = "Transfer From Reagent Implant"
 	set desc = "Remove reagents from am internal reagent into a container."
 	set category = "Object"
@@ -67,7 +67,7 @@
 
 	do_reagent_implant(usr)
 
-/mob/living/carbon/human/proc/do_reagent_implant(var/mob/living/carbon/human/user = usr)
+/mob/living/complex/human/proc/do_reagent_implant(var/mob/living/complex/human/user = usr)
 	if(!isliving(user) || !user.canClick())
 		return
 
@@ -96,4 +96,3 @@
 					src.visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>") // M-mlem.
 			if(rimplant.reagents.total_volume == rimplant.reagents.maximum_volume * 0.05)
 				to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
-

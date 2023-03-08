@@ -34,7 +34,7 @@
 	recipes += new/datum/stack_recipe("crude [display_name] bandage", /obj/item/stack/medical/crude_pack, 1, time = 2 SECONDS, pass_stack_color = TRUE)
 	recipes += new/datum/stack_recipe("[display_name] membrane", /obj/effect/alien/hybrid_resin/membrane, 1, time = 2 SECONDS, pass_stack_color = TRUE)
 
-/mob/living/carbon/human/proc/hybrid_resin() //
+/mob/living/complex/human/proc/hybrid_resin() //
 	set name = "Secrete Resin (75)"
 	set desc = "Secrete tough malleable resin."
 	set category = "Abilities"
@@ -100,7 +100,7 @@
 	if ( !ismob(M) || (get_dist(src, user) > 1) || (M.loc != src.loc) || user.restrained() || usr.stat || M.buckled || istype(user, /mob/living/silicon/pai) )
 		return
 
-	var/mob/living/carbon/human/xenos = user
+	var/mob/living/complex/human/xenos = user
 	if(istype(xenos) && !istype(xenos.species, /datum/species/xenohybrid))//if a non xenomorph tries to buckle someone in, fail, because they cant secrete resin
 		return
 
@@ -228,8 +228,8 @@
 	else
 
 		// Aliens can get straight through these.
-		if(istype(usr,/mob/living/carbon))
-			var/mob/living/carbon/M = usr
+		if(istype(usr,/mob/living/complex))
+			var/mob/living/complex/M = usr
 			if(locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs)
 				for(var/mob/O in oviewers(src))
 					O.show_message("<span class='warning'>[usr] strokes the [name] and it melts away!</span>", 1)

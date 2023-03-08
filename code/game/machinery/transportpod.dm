@@ -50,7 +50,7 @@
 /obj/machinery/transportpod/Bumped(mob/living/O)
 	go_in(O)
 
-/obj/machinery/transportpod/proc/go_in(mob/living/carbon/human/O)
+/obj/machinery/transportpod/proc/go_in(mob/living/complex/human/O)
 	if(occupant)
 		return
 

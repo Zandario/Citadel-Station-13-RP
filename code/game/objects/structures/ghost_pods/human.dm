@@ -39,7 +39,7 @@
 /obj/structure/ghost_pod/ghost_activated/human/create_occupant(var/mob/M)
 	..()
 	var/turf/T = get_turf(src)
-	var/mob/living/carbon/human/H = new(src)
+	var/mob/living/complex/human/H = new(src)
 
 	H.adjustCloneLoss(rand(1,5))
 	if(M.mind)
@@ -165,7 +165,7 @@
 /obj/structure/ghost_pod/manual/human/create_occupant(var/mob/M)
 	..()
 	var/turf/T = get_turf(src)
-	var/mob/living/carbon/human/H = new(src)
+	var/mob/living/complex/human/H = new(src)
 
 	H.adjustCloneLoss(rand(1,5))
 	if(M.mind)

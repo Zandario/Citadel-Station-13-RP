@@ -12,7 +12,7 @@
 ////#define COMSIG_ATOM_ATTACK_HAND_SECONDARY "atom_attack_hand_secondary"
 	///? Return this in response if you don't want afterattack to be called
 	////#define COMPONENT_NO_AFTERATTACK (1<<0)
-/// From base of atom/attack_hulk(): (/mob/living/carbon/human)
+/// From base of atom/attack_hulk(): (/mob/living/complex/human)
 ////#define COMSIG_ATOM_HULK_ATTACK "hulk_attack"
 /// From base of atom/animal_attack(): (/mob/user)
 ////#define COMSIG_ATOM_ATTACK_ANIMAL "attack_animal"

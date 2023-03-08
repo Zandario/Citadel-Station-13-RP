@@ -13,7 +13,7 @@
 		TRAIT_EXEMPT_HEALTH_EVENTS
 	)
 
-/datum/ghostrole_instantiator/human/random/seed_vault/Randomize(mob/living/carbon/human/H, list/params)
+/datum/ghostrole_instantiator/human/random/seed_vault/Randomize(mob/living/complex/human/H, list/params)
 	. = ..()
 	H.set_species(new /datum/species/pod)
 	var/plant_name = pick("Tomato", "Potato", "Broccoli", "Carrot", "Ambrosia", "Pumpkin", "Ivy", "Kudzu", "Banana", "Moss", "Flower", "Bloom", "Root", "Bark", "Glowshroom", "Petal", "Leaf", \

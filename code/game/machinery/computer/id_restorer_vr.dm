@@ -41,7 +41,7 @@
 			if(!inserted)
 				to_chat(user, "<span class='notice'>No ID is inserted.</span>")
 				return
-			var/mob/living/carbon/human/H = user
+			var/mob/living/complex/human/H = user
 			if(!(istype(H)))
 				to_chat(user, "<span class='warning'>Invalid user detected. Access denied.</span>")
 				flick(icon_fail, src)

@@ -71,7 +71,7 @@
 	if(!ishuman(target))
 		to_chat(user, "<span class='notice'>Where are the lips on that?</span>")
 		return
-	var/mob/living/carbon/human/H = target
+	var/mob/living/complex/human/H = target
 	if(H.lip_style)	//if they already have lipstick on
 		to_chat(user, "<span class='notice'>You need to wipe off the old lipstick first!</span>")
 		return
@@ -102,7 +102,7 @@
 /obj/item/haircomb/attack_self(mob/living/user)
 	var/text = "person"
 	if(ishuman(user))
-		var/mob/living/carbon/human/U = user
+		var/mob/living/complex/human/U = user
 		switch(U.identifying_gender)
 			if(MALE)
 				text = "guy"
@@ -124,7 +124,7 @@
 	icon_state = "trinketbox"
 	var/list/ui_users = list()
 
-/obj/item/makeover/attack_self(mob/living/carbon/user as mob)
+/obj/item/makeover/attack_self(mob/living/complex/user as mob)
 	if(ishuman(user))
 		to_chat(user, "<span class='notice'>You flip open \the [src] and begin to adjust your appearance.</span>")
 		var/datum/nano_module/appearance_changer/AC = ui_users[user]
@@ -133,7 +133,7 @@
 			AC.name = "SalonPro Porta-Makeover Deluxe&trade;"
 			ui_users[user] = AC
 		AC.nano_ui_interact(user)
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
 		if(istype(E))
 			E.change_eye_color()

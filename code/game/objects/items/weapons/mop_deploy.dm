@@ -63,7 +63,7 @@
 	if(!creator || loc != creator || !creator.is_holding(src))
 		// Tidy up a bit.
 		if(istype(loc,/mob/living))
-			var/mob/living/carbon/human/host = loc
+			var/mob/living/complex/human/host = loc
 			if(istype(host))
 				for(var/obj/item/organ/external/organ in host.organs)
 					for(var/obj/item/O in organ.implants)

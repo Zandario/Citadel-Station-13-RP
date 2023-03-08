@@ -36,7 +36,7 @@
 	if(!..(TRUE)) //Skip the engage() call, that's for the override and is 'spensive.
 		return 0
 
-	var/mob/living/carbon/human/H = holder.wearer
+	var/mob/living/complex/human/H = holder.wearer
 	to_chat(H,"<span class='notice'>You activate the P.A.T. module.</span>")
 	RegisterSignal(H, COMSIG_MOVABLE_MOVED, .proc/boop)
 
@@ -44,11 +44,11 @@
 	if(!..())
 		return 0
 
-	var/mob/living/carbon/human/H = holder.wearer
+	var/mob/living/complex/human/H = holder.wearer
 	to_chat(H,"<span class='notice'>Your disable the P.A.T. module.</span>")
 	UnregisterSignal(H, COMSIG_MOVABLE_MOVED)
 
-/obj/item/rig_module/pat_module/proc/boop(var/mob/living/carbon/human/user,var/turf/To,var/turf/Tn)
+/obj/item/rig_module/pat_module/proc/boop(var/mob/living/complex/human/user,var/turf/To,var/turf/Tn)
 	if(!istype(user) || !istype(To) || !istype(Tn))
 		deactivate() //They were picked up or something, or put themselves in a locker, who knows. Just turn off.
 		return
@@ -66,7 +66,7 @@
 			A.open()
 
 /obj/item/rig_module/pat_module/engage()
-	var/mob/living/carbon/human/H = holder.wearer
+	var/mob/living/complex/human/H = holder.wearer
 	if(!istype(H))
 		return 0
 
@@ -135,7 +135,7 @@
 	if(!target)
 		return 1 //You're just toggling the module on, not clicking someone.
 
-	var/mob/living/carbon/human/H = holder.wearer
+	var/mob/living/complex/human/H = holder.wearer
 
 	if(!charge_selected)
 		to_chat(H,"<span class='danger'>You have not selected a chemical type.</span>")
@@ -153,8 +153,8 @@
 	else if(charge.charges < chems_to_use)
 		chems_to_use = charge.charges
 
-	var/mob/living/carbon/target_mob
-	if(istype(target,/mob/living/carbon))
+	var/mob/living/complex/target_mob
+	if(istype(target,/mob/living/complex))
 		target_mob = target
 	else
 		return 0

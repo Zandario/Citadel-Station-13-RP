@@ -23,7 +23,7 @@
 	disallow_jobhop = TRUE
 
 // AI procs
-/datum/role/job/station/ai/equip(var/mob/living/carbon/human/H)
+/datum/role/job/station/ai/equip(var/mob/living/complex/human/H)
 	if(!H)
 		return 0
 	return 1
@@ -36,7 +36,7 @@
 /datum/role/job/station/ai/is_position_available()
 	return (GLOB.empty_playable_ai_cores.len != 0)
 
-/datum/role/job/station/ai/equip_preview(mob/living/carbon/human/H)
+/datum/role/job/station/ai/equip_preview(mob/living/complex/human/H)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/straight_jacket(H), SLOT_ID_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/cardborg(H), SLOT_ID_HEAD)
 	return 1

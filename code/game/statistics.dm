@@ -20,7 +20,7 @@
 			log_game("SQL ERROR during population polling. Error : \[[err]\]\n")
 		qdel(query)
 
-/proc/sql_report_death(mob/living/carbon/human/H)
+/proc/sql_report_death(mob/living/complex/human/H)
 	if(!H)
 		return
 	if(!H.key || !H.mind)

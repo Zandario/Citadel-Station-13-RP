@@ -575,7 +575,7 @@
 /datum/component/storage/proc/mousedrop_receive(datum/source, atom/movable/O, mob/M)
 	if(isitem(O))
 		var/obj/item/I = O
-		if(iscarbon(M) || isdrone(M))
+		if(iscomplexmob(M) || isdrone(M))
 			var/mob/living/L = M
 			if(!L.incapacitated() && I == L.get_active_held_item())
 				if(!SEND_SIGNAL(I, COMSIG_CONTAINS_STORAGE) && can_be_inserted(I, FALSE))	//If it has storage it should be trying to dump, not insert.
@@ -732,7 +732,7 @@
 		playsound(A, "rustle", 50, TRUE, -5)
 
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		if(H.l_store == A && !H.get_active_held_item())	//Prevents opening if it's in a pocket.
 			. = COMPONENT_NO_ATTACK_HAND
 			H.put_in_hands(A)

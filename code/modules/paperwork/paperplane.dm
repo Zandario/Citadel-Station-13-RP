@@ -57,7 +57,7 @@
 	qdel(src)
 	user.put_in_hands(internal_paper_tmp)
 
-/obj/item/paperplane/attackby(obj/item/P, mob/living/carbon/human/user, params)
+/obj/item/paperplane/attackby(obj/item/P, mob/living/complex/human/user, params)
 	..()
 	if(istype(P, /obj/item/pen))
 		to_chat(user, "<span class='notice'>You should unfold [src] before changing it.</span>")
@@ -87,7 +87,7 @@
 /obj/item/paperplane/throw_impact(atom/hit_atom)
 	if(..() || !ishuman(hit_atom))//if the plane is caught or it hits a nonhuman
 		return
-	var/mob/living/carbon/human/H = hit_atom
+	var/mob/living/complex/human/H = hit_atom
 	if(prob(2))
 		if((H.head && H.head.body_cover_flags & EYES) || (H.wear_mask && H.wear_mask.body_cover_flags & EYES) || (H.glasses && H.glasses.body_cover_flags & EYES))
 			return
@@ -98,7 +98,7 @@
 			E.take_damage(2.5)
 		H.emote("scream")
 
-/obj/item/paper/AltClick(mob/living/carbon/user, obj/item/I)
+/obj/item/paper/AltClick(mob/living/complex/user, obj/item/I)
 	if ( istype(user) )
 		if( (!in_range(src, user)) || user.stat || user.restrained() )
 			return

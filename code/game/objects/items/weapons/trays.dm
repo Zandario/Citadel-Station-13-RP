@@ -46,7 +46,7 @@
 			playsound(victim, 'sound/items/trayhit2.ogg', 50, 1) //sound playin'
 			return //it always returns, but I feel like adding an extra return just for safety's sakes. EDIT; Oh well I won't :3
 
-	var/mob/living/carbon/human/H = victim      ///////////////////////////////////// /Let's have this ready for later.
+	var/mob/living/complex/human/H = victim      ///////////////////////////////////// /Let's have this ready for later.
 
 
 	if(!(L.zone_sel.selecting == (O_EYES || BP_HEAD))) //////////////hitting anything else other than the eyes

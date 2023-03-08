@@ -87,7 +87,7 @@
 					else
 						current_action = 0
 				else
-					var/mob/living/carbon/human/H = buckled_mobs[1]
+					var/mob/living/complex/human/H = buckled_mobs[1]
 
 					if (H)
 						H.regenerate_icons()
@@ -104,7 +104,7 @@
 
 /obj/structure/guillotine/proc/drop_blade(mob/user)
 	if (has_buckled_mobs() && blade_sharpness)
-		var/mob/living/carbon/human/H = buckled_mobs[1]
+		var/mob/living/complex/human/H = buckled_mobs[1]
 
 		if (!H)
 			return
@@ -137,7 +137,7 @@
 			// The delay is to making large crowds have a longer laster applause
 			var/delay_offset = 0
 			for(var/mob/M in fov_viewers(world.view, src))
-				var/mob/living/carbon/human/C = M
+				var/mob/living/complex/human/C = M
 				if (ishuman(M))
 					addtimer(CALLBACK(C, /mob/.proc/emote, "clap"), delay_offset * 0.3)
 					delay_offset++
@@ -185,7 +185,7 @@
 		to_chat(usr, "<span class='warning'>The [src] needs to be wrenched to the floor!</span>")
 		return FALSE
 
-	if (!istype(M, /mob/living/carbon/human))
+	if (!istype(M, /mob/living/complex/human))
 		to_chat(usr, "<span class='warning'>It doesn't look like [M.p_they()] can fit into this properly!</span>")
 		return FALSE // Can't decapitate non-humans
 
@@ -196,10 +196,10 @@
 	return ..(M, force, FALSE)
 
 /obj/structure/guillotine/post_buckle_mob(mob/living/M)
-	if (!istype(M, /mob/living/carbon/human))
+	if (!istype(M, /mob/living/complex/human))
 		return
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/complex/human/H = M
 
 	if (H.dna)
 		if (H.dna.species)

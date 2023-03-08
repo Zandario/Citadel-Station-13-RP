@@ -9,10 +9,10 @@
 	icon = 'icons/obj/mirror.dmi'
 	icon_state = "mirror_implant_f"
 	var/stored_mind = null
-	var/tmp/mob/living/carbon/human/human
+	var/tmp/mob/living/complex/human/human
 	item_flags = ITEM_NOBLUDGEON
 //holder to prevent having to find it each time
-/mob/living/carbon/human/var/obj/item/implant/mirror/mirror
+/mob/living/complex/human/var/obj/item/implant/mirror/mirror
 
 /obj/item/implant/mirror/digest_act(var/atom/movable/item_storage = null)
     return FALSE
@@ -30,7 +30,7 @@
 <b>Integrity:</b> Extremely sturdy, at risk of damage through sustained high frequency or direct energy attacks."}
 	return dat
 
-/obj/item/implant/mirror/post_implant(var/mob/living/carbon/human/H)
+/obj/item/implant/mirror/post_implant(var/mob/living/complex/human/H)
 	spawn(20)
 	if((H.client.prefs.organ_data[O_BRAIN] != null))
 		to_chat(usr, "<span class='warning'>WARNING: WRONG MIRROR TYPE DETECTED, PLEASE RECTIFY IMMEDIATELY TO AVOID REAL DEATH.</span>")
@@ -80,7 +80,7 @@
 	name = "Synthetic Mirror"
 	desc = "An altered form of the common mirror designed to work with synthetic brains."
 
-/obj/item/implant/mirror/positronic/post_implant(var/mob/living/carbon/human/H)
+/obj/item/implant/mirror/positronic/post_implant(var/mob/living/complex/human/H)
 	spawn(20)
 	if((H.client.prefs.organ_data[O_BRAIN] != null))
 		stored_mind = SStranscore.m_backupE(H.mind, one_time = TRUE)
@@ -122,7 +122,7 @@
 	var/obj/item/implant/mirror/imp = null
 
 /obj/item/mirrortool/afterattack(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
-	var/mob/living/carbon/human/H = target
+	var/mob/living/complex/human/H = target
 	if(!istype(H))
 		return
 	if(user.zone_sel.selecting == BP_TORSO && imp == null)

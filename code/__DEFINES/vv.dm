@@ -114,7 +114,7 @@
 #define VV_HK_DIRECT_CONTROL "direct_control"
 #define VV_HK_OFFER_GHOSTS "offer_ghosts"
 
-// /mob/living/carbon
+// /mob/living/complex
 #define VV_HK_MAKE_AI "aiify"
 #define VV_HK_MODIFY_BODYPART "mod_bodypart"
 #define VV_HK_MODIFY_ORGANS "organs_modify"
@@ -123,7 +123,7 @@
 #define VV_HK_GIVE_TRAUMA "give_trauma"
 #define VV_HK_CURE_TRAUMA "cure_trauma"
 
-// /mob/living/carbon/human
+// /mob/living/complex/human
 #define VV_HK_COPY_OUTFIT "copy_outfit"
 #define VV_HK_MOD_MUTATIONS "quirkmut"
 #define VV_HK_MOD_QUIRKS "quirkmod"

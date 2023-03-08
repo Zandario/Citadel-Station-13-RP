@@ -21,7 +21,7 @@ GLOBAL_DATUM_INIT(glasses_state, /datum/ui_state/glasses_state, new)
 
 /datum/ui_state/glasses_state/can_use_topic(var/src_object, var/mob/user)
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		if(H.glasses == src_object)
 			return user.shared_ui_interaction()
 
@@ -31,7 +31,7 @@ GLOBAL_DATUM_INIT(nif_state, /datum/ui_state/nif_state, new)
 
 /datum/ui_state/nif_state/can_use_topic(var/src_object, var/mob/user)
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		if(H.nif && H.nif.stat == NIF_WORKING && src_object == H.nif)
 			return user.shared_ui_interaction()
 
@@ -41,7 +41,7 @@ GLOBAL_DATUM_INIT(nif_state, /datum/ui_state/nif_state, new)
 GLOBAL_DATUM_INIT(ui_nif_main_state, /datum/ui_state/nif_main_state, new)
 /datum/ui_state/nif_main_state/can_use_topic(var/src_object, var/mob/user)
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		if(!H.nif || src_object != H.nif)
 			return UI_CLOSE
 
@@ -55,7 +55,7 @@ GLOBAL_DATUM_INIT(ui_nif_main_state, /datum/ui_state/nif_main_state, new)
 GLOBAL_DATUM_INIT(ui_commlink_state, /datum/ui_state/commlink_state, new)
 /datum/ui_state/commlink_state/can_use_topic(var/src_object, var/mob/user)
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		if(H.nif && H.nif.stat == NIF_WORKING && H.nif.comm == src_object)
 			return user.shared_ui_interaction()
 

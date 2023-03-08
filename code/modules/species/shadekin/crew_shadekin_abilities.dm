@@ -1,6 +1,6 @@
 /datum/power/crew_shadekin
 
-/mob/living/carbon/human/is_incorporeal()
+/mob/living/complex/human/is_incorporeal()
 	if(ability_flags & AB_PHASE_SHIFTED) //Shadekin
 		return TRUE
 	return ..()
@@ -11,10 +11,10 @@
 /datum/power/crew_shadekin/crewkin_regenerate_other
 	name = "Regenerate Other (50)"
 	desc = "Spend energy to heal physical wounds in another creature."
-	verbpath = /mob/living/carbon/human/proc/crewkin_regenerate_other
+	verbpath = /mob/living/complex/human/proc/crewkin_regenerate_other
 	ability_icon_state = "tech_biomedaura"
 
-/mob/living/carbon/human/proc/crewkin_regenerate_other()
+/mob/living/complex/human/proc/crewkin_regenerate_other()
 	set name = "Regenerate Other (50)"
 	set desc = "Spend energy to heal physical wounds in another creature."
 	set category = "Shadekin"
@@ -75,10 +75,10 @@
 /datum/power/crew_shadekin/crewkin_create_shade
 	name = "Create Shade (25)"
 	desc = "Create a field of darkness that follows you."
-	verbpath = /mob/living/carbon/human/proc/crewkin_create_shade
+	verbpath = /mob/living/complex/human/proc/crewkin_create_shade
 	ability_icon_state = "tech_dispelold"
 
-/mob/living/carbon/human/proc/crewkin_create_shade()
+/mob/living/complex/human/proc/crewkin_create_shade()
 	set name = "Create Shade (25)"
 	set desc = "Create a field of darkness that follows you."
 	set category = "Shadekin"

@@ -1,6 +1,6 @@
 /mob
 	var/bloody_hands = 0
-	var/mob/living/carbon/human/bloody_hands_mob
+	var/mob/living/complex/human/bloody_hands_mob
 	var/track_blood = 0
 	var/list/feet_blood_DNA
 	var/track_blood_type
@@ -8,7 +8,7 @@
 
 /obj/item/clothing/gloves
 	var/transfer_blood = 0
-	var/mob/living/carbon/human/bloody_hands_mob
+	var/mob/living/complex/human/bloody_hands_mob
 
 /obj/item/clothing/shoes/
 	var/track_blood = 0
@@ -121,7 +121,7 @@
 			L.IgniteMob()
 		else if(user.zone_sel.selecting == O_MOUTH) //Check player L location, provided the rag is not on fire. Then check if mouth is exposed.
 			if(ishuman(L)) //Added this since player species process reagents in majority of cases.
-				var/mob/living/carbon/human/H = L
+				var/mob/living/complex/human/H = L
 				if(H.head && (H.head.body_cover_flags & FACE)) //Check human head coverage.
 					to_chat(user, SPAN_WARNING("Remove their [H.head] first."))
 					return

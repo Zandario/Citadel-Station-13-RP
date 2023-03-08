@@ -68,7 +68,7 @@
 //	var/balloonPath = /obj/item/latexballon
 
 //TODO: Make inflating gloves a thing
-/*/obj/item/clothing/gloves/sterile/proc/Inflate(/mob/living/carbon/human/user)
+/*/obj/item/clothing/gloves/sterile/proc/Inflate(/mob/living/complex/human/user)
 	user.visible_message("<span class='notice'>\The [src] expands!</span>")
 	qdel(src)*/
 
@@ -244,7 +244,7 @@
 /obj/item/clothing/gloves/fingerless/pugilist/proc/use_buffs(mob/user, buff)
 	if(buff) // tarukaja
 		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
+			var/mob/living/complex/human/H = user
 			ADD_TRAIT(H, TRAIT_PUGILIST, GLOVE_TRAIT)
 			ADD_TRAIT(H, inherited_trait, GLOVE_TRAIT)
 			ADD_TRAIT(H, secondary_trait, GLOVE_TRAIT)
@@ -258,7 +258,7 @@
 		REMOVE_TRAIT(user, inherited_trait, GLOVE_TRAIT)
 		REMOVE_TRAIT(user, secondary_trait, GLOVE_TRAIT)
 		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
+			var/mob/living/complex/human/H = user
 			H.dna.species.punchdamagehigh -= enhancement
 			H.dna.species.punchdamagelow -= enhancement
 			H.dna.species.punchwoundbonus -= wound_enhancement
@@ -396,7 +396,7 @@
 		wornonce = FALSE
 
 /obj/item/clothing/gloves/fingerless/ablative/can_active_parry(mob/user)
-	var/mob/living/carbon/human/H = user
+	var/mob/living/complex/human/H = user
 	if(!istype(H))
 		return FALSE
 	return src == H.gloves
@@ -469,7 +469,7 @@
 /obj/item/clothing/gloves/fingerless/pugilist/mauler/proc/use_mauls(mob/user, maul)
 	if(maul)
 		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
+			var/mob/living/complex/human/H = user
 			H.dna?.species?.attack_sound_override = 'sound/weapons/mauler_punch.ogg'
 			if(silent)
 				to_chat(H, "<span class='danger'>You feel prickles around your wrists as [src] cling to them - strength courses through your veins!</span>")
@@ -505,7 +505,7 @@
 		return
 	switch(slot) // I didn't like how it looked
 		if(SLOT_GLOVES)
-			var/mob/living/carbon/human/H = user
+			var/mob/living/complex/human/H = user
 			tackler = H.AddComponent(/datum/component/tackler, stamina_cost=tackle_stam_cost, base_knockdown = base_knockdown, range = tackle_range, speed = tackle_speed, skill_mod = skill_mod, min_distance = min_distance)
 		else
 			qdel(tackler) // Only wearing it!

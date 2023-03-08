@@ -1,7 +1,7 @@
 /mob/living/proc/handle_autohiss(message, datum/language/L)
 	return message // no autohiss at this level
 
-/mob/living/carbon/human/handle_autohiss(message, datum/language/L)
+/mob/living/complex/human/handle_autohiss(message, datum/language/L)
 	if(!client || autohiss_mode == AUTOHISS_OFF || autohiss_type == AUTOHISS_TYPE_NONE) // no need to process if there's no client or they have autohiss off
 		return message
 
@@ -83,7 +83,7 @@
 		else
 			CRASH("Autohiss could not convert '[type]' to maps!")
 
-/mob/living/carbon/human/verb/toggle_autohiss()
+/mob/living/complex/human/verb/toggle_autohiss()
 	set name = "Toggle Autohiss"
 	set category = "OOC"
 	set desc = "Toggle your autohiss configuration between disabled, basic, and full."
@@ -100,7 +100,7 @@
 			to_chat(src, SPAN_NOTICE("Autohiss disabled."))
 
 
-/mob/living/carbon/human/verb/toggle_autohiss_type()
+/mob/living/complex/human/verb/toggle_autohiss_type()
 	set name = "Toggle Autohiss Type"
 	set category = "OOC"
 	set desc = "Set the type of autohissing you will do."

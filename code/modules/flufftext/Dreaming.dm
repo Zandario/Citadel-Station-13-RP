@@ -28,7 +28,7 @@ var/list/dreams = list(
 	//other misc. things
 	)
 
-/mob/living/carbon/proc/dream()
+/mob/living/complex/proc/dream()
 	dreaming = 1
 
 	spawn(0)
@@ -41,8 +41,8 @@ var/list/dreams = list(
 		dreaming = 0
 		return
 
-/mob/living/carbon/proc/handle_dreams()
+/mob/living/complex/proc/handle_dreams()
 	if(client && !dreaming && prob(5))
 		dream()
 
-/mob/living/carbon/var/dreaming = 0
+/mob/living/complex/var/dreaming = 0

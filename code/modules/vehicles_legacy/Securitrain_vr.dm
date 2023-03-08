@@ -114,20 +114,20 @@
 	else
 		icon_state = initial(icon_state)
 
-/obj/vehicle_old/train/security/trolley/insert_cell(var/obj/item/cell/C, var/mob/living/carbon/human/H)
+/obj/vehicle_old/train/security/trolley/insert_cell(var/obj/item/cell/C, var/mob/living/complex/human/H)
 	return
 
-/obj/vehicle_old/train/security/engine/insert_cell(var/obj/item/cell/C, var/mob/living/carbon/human/H)
+/obj/vehicle_old/train/security/engine/insert_cell(var/obj/item/cell/C, var/mob/living/complex/human/H)
 	..()
 	update_stats()
 
-/obj/vehicle_old/train/security/engine/remove_cell(var/mob/living/carbon/human/H)
+/obj/vehicle_old/train/security/engine/remove_cell(var/mob/living/complex/human/H)
 	..()
 	update_stats()
 
 /obj/vehicle_old/train/security/engine/Bump(atom/Obstacle)
 	var/obj/machinery/door/D = Obstacle
-	var/mob/living/carbon/human/H = load
+	var/mob/living/complex/human/H = load
 	if(istype(D) && istype(H))
 		D.Bumped(H)		//a little hacky, but hey, it works, and respects access rights
 
@@ -181,8 +181,8 @@
 /obj/vehicle_old/train/security/engine/RunOver(var/mob/living/M)
 	..()
 
-	if(is_train_head() && istype(load, /mob/living/carbon/human))
-		var/mob/living/carbon/human/D = load
+	if(is_train_head() && istype(load, /mob/living/complex/human))
+		var/mob/living/complex/human/D = load
 		to_chat(D, "<span class='danger'>You ran over \the [M]!</span>")
 		visible_message("<span class='danger'>\The [src] ran over \the [M]!</span>")
 		add_attack_logs(D,M,"Ran over with [src.name]")
@@ -217,7 +217,7 @@
 	set category = "Vehicle"
 	set src in view(0)
 
-	if(!istype(usr, /mob/living/carbon/human))
+	if(!istype(usr, /mob/living/complex/human))
 		return
 
 	if(on)
@@ -238,7 +238,7 @@
 	set category = "Vehicle"
 	set src in view(0)
 
-	if(!istype(usr, /mob/living/carbon/human))
+	if(!istype(usr, /mob/living/complex/human))
 		return
 
 	if(!on)
@@ -254,7 +254,7 @@
 	set category = "Vehicle"
 	set src in view(0)
 
-	if(!istype(usr, /mob/living/carbon/human))
+	if(!istype(usr, /mob/living/complex/human))
 		return
 
 	if(!key || (load && load != usr))
@@ -276,7 +276,7 @@
 /obj/vehicle_old/train/security/trolley/load(var/atom/movable/C)
 	if(ismob(C) && !passenger_allowed)
 		return 0
-	if(!istype(C,/obj/machinery) && !istype(C,/obj/structure/closet) && !istype(C,/obj/structure/largecrate) && !istype(C,/obj/structure/reagent_dispensers) && !istype(C,/obj/structure/ore_box) && !istype(C, /mob/living/carbon/human))
+	if(!istype(C,/obj/machinery) && !istype(C,/obj/structure/closet) && !istype(C,/obj/structure/largecrate) && !istype(C,/obj/structure/reagent_dispensers) && !istype(C,/obj/structure/ore_box) && !istype(C, /mob/living/complex/human))
 		return 0
 
 	//if there are any items you don't want to be able to interact with, add them to this check
@@ -290,7 +290,7 @@
 		return 1
 
 /obj/vehicle_old/train/security/engine/load(var/atom/movable/C)
-	if(!istype(C, /mob/living/carbon/human))
+	if(!istype(C, /mob/living/complex/human))
 		return 0
 
 	return ..()

@@ -1,9 +1,9 @@
 /datum/unit_test/chain_pull_through_space
 	var/turf/open/space/space_tile
 	var/claimed_tile
-	var/mob/living/carbon/human/alice
-	var/mob/living/carbon/human/bob
-	var/mob/living/carbon/human/charlie
+	var/mob/living/complex/human/alice
+	var/mob/living/complex/human/bob
+	var/mob/living/complex/human/charlie
 	var/targetz = 5
 	var/datum/turf_reservation/reserved
 

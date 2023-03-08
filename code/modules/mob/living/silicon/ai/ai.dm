@@ -490,7 +490,7 @@ var/list/ai_verbs_default = list(
 	if (href_list["track"])
 		var/mob/target = locate(href_list["track"]) in GLOB.mob_list
 
-		if(target && (!istype(target, /mob/living/carbon/human) || html_decode(href_list["trackname"]) == target:get_face_name()))
+		if(target && (!istype(target, /mob/living/complex/human) || html_decode(href_list["trackname"]) == target:get_face_name()))
 			ai_actual_track(target)
 		else
 			to_chat(src, "<font color='red'>System error. Cannot locate [html_decode(href_list["trackname"])].</font>")
@@ -595,7 +595,7 @@ var/list/ai_verbs_default = list(
 
 		if("My Character") //Loaded character slot
 			if(!client || !client.prefs) return
-			var/mob/living/carbon/human/dummy/dummy = new ()
+			var/mob/living/complex/human/dummy/dummy = new ()
 			//This doesn't include custom_items because that's ... hard.
 			client.prefs.dress_preview_mob(dummy)
 			sleep(1 SECOND) //Strange bug in preview code? Without this, certain things won't show up. Yay race conditions?

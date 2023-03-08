@@ -453,7 +453,7 @@ log transactions
 	src.attack_hand(usr)
 
 //stolen wholesale and then edited a bit from newscasters, which are awesome and by Agouri
-/obj/machinery/atm/proc/scan_user(mob/living/carbon/human/human_user as mob)
+/obj/machinery/atm/proc/scan_user(mob/living/complex/human/human_user as mob)
 	if(!authenticated_account)
 		if(human_user.wear_id)
 			var/obj/item/card/id/I
@@ -479,7 +479,7 @@ log transactions
 					view_screen = NO_SCREEN
 
 // put the currently held id on the ground or in the hand of the user
-/obj/machinery/atm/proc/release_held_id(mob/living/carbon/human/human_user as mob)
+/obj/machinery/atm/proc/release_held_id(mob/living/complex/human/human_user as mob)
 	if(!held_card)
 		return
 
@@ -491,7 +491,7 @@ log transactions
 	held_card = null
 
 
-/obj/machinery/atm/proc/spawn_ewallet(var/sum, loc, mob/living/carbon/human/human_user as mob)
+/obj/machinery/atm/proc/spawn_ewallet(var/sum, loc, mob/living/complex/human/human_user as mob)
 	var/obj/item/spacecash/ewallet/E = new /obj/item/spacecash/ewallet(loc)
 	if(ishuman(human_user) && !human_user.get_active_held_item())
 		human_user.put_in_hands(E)

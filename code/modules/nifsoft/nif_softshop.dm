@@ -104,7 +104,7 @@
 	if(!ishuman(user))
 		return FALSE
 
-	var/mob/living/carbon/human/H = user
+	var/mob/living/complex/human/H = user
 	if(!H.nif || !H.nif.stat == NIF_WORKING)
 		to_chat(H,"<span class='warning'>[src] seems unable to connect to your NIF...</span>")
 		flick(icon_deny, ar_image_holder)
@@ -180,7 +180,7 @@
 
 // Also special treatment!
 /obj/machinery/vending/nifsoft_shop/vend(datum/stored_item/vending_product/R, mob/user)
-	var/mob/living/carbon/human/H = user
+	var/mob/living/complex/human/H = user
 	if((!allowed(usr)) && !emagged && scan_id && istype(H))	//For SECURE VENDING MACHINES YEAH
 		to_chat(usr, "<span class='warning'>Purchase not allowed.</span>")	//Unless emagged of course
 		flick(icon_deny, ar_image_holder)

@@ -131,9 +131,9 @@
 
 	inherent_verbs = list(
 		/mob/living/proc/shred_limb,
-		/mob/living/carbon/human/proc/tie_hair,
+		/mob/living/complex/human/proc/tie_hair,
 	)
 
-/datum/species/unathi/equip_survival_gear(mob/living/carbon/human/H)
+/datum/species/unathi/equip_survival_gear(mob/living/complex/human/H)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H), SLOT_ID_SHOES)

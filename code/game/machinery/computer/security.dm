@@ -67,7 +67,7 @@
 	if(scan)
 		to_chat(usr, "You remove \the [scan] from \the [src].")
 		scan.loc = get_turf(src)
-		if(!usr.get_active_held_item() && istype(usr,/mob/living/carbon/human))
+		if(!usr.get_active_held_item() && istype(usr,/mob/living/complex/human))
 			usr.put_in_hands(scan)
 		scan = null
 	else
@@ -395,7 +395,7 @@
 							active1.fields["real_rank"] = answer
 
 					if(field == "criminal")
-						for(var/mob/living/carbon/human/H in GLOB.player_list)
+						for(var/mob/living/complex/human/H in GLOB.player_list)
 							H.update_hud_sec_status()
 
 					if(istype(active2) && (field in active2.fields))

@@ -261,7 +261,7 @@ If you're feeling frisky, right click on yourself and select \"Remove embedded o
 
 /atom/movable/screen/alert/embeddedobject/Click()
 	if(isliving(usr))
-		var/mob/living/carbon/human/M = usr
+		var/mob/living/complex/human/M = usr
 		return M.help_shake_act(M)
 
 /atom/movable/screen/alert/asleep

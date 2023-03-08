@@ -3,7 +3,7 @@
 
 /datum/role/ghostrole/golem/Greet(mob/created, datum/component/ghostrole_spawnpoint/spawnpoint, list/params)
 	. = ..()
-	var/mob/living/carbon/human/H = created
+	var/mob/living/complex/human/H = created
 	if(!istype(H))
 		return
 	var/datum/species/golem/G = H.dna.species
@@ -40,13 +40,13 @@
 	log_admin("[key_name(created)] possessed a golem shell enslaved to [creator_mind.name]/[creator_mind.key].")
 	created.mind.store_memory( "Serve [creator_name][creator_mind.current && " (currently [creator_mind.current.name])"], and assist them in completing their goals at any cost.")
 	to_chat(created, span_boldwarning("Serve [creator_name][creator_mind.current && " (currently [creator_mind.current.name])"], and assist them in completing their goals at any cost."))
-	var/mob/living/carbon/human/H = created
+	var/mob/living/complex/human/H = created
 	var/datum/species/golem/G = H.dna.species
 	G.owner = creator_mind
 
 /datum/ghostrole_instantiator/human/random/species/golem
 
-/datum/ghostrole_instantiator/human/random/species/golem/GetSpeciesPath(mob/living/carbon/human/H, list/params)
+/datum/ghostrole_instantiator/human/random/species/golem/GetSpeciesPath(mob/living/complex/human/H, list/params)
 	var/predestined = params["species"]
 	if(istext(predestined))
 		predestined = text2path(predestined)
@@ -54,7 +54,7 @@
 		return pick(typesof(/datum/species/golem))
 	return predestined
 
-/datum/ghostrole_instantiator/human/random/species/golem/Randomize(mob/living/carbon/human/H, list/params)
+/datum/ghostrole_instantiator/human/random/species/golem/Randomize(mob/living/complex/human/H, list/params)
 	. = ..()
 	H.set_cloned_appearance()
 	var/datum/species/golem/G = H.dna.species

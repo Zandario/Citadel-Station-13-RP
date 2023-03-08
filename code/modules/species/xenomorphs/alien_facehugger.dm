@@ -111,13 +111,13 @@ var/const/MAX_ACTIVE_TIME = 400
 
 /obj/item/clothing/mask/facehugger/proc/Attach(M as mob)
 
-	if((!iscorgi(M) && !iscarbon(M)))
+	if((!iscorgi(M) && !iscomplexmob(M)))
 		return
 
 	if(attached)
 		return
 
-	var/mob/living/carbon/C = M
+	var/mob/living/complex/C = M
 	if(istype(C) && locate(/obj/item/organ/internal/xenos/hivenode) in C.internal_organs)
 		return
 
@@ -137,8 +137,8 @@ var/const/MAX_ACTIVE_TIME = 400
 
 	L.visible_message("<span class='danger'><b> [src] leaps at [L]'s face!</b></span>")
 
-	if(iscarbon(M))
-		var/mob/living/carbon/target = L
+	if(iscomplexmob(M))
+		var/mob/living/complex/target = L
 
 		// i'm sorry for i have sinned ~silicons
 		var/obj/item/snowflake_but_also_what_about_head = target.item_by_slot(SLOT_ID_HEAD)
@@ -222,15 +222,15 @@ var/const/MAX_ACTIVE_TIME = 400
 	if(iscorgi(M))
 		return 1
 
-	if(!iscarbon(M))
+	if(!iscomplexmob(M))
 		return 0
 
-	var/mob/living/carbon/C = M
+	var/mob/living/complex/C = M
 	if(istype(C) && locate(/obj/item/organ/internal/xenos/hivenode) in C.internal_organs)
 		return 0
 
 	if(ishuman(C))
-		var/mob/living/carbon/human/H = C
+		var/mob/living/complex/human/H = C
 		if(H.head && (H.head.body_cover_flags & FACE) && !(H.head.clothing_flags & FLEXIBLEMATERIAL))
 			return 0
 	return 1
@@ -393,13 +393,13 @@ var/const/MAX_ACTIVE_TIME = 400
 
 /obj/item/clothing/mask/facehugger/proc/Attach(M as mob)
 
-	if((!iscorgi(M) && !iscarbon(M)))
+	if((!iscorgi(M) && !iscomplexmob(M)))
 		return
 
 	if(attached)
 		return
 
-	var/mob/living/carbon/C = M
+	var/mob/living/complex/C = M
 	if(istype(C) && locate(/obj/item/organ/internal/xenos/hivenode) in C.internal_organs)
 		return
 
@@ -416,8 +416,8 @@ var/const/MAX_ACTIVE_TIME = 400
 
 	L.visible_message("<span class='danger'><b> [src] leaps at [L]'s face!</b></span>")
 
-	if(iscarbon(M))
-		var/mob/living/carbon/target = L
+	if(iscomplexmob(M))
+		var/mob/living/complex/target = L
 
 		if(target.wear_mask)
 			if(prob(20))	return
@@ -496,15 +496,15 @@ var/const/MAX_ACTIVE_TIME = 400
 	if(iscorgi(M))
 		return 1
 
-	if(!iscarbon(M))
+	if(!iscomplexmob(M))
 		return 0
 
-	var/mob/living/carbon/C = M
+	var/mob/living/complex/C = M
 	if(istype(C) && locate(/obj/item/organ/internal/xenos/hivenode) in C.internal_organs)
 		return 0
 
 	if(ishuman(C))
-		var/mob/living/carbon/human/H = C
+		var/mob/living/complex/human/H = C
 		if(H.head && (H.head.body_cover_flags & FACE) && !(H.head.clothing_flags & FLEXIBLEMATERIAL))
 			return 0
 	return 1

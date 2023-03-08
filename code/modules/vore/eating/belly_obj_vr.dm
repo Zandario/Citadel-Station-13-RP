@@ -17,7 +17,7 @@
 	rad_flags = RAD_NO_CONTAMINATE | RAD_BLOCK_CONTENTS
 	var/vore_sound = "Gulp"					// Sound when ingesting someone
 	var/vore_verb = "ingest"				// Verb for eating with this in messages
-	var/human_prey_swallow_time = 100		// Time in deciseconds to swallow /mob/living/carbon/human
+	var/human_prey_swallow_time = 100		// Time in deciseconds to swallow /mob/living/complex/human
 	var/nonhuman_prey_swallow_time = 30		// Time in deciseconds to swallow anything else
 	var/emote_time = 60 SECONDS				// How long between stomach emotes at prey
 	var/digest_brute = 2					// Brute damage per tick in digestion mode
@@ -266,8 +266,8 @@
 		if(ML.absorbed)
 			ML.absorbed = FALSE
 			if(ishuman(M) && ishuman(OW))
-				var/mob/living/carbon/human/Prey = M
-				var/mob/living/carbon/human/Pred = OW
+				var/mob/living/complex/human/Prey = M
+				var/mob/living/complex/human/Pred = OW
 				var/absorbed_count = 2 //Prey that we were, plus the pred gets a portion
 				for(var/mob/living/P in contents)
 					if(P.absorbed)
@@ -434,9 +434,9 @@
 
 	//Reagent transfer
 	if(ishuman(owner))
-		var/mob/living/carbon/human/Pred = owner
+		var/mob/living/complex/human/Pred = owner
 		if(ishuman(M))
-			var/mob/living/carbon/human/Prey = M
+			var/mob/living/complex/human/Prey = M
 			Prey.bloodstr.del_reagent("numbenzyme")
 			Prey.bloodstr.trans_to_holder(Pred.bloodstr, Prey.bloodstr.total_volume, 0.5, TRUE) // Copy=TRUE because we're deleted anyway
 			Prey.ingested.trans_to_holder(Pred.bloodstr, Prey.ingested.total_volume, 0.5, TRUE) // Therefore don't bother spending cpu
@@ -458,8 +458,8 @@
 		M.noisy = FALSE
 
 	if(ishuman(M) && ishuman(owner))
-		var/mob/living/carbon/human/Prey = M
-		var/mob/living/carbon/human/Pred = owner
+		var/mob/living/complex/human/Prey = M
+		var/mob/living/complex/human/Pred = owner
 		//Reagent sharing for absorbed with pred - Copy so both pred and prey have these reagents.
 		Prey.bloodstr.trans_to_holder(Pred.bloodstr, Prey.bloodstr.total_volume, copy = TRUE)
 		Prey.ingested.trans_to_holder(Pred.bloodstr, Prey.ingested.total_volume, copy = TRUE)
@@ -518,7 +518,7 @@
 	return null
 
 //Handle a mob struggling
-// Called from /mob/living/carbon/relaymove()
+// Called from /mob/living/complex/relaymove()
 /obj/belly/proc/relay_resist(var/mob/living/R)
 	if (!(R in contents))
 		return  // User is not in this belly

@@ -321,7 +321,7 @@
 		return
 
 	if(ishuman(T))
-		var/mob/living/carbon/human/H = T
+		var/mob/living/complex/human/H = T
 		if(H.species.lightweight == 1)
 			H.Weaken(3)
 			return

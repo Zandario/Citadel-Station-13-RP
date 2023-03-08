@@ -59,15 +59,15 @@
 		/mob/living/simple_animal/hostile/bear,
 		/mob/living/simple_animal/hostile/asteroid/polarbear,
 		/mob/living/simple_animal/hostile/asteroid/wolf,
-		/mob/living/carbon/monkey,
+		/mob/living/complex/monkey,
 		/mob/living/simple_animal/hostile/gorilla,
-		/mob/living/carbon/alien/larva,
+		/mob/living/complex/alien/larva,
 		/mob/living/simple_animal/hostile/retaliate/frog
 	))
 
 
 /datum/action/disguise/Trigger()
-	var/mob/living/carbon/human/H = owner
+	var/mob/living/complex/human/H = owner
 	if(!currently_disguised)
 		var/user_object_type = input(H, "Disguising as OBJECT or MOB?") as null|anything in list("OBJECT", "MOB")
 		if(user_object_type)
@@ -111,7 +111,7 @@
 
 /datum/ghostrole_instantiator/human/player_static/ghost_cafe/Create(client/C, atom/location, list/params)
 	. = ..()
-	var/mob/living/carbon/human/H = .
+	var/mob/living/complex/human/H = .
 	H.AddElement(/datum/element/ghost_role_eligibility, free_ghosting = TRUE)
 	H.AddElement(/datum/element/dusts_on_catatonia)
 	var/area/A = get_area(H)
@@ -129,7 +129,7 @@
 	r_hand = /obj/item/storage/box/syndie_kit/chameleon/ghostcafe
 
 
-/datum/outfit/ghostcafe/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE, client/preference_source)
+/datum/outfit/ghostcafe/pre_equip(mob/living/complex/human/H, visualsOnly = FALSE, client/preference_source)
 	..()
 	if (isplasmaman(H))
 		head = /obj/item/clothing/head/helmet/space/plasmaman
@@ -147,7 +147,7 @@
 		else
 			uniform = suited ? /obj/item/clothing/under/color/random : /obj/item/clothing/under/color/jumpskirt/random
 
-/datum/outfit/ghostcafe/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE, client/preference_source)
+/datum/outfit/ghostcafe/post_equip(mob/living/complex/human/H, visualsOnly = FALSE, client/preference_source)
 	H.internal = H.get_item_for_held_index(1)
 	H.update_internals_hud_icon(1)
 

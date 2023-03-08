@@ -20,5 +20,5 @@
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 5)
 
-/datum/reagent/thermite/affect_blood(mob/living/carbon/M, alien, removed)
+/datum/reagent/thermite/affect_blood(mob/living/complex/M, alien, removed)
 	M.adjustFireLoss(3 * removed)

@@ -1,7 +1,7 @@
 /// Test that quick swap correctly swaps items and invalidates suit storage
 /datum/unit_test/quick_swap_sanity/Run()
 	// Create a human with a medical winter coat and a health analyzer in suit storage
-	var/mob/living/carbon/human/human = allocate(/mob/living/carbon/human)
+	var/mob/living/complex/human/human = allocate(/mob/living/complex/human)
 
 	var/obj/item/coat = allocate(/obj/item/clothing/suit/hooded/wintercoat/medical)
 	TEST_ASSERT(human.equip_to_slot_if_possible(coat, ITEM_SLOT_OCLOTHING), "Couldn't equip winter coat")

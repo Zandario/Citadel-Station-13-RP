@@ -26,7 +26,7 @@
 	stored_name = new_name
 	name = "[initial(name)] ([stored_name])"
 
-/obj/item/clothing/accessory/badge/proc/set_desc(var/mob/living/carbon/human/H)
+/obj/item/clothing/accessory/badge/proc/set_desc(var/mob/living/complex/human/H)
 
 /obj/item/clothing/accessory/badge/attack_self(mob/user as mob)
 

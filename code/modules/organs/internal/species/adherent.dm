@@ -73,7 +73,7 @@
 	set desc = "Toggles your manuevering jets"
 	set category = "Abilities"*/
 
-	var/mob/living/carbon/human/C = src.owner
+	var/mob/living/complex/human/C = src.owner
 	if(C.incapacitated(INCAPACITATION_ALL))
 		to_chat(C, "You cannot fly in this state!")
 		return
@@ -86,7 +86,7 @@
 	to_chat(C, SPAN_NOTICE("You have [C.flying?"started":"stopped"] flying."))
 
 /obj/item/organ/internal/powered/jets/process(delta_time)
-	var/mob/living/carbon/human/C = src.owner
+	var/mob/living/complex/human/C = src.owner
 	if(!active)
 		return
 	C.nutrition = C.nutrition - maintenance_cost
@@ -157,7 +157,7 @@
 	activatecf()
 
 /obj/item/organ/internal/powered/cooling_fins/proc/activatecf()
-	var/mob/living/carbon/human/C = src.owner
+	var/mob/living/complex/human/C = src.owner
 	set name = "Toggle Cooling Fins"
 	set desc = "Turns on your onboard cooling fin array."
 	set category = "Abilities"
@@ -166,7 +166,7 @@
 	to_chat(C, "You toggle your cooling fans [cooling ? "on" : "off"] ")
 
 /obj/item/organ/internal/powered/cooling_fins/process(delta_time)
-	var/mob/living/carbon/human/C = src.owner
+	var/mob/living/complex/human/C = src.owner
 	if(cooling)
 		var/temp_diff = min(C.bodytemperature - target_temp, max_cooling)
 		if(temp_diff >= 1)
@@ -181,7 +181,7 @@
 	set desc = "While flying over open spaces, you will use up some energy. If you run out energy, you will fall. Additionally, you can't fly if you are too heavy."
 	set category = "Abilities"
 
-	var/mob/living/carbon/human/C = src.owner
+	var/mob/living/complex/human/C = src.owner
 	if(C.incapacitated(INCAPACITATION_ALL))
 		to_chat(C, "You cannot fly in this state!")
 		return
@@ -198,7 +198,7 @@
 	set desc = "Allows you to stop gliding and hover. This will take a fair amount of energy to perform."
 	set category = "Abilities"
 
-	var/mob/living/carbon/human/C = src.owner
+	var/mob/living/complex/human/C = src.owner
 	if(!C.flying)
 		to_chat(src, SPAN_NOTICE("You must be flying to hover!"))
 		return

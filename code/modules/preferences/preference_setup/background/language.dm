@@ -53,7 +53,7 @@
 /datum/category_item/player_setup_item/background/language/copy_to_mob(datum/preferences/prefs, mob/M, data, flags)
 	if(!ishuman(M))
 		return TRUE
-	var/mob/living/carbon/human/H = M
+	var/mob/living/complex/human/H = M
 	// todo: sources - this one is extraneous
 	for(var/id in data)
 		H.add_language(id)

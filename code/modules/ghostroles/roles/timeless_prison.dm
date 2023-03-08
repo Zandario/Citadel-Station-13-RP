@@ -23,7 +23,7 @@
 		/datum/species/shadow
 	)
 
-/datum/ghostrole_instantiator/human/random/species/shadow/timeless_prison/Randomize(mob/living/carbon/human/H, list/params)
+/datum/ghostrole_instantiator/human/random/species/shadow/timeless_prison/Randomize(mob/living/complex/human/H, list/params)
 	. = ..()
 	H.real_name = "Wish Granter's Victim ([rand(1,999)])"
 

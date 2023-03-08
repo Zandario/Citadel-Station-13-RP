@@ -22,11 +22,11 @@
 	if(!istype(T)) return
 
 	//blind adjacent people
-	for (var/mob/living/carbon/M in viewers(T, flash_range))
+	for (var/mob/living/complex/M in viewers(T, flash_range))
 		if(M.eyecheck() < 1)
 			M.flash_eyes()
 			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
+				var/mob/living/complex/human/H = M
 				flash_strength *= H.species.flash_mod
 
 				if(flash_strength > 0)
@@ -177,7 +177,7 @@
 	damage_type = BURN
 	vacuum_traversal = 0	//Projectile disappears in empty space
 
-/obj/item/projectile/energy/plasmastun/proc/bang(var/mob/living/carbon/M)
+/obj/item/projectile/energy/plasmastun/proc/bang(var/mob/living/complex/M)
 
 	to_chat(M, "<span class='danger'>You hear a loud roar.</span>")
 	playsound(M.loc, 'sound/effects/bang.ogg', 50, 1)

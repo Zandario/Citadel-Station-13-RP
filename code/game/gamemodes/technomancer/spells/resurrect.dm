@@ -39,7 +39,7 @@
 				SM.update_icon()
 				adjust_instability(15)
 			else if(ishuman(L))
-				var/mob/living/carbon/human/H = L
+				var/mob/living/complex/human/H = L
 
 				if(!H.client && H.mind) //Don't force the dead person to come back if they don't want to.
 					for(var/mob/observer/dead/ghost in GLOB.player_list)

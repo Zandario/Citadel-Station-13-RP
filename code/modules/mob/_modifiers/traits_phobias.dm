@@ -120,8 +120,8 @@
 
 		// People covered in blood is also bad.
 		// Feel free to trim down if its too expensive CPU wise.
-		if(istype(thing, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = thing
+		if(istype(thing, /mob/living/complex/human))
+			var/mob/living/complex/human/H = thing
 			var/self_multiplier = H == holder ? 2 : 1
 			var/human_blood_fear_amount = 0
 			if(!H.gloves && H.bloody_hands && H.hand_blood_color != SYNTH_BLOOD_COLOUR)
@@ -438,8 +438,8 @@
 			else
 				fear_amount += 10 // It's huge and feral.
 
-		if(istype(thing, /mob/living/carbon/human))
-			var/mob/living/carbon/human/S = thing
+		if(istype(thing, /mob/living/complex/human))
+			var/mob/living/complex/human/S = thing
 			if(istype(S.species, /datum/species/skrell)) //Skrell ARE slimey.
 				fear_amount += 1
 			if(istype(S.species, /datum/species/shapeshifter/promethean))
@@ -525,8 +525,8 @@
 		if(istype(thing, /obj/item/gun/launcher/syringe))
 			fear_amount += 6
 
-		if(istype(thing, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = thing
+		if(istype(thing, /mob/living/complex/human))
+			var/mob/living/complex/human/H = thing
 			if(H.l_hand && istype(H.l_hand, /obj/item/reagent_containers/syringe) || H.r_hand && istype(H.r_hand, /obj/item/reagent_containers/syringe))
 				fear_amount += 10
 
@@ -590,13 +590,13 @@
 	var/list/xenos = list()
 	if(!ishuman(holder))
 		return
-	var/mob/living/carbon/human/us = holder
-	for(var/mob/living/carbon/human/H in view(5, holder)) // See haemophobia for why this is 5.
+	var/mob/living/complex/human/us = holder
+	for(var/mob/living/complex/human/H in view(5, holder)) // See haemophobia for why this is 5.
 		if(!(istype(us.species, H.species) )) // Are they a different species?
 			xenos += H
 	return xenos
 
-/datum/modifier/trait/phobia/xenophobia/generic/make_message(var/mob/living/carbon/human/H)
+/datum/modifier/trait/phobia/xenophobia/generic/make_message(var/mob/living/complex/human/H)
 	// Do special responses first if possible.
 //	if(H.stat == DEAD)
 //		return pick( list("Unsurprising to see a weak and inferior [H.species.name] fail to survive.", "If that [H.species.name] were a [holder.species.name], this wouldn't've have happened.") )
@@ -626,14 +626,14 @@
 
 /datum/modifier/trait/phobia/xenophobia/human/get_xenos()
 	var/list/humans = list()
-	for(var/mob/living/carbon/human/H in view(5, holder)) // See haemophobia for why this is 5.
+	for(var/mob/living/complex/human/H in view(5, holder)) // See haemophobia for why this is 5.
 		if(H == holder)
 			continue // No self loathing here.
 		if(istype(H.species, /datum/species/human) ) // Are they a human.
 			humans += H
 	return humans
 
-/datum/modifier/trait/phobia/xenophobia/human/make_message(var/mob/living/carbon/human/H)
+/datum/modifier/trait/phobia/xenophobia/human/make_message(var/mob/living/complex/human/H)
 	// Do special responses first if possible.
 
 	// Generic responses if none of the above apply.
@@ -655,14 +655,14 @@
 
 /datum/modifier/trait/phobia/xenophobia/skrell/get_xenos()
 	var/list/skrell = list()
-	for(var/mob/living/carbon/human/H in view(5, holder)) // See haemophobia for why this is 5.
+	for(var/mob/living/complex/human/H in view(5, holder)) // See haemophobia for why this is 5.
 		if(H == holder)
 			continue // No self loathing here.
 		if(istype(H.species, /datum/species/skrell) ) // Are they a squid now?
 			skrell += H
 	return skrell
 
-/datum/modifier/trait/phobia/xenophobia/skrell/make_message(var/mob/living/carbon/human/H)
+/datum/modifier/trait/phobia/xenophobia/skrell/make_message(var/mob/living/complex/human/H)
 	// Do special responses first if possible.
 
 	// Generic responses if none of the above apply.

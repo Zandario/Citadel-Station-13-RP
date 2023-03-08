@@ -8,7 +8,7 @@
 	blood_level = 1
 	req_open = 1
 
-/datum/surgery_step/repairflesh/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/repairflesh/can_use(mob/living/user, mob/living/complex/human/target, target_zone, obj/item/tool)
 	if (isslime(target))
 		return 0
 	if (target_zone == O_EYES || target_zone == O_MOUTH)
@@ -42,7 +42,7 @@
 	min_duration = 10
 	max_duration = 20
 
-/datum/surgery_step/repairflesh/scan_injury/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/repairflesh/scan_injury/can_use(mob/living/user, mob/living/complex/human/target, target_zone, obj/item/tool)
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if(affected.burn_stage || affected.brute_stage)
@@ -50,13 +50,13 @@
 		return 1
 	return 0
 
-/datum/surgery_step/repairflesh/scan_injury/begin_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/repairflesh/scan_injury/begin_step(mob/living/user, mob/living/complex/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='notice'>[user] begins scanning [target]'s [affected] with \the [tool].</span>", \
 	"<span class='notice'>You begin scanning [target]'s [affected] with \the [tool].</span>")
 	..()
 
-/datum/surgery_step/repairflesh/scan_injury/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/repairflesh/scan_injury/end_step(mob/living/user, mob/living/complex/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='notice'>[user] finishes scanning [target]'s [affected].</span>", \
 	"<span class='notice'>You finish scanning [target]'s [affected].</span>")
@@ -69,7 +69,7 @@
 		to_chat(user, "<span class='notice'>\The muscle in [target]'s [affected] is notably charred.</span>")
 		affected.burn_stage = max(1, affected.burn_stage)
 
-/datum/surgery_step/repairflesh/scan_injury/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/repairflesh/scan_injury/fail_step(mob/living/user, mob/living/complex/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='warning'>[user]'s hand slips, dropping \the [tool] onto [target]'s [affected]!</span>" , \
 	"<span class='warning'>Your hand slips, dropping \the [tool] onto [target]'s [affected]!</span>" )
@@ -95,7 +95,7 @@
 	min_duration = 20
 	max_duration = 20
 
-/datum/surgery_step/repairflesh/repair_burns/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/repairflesh/repair_burns/can_use(mob/living/user, mob/living/complex/human/target, target_zone, obj/item/tool)
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if(affected.burn_stage < 1 || !(affected.burn_dam))
@@ -105,7 +105,7 @@
 		return 1
 	return 0
 
-/datum/surgery_step/repairflesh/repair_burns/begin_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/repairflesh/repair_burns/begin_step(mob/living/user, mob/living/complex/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(istype(tool, /obj/item/duct_tape_roll) || istype(tool, /obj/item/barrier_tape_roll))
 		user.visible_message("<span class='warning'>[user] begins taping up [target]'s [affected] with \the [tool].</span>", \
@@ -119,7 +119,7 @@
 	"<span class='notice'>You begin coating the charred tissue in [target]'s [affected] with \the [tool].</span>")
 	..()
 
-/datum/surgery_step/repairflesh/repair_burns/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/repairflesh/repair_burns/end_step(mob/living/user, mob/living/complex/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(istype(tool, /obj/item/duct_tape_roll) || istype(tool, /obj/item/barrier_tape_roll))
 		user.visible_message("<span class='notice'>[user] finishes taping up [target]'s [affected] with \the [tool].</span>", \
@@ -133,7 +133,7 @@
 		T.use(1)
 	..()
 
-/datum/surgery_step/repairflesh/repair_burns/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/repairflesh/repair_burns/fail_step(mob/living/user, mob/living/complex/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='danger'>[user]'s hand slips, tearing up [target]'s [affected] with \the [tool].</span>", \
 	"<span class='danger'>Your hand slips, tearing up [target]'s [affected] with \the [tool].</span>")
@@ -165,7 +165,7 @@
 	min_duration = 20
 	max_duration = 20
 
-/datum/surgery_step/repairflesh/repair_brute/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/repairflesh/repair_brute/can_use(mob/living/user, mob/living/complex/human/target, target_zone, obj/item/tool)
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if(affected.brute_stage < 1 || !(affected.brute_dam))
@@ -175,7 +175,7 @@
 		return 1
 	return 0
 
-/datum/surgery_step/repairflesh/repair_brute/begin_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/repairflesh/repair_brute/begin_step(mob/living/user, mob/living/complex/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(istype(tool, /obj/item/duct_tape_roll) || istype(tool, /obj/item/barrier_tape_roll))
 		user.visible_message("<span class='warning'>[user] begins taping up [target]'s [affected] with \the [tool].</span>", \
@@ -189,7 +189,7 @@
 	"<span class='notice'>You begin coating the tissue in [target]'s [affected] with \the [tool].</span>")
 	..()
 
-/datum/surgery_step/repairflesh/repair_brute/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/repairflesh/repair_brute/end_step(mob/living/user, mob/living/complex/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(istype(tool, /obj/item/duct_tape_roll) || istype(tool, /obj/item/barrier_tape_roll))
 		user.visible_message("<span class='notice'>[user] finishes taping up [target]'s [affected] with \the [tool].</span>", \
@@ -203,7 +203,7 @@
 		T.use(1)
 	..()
 
-/datum/surgery_step/repairflesh/repair_brute/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/repairflesh/repair_brute/fail_step(mob/living/user, mob/living/complex/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='danger'>[user]'s hand slips, tearing up [target]'s [affected] with \the [tool].</span>", \
 	"<span class='danger'>Your hand slips, tearing up [target]'s [affected] with \the [tool].</span>")

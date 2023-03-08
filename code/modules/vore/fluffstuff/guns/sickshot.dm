@@ -41,7 +41,7 @@
 			L.release_vore_contents()
 
 		if(ishuman(target))
-			var/mob/living/carbon/human/H = target
+			var/mob/living/complex/human/H = target
 			H.vomit()
 			H.Confuse(2)
 

@@ -122,7 +122,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
-	var/mob/living/carbon/human/character = M
+	var/mob/living/complex/human/character = M
 	// Copy basic values
 	character.r_eyes			= pref.r_eyes
 	character.g_eyes			= pref.g_eyes

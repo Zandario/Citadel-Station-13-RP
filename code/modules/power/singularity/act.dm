@@ -12,7 +12,7 @@
 /mob/living/singularity_pull(S, current_size)
 	step_towards(src, S)
 
-/mob/living/carbon/human/singularity_act()
+/mob/living/complex/human/singularity_act()
 	var/gain = 20
 	if(mind)
 		if((mind.assigned_role == "Station Engineer") || (mind.assigned_role == "Chief Engineer"))
@@ -23,7 +23,7 @@
 	gib()
 	return gain
 
-/mob/living/carbon/human/singularity_pull(S, current_size)
+/mob/living/complex/human/singularity_pull(S, current_size)
 	if(current_size >= STAGE_THREE)
 		for(var/obj/item/hand in get_held_items())
 			if(prob(current_size*5) && hand.w_class >= ((11-current_size)/2) && drop_item_to_ground(hand))

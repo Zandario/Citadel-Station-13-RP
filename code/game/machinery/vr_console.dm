@@ -6,8 +6,8 @@
 	density = TRUE
 	anchored = TRUE
 	circuit = /obj/item/circuitboard/vr_sleeper
-	var/mob/living/carbon/human/occupant = null
-	var/mob/living/carbon/human/avatar = null
+	var/mob/living/complex/human/occupant = null
+	var/mob/living/complex/human/avatar = null
 	var/datum/mind/vr_mind = null
 
 	use_power = TRUE

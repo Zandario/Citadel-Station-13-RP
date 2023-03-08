@@ -14,7 +14,7 @@
 	var/modifier_to_add = /datum/modifier/berserk
 	var/modifier_duration = 2 SECONDS	// How long, per unit dose, will this last?
 
-/datum/reagent/modapplying/affect_blood(mob/living/carbon/M, alien, removed)
+/datum/reagent/modapplying/affect_blood(mob/living/complex/M, alien, removed)
 	if(alien == IS_DIONA)
 		return
 	M.add_modifier(modifier_to_add, dose * modifier_duration)
@@ -30,14 +30,14 @@
 	modifier_to_add = /datum/modifier/cryogelled
 	modifier_duration = 3 SECONDS
 
-/datum/reagent/modapplying/cryofluid/affect_blood(mob/living/carbon/M, alien, removed)
+/datum/reagent/modapplying/cryofluid/affect_blood(mob/living/complex/M, alien, removed)
 	..(M, alien, removed)
 	M.bodytemperature -= removed * 20
 
-/datum/reagent/modapplying/cryofluid/affect_ingest(mob/living/carbon/M, alien, removed)
+/datum/reagent/modapplying/cryofluid/affect_ingest(mob/living/complex/M, alien, removed)
 	affect_blood(M, alien, removed * 2.5)
 
-/datum/reagent/modapplying/cryofluid/affect_touch(mob/living/carbon/M, alien, removed)
+/datum/reagent/modapplying/cryofluid/affect_touch(mob/living/complex/M, alien, removed)
 	affect_blood(M, alien, removed * 0.6)
 
 /datum/reagent/modapplying/cryofluid/touch_mob(mob/M, amount)

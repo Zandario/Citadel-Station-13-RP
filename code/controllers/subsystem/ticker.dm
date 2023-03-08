@@ -458,7 +458,7 @@ SUBSYSTEM_DEF(ticker)
 			else if(!player.mind.assigned_role)
 				continue
 			else
-				var/mob/living/carbon/human/new_char = player.create_character(S)
+				var/mob/living/complex/human/new_char = player.create_character(S)
 				if(new_char)
 					qdel(player)
 				if(istype(new_char) && !(new_char.mind.assigned_role=="Cyborg"))
@@ -473,7 +473,7 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/equip_characters()
 	var/captainless=1
-	for(var/mob/living/carbon/human/player in GLOB.player_list)
+	for(var/mob/living/complex/human/player in GLOB.player_list)
 		if(player && player.mind && player.mind.assigned_role)
 			if(player.mind.assigned_role == "Facility Director")
 				captainless=0

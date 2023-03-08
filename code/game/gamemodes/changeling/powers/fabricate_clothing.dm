@@ -50,7 +50,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	set name = "Shred Jumpsuit"
 	set category = "Chameleon Items"
 	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
+		var/mob/living/complex/human/H = loc
 		playsound(src, 'sound/effects/splat.ogg', 30, 1)
 		visible_message("<span class='warning'>[H] tears off [src]!</span>",
 		"<span class='notice'>We remove [src].</span>")
@@ -70,7 +70,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	set name = "Shred Helmet"
 	set category = "Chameleon Items"
 	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
+		var/mob/living/complex/human/H = loc
 		playsound(src, 'sound/effects/splat.ogg', 30, 1)
 		visible_message("<span class='warning'>[H] tears off [src]!</span>",
 		"<span class='notice'>We remove [src].</span>")
@@ -94,7 +94,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	set name = "Shred Suit"
 	set category = "Chameleon Items"
 	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
+		var/mob/living/complex/human/H = loc
 		playsound(src, 'sound/effects/splat.ogg', 30, 1)
 		visible_message("<span class='warning'>[H] tears off [src]!</span>",
 		"<span class='notice'>We remove [src].</span>")
@@ -118,7 +118,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	set name = "Shred Shoes"
 	set category = "Chameleon Items"
 	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
+		var/mob/living/complex/human/H = loc
 		playsound(src, 'sound/effects/splat.ogg', 30, 1)
 		visible_message("<span class='warning'>[H] tears off [src]!</span>",
 		"<span class='notice'>We remove [src].</span>")
@@ -142,7 +142,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	set name = "Shred Backpack"
 	set category = "Chameleon Items"
 	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
+		var/mob/living/complex/human/H = loc
 		playsound(src, 'sound/effects/splat.ogg', 30, 1)
 		visible_message("<span class='warning'>[H] tears off [src]!</span>",
 		"<span class='notice'>We remove [src].</span>")
@@ -169,7 +169,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	set name = "Shred Gloves"
 	set category = "Chameleon Items"
 	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
+		var/mob/living/complex/human/H = loc
 		playsound(src, 'sound/effects/splat.ogg', 30, 1)
 		visible_message("<span class='warning'>[H] tears off [src]!</span>",
 		"<span class='notice'>We remove [src].</span>")
@@ -194,7 +194,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	set name = "Shred Mask"
 	set category = "Chameleon Items"
 	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
+		var/mob/living/complex/human/H = loc
 		playsound(src, 'sound/effects/splat.ogg', 30, 1)
 		visible_message("<span class='warning'>[H] tears off [src]!</span>",
 		"<span class='notice'>We remove [src].</span>")
@@ -214,7 +214,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	set name = "Shred Glasses"
 	set category = "Chameleon Items"
 	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
+		var/mob/living/complex/human/H = loc
 		playsound(src, 'sound/effects/splat.ogg', 30, 1)
 		visible_message("<span class='warning'>[H] tears off [src]!</span>",
 		"<span class='notice'>We remove [src].</span>")
@@ -238,7 +238,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	set name = "Shred Belt"
 	set category = "Chameleon Items"
 	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
+		var/mob/living/complex/human/H = loc
 		playsound(src, 'sound/effects/splat.ogg', 30, 1)
 		visible_message("<span class='warning'>[H] tears off [src]!</span>",
 		"<span class='notice'>We remove [src].</span>")
@@ -263,7 +263,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	set name = "Shred ID Card"
 	set category = "Chameleon Items"
 	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
+		var/mob/living/complex/human/H = loc
 		playsound(src, 'sound/effects/splat.ogg', 30, 1)
 		visible_message("<span class='warning'>[H] tears off [src]!</span>",
 		"<span class='notice'>We remove [src].</span>")

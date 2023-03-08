@@ -47,7 +47,7 @@
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
-	var/mob/living/carbon/human/character = M
+	var/mob/living/complex/human/character = M
 	if(config_legacy.humans_need_surnames)
 		var/firstspace = findtext(pref.real_name, " ")
 		var/name_length = length(pref.real_name)

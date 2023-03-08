@@ -79,8 +79,8 @@
 		if(world.time - user.last_bumped <= 60)
 			return
 		if(M.client)
-			if(iscarbon(M))
-				var/mob/living/carbon/C = M
+			if(iscomplexmob(M))
+				var/mob/living/complex/C = M
 				if(!C.handcuffed)
 					SwitchState()
 			else

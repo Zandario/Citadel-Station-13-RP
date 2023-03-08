@@ -234,7 +234,7 @@ SUBSYSTEM_DEF(supply)
 
 	var/idname = "*None Provided*"
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		idname = H.get_authentification_name()
 	else if(issilicon(user))
 		idname = user.real_name
@@ -263,7 +263,7 @@ SUBSYSTEM_DEF(supply)
 
 	var/idname = "*None Provided*"
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		idname = H.get_authentification_name()
 	else if(issilicon(user))
 		idname = user.real_name
@@ -300,7 +300,7 @@ SUBSYSTEM_DEF(supply)
 
 	var/idname = "*None Provided*"
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/complex/human/H = user
 		idname = H.get_authentification_name()
 	else if(issilicon(user))
 		idname = user.real_name

@@ -15,7 +15,7 @@
 	max_additional_languages = 3
 	intrinsic_languages = LANGUAGE_ID_TERMINUS
 	name_language = LANGUAGE_ID_TERMINUS
-	inherent_verbs = list(/mob/living/carbon/human/proc/lick_wounds)
+	inherent_verbs = list(/mob/living/complex/human/proc/lick_wounds)
 
 	max_age = 80
 
@@ -52,7 +52,7 @@
 
 	inherent_verbs = list(
 		/mob/living/proc/shred_limb,
-		/mob/living/carbon/human/proc/tie_hair,
+		/mob/living/complex/human/proc/tie_hair,
 	)
 
 	unarmed_types = list(
@@ -78,7 +78,7 @@
 	max_additional_languages = 3
 	intrinsic_languages = LANGUAGE_ID_TERMINUS
 	name_language = LANGUAGE_ID_TERMINUS
-	inherent_verbs = list(/mob/living/carbon/human/proc/lick_wounds)
+	inherent_verbs = list(/mob/living/complex/human/proc/lick_wounds)
 
 	max_age = 80
 
@@ -110,7 +110,7 @@
 
 	inherent_verbs = list(
 		/mob/living/proc/shred_limb,
-		/mob/living/carbon/human/proc/tie_hair,
+		/mob/living/complex/human/proc/tie_hair,
 	)
 
 	heat_discomfort_strings = list(

@@ -183,7 +183,7 @@
 			continue
 
 		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
+			var/mob/living/complex/human/H = L
 			if(H.check_shields(damage = 0, damage_source = src, attacker = src, def_zone = null, attack_text = "the leap"))
  // We were blocked.
 				continue
@@ -437,7 +437,7 @@
 
 /obj/item/projectile/arc/blue_energy/priest/on_hit(var/atom/target, var/blocked = 0)
 	if(ishuman(target))
-		var/mob/living/carbon/human/M = target
+		var/mob/living/complex/human/M = target
 		M.Confuse(rand(3,5))
 
 /datum/ai_holder/simple_mob/ranged/aggressive/priest //Adopted from the Blood Hunter.

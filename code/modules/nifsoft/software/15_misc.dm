@@ -11,7 +11,7 @@
 
 /datum/nifsoft/apc_recharge/activate()
 	if((. = ..()))
-		var/mob/living/carbon/human/H = nif.human
+		var/mob/living/complex/human/H = nif.human
 		apc = locate(/obj/machinery/power/apc) in get_step(H,H.dir)
 		if(!apc)
 			apc = locate(/obj/machinery/power/apc) in get_step(H,0)
@@ -30,7 +30,7 @@
 
 /datum/nifsoft/apc_recharge/on_life(seconds, times_fired)
 	if((. = ..()))
-		var/mob/living/carbon/human/H = nif.human
+		var/mob/living/complex/human/H = nif.human
 		if((apc?.cell?.percent() > 1) && (get_dist(H,apc) <= 1) && H.nutrition < (H.species.max_nutrition - 1)) // 440 vs 450, life() happens before we get here so it'll never be EXACTLY 450
 			var/needed = clamp(H.species.max_nutrition - H.nutrition, 0, 10)
 			var/in_kj = SYNTHETIC_NUTRITION_KJ_PER_UNIT * needed
@@ -172,14 +172,14 @@
 /datum/nifsoft/worldbend/activate()
 	if((. = ..()))
 		if((. = ..()))
-			var/mob/living/carbon/human/H = nif.human
+			var/mob/living/complex/human/H = nif.human
 			var/datum/atom_hud/world_bender/animals/A = GLOB.huds[WORLD_BENDER_HUD_ANIMALS]
 			if(A && H)
 				A.add_hud_to(H)
 
 /datum/nifsoft/worldbend/deactivate(var/force = FALSE)
 	if((. = ..()))
-		var/mob/living/carbon/human/H = nif.human
+		var/mob/living/complex/human/H = nif.human
 		var/datum/atom_hud/world_bender/animals/A = GLOB.huds[WORLD_BENDER_HUD_ANIMALS]
 		if(A && H)
 			A.remove_hud_from(H)

@@ -87,7 +87,7 @@
 	if(isbelly(item_storage))
 		var/obj/belly/B = item_storage
 		if(ishuman(B.owner))
-			var/mob/living/carbon/human/H = B.owner
+			var/mob/living/complex/human/H = B.owner
 			reagents.trans_to_holder(H.ingested, (reagents.total_volume * 0.3), 1, 0)
 		else if(isrobot(B.owner))
 			var/mob/living/silicon/robot/R = B.owner

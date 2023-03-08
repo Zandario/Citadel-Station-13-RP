@@ -55,7 +55,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 		var/character_ad = C.prefs.directory_ad
 
 		if(ishuman(C.mob))
-			var/mob/living/carbon/human/H = C.mob
+			var/mob/living/complex/human/H = C.mob
 			if(data_core && data_core.general)
 				if(!find_general_record("name", H.real_name))
 					if(!find_record("name", H.real_name, data_core.hidden_general))

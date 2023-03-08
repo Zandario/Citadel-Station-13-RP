@@ -27,7 +27,7 @@
 	// todo: this is just a shim
 	if(!ishuman(M))
 		return TRUE
-	var/mob/living/carbon/human/character = M
+	var/mob/living/complex/human/character = M
 	character.all_underwear.Cut()
 	character.all_underwear_metadata.Cut()
 

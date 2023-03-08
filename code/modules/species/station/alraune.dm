@@ -71,13 +71,13 @@
 	)
 
 	inherent_verbs = list(
-		/mob/living/carbon/human/proc/succubus_drain,
-		/mob/living/carbon/human/proc/succubus_drain_finalize,
-		/mob/living/carbon/human/proc/succubus_drain_lethal,
-		/mob/living/carbon/human/proc/bloodsuck,
-		/mob/living/carbon/human/proc/regenerate,
-		/mob/living/carbon/human/proc/alraune_fruit_select,
-		/mob/living/carbon/human/proc/tie_hair,
+		/mob/living/complex/human/proc/succubus_drain,
+		/mob/living/complex/human/proc/succubus_drain_finalize,
+		/mob/living/complex/human/proc/succubus_drain_lethal,
+		/mob/living/complex/human/proc/bloodsuck,
+		/mob/living/complex/human/proc/regenerate,
+		/mob/living/complex/human/proc/alraune_fruit_select,
+		/mob/living/complex/human/proc/tie_hair,
 	) //Give them the voremodes related to wrapping people in vines and sapping their fluids
 
 	color_mult  = 1
@@ -114,7 +114,7 @@
 	return TRUE //eh, why not? Aquatic plants are a thing.
 
 
-/datum/species/alraune/handle_environment_special(mob/living/carbon/human/H)
+/datum/species/alraune/handle_environment_special(mob/living/complex/human/H)
 	if(H.inStasisNow()) // if they're in stasis, they won't need this stuff.
 		return
 
@@ -339,7 +339,7 @@
 	return 1
 
 
-/mob/living/carbon/human/proc/alraune_fruit_select() //So if someone doesn't want fruit/vegetables, they don't have to select one.
+/mob/living/complex/human/proc/alraune_fruit_select() //So if someone doesn't want fruit/vegetables, they don't have to select one.
 	set name = "Select Fruit"
 	set desc = "Select what fruit/vegetable you wish to grow."
 	set category = "Abilities"
@@ -354,13 +354,13 @@
 		var/selection = input(src, "Choose your character's fruit type. Choosing nothing will result in a default of apples.", "Fruit Type", fruit_gland.fruit_type) as null|anything in acceptable_fruit_types
 		if(selection)
 			fruit_gland.fruit_type = selection
-		add_verb(src, /mob/living/carbon/human/proc/alraune_fruit_pick)
-		remove_verb(src, /mob/living/carbon/human/proc/alraune_fruit_select)
+		add_verb(src, /mob/living/complex/human/proc/alraune_fruit_pick)
+		remove_verb(src, /mob/living/complex/human/proc/alraune_fruit_select)
 		fruit_gland.emote_descriptor = list("fruit right off of [fruit_gland.owner]!", "a fruit from [fruit_gland.owner]!")
 	else
 		to_chat(src, SPAN_NOTICE("You lack the organ required to produce fruit."))
 
-/mob/living/carbon/human/proc/alraune_fruit_pick()
+/mob/living/complex/human/proc/alraune_fruit_pick()
 	set name = "Pick Fruit"
 	set desc = "Pick fruit off of [src]."
 	set category = "Object"
@@ -410,6 +410,6 @@
 	return base_species
 
 //! WARNING SHITCODE
-/datum/species/alraune/get_race_key(mob/living/carbon/human/H)
+/datum/species/alraune/get_race_key(mob/living/complex/human/H)
 	var/datum/species/real = SScharacters.resolve_species_name(base_species || SPECIES_HUMAN)
 	return real.real_race_key(H)

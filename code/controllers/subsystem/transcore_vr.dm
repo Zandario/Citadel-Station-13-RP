@@ -51,7 +51,7 @@ SUBSYSTEM_DEF(transcore)
 
 		//We're in an organ, at least.
 		var/obj/item/organ/external/EO = imp.loc
-		var/mob/living/carbon/human/H = EO.owner
+		var/mob/living/complex/human/H = EO.owner
 		if(!H)
 			implants -= imp
 			continue

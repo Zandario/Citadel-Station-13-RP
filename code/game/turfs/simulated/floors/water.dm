@@ -59,7 +59,7 @@
 		else
 			var/gasid = /datum/gas/carbon_dioxide
 			if(ishuman(L))
-				var/mob/living/carbon/human/H = L
+				var/mob/living/complex/human/H = L
 				if(H.species && H.species.exhale_type)
 					gasid = H.species.exhale_type
 			var/datum/gas_mixture/water_breath = new()
@@ -112,7 +112,7 @@
 /mob/living/proc/can_breathe_water()
 	return FALSE
 
-/mob/living/carbon/human/can_breathe_water()
+/mob/living/complex/human/can_breathe_water()
 	if(species)
 		return species.can_breathe_water()
 	return ..()
@@ -233,7 +233,7 @@ var/list/shoreline_icon_cache = list()
 		else
 			var/gasid = /datum/gas/carbon_dioxide
 			if(ishuman(L))
-				var/mob/living/carbon/human/H = L
+				var/mob/living/complex/human/H = L
 				if(H.species && H.species.exhale_type)
 					gasid = H.species.exhale_type
 			var/datum/gas_mixture/water_breath = new()
@@ -343,7 +343,7 @@ var/list/shoreline_icon_cache = list()
 		else
 			var/gasid = /datum/gas/carbon_dioxide
 			if(ishuman(L))
-				var/mob/living/carbon/human/H = L
+				var/mob/living/complex/human/H = L
 				if(H.species && H.species.exhale_type)
 					gasid = H.species.exhale_type
 			var/datum/gas_mixture/water_breath = new()
@@ -368,7 +368,7 @@ var/list/shoreline_icon_cache = list()
 	if(!blood_wade())
 		STOP_PROCESSING(SSobj, src)
 
-/turf/simulated/floor/water/blood/proc/blood_wade(var/mob/living/carbon/human/L, atom/movable/AM)
+/turf/simulated/floor/water/blood/proc/blood_wade(var/mob/living/complex/human/L, atom/movable/AM)
 	. = FALSE
 
 	if(ishuman(L))

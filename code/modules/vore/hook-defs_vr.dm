@@ -28,7 +28,7 @@
 		if(!hook_vr("living_new",args))
 			result = 0
 
-	if(iscarbon(M))
+	if(iscomplexmob(M))
 		if(!hook_vr("carbon_new",args))
 			result = 0
 

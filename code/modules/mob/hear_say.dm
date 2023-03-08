@@ -38,8 +38,8 @@
 				message = stars(message)
 
 	var/speaker_name = speaker.name
-	if(istype(speaker, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = speaker
+	if(istype(speaker, /mob/living/complex/human))
+		var/mob/living/complex/human/H = speaker
 		speaker_name = H.GetVoice()
 
 	if(italics)
@@ -185,8 +185,8 @@
 	if(vname)
 		speaker_name = vname
 
-	if(istype(speaker, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = speaker
+	if(istype(speaker, /mob/living/complex/human))
+		var/mob/living/complex/human/H = speaker
 		if(H.voice)
 			speaker_name = H.voice
 
@@ -197,18 +197,18 @@
 
 	if(istype(src, /mob/living/silicon/ai) && !hard_to_hear)
 		var/jobname // the mob's "job"
-		var/mob/living/carbon/human/impersonating //The crew member being impersonated, if any.
+		var/mob/living/complex/human/impersonating //The crew member being impersonated, if any.
 
 		if (ishuman(speaker))
-			var/mob/living/carbon/human/H = speaker
+			var/mob/living/complex/human/H = speaker
 
 			if(H.wear_mask && istype(H.wear_mask,/obj/item/clothing/mask/gas/voice))
 				changed_voice = 1
 				var/list/impersonated = new()
-				var/mob/living/carbon/human/I = impersonated[speaker_name]
+				var/mob/living/complex/human/I = impersonated[speaker_name]
 
 				if(!I)
-					for(var/mob/living/carbon/human/M in GLOB.mob_list)
+					for(var/mob/living/complex/human/M in GLOB.mob_list)
 						if(M.real_name == speaker_name)
 							I = M
 							impersonated[speaker_name] = I
@@ -224,7 +224,7 @@
 			else
 				jobname = H.get_assignment()
 
-		else if (iscarbon(speaker)) // Nonhuman carbon mob
+		else if (iscomplexmob(speaker)) // Nonhuman carbon mob
 			jobname = "No id"
 		else if (isAI(speaker))
 			jobname = "AI"

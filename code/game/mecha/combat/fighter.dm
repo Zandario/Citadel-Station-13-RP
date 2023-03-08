@@ -53,7 +53,7 @@
 	cell.charge = 30000
 	cell.maxcharge = 30000
 
-/obj/mecha/combat/fighter/moved_inside(var/mob/living/carbon/human/H)
+/obj/mecha/combat/fighter/moved_inside(var/mob/living/complex/human/H)
 	. = ..()
 	consider_gravity()
 

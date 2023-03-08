@@ -53,13 +53,13 @@
 
 #define isAI(A) istype(A, /mob/living/silicon/ai)
 
-#define isalien(A) istype(A, /mob/living/carbon/alien)
+#define isalien(A) istype(A, /mob/living/complex/alien)
 
 #define isanimal(A) istype(A, /mob/living/simple_animal)
 
-#define isbrain(A) istype(A, /mob/living/carbon/brain)
+#define isbrain(A) istype(A, /mob/living/complex/brain)
 
-#define iscarbon(A) istype(A, /mob/living/carbon)
+#define iscomplexmob(A) istype(A, /mob/living/complex)
 
 #define iscorgi(A) istype(A, /mob/living/simple_mob/animal/passive/dog/corgi)
 
@@ -67,7 +67,7 @@
 
 #define isEye(A) istype(A, /mob/observer/eye)
 
-#define ishuman(A) istype(A, /mob/living/carbon/human)
+#define ishuman(A) istype(A, /mob/living/complex/human)
 
 #define isliving(A) istype(A, /mob/living)
 
@@ -96,9 +96,9 @@
 #define issimple(A) istype(A, /mob/living/simple_mob)
 
 /proc/is_species_type(atom/A, path)
-	if(!istype(A, /mob/living/carbon/human))
+	if(!istype(A, /mob/living/complex/human))
 		return FALSE
-	var/mob/living/carbon/human/H = A
+	var/mob/living/complex/human/H = A
 	return istype(H.species, path)
 
 #define fast_is_species_type(H, path)	istype(H.species, path)

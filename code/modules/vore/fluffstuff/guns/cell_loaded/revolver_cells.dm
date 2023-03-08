@@ -69,7 +69,7 @@
 
 /obj/item/projectile/bullet/stripper/on_hit(var/atom/stripped)
 	if(ishuman(stripped))
-		var/mob/living/carbon/human/H = stripped
+		var/mob/living/complex/human/H = stripped
 		if(!H.permit_stripped)
 			return
 		H.drop_slots_to_ground(list(SLOT_ID_SUIT, SLOT_ID_UNIFORM, SLOT_ID_BACK, SLOT_ID_SHOES, SLOT_ID_GLOVES))
@@ -100,7 +100,7 @@
 		if(L.mind)
 			var/nif
 			if(ishuman(L))
-				var/mob/living/carbon/human/H = L
+				var/mob/living/complex/human/H = L
 				nif = H.nif
 			SStranscore.m_backup(L.mind,nif,one_time = TRUE)
 		L.gib()

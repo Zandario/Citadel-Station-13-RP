@@ -7,10 +7,10 @@
 	enhancedtext = "Shocking biologicals without grabbing only requires five chemicals, and has more disabling power."
 	ability_icon_state = "ling_bioelectrogenesis"
 	genomecost = 2
-	verbpath = /mob/living/carbon/human/proc/changeling_bioelectrogenesis
+	verbpath = /mob/living/complex/human/proc/changeling_bioelectrogenesis
 
 //Recharge whatever's in our hand, or shock people.
-/mob/living/carbon/human/proc/changeling_bioelectrogenesis()
+/mob/living/complex/human/proc/changeling_bioelectrogenesis()
 	set category = "Changeling"
 	set name = "Bioelectrogenesis (20 + 10/shock)"
 	set desc = "Recharges anything in your hand, or shocks people."
@@ -126,7 +126,7 @@
 	. = ..()
 	qdel(src)
 
-/obj/item/electric_hand/afterattack(var/atom/target, var/mob/living/carbon/human/user, proximity)
+/obj/item/electric_hand/afterattack(var/atom/target, var/mob/living/complex/human/user, proximity)
 	if(!target)
 		return
 	if(!proximity)
@@ -139,8 +139,8 @@
 		siemens = gloves.siemens_coefficient
 
 	//Excuse the copypasta.
-	if(istype(target,/mob/living/carbon))
-		var/mob/living/carbon/C = target
+	if(istype(target,/mob/living/complex))
+		var/mob/living/complex/C = target
 
 		if(user.mind.changeling.chem_charges < shock_cost)
 			to_chat(src, "<span class='warning'>We require more chemicals to electrocute [C]!</span>")

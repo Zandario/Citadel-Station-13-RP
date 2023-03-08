@@ -97,7 +97,7 @@
 	set category = "Fun"
 	set name = "Make Robot"
 
-	if(istype(M, /mob/living/carbon/human))
+	if(istype(M, /mob/living/complex/human))
 		log_admin("[key_name(src)] has robotized [M.key].")
 		spawn(10)
 			M:Robotize()
@@ -301,8 +301,8 @@
 	if (!SSticker)
 		alert("Wait until the game starts")
 		return
-	if (istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(M, /mob/living/complex/human))
+		var/mob/living/complex/human/H = M
 		if (H.wear_id)
 			var/obj/item/card/id/id = H.wear_id
 			if(istype(H.wear_id, /obj/item/pda))
@@ -457,7 +457,7 @@
 	if(!ishuman(target))
 		return
 
-	var/mob/living/carbon/human/H = target
+	var/mob/living/complex/human/H = target
 
 	var/datum/outfit/outfit = input("Select outfit.", "Select equipment.") as null|anything in get_all_outfits()
 	if(!outfit)
@@ -466,7 +466,7 @@
 	feedback_add_details("admin_verb","SEQ")
 	dressup_human(H, outfit, 1)
 
-/proc/dressup_human(var/mob/living/carbon/human/H, var/datum/outfit/outfit)
+/proc/dressup_human(var/mob/living/complex/human/H, var/datum/outfit/outfit)
 	if(!H || !outfit)
 		return
 	if(outfit.undress)
@@ -621,7 +621,7 @@
 
 // DNA2 - Admin Hax
 /client/proc/cmd_admin_toggle_block(var/mob/M,var/block)
-	if(istype(M, /mob/living/carbon))
+	if(istype(M, /mob/living/complex))
 		M.dna.SetSEState(block,!M.dna.GetSEState(block))
 		domutcheck(M,null,MUTCHK_FORCED)
 		M.update_mutations()
@@ -706,7 +706,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/mob/living/carbon/human/H = input("Pick a mob with a player","Quick NIF") as null|anything in GLOB.player_list
+	var/mob/living/complex/human/H = input("Pick a mob with a player","Quick NIF") as null|anything in GLOB.player_list
 
 	if(!H)
 		return

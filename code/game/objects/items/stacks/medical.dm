@@ -21,18 +21,18 @@
 	checked_application(target, user)
 
 /obj/item/stack/medical/proc/checked_application(mob/M, mob/user)
-	var/mob/living/carbon/C = M
+	var/mob/living/complex/C = M
 	if(!istype(C))
 		to_chat(user, "<span class='warning'>\The [src] cannot be applied to [M]!</span>")
 		return FALSE
 
-	if ( ! (istype(user, /mob/living/carbon/human) || \
+	if ( ! (istype(user, /mob/living/complex/human) || \
 			istype(user, /mob/living/silicon)) )
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return FALSE
 
-	if (istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(M, /mob/living/complex/human))
+		var/mob/living/complex/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 
 		if(!affecting)
@@ -96,8 +96,8 @@
 	if(!(. = ..()))
 		return
 
-	if (istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(M, /mob/living/complex/human))
+		var/mob/living/complex/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 
 		if(affecting.open)
@@ -158,8 +158,8 @@
 	if(!(. = ..()))
 		return
 
-	if (istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(M, /mob/living/complex/human))
+		var/mob/living/complex/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 
 		if(affecting.open)
@@ -227,8 +227,8 @@
 	if(!(. = ..()))
 		return
 
-	if (istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(M, /mob/living/complex/human))
+		var/mob/living/complex/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 
 		if(affecting.open)
@@ -266,8 +266,8 @@
 	if(!(. = ..()))
 		return
 
-	if (istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(M, /mob/living/complex/human))
+		var/mob/living/complex/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 
 		if(affecting.open)
@@ -328,8 +328,8 @@
 	if(!(. = ..()))
 		return
 
-	if (istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(M, /mob/living/complex/human))
+		var/mob/living/complex/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 
 		if(affecting.open)
@@ -371,8 +371,8 @@
 	if(!(. = ..()))
 		return
 
-	if (istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(M, /mob/living/complex/human))
+		var/mob/living/complex/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 		var/limb = affecting.name
 		if(!(affecting.organ_tag in splintable_organs))
@@ -461,8 +461,8 @@
 	if(!(. = ..()))
 		return
 
-	if (istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(M, /mob/living/complex/human))
+		var/mob/living/complex/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 
 		if(affecting.open)
@@ -529,8 +529,8 @@
 	if(!(. = ..()))
 		return
 
-	if (istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(M, /mob/living/complex/human))
+		var/mob/living/complex/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 
 		if(affecting.open)

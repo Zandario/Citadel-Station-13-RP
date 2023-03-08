@@ -17,7 +17,7 @@
 	pass_flags_self = ATOM_PASS_TABLE | ATOM_PASS_OVERHEAD_THROW
 
 	/// Who are we sticking our needle in?
-	var/mob/living/carbon/attached_victim
+	var/mob/living/complex/attached_victim
 	/// Are we donating or injecting?
 	var/injection_mode = IV_INJECTING
 	/// Whether we feed slower.

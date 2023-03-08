@@ -8,7 +8,7 @@
 	range = MELEE
 	equip_cooldown = 30
 	mech_flags = EXOSUIT_MODULE_MEDICAL
-	var/mob/living/carbon/human/occupant = null
+	var/mob/living/complex/human/occupant = null
 	var/datum/global_iterator/pr_mech_sleeper
 	var/inject_amount = 5
 	required_type = list(/obj/mecha/medical)
@@ -30,7 +30,7 @@
 /obj/item/mecha_parts/mecha_equipment/tool/sleeper/Exit(atom/movable/O)
 	return FALSE
 
-/obj/item/mecha_parts/mecha_equipment/tool/sleeper/action(var/mob/living/carbon/human/target)
+/obj/item/mecha_parts/mecha_equipment/tool/sleeper/action(var/mob/living/complex/human/target)
 	if(!action_checks(target))
 		return
 	if(!istype(target))
@@ -228,7 +228,7 @@
 		S.log_message("Deactivated.")
 		S.occupant_message("[src] deactivated - no power.")
 		return stop()
-	var/mob/living/carbon/M = S.occupant
+	var/mob/living/complex/M = S.occupant
 	if(!M)
 		return
 	if(M.health > 0)

@@ -1,7 +1,7 @@
-/mob/living/carbon/human/instantiate_hud(var/datum/hud/HUD, var/ui_style, var/ui_color, var/ui_alpha)
+/mob/living/complex/human/instantiate_hud(var/datum/hud/HUD, var/ui_style, var/ui_color, var/ui_alpha)
 	HUD.human_hud(ui_style, ui_color, ui_alpha, src)
 
-/datum/hud/proc/human_hud(var/ui_style='icons/mob/screen1_White.dmi', var/ui_color = "#ffffff", var/ui_alpha = 255, var/mob/living/carbon/human/target)
+/datum/hud/proc/human_hud(var/ui_style='icons/mob/screen1_White.dmi', var/ui_color = "#ffffff", var/ui_alpha = 255, var/mob/living/complex/human/target)
 	var/datum/hud_data/hud_data
 	if(!istype(target))
 		hud_data = new()
@@ -381,7 +381,7 @@
 	return
 
 
-/mob/living/carbon/human/verb/toggle_hotkey_verbs()
+/mob/living/complex/human/verb/toggle_hotkey_verbs()
 	set category = "OOC"
 	set name = "Toggle hotkey buttons"
 	set desc = "This disables or enables the user interface buttons which can be used with hotkeys."
@@ -394,7 +394,7 @@
 		hud_used.hotkey_ui_hidden = 1
 
 //Used for new human mobs created by cloning/goleming/etc.
-/mob/living/carbon/human/proc/set_cloned_appearance()
+/mob/living/complex/human/proc/set_cloned_appearance()
 	f_style = "Shaved"
 	if(dna.species == SPECIES_HUMAN) //no more xenos losing ears/tentacles
 		h_style = pick("Bedhead", "Bedhead 2", "Bedhead 3")
@@ -421,8 +421,8 @@
 	icon_state = "wiz_energy"
 
 /atom/movable/screen/healths/Click_vr()
-	if(istype(usr) && iscarbon(usr))
-		var/mob/living/carbon/C = usr
+	if(istype(usr) && iscomplexmob(usr))
+		var/mob/living/complex/C = usr
 		C.help_shake_act(C)
 
 /atom/movable/screen/food/Click_vr()

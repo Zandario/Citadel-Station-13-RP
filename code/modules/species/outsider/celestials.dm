@@ -45,8 +45,8 @@
 	)
 
 	inherent_verbs = list(
-		/mob/living/carbon/human/proc/tie_hair,
-		/mob/living/carbon/human/proc/lick_wounds,
+		/mob/living/complex/human/proc/tie_hair,
+		/mob/living/complex/human/proc/lick_wounds,
 		/mob/living/proc/flying_toggle,
 		/mob/living/proc/start_wings_hovering,
 		/mob/living/proc/toggle_pass_table,
@@ -96,8 +96,8 @@
 	)
 
 	inherent_verbs = list(
-		/mob/living/carbon/human/proc/tie_hair,
-		/mob/living/carbon/human/proc/succubus_drain,
-		/mob/living/carbon/human/proc/succubus_drain_finalize,
-		/mob/living/carbon/human/proc/succubus_drain_lethal,
+		/mob/living/complex/human/proc/tie_hair,
+		/mob/living/complex/human/proc/succubus_drain,
+		/mob/living/complex/human/proc/succubus_drain_finalize,
+		/mob/living/complex/human/proc/succubus_drain_lethal,
 	)

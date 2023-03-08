@@ -114,8 +114,8 @@
 	else
 
 		// Aliens can get straight through these.
-		if(istype(usr,/mob/living/carbon))
-			var/mob/living/carbon/M = usr
+		if(istype(usr,/mob/living/complex))
+			var/mob/living/complex/M = usr
 			if(locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs)
 				for(var/mob/O in oviewers(src))
 					O.show_message("<span class='warning'>[usr] strokes the [name] and it melts away!</span>", 1)
@@ -456,7 +456,7 @@ Alien plants should do something if theres a lot of poison
 
 /obj/effect/alien/egg/attack_hand(user as mob)
 
-	var/mob/living/carbon/M = user
+	var/mob/living/complex/M = user
 	if(!istype(M) || !(locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs))
 		return attack_hand(user)
 
@@ -555,7 +555,7 @@ Alien plants should do something if theres a lot of poison
 		if(!CanHug(AM))
 			return
 
-		var/mob/living/carbon/C = AM
+		var/mob/living/complex/C = AM
 		if(C.stat == CONSCIOUS && C.status_flags & TRAIT_XENO_HOST)
 			return
 

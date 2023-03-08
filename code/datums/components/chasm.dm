@@ -77,7 +77,7 @@
 		if(M.is_flying())
 			return FALSE
 		if(ishuman(AM))
-			var/mob/living/carbon/human/H = AM
+			var/mob/living/complex/human/H = AM
 			if(istype(H.belt, /obj/item/wormhole_jaunter))
 				var/obj/item/wormhole_jaunter/J = H.belt
 				//To freak out any bystanders

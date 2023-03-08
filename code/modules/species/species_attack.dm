@@ -21,7 +21,7 @@
 	sharp = 1
 	edge = 1
 
-/datum/unarmed_attack/claws/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
+/datum/unarmed_attack/claws/show_attack(var/mob/living/complex/human/user, var/mob/living/complex/human/target, var/zone, var/attack_damage)
 	var/skill = user.skills["combat"]
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 	var/datum/gender/T = GLOB.gender_datums[user.get_visible_gender()]
@@ -79,7 +79,7 @@
 	attack_noun = list("body")
 	damage = 2
 
-/datum/unarmed_attack/slime_glomp/apply_effects(var/mob/living/carbon/human/user,var/mob/living/carbon/human/target,var/armour,var/attack_damage,var/zone)
+/datum/unarmed_attack/slime_glomp/apply_effects(var/mob/living/complex/human/user,var/mob/living/complex/human/target,var/armour,var/attack_damage,var/zone)
 	..()
 	user.apply_stored_shock_to(target)
 
@@ -89,7 +89,7 @@
 /datum/unarmed_attack/stomp/weak/get_unarmed_damage()
 	return damage
 
-/datum/unarmed_attack/stomp/weak/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
+/datum/unarmed_attack/stomp/weak/show_attack(var/mob/living/complex/human/user, var/mob/living/complex/human/target, var/zone, var/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 	user.visible_message("<span class='warning'>[user] jumped up and down on \the [target]'s [affecting.name]!</span>")
 	playsound(user.loc, attack_sound, 25, 1, -1)
@@ -102,7 +102,7 @@
 	sharp = 1
 	edge = 1
 
-/datum/unarmed_attack/bite/sharp/numbing/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
+/datum/unarmed_attack/bite/sharp/numbing/show_attack(var/mob/living/complex/human/user, var/mob/living/complex/human/target, var/zone, var/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 
 	attack_damage = clamp(attack_damage, 1, 5)
@@ -144,13 +144,13 @@
 /datum/unarmed_attack/claws/shadekin
 	var/energy_gain = 3
 
-/datum/unarmed_attack/claws/shadekin/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
+/datum/unarmed_attack/claws/shadekin/show_attack(var/mob/living/complex/human/user, var/mob/living/complex/human/target, var/zone, var/attack_damage)
 	..()
 	user.shadekin_adjust_energy(energy_gain)
 
 /datum/unarmed_attack/bite/sharp/shadekin
 	var/energy_gain = 3
 
-/datum/unarmed_attack/bite/sharp/shadekin/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
+/datum/unarmed_attack/bite/sharp/shadekin/show_attack(var/mob/living/complex/human/user, var/mob/living/complex/human/target, var/zone, var/attack_damage)
 	..()
 	user.shadekin_adjust_energy(energy_gain)

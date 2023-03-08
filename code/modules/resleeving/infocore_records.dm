@@ -3,8 +3,8 @@
 //// for the resleeving tech
 ////////////////////////////////
 
-/mob/living/carbon/human/var/resleeve_lock
-/mob/living/carbon/human/var/original_player
+/mob/living/complex/human/var/resleeve_lock
+/mob/living/complex/human/var/original_player
 
 /////// Mind-backup record ///////
 /datum/transhuman/mind_record
@@ -31,7 +31,7 @@
 
 	var/one_time = FALSE
 
-/datum/transhuman/mind_record/New(var/datum/mind/mind, var/mob/living/carbon/human/M, var/add_to_db = TRUE, var/one_time = FALSE)
+/datum/transhuman/mind_record/New(var/datum/mind/mind, var/mob/living/complex/human/M, var/add_to_db = TRUE, var/one_time = FALSE)
 	ASSERT(mind)
 
 	src.one_time = one_time
@@ -44,7 +44,7 @@
 	cryo_at = 0
 
 	//Mental stuff the game doesn't keep mentally
-	if(istype(M) || istype(M,/mob/living/carbon/brain/caught_soul))
+	if(istype(M) || istype(M,/mob/living/complex/brain/caught_soul))
 		id_gender = M.identifying_gender
 		languages = M.languages.Copy()
 		mind_oocnotes = M.ooc_notes
@@ -101,7 +101,7 @@
 	organ_data.Cut()
 	return QDEL_HINT_HARDDEL // For now at least there is no easy way to clear references to this in machines etc.
 
-/datum/transhuman/body_record/proc/init_from_mob(var/mob/living/carbon/human/M, var/add_to_db = 0, var/ckeylock = 0)
+/datum/transhuman/body_record/proc/init_from_mob(var/mob/living/complex/human/M, var/add_to_db = 0, var/ckeylock = 0)
 	ASSERT(!QDELETED(M))
 	ASSERT(istype(M))
 

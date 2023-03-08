@@ -15,7 +15,7 @@
 	if(!istype(I) || I.anchored)
 		return  ..()
 
-	var/mob/living/carbon/human/user = usr
+	var/mob/living/complex/human/user = usr
 
 	if (isturf(I.loc))
 		if (!user.Adjacent(I))

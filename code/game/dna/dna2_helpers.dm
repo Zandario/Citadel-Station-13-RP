@@ -151,12 +151,12 @@
  * Simpler. Don't specify UI in order for the mob to use its own.
  */
 /mob/proc/UpdateAppearance(list/UI=null)
-	if(istype(src, /mob/living/carbon/human))
+	if(istype(src, /mob/living/complex/human))
 		if(UI!=null)
 			src.dna.UI=UI
 			src.dna.UpdateUI()
 		dna.check_integrity()
-		var/mob/living/carbon/human/H = src
+		var/mob/living/complex/human/H = src
 		H.r_hair   = dna.GetUIValueRange(DNA_UI_HAIR_R,    255)
 		H.g_hair   = dna.GetUIValueRange(DNA_UI_HAIR_G,    255)
 		H.b_hair   = dna.GetUIValueRange(DNA_UI_HAIR_B,    255)
@@ -279,7 +279,7 @@
 		return FALSE
 
 
-/mob/living/carbon/human/proc/force_update_organs()
+/mob/living/complex/human/proc/force_update_organs()
 	for(var/obj/item/organ/O as anything in organs + internal_organs)
 		O.species = species
 
@@ -291,5 +291,5 @@
 /mob/proc/has_dna()
 	return
 
-/mob/living/carbon/has_dna()
+/mob/living/complex/has_dna()
 	return dna

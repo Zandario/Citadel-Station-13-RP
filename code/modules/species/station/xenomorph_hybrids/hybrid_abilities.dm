@@ -1,4 +1,4 @@
-/mob/living/carbon/human/proc/hybrid_plant()
+/mob/living/complex/human/proc/hybrid_plant()
 	set name = "Plant Weed (10)"
 	set desc = "Plants some alien weeds"
 	set category = "Abilities"

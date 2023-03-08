@@ -44,8 +44,8 @@
 	var/mob/living/L = user
 
 	if(target == L)
-		if(istype(target, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = target
+		if(istype(target, /mob/living/complex/human))
+			var/mob/living/complex/human/H = target
 			var/obj/item/organ/external/affecting = H.get_organ(check_zone(L.zone_sel.selecting))
 			if(!affecting)
 				to_chat(user, SPAN_WARNING("The limb is missing!"))
@@ -79,8 +79,8 @@
 			affecting.update_damages()
 			return TRUE
 
-	else if(istype(target, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = target
+	else if(istype(target, /mob/living/complex/human))
+		var/mob/living/complex/human/H = target
 		var/obj/item/organ/external/affecting = H.get_organ(check_zone(L.zone_sel.selecting))
 		if(!affecting)
 			to_chat(user, SPAN_WARNING("The limb is missing!"))
@@ -128,4 +128,3 @@
 			W.bandage()
 			break //dont bandage more than one wound, its only one patch you can have in your stack
 		affecting.update_damages()
-

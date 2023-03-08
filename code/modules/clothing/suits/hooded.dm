@@ -50,7 +50,7 @@
 /obj/item/clothing/suit/storage/hooded/proc/ToggleHood()
 	if(!hood_up)
 		if(ishuman(loc))
-			var/mob/living/carbon/human/H = src.loc
+			var/mob/living/complex/human/H = src.loc
 			if(H.wear_suit != src)
 				to_chat(H, "<span class='warning'>You must be wearing [src] to put up the hood!</span>")
 				return

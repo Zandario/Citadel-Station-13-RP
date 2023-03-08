@@ -20,7 +20,7 @@
 	//glow_range = 0
 	//glow_intensity = 0
 
-	var/mob/living/carbon/human/humanform
+	var/mob/living/complex/human/humanform
 	var/datum/modifier/healing
 
 	var/obj/prev_left_hand
@@ -56,7 +56,7 @@
 	set_light(0)
 	return ..()
 
-/mob/living/carbon/human/Destroy()
+/mob/living/complex/human/Destroy()
 	if(stored_blob)
 		stored_blob = null
 		qdel(stored_blob)
@@ -81,7 +81,7 @@
 	return
 
 //Constructor allows passing the human to sync damages
-/mob/living/simple_mob/slime/promethean/New(var/newloc, var/mob/living/carbon/human/H)
+/mob/living/simple_mob/slime/promethean/New(var/newloc, var/mob/living/complex/human/H)
 	..()
 	if(H)
 		humanform = H
@@ -301,12 +301,12 @@
 /mob/living/simple_mob/slime/promethean/init_vore()
 	return
 
-/mob/living/carbon/human
+/mob/living/complex/human
 	var/mob/living/simple_mob/slime/promethean/stored_blob = null
 
 
 // Helpers - Unsafe, WILL perform change.
-/mob/living/carbon/human/proc/prommie_intoblob(force)
+/mob/living/complex/human/proc/prommie_intoblob(force)
 	var/global/list/disallowed_promethean_accessories = list(
 	/obj/item/clothing/accessory/holster,
 	/obj/item/clothing/accessory/storage,
@@ -414,7 +414,7 @@
 	//Return our blob in case someone wants it
 	return blob
 
-/mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/promethean/blob, force)
+/mob/living/complex/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/promethean/blob, force)
 	if(!istype(blob))
 		return
 

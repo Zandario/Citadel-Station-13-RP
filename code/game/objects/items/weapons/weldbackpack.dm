@@ -36,7 +36,7 @@
 	if(!ishuman(user))
 		return 0
 
-	var/mob/living/carbon/human/H = user
+	var/mob/living/complex/human/H = user
 
 	if(H.hands_full()) //Make sure our hands aren't full.
 		to_chat(H, "<span class='warning'>Your hands are full.  Drop something first.</span>")
@@ -85,8 +85,8 @@
 	return
 
 /obj/item/weldpack/attack_hand(mob/user as mob)
-	if(istype(user, /mob/living/carbon/human))
-		var/mob/living/carbon/human/wearer = user
+	if(istype(user, /mob/living/complex/human))
+		var/mob/living/complex/human/wearer = user
 		if(wearer.back == src)
 			if(nozzle && nozzle_attached)
 				if(!wearer.incapacitated())

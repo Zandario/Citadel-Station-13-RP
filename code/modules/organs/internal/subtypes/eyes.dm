@@ -29,7 +29,7 @@
 
 /obj/item/organ/internal/eyes/grey/colormatch/proc/sync_color()
 	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
+		var/mob/living/complex/human/H = owner
 		color = H.species.blood_color
 
 /obj/item/organ/internal/eyes/proc/change_eye_color()
@@ -52,7 +52,7 @@
 		// Finally, update the eye icon on the mob.
 		owner.regenerate_icons()
 
-/obj/item/organ/internal/eyes/replaced(var/mob/living/carbon/human/target)
+/obj/item/organ/internal/eyes/replaced(var/mob/living/complex/human/target)
 
 	// Apply our eye colour to the target.
 	if(istype(target) && eye_colour)

@@ -332,7 +332,7 @@
 		if(0 to NUTRITION_LEVEL_STARVING)
 			add_event(null, "nutrition", /datum/mood_event/starving)
 
-/datum/component/mood/proc/HandleCharge(mob/living/carbon/human/H)
+/datum/component/mood/proc/HandleCharge(mob/living/complex/human/H)
 	var/datum/species/ethereal/E = H.dna.species
 	switch(E.get_charge(H))
 		if(ETHEREAL_CHARGE_NONE to ETHEREAL_CHARGE_LOWPOWER)

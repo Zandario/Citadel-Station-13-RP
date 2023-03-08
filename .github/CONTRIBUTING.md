@@ -361,7 +361,7 @@ Of course, if the list contains data of a mixed type then the above optimisation
 Like other languages in the C family, DM has a ```.``` or "Dot" operator, used for accessing variables/members/functions of an object instance.
 eg:
 ```DM
-var/mob/living/carbon/human/H = YOU_THE_READER
+var/mob/living/complex/human/H = YOU_THE_READER
 H.gib()
 ```
 However, DM also has a dot variable, accessed just as ```.``` on its own, defaulting to a value of null. Now, what's special about the dot operator is that it is automatically returned (as in the ```return``` statement) at the end of a proc, provided the proc does not already manually return (```return count``` for example.) Why is this special?

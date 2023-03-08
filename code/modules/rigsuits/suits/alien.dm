@@ -126,7 +126,7 @@
 	slowdown = 0
 	offline_slowdown = 0
 	seal_delay = 1
-	var/mob/living/carbon/human/myprotean
+	var/mob/living/complex/human/myprotean
 	initial_modules = list(
 		/obj/item/rig_module/power_sink,
 		/obj/item/rig_module/device/rigwelder, // Almost forgot these, but who uses blobsuits for their intended purpose anyways?
@@ -143,7 +143,7 @@
 		return
 	forced_move(direction, user, FALSE, TRUE)
 
-/obj/item/rig/protean/check_suit_access(mob/living/carbon/human/user)
+/obj/item/rig/protean/check_suit_access(mob/living/complex/human/user)
 	if(user == myprotean)
 		return TRUE
 	return ..()

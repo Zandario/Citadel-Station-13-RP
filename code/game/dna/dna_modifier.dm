@@ -54,7 +54,7 @@
 
 	var/locked = FALSE
 	var/opened = FALSE
-	var/mob/living/carbon/occupant = null
+	var/mob/living/complex/occupant = null
 	var/obj/item/reagent_containers/glass/beaker = null
 
 /obj/machinery/dna_scannernew/Initialize(mapload)
@@ -185,7 +185,7 @@
 /obj/machinery/dna_scannernew/proc/go_out()
 	if(!occupant|| locked)
 		return
-	if(istype(occupant,/mob/living/carbon/brain))
+	if(istype(occupant,/mob/living/complex/brain))
 		for(var/obj/O in src)
 			if(istype(O,/obj/item/organ/internal/brain))
 				O.forceMove(loc)
@@ -707,7 +707,7 @@
 				databuf.types = DNA2_BUF_UE
 				databuf.dna = src.connected.occupant.dna.Clone()
 				if(ishuman(connected.occupant))
-					var/mob/living/carbon/human/H = connected.occupant
+					var/mob/living/complex/human/H = connected.occupant
 					databuf.dna.real_name = H.dna.real_name
 					databuf.gender = H.gender
 					databuf.body_descriptors = H.descriptors
@@ -721,7 +721,7 @@
 				databuf.types = DNA2_BUF_UI|DNA2_BUF_UE
 				databuf.dna = src.connected.occupant.dna.Clone()
 				if(ishuman(connected.occupant))
-					var/mob/living/carbon/human/H = connected.occupant
+					var/mob/living/complex/human/H = connected.occupant
 					databuf.dna.real_name = H.dna.real_name
 					databuf.gender = H.gender
 					databuf.body_descriptors = H.descriptors
@@ -735,7 +735,7 @@
 				databuf.types = DNA2_BUF_SE
 				databuf.dna = src.connected.occupant.dna.Clone()
 				if(ishuman(connected.occupant))
-					var/mob/living/carbon/human/H = connected.occupant
+					var/mob/living/complex/human/H = connected.occupant
 					databuf.dna.real_name = H.dna.real_name
 					databuf.gender = H.gender
 					databuf.body_descriptors = H.descriptors
@@ -775,7 +775,7 @@
 					src.connected.occupant.real_name = buf.dna.real_name
 					src.connected.occupant.name = buf.dna.real_name
 					if(ishuman(connected.occupant))
-						var/mob/living/carbon/human/H = connected.occupant
+						var/mob/living/complex/human/H = connected.occupant
 						H.gender = buf.gender
 						H.descriptors = buf.body_descriptors
 				src.connected.occupant.UpdateAppearance(buf.dna.UI.Copy())
@@ -783,7 +783,7 @@
 				src.connected.occupant.dna.SE = buf.dna.SE.Copy()
 				src.connected.occupant.dna.UpdateSE()
 				if(ishuman(connected.occupant))
-					var/mob/living/carbon/human/H = connected.occupant
+					var/mob/living/complex/human/H = connected.occupant
 					H.gender = buf.gender
 					H.descriptors = buf.body_descriptors
 				domutcheck(src.connected.occupant,src.connected)

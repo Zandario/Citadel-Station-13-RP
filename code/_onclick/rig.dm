@@ -50,10 +50,10 @@
 /mob/living/proc/can_use_rig()
 	return 0
 
-/mob/living/carbon/human/can_use_rig()
+/mob/living/complex/human/can_use_rig()
 	return 1
 
-/mob/living/carbon/brain/can_use_rig()
+/mob/living/complex/brain/can_use_rig()
 	return istype(loc, /obj/item/mmi)
 
 /mob/living/silicon/ai/can_use_rig()

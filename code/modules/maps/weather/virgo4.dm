@@ -342,7 +342,7 @@
 
 /datum/weather/virgo4/hail/process_effects()
 	..()
-	for(var/mob/living/carbon/H as anything in human_mob_list)
+	for(var/mob/living/complex/H as anything in human_mob_list)
 		if(H.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(H)
 			if(!T.outdoors)

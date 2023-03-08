@@ -215,13 +215,13 @@ badges
 
 /obj/item/clothing/accessory/badge/oricon/tags/Initialize(mapload)
 	. = ..()
-	var/mob/living/carbon/human/H
-	H = get_holder_of_type(src, /mob/living/carbon/human)
+	var/mob/living/complex/human/H
+	H = get_holder_of_type(src, /mob/living/complex/human)
 	if(H)
 		set_name(H.real_name)
 		set_desc(H)
 
-/obj/item/clothing/accessory/badge/oricon/tags/set_desc(var/mob/living/carbon/human/H)
+/obj/item/clothing/accessory/badge/oricon/tags/set_desc(var/mob/living/complex/human/H)
 	if(!istype(H))
 		return
 	var/religion = "Unset"

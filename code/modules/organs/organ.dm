@@ -31,7 +31,7 @@
 
 //! ##REFERENCE VARS
 	/// Current mob owning the organ.
-	var/mob/living/carbon/human/owner
+	var/mob/living/complex/human/owner
 	/// Transplant match data.
 	var/list/transplant_data
 	/// Trauma data for forensics.
@@ -107,18 +107,18 @@
 	if(!max_damage)
 		max_damage = min_broken_damage * 2
 
-	if(iscarbon(owner))
-		var/mob/living/carbon/C = owner
+	if(iscomplexmob(owner))
+		var/mob/living/complex/C = owner
 		species = SScharacters.resolve_species_path(/datum/species/human)
 		if(owner.dna)
 			dna = C.dna.Clone()
 			species = C.species //For custom species
 			if(ishuman(C))
-				var/mob/living/carbon/human/H = C
+				var/mob/living/complex/human/H = C
 				s_base = LAZYACCESS(species.base_skin_colours, H.s_base)
 		else
 			stack_trace("[src] at [loc] spawned without a proper DNA.")
-		var/mob/living/carbon/human/H = C
+		var/mob/living/complex/human/H = C
 		if(istype(H))
 			if(internal)
 				var/obj/item/organ/external/E = H.get_organ(parent_organ)
@@ -138,7 +138,7 @@
 			if(owner.isSynthetic())
 				meat_type = /obj/item/stack/material/steel
 			else if(ishuman(owner))
-				var/mob/living/carbon/human/H = owner
+				var/mob/living/complex/human/H = owner
 				meat_type = H?.species?.meat_type
 
 			if(!meat_type)
@@ -387,7 +387,7 @@
 	owner = null
 	reconsider_processing()
 
-/obj/item/organ/proc/replaced(var/mob/living/carbon/human/target,var/obj/item/organ/external/affected)
+/obj/item/organ/proc/replaced(var/mob/living/complex/human/target,var/obj/item/organ/external/affected)
 
 	if(!istype(target)) return
 
@@ -580,7 +580,7 @@
 		germ_level = 0
 		return 0
 
-	var/antibiotics = iscarbon(owner) ? owner.chem_effects[CE_ANTIBIOTIC] || 0 : 0
+	var/antibiotics = iscomplexmob(owner) ? owner.chem_effects[CE_ANTIBIOTIC] || 0 : 0
 
 	var/infection_damage = 0
 
@@ -779,7 +779,7 @@
 /obj/item/organ/proc/check_verb_compatability()
 	if(owner)
 		if(ishuman(owner))
-			var/mob/living/carbon/human/H = owner
+			var/mob/living/complex/human/H = owner
 			var/obj/item/organ/O = H.get_organ(parent_organ)
 			if(forgiving_class)
 				if(O.robotic <= ORGAN_ASSISTED && robotic <= ORGAN_LIFELIKE)	// Parent is organic or assisted, we are at most synthetic.

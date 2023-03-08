@@ -94,7 +94,7 @@
 		..()
 
 /mob/living/simple_mob/animal/passive/fox/OnMouseDropLegacy(atom/over_object)
-	var/mob/living/carbon/H = over_object
+	var/mob/living/complex/H = over_object
 	if(!istype(H) || !Adjacent(H)) return ..()
 
 	if(H.a_intent == "help")
@@ -103,7 +103,7 @@
 	else
 		return ..()
 
-/mob/living/simple_mob/animal/passive/fox/get_scooped(var/mob/living/carbon/grabber)
+/mob/living/simple_mob/animal/passive/fox/get_scooped(var/mob/living/complex/grabber)
 	if (stat >= DEAD)
 		return //since the holder icon looks like a living cat
 	..()
@@ -147,7 +147,7 @@
 /* Old fox friend AI, I'm not sure how to add the fancy "friend is dead" stuff so I'm commenting it out for someone else to figure it out, this is just baseline stuff.
 //Basic friend AI
 /mob/living/simple_mob/animal/passive/fox/fluff
-	var/mob/living/carbon/human/friend
+	var/mob/living/complex/human/friend
 	var/befriend_job = null
 
 /mob/living/simple_mob/animal/passive/fox/fluff/Life(seconds, times_fired)

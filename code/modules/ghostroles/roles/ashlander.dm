@@ -229,7 +229,7 @@
 		created.mind.add_antag_datum(/datum/antagonist/ashlander, team)
 
 /obj/structure/ghost_role_spawner/ashlander/Destroy()
-	var/mob/living/carbon/human/yolk = new /mob/living/carbon/human/(get_turf(src))
+	var/mob/living/complex/human/yolk = new /mob/living/complex/human/(get_turf(src))
 	yolk.fully_replace_character_name(null,random_name(gender))
 	yolk.set_species(/datum/species/human/ashlander)
 	yolk.underwear = "Nude"

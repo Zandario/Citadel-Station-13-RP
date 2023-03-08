@@ -177,7 +177,7 @@
 
 /datum/event/xeno_infestation/proc/get_player_count()
 	var/i = 0
-	for(var/mob/living/carbon/human/C in living_mob_list)
+	for(var/mob/living/complex/human/C in living_mob_list)
 		var/turf/T = get_turf(C)
 		if(!T)
 			continue

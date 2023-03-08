@@ -48,7 +48,7 @@
 	if(CONFIG_GET(number/minimal_access_threshold))
 		to_chat(output, "<span class='notice'><B>As this station was initially staffed with a [CONFIG_GET(flag/jobs_have_minimal_access) ? "full crew, only your job's necessities" : "skeleton crew, additional access may"] have been added to your ID card.</B></span>")
 	if(ishuman(M))
-		var/mob/living/carbon/human/wageslave = M
+		var/mob/living/complex/human/wageslave = M
 		to_chat(output, "<b><span class = 'big'>Your account ID is [wageslave.account_id].</span></b>")
 		M.add_memory("Your account ID is [wageslave.account_id].")
 
@@ -89,7 +89,7 @@
 	var/list/tcg_cards = C.prefs.tcg_cards
 	var/list/tcg_decks = C.prefs.tcg_decks
 	if(tcg_cards && ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/complex/human/H = M
 		var/obj/item/tcgcard_binder/binder = new(get_turf(H))
 		H.equip_to_slot_if_possible(binder, ITEM_SLOT_BACKPACK, disable_warning = TRUE, bypass_equip_delay_self = TRUE)
 		for(var/card_type in tcg_cards)

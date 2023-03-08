@@ -503,7 +503,7 @@
 	if(gluttonous)
 		if(!inherent_verbs)
 			inherent_verbs = list()
-		inherent_verbs |= /mob/living/carbon/human/proc/regurgitate
+		inherent_verbs |= /mob/living/complex/human/proc/regurgitate
 
 /**
  * called when we apply to a mob
@@ -512,7 +512,7 @@
  *
  * handle_post_spawn() and create_organs() should be called manually if you are applying a species to a human being instantiated!
  */
-/datum/species/proc/on_apply(mob/living/carbon/human/H)
+/datum/species/proc/on_apply(mob/living/complex/human/H)
 	// todo: language sources and holder
 	for(var/id in get_intrinsic_language_ids())
 		H.add_language(id)
@@ -537,7 +537,7 @@
 /**
  * called when we are removed from a mob
  */
-/datum/species/proc/on_remove(mob/living/carbon/human/H)
+/datum/species/proc/on_remove(mob/living/complex/human/H)
 	// todo: language sources and holder
 	for(var/id in get_intrinsic_language_ids())
 		H.remove_language(id)
@@ -562,7 +562,7 @@ GLOBAL_LIST_INIT(species_oxygen_tank_by_gas, list(
 	/datum/gas/carbon_dioxide = /obj/item/tank/emergency/carbon_dioxide
 ))
 
-/datum/species/proc/equip_survival_gear(var/mob/living/carbon/human/H,var/extendedtank = 0,var/comprehensive = 0)
+/datum/species/proc/equip_survival_gear(var/mob/living/complex/human/H,var/extendedtank = 0,var/comprehensive = 0)
 	var/boxtype = /obj/item/storage/box/survival //Default survival box
 
 	var/synth = H.isSynthetic()
@@ -611,7 +611,7 @@ GLOBAL_LIST_INIT(species_oxygen_tank_by_gas, list(
  * called to ensure organs are consistent with our species's
  * this is a destructive operation and will erase old organs!
  */
-/datum/species/proc/create_organs(var/mob/living/carbon/human/H) //Handles creation of mob organs.
+/datum/species/proc/create_organs(var/mob/living/complex/human/H) //Handles creation of mob organs.
 
 	H.mob_size = mob_size
 	for(var/obj/item/organ/organ in H.contents)
@@ -667,7 +667,7 @@ GLOBAL_LIST_INIT(species_oxygen_tank_by_gas, list(
  * called to ensure blood is consistent
  * this is a destructive proc and will erase incompatible blood.
  */
-/datum/species/proc/create_blood(mob/living/carbon/human/H)
+/datum/species/proc/create_blood(mob/living/complex/human/H)
 	H.make_blood()
 	if(H.vessel.total_volume < blood_volume)
 		H.vessel.maximum_volume = blood_volume
@@ -677,11 +677,11 @@ GLOBAL_LIST_INIT(species_oxygen_tank_by_gas, list(
 		H.vessel.maximum_volume = blood_volume
 	H.fixblood()
 
-/datum/species/proc/hug(var/mob/living/carbon/human/H, var/mob/living/target)
+/datum/species/proc/hug(var/mob/living/complex/human/H, var/mob/living/target)
 
 	var/t_him = "them"
 	if(ishuman(target))
-		var/mob/living/carbon/human/T = target
+		var/mob/living/complex/human/T = target
 		if(!T.species.ambiguous_genders || (T.species.ambiguous_genders && H.species == T.species))
 			switch(T.identifying_gender)
 				if(MALE)
@@ -712,49 +712,49 @@ GLOBAL_LIST_INIT(species_oxygen_tank_by_gas, list(
 	else H.visible_message("<span class='notice'>[H] hugs [target] to make [t_him] feel better!</span>", \
 					"<span class='notice'>You hug [target] to make [t_him] feel better!</span>")
 
-/datum/species/proc/remove_inherent_verbs(var/mob/living/carbon/human/H)
+/datum/species/proc/remove_inherent_verbs(var/mob/living/complex/human/H)
 	if(!inherent_verbs)
 		return
 	remove_verb(H, inherent_verbs)
 
-/datum/species/proc/add_inherent_verbs(var/mob/living/carbon/human/H)
+/datum/species/proc/add_inherent_verbs(var/mob/living/complex/human/H)
 	add_verb(H, inherent_verbs)
 
-/datum/species/proc/add_inherent_spells(var/mob/living/carbon/human/H)
+/datum/species/proc/add_inherent_spells(var/mob/living/complex/human/H)
 	if(inherent_spells)
 		for(var/spell_to_add in inherent_spells)
 			var/spell/S = new spell_to_add(H)
 			H.add_spell(S)
 
-/datum/species/proc/remove_inherent_spells(var/mob/living/carbon/human/H)
+/datum/species/proc/remove_inherent_spells(var/mob/living/complex/human/H)
 	H.spellremove()
 
 /**
  * called after a mob is **fully** spawned
  */
-/datum/species/proc/handle_post_spawn(var/mob/living/carbon/human/H) //Handles anything not already covered by basic species assignment.
+/datum/species/proc/handle_post_spawn(var/mob/living/complex/human/H) //Handles anything not already covered by basic species assignment.
 	H.mob_bump_flag = bump_flag
 	H.mob_swap_flags = swap_flags
 	H.mob_push_flags = push_flags
 	H.pass_flags = pass_flags
 
-/datum/species/proc/handle_death(var/mob/living/carbon/human/H, gibbed = FALSE) //Handles any species-specific death events (such as dionaea nymph spawns).
+/datum/species/proc/handle_death(var/mob/living/complex/human/H, gibbed = FALSE) //Handles any species-specific death events (such as dionaea nymph spawns).
 	return
 
 // Only used for alien plasma weeds atm, but could be used for Dionaea later.
-/datum/species/proc/handle_environment_special(var/mob/living/carbon/human/H)
+/datum/species/proc/handle_environment_special(var/mob/living/complex/human/H)
 	return
 
 // Used to update alien icons for aliens.
-/datum/species/proc/handle_login_special(var/mob/living/carbon/human/H)
+/datum/species/proc/handle_login_special(var/mob/living/complex/human/H)
 	return
 
 // As above.
-/datum/species/proc/handle_logout_special(var/mob/living/carbon/human/H)
+/datum/species/proc/handle_logout_special(var/mob/living/complex/human/H)
 	return
 
 // Builds the HUD using species-specific icons and usable slots.
-/datum/species/proc/build_hud(var/mob/living/carbon/human/H)
+/datum/species/proc/build_hud(var/mob/living/complex/human/H)
 	return
 
 //Used by xenos understanding larvae and dionaea understanding nymphs.
@@ -762,7 +762,7 @@ GLOBAL_LIST_INIT(species_oxygen_tank_by_gas, list(
 	return
 
 // Called when using the shredding behavior.
-/datum/species/proc/can_shred(var/mob/living/carbon/human/H, var/ignore_intent)
+/datum/species/proc/can_shred(var/mob/living/complex/human/H, var/ignore_intent)
 
 	if(!ignore_intent && H.a_intent != INTENT_HARM)
 		return 0
@@ -776,7 +776,7 @@ GLOBAL_LIST_INIT(species_oxygen_tank_by_gas, list(
 	return 0
 
 // Called in life() when the mob has no client.
-/datum/species/proc/handle_npc(var/mob/living/carbon/human/H)
+/datum/species/proc/handle_npc(var/mob/living/complex/human/H)
 	if(H.stat == CONSCIOUS && H.ai_holder)
 		if(H.resting)
 			H.resting = FALSE
@@ -788,26 +788,26 @@ GLOBAL_LIST_INIT(species_oxygen_tank_by_gas, list(
 	return FALSE
 
 // Impliments different trails for species depending on if they're wearing shoes.
-/datum/species/proc/get_move_trail(var/mob/living/carbon/human/H)
+/datum/species/proc/get_move_trail(var/mob/living/complex/human/H)
 	if( H.shoes || ( H.wear_suit && (H.wear_suit.body_cover_flags & FEET) ) )
 		return /obj/effect/debris/cleanable/blood/tracks/footprints
 	else
 		return move_trail
 
-/datum/species/proc/update_skin(var/mob/living/carbon/human/H)
+/datum/species/proc/update_skin(var/mob/living/complex/human/H)
 	return
 
-/datum/species/proc/get_eyes(var/mob/living/carbon/human/H)
+/datum/species/proc/get_eyes(var/mob/living/complex/human/H)
 	return
 
-/datum/species/proc/can_overcome_gravity(var/mob/living/carbon/human/H)
+/datum/species/proc/can_overcome_gravity(var/mob/living/complex/human/H)
 	return FALSE
 
-/datum/species/proc/handle_fall_special(var/mob/living/carbon/human/H, var/turf/landing)
+/datum/species/proc/handle_fall_special(var/mob/living/complex/human/H, var/turf/landing)
 	return FALSE
 
 // Used for any extra behaviour when falling and to see if a species will fall at all.
-/datum/species/proc/can_fall(var/mob/living/carbon/human/H)
+/datum/species/proc/can_fall(var/mob/living/complex/human/H)
 	return TRUE
 
 // Used to find a special target for falling on, such as pouncing on someone from above.
@@ -815,11 +815,11 @@ GLOBAL_LIST_INIT(species_oxygen_tank_by_gas, list(
 	return FALSE
 
 // Used to override normal fall behaviour. Use only when the species does fall down a level.
-/datum/species/proc/fall_impact_special(var/mob/living/carbon/human/H, var/atom/A)
+/datum/species/proc/fall_impact_special(var/mob/living/complex/human/H, var/atom/A)
 	return FALSE
 
 // Allow species to display interesting information in the human stat panels
-/datum/species/proc/statpanel_status(client/C, mob/living/carbon/human/H)
+/datum/species/proc/statpanel_status(client/C, mob/living/complex/human/H)
 	return list()
 
 /datum/species/proc/update_attack_types()
@@ -833,7 +833,7 @@ GLOBAL_LIST_INIT(species_oxygen_tank_by_gas, list(
 	for(var/u_type in unarmed_types)
 		unarmed_attacks += new u_type()
 
-/datum/species/proc/handle_falling(mob/living/carbon/human/H, atom/hit_atom, damage_min, damage_max, silent, planetary)
+/datum/species/proc/handle_falling(mob/living/complex/human/H, atom/hit_atom, damage_min, damage_max, silent, planetary)
 	return FALSE
 
 /datum/species/proc/get_offset_overlay_image(spritesheet, mob_icon, mob_state, color, slot)
@@ -877,7 +877,7 @@ GLOBAL_LIST_INIT(species_oxygen_tank_by_gas, list(
  * traits - traits to add
  * H - update this human
  */
-/datum/species/proc/copy_from(datum/species/to_copy, list/traits = list(), mob/living/carbon/human/H)
+/datum/species/proc/copy_from(datum/species/to_copy, list/traits = list(), mob/living/complex/human/H)
 	ASSERT(to_copy)
 
 	if(ispath(to_copy))

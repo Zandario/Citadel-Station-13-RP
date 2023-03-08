@@ -211,7 +211,7 @@
 	if(!..())
 		return 0
 
-	var/mob/living/carbon/human/H = holder.wearer
+	var/mob/living/complex/human/H = holder.wearer
 
 	if(!charge_selected)
 		to_chat(H, "<span class='danger'>You have not selected a chemical type.</span>")
@@ -229,9 +229,9 @@
 	else if(charge.charges < chems_to_use)
 		chems_to_use = charge.charges
 
-	var/mob/living/carbon/target_mob
+	var/mob/living/complex/target_mob
 	if(target)
-		if(istype(target,/mob/living/carbon))
+		if(istype(target,/mob/living/complex))
 			target_mob = target
 		else
 			return 0
@@ -539,7 +539,7 @@
 	if(!target)
 		return 0
 
-	var/mob/living/carbon/human/H = holder.wearer
+	var/mob/living/complex/human/H = holder.wearer
 
 	if(!charge_selected)
 		to_chat(H, "<span class='danger'>You have not selected a grenade type.</span>")
@@ -647,7 +647,7 @@
 	if(!..())
 		return 0
 
-	var/mob/living/carbon/human/H = holder.wearer
+	var/mob/living/complex/human/H = holder.wearer
 
 	to_chat(H, "<font color=#4F49AF><b>You activate the suit's sprint mode.</b></font>")
 
@@ -658,7 +658,7 @@
 	if(!..())
 		return 0
 
-	var/mob/living/carbon/human/H = holder.wearer
+	var/mob/living/complex/human/H = holder.wearer
 
 	to_chat(H, "<span class='danger'>Your hardsuit returns to normal speed.</span>")
 

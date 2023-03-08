@@ -356,7 +356,7 @@
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(2, 1, location)
 	s.start()
-	for(var/mob/living/carbon/M in viewers(world.view, location))
+	for(var/mob/living/complex/M in viewers(world.view, location))
 		switch(get_dist(M, location))
 			if(0 to 3)
 				if(hasvar(M, "glasses"))
@@ -834,7 +834,7 @@
 
 	playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
 /* Removed at some point, unsure what to replace with
-	for(var/mob/living/carbon/human/M in viewers(get_turf(holder.my_atom), null))
+	for(var/mob/living/complex/human/M in viewers(get_turf(holder.my_atom), null))
 		if(M:eyecheck() <= 0)
 			flick("e_flash", M.flash)
 */
@@ -882,7 +882,7 @@
 
 	playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
 /* Removed at some point, unsure what to replace with
-	for(var/mob/living/carbon/human/M in viewers(get_turf(holder.my_atom), null))
+	for(var/mob/living/complex/human/M in viewers(get_turf(holder.my_atom), null))
 		if(M:eyecheck() <= 0)
 			flick("e_flash", M.flash)
 */
@@ -976,7 +976,7 @@
 	required_reagents = list(MAT_PHORON = 10, "bicaridine" = 10, "kelotane" = 10, "inaprovaline" = 10, "slimejelly" = 10)
 
 /datum/chemical_reaction/slimeheal/on_reaction(datum/reagents/holder, created_volume)
-	for (var/mob/living/carbon/C in viewers(get_turf(holder.my_atom), null))
+	for (var/mob/living/complex/C in viewers(get_turf(holder.my_atom), null))
 		to_chat(C, SPAN_NOTICE("A wave of energy suddenly invigorates you."))
 		C.adjustBruteLoss(-25)
 		C.adjustFireLoss(-25)
@@ -1002,14 +1002,14 @@
 
 /datum/chemical_reaction/xenolazarus/on_reaction(datum/reagents/holder, created_volume) //literally all this does is mash the regenerate button
 	if(ishuman(holder.my_atom))
-		var/mob/living/carbon/human/H = holder.my_atom
-		if(H.stat == DEAD && (/mob/living/carbon/human/proc/reconstitute_form in H.verbs)) //no magical regen for non-regenners, and can't force the reaction on live ones
+		var/mob/living/complex/human/H = holder.my_atom
+		if(H.stat == DEAD && (/mob/living/complex/human/proc/reconstitute_form in H.verbs)) //no magical regen for non-regenners, and can't force the reaction on live ones
 			if(H.hasnutriment()) // make sure it actually has the conditions to revive
 				if(H.revive_ready >= 1) // if it's not reviving, start doing so
 					H.revive_ready = REVIVING_READY // overrides the normal cooldown
 					H.visible_message("<span class='info'>[H] shudders briefly, then relaxes, faint movements stirring within.</span>")
 					H.chimera_regenerate()
-				else if (/mob/living/carbon/human/proc/hatch in H.verbs)// already reviving, check if they're ready to hatch
+				else if (/mob/living/complex/human/proc/hatch in H.verbs)// already reviving, check if they're ready to hatch
 					H.chimera_hatch()
 					H.visible_message("<span class='danger'><p><font size=4>[H] violently convulses and then bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>") // Hope you were wearing waterproofs, doc...
 					H.adjustBrainLoss(10) // they're reviving from dead, so take 10 brainloss

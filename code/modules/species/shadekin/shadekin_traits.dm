@@ -103,7 +103,7 @@
 		)
 	)
 
-/datum/trait/kintype/apply(datum/species/shadekin/S, mob/living/carbon/human/H)
+/datum/trait/kintype/apply(datum/species/shadekin/S, mob/living/complex/human/H)
 	if (istype(S))
 		..(S,H)
 		if(color) //Sanity check to see if they're actually a shadekin, otherwise just don't do anything. They shouldn't be able to spawn with the trait.
@@ -130,7 +130,7 @@
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	shredding = FALSE
 
-/datum/unarmed_attack/shadekinharmbap/apply_effects(mob/living/carbon/human/shadekin/user, mob/living/carbon/human/target, armour, attack_damage, zone)
+/datum/unarmed_attack/shadekinharmbap/apply_effects(mob/living/complex/human/shadekin/user, mob/living/complex/human/target, armour, attack_damage, zone)
 	..()
 	if(user == target) //Prevent self attack to gain energy
 		return
