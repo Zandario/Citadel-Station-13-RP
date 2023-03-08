@@ -228,7 +228,6 @@ Any-Mode: (hotkey doesn't need to be on)
 	set category = "Preferences"
 	set desc = "Toggle input control scheme"
 	set hidden = TRUE
-	
+
 	prefs.hotkeys = !prefs.hotkeys
 	set_macros()
-	

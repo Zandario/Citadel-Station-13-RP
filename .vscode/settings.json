@@ -3,7 +3,6 @@
 	"eslint.workingDirectories": [
 		"./tgui"
 	],
-	"typescript.tsdk": "./tgui/.yarn/sdks/typescript/lib",
 	"typescript.enablePromptUseWorkspaceTsdk": true,
 	"search.exclude": {
 		"**/.yarn": true,
@@ -23,6 +22,17 @@
 		"editor.rulers": [80]
 	},
 	"[scss]": {
-		"editor.rulers": [80]
+		"editor.rulers": [
+			80
+		],
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"deno.enable": true,
+	"deno.lint": true,
+	"editor.defaultFormatter": "denoland.vscode-deno",
+	"deno.unstable": true,
+	"deno.importMap": "./interface/buoy/import_map.json",
+	"[nunjucks]": {
+		"editor.defaultFormatter": "okitavera.vscode-nunjucks-formatter"
 	}
 }
