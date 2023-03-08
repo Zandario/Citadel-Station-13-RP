@@ -102,7 +102,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/submap/DJOutpost1)
 "at" = (
-/mob/living/carbon/human/ai_controlled/replicant,
+/mob/living/complex/human/ai_controlled/replicant,
 /turf/simulated/floor/tiled/techfloor,
 /area/submap/DJOutpost1)
 "au" = (

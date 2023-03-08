@@ -5651,7 +5651,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/zoo)
 "pg" = (
-/mob/living/carbon/human/sharkm{
+/mob/living/complex/human/sharkm{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/beach/water,
@@ -6238,7 +6238,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/zoo)
 "qJ" = (
-/mob/living/carbon/human/sparram{
+/mob/living/complex/human/sparram{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/grass,
@@ -6325,7 +6325,7 @@
 /turf/simulated/floor/holofloor/snow,
 /area/awaymission/zoo)
 "rb" = (
-/mob/living/carbon/human/neaera{
+/mob/living/complex/human/neaera{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/grass{
@@ -7371,7 +7371,7 @@
 /area/awaymission/zoo)
 "tn" = (
 /obj/effect/floor_decal/asteroid,
-/mob/living/carbon/human/stok{
+/mob/living/complex/human/stok{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert,
@@ -7391,7 +7391,7 @@
 	},
 /area/awaymission/zoo)
 "tq" = (
-/mob/living/carbon/human/farwa{
+/mob/living/complex/human/farwa{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/snow,
@@ -7401,7 +7401,7 @@
 /turf/simulated/floor/cult,
 /area/awaymission/zoo)
 "ts" = (
-/mob/living/carbon/human/stok{
+/mob/living/complex/human/stok{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert,
@@ -7873,7 +7873,7 @@
 /area/awaymission/zoo)
 "uz" = (
 /obj/effect/floor_decal/asteroid,
-/mob/living/carbon/human/sergallingm{
+/mob/living/complex/human/sergallingm{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/beach/sand{
@@ -7893,7 +7893,7 @@
 	},
 /area/awaymission/zoo)
 "uC" = (
-/mob/living/carbon/human/sergallingm{
+/mob/living/complex/human/sergallingm{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/beach/sand{
@@ -7950,7 +7950,7 @@
 	},
 /area/awaymission/zoo)
 "uL" = (
-/mob/living/carbon/human/sergallingm{
+/mob/living/complex/human/sergallingm{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/beach/sand{
@@ -7958,7 +7958,7 @@
 	},
 /area/awaymission/zoo)
 "uM" = (
-/mob/living/carbon/human/sergallingm{
+/mob/living/complex/human/sergallingm{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/beach/sand{
@@ -8081,7 +8081,7 @@
 /area/awaymission/zoo)
 "va" = (
 /obj/structure/flora/ausbushes/fernybush,
-/mob/living/carbon/human/monkey{
+/mob/living/complex/human/monkey{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/beach/sand{
@@ -8109,7 +8109,7 @@
 /turf/simulated/floor/holofloor/beach/sand,
 /area/awaymission/zoo)
 "ve" = (
-/mob/living/carbon/human/monkey{
+/mob/living/complex/human/monkey{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/beach/sand{
@@ -8208,7 +8208,7 @@
 /turf/simulated/floor/holofloor/snow,
 /area/awaymission/zoo)
 "vo" = (
-/mob/living/carbon/human/monkey{
+/mob/living/complex/human/monkey{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/beach/sand{
@@ -8239,7 +8239,7 @@
 /turf/simulated/floor/holofloor/snow,
 /area/awaymission/zoo)
 "vs" = (
-/mob/living/carbon/human/monkey{
+/mob/living/complex/human/monkey{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/beach/sand{
@@ -8248,7 +8248,7 @@
 /area/awaymission/zoo)
 "vt" = (
 /obj/structure/flora/ausbushes/lavendergrass,
-/mob/living/carbon/human/monkey{
+/mob/living/complex/human/monkey{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/beach/sand{

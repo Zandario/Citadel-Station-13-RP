@@ -294,7 +294,7 @@
 /area/awaymission/syndishuttle)
 "bJ" = (
 /obj/item/material/shard,
-/mob/living/carbon/alien/larva{
+/mob/living/complex/alien/larva{
 	bruteloss = 25;
 	fireloss = 175;
 	stat = 2
@@ -348,7 +348,7 @@
 /turf/simulated/floor/grass,
 /area/awaymission/research)
 "bU" = (
-/mob/living/carbon/human/monkey,
+/mob/living/complex/human/monkey,
 /turf/simulated/floor/grass,
 /area/awaymission/research)
 "bW" = (
@@ -400,7 +400,7 @@
 /turf/simulated/floor/airless,
 /area/awaymission/research)
 "ck" = (
-/mob/living/carbon/alien/larva{
+/mob/living/complex/alien/larva{
 	bruteloss = 50;
 	fireloss = 150;
 	stat = 2
@@ -467,7 +467,7 @@
 /area/awaymission/research)
 "cv" = (
 /obj/structure/window/reinforced,
-/mob/living/carbon/human/monkey,
+/mob/living/complex/human/monkey,
 /turf/simulated/floor/grass,
 /area/awaymission/research)
 "cw" = (
