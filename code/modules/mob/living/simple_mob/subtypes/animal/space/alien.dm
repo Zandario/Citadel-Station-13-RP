@@ -34,7 +34,7 @@
 	Hunters will seek to capture less frequently. Kill on sight."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/space/alien
+/mob/living/simple/animal/space/alien
 	name = "alien hunter"
 	desc = "Hiss!"
 	icon = 'icons/mob/alien.dmi'
@@ -82,7 +82,7 @@
 	revert to a defensive Kill on sight."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/space/alien/drone
+/mob/living/simple/animal/space/alien/drone
 	name = "alien drone"
 	icon_state = "aliend_running"
 	icon_living = "aliend_running"
@@ -105,7 +105,7 @@
 	on sight."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/space/alien/sentinel
+/mob/living/simple/animal/space/alien/sentinel
 	name = "alien sentinel"
 	icon_state = "aliens_running"
 	icon_living = "aliens_running"
@@ -130,7 +130,7 @@
 	die to protect their Queen. Kill on sight."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/space/alien/sentinel/praetorian
+/mob/living/simple/animal/space/alien/sentinel/praetorian
 	name = "alien praetorian"
 	icon = 'icons/mob/64x64.dmi'
 	icon_state = "prat_s"
@@ -165,7 +165,7 @@
 	a form of shock which reverts them into a Drone's mindstate. Kill on sight. "
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/animal/space/alien/queen
+/mob/living/simple/animal/space/alien/queen
 	name = "alien queen"
 	icon_state = "alienq_running"
 	icon_living = "alienq_running"
@@ -195,7 +195,7 @@
 	Kill on sight."
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/animal/space/alien/queen/empress
+/mob/living/simple/animal/space/alien/queen/empress
 	name = "alien empress"
 	icon = 'icons/mob/64x64.dmi'
 	icon_state = "queen_s"
@@ -223,7 +223,7 @@
 	to eliminate any threat. Retreat immediately."
 	value = CATALOGUER_REWARD_SUPERHARD
 
-/mob/living/simple_mob/animal/space/alien/queen/empress/mother
+/mob/living/simple/animal/space/alien/queen/empress/mother
 	name = "alien mother"
 	icon = 'icons/mob/96x96.dmi'
 	icon_state = "empress_s"
@@ -246,7 +246,7 @@
 	mod_min = 100
 	mod_max = 150
 
-/mob/living/simple_mob/animal/space/alien/death()
+/mob/living/simple/animal/space/alien/death()
 	..()
 	visible_message("[src] lets out a waning guttural screech, green blood bubbling from its maw...")
 	playsound(src, 'sound/voice/hiss6.ogg', 100, 1)

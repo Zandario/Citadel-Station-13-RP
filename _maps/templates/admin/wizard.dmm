@@ -366,7 +366,7 @@
 	},
 /area/wizard_station)
 "aT" = (
-/mob/living/simple_mob/animal/passive/mouse/gray{
+/mob/living/simple/animal/passive/mouse/gray{
 	desc = "He looks kingly.";
 	name = "Arthur"
 	},

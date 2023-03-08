@@ -76,11 +76,11 @@
 	prob_fall = 25 //Chance goes down by this much each time it spawns one (not defining and prob_spawn 100 means they spawn as soon as one dies)
 	//guard = 40 //They'll stay within this range (not defining this disables them staying nearby and they will wander the map (and through step teleports))
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/vore/aggressive/frog = 6, //Frogs are 3x more likely to spawn than,
-		/mob/living/simple_mob/vore/aggressive/deathclaw = 2, //these deathclaws are, with these values,
-		/mob/living/simple_mob/animal/giant_spider = 4,
-		/mob/living/simple_mob/vore/aggressive/giant_snake = 2,
-		/mob/living/simple_mob/animal/giant_spider/webslinger = 2
+		/mob/living/simple/vore/aggressive/frog = 6, //Frogs are 3x more likely to spawn than,
+		/mob/living/simple/vore/aggressive/deathclaw = 2, //these deathclaws are, with these values,
+		/mob/living/simple/animal/giant_spider = 4,
+		/mob/living/simple/vore/aggressive/giant_snake = 2,
+		/mob/living/simple/animal/giant_spider/webslinger = 2
 	)
 
 /obj/tether_away_spawner/classd/crater
@@ -91,8 +91,7 @@
 	prob_fall = 30
 	//guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/vore/aggressive/corrupthound = 1,
-		/mob/living/simple_mob/vore/aggressive/corrupthound/prettyboi = 3,
-		/mob/living/simple_mob/mechanical/corrupt_maint_drone = 2
+		/mob/living/simple/vore/aggressive/corrupthound = 1,
+		/mob/living/simple/vore/aggressive/corrupthound/prettyboi = 3,
+		/mob/living/simple/mechanical/corrupt_maint_drone = 2
 	)
-

@@ -38,7 +38,7 @@ var/list/ventcrawl_machinery = list(
 		update_perspective()
 		client.screen += GLOB.global_hud.centermarker
 
-/mob/living/simple_mob/slime/xenobio/can_ventcrawl()
+/mob/living/simple/slime/xenobio/can_ventcrawl()
 	if(victim)
 		to_chat(src, "<span class='warning'>You cannot ventcrawl while feeding.</span>")
 		return FALSE

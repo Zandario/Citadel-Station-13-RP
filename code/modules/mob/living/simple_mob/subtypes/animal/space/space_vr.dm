@@ -1,3 +1,3 @@
 // Fix for Virgo 2's Surface
-/mob/living/simple_mob/animal/space
+/mob/living/simple/animal/space
 	maxbodytemp = 700

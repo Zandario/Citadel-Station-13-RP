@@ -748,7 +748,7 @@
 
 	return ..(target)
 
-/mob/living/simple_mob/can_shred(var/mob/living/complex/human/target)
+/mob/living/simple/can_shred(var/mob/living/complex/human/target)
 	if(!target)
 		var/list/choices = list()
 		for(var/mob/living/complex/human/M in oviewers(1))

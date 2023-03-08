@@ -2388,7 +2388,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/mob/living/simple_mob/animal/passive/snake/noodle,
+/mob/living/simple/animal/passive/snake/noodle,
 /turf/simulated/floor/carpet/blucarpet,
 /area/crew_quarters/heads/chief)
 "iZ" = (
@@ -9192,7 +9192,7 @@
 /obj/structure/cable/green{
 	icon_state = "2-8"
 	},
-/mob/living/simple_mob/animal/passive/bird/parrot/polly,
+/mob/living/simple/animal/passive/bird/parrot/polly,
 /turf/simulated/floor/carpet/blucarpet,
 /area/crew_quarters/heads/chief)
 "Ho" = (

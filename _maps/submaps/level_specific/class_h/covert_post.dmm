@@ -26,7 +26,7 @@
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 1
 	},
-/mob/living/simple_mob/humanoid/clown/commando/ranged,
+/mob/living/simple/humanoid/clown/commando/ranged,
 /turf/simulated/floor/wood,
 /area/class_h/POIs/covert_post)
 "h" = (
@@ -86,11 +86,11 @@
 /obj/structure/bed/chair/comfy/lime{
 	dir = 1
 	},
-/mob/living/simple_mob/humanoid/clown/commando/melee,
+/mob/living/simple/humanoid/clown/commando/melee,
 /turf/simulated/floor/carpet/gaycarpet,
 /area/class_h/POIs/covert_post)
 "t" = (
-/mob/living/simple_mob/humanoid/clown/commando/melee,
+/mob/living/simple/humanoid/clown/commando/melee,
 /turf/simulated/floor/bananium,
 /area/class_h/POIs/covert_post)
 "u" = (
@@ -216,7 +216,7 @@
 /turf/simulated/floor/wood,
 /area/class_h/POIs/covert_post)
 "S" = (
-/mob/living/simple_mob/humanoid/clown/commando/melee,
+/mob/living/simple/humanoid/clown/commando/melee,
 /turf/simulated/floor/outdoors/beach/sand/lowdesert,
 /area/class_h/POIs/covert_post)
 "U" = (
@@ -225,7 +225,7 @@
 /turf/simulated/floor/tiled/white,
 /area/class_h/POIs/covert_post)
 "V" = (
-/mob/living/simple_mob/animal/passive/honkpet{
+/mob/living/simple/animal/passive/honkpet{
 	faction = "clown";
 	name = "Hunkle"
 	},
@@ -237,7 +237,7 @@
 /turf/simulated/floor/bananium,
 /area/class_h/POIs/covert_post)
 "X" = (
-/mob/living/simple_mob/humanoid/clown/commando/ranged,
+/mob/living/simple/humanoid/clown/commando/ranged,
 /turf/simulated/floor/wood,
 /area/class_h/POIs/covert_post)
 "Y" = (

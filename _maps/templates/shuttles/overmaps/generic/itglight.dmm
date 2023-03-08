@@ -24,7 +24,7 @@
 	dir = 4;
 	pixel_x = -26
 	},
-/mob/living/simple_mob/animal/wolf,
+/mob/living/simple/animal/wolf,
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/common)
 "ac" = (

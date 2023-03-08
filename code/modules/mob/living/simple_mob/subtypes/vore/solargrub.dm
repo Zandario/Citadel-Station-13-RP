@@ -19,7 +19,7 @@ GLOBAL_LIST_EMPTY(solargrubs)
 
 #define SINK_POWER 1
 
-/mob/living/simple_mob/vore/solargrub
+/mob/living/simple/vore/solargrub
 	name = "Juvenile solargrub"
 	desc = "A young sparkling solargrub"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/solargrub)
@@ -31,8 +31,8 @@ GLOBAL_LIST_EMPTY(solargrubs)
 	// CHOMPEDIT Start, Rykka waz here. *pawstamp*; CitRP: Make moth spawning thingy's, read coms;
 	var/charge = null // CHOMPEDIT The amount of power we sucked off, in K as in THOUSANDS.
 	var/can_evolve = 1 // CHOMPEDIT VAR to decide whether this subspecies is allowed to become a queen
-	var/list/adult_forms = list(/mob/living/simple_mob/vore/solarmoth = 70, /mob/living/simple_mob/vore/solarmoth/lunarmoth=30) // CHOMPEDIT VAR that decides what mob the queen form is; CitRP: Makes spawn of lunarmoths possible.
-	//var/adult_forms = "/mob/living/simple_mob/vore/solarmoth" // CHOMPEDIT VAR that decides what mob the queen form is. ex /mob/living/simple_mob/subtypes/vore/solarmoth; CitRP: Without lunarmoth, quoted out for fun;
+	var/list/adult_forms = list(/mob/living/simple/vore/solarmoth = 70, /mob/living/simple/vore/solarmoth/lunarmoth=30) // CHOMPEDIT VAR that decides what mob the queen form is; CitRP: Makes spawn of lunarmoths possible.
+	//var/adult_forms = "/mob/living/simple/vore/solarmoth" // CHOMPEDIT VAR that decides what mob the queen form is. ex /mob/living/simple/subtypes/vore/solarmoth; CitRP: Without lunarmoth, quoted out for fun;
 	// CHOMPEDIT End, Rykka waz here. *pawstamp*
 
 	faction = "grubs"
@@ -64,11 +64,11 @@ GLOBAL_LIST_EMPTY(solargrubs)
 	// kw drain
 	var/power_drain = 100
 
-/mob/living/simple_mob/vore/solargrub/Initialize(mapload)
+/mob/living/simple/vore/solargrub/Initialize(mapload)
 	GLOB.solargrubs += src
 	return ..()
 
-/mob/living/simple_mob/vore/solargrub/Destroy()
+/mob/living/simple/vore/solargrub/Destroy()
 	GLOB.solargrubs -= src
 	return ..()
 
@@ -76,14 +76,14 @@ GLOBAL_LIST_EMPTY(solargrubs)
 	emote_see = list("squelches", "squishes")
 
 //	This funny bit is questionable atm
-// /mob/living/simple_mob/vore/solargrub/New()
+// /mob/living/simple/vore/solargrub/New()
 //	existing_solargrubs += src
 //	..()
 
-/mob/living/simple_mob/vore/solargrub/BiologicalLife(seconds, times_fired)
+/mob/living/simple/vore/solargrub/BiologicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
-	
+
 	if(stat != CONSCIOUS)
 		return
 
@@ -123,13 +123,13 @@ GLOBAL_LIST_EMPTY(solargrubs)
 			GLOB.moth_amount += 1 //CitRP: There was some magic going on around this here part, it might actualy be working.
 			death_star()
 
-/mob/living/simple_mob/vore/solargrub/proc/death_star()
+/mob/living/simple/vore/solargrub/proc/death_star()
 	visible_message("<span class='warning'>\The [src]'s shell rips open and evolves!</span>")
 	var/chosen_form = pickweight(adult_forms)
 	new chosen_form(get_turf(src))
 	qdel(src)
 
-/mob/living/simple_mob/vore/solargrub //active noms
+/mob/living/simple/vore/solargrub //active noms
 	vore_bump_chance = 50
 	vore_bump_emote = "applies minimal effort to try and slurp up"
 	vore_active = 1
@@ -137,7 +137,7 @@ GLOBAL_LIST_EMPTY(solargrubs)
 	vore_pounce_chance = 0 //grubs only eat incapacitated targets
 	vore_default_mode = DM_DIGEST
 
-/mob/living/simple_mob/vore/solargrub/apply_melee_effects(var/atom/A)
+/mob/living/simple/vore/solargrub/apply_melee_effects(var/atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(prob(shock_chance))
@@ -157,21 +157,21 @@ GLOBAL_LIST_EMPTY(solargrubs)
 					inject_poison(L, target_zone)
 
 // Does actual poison injection, after all checks passed.
-/mob/living/simple_mob/vore/solargrub/proc/inject_poison(mob/living/L, target_zone)
+/mob/living/simple/vore/solargrub/proc/inject_poison(mob/living/L, target_zone)
 	if(prob(poison_chance))
 		to_chat(L, "<span class='warning'>You feel a small shock rushing through your veins.</span>")
 		L.reagents.add_reagent(poison_type, poison_per_bite)
 
-/mob/living/simple_mob/vore/solargrub/death()
+/mob/living/simple/vore/solargrub/death()
 	src.anchored = 0
 	set_light(0)
 	..()
 //	This funny bit is questionable atm
-// /mob/living/simple_mob/vore/solargrub/Destroy()
+// /mob/living/simple/vore/solargrub/Destroy()
 //	existing_solargrubs -= src
 //	..()
 
-/mob/living/simple_mob/vore/solargrub/handle_light()
+/mob/living/simple/vore/solargrub/handle_light()
 	. = ..()
 	if(. == 0 && !is_dead())
 		set_light(2.5, 1, COLOR_YELLOW)

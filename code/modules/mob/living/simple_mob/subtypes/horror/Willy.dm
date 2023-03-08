@@ -4,7 +4,7 @@
 	ADMINISTRATOR FOR IMMEDIATE MAINTENANCE! %ERROR%"
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/horror/Willy
+/mob/living/simple/horror/Willy
 	name = "???"
 	desc = "It looks like a giant mascot costume made of flesh and fabric. The two bulging eyes aren't comforting to look at either. At least it smells like a burger and fries."
 
@@ -42,27 +42,27 @@
 	hide_amount = 10
 	hide_type = /obj/item/stack/material/cloth
 
-/mob/living/simple_mob/horror/Willy/Initialize(mapload)
+/mob/living/simple/horror/Willy/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/horror_aura)
 
-/mob/living/simple_mob/horror/Willy/death()
+/mob/living/simple/horror/Willy/death()
 	playsound(src, 'sound/h_sounds/sampler.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/Willy/bullet_act()
+/mob/living/simple/horror/Willy/bullet_act()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/Willy/attack_hand()
+/mob/living/simple/horror/Willy/attack_hand()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/Willy/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
+/mob/living/simple/horror/Willy/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
 	. = ..()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 
-/mob/living/simple_mob/horror/Willy/attackby()
+/mob/living/simple/horror/Willy/attackby()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 

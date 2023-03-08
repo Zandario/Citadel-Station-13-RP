@@ -107,10 +107,10 @@
 		return
 
 	if(!istype(target))
-		if(istype(target, /mob/living/simple_mob/animal/passive/mouse))
+		if(istype(target, /mob/living/simple/animal/passive/mouse))
 			new /obj/effect/decal/remains/mouse(get_turf(target))
 			qdel(target)
-		else if(istype(target, /mob/living/simple_mob/animal/passive/lizard))
+		else if(istype(target, /mob/living/simple/animal/passive/lizard))
 			new /obj/effect/decal/remains/lizard(get_turf(target))
 			qdel(target)
 		return

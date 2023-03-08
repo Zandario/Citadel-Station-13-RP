@@ -9,7 +9,7 @@
 	driven the cultivation and collection of birds as pets by Humanity for millenia."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/passive/bird
+/mob/living/simple/animal/passive/bird
 	name = "bird"
 	desc = "A domesticated bird. Tweet tweet!"
 	player_msg = "You are able to fly."
@@ -59,13 +59,13 @@
 	item_icons = null
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/holder/bird/sync(var/mob/living/simple_mob/SM)
+/obj/item/holder/bird/sync(var/mob/living/simple/SM)
 	..()
 	icon_state = SM.icon_rest // Looks better if the bird isn't flapping constantly in the UI.
 
 // Subtypes for birbs.
 
-/mob/living/simple_mob/animal/passive/bird/black_bird
+/mob/living/simple/animal/passive/bird/black_bird
 	name = "common blackbird"
 	desc = "A species of bird, both the males and females are known to be territorial on their breeding grounds."
 	icon_state = "commonblackbird"
@@ -74,7 +74,7 @@
 	mod_min = 50
 	mod_max = 75
 
-/mob/living/simple_mob/animal/passive/bird/azure_tit
+/mob/living/simple/animal/passive/bird/azure_tit
 	name = "azure tit"
 	desc = "A species of bird, colored blue and white."
 	icon_state = "azuretit"
@@ -83,7 +83,7 @@
 	mod_min = 50
 	mod_max = 75
 
-/mob/living/simple_mob/animal/passive/bird/european_robin
+/mob/living/simple/animal/passive/bird/european_robin
 	name = "european robin"
 	desc = "A species of bird, they have been studied for their sense of magnetoreception."
 	icon_state = "europeanrobin"
@@ -92,7 +92,7 @@
 	mod_min = 50
 	mod_max = 75
 
-/mob/living/simple_mob/animal/passive/bird/goldcrest
+/mob/living/simple/animal/passive/bird/goldcrest
 	name = "goldcrest"
 	desc = "A species of bird, they were once called 'king of the birds' in ancient human folklore, for their golden crest. \
 	Today, their scientific name still elude towards this, with <i>regulus</i>, meaning petty king."
@@ -102,7 +102,7 @@
 	mod_min = 50
 	mod_max = 75
 
-/mob/living/simple_mob/animal/passive/bird/ringneck_dove
+/mob/living/simple/animal/passive/bird/ringneck_dove
 	name = "ringneck dove"
 	desc = "A species of bird. They are also known as the barbary dove, and have a distinct ring-like shape around the back of their neck."
 	icon_state = "ringneckdove"

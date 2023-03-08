@@ -1,7 +1,7 @@
 // Handles the subjugation of slimes by force.
 // Mostly a way for things to talk to the AI indirectly.
 
-/mob/living/simple_mob/slime/xenobio/proc/adjust_discipline(amount, silent)
+/mob/living/simple/slime/xenobio/proc/adjust_discipline(amount, silent)
 	if(amount > 0)
 		to_chat(src, SPAN_WARNING( "You've been disciplined!"))
 	if(has_AI())
@@ -9,7 +9,7 @@
 		AI.adjust_discipline(amount, silent)
 
 
-/mob/living/simple_mob/slime/xenobio/proc/is_justified_to_discipline()
+/mob/living/simple/slime/xenobio/proc/is_justified_to_discipline()
 	if(victim) // Punish if eating someone that isn't a monkey.
 		if(ishuman(victim))
 			var/mob/living/complex/human/H = victim

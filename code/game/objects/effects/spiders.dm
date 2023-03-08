@@ -61,7 +61,7 @@
 
 /obj/effect/spider/stickyweb/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(istype(mover, /mob/living/simple_mob/animal/giant_spider))
+	if(istype(mover, /mob/living/simple/animal/giant_spider))
 		return TRUE
 	else if(istype(mover, /mob/living))
 		if(prob(50))
@@ -130,12 +130,12 @@
 	var/amount_grown = -1
 	var/obj/machinery/atmospherics/component/unary/vent_pump/entry_vent
 	var/travelling_in_vent = 0
-	var/list/grow_as = list(/mob/living/simple_mob/animal/giant_spider, /mob/living/simple_mob/animal/giant_spider/nurse, /mob/living/simple_mob/animal/giant_spider/hunter)
+	var/list/grow_as = list(/mob/living/simple/animal/giant_spider, /mob/living/simple/animal/giant_spider/nurse, /mob/living/simple/animal/giant_spider/hunter)
 
 	var/stunted = FALSE
 
 /obj/effect/spider/spiderling/frost
-	grow_as = list(/mob/living/simple_mob/animal/giant_spider/frost)
+	grow_as = list(/mob/living/simple/animal/giant_spider/frost)
 
 /obj/effect/spider/spiderling/Initialize(mapload, atom/parent)
 	. = ..()
@@ -242,7 +242,7 @@
 					break
 		if(amount_grown >= 100)
 			var/spawn_type = pick(grow_as)
-			var/mob/living/simple_mob/animal/giant_spider/GS = new spawn_type(src.loc, src)
+			var/mob/living/simple/animal/giant_spider/GS = new spawn_type(src.loc, src)
 			if(stunted)
 				spawn(2)
 					GS.make_spiderling()
@@ -269,7 +269,7 @@
 					break
 		if(amount_grown >= 100)
 			var/spawn_type = pick(grow_as)
-			var/mob/living/simple_mob/animal/giant_spider/GS = new spawn_type(src.loc, src)
+			var/mob/living/simple/animal/giant_spider/GS = new spawn_type(src.loc, src)
 			if(stunted)
 				spawn(2)
 					GS.make_spiderling()
@@ -279,7 +279,7 @@
 /obj/effect/spider/spiderling/stunted
 	stunted = TRUE
 
-	grow_as = list(/mob/living/simple_mob/animal/giant_spider, /mob/living/simple_mob/animal/giant_spider/hunter)
+	grow_as = list(/mob/living/simple/animal/giant_spider, /mob/living/simple/animal/giant_spider/hunter)
 
 /obj/effect/debris/cleanable/spiderling_remains
 	name = "spiderling remains"

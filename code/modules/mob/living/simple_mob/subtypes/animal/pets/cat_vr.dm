@@ -1,4 +1,4 @@
-/mob/living/simple_mob/animal/passive/cat/runtime/init_vore()
+/mob/living/simple/animal/passive/cat/runtime/init_vore()
 	..()
 	var/obj/belly/B = vore_selected
 	B.name = "Stomach"
@@ -38,7 +38,7 @@
 	icon_state = "kitten"
 	w_class = ITEMSIZE_SMALL
 
-/mob/living/simple_mob/animal/passive/cat/tabiranth
+/mob/living/simple/animal/passive/cat/tabiranth
 	name = "Spirit"
 	desc = "A small, inquisitive feline, who constantly seems to investigate his surroundings."
 	icon = 'icons/mob/custom_items_mob.dmi'
@@ -53,7 +53,7 @@
 	health = 50
 	randomized = FALSE
 
-/mob/living/simple_mob/animal/passive/cat/tabiranth/handle_special()
+/mob/living/simple/animal/passive/cat/tabiranth/handle_special()
 	. = ..()
 	if (has_AI() && friend)
 		var/friend_dist = get_dist(src,friend)
@@ -74,7 +74,7 @@
 				audible_emote("[verb] anxiously.")
 
 //Emergency teleport - Until a spriter makes something better
-/mob/living/simple_mob/animal/passive/cat/tabiranth/death(gibbed, deathmessage = "teleports away!")
+/mob/living/simple/animal/passive/cat/tabiranth/death(gibbed, deathmessage = "teleports away!")
 	cut_overlays()
 	icon_state = ""
 	flick("kphaseout",src)

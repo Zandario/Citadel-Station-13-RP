@@ -1,6 +1,6 @@
 // These hivebots help their team in various ways, and can be very powerful with allies, but are otherwise very weak when alone.
 
-/mob/living/simple_mob/mechanical/hivebot/support
+/mob/living/simple/mechanical/hivebot/support
 	icon_state = "white"
 	icon_living = "white"
 	attacktext = list("prodded")
@@ -11,7 +11,7 @@
 
 // This hivebot supplies a general buff to nearby hivebots that improve their performance.
 // Note that the commander itself does not receive the buff.
-/mob/living/simple_mob/mechanical/hivebot/support/commander
+/mob/living/simple/mechanical/hivebot/support/commander
 	name = "commander hivebot"
 	desc = "A robot that appears to be directing the others."
 	maxHealth = 5 LASERS_TO_KILL // 150 health
@@ -19,7 +19,7 @@
 	player_msg = "You <b>increase the performance of other hivebots near you</b> passively.<br>\
 	You are otherwise very weak offensively."
 
-/mob/living/simple_mob/mechanical/hivebot/support/commander/handle_special()
+/mob/living/simple/mechanical/hivebot/support/commander/handle_special()
 	for(var/mob/living/L in range(4, src))
 		if(L == src)
 			continue // Don't buff ourselves.
@@ -46,7 +46,7 @@
 
 // Variant that automatically commands nearby allies to follow it when created.
 // Useful to avoid having to manually set follow to a lot of hivebots that are gonna die in the next minute anyways.
-/mob/living/simple_mob/mechanical/hivebot/support/commander/autofollow/Initialize(mapload)
+/mob/living/simple/mechanical/hivebot/support/commander/autofollow/Initialize(mapload)
 	for(var/mob/living/L in hearers(7, src))
 		if(!L.ai_holder)
 			continue
@@ -60,7 +60,7 @@
 // This hivebot adds charges to nearby allied hivebots that use the charge system for their special attacks.
 // A charge is given to a nearby ally every so often.
 // Charges cannot exceed the initial starting amount.
-/mob/living/simple_mob/mechanical/hivebot/support/logistics
+/mob/living/simple/mechanical/hivebot/support/logistics
 	name = "logistics hivebot"
 	desc = "A robot that resupplies their allies."
 	maxHealth = 3 LASERS_TO_KILL // 90 health
@@ -71,11 +71,11 @@
 	var/resupply_cooldown = 4 SECONDS
 	var/last_resupply = null
 
-/mob/living/simple_mob/mechanical/hivebot/support/logistics/handle_special()
+/mob/living/simple/mechanical/hivebot/support/logistics/handle_special()
 	if(last_resupply + resupply_cooldown > world.time)
 		return // On cooldown.
 
-	for(var/mob/living/simple_mob/SM in hearers(resupply_range, src))
+	for(var/mob/living/simple/SM in hearers(resupply_range, src))
 		if(SM == src)
 			continue // We don't use charges buuuuut in case that changes in the future...
 		if(IIsAlly(SM)) // Don't resupply enemies.

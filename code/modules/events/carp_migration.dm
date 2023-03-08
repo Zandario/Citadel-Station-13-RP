@@ -57,12 +57,12 @@ GLOBAL_LIST_INIT(carp_count,list())// a list of Z levels (string), associated wi
 			CRASH("could not get turfs for carp migration")
 		var/turf/T = get_random_edge_turf(dir,TRANSITIONEDGE + 2, Z)
 		if(istype(T,/turf/space))
-			var/mob/living/simple_mob/animal/space/M
+			var/mob/living/simple/animal/space/M
 			if(prob(96))
-				M = new /mob/living/simple_mob/animal/space/carp(T)
+				M = new /mob/living/simple/animal/space/carp(T)
 				I++
 			else
-				M = new /mob/living/simple_mob/animal/space/carp/large(T)
+				M = new /mob/living/simple/animal/space/carp/large(T)
 				I += 3
 			LAZYADD(GLOB.carp_count["[Z]"], M)
 			spawned_carp ++
@@ -84,7 +84,7 @@ GLOBAL_LIST_INIT(carp_count,list())// a list of Z levels (string), associated wi
 		if(WEST)
 			return locate(clearance, rand(clearance, world.maxy - clearance), Z)
 
-/datum/event/carp_migration/proc/check_gib(var/mob/living/simple_mob/hostile/carp/M)	//awesome road kills
+/datum/event/carp_migration/proc/check_gib(var/mob/living/simple/hostile/carp/M)	//awesome road kills
 	if(M.health <= 0 && prob(60))
 		M.gib()
 

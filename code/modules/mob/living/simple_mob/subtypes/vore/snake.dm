@@ -9,7 +9,7 @@
 	constriction."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/vore/aggressive/giant_snake
+/mob/living/simple/vore/aggressive/giant_snake
 	name = "giant snake"
 	desc = "Snakes. Why did it have to be snakes?"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/giant_snake)
@@ -33,7 +33,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
 // Activate Noms!
-/mob/living/simple_mob/vore/aggressive/giant_snake
+/mob/living/simple/vore/aggressive/giant_snake
 	vore_active = 1
 	vore_pounce_chance = 25
 	vore_icons = SA_ICON_LIVING

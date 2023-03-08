@@ -5,7 +5,7 @@
 	love to nip and bite at things, as well as sniffing around. They seem to mark their territory by way of scent-marking/urinating on things."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/wolf
+/mob/living/simple/animal/wolf
 	name = "grey wolf"
 	desc = "My, what big jaws it has!"
 	tt_desc = "Canis lupus"
@@ -29,13 +29,13 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 
 // Activate Noms!
-/mob/living/simple_mob/animal/wolf
+/mob/living/simple/animal/wolf
 	vore_active = 1
 	vore_icons = SA_ICON_LIVING
 
 
 // Adds Phoron Wolf
-/mob/living/simple_mob/animal/wolf/phoron
+/mob/living/simple/animal/wolf/phoron
 
 	faction = "underdark"
 	movement_cooldown = 0
@@ -55,4 +55,3 @@
 	max_co2 = 0
 	min_n2 = 0
 	max_n2 = 0
-

@@ -70,7 +70,7 @@
 	update_light_color()
 	icon_state = "restruct_1"
 	spawn(30)
-		var/mob/living/simple_mob/xeno/slime/S = new(src)
+		var/mob/living/simple/xeno/slime/S = new(src)
 		S.traitdat = new()	//New instance, so that if the core is deleted, the slime retains a trait datum.
 		S.nameVar = core.nameVar
 		S.name = "[S.nameVar] baby slime"
@@ -145,4 +145,3 @@
 							/obj/item/stock_parts/matter_bin = 1,
 							/obj/item/stock_parts/micro_laser = 1
 							)
-

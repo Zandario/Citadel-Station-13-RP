@@ -13,7 +13,7 @@
 	Despite their unassuming appearance, the Diyaab possesses remarkably sharp anterior teeth."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/sif/diyaab
+/mob/living/simple/animal/sif/diyaab
 	name = "diyaab"
 	desc = "A small pack animal. Although omnivorous, it will hunt meat on occasion."
 	tt_desc = "S Choeros hirtus" //diyaab and shantak are technically reletives!
@@ -45,4 +45,3 @@
 	speak = list("Awrr?", "Aowrl!", "Worrl.")
 	emote_see = list("sniffs the air cautiously","looks around")
 	emote_hear = list("snuffles")
-

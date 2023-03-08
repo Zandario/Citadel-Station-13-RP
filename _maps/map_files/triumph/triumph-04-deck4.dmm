@@ -4942,7 +4942,7 @@
 /turf/simulated/floor/tiled,
 /area/shuttle/excursion/general)
 "dOU" = (
-/mob/living/simple_mob/animal/passive/mimepet,
+/mob/living/simple/animal/passive/mimepet,
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
@@ -5414,7 +5414,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/hallway/secondary/docking_hallway)
 "edw" = (
-/mob/living/simple_mob/animal/passive/honkpet,
+/mob/living/simple/animal/passive/honkpet,
 /turf/simulated/floor/carpet/gaycarpet,
 /area/crew_quarters/clownoffice)
 "edy" = (
@@ -10553,7 +10553,7 @@
 /obj/structure/dogbed{
 	name = "pet bed"
 	},
-/mob/living/simple_mob/animal/passive/dog/corgi/Ian,
+/mob/living/simple/animal/passive/dog/corgi/Ian,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -15603,7 +15603,7 @@
 /area/shuttle/courser/general)
 "lst" = (
 /obj/structure/dogbed,
-/mob/living/simple_mob/animal/passive/dog/pug/SirPogsley,
+/mob/living/simple/animal/passive/dog/pug/SirPogsley,
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "west bump";
@@ -23539,7 +23539,7 @@
 	name = "light switch ";
 	pixel_y = 26
 	},
-/mob/living/simple_mob/animal/passive/fox/renault,
+/mob/living/simple/animal/passive/fox/renault,
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
 "qSy" = (
@@ -27370,7 +27370,7 @@
 "tBv" = (
 /obj/random/trash,
 /obj/machinery/light/small,
-/mob/living/simple_mob/animal/passive/mouse/rat,
+/mob/living/simple/animal/passive/mouse/rat,
 /turf/simulated/floor/plating,
 /area/maintenance/security/starboard)
 "tBA" = (
@@ -30552,7 +30552,7 @@
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 1
 	},
-/mob/living/simple_mob/animal/passive/dog/corgi/Lisa{
+/mob/living/simple/animal/passive/dog/corgi/Lisa{
 	desc = "It's Lisa, the exploration teams trusty Corgi."
 	},
 /turf/simulated/floor/tiled,

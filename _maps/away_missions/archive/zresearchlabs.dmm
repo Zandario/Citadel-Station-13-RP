@@ -6586,7 +6586,7 @@
 /turf/simulated/floor,
 /area/awaymission/labs/security)
 "sZ" = (
-/mob/living/simple_mob/creature{
+/mob/living/simple/creature{
 	armor = 20;
 	desc = "A blob of pulsating human-like flesh, bearing one angry eye and a huge mouth.";
 	health = 130;

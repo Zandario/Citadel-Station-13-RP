@@ -81,7 +81,7 @@
 	if(charges >= 3)
 		if(prob(5))
 			charges -= 1
-			var/spawn_type = pick(/mob/living/simple_mob/creature)
+			var/spawn_type = pick(/mob/living/simple/creature)
 			new spawn_type(pick(RANGE_TURFS(1, src)))
 			playsound(loc, pick('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg'), 50, 1, -3)
 

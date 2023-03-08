@@ -15,7 +15,7 @@
 	The rear half of the creature is entirely musculature, capped with a sharp, arrowhead-shaped fin."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/sif/leech
+/mob/living/simple/animal/sif/leech
 	name = "river leech"
 	desc = "What appears to be an oversized leech."
 	tt_desc = "S Hirudinea phorus"
@@ -93,7 +93,7 @@
 	say_list_type = /datum/say_list/leech
 	ai_holder_type = /datum/ai_holder/simple_mob/intentional/leech
 
-/mob/living/simple_mob/animal/sif/leech/IIsAlly(mob/living/L)
+/mob/living/simple/animal/sif/leech/IIsAlly(mob/living/L)
 	. = ..()
 
 	var/mob/living/complex/human/H = L
@@ -115,19 +115,19 @@
 	emote_see = list("vibrates","looks around", "stares", "extends a proboscis")
 	emote_hear = list("chitters", "clicks", "gurgles")
 
-/mob/living/simple_mob/animal/sif/leech/Initialize(mapload)
+/mob/living/simple/animal/sif/leech/Initialize(mapload)
 	. = ..()
 
 	add_verb(src, /mob/living/proc/ventcrawl)
 	add_verb(src, /mob/living/proc/hide)
 
-/mob/living/simple_mob/animal/sif/leech/statpanel_data(client/C)
+/mob/living/simple/animal/sif/leech/statpanel_data(client/C)
 	. = ..()
 	if(C.statpanel_tab("Status"))
 		STATPANEL_DATA_LINE("")
 		STATPANEL_DATA_ENTRY("Chemicals", chemicals)
 
-/mob/living/simple_mob/animal/sif/leech/do_special_attack(atom/A)
+/mob/living/simple/animal/sif/leech/do_special_attack(atom/A)
 	. = TRUE
 	if(istype(A, /mob/living/complex))
 		switch(a_intent)
@@ -140,7 +140,7 @@
 				do_infest(src, A)
 				set_AI_busy(FALSE)
 
-/mob/living/simple_mob/animal/sif/leech/handle_special()
+/mob/living/simple/animal/sif/leech/handle_special()
 	if(prob(5))
 		randomized_reagent = pick(produceable_chemicals)
 
@@ -225,7 +225,7 @@
 	if(host && host.stat == DEAD && istype(get_turf(host), /turf/simulated/floor/water))
 		leave_host()
 
-/mob/living/simple_mob/animal/sif/leech/verb/infest()
+/mob/living/simple/animal/sif/leech/verb/infest()
 	set category = "Abilities"
 	set name = "Infest"
 	set desc = "Infest a suitable humanoid host."
@@ -236,7 +236,7 @@
 
 	do_infest(usr)
 
-/mob/living/simple_mob/animal/sif/leech/proc/do_infest(var/mob/living/user, var/mob/living/target = null)
+/mob/living/simple/animal/sif/leech/proc/do_infest(var/mob/living/user, var/mob/living/target = null)
 	if(host)
 		to_chat(user, SPAN_ALIEN("We are already within a host."))
 		return
@@ -312,7 +312,7 @@
 		to_chat(user, SPAN_NOTICE("They are no longer in range."))
 		return
 
-/mob/living/simple_mob/animal/sif/leech/verb/uninfest()
+/mob/living/simple/animal/sif/leech/verb/uninfest()
 	set category = "Abilities"
 	set name = "Uninfest"
 	set desc = "Leave your current host."
@@ -323,7 +323,7 @@
 
 	leave_host()
 
-/mob/living/simple_mob/animal/sif/leech/proc/leave_host()
+/mob/living/simple/animal/sif/leech/proc/leave_host()
 	if(!host)
 		return
 
@@ -338,7 +338,7 @@
 	update_perspective()
 	host = null
 
-/mob/living/simple_mob/animal/sif/leech/verb/inject_victim()
+/mob/living/simple/animal/sif/leech/verb/inject_victim()
 	set category = "Abilities"
 	set name = "Incapacitate Potential Host"
 	set desc = "Inject an organic host with an incredibly painful mixture of chemicals."
@@ -365,7 +365,7 @@
 
 	poison_inject(usr, M)
 
-/mob/living/simple_mob/animal/sif/leech/proc/poison_inject(var/mob/living/user, var/mob/living/complex/L)
+/mob/living/simple/animal/sif/leech/proc/poison_inject(var/mob/living/user, var/mob/living/complex/L)
 	if(!L || !Adjacent(L) || stat)
 		return
 
@@ -386,7 +386,7 @@
 
 	H.add_modifier(/datum/modifier/poisoned/paralysis, 15 SECONDS)
 
-/mob/living/simple_mob/animal/sif/leech/verb/medicate_host()
+/mob/living/simple/animal/sif/leech/verb/medicate_host()
 	set category = "Abilities"
 	set name = "Produce Chemicals (50)"
 	set desc = "Inject your host with possibly beneficial chemicals, to keep the blood flowing."
@@ -403,13 +403,13 @@
 		var/chem = input("Select a chemical to produce.", "Chemicals") as null|anything in produceable_chemicals
 		inject_meds(chem)
 
-/mob/living/simple_mob/animal/sif/leech/proc/inject_meds(var/chem)
+/mob/living/simple/animal/sif/leech/proc/inject_meds(var/chem)
 	if(host)
 		chemicals = max(1, chemicals - 50)
 		host.reagents.add_reagent(chem, 5)
 		to_chat(src, SPAN_ALIEN("We injected \the [host] with five units of [chem]."))
 
-/mob/living/simple_mob/animal/sif/leech/verb/feed_on_organ()
+/mob/living/simple/animal/sif/leech/verb/feed_on_organ()
 	set category = "Abilities"
 	set name = "Feed on Organ"
 	set desc = "Extend probosci to feed on a piece of your host's organs."
@@ -441,7 +441,7 @@
 	else
 		to_chat(src, SPAN_WARNING("We cannot feed now."))
 
-/mob/living/simple_mob/animal/sif/leech/proc/bite_organ(var/obj/item/organ/internal/O)
+/mob/living/simple/animal/sif/leech/proc/bite_organ(var/obj/item/organ/internal/O)
 	last_feeding = world.time
 
 	if(O)
@@ -463,7 +463,7 @@
 	max_home_distance = 1	// Low to ensure the creature doesn't leave the water unless it has a host.
 
 /datum/ai_holder/simple_mob/intentional/leech/handle_special_strategical()
-	var/mob/living/simple_mob/animal/sif/leech/SL = holder
+	var/mob/living/simple/animal/sif/leech/SL = holder
 	if(!SL.host && !istype(get_turf(SL), /turf/simulated/floor/water))
 		var/list/nearby_water = list()
 		for(var/turf/simulated/floor/water/W in view(holder, 10))
@@ -474,7 +474,7 @@
 				home_turf = T
 
 /datum/ai_holder/simple_mob/intentional/leech/special_flee_check()
-	var/mob/living/simple_mob/animal/sif/leech/SL = holder
+	var/mob/living/simple/animal/sif/leech/SL = holder
 
 	if(!SL.host && !istype(get_turf(SL), /turf/simulated/floor/water))
 		return TRUE

@@ -245,7 +245,7 @@
 
 /obj/item/integrated_circuit/input/slime_scanner/do_work(ord)
 	if(ord == 1)
-		var/mob/living/simple_mob/slime/xenobio/T = get_pin_data_as_type(IC_INPUT, 1, /mob/living/simple_mob/slime)
+		var/mob/living/simple/slime/xenobio/T = get_pin_data_as_type(IC_INPUT, 1, /mob/living/simple/slime)
 		if(!isslime(T)) //Invalid input
 			return
 		if(T in view(get_turf(src))) // Like medbot's analyzer it can be used in range..

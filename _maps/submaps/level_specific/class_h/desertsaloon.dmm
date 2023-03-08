@@ -32,7 +32,7 @@
 /turf/simulated/floor/wood/classh,
 /area/class_h/POIs/saloon)
 "cW" = (
-/mob/living/simple_mob/animal/giant_spider,
+/mob/living/simple/animal/giant_spider,
 /turf/simulated/floor/outdoors/beach/sand/lowdesert,
 /area/class_h/explored)
 "cZ" = (
@@ -52,7 +52,7 @@
 /turf/simulated/floor/wood/classh,
 /area/class_h/POIs/saloon)
 "eY" = (
-/mob/living/simple_mob/animal/giant_spider/pepper,
+/mob/living/simple/animal/giant_spider/pepper,
 /turf/simulated/floor/wood/classh,
 /area/class_h/POIs/saloon)
 "gn" = (
@@ -60,7 +60,7 @@
 /turf/simulated/floor/wood/classh,
 /area/class_h/POIs/saloon)
 "gD" = (
-/mob/living/simple_mob/animal/giant_spider/ion,
+/mob/living/simple/animal/giant_spider/ion,
 /turf/simulated/floor/wood/classh,
 /area/class_h/POIs/saloon)
 "io" = (
@@ -88,7 +88,7 @@
 	dir = 1
 	},
 /obj/random/cash,
-/mob/living/simple_mob/animal/giant_spider/webslinger,
+/mob/living/simple/animal/giant_spider/webslinger,
 /turf/simulated/floor/carpet/blucarpet,
 /area/class_h/POIs/saloon)
 "ln" = (
@@ -100,7 +100,7 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/class_h/POIs/saloon)
 "lL" = (
-/mob/living/simple_mob/animal/giant_spider/webslinger,
+/mob/living/simple/animal/giant_spider/webslinger,
 /turf/simulated/floor/wood/classh,
 /area/class_h/POIs/saloon)
 "lW" = (
@@ -156,7 +156,7 @@
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 8
 	},
-/mob/living/simple_mob/animal/giant_spider/hunter,
+/mob/living/simple/animal/giant_spider/hunter,
 /turf/simulated/floor/wood/classh,
 /area/class_h/POIs/saloon)
 "tl" = (
@@ -301,7 +301,7 @@
 /turf/simulated/floor/wood/classh,
 /area/class_h/POIs/saloon)
 "Jp" = (
-/mob/living/simple_mob/animal/giant_spider/nurse,
+/mob/living/simple/animal/giant_spider/nurse,
 /turf/simulated/floor/wood/classh,
 /area/class_h/POIs/saloon)
 "JY" = (
@@ -341,7 +341,7 @@
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 8
 	},
-/mob/living/simple_mob/animal/giant_spider/nurse,
+/mob/living/simple/animal/giant_spider/nurse,
 /turf/simulated/floor/wood/classh,
 /area/class_h/POIs/saloon)
 "NB" = (
@@ -366,7 +366,7 @@
 /turf/simulated/floor/wood/classh,
 /area/class_h/POIs/saloon)
 "PG" = (
-/mob/living/simple_mob/animal/giant_spider/phorogenic,
+/mob/living/simple/animal/giant_spider/phorogenic,
 /turf/simulated/floor/wood/classh,
 /area/class_h/POIs/saloon)
 "PU" = (
@@ -395,11 +395,11 @@
 /turf/simulated/floor/wood/classh,
 /area/class_h/POIs/saloon)
 "UZ" = (
-/mob/living/simple_mob/animal/giant_spider/lurker,
+/mob/living/simple/animal/giant_spider/lurker,
 /turf/simulated/floor/wood/classh,
 /area/class_h/POIs/saloon)
 "Vw" = (
-/mob/living/simple_mob/animal/giant_spider/tunneler,
+/mob/living/simple/animal/giant_spider/tunneler,
 /turf/simulated/floor/outdoors/beach/sand/lowdesert,
 /area/class_h/explored)
 "WE" = (

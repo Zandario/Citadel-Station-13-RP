@@ -1516,7 +1516,7 @@
 /turf/simulated/floor/tiled/old_tile/gray,
 /area/awaymission/academy/classrooms)
 "gF" = (
-/mob/living/simple_mob/animal/space/bear,
+/mob/living/simple/animal/space/bear,
 /turf/simulated/floor/plating,
 /area/awaymission/academy/classrooms)
 "gG" = (
@@ -1541,7 +1541,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/mob/living/simple_mob/animal/space/bear,
+/mob/living/simple/animal/space/bear,
 /turf/simulated/floor/plating,
 /area/awaymission/academy/classrooms)
 "gL" = (

@@ -14,7 +14,7 @@
 	aspect = ASPECT_LIGHT
 	cast_methods = CAST_RANGED | CAST_USE
 	var/atom/movable/copied = null
-	var/mob/living/simple_mob/illusion/illusion = null
+	var/mob/living/simple/illusion/illusion = null
 
 /obj/item/spell/illusion/on_ranged_cast(atom/hit_atom, mob/user)
 	if(istype(hit_atom, /atom/movable))

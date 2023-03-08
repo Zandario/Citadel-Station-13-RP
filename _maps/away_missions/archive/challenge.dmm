@@ -72,7 +72,7 @@
 /turf/simulated/floor/airless,
 /area/awaymission/challenge/start)
 "ax" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword,
+/mob/living/simple/humanoid/merc/melee/sword,
 /turf/simulated/floor/plating,
 /area/awaymission/challenge/start)
 "ay" = (
@@ -582,7 +582,7 @@
 /turf/simulated/floor/airless,
 /area/awaymission/challenge/end)
 "ce" = (
-/mob/living/simple_mob/humanoid/merc/ranged/space{
+/mob/living/simple/humanoid/merc/ranged/space{
 	name = "Syndicate Officer"
 	},
 /turf/simulated/floor/wood,
@@ -620,7 +620,7 @@
 /turf/simulated/floor/wood,
 /area/awaymission/challenge/end)
 "cl" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword,
+/mob/living/simple/humanoid/merc/melee/sword,
 /turf/simulated/floor/wood,
 /area/awaymission/challenge/end)
 "cm" = (
@@ -721,7 +721,7 @@
 /turf/simulated/floor/bluegrid,
 /area/awaymission/challenge/end)
 "cF" = (
-/mob/living/simple_mob/humanoid/merc/ranged/smg,
+/mob/living/simple/humanoid/merc/ranged/smg,
 /turf/simulated/floor/airless,
 /area/awaymission/challenge/end)
 "cG" = (

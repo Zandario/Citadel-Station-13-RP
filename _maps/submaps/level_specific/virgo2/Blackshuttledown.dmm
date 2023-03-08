@@ -154,9 +154,9 @@
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "aB" = (
-/mob/living/simple_mob/mechanical/viscerator,
-/mob/living/simple_mob/mechanical/viscerator,
-/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "aC" = (
@@ -169,7 +169,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "aD" = (
-/mob/living/simple_mob/humanoid/merc/ranged/space,
+/mob/living/simple/humanoid/merc/ranged/space,
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "aE" = (
@@ -366,7 +366,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "bn" = (
-/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "bo" = (
@@ -385,8 +385,8 @@
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "bq" = (
-/mob/living/simple_mob/mechanical/viscerator,
-/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "br" = (
@@ -431,7 +431,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/Blackshuttledown)
 "bz" = (
-/mob/living/simple_mob/humanoid/merc/ranged/space,
+/mob/living/simple/humanoid/merc/ranged/space,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/Blackshuttledown)
 

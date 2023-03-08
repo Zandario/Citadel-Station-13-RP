@@ -486,8 +486,8 @@
 /obj/item/radio/headset/mob_headset/afterattack(var/atom/movable/target, mob/living/user, proximity)
 	if(!proximity)
 		return
-	if(istype(target,/mob/living/simple_mob))
-		var/mob/living/simple_mob/M = target
+	if(istype(target,/mob/living/simple))
+		var/mob/living/simple/M = target
 		if(!M.mob_radio)
 			forceMove(M)
 			M.mob_radio = src

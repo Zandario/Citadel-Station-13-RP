@@ -1,4 +1,4 @@
-/mob/living/simple_mob/animal/sif/fluffy
+/mob/living/simple/animal/sif/fluffy
 	name = "Fluffy"
 	desc = "It's a pink Diyaab! It seems to be very tame and quiet."
 	tt_desc = "S Choeros hirtus"
@@ -41,7 +41,7 @@
 	emote_hear = list("howls","squeals","squeaks", "barks")
 	emote_see = list("puffs its fur out", "shakes its fur", "stares directly at you")
 
-/mob/living/simple_mob/animal/sif/fluffy/silky
+/mob/living/simple/animal/sif/fluffy/silky
 	name = "Silky"
 	desc = "It's a blue Diyaab! It seems to be very tame and quiet."
 

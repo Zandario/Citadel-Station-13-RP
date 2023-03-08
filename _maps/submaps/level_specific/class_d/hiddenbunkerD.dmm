@@ -97,7 +97,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 4
 	},
-/mob/living/simple_mob/mechanical/viscerator/mercenary,
+/mob/living/simple/mechanical/viscerator/mercenary,
 /turf/simulated/floor/plating,
 /area/class_d/Mountain)
 "pJ" = (
@@ -115,7 +115,7 @@
 /turf/simulated/floor/tiled/kafel_full,
 /area/class_d/Mountain)
 "rc" = (
-/mob/living/simple_mob/mechanical/viscerator/mercenary,
+/mob/living/simple/mechanical/viscerator/mercenary,
 /turf/simulated/floor/tiled/white,
 /area/class_d/Mountain)
 "uD" = (
@@ -127,7 +127,7 @@
 /turf/simulated/floor/tiled,
 /area/class_d/Mountain)
 "vX" = (
-/mob/living/simple_mob/mechanical/viscerator/mercenary,
+/mob/living/simple/mechanical/viscerator/mercenary,
 /turf/simulated/floor/classd/indoors,
 /area/class_d/Mountain)
 "wt" = (
@@ -189,7 +189,7 @@
 /turf/simulated/floor/tiled,
 /area/class_d/Mountain)
 "CG" = (
-/mob/living/simple_mob/mechanical/viscerator/mercenary,
+/mob/living/simple/mechanical/viscerator/mercenary,
 /turf/simulated/floor/tiled/kafel_full,
 /area/class_d/Mountain)
 "Df" = (
@@ -211,7 +211,7 @@
 	pixel_x = 24;
 	pixel_y = -2
 	},
-/mob/living/simple_mob/mechanical/viscerator/mercenary,
+/mob/living/simple/mechanical/viscerator/mercenary,
 /turf/simulated/floor/tiled,
 /area/class_d/Mountain)
 "FF" = (
@@ -239,7 +239,7 @@
 /turf/simulated/floor/classd/indoors,
 /area/class_d/explored)
 "Jh" = (
-/mob/living/simple_mob/mechanical/viscerator/mercenary,
+/mob/living/simple/mechanical/viscerator/mercenary,
 /turf/simulated/floor/tiled,
 /area/class_d/Mountain)
 "JG" = (
@@ -303,7 +303,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/mob/living/simple_mob/mechanical/viscerator/mercenary,
+/mob/living/simple/mechanical/viscerator/mercenary,
 /turf/simulated/floor/plating,
 /area/class_d/Mountain)
 "RE" = (
@@ -311,7 +311,7 @@
 /turf/simulated/floor/tiled/kafel_full,
 /area/class_d/Mountain)
 "Tf" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword/space,
+/mob/living/simple/humanoid/merc/melee/sword/space,
 /turf/simulated/floor/tiled,
 /area/class_d/Mountain)
 "TB" = (
@@ -337,7 +337,7 @@
 /turf/simulated/floor/tiled,
 /area/class_d/Mountain)
 "Us" = (
-/mob/living/simple_mob/humanoid/merc/ranged/space/heavy,
+/mob/living/simple/humanoid/merc/ranged/space/heavy,
 /turf/simulated/floor/tiled,
 /area/class_d/Mountain)
 "Vq" = (
@@ -410,7 +410,7 @@
 /turf/simulated/floor/tiled,
 /area/class_d/Mountain)
 "YM" = (
-/mob/living/simple_mob/humanoid/merc/ranged/space/shotgun/auto,
+/mob/living/simple/humanoid/merc/ranged/space/shotgun/auto,
 /turf/simulated/floor/tiled,
 /area/class_d/Mountain)
 "Zm" = (

@@ -527,7 +527,7 @@
 				game.audible_message("<b>\The [src]</b> says, 'WEEWOO! WEEWOO! Spaceport security en route!'")
 				playsound(game, 'sound/items/weeoo1.ogg', 100, FALSE)
 				//for(var/i, i<=3, i++)
-					//var/mob/living/simple_mob/hostile/humanoid/orion/spaceport_security = new(get_turf(src))
+					//var/mob/living/simple/hostile/humanoid/orion/spaceport_security = new(get_turf(src))
 					//spaceport_security.target = usr
 
 	game.fuel += fuel

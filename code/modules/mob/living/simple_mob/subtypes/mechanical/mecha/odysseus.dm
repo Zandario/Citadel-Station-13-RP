@@ -11,7 +11,7 @@
 	medical exosuits."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/mechanical/mecha/odysseus
+/mob/living/simple/mechanical/mecha/odysseus
 	name = "odysseus"
 	desc = "These exosuits are developed and produced by Vey-Med. This one has a syringe gun."
 	catalogue_data = list(
@@ -34,20 +34,20 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting/no_moonwalk
 
-/mob/living/simple_mob/mechanical/mecha/odysseus/manned
-	pilot_type = /mob/living/simple_mob/humanoid/merc/ranged // Carries a pistol.
+/mob/living/simple/mechanical/mecha/odysseus/manned
+	pilot_type = /mob/living/simple/humanoid/merc/ranged // Carries a pistol.
 
 
 // Resprite of the regular one, perhaps for merc PoIs.
-/mob/living/simple_mob/mechanical/mecha/odysseus/murdysseus
+/mob/living/simple/mechanical/mecha/odysseus/murdysseus
 	icon_state = "murdysseus"
 	wreckage = /obj/structure/loot_pile/mecha/odysseus/murdysseus
 
-/mob/living/simple_mob/mechanical/mecha/odysseus/murdysseus/manned
-	pilot_type = /mob/living/simple_mob/humanoid/merc/ranged
+/mob/living/simple/mechanical/mecha/odysseus/murdysseus/manned
+	pilot_type = /mob/living/simple/humanoid/merc/ranged
 
 
-/mob/living/simple_mob/mechanical/mecha/odysseus/apply_melee_effects(atom/A)
+/mob/living/simple/mechanical/mecha/odysseus/apply_melee_effects(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 

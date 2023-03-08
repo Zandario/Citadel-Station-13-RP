@@ -21,7 +21,7 @@ TODO: Make them light up and heat the air when exposed to oxygen.
 	eventually kills them."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/passive/gaslamp
+/mob/living/simple/animal/passive/gaslamp
 	name = "gaslamp"
 	desc = "Some sort of floaty alien with a warm glow. This creature is endemic to Virgo-3B."
 	tt_desc = "Semaeostomeae virginus"
@@ -82,7 +82,7 @@ TODO: Make them light up and heat the air when exposed to oxygen.
 	base_wander_delay = 9
 
 // Activate Noms!
-/mob/living/simple_mob/animal/passive/gaslamp
+/mob/living/simple/animal/passive/gaslamp
 	vore_active = 1
 	vore_capacity = 2
 	vore_bump_chance = 90 //they're frickin' jellyfish anenome filterfeeders, get tentacled

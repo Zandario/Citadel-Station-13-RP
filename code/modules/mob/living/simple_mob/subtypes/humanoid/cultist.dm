@@ -32,7 +32,7 @@
 		/datum/category_item/catalogue/fauna/cultist/hunter
 		)
 
-/mob/living/simple_mob/humanoid/cultist //Do not spawn this on in directly it is simply a base for the rest namely the unique death animations.
+/mob/living/simple/humanoid/cultist //Do not spawn this on in directly it is simply a base for the rest namely the unique death animations.
 	name = "Cultist"
 	desc = "An awfully frail and ghastly looking individual"
 	tt_desc = "NULL"
@@ -50,7 +50,7 @@
 	that the species is overrepresented amongst the ranks of Cult aggressors."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/humanoid/cultist/human
+/mob/living/simple/humanoid/cultist/human
 	name = "cultist"
 	desc = "A fanatical zealot armed with a darkly colored sword."
 	icon_state = "cultist"
@@ -75,13 +75,13 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
-/mob/living/simple_mob/humanoid/cultist/human/death()
+/mob/living/simple/humanoid/cultist/human/death()
 	new /obj/effect/decal/remains/human (src.loc)
 	..(null,"let's out a maddening laugh as his body crumbles away.")
 	ghostize()
 	qdel(src)
 
-/mob/living/simple_mob/humanoid/cultist/human/bloodjaunt //Teleporting Cultists
+/mob/living/simple/humanoid/cultist/human/bloodjaunt //Teleporting Cultists
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 
@@ -93,7 +93,7 @@
 	special_attack_max_range = 6
 	special_attack_cooldown = 10 SECONDS
 
-/mob/living/simple_mob/humanoid/cultist/human/bloodjaunt/do_special_attack(atom/A)
+/mob/living/simple/humanoid/cultist/human/bloodjaunt/do_special_attack(atom/A)
 	set waitfor = FALSE
 	set_AI_busy(TRUE)
 
@@ -163,7 +163,7 @@
 	return FALSE
 
 // Does the jaunt movement
-/mob/living/simple_mob/humanoid/cultist/human/bloodjaunt/proc/handle_jaunt(turf/destination)
+/mob/living/simple/humanoid/cultist/human/bloodjaunt/proc/handle_jaunt(turf/destination)
 	var/turf/T = get_turf(src) // Hold our current tile.
 
 	// Regular tunnel loop.
@@ -186,7 +186,7 @@
 		forceMove(T)
 
 
-/mob/living/simple_mob/humanoid/cultist/human/bloodjaunt/should_special_attack(atom/A)
+/mob/living/simple/humanoid/cultist/human/bloodjaunt/should_special_attack(atom/A)
 	// Make sure its possible for the wraith to reach the target so it doesn't try to go through a window.
 	var/turf/destination = get_turf(A)
 	var/turf/starting_turf = get_turf(src)
@@ -213,7 +213,7 @@
 	tenacious, Teshari form the vanguard of many fanatical assaults."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/humanoid/cultist/tesh
+/mob/living/simple/humanoid/cultist/tesh
 	name = "cultist"
 	desc = "A sinister looking hooded Teshari armed with a curved knife."
 	icon_state = "culttesh"
@@ -243,7 +243,7 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
-/mob/living/simple_mob/humanoid/cultist/tesh/death()
+/mob/living/simple/humanoid/cultist/tesh/death()
 	new /obj/effect/debris/cleanable/ash (src.loc)
 	..(null,"let's out a shrill chirp as his body turns to dust.")
 	ghostize()
@@ -264,7 +264,7 @@
 	of what damage they themselves incur."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/humanoid/cultist/lizard
+/mob/living/simple/humanoid/cultist/lizard
 	name = "cultist"
 	desc = "With a knife in each hand, this lizard looks ready to disect you."
 	icon_state = "cultliz"
@@ -294,7 +294,7 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
-/mob/living/simple_mob/humanoid/cultist/lizard/death()
+/mob/living/simple/humanoid/cultist/lizard/death()
 	new /obj/effect/decal/remains/unathi (src.loc)
 	..(null,"hisses as he collapses into a pile of bones.")
 	ghostize()
@@ -315,7 +315,7 @@
 	teams."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/humanoid/cultist/caster
+/mob/living/simple/humanoid/cultist/caster
 	name = "Blood Mage"
 	desc = "A Robed individual whose hands pulsate with unnatural power."
 	icon_state = "caster"
@@ -346,7 +346,7 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged
 
-/mob/living/simple_mob/humanoid/cultist/caster/death()
+/mob/living/simple/humanoid/cultist/caster/death()
 	new /obj/effect/decal/remains/human (src.loc)
 	new /obj/effect/debris/cleanable/blood/gibs (src.loc)
 	..(null,"melts into a pile of blood and bones.")
@@ -366,7 +366,7 @@
 	ranks, whereas those that don't may still serve as cannon fodder and sacrifices."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/humanoid/cultist/initiate
+/mob/living/simple/humanoid/cultist/initiate
 	name = "Blood Intiate"
 	desc = "A Novice Amongst his betters, he still seems determined to slice you to bits."
 	icon_state = "initiate"
@@ -395,7 +395,7 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
-/mob/living/simple_mob/humanoid/cultist/initiate/death()
+/mob/living/simple/humanoid/cultist/initiate/death()
 	new /obj/effect/decal/remains/human (src.loc)
 	..(null,"lets out a horrified scream as his body crumbles away.")
 	ghostize()
@@ -414,7 +414,7 @@
 	error of their ways."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/humanoid/cultist/castertesh
+/mob/living/simple/humanoid/cultist/castertesh
 	name = "Teshari Mage"
 	desc = "This Teshari seems to have forsoken weapons for unfanthomable power."
 	icon_state = "castertesh"
@@ -446,7 +446,7 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting
 
-/mob/living/simple_mob/humanoid/cultist/castertesh/death()
+/mob/living/simple/humanoid/cultist/castertesh/death()
 	new /obj/effect/debris/cleanable/ash (src.loc)
 	..(null,"burns away into nothing.")
 	ghostize()
@@ -467,7 +467,7 @@
 	fanaticism of their subordinates."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/humanoid/cultist/elite
+/mob/living/simple/humanoid/cultist/elite
 	name = "Elite Cultist"
 	desc = "A heavily armed cultist with a mirror shield that hurts to look at."
 	icon_state = "cult_elite"
@@ -493,7 +493,7 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
-/mob/living/simple_mob/humanoid/cultist/elite/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple/humanoid/cultist/elite/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(O.force)
 		if(prob(30))
 			visible_message("<span class='danger'>\The [src] blocks \the [O] with its shield!</span>")
@@ -506,7 +506,7 @@
 		to_chat(user, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
 		visible_message("<span class='warning'>\The [user] gently taps [src] with \the [O].</span>")
 
-/mob/living/simple_mob/humanoid/cultist/elite/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/simple/humanoid/cultist/elite/bullet_act(var/obj/item/projectile/Proj)
 	if(!Proj)	return
 	if(prob(50))
 		visible_message("<font color='red'><B>[Proj] disappears into the mirror world as it hits the shield.</B></font>")
@@ -516,7 +516,7 @@
 	else
 		..()
 
-/mob/living/simple_mob/humanoid/cultist/elite/death()
+/mob/living/simple/humanoid/cultist/elite/death()
 	new /obj/effect/decal/remains/human (src.loc)
 	new /obj/effect/debris/cleanable/blood/gibs (src.loc)
 	new /obj/item/material/shard (src.loc)
@@ -539,7 +539,7 @@
 	the Magus is a priority target in any engagement."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/humanoid/cultist/magus
+/mob/living/simple/humanoid/cultist/magus
 	name = "Blood Magus"
 	desc = "A leader of the bloody cult and master of the forbidden arts, wielding powers beyond that of mortal men."
 	icon_state = "magus"
@@ -573,13 +573,13 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting
 
-/mob/living/simple_mob/humanoid/cultist/magus/death()
+/mob/living/simple/humanoid/cultist/magus/death()
 	new /obj/effect/debris/cleanable/blood/gibs (src.loc)
 	..(null,"let's out a dark laugh as it collapses into a puddle of blood.")
 	ghostize()
 	qdel(src)
 
-/mob/living/simple_mob/humanoid/cultist/magus/Initialize(mapload)
+/mob/living/simple/humanoid/cultist/magus/Initialize(mapload)
 	shields = new /obj/item/shield_projector/rectangle/automatic/magus(src)
 	return ..()
 
@@ -612,7 +612,7 @@
 	peer. If encountered, retreat and contact the PMD immediately."
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/humanoid/cultist/hunter // This Mob is not meant to be fair, he is not meant to fight regular crew he is to be pitted against heavily armed explo teams to see if he can wipe them out.
+/mob/living/simple/humanoid/cultist/hunter // This Mob is not meant to be fair, he is not meant to fight regular crew he is to be pitted against heavily armed explo teams to see if he can wipe them out.
 	name = "Blood Hunter" // TO BE CLEAR: DO NOT SPAWN THIS GUY ON THE SHIP/STATION HE WILL MURDER EVERYTHING.
 	desc = "The smell of blood fills the air, how delicious it tastes. Let the hunt begin." // He is a horrifying lovechild of Caleb and a blooborne hunter.
 	icon_state = "hunterb" // He probably shouldn't even have other mobs supporting him.
@@ -651,7 +651,7 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/aggressive/blood_hunter
 
-/mob/living/simple_mob/humanoid/cultist/hunter/death()
+/mob/living/simple/humanoid/cultist/hunter/death()
 	new /obj/effect/debris/cleanable/blood/gibs (src.loc)
 	..(null,"laughs as he melts away. His laughs echo through the air even after only a dense red goo remains.")
 	ghostize()
@@ -671,7 +671,7 @@
 ////////////////////////////
 
 
-/mob/living/simple_mob/humanoid/cultist/hunter/surt // This Mob is not meant to be fair, he is not meant to fight regular crew he is to be pitted against heavily armed explo teams to see if he can wipe them out.
+/mob/living/simple/humanoid/cultist/hunter/surt // This Mob is not meant to be fair, he is not meant to fight regular crew he is to be pitted against heavily armed explo teams to see if he can wipe them out.
 	name = "Itinerant Blood Hunter"
 	desc = "This Blood Hunter is far from home. Strange energies course around him, protecting him from the environment. What eldritch influence drew him to this place?" // Blood Hunter on vacation.
 

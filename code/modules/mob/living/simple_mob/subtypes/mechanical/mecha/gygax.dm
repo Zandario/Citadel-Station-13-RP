@@ -12,7 +12,7 @@
 	at the expense of damaging the exosuit considerably."
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/mechanical/mecha/combat/gygax
+/mob/living/simple/mechanical/mecha/combat/gygax
 	name = "gygax"
 	desc = "A lightweight, security exosuit. Popular among private and corporate security."
 	catalogue_data = list(/datum/category_item/catalogue/technology/gygax)
@@ -35,8 +35,8 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/intentional/adv_dark_gygax
 
-/mob/living/simple_mob/mechanical/mecha/combat/gygax/manned
-	pilot_type = /mob/living/simple_mob/humanoid/merc/ranged // Carries a pistol.
+/mob/living/simple/mechanical/mecha/combat/gygax/manned
+	pilot_type = /mob/living/simple/humanoid/merc/ranged // Carries a pistol.
 
 
 // A stronger variant.
@@ -52,7 +52,7 @@
 	a regular Gygax. Instead, this exosuit is often used by high-end asset protection teams, and mercenaries."
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/mechanical/mecha/combat/gygax/dark
+/mob/living/simple/mechanical/mecha/combat/gygax/dark
 	name = "dark gygax"
 	desc = "A significantly upgraded Gygax security mech, often utilized by corporate asset protection teams and \
 	PMCs."
@@ -73,10 +73,9 @@
 				"rad"		= 100
 				)
 
-/mob/living/simple_mob/mechanical/mecha/combat/gygax/medgax
+/mob/living/simple/mechanical/mecha/combat/gygax/medgax
 	name = "medgax"
 	desc = "An unorthodox fusion of the Gygax and Odysseus exosuits, this one is fast, sturdy, and carries a wide array of \
 	potent chemicals and delivery mechanisms. The doctor is in!"
 	icon_state = "medgax"
 	wreckage = /obj/structure/loot_pile/mecha/gygax/medgax
-

@@ -12,7 +12,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/DoomP)
 "ae" = (
-/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
 /turf/simulated/floor/outdoors/rocks,
 /area/submap/virgo2/DoomP)
 "af" = (
@@ -23,7 +23,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/DoomP)
 "ai" = (
-/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/DoomP)
 "al" = (
@@ -91,7 +91,7 @@
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
-/mob/living/simple_mob/humanoid/merc/ranged/space,
+/mob/living/simple/humanoid/merc/ranged/space,
 /turf/simulated/floor/tiled,
 /area/submap/virgo2/DoomP)
 "aB" = (
@@ -227,7 +227,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/mob/living/simple_mob/humanoid/merc/melee/sword/space,
+/mob/living/simple/humanoid/merc/melee/sword/space,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/submap/virgo2/DoomP)
 "aU" = (
@@ -244,7 +244,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/submap/virgo2/DoomP)
 "aX" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword/space,
+/mob/living/simple/humanoid/merc/melee/sword/space,
 /turf/simulated/floor/tiled,
 /area/submap/virgo2/DoomP)
 "aZ" = (
@@ -285,7 +285,7 @@
 /obj/effect/floor_decal/borderfloor/corner{
 	dir = 8
 	},
-/mob/living/simple_mob/humanoid/merc/ranged/space,
+/mob/living/simple/humanoid/merc/ranged/space,
 /turf/simulated/floor/tiled,
 /area/submap/virgo2/DoomP)
 "bh" = (
@@ -316,7 +316,7 @@
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
 	},
-/mob/living/simple_mob/humanoid/merc/ranged/space,
+/mob/living/simple/humanoid/merc/ranged/space,
 /turf/simulated/floor/tiled,
 /area/submap/virgo2/DoomP)
 "bn" = (
@@ -493,14 +493,14 @@
 	dir = 8
 	},
 /obj/effect/floor_decal/corner/lime/full,
-/mob/living/simple_mob/humanoid/merc/ranged/space,
+/mob/living/simple/humanoid/merc/ranged/space,
 /turf/simulated/floor/tiled/white,
 /area/submap/virgo2/DoomP)
 "bL" = (
 /obj/effect/floor_decal/corner/lime{
 	dir = 10
 	},
-/mob/living/simple_mob/humanoid/merc/ranged/space,
+/mob/living/simple/humanoid/merc/ranged/space,
 /turf/simulated/floor/tiled/white,
 /area/submap/virgo2/DoomP)
 "bM" = (
@@ -525,7 +525,7 @@
 /area/submap/virgo2/DoomP)
 "Hh" = (
 /obj/effect/floor_decal/industrial/warning,
-/mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced,
+/mob/living/simple/mechanical/mecha/combat/gygax/dark/advanced,
 /turf/simulated/floor/plating,
 /area/submap/virgo2/DoomP)
 

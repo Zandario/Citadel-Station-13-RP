@@ -12,7 +12,7 @@
 	for their own purposes, turning into fragile, yet tenacious 'blob zombies'."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/blob/spore
+/mob/living/simple/blob/spore
 	name = "blob spore"
 	desc = "A floating, fragile spore."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/blob/spore)
@@ -45,24 +45,24 @@
 	emote_see = list("shambles around", "twitches", "stares")
 
 
-/mob/living/simple_mob/blob/spore/infesting
+/mob/living/simple/blob/spore/infesting
 	name = "infesting blob spore"
 	can_infest = TRUE
 
-/mob/living/simple_mob/blob/spore/weak
+/mob/living/simple/blob/spore/weak
 	name = "fragile blob spore"
 	health = 15
 	maxHealth = 15
 	melee_damage_lower = 1
 	melee_damage_upper = 2
 
-/mob/living/simple_mob/blob/spore/Initialize(mapload, var/obj/structure/blob/factory/my_factory)
+/mob/living/simple/blob/spore/Initialize(mapload, var/obj/structure/blob/factory/my_factory)
 	if(istype(my_factory))
 		factory = my_factory
 		factory.spores += src
 	return ..()
 
-/mob/living/simple_mob/blob/spore/Destroy()
+/mob/living/simple/blob/spore/Destroy()
 	if(factory)
 		factory.spores -= src
 	factory = null
@@ -72,13 +72,13 @@
 		infested = null
 	return ..()
 
-/mob/living/simple_mob/blob/spore/death(gibbed, deathmessage = "bursts!")
+/mob/living/simple/blob/spore/death(gibbed, deathmessage = "bursts!")
 	if(overmind)
 		overmind.blob_type.on_spore_death(src)
 	..(gibbed, deathmessage)
 	qdel(src)
 
-/mob/living/simple_mob/blob/spore/update_icons()
+/mob/living/simple/blob/spore/update_icons()
 	..() // This will cut our overlays.
 
 	if(overmind)
@@ -99,7 +99,7 @@
 		color = initial(color)//looks better.
 		add_overlay(blob_head_overlay, TRUE)
 
-/mob/living/simple_mob/blob/spore/handle_special()
+/mob/living/simple/blob/spore/handle_special()
 	..()
 	if(can_infest && !is_infesting && isturf(loc))
 		for(var/mob/living/complex/human/H in view(src,1))
@@ -113,7 +113,7 @@
 	if(factory && z != factory.z) // This is to prevent spores getting lost in space and making the factory useless.
 		qdel(src)
 
-/mob/living/simple_mob/blob/spore/proc/infest(mob/living/complex/human/H)
+/mob/living/simple/blob/spore/proc/infest(mob/living/complex/human/H)
 	is_infesting = TRUE
 	if(H.wear_suit)
 		var/obj/item/clothing/suit/A = H.wear_suit
@@ -136,13 +136,13 @@
 	update_icons()
 	visible_message(SPAN_WARNING( "The corpse of [H.name] suddenly rises!"))
 
-/mob/living/simple_mob/blob/spore/GetIdCard()
+/mob/living/simple/blob/spore/GetIdCard()
 	if(infested) // If we've infested someone, use their ID.
 		return infested.GetIdCard()
 
-/mob/living/simple_mob/blob/spore/apply_bonus_melee_damage(A, damage_to_do)
+/mob/living/simple/blob/spore/apply_bonus_melee_damage(A, damage_to_do)
 	var/helpers = 0
-	for(var/mob/living/simple_mob/blob/spore/S in view(1, src))
+	for(var/mob/living/simple/blob/spore/S in view(1, src))
 		if(S == src) // Don't count ourselves.
 			continue
 		if(!IIsAlly(S)) // Only friendly spores make us stronger.

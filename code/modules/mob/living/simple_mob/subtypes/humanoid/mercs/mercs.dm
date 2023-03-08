@@ -43,7 +43,7 @@
 	value = CATALOGUER_REWARD_EASY
 
 // Probably shouldn't use this directly, there are a bunch of sub-classes that are more complete.
-/mob/living/simple_mob/humanoid/merc
+/mob/living/simple/humanoid/merc
 	name = "mercenary"
 	desc = "A tough looking individual armed with only a knife."
 	tt_desc = "E Homo sapiens"
@@ -91,7 +91,7 @@
 // Any merc can use this, just set special_attack_charges to a positive value
 
 // Check if we should bother with the grenade
-/mob/living/simple_mob/humanoid/merc/should_special_attack(atom/A)
+/mob/living/simple/humanoid/merc/should_special_attack(atom/A)
 	var/mob_count = 0				// Are there enough mobs to consider grenading?
 	var/turf/T = get_turf(A)
 	for(var/mob/M in range(T, 2))
@@ -106,7 +106,7 @@
 		return TRUE
 
 // Yes? Throw the grenade
-/mob/living/simple_mob/humanoid/merc/do_special_attack(atom/A)
+/mob/living/simple/humanoid/merc/do_special_attack(atom/A)
 	set waitfor = FALSE
 	set_AI_busy(TRUE)
 
@@ -139,11 +139,11 @@
 ////////////////////////////////
 //			Melee
 ////////////////////////////////
-/mob/living/simple_mob/humanoid/merc/melee	// Defined in case we add non-sword-and-board mercs
+/mob/living/simple/humanoid/merc/melee	// Defined in case we add non-sword-and-board mercs
 	loot_list = list(/obj/item/material/knife/tacknife = 100)
 
 // Sword and Shield Merc
-/mob/living/simple_mob/humanoid/merc/melee/sword
+/mob/living/simple/humanoid/merc/melee/sword
 	icon_state = "syndicatemelee"
 	icon_living = "syndicatemelee"
 
@@ -157,7 +157,7 @@
 	loot_list = list(/obj/item/melee/energy/sword = 100, /obj/item/shield/energy = 100)
 
 // They have a shield, so they try to block
-/mob/living/simple_mob/humanoid/merc/melee/sword/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple/humanoid/merc/melee/sword/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(O.force)
 		if(prob(20))
 			visible_message("<span class='danger'>\The [src] blocks \the [O] with its shield!</span>")
@@ -170,7 +170,7 @@
 		to_chat(user, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
 		visible_message("<span class='warning'>\The [user] gently taps [src] with \the [O].</span>")
 
-/mob/living/simple_mob/humanoid/merc/melee/sword/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/simple/humanoid/merc/melee/sword/bullet_act(var/obj/item/projectile/Proj)
 	if(!Proj)	return
 	if(prob(35))
 		visible_message("<span class='warning'>[src] blocks [Proj] with its shield!</span>")
@@ -186,7 +186,7 @@
 ////////////////////////////////
 
 // Base Ranged Merc, so we don't have to redefine a million vars for every subtype. Uses a pistol.
-/mob/living/simple_mob/humanoid/merc/ranged
+/mob/living/simple/humanoid/merc/ranged
 	name = "mercenary"
 	desc = "A tough looking individual armed with an pistol."
 	icon_state = "syndicateranged"
@@ -201,7 +201,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/merc/ranged
 
 // C20r SMG
-/mob/living/simple_mob/humanoid/merc/ranged/smg
+/mob/living/simple/humanoid/merc/ranged/smg
 	name = "mercenary soldier"
 	desc = "A tough looking individual armed with an submachine gun."
 	icon_state = "syndicateranged_smg"
@@ -223,7 +223,7 @@
 	Act, these 'humanitarian operations' are quickly demolished."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/humanoid/merc/ranged/smg/sol
+/mob/living/simple/humanoid/merc/ranged/smg/sol
 	icon_state = "bluforranged_smg"
 	icon_living = "blueforranged_smg"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/mercenary/human/peacekeeper)
@@ -235,7 +235,7 @@
 	reload_max = 20
 
 // Laser Rifle
-/mob/living/simple_mob/humanoid/merc/ranged/laser
+/mob/living/simple/humanoid/merc/ranged/laser
 	name = "mercenary marksman"
 	desc = "A tough looking individual armed with an laser rifle."
 	icon_state = "syndicateranged_laser"
@@ -248,7 +248,7 @@
 	reload_max = 10
 
 // Ion Rifle
-/mob/living/simple_mob/humanoid/merc/ranged/ionrifle
+/mob/living/simple/humanoid/merc/ranged/ionrifle
 	name = "mercenary anti-technical"
 	desc = "A tough looking individual armed with an ion rifle."
 	icon_state = "syndicateranged_ionrifle"
@@ -261,7 +261,7 @@
 	reload_max = 10
 
 //Garand
-/mob/living/simple_mob/humanoid/merc/ranged/garand
+/mob/living/simple/humanoid/merc/ranged/garand
 	name = "mercenary rifleman"
 	desc = "A tough looking individual armed with a semiautomatic rifle."
 	icon_state = "syndicateranged_veteran"
@@ -275,7 +275,7 @@
 	reload_time = 2 // It takes a bit to jam a stripper clip into the rifle.
 
 //Hand Cannon
-/mob/living/simple_mob/humanoid/merc/ranged/deagle
+/mob/living/simple/humanoid/merc/ranged/deagle
 	name = "mercenary officer"
 	desc = "A tough looking individual armed with an handcannon."
 	icon_state = "syndicate_handcannon"
@@ -297,7 +297,7 @@
 	value = CATALOGUER_REWARD_EASY
 
 // Grenadier, Basically a miniboss,
-/mob/living/simple_mob/humanoid/merc/ranged/grenadier
+/mob/living/simple/humanoid/merc/ranged/grenadier
 	name = "mercenary grenadier"
 	desc = "A tough looking individual armed with a shotgun and a belt of grenades."
 	icon_state = "syndicateranged_shotgun"
@@ -327,7 +327,7 @@
 	value = CATALOGUER_REWARD_EASY
 
 // Sword Space Merc
-/mob/living/simple_mob/humanoid/merc/melee/sword/space
+/mob/living/simple/humanoid/merc/melee/sword/space
 	name = "mercenary commando"
 	desc = "A tough looking individual, armred with an energy sword and shield."
 	icon_state = "syndicatespace-melee"
@@ -350,11 +350,11 @@
 
 	corpse = /obj/spawner/corpse/syndicatecommando
 
-/mob/living/simple_mob/humanoid/merc/melee/sword/space/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple/humanoid/merc/melee/sword/space/Process_Spacemove(var/check_drift = 0)
 	return
 
 // Ranged Space Merc
-/mob/living/simple_mob/humanoid/merc/ranged/space
+/mob/living/simple/humanoid/merc/ranged/space
 	name = "armored mercenary"
 	desc = "A tough looking individual, armed with a submachine gun."
 	icon_state = "syndicatespace-ranged"
@@ -381,11 +381,11 @@
 
 	loot_list = list(/obj/item/gun/ballistic/automatic/c20r = 100)
 
-/mob/living/simple_mob/humanoid/merc/ranged/space/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple/humanoid/merc/ranged/space/Process_Spacemove(var/check_drift = 0)
 	return
 
 //Combat Shotgun Merc
-/mob/living/simple_mob/humanoid/merc/ranged/space/shotgun
+/mob/living/simple/humanoid/merc/ranged/space/shotgun
 	name = "mercenary tactical"
 	desc = "A tough looking individual armed with a combat shotgun."
 	icon_state = "syndicatespace-shotgun"
@@ -401,7 +401,7 @@
 	loot_list = list(/obj/item/gun/ballistic/shotgun/pump/combat = 100)
 
 //Auto-Shotgun Space Merc
-/mob/living/simple_mob/humanoid/merc/ranged/space/shotgun/auto
+/mob/living/simple/humanoid/merc/ranged/space/shotgun/auto
 	name = "mercenary sweeper"
 	desc = "A tough looking individual armed with an automatic shotgun."
 	icon_state = "syndicatespace-ashotgun"
@@ -418,7 +418,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/merc/ranged/surpressor
 
 //Machine Gun Merc
-/mob/living/simple_mob/humanoid/merc/ranged/space/heavy
+/mob/living/simple/humanoid/merc/ranged/space/heavy
 	name = "mercenary heavy gunner"
 	desc = "A tough looking individual armed with an light machinegun."
 	icon_state = "syndicatespace-heavy"
@@ -435,7 +435,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/merc/ranged/surpressor
 
 //Tommy-Las Merc
-/mob/living/simple_mob/humanoid/merc/ranged/space/tommylas
+/mob/living/simple/humanoid/merc/ranged/space/tommylas
 	name = "mercenary light burster"
 	desc = "A tough looking individual armed with an automatic laser."
 	icon_state = "syndicatespace-tommylas"
@@ -452,7 +452,7 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/merc/ranged/surpressor
 
-/mob/living/simple_mob/humanoid/merc/ranged/space/fal
+/mob/living/simple/humanoid/merc/ranged/space/fal
 	name = "mercenary commando"
 	desc = "A tough looking individual armed with a assault rifle."
 	icon_state = "syndicatespace-commando"
@@ -478,7 +478,7 @@
 	respect_alpha = FALSE // he really just shoots you
 	vision_range = 10 // plutonia experience
 
-/mob/living/simple_mob/humanoid/merc/ranged/space/suppressor // adminspawn only, and also Probably Going To Kill The Unprepared
+/mob/living/simple/humanoid/merc/ranged/space/suppressor // adminspawn only, and also Probably Going To Kill The Unprepared
 	name = "mercenary suppressor"
 	desc = "Geeze, weren't shotgun ops bad enough? At least when you fade these jerks you get a flashbang to the face."
 	icon_state = "syndi-ranged-space-sup"
@@ -497,7 +497,7 @@
 // 	var/deathnade_path = /obj/item/grenade/flashbang/stingbang
 
 /* far too fun for the codebase at the moment
-/mob/living/simple_mob/humanoid/merc/ranged/space/suppressor/death()
+/mob/living/simple/humanoid/merc/ranged/space/suppressor/death()
 	// you thought killing him would be the least of your worries?
 	// think again
 	var/obj/item/grenade/banger = new deathnade_path(get_turf(src))
@@ -507,7 +507,7 @@
 	..()
 */
 
-/mob/living/simple_mob/humanoid/merc/ranged/space/suppressor/elite // really reconsider why you're spawning this dude
+/mob/living/simple/humanoid/merc/ranged/space/suppressor/elite // really reconsider why you're spawning this dude
 	name = "mercenary elite suppressor"
 	desc = "Geeze, weren't normal suppressors bad enough? At least if you fade this jerk, you'll have an awful time anyway."
 	icon_state = "syndi-ranged-space-sup-elite"
@@ -519,7 +519,7 @@
 // 	deathnade_path = /obj/item/grenade/flashbang/stingbang/shredbang // REALLY don't group up
 
 // being Actual Professionals, they have better (read: player-level) blocking chances
-/mob/living/simple_mob/humanoid/merc/ranged/space/suppressor/attackby(var/obj/item/O, var/mob/user)
+/mob/living/simple/humanoid/merc/ranged/space/suppressor/attackby(var/obj/item/O, var/mob/user)
 	if(O.force)
 		if(prob(50))
 			visible_message("<span class='danger'>\The [src] blocks \the [O] with its shield!</span>")
@@ -531,7 +531,7 @@
 	else
 		visible_message("<span class='warning'>\The [user] gently taps [src] with \the [O].</span>")
 
-/mob/living/simple_mob/humanoid/merc/ranged/space/suppressor/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/simple/humanoid/merc/ranged/space/suppressor/bullet_act(var/obj/item/projectile/Proj)
 	if(!Proj)	return
 	if(prob(50))
 		visible_message("<span class='warning'>[src] blocks [Proj] with its shield!</span>")
@@ -546,25 +546,25 @@
 ////////////////////////////////
 
 // None of these drop weapons, until we have a better way to balance them
-/mob/living/simple_mob/humanoid/merc/melee/poi
+/mob/living/simple/humanoid/merc/melee/poi
 	loot_list = list()
 
-/mob/living/simple_mob/humanoid/merc/melee/sword/poi
+/mob/living/simple/humanoid/merc/melee/sword/poi
 	loot_list = list()
 
-/mob/living/simple_mob/humanoid/merc/ranged/poi
+/mob/living/simple/humanoid/merc/ranged/poi
 	loot_list = list()
 
-/mob/living/simple_mob/humanoid/merc/ranged/smg/poi
+/mob/living/simple/humanoid/merc/ranged/smg/poi
 	loot_list = list()
 
-/mob/living/simple_mob/humanoid/merc/ranged/laser/poi
+/mob/living/simple/humanoid/merc/ranged/laser/poi
 	loot_list = list()
 
-/mob/living/simple_mob/humanoid/merc/ranged/ionrifle
+/mob/living/simple/humanoid/merc/ranged/ionrifle
 	loot_list = list()
 
-/mob/living/simple_mob/humanoid/merc/ranged/grenadier/poi
+/mob/living/simple/humanoid/merc/ranged/grenadier/poi
 	loot_list = list()
 
 ////////////////////////////////
@@ -582,7 +582,7 @@
 	value = CATALOGUER_REWARD_MEDIUM
 	unlocked_by_any = list(/datum/category_item/catalogue/fauna/mercenary/vox)
 
-/mob/living/simple_mob/humanoid/merc/voxpirate	//Don't use this one.
+/mob/living/simple/humanoid/merc/voxpirate	//Don't use this one.
 	name = "vox mannequin"
 	desc = "You shouldn't be seeing this one."
 	icon = 'icons/mob/animal.dmi'
@@ -626,7 +626,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/merc
 	say_list_type = /datum/say_list/merc/voxpirate
 
-/mob/living/simple_mob/humanoid/merc/voxpirate/pirate
+/mob/living/simple/humanoid/merc/voxpirate/pirate
 	name = "vox pirate"
 	desc = "A desperate looking Vox. Get your gun."
 	projectiletype = /obj/item/projectile/bullet/rifle/a762
@@ -646,7 +646,7 @@
 	the distance to exploit these facts."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/humanoid/merc/voxpirate/boarder
+/mob/living/simple/humanoid/merc/voxpirate/boarder
 	name = "vox melee boarder"
 	desc = "A howling Vox with a sword. Run."
 	icon_state = "voxboarder_m"
@@ -664,7 +664,7 @@
 	loot_list = list(/obj/item/melee/energy/sword = 100)
 
 // They're good with the swords? I dunno. I like the idea they can deflect.
-/mob/living/simple_mob/humanoid/merc/voxpirate/boarder/attackby(var/obj/item/O, var/mob/user)
+/mob/living/simple/humanoid/merc/voxpirate/boarder/attackby(var/obj/item/O, var/mob/user)
 	if(O.force)
 		if(prob(20))
 			visible_message("<span class='danger'>\The [src] blocks \the [O] with its sword!</span>")
@@ -677,7 +677,7 @@
 		to_chat(user, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
 		visible_message("<span class='warning'>\The [user] gently taps [src] with \the [O].</span>")
 
-/mob/living/simple_mob/humanoid/merc/voxpirate/boarder/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/simple/humanoid/merc/voxpirate/boarder/bullet_act(var/obj/item/projectile/Proj)
 	if(!Proj)	return
 	if(prob(35))
 		visible_message("<span class='warning'>[src] blocks [Proj] with its sword!</span>")
@@ -691,7 +691,7 @@
 //			Vox Ranged
 ////////////////////////////////
 
-/mob/living/simple_mob/humanoid/merc/voxpirate/shotgun
+/mob/living/simple/humanoid/merc/voxpirate/shotgun
 	name = "vox ranged boarder"
 	desc = "A howling Vox with a shotgun. Get to cover!"
 	icon_state = "voxboarder_r"
@@ -722,7 +722,7 @@
 	with scraps and odd bits, often recieving no external recognition for their work."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/humanoid/merc/voxpirate/technician
+/mob/living/simple/humanoid/merc/voxpirate/technician
 	name = "vox salvage technician"
 	desc = "A screeching Vox with an ion rifle. Usually sent on scrapping operations."
 	icon_state = "voxboarder_t"
@@ -752,7 +752,7 @@
 	pointed at you."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/humanoid/merc/voxpirate/suppressor
+/mob/living/simple/humanoid/merc/voxpirate/suppressor
 	name = "vox suppressor"
 	desc = "Come on, feel the noise!"
 	icon_state = "voxsuppressor"
@@ -784,7 +784,7 @@
 	If you are unable to negotiate, expect to face their entire crew head on."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/humanoid/merc/voxpirate/captain
+/mob/living/simple/humanoid/merc/voxpirate/captain
 	name = "vox pirate captain"
 	desc = "Walkings the plank, dustlung! Yayaya."
 	icon_state = "voxcaptain"

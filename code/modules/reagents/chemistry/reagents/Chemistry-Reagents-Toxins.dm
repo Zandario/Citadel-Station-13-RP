@@ -412,10 +412,10 @@
 	color = "#8FB97C"
 	strength = 4
 
-/datum/reagent/toxin/pestbgone/touch_obj(mob/living/simple_mob/animal/A, removed)
-	if(istype(A, /mob/living/simple_mob/animal/roach))
+/datum/reagent/toxin/pestbgone/touch_obj(mob/living/simple/animal/A, removed)
+	if(istype(A, /mob/living/simple/animal/roach))
 		A.adjustToxLoss(10 * removed)
-	else if(istype(A, /mob/living/simple_mob/animal/giant_spider))
+	else if(istype(A, /mob/living/simple/animal/giant_spider))
 		A.adjustToxLoss(5 * removed)
 
 /datum/reagent/toxin/pestbgone/affect_blood(mob/living/complex/M, alien, removed)

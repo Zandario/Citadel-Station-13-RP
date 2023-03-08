@@ -5,12 +5,12 @@
 	icon_state = "critteropen"
 	density = 1
 
-	var/mob/living/simple_mob/contained
+	var/mob/living/simple/contained
 
 /obj/structure/stasis_cage/Initialize(mapload)
 	. = ..()
 
-	var/mob/living/simple_mob/A = locate() in loc
+	var/mob/living/simple/A = locate() in loc
 	if(A)
 		contain(A)
 
@@ -21,7 +21,7 @@
 	if(Adjacent(user))
 		release()
 
-/obj/structure/stasis_cage/proc/contain(var/mob/living/simple_mob/animal)
+/obj/structure/stasis_cage/proc/contain(var/mob/living/simple/animal)
 	if(contained || !istype(animal))
 		return
 
@@ -51,7 +51,7 @@
 
 	return ..()
 
-/mob/living/simple_mob/OnMouseDropLegacy(var/obj/structure/stasis_cage/over_object)
+/mob/living/simple/OnMouseDropLegacy(var/obj/structure/stasis_cage/over_object)
 	if(istype(over_object) && Adjacent(over_object) && CanMouseDrop(over_object, usr))
 
 		if(!can_be_involuntarily_caged(over_object, usr))
@@ -66,12 +66,12 @@
 	else
 		return ..()
 
-/mob/living/simple_mob/proc/can_be_involuntarily_caged(obj/structure/stasis_cage/over_object, mob/living/user)
+/mob/living/simple/proc/can_be_involuntarily_caged(obj/structure/stasis_cage/over_object, mob/living/user)
 	if(istype(buckled, /obj/effect/energy_net))
 		return TRUE
-	
+
 	var/obj/item/grab/G = user.get_active_held_item()
 	if(istype(G) && G.affecting == src && G.state >= GRAB_AGGRESSIVE)
 		return TRUE
-	
+
 	return FALSE

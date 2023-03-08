@@ -20,7 +20,7 @@
 		/datum/category_item/catalogue/fauna/clown/commando
 		)
 
-/mob/living/simple_mob/humanoid/clown
+/mob/living/simple/humanoid/clown
 	name = "clown"
 	desc = "A denizen of clown planet."
 	tt_desc = "E Homo sapiens corydon" //this is an actual Clown, as opposed to someone dressed up as one
@@ -50,7 +50,7 @@
 	speak = list("HONK", "Honk!", "Welcome to clown planet!")
 	emote_see = list("honks")
 
-/mob/living/simple_mob/humanoid/clown/prankster
+/mob/living/simple/humanoid/clown/prankster
 	name = "clown"
 	desc = "A denizen of clown planet. I wonder if that's a real gun."
 
@@ -76,7 +76,7 @@
 	for foolishness."
 
 // Debug variant.
-/mob/living/simple_mob/humanoid/clown/commando
+/mob/living/simple/humanoid/clown/commando
 	name = "clown commando"
 	desc = "A brightly adorned clown armed with a strange blade."
 	icon_state = "clownop"
@@ -141,7 +141,7 @@
 // Any merc can use this, just set special_attack_charges to a positive value
 
 // Check if we should bother with the grenade
-/mob/living/simple_mob/humanoid/clown/commando/should_special_attack(atom/A)
+/mob/living/simple/humanoid/clown/commando/should_special_attack(atom/A)
 	var/mob_count = 0				// Are there enough mobs to consider grenading?
 	var/turf/T = get_turf(A)
 	for(var/mob/M in range(T, 2))
@@ -156,7 +156,7 @@
 		return TRUE
 
 // Yes? Throw the grenade
-/mob/living/simple_mob/humanoid/clown/commando/do_special_attack(atom/A)
+/mob/living/simple/humanoid/clown/commando/do_special_attack(atom/A)
 	set waitfor = FALSE
 	set_AI_busy(TRUE)
 
@@ -173,14 +173,14 @@
 
 //Melee
 
-/mob/living/simple_mob/humanoid/clown/commando/melee
+/mob/living/simple/humanoid/clown/commando/melee
 	icon_state = "clownop_melee"
 	icon_living = "clownop_melee"
 	loot_list = list(/obj/item/melee/clownop = 100)
 
 //Ranged
 
-/mob/living/simple_mob/humanoid/clown/commando/ranged // Basic pistol mob.
+/mob/living/simple/humanoid/clown/commando/ranged // Basic pistol mob.
 	desc = "A brightly adorned clown armed with a weird pistol."
 	icon_state = "clownop_ranged"
 	icon_living = "clownop_ranged"
@@ -206,7 +206,7 @@
 	decades. Outside of the Church, there are none more faithful to the Honkmother \
 	and her cause."
 
-/mob/living/simple_mob/humanoid/clown/commando/melee/space
+/mob/living/simple/humanoid/clown/commando/melee/space
 	desc = "A heavily armored clown, wielding a deadly looking sword."
 	icon_state = "clownop_space_melee"
 	icon_living = "clownop_space_melee"
@@ -235,16 +235,16 @@
 	corpse = /obj/spawner/corpse/clown/clownop/space
 	loot_list = list(/obj/item/melee/clownstaff = 100)
 
-/mob/living/simple_mob/humanoid/clown/commando/melee/space/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple/humanoid/clown/commando/melee/space/Process_Spacemove(var/check_drift = 0)
 	return
 
-/mob/living/simple_mob/humanoid/clown/commando/melee/space/alt
+/mob/living/simple/humanoid/clown/commando/melee/space/alt
 	icon_state = "clownop_space_alt_melee"
 	icon_living = "clownop_space_alt_melee"
 	corpse = /obj/spawner/corpse/clown/clownop/space/alt
 
 // Ranged Space Clown
-/mob/living/simple_mob/humanoid/clown/commando/ranged/space
+/mob/living/simple/humanoid/clown/commando/ranged/space
 	desc = "A heavily armored clown, armed with a dangerous looking gun."
 	icon_state = "clownop_space_ranged"
 	icon_living = "clownop_space_ranged"
@@ -274,10 +274,10 @@
 	base_attack_cooldown = 5 // Two attacks a second or so.
 	reload_max = 20
 
-/mob/living/simple_mob/humanoid/clown/commando/ranged/space/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple/humanoid/clown/commando/ranged/space/Process_Spacemove(var/check_drift = 0)
 	return
 
-/mob/living/simple_mob/humanoid/clown/commando/ranged/space/alt
+/mob/living/simple/humanoid/clown/commando/ranged/space/alt
 	icon_state = "clownop_space_alt_ranged"
 	icon_living = "clownop_space_alt_ranged"
 	corpse = /obj/spawner/corpse/clown/clownop/space/alt

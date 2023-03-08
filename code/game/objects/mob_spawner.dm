@@ -12,8 +12,8 @@
 	var/spawn_delay = 10 MINUTES
 
 	var/list/spawn_types = list(
-	/mob/living/simple_mob/animal/passive/dog/corgi = 100,
-	/mob/living/simple_mob/animal/passive/cat = 25
+	/mob/living/simple/animal/passive/dog/corgi = 100,
+	/mob/living/simple/animal/passive/cat = 25
 	)
 
 	var/total_spawns = -1 //Total mob spawns, over all time, -1 for no limiteee
@@ -146,7 +146,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	destructible = 1
 	health = 500
 	spawn_types = list(
-	/mob/living/simple_mob/animal/goliath = 100
+	/mob/living/simple/animal/goliath = 100
 	)
 
 /obj/structure/mob_spawner/gutshank
@@ -161,7 +161,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	destructible = 1
 	health = 400
 	spawn_types = list(
-	/mob/living/simple_mob/animal/gutshank = 100
+	/mob/living/simple/animal/gutshank = 100
 	)
 
 /obj/structure/mob_spawner/stormdrifter
@@ -176,8 +176,8 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	destructible = 1
 	health = 1000
 	spawn_types = list(
-	/mob/living/simple_mob/animal/stormdrifter = 60,
-	/mob/living/simple_mob/animal/stormdrifter/bull = 30
+	/mob/living/simple/animal/stormdrifter = 60,
+	/mob/living/simple/animal/stormdrifter/bull = 30
 	)
 
 //Scanners
@@ -187,8 +187,8 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	spawn_delay = 3 MINUTES
 	mob_faction = "Corgi"
 	spawn_types = list(
-	/mob/living/simple_mob/animal/passive/dog/corgi = 75,
-	/mob/living/simple_mob/animal/passive/dog/corgi/puppy = 50
+	/mob/living/simple/animal/passive/dog/corgi = 75,
+	/mob/living/simple/animal/passive/dog/corgi/puppy = 50
 	)
 
 	simultaneous_spawns = 5
@@ -208,10 +208,10 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	anchored = 1
 	invisibility = 101
 	spawn_types = list(
-	/mob/living/simple_mob/animal/passive/gaslamp = 20,
-//	/mob/living/simple_mob/otie/feral = 10,
-	/mob/living/simple_mob/vore/aggressive/dino/virgo3b = 5,
-	/mob/living/simple_mob/vore/aggressive/dragon/virgo3b = 1
+	/mob/living/simple/animal/passive/gaslamp = 20,
+//	/mob/living/simple/otie/feral = 10,
+	/mob/living/simple/vore/aggressive/dino/virgo3b = 5,
+	/mob/living/simple/vore/aggressive/dragon/virgo3b = 1
 	)
 
 /obj/structure/mob_spawner/scanner/xenos
@@ -227,10 +227,10 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	icon = 'icons/screen/actions/actions.dmi'
 	icon_state = "alien_egg"
 	spawn_types = list(
-	/mob/living/simple_mob/animal/space/alien/drone = 20,
-	/mob/living/simple_mob/animal/space/alien = 10,
-	/mob/living/simple_mob/animal/space/alien/sentinel = 5,
-	/mob/living/simple_mob/animal/space/alien/queen = 1
+	/mob/living/simple/animal/space/alien/drone = 20,
+	/mob/living/simple/animal/space/alien = 10,
+	/mob/living/simple/animal/space/alien/sentinel = 5,
+	/mob/living/simple/animal/space/alien/queen = 1
 	)
 
 /obj/structure/mob_spawner/scanner/xenos/royal
@@ -246,7 +246,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	icon = 'icons/screen/actions/actions.dmi'
 	icon_state = "alien_egg"
 	spawn_types = list(
-	/mob/living/simple_mob/animal/space/alien/queen = 5
+	/mob/living/simple/animal/space/alien/queen = 5
 	)
 
 ////////////////////////////////////
@@ -276,7 +276,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	//var/guard				//# will set the mobs to remain nearby their spawn point within this dist
 
 	//Internal use only
-	var/mob/living/simple_mob/my_mob
+	var/mob/living/simple/my_mob
 	var/depleted = FALSE
 
 /obj/mob_spawner/Initialize(mapload)
@@ -329,106 +329,106 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	name = "Carp Spawner"
 	prob_fall = 15
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/space/carp = 3,
-		/mob/living/simple_mob/animal/space/carp/large = 1
+		/mob/living/simple/animal/space/carp = 3,
+		/mob/living/simple/animal/space/carp/large = 1
 	)
 
 /obj/mob_spawner/carp/small
 	prob_fall = 30
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/space/carp = 3,
-		/mob/living/simple_mob/animal/space/carp/large = 1,
+		/mob/living/simple/animal/space/carp = 3,
+		/mob/living/simple/animal/space/carp/large = 1,
 	)
 
 /obj/mob_spawner/carp/hard
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/space/carp/large = 2,
-		/mob/living/simple_mob/animal/space/carp/large/huge = 1
+		/mob/living/simple/animal/space/carp/large = 2,
+		/mob/living/simple/animal/space/carp/large/huge = 1
 	)
 
 /obj/mob_spawner/carp/medium
 	prob_fall = 10
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/space/carp = 5,
-		/mob/living/simple_mob/animal/space/carp/large = 2
+		/mob/living/simple/animal/space/carp = 5,
+		/mob/living/simple/animal/space/carp/large = 2
 	)
 
 /obj/mob_spawner/carp/large
 	name = "Carp Horde Spawner"
 	prob_fall = 10
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/space/carp = 8,
-		/mob/living/simple_mob/animal/space/carp/large = 3,
-		/mob/living/simple_mob/animal/space/carp/large/huge = 1
+		/mob/living/simple/animal/space/carp = 8,
+		/mob/living/simple/animal/space/carp/large = 3,
+		/mob/living/simple/animal/space/carp/large/huge = 1
 	)
 
 /obj/mob_spawner/derelict
 	name = "Derelict random mob spawner"
 	faction = "derelict"
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/mechanical/corrupt_maint_drone = 2,
-		/mob/living/simple_mob/mechanical/infectionbot = 3,
-		/mob/living/simple_mob/mechanical/combat_drone = 1
+		/mob/living/simple/mechanical/corrupt_maint_drone = 2,
+		/mob/living/simple/mechanical/infectionbot = 3,
+		/mob/living/simple/mechanical/combat_drone = 1
 	)
 
 /obj/mob_spawner/derelict/corrupt_maint_swarm
 	name = "Derelict maint swarm"
 	faction = "derelict"
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/mechanical/corrupt_maint_drone = 4
+		/mob/living/simple/mechanical/corrupt_maint_drone = 4
 	)
 
 /obj/mob_spawner/derelict/mech_wizard
 	name = "Derelict wizard"
 	faction = "derelict"
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/mechanical/technomancer_golem = 2
+		/mob/living/simple/mechanical/technomancer_golem = 2
 	)
 
 /obj/mob_spawner/hound_spawner
 	name = "Corrupt Hound Spawner"
 	prob_fall = 50
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/vore/aggressive/corrupthound = 1
+		/mob/living/simple/vore/aggressive/corrupthound = 1
 		)
 
 /obj/mob_spawner/drone_spawner
 	name = "Drone Swarm Spawner"
 	prob_fall = 10
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/mechanical/corrupt_maint_drone = 3
+		/mob/living/simple/mechanical/corrupt_maint_drone = 3
 	)
 
 /obj/mob_spawner/alien
 	name = "Alien Spawner"
 	prob_fall = 10
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/space/alien = 1
+		/mob/living/simple/animal/space/alien = 1
 	)
 
 /obj/mob_spawner/alien/easy
 	name = "Easy Alien Spawner"
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/space/alien = 1,
-		/mob/living/simple_mob/animal/space/alien/drone = 2,
-		/mob/living/simple_mob/animal/space/alien/sentinel = 1,
+		/mob/living/simple/animal/space/alien = 1,
+		/mob/living/simple/animal/space/alien/drone = 2,
+		/mob/living/simple/animal/space/alien/sentinel = 1,
 	)
 
 /obj/mob_spawner/alien/medium
 	name = "Medium Alien Spawner"
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/space/alien = 2,
-		/mob/living/simple_mob/animal/space/alien/drone = 3,
-		/mob/living/simple_mob/animal/space/alien/sentinel = 2,
-		/mob/living/simple_mob/animal/space/alien/sentinel/praetorian = 1
+		/mob/living/simple/animal/space/alien = 2,
+		/mob/living/simple/animal/space/alien/drone = 3,
+		/mob/living/simple/animal/space/alien/sentinel = 2,
+		/mob/living/simple/animal/space/alien/sentinel/praetorian = 1
 	)
 
 /obj/mob_spawner/alien/hard
 	name = "Hard Alien Spawner"
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/space/alien = 4,
-		/mob/living/simple_mob/animal/space/alien/sentinel = 4,
-		/mob/living/simple_mob/animal/space/alien/sentinel/praetorian = 2
+		/mob/living/simple/animal/space/alien = 4,
+		/mob/living/simple/animal/space/alien/sentinel = 4,
+		/mob/living/simple/animal/space/alien/sentinel/praetorian = 2
 	)
 
 /obj/structure/mob_spawner/scanner/corgi
@@ -437,8 +437,8 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	spawn_delay = 3 MINUTES
 	mob_faction = "Corgi"
 	spawn_types = list(
-	/mob/living/simple_mob/animal/passive/dog/corgi = 75,
-	/mob/living/simple_mob/animal/passive/dog/corgi/puppy = 50
+	/mob/living/simple/animal/passive/dog/corgi = 75,
+	/mob/living/simple/animal/passive/dog/corgi/puppy = 50
 	)
 
 	simultaneous_spawns = 5
@@ -458,10 +458,10 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	anchored = 1
 	invisibility = 101
 	spawn_types = list(
-	/mob/living/simple_mob/animal/passive/gaslamp = 20,
-//	/mob/living/simple_mob/otie/feral = 10,
-	/mob/living/simple_mob/vore/aggressive/dino/virgo3b = 5,
-	/mob/living/simple_mob/vore/aggressive/dragon/virgo3b = 1
+	/mob/living/simple/animal/passive/gaslamp = 20,
+//	/mob/living/simple/otie/feral = 10,
+	/mob/living/simple/vore/aggressive/dino/virgo3b = 5,
+	/mob/living/simple/vore/aggressive/dragon/virgo3b = 1
 	)
 
 /obj/structure/mob_spawner/scanner/xenos
@@ -477,10 +477,10 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	icon = 'icons/screen/actions/actions.dmi'
 	icon_state = "alien_egg"
 	spawn_types = list(
-	/mob/living/simple_mob/animal/space/alien/drone = 20,
-	/mob/living/simple_mob/animal/space/alien = 10,
-	/mob/living/simple_mob/animal/space/alien/sentinel = 5,
-	/mob/living/simple_mob/animal/space/alien/queen = 1
+	/mob/living/simple/animal/space/alien/drone = 20,
+	/mob/living/simple/animal/space/alien = 10,
+	/mob/living/simple/animal/space/alien/sentinel = 5,
+	/mob/living/simple/animal/space/alien/queen = 1
 	)
 
 /obj/structure/mob_spawner/scanner/xenos/royal
@@ -496,5 +496,5 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	icon = 'icons/screen/actions/actions.dmi'
 	icon_state = "alien_egg"
 	spawn_types = list(
-	/mob/living/simple_mob/animal/space/alien/queen = 5,
+	/mob/living/simple/animal/space/alien/queen = 5,
 	)

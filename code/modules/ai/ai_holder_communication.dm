@@ -66,9 +66,9 @@
 		return FALSE // Turrets don't give a fuck so neither will we.
 	/*
 	// Find a nice way of doing this later.
-	if(istype(the_target, /mob/living/simple_mob) && istype(holder, /mob/living/simple_mob))
-		var/mob/living/simple_mob/us = holder
-		var/mob/living/simple_mob/them = target
+	if(istype(the_target, /mob/living/simple) && istype(holder, /mob/living/simple))
+		var/mob/living/simple/us = holder
+		var/mob/living/simple/them = target
 
 		if(them.intelligence_level < us.intelligence_level) // Todo: Bitflag these.
 			return FALSE // Humanoids don't care about drones/animals/etc. Drones don't care about animals, and so on.

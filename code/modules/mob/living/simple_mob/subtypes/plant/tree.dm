@@ -5,7 +5,7 @@
 	this species has adapted to appear almost indistinguishable from trees in its environment."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/space/tree
+/mob/living/simple/animal/space/tree
 	name = "pine tree"
 	desc = "A pissed off tree-like alien. It seems annoyed with the festivities..."
 	tt_desc = "X Festivus tyrannus"
@@ -38,14 +38,14 @@
 
 	pixel_x = -16
 
-/mob/living/simple_mob/animal/space/tree/apply_melee_effects(var/atom/A)
+/mob/living/simple/animal/space/tree/apply_melee_effects(var/atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(prob(15))
 			L.Weaken(3)
 			L.visible_message(SPAN_DANGER("\The [src] knocks down \the [L]!"))
 
-/mob/living/simple_mob/animal/space/tree/death()
+/mob/living/simple/animal/space/tree/death()
 	..(null,"is hacked into pieces!")
 	playsound(loc, 'sound/effects/woodcutting.ogg', 100, 1)
 	new /obj/item/stack/material/wood(loc)

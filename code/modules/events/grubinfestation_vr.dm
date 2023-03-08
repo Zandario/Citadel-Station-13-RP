@@ -24,7 +24,7 @@
 /datum/event/grub_infestation/start()
 	while((spawncount >= 1) && vents.len)
 		var/obj/vent = pick(vents)
-		new /mob/living/simple_mob/animal/solargrub_larva(get_turf(vent))
+		new /mob/living/simple/animal/solargrub_larva(get_turf(vent))
 		vents -= vent
 		spawncount--
 	vents.Cut()

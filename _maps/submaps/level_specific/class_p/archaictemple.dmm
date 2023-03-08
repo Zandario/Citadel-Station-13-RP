@@ -717,7 +717,7 @@
 /turf/simulated/floor/wood/classp,
 /area/class_p/POIs/archaic_temple)
 "GY" = (
-/mob/living/simple_mob/living_statue{
+/mob/living/simple/living_statue{
 	name = "eroded male statue"
 	},
 /turf/simulated/floor/classp,

@@ -16,29 +16,29 @@
 	desc = "Chitter chitter."
 	summoned_mob_type = null
 	summon_options = list(
-		"Mouse"			=	/mob/living/simple_mob/animal/passive/mouse,
-		"Lizard"		=	/mob/living/simple_mob/animal/passive/lizard,
-		"Chicken"		=	/mob/living/simple_mob/animal/passive/chicken,
-		"Chick"			=	/mob/living/simple_mob/animal/passive/chick,
-		"Crab"			=	/mob/living/simple_mob/animal/passive/crab,
-		"Parrot"		=	/mob/living/simple_mob/animal/passive/bird/parrot,
-		"Goat"			=	/mob/living/simple_mob/animal/goat,
-		"Cat"			=	/mob/living/simple_mob/animal/passive/cat,
-		"Kitten"		=	/mob/living/simple_mob/animal/passive/cat/kitten,
-		"Corgi"			=	/mob/living/simple_mob/animal/passive/dog/corgi,
-		"Corgi Pup"		=	/mob/living/simple_mob/animal/passive/dog/corgi/puppy,
-		"BAT"			=	/mob/living/simple_mob/animal/space/bats,
-		"SPIDER"		=	/mob/living/simple_mob/animal/giant_spider,
-		"SPIDER HUNTER"	=	/mob/living/simple_mob/animal/giant_spider/hunter,
-		"SPIDER NURSE"	=	/mob/living/simple_mob/animal/giant_spider/nurse,
-		"CARP"			=	/mob/living/simple_mob/animal/space/carp,
-		"BEAR"			=	/mob/living/simple_mob/animal/space/bear
+		"Mouse"			=	/mob/living/simple/animal/passive/mouse,
+		"Lizard"		=	/mob/living/simple/animal/passive/lizard,
+		"Chicken"		=	/mob/living/simple/animal/passive/chicken,
+		"Chick"			=	/mob/living/simple/animal/passive/chick,
+		"Crab"			=	/mob/living/simple/animal/passive/crab,
+		"Parrot"		=	/mob/living/simple/animal/passive/bird/parrot,
+		"Goat"			=	/mob/living/simple/animal/goat,
+		"Cat"			=	/mob/living/simple/animal/passive/cat,
+		"Kitten"		=	/mob/living/simple/animal/passive/cat/kitten,
+		"Corgi"			=	/mob/living/simple/animal/passive/dog/corgi,
+		"Corgi Pup"		=	/mob/living/simple/animal/passive/dog/corgi/puppy,
+		"BAT"			=	/mob/living/simple/animal/space/bats,
+		"SPIDER"		=	/mob/living/simple/animal/giant_spider,
+		"SPIDER HUNTER"	=	/mob/living/simple/animal/giant_spider/hunter,
+		"SPIDER NURSE"	=	/mob/living/simple/animal/giant_spider/nurse,
+		"CARP"			=	/mob/living/simple/animal/space/carp,
+		"BEAR"			=	/mob/living/simple/animal/space/bear
 		)
 	cooldown = 30
 	instability_cost = 10
 	energy_cost = 1000
 
-/obj/item/spell/summon/summon_creature/on_summon(var/mob/living/simple_mob/summoned)
+/obj/item/spell/summon/summon_creature/on_summon(var/mob/living/simple/summoned)
 	if(check_for_scepter())
 //		summoned.faction = "technomancer"
 		summoned.friends += owner

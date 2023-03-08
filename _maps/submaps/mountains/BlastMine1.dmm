@@ -19,7 +19,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/BlastMine1)
 "f" = (
-/mob/living/simple_mob/animal/sif/savik,
+/mob/living/simple/animal/sif/savik,
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/BlastMine1)
 "g" = (
@@ -35,7 +35,7 @@
 /turf/simulated/wall/sandstone,
 /area/submap/cave/BlastMine1)
 "i" = (
-/mob/living/simple_mob/animal/sif/diyaab,
+/mob/living/simple/animal/sif/diyaab,
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/BlastMine1)
 "j" = (

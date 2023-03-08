@@ -33,7 +33,7 @@
 /turf/simulated/floor/carpet/arcadecarpet/lythios43c,
 /area/submap/lythios/west_caves/buried_structure)
 "gV" = (
-/mob/living/simple_mob/animal/giant_spider/frost,
+/mob/living/simple/animal/giant_spider/frost,
 /turf/simulated/floor/lythios43c/indoors,
 /area/submap/lythios/west_caves/buried_structure)
 "jf" = (
@@ -53,7 +53,7 @@
 /turf/simulated/floor/lythios43c/indoors,
 /area/submap/lythios/west_caves/buried_structure)
 "li" = (
-/mob/living/simple_mob/animal/giant_spider/frost,
+/mob/living/simple/animal/giant_spider/frost,
 /turf/simulated/floor/carpet/bcarpet/lythios43c,
 /area/submap/lythios/west_caves/buried_structure)
 "lj" = (
@@ -62,7 +62,7 @@
 /area/submap/lythios/west_caves/buried_structure)
 "lY" = (
 /obj/effect/floor_decal/spline/fancy/wood,
-/mob/living/simple_mob/animal/giant_spider/frost,
+/mob/living/simple/animal/giant_spider/frost,
 /turf/simulated/floor/wood/lythios43c,
 /area/submap/lythios/west_caves/buried_structure)
 "my" = (

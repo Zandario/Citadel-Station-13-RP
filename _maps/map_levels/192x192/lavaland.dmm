@@ -9,7 +9,7 @@
 /turf/simulated/floor/plating,
 /area/lavaland/central/base/common)
 "bG" = (
-/mob/living/simple_mob/animal/space/bats/surt,
+/mob/living/simple/animal/space/bats/surt,
 /turf/simulated/floor/outdoors/lavaland,
 /area/lavaland/central/unexplored)
 "bH" = (
@@ -1411,7 +1411,7 @@
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 9
 	},
-/mob/living/simple_mob/animal/passive/mouse/gray{
+/mob/living/simple/animal/passive/mouse/gray{
 	name = "Jerry"
 	},
 /obj/machinery/camera/network/mining{

@@ -6,7 +6,7 @@
 /turf/simulated/mineral/vacuum,
 /area/space)
 "c" = (
-/mob/living/simple_mob/mechanical/corrupt_maint_drone{
+/mob/living/simple/mechanical/corrupt_maint_drone{
 	faction = "poi_mining_drones"
 	},
 /turf/simulated/floor/airless,

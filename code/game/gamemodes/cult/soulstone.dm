@@ -41,7 +41,7 @@
 		return
 	user.set_machine(src)
 	var/dat = "<TT><B>Soul Stone</B><BR>"
-	for(var/mob/living/simple_mob/construct/shade/A in src)
+	for(var/mob/living/simple/construct/shade/A in src)
 		dat += "Captured Soul: [A.name]<br>"
 		dat += {"<A href='byond://?src=\ref[src];choice=Summon'>Summon Shade</A>"}
 		dat += "<br>"
@@ -70,7 +70,7 @@
 			return
 
 		if ("Summon")
-			for(var/mob/living/simple_mob/construct/shade/A in src)
+			for(var/mob/living/simple/construct/shade/A in src)
 				A.status_flags &= ~GODMODE
 				A.canmove = 1
 				to_chat(A, "<b>You have been released from your prison, but you are still bound to [U.name]'s will. Help them suceed in their goals at all costs.</b>")
@@ -128,7 +128,7 @@
 	flick("dust-h", animation)
 	qdel(animation)
 
-	var/mob/living/simple_mob/construct/shade/S = new /mob/living/simple_mob/construct/shade( T.loc )
+	var/mob/living/simple/construct/shade/S = new /mob/living/simple/construct/shade( T.loc )
 	S.forceMove(src) //put shade in stone
 	S.status_flags |= GODMODE //So they won't die inside the stone somehow
 	S.canmove = 0//Can't move out of the soul stone
@@ -152,7 +152,7 @@
 	src.imprinted = "[S.name]"
 	qdel(T)
 
-/obj/item/soulstone/proc/transfer_shade(var/mob/living/simple_mob/construct/shade/T,var/mob/U)
+/obj/item/soulstone/proc/transfer_shade(var/mob/living/simple/construct/shade/T,var/mob/U)
 	if(!istype(T))
 		return;
 	if (T.stat == DEAD)
@@ -175,14 +175,14 @@
 	to_chat(U, "<span class='notice'>Capture successful!</span> : [T.name]'s has been recaptured and stored within the soul stone.")
 
 /obj/item/soulstone/proc/transfer_construct(var/obj/structure/constructshell/T,var/mob/U)
-	var/mob/living/simple_mob/construct/shade/A = locate() in src
+	var/mob/living/simple/construct/shade/A = locate() in src
 	if(!A)
 		to_chat(U,"<span class='danger'>Capture failed!</span>: The soul stone is empty! Go kill someone!")
 		return;
 	var/construct_class = input(U, "Please choose which type of construct you wish to create.") as null|anything in possible_constructs
 	switch(construct_class)
 		if("Juggernaut")
-			var/mob/living/simple_mob/construct/juggernaut/Z = new /mob/living/simple_mob/construct/juggernaut (get_turf(T.loc))
+			var/mob/living/simple/construct/juggernaut/Z = new /mob/living/simple/construct/juggernaut (get_turf(T.loc))
 			Z.key = A.key
 			if(iscultist(U))
 				cult.add_antagonist(Z.mind)
@@ -192,7 +192,7 @@
 			Z.cancel_camera()
 			qdel(src)
 		if("Wraith")
-			var/mob/living/simple_mob/construct/wraith/Z = new /mob/living/simple_mob/construct/wraith (get_turf(T.loc))
+			var/mob/living/simple/construct/wraith/Z = new /mob/living/simple/construct/wraith (get_turf(T.loc))
 			Z.key = A.key
 			if(iscultist(U))
 				cult.add_antagonist(Z.mind)
@@ -202,7 +202,7 @@
 			Z.cancel_camera()
 			qdel(src)
 		if("Artificer")
-			var/mob/living/simple_mob/construct/artificer/Z = new /mob/living/simple_mob/construct/artificer (get_turf(T.loc))
+			var/mob/living/simple/construct/artificer/Z = new /mob/living/simple/construct/artificer (get_turf(T.loc))
 			Z.key = A.key
 			if(iscultist(U))
 				cult.add_antagonist(Z.mind)
@@ -212,7 +212,7 @@
 			Z.cancel_camera()
 			qdel(src)
 		if("Harvester")
-			var/mob/living/simple_mob/construct/harvester/Z = new /mob/living/simple_mob/construct/harvester (get_turf(T.loc))
+			var/mob/living/simple/construct/harvester/Z = new /mob/living/simple/construct/harvester (get_turf(T.loc))
 			Z.key = A.key
 			if(iscultist(U))
 				cult.add_antagonist(Z.mind)
@@ -222,7 +222,7 @@
 			Z.cancel_camera()
 			qdel(src)
 		if("Behemoth")
-			var/mob/living/simple_mob/construct/juggernaut/behemoth/Z = new /mob/living/simple_mob/construct/juggernaut/behemoth (get_turf(T.loc))
+			var/mob/living/simple/construct/juggernaut/behemoth/Z = new /mob/living/simple/construct/juggernaut/behemoth (get_turf(T.loc))
 			Z.key = A.key
 			if(iscultist(U))
 				cult.add_antagonist(Z.mind)

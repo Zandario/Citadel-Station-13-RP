@@ -129,7 +129,7 @@
 	},
 /area/submap/Thiefc)
 "u" = (
-/mob/living/simple_mob/humanoid/merc/ranged/virgo,
+/mob/living/simple/humanoid/merc/ranged/virgo,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},

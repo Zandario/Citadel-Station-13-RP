@@ -7,7 +7,7 @@
 	anything, and function as a limited method of garbage disposal."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/goat
+/mob/living/simple/animal/goat
 	name = "goat"
 	desc = "Not known for their pleasant disposition."
 	tt_desc = "E Oreamnos americanus"
@@ -41,12 +41,12 @@
 
 	var/datum/reagents/udder = null
 
-/mob/living/simple_mob/animal/goat/Initialize(mapload)
+/mob/living/simple/animal/goat/Initialize(mapload)
 	. = ..()
 	udder = new(50)
 	udder.my_atom = src
 
-/mob/living/simple_mob/animal/goat/BiologicalLife(seconds, times_fired)
+/mob/living/simple/animal/goat/BiologicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -69,13 +69,13 @@
 				var/step = get_step_to(src, food, 0)
 				Move(step)
 
-/mob/living/simple_mob/animal/goat/Move()
+/mob/living/simple/animal/goat/Move()
 	..()
 	if(!stat)
 		for(var/obj/effect/plant/SV in loc)
 			SV.die_off(1)
 
-/mob/living/simple_mob/animal/goat/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple/animal/goat/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	var/obj/item/reagent_containers/glass/G = O
 	if(stat == CONSCIOUS && istype(G) && G.is_open_container())
 		user.visible_message("<span class='notice'>[user] milks [src] using \the [O].</span>")

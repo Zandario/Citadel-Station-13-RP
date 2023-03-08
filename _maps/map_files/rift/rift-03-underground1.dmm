@@ -2930,7 +2930,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/substation/engineering)
 "jk" = (
-/mob/living/simple_mob/animal/passive/mouse{
+/mob/living/simple/animal/passive/mouse{
 	desc = "A small rodent, this one is seemingly defying gravity. Oh, wait, no, it just has tiny wings. The beauty of nature.";
 	name = "Elizondo the Flying Mouse"
 	},
@@ -6180,7 +6180,7 @@
 /turf/simulated/floor/wood,
 /area/rift/station/fighter_bay)
 "yk" = (
-/mob/living/simple_mob/animal/passive/woolie,
+/mob/living/simple/animal/passive/woolie,
 /turf/simulated/floor/outdoors/snow/lythios43c,
 /area/rift/surfacebase/underground/under1)
 "yl" = (
@@ -9728,7 +9728,7 @@
 /area/maintenance/engineering)
 "MG" = (
 /obj/random/cigarettes,
-/mob/living/simple_mob/vore/aggressive/rat/maurice,
+/mob/living/simple/vore/aggressive/rat/maurice,
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)

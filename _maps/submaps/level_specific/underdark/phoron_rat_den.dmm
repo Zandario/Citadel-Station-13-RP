@@ -34,7 +34,7 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/mine/explored/underdark)
 "k" = (
-/mob/living/simple_mob/vore/aggressive/rat/phoron,
+/mob/living/simple/vore/aggressive/rat/phoron,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/mine/explored/underdark)
 "l" = (

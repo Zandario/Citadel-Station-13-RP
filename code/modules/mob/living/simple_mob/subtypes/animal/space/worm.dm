@@ -1,4 +1,4 @@
-/mob/living/simple_mob/animal/space/space_worm
+/mob/living/simple/animal/space/space_worm
 	name = "space worm segment"
 	desc = "A part of a space worm."
 	icon = 'icons/mob/worm.dmi'
@@ -36,13 +36,13 @@
 	meat_amount = 2
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/worm
 
-	var/mob/living/simple_mob/animal/space/space_worm/previous //next/previous segments, correspondingly
-	var/mob/living/simple_mob/animal/space/space_worm/next     //head is the nextest segment
+	var/mob/living/simple/animal/space/space_worm/previous //next/previous segments, correspondingly
+	var/mob/living/simple/animal/space/space_worm/next     //head is the nextest segment
 
 	var/severed = FALSE	// Is this a severed segment?
 
-	var/severed_head_type = /mob/living/simple_mob/animal/space/space_worm/head/severed	// What type of head do we spawn when detaching?
-	var/segment_type = /mob/living/simple_mob/animal/space/space_worm	// What type of segment do our heads make?
+	var/severed_head_type = /mob/living/simple/animal/space/space_worm/head/severed	// What type of head do we spawn when detaching?
+	var/segment_type = /mob/living/simple/animal/space/space_worm	// What type of segment do our heads make?
 
 	var/stomachProcessProbability = 50
 	var/digestionProbability = 20
@@ -69,7 +69,7 @@
 	of corpses difficult. Samples and scans are considered especially valuable."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/space/space_worm/head
+/mob/living/simple/animal/space/space_worm/head
 	name = "space worm"
 	icon_state = "spacewormhead"
 	icon_living = "spacewormhead"
@@ -93,21 +93,21 @@
 
 	var/segment_count = 6
 
-/mob/living/simple_mob/animal/space/space_worm/head/severed
+/mob/living/simple/animal/space/space_worm/head/severed
 	segment_count = 0
 	severed = TRUE
 
-/mob/living/simple_mob/animal/space/space_worm/head/short
+/mob/living/simple/animal/space/space_worm/head/short
 	segment_count = 3
 
-/mob/living/simple_mob/animal/space/space_worm/head/long
+/mob/living/simple/animal/space/space_worm/head/long
 	segment_count = 10
 
-/mob/living/simple_mob/animal/space/space_worm/head/handle_special()
+/mob/living/simple/animal/space/space_worm/head/handle_special()
 	..()
 	update_body_faction()
 
-/mob/living/simple_mob/animal/space/space_worm/head/update_icon()
+/mob/living/simple/animal/space/space_worm/head/update_icon()
 	..()
 	if(!open_maw && !stat)
 		icon_state = "[icon_living][previous ? 1 : 0]_hunt"
@@ -120,19 +120,19 @@
 	if(stat)
 		icon_state = "[icon_state]_dead"
 
-/mob/living/simple_mob/animal/space/space_worm/head/Initialize(mapload)
+/mob/living/simple/animal/space/space_worm/head/Initialize(mapload)
 	. = ..()
 
-	var/mob/living/simple_mob/animal/space/space_worm/current = src
+	var/mob/living/simple/animal/space/space_worm/current = src
 
 	if(segment_count && !severed)
 		for(var/i = 1 to segment_count)
-			var/mob/living/simple_mob/animal/space/space_worm/newSegment = new segment_type(loc)
+			var/mob/living/simple/animal/space/space_worm/newSegment = new segment_type(loc)
 			current.Attach(newSegment)
 			current = newSegment
 			current.faction = faction
 
-/mob/living/simple_mob/animal/space/space_worm/head/verb/toggle_devour()
+/mob/living/simple/animal/space/space_worm/head/verb/toggle_devour()
 	set name = "Toggle Feeding"
 	set desc = "Extends your teeth for 30 seconds so that you can chew through mobs and structures alike."
 	set category = "Abilities"
@@ -147,7 +147,7 @@
 	else
 		set_maw(!open_maw)
 
-/mob/living/simple_mob/animal/space/space_worm/proc/set_maw(var/state = FALSE)
+/mob/living/simple/animal/space/space_worm/proc/set_maw(var/state = FALSE)
 	open_maw = state
 	if(open_maw)
 		time_maw_opened = world.time
@@ -156,7 +156,7 @@
 		movement_cooldown = initial(movement_cooldown)
 	update_icon()
 
-/mob/living/simple_mob/animal/space/space_worm/death()
+/mob/living/simple/animal/space/space_worm/death()
 	..()
 
 	DumpStomach()
@@ -164,7 +164,7 @@
 	if(previous)
 		previous.death()
 
-/mob/living/simple_mob/animal/space/space_worm/handle_special()	// Processed in life. Nicer to have it modular incase something in Life change(d)(s)
+/mob/living/simple/animal/space/space_worm/handle_special()	// Processed in life. Nicer to have it modular incase something in Life change(d)(s)
 	..()
 
 	if(world.time > time_maw_opened + maw_cooldown)	// Auto-stop eating.
@@ -188,19 +188,19 @@
 
 	return
 
-/mob/living/simple_mob/animal/space/space_worm/CanAllowThrough(atom/movable/mover, turf/target)
-	if(istype(mover, /mob/living/simple_mob/animal/space/space_worm/head))
-		var/mob/living/simple_mob/animal/space/space_worm/head/H = mover
+/mob/living/simple/animal/space/space_worm/CanAllowThrough(atom/movable/mover, turf/target)
+	if(istype(mover, /mob/living/simple/animal/space/space_worm/head))
+		var/mob/living/simple/animal/space/space_worm/head/H = mover
 		if(H.previous == src)
 			return FALSE
 
-	if(istype(mover, /mob/living/simple_mob/animal/space/space_worm))	// Worms don't run over worms. That's weird. And also really annoying.
+	if(istype(mover, /mob/living/simple/animal/space/space_worm))	// Worms don't run over worms. That's weird. And also really annoying.
 		return TRUE
 	else if(src.stat == DEAD && !istype(mover, /obj/item/projectile))	// Projectiles need to do their normal checks.
 		return TRUE
 	return ..()
 
-/mob/living/simple_mob/animal/space/space_worm/Destroy() // If a chunk is destroyed, kill the back half.
+/mob/living/simple/animal/space/space_worm/Destroy() // If a chunk is destroyed, kill the back half.
 	DumpStomach()
 	if(previous)
 		previous.Detach(1)
@@ -209,7 +209,7 @@
 		next = null
 	..()
 
-/mob/living/simple_mob/animal/space/space_worm/Move()
+/mob/living/simple/animal/space/space_worm/Move()
 	var/attachementNextPosition = loc
 	. = ..()
 	if(.)
@@ -221,7 +221,7 @@
 			previous.forceMove(attachementNextPosition)	// None of this 'ripped in half by an airlock' business.
 		update_icon()
 
-/mob/living/simple_mob/animal/space/space_worm/forceMove()
+/mob/living/simple/animal/space/space_worm/forceMove()
 	var/attachementNextPosition = loc
 	. = ..()
 	if(.)
@@ -233,7 +233,7 @@
 			previous.forceMove(attachementNextPosition)	// None of this 'ripped in half by an airlock' business. x 2
 		update_icon()
 
-/mob/living/simple_mob/animal/space/space_worm/head/Bump(atom/obstacle)
+/mob/living/simple/animal/space/space_worm/head/Bump(atom/obstacle)
 	if(open_maw && !stat && obstacle != previous)
 		spawn(1)
 			if(currentlyEating != obstacle)
@@ -247,7 +247,7 @@
 		currentlyEating = null
 		. = ..(obstacle)
 
-/mob/living/simple_mob/animal/space/space_worm/update_icon()
+/mob/living/simple/animal/space/space_worm/update_icon()
 	if(previous) //midsection
 		icon_state = "spaceworm[get_dir(src,previous) | get_dir(src,next)]"
 		if(stat)
@@ -264,7 +264,7 @@
 
 	return
 
-/mob/living/simple_mob/animal/space/space_worm/proc/AttemptToEat(var/atom/target)
+/mob/living/simple/animal/space/space_worm/proc/AttemptToEat(var/atom/target)
 	if(istype(target,/turf/simulated/wall))
 		var/turf/simulated/wall/W = target
 		if((!W.reinf_material && do_after(src, 5 SECONDS)) || do_after(src, 10 SECONDS)) // 10 seconds for an R-wall, 5 seconds for a normal one.
@@ -315,7 +315,7 @@
 
 	return 0
 
-/mob/living/simple_mob/animal/space/space_worm/proc/Attach(var/mob/living/simple_mob/animal/space/space_worm/attachement)
+/mob/living/simple/animal/space/space_worm/proc/Attach(var/mob/living/simple/animal/space/space_worm/attachement)
 	if(!attachement)
 		return
 
@@ -324,9 +324,9 @@
 
 	return
 
-/mob/living/simple_mob/animal/space/space_worm/proc/Detach(die = 0)
-	var/mob/living/simple_mob/animal/space/space_worm/head/newHead = new severed_head_type(loc,0)
-	var/mob/living/simple_mob/animal/space/space_worm/newHeadPrevious = previous
+/mob/living/simple/animal/space/space_worm/proc/Detach(die = 0)
+	var/mob/living/simple/animal/space/space_worm/head/newHead = new severed_head_type(loc,0)
+	var/mob/living/simple/animal/space/space_worm/newHeadPrevious = previous
 
 	previous = null //so that no extra heads are spawned
 
@@ -337,7 +337,7 @@
 
 	qdel(src)
 
-/mob/living/simple_mob/animal/space/space_worm/proc/ProcessStomach()
+/mob/living/simple/animal/space/space_worm/proc/ProcessStomach()
 	for(var/atom/movable/stomachContent in contents)
 		if(stomach_special(stomachContent))
 			continue
@@ -374,7 +374,7 @@
 
 	return
 
-/mob/living/simple_mob/animal/space/space_worm/proc/DumpStomach()
+/mob/living/simple/animal/space/space_worm/proc/DumpStomach()
 	if(previous && previous.stat != DEAD)
 		for(var/atom/movable/stomachContent in contents) //transfer it along the digestive tract
 			stomachContent.forceMove(previous)
@@ -383,13 +383,13 @@
 			stomachContent.forceMove(get_turf(src))
 	return
 
-/mob/living/simple_mob/animal/space/space_worm/proc/stomach_special(var/atom/A)	// Futureproof. Anything that interacts with contents without relying on digestion probability. Return TRUE if it should skip digest.
+/mob/living/simple/animal/space/space_worm/proc/stomach_special(var/atom/A)	// Futureproof. Anything that interacts with contents without relying on digestion probability. Return TRUE if it should skip digest.
 	return FALSE
 
-/mob/living/simple_mob/animal/space/space_worm/proc/stomach_special_digest(var/atom/A)	// Futureproof. Any special checks that interact with digested atoms. I.E., ore processing. Return TRUE if it should skip future digest checks.
+/mob/living/simple/animal/space/space_worm/proc/stomach_special_digest(var/atom/A)	// Futureproof. Any special checks that interact with digested atoms. I.E., ore processing. Return TRUE if it should skip future digest checks.
 	return FALSE
 
-/mob/living/simple_mob/animal/space/space_worm/proc/update_body_faction()
+/mob/living/simple/animal/space/space_worm/proc/update_body_faction()
 	if(next)	// Keep us on the same page, here.
 		faction = next.faction
 	if(previous)

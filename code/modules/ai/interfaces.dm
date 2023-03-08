@@ -6,7 +6,7 @@
 /mob/living/proc/IAttack(atom/A)
 	return FALSE
 
-/mob/living/simple_mob/IAttack(atom/A)
+/mob/living/simple/IAttack(atom/A)
 	if(!canClick()) // Still on cooldown from a "click".
 		return FALSE
 	return attack_target(A) // This will set click cooldown.
@@ -14,7 +14,7 @@
 /mob/living/proc/IRangedAttack(atom/A)
 	return FALSE
 
-/mob/living/simple_mob/IRangedAttack(atom/A)
+/mob/living/simple/IRangedAttack(atom/A)
 	if(!canClick()) // Still on cooldown from a "click".
 		return FALSE
 	return shoot_target(A)
@@ -23,7 +23,7 @@
 /mob/living/proc/ICheckRangedAttack(atom/A)
 	return FALSE
 
-/mob/living/simple_mob/ICheckRangedAttack(atom/A)
+/mob/living/simple/ICheckRangedAttack(atom/A)
 	if(needs_reload)
 		if(reload_count >= reload_max)
 			try_reload()
@@ -33,14 +33,14 @@
 /mob/living/proc/ISpecialAttack(atom/A)
 	return FALSE
 
-/mob/living/simple_mob/ISpecialAttack(atom/A)
+/mob/living/simple/ISpecialAttack(atom/A)
 	return special_attack_target(A)
 
 // Is the AI allowed to attempt to do it?
 /mob/living/proc/ICheckSpecialAttack(atom/A)
 	return FALSE
 
-/mob/living/simple_mob/ICheckSpecialAttack(atom/A)
+/mob/living/simple/ICheckSpecialAttack(atom/A)
 	return can_special_attack(A) && should_special_attack(A) // Just because we can doesn't mean we should.
 
 /mob/living/proc/ISay(message)
@@ -49,20 +49,20 @@
 /mob/living/proc/IIsAlly(mob/living/L)
 	return src.faction == L.faction
 
-/mob/living/simple_mob/IIsAlly(mob/living/L)
+/mob/living/simple/IIsAlly(mob/living/L)
 	. = ..()
 	if(!.) // Outside the faction, try to see if they're friends.
 		return L in friends
 
 /mob/living/proc/IGetID()
 
-/mob/living/simple_mob/IGetID()
+/mob/living/simple/IGetID()
 	if(access_card)
 		return access_card.GetID()
 
 /mob/living/proc/instasis()
 
-/mob/living/simple_mob/instasis()
+/mob/living/simple/instasis()
 	if(in_stasis)
 		return TRUE
 

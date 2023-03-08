@@ -2,7 +2,7 @@
 // By default, they're automatically piloted by some kind of drone AI. They can be set to be "piloted" instead with a var.
 // Tries to be as similar to the real deal as possible.
 
-/mob/living/simple_mob/mechanical/mecha
+/mob/living/simple/mechanical/mecha
 	name = "mecha"
 	desc = "A big stompy mech!"
 	icon = 'icons/mecha/mecha.dmi'
@@ -40,7 +40,7 @@
 	var/has_repair_droid = FALSE // If true, heals 2 damage every tick and gets a repair droid overlay.
 
 
-/mob/living/simple_mob/mechanical/mecha/Initialize(mapload)
+/mob/living/simple/mechanical/mecha/Initialize(mapload)
 	sparks = new (src)
 	sparks.set_up(3, 1, src)
 	sparks.attach(src)
@@ -56,11 +56,11 @@
 
 	return ..()
 
-/mob/living/simple_mob/mechanical/mecha/Destroy()
+/mob/living/simple/mechanical/mecha/Destroy()
 	qdel(sparks)
 	return ..()
 
-/mob/living/simple_mob/mechanical/mecha/death()
+/mob/living/simple/mechanical/mecha/death()
 	..(0,"explodes!") // Do everything else first.
 
 	// Make the exploding more convincing with an actual explosion and some sparks.
@@ -76,7 +76,7 @@
 
 	qdel(src) // Then delete us since we don't actually have a body.
 
-/mob/living/simple_mob/mechanical/mecha/handle_special()
+/mob/living/simple/mechanical/mecha/handle_special()
 	if(has_repair_droid)
 		adjustBruteLoss(-2)
 		adjustFireLoss(-2)
@@ -85,40 +85,40 @@
 		adjustCloneLoss(-2)
 	..()
 
-/mob/living/simple_mob/mechanical/mecha/update_icon()
+/mob/living/simple/mechanical/mecha/update_icon()
 	..() // Cuts everything else, so do that first.
 	if(has_repair_droid)
 		add_overlay(image(icon = 'icons/mecha/mecha_equipment.dmi', icon_state = "repair_droid"))
 
-/mob/living/simple_mob/mechanical/mecha/bullet_act()
+/mob/living/simple/mechanical/mecha/bullet_act()
 	. = ..()
 	sparks.start()
 
-/mob/living/simple_mob/mechanical/mecha/speech_bubble_appearance()
+/mob/living/simple/mechanical/mecha/speech_bubble_appearance()
 	return pilot_type ? "" : ..()
 
 // Piloted mechs are controlled by (presumably) something humanoid so they are vulnerable to certain things.
-/mob/living/simple_mob/mechanical/mecha/is_sentient()
+/mob/living/simple/mechanical/mecha/is_sentient()
 	return pilot_type ? TRUE : FALSE
 
 /*
 // Real mechs can't turn and run at the same time. This tries to simulate that.
 // Commented out because the AI can't handle it sadly.
-/mob/living/simple_mob/mechanical/mecha/SelfMove(turf/n, direct)
+/mob/living/simple/mechanical/mecha/SelfMove(turf/n, direct)
 	if(direct != dir)
 		setDir(direct)
 		return FALSE // We didn't actually move, and returning FALSE means the mob can try to actually move almost immediately and not have to wait the full movement cooldown.
 	return ..()
 */
 
-/mob/living/simple_mob/mechanical/mecha/bullet_act(obj/item/projectile/P)
+/mob/living/simple/mechanical/mecha/bullet_act(obj/item/projectile/P)
 	if(prob(deflect_chance))
 		visible_message(SPAN_WARNING( "\The [P] is deflected by \the [src]'s armor!"))
 		deflect_sprite()
 		return 0
 	return ..()
 
-/mob/living/simple_mob/mechanical/mecha/proc/deflect_sprite()
+/mob/living/simple/mechanical/mecha/proc/deflect_sprite()
 	var/image/deflect_image = image('icons/effects/effects.dmi', "deflect_static")
 	add_overlay(deflect_image)
 	sleep(1 SECOND)
@@ -126,7 +126,7 @@
 	qdel(deflect_image)
 //	flick_overlay_view(deflect_image, src, duration = 1 SECOND, gc_after = TRUE)
 
-/mob/living/simple_mob/mechanical/mecha/attackby(obj/item/I, mob/user)
+/mob/living/simple/mechanical/mecha/attackby(obj/item/I, mob/user)
 	if(prob(deflect_chance))
 		visible_message(SPAN_WARNING( "\The [user]'s [I] bounces off \the [src]'s armor!"))
 		deflect_sprite()
@@ -134,7 +134,7 @@
 		return
 	..()
 
-/mob/living/simple_mob/mechanical/mecha/legacy_ex_act(severity)
+/mob/living/simple/mechanical/mecha/legacy_ex_act(severity)
 	if(prob(deflect_chance))
 		severity++ // This somewhat misleadingly makes it less severe.
 		deflect_sprite()

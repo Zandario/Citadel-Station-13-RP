@@ -12,7 +12,7 @@
 	unless the host dies catastrophically."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/giant_spider/carrier
+/mob/living/simple/animal/giant_spider/carrier
 	desc = "Furry, beige, and red, it makes you shudder to look at it. This one has luminous green eyes."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/giant_spider/carrier_spider)
 
@@ -36,22 +36,22 @@
 
 	var/spiderling_count = 0
 	var/spiderling_type = /obj/effect/spider/spiderling
-	var/swarmling_type = /mob/living/simple_mob/animal/giant_spider/hunter
+	var/swarmling_type = /mob/living/simple/animal/giant_spider/hunter
 	var/swarmling_faction = "spiders"
 	var/swarmling_prob = 10 // Odds that a spiderling will be a swarmling instead.
 
-/mob/living/simple_mob/animal/giant_spider/carrier/Initialize(mapload)
+/mob/living/simple/animal/giant_spider/carrier/Initialize(mapload)
 	spiderling_count = rand(5, 10)
 	adjust_scale(1.2)
 	return ..()
 
-/mob/living/simple_mob/animal/giant_spider/carrier/death()
+/mob/living/simple/animal/giant_spider/carrier/death()
 	visible_message(SPAN_WARNING( "\The [src]'s abdomen splits as it rolls over, spiderlings crawling from the wound.") )
 	spawn(1)
 		var/list/new_spiders = list()
 		for(var/i = 1 to spiderling_count)
 			if(prob(swarmling_prob) && src)
-				var/mob/living/simple_mob/animal/giant_spider/swarmling = new swarmling_type(src.loc)
+				var/mob/living/simple/animal/giant_spider/swarmling = new swarmling_type(src.loc)
 				var/swarm_health = FLOOR(swarmling.maxHealth * 0.4, 1)
 				var/swarm_dam_lower = FLOOR(melee_damage_lower * 0.4, 1)
 				var/swarm_dam_upper = FLOOR(melee_damage_upper * 0.4, 1)
@@ -70,7 +70,7 @@
 				break
 		// Transfer our player to their new body, if RNG provided one.
 		if(new_spiders.len && client)
-			var/mob/living/simple_mob/animal/giant_spider/new_body = pick(new_spiders)
+			var/mob/living/simple/animal/giant_spider/new_body = pick(new_spiders)
 			new_body.key = src.key
 	return ..()
 
@@ -80,9 +80,9 @@
 	desc = "<font face='comic sans ms'>It's Carriers all the way down.</font>"
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/giant_spider/carrier/recursive
+/mob/living/simple/animal/giant_spider/carrier/recursive
 	desc = "Furry, beige, and red, it makes you shudder to look at it. This one has luminous green eyes. \
 	You have a distinctly <font face='comic sans ms'>bad</font> feeling about this."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/giant_spider/recursive_carrier_spider)
 
-	swarmling_type = /mob/living/simple_mob/animal/giant_spider/carrier/recursive
+	swarmling_type = /mob/living/simple/animal/giant_spider/carrier/recursive

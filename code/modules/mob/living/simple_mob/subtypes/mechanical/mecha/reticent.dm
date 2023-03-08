@@ -13,7 +13,7 @@
 	chassis - a byproduct of its maneuverability, and is easily disabled once its dense mineral armor is shattered."
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/mechanical/mecha/combat/reticent
+/mob/living/simple/mechanical/mecha/combat/reticent
 	name = "Reticent"
 	desc = "Designed in response to the H.O.N.K., Reticent models are close combat powerhouses designed to rapidly and quietly ambush slower foes."
 	catalogue_data = list(/datum/category_item/catalogue/technology/reticent)
@@ -38,7 +38,7 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 
-/mob/living/simple_mob/mechanical/mecha/combat/reticent/Initialize(mapload)
+/mob/living/simple/mechanical/mecha/combat/reticent/Initialize(mapload)
 	shields = new /obj/item/shield_projector/rectangle/automatic/reticent(src)
 	return ..()
 
@@ -55,7 +55,7 @@
 
 //No Manned variant yet.
 /*
-/mob/living/simple_mob/mechanical/mecha/combat/reticent/manned
+/mob/living/simple/mechanical/mecha/combat/reticent/manned
 	pilot_type = null
 */
 
@@ -74,7 +74,7 @@
 	the gap and deliver close-range punishment to any who dare violate Le Rien's borders."
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/mechanical/mecha/combat/reticent/reticence
+/mob/living/simple/mechanical/mecha/combat/reticent/reticence
 	name = "Reticence"
 	desc = "The current flagship mecha of Le Rien. The Reticence trades some speed for durability, but remains formidable. It is not commercially available."
 	catalogue_data = list(/datum/category_item/catalogue/technology/reticence)
@@ -96,7 +96,7 @@
 				"rad"		= 100
 				)
 
-/mob/living/simple_mob/mechanical/mecha/combat/reticent/reticence/Initialize(mapload)
+/mob/living/simple/mechanical/mecha/combat/reticent/reticence/Initialize(mapload)
 	shields = new /obj/item/shield_projector/rectangle/automatic/reticence(src)
 	return ..()
 

@@ -53,7 +53,7 @@
 /area/submap/virgo2/CrashedSmuggler/ship)
 "eO" = (
 /obj/effect/alien/weeds/node,
-/mob/living/simple_mob/animal/space/alien/drone,
+/mob/living/simple/animal/space/alien/drone,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/CrashedSmuggler)
 "fa" = (
@@ -202,7 +202,7 @@
 /area/submap/virgo2/CrashedSmuggler/ship)
 "sT" = (
 /obj/effect/alien/weeds,
-/mob/living/simple_mob/animal/space/alien/sentinel/praetorian,
+/mob/living/simple/animal/space/alien/sentinel/praetorian,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/CrashedSmuggler)
 "tf" = (
@@ -271,7 +271,7 @@
 /area/submap/virgo2/CrashedSmuggler/ship)
 "xR" = (
 /obj/effect/alien/weeds/node,
-/mob/living/simple_mob/animal/space/alien/queen/empress,
+/mob/living/simple/animal/space/alien/queen/empress,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/CrashedSmuggler)
 "ym" = (
@@ -457,7 +457,7 @@
 /area/submap/virgo2/CrashedSmuggler/ship)
 "IB" = (
 /obj/effect/alien/weeds/node,
-/mob/living/simple_mob/animal/space/alien/sentinel,
+/mob/living/simple/animal/space/alien/sentinel,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/CrashedSmuggler)
 "IO" = (
@@ -511,7 +511,7 @@
 /area/submap/virgo2/CrashedSmuggler/ship)
 "No" = (
 /obj/effect/alien/weeds,
-/mob/living/simple_mob/animal/space/alien/sentinel,
+/mob/living/simple/animal/space/alien/sentinel,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/CrashedSmuggler)
 "OE" = (
@@ -651,7 +651,7 @@
 /area/submap/virgo2/CrashedSmuggler/ship)
 "ZN" = (
 /obj/effect/alien/weeds,
-/mob/living/simple_mob/animal/space/alien/drone,
+/mob/living/simple/animal/space/alien/drone,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/CrashedSmuggler)
 

@@ -4,7 +4,7 @@
 	ADMINISTRATOR FOR IMMEDIATE MAINTENANCE! %ERROR%"
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/horror/Sally
+/mob/living/simple/horror/Sally
 	name = "???"
 	desc = "A mass of tentacles hold up a large head, graced with one of the grandest smiles in the galaxy. It's a shame about the constant oil leaking from its eyes."
 
@@ -39,27 +39,27 @@
 	hide_amount = 10
 	exotic_amount = 5
 
-/mob/living/simple_mob/horror/Sally/Initialize(mapload)
+/mob/living/simple/horror/Sally/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/horror_aura)
 
-/mob/living/simple_mob/horror/Sally/death()
+/mob/living/simple/horror/Sally/death()
 	playsound(src, 'sound/h_sounds/lynx.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/Sally/bullet_act()
+/mob/living/simple/horror/Sally/bullet_act()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/Sally/attack_hand()
+/mob/living/simple/horror/Sally/attack_hand()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/Sally/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
+/mob/living/simple/horror/Sally/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
 	. = ..()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 
-/mob/living/simple_mob/horror/Sally/attackby()
+/mob/living/simple/horror/Sally/attackby()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 

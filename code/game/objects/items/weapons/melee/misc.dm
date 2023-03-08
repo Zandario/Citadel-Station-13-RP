@@ -230,7 +230,7 @@
 		"<span class='danger'>\The [user] is stabbing themselves with \the [src]! It looks like [TU.he] [TU.is] trying to commit suicide.</span>"))
 	var/turf/T = get_turf(src)
 	user.gib()
-	new /mob/living/simple_mob/mechanical/cyber_horror(T)
+	new /mob/living/simple/mechanical/cyber_horror(T)
 	return
 
 //Interestingly, a magic flame sword has a lot in common with the thermal cutter Tech and I made for Goblins. So I decided it should share some of that code.

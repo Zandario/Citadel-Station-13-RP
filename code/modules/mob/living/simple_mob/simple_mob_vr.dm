@@ -3,7 +3,7 @@
 #define SA_ICON_DEAD	0x02
 #define SA_ICON_REST	0x04
 
-/mob/living/simple_mob
+/mob/living/simple
 	base_attack_cooldown = 15
 
 	var/temperature_range = 40			// How close will they get to environmental temperature before their body stops changing its heat
@@ -45,18 +45,18 @@
 	var/obj/item/radio/headset/mob_headset/mob_radio		//Adminbus headset for simplemob shenanigans.
 
 // Release belly contents before being gc'd!
-/mob/living/simple_mob/Destroy()
+/mob/living/simple/Destroy()
 	release_vore_contents()
 	prey_excludes.Cut()
 	. = ..()
 
 //For all those ID-having mobs
-/mob/living/simple_mob/GetIdCard()
+/mob/living/simple/GetIdCard()
 	if(access_card)
 		return access_card
 
 // Update fullness based on size & quantity of belly contents
-/mob/living/simple_mob/proc/update_fullness()
+/mob/living/simple/proc/update_fullness()
 	var/new_fullness = 0
 	for(var/belly in vore_organs)
 		var/obj/belly/B = belly
@@ -65,7 +65,7 @@
 	new_fullness = round(new_fullness, 1) // Because intervals of 0.25 are going to make sprite artists cry.
 	vore_fullness = min(vore_capacity, new_fullness)
 
-/mob/living/simple_mob/update_icon()
+/mob/living/simple/update_icon()
 	. = ..()
 	if(vore_active)
 		update_fullness()
@@ -78,7 +78,7 @@
 		else if(((stat == UNCONSCIOUS) || resting || incapacitated(INCAPACITATION_DISABLED) ) && icon_rest && (vore_icons & SA_ICON_REST))
 			icon_state = "[icon_rest]-[vore_fullness]"
 
-/mob/living/simple_mob/proc/will_eat(var/mob/living/M)
+/mob/living/simple/proc/will_eat(var/mob/living/M)
 	if(client) //You do this yourself, dick!
 		return 0
 	if(!istype(M)) //Can't eat 'em if they ain't /mob/living
@@ -97,7 +97,7 @@
 		return 0
 	return 1
 
-/mob/living/simple_mob/apply_attack(atom/A, damage_to_do)
+/mob/living/simple/apply_attack(atom/A, damage_to_do)
 	if(isliving(A)) // Converts target to living
 		var/mob/living/L = A
 
@@ -120,7 +120,7 @@
 		return ..()
 
 
-/mob/living/simple_mob/proc/CanPounceTarget(var/mob/living/M) //returns either FALSE or a %chance of success
+/mob/living/simple/proc/CanPounceTarget(var/mob/living/M) //returns either FALSE or a %chance of success
 	if(!M.canmove || issilicon(M) || world.time < vore_pounce_cooldown) //eliminate situations where pouncing CANNOT happen
 		return FALSE
 	if(!prob(vore_pounce_chance) || !will_eat(M)) //mob doesn't want to pounce
@@ -134,7 +134,7 @@
 		return max(0,(vore_pounce_successrate - (vore_pounce_falloff * TargetHealthPercent)))
 
 
-/mob/living/simple_mob/proc/PounceTarget(var/mob/living/M, var/successrate = 100)
+/mob/living/simple/proc/PounceTarget(var/mob/living/M, var/successrate = 100)
 	vore_pounce_cooldown = world.time + 20 SECONDS // don't attempt another pounce for a while
 	if(prob(successrate)) // pounce success!
 		M.Weaken(5)
@@ -150,7 +150,7 @@
 
 // Attempt to eat target
 // TODO - Review this.  Could be some issues here
-/mob/living/simple_mob/proc/EatTarget(var/mob/living/M)
+/mob/living/simple/proc/EatTarget(var/mob/living/M)
 	var/old_target = M
 	set_AI_busy(1)
 	. = animal_nom(M)
@@ -167,25 +167,25 @@
 		// Otherwise we'll be in a possibly infinate loop
 		set_AI_busy(0)
 
-/mob/living/simple_mob/death()
+/mob/living/simple/death()
 	release_vore_contents()
 	. = ..()
 
 // Make sure you don't call ..() on this one, otherwise you duplicate work.
-/mob/living/simple_mob/init_vore()
+/mob/living/simple/init_vore()
 	if(!vore_active || no_vore)
 		return
 
 	if(!IsAdvancedToolUser())
-		add_verb(src, /mob/living/simple_mob/proc/animal_nom)
+		add_verb(src, /mob/living/simple/proc/animal_nom)
 		add_verb(src, /mob/living/proc/shred_limb)
 
 	if(LAZYLEN(vore_organs))
 		return
 
 	// Since they have bellies, add verbs to toggle settings on them.
-	add_verb(src, /mob/living/simple_mob/proc/toggle_digestion)
-	add_verb(src, /mob/living/simple_mob/proc/toggle_fancygurgle)
+	add_verb(src, /mob/living/simple/proc/toggle_digestion)
+	add_verb(src, /mob/living/simple/proc/toggle_fancygurgle)
 
 	//A much more detailed version of the default /living implementation
 	var/obj/belly/B = new /obj/belly(src)
@@ -227,7 +227,7 @@
 		"The churning walls slowly pulverize you into meaty nutrients.",
 		"The stomach glorps and gurgles as it tries to work you into slop.")
 
-/mob/living/simple_mob/Bumped(var/atom/movable/AM, yes)
+/mob/living/simple/Bumped(var/atom/movable/AM, yes)
 	if(ismob(AM))
 		var/mob/tmob = AM
 		if(will_eat(tmob) && !istype(tmob, type) && prob(vore_bump_chance) && !ckey) //check if they decide to eat. Includes sanity check to prevent cannibalism.
@@ -241,19 +241,19 @@
 	..()
 
 // Checks to see if mob doesn't like this kind of turf
-/mob/living/simple_mob/IMove(turf/newloc, safety = TRUE)
+/mob/living/simple/IMove(turf/newloc, safety = TRUE)
 	if(istype(newloc,/turf/simulated/floor/sky))
 		return MOVEMENT_FAILED //Mobs aren't that stupid, probably
 	return ..() // Procede as normal.
 
 //Grab = Nomf
-/mob/living/simple_mob/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/simple/UnarmedAttack(var/atom/A, var/proximity)
 	. = ..()
 
 	if(a_intent == INTENT_GRAB && isliving(A) && !has_hands)
 		animal_nom(A)
 
-/mob/living/simple_mob/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name)
+/mob/living/simple/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name)
 	if(mob_radio)
 		switch(message_mode)
 			if("intercom")
@@ -272,7 +272,7 @@
 	else
 		..()
 
-/mob/living/simple_mob/proc/leap()
+/mob/living/simple/proc/leap()
 	set name = "Pounce Target"
 	set category = "Abilities"
 	set desc = "Select a target to pounce at."

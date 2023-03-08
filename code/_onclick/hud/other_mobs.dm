@@ -98,13 +98,13 @@
 /datum/hud/proc/construct_hud()
 	var/constructtype
 
-	if(istype(mymob,/mob/living/simple_mob/construct/armoured) || istype(mymob,/mob/living/simple_mob/construct/behemoth))
+	if(istype(mymob,/mob/living/simple/construct/armoured) || istype(mymob,/mob/living/simple/construct/behemoth))
 		constructtype = "juggernaut"
-	else if(istype(mymob,/mob/living/simple_mob/construct/builder))
+	else if(istype(mymob,/mob/living/simple/construct/builder))
 		constructtype = "artificer"
-	else if(istype(mymob,/mob/living/simple_mob/construct/wraith))
+	else if(istype(mymob,/mob/living/simple/construct/wraith))
 		constructtype = "wraith"
-	else if(istype(mymob,/mob/living/simple_mob/construct/harvester))
+	else if(istype(mymob,/mob/living/simple/construct/harvester))
 		constructtype = "harvester"
 
 	if(constructtype)

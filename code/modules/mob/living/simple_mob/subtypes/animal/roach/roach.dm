@@ -39,7 +39,7 @@
 		/datum/category_item/catalogue/fauna/roach/fuhrer
 		)
 
-/mob/living/simple_mob/animal/roach
+/mob/living/simple/animal/roach
 	name = "roach"
 	real_name = "roach"
 	desc = "A hardy pest native to Terra. It somehow survived the Final War and spread among the stars."
@@ -89,7 +89,7 @@
 	holder_type = /obj/item/holder/roach
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
-/mob/living/simple_mob/animal/roach/Initialize(mapload)
+/mob/living/simple/animal/roach/Initialize(mapload)
 	. = ..()
 
 	add_verb(src, /mob/living/proc/ventcrawl)
@@ -99,7 +99,7 @@
 		name = "[name] ([rand(1, 1000)])"
 	real_name = name
 
-/mob/living/simple_mob/animal/roach/Crossed(AM as mob|obj)
+/mob/living/simple/animal/roach/Crossed(AM as mob|obj)
 	if( ishuman(AM) )
 		if(!stat)
 			var/mob/M = AM
@@ -112,16 +112,16 @@
  */
 
 //How DARE you!
-/mob/living/simple_mob/animal/roach/Greta
+/mob/living/simple/animal/roach/Greta
 	name = "Greta"
 	desc = "Legend has it this roach sailed across the Eagle Nebula to protest bug burgers."
-	
+
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/cooperative
 
 	taser_kill = 0
 
 //Unrandom the pet...?
-/mob/living/simple_mob/animal/roach/Greta/Initialize(mapload)
+/mob/living/simple/animal/roach/Greta/Initialize(mapload)
     . = ..()
     size_multiplier = 1
     maxHealth = maxHealth
@@ -132,7 +132,7 @@
     meat_amount = meat_amount
     update_icons()
 
-/mob/living/simple_mob/animal/roach/Greta/Initialize(mapload)
+/mob/living/simple/animal/roach/Greta/Initialize(mapload)
 	. = ..()
 	// Change my name back, don't want to be named Tom (666)
 	name = initial(name)
@@ -145,7 +145,7 @@
 	Attentive crews will take the sign of a single roachling as a warning to dock and pull up panels."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/roach/roachling
+/mob/living/simple/animal/roach/roachling
 	name = "roachling"
 	real_name = "roachling"
 	desc = "A hardy pest native to Terra. This one's just a baby."
@@ -162,14 +162,14 @@
 
 	melee_damage_lower = 2
 	melee_damage_upper = 3
-	
+
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/cooperative
 
 	var/amount_grown = -1
 	var/spawn_delay = 20
-	var/list/grow_as = list(/mob/living/simple_mob/animal/roach, /mob/living/simple_mob/animal/roach/seuche, /mob/living/simple_mob/animal/roach/jaeger)
+	var/list/grow_as = list(/mob/living/simple/animal/roach, /mob/living/simple/animal/roach/seuche, /mob/living/simple/animal/roach/jaeger)
 
-/mob/living/simple_mob/animal/roach/roachling/Initialize(mapload, atom/parent)
+/mob/living/simple/animal/roach/roachling/Initialize(mapload, atom/parent)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	//50% chance to grow up
@@ -177,18 +177,18 @@
 		amount_grown = 1
 	get_light_and_color(parent)
 
-/mob/living/simple_mob/animal/roach/roachling/death()
+/mob/living/simple/animal/roach/roachling/death()
 	STOP_PROCESSING(SSobj, src)
 	walk(src, 0) // Because we might have called walk_to, we must stop the walk loop or BYOND keeps an internal reference to us forever.
 	return ..()
 
-/mob/living/simple_mob/animal/roach/roachling/process(delta_time)
+/mob/living/simple/animal/roach/roachling/process(delta_time)
 	if(amount_grown >= 0)
 		amount_grown += rand(0,2)
 	if(amount_grown >= 100)
 		mature()
 
-/mob/living/simple_mob/animal/roach/roachling/proc/mature()
+/mob/living/simple/animal/roach/roachling/proc/mature()
 	var/spawn_type = pick(grow_as)
 	new spawn_type(src.loc, src)
 	qdel(src)
@@ -201,7 +201,7 @@
 	but formidable in numbers, these creatures require more than a boot to dispatch effectively."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/roach/panzer
+/mob/living/simple/animal/roach/panzer
 	name = "armored roach"
 	real_name = "armored roach"
 	desc = "A descendant of an Old Terra pest. This one has evolved a bulky shell that shields it from harm."
@@ -232,7 +232,7 @@
 	green coloration make it an enticing and deadly foe, even when found alone."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/roach/jaeger
+/mob/living/simple/animal/roach/jaeger
 	name = "hunter roach"
 	real_name = "hunter roach"
 	desc = "A descendant of an Old Terra pest. This one moves quickly to chase down its prey. Potentially more effective in forests."
@@ -269,7 +269,7 @@
 	and should be handled with extreme care."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/roach/seuche
+/mob/living/simple/animal/roach/seuche
 	name = "diseased roach"
 	real_name = "diseased roach"
 	desc = "A descendant of an Old Terra pest. This one is suffering from the long term effects of direct Phoron exposure."
@@ -293,7 +293,7 @@
 	var/poison_per_bite = 5
 	var/poison_type = "phoron"
 
-/mob/living/simple_mob/animal/roach/seuche/apply_melee_effects(var/atom/A)
+/mob/living/simple/animal/roach/seuche/apply_melee_effects(var/atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.reagents)
@@ -303,7 +303,7 @@
 				infect_mob(L, target_zone)
 
 // Does actual poison injection, after all checks passed.
-/mob/living/simple_mob/animal/roach/seuche/proc/inject_poison(mob/living/L, target_zone)
+/mob/living/simple/animal/roach/seuche/proc/inject_poison(mob/living/L, target_zone)
 	if(prob(poison_chance))
 		to_chat(L, "<span class='warning'>The bite stings!</span>")
 		L.reagents.add_reagent(poison_type, poison_per_bite)
@@ -318,7 +318,7 @@
 	ripping off chunks of diseased flesh and throwing it at percieved threats in an attempt to ward them off."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/roach/atomar
+/mob/living/simple/animal/roach/atomar
 	name = "cancerous roach"
 	real_name = "cancerous roach"
 	desc = "A descendant of an Old Terra pest. This one is covered in cancerous growths indicative of intense radiation sickness."
@@ -359,7 +359,7 @@
 	attack their victim on a molecular level. Terminate with extreme prejudice."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/roach/uberfallen
+/mob/living/simple/animal/roach/uberfallen
 	name = "infested roach"
 	real_name = "infested roach"
 	desc = "A descendant of an Old Terra pest. This one has become a hive for even smaller rapidly breeding pests. Ironic."
@@ -402,7 +402,7 @@
 	which these roaches are not afraid to use to deter assailants, or, rarely, to wound prey."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/roach/strahlend
+/mob/living/simple/animal/roach/strahlend
 	name = "glowing roach"
 	real_name = "glowing roach"
 	desc = "A descendant of an Old Terra pest. This one pulses with an intense, visible radioactive glow. You shouldn't be standing this close."
@@ -440,7 +440,7 @@
 	genuinely infest Bluespace at this time."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/roach/zeitraum
+/mob/living/simple/animal/roach/zeitraum
 	name = "bluespace roach"
 	real_name = "bluespace roach"
 	desc = "A descendant of an Old Terra pest. Where did this one even come from?! Watch out!"
@@ -477,14 +477,14 @@
 	var/last_unstealth = 0			// world.time
 
 
-/mob/living/simple_mob/animal/roach/zeitraum/proc/stealth()
+/mob/living/simple/animal/roach/zeitraum/proc/stealth()
 	if(stealthed)
 		return
 	animate(src, alpha = stealthed_alpha, time = 1 SECOND)
 	stealthed = TRUE
 
 
-/mob/living/simple_mob/animal/roach/zeitraum/proc/unstealth()
+/mob/living/simple/animal/roach/zeitraum/proc/unstealth()
 	last_unstealth = world.time // This is assigned even if it isn't stealthed already, to 'reset' the timer if the spider is continously getting attacked.
 	if(!stealthed)
 		return
@@ -493,7 +493,7 @@
 
 
 // Check if stealthing if possible.
-/mob/living/simple_mob/animal/roach/zeitraum/proc/can_stealth()
+/mob/living/simple/animal/roach/zeitraum/proc/can_stealth()
 	if(stat)
 		return FALSE
 	if(last_unstealth + stealth_cooldown > world.time)
@@ -503,28 +503,28 @@
 
 
 // Called by things that break stealths, like Technomancer wards.
-/mob/living/simple_mob/animal/roach/zeitraum/break_cloak()
+/mob/living/simple/animal/roach/zeitraum/break_cloak()
 	unstealth()
 
 
-/mob/living/simple_mob/animal/roach/zeitraum/is_cloaked()
+/mob/living/simple/animal/roach/zeitraum/is_cloaked()
 	return stealthed
 
 
 // Cloaks the spider automatically, if possible.
-/mob/living/simple_mob/animal/roach/zeitraum/handle_special()
+/mob/living/simple/animal/roach/zeitraum/handle_special()
 	if(!stealthed && can_stealth())
 		stealth()
 
 
 // Applies bonus base damage if stealthed.
-/mob/living/simple_mob/animal/roach/zeitraum/apply_bonus_melee_damage(atom/A, damage_amount)
+/mob/living/simple/animal/roach/zeitraum/apply_bonus_melee_damage(atom/A, damage_amount)
 	if(stealthed)
 		return damage_amount + stealthed_bonus_damage
 	return ..()
 
 // Applies stun, then unstealths.
-/mob/living/simple_mob/animal/roach/zeitraum/apply_melee_effects(atom/A)
+/mob/living/simple/animal/roach/zeitraum/apply_melee_effects(atom/A)
 	if(stealthed)
 		if(isliving(A))
 			var/mob/living/L = A
@@ -535,11 +535,11 @@
 	..() // For the poison.
 
 // Force unstealthing if attacked.
-/mob/living/simple_mob/animal/roach/zeitraum/bullet_act(obj/item/projectile/P)
+/mob/living/simple/animal/roach/zeitraum/bullet_act(obj/item/projectile/P)
 	. = ..()
 	break_cloak()
 
-/mob/living/simple_mob/animal/roach/zeitraum/hit_with_weapon(obj/item/O, mob/living/user, effective_force, hit_zone)
+/mob/living/simple/animal/roach/zeitraum/hit_with_weapon(obj/item/O, mob/living/user, effective_force, hit_zone)
 	. = ..()
 	break_cloak()
 
@@ -551,7 +551,7 @@
 	and its powerful mandibles can deliver a painful bite."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/roach/fuhrer
+/mob/living/simple/animal/roach/fuhrer
 	name = "king roach"
 	real_name = "king roach"
 	desc = "A descendant of an Old Terra pest. This one moves slowly, but with purpose. The other roaches seem to revere it."

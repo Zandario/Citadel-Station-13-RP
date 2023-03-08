@@ -22,7 +22,7 @@
 /turf/simulated/floor/outdoors/lavaland/indoors,
 /area/lavaland/east/ashlander_village)
 "ed" = (
-/mob/living/simple_mob/animal/space/bats/surt,
+/mob/living/simple/animal/space/bats/surt,
 /turf/simulated/floor/outdoors/lava/lavaland,
 /area/lavaland/east/unexplored)
 "fi" = (
@@ -46,7 +46,7 @@
 /turf/simulated/floor/outdoors/lavaland,
 /area/lavaland/east/unexplored)
 "iN" = (
-/mob/living/simple_mob/animal/goliath,
+/mob/living/simple/animal/goliath,
 /turf/simulated/floor/outdoors/lavaland/indoors,
 /area/lavaland/east/ashlander_village)
 "iU" = (

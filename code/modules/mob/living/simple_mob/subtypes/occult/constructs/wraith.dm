@@ -12,7 +12,7 @@
 	facing Constructs, as the Wraith can often ambush teams that over-extend themselves."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/construct/wraith
+/mob/living/simple/construct/wraith
 	name = "Wraith"
 	real_name = "Wraith"
 	construct_type = "wraith"
@@ -44,11 +44,11 @@
 
 //	environment_smash = 1	// Whatever this gets renamed to, Wraiths need to break things
 
-/mob/living/simple_mob/construct/wraith/Initialize(mapload)
+/mob/living/simple/construct/wraith/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/horror_aura)
 
-/mob/living/simple_mob/construct/wraith/apply_melee_effects(var/atom/A)
+/mob/living/simple/construct/wraith/apply_melee_effects(var/atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		L.add_modifier(/datum/modifier/deep_wounds, 30 SECONDS)
@@ -59,13 +59,13 @@
 	special_attack_cooldown = 10 SECONDS
 
 
-/mob/living/simple_mob/construct/wraith/jaunt_spam
+/mob/living/simple/construct/wraith/jaunt_spam
 	special_attack_cooldown = 5 SECONDS
 
-/mob/living/simple_mob/construct/wraith/fast_jaunt //Teleports behind you
+/mob/living/simple/construct/wraith/fast_jaunt //Teleports behind you
 	jaunt_tile_speed = 2
 
-/mob/living/simple_mob/construct/wraith/do_special_attack(atom/A)
+/mob/living/simple/construct/wraith/do_special_attack(atom/A)
 	set waitfor = FALSE
 	set_AI_busy(TRUE)
 
@@ -133,7 +133,7 @@
 	return FALSE
 
 // Does the jaunt movement
-/mob/living/simple_mob/construct/wraith/proc/handle_jaunt(turf/destination)
+/mob/living/simple/construct/wraith/proc/handle_jaunt(turf/destination)
 	var/turf/T = get_turf(src) // Hold our current tile.
 
 	// Regular tunnel loop.
@@ -156,7 +156,7 @@
 		forceMove(T)
 
 
-/mob/living/simple_mob/construct/wraith/should_special_attack(atom/A)
+/mob/living/simple/construct/wraith/should_special_attack(atom/A)
 	// Make sure its possible for the wraith to reach the target so it doesn't try to go through a window.
 	var/turf/destination = get_turf(A)
 	var/turf/starting_turf = get_turf(src)

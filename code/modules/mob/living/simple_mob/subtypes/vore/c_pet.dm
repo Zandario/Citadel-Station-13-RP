@@ -5,7 +5,7 @@
 	personalities when smacked."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/passive/honkpet
+/mob/living/simple/animal/passive/honkpet
 	name = "Hinkle"
 	desc = ""
 	tt_desc = "Coulrian Honkus"
@@ -49,12 +49,12 @@
 
 	has_langs = list("Coulrian")
 
-/mob/living/simple_mob/animal/passive/honkpet/attack_hand(mob/living/user as mob)
+/mob/living/simple/animal/passive/honkpet/attack_hand(mob/living/user as mob)
 	if(user.a_intent == INTENT_DISARM)
 		return icon_state = pick("c_pet", "m_pet")
 	.=..()
 
-/mob/living/simple_mob/animal/passive/mimepet
+/mob/living/simple/animal/passive/mimepet
 	name = "Dave"
 	desc = "That's Dave."
 	tt_desc = "Polypodavesilencia"
@@ -96,7 +96,7 @@
 				"rad" = 0
 				)
 
-/mob/living/simple_mob/animal/passive/mimepet/attack_hand(mob/living/user as mob)
+/mob/living/simple/animal/passive/mimepet/attack_hand(mob/living/user as mob)
 	if(user.a_intent == INTENT_DISARM)
 		icon_state = pick("dave1", "dave2", "dave3", "dave5" , "dave6" , "dave7" , "dave8" , "dave9" , "dave10")
 	.=..()

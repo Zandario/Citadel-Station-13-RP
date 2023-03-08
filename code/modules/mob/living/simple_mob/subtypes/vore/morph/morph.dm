@@ -1,6 +1,6 @@
 #define MORPH_COOLDOWN 50
 
-/mob/living/simple_mob/vore/hostile/morph
+/mob/living/simple/vore/hostile/morph
 	name = "morph"
 	real_name = "morph"
 	desc = "A revolting, pulsating pile of flesh."
@@ -52,17 +52,17 @@
 	var/static/list/blacklist_typecache = typecacheof(list(
 	/atom/movable/screen,
 	/obj/singularity,
-	/mob/living/simple_mob/vore/hostile/morph,
+	/mob/living/simple/vore/hostile/morph,
 	/obj/effect))
 
-/mob/living/simple_mob/vore/hostile/morph/Initialize(mapload)
+/mob/living/simple/vore/hostile/morph/Initialize(mapload)
 	add_verb(src, /mob/living/proc/ventcrawl)
 	return ..()
 
-/mob/living/simple_mob/vore/hostile/morph/proc/allowed(atom/movable/A)
+/mob/living/simple/vore/hostile/morph/proc/allowed(atom/movable/A)
 	return !is_type_in_typecache(A, blacklist_typecache) && (isobj(A) || ismob(A))
 
-/mob/living/simple_mob/vore/hostile/morph/examine(mob/user)
+/mob/living/simple/vore/hostile/morph/examine(mob/user)
 	if(morphed)
 		form.examine(user)
 		if(get_dist(user,src)<=3)
@@ -70,7 +70,7 @@
 			. += "<span class='warning'>It doesn't look quite right...</span>"
 	return
 
-/mob/living/simple_mob/vore/hostile/morph/ShiftClickOn(atom/movable/A)
+/mob/living/simple/vore/hostile/morph/ShiftClickOn(atom/movable/A)
 	if(Adjacent(A))
 		if(morph_time <= world.time && !stat)
 			if(A == src)
@@ -83,7 +83,7 @@
 	else
 		..()
 
-/mob/living/simple_mob/vore/hostile/morph/proc/assume(atom/movable/target)
+/mob/living/simple/vore/hostile/morph/proc/assume(atom/movable/target)
 	if(morphed)
 		to_chat(src, "<span class='warning'>You must restore to your original form first!</span>")
 		return
@@ -116,7 +116,7 @@
 	morph_time = world.time + MORPH_COOLDOWN
 	return
 
-/mob/living/simple_mob/vore/hostile/morph/proc/restore()
+/mob/living/simple/vore/hostile/morph/proc/restore()
 	if(!morphed)
 		to_chat(src, "<span class='warning'>You're already in your normal form!</span>")
 		return
@@ -145,32 +145,32 @@
 
 	morph_time = world.time + MORPH_COOLDOWN
 
-/mob/living/simple_mob/vore/hostile/morph/death(gibbed)
+/mob/living/simple/vore/hostile/morph/death(gibbed)
 	if(morphed)
 		visible_message("<span class='warning'>[src] twists and dissolves into a pile of green flesh!</span>")
 		restore()
 	..()
 
-/mob/living/simple_mob/vore/hostile/morph/will_show_tooltip()
+/mob/living/simple/vore/hostile/morph/will_show_tooltip()
 	return (!morphed)
 
-/mob/living/simple_mob/vore/hostile/morph/resize(var/new_size, var/animate = TRUE)
+/mob/living/simple/vore/hostile/morph/resize(var/new_size, var/animate = TRUE)
 	if(morphed && !ismob(form))
 		return
 	return ..()
 
-/mob/living/simple_mob/vore/hostile/morph/update_icon()
+/mob/living/simple/vore/hostile/morph/update_icon()
 	if(morphed)
 		return
 	return ..()
 
 
-/mob/living/simple_mob/vore/hostile/morph/update_icons()
+/mob/living/simple/vore/hostile/morph/update_icons()
 	if(morphed)
 		return
 	return ..()
 
-/mob/living/simple_mob/vore/hostile/morph/update_transform()
+/mob/living/simple/vore/hostile/morph/update_transform()
 	if(morphed)
 		var/matrix/M = matrix()
 		M.Scale(icon_scale_x, icon_scale_y)

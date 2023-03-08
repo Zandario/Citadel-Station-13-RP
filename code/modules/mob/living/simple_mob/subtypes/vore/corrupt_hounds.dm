@@ -10,7 +10,7 @@
 	Something tells you getting close or allowing it to pounce would be very deadly."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/vore/aggressive/corrupthound
+/mob/living/simple/vore/aggressive/corrupthound
 	name = "corrupt hound"
 	desc = "Good boy machine broke. This is definitely no good news for the organic lifeforms in vicinity."
 	catalogue_data = list(/datum/category_item/catalogue/technology/drone/corrupt_hound)
@@ -69,7 +69,7 @@
 
 	loot_list = list(/obj/item/borg/upgrade/syndicate = 6, /obj/item/borg/upgrade/vtec = 6, /obj/item/material/knife/ritual = 6, /obj/item/disk/nifsoft/compliance = 6)
 
-/mob/living/simple_mob/vore/aggressive/corrupthound/prettyboi
+/mob/living/simple/vore/aggressive/corrupthound/prettyboi
 	name = "corrupt corrupt hound"
 	desc = "Bad boy machine broke as well. Seems an attempt was made to achieve a less threatening look, and this one is definitely having some conflicting feelings about it."
 	icon_state = "prettyboi"
@@ -83,35 +83,35 @@
 
 	say_list_type = /datum/say_list/corrupthound_prettyboi
 
-/mob/living/simple_mob/vore/aggressive/corrupthound/isSynthetic()
+/mob/living/simple/vore/aggressive/corrupthound/isSynthetic()
 	return TRUE
 
-/mob/living/simple_mob/vore/aggressive/corrupthound/speech_bubble_appearance()
+/mob/living/simple/vore/aggressive/corrupthound/speech_bubble_appearance()
 	return "synthetic_evil"
 
-/mob/living/simple_mob/vore/aggressive/corrupthound/apply_melee_effects(var/atom/A)
+/mob/living/simple/vore/aggressive/corrupthound/apply_melee_effects(var/atom/A)
 	if(ismouse(A))
-		var/mob/living/simple_mob/animal/passive/mouse/mouse = A
+		var/mob/living/simple/animal/passive/mouse/mouse = A
 		if(mouse.getMaxHealth() < 20) // In case a badmin makes giant mice or something.
 			mouse.splat()
 			visible_emote(pick("bites \the [mouse]!", "chomps on \the [mouse]!"))
 	else
 		..()
 
-/mob/living/simple_mob/vore/aggressive/corrupthound/death(gibbed, deathmessage = "shudders and collapses!")
+/mob/living/simple/vore/aggressive/corrupthound/death(gibbed, deathmessage = "shudders and collapses!")
 	.=..()
 	resting = 0
 	icon_state = icon_dead
 
-/mob/living/simple_mob/vore/aggressive/corrupthound/Login()
+/mob/living/simple/vore/aggressive/corrupthound/Login()
 	. = ..()
 	AddComponent(/datum/component/riding_filter/mob/animal)
 
-/mob/living/simple_mob/vore/aggressive/corrupthound/Logout()
+/mob/living/simple/vore/aggressive/corrupthound/Logout()
 	. = ..()
 	DelComponent(/datum/component/riding_filter/mob/animal, exact = TRUE)
 
-/mob/living/simple_mob/vore/aggressive/corrupthound/MouseDroppedOnLegacy(mob/living/M, mob/living/user)
+/mob/living/simple/vore/aggressive/corrupthound/MouseDroppedOnLegacy(mob/living/M, mob/living/user)
 	return
 
 /datum/say_list/corrupthound
@@ -133,7 +133,7 @@
 	can_breakthrough = TRUE
 
 //Lavaland Hound
-/mob/living/simple_mob/vore/aggressive/corrupthound/surt
+/mob/living/simple/vore/aggressive/corrupthound/surt
 	name = "warped corrupt hound"
 	desc = "A remnant of a forgotten conflict. The harsh atmosphere has warped the plating on this hound. The slightest motion summons shrieks and squeals from its tortured machinery."
 

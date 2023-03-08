@@ -2,7 +2,7 @@
 // BLOB SPORE //
 ////////////////
 
-/mob/living/simple_mob/hostile/blob/spore
+/mob/living/simple/hostile/blob/spore
 	name = "blob spore"
 	desc = "A floating, fragile spore."
 	icon_state = "blobpod"
@@ -19,24 +19,24 @@
 	var/can_infest = FALSE
 	var/is_infesting = FALSE
 
-/mob/living/simple_mob/hostile/blob/spore/infesting
+/mob/living/simple/hostile/blob/spore/infesting
 	name = "infesting blob spore"
 	can_infest = TRUE
 
-/mob/living/simple_mob/hostile/blob/spore/weak
+/mob/living/simple/hostile/blob/spore/weak
 	name = "fragile blob spore"
 	health = 15
 	maxHealth = 15
 	melee_damage_lower = 1
 	melee_damage_upper = 2
 
-/mob/living/simple_mob/hostile/blob/spore/Initialize(mapload, obj/structure/blob/factory/my_factory)
+/mob/living/simple/hostile/blob/spore/Initialize(mapload, obj/structure/blob/factory/my_factory)
 	if(istype(my_factory))
 		factory = my_factory
 		factory.spores += src
 	return ..(mapload)
 
-/mob/living/simple_mob/hostile/blob/spore/Destroy()
+/mob/living/simple/hostile/blob/spore/Destroy()
 	if(factory)
 		factory.spores -= src
 	factory = null
@@ -46,13 +46,13 @@
 		infested = null
 	return ..()
 
-/mob/living/simple_mob/hostile/blob/spore/death(gibbed, deathmessage = "bursts!")
+/mob/living/simple/hostile/blob/spore/death(gibbed, deathmessage = "bursts!")
 	if(overmind)
 		overmind.blob_type.on_spore_death(src)
 	..(gibbed, deathmessage)
 	qdel(src)
 
-/mob/living/simple_mob/hostile/blob/spore/update_icons()
+/mob/living/simple/hostile/blob/spore/update_icons()
 	if(overmind)
 		color = overmind.blob_type.complementary_color
 		set_light(3, 5, color)
@@ -72,7 +72,7 @@
 
 		add_overlay(overlays_to_add)
 
-/mob/living/simple_mob/hostile/blob/spore/Life(seconds, times_fired)
+/mob/living/simple/hostile/blob/spore/Life(seconds, times_fired)
 	if(can_infest && !is_infesting && isturf(src.loc))
 		for(var/mob/living/complex/human/H in view(src,1))
 			if(H.stat != DEAD) // We want zombies.
@@ -85,7 +85,7 @@
 		qdel(src)
 	..()
 
-/mob/living/simple_mob/hostile/blob/spore/proc/infest(mob/living/complex/human/H)
+/mob/living/simple/hostile/blob/spore/proc/infest(mob/living/complex/human/H)
 	is_infesting = TRUE
 	if(H.wear_suit)
 		var/obj/item/clothing/suit/A = H.wear_suit
@@ -107,6 +107,6 @@
 	update_icons()
 	visible_message("<span class='warning'>The corpse of [H.name] suddenly rises!</span>")
 
-/mob/living/simple_mob/hostile/blob/spore/GetIdCard()
+/mob/living/simple/hostile/blob/spore/GetIdCard()
 	if(infested) // If we've infested someone, use their ID.
 		return infested.GetIdCard()

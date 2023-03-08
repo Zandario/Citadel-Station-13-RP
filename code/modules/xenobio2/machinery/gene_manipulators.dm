@@ -262,7 +262,7 @@
 	disk_needs_genes = 1
 	circuit = /obj/item/circuitboard/biobombarder
 
-	var/mob/living/simple_mob/xeno/slime/occupant
+	var/mob/living/simple/xeno/slime/occupant
 
 /obj/machinery/xenobio/editor/Initialize(mapload, newdir)
 	. = ..()
@@ -283,7 +283,7 @@
 			return
 		else
 			if(isxeno(G.affecting))
-				var/mob/living/simple_mob/xeno/X = G.affecting
+				var/mob/living/simple/xeno/X = G.affecting
 				if(do_after(user, 30) && X.Adjacent(src) && user.Adjacent(src) && X.Adjacent(user) && !occupant)
 					user.drop_from_inventory(G)
 					X.forceMove(src)
@@ -380,7 +380,7 @@
 		to_chat(user, "<span class='danger'>The [src] is locked and running, wait for it to finish.</span>")
 		return
 
-	if(!(istype(victim, /mob/living/simple_mob/xeno/slime)) )
+	if(!(istype(victim, /mob/living/simple/xeno/slime)) )
 		to_chat(user, "<span class='danger'>This is not a suitable subject for the [src]!</span>")
 		return
 

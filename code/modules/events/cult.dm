@@ -78,21 +78,21 @@
 			if(temp_vent.network && ((temp_vent.loc.z in GLOB.using_map.station_levels) || isTalon == 1))
 				vents += temp_vent
 
-	var/cult_spawn = list(/mob/living/simple_mob/humanoid/cultist/human,
-	/mob/living/simple_mob/humanoid/cultist/human/bloodjaunt,
-	/mob/living/simple_mob/humanoid/cultist/initiate,
-	/mob/living/simple_mob/humanoid/cultist/tesh,
-	/mob/living/simple_mob/humanoid/cultist/lizard,
-	 /mob/living/simple_mob/humanoid/cultist/castertesh,
-	 /mob/living/simple_mob/faithless/cult/strong,
-	 /mob/living/simple_mob/construct/artificer,
-	 /mob/living/simple_mob/construct/shade)
+	var/cult_spawn = list(/mob/living/simple/humanoid/cultist/human,
+	/mob/living/simple/humanoid/cultist/human/bloodjaunt,
+	/mob/living/simple/humanoid/cultist/initiate,
+	/mob/living/simple/humanoid/cultist/tesh,
+	/mob/living/simple/humanoid/cultist/lizard,
+	 /mob/living/simple/humanoid/cultist/castertesh,
+	 /mob/living/simple/faithless/cult/strong,
+	 /mob/living/simple/construct/artificer,
+	 /mob/living/simple/construct/shade)
 
-	var/cult_boss = list(/mob/living/simple_mob/humanoid/cultist/elite,
-	/mob/living/simple_mob/creature/cult/strong,
-	 /mob/living/simple_mob/humanoid/cultist/caster,
-	/mob/living/simple_mob/construct/artificer/caster,
-	/mob/living/simple_mob/construct/wraith)
+	var/cult_boss = list(/mob/living/simple/humanoid/cultist/elite,
+	/mob/living/simple/creature/cult/strong,
+	 /mob/living/simple/humanoid/cultist/caster,
+	/mob/living/simple/construct/artificer/caster,
+	/mob/living/simple/construct/wraith)
 
 	spawn(0)
 		var/num = spawncount

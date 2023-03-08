@@ -16,7 +16,7 @@
 	if(istype(L) && status) // Is it on?
 		if(L.mob_class & MOB_CLASS_SLIME) // Are they some kind of slime? (Prommies might pass this check someday).
 			if(isslime(L))
-				var/mob/living/simple_mob/slime/S = L
+				var/mob/living/simple/slime/S = L
 				S.slimebatoned(user, 5) // Feral and xenobio slimes will react differently to this.
 			else
 				L.Weaken(5)
@@ -96,7 +96,7 @@
 		var/mob/living/L = target
 		if(L.mob_class & MOB_CLASS_SLIME)
 			if(isslime(L))
-				var/mob/living/simple_mob/slime/S = L
+				var/mob/living/simple/slime/S = L
 				S.slimebatoned(firer, round(agony/2))
 			else
 				L.Weaken(round(agony/2))

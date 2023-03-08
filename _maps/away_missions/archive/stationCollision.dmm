@@ -341,7 +341,7 @@
 /turf/simulated/floor/airless,
 /area/awaymission/research)
 "bS" = (
-/mob/living/simple_mob/animal/passive/lizard,
+/mob/living/simple/animal/passive/lizard,
 /turf/simulated/floor/grass,
 /area/awaymission/research)
 "bT" = (
@@ -358,14 +358,14 @@
 /turf/simulated/shuttle/plating,
 /area/awaymission/syndishuttle)
 "cc" = (
-/mob/living/simple_mob/animal/space/alien/sentinel{
+/mob/living/simple/animal/space/alien/sentinel{
 	fireloss = 200;
 	stat = 2
 	},
 /turf/simulated/floor/airless,
 /area/awaymission/research)
 "ce" = (
-/mob/living/simple_mob/creature{
+/mob/living/simple/creature{
 	name = "Experiment 35b"
 	},
 /turf/simulated/floor/airless,
@@ -423,7 +423,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced,
-/mob/living/simple_mob/mechanical/hivebot,
+/mob/living/simple/mechanical/hivebot,
 /turf/simulated/floor/airless,
 /area/awaymission/research)
 "co" = (
@@ -514,7 +514,7 @@
 /area/awaymission/research)
 "cH" = (
 /obj/item/toy/plushie/face_hugger,
-/mob/living/simple_mob/animal/space/alien/queen{
+/mob/living/simple/animal/space/alien/queen{
 	fireloss = 300;
 	stat = 2
 	},
@@ -597,7 +597,7 @@
 /turf/simulated/floor/airless,
 /area/awaymission/research)
 "cU" = (
-/mob/living/simple_mob/animal/space/alien{
+/mob/living/simple/animal/space/alien{
 	fireloss = 200;
 	stat = 2
 	},

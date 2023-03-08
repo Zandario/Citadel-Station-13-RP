@@ -32,7 +32,7 @@ GLOBAL_VAR_INIT(chicken_count, 0)	// How mant chickens DO we have?
 	their edible ovum and their own versatility as a meat product."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/passive/chicken
+/mob/living/simple/animal/passive/chicken
 	name = "chicken"
 	desc = "Hopefully the eggs are good this season."
 	tt_desc = "E Gallus gallus"
@@ -65,7 +65,7 @@ GLOBAL_VAR_INIT(chicken_count, 0)	// How mant chickens DO we have?
 	var/eggsleft = 0
 	var/body_color
 
-/mob/living/simple_mob/animal/passive/chicken/Initialize(mapload)
+/mob/living/simple/animal/passive/chicken/Initialize(mapload)
 	. = ..()
 	if(!body_color)
 		body_color = pick( list("brown","black","white") )
@@ -76,11 +76,11 @@ GLOBAL_VAR_INIT(chicken_count, 0)	// How mant chickens DO we have?
 	pixel_y = rand(0, 10)
 	GLOB.chicken_count += 1
 
-/mob/living/simple_mob/animal/passive/chicken/Destroy()
+/mob/living/simple/animal/passive/chicken/Destroy()
 	GLOB.chicken_count -= 1
 	return ..()
 
-/mob/living/simple_mob/animal/passive/chicken/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple/animal/passive/chicken/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/reagent_containers/food/snacks/grown)) //feedin' dem chickens
 		var/obj/item/reagent_containers/food/snacks/grown/G = O
 		if(G.seed && G.seed.kitchen_tag == "wheat")
@@ -96,7 +96,7 @@ GLOBAL_VAR_INIT(chicken_count, 0)	// How mant chickens DO we have?
 	else
 		..()
 
-/mob/living/simple_mob/animal/passive/chicken/BiologicalLife(seconds, times_fired)
+/mob/living/simple/animal/passive/chicken/BiologicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -117,7 +117,7 @@ GLOBAL_VAR_INIT(chicken_count, 0)	// How mant chickens DO we have?
 		amount_grown += rand(1,2)
 		if(amount_grown >= 100)
 			visible_message("[src] hatches with a quiet cracking sound.")
-			new /mob/living/simple_mob/animal/passive/chick(get_turf(src))
+			new /mob/living/simple/animal/passive/chick(get_turf(src))
 			STOP_PROCESSING(SSobj, src)
 			qdel(src)
 	else
@@ -129,7 +129,7 @@ GLOBAL_VAR_INIT(chicken_count, 0)	// How mant chickens DO we have?
 
 
 
-/mob/living/simple_mob/animal/passive/chick
+/mob/living/simple/animal/passive/chick
 	name = "chick"
 	desc = "Adorable! They make such a racket though."
 	tt_desc = "E Gallus gallus"
@@ -157,19 +157,19 @@ GLOBAL_VAR_INIT(chicken_count, 0)	// How mant chickens DO we have?
 
 	var/amount_grown = 0
 
-/mob/living/simple_mob/animal/passive/chick/Initialize(mapload)
+/mob/living/simple/animal/passive/chick/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-6, 6)
 	pixel_y = rand(0, 10)
 
-/mob/living/simple_mob/animal/passive/chick/BiologicalLife(seconds, times_fired)
+/mob/living/simple/animal/passive/chick/BiologicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
 
 	if(stat != DEAD)
 		amount_grown += rand(1,2)
 		if(amount_grown >= 100)
-			new /mob/living/simple_mob/animal/passive/chicken(src.loc)
+			new /mob/living/simple/animal/passive/chicken(src.loc)
 			qdel(src)
 
 // Say Lists

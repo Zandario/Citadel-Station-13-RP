@@ -99,7 +99,7 @@
 /area/class_h/POIs/vault)
 "fL" = (
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/animal/passive/mouse/rat,
+/mob/living/simple/animal/passive/mouse/rat,
 /turf/simulated/floor/tiled/white,
 /area/class_h/POIs/vault)
 "fP" = (
@@ -110,7 +110,7 @@
 /area/class_h/POIs/vault)
 "gk" = (
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/mechanical/mecha/mouse_tank,
+/mob/living/simple/mechanical/mecha/mouse_tank,
 /turf/simulated/floor/tiled,
 /area/class_h/POIs/vault)
 "gX" = (
@@ -183,7 +183,7 @@
 "ql" = (
 /obj/machinery/light/small/emergency/flicker,
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/animal/passive/mouse/rat,
+/mob/living/simple/animal/passive/mouse/rat,
 /turf/simulated/floor/tiled/white,
 /area/class_h/POIs/vault)
 "sk" = (
@@ -308,7 +308,7 @@
 	pixel_y = 22
 	},
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/animal/passive/mouse/rat,
+/mob/living/simple/animal/passive/mouse/rat,
 /turf/simulated/floor/tiled/white,
 /area/class_h/POIs/vault)
 "AW" = (
@@ -333,7 +333,7 @@
 "BW" = (
 /obj/structure/curtain/open/shower,
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/animal/passive/mouse/rat,
+/mob/living/simple/animal/passive/mouse/rat,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/class_h/POIs/vault)
 "CH" = (
@@ -449,7 +449,7 @@
 /area/class_h/POIs/vault)
 "Kk" = (
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/animal/passive/mouse/rat,
+/mob/living/simple/animal/passive/mouse/rat,
 /turf/simulated/floor/tiled,
 /area/class_h/POIs/vault)
 "KH" = (
@@ -477,7 +477,7 @@
 /area/class_h/POIs/vault)
 "Lw" = (
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/vore/aggressive/rat,
+/mob/living/simple/vore/aggressive/rat,
 /turf/simulated/floor/tiled,
 /area/class_h/POIs/vault)
 "LR" = (
@@ -531,7 +531,7 @@
 	dir = 8
 	},
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/animal/passive/mouse/rat,
+/mob/living/simple/animal/passive/mouse/rat,
 /turf/simulated/floor/tiled,
 /area/class_h/POIs/vault)
 "Py" = (
@@ -661,7 +661,7 @@
 /area/class_h/POIs/vault)
 "Yl" = (
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/vore/aggressive/rat,
+/mob/living/simple/vore/aggressive/rat,
 /turf/simulated/floor/tiled/white,
 /area/class_h/POIs/vault)
 "Yu" = (

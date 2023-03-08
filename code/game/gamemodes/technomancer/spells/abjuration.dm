@@ -16,10 +16,10 @@
 /obj/item/spell/abjuration/on_ranged_cast(atom/hit_atom, mob/user)
 	if(istype(hit_atom, /mob/living) && pay_energy(500) && within_range(hit_atom))
 		var/mob/living/L = hit_atom
-		var/mob/living/simple_mob/SM = null
+		var/mob/living/simple/SM = null
 
 		//Bit of a roundabout typecheck, in order to test for two variables from two different mob types in one line.
-		if(istype(L, /mob/living/simple_mob))
+		if(istype(L, /mob/living/simple))
 			SM = L
 		if(L.summoned || (SM && SM.supernatural) )
 			if(L.client) // Player-controlled mobs are immune to being killed by this.
@@ -29,8 +29,8 @@
 			else
 				visible_message("<span class='notice'>\The [L] vanishes!</span>")
 				qdel(L)
-		else if(istype(L, /mob/living/simple_mob/construct))
-			var/mob/living/simple_mob/construct/evil = L
+		else if(istype(L, /mob/living/simple/construct))
+			var/mob/living/simple/construct/evil = L
 			to_chat(evil, "<span class='danger'>\The [user]'s abjuration purges your form!</span>")
 			evil.purge = 3
 		adjust_instability(5)

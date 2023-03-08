@@ -31,44 +31,44 @@
 
 /obj/item/grenade/spawnergrenade/manhacks
 	name = "manhack delivery grenade"
-	spawner_type = /mob/living/simple_mob/mechanical/viscerator
+	spawner_type = /mob/living/simple/mechanical/viscerator
 	deliveryamt = 5
 	origin_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 4, TECH_ILLEGAL = 4)
 
 /obj/item/grenade/spawnergrenade/manhacks/mercenary
-	spawner_type = /mob/living/simple_mob/mechanical/viscerator/mercenary
+	spawner_type = /mob/living/simple/mechanical/viscerator/mercenary
 
 /obj/item/grenade/spawnergrenade/manhacks/raider
-	spawner_type = /mob/living/simple_mob/mechanical/viscerator/raider
+	spawner_type = /mob/living/simple/mechanical/viscerator/raider
 
 /obj/item/grenade/spawnergrenade/manhacks/station
 	desc = "It is set to detonate in 5 seconds. It will deploy three weaponized survey drones."
 	deliveryamt = 3
-	spawner_type = /mob/living/simple_mob/mechanical/viscerator/station
+	spawner_type = /mob/living/simple/mechanical/viscerator/station
 	origin_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 3, TECH_ILLEGAL = 1)
 
 /obj/item/grenade/spawnergrenade/manhacks/apidean
 	name = "\improper Apidean drone grenade"
 	desc = "Contains hibernating eggs of fast growing, organic kill-drones, used by Apidaen Enforcers to sweep ships and tunnels of deviants and intruders."
 	icon_state = "beenade"
-	spawner_type = /mob/living/simple_mob/mechanical/viscerator/apidean
+	spawner_type = /mob/living/simple/mechanical/viscerator/apidean
 
 /obj/item/grenade/spawnergrenade/ward
 	name = "sentry delivery grenade"
 	desc = "It is set to detonate in 5 seconds. It will deploy a single thermal-optic sentry drone."
-	spawner_type = /mob/living/simple_mob/mechanical/ward/monitor/crew
+	spawner_type = /mob/living/simple/mechanical/ward/monitor/crew
 	deliveryamt = 1
 	origin_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 3, TECH_BLUESPACE = 2)
 
 /obj/item/grenade/spawnergrenade/spesscarp
 	name = "carp delivery grenade"
-	spawner_type = /mob/living/simple_mob/animal/space/carp
+	spawner_type = /mob/living/simple/animal/space/carp
 	deliveryamt = 5
 	origin_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 4, TECH_ILLEGAL = 4)
 
 /obj/item/grenade/spawnergrenade/spider
 	name = "spider delivery grenade"
-	spawner_type = /mob/living/simple_mob/animal/giant_spider/hunter
+	spawner_type = /mob/living/simple/animal/giant_spider/hunter
 	deliveryamt = 3
 	origin_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 4, TECH_ILLEGAL = 4)
 

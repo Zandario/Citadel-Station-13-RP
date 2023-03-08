@@ -41,7 +41,7 @@
 /turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
 /area/mine/explored/underdark)
 "l" = (
-/mob/living/simple_mob/vore/aggressive/corrupthound,
+/mob/living/simple/vore/aggressive/corrupthound,
 /turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
 /area/mine/explored/underdark)
 "m" = (

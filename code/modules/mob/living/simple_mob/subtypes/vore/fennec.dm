@@ -6,7 +6,7 @@
 	attitude, willing to eat damn near anything they come across or can bump into. Bapping them will make them stop."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/vore/fennec
+/mob/living/simple/vore/fennec
 	name = "fennec" //why isn't this in the fox file, fennecs are foxes silly.
 	desc = "It's a dusty big-eared sandfox! Adorable!"
 	tt_desc = "Vulpes zerda"
@@ -35,7 +35,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
 
 // Activate Noms!
-/mob/living/simple_mob/vore/fennec
+/mob/living/simple/vore/fennec
 	vore_active = 1
 	vore_bump_chance = 10
 	vore_bump_emote	= "playfully lunges at"

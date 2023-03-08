@@ -200,7 +200,7 @@
 	corpsehelmet = /obj/item/clothing/head/culthood
 
 /*
-/mob/living/simple_mob/hostile/tunnelclown
+/mob/living/simple/hostile/tunnelclown
 	name = "tunnel clown"
 	desc = "A clown driven to madness in the depths of the Honk Mother's Catacombs."
 	faction = "tunnelclown"
@@ -242,7 +242,7 @@
 	cold_damage_per_tick = 10
 	unsuitable_atoms_damage = 10
 
-/mob/living/simple_mob/hostile/tunnelclown/sentinel
+/mob/living/simple/hostile/tunnelclown/sentinel
 	name = "tunnel clown sentinel"
 	desc = "A clown warrior tasked with guarding the Honk Mother's Catacombs."
 	faction = "tunnelclown"
@@ -257,7 +257,7 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 
-/mob/living/simple_mob/hostile/tunnelclown/death()
+/mob/living/simple/hostile/tunnelclown/death()
 	..()
 	if(corpse)
 		new corpse (src.loc)
@@ -266,7 +266,7 @@
 	del src
 	return
 
-/mob/living/simple_mob/hostile/cluwne
+/mob/living/simple/hostile/cluwne
 	name = "cluwne"
 	desc = "A mutated clown alleged to have been cursed by the Honk Mother and permanently banished to these catacombs for once being an unfunny shitter who brought grief instead of laughter."
 	faction = "tunnelclown"
@@ -314,9 +314,9 @@
 	icon_state = "clown"
 	spawn_nothing_percentage = 50
 	item_to_spawn()
-		return pick(prob(3);/mob/living/simple_mob/hostile/cluwne,
-					prob(2);/mob/living/simple_mob/hostile/tunnelclown/sentinel,
-					prob(1);/mob/living/simple_mob/hostile/tunnelclown)
+		return pick(prob(3);/mob/living/simple/hostile/cluwne,
+					prob(2);/mob/living/simple/hostile/tunnelclown/sentinel,
+					prob(1);/mob/living/simple/hostile/tunnelclown)
 */
 
 /obj/item/paper/awaygate/labyrinth/calypso

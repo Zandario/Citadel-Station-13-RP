@@ -1,4 +1,4 @@
-/mob/living/simple_mob/animal
+/mob/living/simple/animal
 	mob_class = MOB_CLASS_ANIMAL
 	meat_type = /obj/item/reagent_containers/food/snacks/meat
 	bone_type = /obj/item/stack/material/bone

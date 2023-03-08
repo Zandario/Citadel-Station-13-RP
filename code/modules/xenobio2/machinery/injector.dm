@@ -51,7 +51,7 @@
 		to_chat(user, "<span class='danger'>The injector is full, empty it first!</span>")
 		return
 
-	if(!(istype(victim, /mob/living/simple_mob/xeno)) && !emagged)
+	if(!(istype(victim, /mob/living/simple/xeno)) && !emagged)
 		to_chat(user, "<span class='danger'>This is not a suitable subject for the injector!</span>")
 		return
 
@@ -85,7 +85,7 @@
 	if(!occupant)
 		return
 	if(isxeno(occupant))
-		var/mob/living/simple_mob/xeno/X = occupant
+		var/mob/living/simple/xeno/X = occupant
 		beaker.reagents.trans_to_holder(X.reagents, computer.transfer_amount, 1, 0)
 	else
 		beaker.reagents.trans_to_mob(occupant, computer.transfer_amount)

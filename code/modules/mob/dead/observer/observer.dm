@@ -493,7 +493,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 
 	//find a viable mouse candidate
-	var/mob/living/simple_mob/animal/passive/mouse/host
+	var/mob/living/simple/animal/passive/mouse/host
 	var/obj/machinery/atmospherics/component/unary/vent_pump/vent_found
 	var/list/found_vents = list()
 	for(var/obj/machinery/atmospherics/component/unary/vent_pump/v in GLOB.machines)
@@ -501,7 +501,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			found_vents.Add(v)
 	if(found_vents.len)
 		vent_found = pick(found_vents)
-		host = new /mob/living/simple_mob/animal/passive/mouse(vent_found)
+		host = new /mob/living/simple/animal/passive/mouse(vent_found)
 	else
 		to_chat(src, "<span class='warning'>Unable to find any unwelded vents to spawn mice at.</span>")
 

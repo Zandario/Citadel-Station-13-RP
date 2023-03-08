@@ -1812,7 +1812,7 @@
 /turf/simulated/floor/tiled/old_tile/white,
 /area/tradeport)
 "gO" = (
-/mob/living/simple_mob/vore/redpanda,
+/mob/living/simple/vore/redpanda,
 /turf/simulated/floor/grass,
 /area/tradeport/safarizoo)
 "gP" = (
@@ -8574,7 +8574,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/tradeport/engineering)
 "Gz" = (
-/mob/living/simple_mob/vore/redpanda,
+/mob/living/simple/vore/redpanda,
 /turf/simulated/floor/beach/sand,
 /area/tradeport/safarizoo)
 "GA" = (
@@ -12765,7 +12765,7 @@
 /turf/simulated/floor/airless,
 /area/space)
 "WV" = (
-/mob/living/simple_mob/animal/passive/dog/tamaskan/Spice,
+/mob/living/simple/animal/passive/dog/tamaskan/Spice,
 /turf/simulated/floor/wood,
 /area/shuttle/trade_ship/general)
 "WW" = (

@@ -75,8 +75,8 @@
 
 	for(var/mob/living/L in view(owner))
 		// Spiders, carp... bears.
-		if(istype(L, /mob/living/simple_mob))
-			var/mob/living/simple_mob/SM = L
+		if(istype(L, /mob/living/simple))
+			var/mob/living/simple/SM = L
 			if(!is_ally(SM) && SM.has_AI() && SM.ai_holder.hostile)
 				hostile_mobs++
 				if(SM.summoned || SM.supernatural) // Our creations might be trying to kill us.

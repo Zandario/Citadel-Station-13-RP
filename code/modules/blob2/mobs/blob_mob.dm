@@ -3,7 +3,7 @@
 ////////////////
 
 //Do not spawn
-/mob/living/simple_mob/hostile/blob
+/mob/living/simple/hostile/blob
 	icon = 'icons/mob/blob.dmi'
 	pass_flags = ATOM_PASS_BLOB | ATOM_PASS_TABLE
 	faction = "blob"
@@ -23,21 +23,21 @@
 	var/mob/observer/blob/overmind = null
 	var/obj/structure/blob/factory/factory = null
 
-/mob/living/simple_mob/hostile/blob/speech_bubble_appearance()
+/mob/living/simple/hostile/blob/speech_bubble_appearance()
 	return "slime"
 
-/mob/living/simple_mob/hostile/blob/update_icons()
+/mob/living/simple/hostile/blob/update_icons()
 	if(overmind)
 		color = overmind.blob_type.complementary_color
 	else
 		color = null
 
-/mob/living/simple_mob/hostile/blob/Destroy()
+/mob/living/simple/hostile/blob/Destroy()
 	if(overmind)
 		overmind.blob_mobs -= src
 	return ..()
 
-/mob/living/simple_mob/hostile/blob/blob_act(obj/structure/blob/B)
+/mob/living/simple/hostile/blob/blob_act(obj/structure/blob/B)
 	if(!overmind && B.overmind)
 		overmind = B.overmind
 		update_icon()
@@ -46,12 +46,12 @@
 		adjustBruteLoss(-maxHealth*0.0125)
 		adjustFireLoss(-maxHealth*0.0125)
 
-/mob/living/simple_mob/hostile/blob/CanAllowThrough(atom/movable/mover, turf/target)
+/mob/living/simple/hostile/blob/CanAllowThrough(atom/movable/mover, turf/target)
 	if(istype(mover, /obj/structure/blob)) // Don't block blobs from expanding onto a tile occupied by a blob mob.
 		return TRUE
 	return ..()
 
-/mob/living/simple_mob/hostile/blob/Process_Spacemove()
+/mob/living/simple/hostile/blob/Process_Spacemove()
 	for(var/obj/structure/blob/B in range(1, src))
 		return TRUE
 	return ..()

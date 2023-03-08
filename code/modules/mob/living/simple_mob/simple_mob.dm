@@ -1,7 +1,7 @@
 // Reorganized and somewhat cleaned up.
 // AI code has been made into a datum, inside the AI module folder.
 
-/mob/living/simple_mob
+/mob/living/simple
 	name = "animal"
 	desc = ""
 	icon = 'icons/mob/animal.dmi'
@@ -252,7 +252,7 @@
 	butchery_drops_organs = FALSE
 
 //* randomization code. *//
-/mob/living/simple_mob/proc/randomize()
+/mob/living/simple/proc/randomize()
 	if(randomized == TRUE)
 		var/mod = rand(mod_min,mod_max)/100
 		size_multiplier = mod
@@ -264,7 +264,7 @@
 		meat_amount = round(meat_amount*mod)
 		update_icons()
 
-/mob/living/simple_mob/Initialize(mapload)
+/mob/living/simple/Initialize(mapload)
 	remove_verb(src, /mob/verb/observe)
 	health = maxHealth
 	randomize()
@@ -279,7 +279,7 @@
 
 	return ..()
 
-/mob/living/simple_mob/Destroy()
+/mob/living/simple/Destroy()
 	default_language = null
 	if(access_card)
 		QDEL_NULL(access_card)
@@ -291,23 +291,23 @@
 		remove_eyes()
 	return ..()
 
-/mob/living/simple_mob/death()
+/mob/living/simple/death()
 	update_icon()
 	..()
 
 
 //Client attached
-/mob/living/simple_mob/Login()
+/mob/living/simple/Login()
 	. = ..()
 	to_chat(src,"<b>You are \the [src].</b> [player_msg]")
 
 
-/mob/living/simple_mob/emote(var/act, var/type, var/desc)
+/mob/living/simple/emote(var/act, var/type, var/desc)
 	if(act)
 		..(act, type, desc)
 
 
-/mob/living/simple_mob/SelfMove(turf/n, direct)
+/mob/living/simple/SelfMove(turf/n, direct)
 	var/turf/old_turf = get_turf(src)
 	var/old_dir = dir
 	. = ..()
@@ -319,12 +319,12 @@
 	else if(movement_sound && old_turf != get_turf(src)) // Playing both sounds at the same time generally sounds bad.
 		playsound(src, movement_sound, 50, 1)
 /*
-/mob/living/simple_mob/setDir(new_dir)
+/mob/living/simple/setDir(new_dir)
 	if(dir != new_dir)
 		playsound(src, turn_sound, 50, 1)
 	return ..()
 */
-/mob/living/simple_mob/movement_delay()
+/mob/living/simple/movement_delay()
 	. = ..()
 	var/tally = 0 //Incase I need to add stuff other than "speed" later
 
@@ -358,12 +358,12 @@
 	return . + tally + config_legacy.animal_delay
 
 
-/mob/living/simple_mob/statpanel_data(client/C)
+/mob/living/simple/statpanel_data(client/C)
 	. = ..()
 	if(C.statpanel_tab("Status") && show_stat_health)
 		STATPANEL_DATA_LINE("Health: [round((health / getMaxHealth()) * 100)]%")
 
-/mob/living/simple_mob/lay_down()
+/mob/living/simple/lay_down()
 	..()
 	if(resting && icon_rest)
 		icon_state = icon_rest
@@ -372,7 +372,7 @@
 	update_icon()
 
 
-/mob/living/simple_mob/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/whispering = 0)
+/mob/living/simple/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/whispering = 0)
 	verb = "says"
 	if(speak_emote.len)
 		verb = pick(speak_emote)
@@ -381,13 +381,13 @@
 
 	return ..()
 
-/mob/living/simple_mob/get_speech_ending(verb, var/ending)
+/mob/living/simple/get_speech_ending(verb, var/ending)
 	return verb
 
 
 //TODO: This needs to be phased out for a newer butchering system. Though I am too scared to undo all our custom stuff. -Zandario
 // Harvest an animal's delicious byproducts
-/mob/living/simple_mob/harvest(mob/user)
+/mob/living/simple/harvest(mob/user)
 	var/actual_meat_amount = pick(0, meat_amount)
 	var/actual_bone_amount = pick(0, bone_amount)
 	var/actual_hide_amount = pick(0, hide_amount)
@@ -417,7 +417,7 @@
 		gib()
 
 /* Replace the above ^^^^ with this if enabling the butchering component.
-/mob/living/simple_mob/gib()
+/mob/living/simple/gib()
 	if(butcher_results || guaranteed_butcher_results)
 		var/list/butcher = list()
 		if(butcher_results)
@@ -431,14 +431,14 @@
 	..()
 */
 
-/mob/living/simple_mob/is_sentient()
+/mob/living/simple/is_sentient()
 	return mob_class & MOB_CLASS_HUMANOID|MOB_CLASS_ANIMAL|MOB_CLASS_SLIME // Update this if needed.
 
-/mob/living/simple_mob/get_nametag_desc(mob/user)
+/mob/living/simple/get_nametag_desc(mob/user)
 	return "<i>[tt_desc]</i>"
 
 /// Override for special butchering checks.
-/mob/living/simple_mob/can_butcher(var/mob/user, var/obj/item/I)
+/mob/living/simple/can_butcher(var/mob/user, var/obj/item/I)
 	. = ..()
 	if(. && (!is_sharp(I) || !has_edge(I)))
 		return FALSE

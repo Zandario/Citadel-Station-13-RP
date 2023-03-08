@@ -4,7 +4,7 @@
 	ADMINISTRATOR FOR IMMEDIATE MAINTENANCE! %ERROR%"
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/horror/Rickey
+/mob/living/simple/horror/Rickey
 	name = "???"
 	desc = "What a handsome Man, his mother must think."
 
@@ -42,27 +42,27 @@
 	hide_amount = 2
 	exotic_amount = 2
 
-/mob/living/simple_mob/horror/Rickey/Initialize(mapload)
+/mob/living/simple/horror/Rickey/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/horror_aura/weak)
 
-/mob/living/simple_mob/horror/Rickey/death()
+/mob/living/simple/horror/Rickey/death()
 	playsound(src, 'sound/h_sounds/headcrab.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/Rickey/bullet_act()
+/mob/living/simple/horror/Rickey/bullet_act()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/Rickey/attack_hand()
+/mob/living/simple/horror/Rickey/attack_hand()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/Rickey/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
+/mob/living/simple/horror/Rickey/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
 	. = ..()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 
-/mob/living/simple_mob/horror/Rickey/attackby()
+/mob/living/simple/horror/Rickey/attackby()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 

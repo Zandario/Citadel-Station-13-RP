@@ -30,7 +30,7 @@
 		/datum/category_item/catalogue/fauna/blob/spore
 		)
 
-/mob/living/simple_mob/blob
+/mob/living/simple/blob
 	icon = 'icons/mob/blob.dmi'
 	pass_flags = ATOM_PASS_BLOB | ATOM_PASS_TABLE
 	faction = "blob"
@@ -56,22 +56,22 @@
 	mob_class = MOB_CLASS_SLIME
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
-/mob/living/simple_mob/blob/speech_bubble_appearance()
+/mob/living/simple/blob/speech_bubble_appearance()
 	return "slime"
 
-/mob/living/simple_mob/blob/update_icons()
+/mob/living/simple/blob/update_icons()
 	if(overmind)
 		color = overmind.blob_type.complementary_color
 	else
 		color = null
 	..()
 
-/mob/living/simple_mob/blob/Destroy()
+/mob/living/simple/blob/Destroy()
 	if(overmind)
 		overmind.blob_mobs -= src
 	return ..()
 
-/mob/living/simple_mob/blob/blob_act(obj/structure/blob/B)
+/mob/living/simple/blob/blob_act(obj/structure/blob/B)
 	if(!overmind && B.overmind)
 		overmind = B.overmind
 		update_icon()
@@ -80,12 +80,12 @@
 		adjustBruteLoss(-maxHealth*0.0125)
 		adjustFireLoss(-maxHealth*0.0125)
 
-/mob/living/simple_mob/blob/CanAllowThrough(atom/movable/mover, turf/target)
+/mob/living/simple/blob/CanAllowThrough(atom/movable/mover, turf/target)
 	if(istype(mover, /obj/structure/blob)) // Don't block blobs from expanding onto a tile occupied by a blob mob.
 		return TRUE
 	return ..()
 
-/mob/living/simple_mob/blob/Process_Spacemove()
+/mob/living/simple/blob/Process_Spacemove()
 	for(var/obj/structure/blob/B in range(1, src))
 		return TRUE
 	return ..()

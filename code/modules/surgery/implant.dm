@@ -213,8 +213,8 @@
 			target.update_hud_sec_implants()
 
 			//Handle possessive brain borers.
-			if(istype(obj,/mob/living/simple_mob/animal/borer))
-				var/mob/living/simple_mob/animal/borer/worm = obj
+			if(istype(obj,/mob/living/simple/animal/borer))
+				var/mob/living/simple/animal/borer/worm = obj
 				if(worm.controlling)
 					target.release_control()
 				worm.detatch()

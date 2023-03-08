@@ -983,8 +983,8 @@
 	power_environ = 0
 	mobcountmax = 100
 	floracountmax = 7000
-	valid_mobs = list(/mob/living/simple_mob/animal/sif/savik, /mob/living/simple_mob/animal/wolf, /mob/living/simple_mob/animal/sif/shantak,
-					  /mob/living/simple_mob/animal/sif/kururak, /mob/living/simple_mob/animal/sif/frostfly)
+	valid_mobs = list(/mob/living/simple/animal/sif/savik, /mob/living/simple/animal/wolf, /mob/living/simple/animal/sif/shantak,
+					  /mob/living/simple/animal/sif/kururak, /mob/living/simple/animal/sif/frostfly)
 	valid_flora = list(/obj/structure/flora/tree/pine, /obj/structure/flora/tree/pine, /obj/structure/flora/tree/pine,
 					/obj/structure/flora/tree/dead, /obj/structure/flora/grass/brown, /obj/structure/flora/grass/green,
 					/obj/structure/flora/grass/both, /obj/structure/flora/bush, /obj/structure/flora/ausbushes/grassybush,
@@ -1023,9 +1023,9 @@
 	mobcountmax = 40
 	floracountmax = 2000
 
-	valid_mobs = list(/mob/living/simple_mob/animal/sif/sakimm/polar, /mob/living/simple_mob/animal/sif/diyaab/polar,
-					/mob/living/simple_mob/animal/sif/shantak/polar, /mob/living/simple_mob/animal/space/bear/polar,
-					/mob/living/simple_mob/animal/wolf)
+	valid_mobs = list(/mob/living/simple/animal/sif/sakimm/polar, /mob/living/simple/animal/sif/diyaab/polar,
+					/mob/living/simple/animal/sif/shantak/polar, /mob/living/simple/animal/space/bear/polar,
+					/mob/living/simple/animal/wolf)
 	valid_flora = list(/obj/structure/flora/tree/pine, /obj/structure/flora/tree/pine, /obj/structure/flora/tree/pine,
 					/obj/structure/flora/tree/dead, /obj/structure/flora/grass/brown, /obj/structure/flora/grass/green,
 					/obj/structure/flora/grass/both, /obj/structure/flora/bush, /obj/structure/flora/ausbushes/grassybush,

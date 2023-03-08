@@ -29,7 +29,7 @@
 	Generally, the solution to this flaw is to add more drones until it doesn't matter anymore."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/mechanical/combat_drone
+/mob/living/simple/mechanical/combat_drone
 	name = "combat drone"
 	desc = "An automated combat drone armed with state of the art weaponry and shielding."
 	catalogue_data = list(/datum/category_item/catalogue/technology/drone/combat_drone)
@@ -60,7 +60,7 @@
 	var/datum/effect_system/ion_trail_follow/ion_trail = null
 	var/obj/item/shield_projector/shields = null
 
-/mob/living/simple_mob/mechanical/combat_drone/Initialize(mapload)
+/mob/living/simple/mechanical/combat_drone/Initialize(mapload)
 	ion_trail = new
 	ion_trail.set_up(src)
 	ion_trail.start()
@@ -68,16 +68,16 @@
 	shields = new /obj/item/shield_projector/rectangle/automatic/drone(src)
 	return ..()
 
-/mob/living/simple_mob/mechanical/combat_drone/Destroy()
+/mob/living/simple/mechanical/combat_drone/Destroy()
 	QDEL_NULL(ion_trail)
 	QDEL_NULL(shields)
 	return ..()
 
-/mob/living/simple_mob/mechanical/combat_drone/death()
+/mob/living/simple/mechanical/combat_drone/death()
 	..(null,"suddenly breaks apart.")
 	qdel(src)
 
-/mob/living/simple_mob/mechanical/combat_drone/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple/mechanical/combat_drone/Process_Spacemove(var/check_drift = 0)
 	return TRUE
 
 /obj/item/projectile/beam/drone
@@ -93,12 +93,12 @@
 
 // A slightly easier drone, for POIs.
 // Difference is that it should not be faster than you.
-/mob/living/simple_mob/mechanical/combat_drone/lesser
+/mob/living/simple/mechanical/combat_drone/lesser
 	desc = "An automated combat drone with an aged apperance."
 	movement_cooldown = 10
 
 
 // This one is the type spawned by the random event.
 // It won't wander away from its spawn point
-/mob/living/simple_mob/mechanical/combat_drone/event
+/mob/living/simple/mechanical/combat_drone/event
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting/threatening/event

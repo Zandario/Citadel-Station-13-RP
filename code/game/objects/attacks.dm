@@ -9,7 +9,7 @@
 
 	cleaving = TRUE
 	var/hit_mobs = 0
-	for(var/mob/living/simple_mob/SM in range(get_turf(target), 1))
+	for(var/mob/living/simple/SM in range(get_turf(target), 1))
 		if(SM.stat == DEAD) // Don't beat a dead horse.
 			continue
 		if(SM == user) // Don't hit ourselves.  Simple mobs shouldn't be able to do this but that might change later to be able to hit all mob/living-s.

@@ -4,7 +4,7 @@
 	CENTRAL ADMINISTRATOR FOR IMMEDIATE MAINTENANCE. %ERROR%"
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/creature
+/mob/living/simple/creature
 	name = "creature"
 	desc = "A sanity-destroying otherthing."
 	icon = 'icons/mob/critter.dmi'
@@ -44,12 +44,12 @@
 	exotic_amount = 3
 	exotic_type = /obj/item/stack/sinew
 
-/mob/living/simple_mob/creature/Initialize(mapload)
+/mob/living/simple/creature/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/horror_aura/weak)
 
 // Strong Variant
-/mob/living/simple_mob/creature/strong
+/mob/living/simple/creature/strong
 	maxHealth = 160
 	health = 160
 
@@ -58,7 +58,7 @@
 	melee_damage_upper = 25
 
 // Cult Variant
-/mob/living/simple_mob/creature/cult
+/mob/living/simple/creature/cult
 	mob_class = MOB_CLASS_DEMONIC
 
 	faction = "cult"
@@ -75,11 +75,11 @@
 
 	supernatural = TRUE
 
-/mob/living/simple_mob/creature/cult/cultify()
+/mob/living/simple/creature/cult/cultify()
 	return
 
 // Strong Cult Variant
-/mob/living/simple_mob/creature/cult/strong
+/mob/living/simple/creature/cult/strong
 	maxHealth = 160
 	health = 160
 

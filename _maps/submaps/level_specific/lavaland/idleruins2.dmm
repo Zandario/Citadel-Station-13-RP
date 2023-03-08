@@ -124,7 +124,7 @@
 /turf/simulated/shuttle/floor/lavaland,
 /area/lavaland/idleruins)
 "IX" = (
-/mob/living/simple_mob/mechanical/cyber_horror/plasma_cyber_horror/surt,
+/mob/living/simple/mechanical/cyber_horror/plasma_cyber_horror/surt,
 /turf/simulated/shuttle/floor/lavaland,
 /area/lavaland/idleruins)
 "KO" = (

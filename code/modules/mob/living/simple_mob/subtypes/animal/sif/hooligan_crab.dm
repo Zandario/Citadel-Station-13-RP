@@ -23,7 +23,7 @@
 	Hooligan shorelines."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/sif/hooligan_crab
+/mob/living/simple/animal/sif/hooligan_crab
 	name = "hooligan crab"
 	desc = "A large, hard-shelled crustacean. This one is mostly grey. \
 	You probably shouldn't mess with it."
@@ -89,7 +89,7 @@
 	var/weaken_amount = 2 // Be careful with this number. High values will equal a permastun.
 
 // Stuns the thing that got hit briefly.
-/mob/living/simple_mob/animal/sif/hooligan_crab/apply_melee_effects(atom/A)
+/mob/living/simple/animal/sif/hooligan_crab/apply_melee_effects(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		var/was_stunned = L.incapacitated(INCAPACITATION_DISABLED)

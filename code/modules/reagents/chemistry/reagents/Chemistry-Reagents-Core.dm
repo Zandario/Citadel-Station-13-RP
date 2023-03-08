@@ -206,8 +206,8 @@
 /datum/reagent/water/touch_mob(mob/living/L, amount)
 	if(istype(L))
 		// First, kill slimes.
-		if(istype(L, /mob/living/simple_mob/slime))
-			var/mob/living/simple_mob/slime/S = L
+		if(istype(L, /mob/living/simple/slime))
+			var/mob/living/simple/slime/S = L
 			S.adjustToxLoss(15 * amount)
 			S.visible_message("<span class='warning'>[S]'s flesh sizzles where the water touches it!</span>", "<span class='danger'>Your flesh burns in the water!</span>")
 

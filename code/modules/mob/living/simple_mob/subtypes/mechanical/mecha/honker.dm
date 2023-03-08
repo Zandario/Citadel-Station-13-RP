@@ -12,7 +12,7 @@
 	exactly what H.O.N.K. stands for. The most likely suggestion is generallly accepted to be: 'Hilariously Overpowered Noise Kreator'"
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/mechanical/mecha/combat/honker
+/mob/living/simple/mechanical/mecha/combat/honker
 	name = "H.O.N.K."
 	desc = "The H.O.N.K. mecha is sometimes crafted by deranged Roboticists with a grudge, and is illegal in thirty six different sectors."
 	catalogue_data = list(/datum/category_item/catalogue/technology/honker)
@@ -35,8 +35,8 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/aggressive
 
-/mob/living/simple_mob/mechanical/mecha/combat/honker/manned
-	pilot_type = /mob/living/simple_mob/humanoid/clown/commando/ranged // Carries a banana gun.
+/mob/living/simple/mechanical/mecha/combat/honker/manned
+	pilot_type = /mob/living/simple/humanoid/clown/commando/ranged // Carries a banana gun.
 
 
 // A stronger variant.
@@ -55,7 +55,7 @@
 	this theory is widely disputed."
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/mechanical/mecha/combat/honker/cluwne
+/mob/living/simple/mechanical/mecha/combat/honker/cluwne
 	name = "C.L.U.W.N.E."
 	desc = "The C.L.U.W.N.E. mecha is an up-armored cousin of the H.O.N.K. mech. Still in service on the borders of the Clown Planet, this unit is not typically found elsewhere."
 	catalogue_data = list(/datum/category_item/catalogue/technology/cluwne)

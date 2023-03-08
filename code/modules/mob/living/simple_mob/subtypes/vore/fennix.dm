@@ -1,4 +1,4 @@
-/mob/living/simple_mob/vore/fennix
+/mob/living/simple/vore/fennix
 	name = "Fennix"
 	desc = "A feral fennix, Warm to the touch"
 	tt_desc = "Incaendium Faeles Vulpes"

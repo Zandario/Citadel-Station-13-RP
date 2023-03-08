@@ -4,7 +4,7 @@
 /area/class_h/explored)
 "b" = (
 /obj/random/multiple/treasure,
-/mob/living/simple_mob/faithless/cult,
+/mob/living/simple/faithless/cult,
 /turf/simulated/floor/wmarble,
 /area/class_h/POIs/temple)
 "d" = (
@@ -18,12 +18,12 @@
 /area/class_h/POIs/temple)
 "g" = (
 /obj/effect/rune,
-/mob/living/simple_mob/construct/artificer/caster,
+/mob/living/simple/construct/artificer/caster,
 /turf/simulated/floor/wmarble,
 /area/class_h/POIs/temple)
 "j" = (
 /obj/item/material/knife/ritual,
-/mob/living/simple_mob/construct/shade,
+/mob/living/simple/construct/shade,
 /turf/simulated/floor/plating,
 /area/class_h/POIs/temple)
 "k" = (
@@ -31,7 +31,7 @@
 /area/class_h/POIs/temple)
 "l" = (
 /obj/item/material/knife/ritual,
-/mob/living/simple_mob/creature/cult/strong,
+/mob/living/simple/creature/cult/strong,
 /turf/simulated/floor/plating,
 /area/class_h/POIs/temple)
 "m" = (
@@ -47,7 +47,7 @@
 /turf/simulated/floor/wmarble,
 /area/class_h/POIs/temple)
 "p" = (
-/mob/living/simple_mob/construct/proteon,
+/mob/living/simple/construct/proteon,
 /turf/simulated/floor/plating,
 /area/class_h/POIs/temple)
 "q" = (
@@ -72,7 +72,7 @@
 /area/class_h/explored)
 "y" = (
 /obj/random/multiple/treasure,
-/mob/living/simple_mob/creature/cult/strong,
+/mob/living/simple/creature/cult/strong,
 /turf/simulated/floor/wmarble,
 /area/class_h/POIs/temple)
 "z" = (
@@ -81,7 +81,7 @@
 /area/class_h/POIs/temple)
 "A" = (
 /obj/random/multiple/treasure,
-/mob/living/simple_mob/creature/cult,
+/mob/living/simple/creature/cult,
 /turf/simulated/floor/wmarble,
 /area/class_h/POIs/temple)
 "C" = (
@@ -92,12 +92,12 @@
 /area/class_h/POIs/temple)
 "E" = (
 /obj/effect/debris/cleanable/blood,
-/mob/living/simple_mob/construct/proteon,
+/mob/living/simple/construct/proteon,
 /turf/simulated/floor/plating,
 /area/class_h/POIs/temple)
 "H" = (
 /obj/random/multiple/treasure,
-/mob/living/simple_mob/faithless/cult/strong,
+/mob/living/simple/faithless/cult/strong,
 /turf/simulated/floor/wmarble,
 /area/class_h/POIs/temple)
 "I" = (
@@ -108,7 +108,7 @@
 /turf/simulated/wall/sandstone/classh,
 /area/class_h/POIs/temple)
 "N" = (
-/mob/living/simple_mob/construct/shade,
+/mob/living/simple/construct/shade,
 /turf/simulated/floor/plating,
 /area/class_h/POIs/temple)
 "P" = (
@@ -124,17 +124,17 @@
 /area/class_h/POIs/temple)
 "R" = (
 /obj/effect/debris/cleanable/blood,
-/mob/living/simple_mob/construct/shade,
+/mob/living/simple/construct/shade,
 /turf/simulated/floor/plating,
 /area/class_h/POIs/temple)
 "S" = (
 /obj/random/humanoidremains,
-/mob/living/simple_mob/faithless/cult/strong,
+/mob/living/simple/faithless/cult/strong,
 /turf/simulated/floor/plating,
 /area/class_h/POIs/temple)
 "T" = (
 /obj/item/material/knife/ritual,
-/mob/living/simple_mob/construct/proteon,
+/mob/living/simple/construct/proteon,
 /turf/simulated/floor/plating,
 /area/class_h/POIs/temple)
 "V" = (

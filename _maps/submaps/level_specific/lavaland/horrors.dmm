@@ -41,7 +41,7 @@
 /turf/simulated/floor/carpet/bcarpet/lavaland,
 /area/lavaland/horrors)
 "q" = (
-/mob/living/simple_mob/mechanical/cyber_horror/tajaran/surt,
+/mob/living/simple/mechanical/cyber_horror/tajaran/surt,
 /turf/simulated/floor/wood/lavaland,
 /area/lavaland/horrors)
 "u" = (

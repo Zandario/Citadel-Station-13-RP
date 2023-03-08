@@ -219,8 +219,8 @@ I redid the calculations, as the burn weakness has been changed. This should be 
 
 /datum/species/protean/handle_death(var/mob/living/complex/human/H, gibbed)		// citadel edit - FUCK YOU ACTUALLY GIB THE MOB AFTER REMOVING IT FROM THE BLOB HOW HARD CAN THIS BE!!
 	var/deathmsg = "<span class='userdanger'>You have died as a Protean. You may be revived by nanite chambers (once available), but otherwise, you may roleplay as your disembodied posibrain or respawn on another character.</span>"
-	if(istype(H.temporary_form, /mob/living/simple_mob/protean_blob))
-		var/mob/living/simple_mob/protean_blob/B = H.temporary_form
+	if(istype(H.temporary_form, /mob/living/simple/protean_blob))
+		var/mob/living/simple/protean_blob/B = H.temporary_form
 		to_chat(B, deathmsg)
 	else if(!gibbed)
 		to_chat(H)
@@ -367,7 +367,7 @@ I redid the calculations, as the burn weakness has been changed. This should be 
 	material_use = METAL_PER_TICK / 5		// 5 times weaker
 
 /datum/modifier/protean/steel/check_if_valid()
-	if(!protean_requires_healing(holder) || istype(holder.temporary_form, /mob/living/simple_mob/protean_blob))
+	if(!protean_requires_healing(holder) || istype(holder.temporary_form, /mob/living/simple/protean_blob))
 		expire()
 		return
 	return ..()

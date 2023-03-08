@@ -42,7 +42,7 @@
 /obj/structure/bed/chair/office/light,
 /obj/effect/decal/remains/human,
 /obj/effect/debris/cleanable/mucus,
-/mob/living/simple_mob/humanoid/merc/melee,
+/mob/living/simple/humanoid/merc/melee,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/cave/cultmine)
 "ai" = (
@@ -257,7 +257,7 @@
 "aY" = (
 /obj/structure/bed/chair,
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/humanoid/merc/ranged/space,
+/mob/living/simple/humanoid/merc/ranged/space,
 /turf/simulated/floor/tiled/dark,
 /area/submap/cave/cultmine)
 "aZ" = (
@@ -319,7 +319,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/submap/cave/cultmine)
 "bj" = (
-/mob/living/simple_mob/mechanical/combat_drone,
+/mob/living/simple/mechanical/combat_drone,
 /turf/simulated/floor/tiled/dark,
 /area/submap/cave/cultmine)
 "bk" = (
@@ -328,7 +328,7 @@
 /area/submap/cave/cultmine)
 "bl" = (
 /obj/effect/debris/cleanable/liquid_fuel,
-/mob/living/simple_mob/vore/aggressive/deathclaw,
+/mob/living/simple/vore/aggressive/deathclaw,
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/cultmine)
 "bm" = (
@@ -388,7 +388,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/cultmine)
 "bz" = (
-/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
 /turf/simulated/floor/tiled/dark,
 /area/submap/cave/cultmine)
 "bA" = (
@@ -413,7 +413,7 @@
 /turf/simulated/floor/tiled/white,
 /area/submap/cave/cultmine)
 "bE" = (
-/mob/living/simple_mob/vore/aggressive/deathclaw,
+/mob/living/simple/vore/aggressive/deathclaw,
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/cultmine)
 "bF" = (
@@ -468,7 +468,7 @@
 	dir = 1
 	},
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/humanoid/merc/ranged/space,
+/mob/living/simple/humanoid/merc/ranged/space,
 /turf/simulated/floor/tiled/dark,
 /area/submap/cave/cultmine)
 "bO" = (
@@ -566,13 +566,13 @@
 /obj/item/storage/fancy/candle_box,
 /obj/effect/debris/cleanable/dirt,
 /obj/effect/debris/cleanable/liquid_fuel,
-/mob/living/simple_mob/faithless,
+/mob/living/simple/faithless,
 /turf/simulated/floor/tiled/dark,
 /area/submap/cave/cultmine)
 "ch" = (
 /obj/effect/debris/cleanable/dirt,
 /obj/effect/debris/cleanable/generic,
-/mob/living/simple_mob/faithless,
+/mob/living/simple/faithless,
 /turf/simulated/floor/tiled/dark,
 /area/submap/cave/cultmine)
 "ci" = (
@@ -624,7 +624,7 @@
 /area/submap/cave/cultmine)
 "cr" = (
 /obj/structure/grille,
-/mob/living/simple_mob/faithless/strong,
+/mob/living/simple/faithless/strong,
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/cultmine)
 "cs" = (
@@ -643,7 +643,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/cultmine)
 "cw" = (
-/mob/living/simple_mob/faithless/strong,
+/mob/living/simple/faithless/strong,
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/cultmine)
 "cx" = (
@@ -678,7 +678,7 @@
 /turf/simulated/floor/cult,
 /area/submap/cave/cultmine)
 "cF" = (
-/mob/living/simple_mob/vore/aggressive/giant_snake,
+/mob/living/simple/vore/aggressive/giant_snake,
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/cultmine)
 "cG" = (
@@ -731,14 +731,14 @@
 /area/submap/cave/cultmine)
 "cP" = (
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
 /turf/simulated/floor/lino,
 /area/submap/cave/cultmine)
 "cQ" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/mob/living/simple_mob/humanoid/merc/ranged/laser,
+/mob/living/simple/humanoid/merc/ranged/laser,
 /turf/simulated/floor/tiled/dark,
 /area/submap/cave/cultmine)
 "cR" = (
@@ -782,7 +782,7 @@
 "cV" = (
 /obj/machinery/light_construct/small,
 /obj/effect/debris/cleanable/ash,
-/mob/living/simple_mob/vore/aggressive/mimic,
+/mob/living/simple/vore/aggressive/mimic,
 /turf/simulated/floor/tiled/freezer,
 /area/submap/cave/cultmine)
 "cW" = (
@@ -814,7 +814,7 @@
 /area/submap/cave/cultmine)
 "db" = (
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/construct/shade,
+/mob/living/simple/construct/shade,
 /turf/simulated/floor/tiled/freezer,
 /area/submap/cave/cultmine)
 "dc" = (
@@ -825,7 +825,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/mob/living/simple_mob/humanoid/merc/melee,
+/mob/living/simple/humanoid/merc/melee,
 /turf/simulated/floor/tiled/dark,
 /area/submap/cave/cultmine)
 "dd" = (
@@ -870,7 +870,7 @@
 /area/submap/cave/cultmine)
 "dl" = (
 /obj/effect/debris/cleanable/blood/writing,
-/mob/living/simple_mob/faithless/strong,
+/mob/living/simple/faithless/strong,
 /turf/simulated/floor/cult,
 /area/submap/cave/cultmine)
 "dm" = (
@@ -926,7 +926,7 @@
 /area/submap/cave/cultmine)
 "dw" = (
 /obj/effect/debris/cleanable/generic,
-/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
 /turf/simulated/floor/tiled/dark,
 /area/submap/cave/cultmine)
 "dx" = (

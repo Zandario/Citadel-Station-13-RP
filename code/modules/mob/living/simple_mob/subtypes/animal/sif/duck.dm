@@ -13,7 +13,7 @@
 	increasingly aggressive."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/sif/duck
+/mob/living/simple/animal/sif/duck
 	name = "crystal-feather duck"
 	desc = "A glittering flightless bird."
 	tt_desc = "S Anatidae vitriae"
@@ -47,7 +47,7 @@
 	emote_see = list("ruffles its wings","looks around", "preens itself")
 	emote_hear = list("quacks", "giggles")
 
-/mob/living/simple_mob/animal/sif/duck/IIsAlly(mob/living/L)
+/mob/living/simple/animal/sif/duck/IIsAlly(mob/living/L)
 	. = ..()
 
 	var/has_food = FALSE

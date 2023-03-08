@@ -1,4 +1,4 @@
-/mob/living/simple_mob/humanoid
+/mob/living/simple/humanoid
 	mob_class = MOB_CLASS_HUMANOID
 
 	// Generic humanoid mob tolerances
@@ -19,7 +19,7 @@
 	// Most humans leave a corpse
 	var/corpse = null
 
-/mob/living/simple_mob/humanoid/death()
+/mob/living/simple/humanoid/death()
 	..()
 	if(corpse)
 		new corpse (src.loc)

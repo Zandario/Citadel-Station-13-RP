@@ -54,7 +54,7 @@
 /turf/simulated/shuttle/floor/classp,
 /area/submap/HeadscientistHQ)
 "bU" = (
-/mob/living/simple_mob/mechanical/hivebot/ranged_damage/siege,
+/mob/living/simple/mechanical/hivebot/ranged_damage/siege,
 /turf/simulated/floor/outdoors/dirt/classp,
 /area/template_noop)
 "bX" = (
@@ -70,7 +70,7 @@
 /turf/simulated/shuttle/wall/voidcraft/red,
 /area/submap/HeadscientistHQ)
 "cq" = (
-/mob/living/simple_mob/mechanical/hivebot/ranged_damage,
+/mob/living/simple/mechanical/hivebot/ranged_damage,
 /turf/simulated/shuttle/floor/classp,
 /area/submap/HeadscientistHQ)
 "cs" = (
@@ -93,7 +93,7 @@
 /turf/simulated/shuttle/floor/red/classp,
 /area/submap/HeadscientistHQ)
 "cQ" = (
-/mob/living/simple_mob/mechanical/hivebot/ranged_damage/backline,
+/mob/living/simple/mechanical/hivebot/ranged_damage/backline,
 /turf/simulated/floor/outdoors/dirt/classp,
 /area/template_noop)
 "dB" = (
@@ -127,7 +127,7 @@
 /turf/simulated/shuttle/plating,
 /area/submap/HeadscientistHQ)
 "ew" = (
-/mob/living/simple_mob/mechanical/hivebot/ranged_damage/ion,
+/mob/living/simple/mechanical/hivebot/ranged_damage/ion,
 /turf/simulated/shuttle/floor/classp,
 /area/submap/HeadscientistHQ)
 "fd" = (
@@ -210,7 +210,7 @@
 /turf/simulated/shuttle/floor/purple/classp,
 /area/submap/HeadscientistHQ)
 "iy" = (
-/mob/living/simple_mob/mechanical/hivebot/support/logistics,
+/mob/living/simple/mechanical/hivebot/support/logistics,
 /turf/simulated/floor/outdoors/dirt/classp,
 /area/template_noop)
 "iz" = (
@@ -304,7 +304,7 @@
 /area/submap/HeadscientistHQ)
 "lW" = (
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/mechanical/hivebot/swarm,
+/mob/living/simple/mechanical/hivebot/swarm,
 /turf/simulated/shuttle/floor/purple/classp,
 /area/submap/HeadscientistHQ)
 "mb" = (
@@ -332,7 +332,7 @@
 	dir = 8
 	},
 /obj/effect/debris/cleanable/blood,
-/mob/living/simple_mob/humanoid/possessed/merc/feral,
+/mob/living/simple/humanoid/possessed/merc/feral,
 /turf/simulated/shuttle/floor/yellow/classp,
 /area/submap/HeadscientistHQ)
 "nZ" = (
@@ -369,7 +369,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/mob/living/simple_mob/mechanical/hivebot/swarm,
+/mob/living/simple/mechanical/hivebot/swarm,
 /turf/simulated/shuttle/floor/classp,
 /area/submap/HeadscientistHQ)
 "pX" = (
@@ -467,11 +467,11 @@
 "uO" = (
 /obj/effect/debris/cleanable/dirt,
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/mechanical/hivebot/support,
+/mob/living/simple/mechanical/hivebot/support,
 /turf/simulated/shuttle/floor/classp,
 /area/submap/HeadscientistHQ)
 "uR" = (
-/mob/living/simple_mob/mechanical/hivebot/ranged_damage/ion,
+/mob/living/simple/mechanical/hivebot/ranged_damage/ion,
 /turf/simulated/shuttle/floor/purple/classp,
 /area/submap/HeadscientistHQ)
 "ve" = (
@@ -489,7 +489,7 @@
 /turf/simulated/floor/outdoors/dirt/classp,
 /area/template_noop)
 "vn" = (
-/mob/living/simple_mob/mechanical/viscerator/mercenary,
+/mob/living/simple/mechanical/viscerator/mercenary,
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
@@ -498,7 +498,7 @@
 "wn" = (
 /obj/effect/debris/cleanable/dirt,
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/mechanical/hivebot/ranged_damage/laser,
+/mob/living/simple/mechanical/hivebot/ranged_damage/laser,
 /turf/simulated/shuttle/floor/red/classp,
 /area/submap/HeadscientistHQ)
 "ws" = (
@@ -515,11 +515,11 @@
 /turf/simulated/floor/outdoors/dirt/classp,
 /area/template_noop)
 "xp" = (
-/mob/living/simple_mob/mechanical/hivebot/swarm,
+/mob/living/simple/mechanical/hivebot/swarm,
 /turf/simulated/shuttle/floor/red/classp,
 /area/submap/HeadscientistHQ)
 "xy" = (
-/mob/living/simple_mob/mechanical/hivebot/ranged_damage/backline,
+/mob/living/simple/mechanical/hivebot/ranged_damage/backline,
 /turf/simulated/shuttle/floor/classp,
 /area/submap/HeadscientistHQ)
 "xA" = (
@@ -602,7 +602,7 @@
 /area/submap/HeadscientistHQ)
 "By" = (
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/mechanical/hivebot/ranged_damage/siege,
+/mob/living/simple/mechanical/hivebot/ranged_damage/siege,
 /turf/simulated/shuttle/floor/red/classp,
 /area/submap/HeadscientistHQ)
 "Bz" = (
@@ -762,7 +762,7 @@
 /turf/simulated/shuttle/floor/purple/classp,
 /area/submap/HeadscientistHQ)
 "GU" = (
-/mob/living/simple_mob/mechanical/hivebot/ranged_damage,
+/mob/living/simple/mechanical/hivebot/ranged_damage,
 /turf/simulated/floor/outdoors/dirt/classp,
 /area/template_noop)
 "GZ" = (
@@ -806,7 +806,7 @@
 /turf/simulated/shuttle/floor/classp,
 /area/submap/HeadscientistHQ)
 "JF" = (
-/mob/living/simple_mob/mechanical/hivebot/swarm,
+/mob/living/simple/mechanical/hivebot/swarm,
 /turf/simulated/floor/outdoors/dirt/classp,
 /area/template_noop)
 "JO" = (
@@ -877,7 +877,7 @@
 /turf/simulated/shuttle/floor/classp,
 /area/submap/HeadscientistHQ)
 "KO" = (
-/mob/living/simple_mob/mechanical/hivebot/swarm,
+/mob/living/simple/mechanical/hivebot/swarm,
 /turf/simulated/shuttle/floor/purple/classp,
 /area/submap/HeadscientistHQ)
 "Ln" = (
@@ -950,7 +950,7 @@
 /turf/simulated/shuttle/floor/classp,
 /area/submap/HeadscientistHQ)
 "Pd" = (
-/mob/living/simple_mob/mechanical/viscerator/mercenary,
+/mob/living/simple/mechanical/viscerator/mercenary,
 /turf/template_noop,
 /area/template_noop)
 "Pe" = (
@@ -974,7 +974,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 6
 	},
-/mob/living/simple_mob/mechanical/hivebot/ranged_damage/laser,
+/mob/living/simple/mechanical/hivebot/ranged_damage/laser,
 /turf/simulated/shuttle/floor/classp,
 /area/submap/HeadscientistHQ)
 "RC" = (
@@ -986,7 +986,7 @@
 /turf/simulated/shuttle/floor/purple/classp,
 /area/submap/HeadscientistHQ)
 "Sb" = (
-/mob/living/simple_mob/mechanical/hivebot/swarm,
+/mob/living/simple/mechanical/hivebot/swarm,
 /turf/simulated/shuttle/floor/classp,
 /area/submap/HeadscientistHQ)
 "Sm" = (

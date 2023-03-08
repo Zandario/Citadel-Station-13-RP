@@ -16,7 +16,7 @@
 
 /obj/structure/blob/factory/Destroy()
 	for(var/mob/living/L in spores)
-		var/mob/living/simple_mob/blob/spore/spore = L
+		var/mob/living/simple/blob/spore/spore = L
 		if(istype(spore) && spore.factory == src)
 			spore.factory = null
 		else
@@ -32,7 +32,7 @@
 		return
 	flick("blob_factory_glow", src)
 	spore_delay = world.time + spore_cooldown
-	var/mob/living/simple_mob/blob/spore/S = null
+	var/mob/living/simple/blob/spore/S = null
 	if(overmind)
 		S = new overmind.blob_type.spore_type(src.loc, src)
 		S.faction = "blob"

@@ -289,7 +289,7 @@
 /turf/simulated/floor/outdoors/beach/sand/desert,
 /area/tether_away/beach/jungle)
 "bn" = (
-/mob/living/simple_mob/animal/passive/fish,
+/mob/living/simple/animal/passive/fish,
 /turf/simulated/floor/water/deep,
 /area/tether_away/beach/water)
 "bo" = (
@@ -1928,7 +1928,7 @@
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/tether_away/beach/resort/lockermed)
 "Tg" = (
-/mob/living/simple_mob/animal/passive/fish/solarfish,
+/mob/living/simple/animal/passive/fish/solarfish,
 /turf/simulated/floor/water,
 /area/tether_away/beach/cavebase)
 "Tp" = (

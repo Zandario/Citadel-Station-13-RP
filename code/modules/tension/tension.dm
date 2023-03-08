@@ -9,10 +9,10 @@
 /atom/movable/proc/guess_threat_level(var/mob/living/threatened)
 	return 0
 
-/mob/living/simple_mob
+/mob/living/simple
 	var/threat_level = null // Set this if you want an explicit danger rating.
 
-/mob/living/simple_mob/guess_threat_level(var/mob/living/threatened)
+/mob/living/simple/guess_threat_level(var/mob/living/threatened)
 	if(threat_level) // If they have a predefined number, use it.
 		return threat_level
 	// Otherwise we need to guess how scary this thing is.
@@ -57,7 +57,7 @@
 		return 0
 
 
-/mob/living/simple_mob/get_threat(var/mob/living/threatened)
+/mob/living/simple/get_threat(var/mob/living/threatened)
 	. = ..()
 
 	if(has_AI())

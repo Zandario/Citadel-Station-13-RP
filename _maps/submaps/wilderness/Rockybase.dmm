@@ -11,7 +11,7 @@
 /turf/template_noop,
 /area/template_noop)
 "ad" = (
-/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
 /turf/template_noop,
 /area/template_noop)
 "ae" = (
@@ -37,7 +37,7 @@
 /turf/template_noop,
 /area/template_noop)
 "ak" = (
-/mob/living/simple_mob/mechanical/combat_drone/lesser,
+/mob/living/simple/mechanical/combat_drone/lesser,
 /turf/template_noop,
 /area/submap/Rockybase)
 "al" = (
@@ -152,7 +152,7 @@
 "aH" = (
 /obj/structure/bed,
 /obj/item/bedsheet,
-/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
 /turf/simulated/floor/holofloor/lino,
 /area/submap/Rockybase)
 "aI" = (
@@ -307,7 +307,7 @@
 /turf/simulated/floor/tiled,
 /area/submap/Rockybase)
 "bf" = (
-/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
 /turf/simulated/floor/tiled,
 /area/submap/Rockybase)
 "bg" = (
@@ -400,7 +400,7 @@
 /area/submap/Rockybase)
 "bu" = (
 /obj/effect/floor_decal/corner/red/border,
-/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
 /turf/simulated/floor/tiled,
 /area/submap/Rockybase)
 "bv" = (
@@ -503,7 +503,7 @@
 /turf/template_noop,
 /area/template_noop)
 "bK" = (
-/mob/living/simple_mob/mechanical/combat_drone/lesser,
+/mob/living/simple/mechanical/combat_drone/lesser,
 /turf/simulated/floor/tiled,
 /area/submap/Rockybase)
 "bL" = (
@@ -568,7 +568,7 @@
 /turf/simulated/floor/tiled/hydro,
 /area/submap/Rockybase)
 "bY" = (
-/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
 /turf/simulated/floor/tiled/hydro,
 /area/submap/Rockybase)
 "bZ" = (
@@ -789,7 +789,7 @@
 /turf/simulated/floor/tiled/hydro,
 /area/submap/Rockybase)
 "cL" = (
-/mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced{
+/mob/living/simple/mechanical/mecha/combat/gygax/dark/advanced{
 	faction = "malf_drone"
 	},
 /turf/simulated/floor/tiled,
@@ -824,7 +824,7 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/mob/living/simple_mob/mechanical/combat_drone/lesser,
+/mob/living/simple/mechanical/combat_drone/lesser,
 /turf/simulated/floor/tiled,
 /area/submap/Rockybase)
 "cS" = (
@@ -975,7 +975,7 @@
 "dp" = (
 /obj/effect/debris/cleanable/dirt,
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/mechanical/combat_drone/lesser,
+/mob/living/simple/mechanical/combat_drone/lesser,
 /turf/simulated/floor/tiled,
 /area/submap/Rockybase)
 "dq" = (

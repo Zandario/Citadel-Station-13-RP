@@ -492,7 +492,7 @@
 		moblist.Add(M)
 	for(var/mob/new_player/M in sortmob)
 		moblist.Add(M)
-	for(var/mob/living/simple_mob/M in sortmob)
+	for(var/mob/living/simple/M in sortmob)
 		moblist.Add(M)
 	for(var/mob/living/bot/M in sortmob)
 		moblist.Add(M)

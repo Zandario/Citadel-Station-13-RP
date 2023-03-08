@@ -136,18 +136,18 @@
 	light_range=5
 	light_color="#ff0000"
 	spawnable=list(
-		/mob/living/simple_mob/animal/space/bats,
-		/mob/living/simple_mob/creature,
-		/mob/living/simple_mob/faithless
+		/mob/living/simple/animal/space/bats,
+		/mob/living/simple/creature,
+		/mob/living/simple/faithless
 	)
 
 /obj/effect/gateway/active/cult
 	light_range=5
 	light_color="#ff0000"
 	spawnable=list(
-		/mob/living/simple_mob/animal/space/bats/cult,
-		/mob/living/simple_mob/creature/cult,
-		/mob/living/simple_mob/faithless/cult
+		/mob/living/simple/animal/space/bats/cult,
+		/mob/living/simple/creature/cult,
+		/mob/living/simple/faithless/cult
 	)
 
 /obj/effect/gateway/active/cult/cultify()

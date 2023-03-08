@@ -35,7 +35,7 @@
 "h" = (
 /obj/effect/alien/weeds,
 /obj/random/multiple/minevault,
-/mob/living/simple_mob/animal/space/alien/sentinel/praetorian,
+/mob/living/simple/animal/space/alien/sentinel/praetorian,
 /turf/simulated/mineral/floor/classd/indoors,
 /area/class_d/explored)
 "i" = (
@@ -46,7 +46,7 @@
 "j" = (
 /obj/effect/alien/weeds,
 /obj/effect/alien/weeds/node,
-/mob/living/simple_mob/animal/space/alien/queen/empress,
+/mob/living/simple/animal/space/alien/queen/empress,
 /turf/simulated/mineral/floor/classd/indoors,
 /area/class_d/explored)
 "k" = (

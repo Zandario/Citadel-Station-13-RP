@@ -21,8 +21,8 @@
 		return 1
 	if(L.mind && technomancers.is_antagonist(L.mind)) // This should be done better since we might want opposing technomancers later.
 		return 1
-	if(istype(L, /mob/living/simple_mob)) // Mind controlled simple mobs count as allies too.
-		var/mob/living/simple_mob/SM = L
+	if(istype(L, /mob/living/simple)) // Mind controlled simple mobs count as allies too.
+		var/mob/living/simple/SM = L
 		if(owner in SM.friends)
 			return 1
 	return 0

@@ -6,41 +6,41 @@
 /obj/tether_away_spawner/debrisfield/carp
 	name = "debris field carp spawner"
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/space/carp = 3,
-		/mob/living/simple_mob/animal/space/carp/large = 1
+		/mob/living/simple/animal/space/carp = 3,
+		/mob/living/simple/animal/space/carp/large = 1
 	)
 
 /obj/tether_away_spawner/debrisfield/carp/hard
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/space/carp/large = 2,
-		/mob/living/simple_mob/animal/space/carp/large/huge = 1
+		/mob/living/simple/animal/space/carp/large = 2,
+		/mob/living/simple/animal/space/carp/large/huge = 1
 	)
 
 /obj/tether_away_spawner/debrisfield/derelict
 	name = "debris field derelict random mob spawner"
 	faction = "derelict"
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/mechanical/corrupt_maint_drone = 2,
-		/mob/living/simple_mob/mechanical/infectionbot = 3,
-		/mob/living/simple_mob/mechanical/combat_drone = 1
+		/mob/living/simple/mechanical/corrupt_maint_drone = 2,
+		/mob/living/simple/mechanical/infectionbot = 3,
+		/mob/living/simple/mechanical/combat_drone = 1
 	)
 
 /obj/tether_away_spawner/debrisfield/derelict/corrupt_maint_swarm
 	name = "debris field derelict maint swarm"
 	faction = "derelict"
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/mechanical/corrupt_maint_drone = 4
+		/mob/living/simple/mechanical/corrupt_maint_drone = 4
 	)
 
 /obj/tether_away_spawner/debrisfield/derelict/mech_wizard
 	name = "debris field derelict wizard lol"
 	faction = "derelict"
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/mechanical/technomancer_golem = 2
+		/mob/living/simple/mechanical/technomancer_golem = 2
 	)
 
 //Sciship
-/mob/living/simple_mob/tomato/space
+/mob/living/simple/tomato/space
 	min_oxy = 0
 	max_oxy = 0
 	min_tox = 0
@@ -51,7 +51,7 @@
 	max_n2 = 0
 	minbodytemp = 0
 
-/mob/living/simple_mob/tomato/space/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple/tomato/space/Process_Spacemove(var/check_drift = 0)
 	return TRUE
 
 /obj/random/slimecore

@@ -84,7 +84,7 @@
 /turf/simulated/floor/reinforced,
 /area/piratebase/facility)
 "eq" = (
-/mob/living/simple_mob/humanoid/merc/voxpirate/pirate,
+/mob/living/simple/humanoid/merc/voxpirate/pirate,
 /turf/simulated/floor/reinforced,
 /area/piratebase/facility)
 "ez" = (
@@ -301,7 +301,7 @@
 /turf/simulated/floor/reinforced,
 /area/piratebase/facility)
 "mE" = (
-/mob/living/simple_mob/humanoid/merc/voxpirate/captain,
+/mob/living/simple/humanoid/merc/voxpirate/captain,
 /turf/simulated/floor/reinforced,
 /area/piratebase/facility)
 "mK" = (
@@ -470,11 +470,11 @@
 /turf/simulated/floor/reinforced,
 /area/piratebase/facility)
 "vL" = (
-/mob/living/simple_mob/humanoid/merc/voxpirate/boarder,
+/mob/living/simple/humanoid/merc/voxpirate/boarder,
 /turf/simulated/floor/reinforced,
 /area/piratebase/facility)
 "vW" = (
-/mob/living/simple_mob/mechanical/mecha/combat/marauder/mauler{
+/mob/living/simple/mechanical/mecha/combat/marauder/mauler{
 	faction = "voxpirate"
 	},
 /turf/simulated/floor/reinforced,
@@ -501,7 +501,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/mob/living/simple_mob/humanoid/merc/voxpirate/pirate,
+/mob/living/simple/humanoid/merc/voxpirate/pirate,
 /turf/simulated/floor/reinforced,
 /area/piratebase/facility)
 "wT" = (
@@ -620,7 +620,7 @@
 /turf/simulated/floor/reinforced,
 /area/piratebase/facility)
 "DX" = (
-/mob/living/simple_mob/humanoid/merc/voxpirate/technician,
+/mob/living/simple/humanoid/merc/voxpirate/technician,
 /turf/simulated/floor/reinforced,
 /area/piratebase/facility)
 "Ea" = (
@@ -630,7 +630,7 @@
 /turf/simulated/floor/reinforced,
 /area/shuttle/pirate/general)
 "Em" = (
-/mob/living/simple_mob/humanoid/merc/voxpirate/suppressor,
+/mob/living/simple/humanoid/merc/voxpirate/suppressor,
 /turf/simulated/floor/reinforced,
 /area/piratebase/facility)
 "EB" = (
@@ -740,7 +740,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/mob/living/simple_mob/humanoid/merc/voxpirate/suppressor,
+/mob/living/simple/humanoid/merc/voxpirate/suppressor,
 /turf/simulated/floor/reinforced,
 /area/piratebase/facility)
 "JH" = (
@@ -910,7 +910,7 @@
 /area/shuttle/pirate/general)
 "Pr" = (
 /obj/machinery/light,
-/mob/living/simple_mob/humanoid/merc/voxpirate/pirate,
+/mob/living/simple/humanoid/merc/voxpirate/pirate,
 /turf/simulated/floor/reinforced,
 /area/piratebase/facility)
 "PJ" = (
@@ -946,7 +946,7 @@
 /obj/structure/sink{
 	pixel_y = 23
 	},
-/mob/living/simple_mob/humanoid/merc/voxpirate/pirate,
+/mob/living/simple/humanoid/merc/voxpirate/pirate,
 /turf/simulated/floor/reinforced,
 /area/piratebase/facility)
 "Rp" = (
@@ -992,7 +992,7 @@
 /turf/space,
 /area/space)
 "Uh" = (
-/mob/living/simple_mob/humanoid/merc/voxpirate/boarder,
+/mob/living/simple/humanoid/merc/voxpirate/boarder,
 /turf/simulated/floor/airless,
 /area/piratebase/facility)
 "Um" = (

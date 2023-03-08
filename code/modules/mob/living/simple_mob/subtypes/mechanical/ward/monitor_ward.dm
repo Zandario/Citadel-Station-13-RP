@@ -18,7 +18,7 @@
 	entity, which exposes them."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/mechanical/ward/monitor
+/mob/living/simple/mechanical/ward/monitor
 	desc = "It's a little flying drone. This one seems to be watching you..."
 	catalogue_data = list(/datum/category_item/catalogue/technology/drone/ward)
 	icon_state = "ward"
@@ -39,34 +39,34 @@
 	var/view_range = 5
 
 // For PoIs.
-/mob/living/simple_mob/mechanical/ward/monitor/syndicate
+/mob/living/simple/mechanical/ward/monitor/syndicate
 	faction = "syndicate"
 
-/mob/living/simple_mob/mechanical/ward/monitor/crew
+/mob/living/simple/mechanical/ward/monitor/crew
 	icon_state = "ward-nt"
 
-/mob/living/simple_mob/mechanical/ward/monitor/crew/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple/mechanical/ward/monitor/crew/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/card/id) && !owner)
 		owner = user
 		return
 	..()
 
-/mob/living/simple_mob/mechanical/ward/monitor/crew/IIsAlly(mob/living/L)
+/mob/living/simple/mechanical/ward/monitor/crew/IIsAlly(mob/living/L)
 	. = ..()
 	if(!.)
 		if(isrobot(L)) // They ignore synths.
 			return TRUE
 		return L.assess_perp(src, FALSE, FALSE, TRUE, FALSE) <= 3
 
-/mob/living/simple_mob/mechanical/ward/monitor/death()
+/mob/living/simple/mechanical/ward/monitor/death()
 	if(owner)
 		to_chat(owner, SPAN_WARNING( "Your [src.name] inside [get_area(src)] was destroyed!"))
 	..()
 
-/mob/living/simple_mob/mechanical/ward/monitor/handle_special()
+/mob/living/simple/mechanical/ward/monitor/handle_special()
 	detect_mobs()
 
-/mob/living/simple_mob/mechanical/ward/monitor/update_icon()
+/mob/living/simple/mechanical/ward/monitor/update_icon()
 	if(seen_mobs.len)
 		icon_living = "[initial(icon_state)]_spotted"
 		glow_color = "#FF0000"
@@ -76,7 +76,7 @@
 	handle_light() // Update the light immediately.
 	..()
 
-/mob/living/simple_mob/mechanical/ward/monitor/proc/detect_mobs()
+/mob/living/simple/mechanical/ward/monitor/proc/detect_mobs()
 	var/last_seen_mobs_len = seen_mobs.len
 	var/list/mobs_nearby = hearers(view_range, src)
 	var/list/newly_seen_mobs = list()

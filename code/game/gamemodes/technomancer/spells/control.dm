@@ -37,8 +37,8 @@
 	AI.wander = FALSE
 	AI.forget_everything()
 
-	if(istype(L, /mob/living/simple_mob))
-		var/mob/living/simple_mob/SM = L
+	if(istype(L, /mob/living/simple))
+		var/mob/living/simple/SM = L
 		SM.friends |= src.owner
 
 	L.add_overlay(control_overlay, TRUE)
@@ -55,8 +55,8 @@
 		AI.wander = initial(AI.wander)
 		AI.forget_everything()
 
-	if(istype(L, /mob/living/simple_mob))
-		var/mob/living/simple_mob/SM = L
+	if(istype(L, /mob/living/simple))
+		var/mob/living/simple/SM = L
 		SM.friends -= owner
 
 	L.cut_overlay(control_overlay, TRUE)

@@ -240,7 +240,7 @@
 
 /obj/item/deck/OnMouseDropLegacy(mob/user as mob) // Code from Paper bin, so you can still pick up the deck
 	if((user == usr && (!( usr.restrained() ) && (!( usr.stat ) && (usr.contents.Find(src) || in_range(src, usr))))))
-		if(!istype(usr, /mob/living/simple_mob))
+		if(!istype(usr, /mob/living/simple))
 			if( !usr.get_active_held_item() )		//if active hand is empty
 				var/mob/living/complex/human/H = user
 				var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
@@ -256,7 +256,7 @@
 
 /obj/item/deck/verb_pickup(mob/user as mob) // Snowflaked so pick up verb work as intended
 	if((user == usr && (!( usr.restrained() ) && (!( usr.stat ) && (usr.contents.Find(src) || in_range(src, usr))))))
-		if(!istype(usr, /mob/living/simple_mob))
+		if(!istype(usr, /mob/living/simple))
 			if( !usr.get_active_held_item() )		//if active hand is empty
 				var/mob/living/complex/human/H = user
 				var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]

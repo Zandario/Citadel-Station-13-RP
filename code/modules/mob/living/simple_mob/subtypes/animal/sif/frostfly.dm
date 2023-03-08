@@ -15,7 +15,7 @@
 	to anything other than Diyaabs, which they seem to have formed a tangential symbiosis with."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/sif/frostfly
+/mob/living/simple/animal/sif/frostfly
 	name = "frostfly"
 	desc = "A large insect with glittering wings."
 	tt_desc = "S Carabidae glacios"
@@ -78,10 +78,10 @@
 	say_list_type = /datum/say_list/frostfly
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting/threatening/frostfly
 
-/mob/living/simple_mob/animal/sif/frostfly/get_cold_protection()
+/mob/living/simple/animal/sif/frostfly/get_cold_protection()
 	return 1	// It literally produces a cryogenic mist inside itself. Cold doesn't bother it.
 
-/mob/living/simple_mob/animal/sif/frostfly/Initialize(mapload)
+/mob/living/simple/animal/sif/frostfly/Initialize(mapload)
 	. = ..()
 	smoke_special = new
 	add_verb(src, /mob/living/proc/ventcrawl)
@@ -103,24 +103,24 @@
 	threaten_sound = 'sound/effects/refill.ogg'
 	stand_down_sound = 'sound/effects/sparks5.ogg'
 
-/mob/living/simple_mob/animal/sif/frostfly/handle_special()
+/mob/living/simple/animal/sif/frostfly/handle_special()
 	..()
 
 	if(energy < max_energy)
 		energy++
 
-/mob/living/simple_mob/animal/sif/frostfly/statpanel_data(client/C)
+/mob/living/simple/animal/sif/frostfly/statpanel_data(client/C)
 	. = ..()
 	if(C.statpanel_tab("Status"))
 		STATPANEL_DATA_LINE("")
 		STATPANEL_DATA_ENTRY("Energy", energy)
 
-/mob/living/simple_mob/animal/sif/frostfly/should_special_attack(atom/A)
+/mob/living/simple/animal/sif/frostfly/should_special_attack(atom/A)
 	if(energy >= 20)
 		return TRUE
 	return FALSE
 
-/mob/living/simple_mob/animal/sif/frostfly/do_special_attack(atom/A)
+/mob/living/simple/animal/sif/frostfly/do_special_attack(atom/A)
 	. = TRUE
 	switch(a_intent)
 		if(INTENT_DISARM)
@@ -143,7 +143,7 @@
 	run_if_this_close = 3
 
 /datum/ai_holder/simple_mob/ranged/kiting/threatening/frostfly/special_flee_check()
-	var/mob/living/simple_mob/animal/sif/frostfly/F = holder
+	var/mob/living/simple/animal/sif/frostfly/F = holder
 	if(F.energy < F.max_energy * 0.2)
 		return TRUE
 	return FALSE
@@ -155,7 +155,7 @@
 		holder.a_intent = INTENT_HARM
 
 /datum/ai_holder/simple_mob/ranged/kiting/threatening/frostfly/post_ranged_attack(atom/A)
-	var/mob/living/simple_mob/animal/sif/frostfly/F = holder
+	var/mob/living/simple/animal/sif/frostfly/F = holder
 	if(istype(A,/mob/living))
 		var/new_dir = turn(F.dir, -90)
 		if(prob(50))

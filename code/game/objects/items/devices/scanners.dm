@@ -529,15 +529,15 @@ HALOGEN COUNTER	- Radcount on mobs
 
 /obj/item/slime_scanner/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
-	if(!istype(target, /mob/living/simple_mob/slime/xenobio))
+	if(!istype(target, /mob/living/simple/slime/xenobio))
 		to_chat(user, "<B>This device can only scan lab-grown slimes!</B>")
 		return
-	var/mob/living/simple_mob/slime/xenobio/S = target
+	var/mob/living/simple/slime/xenobio/S = target
 	user.show_message("Slime scan results:<br>[S.slime_color] [S.is_adult ? "adult" : "baby"] slime<br>Health: [S.health]<br>Mutation Probability: [S.mutation_chance]")
 
 	var/list/mutations = list()
 	for(var/potential_color in S.slime_mutation)
-		var/mob/living/simple_mob/slime/xenobio/slime = potential_color
+		var/mob/living/simple/slime/xenobio/slime = potential_color
 		mutations.Add(initial(slime.slime_color))
 	user.show_message("Potental to mutate into [english_list(mutations)] colors.<br>Extract potential: [S.cores]<br>Nutrition: [S.nutrition]/[S.get_max_nutrition()]")
 

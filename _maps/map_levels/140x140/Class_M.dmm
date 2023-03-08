@@ -83,7 +83,7 @@
 /turf/simulated/floor/outdoors/dirt/classm,
 /area/class_m/outside)
 "co" = (
-/mob/living/simple_mob/animal/passive/bird/ringneck_dove,
+/mob/living/simple/animal/passive/bird/ringneck_dove,
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "cs" = (
@@ -92,11 +92,11 @@
 /area/class_m/inside)
 "cu" = (
 /obj/structure/flora/tree/jungle_small,
-/mob/living/simple_mob/animal/passive/mouse/brown,
+/mob/living/simple/animal/passive/mouse/brown,
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "cw" = (
-/mob/living/simple_mob/animal/passive/fish/bass,
+/mob/living/simple/animal/passive/fish/bass,
 /turf/simulated/floor/water/deep/classm,
 /area/class_m/outside)
 "cL" = (
@@ -288,7 +288,7 @@
 /turf/simulated/floor/wood/classm,
 /area/class_m/inside)
 "gV" = (
-/mob/living/simple_mob/animal/passive/bird/parrot/cockatiel/grey,
+/mob/living/simple/animal/passive/bird/parrot/cockatiel/grey,
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "gZ" = (
@@ -303,7 +303,7 @@
 /turf/simulated/floor/outdoors/beach/sand/classm,
 /area/class_m/outside)
 "hr" = (
-/mob/living/simple_mob/animal/passive/fish/solarfish,
+/mob/living/simple/animal/passive/fish/solarfish,
 /turf/simulated/floor/water/deep/classm,
 /area/class_m/outside)
 "hv" = (
@@ -595,7 +595,7 @@
 /turf/simulated/floor/tiled/classm/outdoors,
 /area/class_m/outside)
 "om" = (
-/mob/living/simple_mob/animal/passive/cat,
+/mob/living/simple/animal/passive/cat,
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "on" = (
@@ -1099,7 +1099,7 @@
 /area/class_m/outside)
 "yJ" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/mob/living/simple_mob/animal/passive/snake,
+/mob/living/simple/animal/passive/snake,
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "yM" = (
@@ -1110,7 +1110,7 @@
 /turf/simulated/floor/wood/classm,
 /area/class_m/inside)
 "yQ" = (
-/mob/living/simple_mob/animal/passive/fox,
+/mob/living/simple/animal/passive/fox,
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "yW" = (
@@ -1138,12 +1138,12 @@
 /turf/simulated/floor/wood/classm,
 /area/class_m/inside)
 "zj" = (
-/mob/living/simple_mob/animal/passive/bird/european_robin,
+/mob/living/simple/animal/passive/bird/european_robin,
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "zy" = (
 /obj/structure/flora/ausbushes/brflowers,
-/mob/living/simple_mob/animal/passive/bird/european_robin,
+/mob/living/simple/animal/passive/bird/european_robin,
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "zH" = (
@@ -1308,7 +1308,7 @@
 /turf/simulated/floor/tiled/classm,
 /area/class_m/inside)
 "CC" = (
-/mob/living/simple_mob/animal/passive/fish/perch,
+/mob/living/simple/animal/passive/fish/perch,
 /turf/simulated/floor/water/deep/classm,
 /area/class_m/outside)
 "CD" = (
@@ -1766,11 +1766,11 @@
 /area/class_m/inside)
 "MK" = (
 /obj/structure/flora/tree/jungle,
-/mob/living/simple_mob/animal/passive/mouse/brown,
+/mob/living/simple/animal/passive/mouse/brown,
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "ML" = (
-/mob/living/simple_mob/animal/passive/snake,
+/mob/living/simple/animal/passive/snake,
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "MV" = (
@@ -1932,7 +1932,7 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/class_m/inside)
 "QQ" = (
-/mob/living/simple_mob/animal/passive/bird/azure_tit/tweeter,
+/mob/living/simple/animal/passive/bird/azure_tit/tweeter,
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "QV" = (
@@ -1976,7 +1976,7 @@
 /turf/simulated/floor/tiled/freezer,
 /area/class_m/inside)
 "RB" = (
-/mob/living/simple_mob/animal/passive/fish/salmon,
+/mob/living/simple/animal/passive/fish/salmon,
 /turf/simulated/floor/water/deep/classm,
 /area/class_m/outside)
 "RF" = (
@@ -2089,7 +2089,7 @@
 /turf/simulated/floor/tiled/freezer,
 /area/class_m/inside)
 "UD" = (
-/mob/living/simple_mob/animal/passive/mouse/brown,
+/mob/living/simple/animal/passive/mouse/brown,
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "UQ" = (
@@ -2102,7 +2102,7 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/class_m/inside)
 "Vc" = (
-/mob/living/simple_mob/animal/passive/fish/rockfish,
+/mob/living/simple/animal/passive/fish/rockfish,
 /turf/simulated/floor/water/deep/classm,
 /area/class_m/outside)
 "Ve" = (

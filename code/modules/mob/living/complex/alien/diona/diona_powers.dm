@@ -63,5 +63,5 @@
 
 	if(istype(M))
 		for(var/atom/A in M.contents)
-			if(istype(A,/mob/living/simple_mob/animal/borer) || istype(A,/obj/item/holder))
+			if(istype(A,/mob/living/simple/animal/borer) || istype(A,/obj/item/holder))
 				return

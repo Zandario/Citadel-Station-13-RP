@@ -1960,7 +1960,7 @@
 	},
 /area/antag/antag_base)
 "cX" = (
-/mob/living/simple_mob/animal/passive/fox/syndicate{
+/mob/living/simple/animal/passive/fox/syndicate{
 	name = "Rick"
 	},
 /turf/unsimulated/floor{

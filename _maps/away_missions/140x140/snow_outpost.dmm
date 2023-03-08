@@ -247,7 +247,7 @@
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snow_outpost/powered)
 "aT" = (
-/mob/living/simple_mob/mechanical/viscerator/mercenary,
+/mob/living/simple/mechanical/viscerator/mercenary,
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/outside/nospawn)
 "aU" = (
@@ -271,7 +271,7 @@
 	pixel_x = 0;
 	pixel_y = 26
 	},
-/mob/living/simple_mob/humanoid/merc/ranged/ionrifle,
+/mob/living/simple/humanoid/merc/ranged/ionrifle,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snow_outpost/powered)
 "aY" = (
@@ -580,26 +580,26 @@
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snow_outpost/powered)
 "bT" = (
-/mob/living/simple_mob/humanoid/merc/ranged/laser,
+/mob/living/simple/humanoid/merc/ranged/laser,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snow_outpost/powered)
 "bU" = (
-/mob/living/simple_mob/humanoid/merc/ranged/space,
+/mob/living/simple/humanoid/merc/ranged/space,
 /turf/simulated/floor/bluegrid{
 	name = "Mainframe Base";
 	temperature = 80
 	},
 /area/awaymission/snow_outpost/powered)
 "bV" = (
-/mob/living/simple_mob/humanoid/merc/ranged,
+/mob/living/simple/humanoid/merc/ranged,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snow_outpost/powered)
 "bW" = (
-/mob/living/simple_mob/humanoid/merc/melee,
+/mob/living/simple/humanoid/merc/melee,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snow_outpost/powered)
 "bX" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword/space,
+/mob/living/simple/humanoid/merc/melee/sword/space,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snow_outpost/powered)
 "bY" = (
@@ -668,7 +668,7 @@
 /turf/simulated/floor/tiled/kafel_full/yellow,
 /area/awaymission/snow_outpost/dark)
 "cp" = (
-/mob/living/simple_mob/animal/passive/tindalos,
+/mob/living/simple/animal/passive/tindalos,
 /turf/simulated/floor/tiled/kafel_full/yellow,
 /area/awaymission/snow_outpost/dark)
 "cq" = (
@@ -1041,7 +1041,7 @@
 /turf/simulated/shuttle/floor/alienplating,
 /area/awaymission/snow_outpost/dark)
 "dM" = (
-/mob/living/simple_mob/humanoid/merc/ranged/smg/poi,
+/mob/living/simple/humanoid/merc/ranged/smg/poi,
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/outside/nospawn)
 "dN" = (
@@ -1065,7 +1065,7 @@
 	},
 /area/awaymission/snow_outpost/outside/nospawn)
 "dQ" = (
-/mob/living/simple_mob/humanoid/merc/ranged/laser/poi,
+/mob/living/simple/humanoid/merc/ranged/laser/poi,
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/outside/nospawn)
 "dR" = (
@@ -1236,9 +1236,9 @@
 	},
 /area/awaymission/snow_outpost/outside/nospawn)
 "eo" = (
-/mob/living/simple_mob/mechanical/viscerator,
-/mob/living/simple_mob/mechanical/viscerator,
-/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
 /turf/simulated/floor/tiled/steel_grid,
 /area/awaymission/snow_outpost/powered)
 "ep" = (
@@ -1272,7 +1272,7 @@
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snow_outpost/powered)
 "eu" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword/poi,
+/mob/living/simple/humanoid/merc/melee/sword/poi,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snow_outpost/powered)
 "ev" = (
@@ -1432,7 +1432,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/awaymission/snow_outpost/powered)
 "eT" = (
-/mob/living/simple_mob/humanoid/merc/ranged/smg/poi,
+/mob/living/simple/humanoid/merc/ranged/smg/poi,
 /turf/simulated/floor/tiled/steel,
 /area/awaymission/snow_outpost/powered)
 "eU" = (
@@ -1479,7 +1479,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/awaymission/snow_outpost/powered)
 "eZ" = (
-/mob/living/simple_mob/animal/giant_spider/ion,
+/mob/living/simple/animal/giant_spider/ion,
 /turf/simulated/floor/outdoors/ice{
 	outdoors = 0
 	},
@@ -1576,7 +1576,7 @@
 /turf/simulated/floor/tiled/yellow,
 /area/awaymission/snow_outpost/powered)
 "fp" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword/poi,
+/mob/living/simple/humanoid/merc/melee/sword/poi,
 /turf/simulated/floor/tiled/yellow,
 /area/awaymission/snow_outpost/powered)
 "fq" = (
@@ -1590,7 +1590,7 @@
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
-/mob/living/simple_mob/humanoid/merc/ranged/laser/poi,
+/mob/living/simple/humanoid/merc/ranged/laser/poi,
 /turf/simulated/floor/tiled/steel,
 /area/awaymission/snow_outpost/powered)
 "fs" = (
@@ -1695,7 +1695,7 @@
 /turf/simulated/floor/tiled/hydro,
 /area/awaymission/snow_outpost/powered)
 "fI" = (
-/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
 /turf/simulated/floor/tiled/steel_grid,
 /area/awaymission/snow_outpost/powered)
 "fJ" = (
@@ -1727,8 +1727,8 @@
 /turf/simulated/floor/tiled/hydro,
 /area/awaymission/snow_outpost/powered)
 "fN" = (
-/mob/living/simple_mob/mechanical/viscerator,
-/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
 /turf/simulated/floor/tiled/steel_grid,
 /area/awaymission/snow_outpost/powered)
 "fO" = (
@@ -1740,7 +1740,7 @@
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
-/mob/living/simple_mob/humanoid/merc/melee/sword/poi,
+/mob/living/simple/humanoid/merc/melee/sword/poi,
 /turf/simulated/floor/tiled/steel,
 /area/awaymission/snow_outpost/powered)
 "fQ" = (
@@ -1886,7 +1886,7 @@
 	},
 /area/awaymission/snow_outpost/dark)
 "gr" = (
-/mob/living/simple_mob/animal/giant_spider,
+/mob/living/simple/animal/giant_spider,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
@@ -1904,7 +1904,7 @@
 	},
 /area/awaymission/snow_outpost/dark)
 "gu" = (
-/mob/living/simple_mob/animal/giant_spider/lurker,
+/mob/living/simple/animal/giant_spider/lurker,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
@@ -1916,14 +1916,14 @@
 	},
 /area/awaymission/snow_outpost/dark)
 "gw" = (
-/mob/living/simple_mob/animal/giant_spider/webslinger,
+/mob/living/simple/animal/giant_spider/webslinger,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
 /area/awaymission/snow_outpost/dark)
 "gx" = (
 /obj/effect/debris/cleanable/cobweb2,
-/mob/living/simple_mob/animal/giant_spider/lurker,
+/mob/living/simple/animal/giant_spider/lurker,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
@@ -1939,7 +1939,7 @@
 	},
 /area/awaymission/snow_outpost/dark)
 "gA" = (
-/mob/living/simple_mob/animal/giant_spider/lurker,
+/mob/living/simple/animal/giant_spider/lurker,
 /turf/simulated/floor/outdoors/dirt,
 /area/awaymission/snow_outpost/dark)
 "gB" = (
@@ -2016,7 +2016,7 @@
 /area/awaymission/snow_outpost/dark)
 "gK" = (
 /obj/effect/spider/stickyweb,
-/mob/living/simple_mob/animal/giant_spider/lurker,
+/mob/living/simple/animal/giant_spider/lurker,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
@@ -2263,7 +2263,7 @@
 /turf/simulated/floor/carpet,
 /area/awaymission/snow_outpost/dark)
 "hH" = (
-/mob/living/simple_mob/mechanical/hivebot/ranged_damage/strong/guard,
+/mob/living/simple/mechanical/hivebot/ranged_damage/strong/guard,
 /turf/simulated/floor,
 /area/awaymission/snow_outpost/dark)
 "hI" = (
@@ -2329,7 +2329,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/awaymission/snow_outpost/dark)
 "hW" = (
-/mob/living/simple_mob/animal/giant_spider/frost,
+/mob/living/simple/animal/giant_spider/frost,
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/awaymission/snow_outpost/dark)
 "hX" = (
@@ -2338,13 +2338,13 @@
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/awaymission/snow_outpost/dark)
 "hY" = (
-/mob/living/simple_mob/animal/giant_spider/frost,
+/mob/living/simple/animal/giant_spider/frost,
 /turf/simulated/floor/outdoors/ice{
 	outdoors = 0
 	},
 /area/awaymission/snow_outpost/dark)
 "hZ" = (
-/mob/living/simple_mob/animal/giant_spider/frost,
+/mob/living/simple/animal/giant_spider/frost,
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/outside)
 "ia" = (
@@ -2530,13 +2530,13 @@
 /turf/simulated/shuttle/floor,
 /area/awaymission/snow_outpost/outside)
 "iA" = (
-/mob/living/simple_mob/animal/giant_spider/frost/sif{
+/mob/living/simple/animal/giant_spider/frost/sif{
 	ai_holder_type = /datum/ai_holder/simple_mob/guard/give_chase
 	},
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/outside)
 "iB" = (
-/mob/living/simple_mob/animal/giant_spider/carrier{
+/mob/living/simple/animal/giant_spider/carrier{
 	ai_holder_type = /datum/ai_holder/simple_mob/guard/give_chase
 	},
 /turf/simulated/floor/snow/snow2,
@@ -2823,7 +2823,7 @@
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/outside/nospawn)
 "QY" = (
-/mob/living/simple_mob/animal/giant_spider/frost,
+/mob/living/simple/animal/giant_spider/frost,
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/dark)
 "Rs" = (

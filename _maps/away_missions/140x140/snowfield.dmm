@@ -1417,11 +1417,11 @@
 	icon_state = "tube1";
 	pixel_y = 0
 	},
-/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
 /turf/simulated/floor/tiled/dark,
 /area/awaymission/snowfield/base)
 "ef" = (
-/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
 /turf/simulated/floor/tiled/dark,
 /area/awaymission/snowfield/base)
 "eg" = (
@@ -1429,7 +1429,7 @@
 	dir = 4;
 	icon_state = "tube1"
 	},
-/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
 /turf/simulated/floor/tiled/dark,
 /area/awaymission/snowfield/base)
 "eh" = (

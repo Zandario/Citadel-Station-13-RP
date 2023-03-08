@@ -77,7 +77,7 @@
 
 /datum/chemical_reaction/slime/grey_new_slime/on_reaction(var/datum/reagents/holder)
 	holder.my_atom.visible_message("<span class='warning'>Infused with phoron, the core begins to quiver and grow, and soon a new baby slime emerges from it!</span>")
-	var/mob/living/simple_mob/slime/xenobio/S = new(get_turf(holder.my_atom))
+	var/mob/living/simple/slime/xenobio/S = new(get_turf(holder.my_atom))
 	S.Weaken(10)
 	..()
 
@@ -496,8 +496,8 @@
 		if(!(their_turf in Z.contents)) // Not in the same zone.
 			continue
 
-		if(istype(L, /mob/living/simple_mob/slime))
-			var/mob/living/simple_mob/slime/S = L
+		if(istype(L, /mob/living/simple/slime))
+			var/mob/living/simple/slime/S = L
 			if(S.cold_resist >= 1) // Immune to cold.
 				to_chat(S, "<span class='warning'>A chill is felt around you, however it cannot harm you.</span>")
 				continue
@@ -553,12 +553,12 @@
 	required = /obj/item/slime_extract/red
 
 /datum/chemical_reaction/slime/red_enrage/on_reaction(var/datum/reagents/holder)
-	for(var/mob/living/simple_mob/slime/S in view(get_turf(holder.my_atom)))
+	for(var/mob/living/simple/slime/S in view(get_turf(holder.my_atom)))
 		if(S.stat)
 			continue
 
-		if(istype(S, /mob/living/simple_mob/slime/xenobio))
-			var/mob/living/simple_mob/slime/xenobio/X = S
+		if(istype(S, /mob/living/simple/slime/xenobio))
+			var/mob/living/simple/slime/xenobio/X = S
 			if(X.harmless)
 				continue
 			if(!X.client)
@@ -973,8 +973,8 @@
 
 
 /datum/chemical_reaction/slime/rainbow_random_slime/on_reaction(var/datum/reagents/holder)
-	var/mob/living/simple_mob/slime/xenobio/S
-	var/list/slime_types = typesof(/mob/living/simple_mob/slime/xenobio)
+	var/mob/living/simple/slime/xenobio/S
+	var/list/slime_types = typesof(/mob/living/simple/slime/xenobio)
 
 	while(slime_types.len)
 		S = pick(slime_types)

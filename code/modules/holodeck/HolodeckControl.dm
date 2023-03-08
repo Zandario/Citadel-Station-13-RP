@@ -179,7 +179,7 @@
 		for(var/obj/item/holo/esword/H in linkedholodeck)
 			H.damtype = initial(H.damtype)
 
-	for(var/mob/living/simple_mob/animal/space/carp/holodeck/C in holographic_mobs)
+	for(var/mob/living/simple/animal/space/carp/holodeck/C in holographic_mobs)
 		C.set_safety(!safety_disabled)
 		if (last_to_emag)
 			C.friends = list(last_to_emag)
@@ -212,7 +212,7 @@
 			derez(item, 0)
 
 	if (!safety_disabled)
-		for(var/mob/living/simple_mob/animal/space/carp/holodeck/C in holographic_mobs)
+		for(var/mob/living/simple/animal/space/carp/holodeck/C in holographic_mobs)
 			if (get_area(C.loc) != linkedholodeck)
 				holographic_mobs -= C
 				C.derez()
@@ -303,7 +303,7 @@
 	for(var/item in holographic_objs)
 		derez(item)
 
-	for(var/mob/living/simple_mob/animal/space/carp/holodeck/C in holographic_mobs)
+	for(var/mob/living/simple/animal/space/carp/holodeck/C in holographic_mobs)
 		holographic_mobs -= C
 		C.derez()
 
@@ -337,11 +337,11 @@
 						T.temperature = 5000
 						T.hotspot_expose(50000,50000,1)
 			if(L.name=="Holocarp Spawn")
-				holographic_mobs += new /mob/living/simple_mob/animal/space/carp/holodeck(L.loc)
+				holographic_mobs += new /mob/living/simple/animal/space/carp/holodeck(L.loc)
 
 			if(L.name=="Holocarp Spawn Random")
 				if (prob(4)) //With 4 spawn points, carp should only appear 15% of the time.
-					holographic_mobs += new /mob/living/simple_mob/animal/space/carp/holodeck(L.loc)
+					holographic_mobs += new /mob/living/simple/animal/space/carp/holodeck(L.loc)
 
 		update_projections()
 

@@ -49,8 +49,8 @@
 		target.apply_damage(blade_force, BRUTE)
 		return
 
-	else if(istype(target, /mob/living/simple_mob))
-		var/mob/living/simple_mob/S = target
+	else if(istype(target, /mob/living/simple))
+		var/mob/living/simple/S = target
 		if(target.stat == DEAD)
 			if(S.meat_amount > 0)
 				S.harvest(user)

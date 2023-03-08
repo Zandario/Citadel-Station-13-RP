@@ -90,7 +90,7 @@
 /turf/simulated/floor/outdoors/dirt,
 /area/submap/Epod3)
 "o" = (
-/mob/living/simple_mob/animal/giant_spider/carrier{
+/mob/living/simple/animal/giant_spider/carrier{
 	ai_holder_type = /datum/ai_holder/simple_mob/guard/give_chase
 	},
 /turf/template_noop,
@@ -101,7 +101,7 @@
 /turf/template_noop,
 /area/submap/Epod3)
 "q" = (
-/mob/living/simple_mob/animal/giant_spider/frost/sif{
+/mob/living/simple/animal/giant_spider/frost/sif{
 	ai_holder_type = /datum/ai_holder/simple_mob/guard/give_chase
 	},
 /turf/simulated/floor/outdoors/dirt,

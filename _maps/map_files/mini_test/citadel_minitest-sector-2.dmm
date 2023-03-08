@@ -6,7 +6,7 @@
 /turf/simulated/mineral,
 /area/space)
 "ac" = (
-/mob/living/simple_mob/animal/space/carp,
+/mob/living/simple/animal/space/carp,
 /turf/space,
 /area/space)
 "ad" = (

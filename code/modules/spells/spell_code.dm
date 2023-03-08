@@ -198,8 +198,8 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 			if(findNullRod(T))
 				return 0
 
-	if(istype(user, /mob/living/simple_mob) && holder == user)
-		var/mob/living/simple_mob/SM = user
+	if(istype(user, /mob/living/simple) && holder == user)
+		var/mob/living/simple/SM = user
 		if(SM.purge)
 			to_chat(SM, "<span class='warning'>The nullrod's power interferes with your own!</span>")
 			return 0

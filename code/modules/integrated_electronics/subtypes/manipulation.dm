@@ -690,7 +690,7 @@
 			S.apply_damage(drill_force, BRUTE)
 			return
 		else if(issimple(target))
-			var/mob/living/simple_mob/S = target
+			var/mob/living/simple/S = target
 			if(S.stat == DEAD)
 				if(S.meat_amount > 0)
 					S.harvest(assembly)

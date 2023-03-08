@@ -12,7 +12,7 @@
 	remain closely guarded corporate secrets."
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/mechanical/mecha/combat/phazon
+/mob/living/simple/mechanical/mecha/combat/phazon
 	name = "phazon"
 	desc = "An extremly enigmatic exosuit."
 	icon_state = "phazon"
@@ -32,4 +32,3 @@
 				"rad"		= 100
 				)
 	projectiletype = /obj/item/projectile/energy/declone
-

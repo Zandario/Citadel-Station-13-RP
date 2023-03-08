@@ -12,7 +12,7 @@
 /turf/simulated/floor/outdoors/grass/sif/forest,
 /area/submap/DoomP)
 "ae" = (
-/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
 /turf/template_noop,
 /area/submap/DoomP)
 "af" = (
@@ -27,7 +27,7 @@
 /turf/simulated/floor/outdoors/grass/sif/forest,
 /area/submap/DoomP)
 "ai" = (
-/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
 /turf/simulated/floor/outdoors/grass/sif/forest,
 /area/submap/DoomP)
 "aj" = (
@@ -109,7 +109,7 @@
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
-/mob/living/simple_mob/humanoid/merc/ranged/smg/poi,
+/mob/living/simple/humanoid/merc/ranged/smg/poi,
 /turf/simulated/floor/tiled,
 /area/submap/DoomP)
 "aB" = (
@@ -242,7 +242,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/mob/living/simple_mob/humanoid/merc/melee/sword/poi,
+/mob/living/simple/humanoid/merc/melee/sword/poi,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/submap/DoomP)
 "aU" = (
@@ -309,7 +309,7 @@
 /obj/effect/floor_decal/borderfloor/corner{
 	dir = 8
 	},
-/mob/living/simple_mob/humanoid/merc/ranged/laser/poi,
+/mob/living/simple/humanoid/merc/ranged/laser/poi,
 /turf/simulated/floor/tiled,
 /area/submap/DoomP)
 "bh" = (
@@ -506,7 +506,7 @@
 /turf/simulated/floor/outdoors/grass/sif/forest,
 /area/submap/DoomP)
 "bL" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword/poi,
+/mob/living/simple/humanoid/merc/melee/sword/poi,
 /turf/simulated/floor/tiled/techfloor,
 /area/submap/DoomP)
 

@@ -7,7 +7,7 @@
 	creatures as pets. This has limited their spread across the Frontier."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/passive/penguin
+/mob/living/simple/animal/passive/penguin
 	name = "penguin"
 	desc = "An ungainly, waddling, cute, and VERY well-dressed bird."
 	tt_desc = "Aptenodytes forsteri"
@@ -36,19 +36,19 @@
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/chicken/penguin
 	bone_amount = 1
 
-/mob/living/simple_mob/animal/passive/penguin/tux
+/mob/living/simple/animal/passive/penguin/tux
 	name = "Tux"
 	desc = "A penguin that has been known to associate with gnus."
 	speak_emote = list("interjects")
 
-/mob/living/simple_mob/animal/passive/penguin/baby
+/mob/living/simple/animal/passive/penguin/baby
 	name = "baby penguin"
 	desc = "An emperor penguin's chick. It is iconic, and what most will associate with the image of a baby penguin. It's small and fluffy."
 	icon_state = "baby_penguin"
 	icon_living = "baby_penguin"
 	icon_dead = "baby_penguin_dead"
 
-/mob/living/simple_mob/animal/passive/penguin/emperor
+/mob/living/simple/animal/passive/penguin/emperor
 	name = "emperor penguin"
 	desc = "Of all species of penguin, this one is the greatest known living species. It stands proudly in it's rule as emperor."
 	icon_state = "emperor_penguin"

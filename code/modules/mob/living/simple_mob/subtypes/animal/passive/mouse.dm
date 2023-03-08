@@ -6,7 +6,7 @@
 	to pest status, and spread freely across the Frontier."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/passive/mouse
+/mob/living/simple/animal/passive/mouse
 	name = "mouse"
 	real_name = "mouse"
 	desc = "A small rodent, often seen hiding in maintenance areas and making a nuisance of itself. And stealing cheese, or annoying the chef. SQUEAK! <3"
@@ -53,7 +53,7 @@
 	no_vore = 1 //Mice can't eat others due to the amount of bugs caused by it.
 	vore_taste = "cheese"
 
-/mob/living/simple_mob/animal/passive/mouse/Initialize(mapload)
+/mob/living/simple/animal/passive/mouse/Initialize(mapload)
 	. = ..()
 
 	add_verb(src, /mob/living/proc/ventcrawl)
@@ -72,7 +72,7 @@
 	icon_rest = "mouse_[body_color]_sleep"
 	desc = "A small [body_color] rodent, often seen hiding in maintenance areas and making a nuisance of itself."
 
-/mob/living/simple_mob/animal/passive/mouse/Crossed(atom/movable/AM as mob|obj)
+/mob/living/simple/animal/passive/mouse/Crossed(atom/movable/AM as mob|obj)
 	if(AM.is_incorporeal())
 		return
 	if( ishuman(AM) )
@@ -82,17 +82,17 @@
 			playsound(src, 'sound/effects/mouse_squeak.ogg', 35, 1)
 	..()
 
-/mob/living/simple_mob/animal/passive/mouse/death()
+/mob/living/simple/animal/passive/mouse/death()
 	layer = MOB_LAYER
 	playsound(src, 'sound/effects/mouse_squeak_loud.ogg', 35, 1)
 	if(client)
 		client.time_died_as_mouse = world.time
 	..()
 
-/mob/living/simple_mob/animal/passive/mouse/cannot_use_vents()
+/mob/living/simple/animal/passive/mouse/cannot_use_vents()
 	return
 
-/mob/living/simple_mob/animal/passive/mouse/proc/splat()
+/mob/living/simple/animal/passive/mouse/proc/splat()
 	src.health = 0
 	src.set_stat(DEAD)
 	src.icon_dead = "mouse_[body_color]_splat"
@@ -105,19 +105,19 @@
  * Mouse types
  */
 
-/mob/living/simple_mob/animal/passive/mouse/white
+/mob/living/simple/animal/passive/mouse/white
 	body_color = "white"
 	icon_state = "mouse_white"
 
-/mob/living/simple_mob/animal/passive/mouse/gray
+/mob/living/simple/animal/passive/mouse/gray
 	body_color = "gray"
 	icon_state = "mouse_gray"
 
-/mob/living/simple_mob/animal/passive/mouse/brown
+/mob/living/simple/animal/passive/mouse/brown
 	body_color = "brown"
 	icon_state = "mouse_brown"
 
-/mob/living/simple_mob/animal/passive/mouse/rat
+/mob/living/simple/animal/passive/mouse/rat
 	name = "rat"
 	maxHealth = 20
 	health = 20
@@ -128,12 +128,12 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 
 //TOM IS ALIVE! SQUEEEEEEEE~K :)
-/mob/living/simple_mob/animal/passive/mouse/brown/Tom
+/mob/living/simple/animal/passive/mouse/brown/Tom
 	name = "Tom"
 	desc = "Jerry the cat is not amused."
 	randomized = FALSE
 
-/mob/living/simple_mob/animal/passive/mouse/brown/Tom/Initialize(mapload)
+/mob/living/simple/animal/passive/mouse/brown/Tom/Initialize(mapload)
 	. = ..()
 	// Change my name back, don't want to be named Tom (666)
 	name = initial(name)
@@ -145,14 +145,14 @@
 	emote_hear = list("squeeks","squeaks","squiks")
 	emote_see = list("runs in a circle", "shakes", "scritches at something")
 
-/mob/living/simple_mob/animal/passive/mouse/attack_hand(mob/living/hander)
+/mob/living/simple/animal/passive/mouse/attack_hand(mob/living/hander)
 	if(hander.a_intent == INTENT_HELP) //if lime intent
 		get_scooped(hander) //get scooped
 	else
 		..()
 
 /obj/item/holder/mouse/attack_self(var/mob/U)
-	for(var/mob/living/simple_mob/M in src.contents)
+	for(var/mob/living/simple/M in src.contents)
 		if((INTENT_HELP) && U.canClick()) //a little snowflakey, but makes it use the same cooldown as interacting with non-inventory objects
 			U.setClickCooldown(U.get_attack_speed()) //if there's a cleaner way in baycode, I'll change this
 			U.visible_message("<span class='notice'>[U] [M.response_help] \the [M].</span>")

@@ -113,7 +113,7 @@
 /turf/simulated/floor/airless,
 /area/submap/debrisfield_vr/mining_drone_ship)
 "aq" = (
-/mob/living/simple_mob/mechanical/hivebot/swarm,
+/mob/living/simple/mechanical/hivebot/swarm,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield_vr/mining_drone_ship)
 "ar" = (
@@ -273,7 +273,7 @@
 "aI" = (
 /obj/item/ore/diamond,
 /obj/item/ore/iron,
-/mob/living/simple_mob/mechanical/hivebot/support/commander,
+/mob/living/simple/mechanical/hivebot/support/commander,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield_vr/mining_drone_ship)
 "aJ" = (
@@ -448,7 +448,7 @@
 	name = "hivebot assembler";
 	simultaneous_spawns = 6;
 	spawn_delay = 300;
-	spawn_types = list(/mob/living/simple_mob/mechanical/hivebot/swarm = 200, /mob/living/simple_mob/mechanical/hivebot/ranged_damage/basic = 50, /mob/living/simple_mob/mechanical/hivebot/ranged_damage/laser = 25, /mob/living/simple_mob/mechanical/hivebot/ranged_damage/ion = 10, /mob/living/simple_mob/mechanical/hivebot/tank/meatshield = 10)
+	spawn_types = list(/mob/living/simple/mechanical/hivebot/swarm = 200, /mob/living/simple/mechanical/hivebot/ranged_damage/basic = 50, /mob/living/simple/mechanical/hivebot/ranged_damage/laser = 25, /mob/living/simple/mechanical/hivebot/ranged_damage/ion = 10, /mob/living/simple/mechanical/hivebot/tank/meatshield = 10)
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield_vr/mining_drone_ship)

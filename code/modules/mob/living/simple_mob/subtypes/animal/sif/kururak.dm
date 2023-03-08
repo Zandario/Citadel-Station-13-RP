@@ -17,7 +17,7 @@
 	for a fight."
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/animal/sif/kururak
+/mob/living/simple/animal/sif/kururak
 	name = "kururak"
 	desc = "A large animal with sleek fur."
 	tt_desc = "S Felidae fluctursora"
@@ -87,12 +87,12 @@
 	emote_see = list("scratches its ear","flutters its tails", "flicks an ear", "shakes out its hair")
 	emote_hear = list("chirps", "clicks", "grumbles", "chitters")
 
-/mob/living/simple_mob/animal/sif/kururak/leader	// Going to be the starting leader. Has some base buffs to make it more likely to stay the leader.
+/mob/living/simple/animal/sif/kururak/leader	// Going to be the starting leader. Has some base buffs to make it more likely to stay the leader.
 	maxHealth = 250
 	health = 250
 	instinct = 50
 
-/mob/living/simple_mob/animal/sif/kururak/Initialize(mapload)
+/mob/living/simple/animal/sif/kururak/Initialize(mapload)
 	. = ..()
 	if(!instinct)
 		if(prob(20))
@@ -100,7 +100,7 @@
 			return
 		instinct = rand(0, 5)
 
-/mob/living/simple_mob/animal/sif/kururak/IIsAlly(mob/living/L)
+/mob/living/simple/animal/sif/kururak/IIsAlly(mob/living/L)
 	. = ..()
 	if(!.)
 		if(issilicon(L))	// Metal things are usually reflective, or in general aggrivating.
@@ -111,24 +111,24 @@
 				var/obj/item/I = H.get_active_held_item()
 				if(I.force >= 1.20 * melee_damage_upper)
 					return TRUE
-		else if(istype(L, /mob/living/simple_mob))
-			var/mob/living/simple_mob/S = L
+		else if(istype(L, /mob/living/simple))
+			var/mob/living/simple/S = L
 			if(S.melee_damage_upper > 1.20 * melee_damage_upper)
 				return TRUE
 
-/mob/living/simple_mob/animal/sif/kururak/handle_special()
+/mob/living/simple/animal/sif/kururak/handle_special()
 	..()
 	if(client)
 		pack_gauge()
 
-/mob/living/simple_mob/animal/sif/kururak/apply_melee_effects(atom/A)	// Only gains instinct.
+/mob/living/simple/animal/sif/kururak/apply_melee_effects(atom/A)	// Only gains instinct.
 	instinct += rand(1, 2)
 	return
 
-/mob/living/simple_mob/animal/sif/kururak/should_special_attack(atom/A)
+/mob/living/simple/animal/sif/kururak/should_special_attack(atom/A)
 	return has_modifier_of_type(/datum/modifier/ace)
 
-/mob/living/simple_mob/animal/sif/kururak/do_special_attack(atom/A)
+/mob/living/simple/animal/sif/kururak/do_special_attack(atom/A)
 	. = TRUE
 	switch(a_intent)
 		if(INTENT_DISARM) // Ranged mob flash, will also confuse borgs rather than stun.
@@ -138,7 +138,7 @@
 			rending_strike(A)
 			set_AI_busy(FALSE)
 
-/mob/living/simple_mob/animal/sif/kururak/verb/do_flash()
+/mob/living/simple/animal/sif/kururak/verb/do_flash()
 	set category = "Abilities"
 	set name = "Tail Blind"
 	set desc = "Disorient a creature within range."
@@ -150,7 +150,7 @@
 	last_flash_time = world.time
 	tail_flash()
 
-/mob/living/simple_mob/animal/sif/kururak/proc/tail_flash(atom/A)
+/mob/living/simple/animal/sif/kururak/proc/tail_flash(atom/A)
 	set waitfor = FALSE
 
 	if(stat)
@@ -227,7 +227,7 @@
 						continue
 			R.flash_eyes()
 
-/mob/living/simple_mob/animal/sif/kururak/verb/do_strike()
+/mob/living/simple/animal/sif/kururak/verb/do_strike()
 	set category = "Abilities"
 	set name = "Rending Strike"
 	set desc = "Strike viciously at an entity within range."
@@ -239,7 +239,7 @@
 	last_strike_time = world.time
 	rending_strike()
 
-/mob/living/simple_mob/animal/sif/kururak/proc/rending_strike(atom/A)
+/mob/living/simple/animal/sif/kururak/proc/rending_strike(atom/A)
 	if(stat)
 		to_chat(src, SPAN_WARNING("You cannot strike in this state.."))
 		return
@@ -288,13 +288,13 @@
 	else
 		A.attack_generic(src, damage_to_apply, "rakes its claws against")	// Well it's not a mob, and it's not a mech.
 
-/mob/living/simple_mob/animal/sif/kururak/verb/rally_pack()	// Mostly for telling other players to follow you. AI Kururaks will auto-follow, if set to.
+/mob/living/simple/animal/sif/kururak/verb/rally_pack()	// Mostly for telling other players to follow you. AI Kururaks will auto-follow, if set to.
 	set name = "Rally Pack"
 	set desc = "Tries to command your fellow pack members to follow you."
 	set category = "Abilities"
 
 	if(has_modifier_of_type(/datum/modifier/ace))
-		for(var/mob/living/simple_mob/animal/sif/kururak/K in hearers(7, src))
+		for(var/mob/living/simple/animal/sif/kururak/K in hearers(7, src))
 			if(K == src)
 				continue
 			if(!K.ai_holder)
@@ -305,12 +305,12 @@
 			to_chat(K, SPAN_NOTICE("The pack leader wishes for you to follow them."))
 			AI.set_follow(src)
 
-/mob/living/simple_mob/animal/sif/kururak/proc/detect_instinct()	// Will return the Kururak within 10 tiles that has the highest instinct.
-	var/mob/living/simple_mob/animal/sif/kururak/A
+/mob/living/simple/animal/sif/kururak/proc/detect_instinct()	// Will return the Kururak within 10 tiles that has the highest instinct.
+	var/mob/living/simple/animal/sif/kururak/A
 
 	var/pack_count = 0
 
-	for(var/mob/living/simple_mob/animal/sif/kururak/K in hearers(10, src))
+	for(var/mob/living/simple/animal/sif/kururak/K in hearers(10, src))
 		if(K == src)
 			continue
 		if(K.stat != DEAD)
@@ -323,8 +323,8 @@
 
 	return A
 
-/mob/living/simple_mob/animal/sif/kururak/proc/pack_gauge()	// Check incase we have a client.
-	var/mob/living/simple_mob/animal/sif/kururak/highest_instinct = detect_instinct()
+/mob/living/simple/animal/sif/kururak/proc/pack_gauge()	// Check incase we have a client.
+	var/mob/living/simple/animal/sif/kururak/highest_instinct = detect_instinct()
 	if(highest_instinct == src)
 		add_modifier(/datum/modifier/ace, 60 SECONDS)
 	else
@@ -339,17 +339,17 @@
 
 /datum/ai_holder/simple_mob/intentional/kururak/handle_special_strategical()
 	follow_distance = rand(initial(follow_distance), initial(follow_distance) + 2)
-	var/mob/living/simple_mob/animal/sif/kururak/K = holder
+	var/mob/living/simple/animal/sif/kururak/K = holder
 
 	if(istype(K))
-		var/mob/living/simple_mob/animal/sif/kururak/highest_instinct = K.detect_instinct()
+		var/mob/living/simple/animal/sif/kururak/highest_instinct = K.detect_instinct()
 		if(highest_instinct == K)
 			K.add_modifier(/datum/modifier/ace, 60 SECONDS)
 		else
 			K.remove_modifiers_of_type(/datum/modifier/ace)
 
 		if(holder.has_modifier_of_type(/datum/modifier/ace))
-			if(leader && istype(leader, /mob/living/simple_mob/animal/sif/kururak))	// Kururaks will not follow another kururak if they're the pack leader.
+			if(leader && istype(leader, /mob/living/simple/animal/sif/kururak))	// Kururaks will not follow another kururak if they're the pack leader.
 				lose_follow()
 
 		else if(highest_instinct)

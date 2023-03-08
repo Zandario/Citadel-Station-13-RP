@@ -278,7 +278,7 @@
 	desc = "A small heap of trash, perfect for vermin to nest in."
 	icon = 'icons/obj/trash_piles.dmi'
 	icon_state = "randompile"
-	spawn_types = list(/mob/living/simple_mob/animal/passive/mouse)
+	spawn_types = list(/mob/living/simple/animal/passive/mouse)
 	simultaneous_spawns = 1
 	destructible = 1
 	spawn_delay = 1 HOUR

@@ -4,18 +4,18 @@
 /area/template_noop)
 "b" = (
 /obj/effect/alien/weeds,
-/mob/living/simple_mob/animal/space/alien/sentinel,
+/mob/living/simple/animal/space/alien/sentinel,
 /turf/simulated/mineral/floor/classd/indoors,
 /area/class_d/explored)
 "f" = (
 /obj/effect/alien/weeds,
-/mob/living/simple_mob/animal/space/alien/sentinel/praetorian,
+/mob/living/simple/animal/space/alien/sentinel/praetorian,
 /turf/simulated/mineral/floor/classd/indoors,
 /area/class_d/explored)
 "h" = (
 /obj/effect/alien/weeds,
 /obj/effect/alien/weeds,
-/mob/living/simple_mob/animal/space/alien/queen/empress,
+/mob/living/simple/animal/space/alien/queen/empress,
 /turf/simulated/mineral/floor/classd/indoors,
 /area/class_d/explored)
 "i" = (
@@ -32,7 +32,7 @@
 "k" = (
 /obj/effect/alien/weeds,
 /obj/effect/alien/weeds/node,
-/mob/living/simple_mob/animal/space/alien/drone,
+/mob/living/simple/animal/space/alien/drone,
 /turf/simulated/mineral/floor/classd/indoors,
 /area/class_d/explored)
 "m" = (
@@ -75,7 +75,7 @@
 "x" = (
 /obj/effect/alien/weeds,
 /obj/effect/alien/weeds,
-/mob/living/simple_mob/animal/space/alien/sentinel,
+/mob/living/simple/animal/space/alien/sentinel,
 /turf/simulated/mineral/floor/classd/indoors,
 /area/class_d/explored)
 "y" = (
@@ -85,7 +85,7 @@
 /area/class_d/explored)
 "z" = (
 /obj/effect/alien/weeds,
-/mob/living/simple_mob/animal/space/alien,
+/mob/living/simple/animal/space/alien,
 /turf/simulated/mineral/floor/classd/indoors,
 /area/class_d/explored)
 "B" = (
@@ -147,7 +147,7 @@
 /area/class_d/explored)
 "U" = (
 /obj/effect/alien/weeds,
-/mob/living/simple_mob/animal/space/alien/drone,
+/mob/living/simple/animal/space/alien/drone,
 /turf/simulated/mineral/floor/classd/indoors,
 /area/class_d/explored)
 "W" = (

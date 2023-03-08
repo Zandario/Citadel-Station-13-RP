@@ -1337,7 +1337,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/mob/living/simple_mob/animal/passive/fish/koi/poisonous,
+/mob/living/simple/animal/passive/fish/koi/poisonous,
 /turf/simulated/floor/water/pool,
 /area/hallway/station/atrium)
 "adl" = (
@@ -1349,7 +1349,7 @@
 	dir = 8
 	},
 /obj/structure/railing,
-/mob/living/simple_mob/animal/passive/fish/koi/poisonous,
+/mob/living/simple/animal/passive/fish/koi/poisonous,
 /turf/simulated/floor/water/pool,
 /area/hallway/station/atrium)
 "adn" = (
@@ -5729,7 +5729,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/mob/living/simple_mob/animal/passive/fish/koi/poisonous,
+/mob/living/simple/animal/passive/fish/koi/poisonous,
 /turf/simulated/floor/water/pool,
 /area/hallway/station/atrium)
 "amv" = (
@@ -24623,7 +24623,7 @@
 /turf/simulated/floor/tiled,
 /area/tether/exploration/staircase)
 "vyI" = (
-/mob/living/simple_mob/animal/passive/bird/parrot/polly,
+/mob/living/simple/animal/passive/bird/parrot/polly,
 /turf/simulated/floor/outdoors/grass/forest,
 /area/crew_quarters/heads/chief)
 "vzc" = (

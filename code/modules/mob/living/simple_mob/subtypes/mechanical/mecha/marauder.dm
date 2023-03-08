@@ -8,7 +8,7 @@
 	low-level NanoTrasen duty stations and most allied corporations."
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/mechanical/mecha/combat/marauder
+/mob/living/simple/mechanical/mecha/combat/marauder
 	name = "marauder"
 	desc = "A heavy-duty, combat exosuit, developed after the Durand model. This is rarely found among civilian populations."
 	catalogue_data = list(/datum/category_item/catalogue/technology/marauder)
@@ -48,7 +48,7 @@
 	value = CATALOGUER_REWARD_HARD
 
 // Slightly stronger, used to allow comdoms to frontline without dying instantly, I guess.
-/mob/living/simple_mob/mechanical/mecha/combat/marauder/seraph
+/mob/living/simple/mechanical/mecha/combat/marauder/seraph
 	name = "seraph"
 	desc = "A heavy-duty, combat/command exosuit. This one is specialized towards housing important commanders such as high-ranking \
 	military personnel. It's stronger than the regular Marauder model, but not by much."
@@ -68,7 +68,7 @@
 	already scarce Marauder, and are considered a black market collectable item on par with stolen art."
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/mechanical/mecha/combat/marauder/mauler
+/mob/living/simple/mechanical/mecha/combat/marauder/mauler
 	name = "mauler"
 	desc = "A heavy duty, combat exosuit that is based off of the Marauder model."
 	icon_state = "mauler"

@@ -10,7 +10,7 @@
 /turf/simulated/floor/reinforced/airless,
 /area/submap/debrisfield_vr/misc_debris)
 "i" = (
-/mob/living/simple_mob/vore/aggressive/corrupthound/space,
+/mob/living/simple/vore/aggressive/corrupthound/space,
 /turf/simulated/floor/reinforced/airless,
 /area/submap/debrisfield_vr/misc_debris)
 "m" = (

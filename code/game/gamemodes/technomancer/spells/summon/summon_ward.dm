@@ -11,10 +11,10 @@
 	name = "summon ward"
 	desc = "Finally, someone you can depend on to watch your back."
 	cast_methods = CAST_RANGED
-	summoned_mob_type = /mob/living/simple_mob/mechanical/ward/monitor
+	summoned_mob_type = /mob/living/simple/mechanical/ward/monitor
 	cooldown = 10
 	instability_cost = 5
 	energy_cost = 500
 
-/obj/item/spell/summon/summon_ward/on_summon(var/mob/living/simple_mob/mechanical/ward/monitor/my_ward)
+/obj/item/spell/summon/summon_ward/on_summon(var/mob/living/simple/mechanical/ward/monitor/my_ward)
 	my_ward.owner = owner

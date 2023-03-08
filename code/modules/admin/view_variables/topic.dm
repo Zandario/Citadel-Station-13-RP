@@ -517,8 +517,8 @@
 			possibleverbs += typesof(/mob/living/silicon/proc,/mob/living/silicon/robot/proc,/mob/living/silicon/robot/verb)
 		if(istype(H,/mob/living/silicon/ai))
 			possibleverbs += typesof(/mob/living/silicon/proc,/mob/living/silicon/ai/proc,/mob/living/silicon/ai/verb)
-		if(istype(H,/mob/living/simple_mob))
-			possibleverbs += typesof(/mob/living/simple_mob/proc)
+		if(istype(H,/mob/living/simple))
+			possibleverbs += typesof(/mob/living/simple/proc)
 		possibleverbs -= H.verbs
 		possibleverbs += "Cancel" // ...And one for the bottom
 

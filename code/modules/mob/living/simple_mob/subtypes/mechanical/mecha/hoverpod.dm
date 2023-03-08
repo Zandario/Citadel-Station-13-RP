@@ -12,7 +12,7 @@
 	In recent times, the Hoverpod is seen as outdated by some, as newer solutions to that niche now exist, however it remains an ancient favorite."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/mechanical/mecha/hoverpod
+/mob/living/simple/mechanical/mecha/hoverpod
 	name = "hover pod"
 	desc = "Stubby and round, this space-capable craft is an ancient favorite. It has a jury-rigged welder-laser."
 	catalogue_data = list(/datum/category_item/catalogue/technology/hoverpod)
@@ -28,14 +28,14 @@
 
 	var/datum/effect_system/ion_trail_follow/ion_trail
 
-/mob/living/simple_mob/mechanical/mecha/hoverpod/manned
-	pilot_type = /mob/living/simple_mob/humanoid/merc/ranged
+/mob/living/simple/mechanical/mecha/hoverpod/manned
+	pilot_type = /mob/living/simple/humanoid/merc/ranged
 
-/mob/living/simple_mob/mechanical/mecha/hoverpod/Initialize(mapload)
+/mob/living/simple/mechanical/mecha/hoverpod/Initialize(mapload)
 	ion_trail = new /datum/effect_system/ion_trail_follow()
 	ion_trail.set_up(src)
 	ion_trail.start()
 	return ..()
 
-/mob/living/simple_mob/mechanical/mecha/hoverpod/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple/mechanical/mecha/hoverpod/Process_Spacemove(var/check_drift = 0)
 	return TRUE

@@ -51,7 +51,7 @@
 /turf/simulated/floor,
 /area/awaymission/spacebattle/syndicate2)
 "aq" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword,
+/mob/living/simple/humanoid/merc/melee/sword,
 /turf/simulated/floor,
 /area/awaymission/spacebattle/syndicate2)
 "ar" = (
@@ -111,7 +111,7 @@
 /turf/simulated/floor,
 /area/awaymission/spacebattle/syndicate3)
 "aH" = (
-/mob/living/simple_mob/humanoid/merc/ranged,
+/mob/living/simple/humanoid/merc/ranged,
 /turf/simulated/floor,
 /area/awaymission/spacebattle/syndicate2)
 "aJ" = (
@@ -266,7 +266,7 @@
 /turf/simulated/floor,
 /area/awaymission/spacebattle/syndicate1)
 "bu" = (
-/mob/living/simple_mob/humanoid/merc/ranged,
+/mob/living/simple/humanoid/merc/ranged,
 /turf/simulated/floor,
 /area/awaymission/spacebattle/syndicate3)
 "bw" = (
@@ -292,7 +292,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/spacebattle/syndicate3)
 "bD" = (
-/mob/living/simple_mob/humanoid/merc/ranged,
+/mob/living/simple/humanoid/merc/ranged,
 /turf/simulated/floor,
 /area/awaymission/spacebattle/syndicate1)
 "bF" = (
@@ -396,7 +396,7 @@
 /turf/simulated/shuttle/plating,
 /area/awaymission/spacebattle/cruiser)
 "cm" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword/space,
+/mob/living/simple/humanoid/merc/melee/sword/space,
 /turf/simulated/floor,
 /area/awaymission/spacebattle/cruiser)
 "cs" = (
@@ -535,7 +535,7 @@
 /turf/simulated/floor,
 /area/awaymission/spacebattle/cruiser)
 "cZ" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword,
+/mob/living/simple/humanoid/merc/melee/sword,
 /turf/simulated/floor,
 /area/awaymission/spacebattle/cruiser)
 "da" = (
@@ -554,7 +554,7 @@
 "db" = (
 /area/awaymission/spacebattle/cruiser)
 "dd" = (
-/mob/living/simple_mob/humanoid/merc/ranged/space,
+/mob/living/simple/humanoid/merc/ranged/space,
 /turf/simulated/floor,
 /area/awaymission/spacebattle/cruiser)
 "de" = (
@@ -861,7 +861,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "eJ" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword/space,
+/mob/living/simple/humanoid/merc/melee/sword/space,
 /area/awaymission/spacebattle/cruiser)
 "eK" = (
 /obj/spawner/corpse/engineer/rig{
@@ -911,7 +911,7 @@
 /turf/simulated/floor,
 /area/awaymission/spacebattle/syndicate4)
 "eW" = (
-/mob/living/simple_mob/humanoid/merc/ranged,
+/mob/living/simple/humanoid/merc/ranged,
 /turf/simulated/floor,
 /area/awaymission/spacebattle/syndicate4)
 "eX" = (
@@ -1162,7 +1162,7 @@
 /turf/simulated/floor/wood,
 /area/awaymission/spacebattle/cruiser)
 "gO" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword/space,
+/mob/living/simple/humanoid/merc/melee/sword/space,
 /turf/simulated/floor/wood,
 /area/awaymission/spacebattle/cruiser)
 "gP" = (
@@ -1349,7 +1349,7 @@
 /area/awaymission/spacebattle/syndicate7)
 "hB" = (
 /obj/structure/largecrate,
-/mob/living/simple_mob/animal/passive/dog/corgi/puppy,
+/mob/living/simple/animal/passive/dog/corgi/puppy,
 /turf/simulated/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "hC" = (
@@ -1446,7 +1446,7 @@
 /turf/simulated/floor,
 /area/awaymission/spacebattle/syndicate7)
 "hX" = (
-/mob/living/simple_mob/humanoid/merc/ranged,
+/mob/living/simple/humanoid/merc/ranged,
 /turf/simulated/floor,
 /area/awaymission/spacebattle/syndicate7)
 "hY" = (
@@ -1617,7 +1617,7 @@
 /turf/simulated/floor,
 /area/awaymission/spacebattle/syndicate5)
 "iU" = (
-/mob/living/simple_mob/humanoid/merc/ranged,
+/mob/living/simple/humanoid/merc/ranged,
 /turf/simulated/floor,
 /area/awaymission/spacebattle/syndicate5)
 "iV" = (
@@ -1663,7 +1663,7 @@
 /turf/simulated/floor,
 /area/awaymission/spacebattle/syndicate6)
 "ji" = (
-/mob/living/simple_mob/humanoid/merc/ranged,
+/mob/living/simple/humanoid/merc/ranged,
 /turf/simulated/floor,
 /area/awaymission/spacebattle/syndicate6)
 "jj" = (

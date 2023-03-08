@@ -183,7 +183,7 @@
 	display_name = "killer tomato plant"
 	mutants = null
 	can_self_harvest = 1
-	has_mob_product = /mob/living/simple_mob/hostile/tomato
+	has_mob_product = /mob/living/simple/hostile/tomato
 
 /datum/seed/tomato/killer/New()
 	..()

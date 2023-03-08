@@ -63,7 +63,7 @@
 	else if(foundVirus)
 		holder.icon_state = "ill1"
 	else if(has_brain_worms())
-		var/mob/living/simple_mob/animal/borer/B = has_brain_worms()
+		var/mob/living/simple/animal/borer/B = has_brain_worms()
 		holder.icon_state = B.controlling? "brainworm" : "healthy"
 	else
 		holder.icon_state = "healthy"

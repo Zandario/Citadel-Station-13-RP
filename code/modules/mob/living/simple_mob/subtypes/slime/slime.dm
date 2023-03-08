@@ -8,7 +8,7 @@
 	be trained and farmed, but their temperament makes them a constant danger."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/slime
+/mob/living/simple/slime
 	name = "slime"
 	desc = "It's a slime."
 	tt_desc = "A Macrolimbus vulgaris"
@@ -78,7 +78,7 @@
 	emote_see = list("bounces", "jiggles", "sways")
 	emote_hear = list("squishes")
 
-/mob/living/simple_mob/slime/Initialize(mapload)
+/mob/living/simple/slime/Initialize(mapload)
 	add_verb(src, /mob/living/proc/ventcrawl)
 	update_mood()
 	glow_color = color
@@ -86,24 +86,24 @@
 	update_icon()
 	return ..()
 
-/mob/living/simple_mob/slime/Destroy()
+/mob/living/simple/slime/Destroy()
 	if(hat)
 		drop_hat()
 	return ..()
 
-/mob/living/simple_mob/slime/death()
+/mob/living/simple/slime/death()
 	// Make dead slimes stop glowing.
 	glow_toggle = FALSE
 	handle_light()
 	..()
 
-/mob/living/simple_mob/slime/revive()
+/mob/living/simple/slime/revive()
 	// Make revived slimes resume glowing.
 	glow_toggle = initial(glow_toggle)
 	handle_light()
 	..()
 
-/mob/living/simple_mob/slime/update_icon()
+/mob/living/simple/slime/update_icon()
 	..() // Do the regular stuff first.
 
 	cut_overlays()
@@ -132,18 +132,18 @@
 		add_overlay(MA)
 
 // Controls the 'mood' overlay. Overrided in subtypes for specific behaviour.
-/mob/living/simple_mob/slime/proc/update_mood()
+/mob/living/simple/slime/proc/update_mood()
 	mood = "feral" // This is to avoid another override in the /feral subtype.
 
-/mob/living/simple_mob/slime/proc/unify()
+/mob/living/simple/slime/proc/unify()
 	unity = TRUE
 
 // Interface override, because slimes are supposed to attack other slimes of different color regardless of faction.
 // (unless Unified, of course).
-/mob/living/simple_mob/slime/IIsAlly(mob/living/L)
+/mob/living/simple/slime/IIsAlly(mob/living/L)
 	. = ..()
-	if(istype(L, /mob/living/simple_mob/slime)) // Slimes should care about their color subfaction compared to another's.
-		var/mob/living/simple_mob/slime/S = L
+	if(istype(L, /mob/living/simple/slime)) // Slimes should care about their color subfaction compared to another's.
+		var/mob/living/simple/slime/S = L
 		if(S.unity || src.unity)
 			return TRUE
 		if(S.slime_color == src.slime_color)
@@ -153,7 +153,7 @@
 	// The other stuff was already checked in parent proc, and the . variable will implicitly return the correct value.
 
 // Slimes regenerate passively.
-/mob/living/simple_mob/slime/handle_special()
+/mob/living/simple/slime/handle_special()
 	adjustOxyLoss(-1)
 	adjustToxLoss(-1)
 	adjustFireLoss(-1)
@@ -161,14 +161,14 @@
 	adjustBruteLoss(-1)
 
 // Clicked on by empty hand.
-/mob/living/simple_mob/slime/attack_hand(mob/living/L)
+/mob/living/simple/slime/attack_hand(mob/living/L)
 	if(L.a_intent == INTENT_GRAB && hat)
 		remove_hat(L)
 	else
 		..()
 
 // Clicked on while holding an object.
-/mob/living/simple_mob/slime/attackby(obj/item/I, mob/user)
+/mob/living/simple/slime/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/clothing/head)) // Handle hat simulator.
 		give_hat(I, user)
 		return
@@ -188,11 +188,11 @@
 
 // Called when hit with an active slimebaton (or xeno taser).
 // Subtypes react differently.
-/mob/living/simple_mob/slime/proc/slimebatoned(mob/living/user, amount)
+/mob/living/simple/slime/proc/slimebatoned(mob/living/user, amount)
 	return
 
 // Hat simulator
-/mob/living/simple_mob/slime/proc/give_hat(var/obj/item/clothing/head/new_hat, var/mob/living/user)
+/mob/living/simple/slime/proc/give_hat(var/obj/item/clothing/head/new_hat, var/mob/living/user)
 	if(!istype(new_hat))
 		to_chat(user, SPAN_WARNING( "\The [new_hat] isn't a hat."))
 		return
@@ -207,7 +207,7 @@
 		update_icon()
 		return
 
-/mob/living/simple_mob/slime/proc/remove_hat(var/mob/living/user)
+/mob/living/simple/slime/proc/remove_hat(var/mob/living/user)
 	if(!hat)
 		to_chat(user, "<span class='warning'>\The [src] doesn't have a hat to remove.</span>")
 	else
@@ -217,16 +217,16 @@
 		hat = null
 		update_icon()
 
-/mob/living/simple_mob/slime/proc/drop_hat()
+/mob/living/simple/slime/proc/drop_hat()
 	if(!hat)
 		return
 	hat.forceMove(get_turf(src))
 	hat = null
 	update_icon()
 
-/mob/living/simple_mob/slime/speech_bubble_appearance()
+/mob/living/simple/slime/speech_bubble_appearance()
 	return "slime"
 
-/mob/living/simple_mob/slime/proc/squish()
+/mob/living/simple/slime/proc/squish()
 	playsound(src.loc, 'sound/effects/slime_squish.ogg', 50, 0)
 	visible_message("<b>\The [src]</b> squishes!")

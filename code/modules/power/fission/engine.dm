@@ -488,17 +488,17 @@ I'm commenting this out until I have time to make this less stupid.
 	//Weighted with values (not %chance, but relative weight)
 	//Can be left value-less for all equally likely
 	var/list/mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/giant_spider/hunter = 3,
-		/mob/living/simple_mob/animal/giant_spider/webslinger = 5,
-		/mob/living/simple_mob/animal/giant_spider/carrier = 5,
-		/mob/living/simple_mob/animal/giant_spider/lurker = 4,
-		/mob/living/simple_mob/animal/giant_spider/tunneler = 5,
-		/mob/living/simple_mob/animal/giant_spider/pepper = 2,
-		/mob/living/simple_mob/animal/giant_spider/thermic = 5,
-		/mob/living/simple_mob/animal/giant_spider/electric = 3,
-		/mob/living/simple_mob/animal/giant_spider/phorogenic = 2,
-		/mob/living/simple_mob/animal/giant_spider/frost = 4,
-		/mob/living/simple_mob/vore/aggressive/rat/phoron = 4
+		/mob/living/simple/animal/giant_spider/hunter = 3,
+		/mob/living/simple/animal/giant_spider/webslinger = 5,
+		/mob/living/simple/animal/giant_spider/carrier = 5,
+		/mob/living/simple/animal/giant_spider/lurker = 4,
+		/mob/living/simple/animal/giant_spider/tunneler = 5,
+		/mob/living/simple/animal/giant_spider/pepper = 2,
+		/mob/living/simple/animal/giant_spider/thermic = 5,
+		/mob/living/simple/animal/giant_spider/electric = 3,
+		/mob/living/simple/animal/giant_spider/phorogenic = 2,
+		/mob/living/simple/animal/giant_spider/frost = 4,
+		/mob/living/simple/vore/aggressive/rat/phoron = 4
 	)
 	//When the below chance fails, the spawner is marked as depleted and stops spawning
 	var/prob_spawn = 100	//Chance of spawning a mob whenever they don't have one
@@ -509,7 +509,7 @@ I'm commenting this out until I have time to make this less stupid.
 	var/atmos_comp = TRUE			//TRUE will set all their survivability to be within 20% of the current air
 
 	//Internal use only
-	var/mob/living/simple_mob/my_mob
+	var/mob/living/simple/my_mob
 	var/depleted = FALSE
 
 /obj/nuclear_mistake_spawner/Initialize(mapload)

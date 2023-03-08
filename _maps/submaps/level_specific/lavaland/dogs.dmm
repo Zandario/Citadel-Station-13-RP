@@ -21,7 +21,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen/lavaland,
 /area/lavaland/bosses)
 "B" = (
-/mob/living/simple_mob/vore/aggressive/corrupthound/surt,
+/mob/living/simple/vore/aggressive/corrupthound/surt,
 /turf/simulated/mineral/floor/ignore_mapgen/lavaland,
 /area/lavaland/bosses)
 "D" = (
@@ -37,7 +37,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen/lavaland,
 /area/lavaland/bosses)
 "R" = (
-/mob/living/simple_mob/vore/aggressive/corrupthound/surt,
+/mob/living/simple/vore/aggressive/corrupthound/surt,
 /turf/simulated/floor/outdoors/lavaland,
 /area/lavaland/bosses)
 "T" = (

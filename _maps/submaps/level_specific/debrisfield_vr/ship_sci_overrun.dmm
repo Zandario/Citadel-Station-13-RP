@@ -74,7 +74,7 @@
 /turf/simulated/floor/tiled/white/airless,
 /area/submap/debrisfield_vr/sci_overrun)
 "ar" = (
-/mob/living/simple_mob/tomato/space,
+/mob/living/simple/tomato/space,
 /turf/simulated/floor/tiled/white/airless,
 /area/submap/debrisfield_vr/sci_overrun)
 "as" = (
@@ -145,7 +145,7 @@
 /turf/simulated/floor/airless,
 /area/submap/debrisfield_vr/sci_overrun)
 "aD" = (
-/mob/living/simple_mob/slime/feral/dark_blue,
+/mob/living/simple/slime/feral/dark_blue,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield_vr/sci_overrun)
 "aE" = (
@@ -359,7 +359,7 @@
 /turf/simulated/floor/tiled/white/airless,
 /area/submap/debrisfield_vr/sci_overrun)
 "bn" = (
-/mob/living/simple_mob/slime/feral/dark_blue,
+/mob/living/simple/slime/feral/dark_blue,
 /turf/simulated/floor/tiled/white/airless,
 /area/submap/debrisfield_vr/sci_overrun)
 "bo" = (

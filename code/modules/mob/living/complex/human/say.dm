@@ -64,11 +64,11 @@
 			return 1
 		if (istype(other, /mob/living/complex/brain))
 			return 1
-		if (istype(other, /mob/living/simple_mob/slime))
+		if (istype(other, /mob/living/simple/slime))
 			return 1
 
 	//This is already covered by mob/say_understands()
-	//if (istype(other, /mob/living/simple_mob))
+	//if (istype(other, /mob/living/simple))
 	//	if((other.universal_speak && !speaking) || src.universal_speak || src.universal_understand)
 	//		return 1
 	//	return 0

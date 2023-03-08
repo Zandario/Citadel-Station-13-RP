@@ -5,7 +5,7 @@
 	enthusiasts, the hippo is heavy, hardy, and aggressive."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/vore/hippo
+/mob/living/simple/vore/hippo
 	name = "hippo"
 	desc = "Mostly know for the spectacular hit of the live action movie Hungry Hungry Hippos."
 	tt_desc = "Hippopotamus amphibius"
@@ -54,7 +54,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
 
 // Activate Noms!
-/mob/living/simple_mob/vore/hippo //I don't know why it's in a seperate line but everyone does it so i do it
+/mob/living/simple/vore/hippo //I don't know why it's in a seperate line but everyone does it so i do it
 	vore_active = 1
 	vore_capacity = 1
 	vore_bump_chance = 15
@@ -69,7 +69,7 @@
 	vore_stomach_flavor	= "You are squeezed into the sweltering insides of the herbivore rumen."
 	vore_icons = SA_ICON_LIVING
 
-/mob/living/simple_mob/vore/hippo/MouseDroppedOnLegacy(mob/living/M, mob/living/user)
+/mob/living/simple/vore/hippo/MouseDroppedOnLegacy(mob/living/M, mob/living/user)
 	return
 
 /datum/say_list/hippo

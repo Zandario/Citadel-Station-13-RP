@@ -1279,8 +1279,8 @@
 
 /datum/reagent/sterilizine/touch_mob(mob/living/L, amount)
 	if(istype(L))
-		if(istype(L, /mob/living/simple_mob/slime))
-			var/mob/living/simple_mob/slime/S = L
+		if(istype(L, /mob/living/simple/slime))
+			var/mob/living/simple/slime/S = L
 			S.adjustToxLoss(rand(15, 25) * amount)	// Does more damage than water.
 			S.visible_message("<span class='warning'>[S]'s flesh sizzles where the fluid touches it!</span>", "<span class='danger'>Your flesh burns in the fluid!</span>")
 		remove_self(amount)
@@ -1595,8 +1595,8 @@
 	O.water_act(reac_volume / 5)
 
 /datum/reagent/firefighting_foam/touch_mob(mob/living/M, reac_volume)
-	if(istype(M, /mob/living/simple_mob/slime)) //I'm sure foam is water-based!
-		var/mob/living/simple_mob/slime/S = M
+	if(istype(M, /mob/living/simple/slime)) //I'm sure foam is water-based!
+		var/mob/living/simple/slime/S = M
 		S.adjustToxLoss(15 * reac_volume)
 		S.visible_message("<span class='warning'>[S]'s flesh sizzles where the foam touches it!</span>", "<span class='danger'>Your flesh burns in the foam!</span>")
 

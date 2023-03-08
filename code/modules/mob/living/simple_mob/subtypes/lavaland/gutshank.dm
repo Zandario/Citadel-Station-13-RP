@@ -35,7 +35,7 @@
 	potable drinking water."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/gutshank
+/mob/living/simple/animal/gutshank
 	name = "gutshank"
 	desc = "These dog-sized parasites sport thick, chitinous shells which protect them from both attacks and the heat."
 	icon = 'icons/mob/lavaland/lavaland_mobs.dmi'
@@ -74,19 +74,19 @@
 	var/datum/reagents/shank_gland = null
 	var/growing = 0
 	var/amount_grown = 1
-	var/list/grow_as = list(/mob/living/simple_mob/animal/shank)
+	var/list/grow_as = list(/mob/living/simple/animal/shank)
 
 /datum/say_list/gutshank
 	emote_hear = list("rubs its mandibles together.", "skitters around.", "trills.")
 	emote_see = list ("clacks its mandibles.", "shudders and jerks.")
 
-/mob/living/simple_mob/animal/gutshank/Initialize(mapload)
+/mob/living/simple/animal/gutshank/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	shank_gland = new(50)
 	shank_gland.my_atom = src
 
-/mob/living/simple_mob/animal/gutshank/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple/animal/gutshank/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	var/obj/item/reagent_containers/glass/G = O
 	if(stat == CONSCIOUS && istype(G) && G.is_open_container())
 		user.visible_message("<span class='notice'>[user] milks [src] using \the [O].</span>")
@@ -102,7 +102,7 @@
 	else
 		..()
 
-/mob/living/simple_mob/animal/gutshank/BiologicalLife(seconds, times_fired)
+/mob/living/simple/animal/gutshank/BiologicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -110,7 +110,7 @@
 		if(shank_gland && prob(5))
 			shank_gland.add_reagent("water", rand(5, 10))
 
-/mob/living/simple_mob/animal/gutshank/process(delta_time)
+/mob/living/simple/animal/gutshank/process(delta_time)
 	if(growing)
 		if(amount_grown >= 0)
 			amount_grown += rand(0,2)
@@ -119,14 +119,14 @@
 	else
 		return
 
-/mob/living/simple_mob/animal/gutshank/proc/mature()
+/mob/living/simple/animal/gutshank/proc/mature()
 	var/spawn_type = pick(grow_as)
 	new spawn_type(src.loc, src)
 	qdel(src)
 
 //It would make more sense for this creature to inject a soporific and then drain blood after it detects the user is unconscious.
 //However, this would be very brutal for solo miners to contend with, so it just draws blood instead.
-/mob/living/simple_mob/animal/gutshank/apply_melee_effects(atom/A)
+/mob/living/simple/animal/gutshank/apply_melee_effects(atom/A)
 	. = ..()
 	if(isliving(A))
 		var/mob/living/L = A
@@ -135,12 +135,12 @@
 			if(L.can_inject(src, null, target_zone))
 				blood_drink(L, target_zone)
 
-/mob/living/simple_mob/animal/gutshank/proc/blood_drink(var/mob/living/complex/human/M)
+/mob/living/simple/animal/gutshank/proc/blood_drink(var/mob/living/complex/human/M)
 	if(istype(M))
 		to_chat(M, "<span class='warning'>The [src] pierces your flesh! You feel a sickening suction!</span>")
 		M.vessel.remove_reagent("blood",rand(10,20))
 
-/mob/living/simple_mob/animal/gutshank/death()
+/mob/living/simple/animal/gutshank/death()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
@@ -157,7 +157,7 @@
 	evidence of these beasts being cultivated to serve as mounts and pack animals has confirmed this curious maturation cycle."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/shank
+/mob/living/simple/animal/shank
 	name = "shank"
 	desc = "This agile insectoid beast uses its maneuverability and flexible carapace to protect it when running down its prey."
 	icon = 'icons/mob/lavaland/lavaland_mobs.dmi'
@@ -200,7 +200,7 @@
 
 	var/rideable = 0
 
-/mob/living/simple_mob/animal/shank/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple/animal/shank/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/saddle/shank) && !rideable)
 		to_chat(user, "<span class='danger'>You sling the [O] onto the [src]! It may now be ridden safely!</span>")
 		rideable = 1
@@ -216,7 +216,7 @@
 		RenameMount()
 	update_icon()
 
-/mob/living/simple_mob/animal/shank/proc/RenameMount()
+/mob/living/simple/animal/shank/proc/RenameMount()
 	var/mob/M = usr
 	if(!M.mind)	return 0
 	if(!M.faction == src.faction)
@@ -234,7 +234,7 @@
 	rider_offsets = list(0, 11, 1, null)
 	riding_handler_flags = CF_RIDING_HANDLER_IS_CONTROLLABLE
 
-/mob/living/simple_mob/animal/shank/apply_melee_effects(atom/A)
+/mob/living/simple/animal/shank/apply_melee_effects(atom/A)
 	. = ..()
 	if(isliving(A))
 		var/mob/living/L = A
@@ -243,12 +243,12 @@
 			if(L.can_inject(src, null, target_zone))
 				blood_drink(L, target_zone)
 
-/mob/living/simple_mob/animal/shank/proc/blood_drink(var/mob/living/complex/human/M)
+/mob/living/simple/animal/shank/proc/blood_drink(var/mob/living/complex/human/M)
 	if(istype(M))
 		to_chat(M, "<span class='warning'>The [src] pierces your flesh! You feel a sickening suction!</span>")
 		M.vessel.remove_reagent("blood",rand(20,25))
 
-/mob/living/simple_mob/animal/shank/update_icon()
+/mob/living/simple/animal/shank/update_icon()
 	if(rideable)
 		add_overlay("shank_saddled")
 	else if(!rideable)

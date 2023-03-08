@@ -17,7 +17,7 @@
 	fly to the side, and then repeat, potentially causing the target to die from many seperate wounds."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/mechanical/viscerator
+/mob/living/simple/mechanical/viscerator
 	name = "viscerator"
 	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations."
 	catalogue_data = list(/datum/category_item/catalogue/technology/drone/viscerator)
@@ -46,27 +46,27 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 
-/mob/living/simple_mob/mechanical/viscerator/death()
+/mob/living/simple/mechanical/viscerator/death()
 	..(null,"is smashed into pieces!")
 	qdel(src)
 
 // Variant that is always loyal to mercenary antagonists.
 // Used for a special grenade, to ensure they don't attack the wrong thing.
-/mob/living/simple_mob/mechanical/viscerator/mercenary/IIsAlly(mob/living/L)
+/mob/living/simple/mechanical/viscerator/mercenary/IIsAlly(mob/living/L)
 	. = ..()
 	if(!.) // Not friendly, see if they're a baddie first.
 		if(L.mind && mercs.is_antagonist(L.mind))
 			return TRUE
 
 // Similar to above but for raiders.
-/mob/living/simple_mob/mechanical/viscerator/raider/IIsAlly(mob/living/L)
+/mob/living/simple/mechanical/viscerator/raider/IIsAlly(mob/living/L)
 	. = ..()
 	if(!.) // Not friendly, see if they're a baddie first.
 		if(L.mind && raiders.is_antagonist(L.mind))
 			return TRUE
 
 // Variant that is neutral, and thus on the station's side. It checks records.
-/mob/living/simple_mob/mechanical/viscerator/station
+/mob/living/simple/mechanical/viscerator/station
 	icon_state = "viscerator_b_attack"
 	icon_living = "viscerator_b_attack"
 
@@ -77,22 +77,22 @@
 	melee_damage_upper = 5
 	base_attack_cooldown = 8
 
-/mob/living/simple_mob/mechanical/viscerator/station/IIsAlly(mob/living/L)
+/mob/living/simple/mechanical/viscerator/station/IIsAlly(mob/living/L)
 	. = ..()
 	if(!.)
 		if(isrobot(L)) // They ignore synths.
 			return TRUE
-		if(istype(L, /mob/living/simple_mob/mechanical/ward/monitor/crew))	// Also ignore friendly monitor wards
+		if(istype(L, /mob/living/simple/mechanical/ward/monitor/crew))	// Also ignore friendly monitor wards
 			return TRUE
 		return L.assess_perp(src, FALSE, FALSE, TRUE, FALSE) <= 3
 
-/mob/living/simple_mob/mechanical/viscerator/apidean
+/mob/living/simple/mechanical/viscerator/apidean
 	name = "\improper Apidean hunter drone"
 	desc = "This organic creature bears striking similarities to mechanical Viscerator drones. In spite of that resemblance, it appears to be a biological organism."
 	icon_state = "viscerator_api_attack"
 	icon_living = "viscerator_api_attack"
 
-/mob/living/simple_mob/mechanical/viscerator/apidean/IIsAlly(mob/living/L)
+/mob/living/simple/mechanical/viscerator/apidean/IIsAlly(mob/living/L)
 	. = ..()
 	if(!.)
 		if(istype(L, /mob/living/complex/human/apidaen))

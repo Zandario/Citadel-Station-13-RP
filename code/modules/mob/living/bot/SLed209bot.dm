@@ -59,8 +59,8 @@
 /mob/living/bot/secbot/ed209/slime/UnarmedAttack(var/mob/living/L, var/proximity)
 	..()
 
-	if(istype(L, /mob/living/simple_mob/slime/xenobio))
-		var/mob/living/simple_mob/slime/xenobio/S = L
+	if(istype(L, /mob/living/simple/slime/xenobio))
+		var/mob/living/simple/slime/xenobio/S = L
 		S.slimebatoned(src, xeno_stun_strength)
 
 // Assembly
@@ -177,4 +177,3 @@
 				var/turf/T = get_turf(src)
 				new /mob/living/bot/secbot/ed209/slime(T,created_name,lasercolor)
 				qdel(src)
-

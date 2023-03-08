@@ -17,7 +17,7 @@
 	'escaped' the spider, enabling a form of persistance hunting for the Electric Spider."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/giant_spider/electric
+/mob/living/simple/animal/giant_spider/electric
 	desc = "Spined and yellow, it makes you shudder to look at it. This one has flickering gold eyes."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/giant_spider/electric_spider)
 

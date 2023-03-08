@@ -32,7 +32,7 @@ For now this is still usable but bad.
 	//var/guard				//# will set the mobs to remain nearby their spawn point within this dist
 
 	//Internal use only
-	var/mob/living/simple_mob/my_mob
+	var/mob/living/simple/my_mob
 	var/depleted = FALSE
 
 /obj/tether_away_spawner/Initialize(mapload)
@@ -104,7 +104,7 @@ For now this is still usable but bad.
 	prob_fall = 1
 	//guard = 10 //Don't wander too far, to stay alive.
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/shadekin
+		/mob/living/simple/shadekin
 	)
 
 
@@ -117,7 +117,7 @@ For now this is still usable but bad.
 	prob_fall = 10
 	//guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/mechanical/corrupt_maint_drone = 3,
+		/mob/living/simple/mechanical/corrupt_maint_drone = 3,
 	)
 
 /obj/tether_away_spawner/underdark_normal
@@ -128,9 +128,9 @@ For now this is still usable but bad.
 	prob_fall = 50
 	//guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/giant_spider/hunter = 3,
-		/mob/living/simple_mob/animal/giant_spider/phorogenic/weak = 3,
-		/mob/living/simple_mob/animal/giant_spider/tunneler = 3,
+		/mob/living/simple/animal/giant_spider/hunter = 3,
+		/mob/living/simple/animal/giant_spider/phorogenic/weak = 3,
+		/mob/living/simple/animal/giant_spider/tunneler = 3,
 	)
 
 /obj/tether_away_spawner/underdark_hard
@@ -141,8 +141,8 @@ For now this is still usable but bad.
 	prob_fall = 50
 	//guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/vore/aggressive/corrupthound = 3,
-		/mob/living/simple_mob/vore/aggressive/rat/phoron = 6,
+		/mob/living/simple/vore/aggressive/corrupthound = 3,
+		/mob/living/simple/vore/aggressive/rat/phoron = 6,
 	)
 
 /obj/tether_away_spawner/underdark_boss
@@ -153,6 +153,5 @@ For now this is still usable but bad.
 	prob_fall = 100
 	//guard = 70
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/vore/aggressive/dragon = 1
+		/mob/living/simple/vore/aggressive/dragon = 1
 	)
-

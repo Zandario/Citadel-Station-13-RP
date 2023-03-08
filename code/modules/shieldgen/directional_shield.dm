@@ -98,12 +98,12 @@
 	var/high_color = "#0099FF"			// Color the shield will be when at max health.  A light blue.
 	var/low_color = "#FF0000"			// Color the shield will drift towards as health is lowered.  Deep red.
 
-/mob/living/simple_mob/Moved()
+/mob/living/simple/Moved()
 	for(var/obj/item/shield_projector/C in src.contents)
 		C.moved_event()
 	return ..()
 
-/mob/living/simple_mob/death()
+/mob/living/simple/death()
 	for(var/obj/item/shield_projector/C in src.contents)
 		QDEL_NULL(C)
 	return ..()

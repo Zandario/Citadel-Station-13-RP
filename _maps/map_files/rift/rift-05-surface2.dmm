@@ -6,7 +6,7 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 8
 	},
-/mob/living/simple_mob/otie/red/friendly{
+/mob/living/simple/otie/red/friendly{
 	desc = "The Head of Security's loyal Red Otie. Seems this ominous looking longdog has been infused with wicked infernal forces. This one seems rather peaceful though.";
 	name = "Brutus"
 	},
@@ -68,7 +68,7 @@
 	pixel_y = 32
 	},
 /obj/structure/dogbed,
-/mob/living/simple_mob/animal/passive/dog/tamaskan{
+/mob/living/simple/animal/passive/dog/tamaskan{
 	desc = "The robotics spry new canine friend! The name 'Sprocket' Can be found on her collar. She seems to love old rock music from Sol.";
 	name = "Sprocket"
 	},
@@ -76,13 +76,13 @@
 /area/assembly/robotics)
 "aae" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/mob/living/simple_mob/slime/xenobio/rainbow/kendrick,
+/mob/living/simple/slime/xenobio/rainbow/kendrick,
 /turf/simulated/floor/tiled/monotile,
 /area/crew_quarters/heads/hor)
 "aaf" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/overlay/snow/floor,
-/mob/living/simple_mob/slime/feral/dark_blue,
+/mob/living/simple/slime/feral/dark_blue,
 /turf/simulated/floor/lythios43c/indoors,
 /area/rift/surfacebase/outside/outside2)
 "aaA" = (
@@ -4972,7 +4972,7 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 1
 	},
-/mob/living/simple_mob/animal/passive/lizard{
+/mob/living/simple/animal/passive/lizard{
 	desc = "Beppy is the result of a series of funding cuts to the science division's budget. Beppy is not his original name, but it is the only name he has now. He was born a working man, quickly rising through the ranks to become a hotshot in the Nanotrasen science division, only to be stuck in an accident that irretrievably warped him along with his department to an unreachable part of subspace. Years of research and trial and error finally led the science team to return to the correct dimension, albeit all of their souls were transferred into Beppy's body, and his body was transfigured into that of a small green anole. The true moral of this story is that back in nineteen ninety eight the undertaker threw mankind off hell in a cell and plummeted sixteen feet through an announcers table.";
 	name = "Beppy"
 	},

@@ -1543,7 +1543,7 @@
 /turf/simulated/shuttle/floor/white,
 /area/shuttle/skipjack)
 "dO" = (
-/mob/living/simple_mob/animal/passive/tindalos,
+/mob/living/simple/animal/passive/tindalos,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/skipjack)
 "dP" = (

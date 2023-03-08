@@ -13,7 +13,7 @@
 	value = CATALOGUER_REWARD_TRIVIAL
 
 
-/mob/living/simple_mob/animal/icegoat
+/mob/living/simple/animal/icegoat
 	name = "glacicorn"
 	desc = "A genetically engineered goat designed to thrive on massively cold worlds. It seems no amount of genetic tampering can change a goat's unpleasant disposition."
 	tt_desc = "E Capri absonulla"
@@ -50,12 +50,12 @@
 
 	var/datum/reagents/udder = null
 
-/mob/living/simple_mob/animal/icegoat/Initialize(mapload)
+/mob/living/simple/animal/icegoat/Initialize(mapload)
 	. = ..()
 	udder = new(50)
 	udder.my_atom = src
 
-/mob/living/simple_mob/animal/icegoat/BiologicalLife(seconds, times_fired)
+/mob/living/simple/animal/icegoat/BiologicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -79,13 +79,13 @@
 				var/step = get_step_to(src, food, 0)
 				Move(step)
 
-/mob/living/simple_mob/animal/icegoat/Move()
+/mob/living/simple/animal/icegoat/Move()
 	..()
 	if(!stat)
 		for(var/obj/effect/plant/SV in loc)
 			SV.die_off(1)
 
-/mob/living/simple_mob/animal/icegoat/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple/animal/icegoat/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	var/obj/item/reagent_containers/glass/G = O
 	if(stat == CONSCIOUS && istype(G) && G.is_open_container())
 		user.visible_message("<span class='notice'>[user] milks [src] using \the [O].</span>")
@@ -108,7 +108,7 @@
 	These peaceful animals have temperment similar to sheep and are very peaceful."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/passive/woolie
+/mob/living/simple/animal/passive/woolie
 	name = "woolie"
 	desc = "A ball of wool that hides a peculiar but peaceful creature. Its thick coat protects it from even the harshest weather."
 	tt_desc = "E Lanovis absonulla"
@@ -143,11 +143,11 @@
 	var/coat_amount = 0
 	var/coat_mat = /obj/item/stack/material/cloth
 
-/mob/living/simple_mob/animal/passive/woolie/Initialize(mapload)
+/mob/living/simple/animal/passive/woolie/Initialize(mapload)
 	. = ..()
 	coat_amount = 2
 
-/mob/living/simple_mob/animal/passive/woolie/BiologicalLife(seconds, times_fired)
+/mob/living/simple/animal/passive/woolie/BiologicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -158,7 +158,7 @@
 			else
 				coat_amount += 1
 
-/mob/living/simple_mob/animal/passive/woolie/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple/animal/passive/woolie/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	var/obj/item/tool/wirecutters/C = O
 	if(istype(C))
 		if(coat_amount == 0)
@@ -178,7 +178,7 @@
 	which NT hopes can be sold to prospective colonists seeking to colonize the most icy planets."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/passive/furnacegrub
+/mob/living/simple/animal/passive/furnacegrub
 	name = "furnace grub"
 	desc = "This grub glows with a powerful heat."
 	icon_state = "furnacegrub"
@@ -211,7 +211,7 @@
 	var/heating_power = 30000
 
 
-/mob/living/simple_mob/animal/passive/furnacegrub/BiologicalLife(seconds, times_fired)
+/mob/living/simple/animal/passive/furnacegrub/BiologicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -237,11 +237,11 @@
 	//Since I'm changing hyper mode to be variable we need to store old power
 	original_temp = heating_power //We remember our old goal, for use in non perpetual heating level increase
 
-/mob/living/simple_mob/animal/passive/furnacegrub/death()
+/mob/living/simple/animal/passive/furnacegrub/death()
 	src.anchored = 0
 	set_light(3, 3, "#FFCC00")
 
-/mob/living/simple_mob/animal/passive/furnacegrub/handle_light()
+/mob/living/simple/animal/passive/furnacegrub/handle_light()
 	. = ..()
 	if(. == 0 && !is_dead())
 		set_light(2.5, 1, COLOR_ORANGE)
@@ -252,14 +252,14 @@
 /obj/structure/largecrate/animal/icegoat
 	name = "glacicorn carrier"
 	desc = "Contains a pair of glacicorns, ill tempered ice goats. Warning glaicorns will die in enviroment with temperatures exceeding zero degress celcius."
-	starts_with = list(/mob/living/simple_mob/animal/icegoat = 2)
+	starts_with = list(/mob/living/simple/animal/icegoat = 2)
 
 /obj/structure/largecrate/animal/woolie
 	name = "woolie carrier"
 	desc = "Contains a pair of woolies, a sheep like animal designed to live in extreme cold."
-	starts_with = list(/mob/living/simple_mob/animal/passive/woolie = 2)
+	starts_with = list(/mob/living/simple/animal/passive/woolie = 2)
 
 /obj/structure/largecrate/animal/furnacegrub
 	name = "furnace grub carrier"
 	desc = "Contains one experimental furnace grub. Release into sealed cold enviroments to slowly heat them."
-	starts_with = list(/mob/living/simple_mob/animal/passive/furnacegrub)
+	starts_with = list(/mob/living/simple/animal/passive/furnacegrub)

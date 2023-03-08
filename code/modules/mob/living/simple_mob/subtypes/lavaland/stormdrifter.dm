@@ -32,7 +32,7 @@
 	to speculation that the Scori may be experimenting with air travel."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/stormdrifter
+/mob/living/simple/animal/stormdrifter
 	name = "stormdrifter polyp"
 	desc = "These curious entities are able to fly thanks to the gaseous bags which comprise most of their body. They are generally passive, unless threatened."
 	icon = 'icons/mob/lavaland/lavaland_mobs.dmi'
@@ -81,7 +81,7 @@
 	retaliate = TRUE
 	can_flee = TRUE
 
-/mob/living/simple_mob/animal/stormdrifter/apply_melee_effects(atom/A)
+/mob/living/simple/animal/stormdrifter/apply_melee_effects(atom/A)
 	. = ..()
 	if(isliving(A))
 		var/mob/living/L = A
@@ -98,7 +98,7 @@
 	real or perceived."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/stormdrifter/bull
+/mob/living/simple/animal/stormdrifter/bull
 	name = "stormdrifter bull"
 	desc = "Unlike the more passive Polyp, Stormdrifter Bulls are hardy and formidable. Fiercely territorial, Bulls will aggressively protect Stormdrifter pods."
 	icon_state = "bulldrifter"

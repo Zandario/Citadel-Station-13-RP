@@ -1753,7 +1753,7 @@
 /obj/item/binoculars,
 /obj/item/survivalcapsule,
 /obj/item/survivalcapsule,
-/mob/living/simple_mob/animal/passive/mimepet,
+/mob/living/simple/animal/passive/mimepet,
 /turf/simulated/floor/wood,
 /area/ship/ert/commander)
 "og" = (

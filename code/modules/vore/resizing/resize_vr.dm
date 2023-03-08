@@ -131,7 +131,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 	if(!istype(M))
 		return 0
 	if(isanimal(M))
-		var/mob/living/simple_mob/SA = M
+		var/mob/living/simple/SA = M
 		if(!SA.has_hands)
 			return 0
 	if(M.buckled)

@@ -8496,7 +8496,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/hallway/primary/surfaceone)
 "fVu" = (
-/mob/living/simple_mob/animal/passive/woolie,
+/mob/living/simple/animal/passive/woolie,
 /turf/simulated/floor/outdoors/safeice/indoors,
 /area/maintenance/research/lower)
 "fVw" = (
@@ -10146,7 +10146,7 @@
 /turf/simulated/wall,
 /area/rnd/xenobiology/xenoflora)
 "hax" = (
-/mob/living/simple_mob/animal/passive/honkpet,
+/mob/living/simple/animal/passive/honkpet,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/clownoffice)
@@ -24732,7 +24732,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/rnd/xenoarch_storage)
 "pFz" = (
-/mob/living/simple_mob/animal/passive/mimepet,
+/mob/living/simple/animal/passive/mimepet,
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "west bump";
@@ -36336,7 +36336,7 @@
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/blue/border,
 /obj/machinery/light,
-/mob/living/simple_mob/animal/passive/cat/runtime,
+/mob/living/simple/animal/passive/cat/runtime,
 /obj/machinery/computer/card{
 	dir = 1
 	},

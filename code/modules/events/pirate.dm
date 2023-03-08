@@ -88,42 +88,42 @@
 				vents += temp_vent
 
 	if(piratestring == "human")
-		pirate_spawn = list(/mob/living/simple_mob/humanoid/pirate,
-		/mob/living/simple_mob/humanoid/pirate/armored,
-		/mob/living/simple_mob/humanoid/pirate/machete,
-		/mob/living/simple_mob/humanoid/pirate/machete/armored,
-		/mob/living/simple_mob/humanoid/pirate/shield,
-		/mob/living/simple_mob/humanoid/pirate/shield/armored,
-		/mob/living/simple_mob/humanoid/pirate/shield/machete,
-		/mob/living/simple_mob/humanoid/pirate/shield/machete/armored,
-		/mob/living/simple_mob/humanoid/pirate/ranged,
-		/mob/living/simple_mob/humanoid/pirate/ranged/armored,
-		/mob/living/simple_mob/humanoid/pirate/ranged/handcannon,
-		/mob/living/simple_mob/humanoid/pirate/ranged/shotgun)
+		pirate_spawn = list(/mob/living/simple/humanoid/pirate,
+		/mob/living/simple/humanoid/pirate/armored,
+		/mob/living/simple/humanoid/pirate/machete,
+		/mob/living/simple/humanoid/pirate/machete/armored,
+		/mob/living/simple/humanoid/pirate/shield,
+		/mob/living/simple/humanoid/pirate/shield/armored,
+		/mob/living/simple/humanoid/pirate/shield/machete,
+		/mob/living/simple/humanoid/pirate/shield/machete/armored,
+		/mob/living/simple/humanoid/pirate/ranged,
+		/mob/living/simple/humanoid/pirate/ranged/armored,
+		/mob/living/simple/humanoid/pirate/ranged/handcannon,
+		/mob/living/simple/humanoid/pirate/ranged/shotgun)
 
-		pirate_boss = list(/mob/living/simple_mob/humanoid/pirate/mate,
-		/mob/living/simple_mob/humanoid/pirate/mate/ranged,
-		/mob/living/simple_mob/humanoid/pirate/mate/ranged/shotgun,
-		/mob/living/simple_mob/humanoid/pirate/mate/ranged/rifle)
+		pirate_boss = list(/mob/living/simple/humanoid/pirate/mate,
+		/mob/living/simple/humanoid/pirate/mate/ranged,
+		/mob/living/simple/humanoid/pirate/mate/ranged/shotgun,
+		/mob/living/simple/humanoid/pirate/mate/ranged/rifle)
 
 	if(piratestring == "vox")
-		pirate_spawn = list(/mob/living/simple_mob/humanoid/merc/voxpirate/pirate,
-		/mob/living/simple_mob/humanoid/merc/voxpirate/boarder,
-		/mob/living/simple_mob/humanoid/merc/voxpirate/shotgun,
-		/mob/living/simple_mob/humanoid/merc/voxpirate/technician,
-		/mob/living/simple_mob/humanoid/merc/voxpirate/suppressor)
+		pirate_spawn = list(/mob/living/simple/humanoid/merc/voxpirate/pirate,
+		/mob/living/simple/humanoid/merc/voxpirate/boarder,
+		/mob/living/simple/humanoid/merc/voxpirate/shotgun,
+		/mob/living/simple/humanoid/merc/voxpirate/technician,
+		/mob/living/simple/humanoid/merc/voxpirate/suppressor)
 
-		pirate_boss = /mob/living/simple_mob/humanoid/merc/voxpirate/captain
+		pirate_boss = /mob/living/simple/humanoid/merc/voxpirate/captain
 
 	if(piratestring == "rats")
-		pirate_spawn = list(/mob/living/simple_mob/animal/space/mouse_army/operative,
-		/mob/living/simple_mob/animal/space/mouse_army/pyro,
-		/mob/living/simple_mob/animal/space/mouse_army/ammo,
-		/mob/living/simple_mob/animal/space/mouse_army/stealth)
+		pirate_spawn = list(/mob/living/simple/animal/space/mouse_army/operative,
+		/mob/living/simple/animal/space/mouse_army/pyro,
+		/mob/living/simple/animal/space/mouse_army/ammo,
+		/mob/living/simple/animal/space/mouse_army/stealth)
 
-		pirate_boss = list(/mob/living/simple_mob/mechanical/mecha/mouse_tank/manned,
-		/mob/living/simple_mob/mechanical/mecha/mouse_tank/livewire/manned,
-		/mob/living/simple_mob/mechanical/mecha/mouse_tank/eraticator/manned)
+		pirate_boss = list(/mob/living/simple/mechanical/mecha/mouse_tank/manned,
+		/mob/living/simple/mechanical/mecha/mouse_tank/livewire/manned,
+		/mob/living/simple/mechanical/mecha/mouse_tank/eraticator/manned)
 
 
 	var/num = spawncount

@@ -32,7 +32,7 @@
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/submap/cave/random_geyser)
 "h" = (
-/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/submap/cave/random_geyser)
 "i" = (

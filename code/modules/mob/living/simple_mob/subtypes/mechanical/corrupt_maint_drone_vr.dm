@@ -16,7 +16,7 @@
 	using evasive tactics to avoid harm."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/mechanical/corrupt_maint_drone
+/mob/living/simple/mechanical/corrupt_maint_drone
 	name = "Corrupt Maintenance Drone"
 	desc = "A small, normal-looking drone. It looks like one you'd find on station, except... IT'S COMING AT YOU!"
 	catalogue_data = list(/datum/category_item/catalogue/technology/drone/corrupt_maint_drone)
@@ -51,7 +51,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 
 
-/mob/living/simple_mob/mechanical/corrupt_maint_drone/apply_melee_effects(var/atom/A)
+/mob/living/simple/mechanical/corrupt_maint_drone/apply_melee_effects(var/atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.reagents)
@@ -60,20 +60,19 @@
 				inject_poison(L, target_zone)
 
 // Does actual poison injection, after all checks passed.
-/mob/living/simple_mob/mechanical/corrupt_maint_drone/proc/inject_poison(mob/living/L, target_zone)
+/mob/living/simple/mechanical/corrupt_maint_drone/proc/inject_poison(mob/living/L, target_zone)
 	if(prob(poison_chance))
 		to_chat(L, "<span class='warning'>Something burns in your veins.</span>")
 		L.reagents.add_reagent(poison_type, poison_per_bite)
 
 
-/mob/living/simple_mob/mechanical/corrupt_maint_drone/death()
+/mob/living/simple/mechanical/corrupt_maint_drone/death()
 	..(null,"is smashed into pieces!")
 	qdel(src)
 
-/mob/living/simple_mob/mechanical/corrupt_maint_drone/weak_no_poison
+/mob/living/simple/mechanical/corrupt_maint_drone/weak_no_poison
 	name = "Derelict Maintenance Drone"
 	base_attack_cooldown = 8 // Slower attack rate
 	melee_damage_lower = 4	// Slightly less DPS for this version
 	poison_chance = 0	// No welding fuel poison
 //	pass_flags = Null // Lets see if this stops the bastards from going under barricades
-

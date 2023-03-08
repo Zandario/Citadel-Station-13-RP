@@ -21,7 +21,7 @@
 		return "I cannot feed on other slimes..."
 	if (!Adjacent(M))
 		return "This subject is too far away..."
-	if (istype(M, /mob/living/complex) && M.getCloneLoss() >= M.getMaxHealth() * 1.5 || istype(M, /mob/living/simple_mob) && M.stat == DEAD)
+	if (istype(M, /mob/living/complex) && M.getCloneLoss() >= M.getMaxHealth() * 1.5 || istype(M, /mob/living/simple) && M.stat == DEAD)
 		return "This subject does not have an edible life energy..."
 	for(var/mob/living/complex/slime/met in view())
 		if(met.Victim == M && met != src)
@@ -48,7 +48,7 @@
 				if(Victim.health <= 0)
 					Victim.adjustToxLoss(rand(2,4))
 
-			else if(istype(M, /mob/living/simple_mob))
+			else if(istype(M, /mob/living/simple))
 				Victim.adjustBruteLoss(is_adult ? rand(7, 15) : rand(4, 12))
 
 			else

@@ -22,7 +22,7 @@ AI MODULES
 
 /obj/item/aiModule/proc/install(var/atom/movable/AM, var/mob/living/user)
 	if(!user.IsAdvancedToolUser() && isanimal(user))
-		var/mob/living/simple_mob/S = user
+		var/mob/living/simple/S = user
 		if(!S.IsHumanoidToolUser(src))
 			return 0
 

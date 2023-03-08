@@ -4,7 +4,7 @@
 	ADMINISTRATOR FOR IMMEDIATE MAINTENANCE! %ERROR%"
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/horror/Eddy
+/mob/living/simple/horror/Eddy
 	name = "???"
 	desc = "A dark green, sluglike creature, covered in glowing green ooze, and carrying what look to be eggs on its back."
 
@@ -40,27 +40,27 @@
 	hide_amount = 1
 	exotic_amount = 5
 
-/mob/living/simple_mob/horror/Eddy/Initialize(mapload)
+/mob/living/simple/horror/Eddy/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/horror_aura/weak)
 
-/mob/living/simple_mob/horror/Eddy/death()
+/mob/living/simple/horror/Eddy/death()
 	playsound(src, 'sound/h_sounds/headcrab.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/Eddy/bullet_act()
+/mob/living/simple/horror/Eddy/bullet_act()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/Eddy/attack_hand()
+/mob/living/simple/horror/Eddy/attack_hand()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/Eddy/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
+/mob/living/simple/horror/Eddy/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
 	. = ..()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 
-/mob/living/simple_mob/horror/Eddy/attackby()
+/mob/living/simple/horror/Eddy/attackby()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 

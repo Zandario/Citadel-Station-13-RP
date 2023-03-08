@@ -33,7 +33,7 @@
 	retain live specimens in captivity."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/goliath
+/mob/living/simple/animal/goliath
 	name = "goliath"
 	desc = "A massive beast that uses long tentacles to ensnare its prey, threatening them is not advised under any conditions."
 	icon = 'icons/mob/lavaland/lavaland_mobs.dmi'
@@ -85,7 +85,7 @@
 	var/pre_attack_icon = "goliath2"
 	var/breedable = 0
 	var/pregnant = 0
-	var/child_type = /mob/living/simple_mob/animal/goliath/calf
+	var/child_type = /mob/living/simple/animal/goliath/calf
 
 /datum/ai_holder/simple_mob/melee/goliath
 	hostile = TRUE
@@ -102,7 +102,7 @@
 	emote_hear = list("flashes briefly.", "wails!", "shudders.", "trills.")
 	emote_see = list ("glows faintly.", "rumbles.", "tenses up.")
 
-/mob/living/simple_mob/animal/goliath/should_special_attack()
+/mob/living/simple/animal/goliath/should_special_attack()
 	. = ..()
 	if(special_attack_cooldown <= world.time + special_attack_cooldown*0.25 && !pre_attack)
 		pre_attack++
@@ -110,7 +110,7 @@
 	if(!pre_attack || stat)
 		return
 
-/mob/living/simple_mob/animal/goliath/do_special_attack(atom/target)
+/mob/living/simple/animal/goliath/do_special_attack(atom/target)
 	var/tturf = get_turf(target)
 	if(!isturf(tturf))
 		return
@@ -123,7 +123,7 @@
 		pre_attack = 0
 		update_icon()
 
-/mob/living/simple_mob/animal/goliath/update_icon()
+/mob/living/simple/animal/goliath/update_icon()
 	. = ..()
 	if(!pre_attack && !stat)
 		icon_state = initial(icon_state)
@@ -131,16 +131,16 @@
 		icon_state = pre_attack_icon
 
 
-/mob/living/simple_mob/animal/goliath/Initialize(mapload)
+/mob/living/simple/animal/goliath/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	if(prob(1))
-		new /mob/living/simple_mob/animal/goliath/ancient(loc)
+		new /mob/living/simple/animal/goliath/ancient(loc)
 		return INITIALIZE_HINT_QDEL
 	goliath_sac = new(50)
 	goliath_sac.my_atom = src
 
-/mob/living/simple_mob/animal/goliath/attackby(obj/item/O, mob/user)
+/mob/living/simple/animal/goliath/attackby(obj/item/O, mob/user)
 	. = ..()
 	var/obj/item/reagent_containers/glass/G = O
 	if(stat == CONSCIOUS && istype(G) && G.is_open_container())
@@ -157,20 +157,20 @@
 	else
 		return ..()
 
-/mob/living/simple_mob/animal/goliath/proc/find_mate(var/mob/living/simple_mob/animal/goliath/G)
+/mob/living/simple/animal/goliath/proc/find_mate(var/mob/living/simple/animal/goliath/G)
 	for(var/mob/living/L in view(4,src))
-		if(istype(L, /mob/living/simple_mob/animal/goliath))
+		if(istype(L, /mob/living/simple/animal/goliath))
 			visible_message("<span class='warning'>The [src] seems to be performing some kind of dance using its tendrils.</span>")
 			mate()
 		else
 			return
 
-/mob/living/simple_mob/animal/goliath/proc/mate()
+/mob/living/simple/animal/goliath/proc/mate()
 	visible_message("<span class='warning'>The [src] intertwines its tendrils with the goliath!</span>")
 	pregnant = 1
 	breedable = 0
 
-/mob/living/simple_mob/animal/goliath/process(delta_time)
+/mob/living/simple/animal/goliath/process(delta_time)
 	if(breedable)
 		find_mate()
 	if(pregnant >= 1)
@@ -178,12 +178,12 @@
 	if(pregnant >= 100)
 		calve()
 
-/mob/living/simple_mob/animal/goliath/proc/calve()
+/mob/living/simple/animal/goliath/proc/calve()
 	visible_message("<span class='warning'>The [src] disgorges a small calf from a large fissure in its back!</span>")
 	pregnant = 0
 	new child_type(get_turf(src))
 
-/mob/living/simple_mob/animal/goliath/BiologicalLife(seconds, times_fired)
+/mob/living/simple/animal/goliath/BiologicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -191,7 +191,7 @@
 		if(goliath_sac && prob(5))
 			goliath_sac.add_reagent("gunpowder", rand(5, 10))
 
-/mob/living/simple_mob/animal/goliath/death()
+/mob/living/simple/animal/goliath/death()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
@@ -298,7 +298,7 @@
 	Due to this phenomena, Ancient Goliaths are considerably more resilient than their younger kin."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/goliath/ancient
+/mob/living/simple/animal/goliath/ancient
 	name = "ancient goliath"
 	desc = "Goliaths are biologically immortal, and rare specimens have survived for centuries. This one is clearly ancient, and its tentacles constantly churn the earth around it."
 	maxHealth = 400
@@ -316,7 +316,7 @@
 	or to use them as effectively as mature specimens can. This does not make them less of a threat."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/goliath/calf
+/mob/living/simple/animal/goliath/calf
 	name = "goliath calf"
 	desc = "Goliaths may be naturally immortal, but they are still vulnerable. Calves are a rare sight on the surface, although they are becoming more common as Ashlander farms appear more frequently."
 	icon_state = "goliath_baby"
@@ -342,9 +342,9 @@
 
 	var/amount_grown = 1
 	var/spawn_delay = 300
-	var/list/grow_as = list(/mob/living/simple_mob/animal/goliath)
+	var/list/grow_as = list(/mob/living/simple/animal/goliath)
 
-/mob/living/simple_mob/animal/goliath/calf/do_special_attack(atom/target)
+/mob/living/simple/animal/goliath/calf/do_special_attack(atom/target)
 	var/tturf = get_turf(target)
 	if(!isturf(tturf))
 		return
@@ -353,13 +353,13 @@
 		new /obj/effect/temporary_effect/tentacle_warning/core/weak(tturf, src)
 		pre_attack = 0
 
-/mob/living/simple_mob/animal/goliath/calf/process(delta_time)
+/mob/living/simple/animal/goliath/calf/process(delta_time)
 	if(amount_grown >= 0)
 		amount_grown += rand(0,2)
 	if(amount_grown >= 100)
 		mature()
 
-/mob/living/simple_mob/animal/goliath/calf/proc/mature()
+/mob/living/simple/animal/goliath/calf/proc/mature()
 	var/spawn_type = pick(grow_as)
 	new spawn_type(src.loc, src)
 	qdel(src)

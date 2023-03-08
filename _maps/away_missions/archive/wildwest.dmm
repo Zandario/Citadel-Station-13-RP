@@ -16,7 +16,7 @@
 /turf/simulated/shuttle/plating,
 /area/awaymission/wwvault)
 "af" = (
-/mob/living/simple_mob/faithless,
+/mob/living/simple/faithless,
 /turf/simulated/floor/cult,
 /area/awaymission/wwvault)
 "ah" = (
@@ -35,7 +35,7 @@
 /turf/simulated/floor/cult,
 /area/awaymission/wwvault)
 "am" = (
-/mob/living/simple_mob/faithless,
+/mob/living/simple/faithless,
 /turf/simulated/shuttle/plating,
 /area/awaymission/wwvault)
 "an" = (
@@ -114,7 +114,7 @@
 /turf/simulated/floor/carpet,
 /area/awaymission/wwvault)
 "aE" = (
-/mob/living/simple_mob/faithless,
+/mob/living/simple/faithless,
 /turf/simulated/floor/carpet,
 /area/awaymission/wwvault)
 "aF" = (
@@ -546,7 +546,7 @@
 /turf/simulated/floor/wood,
 /area/awaymission/wwgov)
 "cG" = (
-/mob/living/simple_mob/creature,
+/mob/living/simple/creature,
 /turf/simulated/floor,
 /area/awaymission/wwgov)
 "cH" = (
@@ -564,11 +564,11 @@
 /turf/simulated/floor/wood,
 /area/awaymission/wwgov)
 "cN" = (
-/mob/living/simple_mob/creature,
+/mob/living/simple/creature,
 /turf/simulated/floor/wood,
 /area/awaymission/wwgov)
 "cP" = (
-/mob/living/simple_mob/creature,
+/mob/living/simple/creature,
 /turf/simulated/floor/carpet,
 /area/awaymission/wwgov)
 "cQ" = (
@@ -705,7 +705,7 @@
 /area/awaymission/wwmines)
 "dB" = (
 /obj/structure/toilet,
-/mob/living/simple_mob/creature,
+/mob/living/simple/creature,
 /turf/simulated/floor,
 /area/awaymission/wwgov)
 "dE" = (
@@ -1183,7 +1183,7 @@
 /turf/space,
 /area)
 "fO" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword,
+/mob/living/simple/humanoid/merc/melee/sword,
 /turf/simulated/floor,
 /area/awaymission/wwrefine)
 "fP" = (
@@ -1286,7 +1286,7 @@
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
 "gk" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword,
+/mob/living/simple/humanoid/merc/melee/sword,
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
 "gl" = (
@@ -1298,7 +1298,7 @@
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
 "gn" = (
-/mob/living/simple_mob/creature,
+/mob/living/simple/creature,
 /turf/simulated/floor/grass,
 /area/awaymission/wwgov)
 "gp" = (

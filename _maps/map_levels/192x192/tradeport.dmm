@@ -27,7 +27,7 @@
 /turf/simulated/floor/airless,
 /area/space)
 "ah" = (
-/mob/living/simple_mob/animal/passive/dog/tamaskan/Spice,
+/mob/living/simple/animal/passive/dog/tamaskan/Spice,
 /turf/simulated/floor/wood,
 /area/shuttle/trade_ship/general)
 "ai" = (
@@ -5627,7 +5627,7 @@
 /turf/simulated/floor/plating,
 /area/tradeport/pads)
 "vR" = (
-/mob/living/simple_mob/vore/redpanda,
+/mob/living/simple/vore/redpanda,
 /turf/simulated/floor/outdoors/beach/sand/desert/indoors,
 /area/tradeport/safarizoo)
 "vU" = (
@@ -7789,7 +7789,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/tradeport/dock)
 "DN" = (
-/mob/living/simple_mob/vore/redpanda,
+/mob/living/simple/vore/redpanda,
 /turf/simulated/floor/outdoors/grass/heavy/interior,
 /area/tradeport/safarizoo)
 "DO" = (

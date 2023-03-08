@@ -11,7 +11,7 @@
 	Galactic stage."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/humanoid/russian
+/mob/living/simple/humanoid/russian
 	name = "russian"
 	desc = "For the Motherland!"
 	tt_desc = "E Homo sapiens"
@@ -36,7 +36,7 @@
 
 	corpse = /obj/spawner/corpse/russian
 
-/mob/living/simple_mob/humanoid/russian/ranged
+/mob/living/simple/humanoid/russian/ranged
 	icon_state = "russianranged"
 	icon_living = "russianranged"
 

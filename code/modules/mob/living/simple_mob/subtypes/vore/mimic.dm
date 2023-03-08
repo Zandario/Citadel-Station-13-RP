@@ -28,7 +28,7 @@
 	if(mimic_active)
 		mimic_active = FALSE
 		if(prob(mimic_chance))
-			var/mob/living/simple_mob/vore/aggressive/mimic/new_mimic = new(loc, src)
+			var/mob/living/simple/vore/aggressive/mimic/new_mimic = new(loc, src)
 			visible_message("<font color='red'><b>The [new_mimic] suddenly growls as it turns out to be a mimic!</b></font>") //Controls the vars of the mimic that spawns
 			forceMove(new_mimic)
 			new_mimic.real_crate = src
@@ -68,7 +68,7 @@
 /obj/structure/closet/crate/mimic/cointoss
 	mimic_chance = 50
 
-/mob/living/simple_mob/vore/aggressive/mimic
+/mob/living/simple/vore/aggressive/mimic
 	name = "crate"
 	desc = "A rectangular steel crate."
 	icon_state = "mimicopen"
@@ -108,7 +108,7 @@
 
 	showvoreprefs = 0 //Hides mechanical vore prefs for mimics. You can't see their gaping maws when they're just sitting idle.
 
-/mob/living/simple_mob/vore/aggressive/mimic
+/mob/living/simple/vore/aggressive/mimic
 	vore_active = 1
 	vore_pounce_chance = 10
 	swallowTime = 3 SECONDS
@@ -119,17 +119,17 @@
 	wander = FALSE
 	hostile = TRUE
 
-/mob/living/simple_mob/vore/aggressive/mimic/apply_melee_effects(var/atom/A)
+/mob/living/simple/vore/aggressive/mimic/apply_melee_effects(var/atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(prob(knockdown_chance))
 			L.Weaken(3)
 			L.visible_message(SPAN_DANGER("\The [src] knocks down \the [L]!"))
 
-/mob/living/simple_mob/vore/aggressive/mimic/will_show_tooltip()
+/mob/living/simple/vore/aggressive/mimic/will_show_tooltip()
 	return FALSE
 
-/mob/living/simple_mob/vore/aggressive/mimic/death()
+/mob/living/simple/vore/aggressive/mimic/death()
 	..()
 	if(real_crate)
 		real_crate.forceMove(loc)
@@ -158,7 +158,7 @@
 	if(mimic_active)
 		mimic_active = FALSE
 		if(prob(mimic_chance))
-			var/mob/living/simple_mob/vore/aggressive/mimic/airlock/new_mimic = new(loc, src)
+			var/mob/living/simple/vore/aggressive/mimic/airlock/new_mimic = new(loc, src)
 			visible_message("<font color='red'><b>The [new_mimic] suddenly growls as it turns out to be a mimic!</b></font>") //Controls the vars of the mimic that spawns
 			forceMove(new_mimic)
 			new_mimic.real_crate = src
@@ -200,7 +200,7 @@
 /obj/structure/closet/crate/mimic/airlock/cointoss
 	mimic_chance = 50
 
-/mob/living/simple_mob/vore/aggressive/mimic/airlock
+/mob/living/simple/vore/aggressive/mimic/airlock
 	name = "Maintnence Access"
 	desc = "It opens and closes."
 	icon_state = "amimicopen"
@@ -223,10 +223,10 @@
 				"bio" = 100,
 				"rad" = 100) //Its an airlock.
 
-/mob/living/simple_mob/vore/aggressive/mimic/airlock/will_show_tooltip()
+/mob/living/simple/vore/aggressive/mimic/airlock/will_show_tooltip()
 	return FALSE
 
-/mob/living/simple_mob/vore/aggressive/mimic/airlock/death()
+/mob/living/simple/vore/aggressive/mimic/airlock/death()
 	new/obj/machinery/door/airlock/maintenance/common (src.loc)
 	real_crate = null
 	qdel(src)
@@ -252,7 +252,7 @@
 	if(mimic_active)
 		mimic_active = FALSE
 		if(prob(mimic_chance))
-			var/mob/living/simple_mob/vore/aggressive/mimic/closet/new_mimic = new(loc, src)
+			var/mob/living/simple/vore/aggressive/mimic/closet/new_mimic = new(loc, src)
 			visible_message("<font color='red'><b>The [new_mimic] suddenly growls as it turns out to be a mimic!</b></font>") //Controls the mimic that spawns
 			forceMove(new_mimic)
 			new_mimic.real_crate = src
@@ -292,7 +292,7 @@
 /obj/structure/closet/crate/mimic/closet/cointoss
 	mimic_chance = 50
 
-/mob/living/simple_mob/vore/aggressive/mimic/closet
+/mob/living/simple/vore/aggressive/mimic/closet
 	name = "old closet"
 	desc = "It's a basic storage unit. It seems awfully rickety."
 	icon_state = "cmimicopen"
@@ -316,10 +316,10 @@
 				"bio" = 100,
 				"rad" = 100)
 
-/mob/living/simple_mob/vore/aggressive/mimic/closet/will_show_tooltip()
+/mob/living/simple/vore/aggressive/mimic/closet/will_show_tooltip()
 	return FALSE
 
-/mob/living/simple_mob/vore/aggressive/mimic/closet/death()
+/mob/living/simple/vore/aggressive/mimic/closet/death()
 	..()
 	if(real_crate)
 		real_crate.forceMove(loc)
@@ -337,7 +337,7 @@
 	icon_state = "wmimic"
 	var/mimic_chance = 30
 	var/mimic_active = TRUE
-	var/mimic_type = /mob/living/simple_mob/vore/aggressive/mimic/floor
+	var/mimic_type = /mob/living/simple/vore/aggressive/mimic/floor
 
 /obj/effect/floormimic/Crossed(atom/movable/AM)
 	. = ..()
@@ -363,7 +363,7 @@
 	if(!prob(mimic_chance))
 		qdel(src)
 		return
-	var/mob/living/simple_mob/vore/aggressive/mimic/floor/new_mimic = new mimic_type(drop_location())
+	var/mob/living/simple/vore/aggressive/mimic/floor/new_mimic = new mimic_type(drop_location())
 	visible_message("<span class='boldwarning'>The [new_mimic] suddenly growls beneath you as it turns out to be a mimic!</span>")
 
 /obj/effect/floormimic/attackby(obj/item/I, mob/living/L)
@@ -387,7 +387,7 @@
 /obj/effect/floormimic/cointoss
 	mimic_chance = 50
 
-/mob/living/simple_mob/vore/aggressive/mimic/floor
+/mob/living/simple/vore/aggressive/mimic/floor
 	name = "loose wooden floor"
 	desc = "The boards here look rather loose."
 	icon = 'icons/mob/mimic.dmi'
@@ -408,7 +408,7 @@
 	melee_damage_upper = 5
 	base_attack_cooldown = 5
 
-/mob/living/simple_mob/vore/aggressive/mimic/floor/death()
+/mob/living/simple/vore/aggressive/mimic/floor/death()
 	qdel(src)
 
 /obj/effect/floormimic/tile
@@ -417,7 +417,7 @@
 	density = FALSE
 	anchored = TRUE
 	icon_state = "tmimic"
-	mimic_type = /mob/living/simple_mob/vore/aggressive/mimic/floor/tile
+	mimic_type = /mob/living/simple/vore/aggressive/mimic/floor/tile
 
 /obj/effect/floormimic/tile/safe
 	mimic_chance = 0
@@ -431,7 +431,7 @@
 /obj/effect/floormimic/tile/cointoss
 	mimic_chance = 50
 
-/mob/living/simple_mob/vore/aggressive/mimic/floor/tile
+/mob/living/simple/vore/aggressive/mimic/floor/tile
 	name = "loose floor tiles"
 	desc = "The tiles here look rather loose."
 	icon = 'icons/mob/mimic.dmi'
@@ -458,7 +458,7 @@
 	density = FALSE
 	anchored = TRUE
 	icon_state = "pmimic"
-	mimic_type = /mob/living/simple_mob/vore/aggressive/mimic/floor/plating
+	mimic_type = /mob/living/simple/vore/aggressive/mimic/floor/plating
 
 /obj/effect/floormimic/plating/safe
 	mimic_chance = 0
@@ -472,7 +472,7 @@
 /obj/effect/floormimic/plating/cointoss
 	mimic_chance = 50
 
-/mob/living/simple_mob/vore/aggressive/mimic/floor/plating
+/mob/living/simple/vore/aggressive/mimic/floor/plating
 	name = "loose plating"
 	desc = "The plating here look rather loose."
 	icon = 'icons/mob/mimic.dmi'

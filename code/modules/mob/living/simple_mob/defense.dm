@@ -1,5 +1,5 @@
 // When someone clicks us with an empty hand
-/mob/living/simple_mob/attack_hand(mob/living/L)
+/mob/living/simple/attack_hand(mob/living/L)
 	..()
 
 	switch(L.a_intent)
@@ -42,7 +42,7 @@
 
 
 // When somoene clicks us with an item in hand
-/mob/living/simple_mob/attackby(var/obj/item/O, var/mob/user)
+/mob/living/simple/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O, /obj/item/stack/medical))
 		if(stat != DEAD)
 			// This could be done better.
@@ -66,7 +66,7 @@
 
 
 // Handles the actual harming by a melee weapon.
-/mob/living/simple_mob/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/simple/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
 	effective_force = O.force
 
 	//Animals can't be stunned(?)
@@ -83,7 +83,7 @@
 
 
 // Exploding.
-/mob/living/simple_mob/legacy_ex_act(severity)
+/mob/living/simple/legacy_ex_act(severity)
 	if(!blinded)
 		flash_eyes()
 	var/armor = run_armor_check(def_zone = null, attack_flag = "bomb")
@@ -102,25 +102,25 @@
 		gib()
 
 // Cold stuff.
-/mob/living/simple_mob/get_cold_protection()
+/mob/living/simple/get_cold_protection()
 	return cold_resist
 
 
 // Fire stuff. Not really exciting at the moment.
-/mob/living/simple_mob/handle_fire()
+/mob/living/simple/handle_fire()
 	return
-/mob/living/simple_mob/update_fire()
+/mob/living/simple/update_fire()
 	return
-/mob/living/simple_mob/IgniteMob()
+/mob/living/simple/IgniteMob()
 	return
-/mob/living/simple_mob/ExtinguishMob()
+/mob/living/simple/ExtinguishMob()
 	return
 
-/mob/living/simple_mob/get_heat_protection()
+/mob/living/simple/get_heat_protection()
 	return heat_resist
 
 // Electricity
-/mob/living/simple_mob/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null)
+/mob/living/simple/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null)
 	shock_damage *= siemens_coeff
 	if(shock_damage < 1)
 		return 0
@@ -132,11 +132,11 @@
 	s.set_up(5, 1, loc)
 	s.start()
 
-/mob/living/simple_mob/get_shock_protection()
+/mob/living/simple/get_shock_protection()
 	return shock_resist
 
 // Shot with taser/stunvolver
-/mob/living/simple_mob/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null)
+/mob/living/simple/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null)
 	if(taser_kill)
 		var/stunDam = 0
 		var/agonyDam = 0
@@ -152,7 +152,7 @@
 
 
 // Electromagnetism
-/mob/living/simple_mob/emp_act(severity)
+/mob/living/simple/emp_act(severity)
 	..() // To emp_act() its contents.
 	if(!isSynthetic())
 		return
@@ -171,22 +171,22 @@
 		//	adjustFireLoss(rand(1, 6))
 
 // Water
-/mob/living/simple_mob/get_water_protection()
+/mob/living/simple/get_water_protection()
 	return water_resist
 
 // "Poison" (aka what reagents would do if we wanted to deal with those).
-/mob/living/simple_mob/get_poison_protection()
+/mob/living/simple/get_poison_protection()
 	return poison_resist
 
 // Armor
-/mob/living/simple_mob/run_mob_armor(def_zone, type)
+/mob/living/simple/run_mob_armor(def_zone, type)
 	var/armorval = armor[type]
 	if(!armorval)
 		return 0
 	else
 		return armorval
 
-/mob/living/simple_mob/run_mob_soak(def_zone, attack_flag)
+/mob/living/simple/run_mob_soak(def_zone, attack_flag)
 	var/armorval = armor_soak[attack_flag]
 	if(!armorval)
 		return 0
@@ -194,7 +194,7 @@
 		return armorval
 
 // Lightning
-/mob/living/simple_mob/lightning_act()
+/mob/living/simple/lightning_act()
 	..()
 	// If a non-player simple_mob was struck, inflict huge damage.
 	// If the damage is fatal, it is turned to ash.
@@ -207,7 +207,7 @@
 			return // No point deafening something that wont exist.
 
 // Lava
-/mob/living/simple_mob/lava_act()
+/mob/living/simple/lava_act()
 	..()
 	// Similar to lightning, the mob is turned to ash if the lava tick was fatal and it isn't a player.
 	// Unlike lightning, we don't add an additional damage spike (since lava already hurts a lot).
@@ -218,7 +218,7 @@
 			ash()
 
 //Acid
-/mob/living/simple_mob/acid_act()
+/mob/living/simple/acid_act()
 	..()
 	// If a non-player simple_mob was submerged, inflict huge damage.
 	// If the damage is fatal, it is turned to gibs.
@@ -232,7 +232,7 @@
 			return // No point deafening something that wont exist.
 
 // Injections.
-/mob/living/simple_mob/can_inject(mob/user, error_msg, target_zone, ignore_thickness)
+/mob/living/simple/can_inject(mob/user, error_msg, target_zone, ignore_thickness)
 	if(ignore_thickness)
 		return TRUE
 	return !thick_armor

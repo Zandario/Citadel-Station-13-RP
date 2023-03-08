@@ -64,7 +64,7 @@
 	},
 /area/submap/CaveS)
 "o" = (
-/mob/living/simple_mob/animal/giant_spider,
+/mob/living/simple/animal/giant_spider,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
@@ -82,7 +82,7 @@
 	},
 /area/submap/CaveS)
 "r" = (
-/mob/living/simple_mob/animal/giant_spider/lurker,
+/mob/living/simple/animal/giant_spider/lurker,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
@@ -94,14 +94,14 @@
 	},
 /area/submap/CaveS)
 "t" = (
-/mob/living/simple_mob/animal/giant_spider/webslinger,
+/mob/living/simple/animal/giant_spider/webslinger,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
 /area/submap/CaveS)
 "u" = (
 /obj/effect/debris/cleanable/cobweb2,
-/mob/living/simple_mob/animal/giant_spider/lurker,
+/mob/living/simple/animal/giant_spider/lurker,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
@@ -116,7 +116,7 @@
 	},
 /area/submap/CaveS)
 "x" = (
-/mob/living/simple_mob/animal/giant_spider/lurker,
+/mob/living/simple/animal/giant_spider/lurker,
 /turf/simulated/floor/outdoors/dirt,
 /area/submap/CaveS)
 "y" = (
@@ -189,7 +189,7 @@
 /area/submap/CaveS)
 "J" = (
 /obj/effect/spider/stickyweb,
-/mob/living/simple_mob/animal/giant_spider/lurker,
+/mob/living/simple/animal/giant_spider/lurker,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},

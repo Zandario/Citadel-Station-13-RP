@@ -12,8 +12,8 @@
 	var/can_pass_lying = TRUE
 	var/list/mobs_can_pass = list(
 		/mob/living/bot,
-		/mob/living/simple_mob/slime/xenobio,
-		/mob/living/simple_mob/animal/passive/mouse,
+		/mob/living/simple/slime/xenobio,
+		/mob/living/simple/animal/passive/mouse,
 		/mob/living/silicon/robot/drone
 		)
 

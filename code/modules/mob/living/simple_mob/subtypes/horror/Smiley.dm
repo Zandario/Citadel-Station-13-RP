@@ -4,7 +4,7 @@
 	ADMINISTRATOR FOR IMMEDIATE MAINTENANCE! %ERROR%"
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/horror/Smiley
+/mob/living/simple/horror/Smiley
 	name = "???"
 	desc = "A giant hand, with a large, smiling head on top."
 
@@ -41,27 +41,27 @@
 	bone_amount = 10
 	hide_amount = 5
 
-/mob/living/simple_mob/horror/Smiley/Initialize(mapload)
+/mob/living/simple/horror/Smiley/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/horror_aura/weak)
 
-/mob/living/simple_mob/horror/Smiley/death()
+/mob/living/simple/horror/Smiley/death()
 	playsound(src, 'sound/h_sounds/lynx.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/Helix/bullet_act()
+/mob/living/simple/horror/Helix/bullet_act()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/Helix/attack_hand()
+/mob/living/simple/horror/Helix/attack_hand()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/Helix/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
+/mob/living/simple/horror/Helix/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
 	. = ..()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 
-/mob/living/simple_mob/horror/Helix/attackby()
+/mob/living/simple/horror/Helix/attackby()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 

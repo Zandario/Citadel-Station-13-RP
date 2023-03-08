@@ -1156,7 +1156,7 @@
 /obj/structure/dogbed{
 	name = "pet bed"
 	},
-/mob/living/simple_mob/animal/passive/dog/corgi/Ian,
+/mob/living/simple/animal/passive/dog/corgi/Ian,
 /turf/simulated/floor/carpet/blue,
 /area/crew_quarters/heads/hop)
 "abX" = (
@@ -10311,7 +10311,7 @@
 /obj/structure/dogbed{
 	name = "pet bed"
 	},
-/mob/living/simple_mob/animal/passive/fox/renault,
+/mob/living/simple/animal/passive/fox/renault,
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
 "auC" = (
@@ -11847,7 +11847,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/station/exploration)
 "axA" = (
-/mob/living/simple_mob/animal/giant_spider/nurse,
+/mob/living/simple/animal/giant_spider/nurse,
 /turf/simulated/floor/outdoors/safeice/lythios43c/indoors,
 /area/rift/surfacebase/outside/outside3)
 "axB" = (
@@ -11984,7 +11984,7 @@
 /turf/simulated/floor/plating,
 /area/shuttle/excursion/general)
 "axR" = (
-/mob/living/simple_mob/animal/giant_spider/frost,
+/mob/living/simple/animal/giant_spider/frost,
 /turf/simulated/floor/outdoors/safeice/lythios43c/indoors,
 /area/rift/surfacebase/outside/outside3)
 "axS" = (
@@ -13215,7 +13215,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/exploration/explorer_prep)
 "aAs" = (
-/mob/living/simple_mob/animal/giant_spider/carrier,
+/mob/living/simple/animal/giant_spider/carrier,
 /turf/simulated/floor/outdoors/safeice/lythios43c/indoors,
 /area/rift/surfacebase/outside/outside3)
 "aAt" = (
@@ -14734,7 +14734,7 @@
 /area/security/nuke_storage)
 "aDK" = (
 /obj/structure/dogbed,
-/mob/living/simple_mob/animal/passive/dog/corgi/Lisa{
+/mob/living/simple/animal/passive/dog/corgi/Lisa{
 	desc = "It's Lisa, the exploration teams trusty Corgi."
 	},
 /obj/effect/floor_decal/borderfloor{
@@ -15948,7 +15948,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
-/mob/living/simple_mob/animal/goat{
+/mob/living/simple/animal/goat{
 	desc = "Ah, it's Pete. They're not known for their pleasant disposition and now they're gonna eat all your plants.";
 	name = "Pete"
 	},
@@ -16059,7 +16059,7 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
 "aGD" = (
-/mob/living/simple_mob/animal/passive/cow{
+/mob/living/simple/animal/passive/cow{
 	name = "Betsy"
 	},
 /turf/simulated/floor/grass,
@@ -24495,7 +24495,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/bar)
 "aYb" = (
-/mob/living/simple_mob/animal/giant_spider/nurse/queen,
+/mob/living/simple/animal/giant_spider/nurse/queen,
 /turf/simulated/floor/outdoors/safeice/lythios43c/indoors,
 /area/rift/surfacebase/outside/outside3)
 "aYc" = (

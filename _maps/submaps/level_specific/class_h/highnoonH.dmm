@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ai" = (
-/mob/living/simple_mob/animal/giant_spider,
+/mob/living/simple/animal/giant_spider,
 /turf/simulated/floor/wood,
 /area/class_h/POIs/WW_Town)
 "aN" = (
@@ -11,7 +11,7 @@
 /turf/simulated/floor/wood,
 /area/class_h/POIs/WW_Town)
 "bT" = (
-/mob/living/simple_mob/animal/giant_spider/tunneler,
+/mob/living/simple/animal/giant_spider/tunneler,
 /turf/simulated/floor/outdoors/beach/sand/lowdesert,
 /area/class_h/POIs/WW_Town)
 "cX" = (
@@ -24,7 +24,7 @@
 /turf/simulated/floor/wood/classh,
 /area/class_h/POIs/WW_Town)
 "dv" = (
-/mob/living/simple_mob/animal/giant_spider/carrier,
+/mob/living/simple/animal/giant_spider/carrier,
 /turf/simulated/floor/wood/classh,
 /area/class_h/POIs/WW_Town)
 "dy" = (
@@ -45,7 +45,7 @@
 /turf/simulated/floor/wood,
 /area/class_h/POIs/WW_Town)
 "fX" = (
-/mob/living/simple_mob/animal/giant_spider,
+/mob/living/simple/animal/giant_spider,
 /turf/simulated/floor/outdoors/beach/sand/lowdesert,
 /area/class_h/POIs/WW_Town)
 "hI" = (
@@ -56,7 +56,7 @@
 /turf/simulated/floor/wood,
 /area/class_h/POIs/WW_Town)
 "hP" = (
-/mob/living/simple_mob/animal/giant_spider/ion,
+/mob/living/simple/animal/giant_spider/ion,
 /turf/simulated/floor/wood,
 /area/class_h/POIs/WW_Town)
 "iO" = (
@@ -112,7 +112,7 @@
 /turf/simulated/floor/wood,
 /area/class_h/POIs/WW_Town)
 "tN" = (
-/mob/living/simple_mob/animal/giant_spider/pepper,
+/mob/living/simple/animal/giant_spider/pepper,
 /turf/simulated/floor/wood/classh,
 /area/class_h/POIs/WW_Town)
 "tV" = (
@@ -207,7 +207,7 @@
 /turf/simulated/floor/outdoors/beach/sand/lowdesert,
 /area/class_h/POIs/WW_Town)
 "IV" = (
-/mob/living/simple_mob/animal/giant_spider,
+/mob/living/simple/animal/giant_spider,
 /turf/simulated/floor/wood/classh,
 /area/class_h/POIs/WW_Town)
 "KK" = (
@@ -247,7 +247,7 @@
 /turf/simulated/floor/wood,
 /area/class_h/POIs/WW_Town)
 "QP" = (
-/mob/living/simple_mob/animal/giant_spider/webslinger,
+/mob/living/simple/animal/giant_spider/webslinger,
 /turf/simulated/floor/outdoors/beach/sand/dirtlight,
 /area/class_h/POIs/WW_Town)
 "Rw" = (
@@ -259,7 +259,7 @@
 /turf/simulated/floor/wood/classh,
 /area/class_h/POIs/WW_Town)
 "RY" = (
-/mob/living/simple_mob/animal/giant_spider/nurse,
+/mob/living/simple/animal/giant_spider/nurse,
 /turf/simulated/floor/wood,
 /area/class_h/POIs/WW_Town)
 "Sy" = (

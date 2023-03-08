@@ -324,7 +324,7 @@ var/list/tape_roll_applications = list()
 		add_fingerprint(M)
 		if(!allowed(M))	//only select few learn art of not crumpling the tape
 			to_chat(M, SPAN_WARNING( "You are not supposed to go past \the [src]..."))
-			if(M.a_intent == INTENT_HELP && !(istype(M, /mob/living/simple_mob)))
+			if(M.a_intent == INTENT_HELP && !(istype(M, /mob/living/simple)))
 				return FALSE
 			crumple()
 

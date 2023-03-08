@@ -485,7 +485,7 @@ GLOBAL_LIST_INIT(orion_events, generate_orion_events())
 	newgame()
 	obj_flags |= EMAGGED
 
-/mob/living/simple_mob/hostile/humanoid/orion
+/mob/living/simple/hostile/humanoid/orion
 	name = "spaceport security"
 	desc = "Premier corporate security forces for all spaceports found along the Orion Trail."
 	faction = "orion"

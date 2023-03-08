@@ -25,7 +25,7 @@
 	rather dangerous, especially if a mass migration of carp arrives."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/space/carp
+/mob/living/simple/animal/space/carp
 	name = "space carp"
 	desc = "A ferocious, fang-bearing creature that resembles a fish."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/carp)
@@ -60,7 +60,7 @@
 
 	var/knockdown_chance = 15
 
-/mob/living/simple_mob/animal/space/carp/apply_melee_effects(var/atom/A)
+/mob/living/simple/animal/space/carp/apply_melee_effects(var/atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(prob(knockdown_chance))
@@ -70,11 +70,11 @@
 // Subtypes.
 
 // Won't wander away.
-/mob/living/simple_mob/animal/space/carp/event
+/mob/living/simple/animal/space/carp/event
 	ai_holder_type = /datum/ai_holder/simple_mob/event
 
 
-/mob/living/simple_mob/animal/space/carp/large
+/mob/living/simple/animal/space/carp/large
 	name = "elder carp"
 	desc = "An older, more matured carp. Few survive to this age due to their aggressiveness."
 	icon = 'icons/mob/64x32.dmi'
@@ -97,7 +97,7 @@
 	mod_max = 140
 
 
-/mob/living/simple_mob/animal/space/carp/large/huge
+/mob/living/simple/animal/space/carp/large/huge
 	name = "great white carp"
 	desc = "A very rare breed of carp- and a very aggressive one."
 	icon = 'icons/mob/64x64.dmi'
@@ -121,7 +121,7 @@
 	bone_amount = 7
 
 
-/mob/living/simple_mob/animal/space/carp/holographic
+/mob/living/simple/animal/space/carp/holographic
 	name = "holographic carp"
 	desc = "An obviously holographic, but still ferocious looking carp."
 	// Might be worth using a filter similar to AI holograms in the future.
@@ -136,25 +136,25 @@
 
 	mob_class = MOB_CLASS_PHOTONIC // Xeno-taser won't work on this as its not a 'real' carp.
 
-/mob/living/simple_mob/animal/space/carp/holographic/Initialize(mapload)
+/mob/living/simple/animal/space/carp/holographic/Initialize(mapload)
 	set_light(2) // Hologram lighting.
 	return ..()
 
 // Presumably the holodeck emag code requires this.
 // Pass TRUE to make safe. Pass FALSE to make unsafe.
-/mob/living/simple_mob/animal/space/carp/holographic/proc/set_safety(safe)
+/mob/living/simple/animal/space/carp/holographic/proc/set_safety(safe)
 	if(!isnull(get_AI_stance())) // Will return null if lacking an AI holder or a player is controlling it w/o autopilot var.
 		ai_holder.hostile = !safe // Inverted so safe = TRUE means hostility = FALSE.
 		ai_holder.forget_everything() // Reset state so it'll stop chewing on its target.
 
 // Called on death.
-/mob/living/simple_mob/animal/space/carp/holographic/proc/derez()
+/mob/living/simple/animal/space/carp/holographic/proc/derez()
 	visible_message(SPAN_NOTICE("\The [src] fades away!"))
 	qdel(src)
 
-/mob/living/simple_mob/animal/space/carp/holographic/gib()
+/mob/living/simple/animal/space/carp/holographic/gib()
 	derez() // Holograms can't gib.
 
-/mob/living/simple_mob/animal/space/carp/holographic/death()
+/mob/living/simple/animal/space/carp/holographic/death()
 	..()
 	derez()

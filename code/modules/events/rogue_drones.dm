@@ -16,7 +16,7 @@
 	else
 		num = rand(2,6)
 	for(var/i=0, i<num, i++)
-		var/mob/living/simple_mob/mechanical/combat_drone/event/D = new(get_turf(pick(possible_spawns)))
+		var/mob/living/simple/mechanical/combat_drone/event/D = new(get_turf(pick(possible_spawns)))
 		drones_list.Add(D)
 
 /datum/event/rogue_drone/announce()
@@ -40,7 +40,7 @@
 
 /datum/event/rogue_drone/end()
 	var/num_recovered = 0
-	for(var/mob/living/simple_mob/mechanical/combat_drone/D in drones_list)
+	for(var/mob/living/simple/mechanical/combat_drone/D in drones_list)
 		var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread()
 		sparks.set_up(3, 0, D.loc)
 		sparks.start()

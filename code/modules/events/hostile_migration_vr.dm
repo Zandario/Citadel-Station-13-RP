@@ -95,8 +95,8 @@
 			if(!temp_vent.welded && temp_vent.network && ((temp_vent.loc.z in GLOB.using_map.station_levels) || isTalon == 1))
 				vents += temp_vent
 
-	var/rats = /mob/living/simple_mob/animal/passive/mouse/rat
-	var/bossrats = /mob/living/simple_mob/vore/aggressive/rat
+	var/rats = /mob/living/simple/animal/passive/mouse/rat
+	var/bossrats = /mob/living/simple/vore/aggressive/rat
 	spawn(0)
 		var/num = spawncount
 		while(vents.len > 0 && num > 0)
@@ -144,15 +144,15 @@
 //These spawn lists are here for an eventual expansion. Having code issues with this at the moment.
 /*
 	var/roaches = list(
-						/mob/living/simple_mob/animal/roach,
-						/mob/living/simple_mob/animal/roach/panzer,
-						/mob/living/simple_mob/animal/roach/jaeger,
-						/mob/living/simple_mob/animal/roach/seuche,
-						/mob/living/simple_mob/animal/roach/atomar,
-						/mob/living/simple_mob/animal/roach/strahlend
+						/mob/living/simple/animal/roach,
+						/mob/living/simple/animal/roach/panzer,
+						/mob/living/simple/animal/roach/jaeger,
+						/mob/living/simple/animal/roach/seuche,
+						/mob/living/simple/animal/roach/atomar,
+						/mob/living/simple/animal/roach/strahlend
 						)
 	var/bossroaches = list(
-							/mob/living/simple_mob/animal/roach/zeitraum,
-							/mob/living/simple_mob/animal/roach/fuhrer
+							/mob/living/simple/animal/roach/zeitraum,
+							/mob/living/simple/animal/roach/fuhrer
 							)
 */

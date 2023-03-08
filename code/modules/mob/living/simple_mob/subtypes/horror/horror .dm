@@ -25,7 +25,7 @@
 		/datum/category_item/catalogue/fauna/horror/Willy
 		)
 
-/mob/living/simple_mob/horror
+/mob/living/simple/horror
 	tt_desc = "Homo Horrificus"
 	faction = "horror"
 	icon = 'icons/mob/horror_show/GHPS.dmi'
@@ -48,7 +48,7 @@
 	wander = TRUE
 	base_wander_delay = 9
 
-/mob/living/simple_mob/horror
+/mob/living/simple/horror
 	min_oxy = 0
 	max_oxy = 0
 	min_tox = 0

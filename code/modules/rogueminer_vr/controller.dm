@@ -69,37 +69,37 @@ var/datum/controller/rogue/rm_controller
 	///// Monster Lists /////
 	var/mobs = list(
 		"tier1" = list(
-						/mob/living/simple_mob/animal/space/bats/roguemines = 3,
-						/mob/living/simple_mob/animal/space/carp/roguemines = 2,
-						/mob/living/simple_mob/animal/space/goose/roguemines = 1),
+						/mob/living/simple/animal/space/bats/roguemines = 3,
+						/mob/living/simple/animal/space/carp/roguemines = 2,
+						/mob/living/simple/animal/space/goose/roguemines = 1),
 
 		"tier2" = list(
-						/mob/living/simple_mob/animal/space/bats/roguemines = 1,
-						/mob/living/simple_mob/animal/space/carp/roguemines = 2,
-						/mob/living/simple_mob/animal/space/goose/roguemines = 2,
-						/mob/living/simple_mob/animal/wolf/space/roguemines = 1),
+						/mob/living/simple/animal/space/bats/roguemines = 1,
+						/mob/living/simple/animal/space/carp/roguemines = 2,
+						/mob/living/simple/animal/space/goose/roguemines = 2,
+						/mob/living/simple/animal/wolf/space/roguemines = 1),
 
 		"tier3" = list(
-						/mob/living/simple_mob/animal/space/carp/roguemines = 1,
-						/mob/living/simple_mob/animal/space/goose/roguemines = 1,
-						/mob/living/simple_mob/animal/wolf/space/roguemines = 3,
-						/mob/living/simple_mob/animal/space/carp/large/roguemines = 2,
-						/mob/living/simple_mob/animal/space/bear/roguemines = 1),
+						/mob/living/simple/animal/space/carp/roguemines = 1,
+						/mob/living/simple/animal/space/goose/roguemines = 1,
+						/mob/living/simple/animal/wolf/space/roguemines = 3,
+						/mob/living/simple/animal/space/carp/large/roguemines = 2,
+						/mob/living/simple/animal/space/bear/roguemines = 1),
 
 		"tier4" = list(
-						/mob/living/simple_mob/animal/wolf/space/roguemines = 1,
-						/mob/living/simple_mob/animal/space/carp/large/roguemines = 4,
-						/mob/living/simple_mob/animal/space/bear/roguemines = 2),
+						/mob/living/simple/animal/wolf/space/roguemines = 1,
+						/mob/living/simple/animal/space/carp/large/roguemines = 4,
+						/mob/living/simple/animal/space/bear/roguemines = 2),
 
 		"tier5" = list(
-						/mob/living/simple_mob/animal/space/carp/large/roguemines = 2,
-						/mob/living/simple_mob/animal/space/bear/roguemines = 4,
-						/mob/living/simple_mob/vore/aggressive/corrupthound/space/roguemines = 1),
+						/mob/living/simple/animal/space/carp/large/roguemines = 2,
+						/mob/living/simple/animal/space/bear/roguemines = 4,
+						/mob/living/simple/vore/aggressive/corrupthound/space/roguemines = 1),
 
 		"tier6" = list(
-						/mob/living/simple_mob/animal/space/bear/roguemines = 6,
-						/mob/living/simple_mob/vore/aggressive/corrupthound/space/roguemines = 4,
-						/mob/living/simple_mob/animal/space/carp/large/huge/roguemines = 1)
+						/mob/living/simple/animal/space/bear/roguemines = 6,
+						/mob/living/simple/vore/aggressive/corrupthound/space/roguemines = 4,
+						/mob/living/simple/animal/space/carp/large/huge/roguemines = 1)
 	)
 
 /datum/controller/rogue/New()

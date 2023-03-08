@@ -5,7 +5,7 @@
 	It seems to have adapted to the harsh desert environment on Virgo 4, and makes it's home inside the caves."
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/vore/aggressive/deathclaw
+/mob/living/simple/vore/aggressive/deathclaw
 	name = "deathclaw"
 	desc = "Big! Big! The size of three men! Claws as long as my forearm! Ripped apart! Ripped apart!"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/deathclaw)
@@ -34,7 +34,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/deathclaw
 
 // Activate Noms!
-/mob/living/simple_mob/vore/aggressive/deathclaw
+/mob/living/simple/vore/aggressive/deathclaw
 	vore_active = 1
 	vore_capacity = 2
 	vore_max_size = RESIZE_HUGE

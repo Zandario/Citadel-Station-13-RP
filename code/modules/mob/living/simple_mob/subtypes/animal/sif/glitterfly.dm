@@ -21,7 +21,7 @@
 	climate-controlled habitat."
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/animal/sif/glitterfly
+/mob/living/simple/animal/sif/glitterfly
 	name = "glitterfly"
 	desc = "A large, shiny butterfly!"
 	description_info = "Glitterflies tend to have a wingspan equivalent to the length of an average human head."
@@ -56,7 +56,7 @@
 	say_list_type = /datum/say_list/glitterfly
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive/glitterfly
 
-/mob/living/simple_mob/animal/sif/glitterfly/Initialize(mapload)
+/mob/living/simple/animal/sif/glitterfly/Initialize(mapload)
 	. = ..()
 	var/colorlist = list(rgb(rand(100,255), rand(100,255), rand(100,255)) =  10, rgb(rand(5,100), rand(5,100), rand(5,100)) = 2, "#222222" = 1)
 	color = pickweight(colorlist)
@@ -66,7 +66,7 @@
 
 	adjust_scale(round(rand(90, 105) / 100))
 
-/mob/living/simple_mob/animal/sif/glitterfly/rare
+/mob/living/simple/animal/sif/glitterfly/rare
 	name = "sparkling glitterfly"
 	desc = "A large, incredibly shiny butterfly!"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/glitterfly, /datum/category_item/catalogue/fauna/glitterfly_rare)
@@ -79,7 +79,7 @@
 
 	plane = ABOVE_LIGHTING_PLANE
 
-/mob/living/simple_mob/animal/sif/glitterfly/rare/Initialize(mapload)
+/mob/living/simple/animal/sif/glitterfly/rare/Initialize(mapload)
 	. = ..()
 
 /datum/say_list/glitterfly
@@ -97,7 +97,7 @@
 /datum/ai_holder/simple_mob/melee/evasive/glitterfly/handle_special_strategical()
 	if(prob(1))
 		var/friendly_animal_corpse = FALSE
-		for(var/mob/living/simple_mob/animal/A in view(vision_range,holder))
+		for(var/mob/living/simple/animal/A in view(vision_range,holder))
 			if(holder.IIsAlly(A) && A.stat == DEAD)
 				friendly_animal_corpse = TRUE
 				break

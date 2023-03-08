@@ -22,7 +22,7 @@
 	those it bites, which can later hatch spiderlings, causing considerably physical and psychological trauma."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/giant_spider/nurse
+/mob/living/simple/animal/giant_spider/nurse
 	desc = "Furry and beige, it makes you shudder to look at it. This one has brilliant green eyes."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/giant_spider/nurse_spider)
 
@@ -55,7 +55,7 @@
 	mauling = TRUE		// The nurse puts mobs into webs by attacking, so it needs to attack in crit
 	handle_corpse = TRUE	// Lets the nurse wrap dead things
 
-/mob/living/simple_mob/animal/giant_spider/nurse/inject_poison(mob/living/L, target_zone)
+/mob/living/simple/animal/giant_spider/nurse/inject_poison(mob/living/L, target_zone)
 	..() // Inject the stoxin here.
 	if(ishuman(L) && prob(egg_inject_chance))
 		var/mob/living/complex/human/H = L
@@ -70,7 +70,7 @@
 				to_chat(H, SPAN_CRITICAL("\The [src] injects something into your [O.name]!") ) // Oh god its laying eggs in me!
 
 // Webs target in a web if able to.
-/mob/living/simple_mob/animal/giant_spider/nurse/attack_target(atom/A)
+/mob/living/simple/animal/giant_spider/nurse/attack_target(atom/A)
 	if(isturf(A))
 		if(fed)
 			if(!laying_eggs)
@@ -91,7 +91,7 @@
 
 	return spin_cocoon(AM)
 
-/mob/living/simple_mob/animal/giant_spider/nurse/proc/spin_cocoon(atom/movable/AM)
+/mob/living/simple/animal/giant_spider/nurse/proc/spin_cocoon(atom/movable/AM)
 	if(!istype(AM))
 		return FALSE // We can't cocoon walls sadly.
 	visible_message(SPAN_NOTICE("\The [src] begins to secrete a sticky substance around \the [AM].") )
@@ -122,7 +122,7 @@
 	var/obj/effect/spider/cocoon/C = new(AM.loc)
 	var/large_cocoon = FALSE
 	for(var/mob/living/L in C.loc)
-		if(istype(L, /mob/living/simple_mob/animal/giant_spider)) // Cannibalism is bad.
+		if(istype(L, /mob/living/simple/animal/giant_spider)) // Cannibalism is bad.
 			continue
 		fed++
 		visible_message(SPAN_WARNING("\The [src] sticks a proboscis into \the [L], and sucks a viscous substance out."))
@@ -144,7 +144,7 @@
 
 	return TRUE
 
-/mob/living/simple_mob/animal/giant_spider/nurse/handle_special()
+/mob/living/simple/animal/giant_spider/nurse/handle_special()
 	set waitfor = FALSE
 	if(get_AI_stance() == STANCE_IDLE && !is_AI_busy() && isturf(loc))
 		if(fed)
@@ -152,7 +152,7 @@
 		else
 			web_tile(loc)
 
-/mob/living/simple_mob/animal/giant_spider/nurse/proc/web_tile(turf/T)
+/mob/living/simple/animal/giant_spider/nurse/proc/web_tile(turf/T)
 	if(!istype(T))
 		return FALSE
 
@@ -178,7 +178,7 @@
 	return TRUE
 
 
-/mob/living/simple_mob/animal/giant_spider/nurse/proc/lay_eggs(turf/T)
+/mob/living/simple/animal/giant_spider/nurse/proc/lay_eggs(turf/T)
 	if(!istype(T))
 		return FALSE
 
@@ -221,7 +221,7 @@
 	light_power = -1
 
 // This is still stupid, but whatever.
-/mob/living/simple_mob/animal/giant_spider/nurse/hat
+/mob/living/simple/animal/giant_spider/nurse/hat
 	desc = "Furry and beige, it makes you shudder to look at it. This one has brilliant green eyes and a tiny nurse hat."
 	icon_state = "nursemed"
 	icon_living = "nursemed"
@@ -264,7 +264,7 @@
 				return TRUE
 
 //The Queen Spider
-/mob/living/simple_mob/animal/giant_spider/nurse/queen
+/mob/living/simple/animal/giant_spider/nurse/queen
 	name = "giant spider queen"
 	desc = "Absolutely gigantic, this creature is horror itself."
 	tt_desc = "X Brachypelma phorus tyrannus"

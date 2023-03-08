@@ -4,7 +4,7 @@
 	ADMINISTRATOR FOR IMMEDIATE MAINTENANCE! %ERROR%"
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/horror/BigTim
+/mob/living/simple/horror/BigTim
 	name = "Shitty Tim"
 	desc = "A tall figure wearing ripped clothes. Its eyes are placed on the bulb of skin that's folded over the front of its face. He has a gold clock hanging on a gold chain around his neck, and he has a gold and diamond bracelet on his wrist."
 
@@ -40,27 +40,27 @@
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/human
 	bone_amount = 3
 
-/mob/living/simple_mob/horror/BigTim/Initialize(mapload)
+/mob/living/simple/horror/BigTim/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/horror_aura)
 
-/mob/living/simple_mob/horror/BigTim/death()
+/mob/living/simple/horror/BigTim/death()
 	playsound(src, 'sound/h_sounds/shitty_tim.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/BigTim/bullet_act()
+/mob/living/simple/horror/BigTim/bullet_act()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/BigTim/attack_hand()
+/mob/living/simple/horror/BigTim/attack_hand()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/BigTim/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
+/mob/living/simple/horror/BigTim/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
 	. = ..()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 
-/mob/living/simple_mob/horror/BigTim/attackby()
+/mob/living/simple/horror/BigTim/attackby()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 

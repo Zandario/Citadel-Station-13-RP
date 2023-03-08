@@ -9,7 +9,7 @@
 	constriction."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/passive/snake
+/mob/living/simple/animal/passive/snake
 	name = "snake"
 	desc = "A big thick snake."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/snake)
@@ -44,7 +44,7 @@
 	emote_hear = list("hisses")
 
 //NOODLE IS HERE! SQUEEEEEEEE~
-/mob/living/simple_mob/animal/passive/snake/noodle
+/mob/living/simple/animal/passive/snake/noodle
 	name = "Noodle"
 	desc = "This snake is particularly chubby and demands nothing but the finest of treats."
 
@@ -54,7 +54,7 @@
 	var/obj/movement_target
 	randomized = FALSE
 
-/mob/living/simple_mob/animal/passive/snake/noodle/BiologicalLife(seconds, times_fired)
+/mob/living/simple/animal/passive/snake/noodle/BiologicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -99,7 +99,7 @@
 						visible_emote("stares at the [movement_target] that [movement_target.loc] has with an unknowable reptilian gaze.")
 
 /* old eating code, couldn't figure out how to make the "swallows food" thing so I'm keeping this here incase someone wants legacy"
-/mob/living/simple_mob/animal/passive/snake/noodle/Life(seconds, times_fired) //stolen from Ian in corgi.dm
+/mob/living/simple/animal/passive/snake/noodle/Life(seconds, times_fired) //stolen from Ian in corgi.dm
 	if(!..())
 		return 0
 
@@ -132,16 +132,16 @@
 					visible_emote("stares at the [movement_target] that [movement_target.loc] has with an unknowable reptilian gaze.")
 */
 
-/mob/living/simple_mob/animal/passive/snake/noodle/apply_melee_effects(var/atom/A)
+/mob/living/simple/animal/passive/snake/noodle/apply_melee_effects(var/atom/A)
 	if(ismouse(A))
-		var/mob/living/simple_mob/animal/passive/mouse/mouse = A
+		var/mob/living/simple/animal/passive/mouse/mouse = A
 		if(mouse.getMaxHealth() < 20) // In case a badmin makes giant mice or something.
 			mouse.splat()
 			visible_emote(pick("swallows \the [mouse] whole!"))
 	else
 		..()
 
-/mob/living/simple_mob/animal/passive/snake/noodle/attackby(var/obj/item/O, var/mob/user)
+/mob/living/simple/animal/passive/snake/noodle/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O, /obj/item/reagent_containers/food/snacks/snakesnack))
 		visible_message("<span class='notice'>[user] feeds \the [O] to [src].</span>")
 		qdel(O)

@@ -18,7 +18,7 @@
 	Their diet consists primarily of fungi and insects found just below the permafrost."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/sif/shantak
+/mob/living/simple/animal/sif/shantak
 	name = "shantak"
 	desc = "A piglike creature with a bright iridiscent mane that sparkles as though lit by an inner light. \
 	Don't be fooled by its beauty though."
@@ -64,7 +64,7 @@
 
 // The pack leader.
 // Will command other shantaks to follow it.
-/mob/living/simple_mob/animal/sif/shantak/leader
+/mob/living/simple/animal/sif/shantak/leader
 	name = "big shantak"
 	desc = "A piglike creature with a bright iridiscent mane that sparkles as though lit by an inner light. \
 	This one seems bigger than the others, and has a commanding presence."
@@ -73,13 +73,13 @@
 	maxHealth = 125
 	player_msg = "You have the ability to <b>command other shantaks to follow you</b>."
 
-/mob/living/simple_mob/animal/sif/shantak/leader/verb/rally_pack()
+/mob/living/simple/animal/sif/shantak/leader/verb/rally_pack()
 	set name = "Rally Pack"
 	set desc = "Commands your fellow packmembers to follow you, the leader."
 	set category = "Abilities"
 
-	for(var/mob/living/simple_mob/animal/sif/shantak/S in hearers(7, src))
-		if(istype(S, /mob/living/simple_mob/animal/sif/shantak/leader)) // Leaders won't follow other leaders. Also avoids trying to follow ourselves.
+	for(var/mob/living/simple/animal/sif/shantak/S in hearers(7, src))
+		if(istype(S, /mob/living/simple/animal/sif/shantak/leader)) // Leaders won't follow other leaders. Also avoids trying to follow ourselves.
 			continue
 		if(!S.ai_holder)
 			continue
@@ -90,16 +90,16 @@
 
 // Variant that automatically commands nearby allies to follow it when created.
 // Suggested to spawn last so it can rally up all the shantaks easily before hunting for tasty explorers.
-/mob/living/simple_mob/animal/sif/shantak/leader/autofollow/Initialize(mapload)
+/mob/living/simple/animal/sif/shantak/leader/autofollow/Initialize(mapload)
 	rally_pack()
 	return ..()
 
 
 // These ones only retaliate. Used for a PoI.
-/mob/living/simple_mob/animal/sif/shantak/retaliate
+/mob/living/simple/animal/sif/shantak/retaliate
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
 
-/mob/living/simple_mob/animal/sif/shantak/scruffy
+/mob/living/simple/animal/sif/shantak/scruffy
 	name = "Scruffy"
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
 	makes_dirt = 0

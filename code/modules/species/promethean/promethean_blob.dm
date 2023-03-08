@@ -1,5 +1,5 @@
 // Prommies are slimes, lets make them a subtype of slimes.
-/mob/living/simple_mob/slime/promethean
+/mob/living/simple/slime/promethean
 	name = "Promethean Blob"
 	desc = "A promethean expressing their true form."
 	//ai_holder_type = null
@@ -30,26 +30,26 @@
 	var/is_wide = FALSE
 	var/rad_glow = 0
 
-/mob/living/simple_mob/slime/promethean/Initialize(mapload, null)
-	add_verb(src, /mob/living/simple_mob/slime/promethean/proc/prommie_blobform)
+/mob/living/simple/slime/promethean/Initialize(mapload, null)
+	add_verb(src, /mob/living/simple/slime/promethean/proc/prommie_blobform)
 	add_verb(src, /mob/living/proc/set_size)
 	add_verb(src, /mob/living/proc/hide)
-	add_verb(src, /mob/living/simple_mob/proc/animal_nom)
+	add_verb(src, /mob/living/simple/proc/animal_nom)
 	add_verb(src, /mob/living/proc/shred_limb)
-	add_verb(src, /mob/living/simple_mob/slime/promethean/proc/toggle_expand)
-	add_verb(src, /mob/living/simple_mob/slime/promethean/proc/prommie_select_colour)
-	add_verb(src, /mob/living/simple_mob/slime/promethean/proc/toggle_shine)
+	add_verb(src, /mob/living/simple/slime/promethean/proc/toggle_expand)
+	add_verb(src, /mob/living/simple/slime/promethean/proc/prommie_select_colour)
+	add_verb(src, /mob/living/simple/slime/promethean/proc/toggle_shine)
 	update_mood()
 	if(rad_glow)
 		rad_glow = clamp(rad_glow,0,250)
 		set_light(max(1,min(5,rad_glow/15)), max(1,min(10,rad_glow/25)), color)
 	return ..()
 
-/mob/living/simple_mob/slime/promethean/update_icon()
+/mob/living/simple/slime/promethean/update_icon()
 	icon_living = "[icon_state_override ? "[icon_state_override] slime" : "slime"] [is_wide ? "adult" : "baby"][""]"
 	..()
 
-/mob/living/simple_mob/slime/promethean/Destroy()
+/mob/living/simple/slime/promethean/Destroy()
 	humanform = null
 	vore_organs = null
 	vore_selected = null
@@ -62,12 +62,12 @@
 		qdel(stored_blob)
 	return ..()
 
-/mob/living/simple_mob/slime/promethean/statpanel_data(client/C)
+/mob/living/simple/slime/promethean/statpanel_data(client/C)
 	. = ..()
 	if(humanform)
 		. += humanform.species.statpanel_status(C, humanform)
 
-/mob/living/simple_mob/slime/promethean/handle_special() // Should disable default slime healing, we'll use nutrition based heals instead.
+/mob/living/simple/slime/promethean/handle_special() // Should disable default slime healing, we'll use nutrition based heals instead.
 	if(rad_glow)
 		rad_glow = clamp(rad_glow,0,250)
 		set_light(max(1,min(5,rad_glow/15)), max(1,min(10,rad_glow/25)), color)
@@ -81,7 +81,7 @@
 	return
 
 //Constructor allows passing the human to sync damages
-/mob/living/simple_mob/slime/promethean/New(var/newloc, var/mob/living/complex/human/H)
+/mob/living/simple/slime/promethean/New(var/newloc, var/mob/living/complex/human/H)
 	..()
 	if(H)
 		humanform = H
@@ -90,7 +90,7 @@
 	else
 		qdel(src)
 
-/mob/living/simple_mob/slime/promethean/updatehealth()
+/mob/living/simple/slime/promethean/updatehealth()
 	if(!humanform)
 		return ..()
 
@@ -137,57 +137,57 @@
 			healths.icon_state = "health7"
 
 // All the damage and such to the blob translates to the human
-/mob/living/simple_mob/slime/promethean/apply_effect(var/effect = 0, var/effecttype = STUN, var/blocked = 0, var/check_protection = 1)
+/mob/living/simple/slime/promethean/apply_effect(var/effect = 0, var/effecttype = STUN, var/blocked = 0, var/check_protection = 1)
 	if(humanform)
 		return humanform.apply_effect(effect, effecttype, blocked, check_protection)
 	else
 		return ..()
 
-/mob/living/simple_mob/slime/promethean/adjustBruteLoss(var/amount,var/include_robo)
+/mob/living/simple/slime/promethean/adjustBruteLoss(var/amount,var/include_robo)
 	amount *= 0.75
 	if(humanform)
 		return humanform.adjustBruteLoss(amount)
 	else
 		return ..()
 
-/mob/living/simple_mob/slime/promethean/adjustFireLoss(var/amount,var/include_robo)
+/mob/living/simple/slime/promethean/adjustFireLoss(var/amount,var/include_robo)
 	amount *= 2
 	if(humanform)
 		return humanform.adjustFireLoss(amount)
 	else
 		return ..()
 
-/mob/living/simple_mob/slime/promethean/adjustToxLoss(amount)
+/mob/living/simple/slime/promethean/adjustToxLoss(amount)
 	if(humanform)
 		return humanform.adjustToxLoss(amount)
 	else
 		return ..()
 
-/mob/living/simple_mob/slime/promethean/adjustOxyLoss(amount)
+/mob/living/simple/slime/promethean/adjustOxyLoss(amount)
 	if(humanform)
 		return humanform.adjustOxyLoss(amount)
 	else
 		return ..()
 
-/mob/living/simple_mob/slime/promethean/adjustHalLoss(amount)
+/mob/living/simple/slime/promethean/adjustHalLoss(amount)
 	if(humanform)
 		return humanform.adjustHalLoss(amount)
 	else
 		return ..()
 
-/mob/living/simple_mob/slime/promethean/adjustCloneLoss(amount)
+/mob/living/simple/slime/promethean/adjustCloneLoss(amount)
 	if(humanform)
 		return humanform.adjustCloneLoss(amount)
 	else
 		return ..()
 
-/mob/living/simple_mob/slime/promethean/legacy_ex_act(severity)
+/mob/living/simple/slime/promethean/legacy_ex_act(severity)
 	if(humanform)
 		LEGACY_EX_ACT(humanform, severity, null)
 	else
 		return ..()
 
-/mob/living/simple_mob/slime/promethean/rad_act(severity)
+/mob/living/simple/slime/promethean/rad_act(severity)
 	. = ..()
 	rad_glow += severity
 	rad_glow = clamp(rad_glow,0,250)
@@ -195,13 +195,13 @@
 		set_light(max(1,min(5,rad_glow/15)), max(1,min(10,rad_glow/25)), color)
 		update_icon()
 
-/mob/living/simple_mob/slime/promethean/bullet_act(obj/item/projectile/P)
+/mob/living/simple/slime/promethean/bullet_act(obj/item/projectile/P)
 	if(humanform)
 		return humanform.bullet_act(P)
 	else
 		return ..()
 
-/mob/living/simple_mob/slime/promethean/death(gibbed, deathmessage = "rapidly loses cohesion, splattering across the ground...")
+/mob/living/simple/slime/promethean/death(gibbed, deathmessage = "rapidly loses cohesion, splattering across the ground...")
 	if(humanform)
 		humanform.death(gibbed, deathmessage)
 	else
@@ -213,11 +213,11 @@
 	if(!QDELETED(src)) // Human's handle death should have taken us, but maybe we were adminspawned or something without a human counterpart
 		qdel(src)
 
-/mob/living/simple_mob/slime/promethean/Login()
+/mob/living/simple/slime/promethean/Login()
 	..()
 	plane_holder.set_vis(VIS_AUGMENTED, TRUE)
 
-/mob/living/simple_mob/slime/promethean/proc/prommie_blobform()
+/mob/living/simple/slime/promethean/proc/prommie_blobform()
 	set name = "Toggle Blobform"
 	set desc = "Switch between amorphous and humanoid forms."
 	set category = "Abilities"
@@ -235,7 +235,7 @@
 		else
 			humanform.prommie_outofblob(src)
 
-/mob/living/simple_mob/slime/promethean/proc/toggle_expand()
+/mob/living/simple/slime/promethean/proc/toggle_expand()
 	set name = "Toggle Width"
 	set desc = "Switch between smole and lorge."
 	set category = "Abilities"
@@ -255,7 +255,7 @@
 		src.visible_message("<b>[src.name]</b> flows outwards, their goop expanding!")
 		update_icon()
 
-/mob/living/simple_mob/slime/promethean/proc/toggle_shine()
+/mob/living/simple/slime/promethean/proc/toggle_shine()
 	set name = "Toggle Shine"
 	set desc = "Shine on you crazy diamond."
 	set category = "Abilities"
@@ -275,7 +275,7 @@
 		src.visible_message("<b>[src.name]</b> glistens and sparkles, shining brilliantly.")
 		update_icon()
 
-/mob/living/simple_mob/slime/promethean/proc/prommie_select_colour()
+/mob/living/simple/slime/promethean/proc/prommie_select_colour()
 
 	set name = "Select Body Colour"
 	set category = "Abilities"
@@ -291,18 +291,18 @@
 	color = new_skin
 	update_icon()
 
-/mob/living/simple_mob/slime/promethean/get_description_interaction(mob/user)
+/mob/living/simple/slime/promethean/get_description_interaction(mob/user)
 	return
 
 
-/mob/living/simple_mob/slime/promethean/get_description_info()
+/mob/living/simple/slime/promethean/get_description_info()
 	return
 
-/mob/living/simple_mob/slime/promethean/init_vore()
+/mob/living/simple/slime/promethean/init_vore()
 	return
 
 /mob/living/complex/human
-	var/mob/living/simple_mob/slime/promethean/stored_blob = null
+	var/mob/living/simple/slime/promethean/stored_blob = null
 
 
 // Helpers - Unsafe, WILL perform change.
@@ -326,7 +326,7 @@
 
 	//Record where they should go
 	var/atom/creation_spot = drop_location()
-	var/mob/living/simple_mob/slime/promethean/blob = null
+	var/mob/living/simple/slime/promethean/blob = null
 	//Create our new blob
 	if(!stored_blob)
 		blob = new(creation_spot,src)
@@ -393,7 +393,7 @@
 
 	blob.update_icon()
 	remove_verb(blob, /mob/living/proc/ventcrawl) // Absolutely not.
-	//remove_verb(blob, /mob/living/simple_mob/proc/set_name) // We already have a name.
+	//remove_verb(blob, /mob/living/simple/proc/set_name) // We already have a name.
 	temporary_form = blob
 	//Mail them to nullspace
 	moveToNullspace()
@@ -414,7 +414,7 @@
 	//Return our blob in case someone wants it
 	return blob
 
-/mob/living/complex/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/promethean/blob, force)
+/mob/living/complex/human/proc/prommie_outofblob(var/mob/living/simple/slime/promethean/blob, force)
 	if(!istype(blob))
 		return
 
@@ -487,12 +487,12 @@
 	//Return ourselves in case someone wants it
 	return src
 
-/mob/living/simple_mob/slime/promethean/examine(mob/user)
+/mob/living/simple/slime/promethean/examine(mob/user)
 	. = ..()
 	if(hat)
 		. += "They are wearing \a [hat]."
 
-/mob/living/simple_mob/slime/promethean/say_understands(var/mob/other, var/datum/language/speaking = null)
+/mob/living/simple/slime/promethean/say_understands(var/mob/other, var/datum/language/speaking = null)
 	if(speaking?.name == LANGUAGE_SOL_COMMON)	//Promethean and sign are both nonverbal, so won't work with the same trick as below, so let's check for them /Citadel change, since LANGUAGE_PROMETHEAN does not exist here, changing it to the race's defaul, Sol
 		return TRUE
 	else if(speaking?.name == LANGUAGE_SIGN)

@@ -25,7 +25,7 @@
 /turf/template_noop,
 /area/submap/Blackshuttledown)
 "ah" = (
-/mob/living/simple_mob/humanoid/merc/ranged/smg/poi,
+/mob/living/simple/humanoid/merc/ranged/smg/poi,
 /turf/template_noop,
 /area/submap/Blackshuttledown)
 "ai" = (
@@ -216,9 +216,9 @@
 	},
 /area/submap/Blackshuttledown)
 "aI" = (
-/mob/living/simple_mob/mechanical/viscerator,
-/mob/living/simple_mob/mechanical/viscerator,
-/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
 /turf/simulated/floor/tiled/steel_grid,
 /area/submap/Blackshuttledown)
 "aJ" = (
@@ -252,7 +252,7 @@
 /turf/simulated/floor/tiled/white,
 /area/submap/Blackshuttledown)
 "aO" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword/poi,
+/mob/living/simple/humanoid/merc/melee/sword/poi,
 /turf/simulated/floor/tiled/white,
 /area/submap/Blackshuttledown)
 "aP" = (
@@ -412,7 +412,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/submap/Blackshuttledown)
 "bn" = (
-/mob/living/simple_mob/humanoid/merc/ranged/smg/poi,
+/mob/living/simple/humanoid/merc/ranged/smg/poi,
 /turf/simulated/floor/tiled/steel,
 /area/submap/Blackshuttledown)
 "bo" = (
@@ -550,7 +550,7 @@
 /turf/simulated/floor/tiled/yellow,
 /area/submap/Blackshuttledown)
 "bI" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword/poi,
+/mob/living/simple/humanoid/merc/melee/sword/poi,
 /turf/simulated/floor/tiled/yellow,
 /area/submap/Blackshuttledown)
 "bJ" = (
@@ -561,7 +561,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/submap/Blackshuttledown)
 "bK" = (
-/mob/living/simple_mob/humanoid/merc/ranged/laser/poi,
+/mob/living/simple/humanoid/merc/ranged/laser/poi,
 /turf/template_noop,
 /area/submap/Blackshuttledown)
 "bL" = (
@@ -666,7 +666,7 @@
 /turf/simulated/floor/tiled/hydro,
 /area/submap/Blackshuttledown)
 "cb" = (
-/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
 /turf/simulated/floor/tiled/steel_grid,
 /area/submap/Blackshuttledown)
 "cc" = (
@@ -698,8 +698,8 @@
 /turf/simulated/floor/tiled/hydro,
 /area/submap/Blackshuttledown)
 "cg" = (
-/mob/living/simple_mob/mechanical/viscerator,
-/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
+/mob/living/simple/mechanical/viscerator,
 /turf/simulated/floor/tiled/steel_grid,
 /area/submap/Blackshuttledown)
 "ch" = (
@@ -775,14 +775,14 @@
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
-/mob/living/simple_mob/humanoid/merc/melee/sword/poi,
+/mob/living/simple/humanoid/merc/melee/sword/poi,
 /turf/simulated/floor/tiled/steel,
 /area/submap/Blackshuttledown)
 "cs" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
-/mob/living/simple_mob/humanoid/merc/ranged/laser/poi,
+/mob/living/simple/humanoid/merc/ranged/laser/poi,
 /turf/simulated/floor/tiled/steel,
 /area/submap/Blackshuttledown)
 

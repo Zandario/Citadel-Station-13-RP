@@ -32,7 +32,7 @@
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "be" = (
-/mob/living/simple_mob/animal/passive/fox,
+/mob/living/simple/animal/passive/fox,
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "bg" = (
@@ -50,7 +50,7 @@
 /turf/simulated/floor/wood/classm,
 /area/class_m/inside)
 "bn" = (
-/mob/living/simple_mob/animal/passive/cat,
+/mob/living/simple/animal/passive/cat,
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "br" = (
@@ -59,20 +59,20 @@
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "bs" = (
-/mob/living/simple_mob/animal/passive/bird/azure_tit/tweeter,
+/mob/living/simple/animal/passive/bird/azure_tit/tweeter,
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "bI" = (
-/mob/living/simple_mob/animal/passive/bird/parrot/cockatiel/grey,
+/mob/living/simple/animal/passive/bird/parrot/cockatiel/grey,
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "bW" = (
-/mob/living/simple_mob/animal/passive/mouse/brown,
+/mob/living/simple/animal/passive/mouse/brown,
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "cg" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/mob/living/simple_mob/animal/passive/snake,
+/mob/living/simple/animal/passive/snake,
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "ch" = (
@@ -87,7 +87,7 @@
 /turf/simulated/floor/tiled/classm,
 /area/class_m/inside)
 "cl" = (
-/mob/living/simple_mob/animal/passive/bird/european_robin,
+/mob/living/simple/animal/passive/bird/european_robin,
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "cn" = (
@@ -116,7 +116,7 @@
 /area/class_m/outside)
 "cS" = (
 /obj/structure/flora/tree/jungle,
-/mob/living/simple_mob/animal/passive/mouse/brown,
+/mob/living/simple/animal/passive/mouse/brown,
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "cV" = (
@@ -139,7 +139,7 @@
 /turf/simulated/floor/wood/classm/outdoors,
 /area/class_m/outside)
 "dL" = (
-/mob/living/simple_mob/animal/passive/fish/solarfish,
+/mob/living/simple/animal/passive/fish/solarfish,
 /turf/simulated/floor/water/deep/classm,
 /area/class_m/outside)
 "dT" = (
@@ -214,11 +214,11 @@
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "fz" = (
-/mob/living/simple_mob/animal/passive/snake,
+/mob/living/simple/animal/passive/snake,
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "fG" = (
-/mob/living/simple_mob/animal/passive/fish/salmon,
+/mob/living/simple/animal/passive/fish/salmon,
 /turf/simulated/floor/water/deep/classm,
 /area/class_m/outside)
 "fI" = (
@@ -230,11 +230,11 @@
 /turf/simulated/floor/outdoors/dirt/classm,
 /area/class_m/outside)
 "fP" = (
-/mob/living/simple_mob/animal/passive/fish/perch,
+/mob/living/simple/animal/passive/fish/perch,
 /turf/simulated/floor/water/deep/classm,
 /area/class_m/outside)
 "ga" = (
-/mob/living/simple_mob/animal/passive/fish/rockfish,
+/mob/living/simple/animal/passive/fish/rockfish,
 /turf/simulated/floor/water/deep/classm,
 /area/class_m/outside)
 "gd" = (
@@ -307,7 +307,7 @@
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "jw" = (
-/mob/living/simple_mob/animal/passive/bird/ringneck_dove,
+/mob/living/simple/animal/passive/bird/ringneck_dove,
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "jK" = (
@@ -422,7 +422,7 @@
 /area/class_m/inside)
 "ll" = (
 /obj/structure/flora/ausbushes/brflowers,
-/mob/living/simple_mob/animal/passive/bird/european_robin,
+/mob/living/simple/animal/passive/bird/european_robin,
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "lB" = (
@@ -760,7 +760,7 @@
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "sX" = (
-/mob/living/simple_mob/animal/passive/fish/bass,
+/mob/living/simple/animal/passive/fish/bass,
 /turf/simulated/floor/water/deep/classm,
 /area/class_m/outside)
 "te" = (
@@ -836,7 +836,7 @@
 /area/class_m/outside)
 "uq" = (
 /obj/structure/flora/tree/jungle_small,
-/mob/living/simple_mob/animal/passive/mouse/brown,
+/mob/living/simple/animal/passive/mouse/brown,
 /turf/simulated/floor/outdoors/grass/classm,
 /area/class_m/outside)
 "uS" = (

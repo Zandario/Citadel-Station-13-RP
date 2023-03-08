@@ -2,17 +2,17 @@
 	speak = list("One day the'll fix that damn engine..","Next time, We're hiding on the tropical beach planet.","Wish I had better equipment...","I knew I should have been a line chef...","Fuckin' helmet keeps fogging up.","Hate this blocky ass ship.")
 	say_got_target = list("Looks like trouble!","Contact!","We've got company!","Perimeter Breached!!")
 
-/mob/living/simple_mob/humanoid/merc/melee/sword/space
+/mob/living/simple/humanoid/merc/melee/sword/space
 	name = "mercenary commando"
 
 	maxbodytemp = 700
 
-/mob/living/simple_mob/humanoid/merc/ranged/space
+/mob/living/simple/humanoid/merc/ranged/space
 	name = "mercenary commando"
 
 	maxbodytemp = 700
 
-/mob/living/simple_mob/humanoid/merc/ranged/virgo
+/mob/living/simple/humanoid/merc/ranged/virgo
 	name = "suspicious individual"
 	min_oxy = 0
 	max_oxy = 0

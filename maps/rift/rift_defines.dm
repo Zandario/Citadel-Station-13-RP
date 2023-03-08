@@ -366,10 +366,10 @@
 	atmos_comp = TRUE
 	prob_spawn = 100
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/icegoat = 2,
-		/mob/living/simple_mob/animal/passive/woolie = 3,
-		/mob/living/simple_mob/animal/passive/furnacegrub,
-		/mob/living/simple_mob/animal/horing = 2
+		/mob/living/simple/animal/icegoat = 2,
+		/mob/living/simple/animal/passive/woolie = 3,
+		/mob/living/simple/animal/passive/furnacegrub,
+		/mob/living/simple/animal/horing = 2
 	)
 
 

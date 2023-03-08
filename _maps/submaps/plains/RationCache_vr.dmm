@@ -22,7 +22,7 @@
 /turf/simulated/floor/outdoors/dirt,
 /area/submap/RationCache)
 "x" = (
-/mob/living/simple_mob/vore/aggressive/dino,
+/mob/living/simple/vore/aggressive/dino,
 /turf/simulated/floor/outdoors/dirt,
 /area/submap/RationCache)
 

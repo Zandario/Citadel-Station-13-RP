@@ -1,7 +1,7 @@
 // Handles hunger, starvation, growth, and eatting humans.
 
 // Might be best to make this a /mob/living proc and override.
-/mob/living/simple_mob/slime/xenobio/proc/adjust_nutrition(input, var/heal = 1)
+/mob/living/simple/slime/xenobio/proc/adjust_nutrition(input, var/heal = 1)
 	nutrition = clamp( nutrition + input, 0,  get_max_nutrition())
 
 	if(input > 0)
@@ -20,20 +20,20 @@
 			adjustCloneLoss(-input * 0.2)
 
 
-/mob/living/simple_mob/slime/xenobio/proc/get_max_nutrition() // Can't go above it
+/mob/living/simple/slime/xenobio/proc/get_max_nutrition() // Can't go above it
 	return is_adult ? 1200 : 1000
 
-/mob/living/simple_mob/slime/xenobio/proc/get_grow_nutrition() // Above it we grow, below it we can eat
+/mob/living/simple/slime/xenobio/proc/get_grow_nutrition() // Above it we grow, below it we can eat
 	return is_adult ? 1000 : 800
 
-/mob/living/simple_mob/slime/xenobio/proc/get_hunger_nutrition() // Below it we will always eat
+/mob/living/simple/slime/xenobio/proc/get_hunger_nutrition() // Below it we will always eat
 	return is_adult ? 600 : 500
 
-/mob/living/simple_mob/slime/xenobio/proc/get_starve_nutrition() // Below it we will eat before everything else
+/mob/living/simple/slime/xenobio/proc/get_starve_nutrition() // Below it we will eat before everything else
 	return is_adult ? 300 : 200
 
 // Called by Life().
-/mob/living/simple_mob/slime/xenobio/proc/handle_nutrition()
+/mob/living/simple/slime/xenobio/proc/handle_nutrition()
 	if(harmless)
 		return
 
@@ -48,11 +48,11 @@
 		amount_grown = clamp( amount_grown + 1, 0,  10)
 
 // Called if above proc happens while below a nutrition threshold.
-/mob/living/simple_mob/slime/xenobio/proc/handle_starvation()
+/mob/living/simple/slime/xenobio/proc/handle_starvation()
 	return
 
 
-/mob/living/simple_mob/slime/xenobio/proc/handle_consumption()
+/mob/living/simple/slime/xenobio/proc/handle_consumption()
 	if(victim && !stat)
 		if(istype(victim) && consume(victim, 20))
 			if(prob(25))
@@ -77,7 +77,7 @@
 	else
 		stop_consumption()
 
-/mob/living/simple_mob/slime/xenobio/proc/start_consuming(mob/living/L)
+/mob/living/simple/slime/xenobio/proc/start_consuming(mob/living/L)
 	if(!can_consume(L))
 		return
 	if(!Adjacent(L))
@@ -96,7 +96,7 @@
 			SPAN_CRITICAL("\The [src] latches onto you!")
 			)
 
-/mob/living/simple_mob/slime/xenobio/proc/stop_consumption(mob/living/L)
+/mob/living/simple/slime/xenobio/proc/stop_consumption(mob/living/L)
 	if(!victim)
 		return
 	victim.unbuckle_mob(src, BUCKLE_OP_FORCE)
@@ -108,7 +108,7 @@
 	update_icon()
 	set_AI_busy(FALSE) // Resume normal operations.
 
-/mob/living/simple_mob/slime/xenobio/proc/can_consume(mob/living/L)
+/mob/living/simple/slime/xenobio/proc/can_consume(mob/living/L)
 	if(!L || !istype(L))
 		to_chat(src, "This subject is incomparable...")
 		return FALSE
@@ -137,7 +137,7 @@
 			return FALSE
 	if(L.has_buckled_mobs())
 		for(var/A in L.buckled_mobs)
-			if(istype(A, /mob/living/simple_mob/slime/xenobio))
+			if(istype(A, /mob/living/simple/slime/xenobio))
 				if(A != src)
 					to_chat(src, "\The [A] is already feeding on this subject...")
 					return FALSE
@@ -150,7 +150,7 @@
 // 25 nutrition for the slime.
 // 2 points of damage healed on the slime (as a result of the nutrition).
 // 50% of giving +1 charge to the slime (same as above).
-/mob/living/simple_mob/slime/xenobio/proc/consume(mob/living/victim, amount)
+/mob/living/simple/slime/xenobio/proc/consume(mob/living/victim, amount)
 	if(can_consume(victim))
 		var/armor_modifier = abs((victim.run_mob_armor(null, "bio") / 100) - 1)
 		var/damage_done = amount * armor_modifier

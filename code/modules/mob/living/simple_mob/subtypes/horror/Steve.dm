@@ -4,7 +4,7 @@
 	ADMINISTRATOR FOR IMMEDIATE MAINTENANCE! %ERROR%"
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/horror/Steve
+/mob/living/simple/horror/Steve
 	name = "???"
 	desc = "A formless blob of flesh with one, giant, everblinking eye. It has a large machine gun and a watercooler stuck stright into its skin."
 
@@ -46,27 +46,27 @@
 	exotic_amount = 2
 	hide_amount = 1
 
-/mob/living/simple_mob/horror/Steve/Initialize(mapload)
+/mob/living/simple/horror/Steve/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/horror_aura)
 
-/mob/living/simple_mob/horror/Steve/death()
+/mob/living/simple/horror/Steve/death()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/Steve/bullet_act()
+/mob/living/simple/horror/Steve/bullet_act()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/Steve/attack_hand()
+/mob/living/simple/horror/Steve/attack_hand()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/Steve/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
+/mob/living/simple/horror/Steve/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
 	. = ..()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 
-/mob/living/simple_mob/horror/Steve/attackby()
+/mob/living/simple/horror/Steve/attackby()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 

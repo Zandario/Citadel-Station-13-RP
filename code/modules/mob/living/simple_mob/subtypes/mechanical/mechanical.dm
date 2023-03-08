@@ -2,7 +2,7 @@
 // They're also immune to poisons as they're entirely metal, however this also makes most of them vulnerable to shocks.
 // They can also be hurt by EMP.
 
-/mob/living/simple_mob/mechanical
+/mob/living/simple/mechanical
 	mob_class = MOB_CLASS_SYNTHETIC
 	min_oxy = 0
 	max_oxy = 0
@@ -18,12 +18,12 @@
 	poison_resist = 1.0
 	shock_resist = -0.5
 
-/mob/living/simple_mob/mechanical/isSynthetic()
+/mob/living/simple/mechanical/isSynthetic()
 	return TRUE
 
-/mob/living/simple_mob/mechanical/speech_bubble_appearance()
+/mob/living/simple/mechanical/speech_bubble_appearance()
 	return faction != "neutral" ? "synthetic_evil" : "machine"
 
 // Fix for Virgo 2's Surface
-/mob/living/simple_mob/mechanical
+/mob/living/simple/mechanical
 	maxbodytemp = 700

@@ -92,7 +92,7 @@
 /obj/machinery/processor/process(delta_time)
 	if(!auto_mode)
 		return PROCESS_KILL
-	for(var/mob/living/simple_mob/slime/AM in range(1, src))
+	for(var/mob/living/simple/slime/AM in range(1, src))
 		auto_insert(AM)
 	for(var/mob/living/complex/human/AM in range(1, src))
 		auto_insert(AM)
@@ -116,8 +116,8 @@
 	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 
 /obj/machinery/processor/proc/extract(var/atom/movable/AM)
-	if(istype(AM, /mob/living/simple_mob/slime))
-		var/mob/living/simple_mob/slime/S = AM
+	if(istype(AM, /mob/living/simple/slime))
+		var/mob/living/simple/slime/S = AM
 		while(S.cores)
 			new S.coretype(get_turf(src))
 			playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
@@ -137,8 +137,8 @@
 /obj/machinery/processor/proc/can_insert(var/atom/movable/AM)
 	if(AM.loc == src)
 		return FALSE
-	if(istype(AM, /mob/living/simple_mob/slime))
-		var/mob/living/simple_mob/slime/S = AM
+	if(istype(AM, /mob/living/simple/slime))
+		var/mob/living/simple/slime/S = AM
 		if(S.stat != DEAD)
 			return FALSE
 		return TRUE

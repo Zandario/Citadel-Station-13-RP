@@ -197,7 +197,7 @@
 /obj/item/ammo_casing/spent,
 /obj/item/ammo_casing/spent,
 /obj/item/ammo_casing/spent,
-/mob/living/simple_mob/mechanical/mecha/ripley/pirate/last_stand_merc,
+/mob/living/simple/mechanical/mecha/ripley/pirate/last_stand_merc,
 /turf/simulated/floor/classd/indoors,
 /area/class_d/explored/underground)
 "KW" = (

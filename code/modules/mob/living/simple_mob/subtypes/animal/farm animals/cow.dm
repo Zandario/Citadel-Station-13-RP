@@ -7,7 +7,7 @@
 	Frontier."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/passive/cow
+/mob/living/simple/animal/passive/cow
 	name = "cow"
 	desc = "Known for their milk, just don't tip them over."
 	tt_desc = "E Bos taurus"
@@ -37,12 +37,12 @@
 
 	var/datum/reagents/udder = null
 
-/mob/living/simple_mob/animal/passive/cow/Initialize(mapload)
+/mob/living/simple/animal/passive/cow/Initialize(mapload)
 	. = ..()
 	udder = new(50)
 	udder.my_atom = src
 
-/mob/living/simple_mob/animal/passive/cow/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple/animal/passive/cow/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	var/obj/item/reagent_containers/glass/G = O
 	if(stat == CONSCIOUS && istype(G) && G.is_open_container())
 		user.visible_message("<span class='notice'>[user] milks [src] using \the [O].</span>")
@@ -54,7 +54,7 @@
 	else
 		..()
 
-/mob/living/simple_mob/animal/passive/cow/BiologicalLife(seconds, times_fired)
+/mob/living/simple/animal/passive/cow/BiologicalLife(seconds, times_fired)
 	if((. = ..()))
 		return
 
@@ -62,7 +62,7 @@
 		if(udder && prob(5))
 			udder.add_reagent("milk", rand(5, 10))
 
-/mob/living/simple_mob/animal/passive/cow/attack_hand(mob/living/complex/M as mob)
+/mob/living/simple/animal/passive/cow/attack_hand(mob/living/complex/M as mob)
 	if(!stat && M.a_intent == INTENT_DISARM && icon_state != icon_dead)
 		M.visible_message("<span class='warning'>[M] tips over [src].</span>","<span class='notice'>You tip over [src].</span>")
 		Weaken(30)

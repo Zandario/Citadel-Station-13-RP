@@ -24,7 +24,7 @@
 	afterwards can delay seeking medical treatment, making it extra dangerous."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/giant_spider/tunneler
+/mob/living/simple/animal/giant_spider/tunneler
 	desc = "Sandy and brown, it makes you shudder to look at it. This one has glittering yellow eyes."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/giant_spider/tunneler_spider)
 
@@ -59,13 +59,13 @@
 	var/tunnel_warning = 0.5 SECONDS	// How long the dig telegraphing is.
 	var/tunnel_tile_speed = 2			// How long to wait between each tile. Higher numbers result in an easier to dodge tunnel attack.
 
-/mob/living/simple_mob/animal/giant_spider/tunneler/frequent
+/mob/living/simple/animal/giant_spider/tunneler/frequent
 	special_attack_cooldown = 5 SECONDS
 
-/mob/living/simple_mob/animal/giant_spider/tunneler/fast
+/mob/living/simple/animal/giant_spider/tunneler/fast
 	tunnel_tile_speed = 1
 
-/mob/living/simple_mob/animal/giant_spider/tunneler/should_special_attack(atom/A)
+/mob/living/simple/animal/giant_spider/tunneler/should_special_attack(atom/A)
 	// Make sure its possible for the spider to reach the target so it doesn't try to go through a window.
 	var/turf/destination = get_turf(A)
 	var/turf/starting_turf = get_turf(src)
@@ -80,7 +80,7 @@
 	return T == destination
 
 
-/mob/living/simple_mob/animal/giant_spider/tunneler/do_special_attack(atom/A)
+/mob/living/simple/animal/giant_spider/tunneler/do_special_attack(atom/A)
 	set waitfor = FALSE
 	set_AI_busy(TRUE)
 
@@ -143,7 +143,7 @@
 
 
 // Does the tunnel movement, stuns enemies, etc.
-/mob/living/simple_mob/animal/giant_spider/tunneler/proc/handle_tunnel(turf/destination)
+/mob/living/simple/animal/giant_spider/tunneler/proc/handle_tunnel(turf/destination)
 	var/turf/T = get_turf(src) // Hold our current tile.
 
 	// Regular tunnel loop.
@@ -176,18 +176,18 @@
 		sleep(tunnel_tile_speed)
 
 // For visuals.
-/mob/living/simple_mob/animal/giant_spider/tunneler/proc/submerge()
+/mob/living/simple/animal/giant_spider/tunneler/proc/submerge()
 	alpha = 0
 	dig_under_floor(get_turf(src))
 	new /obj/effect/temporary_effect/tunneler_hole(get_turf(src))
 
 // Ditto.
-/mob/living/simple_mob/animal/giant_spider/tunneler/proc/emerge()
+/mob/living/simple/animal/giant_spider/tunneler/proc/emerge()
 	alpha = 255
 	dig_under_floor(get_turf(src))
 	new /obj/effect/temporary_effect/tunneler_hole(get_turf(src))
 
-/mob/living/simple_mob/animal/giant_spider/tunneler/proc/dig_under_floor(turf/T)
+/mob/living/simple/animal/giant_spider/tunneler/proc/dig_under_floor(turf/T)
 	new /obj/item/ore/glass(T) // This will be rather weird when on station but the alternative is too much work.
 
 /obj/effect/temporary_effect/tunneler_hole

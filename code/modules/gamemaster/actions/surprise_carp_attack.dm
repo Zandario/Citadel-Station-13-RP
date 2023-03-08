@@ -41,5 +41,5 @@
 			spawning_turf = space
 			break
 		if(spawning_turf)
-			new /mob/living/simple_mob/animal/space/carp(spawning_turf)
+			new /mob/living/simple/animal/space/carp(spawning_turf)
 		number_of_carp--

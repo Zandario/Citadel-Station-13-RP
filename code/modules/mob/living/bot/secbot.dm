@@ -404,8 +404,8 @@
 /mob/living/bot/secbot/slime/UnarmedAttack(var/mob/living/L, var/proximity)
 	..()
 
-	if(istype(L, /mob/living/simple_mob/slime/xenobio))
-		var/mob/living/simple_mob/slime/xenobio/S = L
+	if(istype(L, /mob/living/simple/slime/xenobio))
+		var/mob/living/simple/slime/xenobio/S = L
 		S.slimebatoned(src, xeno_stun_strength)
 
 /mob/living/bot/secbot/explode()

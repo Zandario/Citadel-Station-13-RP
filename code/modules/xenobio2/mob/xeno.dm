@@ -5,7 +5,7 @@ Basic definition of creatures for Xenobiology
 Also includes Life and New
 */
 
-/mob/living/simple_mob/xeno
+/mob/living/simple/xeno
 	name = "Xeno"
 	real_name = "Xeno"
 	faction = "xeno"	//Needs to be set.
@@ -46,7 +46,7 @@ Also includes Life and New
 
 
 //Life additions
-/mob/living/simple_mob/xeno/Life(seconds, times_fired)
+/mob/living/simple/xeno/Life(seconds, times_fired)
 	if(stasis)
 		stasis--
 		if(stasis < 0)
@@ -74,7 +74,7 @@ Also includes Life and New
 
 		return 1	//Everything worked okay.
 
-/mob/living/simple_mob/xeno/Initialize(mapload)
+/mob/living/simple/xeno/Initialize(mapload)
 	traitdat = new()
 	ProcessTraits()
 	. =..()
@@ -92,13 +92,13 @@ Also includes Life and New
 	if(!health)
 		set_stat(DEAD)
 
-/mob/living/simple_mob/xeno/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/simple/xeno/bullet_act(var/obj/item/projectile/Proj)
 	if(istype(Proj, /obj/item/projectile/beam/stun/xeno))
 		var/obj/item/projectile/beam/stun/xeno/hit = Proj
 		stasis += hit.stasisforce
 	..()
 
-/mob/living/simple_mob/xeno/Destroy()
+/mob/living/simple/xeno/Destroy()
 	traitdat.Destroy()	//Let's clean up after ourselves.
 	traitdat = null
 	..()

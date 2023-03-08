@@ -42,7 +42,7 @@
 
 /obj/machinery/door/attack_generic(var/mob/user, var/damage)
 	if(isanimal(user))
-		var/mob/living/simple_mob/S = user
+		var/mob/living/simple/S = user
 		if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
 			visible_message("<span class='danger'>\The [user] smashes into the [src]!</span>")
 			playsound(src, S.attack_sound, 75, 1)
@@ -110,7 +110,7 @@
 		M.last_bumped = world.time
 		if(M.restrained() && !check_access(null))
 			return
-		else if(istype(M, /mob/living/simple_mob/animal/passive/mouse) && !(M.ckey))
+		else if(istype(M, /mob/living/simple/animal/passive/mouse) && !(M.ckey))
 			return
 		else
 			bumpopen(M)
@@ -159,7 +159,7 @@
 		return
 	src.add_fingerprint(user)
 	if(density)
-		if(istype(user, /mob/living/simple_mob) && !(user.ckey))
+		if(istype(user, /mob/living/simple) && !(user.ckey))
 			do_animate("smdeny")
 		else if(allowed(user))
 			open()

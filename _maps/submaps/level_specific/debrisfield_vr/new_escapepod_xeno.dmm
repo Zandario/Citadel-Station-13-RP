@@ -15,7 +15,7 @@
 /area/submap/debrisfield_vr/misc_debris)
 "k" = (
 /obj/effect/alien/weeds,
-/mob/living/simple_mob/animal/space/alien,
+/mob/living/simple/animal/space/alien,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield_vr/misc_debris)
 "r" = (
@@ -29,7 +29,7 @@
 /area/submap/debrisfield_vr/misc_debris)
 "t" = (
 /obj/effect/alien/weeds,
-/mob/living/simple_mob/animal/space/alien/sentinel,
+/mob/living/simple/animal/space/alien/sentinel,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield_vr/misc_debris)
 "v" = (
@@ -71,7 +71,7 @@
 /area/submap/debrisfield_vr/misc_debris)
 "X" = (
 /obj/effect/alien/weeds,
-/mob/living/simple_mob/animal/space/alien/drone,
+/mob/living/simple/animal/space/alien/drone,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield_vr/misc_debris)
 

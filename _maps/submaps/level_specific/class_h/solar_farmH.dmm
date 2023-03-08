@@ -78,7 +78,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/mob/living/simple_mob/mechanical/corrupt_maint_drone,
+/mob/living/simple/mechanical/corrupt_maint_drone,
 /turf/simulated/floor/plating/external,
 /area/class_h/POIs/solar_farm)
 "q" = (
@@ -91,7 +91,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/mob/living/simple_mob/mechanical/corrupt_maint_drone,
+/mob/living/simple/mechanical/corrupt_maint_drone,
 /turf/simulated/floor/plating,
 /area/class_h/POIs/solar_farm)
 "s" = (
@@ -171,7 +171,7 @@
 /turf/simulated/floor/plating/external,
 /area/class_h/POIs/solar_farm)
 "I" = (
-/mob/living/simple_mob/mechanical/corrupt_maint_drone,
+/mob/living/simple/mechanical/corrupt_maint_drone,
 /turf/simulated/floor/plating/external,
 /area/class_h/POIs/solar_farm)
 "L" = (

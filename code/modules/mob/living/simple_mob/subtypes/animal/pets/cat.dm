@@ -8,7 +8,7 @@
 	and film on the Exonet."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/passive/cat
+/mob/living/simple/animal/passive/cat
 	name = "cat"
 	desc = "A domesticated, feline pet. Has a tendency to adopt crewmembers."
 	tt_desc = "E Felis silvestris catus"
@@ -39,14 +39,14 @@
 	hide_amount = 5
 	hide_type = /obj/item/stack/animalhide/cat
 
-/mob/living/simple_mob/animal/passive/cat/Initialize(mapload)
+/mob/living/simple/animal/passive/cat/Initialize(mapload)
 	icon_living = "[initial(icon_state)]"
 	icon_dead = "[initial(icon_state)]_dead"
 	icon_rest = "[initial(icon_state)]_rest"
 	update_icon()
 	return ..()
 
-/mob/living/simple_mob/animal/passive/cat/handle_special()
+/mob/living/simple/animal/passive/cat/handle_special()
 	if(!stat && prob(2)) // spooky
 		var/mob/observer/dead/spook = locate() in range(src, 5)
 		if(spook)
@@ -60,16 +60,16 @@
 				visible_emote("suddenly stops and stares at something unseen[istype(A) ? " near [A]":""].")
 
 // Instakills mice.
-/mob/living/simple_mob/animal/passive/cat/apply_melee_effects(var/atom/A)
+/mob/living/simple/animal/passive/cat/apply_melee_effects(var/atom/A)
 	if(ismouse(A))
-		var/mob/living/simple_mob/animal/passive/mouse/mouse = A
+		var/mob/living/simple/animal/passive/mouse/mouse = A
 		if(mouse.getMaxHealth() < 20) // In case a badmin makes giant mice or something.
 			mouse.splat()
 			visible_emote(pick("bites \the [mouse]!", "toys with \the [mouse].", "chomps on \the [mouse]!"))
 	else
 		..()
 
-/mob/living/simple_mob/animal/passive/cat/IIsAlly(mob/living/L)
+/mob/living/simple/animal/passive/cat/IIsAlly(mob/living/L)
 	if(L == friend) // Always be pals with our special friend.
 		return TRUE
 
@@ -79,7 +79,7 @@
 		if(ismouse(L))
 			return FALSE // Cats and mice can never get along.
 
-/mob/living/simple_mob/animal/passive/cat/verb/become_friends()
+/mob/living/simple/animal/passive/cat/verb/become_friends()
 	set name = "Become Friends"
 	set category = "IC"
 	set src in view(1)
@@ -110,7 +110,7 @@
 		to_chat(L, SPAN_NOTICE("[src] ignores you."))
 
 
-/mob/living/simple_mob/animal/passive/cat/runtime
+/mob/living/simple/animal/passive/cat/runtime
 	name = "Runtime"
 	desc = "Her fur has the look and feel of velvet, and her tail quivers occasionally."
 	tt_desc = "E Felis silvestris medicalis" // a hypoallergenic breed produced by NT for... medical purposes? Sure.
@@ -121,7 +121,7 @@
 	makes_dirt = 0
 	randomized = FALSE
 
-/mob/living/simple_mob/animal/passive/cat/kitten
+/mob/living/simple/animal/passive/cat/kitten
 	name = "kitten"
 	desc = "D'aaawwww!"
 	icon_state = "kitten"
@@ -129,12 +129,12 @@
 	gender = NEUTER
 	holder_type = /obj/item/holder/cat/kitten
 
-/mob/living/simple_mob/animal/passive/cat/kitten/Initialize(mapload)
+/mob/living/simple/animal/passive/cat/kitten/Initialize(mapload)
 	if(gender == NEUTER)
 		gender = pick(MALE, FEMALE)
 	return ..()
 
-/mob/living/simple_mob/animal/passive/cat/black
+/mob/living/simple/animal/passive/cat/black
 	icon_state = "cat"
 	item_state = "cat"
 
@@ -145,7 +145,7 @@
 	gender = MALE
 	icon_state = "cat3"
 
-/mob/living/simple_mob/animal/passive/cat/bones
+/mob/living/simple/animal/passive/cat/bones
 	name = "Bones"
 	desc = "That's Bones the cat. He's a laid back, black cat. Meow."
 	gender = MALE
@@ -167,7 +167,7 @@
 	say_maybe_target = list("Meow?","Mew?","Mao?")
 	say_got_target = list("MEOW!","HSSSS!","REEER!")
 
-/mob/living/simple_mob/animal/passive/cat/attackby(obj/item/W as obj, mob/user as mob)
+/mob/living/simple/animal/passive/cat/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/pen) || istype(W, /obj/item/flashlight/pen))
 		if(named)
 			to_chat(user, "<span class='notice'>\the [name] already has a name!</span>")
@@ -187,7 +187,7 @@
 	desc = "This box is purring faintly. You're pretty sure there's a cat inside it."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "box"
-	var/cattype = /mob/living/simple_mob/animal/passive/cat
+	var/cattype = /mob/living/simple/animal/passive/cat
 
 /obj/item/cat_box/attack_self(var/mob/user)
 	var/turf/catturf = get_turf(src)
@@ -197,4 +197,4 @@
 	qdel(src)
 
 /obj/item/cat_box/black
-	cattype = /mob/living/simple_mob/animal/passive/cat/black
+	cattype = /mob/living/simple/animal/passive/cat/black

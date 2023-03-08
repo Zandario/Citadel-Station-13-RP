@@ -10047,7 +10047,7 @@
 /turf/simulated/floor,
 /area/maintenance/substation/engineering)
 "Kk" = (
-/mob/living/simple_mob/animal/icegoat,
+/mob/living/simple/animal/icegoat,
 /turf/simulated/floor/outdoors/snow/lythios43c,
 /area/rift/surfacebase/underground/under2)
 "Km" = (
@@ -13369,7 +13369,7 @@
 /area/engineering/atmos/hallway)
 "Zu" = (
 /obj/structure/dogbed,
-/mob/living/simple_mob/animal/passive/dog/pug{
+/mob/living/simple/animal/passive/dog/pug{
 	desc = "It's Cogs! The Engineering department's pet pug..";
 	name = "Cogs"
 	},

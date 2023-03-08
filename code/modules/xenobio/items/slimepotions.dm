@@ -25,7 +25,7 @@
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
-	var/mob/living/simple_mob/slime/xenobio/S = target
+	var/mob/living/simple/slime/xenobio/S = target
 	if(!istype(S))
 		to_chat(user, "<span class='warning'>The stabilizer only works on lab-grown slimes!</span>")
 		return
@@ -52,7 +52,7 @@
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
-	var/mob/living/simple_mob/slime/xenobio/S = target
+	var/mob/living/simple/slime/xenobio/S = target
 	if(!istype(S))
 		to_chat(user, "<span class='warning'>The mutator only works on lab-grown slimes!</span>")
 		return
@@ -80,7 +80,7 @@
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
-	var/mob/living/simple_mob/S = target
+	var/mob/living/simple/S = target
 	if(!istype(S))
 		to_chat(user, "<span class='warning'>The agent only works on creatures!</span>")
 		return
@@ -94,8 +94,8 @@
 	var/datum/ai_holder/AI = S.ai_holder
 
 	// Slimes.
-	if(istype(S, /mob/living/simple_mob/slime/xenobio))
-		var/mob/living/simple_mob/slime/xenobio/XS = S
+	if(istype(S, /mob/living/simple/slime/xenobio))
+		var/mob/living/simple/slime/xenobio/XS = S
 		if(XS.harmless)
 			to_chat(user, "<span class='warning'>The slime is already docile!</span>")
 			return
@@ -106,8 +106,8 @@
 		to_chat(user, "<span class='notice'>You feed the slime the agent, removing its hunger and calming it.</span>")
 
 	// Simple Mobs.
-	else if(istype(S, /mob/living/simple_mob))
-		var/mob/living/simple_mob/SM = S
+	else if(istype(S, /mob/living/simple))
+		var/mob/living/simple/SM = S
 		if(!(SM.mob_class & MOB_CLASS_SLIME|MOB_CLASS_ANIMAL)) // So you can't use this on Russians/syndies/hivebots/etc.
 			to_chat(user, "<span class='warning'>\The [SM] only works on slimes and animals.</span>")
 			return
@@ -141,7 +141,7 @@
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
-	var/mob/living/simple_mob/slime/xenobio/S = target
+	var/mob/living/simple/slime/xenobio/S = target
 	if(!istype(S))
 		to_chat(user, "<span class='warning'>The steroid only works on lab-grown slimes!</span>")
 		return
@@ -173,7 +173,7 @@
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
-	var/mob/living/simple_mob/slime/xenobio/S = target
+	var/mob/living/simple/slime/xenobio/S = target
 	if(!istype(S))
 		to_chat(user, "<span class='warning'>The agent only works on lab-grown slimes!</span>")
 		return
@@ -203,7 +203,7 @@
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
-	var/mob/living/simple_mob/S = target
+	var/mob/living/simple/S = target
 	if(!istype(S))
 		to_chat(user, "<span class='warning'>The agent only works on creatures!</span>")
 		return
@@ -242,7 +242,7 @@
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
-	var/mob/living/simple_mob/S = target
+	var/mob/living/simple/S = target
 	if(!istype(S))
 		to_chat(user, "<span class='warning'>The agent only works on creatures!</span>")
 		return
@@ -280,7 +280,7 @@
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 	. = CLICKCHAIN_DO_NOT_PROPAGATE
-	var/mob/living/simple_mob/slime/xenobio/S = target
+	var/mob/living/simple/slime/xenobio/S = target
 	if(!istype(S))
 		to_chat(user, "<span class='warning'>The feeding agent only works on lab-grown slimes!</span>")
 		return

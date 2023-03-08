@@ -471,7 +471,7 @@
 			var/darkness = round(1 - T.get_lumcount(),0.1)
 			to_chat(usr,"<span class='notice'><b>Darkness:</b> [darkness]</span>")
 		if("energy")
-			var/mob/living/simple_mob/shadekin/SK = usr
+			var/mob/living/simple/shadekin/SK = usr
 			if(istype(SK))
 				to_chat(usr,"<span class='notice'><b>Energy:</b> [SK.energy] ([SK.dark_gains])</span>")
 			var/mob/living/complex/human/H = usr

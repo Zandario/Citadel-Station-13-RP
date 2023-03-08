@@ -136,34 +136,34 @@
 
 /obj/structure/largecrate/animal/corgi
 	name = "corgi carrier"
-	starts_with = list(/mob/living/simple_mob/animal/passive/dog/corgi)
+	starts_with = list(/mob/living/simple/animal/passive/dog/corgi)
 
 /obj/structure/largecrate/animal/cow
 	name = "cow crate"
-	starts_with = list(/mob/living/simple_mob/animal/passive/cow)
+	starts_with = list(/mob/living/simple/animal/passive/cow)
 
 /obj/structure/largecrate/animal/goat
 	name = "goat crate"
-	starts_with = list(/mob/living/simple_mob/animal/goat)
+	starts_with = list(/mob/living/simple/animal/goat)
 
 /obj/structure/largecrate/animal/cat
 	name = "cat carrier"
-	starts_with = list(/mob/living/simple_mob/animal/passive/cat)
+	starts_with = list(/mob/living/simple/animal/passive/cat)
 
 /obj/structure/largecrate/animal/cat/bones
-	starts_with = list(/mob/living/simple_mob/animal/passive/cat/bones)
+	starts_with = list(/mob/living/simple/animal/passive/cat/bones)
 
 /obj/structure/largecrate/animal/chick
 	name = "chicken crate"
-	starts_with = list(/mob/living/simple_mob/animal/passive/chick = 5)
+	starts_with = list(/mob/living/simple/animal/passive/chick = 5)
 
 /obj/structure/largecrate/animal/carp
 	name = "space carp crate"
-	starts_with = list(/mob/living/simple_mob/animal/space/carp = 3)
+	starts_with = list(/mob/living/simple/animal/space/carp = 3)
 
 /obj/structure/largecrate/animal/spiders
 	name = "spider crate"
-	starts_with = list(/mob/living/simple_mob/animal/giant_spider= 3)
+	starts_with = list(/mob/living/simple/animal/giant_spider= 3)
 
 //! ## VR FILE MERGE ## !//
 /obj/structure/largecrate/birds //This is an awful hack, but it's the only way to get multiple mobs spawned in one crate.
@@ -173,27 +173,27 @@
 /obj/structure/largecrate/birds/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_crowbar())
 		new /obj/item/stack/material/wood(src)
-		new /mob/living/simple_mob/animal/passive/bird(src)
-		new /mob/living/simple_mob/animal/passive/bird/parrot/kea(src)
-		new /mob/living/simple_mob/animal/passive/bird/parrot/eclectus(src)
-		new /mob/living/simple_mob/animal/passive/bird/parrot/grey_parrot(src)
-		new /mob/living/simple_mob/animal/passive/bird/parrot/black_headed_caique(src)
-		new /mob/living/simple_mob/animal/passive/bird/parrot/white_caique(src)
-		new /mob/living/simple_mob/animal/passive/bird/parrot/budgerigar(src)
-		new /mob/living/simple_mob/animal/passive/bird/parrot/budgerigar/blue(src)
-		new /mob/living/simple_mob/animal/passive/bird/parrot/budgerigar/bluegreen(src)
-		new /mob/living/simple_mob/animal/passive/bird/black_bird(src)
-		new /mob/living/simple_mob/animal/passive/bird/azure_tit(src)
-		new /mob/living/simple_mob/animal/passive/bird/european_robin(src)
-		new /mob/living/simple_mob/animal/passive/bird/goldcrest(src)
-		new /mob/living/simple_mob/animal/passive/bird/ringneck_dove(src)
-		new /mob/living/simple_mob/animal/passive/bird/parrot/cockatiel(src)
-		new /mob/living/simple_mob/animal/passive/bird/parrot/cockatiel/white(src)
-		new /mob/living/simple_mob/animal/passive/bird/parrot/cockatiel/yellowish(src)
-		new /mob/living/simple_mob/animal/passive/bird/parrot/cockatiel/grey(src)
-		new /mob/living/simple_mob/animal/passive/bird/parrot/sulphur_cockatoo(src)
-		new /mob/living/simple_mob/animal/passive/bird/parrot/white_cockatoo(src)
-		new /mob/living/simple_mob/animal/passive/bird/parrot/pink_cockatoo(src)
+		new /mob/living/simple/animal/passive/bird(src)
+		new /mob/living/simple/animal/passive/bird/parrot/kea(src)
+		new /mob/living/simple/animal/passive/bird/parrot/eclectus(src)
+		new /mob/living/simple/animal/passive/bird/parrot/grey_parrot(src)
+		new /mob/living/simple/animal/passive/bird/parrot/black_headed_caique(src)
+		new /mob/living/simple/animal/passive/bird/parrot/white_caique(src)
+		new /mob/living/simple/animal/passive/bird/parrot/budgerigar(src)
+		new /mob/living/simple/animal/passive/bird/parrot/budgerigar/blue(src)
+		new /mob/living/simple/animal/passive/bird/parrot/budgerigar/bluegreen(src)
+		new /mob/living/simple/animal/passive/bird/black_bird(src)
+		new /mob/living/simple/animal/passive/bird/azure_tit(src)
+		new /mob/living/simple/animal/passive/bird/european_robin(src)
+		new /mob/living/simple/animal/passive/bird/goldcrest(src)
+		new /mob/living/simple/animal/passive/bird/ringneck_dove(src)
+		new /mob/living/simple/animal/passive/bird/parrot/cockatiel(src)
+		new /mob/living/simple/animal/passive/bird/parrot/cockatiel/white(src)
+		new /mob/living/simple/animal/passive/bird/parrot/cockatiel/yellowish(src)
+		new /mob/living/simple/animal/passive/bird/parrot/cockatiel/grey(src)
+		new /mob/living/simple/animal/passive/bird/parrot/sulphur_cockatoo(src)
+		new /mob/living/simple/animal/passive/bird/parrot/white_cockatoo(src)
+		new /mob/living/simple/animal/passive/bird/parrot/pink_cockatoo(src)
 		var/turf/T = get_turf(src)
 		for(var/atom/movable/AM in contents)
 			if(!(AM.atom_flags & ATOM_ABSTRACT))
@@ -207,53 +207,53 @@
 /*
 /obj/structure/largecrate/animal/pred
 	name = "Predator carrier"
-	starts_with = list(/mob/living/simple_mob/vore/catgirl)
+	starts_with = list(/mob/living/simple/vore/catgirl)
 */
 
 /obj/structure/largecrate/animal/pred/Initialize(mapload) //This is nessesary to get a random one each time.
-	starts_with = list(pick(/mob/living/simple_mob/vore/bee,
-						/mob/living/simple_mob/vore/aggressive/frog,
-						/mob/living/simple_mob/vore/horse,
-						/mob/living/simple_mob/vore/aggressive/panther,
-						/mob/living/simple_mob/vore/aggressive/giant_snake,
-						/mob/living/simple_mob/animal/wolf,
-						/mob/living/simple_mob/animal/space/bear;0.5,
-						/mob/living/simple_mob/animal/space/carp,
-						/mob/living/simple_mob/vore/aggressive/mimic,
-						/mob/living/simple_mob/vore/aggressive/rat,
-						/mob/living/simple_mob/vore/aggressive/rat/tame,
-//						/mob/living/simple_mob/otie;0.5
+	starts_with = list(pick(/mob/living/simple/vore/bee,
+						/mob/living/simple/vore/aggressive/frog,
+						/mob/living/simple/vore/horse,
+						/mob/living/simple/vore/aggressive/panther,
+						/mob/living/simple/vore/aggressive/giant_snake,
+						/mob/living/simple/animal/wolf,
+						/mob/living/simple/animal/space/bear;0.5,
+						/mob/living/simple/animal/space/carp,
+						/mob/living/simple/vore/aggressive/mimic,
+						/mob/living/simple/vore/aggressive/rat,
+						/mob/living/simple/vore/aggressive/rat/tame,
+//						/mob/living/simple/otie;0.5
 						))
 	return ..()
 
 /obj/structure/largecrate/animal/dangerous
 	name = "Dangerous Predator carrier"
-	starts_with = list(/mob/living/simple_mob/animal/space/alien)
+	starts_with = list(/mob/living/simple/animal/space/alien)
 
 /obj/structure/largecrate/animal/dangerous/Initialize(mapload)
-	starts_with = list(pick(/mob/living/simple_mob/animal/space/carp/large,
-						/mob/living/simple_mob/vore/aggressive/deathclaw,
-						/mob/living/simple_mob/vore/aggressive/dino,
-						/mob/living/simple_mob/animal/space/alien,
-						/mob/living/simple_mob/animal/space/alien/drone,
-						/mob/living/simple_mob/animal/space/alien/sentinel,
-						/mob/living/simple_mob/animal/space/alien/queen,
-						/mob/living/simple_mob/vore/aggressive/corrupthound))
+	starts_with = list(pick(/mob/living/simple/animal/space/carp/large,
+						/mob/living/simple/vore/aggressive/deathclaw,
+						/mob/living/simple/vore/aggressive/dino,
+						/mob/living/simple/animal/space/alien,
+						/mob/living/simple/animal/space/alien/drone,
+						/mob/living/simple/animal/space/alien/sentinel,
+						/mob/living/simple/animal/space/alien/queen,
+						/mob/living/simple/vore/aggressive/corrupthound))
 	return ..()
 
 /obj/structure/largecrate/animal/wolfgirl
 	name = "Wolfgirl Crate"
 	desc = "A sketchy looking crate with airholes that shakes and thuds every now and then. Someone seems to be demanding they be let out."
-	starts_with = list(/mob/living/simple_mob/vore/wolfgirl)
+	starts_with = list(/mob/living/simple/vore/wolfgirl)
 
 /obj/structure/largecrate/animal/fennec
 	name = "Fennec Crate"
 	desc = "Bounces around a lot. Looks messily packaged, were they in a hurry?"
-	starts_with = list(/mob/living/simple_mob/vore/fennec)
+	starts_with = list(/mob/living/simple/vore/fennec)
 
 /obj/structure/largecrate/animal/fennec/Initialize(mapload)
-	starts_with = list(pick(/mob/living/simple_mob/vore/fennec,
-						/mob/living/simple_mob/vore/fennix;0.5))
+	starts_with = list(pick(/mob/living/simple/vore/fennec,
+						/mob/living/simple/vore/fennix;0.5))
 	return ..()
 
 /obj/structure/closet/crate/large/aether

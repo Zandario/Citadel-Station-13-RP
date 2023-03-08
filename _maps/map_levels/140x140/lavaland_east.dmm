@@ -21,7 +21,7 @@
 /turf/simulated/floor/tiled/lavaland,
 /area/lavaland/east/colony)
 "ak" = (
-/mob/living/simple_mob/animal/space/bats/surt,
+/mob/living/simple/animal/space/bats/surt,
 /turf/simulated/floor/outdoors/lavaland,
 /area/lavaland/east/unexplored)
 "al" = (
@@ -76,7 +76,7 @@
 /turf/simulated/floor/tiled/steel_dirty/lavaland/exterior,
 /area/lavaland/east/colony)
 "aW" = (
-/mob/living/simple_mob/mechanical/cyber_horror/surt,
+/mob/living/simple/mechanical/cyber_horror/surt,
 /turf/simulated/floor/tiled/lavaland,
 /area/lavaland/east/colony)
 "ba" = (
@@ -642,7 +642,7 @@
 /turf/simulated/floor/carpet/bcarpet/lavaland,
 /area/lavaland/east/colony)
 "nb" = (
-/mob/living/simple_mob/mechanical/cyber_horror/tajaran/surt,
+/mob/living/simple/mechanical/cyber_horror/tajaran/surt,
 /turf/simulated/floor/wood/lavaland,
 /area/lavaland/east/colony)
 "nc" = (
@@ -789,7 +789,7 @@
 /area/lavaland/east/colony)
 "oY" = (
 /obj/effect/debris/cleanable/blood,
-/mob/living/simple_mob/mechanical/cyber_horror/surt,
+/mob/living/simple/mechanical/cyber_horror/surt,
 /turf/simulated/floor/wood/lavaland,
 /area/lavaland/east/colony)
 "pj" = (
@@ -928,7 +928,7 @@
 /turf/simulated/floor/tiled/lavaland,
 /area/lavaland/east/colony)
 "sx" = (
-/mob/living/simple_mob/mechanical/cyber_horror/surt,
+/mob/living/simple/mechanical/cyber_horror/surt,
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 9
 	},
@@ -1028,7 +1028,7 @@
 /turf/simulated/floor/tiled/steel_dirty/lavaland/exterior,
 /area/lavaland/east/colony)
 "uc" = (
-/mob/living/simple_mob/animal/space/bats/surt,
+/mob/living/simple/animal/space/bats/surt,
 /turf/simulated/floor/outdoors/lava/lavaland,
 /area/lavaland/east/unexplored)
 "uJ" = (
@@ -1068,7 +1068,7 @@
 /area/lavaland/east/colony)
 "vk" = (
 /obj/effect/floor_decal/industrial/warning/dust,
-/mob/living/simple_mob/mechanical/cyber_horror/surt,
+/mob/living/simple/mechanical/cyber_horror/surt,
 /turf/simulated/floor/tiled/steel_dirty/lavaland/exterior,
 /area/lavaland/east/colony)
 "vs" = (
@@ -1154,7 +1154,7 @@
 /turf/simulated/floor/tiled/lavaland,
 /area/lavaland/east/colony)
 "wF" = (
-/mob/living/simple_mob/mechanical/cyber_horror/tajaran/surt,
+/mob/living/simple/mechanical/cyber_horror/tajaran/surt,
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 10
 	},
@@ -1315,7 +1315,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/mob/living/simple_mob/mechanical/cyber_horror/ling_cyber_horror/surt,
+/mob/living/simple/mechanical/cyber_horror/ling_cyber_horror/surt,
 /turf/simulated/floor/tiled/lavaland,
 /area/lavaland/east/colony)
 "zg" = (
@@ -1376,7 +1376,7 @@
 /turf/simulated/floor/tiled/lavaland,
 /area/lavaland/east/colony)
 "AN" = (
-/mob/living/simple_mob/mechanical/cyber_horror/surt,
+/mob/living/simple/mechanical/cyber_horror/surt,
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 8
 	},
@@ -1393,7 +1393,7 @@
 /turf/simulated/floor/tiled/lavaland,
 /area/lavaland/east/colony)
 "AY" = (
-/mob/living/simple_mob/animal/space/bats/surt,
+/mob/living/simple/animal/space/bats/surt,
 /turf/simulated/floor/outdoors/lavaland,
 /area/lavaland/east/explored)
 "Be" = (
@@ -1619,7 +1619,7 @@
 	},
 /obj/effect/gibspawner/generic,
 /obj/item/melee/nanite_knife,
-/mob/living/simple_mob/mechanical/cyber_horror/surt,
+/mob/living/simple/mechanical/cyber_horror/surt,
 /turf/simulated/floor/carpet/bcarpet/lavaland,
 /area/lavaland/east/colony)
 "FJ" = (
@@ -1919,7 +1919,7 @@
 /turf/simulated/floor/tiled/lavaland,
 /area/lavaland/east/colony)
 "NU" = (
-/mob/living/simple_mob/mechanical/cyber_horror/cat_cyber_horror/surt,
+/mob/living/simple/mechanical/cyber_horror/cat_cyber_horror/surt,
 /turf/simulated/floor/tiled/lavaland,
 /area/lavaland/east/colony)
 "NY" = (
@@ -2321,7 +2321,7 @@
 /area/lavaland/east/colony)
 "UP" = (
 /obj/effect/debris/cleanable/blood,
-/mob/living/simple_mob/mechanical/cyber_horror/plasma_cyber_horror/surt,
+/mob/living/simple/mechanical/cyber_horror/plasma_cyber_horror/surt,
 /turf/simulated/floor/wood/lavaland,
 /area/lavaland/east/colony)
 "Ve" = (
@@ -2355,7 +2355,7 @@
 /turf/simulated/floor/tiled/lavaland,
 /area/lavaland/east/colony)
 "We" = (
-/mob/living/simple_mob/mechanical/cyber_horror/plasma_cyber_horror/surt,
+/mob/living/simple/mechanical/cyber_horror/plasma_cyber_horror/surt,
 /turf/simulated/floor/tiled/lavaland,
 /area/lavaland/east/colony)
 "Wk" = (
@@ -2504,7 +2504,7 @@
 	},
 /area/lavaland/east/colony)
 "YC" = (
-/mob/living/simple_mob/mechanical/cyber_horror/ling_cyber_horror/surt,
+/mob/living/simple/mechanical/cyber_horror/ling_cyber_horror/surt,
 /turf/simulated/floor/tiled/lavaland,
 /area/lavaland/east/colony)
 "YG" = (

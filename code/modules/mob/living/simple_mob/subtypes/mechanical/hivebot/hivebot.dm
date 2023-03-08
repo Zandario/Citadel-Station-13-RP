@@ -10,7 +10,7 @@
 	unclear. Whatever the matter, they're hostile and will engage anything they see, shooting to kill."
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/mechanical/hivebot
+/mob/living/simple/mechanical/hivebot
 	name = "hivebot"
 	desc = "A robot. It appears to be somewhat resilient, but lacks a true weapon."
 	icon = 'icons/mob/hivebot.dmi'
@@ -32,7 +32,7 @@
 	say_list_type = /datum/say_list/hivebot
 
 
-/mob/living/simple_mob/mechanical/hivebot/death()
+/mob/living/simple/mechanical/hivebot/death()
 	..()
 	visible_message(SPAN_WARNING("\The [src] blows apart!"))
 	new /obj/effect/debris/cleanable/blood/gibs/robot(src.loc)
@@ -48,7 +48,7 @@
 	sharp = FALSE
 	edge = FALSE
 
-/mob/living/simple_mob/mechanical/hivebot/swarm
+/mob/living/simple/mechanical/hivebot/swarm
 	name = "swarm hivebot"
 	desc = "A robot. It looks fragile and weak."
 	maxHealth = 1 LASERS_TO_KILL

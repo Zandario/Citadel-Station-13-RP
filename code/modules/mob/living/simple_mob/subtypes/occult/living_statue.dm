@@ -1,6 +1,6 @@
 // A mob which only moves when it isn't being watched by living beings.
 
-/mob/living/simple_mob/living_statue
+/mob/living/simple/living_statue
 	name = "statue"
 	desc = "An incredibly lifelike marble carving. Its eyes seem to follow you.."
 	icon = 'icons/obj/statue.dmi'
@@ -80,7 +80,7 @@
 
 // No movement while seen code.
 
-/mob/living/simple_mob/living_statue/Initialize(mapload, var/mob/living/creator)
+/mob/living/simple/living_statue/Initialize(mapload, var/mob/living/creator)
 	. = ..()
 	// Give spells
 	//src.add_spell(/spell/noclothes)
@@ -91,14 +91,14 @@
 	if(creator)
 		src.creator = creator
 
-/mob/living/simple_mob/living_statue/Move(turf/NewLoc)
+/mob/living/simple/living_statue/Move(turf/NewLoc)
 	if(can_be_seen(NewLoc))
 		if(client)
 			to_chat(src, "<span class='warning'>You cannot move, there are eyes on you!</span>")
 		return 0
 	return ..()
 
-/mob/living/simple_mob/living_statue/attack_target()
+/mob/living/simple/living_statue/attack_target()
 	if(can_be_seen(get_turf(loc)))
 		if(client)
 			to_chat(src, "<span class='warning'>You cannot attack, there are eyes on you!</span>")
@@ -106,11 +106,11 @@
 	else
 		return ..()
 
-/mob/living/simple_mob/living_statue/face_atom()
+/mob/living/simple/living_statue/face_atom()
 	if(!can_be_seen(get_turf(loc)))
 		..()
 
-/mob/living/simple_mob/living_statue/proc/can_be_seen(turf/destination)
+/mob/living/simple/living_statue/proc/can_be_seen(turf/destination)
 	if(!cannot_be_seen)
 		return null
 	// Check for darkness
@@ -136,17 +136,17 @@
 
 // Cannot talk
 
-/mob/living/simple_mob/living_statue/say(whispering = 0)
+/mob/living/simple/living_statue/say(whispering = 0)
 	return 0
 
 // Turn to dust when gibbed
 
-/mob/living/simple_mob/living_statue/gib()
+/mob/living/simple/living_statue/gib()
 	dust()
 
 // Stop attacking clientless mobs
 
-/mob/living/simple_mob/living_statue/proc/CanAttack(atom/the_target)
+/mob/living/simple/living_statue/proc/CanAttack(atom/the_target)
 	if(isliving(the_target))
 		var/mob/living/L = the_target
 		if(!L.client && !L.ckey)
@@ -156,7 +156,7 @@
 /*
 // Don't attack your creator if there is one
 
-/mob/living/simple_mob/living_statue/proc/ListTargets()
+/mob/living/simple/living_statue/proc/ListTargets()
 	return . - creator
 
 // Statue powers
@@ -191,7 +191,7 @@
 	return
 */
 
-/mob/living/simple_mob/living_statue/female
+/mob/living/simple/living_statue/female
 	name = "statue"
 	desc = "An incredibly lifelike marble carving. Its eyes seem to follow you.."
 	icon = 'icons/obj/statue.dmi'

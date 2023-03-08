@@ -4,7 +4,7 @@
 	ADMINISTRATOR FOR IMMEDIATE MAINTENANCE! %ERROR%"
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/horror/TinyTim
+/mob/living/simple/horror/TinyTim
 	name = "???"
 	desc = "A tall figure wearing ripped clothes. Its eyes are placed on the bulb of skin that's folded over the front of its face."
 
@@ -40,27 +40,27 @@
 	hide_amount = 5
 	exotic_amount = 1
 
-/mob/living/simple_mob/horror/TinyTim/Initialize(mapload)
+/mob/living/simple/horror/TinyTim/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/horror_aura)
 
-/mob/living/simple_mob/horror/TinyTim/death()
+/mob/living/simple/horror/TinyTim/death()
 	playsound(src, 'sound/h_sounds/shitty_tim.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/TinyTim/bullet_act()
+/mob/living/simple/horror/TinyTim/bullet_act()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/TinyTim/attack_hand()
+/mob/living/simple/horror/TinyTim/attack_hand()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 
-/mob/living/simple_mob/horror/TinyTim/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
+/mob/living/simple/horror/TinyTim/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
 	. = ..()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 
-/mob/living/simple_mob/horror/TinyTim/attackby()
+/mob/living/simple/horror/TinyTim/attackby()
 	playsound(src, 'sound/h_sounds/holla.ogg', 50, 1)
 	..()
 

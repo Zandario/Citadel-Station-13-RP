@@ -61,7 +61,7 @@
 
 #define iscomplexmob(A) istype(A, /mob/living/complex)
 
-#define iscorgi(A) istype(A, /mob/living/simple_mob/animal/passive/dog/corgi)
+#define iscorgi(A) istype(A, /mob/living/simple/animal/passive/dog/corgi)
 
 #define isDrone(A) istype(A, /mob/living/silicon/robot/drone)
 
@@ -73,7 +73,7 @@
 
 #define isMatriarchDrone(A) istype(A, /mob/living/silicon/robot/drone/construction/matriarch)
 
-#define ismouse(A) istype(A, /mob/living/simple_mob/animal/passive/mouse/)
+#define ismouse(A) istype(A, /mob/living/simple/animal/passive/mouse/)
 
 #define isnewplayer(A) istype(A, /mob/new_player)
 
@@ -87,13 +87,13 @@
 
 #define isvoice(A) istype(A, /mob/living/voice)
 
-#define isslime(A) istype(A, /mob/living/simple_mob/slime)
+#define isslime(A) istype(A, /mob/living/simple/slime)
 
 #define isbot(A) istype(A, /mob/living/bot)
 
-#define isxeno(A) istype(A, /mob/living/simple_mob/xeno)
+#define isxeno(A) istype(A, /mob/living/simple/xeno)
 
-#define issimple(A) istype(A, /mob/living/simple_mob)
+#define issimple(A) istype(A, /mob/living/simple)
 
 /proc/is_species_type(atom/A, path)
 	if(!istype(A, /mob/living/complex/human))

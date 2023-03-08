@@ -90,16 +90,16 @@
 	vermin = rand(1,4)
 	switch(vermin)
 		if(VERM_MICE)
-			spawn_types = list(/mob/living/simple_mob/animal/passive/mouse/gray, /mob/living/simple_mob/animal/passive/mouse/brown, /mob/living/simple_mob/animal/passive/mouse/white)
+			spawn_types = list(/mob/living/simple/animal/passive/mouse/gray, /mob/living/simple/animal/passive/mouse/brown, /mob/living/simple/animal/passive/mouse/white)
 			vermstring = "mice"
 		if(VERM_LIZARDS)
-			spawn_types = list(/mob/living/simple_mob/animal/passive/lizard)
+			spawn_types = list(/mob/living/simple/animal/passive/lizard)
 			vermstring = "lizards"
 		if(VERM_SPIDERS)
 			spawn_types = list(/obj/effect/spider/spiderling/no_crawl)
 			vermstring = "spiders"
 		if(VERM_ROACHES)
-			spawn_types = list(/mob/living/simple_mob/animal/roach/roachling)
+			spawn_types = list(/mob/living/simple/animal/roach/roachling)
 			vermstring = "giant roaches"
 
 /datum/event/infestation/end()

@@ -14,7 +14,7 @@
 /turf/simulated/floor/wood/lavaland,
 /area/lavaland/idleruins)
 "j" = (
-/mob/living/simple_mob/mechanical/cyber_horror/corgi/surt,
+/mob/living/simple/mechanical/cyber_horror/corgi/surt,
 /turf/simulated/floor/wood/lavaland,
 /area/lavaland/idleruins)
 "k" = (
@@ -54,7 +54,7 @@
 /turf/simulated/floor/outdoors/lavaland,
 /area/lavaland/idleruins)
 "D" = (
-/mob/living/simple_mob/mechanical/cyber_horror/cat_cyber_horror/surt,
+/mob/living/simple/mechanical/cyber_horror/cat_cyber_horror/surt,
 /turf/simulated/mineral/floor/ignore_mapgen/lavaland,
 /area/lavaland/idleruins)
 "E" = (

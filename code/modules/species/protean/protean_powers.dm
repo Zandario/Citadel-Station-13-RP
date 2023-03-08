@@ -36,7 +36,7 @@
 			oldlimb.removed()
 			qdel(oldlimb)
 
-		// var/mob/living/simple_mob/protean_blob/blob = nano_intoblob()
+		// var/mob/living/simple/protean_blob/blob = nano_intoblob()
 		active_regen = TRUE
 		src.visible_message("<B>[src]</B>'s flesh begins to bubble, growing oily tendrils from their limb stump...")  // Gives a visualization for regenerating limbs.
 		if(do_after(src,5 SECONDS))  // Makes you not need to blob to regen a single limb. I'm keeping the full-body regen as blob-only, though
@@ -130,7 +130,7 @@
 		to_chat(src, "<span class='danger'>Remain still while the process takes place! It will take 5 seconds.</span>")
 		visible_message("<B>[src]</B>'s form collapses into an amorphous blob of black ichor...")
 
-		var/mob/living/simple_mob/protean_blob/blob = nano_intoblob()
+		var/mob/living/simple/protean_blob/blob = nano_intoblob()
 		active_regen = TRUE
 		if(do_after(blob,5 SECONDS))
 			synthetic = usable_manufacturers[manu_choice]
@@ -151,7 +151,7 @@
 	visible_message("<B>[src]</B>'s form begins to shift and ripple as if made of oil...")
 	active_regen = TRUE
 
-	var/mob/living/simple_mob/protean_blob/blob = nano_intoblob()
+	var/mob/living/simple/protean_blob/blob = nano_intoblob()
 	if(do_after(blob, delay_length, null, 0))
 		if(stat != DEAD && refactory)
 			//Not enough resources (AND spends the resources, should be the last check)
@@ -350,7 +350,7 @@
 			return R
 	return
 
-/mob/living/simple_mob/protean_blob/nano_get_refactory()
+/mob/living/simple/protean_blob/nano_get_refactory()
 	if(refactory)
 		return ..(refactory)
 	if(humanform)
@@ -387,7 +387,7 @@
 			do_ability(usr)
 		//Blobform using it
 		else
-			var/mob/living/simple_mob/protean_blob/blob = usr
+			var/mob/living/simple/protean_blob/blob = usr
 			do_ability(blob.humanform)
 
 /obj/effect/protean_ability/proc/do_ability(var/mob/living/L)

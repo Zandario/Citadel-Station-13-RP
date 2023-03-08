@@ -2,7 +2,7 @@
 // distracting their enemies. This is done by being seen as very threatening.
 // Their melee attacks weaken whatever they hit.
 
-/mob/living/simple_mob/mechanical/hivebot/tank
+/mob/living/simple/mechanical/hivebot/tank
 	attacktext = list("prodded")
 	projectiletype = null // To force the AI to melee.
 	movement_cooldown = 10
@@ -11,7 +11,7 @@
 	attack_sound = 'sound/weapons/Egloves.ogg'
 
 // All tank hivebots apply a modifier to their target, and force them to attack them if they're AI controlled.
-/mob/living/simple_mob/mechanical/hivebot/tank/apply_melee_effects(atom/A)
+/mob/living/simple/mechanical/hivebot/tank/apply_melee_effects(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		L.taunt(src, TRUE)
@@ -34,7 +34,7 @@
 	evasion = -20
 
 // This one is tanky by having a massive amount of health.
-/mob/living/simple_mob/mechanical/hivebot/tank/meatshield
+/mob/living/simple/mechanical/hivebot/tank/meatshield
 	name = "bulky hivebot"
 	desc = "A large robot."
 	maxHealth = 10 LASERS_TO_KILL // 300 health
@@ -45,7 +45,7 @@
 
 
 // This one is tanky by having armor.
-/mob/living/simple_mob/mechanical/hivebot/tank/armored
+/mob/living/simple/mechanical/hivebot/tank/armored
 	name = "armored hivebot"
 	desc = "A robot clad in heavy armor."
 	maxHealth = 5 LASERS_TO_KILL // 150 health.
@@ -75,7 +75,7 @@
 				"rad"		= 0
 				)
 
-/mob/living/simple_mob/mechanical/hivebot/tank/armored/anti_melee
+/mob/living/simple/mechanical/hivebot/tank/armored/anti_melee
 	name = "riot hivebot"
 	desc = "A robot specialized in close quarters combat."
 	player_msg = "You are heavily armored against close quarters combat."
@@ -98,7 +98,7 @@
 				"rad"		= 0
 				)
 
-/mob/living/simple_mob/mechanical/hivebot/tank/armored/anti_bullet
+/mob/living/simple/mechanical/hivebot/tank/armored/anti_bullet
 	name = "bulletproof hivebot"
 	desc = "A robot specialized in ballistic defense."
 	player_msg = "You are heavily armored against ballistic weapons."
@@ -121,7 +121,7 @@
 				"rad"		= 0
 				)
 
-/mob/living/simple_mob/mechanical/hivebot/tank/armored/anti_laser
+/mob/living/simple/mechanical/hivebot/tank/armored/anti_laser
 	name = "ablative hivebot"
 	desc = "A robot specialized in photonic defense."
 	player_msg = "You are heavily armored against laser weapons."
@@ -146,7 +146,7 @@
 	var/reflect_chance = 40 // Same as regular ablative.
 
 // Ablative Hivebots can reflect lasers just like humans.
-/mob/living/simple_mob/mechanical/hivebot/tank/armored/anti_laser/bullet_act(obj/item/projectile/P)
+/mob/living/simple/mechanical/hivebot/tank/armored/anti_laser/bullet_act(obj/item/projectile/P)
 	if(istype(P, /obj/item/projectile/energy) || istype(P, /obj/item/projectile/beam))
 		var/reflect_prob = reflect_chance - round(P.damage/3)
 		if(prob(reflect_prob))

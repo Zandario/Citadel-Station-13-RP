@@ -4107,7 +4107,7 @@ END CITADEL CHANGE */
 /mob/living/complex/alien/diona
 	composition_reagent = "nutriment"//Dionae are plants, so eating them doesn't give animal protein
 
-/mob/living/simple_mob/slime
+/mob/living/simple/slime
 	composition_reagent = "slimejelly"
 
 /mob/living/simple_animal

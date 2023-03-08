@@ -144,7 +144,7 @@ Interfaces are a concept that is used to help bridge the gap between
 the ai_holder, and its mob. Because the (base) ai_holder is explicitly
 designed to not be specific to any type of mob, all that it knows is
 that it is controlling a /mob/living mob. Some mobs work very differently,
-between mob types such as /mob/living/simple_mob, /mob/living/silicon/robot,
+between mob types such as /mob/living/simple, /mob/living/silicon/robot,
 /mob/living/complex/human, and more.
 
 The solution to the vast differences between mob types is to have the

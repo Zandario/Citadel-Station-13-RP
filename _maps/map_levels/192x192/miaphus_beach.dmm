@@ -926,7 +926,7 @@
 /area/tether_away/beach/station/terminal)
 "gc" = (
 /obj/machinery/light/small,
-/mob/living/simple_mob/animal/roach/jaeger,
+/mob/living/simple/animal/roach/jaeger,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether_away/beach/bunker)
 "gd" = (
@@ -937,7 +937,7 @@
 /turf/simulated/floor/wood,
 /area/tether_away/beach/desalinator)
 "gs" = (
-/mob/living/simple_mob/animal/roach/zeitraum,
+/mob/living/simple/animal/roach/zeitraum,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether_away/beach/bunker)
 "gu" = (
@@ -1004,14 +1004,14 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether_away/beach/bunker/mess)
 "he" = (
-/mob/living/simple_mob/animal/roach/strahlend,
+/mob/living/simple/animal/roach/strahlend,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether_away/beach/desalinator)
 "hf" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
-/mob/living/simple_mob/animal/roach/jaeger,
+/mob/living/simple/animal/roach/jaeger,
 /turf/simulated/floor,
 /area/tether_away/beach/bunker)
 "hg" = (
@@ -1219,7 +1219,7 @@
 	pixel_y = 18
 	},
 /obj/machinery/light/small,
-/mob/living/simple_mob/animal/roach/fuhrer,
+/mob/living/simple/animal/roach/fuhrer,
 /turf/simulated/floor/tiled/old_tile/white,
 /area/tether_away/beach/desalinator)
 "il" = (
@@ -1246,7 +1246,7 @@
 /turf/simulated/floor/wood/broken,
 /area/tether_away/beach/resort/dorm2)
 "ip" = (
-/mob/living/simple_mob/animal/roach/zeitraum,
+/mob/living/simple/animal/roach/zeitraum,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether_away/beach/desalinator)
 "iv" = (
@@ -1503,7 +1503,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/mob/living/simple_mob/animal/roach/panzer,
+/mob/living/simple/animal/roach/panzer,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether_away/beach/bunker/engi)
 "kx" = (
@@ -1991,7 +1991,7 @@
 	},
 /area/tether_away/beach/mineshaft)
 "ph" = (
-/mob/living/simple_mob/animal/roach/seuche,
+/mob/living/simple/animal/roach/seuche,
 /turf/simulated/floor/tiled/old_tile/white,
 /area/tether_away/beach/bunker/kitchen)
 "pl" = (
@@ -2312,7 +2312,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/mob/living/simple_mob/animal/roach/atomar,
+/mob/living/simple/animal/roach/atomar,
 /turf/simulated/floor/tiled/old_tile/white,
 /area/tether_away/beach/bunker/restroom)
 "rV" = (
@@ -2429,7 +2429,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/mob/living/simple_mob/animal/roach/panzer,
+/mob/living/simple/animal/roach/panzer,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether_away/beach/bunker/bunk)
 "sW" = (
@@ -2536,14 +2536,14 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether_away/beach/bunker/janitor)
 "tC" = (
-/mob/living/simple_mob/animal/roach/jaeger,
+/mob/living/simple/animal/roach/jaeger,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether_away/beach/bunker)
 "tF" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/mob/living/simple_mob/animal/roach/seuche,
+/mob/living/simple/animal/roach/seuche,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether_away/beach/desalinator)
 "tG" = (
@@ -2558,7 +2558,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc/alarms_hidden/east_bump,
-/mob/living/simple_mob/animal/roach/jaeger,
+/mob/living/simple/animal/roach/jaeger,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether_away/beach/bunker)
 "tQ" = (
@@ -2858,7 +2858,7 @@
 /turf/simulated/floor/wood,
 /area/tether_away/beach/mineshaft)
 "wn" = (
-/mob/living/simple_mob/animal/roach/panzer,
+/mob/living/simple/animal/roach/panzer,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether_away/beach/bunker/engi)
 "wv" = (
@@ -3303,7 +3303,7 @@
 	},
 /area/tether_away/beach/jungle)
 "AI" = (
-/mob/living/simple_mob/animal/roach/panzer,
+/mob/living/simple/animal/roach/panzer,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether_away/beach/bunker/bunk)
 "AQ" = (
@@ -3529,7 +3529,7 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether_away/beach/bunker/mess)
 "Df" = (
-/mob/living/simple_mob/animal/roach/seuche,
+/mob/living/simple/animal/roach/seuche,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether_away/beach/desalinator)
 "Dq" = (
@@ -3823,7 +3823,7 @@
 /turf/simulated/floor/water/deep,
 /area/tether_away/beach/aa)
 "FR" = (
-/mob/living/simple_mob/animal/giant_spider/nurse/queen,
+/mob/living/simple/animal/giant_spider/nurse/queen,
 /turf/simulated/mineral/floor/cave{
 	name = "dirt"
 	},
@@ -4411,7 +4411,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/mob/living/simple_mob/animal/roach/jaeger,
+/mob/living/simple/animal/roach/jaeger,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether_away/beach/bunker)
 "LG" = (
@@ -4713,7 +4713,7 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/mob/living/simple_mob/animal/roach/panzer,
+/mob/living/simple/animal/roach/panzer,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether_away/beach/bunker/engi)
 "Om" = (
@@ -4772,7 +4772,7 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/mob/living/simple_mob/animal/roach/seuche,
+/mob/living/simple/animal/roach/seuche,
 /turf/simulated/floor/tiled/old_tile/white,
 /area/tether_away/beach/bunker/kitchen)
 "OZ" = (
@@ -4857,7 +4857,7 @@
 	dir = 1
 	},
 /obj/machinery/light/small,
-/mob/living/simple_mob/animal/roach/atomar,
+/mob/living/simple/animal/roach/atomar,
 /turf/simulated/floor/tiled/old_tile/white,
 /area/tether_away/beach/bunker/restroom)
 "PV" = (
@@ -5166,7 +5166,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/mob/living/simple_mob/animal/roach/fuhrer,
+/mob/living/simple/animal/roach/fuhrer,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether_away/beach/bunker/janitor)
 "Su" = (
@@ -5580,7 +5580,7 @@
 	pixel_y = 18
 	},
 /obj/machinery/light/small,
-/mob/living/simple_mob/animal/roach/panzer,
+/mob/living/simple/animal/roach/panzer,
 /turf/simulated/floor/tiled/old_tile/white,
 /area/tether_away/beach/desalinator)
 "WP" = (
@@ -5630,7 +5630,7 @@
 /turf/simulated/floor/water/deep,
 /area/tether_away/beach/aa)
 "Xw" = (
-/mob/living/simple_mob/animal/roach/strahlend,
+/mob/living/simple/animal/roach/strahlend,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether_away/beach/bunker/mess)
 "Xz" = (
@@ -5877,7 +5877,7 @@
 /turf/simulated/floor/water/deep,
 /area/tether_away/beach/aa)
 "ZH" = (
-/mob/living/simple_mob/animal/roach/jaeger,
+/mob/living/simple/animal/roach/jaeger,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether_away/beach/desalinator)
 "ZQ" = (

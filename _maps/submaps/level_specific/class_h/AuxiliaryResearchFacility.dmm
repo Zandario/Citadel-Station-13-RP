@@ -56,7 +56,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/mob/living/simple_mob/mechanical/cyber_horror/plasma_cyber_horror,
+/mob/living/simple/mechanical/cyber_horror/plasma_cyber_horror,
 /turf/simulated/floor/reinforced,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "aI" = (
@@ -154,7 +154,7 @@
 /turf/simulated/floor/tiled/white,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "db" = (
-/mob/living/simple_mob/humanoid/merc/ranged/grenadier,
+/mob/living/simple/humanoid/merc/ranged/grenadier,
 /turf/simulated/floor/tiled/white,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "dd" = (
@@ -204,7 +204,7 @@
 "ed" = (
 /obj/effect/debris/cleanable/dirt,
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/mechanical/viscerator/mercenary,
+/mob/living/simple/mechanical/viscerator/mercenary,
 /turf/simulated/floor/tiled/dark,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "ek" = (
@@ -394,7 +394,7 @@
 /turf/simulated/floor/reinforced,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "ja" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword,
+/mob/living/simple/humanoid/merc/melee/sword,
 /turf/simulated/floor/wood,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "jg" = (
@@ -416,7 +416,7 @@
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "jC" = (
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/mechanical/cyber_horror,
+/mob/living/simple/mechanical/cyber_horror,
 /turf/simulated/floor/tiled/white,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "jD" = (
@@ -426,7 +426,7 @@
 "jM" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/mechanical/cyber_horror/corgi,
+/mob/living/simple/mechanical/cyber_horror/corgi,
 /turf/simulated/floor/reinforced,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "jN" = (
@@ -469,7 +469,7 @@
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "ks" = (
 /obj/effect/debris/cleanable/blood,
-/mob/living/simple_mob/mechanical/cyber_horror/tajaran,
+/mob/living/simple/mechanical/cyber_horror/tajaran,
 /turf/simulated/floor/tiled/white,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "ky" = (
@@ -702,7 +702,7 @@
 /turf/simulated/floor/wood,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "pw" = (
-/mob/living/simple_mob/humanoid/merc/ranged/garand,
+/mob/living/simple/humanoid/merc/ranged/garand,
 /turf/simulated/floor/tiled/dark,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "pz" = (
@@ -840,7 +840,7 @@
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "sq" = (
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/humanoid/merc/ranged/garand,
+/mob/living/simple/humanoid/merc/ranged/garand,
 /turf/simulated/floor/tiled/dark,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "th" = (
@@ -894,7 +894,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "uP" = (
-/mob/living/simple_mob/mechanical/viscerator/mercenary,
+/mob/living/simple/mechanical/viscerator/mercenary,
 /turf/simulated/floor/tiled/dark,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "uW" = (
@@ -987,7 +987,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "wr" = (
-/mob/living/simple_mob/mechanical/cyber_horror,
+/mob/living/simple/mechanical/cyber_horror,
 /turf/simulated/floor/reinforced,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "ww" = (
@@ -1041,7 +1041,7 @@
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "xA" = (
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/mechanical/cyber_horror/vox,
+/mob/living/simple/mechanical/cyber_horror/vox,
 /turf/simulated/floor/tiled/white,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "xT" = (
@@ -1133,7 +1133,7 @@
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "zM" = (
 /obj/effect/floor_decal/corner/red/border,
-/mob/living/simple_mob/mechanical/viscerator/mercenary,
+/mob/living/simple/mechanical/viscerator/mercenary,
 /turf/simulated/floor/tiled/dark,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "zY" = (
@@ -1221,7 +1221,7 @@
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "Bx" = (
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/humanoid/merc,
+/mob/living/simple/humanoid/merc,
 /turf/simulated/floor/wood/classh,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "BA" = (
@@ -1245,7 +1245,7 @@
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "BU" = (
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/humanoid/merc/melee/sword,
+/mob/living/simple/humanoid/merc/melee/sword,
 /turf/simulated/floor/tiled/white,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "Ca" = (
@@ -1317,7 +1317,7 @@
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "Dl" = (
 /obj/effect/floor_decal/corner/red/border,
-/mob/living/simple_mob/humanoid/merc/ranged/smg,
+/mob/living/simple/humanoid/merc/ranged/smg,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/dark,
 /area/class_h/POIs/AuxiliaryResearchFacility)
@@ -1353,7 +1353,7 @@
 /turf/simulated/floor/tiled/white,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "DT" = (
-/mob/living/simple_mob/humanoid/merc/ranged/deagle,
+/mob/living/simple/humanoid/merc/ranged/deagle,
 /turf/simulated/floor/outdoors/dirt,
 /area/class_h/explored)
 "Ef" = (
@@ -1367,7 +1367,7 @@
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "Ej" = (
 /obj/effect/floor_decal/corner/red/border,
-/mob/living/simple_mob/mechanical/viscerator/mercenary,
+/mob/living/simple/mechanical/viscerator/mercenary,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/dark,
 /area/class_h/POIs/AuxiliaryResearchFacility)
@@ -1397,7 +1397,7 @@
 /turf/simulated/floor/tiled/white,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "EJ" = (
-/mob/living/simple_mob/humanoid/merc/melee/sword,
+/mob/living/simple/humanoid/merc/melee/sword,
 /turf/simulated/floor/tiled/dark,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "Fg" = (
@@ -1627,7 +1627,7 @@
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "KS" = (
 /obj/effect/floor_decal/rust,
-/mob/living/simple_mob/mechanical/cyber_horror/cat_cyber_horror,
+/mob/living/simple/mechanical/cyber_horror/cat_cyber_horror,
 /turf/simulated/floor/reinforced,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "KT" = (
@@ -1812,7 +1812,7 @@
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "OG" = (
 /obj/effect/debris/cleanable/dirt,
-/mob/living/simple_mob/humanoid/merc/ranged/smg,
+/mob/living/simple/humanoid/merc/ranged/smg,
 /turf/simulated/floor/wood/classh,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "Pb" = (
@@ -2002,7 +2002,7 @@
 /turf/simulated/wall/iron,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "TM" = (
-/mob/living/simple_mob/humanoid/merc/ranged/space,
+/mob/living/simple/humanoid/merc/ranged/space,
 /turf/simulated/floor/outdoors/dirt,
 /area/class_h/explored)
 "TZ" = (
@@ -2061,7 +2061,7 @@
 /turf/simulated/floor/wood/classh,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "VK" = (
-/mob/living/simple_mob/humanoid/merc/ranged/poi,
+/mob/living/simple/humanoid/merc/ranged/poi,
 /turf/simulated/floor/wood,
 /area/class_h/POIs/AuxiliaryResearchFacility)
 "VL" = (

@@ -1941,7 +1941,7 @@
 	name = "cat bed"
 	},
 /obj/item/toy/plushie/mouse/fluff,
-/mob/living/simple_mob/animal/passive/cat/runtime,
+/mob/living/simple/animal/passive/cat/runtime,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/medical/cmo)
 "adc" = (
@@ -15147,7 +15147,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
 "azZ" = (
-/mob/living/simple_mob/animal/passive/fish/bass,
+/mob/living/simple/animal/passive/fish/bass,
 /turf/simulated/floor/water/deep/indoors,
 /area/tether/surfacebase/fish_farm)
 "aAa" = (
@@ -17455,7 +17455,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 1
 	},
-/mob/living/simple_mob/animal/passive/mouse/brown/Tom,
+/mob/living/simple/animal/passive/mouse/brown/Tom,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
 "aEZ" = (
@@ -18991,7 +18991,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
 "aJh" = (
-/mob/living/simple_mob/slime/xenobio/rainbow/kendrick,
+/mob/living/simple/slime/xenobio/rainbow/kendrick,
 /turf/simulated/floor/reinforced,
 /area/rnd/rdoffice)
 "aJi" = (
@@ -22171,7 +22171,7 @@
 /obj/effect/floor_decal/corner_techfloor_grid{
 	dir = 10
 	},
-/mob/living/simple_mob/animal/passive/lizard{
+/mob/living/simple/animal/passive/lizard{
 	desc = "It's the secret head of Janitoria!";
 	name = "Bucket"
 	},

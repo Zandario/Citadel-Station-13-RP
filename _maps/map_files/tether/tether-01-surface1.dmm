@@ -1766,7 +1766,7 @@
 /obj/structure/bed/chair/bay/chair/padded/red/bignest{
 	name = "Tweeter's Bed"
 	},
-/mob/living/simple_mob/animal/passive/bird/azure_tit/tweeter,
+/mob/living/simple/animal/passive/bird/azure_tit/tweeter,
 /turf/simulated/floor/grass,
 /area/tether/surfacebase/medical/mentalhealth)
 "adn" = (
@@ -3906,7 +3906,7 @@
 "agQ" = (
 /obj/structure/catwalk,
 /obj/random/cigarettes,
-/mob/living/simple_mob/vore/aggressive/rat/maurice,
+/mob/living/simple/vore/aggressive/rat/maurice,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
 "agR" = (
@@ -5585,7 +5585,7 @@
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
 "ajK" = (
-/mob/living/simple_mob/animal/passive/gaslamp,
+/mob/living/simple/animal/passive/gaslamp,
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/tether/surfacebase/outside/outside1)
 "ajL" = (
@@ -9520,7 +9520,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_one_hall)
 "aqK" = (
-/mob/living/simple_mob/animal/passive/fish/koi/poisonous,
+/mob/living/simple/animal/passive/fish/koi/poisonous,
 /turf/simulated/floor/water/pool,
 /area/tether/surfacebase/surface_one_hall)
 "aqL" = (
@@ -30850,7 +30850,7 @@
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
-/mob/living/simple_mob/animal/passive/mimepet,
+/mob/living/simple/animal/passive/mimepet,
 /turf/simulated/floor/carpet/bcarpet,
 /area/tether/surfacebase/funny/mimeoffice)
 "enB" = (
@@ -35822,7 +35822,7 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
 "saF" = (
-/mob/living/simple_mob/animal/passive/honkpet,
+/mob/living/simple/animal/passive/honkpet,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/clownoffice)
 "saT" = (

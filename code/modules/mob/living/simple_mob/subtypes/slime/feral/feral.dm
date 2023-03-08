@@ -6,7 +6,7 @@
 	creatures rival the ferocity of other apex predators in this region of Sif. It is considered to be a very invasive species."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/slime/feral
+/mob/living/simple/slime/feral
 	name = "feral slime"
 	desc = "The result of slimes escaping containment from some xenobiology lab."
 	description_info = "Note that processing this large slime will give six cores."
@@ -32,7 +32,7 @@
 
 
 // Slimebatoning/xenotasing it just makes it mad at you (which can be good if you're heavily armored and your friends aren't).
-/mob/living/simple_mob/slime/feral/slimebatoned(mob/living/user, amount)
+/mob/living/simple/slime/feral/slimebatoned(mob/living/user, amount)
 	taunt(user, TRUE)
 
 
@@ -43,7 +43,7 @@
 // Dark Blue feral slimes can fire a strong icicle projectile every few seconds. The icicle hits hard and has some armor penetration.
 // They also have a similar aura as their xenobio counterparts, which inflicts cold damage. It also chills non-resistant mobs.
 
-/mob/living/simple_mob/slime/feral/dark_blue
+/mob/living/simple/slime/feral/dark_blue
 	name = "dark blue feral slime"
 	color = "#2398FF"
 	glow_toggle = TRUE
@@ -80,18 +80,18 @@
 /obj/item/projectile/icicle/get_structure_damage()
 	return damage / 2 // They're really deadly against mobs, but less effective against solid things.
 
-/mob/living/simple_mob/slime/feral/dark_blue/handle_special()
+/mob/living/simple/slime/feral/dark_blue/handle_special()
 	if(stat != DEAD)
 		cold_aura()
 	..()
 
-/mob/living/simple_mob/slime/feral/dark_blue/proc/cold_aura()
+/mob/living/simple/slime/feral/dark_blue/proc/cold_aura()
 	for(var/mob/living/L in view(3, src))
 		if(L == src)
 			continue
 		chill(L)
 
-/mob/living/simple_mob/slime/feral/dark_blue/proc/chill(mob/living/L)
+/mob/living/simple/slime/feral/dark_blue/proc/chill(mob/living/L)
 	L.inflict_cold_damage(10)
 	if(QDELETED(L))
 		return
@@ -100,4 +100,3 @@
 
 	if(L.has_AI()) // Other AIs should react to hostile auras.
 		L.ai_holder.react_to_attack(src)
-

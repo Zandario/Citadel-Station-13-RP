@@ -4,7 +4,7 @@
 	are a dramatic example of why rapid genetic tampering is ill advised."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/hostile/tomato
+/mob/living/simple/hostile/tomato
 	name = "killer tomato"
 	desc = "It's a horrifyingly enormous beef tomato, and it's packing extra beef!"
 	tt_desc = "X Solanum abominable"
@@ -36,7 +36,7 @@
 	exotic_amount = 1
 	exotic_type = /obj/item/seeds/tomatoseed
 
-/mob/living/simple_mob/hostile/tomato/space
+/mob/living/simple/hostile/tomato/space
 	min_oxy = 0
 	max_oxy = 0
 	min_tox = 0
@@ -47,5 +47,5 @@
 	max_n2 = 0
 	minbodytemp = 0
 
-/mob/living/simple_mob/hostile/tomato/space/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple/hostile/tomato/space/Process_Spacemove(var/check_drift = 0)
 	return TRUE

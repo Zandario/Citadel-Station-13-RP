@@ -1,4 +1,4 @@
-/mob/living/simple_mob/vore/demon/engorge
+/mob/living/simple/vore/demon/engorge
 	name = "Engorge"
 
 	icon_state = "engorge"
@@ -8,7 +8,7 @@
 
 	vore_icons = null
 
-/mob/living/simple_mob/vore/demon/zellic
+/mob/living/simple/vore/demon/zellic
 	name = "Zellic"
 
 	icon_state = "zellic"

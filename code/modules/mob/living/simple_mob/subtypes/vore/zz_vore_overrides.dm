@@ -3,12 +3,12 @@
 //
 
 /*
-## For anything that previously inhertited from: /mob/living/simple_mob/hostile/vore ##
+## For anything that previously inhertited from: /mob/living/simple/hostile/vore ##
 
   	vore_active = 1
   	icon = 'icons/mob/vore.dmi'
 
-## For anything that previously inhertied from: /mob/living/simple_mob/hostile/vore/large ##
+## For anything that previously inhertied from: /mob/living/simple/hostile/vore/large ##
 
 	vore_active = 1
 	icon = 'icons/mob/vore64x64.dmi'
@@ -23,7 +23,7 @@
 // Okay! Here we go!
 //
 
-/mob/living/simple_mob/animal/space/alien
+/mob/living/simple/animal/space/alien
 	vore_active = 1
 	icon = 'icons/mob/vore.dmi'
 	icon_state = "xenohunter"
@@ -32,7 +32,7 @@
 	icon_gib = "gibbed-a"
 	vore_icons = SA_ICON_LIVING
 
-/mob/living/simple_mob/animal/space/alien/drone
+/mob/living/simple/animal/space/alien/drone
 	vore_active = 1
 	icon = 'icons/mob/vore.dmi'
 	icon_state = "xenodrone"
@@ -41,7 +41,7 @@
 	icon_gib = "gibbed-a"
 	vore_icons = SA_ICON_LIVING
 
-/mob/living/simple_mob/animal/space/alien/sentinel
+/mob/living/simple/animal/space/alien/sentinel
 	vore_active = 1
 	icon = 'icons/mob/vore.dmi'
 	icon_state = "xenosentinel"
@@ -50,7 +50,7 @@
 	icon_gib = "gibbed-a"
 	vore_icons = SA_ICON_LIVING
 
-/mob/living/simple_mob/animal/space/alien/queen
+/mob/living/simple/animal/space/alien/queen
 	vore_active = 1
 	icon = 'icons/mob/vore.dmi'
 	icon_state = "xenoqueen"
@@ -59,7 +59,7 @@
 	icon_gib = "gibbed-a"
 	vore_icons = SA_ICON_LIVING
 
-/mob/living/simple_mob/animal/space/alien/queen/empress
+/mob/living/simple/animal/space/alien/queen/empress
 	vore_active = 1
 	icon = 'icons/mob/vore64x64.dmi'
 	icon_state = "queen_s"
@@ -71,14 +71,14 @@
 	vore_capacity = 3
 	vore_pounce_chance = 75
 
-/mob/living/simple_mob/animal/space/alien/sentinel/praetorian
+/mob/living/simple/animal/space/alien/sentinel/praetorian
 	icon = 'icons/mob/vore64x64.dmi'
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 
-/mob/living/simple_mob/animal/space/alien/queen/empress/mother
+/mob/living/simple/animal/space/alien/queen/empress/mother
 	vore_icons = FALSE
 
-/mob/living/simple_mob/animal/space/bear
+/mob/living/simple/animal/space/bear
 	vore_active = 1
 	icon = 'icons/mob/vore.dmi'
 	icon_state = "spacebear"
@@ -87,10 +87,10 @@
 	icon_gib = "bear-gib"
 	vore_icons = SA_ICON_LIVING
 
-/mob/living/simple_mob/animal/space/bear/hudson
+/mob/living/simple/animal/space/bear/hudson
 	name = "Hudson"
 
-/mob/living/simple_mob/animal/space/bear/brown
+/mob/living/simple/animal/space/bear/brown
 	vore_active = 1
 	icon = 'icons/mob/vore.dmi'
 	name = "brown bear"
@@ -100,71 +100,71 @@
 	icon_gib = "bear-gib"
 	vore_icons = SA_ICON_LIVING
 
-/mob/living/simple_mob/animal/space/carp
+/mob/living/simple/animal/space/carp
 	icon = 'icons/mob/vore.dmi'
 	vore_active = 1
 	vore_icons = SA_ICON_LIVING
 
-/mob/living/simple_mob/animal/space/carp/large
+/mob/living/simple/animal/space/carp/large
 	vore_icons = 0
-/mob/living/simple_mob/animal/space/carp/large/huge
+/mob/living/simple/animal/space/carp/large/huge
 	vore_icons = 0
-/mob/living/simple_mob/animal/space/carp/holographic
+/mob/living/simple/animal/space/carp/holographic
 	vore_icons = 0
 
-/mob/living/simple_mob/animal/passive/cat
+/mob/living/simple/animal/passive/cat
 	vore_active = 1
 	//specific_targets = 0 // Targeting UNLOCKED
 	vore_max_size = RESIZE_TINY
 
-/mob/living/simple_mob/animal/passive/cat/fluff
+/mob/living/simple/animal/passive/cat/fluff
 	vore_ignores_undigestable = 0
 	vore_pounce_chance = 100
 	vore_digest_chance = 0 // just use the toggle
 	vore_default_mode = DM_HOLD //can use the toggle if you wanna be catfood
 	vore_standing_too = TRUE //gonna get pounced
 
-/mob/living/simple_mob/animal/passive/fox
+/mob/living/simple/animal/passive/fox
 	vore_active = 1
 	vore_max_size = RESIZE_TINY
 
-/mob/living/simple_mob/fox/fluff
+/mob/living/simple/fox/fluff
 	vore_ignores_undigestable = 0
 	vore_pounce_chance = 100
 	vore_digest_chance = 0 // just use the toggle
 	vore_default_mode = DM_HOLD //can use the toggle if you wanna be foxfood
 	vore_standing_too = TRUE // gonna get pounced
 
-/mob/living/simple_mob/animal/space/goose
+/mob/living/simple/animal/space/goose
 	vore_active = 1
 	vore_max_size = RESIZE_SMALL
 
-/mob/living/simple_mob/animal/passive/penguin
+/mob/living/simple/animal/passive/penguin
 	vore_active = 1
 	vore_max_size = RESIZE_SMALL
 
 
-/mob/living/simple_mob/hostile/carp/pike
+/mob/living/simple/hostile/carp/pike
 	vore_active = 1
 
-/mob/living/simple_mob/animal/space/carp/holographic
+/mob/living/simple/animal/space/carp/holographic
 	vore_icons = 0
 	vore_digest_chance = 0
 	vore_absorb_chance = 0
 
 // Override stuff for holodeck carp to make them not digest when set to safe!
-/mob/living/simple_mob/animal/space/carp/holographic/init_vore()
+/mob/living/simple/animal/space/carp/holographic/init_vore()
 	. = ..()
 	var/safe = (faction == "neutral")
 	for(var/belly in vore_organs)
 		var/obj/belly/B = belly
 		B.digest_mode = safe ? DM_HOLD : vore_default_mode
 
-/mob/living/simple_mob/animal/space/carp/holographic/set_safety(var/safe)
+/mob/living/simple/animal/space/carp/holographic/set_safety(var/safe)
 	. = ..()
 	for(var/belly in vore_organs)
 		var/obj/belly/B = belly
 		B.digest_mode = safe ? DM_HOLD : vore_default_mode
 
-/mob/living/simple_mob/animal/passive/mouse
+/mob/living/simple/animal/passive/mouse
 	faction = "mouse" //Giving mice a faction so certain mobs can get along with them.

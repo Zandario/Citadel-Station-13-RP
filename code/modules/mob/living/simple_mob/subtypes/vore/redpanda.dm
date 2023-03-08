@@ -6,7 +6,7 @@
 	the Red Panda is a popular pet and status symbol rolled into one."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/vore/redpanda
+/mob/living/simple/vore/redpanda
 	name = "red panda"
 	desc = "It's a wah! Beware of doom pounce!"
 	tt_desc = "Ailurus fulgens"
@@ -36,7 +36,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
 
 // Activate Noms!
-/mob/living/simple_mob/vore/redpanda
+/mob/living/simple/vore/redpanda
 	vore_active = 1
 	vore_bump_chance = 10
 	vore_bump_emote	= "playfully lunges at"
@@ -44,7 +44,7 @@
 	vore_default_mode = DM_HOLD // above will only matter if someone toggles it anyway
 	vore_icons = SA_ICON_LIVING
 
-/mob/living/simple_mob/vore/redpanda/fae
+/mob/living/simple/vore/redpanda/fae
 	name = "dark wah"
 	desc = "Ominous, but still cute!"
 	tt_desc = "Ailurus brattus"

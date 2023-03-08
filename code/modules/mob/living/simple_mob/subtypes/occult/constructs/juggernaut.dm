@@ -11,7 +11,7 @@
 	immensely resilient. Direct combat with a Juggernaut is not advised."
 	value = CATALOGUER_REWARD_HARD
 
-/mob/living/simple_mob/construct/juggernaut
+/mob/living/simple/construct/juggernaut
 	name = "Juggernaut"
 	real_name = "Juggernaut"
 	construct_type = "juggernaut"
@@ -55,15 +55,15 @@
 				"bio" = 100,
 				"rad" = 100)
 
-/mob/living/simple_mob/construct/juggernaut/Life(seconds, times_fired)
+/mob/living/simple/construct/juggernaut/Life(seconds, times_fired)
 	SetWeakened(0)
 	return ..()
 
-/mob/living/simple_mob/construct/juggernaut/Initialize(mapload)
+/mob/living/simple/construct/juggernaut/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/horror_aura/strong)
 
-/mob/living/simple_mob/construct/juggernaut/bullet_act(var/obj/item/projectile/P)
+/mob/living/simple/construct/juggernaut/bullet_act(var/obj/item/projectile/P)
 	var/reflectchance = 80 - round(P.damage/3)
 	if(prob(reflectchance))
 		var/damage_mod = rand(2,4)
@@ -108,7 +108,7 @@
  * The Behemoth. Admin-allowance only, still try to keep it in some guideline of 'Balanced', even if it means Security has to be fully geared to be so.
  */
 
-/mob/living/simple_mob/construct/juggernaut/behemoth
+/mob/living/simple/construct/juggernaut/behemoth
 	name = "Behemoth"
 	real_name = "Behemoth"
 	desc = "The pinnacle of occult technology, Behemoths are nothing shy of both an Immovable Object, and Unstoppable Force."
@@ -138,7 +138,7 @@
 							/spell/targeted/construct_advanced/slam
 							)
 
-/mob/living/simple_mob/construct/juggernaut/behemoth/bullet_act(var/obj/item/projectile/P)
+/mob/living/simple/construct/juggernaut/behemoth/bullet_act(var/obj/item/projectile/P)
 	var/reflectchance = 80 - round(P.damage/3)
 	if(prob(reflectchance))
 		visible_message("<span class='danger'>The [P.name] gets reflected by [src]'s shell!</span>", \

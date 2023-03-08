@@ -289,7 +289,7 @@ var/const/MAX_ACTIVE_TIME = 400
 // Simple Mob Conversion. Leaving this commented out because I really don't want to actually have to convert this.
 /*
 
-/mob/living/simple_mob/animal/space/alien/facehugger
+/mob/living/simple/animal/space/alien/facehugger
 	name = "facehugger"
 	desc = "There's something unsettling about this creature's mouth."
 	icon = 'icons/mob/alien.dmi'
@@ -312,7 +312,7 @@ var/const/MAX_ACTIVE_TIME = 400
 	var/strength = 5
 	var/attached = 0
 
-/mob/living/simple_mob/animal/space/alien/facehugger/attack_hand(user as mob)
+/mob/living/simple/animal/space/alien/facehugger/attack_hand(user as mob)
 
 	if((stat == CONSCIOUS && !sterile))
 		if(Attach(user))
@@ -320,18 +320,18 @@ var/const/MAX_ACTIVE_TIME = 400
 
 	..()
 
-/mob/living/simple_mob/animal/space/alien/facehugger/attack(mob/living/M as mob, mob/user as mob)
+/mob/living/simple/animal/space/alien/facehugger/attack(mob/living/M as mob, mob/user as mob)
 	..()
 	user.drop_from_inventory(src)
 	Attach(M)
 
-/mob/living/simple_mob/animal/space/alien/facehugger/Initialize(mapload)
+/mob/living/simple/animal/space/alien/facehugger/Initialize(mapload)
 	if(config_legacy.aliens_allowed)
 		return ..()
 	else
 		return INITIALIZE_HINT_QDEL
 
-/mob/living/simple_mob/animal/space/alien/facehugger/examine(mob/user)
+/mob/living/simple/animal/space/alien/facehugger/examine(mob/user)
 	..(user)
 	switch(stat)
 		if(DEAD,UNCONSCIOUS)
@@ -342,17 +342,17 @@ var/const/MAX_ACTIVE_TIME = 400
 		to_chat(user, "<span class='danger'><b>It looks like the proboscis has been removed.</b></span>")
 	return
 
-/mob/living/simple_mob/animal/space/alien/facehugger/attackby(obj/item/I, mob/user)
+/mob/living/simple/animal/space/alien/facehugger/attackby(obj/item/I, mob/user)
 	if(I.force)
 		user.do_attack_animation(src)
 		Die()
 	return
 
-/mob/living/simple_mob/animal/space/alien/facehugger/bullet_act()
+/mob/living/simple/animal/space/alien/facehugger/bullet_act()
 	Die()
 	return
 
-/mob/living/simple_mob/animal/space/alien/facehugger/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/mob/living/simple/animal/space/alien/facehugger/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C+80)
 		Die()
 	return

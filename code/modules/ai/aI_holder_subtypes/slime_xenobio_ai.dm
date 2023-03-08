@@ -1,5 +1,5 @@
 // Specialized AI for slime simplemobs.
-// Unlike the parent AI code, this will probably break a lot of things if you put it on something that isn't /mob/living/simple_mob/slime/xenobio
+// Unlike the parent AI code, this will probably break a lot of things if you put it on something that isn't /mob/living/simple/slime/xenobio
 
 /datum/ai_holder/simple_mob/xenobio_slime
 	hostile = TRUE
@@ -36,7 +36,7 @@
 
 /datum/ai_holder/simple_mob/xenobio_slime/New()
 	..()
-	ASSERT(istype(holder, /mob/living/simple_mob/slime/xenobio))
+	ASSERT(istype(holder, /mob/living/simple/slime/xenobio))
 
 // Checks if disciplining the slime would be 'justified' right now.
 /datum/ai_holder/simple_mob/xenobio_slime/proc/is_justified_to_discipline()
@@ -72,7 +72,7 @@
 	return FALSE
 
 /datum/ai_holder/simple_mob/xenobio_slime/proc/adjust_discipline(amount, silent)
-	var/mob/living/simple_mob/slime/xenobio/my_slime = holder
+	var/mob/living/simple/slime/xenobio/my_slime = holder
 	if(amount > 0)
 		if(rabid)
 			return
@@ -117,7 +117,7 @@
 
 // Hit the correct verbs to keep the slime species going.
 /datum/ai_holder/simple_mob/xenobio_slime/proc/evolve_and_reproduce()
-	var/mob/living/simple_mob/slime/xenobio/my_slime = holder
+	var/mob/living/simple/slime/xenobio/my_slime = holder
 	if(my_slime.amount_grown >= 10)
 		// Press the correct verb when we can.
 		if(my_slime.is_adult)
@@ -128,7 +128,7 @@
 
 // Called when pushed too far (or a red slime core was used).
 /datum/ai_holder/simple_mob/xenobio_slime/proc/enrage()
-	var/mob/living/simple_mob/slime/xenobio/my_slime = holder
+	var/mob/living/simple/slime/xenobio/my_slime = holder
 	if(my_slime.harmless)
 		return
 	rabid = TRUE
@@ -147,7 +147,7 @@
 /datum/ai_holder/simple_mob/xenobio_slime/pre_melee_attack(atom/A)
 	if(istype(A, /mob/living))
 		var/mob/living/L = A
-		var/mob/living/simple_mob/slime/xenobio/my_slime = holder
+		var/mob/living/simple/slime/xenobio/my_slime = holder
 
 		if( (!L.lying && prob(30 + (my_slime.power_charge * 7) ) || (!L.lying && always_stun) ))
 			my_slime.a_intent = INTENT_DISARM // Stun them first.
@@ -191,7 +191,7 @@
 // Commands, reactions, etc
 /datum/ai_holder/simple_mob/xenobio_slime/on_hear_say(mob/living/speaker, message)
 	ai_log("xenobio_slime/on_hear_say([speaker], [message]) : Entered.", AI_LOG_DEBUG)
-	var/mob/living/simple_mob/slime/xenobio/my_slime = holder
+	var/mob/living/simple/slime/xenobio/my_slime = holder
 
 	if((findtext(message, num2text(my_slime.number)) || findtext(message, my_slime.name) || findtext(message, "slimes"))) // Talking to us.
 

@@ -99,19 +99,19 @@
 				var/obj/machinery/atmospherics/component/unary/vent_pump/V = pick(vents)
 				switch(xeno_type)
 					if(MOTHER)
-						new /mob/living/simple_mob/animal/space/alien/queen/empress/mother(V.loc)
+						new /mob/living/simple/animal/space/alien/queen/empress/mother(V.loc)
 					if(EMPRESS)
-						new /mob/living/simple_mob/animal/space/alien/queen/empress(V.loc)
+						new /mob/living/simple/animal/space/alien/queen/empress(V.loc)
 					if(QUEEN)
-						new /mob/living/simple_mob/animal/space/alien/queen(V.loc)
+						new /mob/living/simple/animal/space/alien/queen(V.loc)
 					if(PRAE)
-						new /mob/living/simple_mob/animal/space/alien/sentinel/praetorian(V.loc)
+						new /mob/living/simple/animal/space/alien/sentinel/praetorian(V.loc)
 					if(SENTINEL)
-						new /mob/living/simple_mob/animal/space/alien/sentinel(V.loc)
+						new /mob/living/simple/animal/space/alien/sentinel(V.loc)
 					if(DRONE)
-						new /mob/living/simple_mob/animal/space/alien/drone(V.loc)
+						new /mob/living/simple/animal/space/alien/drone(V.loc)
 					if(HUNTER)
-						new /mob/living/simple_mob/animal/space/alien(V.loc)
+						new /mob/living/simple/animal/space/alien(V.loc)
 				spawn_types[xeno_type]--
 
 /datum/event/xeno_infestation/proc/log_this()
@@ -124,13 +124,13 @@
 		player_value += additional_players
 	var/queen_spawning = FALSE
 	/**
-	 * 20 /mob/living/simple_mob/animal/space/alien/queen/empress/mother
-	 * 15 /mob/living/simple_mob/animal/space/alien/queen/empress
-	 * 10 /mob/living/simple_mob/animal/space/alien/queen
-	 * 05 /mob/living/simple_mob/animal/space/alien/sentinel/praetorian
-	 * 04 /mob/living/simple_mob/animal/space/alien/sentinel
-	 * 02 /mob/living/simple_mob/animal/space/alien/drone
-	 * 01 /mob/living/simple_mob/animal/space/alien
+	 * 20 /mob/living/simple/animal/space/alien/queen/empress/mother
+	 * 15 /mob/living/simple/animal/space/alien/queen/empress
+	 * 10 /mob/living/simple/animal/space/alien/queen
+	 * 05 /mob/living/simple/animal/space/alien/sentinel/praetorian
+	 * 04 /mob/living/simple/animal/space/alien/sentinel
+	 * 02 /mob/living/simple/animal/space/alien/drone
+	 * 01 /mob/living/simple/animal/space/alien
 	 */
 	while(player_value > 0)
 		if(player_value >= (20 * 1.5))//Multiplier to rather spawn more small ones than one big one

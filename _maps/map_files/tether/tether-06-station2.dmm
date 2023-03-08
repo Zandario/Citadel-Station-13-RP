@@ -15411,7 +15411,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/starboard)
 "eyk" = (
-/mob/living/simple_mob/animal/sif/fluffy/silky,
+/mob/living/simple/animal/sif/fluffy/silky,
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
@@ -16520,7 +16520,7 @@
 /turf/simulated/shuttle/wall,
 /area/shuttle/mining_outpost/shuttle)
 "gCI" = (
-/mob/living/simple_mob/animal/sif/fluffy,
+/mob/living/simple/animal/sif/fluffy,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -21611,7 +21611,7 @@
 	dir = 4;
 	pixel_x = 3
 	},
-/mob/living/simple_mob/animal/passive/snake/noodle,
+/mob/living/simple/animal/passive/snake/noodle,
 /turf/simulated/floor/outdoors/grass/heavy/interior,
 /area/tether/exploration/pilot_office)
 "pRM" = (

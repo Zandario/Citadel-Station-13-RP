@@ -42,7 +42,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/misc_poi)
 "i" = (
-/mob/living/simple_mob/humanoid/merc/ranged/grenadier,
+/mob/living/simple/humanoid/merc/ranged/grenadier,
 /turf/simulated/floor/cult,
 /area/submap/cave/misc_poi)
 "j" = (

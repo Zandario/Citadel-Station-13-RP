@@ -897,7 +897,7 @@
 /turf/simulated/floor/carpet,
 /area/awaymission/zoo/pirateship)
 "cK" = (
-/mob/living/simple_mob/humanoid/pirate,
+/mob/living/simple/humanoid/pirate,
 /turf/simulated/floor/carpet,
 /area/awaymission/zoo/pirateship)
 "cL" = (
@@ -1244,7 +1244,7 @@
 /turf/simulated/floor/tiled,
 /area/awaymission/zoo/pirateship)
 "dJ" = (
-/mob/living/simple_mob/humanoid/pirate,
+/mob/living/simple/humanoid/pirate,
 /turf/simulated/floor/tiled,
 /area/awaymission/zoo/pirateship)
 "dK" = (
@@ -1553,7 +1553,7 @@
 /area/awaymission/zoo/tradeship)
 "ez" = (
 /obj/effect/floor_decal/corner/red/diagonal,
-/mob/living/simple_mob/humanoid/pirate,
+/mob/living/simple/humanoid/pirate,
 /turf/simulated/floor/tiled,
 /area/awaymission/zoo/pirateship)
 "eA" = (
@@ -1564,7 +1564,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/zoo/pirateship)
 "eB" = (
-/mob/living/simple_mob/animal/space/alien{
+/mob/living/simple/animal/space/alien{
 	faction = "pirate"
 	},
 /turf/simulated/floor/plating,
@@ -2850,7 +2850,7 @@
 /turf/simulated/shuttle/floor/darkred,
 /area/awaymission/zoo/syndieship)
 "ib" = (
-/mob/living/simple_mob/animal/passive/cat/kitten{
+/mob/living/simple/animal/passive/cat/kitten{
 	name = "Enola"
 	},
 /turf/simulated/shuttle/floor/darkred,
@@ -2922,7 +2922,7 @@
 /turf/simulated/shuttle/floor/darkred,
 /area/awaymission/zoo/syndieship)
 "ik" = (
-/mob/living/simple_mob/humanoid/merc/ranged{
+/mob/living/simple/humanoid/merc/ranged{
 	desc = "He doesn't seem like he's looking for a fight.";
 	faction = "neutral";
 	friendly = "hugs";
@@ -3737,7 +3737,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/zoo)
 "jT" = (
-/mob/living/simple_mob/animal/passive/chicken{
+/mob/living/simple/animal/passive/chicken{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/beach/sand{
@@ -3745,13 +3745,13 @@
 	},
 /area/awaymission/zoo)
 "jU" = (
-/mob/living/simple_mob/animal/passive/chick,
+/mob/living/simple/animal/passive/chick,
 /turf/simulated/floor/holofloor/beach/sand{
 	icon_state = "dgrass0"
 	},
 /area/awaymission/zoo)
 "jV" = (
-/mob/living/simple_mob/animal/passive/dog/corgi/puppy{
+/mob/living/simple/animal/passive/dog/corgi/puppy{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/beach/sand{
@@ -3981,7 +3981,7 @@
 /area/awaymission/zoo)
 "kH" = (
 /obj/structure/flora/ausbushes/ywflowers,
-/mob/living/simple_mob/animal/passive/bird/parrot/kea{
+/mob/living/simple/animal/passive/bird/parrot/kea{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/grass,
@@ -3996,7 +3996,7 @@
 /area/awaymission/zoo)
 "kK" = (
 /obj/structure/flora/ausbushes/pointybush,
-/mob/living/simple_mob/animal/passive/bird/parrot/pink_cockatoo{
+/mob/living/simple/animal/passive/bird/parrot/pink_cockatoo{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/grass,
@@ -4070,7 +4070,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/zoo)
 "kV" = (
-/mob/living/simple_mob/animal/passive/cat{
+/mob/living/simple/animal/passive/cat{
 	faction = "zoo"
 	},
 /turf/simulated/floor/wood,
@@ -4118,7 +4118,7 @@
 /turf/simulated/floor/holofloor/grass,
 /area/awaymission/zoo)
 "le" = (
-/mob/living/simple_mob/animal/passive/bird/parrot/white_cockatoo{
+/mob/living/simple/animal/passive/bird/parrot/white_cockatoo{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/grass,
@@ -4129,7 +4129,7 @@
 /area/awaymission/zoo)
 "lg" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/mob/living/simple_mob/animal/passive/bird/parrot/cockatiel/grey{
+/mob/living/simple/animal/passive/bird/parrot/cockatiel/grey{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/grass,
@@ -4140,14 +4140,14 @@
 /area/awaymission/zoo)
 "li" = (
 /obj/structure/flora/ausbushes/brflowers,
-/mob/living/simple_mob/animal/passive/bird/parrot/cockatiel/yellowish{
+/mob/living/simple/animal/passive/bird/parrot/cockatiel/yellowish{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/grass,
 /area/awaymission/zoo)
 "lj" = (
 /obj/structure/flora/ausbushes/ppflowers,
-/mob/living/simple_mob/animal/passive/bird/parrot/budgerigar/bluegreen{
+/mob/living/simple/animal/passive/bird/parrot/budgerigar/bluegreen{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/grass,
@@ -4167,7 +4167,7 @@
 /turf/simulated/floor/tiled/white,
 /area/awaymission/zoo)
 "lm" = (
-/mob/living/simple_mob/vore/horse{
+/mob/living/simple/vore/horse{
 	faction = "zoo"
 	},
 /turf/simulated/floor/wood,
@@ -4287,7 +4287,7 @@
 /turf/simulated/floor/tiled/white,
 /area/awaymission/zoo)
 "lE" = (
-/mob/living/simple_mob/animal/passive/chick,
+/mob/living/simple/animal/passive/chick,
 /turf/simulated/floor/wood,
 /area/awaymission/zoo)
 "lF" = (
@@ -4314,14 +4314,14 @@
 	},
 /area/awaymission/zoo)
 "lI" = (
-/mob/living/simple_mob/animal/passive/bird/parrot/budgerigar{
+/mob/living/simple/animal/passive/bird/parrot/budgerigar{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/grass,
 /area/awaymission/zoo)
 "lJ" = (
 /obj/structure/flora/ausbushes/sunnybush,
-/mob/living/simple_mob/animal/passive/bird/parrot/cockatiel{
+/mob/living/simple/animal/passive/bird/parrot/cockatiel{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/grass,
@@ -4335,7 +4335,7 @@
 /turf/simulated/floor/tiled/white,
 /area/awaymission/zoo)
 "lM" = (
-/mob/living/simple_mob/animal/passive/cow{
+/mob/living/simple/animal/passive/cow{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/beach/sand{
@@ -4429,13 +4429,13 @@
 /turf/simulated/floor/tiled,
 /area/awaymission/zoo)
 "mb" = (
-/mob/living/simple_mob/animal/passive/bird/parrot/cockatiel/yellowish{
+/mob/living/simple/animal/passive/bird/parrot/cockatiel/yellowish{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/grass,
 /area/awaymission/zoo)
 "mc" = (
-/mob/living/simple_mob/animal/passive/bird/parrot/white_caique{
+/mob/living/simple/animal/passive/bird/parrot/white_caique{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/grass,
@@ -5000,7 +5000,7 @@
 	},
 /area/awaymission/zoo)
 "nt" = (
-/mob/living/simple_mob/animal/passive/tindalos{
+/mob/living/simple/animal/passive/tindalos{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/beach/sand{
@@ -5280,7 +5280,7 @@
 	},
 /area/awaymission/zoo)
 "of" = (
-/mob/living/simple_mob/vore/aggressive/frog{
+/mob/living/simple/vore/aggressive/frog{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/grass{
@@ -5312,7 +5312,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/zoo)
 "oj" = (
-/mob/living/simple_mob/animal/passive/tindalos{
+/mob/living/simple/animal/passive/tindalos{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/beach/sand{
@@ -5385,7 +5385,7 @@
 	},
 /area/awaymission/zoo)
 "ov" = (
-/mob/living/simple_mob/animal/passive/dog/corgi{
+/mob/living/simple/animal/passive/dog/corgi{
 	faction = "zoo"
 	},
 /turf/simulated/floor/lino,
@@ -5416,7 +5416,7 @@
 /area/awaymission/zoo)
 "oA" = (
 /obj/structure/flora/ausbushes/lavendergrass,
-/mob/living/simple_mob/animal/passive/cat{
+/mob/living/simple/animal/passive/cat{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/beach/sand{
@@ -5424,7 +5424,7 @@
 	},
 /area/awaymission/zoo)
 "oB" = (
-/mob/living/simple_mob/vore/bee{
+/mob/living/simple/vore/bee{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/grass{
@@ -5495,7 +5495,7 @@
 	},
 /area/awaymission/zoo)
 "oL" = (
-/mob/living/simple_mob/vore/aggressive/giant_snake{
+/mob/living/simple/vore/aggressive/giant_snake{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/beach/sand{
@@ -5551,7 +5551,7 @@
 /turf/simulated/floor/lino,
 /area/awaymission/zoo)
 "oU" = (
-/mob/living/simple_mob/animal/space/bats{
+/mob/living/simple/animal/space/bats{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert,
@@ -5657,7 +5657,7 @@
 /turf/simulated/floor/holofloor/beach/water,
 /area/awaymission/zoo)
 "ph" = (
-/mob/living/simple_mob/animal/passive/tindalos{
+/mob/living/simple/animal/passive/tindalos{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/beach/sand{
@@ -5677,7 +5677,7 @@
 	},
 /area/awaymission/zoo)
 "pk" = (
-/mob/living/simple_mob/vore/aggressive/giant_snake{
+/mob/living/simple/vore/aggressive/giant_snake{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/beach/sand{
@@ -5691,7 +5691,7 @@
 	},
 /area/awaymission/zoo)
 "pm" = (
-/mob/living/simple_mob/animal/passive/cat{
+/mob/living/simple/animal/passive/cat{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/beach/sand{
@@ -5786,7 +5786,7 @@
 	},
 /area/awaymission/zoo)
 "pB" = (
-/mob/living/simple_mob/animal/passive/tindalos{
+/mob/living/simple/animal/passive/tindalos{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/beach/sand{
@@ -5806,7 +5806,7 @@
 	},
 /area/awaymission/zoo)
 "pE" = (
-/mob/living/simple_mob/animal/passive/cat{
+/mob/living/simple/animal/passive/cat{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/beach/sand{
@@ -6277,7 +6277,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/zoo)
 "qR" = (
-/mob/living/simple_mob/animal/passive/mouse{
+/mob/living/simple/animal/passive/mouse{
 	faction = "zoo"
 	},
 /turf/simulated/floor/plating,
@@ -6363,7 +6363,7 @@
 /turf/simulated/floor,
 /area/awaymission/zoo)
 "rf" = (
-/mob/living/simple_mob/animal/sif/diyaab{
+/mob/living/simple/animal/sif/diyaab{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/snow,
@@ -6646,7 +6646,7 @@
 	},
 /area/awaymission/zoo)
 "rL" = (
-/mob/living/simple_mob/animal/space/alien{
+/mob/living/simple/animal/space/alien{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert{
@@ -6712,7 +6712,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/zoo)
 "rS" = (
-/mob/living/simple_mob/animal/space/alien/drone{
+/mob/living/simple/animal/space/alien/drone{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert{
@@ -6754,7 +6754,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/zoo)
 "rW" = (
-/mob/living/simple_mob/animal/passive/penguin{
+/mob/living/simple/animal/passive/penguin{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/snow,
@@ -6778,7 +6778,7 @@
 /turf/simulated/floor/holofloor/desert,
 /area/awaymission/zoo)
 "rZ" = (
-/mob/living/simple_mob/animal/passive/snake{
+/mob/living/simple/animal/passive/snake{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/beach/sand{
@@ -6796,7 +6796,7 @@
 	icon_state = "asteroid_edge_s";
 	name = "rocky edge"
 	},
-/mob/living/simple_mob/animal/space/alien/drone{
+/mob/living/simple/animal/space/alien/drone{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert{
@@ -6819,28 +6819,28 @@
 /area/awaymission/zoo)
 "sc" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/mob/living/simple_mob/vore/aggressive/mimic{
+/mob/living/simple/vore/aggressive/mimic{
 	faction = "zoo"
 	},
 /turf/simulated/floor/tiled/neutral,
 /area/awaymission/zoo)
 "sd" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/mob/living/simple_mob/animal/passive/penguin{
+/mob/living/simple/animal/passive/penguin{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/snow,
 /area/awaymission/zoo)
 "se" = (
 /obj/effect/floor_decal/asteroid,
-/mob/living/simple_mob/animal/space/bear{
+/mob/living/simple/animal/space/bear{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert,
 /area/awaymission/zoo)
 "sf" = (
 /obj/structure/flora/grass/both,
-/mob/living/simple_mob/animal/passive/penguin{
+/mob/living/simple/animal/passive/penguin{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/snow,
@@ -6868,7 +6868,7 @@
 /turf/simulated/floor/outdoors/beach,
 /area/awaymission/zoo)
 "sl" = (
-/mob/living/simple_mob/animal/space/carp{
+/mob/living/simple/animal/space/carp{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/space,
@@ -6910,7 +6910,7 @@
 	icon_state = "asteroid_edge_e";
 	name = "rocky edge"
 	},
-/mob/living/simple_mob/animal/space/alien/drone{
+/mob/living/simple/animal/space/alien/drone{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert{
@@ -6935,7 +6935,7 @@
 /area/awaymission/zoo)
 "sq" = (
 /obj/effect/spider/stickyweb,
-/mob/living/simple_mob/animal/giant_spider/hunter{
+/mob/living/simple/animal/giant_spider/hunter{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert,
@@ -6944,14 +6944,14 @@
 /obj/effect/spider/cocoon{
 	icon_state = "cocoon_large2"
 	},
-/mob/living/simple_mob/animal/giant_spider/hunter{
+/mob/living/simple/animal/giant_spider/hunter{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert,
 /area/awaymission/zoo)
 "ss" = (
 /obj/effect/spider/stickyweb,
-/mob/living/simple_mob/animal/giant_spider{
+/mob/living/simple/animal/giant_spider{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert,
@@ -7038,7 +7038,7 @@
 	icon_state = "asteroid_edge_w";
 	name = "rocky edge"
 	},
-/mob/living/simple_mob/animal/space/alien{
+/mob/living/simple/animal/space/alien{
 	faction = "zoo";
 	name = "invisible alien hunter"
 	},
@@ -7055,7 +7055,7 @@
 /obj/effect/spider/cocoon{
 	icon_state = "cocoon3"
 	},
-/mob/living/simple_mob/animal/giant_spider/hunter{
+/mob/living/simple/animal/giant_spider/hunter{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert,
@@ -7064,7 +7064,7 @@
 /obj/effect/spider/stickyweb{
 	icon_state = "cobweb1"
 	},
-/mob/living/simple_mob/animal/giant_spider/hunter{
+/mob/living/simple/animal/giant_spider/hunter{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert,
@@ -7073,7 +7073,7 @@
 /obj/effect/spider/cocoon{
 	icon_state = "cocoon2"
 	},
-/mob/living/simple_mob/animal/giant_spider/nurse{
+/mob/living/simple/animal/giant_spider/nurse{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert,
@@ -7082,7 +7082,7 @@
 /obj/effect/spider/stickyweb{
 	icon_state = "cobweb2"
 	},
-/mob/living/simple_mob/animal/giant_spider{
+/mob/living/simple/animal/giant_spider{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert,
@@ -7094,7 +7094,7 @@
 /obj/effect/spider/cocoon{
 	icon_state = "cocoon_large1"
 	},
-/mob/living/simple_mob/animal/giant_spider{
+/mob/living/simple/animal/giant_spider{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert,
@@ -7105,7 +7105,7 @@
 	icon_state = "asteroid_edge_e";
 	name = "rocky edge"
 	},
-/mob/living/simple_mob/animal/space/alien/queen{
+/mob/living/simple/animal/space/alien/queen{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert{
@@ -7122,19 +7122,19 @@
 /obj/effect/spider/cocoon{
 	icon_state = "cocoon_large3"
 	},
-/mob/living/simple_mob/animal/giant_spider/hunter{
+/mob/living/simple/animal/giant_spider/hunter{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert,
 /area/awaymission/zoo)
 "sI" = (
-/mob/living/simple_mob/animal/giant_spider{
+/mob/living/simple/animal/giant_spider{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert,
 /area/awaymission/zoo)
 "sJ" = (
-/mob/living/simple_mob/animal/passive/bird/parrot/polly{
+/mob/living/simple/animal/passive/bird/parrot/polly{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/grass,
@@ -7144,13 +7144,13 @@
 /turf/simulated/floor/outdoors/beach,
 /area/awaymission/zoo)
 "sL" = (
-/mob/living/simple_mob/animal/space/bear{
+/mob/living/simple/animal/space/bear{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert,
 /area/awaymission/zoo)
 "sM" = (
-/mob/living/simple_mob/animal/space/alien{
+/mob/living/simple/animal/space/alien{
 	faction = "zoo";
 	name = "invisible alien hunter"
 	},
@@ -7170,7 +7170,7 @@
 /turf/simulated/floor/holofloor/desert,
 /area/awaymission/zoo)
 "sP" = (
-/mob/living/simple_mob/animal/passive/snake{
+/mob/living/simple/animal/passive/snake{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/beach/sand{
@@ -7265,7 +7265,7 @@
 /area/awaymission/zoo)
 "ta" = (
 /obj/effect/floor_decal/asteroid,
-/mob/living/simple_mob/animal/space/alien{
+/mob/living/simple/animal/space/alien{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert{
@@ -7343,7 +7343,7 @@
 	},
 /area/awaymission/zoo)
 "ti" = (
-/mob/living/simple_mob/animal/passive/yithian{
+/mob/living/simple/animal/passive/yithian{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/wood{
@@ -7433,7 +7433,7 @@
 /area/awaymission/zoo)
 "tx" = (
 /obj/structure/flora/ausbushes/sunnybush,
-/mob/living/simple_mob/animal/passive/yithian{
+/mob/living/simple/animal/passive/yithian{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/wood{
@@ -7454,7 +7454,7 @@
 /turf/simulated/floor/holofloor/snow,
 /area/awaymission/zoo)
 "tA" = (
-/mob/living/simple_mob/creature{
+/mob/living/simple/creature{
 	faction = "zoo";
 	name = "redspace abomination"
 	},
@@ -7553,7 +7553,7 @@
 /area/awaymission/zoo)
 "tO" = (
 /obj/effect/floor_decal/asteroid,
-/mob/living/simple_mob/vore/aggressive/dino{
+/mob/living/simple/vore/aggressive/dino{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert,
@@ -7642,7 +7642,7 @@
 /turf/simulated/floor/holofloor/desert,
 /area/awaymission/zoo)
 "tX" = (
-/mob/living/simple_mob/vore/aggressive/dragon{
+/mob/living/simple/vore/aggressive/dragon{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert{
@@ -7652,19 +7652,19 @@
 	},
 /area/awaymission/zoo)
 "tY" = (
-/mob/living/simple_mob/animal/passive/lizard{
+/mob/living/simple/animal/passive/lizard{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert,
 /area/awaymission/zoo)
 "tZ" = (
-/mob/living/simple_mob/tomato{
+/mob/living/simple/tomato{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/grass,
 /area/awaymission/zoo)
 "ua" = (
-/mob/living/simple_mob/fox{
+/mob/living/simple/fox{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/snow,
@@ -7685,7 +7685,7 @@
 /area/awaymission/zoo)
 "uc" = (
 /obj/effect/floor_decal/asteroid,
-/mob/living/simple_mob/vore/aggressive/deathclaw{
+/mob/living/simple/vore/aggressive/deathclaw{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert,
@@ -7705,7 +7705,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/zoo)
 "ue" = (
-/mob/living/simple_mob/animal/space/goose{
+/mob/living/simple/animal/space/goose{
 	faction = "zoo"
 	},
 /turf/simulated/floor/outdoors/beach,
@@ -7753,46 +7753,46 @@
 /turf/simulated/floor/plating,
 /area/awaymission/zoo)
 "ui" = (
-/mob/living/simple_mob/vore/aggressive/deathclaw{
+/mob/living/simple/vore/aggressive/deathclaw{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert,
 /area/awaymission/zoo)
 "uj" = (
-/mob/living/simple_mob/slime/feral/dark_blue{
+/mob/living/simple/slime/feral/dark_blue{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert,
 /area/awaymission/zoo)
 "uk" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/mob/living/simple_mob/vore/aggressive/dino{
+/mob/living/simple/vore/aggressive/dino{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert,
 /area/awaymission/zoo)
 "ul" = (
 /obj/effect/floor_decal/asteroid,
-/mob/living/simple_mob/animal/passive/lizard{
+/mob/living/simple/animal/passive/lizard{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert,
 /area/awaymission/zoo)
 "um" = (
 /obj/landmark/away,
-/mob/living/simple_mob/animal/space/goose{
+/mob/living/simple/animal/space/goose{
 	faction = "zoo"
 	},
 /turf/simulated/floor/wood,
 /area/awaymission/zoo)
 "un" = (
-/mob/living/simple_mob/animal/wolf{
+/mob/living/simple/animal/wolf{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/snow,
 /area/awaymission/zoo)
 "uo" = (
-/mob/living/simple_mob/animal/space/goose{
+/mob/living/simple/animal/space/goose{
 	faction = "zoo"
 	},
 /turf/simulated/floor/wood,
@@ -7881,7 +7881,7 @@
 	},
 /area/awaymission/zoo)
 "uA" = (
-/mob/living/simple_mob/animal/space/bear/brown{
+/mob/living/simple/animal/space/bear/brown{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/grass,
@@ -7913,7 +7913,7 @@
 	},
 /area/awaymission/zoo)
 "uF" = (
-/mob/living/simple_mob/animal/passive/dog/tamaskan{
+/mob/living/simple/animal/passive/dog/tamaskan{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/snow,
@@ -7967,7 +7967,7 @@
 /area/awaymission/zoo)
 "uN" = (
 /obj/structure/flora/ausbushes/genericbush,
-/mob/living/simple_mob/animal/space/bear/brown{
+/mob/living/simple/animal/space/bear/brown{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/grass,
@@ -8074,7 +8074,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/zoo)
 "uZ" = (
-/mob/living/simple_mob/animal/space/carp/large{
+/mob/living/simple/animal/space/carp/large{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/desert,
@@ -8103,7 +8103,7 @@
 	},
 /area/awaymission/zoo)
 "vd" = (
-/mob/living/simple_mob/animal/passive/crab{
+/mob/living/simple/animal/passive/crab{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/beach/sand,
@@ -8117,7 +8117,7 @@
 	},
 /area/awaymission/zoo)
 "vf" = (
-/mob/living/simple_mob/vore/aggressive/panther{
+/mob/living/simple/vore/aggressive/panther{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/grass{
@@ -8186,7 +8186,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/zoo)
 "vl" = (
-/mob/living/simple_mob/animal/passive/crab{
+/mob/living/simple/animal/passive/crab{
 	faction = "zoo";
 	icon_dead = "evilcrab_dead";
 	icon_living = "evilcrab";
@@ -8202,7 +8202,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/zoo)
 "vn" = (
-/mob/living/simple_mob/animal/sif/shantak{
+/mob/living/simple/animal/sif/shantak{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/snow,
@@ -8216,7 +8216,7 @@
 	},
 /area/awaymission/zoo)
 "vp" = (
-/mob/living/simple_mob/animal/sif/shantak{
+/mob/living/simple/animal/sif/shantak{
 	color = "";
 	faction = "zoo";
 	health = 100;
@@ -8226,14 +8226,14 @@
 /turf/simulated/floor/holofloor/snow,
 /area/awaymission/zoo)
 "vq" = (
-/mob/living/simple_mob/animal/space/tree{
+/mob/living/simple/animal/space/tree{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/snow,
 /area/awaymission/zoo)
 "vr" = (
 /obj/structure/flora/bush,
-/mob/living/simple_mob/animal/sif/shantak{
+/mob/living/simple/animal/sif/shantak{
 	faction = "zoo"
 	},
 /turf/simulated/floor/holofloor/snow,
@@ -8290,7 +8290,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/zoo)
 "vz" = (
-/mob/living/simple_mob/animal/space/bear/polar{
+/mob/living/simple/animal/space/bear/polar{
 	faction = "zoo"
 	},
 /turf/simulated/floor/outdoors/beach,

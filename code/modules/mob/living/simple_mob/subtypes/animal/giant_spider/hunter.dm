@@ -15,7 +15,7 @@
 	The venom inside these spiders has no special properties beyond being toxic."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/giant_spider/hunter
+/mob/living/simple/animal/giant_spider/hunter
 	desc = "Furry and black, it makes you shudder to look at it. This one has sparkling purple eyes."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/giant_spider/hunter_spider)
 
@@ -49,7 +49,7 @@
 	var/leap_sound = 'sound/weapons/spiderlunge.ogg'
 
 // Multiplies damage if the victim is stunned in some form, including a successful leap.
-/mob/living/simple_mob/animal/giant_spider/hunter/apply_bonus_melee_damage(atom/A, damage_amount)
+/mob/living/simple/animal/giant_spider/hunter/apply_bonus_melee_damage(atom/A, damage_amount)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.incapacitated(INCAPACITATION_DISABLED))
@@ -58,7 +58,7 @@
 
 
 // The actual leaping attack.
-/mob/living/simple_mob/animal/giant_spider/hunter/do_special_attack(atom/A)
+/mob/living/simple/animal/giant_spider/hunter/do_special_attack(atom/A)
 	set waitfor = FALSE
 	set_AI_busy(TRUE)
 

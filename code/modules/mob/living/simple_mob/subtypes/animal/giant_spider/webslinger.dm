@@ -14,7 +14,7 @@
 	Their venom is known to make bitten prey hallucinate, greatly compromising their combat ability."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/giant_spider/webslinger
+/mob/living/simple/animal/giant_spider/webslinger
 	desc = "Furry and green, it makes you shudder to look at it. This one has brilliant green eyes, and a cloak of web."
 	tt_desc = "X Brachypelma phorus balisticus"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/giant_spider/webslinger_spider)
@@ -35,7 +35,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged
 
 // Check if we should bola, or just shoot the pain ball
-/mob/living/simple_mob/animal/giant_spider/webslinger/should_special_attack(atom/A)
+/mob/living/simple/animal/giant_spider/webslinger/should_special_attack(atom/A)
 	if(ismob(A))
 		if(ishuman(A))
 			var/mob/living/complex/human/H = A
@@ -44,7 +44,7 @@
 	return FALSE
 
 // Now we've got a running human in sight, time to throw the bola
-/mob/living/simple_mob/animal/giant_spider/webslinger/do_special_attack(atom/A)
+/mob/living/simple/animal/giant_spider/webslinger/do_special_attack(atom/A)
 	set waitfor = FALSE
 	set_AI_busy(TRUE)
 	var/obj/item/projectile/bola/B = new /obj/item/projectile/bola(src.loc)

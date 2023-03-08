@@ -3,20 +3,20 @@
 	endWhen			= 90 + 15 + 1
 	var/spawncount
 	var/list/possible_slimes = list(
-		/mob/living/simple_mob/slime/purple,
-		/mob/living/simple_mob/slime/orange,
-		/mob/living/simple_mob/slime/metal,
-		/mob/living/simple_mob/slime/yellow,
-		/mob/living/simple_mob/slime/dark_purple,
-		/mob/living/simple_mob/slime/silver,
-		/mob/living/simple_mob/slime/ruby,
-		/mob/living/simple_mob/slime/cerulean,
-		/mob/living/simple_mob/slime/red,
-		/mob/living/simple_mob/slime/green,
-		/mob/living/simple_mob/slime/pink,
-		/mob/living/simple_mob/slime/gold,
-		/mob/living/simple_mob/slime/oil,
-		/mob/living/simple_mob/slime/emerald,
+		/mob/living/simple/slime/purple,
+		/mob/living/simple/slime/orange,
+		/mob/living/simple/slime/metal,
+		/mob/living/simple/slime/yellow,
+		/mob/living/simple/slime/dark_purple,
+		/mob/living/simple/slime/silver,
+		/mob/living/simple/slime/ruby,
+		/mob/living/simple/slime/cerulean,
+		/mob/living/simple/slime/red,
+		/mob/living/simple/slime/green,
+		/mob/living/simple/slime/pink,
+		/mob/living/simple/slime/gold,
+		/mob/living/simple/slime/oil,
+		/mob/living/simple/slime/emerald,
 	)
 
 

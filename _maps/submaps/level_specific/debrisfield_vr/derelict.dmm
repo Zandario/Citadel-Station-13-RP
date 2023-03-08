@@ -296,7 +296,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/submap/debrisfield_vr/derelict/interior)
 "aZ" = (
-/mob/living/simple_mob/mechanical/infectionbot{
+/mob/living/simple/mechanical/infectionbot{
 	faction = "derelict"
 	},
 /turf/simulated/floor/tiled/dark,
@@ -360,7 +360,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/submap/debrisfield_vr/derelict/interior)
 "bn" = (
-/mob/living/simple_mob/mechanical/infectionbot{
+/mob/living/simple/mechanical/infectionbot{
 	faction = "derelict"
 	},
 /turf/simulated/floor/tiled/steel_grid,
@@ -416,7 +416,7 @@
 /area/submap/debrisfield_vr/derelict/interior)
 "bx" = (
 /obj/mob_spawner/derelict/corrupt_maint_swarm,
-/mob/living/simple_mob/mechanical/corrupt_maint_drone{
+/mob/living/simple/mechanical/corrupt_maint_drone{
 	faction = "derelict"
 	},
 /turf/simulated/floor/tiled/steel_grid,
@@ -576,7 +576,7 @@
 /area/submap/debrisfield_vr/derelict/interior)
 "bX" = (
 /obj/mob_spawner/derelict/corrupt_maint_swarm,
-/mob/living/simple_mob/mechanical/corrupt_maint_drone{
+/mob/living/simple/mechanical/corrupt_maint_drone{
 	faction = "derelict"
 	},
 /turf/simulated/floor/tiled/dark,
@@ -645,7 +645,7 @@
 /turf/simulated/floor/tiled/white,
 /area/submap/debrisfield_vr/derelict/interior)
 "ci" = (
-/mob/living/simple_mob/mechanical/infectionbot{
+/mob/living/simple/mechanical/infectionbot{
 	faction = "derelict"
 	},
 /turf/simulated/floor/tiled/white,

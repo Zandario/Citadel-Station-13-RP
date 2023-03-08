@@ -11,7 +11,7 @@
 	It is advised to keep any valuable items within dull wraps when venturing near the den of a Sakimm."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/sif/sakimm
+/mob/living/simple/animal/sif/sakimm
 	name = "sakimm"
 	desc = "What appears to be an oversized rodent with hands."
 	tt_desc = "S Procyon cogitae"
@@ -72,7 +72,7 @@
 	var/list/friend_loot_list = list(/obj/item/coin)	// What will make this animal non-hostile if held?
 	var/randomize_size = TRUE
 
-/mob/living/simple_mob/animal/sif/sakimm/verb/remove_hat()
+/mob/living/simple/animal/sif/sakimm/verb/remove_hat()
 	set name = "Remove Hat"
 	set desc = "Remove the animal's hat. You monster."
 	set category = "Abilities"
@@ -80,7 +80,7 @@
 
 	drop_hat(usr)
 
-/mob/living/simple_mob/animal/sif/sakimm/proc/drop_hat(var/mob/user)
+/mob/living/simple/animal/sif/sakimm/proc/drop_hat(var/mob/user)
 	if(hat)
 		hat.forceMove(get_turf(user))
 		hat = null
@@ -95,7 +95,7 @@
 			return
 		to_chat(user, "<span class='notice'>\The [src] is not wearing a hat!</span>")
 
-/mob/living/simple_mob/animal/sif/sakimm/verb/give_hat()
+/mob/living/simple/animal/sif/sakimm/verb/give_hat()
 	set name = "Give Hat"
 	set desc = "Give the animal a hat. You hero."
 	set category = "Abilities"
@@ -103,7 +103,7 @@
 
 	take_hat(usr)
 
-/mob/living/simple_mob/animal/sif/sakimm/proc/take_hat(var/mob/user)
+/mob/living/simple/animal/sif/sakimm/proc/take_hat(var/mob/user)
 	if(hat)
 		if(user == src)
 			to_chat(user, "<span class='notice'>You already have a hat!</span>")
@@ -138,12 +138,12 @@
 	emote_see = list("sniffs","looks around", "rubs its hands")
 	emote_hear = list("chitters", "clicks")
 
-/mob/living/simple_mob/animal/sif/sakimm/Destroy()
+/mob/living/simple/animal/sif/sakimm/Destroy()
 	if(hat)
 		drop_hat(src)
 	..()
 
-/mob/living/simple_mob/animal/sif/sakimm/update_icon()
+/mob/living/simple/animal/sif/sakimm/update_icon()
 	cut_overlays()
 	..()
 	if(hat)
@@ -151,7 +151,7 @@
 		MA.appearance_flags = RESET_COLOR
 		add_overlay(MA)
 
-/mob/living/simple_mob/animal/sif/sakimm/Initialize(mapload)
+/mob/living/simple/animal/sif/sakimm/Initialize(mapload)
 	. = ..()
 
 	add_verb(src, /mob/living/proc/ventcrawl)
@@ -160,7 +160,7 @@
 	if(randomize_size)
 		adjust_scale(rand(8, 11) / 10)
 
-/mob/living/simple_mob/animal/sif/sakimm/IIsAlly(mob/living/L)
+/mob/living/simple/animal/sif/sakimm/IIsAlly(mob/living/L)
 	. = ..()
 
 	var/mob/living/complex/human/H = L
@@ -178,14 +178,14 @@
 		return has_loot
 
 /datum/ai_holder/simple_mob/retaliate/cooperative/sakimm/handle_special_strategical()	// Just needs to take hats.
-	var/mob/living/simple_mob/animal/sif/sakimm/S = holder
+	var/mob/living/simple/animal/sif/sakimm/S = holder
 
 	if(holder.get_active_held_item() && istype(holder.get_active_held_item(), /obj/item/clothing/head) && !S.hat)
 		var/obj/item/I = holder.get_active_held_item()
 		S.take_hat(S)
 		holder.visible_message("<span class='notice'>\The [holder] wears \the [I]</span>")
 
-/mob/living/simple_mob/animal/sif/sakimm/intelligent
+/mob/living/simple/animal/sif/sakimm/intelligent
 	desc = "What appears to be an oversized rodent with hands. This one has a curious look in its eyes."
 	ai_holder_type = /datum/ai_holder/simple_mob/intentional/sakimm
 	randomize_size = FALSE	// Most likely to have a hat.
@@ -318,14 +318,14 @@
 	return FALSE
 
 /datum/ai_holder/simple_mob/intentional/sakimm/handle_special_tactic()
-	var/mob/living/simple_mob/animal/sif/sakimm/S = holder
+	var/mob/living/simple/animal/sif/sakimm/S = holder
 	if(S.hat)
 		hoard_items = FALSE
 	else
 		hoard_items = TRUE
 
 /datum/ai_holder/simple_mob/intentional/sakimm/handle_special_strategical()
-	var/mob/living/simple_mob/animal/sif/sakimm/S = holder
+	var/mob/living/simple/animal/sif/sakimm/S = holder
 	var/carrying_item = FALSE
 
 	if(holder.get_active_held_item())	// Do we have loot?

@@ -24,7 +24,7 @@
 		/datum/category_item/catalogue/fauna/mouse_army/stealth
 		)
 
-/mob/living/simple_mob/animal/space/mouse_army
+/mob/living/simple/animal/space/mouse_army
 	name = "mouse"
 	real_name = "mouse"
 	desc = "It's a small militarized rodent."
@@ -95,7 +95,7 @@
 
 	var/rank //pyro, operative, ammo, stealth. more to come. Do not leave blank.
 
-/mob/living/simple_mob/animal/space/mouse_army/Initialize(mapload)
+/mob/living/simple/animal/space/mouse_army/Initialize(mapload)
 	. = ..()
 
 	add_verb(src, /mob/living/proc/ventcrawl)
@@ -113,7 +113,7 @@
 	icon_dead = "mouse_[rank]_dead"
 	icon_rest = "mouse_[rank]_sleep"
 
-/mob/living/simple_mob/animal/space/mouse_army/Crossed(atom/movable/AM as mob|obj)
+/mob/living/simple/animal/space/mouse_army/Crossed(atom/movable/AM as mob|obj)
 	if(AM.is_incorporeal())
 		return
 	if(ishuman(AM))
@@ -123,17 +123,17 @@
 			playsound(src, 'sound/effects/mouse_squeak.ogg', 35, 1)
 	..()
 
-/mob/living/simple_mob/animal/space/mouse_army/death()
+/mob/living/simple/animal/space/mouse_army/death()
 	layer = MOB_LAYER
 	playsound(src, 'sound/effects/mouse_squeak_loud.ogg', 35, 1)
 	if(client)
 		client.time_died_as_mouse = world.time
 	..()
 
-/mob/living/simple_mob/animal/space/mouse_army/cannot_use_vents()
+/mob/living/simple/animal/space/mouse_army/cannot_use_vents()
 	return
 
-/mob/living/simple_mob/animal/space/mouse_army/proc/splat()
+/mob/living/simple/animal/space/mouse_army/proc/splat()
 	src.health = 0
 	src.set_stat(DEAD)
 	src.icon_dead = "mouse_[rank]_splat"
@@ -154,7 +154,7 @@
 	onboard control programming, which fully takes over the rodent's body."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/space/mouse_army/operative
+/mob/living/simple/animal/space/mouse_army/operative
 	name = "operative mouse"
 	desc = "Where did it get that? Oh no..."
 	tt_desc = "E Mus sinister"
@@ -180,7 +180,7 @@
 	system. Managed by the onboard control program, the unit's size \
 	makes it prone to catastrophic rupturing in the field."
 	value = CATALOGUER_REWARD_MEDIUM
-/mob/living/simple_mob/animal/space/mouse_army/pyro
+/mob/living/simple/animal/space/mouse_army/pyro
 	name = "pyro mouse"
 	desc = "What kind of madman would strap this to a mouse?"
 	tt_desc = "E Mus phlogiston"
@@ -215,7 +215,7 @@
 	var/datum/effect_system/spark_spread/spark_system
 	var/ruptured = FALSE
 
-/mob/living/simple_mob/animal/space/mouse_army/pyro/death()
+/mob/living/simple/animal/space/mouse_army/pyro/death()
 	visible_message("<span class='critical'>\The [src]'s tank groans!</span>")
 	var/delay = rand(1, 3)
 	spawn(0)
@@ -252,7 +252,7 @@
 	exploding if their supplies cook off."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/animal/space/mouse_army/ammo
+/mob/living/simple/animal/space/mouse_army/ammo
 	name = "ammo mouse"
 	desc = "Aww! It's carrying a bunch of tiny bullets!"
 	tt_desc = "E Mus tela"
@@ -290,7 +290,7 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 
-/mob/living/simple_mob/animal/space/mouse_army/ammo/death()
+/mob/living/simple/animal/space/mouse_army/ammo/death()
 	visible_message("<span class='critical'>\The [src]'s body begins to rupture!</span>")
 	var/delay = rand(1, 3)
 	spawn(0)
@@ -321,7 +321,7 @@
 	to bear, providing its one major vulnerability."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/space/mouse_army/stealth
+/mob/living/simple/animal/space/mouse_army/stealth
 	name = "stealth mouse"
 	desc = "I bet you thought the normal ones were scary!"
 	tt_desc = "E Mus insidiis"
@@ -359,14 +359,14 @@
 	var/last_unstealth = 0			// world.time
 
 
-/mob/living/simple_mob/animal/space/mouse_army/stealth/proc/stealth()
+/mob/living/simple/animal/space/mouse_army/stealth/proc/stealth()
 	if(stealthed)
 		return
 	animate(src, alpha = stealthed_alpha, time = 1 SECOND)
 	stealthed = TRUE
 
 
-/mob/living/simple_mob/animal/space/mouse_army/stealth/proc/unstealth()
+/mob/living/simple/animal/space/mouse_army/stealth/proc/unstealth()
 	last_unstealth = world.time // This is assigned even if it isn't stealthed already, to 'reset' the timer if the spider is continously getting attacked.
 	if(!stealthed)
 		return
@@ -375,7 +375,7 @@
 
 
 // Check if stealthing if possible.
-/mob/living/simple_mob/animal/space/mouse_army/stealth/proc/can_stealth()
+/mob/living/simple/animal/space/mouse_army/stealth/proc/can_stealth()
 	if(stat)
 		return FALSE
 	if(last_unstealth + stealth_cooldown > world.time)
@@ -385,28 +385,28 @@
 
 
 // Called by things that break stealths, like Technomancer wards.
-/mob/living/simple_mob/animal/space/mouse_army/stealth/break_cloak()
+/mob/living/simple/animal/space/mouse_army/stealth/break_cloak()
 	unstealth()
 
 
-/mob/living/simple_mob/animal/space/mouse_army/stealth/is_cloaked()
+/mob/living/simple/animal/space/mouse_army/stealth/is_cloaked()
 	return stealthed
 
 
 // Cloaks the spider automatically, if possible.
-/mob/living/simple_mob/animal/space/mouse_army/stealth/handle_special()
+/mob/living/simple/animal/space/mouse_army/stealth/handle_special()
 	if(!stealthed && can_stealth())
 		stealth()
 
 
 // Applies bonus base damage if stealthed.
-/mob/living/simple_mob/animal/space/mouse_army/stealth/apply_bonus_melee_damage(atom/A, damage_amount)
+/mob/living/simple/animal/space/mouse_army/stealth/apply_bonus_melee_damage(atom/A, damage_amount)
 	if(stealthed)
 		return damage_amount + stealthed_bonus_damage
 	return ..()
 
 // Applies stun, then unstealths.
-/mob/living/simple_mob/animal/space/mouse_army/stealth/apply_melee_effects(atom/A)
+/mob/living/simple/animal/space/mouse_army/stealth/apply_melee_effects(atom/A)
 	if(stealthed)
 		if(isliving(A))
 			var/mob/living/L = A
@@ -417,11 +417,11 @@
 	..() // For the poison.
 
 // Force unstealthing if attacked.
-/mob/living/simple_mob/animal/space/mouse_army/stealth/bullet_act(obj/item/projectile/P)
+/mob/living/simple/animal/space/mouse_army/stealth/bullet_act(obj/item/projectile/P)
 	. = ..()
 	break_cloak()
 
-/mob/living/simple_mob/animal/space/mouse_army/stealth/hit_with_weapon(obj/item/O, mob/living/user, effective_force, hit_zone)
+/mob/living/simple/animal/space/mouse_army/stealth/hit_with_weapon(obj/item/O, mob/living/user, effective_force, hit_zone)
 	. = ..()
 	break_cloak()
 

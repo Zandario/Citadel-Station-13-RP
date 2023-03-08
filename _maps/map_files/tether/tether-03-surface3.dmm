@@ -13342,7 +13342,7 @@
 /turf/simulated/floor/lino,
 /area/crew_quarters/bar)
 "axv" = (
-/mob/living/simple_mob/animal/passive/cow,
+/mob/living/simple/animal/passive/cow,
 /obj/machinery/alarm{
 	dir = 8;
 	pixel_x = 24
@@ -20465,7 +20465,7 @@
 /area/crew_quarters/recreation_area)
 "aKw" = (
 /obj/machinery/light,
-/mob/living/simple_mob/animal/passive/chicken,
+/mob/living/simple/animal/passive/chicken,
 /turf/simulated/floor/grass,
 /area/hydroponics/cafegarden)
 "aKx" = (
@@ -24477,7 +24477,7 @@
 /obj/structure/cable/green{
 	icon_state = "1-8"
 	},
-/mob/living/simple_mob/animal/goat{
+/mob/living/simple/animal/goat{
 	name = "Spike"
 	},
 /turf/simulated/floor/tiled/freezer/cold,
@@ -27316,7 +27316,7 @@
 /area/bridge)
 "aYq" = (
 /obj/structure/dogbed,
-/mob/living/simple_mob/animal/passive/dog/corgi/Ian,
+/mob/living/simple/animal/passive/dog/corgi/Ian,
 /turf/simulated/floor/carpet,
 /area/crew_quarters/heads/hop)
 "aYr" = (
@@ -29024,7 +29024,7 @@
 "bbE" = (
 /obj/structure/dogbed,
 /obj/structure/curtain/open/bed,
-/mob/living/simple_mob/animal/passive/fox/renault,
+/mob/living/simple/animal/passive/fox/renault,
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
 "bbF" = (
@@ -31764,7 +31764,7 @@
 /area/tether/surfacebase/southhall)
 "bhB" = (
 /obj/structure/dogbed,
-/mob/living/simple_mob/animal/sif/shantak/scruffy,
+/mob/living/simple/animal/sif/shantak/scruffy,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/security/hos)
 "bhC" = (

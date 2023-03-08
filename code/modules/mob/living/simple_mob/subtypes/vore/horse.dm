@@ -8,7 +8,7 @@
 	possible."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/vore/horse
+/mob/living/simple/vore/horse
 	name = "horse"
 	desc = "Don't look it in the mouth."
 	tt_desc = "Equus ferus caballus"
@@ -56,7 +56,7 @@
 
 	var/rideable = 0
 
-/mob/living/simple_mob/vore/horse/Initialize(mapload)
+/mob/living/simple/vore/horse/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/riding_filter/mob/animal/horse)
 
@@ -65,7 +65,7 @@
 /datum/component/riding_handler/mob/animal/horse
 	riding_handler_flags = CF_RIDING_HANDLER_IS_CONTROLLABLE
 
-/mob/living/simple_mob/vore/horse/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple/vore/horse/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/saddle/horse) && !rideable)
 		to_chat(user, "<span class='danger'>You sling the [O] onto the [src]! It may now be ridden safely!</span>")
 		rideable = 1
@@ -78,7 +78,7 @@
 		var/turf/T = get_turf(src)
 		new /obj/item/saddle/horse(T)
 
-/mob/living/simple_mob/vore/horse/update_icon()
+/mob/living/simple/vore/horse/update_icon()
 	if(rideable)
 		add_overlay("horse_saddled")
 	else if(!rideable)

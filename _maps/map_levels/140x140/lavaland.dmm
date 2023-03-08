@@ -216,7 +216,7 @@
 /turf/simulated/floor/carpet/purcarpet,
 /area/lavaland/central/base/common)
 "fw" = (
-/mob/living/simple_mob/construct/shade/surt,
+/mob/living/simple/construct/shade/surt,
 /turf/simulated/floor/outdoors/lavaland,
 /area/lavaland/central/explored)
 "fx" = (
@@ -391,7 +391,7 @@
 /turf/simulated/floor/plating,
 /area/lavaland/central/base/common)
 "ix" = (
-/mob/living/simple_mob/animal/space/bats/surt,
+/mob/living/simple/animal/space/bats/surt,
 /turf/simulated/floor/outdoors/lavaland,
 /area/lavaland/central/unexplored)
 "iz" = (
@@ -2213,7 +2213,7 @@
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 9
 	},
-/mob/living/simple_mob/animal/passive/mouse/gray{
+/mob/living/simple/animal/passive/mouse/gray{
 	name = "Jerry"
 	},
 /turf/simulated/floor/wood,

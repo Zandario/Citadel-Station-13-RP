@@ -776,7 +776,7 @@
 	if(isliving(target))
 		var/mob/living/L = target
 		if(issimple(target))
-			var/mob/living/simple_mob/SM = L
+			var/mob/living/simple/SM = L
 			if(SM.mob_class & SA_vulnerability)
 				final_damage += SA_bonus_damage
 		if(L.anti_magic_check(TRUE, TRUE, antimagic_charges_used, FALSE))

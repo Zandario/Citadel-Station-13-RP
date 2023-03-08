@@ -6,7 +6,7 @@
 	to suck the life out of any warm creature they can find."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/space/bats
+/mob/living/simple/animal/space/bats
 	name = "space bat swarm"
 	desc = "A swarm of cute little blood sucking bats that looks pretty upset."
 	tt_desc = "N Bestia gregaria" //Nispean swarm bats, because of course Nisp has swarm bats
@@ -48,7 +48,7 @@
 
 	var/scare_chance = 15
 
-/mob/living/simple_mob/animal/space/bats/apply_melee_effects(var/atom/A)
+/mob/living/simple/animal/space/bats/apply_melee_effects(var/atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
 		if(prob(scare_chance))
@@ -56,15 +56,15 @@
 			L.visible_message("<span class='danger'>\the [src] scares \the [L]!</span>")
 
 // Spookiest of bats
-/mob/living/simple_mob/animal/space/bats/cult
+/mob/living/simple/animal/space/bats/cult
 	faction = "cult"
 	supernatural = TRUE
 
-/mob/living/simple_mob/animal/space/bats/cult/cultify()
+/mob/living/simple/animal/space/bats/cult/cultify()
 	return
 
 //Lavaland Bats
-/mob/living/simple_mob/animal/space/bats/surt
+/mob/living/simple/animal/space/bats/surt
 	name = "volcanic bat swarm"
 	desc = "A swarm of blood sucking bats that have adapted to exist on this volatile planet. They are extremely hostile."
 

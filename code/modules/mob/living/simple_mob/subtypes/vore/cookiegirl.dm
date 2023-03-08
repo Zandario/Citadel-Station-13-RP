@@ -1,4 +1,4 @@
-/mob/living/simple_mob/vore/cookiegirl
+/mob/living/simple/vore/cookiegirl
 	name = "cookiegirl"
 	desc = "A woman made with a combination of, well... Whatever you put in a cookie. What were the chefs thinking?"
 
@@ -19,7 +19,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/passive/cookiegirl
 
 	// Activate Noms!
-/mob/living/simple_mob/vore/cookiegirl
+/mob/living/simple/vore/cookiegirl
 	vore_active = 1
 	vore_bump_chance = 2
 	vore_pounce_chance = 25

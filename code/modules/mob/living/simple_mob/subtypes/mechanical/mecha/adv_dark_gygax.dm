@@ -70,7 +70,7 @@
 	value = CATALOGUER_REWARD_SUPERHARD
 
 
-/mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced
+/mob/living/simple/mechanical/mecha/combat/gygax/dark/advanced
 	name = "advanced dark gygax"
 	desc = "An experimental exosuit that utilizes advanced materials to allow for greater protection while still being lightweight and fast. \
 	It also is armed with an array of next-generation weaponry."
@@ -102,13 +102,13 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/intentional/adv_dark_gygax
 	var/obj/effect/overlay/energy_ball/energy_ball = null
 
-/mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced/Destroy()
+/mob/living/simple/mechanical/mecha/combat/gygax/dark/advanced/Destroy()
 	if(energy_ball)
 		energy_ball.stop_orbit()
 		qdel(energy_ball)
 	return ..()
 
-/mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced/do_special_attack(atom/A)
+/mob/living/simple/mechanical/mecha/combat/gygax/dark/advanced/do_special_attack(atom/A)
 	. = TRUE // So we don't fire a bolt as well.
 	switch(a_intent)
 		if(INTENT_DISARM) // Side gun
@@ -138,7 +138,7 @@
 
 // Charges a tesla shot, while emitting a dangerous electric field. The exosuit is immune to electric damage while this is ongoing.
 // It also briefly blinds anyone looking directly at the mech without flash protection.
-/mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced/proc/electric_defense(atom/target)
+/mob/living/simple/mechanical/mecha/combat/gygax/dark/advanced/proc/electric_defense(atom/target)
 	set waitfor = FALSE
 
 	// Temporary immunity to shock to avoid killing themselves with their own attack.
@@ -199,7 +199,7 @@
 
 #undef ELECTRIC_ZAP_POWER
 
-/mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced/proc/launch_rockets(atom/target)
+/mob/living/simple/mechanical/mecha/combat/gygax/dark/advanced/proc/launch_rockets(atom/target)
 	set waitfor = FALSE
 
 	// Telegraph our next move.
@@ -233,7 +233,7 @@
 	new /obj/effect/explosion(T) // Weak explosions don't produce this on their own, apparently.
 	explosion(T, 0, 0, 2, adminlog = FALSE)
 
-/mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced/proc/launch_microsingularity(atom/target)
+/mob/living/simple/mechanical/mecha/combat/gygax/dark/advanced/proc/launch_microsingularity(atom/target)
 	var/turf/T = get_turf(target)
 	visible_message(SPAN_WARNING( "\The [src] fires an energetic sphere into the air!"))
 	playsound(src, 'sound/weapons/Laser.ogg', 50, 1)

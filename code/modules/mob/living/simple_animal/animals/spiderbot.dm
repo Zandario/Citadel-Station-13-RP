@@ -5,7 +5,7 @@
 	piloting a spiderbot is usually still fully cognizant, and benign."
 	value = CATALOGUER_REWARD_EASY
 
-/mob/living/simple_mob/spiderbot
+/mob/living/simple/spiderbot
 	name = "spider-bot"
 	desc = "A skittering robotic friend!"
 	tt_desc = "Maintenance Robot"
@@ -54,21 +54,21 @@
 	/obj/item/radio/borg,
 	/obj/item/holder,
 	/obj/machinery/camera,
-	/mob/living/simple_mob/animal/borer,
+	/mob/living/simple/animal/borer,
 	/obj/item/mmi,
 	)
 
 	var/emagged = 0
 	var/obj/item/held_item = null //Storage for single item they can hold.
 
-/mob/living/simple_mob/spiderbot/Initialize(mapload)
+/mob/living/simple/spiderbot/Initialize(mapload)
 	. = ..()
 	add_language(LANGUAGE_GALCOM)
 	default_language = SScharacters.resolve_language_name(LANGUAGE_GALCOM)
 	add_verb(src, /mob/living/proc/ventcrawl)
 	add_verb(src, /mob/living/proc/hide)
 
-/mob/living/simple_mob/spiderbot/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple/spiderbot/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
 	if(istype(O, /obj/item/mmi))
 		var/obj/item/mmi/B = O
@@ -152,7 +152,7 @@
 	else
 		O.melee_attack_chain(src, user, user.zone_sel.selecting)
 
-/mob/living/simple_mob/spiderbot/emag_act(var/remaining_charges, var/mob/user)
+/mob/living/simple/spiderbot/emag_act(var/remaining_charges, var/mob/user)
 	if (emagged)
 		to_chat(user, "<span class='warning'>[src] is already overloaded - better run.</span>")
 		return 0
@@ -164,7 +164,7 @@
 			to_chat(src, "<span class='danger'>Internal heat sensors are spiking! Something is badly wrong with your cell!</span>")
 		spawn(300)	src.explode()
 
-/mob/living/simple_mob/spiderbot/proc/transfer_personality(var/obj/item/mmi/M as obj)
+/mob/living/simple/spiderbot/proc/transfer_personality(var/obj/item/mmi/M as obj)
 
 		src.mind = M.brainmob.mind
 		src.mind.key = M.brainmob.key
@@ -172,13 +172,13 @@
 		src.name = "spider-bot ([M.brainmob.name])"
 		src.languages = M.brainmob.languages
 
-/mob/living/simple_mob/spiderbot/proc/explode() //When emagged.
+/mob/living/simple/spiderbot/proc/explode() //When emagged.
 	src.visible_message("<span class='danger'>\The [src] makes an odd warbling noise, fizzles, and explodes!</span>")
 	explosion(get_turf(loc), -1, -1, 3, 5)
 	eject_brain()
 	death()
 
-/mob/living/simple_mob/spiderbot/update_icon()
+/mob/living/simple/spiderbot/update_icon()
 	if(mmi)
 		if(positronic)
 			icon_state = "spiderbot-chassis-posi"
@@ -190,7 +190,7 @@
 		icon_state = "spiderbot-chassis"
 		icon_living = "spiderbot-chassis"
 
-/mob/living/simple_mob/spiderbot/proc/eject_brain()
+/mob/living/simple/spiderbot/proc/eject_brain()
 	if(mmi)
 		var/turf/T = get_turf(loc)
 		if(T)
@@ -203,18 +203,18 @@
 	remove_language("Robot Talk")
 	positronic = null
 
-/mob/living/simple_mob/spiderbot/Destroy()
+/mob/living/simple/spiderbot/Destroy()
 	eject_brain()
 	..()
 
-/mob/living/simple_mob/spiderbot/Initialize(mapload)
+/mob/living/simple/spiderbot/Initialize(mapload)
 	. = ..()
 	radio = new /obj/item/radio/borg(src)
 	camera = new /obj/machinery/camera(src)
 	camera.c_tag = "spiderbot-[real_name]"
 	camera.replace_networks(list("SS13"))
 
-/mob/living/simple_mob/spiderbot/death()
+/mob/living/simple/spiderbot/death()
 
 	living_mob_list -= src
 	dead_mob_list += src
@@ -230,7 +230,7 @@
 	return
 
 //Cannibalized from the parrot mob. ~Zuhayr
-/mob/living/simple_mob/spiderbot/verb/drop_held_item()
+/mob/living/simple/spiderbot/verb/drop_held_item()
 	set name = "Drop held item"
 	set category = "Spiderbot"
 	set desc = "Drop the item you're holding."
@@ -262,7 +262,7 @@
 
 	return
 
-/mob/living/simple_mob/spiderbot/verb/get_item()
+/mob/living/simple/spiderbot/verb/get_item()
 	set name = "Pick up item"
 	set category = "Spiderbot"
 	set desc = "Allows you to take a nearby small item."
@@ -296,13 +296,13 @@
 	to_chat(src, "<span class='warning'>There is nothing of interest to take.</span>")
 	return 0
 
-/mob/living/simple_mob/spiderbot/examine(mob/user)
+/mob/living/simple/spiderbot/examine(mob/user)
 	. = ..()
 	if(src.held_item)
 		. += "It is carrying [icon2html(thing = src, target = world)] \a [src.held_item]."
 
-/mob/living/simple_mob/spiderbot/cannot_use_vents()
+/mob/living/simple/spiderbot/cannot_use_vents()
 	return
 
-/mob/living/simple_mob/spiderbot/binarycheck()
+/mob/living/simple/spiderbot/binarycheck()
 	return positronic

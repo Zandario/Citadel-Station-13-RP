@@ -16,7 +16,7 @@
 /turf/simulated/shuttle/floor/alienplating,
 /area/submap/cave/crashed_ufo_frigate)
 "af" = (
-/mob/living/simple_mob/animal/space/alien/drone,
+/mob/living/simple/animal/space/alien/drone,
 /turf/simulated/shuttle/floor/alienplating,
 /area/submap/cave/crashed_ufo_frigate)
 "ag" = (
@@ -172,7 +172,7 @@
 /area/submap/cave/crashed_ufo_frigate)
 "aQ" = (
 /obj/effect/alien/weeds/node,
-/mob/living/simple_mob/animal/space/alien/drone,
+/mob/living/simple/animal/space/alien/drone,
 /turf/simulated/shuttle/floor/alienplating,
 /area/submap/cave/crashed_ufo_frigate)
 "aR" = (
@@ -271,7 +271,7 @@
 /turf/simulated/shuttle/floor/alienplating,
 /area/submap/cave/crashed_ufo_frigate)
 "bk" = (
-/mob/living/simple_mob/animal/space/alien,
+/mob/living/simple/animal/space/alien,
 /turf/simulated/shuttle/floor/alienplating,
 /area/submap/cave/crashed_ufo_frigate)
 "bl" = (
@@ -311,7 +311,7 @@
 /area/submap/cave/crashed_ufo_frigate)
 "bs" = (
 /obj/effect/alien/weeds/node,
-/mob/living/simple_mob/animal/space/alien/sentinel/praetorian,
+/mob/living/simple/animal/space/alien/sentinel/praetorian,
 /turf/simulated/shuttle/floor/alien,
 /area/submap/cave/crashed_ufo_frigate)
 "bt" = (
@@ -354,7 +354,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/crashed_ufo_frigate)
 "bB" = (
-/mob/living/simple_mob/animal/space/alien/sentinel,
+/mob/living/simple/animal/space/alien/sentinel,
 /turf/simulated/shuttle/floor/alien,
 /area/submap/cave/crashed_ufo_frigate)
 "bC" = (
@@ -481,7 +481,7 @@
 /turf/simulated/shuttle/floor/alien,
 /area/submap/cave/crashed_ufo_frigate)
 "bX" = (
-/mob/living/simple_mob/animal/space/alien,
+/mob/living/simple/animal/space/alien,
 /turf/simulated/shuttle/floor/alien,
 /area/submap/cave/crashed_ufo_frigate)
 "bY" = (

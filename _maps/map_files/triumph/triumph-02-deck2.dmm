@@ -4312,7 +4312,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/cargo)
 "mS" = (
-/mob/living/simple_mob/animal/goat{
+/mob/living/simple/animal/goat{
 	desc = "Ah, it's Pete. They're not known for their pleasant disposition and now they're gonna eat all your plants.";
 	name = "Pete"
 	},
@@ -9398,7 +9398,7 @@
 /obj/structure/cable/green{
 	icon_state = "0-2"
 	},
-/mob/living/simple_mob/animal/sif/fluffy,
+/mob/living/simple/animal/sif/fluffy,
 /turf/simulated/floor/wood,
 /area/quartermaster/qm)
 "Ce" = (
@@ -11281,7 +11281,7 @@
 /turf/simulated/wall,
 /area/crew_quarters/fitness)
 "HZ" = (
-/mob/living/simple_mob/animal/passive/penguin/emperor{
+/mob/living/simple/animal/passive/penguin/emperor{
 	desc = "There's a tag on this pengiun that says Skipper. You're not even sure where the chef found them.";
 	name = "Skipper"
 	},
@@ -13981,7 +13981,7 @@
 	name = "Station Intercom (General)";
 	pixel_y = 26
 	},
-/mob/living/simple_mob/animal/passive/bird/ringneck_dove{
+/mob/living/simple/animal/passive/bird/ringneck_dove{
 	desc = "The bartenders newest pet on the station. They seem like they want to help you out.";
 	name = "Brewster"
 	},

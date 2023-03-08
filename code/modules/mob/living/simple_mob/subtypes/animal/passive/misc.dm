@@ -7,7 +7,7 @@
 	Yith."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/passive/yithian
+/mob/living/simple/animal/passive/yithian
 	name = "yithian"
 	desc = "A friendly creature vaguely resembling an oversized snail without a shell."
 	tt_desc = "J Escargot escargot" // a product of Jade, which is a planet that totally exists
@@ -34,7 +34,7 @@
 	acute angles."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/mob/living/simple_mob/animal/passive/tindalos
+/mob/living/simple/animal/passive/tindalos
 	name = "tindalos"
 	desc = "It looks like a large, flightless grasshopper."
 	tt_desc = "J Locusta bruchus"

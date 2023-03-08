@@ -1,4 +1,4 @@
-/mob/living/simple_mob/animal/horing
+/mob/living/simple/animal/horing
 	name = "Horing"
 	desc = "An intimidatingly large white-furred creature with a single massive horn on its forehead."
 	tt_desc = "Dominus Albus"
@@ -30,7 +30,7 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/horing
 
-/mob/living/simple_mob/animal/horing/update_icon()
+/mob/living/simple/animal/horing/update_icon()
 	if(charging)
 		icon_state = "[icon_living]-charge"
 	..()
@@ -47,7 +47,7 @@
 	making Horing a common target for poachers."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/mob/living/simple_mob/animal/horing/do_special_attack(atom/A)
+/mob/living/simple/animal/horing/do_special_attack(atom/A)
 	set waitfor = FALSE
 	set_AI_busy(TRUE)
 	charging = 1
@@ -81,7 +81,7 @@
 	movement_sound = null
 	set_AI_busy(FALSE)
 
-/mob/living/simple_mob/animal/horing/Bump(atom/movable/AM)
+/mob/living/simple/animal/horing/Bump(atom/movable/AM)
 	if(charging)
 		if(istype(AM, /mob/living))
 			var/mob/living/M = AM
@@ -114,7 +114,7 @@
 			machinery.attack_generic(src, 20)
 	..()
 
-/mob/living/simple_mob/animal/horing/proc/runOver(var/mob/living/M)
+/mob/living/simple/animal/horing/proc/runOver(var/mob/living/M)
 	if(istype(M))
 		visible_message("<span class='warning'>[src] rams [M] over!</span>")
 		playsound(src, 'sound/effects/splat.ogg', 50, 1)
@@ -127,7 +127,7 @@
 		M.apply_damage(0.5 * damage, BRUTE, BP_R_ARM)
 		blood_splatter(src, M, 1)
 
-/mob/living/simple_mob/animal/horing/handle_special()
+/mob/living/simple/animal/horing/handle_special()
 	if(ai_holder)
 		if(istype(ai_holder, /datum/ai_holder/simple_mob/horing))
 			var/datum/ai_holder/simple_mob/horing/changedAI = ai_holder
