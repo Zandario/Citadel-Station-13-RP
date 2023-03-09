@@ -69,6 +69,7 @@ var/global/floorIsLava = 0
 		<A href='?_src_=holder;warn=[M.ckey]'>Warn</A> |
 		<A href='?src=\ref[src];newban=\ref[M]'>Ban</A> |
 		<A href='?src=\ref[src];jobban2=\ref[M]'>Jobban</A> |
+		<A href='?src=\ref[src];oocban=[M.ckey]'>[is_role_banned_ckey(M.ckey, role = BAN_ROLE_OOC)? "<font color='red'>OOC Ban</font>" : "OOC Ban"]</A> |
 		<A href='?src=\ref[src];notes=show;mob=\ref[M]'>Notes</A>
 	"}
 
@@ -1092,6 +1093,12 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 	set name = "Spawn"
 
 	if(!check_rights(R_SPAWN))	return
+
+	if(!object)
+		var/choice = alert(src, "You haven't specified anything to match -- this will lock your game up and take a while! \
+		It will also return the entire spawn list.", "WARNING!", "Cancel", "Continue")
+		if(choice == "Cancel")
+			return
 
 	var/list/types = typesof(/atom)
 	var/list/matches = new()
