@@ -17,7 +17,7 @@
 	anchored = 1
 
 //This is global, to avoid looping through a list of all objects, or god forbid, looping through world.
-/var/global/obj/effect/mark_spell/mark_spell_ref = null
+var/global/obj/effect/mark_spell/mark_spell_ref = null
 
 /obj/item/spell/mark
 	name = "mark"
@@ -108,4 +108,3 @@
 	else
 		to_chat(user, "<span class='warning'>You can't afford the energy cost!</span>")
 		return 0
-

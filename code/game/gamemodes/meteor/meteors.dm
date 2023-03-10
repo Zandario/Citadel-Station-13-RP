@@ -1,17 +1,17 @@
-/var/const/meteor_wave_delay = 425 //minimum wait between waves in tenths of seconds
+var/const/meteor_wave_delay = 425 //minimum wait between waves in tenths of seconds
 //set to at least 100 unless you want evarr ruining every round
 
 //Meteors probability of spawning during a given wave
-/var/list/meteors_normal = list(/obj/effect/meteor/dust=3, /obj/effect/meteor/medium=8, /obj/effect/meteor/big=3, \
+var/list/meteors_normal = list(/obj/effect/meteor/dust=3, /obj/effect/meteor/medium=8, /obj/effect/meteor/big=3, \
 						  /obj/effect/meteor/flaming=1, /obj/effect/meteor/irradiated=3) //for normal meteor event
 
-/var/list/meteors_threatening = list(/obj/effect/meteor/medium=5, /obj/effect/meteor/big=15, \
+var/list/meteors_threatening = list(/obj/effect/meteor/medium=5, /obj/effect/meteor/big=15, \
 						  /obj/effect/meteor/flaming=4, /obj/effect/meteor/irradiated=4, /obj/effect/meteor/emp=4) //for threatening meteor event
 
-/var/list/meteors_catastrophic = list(/obj/effect/meteor/medium=5, /obj/effect/meteor/big=50, \
+var/list/meteors_catastrophic = list(/obj/effect/meteor/medium=5, /obj/effect/meteor/big=50, \
 						  /obj/effect/meteor/flaming=10, /obj/effect/meteor/irradiated=10, /obj/effect/meteor/emp=10, /obj/effect/meteor/tunguska = 1) //for catastrophic meteor event
 
-/var/list/meteors_dust = list(/obj/effect/meteor/dust) //for space dust event
+var/list/meteors_dust = list(/obj/effect/meteor/dust) //for space dust event
 
 
 ///////////////////////////////

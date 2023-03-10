@@ -427,14 +427,14 @@ Alien plants should do something if theres a lot of poison
 /*
  * Egg
  */
-/var/const //for the status var
-	BURST = 0
-	BURSTING = 1
-	GROWING = 2
-	GROWN = 3
+ //for the status var
+var/const/BURST = 0
+var/const/BURSTING = 1
+var/const/GROWING = 2
+var/const/GROWN = 3
 
-	MIN_GROWTH_TIME = 1800 //time it takes to grow a hugger
-	MAX_GROWTH_TIME = 3000
+var/const/MIN_GROWTH_TIME = 1800 //time it takes to grow a hugger
+var/const/MAX_GROWTH_TIME = 3000
 
 /obj/effect/alien/egg
 	desc = "It looks like a weird egg"

@@ -974,7 +974,7 @@
 	return get_turf(location)
 
 /// Quick type checks for some tools.
-/var/global/list/common_tools = list(
+var/global/list/common_tools = list(
 	/obj/item/multitool,
 	/obj/item/stack/cable_coil,
 	/obj/item/tool/crowbar,

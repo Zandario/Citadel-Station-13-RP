@@ -19,8 +19,8 @@
 	return wtime + (time_offset + wusage) * world.tick_lag
 
 GLOBAL_VAR_INIT(roundstart_hour, pick(2,7,12,17))
-/var/station_date = ""
-/var/next_station_date_change = 1 DAY
+var/station_date = ""
+var/next_station_date_change = 1 DAY
 
 #define duration2stationtime(time) time2text(station_time_in_ds + time, "hh:mm")
 #define worldtime2stationtime(time) time2text(GLOB.roundstart_hour HOURS + time, "hh:mm")
@@ -74,21 +74,19 @@ GLOBAL_VAR_INIT(roundstart_hour, pick(2,7,12,17))
 /**
  * Returns 1 if it is the selected month and day.
  */
-/proc/isDay(var/month, var/day)
-	if(isnum(month) && isnum(day))\
+/proc/isDay(month, day)
+	if(isnum(month) && isnum(day))
 		/// Get the current month.
 		var/MM = text2num(time2text(world.timeofday, "MM"))
 		/// Get the current day.
 		var/DD = text2num(time2text(world.timeofday, "DD"))
 		if(month == MM && day == DD)
 			return TRUE
+		else
+			return FALSE
 
-		// Uncomment this out when debugging!
-		// else
-		// 	return TRUE
-
-/var/next_duration_update = 0
-/var/last_round_duration = 0
+var/next_duration_update = 0
+var/last_round_duration = 0
 
 /proc/roundduration2text()
 	if(!SSticker.round_start_time)
@@ -110,8 +108,8 @@ GLOBAL_VAR_INIT(roundstart_hour, pick(2,7,12,17))
 	next_duration_update = world.time + 1 MINUTES
 	return last_round_duration
 
-/var/midnight_rollovers = 0
-/var/rollovercheck_last_timeofday = 0
+var/midnight_rollovers = 0
+var/rollovercheck_last_timeofday = 0
 
 /proc/update_midnight_rollover()
 	if (world.timeofday < rollovercheck_last_timeofday) //TIME IS GOING BACKWARDS!

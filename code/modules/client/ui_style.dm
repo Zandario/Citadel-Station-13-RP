@@ -1,32 +1,32 @@
 
 
-/var/all_ui_styles = list(
+var/all_ui_styles = list(
 	UI_STYLE_MIDNIGHT     = 'icons/mob/screen/midnight.dmi',
 	UI_STYLE_ORANGE       = 'icons/mob/screen/orange.dmi',
 	UI_STYLE_OLD          = 'icons/mob/screen/old.dmi',
 	UI_STYLE_WHITE        = 'icons/mob/screen/white.dmi',
 	UI_STYLE_OLD_NOBORDER = 'icons/mob/screen/old-noborder.dmi',
 	UI_STYLE_MINIMALIST   = 'icons/mob/screen/minimalist.dmi',
-	UI_STYLE_HOLOGRAM     = 'icons/mob/screen/holo.dmi'
+	UI_STYLE_HOLOGRAM     = 'icons/mob/screen/holo.dmi',
 	)
 
-/var/all_ui_styles_robot = list(
+var/all_ui_styles_robot = list(
 	UI_STYLE_MIDNIGHT     = 'icons/mob/screen1_robot.dmi',
 	UI_STYLE_ORANGE       = 'icons/mob/screen1_robot.dmi',
 	UI_STYLE_OLD          = 'icons/mob/screen1_robot.dmi',
 	UI_STYLE_WHITE        = 'icons/mob/screen1_robot.dmi',
 	UI_STYLE_OLD_NOBORDER = 'icons/mob/screen1_robot.dmi',
 	UI_STYLE_MINIMALIST   = 'icons/mob/screen1_robot_minimalist.dmi',
-	UI_STYLE_HOLOGRAM     = 'icons/mob/screen1_robot_minimalist.dmi'
+	UI_STYLE_HOLOGRAM     = 'icons/mob/screen1_robot_minimalist.dmi',
 	)
 
 var/global/list/all_tooltip_styles = list(
-	"Midnight",		//Default for everyone is the first one,
+	"Midnight", // Default for everyone is the first one,
 	"Plasmafire",
 	"Retro",
 	"Slimecore",
 	"Operative",
-	"Clockwork"
+	"Clockwork",
 	)
 
 /proc/ui_style2icon(ui_style)
