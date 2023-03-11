@@ -448,7 +448,7 @@ var/global/list/default_infomorph_software = list()
 
 	nano_ui_interact(src)
 
-/mob/living/silicon/infomorph/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, key_state = self_state)
+/mob/living/silicon/infomorph/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, key_state = self_nano_state)
 	if(user != src)
 		if(ui) ui.set_status(UI_CLOSE, 0)
 		return

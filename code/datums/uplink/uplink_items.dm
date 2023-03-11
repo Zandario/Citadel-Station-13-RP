@@ -53,7 +53,7 @@ var/datum/uplink/uplink = new()
 	if(!can_buy(U))
 		return
 
-	if(U.CanUseTopic(user, inventory_state) != UI_INTERACTIVE)
+	if(U.CanUseTopic(user, inventory_nano_state) != UI_INTERACTIVE)
 		return
 
 	var/cost = cost(U.uses, U)

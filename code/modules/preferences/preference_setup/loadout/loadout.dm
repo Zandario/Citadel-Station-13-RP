@@ -28,7 +28,6 @@ var/list/gear_datums = list()
 	var/list/gear_tweaks = list()
 	/// Does it go on the exploitable information list?
 	var/exploitable = 0
-	var/static/datum/gear_tweak/color/gear_tweak_free_color_choice = new
 	var/list/ckeywhitelist
 	var/list/character_name
 	/// Seasonal whitelist - only create if holiday is active. NOTE: This IGNORES ALLOW_HOLIDAYS config! This is because character setup isn't subsystem-init-synced so we must init all of this dumb shit before config loads.

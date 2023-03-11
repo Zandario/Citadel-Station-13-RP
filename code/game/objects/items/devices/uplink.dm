@@ -111,7 +111,7 @@
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)	// No auto-refresh
-		ui = new(user, src, ui_key, "uplink.tmpl", title, 450, 600, state = inventory_state)
+		ui = new(user, src, ui_key, "uplink.tmpl", title, 450, 600, state = inventory_nano_state)
 		data["menu"] = 0
 		ui.set_initial_data(data)
 		ui.open()

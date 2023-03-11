@@ -620,7 +620,7 @@
 	cell.use(cost*10)
 	return 1
 
-/obj/item/rig/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/nano_state = inventory_state)
+/obj/item/rig/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, nano_state = inventory_nano_state)
 	if(!user)
 		return
 

@@ -25,7 +25,7 @@
 
 	nano_ui_interact(user)
 
-/obj/item/aicard/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = inventory_state)
+/obj/item/aicard/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, datum/topic_state/state = inventory_nano_state)
 	var/data[0]
 	data["has_ai"] = carded_ai != null
 	if(carded_ai)

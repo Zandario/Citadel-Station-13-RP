@@ -1,6 +1,6 @@
-/var/global/datum/topic_state/physical/physical_state = new()
+/var/global/datum/topic_state/physical_nano_state/physical_nano_state = new()
 
-/datum/topic_state/physical/can_use_topic(var/src_object, var/mob/user)
+/datum/topic_state/physical_nano_state/can_use_topic(var/src_object, var/mob/user)
 	. = user.shared_nano_interaction(src_object)
 	if(. > UI_CLOSE)
 		return min(., user.check_physical_distance(src_object))

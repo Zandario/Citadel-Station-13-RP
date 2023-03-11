@@ -31,7 +31,7 @@
 
 	// This checks if src_object is powered, etc.
 	// The interactive state is otherwise simplistic and only returns UI_INTERACTIVE and never checks distances, etc.
-	. = src_object.CanUseTopic(user, interactive_state)
+	. = src_object.CanUseTopic(user, interactive_nano_state)
 	if(. == UI_CLOSE)
 		return
 

@@ -142,7 +142,7 @@
 	if(!target)
 		if(ai_card)
 			if(istype(ai_card,/obj/item/aicard))
-				ai_card.nano_ui_interact(H, state = deep_inventory_state)
+				ai_card.nano_ui_interact(H, state = deep_inventory_nano_state)
 			else
 				eject_ai(H)
 		update_verb_holder()
