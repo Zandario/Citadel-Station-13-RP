@@ -329,13 +329,13 @@
 /obj/item/destTagger/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.inventory_state
 
-/obj/item/destTagger/ui_interact(mob/user, datum/tgui/ui)
+/obj/item/destTagger/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "DestinationTagger", name)
 		ui.open()
 
-/obj/item/destTagger/ui_data(mob/user, datum/tgui/ui)
+/obj/item/destTagger/ui_data(mob/user, tgui/ui)
 	var/list/data = ..()
 
 	data["currTag"] = currTag

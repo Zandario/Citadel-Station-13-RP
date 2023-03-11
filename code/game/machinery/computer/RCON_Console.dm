@@ -33,7 +33,7 @@
 //Proc: ui_interact()
 //Parameters: 2 (usual tgUI parameters)
 //Description: Opens the UI for the RCON console, found in rcon.dm
-/obj/machinery/computer/rcon/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/computer/rcon/ui_interact(mob/user, tgui/ui)
 	rcon.ui_interact(user, ui)
 
 /obj/machinery/computer/rcon/update_icon()

@@ -18,7 +18,7 @@
 #warn better tgui
 #warn bank account check
 
-/datum/tgui_module_old/cardmod/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/datum/tgui_module_old/cardmod/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/datum/computer_file/program/card_mod/program = host
 	if(!istype(program))
 		return 0
@@ -112,7 +112,7 @@
 
 	return formatted
 
-/datum/tgui_module_old/cardmod/ui_act(action, list/params, datum/tgui/ui)
+/datum/tgui_module_old/cardmod/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

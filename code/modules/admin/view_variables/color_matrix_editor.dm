@@ -90,13 +90,13 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/color_matrix_proxy_view)
 
 	return data
 
-/datum/color_matrix_editor/ui_interact(mob/user, datum/tgui/ui)
+/datum/color_matrix_editor/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ColorMatrixEditor")
 		ui.open()
 
-/datum/color_matrix_editor/ui_act(action, list/params, datum/tgui/ui)
+/datum/color_matrix_editor/ui_act(action, list/params, tgui/ui)
 	. = ..()
 	if(.)
 		return

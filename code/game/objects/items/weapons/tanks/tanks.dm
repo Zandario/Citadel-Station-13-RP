@@ -222,7 +222,7 @@ var/list/global/tank_gauge_cache = list()
 /obj/item/weapon/tank/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.deep_inventory_state
 
-/obj/item/tank/ui_interact(mob/user, datum/tgui/ui)
+/obj/item/tank/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Tank", name)

@@ -70,7 +70,7 @@
 		return
 	ui_interact(user)
 
-/obj/machinery/computer/skills/ui_interact(mob/user, datum/tgui/ui = null)
+/obj/machinery/computer/skills/ui_interact(mob/user, tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "GeneralRecords", "Employee Records") // 800, 380

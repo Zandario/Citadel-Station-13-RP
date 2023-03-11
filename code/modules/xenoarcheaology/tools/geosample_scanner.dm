@@ -118,13 +118,13 @@
 /obj/machinery/radiocarbon_spectrometer/attack_hand(mob/user)
 	ui_interact(user)
 
-/obj/machinery/radiocarbon_spectrometer/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/radiocarbon_spectrometer/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "XenoarchSpectrometer", name)
 		ui.open()
 
-/obj/machinery/radiocarbon_spectrometer/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/machinery/radiocarbon_spectrometer/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 
@@ -156,7 +156,7 @@
 
 	return data
 
-/obj/machinery/radiocarbon_spectrometer/ui_act(action, list/params, datum/tgui/ui)
+/obj/machinery/radiocarbon_spectrometer/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

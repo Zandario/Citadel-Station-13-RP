@@ -168,7 +168,7 @@
 
 	moles_per_tick = initial(moles_per_tick) + (manip_rating**2 - 1)
 
-/obj/machinery/atmospherics/component/binary/algae_farm/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/atmospherics/component/binary/algae_farm/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "AlgaeFarm", name)

@@ -115,7 +115,7 @@
 	return TRUE
 
 
-/obj/machinery/computer/robotics/ui_interact(mob/user, datum/tgui/ui = null)
+/obj/machinery/computer/robotics/ui_interact(mob/user, tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "RoboticsControlConsole",  name)

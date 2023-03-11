@@ -870,7 +870,7 @@ About the new airlock wires panel:
 	. = ..()
 	ui_interact(user)
 
-/obj/machinery/door/airlock/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/door/airlock/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "AiAirlock", name)

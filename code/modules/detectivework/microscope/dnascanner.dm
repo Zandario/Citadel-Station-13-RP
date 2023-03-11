@@ -50,7 +50,7 @@
 		to_chat(user, SPAN_WARNING("\The [src] only accepts used swabs."))
 		return
 
-/obj/machinery/dnaforensics/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/dnaforensics/ui_interact(mob/user, tgui/ui)
 	if(machine_stat & (NOPOWER))
 		return
 	ui = SStgui.try_update_ui(user, src, ui)

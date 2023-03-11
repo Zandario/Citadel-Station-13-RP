@@ -13,7 +13,7 @@
 	var/design_page = 0
 	var/builder_page = 0
 
-/obj/machinery/computer/rdconsole/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/computer/rdconsole/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ResearchConsole", name)
@@ -35,7 +35,7 @@
 
 	return data
 
-/obj/machinery/computer/rdconsole/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/machinery/computer/rdconsole/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["locked"] = locked
@@ -308,7 +308,7 @@
 
 	return data
 
-/obj/machinery/computer/rdconsole/ui_act(action, list/params, datum/tgui/ui)
+/obj/machinery/computer/rdconsole/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

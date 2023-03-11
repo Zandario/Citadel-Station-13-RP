@@ -101,7 +101,7 @@
 // Proc: ui_interact()
 // Parameters: 2 (user - person interacting with the UI, ui - the UI itself, in a refresh)
 // Description: Handles opening the TGUI interface
-/obj/machinery/exonet_node/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/exonet_node/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ExonetNode", src)

@@ -73,7 +73,7 @@
 			. += text
 
 	if(Adjacent(user))
-		var/datum/tgui/ui = SStgui.get_open_ui(src.loc, src)
+		var/tgui/ui = SStgui.get_open_ui(src.loc, src)
 		if(ui)
 			ui_interact(user, ui, ui)
 		else ui_interact(user)
@@ -157,13 +157,13 @@
 /obj/item/electronic_assembly/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.physical_state
 
-/obj/item/electronic_assembly/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+/obj/item/electronic_assembly/ui_interact(mob/user, tgui/ui, tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ICAssembly", name, parent_ui)
 		ui.open()
 
-/obj/item/electronic_assembly/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/item/electronic_assembly/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	var/total_parts = 0
@@ -204,7 +204,7 @@
 				)))*/
 	return data
 
-/obj/item/electronic_assembly/ui_act(action, list/params, datum/tgui/ui)
+/obj/item/electronic_assembly/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

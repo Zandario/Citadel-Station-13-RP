@@ -366,7 +366,7 @@
 /obj/machinery/telecomms/attack_hand(var/mob/user as mob)
 	ui_interact(user)
 
-/obj/machinery/telecomms/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/telecomms/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "TelecommsMultitoolMenu", name)

@@ -117,7 +117,7 @@
 	if(B)
 		return B
 
-/obj/machinery/computer/ship/disperser/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+/obj/machinery/computer/ship/disperser/ui_interact(mob/user, tgui/ui, tgui/parent_ui)
 	if(!linked)
 		display_reconnect_dialog(user, "disperser synchronization")
 		return
@@ -162,7 +162,7 @@
 
 	return data
 
-/obj/machinery/computer/ship/disperser/ui_act(action, list/params, datum/tgui/ui)
+/obj/machinery/computer/ship/disperser/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

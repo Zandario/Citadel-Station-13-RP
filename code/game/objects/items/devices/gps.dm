@@ -166,7 +166,7 @@
 	// TODO: ATTACK_SELF REFACTOR
 	ui_interact(user)
 
-/obj/item/gps/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+/obj/item/gps/ui_interact(mob/user, tgui/ui, tgui/parent_ui)
 	if(emped)
 		to_chat(user, SPAN_WARNING("[src] is still spitting out gibberish!"))
 		return
@@ -346,7 +346,7 @@
 	. = ..()
 	.["waypoints"] = ui_waypoint_data()
 
-/obj/item/gps/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/item/gps/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	. = ..()
 
 	.["on"] = !!on
@@ -384,7 +384,7 @@
 				"name" = sig.gps_tag
 			))
 
-/obj/item/gps/ui_act(action, list/params, datum/tgui/ui)
+/obj/item/gps/ui_act(action, list/params, tgui/ui)
 	. = ..()
 	if(.)
 		return

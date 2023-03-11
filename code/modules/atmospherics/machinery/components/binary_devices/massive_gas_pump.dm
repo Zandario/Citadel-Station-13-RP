@@ -124,7 +124,7 @@
 		icon_state = "pump"
 	return TRUE
 
-/obj/machinery/atmospherics/component/binary/massive_gas_pump/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/atmospherics/component/binary/massive_gas_pump/ui_interact(mob/user, tgui/ui)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return FALSE
 	ui = SStgui.try_update_ui(user, src, ui)

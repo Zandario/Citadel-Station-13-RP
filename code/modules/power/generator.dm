@@ -195,7 +195,7 @@ GLOBAL_LIST_EMPTY(all_turbines)
 		reconnect()
 	ui_interact(user)
 
-/obj/machinery/power/generator/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/power/generator/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "TEGenerator", name)

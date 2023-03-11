@@ -42,7 +42,7 @@
 	QDEL_NULL(reagent_container)
 	return ..()
 
-/obj/machinery/iv_drip/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/iv_drip/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "IVDrip", name)

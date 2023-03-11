@@ -86,7 +86,7 @@
 
 	return TRUE
 
-/obj/machinery/atmospherics/component/quaternary/atmos_filter/ui_interact(mob/user,datum/tgui/ui = null)
+/obj/machinery/atmospherics/component/quaternary/atmos_filter/ui_interact(mob/user,tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "OmniFilter", name)

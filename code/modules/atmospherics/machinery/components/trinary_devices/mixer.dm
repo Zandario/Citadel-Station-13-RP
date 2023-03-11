@@ -77,7 +77,7 @@
 
 	return 1
 
-/obj/machinery/atmospherics/component/trinary/mixer/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/atmospherics/component/trinary/mixer/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "AtmosMixer", name)

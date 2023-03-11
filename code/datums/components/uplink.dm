@@ -122,8 +122,8 @@ GLOBAL_LIST_EMPTY(uplinks)
 	// an unlocked uplink blocks also opening the PDA or headset menu
 	return COMPONENT_NO_INTERACT
 
-/datum/component/uplink/nano_ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.inventory_state)
+/datum/component/uplink/nano_ui_interact(mob/user, ui_key = "main", tgui/ui = null, force_open = FALSE, \
+									tgui/master_ui = null, datum/ui_state/state = GLOB.inventory_state)
 	active = TRUE
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)

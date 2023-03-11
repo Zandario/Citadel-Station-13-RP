@@ -59,13 +59,13 @@
 		add_overlay("[base_icon_state]-[on]")
 
 
-/mob/living/bot/floorbot/ui_interact(mob/user, datum/tgui/ui)
+/mob/living/bot/floorbot/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Floorbot", name)
 		ui.open()
 
-/mob/living/bot/floorbot/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/mob/living/bot/floorbot/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["on"] = on
@@ -101,7 +101,7 @@
 			playsound(src.loc, 'sound/machines/buzzbeep.ogg', 50, FALSE)
 		return TRUE
 
-/mob/living/bot/floorbot/ui_act(action, list/params, datum/tgui/ui)
+/mob/living/bot/floorbot/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

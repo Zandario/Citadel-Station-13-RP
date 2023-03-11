@@ -11,7 +11,7 @@
 	var/is_browser = FALSE
 	var/status = TGUI_WINDOW_CLOSED
 	var/locked = FALSE
-	var/datum/tgui/locked_by
+	var/tgui/locked_by
 	var/datum/subscriber_object
 	var/subscriber_delegate
 	var/fatally_errored = FALSE
@@ -166,9 +166,9 @@
  * Can be given an optional tgui datum, which will be automatically
  * subscribed to incoming messages via the on_message proc.
  *
- * optional ui /datum/tgui
+ * optional ui /tgui
  */
-/datum/tgui_window/proc/acquire_lock(datum/tgui/ui)
+/datum/tgui_window/proc/acquire_lock(tgui/ui)
 	locked = TRUE
 	locked_by = ui
 

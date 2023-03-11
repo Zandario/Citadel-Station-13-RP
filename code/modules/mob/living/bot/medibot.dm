@@ -256,13 +256,13 @@
 	else
 		ui_interact(attacker)
 
-/mob/living/bot/medibot/ui_interact(mob/user, datum/tgui/ui)
+/mob/living/bot/medibot/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Medibot", name)
 		ui.open()
 
-/mob/living/bot/medibot/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/mob/living/bot/medibot/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 	data["on"] = on
 	data["open"] = open
@@ -304,7 +304,7 @@
 	else
 		..()
 
-/mob/living/bot/medibot/ui_act(action, list/params, datum/tgui/ui)
+/mob/living/bot/medibot/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

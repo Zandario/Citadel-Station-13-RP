@@ -323,7 +323,7 @@ update_flag
 /obj/machinery/portable_atmospherics/canister/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.physical_state
 
-/obj/machinery/portable_atmospherics/canister/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/portable_atmospherics/canister/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Canister", name)

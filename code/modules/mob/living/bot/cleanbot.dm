@@ -143,13 +143,13 @@
 /mob/living/bot/cleanbot/attack_hand(var/mob/user)
 	ui_interact(user)
 
-/mob/living/bot/cleanbot/ui_interact(mob/user, datum/tgui/ui)
+/mob/living/bot/cleanbot/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Cleanbot", name)
 		ui.open()
 
-/mob/living/bot/cleanbot/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/mob/living/bot/cleanbot/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 	data["on"] = on
 	data["open"] = open
@@ -163,7 +163,7 @@
 	data["version"] = "v2.0"
 	return data
 
-/mob/living/bot/cleanbot/ui_act(action, list/params, datum/tgui/ui)
+/mob/living/bot/cleanbot/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

@@ -86,7 +86,7 @@
 /datum/wires/ui_host()
 	return holder
 
-/datum/wires/ui_interact(mob/user, datum/tgui/ui = null)
+/datum/wires/ui_interact(mob/user, tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Wires", "[proper_name] wires")

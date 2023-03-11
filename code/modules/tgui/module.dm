@@ -63,7 +63,7 @@
 /datum/tgui_module/ui_status(mob/user, datum/ui_state/state, datum/tgui_module/module)
 	return isnull(host)? ..() : host.ui_status(user, state, src)
 
-/datum/tgui_module/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+/datum/tgui_module/ui_interact(mob/user, tgui/ui, tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, tgui_id)
@@ -78,13 +78,13 @@
 /**
  * called directly, if operating standalone. routes to data(user), with all other args skipped.
  */
-/datum/tgui_module/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/datum/tgui_module/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	return data(user)
 
 /**
  * called directly, if operating standalone.
  */
-/datum/tgui_module/ui_act(action, list/params, datum/tgui/ui)
+/datum/tgui_module/ui_act(action, list/params, tgui/ui)
 	// we only override this to provide comment
 	// yes yes proc overhead sue me it's called like 10k times a round, tops.
 	return ..()
@@ -110,7 +110,7 @@
  *
  * we use id instead of module to prevent potential security issues down the line.
  */
-/datum/proc/ui_module_route(action, list/params, datum/tgui/ui, id)
+/datum/proc/ui_module_route(action, list/params, tgui/ui, id)
 	if(!id)
 		// no id?
 		// i know that guy!
@@ -131,7 +131,7 @@
  *
  * return TRUE for ui update + prevent propagation to the module
  */
-/datum/proc/ui_module_act(action, list/params, datum/tgui/ui, id)
+/datum/proc/ui_module_act(action, list/params, tgui/ui, id)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_UI_MODULE_ACT, usr, id, action, params, ui)
 
@@ -148,7 +148,7 @@
  * * ui - root tgui module is in
  * * state - ui state
  */
-/datum/proc/ui_module_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/datum/proc/ui_module_data(mob/user, tgui/ui, datum/ui_state/state)
 	return list()
 
 /**
@@ -164,7 +164,7 @@
  * * ui - root tgui module is in
  * * state - ui state
  */
-/datum/proc/ui_module_static(mob/user, datum/tgui/ui, datum/ui_state/state)
+/datum/proc/ui_module_static(mob/user, tgui/ui, datum/ui_state/state)
 	return list()
 
 /**
@@ -181,7 +181,7 @@
  * * updates - list(id = list(data...), ...) of modules to update.
  * * force - (optional) send update even if UI is not interactive
  */
-/datum/tgui/proc/push_modules(list/updates, force)
+/tgui/proc/push_modules(list/updates, force)
 	if(isnull(user.client) || !initialized || closing)
 		return
 	if(!force && status < UI_UPDATE)

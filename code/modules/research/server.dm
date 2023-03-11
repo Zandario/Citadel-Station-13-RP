@@ -164,13 +164,13 @@
 	if(!allowed(user) && !emagged)
 		. = min(., UI_UPDATE)
 
-/obj/machinery/computer/rdservercontrol/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+/obj/machinery/computer/rdservercontrol/ui_interact(mob/user, tgui/ui, tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ResearchServerController", name)
 		ui.open()
 
-/obj/machinery/computer/rdservercontrol/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/machinery/computer/rdservercontrol/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["badmin"] = badmin
@@ -217,7 +217,7 @@
 
 	return data
 
-/obj/machinery/computer/rdservercontrol/ui_act(action, list/params, datum/tgui/ui)
+/obj/machinery/computer/rdservercontrol/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

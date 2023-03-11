@@ -80,7 +80,7 @@
 /obj/machinery/atmospherics/component/unary/heater/attack_hand(mob/user as mob)
 	ui_interact(user)
 
-/obj/machinery/atmospherics/component/unary/heater/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/atmospherics/component/unary/heater/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "GasTemperatureSystem", name)

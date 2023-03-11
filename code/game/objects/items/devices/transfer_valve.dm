@@ -76,7 +76,7 @@
 /obj/item/transfer_valve/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.inventory_state
 
-/obj/item/transfer_valve/ui_interact(mob/user, datum/tgui/ui = null)
+/obj/item/transfer_valve/ui_interact(mob/user, tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "TransferValve", name) // 460, 320

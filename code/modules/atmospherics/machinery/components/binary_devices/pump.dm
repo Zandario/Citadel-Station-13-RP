@@ -174,7 +174,7 @@ Thus, the two variables affect pump operation are set in New():
 
 	return 1
 
-/obj/machinery/atmospherics/component/binary/pump/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/atmospherics/component/binary/pump/ui_interact(mob/user, tgui/ui)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return FALSE
 	ui = SStgui.try_update_ui(user, src, ui)

@@ -38,19 +38,19 @@
 /obj/item/integrated_electronics/detailer/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.inventory_state
 
-/obj/item/integrated_electronics/detailer/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+/obj/item/integrated_electronics/detailer/ui_interact(mob/user, tgui/ui, tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ICDetailer", name)
 		ui.open()
 
-/obj/item/integrated_electronics/detailer/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/item/integrated_electronics/detailer/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 	data["detail_color"] = detail_color
 	data["color_list"] = color_list
 	return data
 
-/obj/item/integrated_electronics/detailer/ui_act(action, list/params, datum/tgui/ui)
+/obj/item/integrated_electronics/detailer/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

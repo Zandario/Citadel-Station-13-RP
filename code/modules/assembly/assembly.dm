@@ -107,7 +107,7 @@
 /obj/item/device/assembly/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.deep_inventory_state
 
-/obj/item/device/assembly/ui_interact(mob/user, datum/tgui/ui)
+/obj/item/device/assembly/ui_interact(mob/user, tgui/ui)
 	return // tgui goes here
 
 /obj/item/device/assembly/ui_host()

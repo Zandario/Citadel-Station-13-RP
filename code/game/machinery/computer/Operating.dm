@@ -54,7 +54,7 @@
 	ui_interact(user)
 	..()
 
-/obj/machinery/computer/operating/ui_interact(mob/user, datum/tgui/ui = null)
+/obj/machinery/computer/operating/ui_interact(mob/user, tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "OperatingComputer", "Patient Monitor")

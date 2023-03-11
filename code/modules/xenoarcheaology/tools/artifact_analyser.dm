@@ -30,7 +30,7 @@
 		return
 	ui_interact(user)
 
-/obj/machinery/artifact_analyser/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/artifact_analyser/ui_interact(mob/user, tgui/ui)
 	if(!owned_scanner)
 		reconnect_scanner()
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -38,7 +38,7 @@
 		ui = new(user, src, "XenoarchArtifactAnalyzer", name)
 		ui.open()
 
-/obj/machinery/artifact_analyser/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/machinery/artifact_analyser/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["owned_scanner"] = owned_scanner
@@ -46,7 +46,7 @@
 
 	return data
 
-/obj/machinery/artifact_analyser/ui_act(action, list/params, datum/tgui/ui)
+/obj/machinery/artifact_analyser/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

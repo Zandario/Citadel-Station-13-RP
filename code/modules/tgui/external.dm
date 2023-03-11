@@ -12,12 +12,12 @@
  * If this proc is not implemented properly, the UI will not update correctly.
  *
  * required user mob The mob who opened/is using the UI.
- * optional ui datum/tgui The UI to be updated, if it exists.
+ * optional ui tgui The UI to be updated, if it exists.
  *
  *! ## To-Be-Deprecated.
- * optional parent_ui datum/tgui A parent UI that, when closed, closes this UI as well.
+ * optional parent_ui tgui A parent UI that, when closed, closes this UI as well.
  */
-/datum/proc/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+/datum/proc/ui_interact(mob/user, tgui/ui, tgui/parent_ui)
 	return FALSE // Not implemented.
 
 /**
@@ -30,7 +30,7 @@
  *
  * return list Data to be sent to the UI.
  */
-/datum/proc/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/datum/proc/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	return list() // Not implemented.
 
 /**
@@ -47,7 +47,7 @@
  *
  * return list Statuic Data to be sent to the UI.
  */
-/datum/proc/ui_static_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/datum/proc/ui_static_data(mob/user, tgui/ui, datum/ui_state/state)
 	return list()
 
 /**
@@ -62,9 +62,9 @@
  * optional ui tgui to be updated
  * optional hard_refreshion use if you need to block the ui from showing if the refresh queues
  */
-/datum/proc/update_static_data(mob/user, datum/tgui/ui, hard_refresh)
+/datum/proc/update_static_data(mob/user, tgui/ui, hard_refresh)
 	if(!user)
-		for (var/datum/tgui/window as anything in SStgui.open_uis_by_src[REF(src)])
+		for (var/tgui/window as anything in SStgui.open_uis_by_src[REF(src)])
 			window.send_full_update(hard_refresh = hard_refresh)
 		return
 	if(!ui)
@@ -80,9 +80,9 @@
  * * ui - when specified, only pushes this ui for a given user.
  * * updates - list(id = list(data...), ...) for modules. the reducer on tgui-side will only overwrite provided data keys.
  */
-/datum/proc/push_ui_data(mob/user, datum/tgui/ui, list/data)
+/datum/proc/push_ui_data(mob/user, tgui/ui, list/data)
 	if(!user)
-		for (var/datum/tgui/window as anything in SStgui.open_uis_by_src[REF(src)])
+		for (var/tgui/window as anything in SStgui.open_uis_by_src[REF(src)])
 			window.push_data(data)
 		return
 	if(!ui)
@@ -98,9 +98,9 @@
  * * ui - when specified, only pushes this ui for a given user.
  * * updates - list(id = list(data...), ...) for modules. the reducer on tgui-side will only overwrite provided data keys.
  */
-/datum/proc/push_ui_modules(mob/user, datum/tgui/ui, list/updates)
+/datum/proc/push_ui_modules(mob/user, tgui/ui, list/updates)
 	if(!user)
-		for (var/datum/tgui/window as anything in SStgui.open_uis_by_src[REF(src)])
+		for (var/tgui/window as anything in SStgui.open_uis_by_src[REF(src)])
 			window.push_modules(updates)
 		return
 	if(!ui)
@@ -119,7 +119,7 @@
  *
  * return bool If the user's input has been handled and the UI should update.
  */
-/datum/proc/ui_act(action, list/params, datum/tgui/ui)
+/datum/proc/ui_act(action, list/params, tgui/ui)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_UI_ACT, usr, action, params, ui)
 	// If UI is not interactive or usr calling Topic is not the UI user, bail.

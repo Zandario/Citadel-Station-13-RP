@@ -219,7 +219,7 @@
 	user.set_machine(src)
 	ui_interact(user)
 
-/obj/machinery/seed_storage/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/seed_storage/ui_interact(mob/user, tgui/ui)
 	if(!seeds_initialized)
 		for(var/typepath in starting_seeds)
 			var/amount = starting_seeds[typepath]
@@ -242,7 +242,7 @@
 		ui = new(user, src, "SeedStorage", name)
 		ui.open()
 
-/obj/machinery/seed_storage/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/machinery/seed_storage/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	if(smart)
@@ -353,7 +353,7 @@
 
 	return data
 
-/obj/machinery/seed_storage/ui_act(action, list/params, datum/tgui/ui)
+/obj/machinery/seed_storage/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 	var/ID = text2num(params["id"])

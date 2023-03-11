@@ -102,7 +102,7 @@
 /**
  * Standard TGUI stub to open the NIF.js template.
  */
-/obj/item/nif/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+/obj/item/nif/ui_interact(mob/user, tgui/ui, tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "NIF", name)
@@ -112,7 +112,7 @@
  * tgui_data gives the UI any relevant data it needs.
  * In our case, that's basically everything from our statpanel.
  */
-/obj/item/nif/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/item/nif/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["theme"] = save_data["ui_theme"]
@@ -152,7 +152,7 @@
 /**
  * tgui_act handles all user input in the UI.
  */
-/obj/item/nif/ui_act(action, list/params, datum/tgui/ui)
+/obj/item/nif/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

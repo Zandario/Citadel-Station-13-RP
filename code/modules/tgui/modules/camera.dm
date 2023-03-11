@@ -71,7 +71,7 @@
 	qdel(cam_foreground)
 	return ..()
 
-/datum/tgui_module_old/camera/ui_interact(mob/user, datum/tgui/ui = null)
+/datum/tgui_module_old/camera/ui_interact(mob/user, tgui/ui = null)
 	// Update UI
 	ui = SStgui.try_update_ui(user, src, ui)
 	// Show static if can't use the camera

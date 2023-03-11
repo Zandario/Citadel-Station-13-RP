@@ -118,7 +118,7 @@
 /obj/item/pipe_dispenser/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.inventory_state
 
-/obj/item/pipe_dispenser/ui_interact(mob/user, datum/tgui/ui)
+/obj/item/pipe_dispenser/ui_interact(mob/user, tgui/ui)
 	SetupPipes()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)

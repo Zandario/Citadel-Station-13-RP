@@ -47,7 +47,7 @@
 		return
 	..()
 
-/obj/machinery/mineral/processing_unit_console/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+/obj/machinery/mineral/processing_unit_console/ui_interact(mob/user, tgui/ui, tgui/parent_ui)
 	. = ..()
 
 	user.set_machine(src)

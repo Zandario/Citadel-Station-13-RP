@@ -43,7 +43,7 @@
 		return TRUE
 	ui_interact(user)
 
-/obj/machinery/computer/diseasesplicer/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/computer/diseasesplicer/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "DiseaseSplicer", name)
@@ -130,7 +130,7 @@
 			ping("\The [src] pings, \"Backup disk saved.\"")
 			SStgui.update_uis(src)
 
-/obj/machinery/computer/diseasesplicer/ui_act(action, list/params, datum/tgui/ui)
+/obj/machinery/computer/diseasesplicer/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

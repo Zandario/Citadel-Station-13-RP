@@ -21,7 +21,7 @@
 		get_asset_datum(/datum/asset/spritesheet/pipes),
 	)
 
-/obj/machinery/pipedispenser/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/pipedispenser/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "PipeDispenser", name)

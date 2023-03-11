@@ -114,13 +114,13 @@
 	add_fingerprint(user)
 	ui_interact(user)
 
-/obj/machinery/bomb_tester/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/bomb_tester/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "BombTester", name)
 		ui.open()
 
-/obj/machinery/bomb_tester/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/machinery/bomb_tester/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["simulating"] = simulating
@@ -135,7 +135,7 @@
 
 	return data
 
-/obj/machinery/bomb_tester/ui_act(action, list/params, datum/tgui/ui)
+/obj/machinery/bomb_tester/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

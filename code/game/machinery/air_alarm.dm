@@ -522,7 +522,7 @@ GLOBAL_LIST_EMPTY(air_alarms)
 		return ..()
 	return UI_CLOSE
 
-/obj/machinery/alarm/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui, datum/ui_state/state)
+/obj/machinery/alarm/ui_interact(mob/user, tgui/ui, tgui/parent_ui, datum/ui_state/state)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "AirAlarm", name, parent_ui)
@@ -530,7 +530,7 @@ GLOBAL_LIST_EMPTY(air_alarms)
 			ui.set_state(state)
 		ui.open()
 
-/obj/machinery/alarm/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/machinery/alarm/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = list(
 		"locked" = locked,
 		"siliconUser" = issilicon(user),
@@ -664,7 +664,7 @@ GLOBAL_LIST_EMPTY(air_alarms)
 		data["thresholds"] = thresholds
 	return data
 
-/obj/machinery/alarm/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)
+/obj/machinery/alarm/ui_act(action, params, tgui/ui, datum/ui_state/state)
 	if(..())
 		return TRUE
 

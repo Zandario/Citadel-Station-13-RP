@@ -54,13 +54,13 @@
 /obj/item/anodevice/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.inventory_state
 
-/obj/item/anodevice/ui_interact(mob/user, datum/tgui/ui)
+/obj/item/anodevice/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "XenoarchHandheldPowerUtilizer", name)
 		ui.open()
 
-/obj/item/anodevice/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/item/anodevice/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["inserted_battery"] = inserted_battery
@@ -82,7 +82,7 @@
 
 	return data
 
-/obj/item/anodevice/ui_act(action, list/params, datum/tgui/ui)
+/obj/item/anodevice/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

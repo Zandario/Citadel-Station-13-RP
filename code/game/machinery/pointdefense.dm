@@ -37,7 +37,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	if(!id_tag)
 		. += "[desc_panel_image("multitool", user)]to set ident tag"
 
-/obj/machinery/pointdefense_control/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/pointdefense_control/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "PointDefenseControl") // 400, 600
@@ -49,7 +49,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	ui_interact(user)
 	return TRUE
 
-/obj/machinery/pointdefense_control/ui_act(action, list/params, datum/tgui/ui)
+/obj/machinery/pointdefense_control/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

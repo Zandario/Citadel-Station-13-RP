@@ -102,7 +102,7 @@
 
 	sensor_information[id_tag] = signal.data
 
-/obj/machinery/computer/general_air_control/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/computer/general_air_control/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "GeneralAtmoControl", name)

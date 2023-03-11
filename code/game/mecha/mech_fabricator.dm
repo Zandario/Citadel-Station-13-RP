@@ -482,7 +482,7 @@
 		return
 	ui_interact(user)
 
-/obj/machinery/mecha_part_fabricator/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/mecha_part_fabricator/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ExosuitFabricator", name)

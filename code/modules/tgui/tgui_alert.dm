@@ -110,7 +110,7 @@
 	while (!choice && !closed && !QDELETED(src))
 		stoplag(1)
 
-/datum/tgui_modal/ui_interact(mob/user, datum/tgui/ui)
+/datum/tgui_modal/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "AlertModal")

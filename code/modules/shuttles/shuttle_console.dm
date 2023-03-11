@@ -106,7 +106,7 @@
 				shuttle.set_docking_codes(uppertext(newcode))
 			return TRUE
 
-/obj/machinery/computer/shuttle_control/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/computer/shuttle_control/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ShuttleControl", "[shuttle_tag] Shuttle Control") // 470, 360

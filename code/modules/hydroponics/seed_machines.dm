@@ -134,7 +134,7 @@
 	var/datum/seed/genetics // Currently scanned seed genetic structure.
 	var/degradation = 0     // Increments with each scan, stops allowing gene mods after a certain point.
 
-/obj/machinery/botany/extractor/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/botany/extractor/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "BotanyIsolator", name)
@@ -170,7 +170,7 @@
 
 	return data
 
-/obj/machinery/botany/ui_act(action, list/params, datum/tgui/ui)
+/obj/machinery/botany/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 
@@ -201,7 +201,7 @@
 			loaded_disk = null
 			return TRUE
 
-/obj/machinery/botany/extractor/ui_act(action, list/params, datum/tgui/ui)
+/obj/machinery/botany/extractor/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 
@@ -262,13 +262,13 @@
 	icon_state = "traitgun"
 	disk_needs_genes = 1
 
-/obj/machinery/botany/editor/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/botany/editor/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "BotanyEditor", name)
 		ui.open()
 
-/obj/machinery/botany/editor/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/machinery/botany/editor/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["activity"] = active
@@ -299,7 +299,7 @@
 
 	return data
 
-/obj/machinery/botany/editor/ui_act(action, list/params, datum/tgui/ui)
+/obj/machinery/botany/editor/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

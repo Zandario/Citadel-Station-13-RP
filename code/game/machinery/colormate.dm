@@ -130,7 +130,7 @@
 	update_icon()
 	SStgui.update_uis(src)
 
-/obj/machinery/gear_painter/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/gear_painter/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ColorMate", src.name)

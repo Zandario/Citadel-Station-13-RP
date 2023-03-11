@@ -58,13 +58,13 @@
 
 	ui_interact(user)
 
-/obj/machinery/computer/looking_glass/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/computer/looking_glass/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "LookingGlass", name)
 		ui.open()
 
-/obj/machinery/computer/looking_glass/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/machinery/computer/looking_glass/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	var/list/program_list = list()
@@ -85,7 +85,7 @@
 
 	return data
 
-/obj/machinery/computer/looking_glass/ui_act(action, list/params, datum/tgui/ui)
+/obj/machinery/computer/looking_glass/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

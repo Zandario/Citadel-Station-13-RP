@@ -131,13 +131,13 @@
 	else
 		set_light(0)
 
-/mob/living/bot/secbot/ui_interact(mob/user, datum/tgui/ui)
+/mob/living/bot/secbot/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Secbot", name)
 		ui.open()
 
-/mob/living/bot/secbot/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/mob/living/bot/secbot/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["on"] = on
@@ -165,7 +165,7 @@
 /mob/living/bot/secbot/attack_hand(var/mob/user)
 	ui_interact(user)
 
-/mob/living/bot/secbot/ui_act(action, list/params, datum/tgui/ui)
+/mob/living/bot/secbot/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

@@ -43,7 +43,7 @@
 	QDEL_NULL(wires)
 	return ..()
 
-/obj/machinery/autolathe/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/autolathe/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Autolathe", name)
@@ -84,7 +84,7 @@
 		get_asset_datum(/datum/asset/spritesheet/sheetmaterials)
 	)
 
-/obj/machinery/autolathe/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/machinery/autolathe/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	var/list/material_data = list()
@@ -208,7 +208,7 @@
 	user.set_machine(src)
 	interact(user)
 
-/obj/machinery/autolathe/ui_act(action, list/params, datum/tgui/ui)
+/obj/machinery/autolathe/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

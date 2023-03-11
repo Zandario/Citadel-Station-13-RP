@@ -69,7 +69,7 @@
 	user.set_machine(src)
 	ui_interact(user)
 
-/obj/machinery/computer/timeclock/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/computer/timeclock/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "TimeClock", name)
@@ -109,7 +109,7 @@
 
 	return data
 
-/obj/machinery/computer/timeclock/ui_act(action, list/params, datum/tgui/ui)
+/obj/machinery/computer/timeclock/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

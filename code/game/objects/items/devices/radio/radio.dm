@@ -151,7 +151,7 @@ GLOBAL_LIST_INIT(default_medbay_channels, list(
 
 	return ui_interact(user)
 
-/obj/item/radio/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+/obj/item/radio/ui_interact(mob/user, tgui/ui, tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Radio", name)

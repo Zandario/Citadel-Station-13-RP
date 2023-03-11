@@ -81,7 +81,7 @@
 	name = "Navigation Display"
 	tgui_id = "OvermapNavigation"
 
-/datum/tgui_module_old/ship/nav/ui_interact(mob/user, datum/tgui/ui)
+/datum/tgui_module_old/ship/nav/ui_interact(mob/user, tgui/ui)
 	if(!linked)
 		var/obj/machinery/computer/ship/navigation/host = ui_host()
 		if(istype(host))
@@ -102,7 +102,7 @@
 
 	. = ..()
 
-/datum/tgui_module_old/ship/nav/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/datum/tgui_module_old/ship/nav/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	var/turf/T = get_turf(linked)
@@ -178,7 +178,7 @@
 			break
 
 // Beware ye eyes. This holds all of the data from helm, engine, and sensor control all at once.
-/datum/tgui_module_old/ship/fullmonty/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/datum/tgui_module_old/ship/fullmonty/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	// HELM

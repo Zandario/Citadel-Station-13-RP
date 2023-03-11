@@ -21,7 +21,7 @@
 		return
 	ui_interact(user)
 
-/obj/machinery/computer/prisoner/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/computer/prisoner/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "PrisonerManagement", name)

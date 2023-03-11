@@ -18,7 +18,7 @@
 		// machines may not yet be ordered at this point
 		monitored_alarms = dd_sortedObjectList(monitored_alarms)
 
-/datum/tgui_module_old/atmos_control/ui_act(action, params, datum/tgui/ui)
+/datum/tgui_module_old/atmos_control/ui_act(action, params, tgui/ui)
 	if(..())
 		return TRUE
 
@@ -36,7 +36,7 @@
 		get_asset_datum(/datum/asset/simple/nanomaps),
 	)
 
-/datum/tgui_module_old/atmos_control/ui_interact(mob/user, datum/tgui/ui)
+/datum/tgui_module_old/atmos_control/ui_interact(mob/user, tgui/ui)
 	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)

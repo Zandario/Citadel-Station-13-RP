@@ -26,7 +26,7 @@
 	QDEL_NULL(camera)
 	return ..()
 
-/obj/machinery/computer/security/ui_interact(mob/user, datum/tgui/ui = null)
+/obj/machinery/computer/security/ui_interact(mob/user, tgui/ui = null)
 	camera.ui_interact(user, ui)
 
 /obj/machinery/computer/security/attack_hand(mob/user)

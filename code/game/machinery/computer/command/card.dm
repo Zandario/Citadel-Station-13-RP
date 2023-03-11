@@ -21,7 +21,7 @@
 	QDEL_NULL(tgui_cardmod)
 	return ..()
 
-/obj/machinery/computer/card/ui_module_route(action, list/params, datum/tgui/ui, id)
+/obj/machinery/computer/card/ui_module_route(action, list/params, tgui/ui, id)
 	. = ..()
 	if(.)
 		return
@@ -29,11 +29,11 @@
 		if("modify")
 			return tgui_cardmod.ui_act(action, params, ui)
 
-/obj/machinery/computer/card/ui_module_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/machinery/computer/card/ui_module_data(mob/user, tgui/ui, datum/ui_state/state)
 	. = ..()
 	.["modify"] = tgui_cardmod.data(user, editing, authing)
 
-/obj/machinery/computer/card/ui_module_static(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/machinery/computer/card/ui_module_static(mob/user, tgui/ui, datum/ui_state/state)
 	. = ..()
 	.["modify"] = tgui_cardmod.static_data(user, editing, authing)
 
@@ -112,7 +112,7 @@
 		return
 	ui_interact(user)
 
-/obj/machinery/computer/card/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/computer/card/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "IdentificationComputer", name)
@@ -125,7 +125,7 @@
 	data_core.get_manifest_list()
 	.["manifest"] = GLOB.PDA_Manifest
 
-/obj/machinery/computer/card/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/machinery/computer/card/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	. = ..()
 
 	//? general
@@ -147,7 +147,7 @@
 	.["authed_cardmod"] = authed_for_edit()
 	.["authed_slotmod"] = authed_for_slotmod()
 
-/obj/machinery/computer/card/ui_act(action, list/params, datum/tgui/ui)
+/obj/machinery/computer/card/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 
@@ -231,4 +231,3 @@
 		for(var/datum/access/A as anything in by_cat[category])
 			joining += "- [A.access_name]<br>"
 	P.info += jointext(joining, "")
-

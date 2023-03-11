@@ -108,7 +108,7 @@
 /obj/machinery/portable_atmospherics/powered/scrubber/attack_hand(var/mob/user)
 	ui_interact(user)
 
-/obj/machinery/portable_atmospherics/powered/scrubber/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/portable_atmospherics/powered/scrubber/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "PortableScrubber", name)

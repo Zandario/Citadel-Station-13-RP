@@ -41,13 +41,13 @@
 		return
 	ui_interact(user)
 
-/obj/machinery/artifact_harvester/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/artifact_harvester/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "XenoarchArtifactHarvester", name)
 		ui.open()
 
-/obj/machinery/artifact_harvester/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/machinery/artifact_harvester/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["info"] = list(
@@ -72,7 +72,7 @@
 				data["info"]["inserted_battery"]["artifact_id"] = "N/A"
 	return data
 
-/obj/machinery/artifact_harvester/ui_act(action, list/params, datum/tgui/ui)
+/obj/machinery/artifact_harvester/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

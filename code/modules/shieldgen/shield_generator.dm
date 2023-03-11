@@ -400,7 +400,7 @@
 		spinup_counter = round(spinup_delay / idle_multiplier)
 	update_icon()
 
-/obj/machinery/power/shield_generator/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+/obj/machinery/power/shield_generator/ui_interact(mob/user, tgui/ui, tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "OvermapShieldGenerator", name) // 500, 800
@@ -450,7 +450,7 @@
 		return min(..(), UI_DISABLED)
 	return ..()
 
-/obj/machinery/power/shield_generator/ui_act(action, list/params, datum/tgui/ui)
+/obj/machinery/power/shield_generator/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

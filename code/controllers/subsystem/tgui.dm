@@ -50,7 +50,7 @@ SUBSYSTEM_DEF(tgui)
 	// Cache for sanic speed (lists are references anyways)
 	var/list/current_run = src.current_run
 	while(current_run.len)
-		var/datum/tgui/ui = current_run[current_run.len]
+		var/tgui/ui = current_run[current_run.len]
 		current_run.len--
 		// TODO: Move user/src_object check to process()
 		if(ui && ui.user && ui.src_object)
@@ -67,7 +67,7 @@ SUBSYSTEM_DEF(tgui)
  * Returns null if pool was exhausted.
  *
  * required user mob
- * return datum/tgui
+ * return tgui
  */
 /datum/controller/subsystem/tgui/proc/request_pooled_window(mob/user)
 	if(!user.client)
@@ -124,7 +124,7 @@ SUBSYSTEM_DEF(tgui)
 /datum/controller/subsystem/tgui/proc/force_close_window(mob/user, window_id)
 	log_tgui(user, context = "SStgui/force_close_window")
 	// Close all tgui datums based on window_id.
-	for(var/datum/tgui/ui in user.tgui_open_uis)
+	for(var/tgui/ui in user.tgui_open_uis)
 		if(ui.window && ui.window.id == window_id)
 			ui.close(can_be_suspended = FALSE)
 	// Unset machine just to be sure.
@@ -139,15 +139,16 @@ SUBSYSTEM_DEF(tgui)
  *
  * required user mob The mob who opened/is using the UI.
  * required src_object datum The object/datum which owns the UI.
- * optional ui datum/tgui The UI to be updated, if it exists.
+ * optional ui tgui The UI to be updated, if it exists.
  * optional force_open bool If the UI should be re-opened instead of updated.
  *
- * return datum/tgui The found UI.
+ * return tgui The found UI.
  */
 /datum/controller/subsystem/tgui/proc/try_update_ui(
-		mob/user,
-		datum/src_object,
-		datum/tgui/ui)
+	var/mob/user,
+	var/datum/src_object,
+	var/tgui/ui,
+)
 	// Look up a UI if it wasn't passed
 	if(isnull(ui))
 		ui = get_open_ui(user, src_object)
@@ -172,14 +173,14 @@ SUBSYSTEM_DEF(tgui)
  * required user mob The mob who opened/is using the UI.
  * required src_object datum The object/datum which owns the UI.
  *
- * return datum/tgui The found UI.
+ * return tgui The found UI.
  */
 /datum/controller/subsystem/tgui/proc/get_open_ui(mob/user, datum/src_object)
 	var/key = "[REF(src_object)]"
 	// No UIs opened for this src_object
 	if(isnull(open_uis_by_src[key]) || !istype(open_uis_by_src[key], /list))
 		return null
-	for(var/datum/tgui/ui in open_uis_by_src[key])
+	for(var/tgui/ui in open_uis_by_src[key])
 		// Make sure we have the right user
 		if(ui.user == user)
 			return ui
@@ -200,7 +201,7 @@ SUBSYSTEM_DEF(tgui)
 	// No UIs opened for this src_object
 	if(isnull(open_uis_by_src[key]) || !istype(open_uis_by_src[key], /list))
 		return count
-	for(var/datum/tgui/ui in open_uis_by_src[key])
+	for(var/tgui/ui in open_uis_by_src[key])
 		// Check if UI is valid.
 		if(ui && ui.src_object && ui.user && ui.src_object.ui_host(ui.user))
 			ui.process(force = 1)
@@ -222,7 +223,7 @@ SUBSYSTEM_DEF(tgui)
 	// No UIs opened for this src_object
 	if(isnull(open_uis_by_src[key]) || !istype(open_uis_by_src[key], /list))
 		return count
-	for(var/datum/tgui/ui in open_uis_by_src[key])
+	for(var/tgui/ui in open_uis_by_src[key])
 		// Check if UI is valid.
 		if(ui && ui.src_object && ui.user && ui.src_object.ui_host(ui.user))
 			ui.close()
@@ -239,7 +240,7 @@ SUBSYSTEM_DEF(tgui)
 /datum/controller/subsystem/tgui/proc/close_all_uis()
 	var/count = 0
 	for(var/key in open_uis_by_src)
-		for(var/datum/tgui/ui in open_uis_by_src[key])
+		for(var/tgui/ui in open_uis_by_src[key])
 			// Check if UI is valid.
 			if(ui && ui.src_object && ui.user && ui.src_object.ui_host(ui.user))
 				ui.close()
@@ -260,7 +261,7 @@ SUBSYSTEM_DEF(tgui)
 	var/count = 0
 	if(length(user?.tgui_open_uis) == 0)
 		return count
-	for(var/datum/tgui/ui in user.tgui_open_uis)
+	for(var/tgui/ui in user.tgui_open_uis)
 		if(isnull(src_object) || ui.src_object == src_object)
 			ui.process(force = 1)
 			count++
@@ -280,7 +281,7 @@ SUBSYSTEM_DEF(tgui)
 	var/count = 0
 	if(length(user?.tgui_open_uis) == 0)
 		return count
-	for(var/datum/tgui/ui in user.tgui_open_uis)
+	for(var/tgui/ui in user.tgui_open_uis)
 		if(isnull(src_object) || ui.src_object == src_object)
 			ui.close()
 			count++
@@ -291,9 +292,9 @@ SUBSYSTEM_DEF(tgui)
  *
  * Add a UI to the list of open UIs.
  *
- * required ui datum/tgui The UI to be added.
+ * required ui tgui The UI to be added.
  */
-/datum/controller/subsystem/tgui/proc/on_open(datum/tgui/ui)
+/datum/controller/subsystem/tgui/proc/on_open(tgui/ui)
 	var/key = "[REF(ui.src_object)]"
 	if(isnull(open_uis_by_src[key]) || !istype(open_uis_by_src[key], /list))
 		open_uis_by_src[key] = list()
@@ -307,11 +308,11 @@ SUBSYSTEM_DEF(tgui)
  *
  * Remove a UI from the list of open UIs.
  *
- * required ui datum/tgui The UI to be removed.
+ * required ui tgui The UI to be removed.
  *
  * return bool If the UI was removed or not.
  */
-/datum/controller/subsystem/tgui/proc/on_close(datum/tgui/ui)
+/datum/controller/subsystem/tgui/proc/on_close(tgui/ui)
 	var/key = "[REF(ui.src_object)]"
 	if(isnull(open_uis_by_src[key]) || !istype(open_uis_by_src[key], /list))
 		return FALSE
@@ -355,7 +356,7 @@ SUBSYSTEM_DEF(tgui)
 	if(isnull(target.tgui_open_uis) || !istype(target.tgui_open_uis, /list))
 		target.tgui_open_uis = list()
 	// Transfer all the UIs.
-	for(var/datum/tgui/ui in source.tgui_open_uis)
+	for(var/tgui/ui in source.tgui_open_uis)
 		// Inform the UIs of their new owner.
 		ui.user = target
 		target.tgui_open_uis.Add(ui)

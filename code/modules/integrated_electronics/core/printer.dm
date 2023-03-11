@@ -176,7 +176,7 @@
 /obj/item/integrated_circuit_printer/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.physical_state
 
-/obj/item/integrated_circuit_printer/ui_interact(mob/user, datum/tgui/ui)
+/obj/item/integrated_circuit_printer/ui_interact(mob/user, tgui/ui)
 	if(dirty_items)
 		update_static_data(user, ui)
 		dirty_items = FALSE
@@ -230,7 +230,7 @@
 
 	return data
 
-/obj/item/integrated_circuit_printer/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/item/integrated_circuit_printer/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["metal"] = cur_metal
@@ -252,7 +252,7 @@
 
 	return data
 
-/obj/item/integrated_circuit_printer/ui_act(action, list/params, datum/tgui/ui)
+/obj/item/integrated_circuit_printer/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

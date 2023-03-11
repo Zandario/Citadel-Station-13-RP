@@ -7,7 +7,7 @@
 		get_asset_datum(/datum/asset/simple/nanomaps),
 	)
 
-/datum/tgui_module_old/crew_monitor/ui_act(action, params, datum/tgui/ui)
+/datum/tgui_module_old/crew_monitor/ui_act(action, params, tgui/ui)
 	if(..())
 		return TRUE
 
@@ -28,7 +28,7 @@
 					AI.ai_actual_track(H)
 			return TRUE
 
-/datum/tgui_module_old/crew_monitor/ui_interact(mob/user, datum/tgui/ui = null)
+/datum/tgui_module_old/crew_monitor/ui_interact(mob/user, tgui/ui = null)
 	var/z = get_z(user)
 	var/list/map_levels = GLOB.using_map.get_map_levels(z, TRUE, om_range = DEFAULT_OVERMAP_RANGE)
 

@@ -66,7 +66,7 @@
 		. += "timer_timing"
 		attached_overlays += "timer_timing"
 
-/obj/item/assembly/timer/ui_interact(mob/user, datum/tgui/ui)
+/obj/item/assembly/timer/ui_interact(mob/user, tgui/ui)
 	if(!secured)
 		to_chat(user, SPAN_WARNING("[src] is unsecured!"))
 		return FALSE
@@ -84,7 +84,7 @@
 	data["loop"] = loop
 	return data
 
-/obj/item/assembly/timer/ui_act(action, list/params, datum/tgui/ui)
+/obj/item/assembly/timer/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

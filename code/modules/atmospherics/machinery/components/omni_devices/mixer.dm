@@ -124,7 +124,7 @@
 
 	return 1
 
-/obj/machinery/atmospherics/component/quaternary/mixer/ui_interact(mob/user,datum/tgui/ui = null)
+/obj/machinery/atmospherics/component/quaternary/mixer/ui_interact(mob/user,tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "OmniMixer", name)

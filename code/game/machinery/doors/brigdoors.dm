@@ -204,7 +204,7 @@
 	if(maptext != new_text)
 		maptext = new_text
 
-/obj/machinery/door_timer/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/door_timer/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "BrigTimer", name)

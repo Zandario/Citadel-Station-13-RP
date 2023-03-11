@@ -5,7 +5,7 @@ GLOBAL_DATUM_INIT(ghostrole_menu, /datum/ghostrole_menu, new)
 /datum/ghostrole_menu/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.observer_state
 
-/datum/ghostrole_menu/ui_interact(mob/user, datum/tgui/ui)
+/datum/ghostrole_menu/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "SpawnersMenu")

@@ -27,7 +27,7 @@
 			sensors = S
 			break
 
-/obj/machinery/computer/ship/sensors/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/computer/ship/sensors/ui_interact(mob/user, tgui/ui)
 	if(!linked)
 		display_reconnect_dialog(user, "sensors")
 		return
@@ -79,7 +79,7 @@
 
 	return data
 
-/obj/machinery/computer/ship/sensors/ui_act(action, list/params, datum/tgui/ui)
+/obj/machinery/computer/ship/sensors/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

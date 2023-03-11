@@ -55,7 +55,7 @@
 		return
 	ui_interact(user)
 
-/obj/machinery/computer/telecomms/monitor/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/computer/telecomms/monitor/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "TelecommsMachineBrowser", name)

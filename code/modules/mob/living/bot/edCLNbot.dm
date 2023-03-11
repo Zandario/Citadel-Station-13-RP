@@ -90,7 +90,7 @@
 	data["blue_switch"] = blue_switch
 	return data
 
-/mob/living/bot/cleanbot/edCLN/ui_act(action, list/params, datum/tgui/ui)
+/mob/living/bot/cleanbot/edCLN/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

@@ -28,7 +28,7 @@
 /obj/item/analyzer/plant_analyzer/attack_self(mob/user)
 	ui_interact(user)
 
-/obj/item/analyzer/plant_analyzer/ui_interact(mob/user, datum/tgui/ui)
+/obj/item/analyzer/plant_analyzer/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "PlantAnalyzer", name)
@@ -37,7 +37,7 @@
 /obj/item/analyzer/plant_analyzer/ui_state(mob/user, datum/tgui_module/module)
 	return GLOB.inventory_state
 
-/obj/item/analyzer/plant_analyzer/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/item/analyzer/plant_analyzer/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	var/datum/seed/grown_seed = locate(last_seed)
@@ -50,7 +50,7 @@
 
 	return data
 
-/obj/item/analyzer/plant_analyzer/ui_act(action, list/params, datum/tgui/ui)
+/obj/item/analyzer/plant_analyzer/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

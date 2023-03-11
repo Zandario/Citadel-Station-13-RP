@@ -19,7 +19,7 @@
 	if(network_key_obfuscated)
 		network_key = SSmapping.subtly_obfuscated_id(network_key_obfuscated, "bioscan_network")
 
-/obj/machinery/computer/bioscan/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+/obj/machinery/computer/bioscan/ui_interact(mob/user, tgui/ui, tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "BioscanConsole")
@@ -46,12 +46,12 @@
 			"y" = T.y,
 		))
 
-/obj/machinery/computer/bioscan/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/machinery/computer/bioscan/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	. = ..()
 	.["scan_ready"] = !on_cooldown()
 	.["network"] = network_key || ""
 
-/obj/machinery/computer/bioscan/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+/obj/machinery/computer/bioscan/ui_act(action, list/params, tgui/ui, datum/ui_state/state)
 	. = ..()
 	switch(action)
 		if("scan")

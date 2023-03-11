@@ -54,7 +54,7 @@
 // 	ui_interact(user)
 // 	return TRUE
 
-/obj/machinery/computer/ship/ui_act(action, list/params, datum/tgui/ui)
+/obj/machinery/computer/ship/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 	switch(action)

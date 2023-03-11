@@ -30,7 +30,7 @@
 
 //! ## MAIN TGUI SCREEN ## !//
 
-/obj/machinery/computer/stockexchange/ui_act(action, params, datum/tgui/ui)
+/obj/machinery/computer/stockexchange/ui_act(action, params, tgui/ui)
 	if(..())
 		return TRUE
 
@@ -193,7 +193,7 @@
 
 	return data
 
-/obj/machinery/computer/stockexchange/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/computer/stockexchange/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "StockExchange")
@@ -201,7 +201,7 @@
 
 //! ## HISTORY SCREEN ## !//
 
-/obj/machinery/computer/stockexchange/history/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/computer/stockexchange/history/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "StockExchangeHistory")
@@ -224,7 +224,7 @@
 
 //! ## ARCHIVE SCREEN ## !//
 
-/obj/machinery/computer/stockexchange/archive/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/computer/stockexchange/archive/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "StockExchangeArchive")

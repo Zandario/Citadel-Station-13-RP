@@ -222,13 +222,13 @@
 		get_asset_datum(/datum/asset/spritesheet/sheetmaterials)
 	)
 
-/obj/machinery/partslathe/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+/obj/machinery/partslathe/ui_interact(mob/user, tgui/ui, tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "PartsLathe", name)
 		ui.open()
 
-/obj/machinery/partslathe/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/machinery/partslathe/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 	data["panelOpen"] = panel_open
 
@@ -277,7 +277,7 @@
 
 	return data
 
-/obj/machinery/partslathe/ui_act(action, list/params, datum/tgui/ui)
+/obj/machinery/partslathe/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

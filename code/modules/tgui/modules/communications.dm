@@ -43,7 +43,7 @@
 	crew_announcement = new()
 	crew_announcement.newscast = TRUE
 
-/datum/tgui_module_old/communications/ui_interact(mob/user, datum/tgui/ui)
+/datum/tgui_module_old/communications/ui_interact(mob/user, tgui/ui)
 	if(GLOB.using_map && !(get_z(user) in GLOB.using_map.contact_levels))
 		to_chat(user, SPAN_DANGER("Unable to establish a connection: You're too far away from the station!"))
 		return FALSE

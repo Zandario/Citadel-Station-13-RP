@@ -101,7 +101,7 @@
 	..()
 	sense()
 
-/obj/item/assembly/prox_sensor/ui_interact(mob/user, datum/tgui/ui)
+/obj/item/assembly/prox_sensor/ui_interact(mob/user, tgui/ui)
 	if(!secured)
 		to_chat(user, SPAN_WARNING("[src] is unsecured!"))
 		return FALSE
@@ -121,7 +121,7 @@
 
 	return data
 
-/obj/item/assembly/prox_sensor/ui_act(action, list/params, datum/tgui/ui)
+/obj/item/assembly/prox_sensor/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

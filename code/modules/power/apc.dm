@@ -959,7 +959,7 @@ GLOBAL_LIST_EMPTY(apcs)
 
 	return ui_interact(user)
 
-/obj/machinery/power/apc/ui_interact(mob/user, datum/tgui/ui = null)
+/obj/machinery/power/apc/ui_interact(mob/user, tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "APC", name) // 510, 460

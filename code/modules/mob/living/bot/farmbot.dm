@@ -36,13 +36,13 @@
 	tank = newTank
 	tank.forceMove(src)
 
-/mob/living/bot/farmbot/ui_interact(mob/user, datum/tgui/ui)
+/mob/living/bot/farmbot/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Farmbot", name)
 		ui.open()
 
-/mob/living/bot/farmbot/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/mob/living/bot/farmbot/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["on"] = on
@@ -85,7 +85,7 @@
 			emagged = TRUE
 		return TRUE
 
-/mob/living/bot/farmbot/ui_act(action, list/params, datum/tgui/ui)
+/mob/living/bot/farmbot/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

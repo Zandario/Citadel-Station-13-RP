@@ -5,7 +5,7 @@ GLOBAL_DATUM_INIT(join_menu, /datum/join_menu, new)
  */
 /datum/join_menu
 
-/datum/join_menu/ui_interact(mob/user, datum/tgui/ui)
+/datum/join_menu/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "JoinMenu", "Join Menu")
@@ -188,7 +188,7 @@ GLOBAL_DATUM_INIT(join_menu, /datum/join_menu, new)
 		. = max(hpc, epc)
 */
 
-/datum/join_menu/ui_act(action, list/params, datum/tgui/ui)
+/datum/join_menu/ui_act(action, list/params, tgui/ui)
 	. = ..()
 	var/mob/new_player/N = usr
 	if(!istype(N))

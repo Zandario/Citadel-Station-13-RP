@@ -119,7 +119,7 @@
 		return
 	ui_interact(user)
 
-/obj/machinery/atmospherics/component/trinary/atmos_filter/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/atmospherics/component/trinary/atmos_filter/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "AtmosFilter", name)

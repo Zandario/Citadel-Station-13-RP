@@ -167,7 +167,7 @@
 
 /// TGUI Stuff
 
-/obj/machinery/computer/arcade/clawmachine/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/computer/arcade/clawmachine/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ClawMachine", name)

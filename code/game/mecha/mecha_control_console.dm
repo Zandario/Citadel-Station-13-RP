@@ -18,13 +18,13 @@
 		return
 	ui_interact(user)
 
-/obj/machinery/computer/mecha/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/computer/mecha/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "MechaControlConsole", name)
 		ui.open()
 
-/obj/machinery/computer/mecha/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/machinery/computer/mecha/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["beacons"] = list()
@@ -38,7 +38,7 @@
 
 	return data
 
-/obj/machinery/computer/mecha/ui_act(action, list/params, datum/tgui/ui)
+/obj/machinery/computer/mecha/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

@@ -73,7 +73,7 @@
 /mob/living/bot/mulebot/interact(mob/user)
 	ui_interact(user)
 
-/mob/living/bot/mulebot/ui_interact(mob/user, datum/tgui/ui)
+/mob/living/bot/mulebot/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "MuleBot", "Mulebot [suffix ? "([suffix])" : ""]")

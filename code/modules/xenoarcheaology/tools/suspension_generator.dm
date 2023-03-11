@@ -49,13 +49,13 @@
 
 	ui_interact(user)
 
-/obj/machinery/suspension_gen/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/suspension_gen/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "XenoarchSuspension", name)
 		ui.open()
 
-/obj/machinery/suspension_gen/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/machinery/suspension_gen/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["cell"] = cell
@@ -67,7 +67,7 @@
 
 	return data
 
-/obj/machinery/suspension_gen/ui_act(action, list/params, datum/tgui/ui)
+/obj/machinery/suspension_gen/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

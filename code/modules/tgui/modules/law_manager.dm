@@ -27,7 +27,7 @@
 			if(laws.selectable)
 				player_laws += laws
 
-/datum/tgui_module_old/law_manager/ui_act(action, list/params, datum/tgui/ui)
+/datum/tgui_module_old/law_manager/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 
@@ -141,7 +141,7 @@
 				to_chat(usr, "<span class='notice'>Laws displayed.</span>")
 			return TRUE
 
-/datum/tgui_module_old/law_manager/ui_interact(mob/user, datum/tgui/ui)
+/datum/tgui_module_old/law_manager/ui_interact(mob/user, tgui/ui)
 	owner.lawsync()
 	return ..() // 800, is_malf(user) ? 600 : 400
 

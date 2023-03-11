@@ -133,13 +133,13 @@ a creative player the means to solve many problems.  Circuits are held inside an
 		return loc.ui_host()
 	return ..()
 
-/obj/item/integrated_circuit/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+/obj/item/integrated_circuit/ui_interact(mob/user, tgui/ui, tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ICCircuit", name, parent_ui)
 		ui.open()
 
-/obj/item/integrated_circuit/ui_data(mob/user, datum/tgui/ui, datum/ui_state/state)
+/obj/item/integrated_circuit/ui_data(mob/user, tgui/ui, datum/ui_state/state)
 	var/list/data = ..()
 
 	data["name"] = name
@@ -206,7 +206,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 
 	return pindata
 
-/obj/item/integrated_circuit/ui_act(action, list/params, datum/tgui/ui)
+/obj/item/integrated_circuit/ui_act(action, list/params, tgui/ui)
 	if(..())
 		return TRUE
 

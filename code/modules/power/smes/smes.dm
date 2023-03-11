@@ -305,7 +305,7 @@ GLOBAL_LIST_EMPTY(smeses)
 		return 0
 	return 1
 
-/obj/machinery/power/smes/ui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/power/smes/ui_interact(mob/user, tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Smes", name)

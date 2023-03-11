@@ -653,7 +653,7 @@ SUBSYSTEM_DEF(timer)
  * * wait deciseconds to run the timer for
  * * flags flags for this timer, see: code\__DEFINES\subsystems.dm
  */
-/proc/_addtimer(datum/callback/callback, wait = 0, flags = 0, file, line)
+/proc/_addtimer(datum/callback/callback, wait = 0, flags = NONE, file, line)
 	if (!callback)
 		CRASH("addtimer called without a callback")
 

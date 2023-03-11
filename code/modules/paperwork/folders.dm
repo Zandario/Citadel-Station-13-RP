@@ -78,7 +78,7 @@
 /obj/item/folder/attack_self(mob/user)
 	ui_interact(user)
 
-/obj/item/folder/ui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+/obj/item/folder/ui_interact(mob/user, tgui/ui, tgui/parent_ui)
 	var/dat = "<title>[name]</title>"
 
 	for(var/obj/item/paper/P in src)

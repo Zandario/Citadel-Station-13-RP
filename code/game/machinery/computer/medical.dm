@@ -108,7 +108,7 @@
 	add_fingerprint(user)
 	ui_interact(user)
 
-/obj/machinery/computer/med_data/ui_interact(mob/user, datum/tgui/ui = null)
+/obj/machinery/computer/med_data/ui_interact(mob/user, tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "MedicalRecords", "Medical Records") //800, 380
