@@ -157,7 +157,7 @@
 				qdel(src)
 				return
 		else
-	return
+			return
 
 //Body Scan Console
 /obj/machinery/body_scanconsole
@@ -222,7 +222,7 @@
 				qdel(src)
 				return
 		else
-	return
+			return
 
 /obj/machinery/body_scanconsole/proc/findscanner()
 	spawn(5)

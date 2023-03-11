@@ -53,7 +53,7 @@
 					remove_obj_verb(src, x)
 				set_broken()
 		else
-	return
+			return
 
 /obj/machinery/computer/bullet_act(var/obj/item/projectile/Proj)
 	if(prob(Proj.get_structure_damage()))

@@ -238,7 +238,7 @@
 	else if(href_list["stop"])
 		StopPlaying()
 	else if(href_list["play"])
-		if(emagged)
+		// if(emagged)
 			//playsound(src.loc, 'sound/items/AirHorn.ogg', 100, 1)
 			//for(var/mob/living/carbon/M in ohearers(6, src))
 				//if(M.get_ear_protection() >= 2)
@@ -254,7 +254,7 @@
 					//M.make_jittery(500)
 			//spawn(15)
 				//explode()
-		else if(current_track == null)
+		if(current_track == null)
 			to_chat(usr, "No track selected.")
 		else
 			StartPlaying()

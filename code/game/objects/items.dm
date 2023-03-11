@@ -198,7 +198,7 @@
 				qdel(src)
 				return
 		else
-	return
+			return
 
 //user: The mob that is suiciding
 //damagetype: The type of damage the item will inflict on the user

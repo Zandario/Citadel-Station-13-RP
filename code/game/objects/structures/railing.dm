@@ -276,7 +276,7 @@
 			qdel(src)
 			return
 		else
-	return
+			return
 
 // Duplicated from structures.dm, but its a bit different.
 /obj/structure/railing/do_climb(var/mob/living/user)

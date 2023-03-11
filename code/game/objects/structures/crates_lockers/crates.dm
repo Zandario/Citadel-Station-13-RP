@@ -117,18 +117,14 @@
 			for(var/obj/O in src.contents)
 				qdel(O)
 			qdel(src)
-			return
 		if(2.0)
 			for(var/obj/O in src.contents)
 				if(prob(50))
 					qdel(O)
 			qdel(src)
-			return
 		if(3.0)
 			if (prob(50))
 				qdel(src)
-			return
-		else
 	return
 
 /obj/structure/closet/crate/secure

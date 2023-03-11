@@ -160,7 +160,7 @@
 					return
 				return
 		else
-	return
+			return
 
 /obj/machinery/vending/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)

@@ -444,7 +444,7 @@
 				qdel(src)
 				return
 		else
-	return
+			return
 
 /obj/machinery/clonepod/update_icon()
 	..()

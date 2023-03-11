@@ -709,7 +709,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 			U.unset_machine()
 			ui.close()
 			return 0
-		if("Refresh")//Refresh, goes to the end of the proc.
+		// if("Refresh")//Refresh, goes to the end of the proc.
 		if("Return")//Return
 			if(mode<=9)
 				mode = 0

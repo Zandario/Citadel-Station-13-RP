@@ -226,7 +226,7 @@
 				qdel(src)
 				return
 		else
-	return
+			return
 
 /obj/machinery/computer/scan_consolenew
 	name = "DNA Modifier Access Console"
@@ -281,7 +281,7 @@
 				qdel(src)
 				return
 		else
-	return
+			return
 
 /obj/machinery/computer/scan_consolenew/Initialize(mapload)
 	. = ..()

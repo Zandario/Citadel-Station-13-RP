@@ -571,7 +571,7 @@
 		if("SOUTHWEST", "SW")
 			return 10
 		else
-	return 0
+			return 0
 
 
 
@@ -596,7 +596,7 @@
 		if(10)
 			return "SW"
 		else
-	return
+			return
 
 
 

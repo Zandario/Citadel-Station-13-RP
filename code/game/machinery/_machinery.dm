@@ -220,7 +220,7 @@
 				qdel(src)
 				return
 		else
-	return
+			return
 
 /obj/machinery/vv_edit_var(var_name, new_value)
 	if(var_name == NAMEOF(src, use_power))

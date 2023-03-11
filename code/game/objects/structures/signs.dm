@@ -19,7 +19,7 @@
 			qdel(src)
 			return
 		else
-	return
+			return
 
 /obj/structure/sign/attackby(obj/item/tool as obj, mob/user as mob)	//deconstruction
 	if(tool.is_screwdriver() && !istype(src, /obj/structure/sign/double))

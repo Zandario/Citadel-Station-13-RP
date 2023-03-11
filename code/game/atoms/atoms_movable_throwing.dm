@@ -183,8 +183,7 @@
 			user_speed = 1/user_speed
 			//? todo: better estimation?
 			var/d = get_dir(src, target)
-			if(L.last_move_dir & d)
-			else if(L.last_move_dir & turn(d, 180))
+			if(!(L.last_move_dir & d) && (L.last_move_dir & turn(d, 180)))
 				user_speed = -user_speed
 			else
 				user_speed = 0

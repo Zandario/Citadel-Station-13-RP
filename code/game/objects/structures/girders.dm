@@ -315,7 +315,7 @@
 				dismantle()
 			return
 		else
-	return
+			return
 
 /obj/structure/girder/cult
 	name = "column"
