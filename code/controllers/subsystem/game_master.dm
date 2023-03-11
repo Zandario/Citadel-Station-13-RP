@@ -24,7 +24,7 @@ SUBSYSTEM_DEF(gamemaster)
 	var/config_setup_delay = TRUE
 	spawn(0)
 		while(config_setup_delay)
-			if(config)
+			if(GLOB.config)
 				config_setup_delay = FALSE
 				if(config_legacy.enable_game_master)
 					suspended = FALSE

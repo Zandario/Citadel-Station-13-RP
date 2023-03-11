@@ -43,7 +43,7 @@
 		return list("reason"="guest", "desc"="\nReason: Guests not allowed. Please sign in with a byond account.")
 
 	//check if the IP address is a known TOR node
-	if(config && config_legacy.ToRban && ToRban_isbanned(address))
+	if(GLOB.config && config_legacy.ToRban && ToRban_isbanned(address))
 		log_adminwarn("Failed Login: [src] - Banned: ToR")
 		message_admins("<font color=#4F49AF>Failed Login: [src] - Banned: ToR</font>")
 		//ban their computer_id and ckey for posterity

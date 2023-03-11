@@ -3,7 +3,7 @@
 	set category = "OOC"
 	set desc ="Check the Message of the Day"
 
-	var/motd = config.motd
+	var/motd = GLOB.config.motd
 	if(motd)
 		to_chat(src, "<blockquote class=\"motd\">[motd]</blockquote>", handle_whitespace=FALSE)
 	else

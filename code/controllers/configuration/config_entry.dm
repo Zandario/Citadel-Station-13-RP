@@ -41,7 +41,7 @@
 	set_default()
 
 /datum/config_entry/Destroy()
-	config.RemoveEntry(src)
+	GLOB.config.RemoveEntry(src)
 	return ..()
 
 /**

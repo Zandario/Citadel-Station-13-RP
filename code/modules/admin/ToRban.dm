@@ -48,7 +48,7 @@
 		if("update")
 			ToRban_update()
 		if("toggle")
-			if(config)
+			if(GLOB.config)
 				if(config_legacy.ToRban)
 					config_legacy.ToRban = 0
 					message_admins("<font color='red'>ToR banning disabled.</font>")

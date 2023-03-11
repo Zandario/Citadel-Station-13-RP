@@ -86,8 +86,8 @@ SUBSYSTEM_DEF(statpanels)
 		STATPANEL_DATA_CLICK(GLOB.stat_key(), GLOB.stat_entry(), "\ref[GLOB]")
 	else
 		STATPANEL_DATA_LINE("FATAL - NO GLOB")
-	if(config)
-		STATPANEL_DATA_CLICK(config.stat_key(), config.stat_entry(), "\ref[config]")
+	if(GLOB.config)
+		STATPANEL_DATA_CLICK(GLOB.config.stat_key(), GLOB.config.stat_entry(), "\ref[GLOB.config]")
 	else
 		STATPANEL_DATA_LINE("FATAL - NO CONFIG")
 	STATPANEL_DATA_ENTRY("BYOND:", "(FPS:[world.fps]) (TickCount:[world.time/world.tick_lag]) (TickDrift:[round(Master.tickdrift,1)]([round((Master.tickdrift/(world.time/world.tick_lag))*100,0.1)]%)) (Internal Tick Usage: [round(MAPTICK_LAST_INTERNAL_TICK_USAGE,0.1)]%)")

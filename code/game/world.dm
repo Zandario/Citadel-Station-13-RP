@@ -50,8 +50,8 @@ GLOBAL_LIST(topic_status_cache)
 
 	InitTgs()
 
-	config.Load(params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
-	config.update_world_viewsize()	//! Since world.view is immutable, we load it here.
+	GLOB.config.Load(params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
+	GLOB.config.update_world_viewsize()	//! Since world.view is immutable, we load it here.
 
 	//SetupLogs depends on the RoundID, so lets check
 	//DB schema and set RoundID if we can
@@ -71,12 +71,12 @@ GLOBAL_LIST(topic_status_cache)
 
 	config_legacy.post_load()
 
-	if(config && config_legacy.server_name != null && config_legacy.server_suffix && world.port > 0)
+	if(GLOB.config && config_legacy.server_name != null && config_legacy.server_suffix && world.port > 0)
 		// dumb and hardcoded but I don't care~
 		config_legacy.server_name += " #[(world.port % 1000) / 100]"
 
 	// TODO - Figure out what this is. Can you assign to world.log?
-	// if(config && config_legacy.log_runtime)
+	// if(GLOB.config && config_legacy.log_runtime)
 	// 	log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
 
 	GLOB.timezoneOffset = get_timezone_offset()
@@ -183,7 +183,7 @@ GLOBAL_LIST(topic_status_cache)
 	start_log(GLOB.tgui_log)
 	start_log(GLOB.subsystem_log)
 
-	var/latest_changelog = file("[global.config.directory]/../html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml")
+	var/latest_changelog = file("[GLOB.config.directory]/../html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml")
 	GLOB.changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : 0 //for telling if the changelog has changed recently
 	if(fexists(GLOB.config_error_log))
 		fcopy(GLOB.config_error_log, "[GLOB.log_directory]/config_error.log")
@@ -374,7 +374,7 @@ GLOBAL_LIST(topic_status_cache)
 
 /world/proc/update_status()
 	. = ""
-	if(!config)
+	if(!GLOB.config)
 		status = "<b>SERVER LOADING OR BROKEN.</b> (18+)"
 		return
 

@@ -14,7 +14,7 @@
 	. = ..()
 	if(!.)
 		return
-	config.update_player_viewsize()
+	GLOB.config.update_player_viewsize()
 
 /*
 /datum/config_entry/string/game_viewport_size

@@ -81,7 +81,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick)
 	var/list/options = list()
 	options["MC"] = Master
 	options["Failsafe"] = Failsafe
-	options["Configuration"] = config
+	options["Configuration"] = GLOB.config
 	options["Legacy Configuration"] = config_legacy
 	for(var/i in Master.subsystems)
 		var/datum/controller/subsystem/S = i

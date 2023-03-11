@@ -73,7 +73,7 @@
 
 /datum/controller/configuration/Destroy()
 	full_wipe()
-	config = null
+	GLOB.config = null
 
 	return ..()
 

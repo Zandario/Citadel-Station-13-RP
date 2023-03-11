@@ -10,7 +10,7 @@
  * gets list of species we can play of those who are whitelisted
  */
 /datum/preferences/proc/resolve_whitelisted_species()
-	var/list/ids = config.all_alien_whitelists_for(client_ckey)
+	var/list/ids = GLOB.config.all_alien_whitelists_for(client_ckey)
 	. = list()
 	for(var/datum/character_species/CS as anything in SScharacters.all_character_species())
 		if((ckey(CS.uid) in ids) || (CS.species_spawn_flags & SPECIES_SPAWN_WHITELIST_FLEXIBLE && (ckey(CS.superspecies_id) in ids)))
@@ -20,7 +20,7 @@
  * check if we can play a species
  */
 /datum/preferences/proc/check_character_species(datum/character_species/CS)
-	if((CS.species_spawn_flags & SPECIES_SPAWN_SECRET) && !(config.check_alien_whitelist(ckey(CS.name), client_ckey)))
+	if((CS.species_spawn_flags & SPECIES_SPAWN_SECRET) && !(GLOB.config.check_alien_whitelist(ckey(CS.name), client_ckey)))
 		return FALSE
 	return TRUE
 

@@ -10,7 +10,7 @@ var/savefile/Banlist
 
 	. = list()
 	var/appeal
-	if(config && config_legacy.banappeals)
+	if(GLOB.config && config_legacy.banappeals)
 		appeal = "\nFor more information on your ban, or to appeal, head to <a href='[config_legacy.banappeals]'>[config_legacy.banappeals]</a>"
 	Banlist.cd = "/base"
 	if( "[ckey][id]" in Banlist.dir )
@@ -226,4 +226,3 @@ var/savefile/Banlist
 	Banlist.cd = "/base"
 	for (var/A in Banlist.dir)
 		RemoveBan(A)
-

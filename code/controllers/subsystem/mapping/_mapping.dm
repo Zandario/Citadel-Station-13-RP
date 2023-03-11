@@ -51,7 +51,7 @@ SUBSYSTEM_DEF(mapping)
 		return
 	if(config.defaulted)
 		var/old_config = config
-		config = global.config.defaultmap
+		config = GLOB.config.defaultmap
 		if(!config || config.defaulted)
 			to_chat(world, SPAN_BOLDANNOUNCE("Unable to load next or default map config, defaulting to Tethermap"))
 			config = old_config

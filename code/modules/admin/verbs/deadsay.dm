@@ -1,4 +1,4 @@
-GLOBAL_LIST_INIT(stealthmin_nicknames, world.file2list("[global.config.directory]/admin_nicknames.txt"))
+GLOBAL_LIST_INIT(stealthmin_nicknames, world.file2list("[GLOB.config.directory]/admin_nicknames.txt"))
 
 /client/proc/dsay(msg as text)
 	set category = "Special Verbs"

@@ -862,6 +862,7 @@ GLOBAL_VAR_INIT(log_clicks, FALSE)
 	//if(prefs && prefs.chat_toggles & CHAT_PULLR)
 	to_chat(src, announcement)
 
+/* Unused and being overriden.
 //This is for getipintel.net.
 //You're welcome to replace this proc with your own that does your own cool stuff.
 //Just set the client's ip_reputation var and make sure it makes sense with your config settings (higher numbers are worse results)
@@ -921,6 +922,7 @@ GLOBAL_VAR_INIT(log_clicks, FALSE)
 	else
 		ip_reputation = score
 		return TRUE
+*/
 
 /client/proc/disconnect_with_message(var/message = "You have been intentionally disconnected by the server.<br>This may be for security or administrative reasons.")
 	message = "<head><title>You Have Been Disconnected</title></head><body><hr><center><b>[message]</b></center><hr><br>If you feel this is in error, you can contact an administrator out-of-game (for example, on Discord).</body>"

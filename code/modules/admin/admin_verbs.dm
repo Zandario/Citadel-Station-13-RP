@@ -1038,7 +1038,7 @@ var/list/admin_verbs_event_manager = list(
 	set name = "Toggle ghost writers"
 	set category = "Server"
 	if(!holder)	return
-	if(config)
+	if(GLOB.config)
 		if(config_legacy.cult_ghostwriter)
 			config_legacy.cult_ghostwriter = 0
 			to_chat(src, "<b>Disallowed ghost writers.</b>")
@@ -1052,7 +1052,7 @@ var/list/admin_verbs_event_manager = list(
 	set name = "Toggle maintenance drones"
 	set category = "Server"
 	if(!holder)	return
-	if(config)
+	if(GLOB.config)
 		if(config_legacy.allow_drone_spawn)
 			config_legacy.allow_drone_spawn = 0
 			to_chat(src, "<b>Disallowed maint drones.</b>")

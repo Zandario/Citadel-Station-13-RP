@@ -693,7 +693,7 @@
 	if(!check_rights(R_DEBUG))
 		return
 	if(alert(usr, "Are you absolutely sure you want to reload the configuration from the default path on the disk, wiping any in-round modificatoins?", "Really reset?", "No", "Yes") == "Yes")
-		config.admin_reload()
+		GLOB.config.admin_reload()
 		load_configuration()		//for legacy
 
 /datum/admins/proc/quick_nif()

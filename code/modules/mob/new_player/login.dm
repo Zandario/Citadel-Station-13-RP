@@ -22,7 +22,7 @@ GLOBAL_DATUM_INIT(lobby_image, /obj/effect/lobby_image, new)
 /mob/new_player/Login()
 	update_Login_details()	//handles setting lastKnownIP and computer_id for use by the ban systems as well as checking for multikeying
 
-	var/motd = config.motd
+	var/motd = GLOB.config.motd
 	if(motd)
 		to_chat(src, "<blockquote class=\"motd\">[motd]</blockquote>", handle_whitespace=FALSE)
 	if(client)

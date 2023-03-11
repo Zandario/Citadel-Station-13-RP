@@ -1,5 +1,5 @@
 //Uses a couple different services
-/client/update_ip_reputation()
+/client/proc/update_ip_reputation()
 	var/scores[] = list("GII" = ipr_getipintel(), "IPQS" = ipr_ipqualityscore())
 
 	var/log_output = "IP Reputation [key] from [address]"
