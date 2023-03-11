@@ -29,7 +29,7 @@
 				unlook(M)
 	. = ..()
 
-/datum/nano_module/uav/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = default_state)
+/datum/nano_module/uav/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = default_nano_state)
 	var/list/data = host.initial_data()
 
 	if(current_uav)
@@ -68,7 +68,7 @@
 /datum/nano_module/uav/Topic(var/href, var/href_list = list(), var/datum/topic_state/state)
 	if((. = ..()))
 		return
-	state = state || DefaultTopicState() || global.default_state
+	state = state || DefaultTopicState() || default_nano_state
 	if(CanUseTopic(usr, state, href_list) == UI_INTERACTIVE)
 		CouldUseTopic(usr)
 		return OnTopic(usr, href_list, state)
@@ -122,7 +122,7 @@
 			return PREFERENCES_REFRESH
 
 /datum/nano_module/uav/proc/DefaultTopicState()
-	return global.default_state
+	return default_nano_state
 
 /datum/nano_module/uav/proc/CouldNotUseTopic(mob/user)
 	. = ..()

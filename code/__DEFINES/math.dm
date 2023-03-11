@@ -7,8 +7,8 @@
 #define SQRT_2 1.414214
 
 #define M_PI						(3.14159265)
-///closer then enough
-#define INFINITY				(1.#INF)
+///closer then enough1
+#define INFINITY				(1e38) // JUST below the rounding point to "Infinity"
 #define SHORT_REAL_LIMIT 16777216
 
 //"fancy" math for calculating time in ms from tick_usage percentage and the length of ticks

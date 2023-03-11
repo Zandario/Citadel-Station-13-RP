@@ -78,7 +78,7 @@
 	name = "NTNet Access Decrypter"
 	var/list/restricted_access_codes = list(ACCESS_COMMAND_CARDMOD, ACCESS_SCIENCE_EXONET) // access codes that are not hackable due to balance reasons
 
-/datum/nano_module/program/access_decrypter/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+/datum/nano_module/program/access_decrypter/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, datum/topic_state/state = default_nano_state)
 	if(!ntnet_global)
 		return
 	var/datum/computer_file/program/access_decrypter/PRG = program

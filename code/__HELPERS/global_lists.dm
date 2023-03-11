@@ -37,8 +37,6 @@ var/global/list/NT_poster_designs = list()
 var/list/obj/item/uplink/world_uplinks = list()
 
 //* Preferences stuff *//
-//!Underwear
-var/datum/category_collection/underwear/global_underwear = new()
 //!Backpacks - The load order here is important to maintain. Don't go swapping these around.
 var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Alt", "Messenger Bag", "RIG", "Duffle Bag")
 var/global/list/pdachoicelist = list("Default", "Slim", "Old", "Rugged","Minimalist", "Holographic", "Wrist-Bound")

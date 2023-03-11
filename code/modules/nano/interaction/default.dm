@@ -1,9 +1,9 @@
-/var/global/datum/topic_state/default/default_state = new()
+var/global/datum/topic_state/default_nano_state/default_nano_state = new()
 
-/datum/topic_state/default/href_list(var/mob/user)
+/datum/topic_state/default_nano_state/href_list(var/mob/user)
 	return list()
 
-/datum/topic_state/default/can_use_topic(var/src_object, var/mob/user)
+/datum/topic_state/default_nano_state/can_use_topic(var/src_object, var/mob/user)
 	return user.nano_default_can_use_topic(src_object)
 
 /mob/proc/nano_default_can_use_topic(var/src_object)

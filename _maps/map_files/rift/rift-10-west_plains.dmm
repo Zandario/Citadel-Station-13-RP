@@ -8385,10 +8385,8 @@
 /turf/simulated/floor/reinforced/lythios43c,
 /area/rift/facility/exterior)
 "MV" = (
-/obj/machinery/vending/phoronresearch{
-	dir = 8;
-	name = "Toximate 2556";
-	products = list(/obj/item/transfer_valve=3,/obj/item/assembly/timer=6,/obj/item/assembly/signaler=6,/obj/item/assembly/prox_sensor=6,/obj/item/assembly/igniter=12)
+/obj/machinery/vending/phoronresearch/testing_lab{
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/testing_lab)

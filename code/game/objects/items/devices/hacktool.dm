@@ -5,7 +5,7 @@
 	var/in_hack_mode = 0
 	var/list/known_targets
 	var/list/supported_types
-	var/datum/topic_state/default/must_hack/hack_state
+	var/datum/topic_state/default_nano_state/must_hack/hack_state
 
 /obj/item/multitool/hacktool/Initialize(mapload)
 	. = ..()
@@ -83,18 +83,18 @@
 /obj/item/multitool/hacktool/proc/on_target_destroy(var/target)
 	known_targets -= target
 
-/datum/topic_state/default/must_hack
+/datum/topic_state/default_nano_state/must_hack
 	var/obj/item/multitool/hacktool/hacktool
 
-/datum/topic_state/default/must_hack/New(var/hacktool)
+/datum/topic_state/default_nano_state/must_hack/New(var/hacktool)
 	src.hacktool = hacktool
 	..()
 
-/datum/topic_state/default/must_hack/Destroy()
+/datum/topic_state/default_nano_state/must_hack/Destroy()
 	hacktool = null
 	return ..()
 
-/datum/topic_state/default/must_hack/can_use_topic(var/src_object, var/mob/user)
+/datum/topic_state/default_nano_state/must_hack/can_use_topic(var/src_object, var/mob/user)
 	if(!hacktool || !hacktool.in_hack_mode || !(src_object in hacktool.known_targets))
 		return UI_CLOSE
 	return ..()

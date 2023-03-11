@@ -7,7 +7,7 @@
 	var/datum/remote_target
 	var/datum/topic_state/remoter_state
 
-/datum/topic_state/remote/New(var/remoter, var/remote_target, var/datum/topic_state/remoter_state = default_state)
+/datum/topic_state/remote/New(remoter, remote_target, datum/topic_state/remoter_state = default_nano_state)
 	src.remoter = remoter
 	src.remote_target = remote_target
 	src.remoter_state = remoter_state

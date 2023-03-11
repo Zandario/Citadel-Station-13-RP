@@ -403,7 +403,7 @@ var/list/infomorph_emotions = list(
 	desc = "Modify the settings on your integrated radio."
 
 	if(radio)
-		radio.nano_ui_interact(src,"main",null,1,conscious_state)
+		radio.nano_ui_interact(src, "main", null, 1, conscious_nano_state)
 	else
 		to_chat(src,"<span class='warning'>You don't have a radio!</span>")
 

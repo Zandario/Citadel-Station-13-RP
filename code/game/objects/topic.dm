@@ -1,7 +1,7 @@
 /atom/proc/DefaultTopicState()
 	return GLOB.default_state
 
-/atom/Topic(href, href_list, var/datum/topic_state/state = default_state)
+/atom/Topic(href, href_list, datum/topic_state/state = default_nano_state)
 	if(usr && ..())
 		return TRUE
 
@@ -16,7 +16,7 @@
 	CouldNotUseTopic(usr)
 	return TRUE
 
-/obj/CanUseTopic(var/mob/user, var/datum/topic_state/state = default_state)
+/obj/CanUseTopic(mob/user, datum/topic_state/state = default_nano_state)
 	if(user.CanUseObjTopic(src))
 		return ..()
 	to_chat(user, "<span class='danger'>[icon2html(thing = src, target = user)] Access Denied!</span>")

@@ -936,6 +936,19 @@
 		/obj/item/flame/lighter/random = 5,
 	)
 
+
+/// Was a map override and OD didn't like the products list.
+/obj/machinery/vending/cigarette/hacked
+	name = "hacked cigarette machine"
+	prices = list()
+	products = list(
+		/obj/item/storage/fancy/cigarettes = 10,
+		/obj/item/storage/box/matches = 10,
+		/obj/item/flame/lighter/zippo = 4,
+		/obj/item/clothing/mask/smokable/cigarette/cigar/havana = 2,
+	)
+
+
 /obj/machinery/vending/medical
 	name = "NanoMed Plus"
 	desc = "Medical drug dispenser."
@@ -993,6 +1006,17 @@
 	)
 	req_log_access = ACCESS_SCIENCE_RD
 	has_logs = 1
+
+/// Was a map override and OD didn't like the products list.
+/obj/machinery/vending/phoronresearch/testing_lab
+	name = "Toximate 2556"
+	products = list(
+		/obj/item/transfer_valve = 3,
+		/obj/item/assembly/timer = 6,
+		/obj/item/assembly/signaler = 6,
+		/obj/item/assembly/prox_sensor = 6,
+		/obj/item/assembly/igniter = 12,
+	)
 
 /obj/machinery/vending/wallmed1
 	name = "NanoMed"

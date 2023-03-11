@@ -879,7 +879,7 @@ var/list/admin_verbs_event_manager = list(
 	if(!S) return
 
 	var/datum/nano_module/law_manager/L = new(S)
-	L.nano_ui_interact(usr, state = admin_state)
+	L.nano_ui_interact(usr, state = GLOB.admin_nano_state)
 	log_and_message_admins("has opened [S]'s law manager.")
 	feedback_add_details("admin_verb","MSL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -894,7 +894,7 @@ var/list/admin_verbs_event_manager = list(
 	if(!H) return
 
 	log_and_message_admins("is altering the appearance of [H].")
-	H.change_appearance(APPEARANCE_ALL, usr, usr, check_species_whitelist = 0, state = admin_state)
+	H.change_appearance(APPEARANCE_ALL, usr, usr, check_species_whitelist = 0, state = GLOB.admin_nano_state)
 	feedback_add_details("admin_verb","CHAA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/change_human_appearance_self()

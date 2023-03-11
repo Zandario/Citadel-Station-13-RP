@@ -151,7 +151,7 @@
 
 /mob/living/carbon/human/proc/nectar_pick()
 	set name = "Collect Waxcomb"
-	set desc = "Coax waxcomb from [src]."
+	set desc = "Coax waxcomb."
 	set category = "Abilities"
 	set src in view(1)
 	var/mob/user = usr

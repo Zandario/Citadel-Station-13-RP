@@ -17,10 +17,10 @@
 
 // Decide which area will be targeted!
 /datum/gm_action/atmos_leak/set_up()
-	severity = pickweight(EVENT_LEVEL_MUNDANE = 8,
+	severity = pickweight(list(EVENT_LEVEL_MUNDANE = 8,
 	EVENT_LEVEL_MODERATE = 5,
 	EVENT_LEVEL_MAJOR = 3
-	)
+	))
 
 	var/gas_choices = list(/datum/gas/carbon_dioxide, /datum/gas/nitrous_oxide) // Annoying
 	if(severity >= EVENT_LEVEL_MODERATE)

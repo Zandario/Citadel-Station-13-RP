@@ -32,7 +32,7 @@ GLOBAL_LIST_EMPTY(rcon_nano_modules)
 	. = ..()
 	GLOB.rcon_nano_modules -= src
 
-/datum/nano_module/rcon/nano_ui_interact(mob/user, ui_key = "rcon", datum/nanoui/ui=null, force_open=1, var/datum/topic_state/state = default_state)
+/datum/nano_module/rcon/nano_ui_interact(mob/user, ui_key = "rcon", datum/nanoui/ui=null, force_open=1, datum/topic_state/state = default_nano_state)
 	FindDevices() // Update our devices list
 	var/list/data = host.initial_data()
 

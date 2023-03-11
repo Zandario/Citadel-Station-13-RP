@@ -26,7 +26,7 @@ var/warrant_uid = 0
 	name = "Warrant Assistant"
 	var/datum/data/record/warrant/activewarrant
 
-/datum/nano_module/program/digitalwarrant/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+/datum/nano_module/program/digitalwarrant/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, datum/topic_state/state = default_nano_state)
 	var/list/data = host.initial_data()
 
 	if(activewarrant)
@@ -83,7 +83,7 @@ var/warrant_uid = 0
 		. = 1
 		var/datum/data/record/warrant/W = new()
 		var/temp = sanitize(input(usr, "Do you want to create a search-, or an arrest warrant?") as null|anything in list("search","arrest"))
-		if(CanInteract(user, default_state))
+		if(CanInteract(user, default_nano_state))
 			if(temp == "arrest")
 				W.fields["namewarrant"] = "Unknown"
 				W.fields["charges"] = "No charges present"
@@ -112,7 +112,7 @@ var/warrant_uid = 0
 		for(var/datum/data/record/t in data_core.general)
 			namelist += t.fields["name"]
 		var/new_name = sanitize(input(usr, "Please input name") as null|anything in namelist)
-		if(CanInteract(user, default_state))
+		if(CanInteract(user, default_nano_state))
 			if (!new_name)
 				return
 			activewarrant.fields["namewarrant"] = new_name
@@ -120,7 +120,7 @@ var/warrant_uid = 0
 	if(href_list["editwarrantnamecustom"])
 		. = 1
 		var/new_name = sanitize(input("Please input name") as null|text)
-		if(CanInteract(user, default_state))
+		if(CanInteract(user, default_nano_state))
 			if (!new_name)
 				return
 			activewarrant.fields["namewarrant"] = new_name
@@ -128,7 +128,7 @@ var/warrant_uid = 0
 	if(href_list["editwarrantcharges"])
 		. = 1
 		var/new_charges = sanitize(input("Please input charges", "Charges", activewarrant.fields["charges"]) as null|text)
-		if(CanInteract(user, default_state))
+		if(CanInteract(user, default_nano_state))
 			if (!new_charges)
 				return
 			activewarrant.fields["charges"] = new_charges

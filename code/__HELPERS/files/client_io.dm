@@ -3,7 +3,7 @@
  *
  * However it'd be ok to use for accessing attack logs and such too, which are even laggier.
  */
-GLOBAL_VAR_INIT(fileaccess_timer, 0)
+// GLOBAL_VAR_INIT(fileaccess_timer, 0)
 
 /client/proc/browse_files(root_type=BROWSE_ROOT_ALL_LOGS, max_iterations=10, list/valid_extensions=list("txt","log","htm","html","md","json"))
 	// wow why was this ever a parameter
@@ -55,14 +55,14 @@ GLOBAL_VAR_INIT(fileaccess_timer, 0)
  *! PLEASE USE RESPONSIBLY, Some log files can reach sizes of 4MB!
  */
 /client/proc/file_spam_check()
-	var/time_to_wait = GLOB.fileaccess_timer - world.time
+	var/time_to_wait = fileaccess_timer - world.time
 	if(time_to_wait > 0)
 		to_chat(src, SPAN_RED("Error: file_spam_check(): Spam. Please wait [DisplayTimeText(time_to_wait)]."))
 		return TRUE
 	var/delay = FTPDELAY
 	if(holder)
 		delay *= ADMIN_FTPDELAY_MODIFIER
-	GLOB.fileaccess_timer = world.time + delay
+	fileaccess_timer = world.time + delay
 	return FALSE
 #undef FTPDELAY
 #undef ADMIN_FTPDELAY_MODIFIER

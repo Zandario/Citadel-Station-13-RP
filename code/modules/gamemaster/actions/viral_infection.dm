@@ -8,10 +8,10 @@
 	severity = 1
 
 /datum/gm_action/viral_infection/set_up()
-	severity = pickweight(EVENT_LEVEL_MUNDANE = 20,
+	severity = pickweight(list(EVENT_LEVEL_MUNDANE = 20,
 		EVENT_LEVEL_MODERATE = 10,
 		EVENT_LEVEL_MAJOR = 3
-		)
+		))
 
 	//generate 1-3 viruses. This way there's an upper limit on how many individual diseases need to be cured if many people are initially infected
 	var/num_diseases = rand(1,3)

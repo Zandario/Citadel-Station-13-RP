@@ -23,9 +23,9 @@
 	return weight
 
 /datum/gm_action/meteor_defense/set_up()
-	severity = pickweight(EVENT_LEVEL_MUNDANE = 10,
+	severity = pickweight(list(EVENT_LEVEL_MUNDANE = 10,
 	EVENT_LEVEL_MODERATE = 3
-	)
+	))
 
 	switch(severity)
 		if(EVENT_LEVEL_MUNDANE)

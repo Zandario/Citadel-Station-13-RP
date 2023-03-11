@@ -1,7 +1,16 @@
-/mob/living/carbon/human/proc/change_appearance(var/flags = APPEARANCE_ALL_HAIR, var/location = src, var/mob/user = src, var/check_species_whitelist = 1, var/list/species_whitelist = list(), var/list/species_blacklist = list(), var/datum/topic_state/state = default_state)
+/mob/living/carbon/human/proc/change_appearance(
+	flags = APPEARANCE_ALL_HAIR,
+	location = src,
+	mob/user = src,
+	check_species_whitelist = 1,
+	list/species_whitelist = list(),
+	list/species_blacklist = list(),
+	datum/topic_state/state = default_nano_state
+) {
 	var/datum/nano_module/appearance_changer/AC = new(location, src, check_species_whitelist, species_whitelist, species_blacklist)
 	AC.flags = flags
 	AC.nano_ui_interact(user, state = state)
+}
 
 /mob/living/carbon/human/proc/change_species(var/new_species)
 	if(!new_species)

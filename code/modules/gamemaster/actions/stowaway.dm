@@ -18,10 +18,10 @@
 		)
 
 /datum/gm_action/stowaway/set_up()
-	severity = pickweight(EVENT_LEVEL_MUNDANE = 20,
+	severity = pickweight(list(EVENT_LEVEL_MUNDANE = 20,
 	EVENT_LEVEL_MODERATE = 5,
 	EVENT_LEVEL_MAJOR = 1
-	)
+	))
 
 	var/list/area/grand_list_of_areas = get_station_areas(excluded)
 

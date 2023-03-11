@@ -18,10 +18,10 @@
 		)
 
 /datum/gm_action/swarm_boarder/set_up()
-	severity = pickweight(EVENT_LEVEL_MUNDANE = 30,
+	severity = pickweight(list(EVENT_LEVEL_MUNDANE = 30,
 	EVENT_LEVEL_MODERATE = 10,
 	EVENT_LEVEL_MAJOR = 1
-	)
+	))
 
 	var/list/area/grand_list_of_areas = get_station_areas(excluded)
 
