@@ -49,7 +49,8 @@ SUBSYSTEM_DEF(repository)
 	// types are complicated, is it lazy?
 	if(initial(type_or_id.lazy))
 		// if so, init it
-		register_internal((. = new type_or_id), TRUE, TRUE)
+		. = new type_or_id
+		register_internal(., TRUE, TRUE)
 	else
 		CRASH("failed to fetch a hardcoded prototype")
 

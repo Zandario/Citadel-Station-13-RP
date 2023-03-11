@@ -347,14 +347,6 @@ var/global/list/edible_trash = list(/obj/item/broken_device,
 				/obj/item/storage/fancy/egg_box,
 				/obj/item/storage/wallet)
 
-var/global/list/contamination_flavors = list(
-				"Generic" = contamination_flavors_generic,
-				"Acrid" = contamination_flavors_acrid,
-				"Dirty" = contamination_flavors_dirty,
-				"Musky" = contamination_flavors_musky,
-				"Smelly" = contamination_flavors_smelly,
-				"Wet" = contamination_flavors_wet)
-
 var/global/list/contamination_flavors_generic = list("acrid",
 				"bedraggled",
 				"begrimed",
@@ -571,6 +563,14 @@ var/global/list/contamination_colors = list("green",
 				"cyan",
 				"beige",
 				"pink")
+
+var/global/list/contamination_flavors = list(
+				"Generic" = contamination_flavors_generic,
+				"Acrid" = contamination_flavors_acrid,
+				"Dirty" = contamination_flavors_dirty,
+				"Musky" = contamination_flavors_musky,
+				"Smelly" = contamination_flavors_smelly,
+				"Wet" = contamination_flavors_wet)
 
 ///For the mechanic of leaving remains. Ones listed below are basically ones that got no bones or leave no trace after death.
 var/global/list/remainless_species = list(SPECIES_ID_PROMETHEAN,

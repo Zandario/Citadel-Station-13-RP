@@ -290,6 +290,7 @@
 				to_chat(M, SPAN_TINYNOTICE("<b>\The [src]</b> looks at \the [A]."))
 
 	do_examinate(A)
+	update_examine_panel(A)
 
 /**
  * examines something & sends results

@@ -1,5 +1,5 @@
 var/list/obj/machinery/photocopier/faxmachine/allfaxes = list()
-var/list/admin_departments = list("[GLOB.using_map.boss_name]", "Hadii's Folly Governmental Authority", "Supply")
+GLOBAL_LIST_INIT(admin_departments, list("[GLOB.using_map.boss_name]", "Hadii's Folly Governmental Authority", "Supply"))
 var/list/alldepartments = list()
 
 var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
@@ -28,7 +28,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	allfaxes += src
 	if(!destination)
 		destination = "[GLOB.using_map.boss_name]"
-	if(!(("[department]" in alldepartments) || ("[department]" in admin_departments)) )
+	if(!(("[department]" in alldepartments) || ("[department]" in GLOB.admin_departments)) )
 		alldepartments |= department
 
 /obj/machinery/photocopier/faxmachine/attack_hand(mob/user as mob)
@@ -69,7 +69,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 /obj/machinery/photocopier/faxmachine/Topic(href, href_list)
 	if(href_list["send"])
 		if(copyitem)
-			if (destination in admin_departments)
+			if (destination in GLOB.admin_departments)
 				send_admin_fax(usr, destination)
 			else
 				sendfax(destination)
@@ -108,7 +108,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 	if(href_list["dept"])
 		var/lastdestination = destination
-		destination = input(usr, "Which department?", "Choose a department", "") as null|anything in (alldepartments + admin_departments)
+		destination = input(usr, "Which department?", "Choose a department", "") as null|anything in (alldepartments + GLOB.admin_departments)
 		if(!destination) destination = lastdestination
 
 	if(href_list["auth"])

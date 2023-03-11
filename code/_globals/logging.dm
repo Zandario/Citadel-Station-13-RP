@@ -36,8 +36,10 @@ GLOBAL_PROTECT(subsystem_log)
 GLOBAL_VAR(tgui_log)
 GLOBAL_PROTECT(tgui_log)
 
-SIMPLE_LOG_BOILERPLATE(inventory_log, inventory)
-SIMPLE_LOG_BOILERPLATE(click_log, click)
+GLOBAL_VAR(inventory_log)
+GLOBAL_PROTECT(inventory_log)
+GLOBAL_VAR(click_log)
+GLOBAL_PROTECT(click_log)
 
 /// Picture logging
 GLOBAL_VAR(picture_log_directory)
@@ -50,4 +52,3 @@ GLOBAL_PROTECT(picture_logging_prefix)
 /// Intended to hold all logins that failed due to suspicious circumstances such as ban detection, CID randomisation etc.
 GLOBAL_VAR(world_suspicious_login_log)
 GLOBAL_PROTECT(world_suspicious_login_log)
-

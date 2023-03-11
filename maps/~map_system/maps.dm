@@ -1,7 +1,7 @@
-
-GLOBAL_DATUM_INIT(using_map, /datum/map, new USING_MAP_DATUM)
-
 var/list/all_maps = list()
+
+/proc/init_using_map()
+	return new USING_MAP_DATUM
 
 /hook/startup/proc/initialise_map_list()
 	for(var/type in typesof(/datum/map) - /datum/map)

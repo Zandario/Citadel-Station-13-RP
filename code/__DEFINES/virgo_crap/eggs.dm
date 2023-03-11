@@ -1,0 +1,11 @@
+#define UNATHI_EGG      SPECIES_UNATHI
+#define TAJARAN_EGG     "Tajaran"
+#define AKULA_EGG       SPECIES_AKULA
+#define SKRELL_EGG      SPECIES_SKRELL
+#define SERGAL_EGG      SPECIES_SERGAL
+#define HUMAN_EGG       SPECIES_HUMAN
+#define NEVREAN_EGG     "nevrean"
+#define SLIME_EGG       "Slime"
+#define EGG_EGG         "Egg"
+#define XENOCHIMERA_EGG SPECIES_XENOCHIMERA
+#define XENOMORPH_EGG   SPECIES_XENO

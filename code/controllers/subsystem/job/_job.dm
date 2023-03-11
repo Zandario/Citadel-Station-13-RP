@@ -185,7 +185,8 @@ SUBSYSTEM_DEF(job)
 		job_debug_message("Job '[J.title]' has their primary department be '[primary_department]', but it does not exist.")
 		return
 
-	return department_datums[primary_department]
+	var/datum/department/our_dept = department_datums[primary_department]
+	return our_dept
 
 // Someday it might be good to port code/game/jobs/job_controller.dm to here and clean it up.
 

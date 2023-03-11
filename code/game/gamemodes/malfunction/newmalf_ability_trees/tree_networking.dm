@@ -7,35 +7,6 @@
 // T4 - System Override - Allows the AI to rapidly hack remaining APCs. When completed, grants access to the self destruct nuclear warhead.
 
 
-// BEGIN RESEARCH DATUMS
-
-/datum/malf_research_ability/networking/basic_hack
-	ability = new/datum/game_mode/malfunction/verb/basic_encryption_hack()
-	price = 25
-	next = new/datum/malf_research_ability/networking/advanced_hack()
-	name = "Basic Encryption Hack"
-
-
-/datum/malf_research_ability/networking/advanced_hack
-	ability = new/datum/game_mode/malfunction/verb/advanced_encryption_hack()
-	price = 400
-	next = new/datum/malf_research_ability/networking/elite_hack()
-	name = "Advanced Encryption Hack"
-
-
-/datum/malf_research_ability/networking/elite_hack
-	ability = new/datum/game_mode/malfunction/verb/elite_encryption_hack()
-	price = 1000
-	next = new/datum/malf_research_ability/networking/system_override()
-	name = "Elite Encryption Hack"
-
-
-/datum/malf_research_ability/networking/system_override
-	ability = new/datum/game_mode/malfunction/verb/system_override()
-	price = 2750
-	name = "System Override"
-
-// END RESEARCH DATUMS
 // BEGIN ABILITY VERBS
 
 /datum/game_mode/malfunction/verb/basic_encryption_hack(obj/machinery/power/apc/A as obj in get_unhacked_apcs(src))
@@ -207,3 +178,33 @@
 
 
 // END ABILITY VERBS
+
+// BEGIN RESEARCH DATUMS
+
+/datum/malf_research_ability/networking/basic_hack
+	// ability = new/datum/game_mode/malfunction/verb/basic_encryption_hack()
+	price = 25
+	// next = new/datum/malf_research_ability/networking/advanced_hack()
+	name = "Basic Encryption Hack"
+
+
+/datum/malf_research_ability/networking/advanced_hack
+	// ability = new/datum/game_mode/malfunction/verb/advanced_encryption_hack()
+	price = 400
+	// next = new/datum/malf_research_ability/networking/elite_hack()
+	name = "Advanced Encryption Hack"
+
+
+/datum/malf_research_ability/networking/elite_hack
+	// ability = new/datum/game_mode/malfunction/verb/elite_encryption_hack()
+	price = 1000
+	// next = new/datum/malf_research_ability/networking/system_override()
+	name = "Elite Encryption Hack"
+
+
+/datum/malf_research_ability/networking/system_override
+	// ability = new/datum/game_mode/malfunction/verb/system_override()
+	price = 2750
+	name = "System Override"
+
+// END RESEARCH DATUMS

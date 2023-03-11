@@ -312,20 +312,21 @@
 	. = outfit.equip(H, title, alt_title)
 	return 1
 
-/datum/role/job/proc/get_outfit(var/mob/living/carbon/human/H, var/alt_title)
+/datum/role/job/proc/get_outfit(mob/living/carbon/human/H, alt_title)
+	var/datum/outfit/outfit
 	if(alt_title && alt_titles)
 		var/datum/prototype/alt_title/A = alt_titles[alt_title]
 		if(A && initial(A.title_outfit))
-			. = initial(A.title_outfit)
-	. = . || outfit_type
-	if(ispath(., /datum/outfit))
-		return new .
+			outfit = initial(A.title_outfit)
+	outfit = outfit || outfit_type
+	if(ispath(outfit))
+		return new outfit
 
-	// TODO: job refactor
-
+// TODO: job refactor
 /datum/role/job/proc/get_economic_payscale()
 	var/datum/department/D = SSjob.get_primary_department_of_job(src)
-	return economy_payscale * (istype(D)? D.economy_payscale : 1)
+	var/payscale = economy_payscale * (istype(D) ? D.economy_payscale : 1)
+	return payscale
 
 /datum/role/job/proc/setup_account(var/mob/living/carbon/human/H)
 	if(!account_allowed || (H.mind && H.mind.initial_account))

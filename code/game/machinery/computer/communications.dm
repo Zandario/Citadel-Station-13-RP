@@ -14,11 +14,7 @@
 	var/list/messagetext = list()
 	var/currmsg = 0
 	var/aicurrmsg = 0
-	var/state = STATE_DEFAULT
-	var/aistate = STATE_DEFAULT
-	var/message_cooldown = 0
-	var/centcomm_message_cooldown = 0
-	var/tmp_alertlevel = 0
+
 	var/const/STATE_DEFAULT = 1
 	var/const/STATE_CALLSHUTTLE = 2
 	var/const/STATE_CANCELSHUTTLE = 3
@@ -30,6 +26,12 @@
 	var/const/STATE_CONFIRM_LEVEL = 9
 	var/const/STATE_CREWTRANSFER = 10
 	var/const/STATE_NIGHTSHIFT = 11
+
+	var/state = STATE_DEFAULT
+	var/aistate = STATE_DEFAULT
+	var/message_cooldown = 0
+	var/centcomm_message_cooldown = 0
+	var/tmp_alertlevel = 0
 
 	var/status_display_freq = "1435"
 	var/stat_msg1
