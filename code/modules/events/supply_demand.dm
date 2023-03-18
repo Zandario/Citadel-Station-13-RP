@@ -96,12 +96,13 @@
 /**
  * Event Handler for responding to the supply shuttle arriving at centcom.
  */
-/datum/event/supply_demand/proc/handle_sold_shuttle(var/area/area_shuttle)
-	var/match_found = 0;
+/datum/event/supply_demand/proc/handle_sold_shuttle(area/area_shuttle)
+	var/match_found = 0
 
 	for(var/atom/movable/MA in area_shuttle)
 		// Special case to allow us to count mechs!
-		if(MA.anchored && !istype(MA, /obj/mecha))	continue // Ignore anchored stuff
+		if(MA.anchored && !ismecha(MA))
+			continue // Ignore anchored stuff
 
 		// If its a crate, search inside of it for matching items.
 		if(istype(MA, /obj/structure/closet/crate))

@@ -22,10 +22,10 @@
 //items that use internal storage have the option of calling this to emulate default storage MouseDrop behaviour.
 //returns 1 if the master item's parent's MouseDrop() should be called, 0 otherwise. It's strange, but no other way of
 //doing it without the ability to call another proc's parent, really.
-/obj/item/storage/internal/proc/handle_mousedrop(mob/user as mob, obj/over_object as obj)
+/obj/item/storage/internal/proc/handle_mousedrop(mob/user, obj/over_object)
 	if (ishuman(user) || issmall(user)) //so monkeys can take off their backpacks -- Urist
 
-		if (istype(user.loc,/obj/mecha)) // stops inventory actions in a mech
+		if (ismecha(user.loc)) // stops inventory actions in a mech
 			return 0
 
 		if(over_object == user && Adjacent(user)) // this must come before the screen objects only block

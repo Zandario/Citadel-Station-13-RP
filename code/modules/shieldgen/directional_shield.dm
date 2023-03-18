@@ -412,7 +412,7 @@
 
 		destroy_shields()
 	else
-		if(istype(user.loc, /obj/mecha))
+		if(ismecha(user.loc))
 			setDir(user.loc.dir)
 		else
 			setDir(user.dir)

@@ -723,7 +723,7 @@
 			bodytemperature -= temperature_loss
 	else
 		var/loc_temp = T0C
-		if(istype(loc, /obj/mecha))
+		if(ismecha(loc))
 			var/obj/mecha/M = loc
 			loc_temp =  M.return_temperature()
 		else if(istype(loc, /obj/machinery/atmospherics/component/unary/cryo_cell))

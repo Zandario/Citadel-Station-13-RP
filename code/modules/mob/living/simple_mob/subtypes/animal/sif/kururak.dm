@@ -277,7 +277,7 @@
 
 		L.add_modifier(/datum/modifier/grievous_wounds, 60 SECONDS)
 
-	else if(istype(A, /obj/mecha))
+	else if(ismecha(A))
 		visible_message(SPAN_DANGER("\The [src] rakes its claws against \the [A]."))
 		var/obj/mecha/M = A
 		M.take_damage(damage_to_apply)
@@ -376,7 +376,7 @@
 		if(issilicon(L) && holder.a_intent != INTENT_GRAB)
 			holder.a_intent = INTENT_DISARM
 
-	else if(istype(A, /obj/mecha))
+	else if(ismecha(A))
 		holder.a_intent = INTENT_GRAB
 
 /datum/ai_holder/simple_mob/intentional/kururak/post_melee_attack()

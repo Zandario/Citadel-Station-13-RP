@@ -132,7 +132,7 @@
 					return FALSE
 		return TRUE
 
-	if(istype(the_target, /obj/mecha))
+	if(ismecha(the_target))
 		var/obj/mecha/M = the_target
 		if(M.occupant)
 			return can_attack(M.occupant)

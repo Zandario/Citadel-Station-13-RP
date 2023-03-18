@@ -34,7 +34,7 @@
 	return
 
 /obj/item/organ/internal/robotic/heatsink/proc/get_environment_temperature()
-	if(istype(owner.loc, /obj/mecha))
+	if(ismecha(owner.loc))
 		var/obj/mecha/M = owner.loc
 		return M.return_temperature()
 	else if(istype(owner.loc, /obj/machinery/atmospherics/component/unary/cryo_cell))

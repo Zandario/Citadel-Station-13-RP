@@ -34,10 +34,10 @@
 		return 0
 	return ..()
 
-/obj/item/projectile/bullet/check_penetrate(var/atom/A)
+/obj/item/projectile/bullet/check_penetrate(atom/A)
 	if(!A || !A.density) return 1 //if whatever it was got destroyed when we hit it, then I guess we can just keep going
 
-	if(istype(A, /obj/mecha))
+	if(ismecha(A))
 		return 1 //mecha have their own penetration handling
 
 	if(ismob(A))

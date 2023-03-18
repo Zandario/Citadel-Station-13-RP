@@ -520,7 +520,7 @@
 		return FALSE
 	if(!ignore_source_check && firer)
 		var/mob/M = firer
-		if((target == firer) || ((target == firer.loc) && istype(firer.loc, /obj/mecha)) || (target in firer.buckled_mobs) || (istype(M) && (M.buckled == target)))
+		if((target == firer) || ((target == firer.loc) && ismecha(firer.loc)) || (target in firer.buckled_mobs) || (istype(M) && (M.buckled == target)))
 			return FALSE
 	if(!ignore_loc && (loc != target.loc))
 		return FALSE
@@ -545,7 +545,7 @@
 		trajectory_ignore_forcemove = FALSE
 		return FALSE
 	if(firer && !reflected)
-		if(A == firer || (A == firer.loc && istype(A, /obj/mecha))) //cannot shoot yourself or your mech
+		if(A == firer || (A == firer.loc && ismecha(A))) //cannot shoot yourself or your mech
 			trajectory_ignore_forcemove = TRUE
 			forceMove(get_turf(A))
 			trajectory_ignore_forcemove = FALSE

@@ -137,14 +137,14 @@
 
 		did_entry = TRUE
 
-/area/shuttle/excursion/away_alienship/proc/abduct(var/mob/living/mob)
+/area/shuttle/excursion/away_alienship/proc/abduct(mob/living/mob)
 	if(isliving(mob))
 		var/mob/living/L = mob
 
 		//Situations to get the mob out of
 		if(L.buckled)
 			L.buckled.unbuckle_mob()
-		if(istype(L.loc,/obj/mecha))
+		if(ismecha(L.loc))
 			var/obj/mecha/M = L.loc
 			M.go_out()
 		else if(istype(L.loc,/obj/machinery/sleeper))

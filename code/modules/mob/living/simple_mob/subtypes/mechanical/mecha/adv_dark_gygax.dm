@@ -171,7 +171,7 @@
 				if(L && L.has_AI()) // Some mobs delete themselves when dying.
 					L.ai_holder.react_to_attack(src)
 
-			else if(istype(thing, /obj/mecha))
+			else if(ismecha(thing))
 				var/obj/mecha/M = thing
 				M.take_damage(i * 2, "energy") // Mechs don't have a concept for siemens so energy armor check is the best alternative.
 

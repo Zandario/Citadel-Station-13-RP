@@ -37,13 +37,13 @@
 		return TRUE
 	return FALSE
 
-/obj/machinery/mech_sensor/proc/give_feedback(O as obj)
+/obj/machinery/mech_sensor/proc/give_feedback(obj/O)
 	var/block_message = "<span class='warning'>Movement control overridden. Area denial active.</span>"
 	var/feedback_timer = 0
 	if(feedback_timer)
 		return
 
-	if(istype(O, /obj/mecha))
+	if(ismecha(O))
 		var/obj/mecha/R = O
 		if(R && R.occupant)
 			to_chat(R.occupant,block_message)

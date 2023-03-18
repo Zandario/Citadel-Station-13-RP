@@ -246,7 +246,7 @@
 		brightness = T.get_lumcount()
 
 	//Snowflake treatment of potential locations
-	else if(istype(loc,/obj/mecha)) //I imagine there's like displays and junk in there. Use the lights!
+	else if(ismecha(loc)) //I imagine there's like displays and junk in there. Use the lights!
 		brightness = 1
 	else if(istype(loc,/obj/item/holder)) //Poor carried teshari and whatnot should adjust appropriately
 		var/turf/T = get_turf(src)

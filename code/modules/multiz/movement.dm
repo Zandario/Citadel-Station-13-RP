@@ -16,7 +16,7 @@
 	if(eyeobj)
 		return eyeobj.zMove(direction)
 
-	if(istype(loc,/obj/mecha))
+	if(ismecha(loc))
 		var/obj/mecha/mech = loc
 		return mech.relaymove(src,direction)
 

@@ -102,7 +102,7 @@
 	if(!canClick()) // in the year 2000...
 		return
 
-	if(istype(loc, /obj/mecha))
+	if(ismecha(loc))
 		if(!locate(/turf) in list(A, A.loc)) // Prevents inventory from being drilled
 			return
 		var/obj/mecha/M = loc
