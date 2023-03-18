@@ -115,7 +115,7 @@
 	add_overlay(overlays_to_add)
 
 /obj/vehicle_old/train/engine/quadbike/Bump(atom/Obstacle)
-	if(!istype(Obstacle, /atom/movable))
+	if(!ismovable(Obstacle))
 		return
 	var/atom/movable/A = Obstacle
 
@@ -216,7 +216,7 @@
 	update_load()
 
 /obj/vehicle_old/train/trolley/trailer/Bump(atom/Obstacle)
-	if(!istype(Obstacle, /atom/movable))
+	if(!ismovable(Obstacle))
 		return
 	var/atom/movable/A = Obstacle
 

@@ -265,7 +265,7 @@
 
 /obj/item/melee/energy/sword/dropped(mob/user, atom_flags, atom/newLoc)
 	. = ..()
-	if(!istype(loc,/mob))
+	if(!ismob(loc))
 		deactivate(user)
 
 /obj/item/melee/energy/sword/activate(mob/living/user)

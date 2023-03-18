@@ -353,7 +353,7 @@
 		if(isnull(spawned_mobs[I]))
 			tally += RM_DIFF_VALUE_MOB	// Mobs so annihilated they were deleted
 			rm_controller.dbg("ZM(sz): Scoring one mob annihilated.")
-		if(istype(spawned_mobs[I],/mob))
+		if(ismob(spawned_mobs[I]))
 			var/mob/M = spawned_mobs[I]
 			if(M.stat > 0)	// Knocked out or dead or anything other than normal
 				tally += RM_DIFF_VALUE_MOB

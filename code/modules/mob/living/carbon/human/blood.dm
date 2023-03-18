@@ -336,7 +336,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 /proc/blood_splatter(target, datum/reagent/blood/source, large)
 
 	// We're not going to splatter at all because we're in something and that's silly.
-	if(istype(source,/atom/movable))
+	if(ismovable(source))
 		var/atom/movable/A = source
 		if(!isturf(A.loc))
 			return

@@ -271,8 +271,8 @@
 			if(target)
 				W.dismantle_wall()
 				return 1
-	else if(istype(target,/atom/movable))
-		if(istype(target,/mob) || do_after(src, 5)) // 5 ticks to eat stuff like tables.
+	else if(ismovable(target))
+		if(ismob(target) || do_after(src, 5)) // 5 ticks to eat stuff like tables.
 			var/atom/movable/objectOrMob = target
 			if(istype(objectOrMob, /obj/machinery/door))	// Doors and airlocks take time based on their durability and our damageo.
 				var/obj/machinery/door/D = objectOrMob

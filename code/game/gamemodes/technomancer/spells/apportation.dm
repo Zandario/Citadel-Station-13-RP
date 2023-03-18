@@ -15,7 +15,7 @@
 	aspect = ASPECT_TELE
 
 /obj/item/spell/apportation/on_ranged_cast(atom/hit_atom, mob/user)
-	if(istype(hit_atom, /atom/movable))
+	if(ismovable(hit_atom))
 		var/atom/movable/AM = hit_atom
 
 		if(!AM.loc) //Don't teleport HUD telements to us.
@@ -75,4 +75,3 @@
 				G.icon_state = "grabbed1"
 				G.synch()
 				qdel(src)
-

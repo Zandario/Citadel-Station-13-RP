@@ -301,7 +301,7 @@ SUBSYSTEM_DEF(overlays)
 		return
 
 	// the things I do for performance
-	var/is_movable = istype(src, /atom/movable)
+	var/is_movable = ismovable(src)
 
 	SSoverlays.context_needs_automangle = FALSE
 	overlays = build_appearance_list(overlays)
@@ -326,7 +326,7 @@ SUBSYSTEM_DEF(overlays)
 	if (!overlays)
 		return
 
-	var/is_movable = istype(src, /atom/movable)
+	var/is_movable = ismovable(src)
 
 	SSoverlays.context_needs_automangle = FALSE
 	overlays = build_appearance_list(overlays)
@@ -358,7 +358,7 @@ SUBSYSTEM_DEF(overlays)
 
 	var/list/cached_other = other.our_overlays
 	if(cached_other)
-		if (istype(src, /atom/movable))
+		if (ismovable(src))
 			for (var/i in 1 to length(cached_other))
 				var/image/I = cached_other[i]
 				if (I.plane != FLOAT_PLANE)

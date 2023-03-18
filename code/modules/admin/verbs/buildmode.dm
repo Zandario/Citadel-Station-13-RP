@@ -404,7 +404,7 @@ GLOBAL_LIST_EMPTY(buildholders)
 
 		if(4) // Throw
 			if(pa.Find("left"))
-				if(istype(object, /atom/movable))
+				if(ismovable(object))
 					holder.throw_atom = object
 			if(pa.Find("right"))
 				if(holder.throw_atom)

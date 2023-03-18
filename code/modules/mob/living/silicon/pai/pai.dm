@@ -270,10 +270,10 @@
 	last_special = world.time + 100
 
 	//I'm not sure how much of this is necessary, but I would rather avoid issues.
-	if(istype(card.loc,/obj/item/rig_module))
+	if(istype(card.loc, /obj/item/rig_module))
 		to_chat(src, "There is no room to unfold inside this rig module. You're good and stuck.")
 		return 0
-	else if(istype(card.loc,/mob))
+	else if(ismob(card.loc))
 		var/mob/holder = card.loc
 		var/datum/belly/inside_belly = check_belly(card)
 		if(inside_belly)
@@ -288,7 +288,7 @@
 					H.visible_message("<span class='danger'>\The [src] explodes out of \the [H]'s [affecting.name] in shower of gore!</span>")
 					break
 		holder.drop_item_to_ground(card, INV_OP_FORCE)
-	else if(istype(card.loc,/obj/item/pda))
+	else if(istype(card.loc, /obj/item/pda))
 		var/obj/item/pda/holder = card.loc
 		holder.pai = null
 

@@ -1563,7 +1563,7 @@
 
 /obj/item/melee/fluffstuff/wolfgirlsword/dropped(mob/user, flags, atom/newLoc)
 	..()
-	if(!istype(loc,/mob))
+	if(!ismob(loc))
 		deactivate(user)
 
 /obj/item/melee/fluffstuff/wolfgirlsword/activate(mob/living/user)

@@ -15,7 +15,7 @@
 /datum/component/slaved_atom_to_loc/Initialize(path, remake = TRUE)
 	if(!ispath(path, /atom/movable))
 		return COMPONENT_INCOMPATIBLE
-	if(!istype(parent, /atom/movable))
+	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
 	. = ..()
 	if(. == COMPONENT_INCOMPATIBLE)

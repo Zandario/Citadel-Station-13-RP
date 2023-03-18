@@ -174,7 +174,7 @@
 		possible_targets = list_targets()
 	for(var/possible_target in possible_targets)
 		var/target_threatlevel
-		if(istype(possible_target, /atom/movable)) //Test
+		if(ismovable(possible_target)) //Test
 			var/atom/movable/threatener = possible_target
 			target_threatlevel = threatener.get_threat(holder)
 		if(checkthreatened(possible_target, target_threatlevel)) //won't attack anything that ain't a big threat

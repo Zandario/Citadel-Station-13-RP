@@ -17,25 +17,25 @@
 
 /obj/structure/portal_subtle/Bumped(atom/movable/AM)
 	. = ..()
-	if(istype(AM, /mob) && !istype(AM, /mob/living))
+	if(ismob(AM) && !istype(AM, /mob/living))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	teleport(AM)
 
 /obj/structure/portal_subtle/Crossed(atom/movable/AM)
 	. = ..()
-	if(istype(AM,/mob) && !(istype(AM,/mob/living)))
+	if(ismob(AM) && !istype(AM, /mob/living))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	teleport(AM)
 
 /obj/structure/portal_subtle/attack_hand(mob/user, list/params)
-	if(istype(user) && !(istype(user,/mob/living)))
+	if(ismob(user) && !istype(user, /mob/living))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	spawn(0)
 		src.teleport(user)
 		return
 	return
 
-/obj/structure/portal_subtle/proc/teleport(atom/movable/M as mob|obj)
+/obj/structure/portal_subtle/proc/teleport(atom/movable/M)
 	if(istype(M, /obj/effect)) //sparks don't teleport
 		return
 	if (M.anchored&&istype(M, /obj/mecha))
@@ -48,7 +48,7 @@
 	if (istype(target, /obj/structure/portal_subtle))
 		qdel(src)
 		return
-	if (istype(M, /atom/movable))
+	if (ismovable(M))
 		if(prob(failchance)) //oh dear a problem, put em in deep space
 			src.icon_state = "portal1"
 			do_noeffect_teleport(M, locate(rand(5, world.maxx - 5), rand(5, world.maxy -5), 3), 0)
@@ -65,7 +65,7 @@
 	anchored = 1
 
 /obj/structure/portal_gateway/Bumped(mob/M as mob|obj)
-	if(istype(M,/mob) && !(istype(M,/mob/living)))
+	if(ismob(M) && !(istype(M, /mob/living)))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	var/obj/landmark/dest = pick(eventdestinations)
 	if(dest)

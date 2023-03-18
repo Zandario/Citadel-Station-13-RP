@@ -384,7 +384,7 @@
 	var/turf/curloc = get_turf(source)
 	var/turf/targloc = get_turf(target)
 
-	if(istype(source, /atom/movable))
+	if(ismovable(source))
 		var/atom/movable/MT = source
 		if(MT.locs && MT.locs.len)	// Multi tile!
 			for(var/turf/T in MT.locs)

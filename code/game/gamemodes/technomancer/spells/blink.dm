@@ -54,7 +54,7 @@
 	return
 
 /obj/item/spell/blink/on_ranged_cast(atom/hit_atom, mob/user)
-	if(istype(hit_atom, /atom/movable))
+	if(ismovable(hit_atom))
 		var/atom/movable/AM = hit_atom
 		if(!within_range(AM))
 			to_chat(user, "<span class='warning'>\The [AM] is too far away to blink.</span>")
@@ -87,7 +87,7 @@
 		to_chat(user, "<span class='warning'>You need more energy to blink yourself away!</span>")
 
 /obj/item/spell/blink/on_melee_cast(atom/hit_atom, mob/living/user, def_zone)
-	if(istype(hit_atom, /atom/movable))
+	if(ismovable(hit_atom))
 		var/atom/movable/AM = hit_atom
 		if(!allowed_to_teleport())
 			to_chat(user, "<span class='warning'>Teleportation doesn't seem to work here.</span>")

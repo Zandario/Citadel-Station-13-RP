@@ -13,7 +13,7 @@ GLOBAL_LIST_BOILERPLATE(all_portals, /obj/effect/portal)
 	anchored = 1.0
 
 /obj/effect/portal/Bumped(mob/M as mob|obj)
-	if(istype(M,/mob) && !(istype(M,/mob/living)))
+	if(ismob(M) && !istype(M, /mob/living))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	teleport(M)
 
@@ -22,7 +22,7 @@ GLOBAL_LIST_BOILERPLATE(all_portals, /obj/effect/portal)
 	teleport(AM)
 
 /obj/effect/portal/attack_hand(mob/user, list/params)
-	if(istype(user) && !(istype(user,/mob/living)))
+	if(ismob(user) && !istype(user,/mob/living))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	spawn(0)
 		src.teleport(user)
@@ -43,10 +43,9 @@ GLOBAL_LIST_BOILERPLATE(all_portals, /obj/effect/portal)
 	if (!( target ))
 		qdel(src)
 		return
-	if (istype(M, /atom/movable))
+	if (ismovable(M))
 		if(prob(failchance))
 			src.icon_state = "portal1"
 			do_teleport(M, locate(rand(5, world.maxx - 5), rand(5, world.maxy -5), pick(GLOB.using_map.get_map_levels(z))), 0)
 		else
 			do_teleport(M, target, 1) ///You will appear adjacent to the beacon
-

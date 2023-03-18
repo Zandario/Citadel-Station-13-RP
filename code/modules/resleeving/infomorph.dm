@@ -225,7 +225,7 @@ var/list/infomorph_emotions = list(
 
 	last_special = world.time + 100
 
-	if(istype(card.loc,/mob))
+	if(ismob(card.loc))
 		var/mob/holder = card.loc
 		if(ishuman(holder))
 			var/mob/living/carbon/human/H = holder

@@ -40,7 +40,7 @@
 		return 0
 
 /obj/vehicle_old/train/Bump(atom/Obstacle)
-	if(!istype(Obstacle, /atom/movable))
+	if(!ismovable(Obstacle))
 		return
 	var/atom/movable/A = Obstacle
 
