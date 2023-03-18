@@ -149,7 +149,7 @@
 
 			//Check that our zone hasn't been cut off recently.
 			//This happens when windows move or are constructed. We need to rebuild.
-			if((previously_open & d) && istype(potential, /turf/simulated))
+			if((previously_open & d) && issimulatedturf(potential))
 				var/turf/simulated/S = potential
 				if(zone && S.zone == zone)
 					// todo: safely remove? for now the hueristic doesn't seem to work
@@ -161,7 +161,7 @@
 
 		open_directions |= d
 
-		if(istype(potential, /turf/simulated))
+		if(issimulatedturf(potential))
 			var/turf/simulated/S = potential
 			S.open_directions |= REVERSE_DIR(d)
 			if(S.has_valid_zone())

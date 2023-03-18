@@ -66,13 +66,14 @@
 		affect_coord(x-r, y-t, ex_act_force, pull_chance, turf_removal_chance)
 	return
 
-/obj/effect/bhole/proc/affect_coord(var/x, var/y, var/ex_act_force, var/pull_chance, var/turf_removal_chance)
+/obj/effect/bhole/proc/affect_coord(x, y, ex_act_force, pull_chance, turf_removal_chance)
 	//Get turf at coordinate
 	var/turf/T = locate(x, y, z)
-	if(isnull(T))	return
+	if(isnull(T))
+		return
 
 	//Pulling and/or legacy_ex_act-ing movable atoms in that turf
-	if( prob(pull_chance) )
+	if(prob(pull_chance))
 		for(var/obj/O in T.contents)
 			if(O.anchored)
 				LEGACY_EX_ACT(O, ex_act_force, null)
@@ -82,6 +83,6 @@
 			step_towards(M,src)
 
 	//Destroying the turf
-	if( T && istype(T,/turf/simulated) && prob(turf_removal_chance) )
+	if(T && issimulatedturf(T) && prob(turf_removal_chance))
 		var/turf/simulated/ST = T
 		ST.ScrapeAway()

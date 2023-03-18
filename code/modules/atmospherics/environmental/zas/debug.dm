@@ -42,7 +42,7 @@ var/image/mark = image('icons/testing/Zone.dmi', icon_state = "mark")
 /client/proc/Zone_Info(turf/T as null|turf)
 	set category = "Debug"
 	if(T)
-		if(istype(T,/turf/simulated) && T:zone)
+		if(issimulatedturf(T) && T:zone)
 			T:zone:dbg_data(src)
 		else
 			to_chat(mob, "No zone here.")
@@ -88,7 +88,7 @@ var/image/mark = image('icons/testing/Zone.dmi', icon_state = "mark")
 	if(!istype(other_turf))
 		to_chat(mob, "there's no turf in that dir.")
 		return
-	if(!istype(other_turf, /turf/simulated))
+	if(!issimulatedturf(other_turf))
 		to_chat(mob, SPAN_RED("the other turf is unsimulated."))
 
 	var/t_block = T.CanAtmosPass(other_turf, get_dir_multiz(T, other_turf))

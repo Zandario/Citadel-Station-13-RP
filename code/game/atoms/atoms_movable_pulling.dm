@@ -117,7 +117,7 @@
 							H.vessel.remove_reagent("blood", 1)
 				if(bloodtrail)
 					var/turf/location = M.loc
-					if(istype(location, /turf/simulated))
+					if(issimulatedturf(location))
 						location.add_blood(M)
 			//pull damage with injured people
 				if(prob(25))
@@ -128,7 +128,7 @@
 					M.adjustBruteLoss(2)
 					visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!</span>")
 					var/turf/location = M.loc
-					if (istype(location, /turf/simulated))
+					if (issimulatedturf(location))
 						var/bloodtrail = 1	//Checks if it's possible to even spill blood
 						if(ishuman(M))
 							var/mob/living/carbon/human/H = M
@@ -141,7 +141,7 @@
 								else
 									H.vessel.remove_reagent("blood", 1)
 						if(bloodtrail)
-							if(istype(location, /turf/simulated))
+							if(issimulatedturf(location))
 								location.add_blood(M)
 
 /**

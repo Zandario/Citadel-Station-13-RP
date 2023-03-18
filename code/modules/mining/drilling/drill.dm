@@ -89,7 +89,7 @@
 		return
 
 	//Drill through the flooring, if any.
-	if(istype(get_turf(src), /turf/simulated))
+	if(issimulatedturf(get_turf(src)))
 		var/turf/simulated/T = get_turf(src)
 		LEGACY_EX_ACT(T, 2, null)
 

@@ -272,7 +272,7 @@
 			if (NT.loc != first.loc && !(get_area_type(NT.loc) & allowedAreas))
 				// Edge of a protected area.  Lets stop here...
 				continue
-			if (!istype(NT, /turf/simulated))
+			if (!issimulatedturf(NT))
 				// Great, unsimulated... eh, just stop searching here
 				continue
 			// Okay, NT looks promising, lets continue the search there!

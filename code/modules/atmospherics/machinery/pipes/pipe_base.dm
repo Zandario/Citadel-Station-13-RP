@@ -127,8 +127,8 @@
 	else
 		return pipe_color
 
-/obj/machinery/atmospherics/pipe/hide(var/i)
-	if(istype(loc, /turf/simulated))
+/obj/machinery/atmospherics/pipe/hide(i)
+	if(issimulatedturf(loc))
 		invisibility = i ? 100 : 0
 	update_icon()
 

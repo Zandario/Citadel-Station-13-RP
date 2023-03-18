@@ -722,8 +722,8 @@
 	. = 1
 	return 1
 
-/atom/proc/add_vomit_floor(mob/living/carbon/M as mob, var/toxvomit = 0)
-	if( istype(src, /turf/simulated) )
+/atom/proc/add_vomit_floor(mob/living/carbon/M, toxvomit = 0)
+	if(issimulatedturf(src))
 		var/obj/effect/debris/cleanable/vomit/this = new /obj/effect/debris/cleanable/vomit(src)
 		this.virus2 = virus_copylist(M.virus2)
 

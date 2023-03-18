@@ -376,7 +376,7 @@
 /turf/proc/clean(atom/source, mob/user)
 	if(source.reagents.has_reagent("water", 1) || source.reagents.has_reagent("cleaner", 1))
 		clean_blood()
-		if(istype(src, /turf/simulated))
+		if(issimulatedturf(src))
 			var/turf/simulated/T = src
 			T.dirt = 0
 		for(var/obj/effect/O in src)

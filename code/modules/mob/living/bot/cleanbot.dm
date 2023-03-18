@@ -34,7 +34,7 @@
 		playsound(src.loc, 'sound/machines/synth_yes.ogg', 50, FALSE)
 
 	if(wet_floors && prob(5)) // Make a mess
-		if(istype(loc, /turf/simulated))
+		if(issimulatedturf(loc))
 			var/turf/simulated/T = loc
 			T.wet_floor()
 
@@ -107,7 +107,7 @@
 	update_icons()
 	var/cleantime = istype(D, /obj/effect/debris/cleanable/dirt) ? 10 : 50
 	if(do_after(src, cleantime))
-		if(istype(loc, /turf/simulated))
+		if(issimulatedturf(loc))
 			var/turf/simulated/f = loc
 			f.dirt = FALSE
 		if(!D)

@@ -290,7 +290,7 @@
 			qdel(C)
 			target.clean_blood()
 			water.use_charge(5)
-			if(istype(target, /turf/simulated))
+			if(issimulatedturf(target))
 				var/turf/simulated/T = target
 				T.dirt = 0
 	return

@@ -1088,7 +1088,7 @@
 			var/turf/tile = loc
 			if(isturf(tile))
 				tile.clean_blood()
-				if (istype(tile, /turf/simulated))
+				if (issimulatedturf(tile))
 					var/turf/simulated/S = tile
 					S.dirt = 0
 				for(var/A in tile)
@@ -1136,7 +1136,7 @@
 			if(isturf(tile))
 				water.use_charge(1)
 				tile.clean_blood()
-				if(istype(tile, /turf/simulated))
+				if(issimulatedturf(tile))
 					var/turf/simulated/T = tile
 					T.dirt = 0
 				for(var/A in tile)

@@ -51,7 +51,7 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
 			warning("Z-level [z] has invalid baseturf '[SSmapping.level_trait(z, ZTRAIT_BASETURF)]'")
 			. = /turf/space
 	if(. == /turf/space)		// no space/basic check, if you use space/basic in a map honestly get bent
-		if(istype(GetBelow(src), /turf/simulated))
+		if(issimulatedturf(GetBelow(src)))
 			. = /turf/simulated/open
 /**
  * get baseturf on bottom
@@ -85,17 +85,17 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
 					warning("Z-level [z] has invalid baseturf '[SSmapping.level_trait(z, ZTRAIT_BASETURF)]'")
 					path = /turf/space
 			if(path == /turf/space)		// no space/basic check, if you use space/basic in a map honestly get bent
-				if(istype(GetBelow(src), /turf/simulated))
+				if(issimulatedturf(GetBelow(src)))
 					path = /turf/simulated/open
 		if(/turf/space/basic)
 			// basic doesn't initialize and this will cause issues
 			// no warning though because this can happen naturaly as a result of it being built on top of
-			if(istype(GetBelow(src), /turf/simulated))
+			if(issimulatedturf(GetBelow(src)))
 				path = /turf/simulated/open
 			else
 				path = /turf/space
 		if(/turf/space)
-			if(istype(GetBelow(src), /turf/simulated))
+			if(issimulatedturf(GetBelow(src)))
 				path = /turf/simulated/open
 		if(/turf/simulated/open)
 			if(istype(GetBelow(src), /turf/space))

@@ -561,16 +561,16 @@
  * around us, then checks the difference.
  */
 /proc/getOPressureDifferential(turf/loc)
-	var/minp=16777216;
-	var/maxp=0;
+	var/minp = 16777216;
+	var/maxp = 0;
 	for(var/dir in GLOB.cardinal)
-		var/turf/simulated/T=get_turf(get_step(loc,dir))
+		var/turf/simulated/T = get_turf(get_step(loc,dir))
 		var/cp=0
-		if(T && istype(T) && T.zone)
+		if(T && issimulatedturf(T) && T.zone)
 			var/datum/gas_mixture/environment = T.return_air()
 			cp = environment.return_pressure()
 		else
-			if(istype(T,/turf/simulated))
+			if(issimulatedturf(T))
 				continue
 		if(cp<minp)
 			minp = cp

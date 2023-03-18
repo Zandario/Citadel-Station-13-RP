@@ -14,7 +14,7 @@
 	energy_conversion_rate = 0.0012
 
 //Search for space turfs within range that are adjacent to a simulated turf.
-/obj/machinery/shield_gen/external/get_shielded_turfs_on_z_level(var/turf/gen_turf)
+/obj/machinery/shield_gen/external/get_shielded_turfs_on_z_level(turf/gen_turf)
 	var/list/out = list()
 
 	if (!gen_turf)
@@ -24,11 +24,11 @@
 	for (var/x_offset = -field_radius; x_offset <= field_radius; x_offset++)
 		for (var/y_offset = -field_radius; y_offset <= field_radius; y_offset++)
 			T = locate(gen_turf.x + x_offset, gen_turf.y + y_offset, gen_turf.z)
-			if (is_type_in_list(T,blockedturfs))
+			if (is_type_in_list(T, blockedturfs))
 				if(!T.noshield)
 					//check neighbors of T
 					for(var/i in orange(1, T))
-						if(istype(i, /turf/simulated) && !is_type_in_list(i,blockedturfs))
+						if(issimulatedturf(i) && !is_type_in_list(i, blockedturfs))
 							out += T
 							break
 	return out

@@ -15,7 +15,7 @@
 		user = usr
 	if(!length(items))
 		return
-	if (!mob(user))
+	if (!ismob(user))
 		if (isclient(user))
 			var/client/client = user
 			user = client.mob

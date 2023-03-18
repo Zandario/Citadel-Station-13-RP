@@ -22,7 +22,7 @@
 /turf/proc/clean_deploy(atom/source)
 	if(source.reagents.has_reagent("water", 1))
 		clean_blood()
-		if(istype(src, /turf/simulated))
+		if(issimulatedturf(src))
 			var/turf/simulated/T = src
 			T.dirt = 0
 		for(var/obj/effect/O in src)

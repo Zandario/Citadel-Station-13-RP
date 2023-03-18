@@ -102,7 +102,7 @@ Class Procs:
 
 /datum/zas_connection/proc/update()
 	//to_chat(world, "Updated, \...")
-	if(!istype(A,/turf/simulated))
+	if(!issimulatedturf(A))
 		//to_chat(world, "Invalid A.")
 		erase()
 		return
@@ -117,7 +117,7 @@ Class Procs:
 		if(ATMOS_PASS_NOT_BLOCKED)
 			mark_direct()
 
-	var/b_is_space = !istype(B,/turf/simulated)
+	var/b_is_space = !issimulatedturf(B)
 
 	if(state & CONNECTION_SPACE)
 		if(!b_is_space)

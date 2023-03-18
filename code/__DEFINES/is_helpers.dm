@@ -15,7 +15,7 @@
 
 #define isweakref(D) (istype(D, /datum/weakref))
 
-#define isTaurTail(A)	istype(A, /datum/sprite_accessory/tail/taur)
+#define isTaurTail(A) (istype(A, /datum/sprite_accessory/tail/taur))
 
 //Turfs
 
