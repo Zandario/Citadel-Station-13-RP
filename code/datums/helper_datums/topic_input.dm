@@ -22,6 +22,18 @@
 		t = text2num(t)
 	return isnum(t) ? t : null
 
+/datum/topic_input/proc/getAtom(i)
+	var/t = getAndLocate(i)
+	return isatom(t) ? t : null
+
+/datum/topic_input/proc/getArea(i)
+	var/t = getAndLocate(i)
+	return isarea(t) ? t : null
+
+/datum/topic_input/proc/getTurf(i)
+	var/t = getAndLocate(i)
+	return isturf(t) ? t : null
+
 /datum/topic_input/proc/getObj(i)
 	var/t = getAndLocate(i)
 	return isobj(t) ? t : null
@@ -29,17 +41,6 @@
 /datum/topic_input/proc/getMob(i)
 	var/t = getAndLocate(i)
 	return ismob(t) ? t : null
-
-/datum/topic_input/proc/getTurf(i)
-	var/t = getAndLocate(i)
-	return isturf(t) ? t : null
-
-/datum/topic_input/proc/getAtom(i)
-	return getType(i,/atom)
-
-/datum/topic_input/proc/getArea(i)
-	var/t = getAndLocate(i)
-	return isarea(t) ? t : null
 
 /datum/topic_input/proc/getStr(i)//params should always be text, but...
 	var/t = get(i)

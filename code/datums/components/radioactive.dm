@@ -20,7 +20,7 @@
 	if(falloff)
 		src.falloff = falloff
 
-	if(istype(parent, /atom))
+	if(isatom(parent))
 		RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/rad_examine)
 		// if(istype(parent, /obj/item))
 		// 	RegisterSignal(parent, COMSIG_ITEM_ATTACK, .proc/rad_attack)

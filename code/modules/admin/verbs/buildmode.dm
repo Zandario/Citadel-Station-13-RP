@@ -452,10 +452,10 @@ GLOBAL_LIST_EMPTY(buildholders)
 				log_admin("[key_name(usr)] built ladders at [AREACOORD(holder.buildmode.coordA)], [AREACOORD(holder.buildmode.coordB)]")
 		if(7) // Move into contents
 			if(pa.Find("left"))
-				if(istype(object, /atom))
+				if(isatom(object))
 					holder.throw_atom = object
 			if(pa.Find("right"))
-				if(holder.throw_atom && istype(object, /atom/movable))
+				if(holder.throw_atom && ismovable(object))
 					object.forceMove(holder.throw_atom)
 					log_admin("[key_name(usr)] moved [object] into [holder.throw_atom].")
 		if(8) // Lights
@@ -503,7 +503,7 @@ GLOBAL_LIST_EMPTY(buildholders)
 						to_chat(user, SPAN_WARNING( "\The [L] is not AI controlled."))
 
 			if(pa.Find("right"))
-				if(istype(object, /atom)) // Force attack.
+				if(isatom(object)) // Force attack.
 					var/atom/A = object
 
 					if(pa.Find("alt"))

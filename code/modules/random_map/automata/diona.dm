@@ -149,11 +149,10 @@
 		if(WALL_CHAR)
 			return wall_type
 
-/datum/random_map/automata/diona/get_additional_spawns(var/value, var/turf/T)
-
+/datum/random_map/automata/diona/get_additional_spawns(value, turf/T)
 	if(value != FLOOR_CHAR)
 		for(var/thing in T)
-			if(istype(thing, /atom))
+			if(isatom(thing))
 				var/atom/A = thing
 				if(!(A.atom_flags & ATOM_ABSTRACT))
 					continue

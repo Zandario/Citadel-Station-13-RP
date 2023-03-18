@@ -2,7 +2,7 @@
 	var/flags = NONE
 
 /datum/component/empprotection/Initialize(_flags)
-	if(!istype(parent, /atom))
+	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 	flags = _flags
 	RegisterSignal(parent, list(COMSIG_ATOM_EMP_ACT), .proc/getEmpFlags)

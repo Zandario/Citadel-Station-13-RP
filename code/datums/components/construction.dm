@@ -113,7 +113,7 @@
 		parent.AddComponent(result)
 		qdel(src)
 
-	else if(ispath(result, /atom))
+	else if(isatom(result))
 		new result(drop_location())
 		qdel(parent)
 

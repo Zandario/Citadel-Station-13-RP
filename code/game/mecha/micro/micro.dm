@@ -34,7 +34,8 @@
 /obj/mecha/micro/melee_action(target as obj|mob|turf)
 	if(internal_damage&MECHA_INT_CONTROL_LOST)
 		target = SAFEPICK(oview(1,src))
-	if(!melee_can_hit || !istype(target, /atom)) return
+	if(!melee_can_hit || !isatom(target))
+		return
 	if(istype(target, /mob/living))
 		var/mob/living/M = target
 		if(src.occupant.a_intent == INTENT_HARM)
@@ -156,4 +157,3 @@
 
 /obj/effect/decal/mecha_wreckage/micro
 	icon = 'icons/mecha/micro.dmi'
-

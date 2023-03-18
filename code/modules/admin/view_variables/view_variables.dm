@@ -68,7 +68,7 @@
 
 	var/no_icon = FALSE
 
-	if(istype(D, /atom))
+	if(isatom(D))
 		sprite = get_flat_icon(D)
 		if(sprite)
 			hash = md5(sprite)

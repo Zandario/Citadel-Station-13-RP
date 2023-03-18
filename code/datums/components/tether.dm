@@ -9,7 +9,7 @@
 		return COMPONENT_INCOMPATIBLE
 	src.tether_target = tether_target
 	src.max_dist = max_dist
-	if (ispath(tether_name, /atom))
+	if (isatom(tether_name))
 		var/atom/tmp = tether_name
 		src.tether_name = initial(tmp.name)
 	else

@@ -25,7 +25,7 @@
 				return TRUE
 			return FALSE
 		if("loc")
-			if(istype(var_value, /atom))
+			if(isatom(var_value))
 				forceMove(var_value)
 				return TRUE
 			else if(isnull(var_value))
