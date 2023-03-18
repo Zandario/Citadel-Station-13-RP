@@ -131,7 +131,7 @@
 
 		// Patch holes in the ceiling
 		if(T)
-			if(istype(T, /turf/simulated/open) || istype(T, /turf/space))
+			if(isopenturf(T) || istype(T, /turf/space))
 				// Must be build adjacent to an existing floor/wall, no floating floors
 				var/turf/simulated/A = locate(/turf/simulated/floor) in T.CardinalTurfs()
 				if(!A)

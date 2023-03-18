@@ -697,7 +697,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 		dirn = get_dir(F, user)
 
 	var/end_dir = 0
-	if(istype(F, /turf/simulated/open))
+	if(isopenturf(F))
 		if(!can_use(2))
 			to_chat(user, "You don't have enough cable to do this!")
 			return
