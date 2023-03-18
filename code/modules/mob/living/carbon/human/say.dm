@@ -62,7 +62,7 @@
 				return 1
 		if (istype(other, /mob/living/silicon))
 			return 1
-		if (istype(other, /mob/living/carbon/brain))
+		if (isbrain(other))
 			return 1
 		if (istype(other, /mob/living/simple_mob/slime))
 			return 1

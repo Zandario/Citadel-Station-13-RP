@@ -15,7 +15,7 @@
 	if(isliving(target))
 		var/mob/living/M = target
 		if(M.stat>1) return
-		if(chassis.occupant.a_intent == INTENT_HARM || istype(chassis.occupant,/mob/living/carbon/brain)) //No tactile feedback for brains
+		if(chassis.occupant.a_intent == INTENT_HARM || isbrain(chassis.occupant)) //No tactile feedback for brains
 			M.apply_damage(dam_force, BRUTE)
 			M.adjustOxyLoss(round(dam_force/2))
 			M.updatehealth()
@@ -80,7 +80,7 @@
 	if(isliving(target))
 		var/mob/living/M = target
 		if(M.stat>1) return
-		if(chassis.occupant.a_intent == INTENT_HARM || istype(chassis.occupant,/mob/living/carbon/brain)) //No tactile feedback for brains
+		if(chassis.occupant.a_intent == INTENT_HARM || isbrain(chassis.occupant)) //No tactile feedback for brains
 			M.apply_damage(dam_force, BURN)
 			M.adjust_fire_stacks(1)
 			M.updatehealth()

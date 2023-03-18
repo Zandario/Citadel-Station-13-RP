@@ -288,9 +288,9 @@
 	SSnanoui.update_uis(src)
 	add_fingerprint(usr)
 
-/obj/machinery/computer/cloning/proc/scan_mob(mob/living/carbon/human/subject as mob)
+/obj/machinery/computer/cloning/proc/scan_mob(mob/living/carbon/human/subject)
 	var/brain_skip = 0
-	if (istype(subject, /mob/living/carbon/brain)) //Brain scans.
+	if (isbrain(subject)) //Brain scans.
 		brain_skip = 1
 	if ((isnull(subject)) || (!(ishuman(subject)) && !brain_skip) || (!subject.dna))
 		scantemp = "Error: Unable to locate valid genetic data."

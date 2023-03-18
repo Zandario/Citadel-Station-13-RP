@@ -54,7 +54,7 @@
 			return 1
 		if (istype(other, /mob/living/silicon))
 			return 1
-		if (istype(other, /mob/living/carbon/brain))
+		if (isbrain(other))
 			return 1
 	if(speaking && translation_context.can_translate(speaking, require_perfect = TRUE))
 		return TRUE

@@ -133,10 +133,11 @@
 			return 1
 		if (istype(other, /mob/living/silicon))
 			return 1
-		if (istype(other, /mob/living/carbon/brain))
+		if (isbrain(other))
 			return 1
 	return ..()
 
-/mob/living/voice/custom_emote(var/m_type=1,var/message = null,var/range=world.view)
-	if(!comm) return
+/mob/living/voice/custom_emote(m_type = 1, message, range = world.view)
+	if(!comm)
+		return
 	..(m_type,message,comm.video_range)

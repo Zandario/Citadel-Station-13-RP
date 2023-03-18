@@ -652,8 +652,8 @@
 		ME.MoveAction()
 
 /obj/mecha/relaymove(mob/user,direction)
-	if(user != src.occupant) //While not "realistic", this piece is player friendly.
-		if(istype(user,/mob/living/carbon/brain))
+	if(user != occupant) //While not "realistic", this piece is player friendly.
+		if(isbrain(user))
 			to_chat(user, "<span class='warning'>You try to move, but you are not the pilot! The exosuit doesn't respond.</span>")
 			return 0
 		user.forceMove(get_turf(src))
@@ -1977,7 +1977,7 @@
 	if(ishuman(occupant))
 		mob_container = src.occupant
 		RemoveActions(occupant, human_occupant=1)//AEIOU
-	else if(istype(occupant, /mob/living/carbon/brain))
+	else if(isbrain(occupant))
 		var/mob/living/carbon/brain/brain = occupant
 		mob_container = brain.container
 	else
@@ -2514,8 +2514,9 @@
 		user << browse(null,"window=exosuit_add_access")
 		return
 	if(href_list["dna_lock"])
-		if(usr != src.occupant)	return
-		if(istype(occupant, /mob/living/carbon/brain))
+		if(usr != src.occupant)
+			return
+		if(isbrain(occupant))
 			occupant_message("You are a brain. No.")
 			return
 		if(src.occupant)
