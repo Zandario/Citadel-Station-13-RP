@@ -379,14 +379,14 @@ GLOBAL_LIST_INIT(testing_global_profiler, list("_PROFILE_NAME" = "Global"))
 	return key_name(whom, TRUE, include_name)
 
 /proc/loc_name(atom/A)
-	if(!istype(A))
+	if(!isatom(A))
 		return "(INVALID LOCATION)"
 
 	var/turf/T = A
-	if (!istype(T))
+	if (!isturf(T))
 		T = get_turf(A)
 
-	if(istype(T))
+	if(isturf(T))
 		return "([AREACOORD(T)])"
 	else if(A.loc)
 		return "(UNKNOWN (?, ?, ?))"
