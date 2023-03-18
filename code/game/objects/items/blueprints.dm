@@ -265,7 +265,7 @@
 				if(get_area_type(NT.loc) == AREA_SPACE && (NT.CheckAirBlock(NT) == ATMOS_PASS_AIR_BLOCKED))
 					found += NT // So we include walls/doors not already in any area
 				continue
-			if (istype(NT, /turf/space))
+			if (isspaceturf(NT))
 				return ROOM_ERR_SPACE //omg hull breach we all going to die here
 			if (istype(NT, /turf/simulated/shuttle))
 				return ROOM_ERR_SPACE // Unsure why this, but was in old code. Trusting for now.

@@ -328,7 +328,7 @@
 	. = ..()
 	component_parts = list()
 
-/obj/machinery/mining/brace/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/mining/brace/attackby(obj/item/W, mob/user)
 	if(connected && connected.active)
 		to_chat(user, "<span class='notice'>You can't work with the brace of a running drill!</span>")
 		return
@@ -340,7 +340,7 @@
 
 	if(W.is_wrench())
 
-		if(istype(get_turf(src), /turf/space))
+		if(isspaceturf(get_turf(src)))
 			to_chat(user, "<span class='notice'>You can't anchor something to empty space. Idiot.</span>")
 			return
 

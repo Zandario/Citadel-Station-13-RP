@@ -255,14 +255,14 @@
 
 	if(damage > explosion_point)
 		if(!exploded)
-			if(!istype(L, /turf/space))
+			if(!isspaceturf(L))
 				announce_warning()
 			explode()
 	else if(damage > warning_point) // while the core is still damaged and it's still worth noting its status
 		shift_light(5, warning_color)
 		if(damage > emergency_point)
 			shift_light(7, emergency_color)
-		if(!istype(L, /turf/space) && (world.timeofday - lastwarning) >= WARNING_DELAY * 10)
+		if(!isspaceturf(L) && (world.timeofday - lastwarning) >= WARNING_DELAY * 10)
 			announce_warning()
 	else
 		shift_light(4,initial(light_color))
@@ -298,7 +298,7 @@
 	//We want the cap to scale linearly with power (and explosion_point). Let's aim for a cap of 5 at power = 300 (based on testing, equals roughly 5% per SM alert announcement).
 	var/damage_inc_limit = min((power/300)*(explosion_point/1000)*DAMAGE_RATE_LIMIT, DAMAGE_HARD_LIMIT)
 
-	if(!istype(L, /turf/space))
+	if(!isspaceturf(L))
 		env = L.return_air()
 		removed = env.remove(gasefficency * env.total_moles)	//Remove gas from surrounding area
 
@@ -413,7 +413,7 @@
 
 	data["integrity_percentage"] = round(get_integrity())
 	var/datum/gas_mixture/env = null
-	if(!istype(src.loc, /turf/space))
+	if(!isspaceturf(src.loc))
 		env = src.loc.return_air()
 
 	if(!env)
@@ -433,7 +433,7 @@
 
 	data["integrity_percentage"] = round(get_integrity())
 	var/datum/gas_mixture/env = null
-	if(!istype(src.loc, /turf/space))
+	if(!isspaceturf(src.loc))
 		env = src.loc.return_air()
 
 	if(!env)

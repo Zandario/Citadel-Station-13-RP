@@ -19,7 +19,7 @@
 		if(L.stat)
 			continue // Don't want dead people.
 		var/turf/T = get_turf(L)
-		if(istype(T, /turf/space) && istype(T.loc,/area/space))
+		if(isspaceturf(T) && istype(T.loc,/area/space))
 			potential_victims.Add(L)
 	if(potential_victims.len)
 		victim = pick(potential_victims)

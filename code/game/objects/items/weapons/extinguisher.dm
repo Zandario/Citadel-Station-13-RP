@@ -125,7 +125,7 @@
 				W.set_color()
 				W.set_up(my_target)
 
-		if((istype(usr.loc, /turf/space)) || (usr.lastarea.has_gravity == 0))
+		if((isspaceturf(usr.loc)) || (usr.lastarea.has_gravity == 0))
 			user.newtonian_move(get_dir(target, user))
 	else
 		return ..()

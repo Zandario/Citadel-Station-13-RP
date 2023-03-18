@@ -149,7 +149,7 @@
 	color = "#FFFFFF"
 
 /datum/reagent/nutriment/flour/touch_turf(turf/simulated/T)
-	if(!istype(T, /turf/space))
+	if(!isspaceturf(T))
 		new /obj/effect/debris/cleanable/flour(T)
 
 /datum/reagent/nutriment/flour/vitapaste
@@ -282,7 +282,7 @@
 		return
 
 	var/hotspot = (locate(/atom/movable/fire) in T)
-	if(hotspot && !istype(T, /turf/space))
+	if(hotspot && !isspaceturf(T))
 		var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
 		lowertemp.temperature = max(min(lowertemp.temperature-2000, lowertemp.temperature / 2), 0)
 		lowertemp.react()
@@ -308,7 +308,7 @@ End Citadel Change */
 		return
 
 	var/hotspot = (locate(/atom/movable/fire) in T)
-	if(hotspot && !istype(T, /turf/space))
+	if(hotspot && !isspaceturf(T))
 		var/datum/gas_mixture/lowertemp = T.remove_cell_volume()
 		lowertemp.temperature = max(min(lowertemp.temperature-2000, lowertemp.temperature / 2), 0)
 		lowertemp.react()
@@ -3360,7 +3360,7 @@ End Citadel Change */
 		drug_strength = drug_strength * 0.8
 
 	M.druggy = max(M.druggy, drug_strength)
-	if(prob(10) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
+	if(prob(10) && isturf(M.loc) && !isspaceturf(M.loc) && M.canmove && !M.restrained())
 		step(M, pick(GLOB.cardinal))
 
 /datum/reagent/ethanol/sakebomb

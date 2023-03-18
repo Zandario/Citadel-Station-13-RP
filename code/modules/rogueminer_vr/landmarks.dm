@@ -13,7 +13,7 @@
 
 /obj/asteroid_spawner/Initialize(mapload)
 	. = ..()
-	if(loc && istype(loc,/turf/space) && istype(loc.loc,/area/asteroid/rogue))
+	if(loc && isspaceturf(loc) && istype(loc.loc,/area/asteroid/rogue))
 		var/area/asteroid/rogue/A = loc.loc
 		A.asteroid_spawns += src
 
@@ -27,6 +27,6 @@
 
 /obj/rogue_mobspawner/Initialize(mapload)
 	. = ..()
-	if(loc && istype(loc,/turf/space) && istype(loc.loc,/area/asteroid/rogue))
+	if(loc && isspaceturf(loc) && istype(loc.loc,/area/asteroid/rogue))
 		var/area/asteroid/rogue/A = loc.loc
 		A.mob_spawns += src

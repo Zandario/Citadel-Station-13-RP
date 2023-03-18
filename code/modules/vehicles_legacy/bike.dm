@@ -84,7 +84,7 @@
 	else
 		return ..()
 
-/obj/vehicle_old/bike/verb/kickstand(var/mob/user as mob)
+/obj/vehicle_old/bike/verb/kickstand(mob/user)
 	set name = "Toggle Kickstand"
 	set category = "Vehicle"
 	set src in view(0)
@@ -97,7 +97,7 @@
 	if(kickstand)
 		src.visible_message("You put up \the [src]'s kickstand.")
 	else
-		if(istype(src.loc,/turf/space) || istype(src.loc, /turf/simulated/floor/water))
+		if(isspaceturf(src.loc) || istype(src.loc, /turf/simulated/floor/water))
 			to_chat(usr, "<span class='warning'> You don't think kickstands work here...</span>")
 			return
 		src.visible_message("You put down \the [src]'s kickstand.")
@@ -134,8 +134,9 @@
 		return 1
 	return 0
 
-/obj/vehicle_old/bike/Move(var/turf/destination)
-	if(kickstand) return 0
+/obj/vehicle_old/bike/Move(turf/destination)
+	if(kickstand)
+		return 0
 
 	if(on && (!cell || cell.charge < charge_use))
 		turn_off()
@@ -146,7 +147,7 @@
 	if(on && cell)
 		cell.use(charge_use)
 
-	if(istype(destination,/turf/space) || istype(destination, /turf/simulated/floor/water) || pulledby)
+	if(isspaceturf(destination) || istype(destination, /turf/simulated/floor/water) || pulledby)
 		if(!space_speed)
 			return 0
 		move_delay = space_speed

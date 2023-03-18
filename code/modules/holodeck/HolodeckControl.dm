@@ -251,11 +251,11 @@
 
 	qdel(obj)
 
-/obj/machinery/computer/HolodeckControl/proc/checkInteg(var/area/A)
+/obj/machinery/computer/HolodeckControl/proc/checkInteg(area/A)
 	for(var/turf/T in A)
-		if(istype(T, /turf/space))
-			return 0
-	return 1
+		if(isspaceturf(T))
+			return FALSE
+	return TRUE
 
 //Why is it called toggle if it doesn't toggle?
 /obj/machinery/computer/HolodeckControl/proc/togglePower(var/toggleOn = 0)

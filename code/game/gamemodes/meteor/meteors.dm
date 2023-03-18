@@ -123,7 +123,7 @@
 		var/turf/T = get_turf(loc)
 		ram_turf(T)
 
-		if(prob(10) && !istype(T, /turf/space))//randomly takes a 'hit' from ramming
+		if(prob(10) && !isspaceturf(T))//randomly takes a 'hit' from ramming
 			get_hit()
 
 	return .

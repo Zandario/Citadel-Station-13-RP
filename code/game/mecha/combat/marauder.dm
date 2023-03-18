@@ -111,7 +111,7 @@
 	else
 		move_result	= mechstep(direction)
 	if(move_result)
-		if(istype(src.loc, /turf/space))
+		if(isspaceturf(src.loc))
 			if(!src.check_for_support())
 				src.pr_inertial_movement.start(list(src,direction))
 				if(thrusters)

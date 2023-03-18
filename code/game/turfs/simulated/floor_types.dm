@@ -70,7 +70,7 @@
 			under = T1
 		else if(isfloor(T2) && T2.type == T3.type)
 			under = T2
-		else if(isfloor(T3) || istype(T3, /turf/space))
+		else if(isfloor(T3) || isspaceturf(T3))
 			under = T3
 		else
 			under = baseturf_underneath()
@@ -90,7 +90,7 @@
 		under_ma = new(under)
 
 	if(under_ma)
-		if(ispath(under,/turf/space) || istype(under,/turf/space))	// Space gets weird treatment
+		if(ispath(under,/turf/space) || isspaceturf(under))	// Space gets weird treatment
 			under_ma.icon_state = "white"
 			under_ma.plane = SPACE_PLANE
 		us.underlays = list(under_ma)

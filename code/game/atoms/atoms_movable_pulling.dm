@@ -98,7 +98,7 @@
   * Hook for stuff to do when we move a pulled atom/movable.
   */
 /atom/movable/proc/on_move_pulled(atom/movable/moved)
-	if(isliving(pulling) && !istype(pulling.loc, /turf/space))
+	if(isliving(pulling) && !isspaceturf(pulling.loc))
 		var/mob/living/M = pulling
 		var/area/A = get_area(M)
 		if(A.has_gravity)

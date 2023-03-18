@@ -317,7 +317,7 @@ GLOBAL_LIST_EMPTY(buildholders)
 		if(1) // Basic Build
 			if(isturf(object) && pa.Find("left") && !pa.Find("alt") && !pa.Find("ctrl") )
 				var/turf/T = object
-				if(istype(object,/turf/space) || isopenturf(object))
+				if(isspaceturf(object) || isopenturf(object))
 					T.ChangeTurf(/turf/simulated/floor/plating)
 					log_admin("[key_name(usr)] created 1 plating at [COORD(T)]")
 					return

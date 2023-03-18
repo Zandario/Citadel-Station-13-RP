@@ -98,7 +98,7 @@ GLOBAL_LIST_INIT(multiz_hole_baseturfs, typecacheof(list(
 			if(issimulatedturf(GetBelow(src)))
 				path = /turf/simulated/open
 		if(/turf/simulated/open)
-			if(istype(GetBelow(src), /turf/space))
+			if(isspaceturf(GetBelow(src)))
 				path = /turf/space
 
 	if(!GLOB.use_preloader && path == type && !(flags & CHANGETURF_FORCEOP) && (baseturfs == new_baseturfs)) // Don't no-op if the map loader requires it to be reconstructed, or if this is a new set of baseturfs

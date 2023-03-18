@@ -265,7 +265,7 @@
 ///////////////////////////////
 
 // Overall 'prepare' proc (marks as ready)
-/datum/rogue/zonemaster/proc/prepare_zone(var/delay = 0)
+/datum/rogue/zonemaster/proc/prepare_zone(delay = 0)
 	rm_controller.unmark_clean(src)
 	rm_controller.dbg("ZM(p): Preparing zone with difficulty level [rm_controller.diffstep].")
 
@@ -284,13 +284,13 @@
 	for(var/obj/rogue_mobspawner/SP in mobspawns)
 		rm_controller.dbg("ZM(p): Spawning mob at [SP.x],[SP.y],[SP.z].")
 		// Make sure we can spawn a spacemob here
-		if(!istype(get_turf(SP),/turf/space))
+		if(!isspaceturf(get_turf(SP)))
 			rm_controller.dbg("ZM(p): Turf blocking mob spawn at [SP.x],[SP.y],[SP.z].")
 			mobspawns -= SP
 			for(var/obj/rogue_mobspawner/NS in myarea.mob_spawns)
 				if(NS in mobspawns)
 					continue
-				if(istype(get_turf(NS),/turf/space))
+				if(isspaceturf(get_turf(NS)))
 					SP = NS
 					break
 		if(SP)
@@ -391,7 +391,7 @@
 	for(var/atom/I in myarea.contents)
 		if(isturf(I))
 			var/turf/T = I
-			if(!istype(T, /turf/space))
+			if(!isspaceturf(T))
 				T.ChangeTurf(/turf/space)
 			continue
 		else if(ignored[I.type])

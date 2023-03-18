@@ -312,7 +312,8 @@
 				src.shields_down()
 			anchored = 0
 		else
-			if(istype(get_turf(src), /turf/space)) return //No wrenching these in space!
+			if(isspaceturf(get_turf(src)))
+				return //No wrenching these in space!
 			playsound(src, W.tool_sound, 100, 1)
 			to_chat(user, "<font color=#4F49AF>You secure the [src] to the floor!</font>")
 			anchored = 1

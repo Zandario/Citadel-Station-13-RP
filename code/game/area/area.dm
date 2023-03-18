@@ -573,7 +573,7 @@ GLOBAL_LIST_EMPTY(forced_ambiance_list)
 		M.update_floating( M.Check_Dense_Object() )
 
 /area/proc/thunk(mob)
-	if(istype(get_turf(mob), /turf/space)) // Can't fall onto nothing.
+	if(isspaceturf(get_turf(mob))) // Can't fall onto nothing.
 		return
 
 	if(istype(mob,/mob/living/carbon/human/))

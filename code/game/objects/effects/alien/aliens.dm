@@ -203,7 +203,7 @@
 
 /obj/effect/alien/weeds/Initialize(mapload, node)
 	. = ..()
-	if(istype(loc, /turf/space))
+	if(isspaceturf(loc))
 		qdel(src)
 		return
 	linked_node = node
@@ -265,7 +265,7 @@ Alien plants should do something if theres a lot of poison
 		update()
 		return
 */
-	if (istype(U, /turf/space))
+	if (isspaceturf(U))
 		qdel(src)
 		return
 
@@ -278,7 +278,7 @@ Alien plants should do something if theres a lot of poison
 	for(var/dirn in GLOB.cardinal)
 		var/turf/T = get_step(src, dirn)
 
-		if (!istype(T) || T.density || locate(/obj/effect/alien/weeds) in T || istype(T.loc, /area/arrival) || istype(T, /turf/space))
+		if (!istype(T) || T.density || locate(/obj/effect/alien/weeds) in T || istype(T.loc, /area/arrival) || isspaceturf(T))
 			continue
 
 		if(U.CheckAirBlock(T) == ATMOS_PASS_AIR_BLOCKED)

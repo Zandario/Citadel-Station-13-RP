@@ -296,7 +296,7 @@
 /turf/MouseDroppedOnLegacy(atom/movable/O as mob|obj, mob/user as mob)
 	var/turf/T = get_turf(user)
 	var/area/A = T.loc
-	if((istype(A) && !(A.has_gravity)) || (istype(T,/turf/space)))
+	if((isarea(A) && !A.has_gravity) || isspaceturf(T))
 		return
 	if(istype(O, /atom/movable/screen))
 		return

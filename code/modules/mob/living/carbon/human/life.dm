@@ -714,7 +714,7 @@
 			pl_effects()
 			break
 
-	if(istype(loc, /turf/space)) // No FBPs overheating on space turfs inside mechs or people.
+	if(isspaceturf(loc)) // No FBPs overheating on space turfs inside mechs or people.
 		//Don't bother if the temperature drop is less than 0.1 anyways. Hopefully BYOND is smart enough to turn this constant expression into a constant
 		if(bodytemperature > (0.1 * HUMAN_HEAT_CAPACITY/(HUMAN_EXPOSED_SURFACE_AREA*STEFAN_BOLTZMANN_CONSTANT))**(1/4) + COSMIC_RADIATION_TEMPERATURE)
 			//Thermal radiation into space
@@ -1840,7 +1840,7 @@
 	if(!H || (H.robotic >= ORGAN_ROBOT))
 		return
 
-	if(pulse >= PULSE_2FAST || shock_stage >= 10 || (istype(get_turf(src), /turf/space) && is_preference_enabled(/datum/client_preference/play_ambiance)))
+	if(pulse >= PULSE_2FAST || shock_stage >= 10 || (isspaceturf(get_turf(src)) && is_preference_enabled(/datum/client_preference/play_ambiance)))
 		//PULSE_THREADY - maximum value for pulse, currently it 5.
 		//High pulse value corresponds to a fast rate of heartbeat.
 		//Divided by 2, otherwise it is too slow.

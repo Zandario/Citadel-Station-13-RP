@@ -741,10 +741,10 @@
 		return 1
 
 /atom/proc/isinspace()
-	if(istype(get_turf(src), /turf/space))
-		return 1
+	if(isspaceturf(get_turf(src)))
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 /// Show a message to all mobs and objects in sight of this atom
 /// Use for objects performing visible actions

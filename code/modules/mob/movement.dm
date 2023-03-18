@@ -245,7 +245,7 @@
 
 	//! WARNING: LEGACY CODE; I don't know how this works and I'm afraid to ask.
 	if(mob.pulledby || mob.buckled) // Wheelchair driving!		//this is shitcode
-		if(istype(mob.loc, /turf/space))
+		if(isspaceturf(mob.loc))
 			return // No wheelchair driving in space
 		if(istype(mob.pulledby, /obj/structure/bed/chair/wheelchair))
 			return mob.pulledby.relaymove(mob, direct)
@@ -442,8 +442,8 @@
 	var/dense_object = 0
 	var/shoegrip
 
-	for(var/turf/turf in oview(1,src))
-		if(istype(turf,/turf/space))
+	for(var/turf/turf in oview(1, src))
+		if(isspaceturf(turf))
 			continue
 
 		if(isfloorturf(turf)) // Floors don't count if they don't have gravity

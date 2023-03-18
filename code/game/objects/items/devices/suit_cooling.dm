@@ -84,8 +84,8 @@
 			return C.air_contents.temperature
 
 	var/turf/T = get_turf(src)
-	if(istype(T, /turf/space))
-		return 0	//space has no temperature, this just makes sure the cooling unit works in space
+	if(isspaceturf(T))
+		return 0 // Space has no temperature, this just makes sure the cooling unit works in space.
 
 	var/datum/gas_mixture/environment = T.return_air()
 	if (!environment)

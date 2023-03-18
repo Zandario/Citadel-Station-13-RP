@@ -102,7 +102,7 @@
 /proc/translate_turf(turf/Origin, turf/Destination, turftoleave = null)
 
 	// You can stay, though.
-	if (istype(Origin, /turf/space))
+	if (isspaceturf(Origin))
 		log_debug(SPAN_DEBUGERROR("Tried to translate a space turf: src=[log_info_line(Origin)][ADMIN_JMP(Origin)] dst=[log_info_line(Destination)][ADMIN_JMP(Destination)]"))
 		return FALSE	// TODO - Is this really okay to do nothing?
 

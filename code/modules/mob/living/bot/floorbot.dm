@@ -212,7 +212,7 @@
 		return 0
 
 #ifdef FLOORBOT_PATCHES_HOLES
-	if(istype(A, /turf/space))
+	if(isspaceturf(A))
 		return 1
 
 	if(istype(A, /turf/simulated/mineral/floor))
@@ -222,7 +222,7 @@
 	var/turf/simulated/floor/T = A
 	return (istype(T) && (T.broken || T.burnt || (improvefloors && !T.flooring)) && (get_turf(T) == loc || prob(40)))
 
-/mob/living/bot/floorbot/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/bot/floorbot/UnarmedAttack(atom/A, proximity)
 	if(!..())
 		return
 
@@ -249,7 +249,7 @@
 		target = null
 		busy = 0
 		update_icons()
-	else if(istype(A, /turf/space) || istype(A, /turf/simulated/mineral/floor))
+	else if(isspaceturf(A) || istype(A, /turf/simulated/mineral/floor))
 		var/building = 2
 		if(locate(/obj/structure/lattice, A))
 			building = 1

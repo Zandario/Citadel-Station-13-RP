@@ -18,7 +18,7 @@
 		I.stored_plasma += amount
 	I.stored_plasma = max(0,min(I.stored_plasma,I.max_plasma))
 
-/mob/living/carbon/human/proc/check_alien_ability(var/cost,var/needs_foundation,var/needs_organ)	//Returns 1 if the ability is clear for usage.
+/mob/living/carbon/human/proc/check_alien_ability(cost, needs_foundation, needs_organ)	//Returns 1 if the ability is clear for usage.
 
 	var/obj/item/organ/internal/xenos/plasmavessel/P = internal_organs_by_name[O_PLASMA]
 	if(!istype(P))
@@ -43,7 +43,7 @@
 		var/has_foundation
 		if(T)
 			//TODO: Work out the actual conditions this needs.
-			if(!(istype(T,/turf/space)))
+			if(!(isspaceturf(T)))
 				has_foundation = 1
 		if(!has_foundation)
 			to_chat(src, "<span class='danger'>You need a solid foundation to do that on.</span>")

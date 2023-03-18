@@ -56,7 +56,7 @@ GLOBAL_LIST_INIT(carp_count,list())// a list of Z levels (string), associated wi
 		if(++safety == 1000)
 			CRASH("could not get turfs for carp migration")
 		var/turf/T = get_random_edge_turf(dir,TRANSITIONEDGE + 2, Z)
-		if(istype(T,/turf/space))
+		if(isspaceturf(T))
 			var/mob/living/simple_mob/animal/space/M
 			if(prob(96))
 				M = new /mob/living/simple_mob/animal/space/carp(T)

@@ -8,8 +8,8 @@
 	if(species.slowdown)
 		tally = species.slowdown
 
-	if (istype(loc, /turf/space))
-		return 1		//until tg movement slowdown + modifiers is a thing I guess ...
+	if (isspaceturf(loc))
+		return 1 //until tg movement slowdown + modifiers is a thing I guess ...
 
 	if(embedded_flag)
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.

@@ -50,7 +50,7 @@
 	if(environment)
 		efficiency = (1 - owner.get_pressure_weakness(environment.return_pressure())) * (1 - damage / max_damage)
 
-	if(istype(T, /turf/space))
+	if(isspaceturf(T))
 		return owner.species.heat_level_2 * efficiency
 
 	if(!environment)

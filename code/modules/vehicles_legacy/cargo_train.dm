@@ -51,7 +51,7 @@
 	add_overlay(I)
 	turn_off()	//so engine verbs are correctly set
 
-/obj/vehicle_old/train/engine/Move(var/turf/destination)
+/obj/vehicle_old/train/engine/Move(turf/destination)
 	if(on && cell.charge < charge_use)
 		turn_off()
 		update_stats()
@@ -62,7 +62,7 @@
 		return 0
 
 	//space check ~no flying space trains sorry
-	if(on && istype(destination, /turf/space))
+	if(on && isspaceturf(destination))
 		return 0
 
 	return ..()

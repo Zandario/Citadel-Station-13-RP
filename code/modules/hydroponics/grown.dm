@@ -266,7 +266,7 @@
 	if(!seed)
 		return
 
-	if(istype(user.loc,/turf/space))
+	if(isspaceturf(user.loc))
 		return
 
 	if(user.a_intent == INTENT_HARM)

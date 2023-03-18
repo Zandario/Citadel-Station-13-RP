@@ -177,7 +177,7 @@
 	var/min_temperature = T0C + 100 // 100C, the boiling point of water
 
 	var/hotspot = (locate(/atom/movable/fire) in T)
-	if(hotspot && !istype(T, /turf/space))
+	if(hotspot && !isspaceturf(T))
 		var/datum/gas_mixture/lowertemp = T.remove_cell_volume()
 		lowertemp.temperature = max(min(lowertemp.temperature-2000, lowertemp.temperature / 2), 0)
 		lowertemp.react()

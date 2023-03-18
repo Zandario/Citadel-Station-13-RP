@@ -54,7 +54,7 @@
 				if(!(M in close))
 					// check if the mob can hear
 					if(M.ear_deaf <= 0 || !M.ear_deaf)
-						if(!istype(M.loc,/turf/space))
+						if(!isspaceturf(M.loc))
 							if(creaking_explosion)
 								if(prob(65))
 									SEND_SOUND(M, sound('sound/soundbytes/effects/explosion/explosioncreak1.ogg'))

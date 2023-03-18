@@ -141,7 +141,7 @@
 			data["powered"] = 1
 
 		var/datum/gas_mixture/env = null
-		if(!isnull(src.loc) && !istype(src.loc, /turf/space))
+		if(!isnull(src.loc) && !isspaceturf(src.loc))
 			env = src.loc.return_air()
 
 		if(!env)
@@ -465,7 +465,7 @@ I'm commenting this out until I have time to make this less stupid.
 	for(var/iy = 0, iy < 6, iy++)
 		for(var/ix = 0, ix < 6, ix++)
 			spider_spawn = locate(tx + ix, ty + iy, L.z)
-			if (!istype(spider_spawn, /turf/space))
+			if (!isspaceturf(spider_spawn))
 				for (var/i = 0, i < rand(1,3), i++)
 					var/a_problem = /obj/nuclear_mistake_spawner
 					new a_problem(spider_spawn)

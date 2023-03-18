@@ -53,6 +53,6 @@
 	for(var/mob/living/simple_mob/animal/space/carp/C in spawned_carp)
 		if(!C.stat)
 			var/turf/T = get_turf(C)
-			if(istype(T, /turf/space))
+			if(isspaceturf(T))
 				if(!prob(25))
 					qdel(C)

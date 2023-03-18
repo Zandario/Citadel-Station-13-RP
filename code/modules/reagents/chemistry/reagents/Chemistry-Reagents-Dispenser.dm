@@ -37,7 +37,7 @@
 			M.ingested.remove_reagent(R.id, removed * effect)
 
 /datum/reagent/carbon/touch_turf(turf/T)
-	if(!istype(T, /turf/space))
+	if(!isspaceturf(T))
 		var/obj/effect/debris/cleanable/dirt/dirtoverlay = locate(/obj/effect/debris/cleanable/dirt, T)
 		if (!dirtoverlay)
 			dirtoverlay = new/obj/effect/debris/cleanable/dirt(T)
@@ -250,7 +250,7 @@
 
 /datum/reagent/lithium/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien != IS_DIONA)
-		if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
+		if(M.canmove && !M.restrained() && isspaceturf(M.loc))
 			step(M, pick(GLOB.cardinal))
 		if(prob(5))
 			M.emote(pick("twitch", "drool", "moan"))
@@ -265,7 +265,7 @@
 
 /datum/reagent/mercury/affect_blood(mob/living/carbon/M, alien, removed)
 	if(alien != IS_DIONA)
-		if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
+		if(M.canmove && !M.restrained() && isspaceturf(M.loc))
 			step(M, pick(GLOB.cardinal))
 		if(prob(5))
 			M.emote(pick("twitch", "drool", "moan"))
@@ -333,7 +333,7 @@
 
 /datum/reagent/radium/touch_turf(turf/T)
 	if(volume >= 3)
-		if(!istype(T, /turf/space))
+		if(!isspaceturf(T))
 			var/obj/effect/debris/cleanable/greenglow/glow = locate(/obj/effect/debris/cleanable/greenglow, T)
 			if(!glow)
 				new /obj/effect/debris/cleanable/greenglow(T)
