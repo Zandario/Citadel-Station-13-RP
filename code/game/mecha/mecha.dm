@@ -856,10 +856,10 @@
 
 /obj/mecha/Bump(var/atom/obstacle)
 //	src.inertia_dir = null
-	if(istype(obstacle, /mob))//First we check if it is a mob. Mechs mostly shouln't go through them, even while phasing.
+	if(ismob(obstacle))//First we check if it is a mob. Mechs mostly shouln't go through them, even while phasing.
 		var/mob/M = obstacle
 		M.Move(get_step(obstacle,src.dir))
-	else if(istype(obstacle, /obj))//Then we check for regular obstacles.
+	else if(isobj(obstacle))//Then we check for regular obstacles.
 		var/obj/O = obstacle
 
 		if(phasing && get_charge()>=phasing_energy_drain)//Phazon check. This could use an improvement elsewhere.
@@ -1090,14 +1090,14 @@
 		A.forceMove(src)
 		src.visible_message("The [A] fastens firmly to [src].")
 		return
-	if(prob(temp_deflect_chance) || istype(A, /mob))
+	if(prob(temp_deflect_chance) || ismob(A))
 		src.occupant_message("<span class='notice'>\The [A] bounces off the armor.</span>")
 		src.visible_message("\The [A] bounces off \the [src] armor")
 		src.log_append_to_last("Armor saved.")
 		if(istype(A, /mob/living))
 			var/mob/living/M = A
 			M.take_organ_damage(10)
-	else if(istype(A, /obj))
+	else if(isobj(A))
 		var/obj/O = A
 		if(O.throw_force)
 

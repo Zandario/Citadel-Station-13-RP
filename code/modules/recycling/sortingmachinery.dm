@@ -399,7 +399,8 @@
 
 //	if(istype(AM, has_buckled_mobs()) return // I dont know what im doing @ktoma36
 
-	if(istype(AM, /obj))
+	// Probably could just be one ismovable() but I'm not changing functionality rn.
+	if(ismob(AM))
 		var/obj/O = AM
 		O.loc = src
 	else if(istype(AM, /mob))

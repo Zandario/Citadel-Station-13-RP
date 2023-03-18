@@ -11,7 +11,7 @@
 	var/atom/movable/emote_target
 	if (param)
 		for (var/atom/movable/viewed in view())
-			if (!istype(viewed, /obj) && !ismob(viewed))
+			if (!isobj(viewed) && !ismob(viewed))
 				continue
 			if (viewed.invisibility > see_invisible || viewed.atom_flags & ATOM_ABSTRACT || !length(viewed.name))
 				continue

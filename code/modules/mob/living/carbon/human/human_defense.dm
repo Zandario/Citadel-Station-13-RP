@@ -356,7 +356,7 @@ emp_act
 //	if(buckled && buckled == AM)
 //		return // Don't get hit by the thing we're buckled to.
 
-	if(istype(AM, /obj))
+	if(isobj(AM))
 		var/obj/O = AM
 
 		if(in_throw_mode && TT.speed <= THROW_SPEED_CATCHABLE)	//empty active hand and we're in throw mode

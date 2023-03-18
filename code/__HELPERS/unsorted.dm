@@ -863,14 +863,14 @@
 					X.overlays = old_overlays
 					X.underlays = old_underlays
 
-					var/list/objs = new/list()
-					var/list/newobjs = new/list()
-					var/list/mobs = new/list()
-					var/list/newmobs = new/list()
+					var/list/objs = list()
+					var/list/newobjs = list()
+					var/list/mobs = list()
+					var/list/newmobs = list()
 
 					for(var/obj/O in T)
 
-						if(!istype(O,/obj))
+						if(!isobj(O))
 							continue
 
 						objs += O

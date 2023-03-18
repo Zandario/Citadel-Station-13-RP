@@ -118,7 +118,7 @@
 
 /obj/machinery/camera/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
 	. = ..()
-	if (istype(AM, /obj))
+	if (isobj(AM))
 		var/obj/O = AM
 		if (O.throw_force >= src.toughness)
 			visible_message("<span class='warning'><B>[src] was hit by [O].</B></span>")

@@ -31,14 +31,14 @@
 	// Let's just make this one loop.
 	for(var/atom/X in orange(pull_radius, location))
 		// Movable atoms only
-		if(istype(X, /atom/movable))
+		if(ismovable(X))
 			if(istype(X, /obj/effect/overlay)) continue
 			if(X && !istype(X, /mob/living/carbon/human))
 				if(break_windows && istype(X, /obj/structure/window)) //shatter windows
 					var/obj/structure/window/W = X
 					LEGACY_EX_ACT(W, 2, null)
 
-				if(istype(X, /obj))
+				if(isobj(X))
 					var/obj/O = X
 					if(O.anchored)
 						if (!pull_anchored) continue // Don't pull anchored stuff unless configured
