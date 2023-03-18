@@ -206,7 +206,7 @@
 /datum/supply_demand_order/reagent/match_item(var/atom/I)
 	if(!I.reagents)
 		return
-	if(!istype(I, /obj/item/reagent_containers))
+	if(!is_reagent_container(I))
 		return
 	var/amount_to_take = min(I.reagents.get_reagent_amount(reagent_id), qty_need)
 	if(amount_to_take >= 1)

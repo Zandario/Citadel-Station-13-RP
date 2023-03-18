@@ -48,7 +48,7 @@
 
 /obj/item/gun/ballistic/musket/attackby(obj/item/W, mob/user)
 	..()
-	if (istype(W, /obj/item/reagent_containers))
+	if (is_reagent_container(W))
 		if(has_powder)
 			to_chat(user, SPAN_WARNING("\The [src] is already full of gunpowder."))
 			return

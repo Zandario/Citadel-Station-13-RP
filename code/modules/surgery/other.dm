@@ -132,7 +132,7 @@
 	max_duration = 60
 
 /datum/surgery_step/treat_necrosis/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (!istype(tool, /obj/item/reagent_containers))
+	if (!is_reagent_container(tool))
 		return 0
 
 	var/obj/item/reagent_containers/container = tool
@@ -158,7 +158,7 @@
 /datum/surgery_step/treat_necrosis/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-	if (!istype(tool, /obj/item/reagent_containers))
+	if (!is_reagent_container(tool))
 		return
 
 	var/obj/item/reagent_containers/container = tool
@@ -174,7 +174,7 @@
 /datum/surgery_step/treat_necrosis/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-	if (!istype(tool, /obj/item/reagent_containers))
+	if (!is_reagent_container(tool))
 		return
 
 	var/obj/item/reagent_containers/container = tool

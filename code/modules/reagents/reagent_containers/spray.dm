@@ -23,7 +23,7 @@
 	remove_obj_verb(src, /obj/item/reagent_containers/verb/set_APTFT)
 
 /obj/item/reagent_containers/spray/afterattack(atom/A as mob|obj, mob/user, proximity)
-	if(isstorage(A) || istype(A, /obj/structure/table) || istype(A, /obj/structure/closet) || istype(A, /obj/item/reagent_containers) || istype(A, /obj/structure/sink) || istype(A, /obj/structure/janitorialcart))
+	if(isstorage(A) || istype(A, /obj/structure/table) || istype(A, /obj/structure/closet) || is_reagent_container(A) || istype(A, /obj/structure/sink) || istype(A, /obj/structure/janitorialcart))
 		return
 
 	if(istype(A, /spell))

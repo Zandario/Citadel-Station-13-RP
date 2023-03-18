@@ -411,7 +411,7 @@
 			user.visible_action_feedback(SPAN_NOTICE("[user] inserts [I] into [src]."), src, range = MESSAGE_RANGE_CONSTRUCTION)
 			return CLICKCHAIN_DO_NOT_PROPAGATE
 
-	if(istype(I, /obj/item/reagent_containers))
+	if(is_reagent_container(I))
 		var/obj/item/reagent_containers/container = I
 		// trying to insert
 		if(!container.is_open_container())

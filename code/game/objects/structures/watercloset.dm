@@ -518,7 +518,7 @@
 		to_chat(user, "You fill in the oil well with soil.")
 		qdel()
 		return 1
-	if(istype(O, /obj/item/reagent_containers)) //Refilling bottles with oil
+	if(is_reagent_container(O)) //Refilling bottles with oil
 		var/obj/item/reagent_containers/RG = O
 		if (istype(RG) && RG.is_open_container())
 			RG.reagents.add_reagent("oil", min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))

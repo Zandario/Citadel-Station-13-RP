@@ -322,7 +322,7 @@
 			src.add_fingerprint(user)
 			update_icon()
 
-	else if (istype(W, /obj/item/reagent_containers))
+	else if (is_reagent_container(W))
 		if(!isnull(src.beaker))
 			to_chat(user, "There is already a reagent container loaded!")
 			return

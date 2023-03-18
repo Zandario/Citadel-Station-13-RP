@@ -114,8 +114,8 @@
 	name = "\improper Smart Chemical Storage"
 	desc = "A refrigerated storage unit for medicine and chemical storage."
 
-/obj/machinery/smartfridge/chemistry/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_containers))
+/obj/machinery/smartfridge/chemistry/accept_check(obj/item/O)
+	if(istype(O,/obj/item/storage/pill_bottle) || is_reagent_container(O))
 		return 1
 	return 0
 

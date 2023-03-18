@@ -299,7 +299,7 @@
 	icon_state = "chem_analyzer[analyzing ? "-working":""]"
 
 /obj/machinery/chemical_analyzer/attackby(obj/item/I, mob/living/user)
-	if(!istype(I))
+	if(!isitem(I))
 		return ..()
 
 	if(default_deconstruction_screwdriver(user, I))
@@ -307,7 +307,7 @@
 	if(default_deconstruction_crowbar(user, I))
 		return
 
-	if(istype(I,/obj/item/reagent_containers))
+	if(is_reagent_container(I))
 		analyzing = TRUE
 		update_icon()
 		to_chat(user, SPAN_NOTICE("Analyzing \the [I], please stand by..."))

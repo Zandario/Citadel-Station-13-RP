@@ -8,8 +8,8 @@
 
 	var/obj/item/reagent_containers/container = null
 
-/obj/machinery/computer/curer/attackby(var/obj/I as obj, var/mob/user as mob)
-	if(istype(I,/obj/item/reagent_containers))
+/obj/machinery/computer/curer/attackby(obj/I, mob/user)
+	if(is_reagent_container(I))
 		. = CLICKCHAIN_DO_NOT_PROPAGATE
 		if(!container)
 			if(!user.attempt_insert_item_for_installation(I, src))
