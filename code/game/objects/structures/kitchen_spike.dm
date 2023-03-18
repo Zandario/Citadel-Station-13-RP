@@ -28,7 +28,7 @@
 		else
 			to_chat(user, "<span class='danger'>They are too big for the spike, try something smaller!</span>")
 
-/obj/structure/kitchenspike/proc/spike(var/mob/living/victim)
+/obj/structure/kitchenspike/proc/spike(mob/living/victim)
 	if(!istype(victim))
 		return
 
@@ -39,7 +39,7 @@
 			icon_state = "spikebloody"
 		else
 			return 0
-	else if(istype(victim, /mob/living/carbon/alien))
+	else if(isalien(victim))
 		meat_type = /obj/item/reagent_containers/food/snacks/xenomeat
 		icon_state = "spikebloodygreen"
 	else
