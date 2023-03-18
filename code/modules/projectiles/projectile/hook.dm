@@ -171,7 +171,7 @@
 					L.throw_at_old(get_turf(get_step(firer,get_dir(firer,L))), 6, 1, src)
 					done_mob_unique = TRUE
 					success = TRUE
-	else if(istype(target, /obj/structure))
+	else if(isstructure(target))
 		var/obj/structure/S = target
 		if(!S.anchored)
 			S.throw_at_old(get_turf(get_step(firer,get_dir(firer,S))), 4, 1, src)

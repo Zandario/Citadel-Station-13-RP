@@ -103,7 +103,7 @@
 	if(!T || !istype(T))
 		return 0
 	for(var/obj/O in T.contents)
-		if(istype(O,/obj/structure))
+		if(isstructure(O))
 			var/obj/structure/S = O
 			if(S.climbable) continue
 		if(O && O.density && !(O.atom_flags & ATOM_BORDER)) //ATOM_BORDER structures are handled by the Adjacent() check.

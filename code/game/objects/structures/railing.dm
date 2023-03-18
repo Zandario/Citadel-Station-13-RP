@@ -324,7 +324,7 @@
 	if(T.density == 1)
 		return T
 	for(var/obj/O in T.contents)
-		if(istype(O,/obj/structure))
+		if(isstructure(O))
 			var/obj/structure/S = O
 			if(S.climbable) continue
 		if(O && O.density && !(O.atom_flags & ATOM_BORDER && !(turn(O.dir, 180) & dir)))

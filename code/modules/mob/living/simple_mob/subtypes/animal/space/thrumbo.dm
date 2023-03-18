@@ -91,7 +91,7 @@
 			var/throwdir = pick(turn(dir, 45), turn(dir, -45))
 			M.throw_at_old(get_step(src.loc, throwdir), 1, 1, src)
 			runOver(M) // Actually should not use this, placeholder
-		if(istype(AM, /obj/structure))
+		if(isstructure(AM))
 			if(istype(AM, /obj/structure/window))
 				var/obj/structure/window/window = AM
 				window.hit(80) //Shatters reinforced windows
