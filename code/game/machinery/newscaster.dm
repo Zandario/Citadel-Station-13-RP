@@ -922,7 +922,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 			curr_page--
 			playsound(src.loc, "pageturn", 50, 1)
 
-		if(istype(src.loc, /mob))
+		if(ismob(src.loc))
 			attack_self(src.loc)
 
 /obj/item/newspaper/attackby(obj/item/W, mob/user)

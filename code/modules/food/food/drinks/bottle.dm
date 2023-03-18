@@ -83,7 +83,7 @@
 
 	var/list/things_to_smash_on = list()
 	for(var/atom/A in range (1, usr))
-		if(A.density && usr.Adjacent(A) && !istype(A, /mob))
+		if(A.density && usr.Adjacent(A) && !ismob(A))
 			things_to_smash_on += A
 
 	var/atom/choice = input("Select what you want to smash the bottle on.") as null|anything in things_to_smash_on

@@ -99,7 +99,7 @@
 	if(tube_dirs == null)
 		init_dirs()
 
-/obj/structure/transit_tube/Bumped(mob/AM as mob|obj)
+/obj/structure/transit_tube/Bumped(mob/AM)
 	var/obj/structure/transit_tube/T = locate() in AM.loc
 	if(T)
 		to_chat(AM, "<span class='warning'>The tube's support pylons block your way.</span>")
@@ -108,8 +108,8 @@
 		AM.loc = src.loc
 		to_chat(AM, "<span class='info'>You slip under the tube.</span>")
 
-/obj/structure/transit_tube/station/Bumped(mob/AM as mob|obj)
-	if(!pod_moving && icon_state == "open" && istype(AM, /mob))
+/obj/structure/transit_tube/station/Bumped(mob/AM)
+	if(!pod_moving && icon_state == "open" && ismob(AM))
 		for(var/obj/structure/transit_tube_pod/pod in loc)
 			if(pod.contents.len)
 				to_chat(AM, "<span class='notice'>The pod is already occupied.</span>")
@@ -366,7 +366,7 @@
 //  the station, try to exit. If the direction matches one of the station's
 //  tube directions, launch the pod in that direction.
 /obj/structure/transit_tube_pod/relaymove(mob/mob, direction)
-	if(istype(mob, /mob) && mob.client)
+	if(ismob(mob) && mob.client)
 		// If the pod is not in a tube at all, you can get out at any time.
 		if(!(locate(/obj/structure/transit_tube) in loc))
 			mob.loc = loc

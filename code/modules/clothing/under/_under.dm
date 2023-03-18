@@ -276,7 +276,7 @@
 			if(SUIT_SENSOR_TRACKING)
 				user.visible_message("[user] adjusts their sensors.", "Your suit will now report your vital lifesigns as well as your coordinate position.")
 
-	else if (istype(loc, /mob))
+	else if (ismob(loc))
 		user.visible_message("[user] adjusts [loc]'s sensors.", "You adjust [loc]'s sensors.")
 
 /obj/item/clothing/under/verb/toggle()

@@ -1077,7 +1077,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 /obj/item/pda/proc/remove_pen()
 	var/obj/item/pen/O = locate() in src
 	if(O)
-		if(istype(loc, /mob))
+		if(ismob(loc))
 			var/mob/M = loc
 			if(M.get_active_held_item() == null)
 				M.put_in_hands(O)

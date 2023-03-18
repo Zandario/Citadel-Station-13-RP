@@ -43,7 +43,7 @@
 	return istype(species, /datum/species/monkey)
 
 /proc/isdeaf(A)
-	if(istype(A, /mob))
+	if(ismob(A))
 		var/mob/M = A
 		return (M.sdisabilities & SDISABILITY_DEAF) || M.ear_deaf
 	return 0
