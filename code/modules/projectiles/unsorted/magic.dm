@@ -77,7 +77,7 @@
 
 /obj/item/projectile/magic/door/on_hit(atom/target)
 	. = ..()
-	if(istype(target, /obj/machinery/door))
+	if(isdoor(target))
 		OpenDoor(target)
 	else
 		var/turf/T = get_turf(target)

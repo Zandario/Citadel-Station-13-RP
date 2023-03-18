@@ -204,8 +204,8 @@
 /mob/living/bot/speech_bubble_appearance()
 	return "machine"
 
-/mob/living/bot/Bump(var/atom/A)
-	if(on && botcard && istype(A, /obj/machinery/door))
+/mob/living/bot/Bump(atom/A)
+	if(on && botcard && isdoor(A))
 		var/obj/machinery/door/D = A
 		// Elevator safety precaution
 		if(!istype(D, /obj/machinery/door/firedoor) && !istype(D, /obj/machinery/door/blast) && !istype(D, /obj/machinery/door/airlock/lift) && D.check_access(botcard))
@@ -462,7 +462,7 @@
 		return 1
 
 	for(var/obj/O in B)
-		if(O.density && !istype(O, /obj/machinery/door) && !(O.atom_flags & ATOM_BORDER))
+		if(O.density && !isdoor(O) && !(O.atom_flags & ATOM_BORDER))
 			return 1
 
 	return 0

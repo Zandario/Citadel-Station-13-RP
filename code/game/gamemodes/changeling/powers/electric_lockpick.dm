@@ -57,7 +57,7 @@
 		return
 
 	//Airlocks require an ugly block of code, but we don't want to just call emag_act(), since we don't want to break airlocks forever.
-	if(istype(target,/obj/machinery/door))
+	if(isdoor(target))
 		var/obj/machinery/door/door = target
 		to_chat(user, "<span class='notice'>We send an electrical pulse up our finger, and into \the [target], attempting to open it.</span>")
 

@@ -78,7 +78,7 @@
 
 					for(var/atom/AM in T.contents)
 
-						if(istype(AM, /obj/machinery/door) && !istype(AM, /obj/machinery/door/window))
+						if(isdoor(AM) && !istype(AM, /obj/machinery/door/window))
 							if(AM.density)
 								colour = rgb(96,96,192)
 								colour2 = colour
@@ -225,7 +225,7 @@
 
 					for(var/atom/AM in T.contents)
 
-						if(istype(AM, /obj/machinery/door) && !istype(AM, /obj/machinery/door/window))
+						if(isdoor(AM) && !istype(AM, /obj/machinery/door/window))
 							if(AM.density)
 								colour = rgb(0,96,192)
 							else

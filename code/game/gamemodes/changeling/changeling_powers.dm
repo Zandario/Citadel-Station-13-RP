@@ -199,7 +199,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 				if(!O.density)
 					add = 1
 					break
-				if(istype(O, /obj/machinery/door))
+				if(isdoor(O))
 					//not sure why this doesn't fire on LinkBlocked()
 					add = 0
 					break

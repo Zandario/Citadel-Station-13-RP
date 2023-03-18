@@ -283,11 +283,11 @@ var/list/tape_roll_applications = list()
 		to_chat(user, "<span class='notice'>You finish placing \the [src].</span>")
 		return
 
-/obj/item/barrier_tape_roll/afterattack(var/atom/A, mob/user as mob, proximity)
+/obj/item/barrier_tape_roll/afterattack(atom/A, mob/user as mob, proximity)
 	if(!proximity)
 		return
 
-	if (istype(A, /obj/machinery/door))
+	if (isdoor(A))
 		var/turf/T = get_turf(A)
 		if(locate(/obj/item/barrier_tape_segment, A.loc))
 			to_chat(user, "There's already tape over that door!")

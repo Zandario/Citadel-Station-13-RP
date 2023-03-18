@@ -1,5 +1,5 @@
 /obj/item/pai_cable/proc/plugin(obj/machinery/M, mob/user)
-	if(istype(M, /obj/machinery/door) || istype(M, /obj/machinery/camera))
+	if(isdoor(M) || istype(M, /obj/machinery/camera))
 		// Can't hack secured_wires doors (vault, etc)
 		if(isairlock(M))
 			var/obj/machinery/door/airlock/A = M

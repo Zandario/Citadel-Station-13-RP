@@ -51,7 +51,7 @@
 	if(istype(A, /turf/simulated/wall))
 		var/turf/simulated/wall/W = A
 		chance = round(damage/W.material.integrity*180)
-	else if(istype(A, /obj/machinery/door))
+	else if(isdoor(A))
 		var/obj/machinery/door/D = A
 		chance = round(damage/D.maxhealth*180)
 		if(D.glass) chance *= 2

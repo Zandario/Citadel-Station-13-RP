@@ -29,7 +29,7 @@
 		else
 			to_chat(user, "<span class='notice'>The device's software appears to be fine.</span>")
 		return 1
-	if(istype(O, /obj/machinery/door))
+	if(isdoor(O))
 		var/obj/machinery/door/D = O
 		if(D.operating == -1)
 			to_chat(user, "<span class='warning'>There is a software error with the device.</span>")

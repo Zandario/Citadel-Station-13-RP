@@ -264,7 +264,7 @@
 
 	return
 
-/mob/living/simple_mob/animal/space/space_worm/proc/AttemptToEat(var/atom/target)
+/mob/living/simple_mob/animal/space/space_worm/proc/AttemptToEat(atom/target)
 	if(istype(target,/turf/simulated/wall))
 		var/turf/simulated/wall/W = target
 		if((!W.reinf_material && do_after(src, 5 SECONDS)) || do_after(src, 10 SECONDS)) // 10 seconds for an R-wall, 5 seconds for a normal one.
@@ -274,7 +274,7 @@
 	else if(ismovable(target))
 		if(ismob(target) || do_after(src, 5)) // 5 ticks to eat stuff like tables.
 			var/atom/movable/objectOrMob = target
-			if(istype(objectOrMob, /obj/machinery/door))	// Doors and airlocks take time based on their durability and our damageo.
+			if(isdoor(objectOrMob)) // Doors and airlocks take time based on their durability and our damageo.
 				var/obj/machinery/door/D = objectOrMob
 				var/total_hits = max(2, round(D.maxhealth / (2 * melee_damage_upper)))
 

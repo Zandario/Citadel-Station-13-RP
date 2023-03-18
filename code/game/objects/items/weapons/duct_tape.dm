@@ -206,8 +206,8 @@
 	anchored = FALSE
 	return ..() // Pick it up now that it's unanchored.
 
-/obj/item/duct_tape_piece/afterattack(var/A, mob/user, flag, params)
-	if(!in_range(user, A) || istype(A, /obj/machinery/door) || !stuck)
+/obj/item/duct_tape_piece/afterattack(atom/A, mob/user, flag, params)
+	if(!in_range(user, A) || isdoor(A) || !stuck)
 		return
 
 	var/turf/target_turf = get_turf(A)

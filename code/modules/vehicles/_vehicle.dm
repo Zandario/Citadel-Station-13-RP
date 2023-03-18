@@ -168,7 +168,7 @@
 /obj/vehicle/Bump(atom/movable/M)
 	. = ..()
 	if(emulate_door_bumps)
-		if(istype(M, /obj/machinery/door))
+		if(isdoor(M))
 			for(var/m in occupants)
 				M.Bumped(m)
 
