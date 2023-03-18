@@ -191,7 +191,7 @@
 /datum/proc/deserialize_json(list/input, list/options)
 	var/list/jsonlist = json_decode(input)
 	. = deserialize_list(jsonlist)
-	if(!istype(., /datum))
+	if(!isdatum(.))
 		. = null
 
 ///Convert a datum into a json blob
@@ -230,7 +230,7 @@
 	var/typeofdatum = jsonlist["DATUM_TYPE"] //BYOND won't directly read if this is just put in the line below, and will instead runtime because it thinks you're trying to make a new list?
 	var/datum/D = new typeofdatum
 	var/datum/returned = D.deserialize_list(jsonlist, options)
-	if(!istype(returned, /datum))
+	if(!isdatum(returned))
 		qdel(D)
 	else
 		return returned

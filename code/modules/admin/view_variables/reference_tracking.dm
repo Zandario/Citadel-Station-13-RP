@@ -81,7 +81,7 @@
 	if(!recursive_limit)
 		return
 
-	if(istype(potential_container, /datum))
+	if(isdatum(potential_container))
 		var/datum/datum_container = potential_container
 		if(datum_container.last_find_references == last_find_references)
 			return

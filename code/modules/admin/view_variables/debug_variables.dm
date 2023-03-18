@@ -38,7 +38,7 @@
 	else if (isfile(value))
 		item = "[VV_HTML_ENCODE(name)] = <span class='value'>'[value]'</span>"
 
-	else if (istype(value, /datum))
+	else if (isdatum(value))
 		var/datum/DV = value
 		if ("[DV]" != "[DV.type]") //if the thing as a name var, lets use it.
 			item = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] [REF(value)]</a> = [DV] [DV.type]"
