@@ -63,7 +63,7 @@
 	if(get_status_indicator(thing)) // No duplicates, please.
 		return
 
-	if(!istype(thing, /image))
+	if(!isimage(thing))
 		thing = image(icon = 'icons/mob/status_indicators.dmi', icon_state = thing)
 
 	LAZYADD(status_indicators, thing)
@@ -78,7 +78,7 @@
 	handle_status_indicators()
 
 /mob/living/proc/get_status_indicator(image/thing)
-	if(!istype(thing, /image))
+	if(!isimage(thing))
 		for(var/image/I in status_indicators)
 			if(I.icon_state == thing)
 				return I

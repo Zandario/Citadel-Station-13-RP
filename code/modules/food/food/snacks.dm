@@ -4056,7 +4056,7 @@ END CITADEL CHANGE */
 	if (coating)
 		var/list/temp = overlays.Copy()
 		for (var/i in temp)
-			if (istype(i, /image))
+			if (isimage(i))
 				var/image/I = i
 				if (I.tag == "coating")
 					temp.Remove(I)

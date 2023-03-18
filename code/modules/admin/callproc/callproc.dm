@@ -204,7 +204,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		else
 			. = "[procname] returned an empty list"
 		. += "</font>"
-	else if(istype(returnval, /icon))
+	else if(isicon(returnval))
 		var/icon/I = returnval
 		. += "<font color=#4F49AF>[procname] returned an icon: <a href='?_src_=vars;[HrefToken()];Vars=[REF(returnval)]'>[REF(returnval)]</a> - [icon2html(I, src)] [I] ([I.type])</font>"
 	else if(isdatum(returnval))

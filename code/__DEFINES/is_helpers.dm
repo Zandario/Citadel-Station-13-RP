@@ -4,11 +4,15 @@
 
 #define isatom(A) (isloc(A))
 
+#define isicon(A) (istype(A, /icon))
+#define isimage(A) (istype(A, /image))
+
+
+//Datums
+
 #define isdatum(D) (istype(D, /datum))
 
 #define isweakref(D) (istype(D, /datum/weakref))
-
-//Datums
 
 #define isTaurTail(A)	istype(A, /datum/sprite_accessory/tail/taur)
 

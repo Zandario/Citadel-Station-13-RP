@@ -45,7 +45,7 @@
 		for(var/atom/A in atoms)
 			if(A)
 				var/icon/img = get_flat_icon(A)
-				if(istype(img, /icon))
+				if(isicon(img))
 					if(istype(A, /mob/living) && A:lying)
 						img.BecomeLying()
 					var/xoff = (A.x - tx) * 32

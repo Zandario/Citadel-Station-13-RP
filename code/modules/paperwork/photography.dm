@@ -186,7 +186,7 @@ var/global/photo_count = 0
 			var/icon/img = get_flat_icon(A)
 
 			// If what we got back is actually a picture, draw it.
-			if(istype(img, /icon))
+			if(isicon(img))
 				// Check if we're looking at a mob that's lying down
 				if(istype(A, /mob/living) && A:lying)
 					// If they are, apply that effect to their picture.
