@@ -1,20 +1,19 @@
 var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 
-/obj
-	var/contaminated = 0
+/obj/var/contaminated = FALSE
 
 /obj/item/proc/can_contaminate()
 	//Clothing and backpacks can be contaminated.
 	if(atom_flags & PHORONGUARD)
-		return 0
+		return FALSE
 	else if(istype(src,/obj/item/storage/backpack))
-		return 0 //Cannot be washed :(
+		return FALSE //Cannot be washed :(
 	else if(isbelly(loc))
-		return 0
+		return FALSE
 	else if(ismob(loc) && isbelly(loc.loc))
-		return 0
-	else if(istype(src,/obj/item/clothing))
-		return 1
+		return FALSE
+	else if(isclothing(src))
+		return TRUE
 
 /obj/item/proc/contaminate()
 	//Do a contamination overlay? Temporary measure to keep contamination less deadly than it was.

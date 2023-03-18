@@ -68,7 +68,7 @@
 	if(sample_type)
 		set_used(sample_type, H)
 
-/obj/item/forensics/swab/afterattack(var/atom/A, var/mob/user, var/proximity)
+/obj/item/forensics/swab/afterattack(atom/A, mob/user, proximity)
 
 	if(!proximity || istype(A, /obj/machinery/dnaforensics))
 		return
@@ -82,7 +82,7 @@
 	var/list/choices = list()
 	if(A.blood_DNA)
 		choices |= "Blood"
-	if(istype(A, /obj/item/clothing))
+	if(isclothing(A))
 		choices |= "Gunshot Residue"
 
 	var/choice

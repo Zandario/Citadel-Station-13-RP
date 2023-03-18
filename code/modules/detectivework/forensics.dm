@@ -24,20 +24,20 @@ var/const/FINGERPRINT_COMPLETE = 6
 	var/fibertext
 	var/item_multiplier = isitem(src) ? 1.2 : 1
 	var/suit_coverage = 0
-	if(istype(M.wear_suit, /obj/item/clothing))
+	if(isclothing(M.wear_suit))
 		var/obj/item/clothing/C = M.wear_suit
 		fibertext = C.get_fibers()
 		if(fibertext && prob(10*item_multiplier))
 			suit_fibers |= fibertext
 		suit_coverage = C.body_cover_flags
 
-	if(istype(M.w_uniform, /obj/item/clothing) && (M.w_uniform.body_cover_flags & ~suit_coverage))
+	if(isclothing(M.w_uniform) && (M.w_uniform.body_cover_flags & ~suit_coverage))
 		var/obj/item/clothing/C = M.w_uniform
 		fibertext = C.get_fibers()
 		if(fibertext && prob(15*item_multiplier))
 			suit_fibers |= fibertext
 
-	if(istype(M.gloves, /obj/item/clothing) && (M.gloves.body_cover_flags & ~suit_coverage))
+	if(isclothing(M.gloves) && (M.gloves.body_cover_flags & ~suit_coverage))
 		var/obj/item/clothing/C = M.gloves
 		fibertext = C.get_fibers()
 		if(fibertext && prob(20*item_multiplier))

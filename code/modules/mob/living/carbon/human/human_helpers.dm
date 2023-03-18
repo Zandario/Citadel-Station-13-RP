@@ -230,7 +230,7 @@
 	if(.)
 		// No need to run through all of this if it's already true.
 		return
-	if(istype(glasses, /obj/item/clothing))
+	if(isclothing(glasses))
 		var/obj/item/clothing/C = glasses
 		if(C.clothing_flags & SCAN_REAGENTS)
 			return TRUE

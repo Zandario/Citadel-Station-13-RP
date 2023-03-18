@@ -10,17 +10,17 @@
 	icon_state = "pouches"
 	w_class = ITEMSIZE_NORMAL
 
-/obj/item/clothing/accessory/armor/on_attached(var/obj/item/clothing/S, var/mob/user)
+/obj/item/clothing/accessory/armor/on_attached(obj/item/clothing/S, mob/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.wear_suit == S)
-			if((body_cover_flags & ARMS) && istype(H.gloves, /obj/item/clothing))
+			if((body_cover_flags & ARMS) && isclothing(H.gloves))
 				var/obj/item/clothing/G = H.gloves
 				if(G.body_cover_flags & ARMS)
 					to_chat(H, "<span class='warning'>You can't wear \the [src] with \the [G], it's in the way.</span>")
 					S.accessories -= src
 					return
-			else if((body_cover_flags & LEGS) && istype(H.shoes, /obj/item/clothing))
+			else if((body_cover_flags & LEGS) && isclothing(H.shoes))
 				var/obj/item/clothing/Sh = H.shoes
 				if(Sh.body_cover_flags & LEGS)
 					to_chat(H, "<span class='warning'>You can't wear \the [src] with \the [Sh], it's in the way.</span>")

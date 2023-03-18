@@ -4,5 +4,5 @@
 	. = ..()
 	if(. & ELEMENT_INCOMPATIBLE)
 		return
-	if(!istype(target, /obj/item/clothing))
+	if(!isclothing(target))
 		return ELEMENT_INCOMPATIBLE

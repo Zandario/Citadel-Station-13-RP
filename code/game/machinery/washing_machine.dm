@@ -70,7 +70,7 @@
 /obj/machinery/washing_machine/update_icon()
 	icon_state = "wm_[state][panel_open]"
 
-/obj/machinery/washing_machine/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/washing_machine/attackby(obj/item/W, mob/user)
 	if(state == 2 && washing.len < 1)
 		if(default_deconstruction_screwdriver(user, W))
 			return
@@ -105,7 +105,7 @@
 		to_chat(user, "<span class='warning'>You can't fit \the [W] inside.</span>")
 		return
 
-	else if(istype(W, /obj/item/clothing) || istype(W, /obj/item/bedsheet))
+	else if(isclothing(W) || istype(W, /obj/item/bedsheet))
 		if(washing.len < 5)
 			if(state in list(1, 3))
 				if(!user.attempt_insert_item_for_installation(W, src))

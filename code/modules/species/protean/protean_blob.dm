@@ -346,7 +346,7 @@
 	for(var/obj/item/card/id/I in things_to_not_drop)
 		blob.access_card.access += I.access
 
-	if(w_uniform && istype(w_uniform,/obj/item/clothing)) //No webbings tho. We do this after in case a suit was in the way
+	if(w_uniform && isclothing(w_uniform)) //No webbings tho. We do this after in case a suit was in the way
 		var/obj/item/clothing/uniform = w_uniform
 		if(LAZYLEN(uniform.accessories))
 			for(var/obj/item/clothing/accessory/A in uniform.accessories)
