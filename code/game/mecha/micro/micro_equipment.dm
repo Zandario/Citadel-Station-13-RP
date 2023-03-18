@@ -134,7 +134,7 @@
 				else
 					log_message("Drilled through [target]")
 					LEGACY_EX_ACT(target, 2, null)
-			else if(istype(target, /turf/simulated/mineral))
+			else if(ismineralturf(target))
 				for(var/turf/simulated/mineral/M in range(chassis,1))
 					if(get_dir(chassis,M)&chassis.dir)
 						M.GetDrilled()

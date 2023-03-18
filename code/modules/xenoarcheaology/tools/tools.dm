@@ -63,7 +63,7 @@
 		if(SSxenoarch) //Sanity check due to runtimes ~Z
 			for(var/A in SSxenoarch.artifact_spawning_turfs)
 				var/turf/simulated/mineral/T = A
-				if(istype(T, /turf/simulated/mineral) && T.density && T.artifact_find)
+				if(ismineralturf(T) && T.density && T.artifact_find)
 					if(T.z == cur_turf.z)
 						var/cur_dist = get_dist(cur_turf, T) * 2
 						if(nearestTargetDist < 0 || cur_dist < nearestTargetDist)
@@ -72,7 +72,7 @@
 
 			for(var/A in SSxenoarch.digsite_spawning_turfs)
 				var/turf/simulated/mineral/T = A
-				if(istype(T, /turf/simulated/mineral) && T.density && T.finds && T.finds.len)
+				if(ismineralturf(T) && T.density && T.finds && T.finds.len)
 					if(T.z == cur_turf.z)
 						var/cur_dist = get_dist(cur_turf, T) * 2
 						if(nearestSimpleTargetDist < 0 || cur_dist < nearestSimpleTargetDist)
@@ -113,10 +113,10 @@
 	var/dissonance_spread = 1
 	var/material = "unknown"
 
-/obj/item/depth_scanner/proc/scan_atom(var/mob/user, var/atom/A)
+/obj/item/depth_scanner/proc/scan_atom(mob/user, atom/A)
 	user.visible_message("<span class='notice'>\The [user] scans \the [A], the air around them humming gently.</span>")
 
-	if(istype(A, /turf/simulated/mineral))
+	if(ismineralturf(A))
 		var/turf/simulated/mineral/M = A
 		if((M.finds && M.finds.len) || M.artifact_find)
 

@@ -154,7 +154,7 @@
 		suspension_field.add_overlay("shield2")
 		visible_message(SPAN_NOTICE("[icon2html(thing = suspension_field, target = world)] [suspension_field] gently absconds [collected > 1 ? "something" : "several things"]."))
 	else
-		if(istype(T,/turf/simulated/mineral) || istype(T,/turf/simulated/wall))
+		if(ismineralturf(T) || istype(T, /turf/simulated/wall))
 			suspension_field.icon_state = "shieldsparkles"
 		else
 			suspension_field.icon_state = "shield2"

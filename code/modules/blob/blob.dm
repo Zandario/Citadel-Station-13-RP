@@ -53,7 +53,7 @@
 	update_icon()
 
 /obj/effect/blob/proc/expand(turf/T)
-	if(istype(T, /turf/unsimulated/) || isspaceturf(T) || (istype(T, /turf/simulated/mineral) && T.density))
+	if(istype(T, /turf/unsimulated/) || isspaceturf(T) || (ismineralturf(T) && T.density))
 		return
 	if(istype(T, /turf/simulated/wall))
 		var/turf/simulated/wall/SW = T

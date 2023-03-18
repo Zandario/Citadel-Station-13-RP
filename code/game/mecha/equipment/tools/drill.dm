@@ -34,7 +34,7 @@
 					log_message("Drilled through [target]")
 					LEGACY_EX_ACT(target, 2, null)
 
-			else if(istype(target, /turf/simulated/mineral))
+			else if(ismineralturf(target))
 				if(enable_special)
 					for(var/turf/simulated/mineral/M in range(chassis,1))
 						if(get_dir(chassis,M)&chassis.dir)
@@ -115,7 +115,7 @@
 				else
 					log_message("Bored through [target]")
 					LEGACY_EX_ACT(target, 2, null)
-			else if(istype(target, /turf/simulated/mineral))
+			else if(ismineralturf(target))
 				var/turf/simulated/mineral/M = target
 				if(enable_special && !M.density)
 					LEGACY_EX_ACT(M, 2, null)

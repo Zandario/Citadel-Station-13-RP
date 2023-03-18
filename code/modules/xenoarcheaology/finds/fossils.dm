@@ -17,7 +17,7 @@
 	var/t = pickweight(l)
 	var/obj/item/W = new t(drop_location())
 	var/turf/T = get_turf(src)
-	if(istype(T, /turf/simulated/mineral))
+	if(ismineralturf(T))
 		var/turf/simulated/mineral/M = T
 		M.last_find = W
 	qdel(src)

@@ -705,11 +705,11 @@
 			var/mob/living/S = target
 			S.apply_damage(drill_force)
 			return
-	if(istype(target, /turf/simulated/mineral))
+	if(ismineralturf(target))
 		var/turf/simulated/mineral/S = target
 		if(S.finds && S.finds.len)
 			visible_message(SPAN_WARNING("<b>[pick("There is a crunching noise","[assembly]'s [src] collides with some different rock","Part of the rock face crumbles away","Something breaks under [assembly]'s [src]")]</b>"))
-		if(istype(S, /turf/simulated/mineral))
+		if(ismineralturf(S))
 			S.GetDrilled()
 			investigate_log("Drilled through [target]")
 		else if(istype(S, /turf/simulated/wall))

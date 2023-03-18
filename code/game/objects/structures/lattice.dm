@@ -16,7 +16,7 @@
 /obj/structure/lattice/Initialize(mapload)
 	. = ..()
 
-	if(!(isspaceturf(src.loc) || isopenturf(src.loc) || istype(src.loc, /turf/simulated/mineral)))
+	if(!(isspaceturf(src.loc) || isopenturf(src.loc) || ismineralturf(src.loc)))
 		return INITIALIZE_HINT_QDEL
 
 	for(var/obj/structure/lattice/LAT in src.loc)
