@@ -15,8 +15,8 @@
 		user = usr
 	if(!length(items))
 		return
-	if (!istype(user))
-		if (istype(user, /client))
+	if (!mob(user))
+		if (isclient(user))
 			var/client/client = user
 			user = client.mob
 		else
@@ -49,8 +49,8 @@
 		user = usr
 	if(!length(items))
 		return
-	if (!istype(user))
-		if (istype(user, /client))
+	if (!ismob(user))
+		if (isclient(user))
 			var/client/client = user
 			user = client.mob
 		else

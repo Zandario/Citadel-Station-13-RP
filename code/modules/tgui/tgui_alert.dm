@@ -13,8 +13,8 @@
 /proc/tgui_alert(mob/user, message = "", title, list/buttons = list("Ok"), timeout = 0, autofocus = TRUE)
 	if (!user)
 		user = usr
-	if (!istype(user))
-		if (istype(user, /client))
+	if (!ismob(user))
+		if (isclient(user))
 			var/client/client = user
 			user = client.mob
 		else
@@ -48,8 +48,8 @@
 /proc/tgui_alert_async(mob/user, message = "", title, list/buttons = list("Ok"), datum/callback/callback, timeout = 0, autofocus = TRUE)
 	if (!user)
 		user = usr
-	if (!istype(user))
-		if (istype(user, /client))
+	if (!ismob(user))
+		if (isclient(user))
 			var/client/client = user
 			user = client.mob
 		else

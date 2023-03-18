@@ -18,8 +18,8 @@
 /proc/tgui_input_number(mob/user, message, title = "Number Input", default = 0, max_value = 10000, min_value = 0, timeout = 0, round_value = TRUE)
 	if (!user)
 		user = usr
-	if (!istype(user))
-		if (istype(user, /client))
+	if (!ismob(user))
+		if (isclient(user))
 			var/client/client = user
 			user = client.mob
 		else
@@ -54,8 +54,8 @@
 /proc/tgui_input_number_async(mob/user, message, title = "Number Input", default = 0, max_value = 10000, min_value = 0, datum/callback/callback, timeout = 60 SECONDS, round_value = TRUE)
 	if (!user)
 		user = usr
-	if (!istype(user))
-		if (istype(user, /client))
+	if (!ismob(user))
+		if (isclient(user))
 			var/client/client = user
 			user = client.mob
 		else

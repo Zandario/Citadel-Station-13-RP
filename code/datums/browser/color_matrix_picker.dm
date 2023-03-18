@@ -72,8 +72,8 @@
 	close()
 
 /proc/color_matrix_picker(mob/user, message, title, button1 = "Ok", button2, button3, stealfocus, timeout = 10 MINUTES, list/values)
-	if(!istype(user))
-		if(istype(user, /client))
+	if(!ismob(user))
+		if(isclient(user))
 			var/client/C = user
 			user = C.mob
 		else

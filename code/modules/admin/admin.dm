@@ -1299,10 +1299,10 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 		return "<b>(*null*)</b>"
 	var/mob/M
 	var/client/C
-	if(istype(whom, /client))
+	if(isclient(whom))
 		C = whom
 		M = C.mob
-	else if(istype(whom, /mob))
+	else if(ismob(whom))
 		M = whom
 		C = M.client
 	else
@@ -1332,9 +1332,9 @@ var/datum/legacy_announcement/minor/admin_min_announcer = new
 		return 0
 	var/client/C
 	var/mob/M
-	if(istype(whom, /client))
+	if(isclient(whom))
 		C = whom
-	if(istype(whom, /mob))
+	if(ismob(whom))
 		M = whom
 		C = M.client
 	if(R_HOST & C.holder.rights)

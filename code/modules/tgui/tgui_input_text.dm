@@ -36,8 +36,8 @@
 /proc/tgui_input_text(mob/user, message = "", title = "Text Input", default, max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = TRUE, timeout = 0)
 	if (!user)
 		user = usr
-	if (!istype(user))
-		if (istype(user, /client))
+	if (!ismob(user))
+		if (isclient(user))
 			var/client/client = user
 			user = client.mob
 		else
@@ -78,8 +78,8 @@
 /proc/tgui_input_text_async(mob/user, message = "", title = "Text Input", default, max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = TRUE, datum/callback/callback, timeout = 60 SECONDS)
 	if (!user)
 		user = usr
-	if (!istype(user))
-		if (istype(user, /client))
+	if (!ismob(user))
+		if (isclient(user))
 			var/client/client = user
 			user = client.mob
 		else

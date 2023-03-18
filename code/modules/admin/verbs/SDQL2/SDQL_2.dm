@@ -798,7 +798,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 				else
 					temp.vv_edit_var(v, SDQL_expression(d, set_list[sets]), TRUE)
 				break
-			if(temp.vars.Find(v) && (isdatum(temp.vars[v]) || istype(temp.vars[v], /client)))
+			if(temp.vars.Find(v) && (isdatum(temp.vars[v]) || isclient(temp.vars[v])))
 				temp = temp.vars[v]
 			else
 				break

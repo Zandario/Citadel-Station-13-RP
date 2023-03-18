@@ -414,7 +414,7 @@ GLOBAL_LIST_EMPTY(##LIST_NAME);\
 /// Radiation will not affect a tile when below this value.
 #define RADIATION_THRESHOLD_CUTOFF	0.1
 
-#define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))
+#define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (isclient(I) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))
 
 #define PR_ANNOUNCEMENTS_PER_ROUND	5
 

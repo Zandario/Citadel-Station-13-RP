@@ -151,7 +151,7 @@
 		if(istype(M, /datum/mind))
 			var/datum/mind/_M = M
 			checking = _M.current
-		if(istype(M, /client))
+		if(isclient(M))
 			var/client/_C = M
 			checking = _C.mob
 	. = FALSE

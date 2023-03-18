@@ -7,6 +7,7 @@
 #define isicon(A) (istype(A, /icon))
 #define isimage(A) (istype(A, /image))
 
+#define isclient(A) (istype(A, /client))
 
 //Datums
 
