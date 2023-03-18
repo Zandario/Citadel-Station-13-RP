@@ -256,7 +256,7 @@
 
 	time_till_despawn = 600 //1 minute. We want to be much faster then normal cryo, since waiting in an elevator for half an hour is a special kind of hell.
 
-	allow_occupant_types = list(/mob/living/silicon/robot,/mob/living/carbon/human)
+	allow_occupant_types = list(/mob/living/silicon/robot, /mob/living/carbon/human)
 	disallow_occupant_types = list(/mob/living/silicon/robot/drone)
 
 /obj/machinery/cryopod/robot/door/dorms

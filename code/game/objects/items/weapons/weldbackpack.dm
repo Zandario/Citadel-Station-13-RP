@@ -85,7 +85,7 @@
 	return
 
 /obj/item/weldpack/attack_hand(mob/user, list/params)
-	if(istype(user, /mob/living/carbon/human))
+	if(ishuman(user))
 		var/mob/living/carbon/human/wearer = user
 		if(wearer.back == src)
 			if(nozzle && nozzle_attached)

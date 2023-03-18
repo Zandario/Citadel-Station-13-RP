@@ -141,7 +141,7 @@
 				var/power = fuel[I]
 				if(I == "blood")
 					var/list/data = reagents.get_data(I)
-					if(data && istype(data["donor"], /mob/living/carbon/human))
+					if(data && ishuman(data["donor"]))
 						var/mob/living/carbon/human/H = data["donor"]
 						if(H.mind && H.mind.ckey)
 							power *= 10

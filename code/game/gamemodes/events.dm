@@ -47,7 +47,7 @@ var/hadevent    = 0
 			continue
 		if(isNotStationLevel(T.z))
 			continue
-		if(istype(H,/mob/living/carbon/human))
+		if(ishuman(H))
 			H.afflict_radiation(rand(200, 1000))
 			if (prob(5))
 				H.afflict_radiation(rand(200, 1000))

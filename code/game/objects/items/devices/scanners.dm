@@ -93,7 +93,7 @@ HALOGEN COUNTER	- Radcount on mobs
 		var/tdelta = round(world.time - M.timeofdeath)
 		if(tdelta < (DEFIB_TIME_LIMIT * 10))
 			dat += SPAN_BOLDNOTICE("\nSubject died [DisplayTimeText(tdelta)] ago - resuscitation may be possible!")
-	if(istype(M, /mob/living/carbon/human) && mode == 1)
+	if(ishuman(M) && mode == 1)
 		var/mob/living/carbon/human/H = M
 		var/list/damaged = H.get_damaged_organs(1,1)
 		dat += 	SPAN_NOTICE("\nLocalized Damage, Brute/Burn:")

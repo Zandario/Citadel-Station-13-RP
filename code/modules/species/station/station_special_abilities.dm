@@ -166,7 +166,7 @@
 						var/list/slots_free = list(ui_lhand,ui_rhand)
 						if(l_hand) slots_free -= ui_lhand
 						if(r_hand) slots_free -= ui_rhand
-						if(istype(src,/mob/living/carbon/human))
+						if(ishuman(src))
 							var/mob/living/carbon/human/H = src
 							if(!H.belt) slots_free += ui_belt
 							if(!H.l_store) slots_free += ui_storage1
@@ -370,7 +370,7 @@
 	src.visible_message("<font color='red'><b>[src] leans in close to [B]...</b></font>")
 	B.add_fingerprint(src)
 	add_attack_logs(src,B,"used bloodsuck() on [B]")
-	if(istype(B, /mob/living/carbon/human) && iscarbon(src))
+	if(ishuman(B) && iscarbon(src))
 		if(do_after(src, 50, B)) //Five seconds seems best
 			if(!Adjacent(B)) return
 			if(!src.isSynthetic())

@@ -89,7 +89,7 @@
 				potential_spells |= /obj/item/spell/projectile/ionic_bolt
 
 		// Finally we get to humanoids.
-		if(istype(L, /mob/living/carbon/human))
+		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			if(is_ally(H)) // Don't get scared by our apprentice.
 				continue

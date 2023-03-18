@@ -2,7 +2,7 @@
 	. = ..()
 	if(.)
 		return
-	if(istype(user, /mob/living/carbon/human))
+	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
 		if(human_user.species.is_vampire)
 			if(user.a_intent == INTENT_HARM)

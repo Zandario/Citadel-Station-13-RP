@@ -76,7 +76,7 @@
 			continue
 
 		var/flash_time = strength
-		if(istype(O, /mob/living/carbon/human))
+		if(ishuman(O))
 			var/mob/living/carbon/human/H = O
 			if(!H.eyecheck() <= 0)
 				continue

@@ -164,10 +164,10 @@
 	..()
 	attack_log += text("\[[time_stamp()]\] <font color='red'>ran over [M.name] ([M.ckey])</font>")
 
-/obj/vehicle_old/train/engine/RunOver(var/mob/living/M)
+/obj/vehicle_old/train/engine/RunOver(mob/living/M)
 	..()
 
-	if(is_train_head() && istype(load, /mob/living/carbon/human))
+	if(is_train_head() && ishuman(load))
 		var/mob/living/carbon/human/D = load
 		to_chat(D, "<font color='red'><B>You ran over [M]!</B></font>")
 		visible_message("<B><font color='red'>\The [src] ran over [M]!</B></font>")
@@ -218,7 +218,7 @@
 	set category = "Vehicle"
 	set src in view(0)
 
-	if(!istype(usr, /mob/living/carbon/human))
+	if(!ishuman(usr))
 		return
 
 	if(on)
@@ -239,7 +239,7 @@
 	set category = "Vehicle"
 	set src in view(0)
 
-	if(!istype(usr, /mob/living/carbon/human))
+	if(!ishuman(usr))
 		return
 
 	if(!on)
@@ -255,7 +255,7 @@
 	set category = "Vehicle"
 	set src in view(0)
 
-	if(!istype(usr, /mob/living/carbon/human))
+	if(!ishuman(usr))
 		return
 
 	if(!key || (load && load != usr))
@@ -277,7 +277,7 @@
 /obj/vehicle_old/train/trolley/load(atom/movable/C, mob/user)
 	if(ismob(C) && !passenger_allowed)
 		return 0
-	if(!ismachinery(C) && !istype(C,/obj/structure/closet) && !istype(C,/obj/structure/largecrate) && !istype(C,/obj/structure/reagent_dispensers) && !istype(C,/obj/structure/ore_box) && !istype(C, /mob/living/carbon/human))
+	if(!ismachinery(C) && !istype(C,/obj/structure/closet) && !istype(C,/obj/structure/largecrate) && !istype(C,/obj/structure/reagent_dispensers) && !istype(C,/obj/structure/ore_box) && !ishuman(C))
 		return 0
 
 	//if there are any items you don't want to be able to interact with, add them to this check
@@ -290,8 +290,8 @@
 	if(load)
 		return 1
 
-/obj/vehicle_old/train/engine/load(var/atom/movable/C, var/mob/user)
-	if(!istype(C, /mob/living/carbon/human))
+/obj/vehicle_old/train/engine/load(atom/movable/C, mob/user)
+	if(!ishuman(C))
 		return 0
 
 	return ..()

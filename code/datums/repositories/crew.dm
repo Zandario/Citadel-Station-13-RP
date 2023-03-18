@@ -7,7 +7,7 @@ var/global/datum/repository/crew/crew_repository = new()
 	cache_data = list()
 	..()
 
-/datum/repository/crew/proc/health_data(var/zLevel)
+/datum/repository/crew/proc/health_data(zLevel)
 	var/list/crewmembers = list()
 	if(!zLevel)
 		return crewmembers
@@ -25,7 +25,7 @@ var/global/datum/repository/crew/crew_repository = new()
 	for(var/obj/item/clothing/under/C in tracked)
 		var/turf/pos = get_turf(C)
 		if((C) && (C.has_sensors) && (pos) && (pos.z == zLevel) && (C.sensor_mode != SUIT_SENSOR_OFF) && !(is_jammed(C)))
-			if(istype(C.loc, /mob/living/carbon/human))
+			if(ishuman(C.loc))
 				var/mob/living/carbon/human/H = C.loc
 				if(H.w_uniform != C)
 					continue

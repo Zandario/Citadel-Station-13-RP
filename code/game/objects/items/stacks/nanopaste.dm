@@ -33,7 +33,7 @@
 		else
 			to_chat(user, "<span class='notice'>All [R]'s systems are nominal.</span>")
 
-	if (istype(L,/mob/living/carbon/human))		//Repairing robolimbs
+	if (ishuman(L)) // Repairing robolimbs
 		var/mob/living/carbon/human/H = L
 		var/obj/item/organ/external/S = H.get_organ(user.zone_sel.selecting)
 		if (S && (S.robotic >= ORGAN_ROBOT))

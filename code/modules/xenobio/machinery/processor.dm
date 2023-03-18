@@ -115,7 +115,7 @@
 	processing = FALSE
 	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 
-/obj/machinery/processor/proc/extract(var/atom/movable/AM)
+/obj/machinery/processor/proc/extract(atom/movable/AM)
 	if(istype(AM, /mob/living/simple_mob/slime))
 		var/mob/living/simple_mob/slime/S = AM
 		while(S.cores)
@@ -126,7 +126,7 @@
 		to_be_processed.Remove(S)
 		qdel(S)
 
-	if(istype(AM, /mob/living/carbon/human))
+	if(ishuman(AM))
 		var/mob/living/carbon/human/M = AM
 		playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
 		to_be_processed.Remove(M)
@@ -134,7 +134,7 @@
 		monkeys_recycled++
 		sleep(1 SECOND)
 
-/obj/machinery/processor/proc/can_insert(var/atom/movable/AM)
+/obj/machinery/processor/proc/can_insert(atom/movable/AM)
 	if(AM.loc == src)
 		return FALSE
 	if(istype(AM, /mob/living/simple_mob/slime))
@@ -142,7 +142,7 @@
 		if(S.stat != DEAD)
 			return FALSE
 		return TRUE
-	if(istype(AM, /mob/living/carbon/human))
+	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		if(!istype(H.species, /datum/species/monkey))
 			return FALSE

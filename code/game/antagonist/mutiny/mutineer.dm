@@ -15,10 +15,10 @@ var/datum/antagonist/mutineer/mutineers
 
 /datum/antagonist/mutineer/proc/recruit()
 
-/datum/antagonist/mutineer/can_become_antag(var/datum/mind/player)
+/datum/antagonist/mutineer/can_become_antag(datum/mind/player)
 	if(!..())
 		return 0
-	if(!istype(player.current, /mob/living/carbon/human))
+	if(!ishuman(player.current))
 		return 0
 	if(M.special_role)
 		return 0

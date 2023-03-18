@@ -32,8 +32,9 @@
 	for(var/atom/X in orange(pull_radius, location))
 		// Movable atoms only
 		if(ismovable(X))
-			if(istype(X, /obj/effect/overlay)) continue
-			if(X && !istype(X, /mob/living/carbon/human))
+			if(istype(X, /obj/effect/overlay))
+				continue
+			if(X && !ishuman(X))
 				if(break_windows && istype(X, /obj/structure/window)) //shatter windows
 					var/obj/structure/window/W = X
 					LEGACY_EX_ACT(W, 2, null)
@@ -48,7 +49,7 @@
 				step_towards(X, location) // Step twice
 				step_towards(X, location)
 
-			else if(istype(X,/mob/living/carbon/human))
+			else if(ishuman(X))
 				var/mob/living/carbon/human/H = X
 				if(istype(H.shoes,/obj/item/clothing/shoes/magboots))
 					var/obj/item/clothing/shoes/magboots/M = H.shoes

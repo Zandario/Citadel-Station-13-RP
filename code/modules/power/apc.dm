@@ -905,7 +905,7 @@ GLOBAL_LIST_EMPTY(apcs)
 	src.add_fingerprint(user)
 
 	//Human mob special interaction goes here.
-	if(istype(user,/mob/living/carbon/human))
+	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 
 		if(H.species.can_shred(H))

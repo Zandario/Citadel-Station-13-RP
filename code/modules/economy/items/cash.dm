@@ -25,7 +25,7 @@
 		var/obj/item/spacecash/SC = W
 
 		SC.adjust_worth(src.worth)
-		if(istype(user, /mob/living/carbon/human))
+		if(ishuman(user))
 			var/mob/living/carbon/human/h_user = user
 
 			h_user.temporarily_remove_from_inventory(src, INV_OP_FORCE | INV_OP_SHOULD_NOT_INTERCEPT | INV_OP_SILENT)

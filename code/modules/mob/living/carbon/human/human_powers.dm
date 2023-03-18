@@ -132,7 +132,7 @@
 
 		to_chat(M, SPAN_INTERFACE("Like lead slabs crashing into the ocean, alien thoughts drop into your mind: <b>[text]</b>"))
 		nutrition -= 50
-		if(istype(M,/mob/living/carbon/human))
+		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H.species.get_species_id() == src.species.get_species_id())
 				return

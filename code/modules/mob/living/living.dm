@@ -127,7 +127,7 @@ default behaviour is:
 
 //sort of a legacy burn method for /electrocute, /shock, and the e_chair
 /mob/living/proc/burn_skin(burn_amount)
-	if(istype(src, /mob/living/carbon/human))
+	if(ishuman(src))
 		//to_chat(world, "DEBUG: burn_skin(), mutations=[mutations]")
 		if(MUTATION_NOSHOCK in src.mutations) //shockproof
 			return 0
@@ -161,7 +161,7 @@ default behaviour is:
 		temperature -= change
 		if(actual < desired)
 			temperature = desired
-//	if(istype(src, /mob/living/carbon/human))
+//	if(ishuman(src))
 //		to_chat(world, "[src] ~ [src.bodytemperature] ~ [temperature]")
 	return temperature
 

@@ -93,7 +93,7 @@
 
 		// check for MUTATION_TELEKINESIS users
 
-		if (istype(usr, /mob/living/carbon/human))
+		if (ishuman(usr))
 			var/mob/living/carbon/human/H = usr
 			if(H.get_held_item_of_type(/obj/item/tk_grab))
 				if(!(H in nearby))

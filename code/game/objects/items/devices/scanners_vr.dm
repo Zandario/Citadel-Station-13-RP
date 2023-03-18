@@ -230,7 +230,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		if(!istype(target))
 			return
 
-		if(istype(target, /mob/living/carbon/human))
+		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			if(H.resleeve_lock && stored_mind.loaded_from_ckey  != H.resleeve_lock)
 				to_chat(usr,"<span class='warning'>\[H] is protected from impersonation!</span>")

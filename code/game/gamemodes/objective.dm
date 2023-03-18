@@ -147,7 +147,7 @@ var/global/list/all_objectives = list()
 	return target
 
 /datum/objective/anti_revolution/demote/check_completion()
-	if(target && target.current && istype(target,/mob/living/carbon/human))
+	if(target && target.current && ishuman(target))
 		var/obj/item/card/id/I = target.current:wear_id
 		if(istype(I, /obj/item/pda))
 			var/obj/item/pda/P = I
@@ -396,7 +396,7 @@ var/global/list/all_objectives = list()
 	if(already_completed)
 		return TRUE
 
-	if(target && target.current && istype(target.current, /mob/living/carbon/human))
+	if(target && target.current && ishuman(target.current))
 		if(target.current.stat == DEAD)
 			return FALSE
 
@@ -567,7 +567,7 @@ var/global/list/all_objectives = list()
 
 	var/current_amount
 	var/obj/item/rig/S
-	if(istype(owner.current,/mob/living/carbon/human))
+	if(ishuman(owner.current))
 		var/mob/living/carbon/human/H = owner.current
 		S = H.back
 

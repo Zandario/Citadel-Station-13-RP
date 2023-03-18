@@ -43,7 +43,7 @@
 			if(damtype == "brute")
 				step_away(M,src,15)
 
-			if(istype(target, /mob/living/carbon/human))
+			if(ishuman(target))
 				var/mob/living/carbon/human/H = target
 	//			if (M.health <= 0) return
 

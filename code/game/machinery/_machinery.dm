@@ -272,7 +272,7 @@
 		return TRUE
 	if(user.lying || user.stat)
 		return TRUE
-	if(!(istype(user, /mob/living/carbon/human) || istype(user, /mob/living/silicon)))
+	if(!(ishuman(user) || istype(user, /mob/living/silicon)))
 		to_chat(user, SPAN_WARNING("You don't have the dexterity to do this!"))
 		return TRUE
 	if(ishuman(user))

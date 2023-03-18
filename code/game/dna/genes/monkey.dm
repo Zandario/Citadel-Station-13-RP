@@ -5,10 +5,10 @@
 	block = DNABLOCK_MONKEY
 
 /datum/gene/monkey/can_activate(mob/M, flags)
-	return istype(M, /mob/living/carbon/human) || istype(M,/mob/living/carbon/monkey)
+	return ishuman(M) || istype(M,/mob/living/carbon/monkey)
 
 /datum/gene/monkey/activate(mob/living/M, connected, flags)
-	if(!istype(M,/mob/living/carbon/human))
+	if(!ishuman(M))
 		//testing("Cannot monkey-ify [M], type is [M.type].")
 		return
 	var/mob/living/carbon/human/H = M

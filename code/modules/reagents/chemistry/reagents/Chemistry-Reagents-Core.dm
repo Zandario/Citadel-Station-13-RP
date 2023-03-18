@@ -31,7 +31,7 @@
 /datum/reagent/blood/touch_turf(turf/simulated/T)
 	if(!istype(T) || volume < 3)
 		return
-	if(!data["donor"] || istype(data["donor"], /mob/living/carbon/human))
+	if(!data["donor"] || ishuman(data["donor"]))
 		blood_splatter(T, src, 1)
 	else if(isalien(data["donor"]))
 		var/obj/effect/debris/cleanable/blood/B = blood_splatter(T, src, 1)

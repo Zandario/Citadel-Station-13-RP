@@ -1,6 +1,6 @@
 /obj/belly/proc/handle_remains_leaving(var/mob/living/M)
 
-	if(istype(M,/mob/living/carbon/human))	//Are we even humanoid?
+	if(ishuman(M))	//Are we even humanoid?
 		var/mob/living/carbon/human/H = M
 
 		if((H.species.get_species_id() in remainless_species) || H.isSynthetic())	//Don't leave anything if there is nothing to leave

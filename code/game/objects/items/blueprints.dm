@@ -50,7 +50,7 @@
 	. = ..()
 	if(.)
 		return
-	if (!istype(user, /mob/living/carbon/human))
+	if (!ishuman(user))
 		to_chat(user, "This stack of blue paper means nothing to you.") //monkeys cannot into projecting
 		return
 	interact()

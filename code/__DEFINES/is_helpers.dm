@@ -69,6 +69,7 @@
 #define isexternalorgan(OBJ) (istype(OBJ, /obj/item/organ/external))
 
 #define ismachinery(OBJ) (istype(OBJ, /obj/machinery))
+#define isdoor(OBJ)      (istype(OBJ, /obj/machinery/door))
 #define isairlock(OBJ)   (istype(OBJ, /obj/machinery/door/airlock))
 
 #define ismecha(OBJ)     (istype(OBJ, /obj/mecha))
@@ -121,7 +122,7 @@ GLOBAL_LIST_INIT(vechicle_typepaths, typecacheof(list(
 #define isvoice(MOB) (istype(MOB, /mob/living/voice))
 
 /proc/is_species_type(atom/A, path)
-	if(!istype(A, /mob/living/carbon/human))
+	if(!ishuman(A))
 		return FALSE
 	var/mob/living/carbon/human/H = A
 	return istype(H.species, path)

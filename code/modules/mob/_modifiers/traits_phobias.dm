@@ -120,7 +120,7 @@
 
 		// People covered in blood is also bad.
 		// Feel free to trim down if its too expensive CPU wise.
-		if(istype(thing, /mob/living/carbon/human))
+		if(ishuman(thing))
 			var/mob/living/carbon/human/H = thing
 			var/self_multiplier = H == holder ? 2 : 1
 			var/human_blood_fear_amount = 0
@@ -438,7 +438,7 @@
 			else
 				fear_amount += 10 // It's huge and feral.
 
-		if(istype(thing, /mob/living/carbon/human))
+		if(ishuman(thing))
 			var/mob/living/carbon/human/S = thing
 			if(istype(S.species, /datum/species/skrell)) //Skrell ARE slimey.
 				fear_amount += 1
@@ -525,7 +525,7 @@
 		if(istype(thing, /obj/item/gun/launcher/syringe))
 			fear_amount += 6
 
-		if(istype(thing, /mob/living/carbon/human))
+		if(ishuman(thing))
 			var/mob/living/carbon/human/H = thing
 			if(H.l_hand && istype(H.l_hand, /obj/item/reagent_containers/syringe) || H.r_hand && istype(H.r_hand, /obj/item/reagent_containers/syringe))
 				fear_amount += 10

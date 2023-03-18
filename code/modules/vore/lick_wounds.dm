@@ -7,12 +7,12 @@
 		to_chat(src, "<span class='warning'>You need more energy to produce antiseptic enzymes. Eat something and try again.</span>")
 		return
 
-	if ( ! (istype(src, /mob/living/carbon/human) || \
+	if ( ! (ishuman(src) || \
 			istype(src, /mob/living/silicon)) )
 		to_chat(src, "<span class='warning'>If you even have a tongue, it doesn't work that way.</span>")
 		return
 
-	if (istype(M, /mob/living/carbon/human))
+	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(zone_sel.selecting)
 

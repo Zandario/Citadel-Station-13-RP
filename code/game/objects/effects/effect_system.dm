@@ -192,7 +192,7 @@ steam.start() -- spawns the effect
 		return 0
 	if(M.wear_mask && (M.wear_mask.clothing_flags & ALLOWINTERNALS))
 		return 0
-	if(istype(M,/mob/living/carbon/human))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.head && (H.head.clothing_flags & ALLOWINTERNALS))
 			return 0

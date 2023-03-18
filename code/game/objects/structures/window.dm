@@ -247,7 +247,7 @@
 
 	else if (usr.a_intent == INTENT_HARM)
 
-		if (istype(usr,/mob/living/carbon/human))
+		if (ishuman(usr))
 			var/mob/living/carbon/human/H = usr
 			if(H.species.can_shred(H))
 				attack_generic(H,25)

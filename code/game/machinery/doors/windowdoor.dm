@@ -150,7 +150,7 @@
 /obj/machinery/door/window/attack_hand(mob/user, list/params)
 	src.add_fingerprint(user)
 
-	if(istype(user,/mob/living/carbon/human))
+	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
 			playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)

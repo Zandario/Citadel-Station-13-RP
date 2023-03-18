@@ -185,7 +185,7 @@
 		to_chat(usr, "<span class='warning'>The [src] needs to be wrenched to the floor!</span>")
 		return FALSE
 
-	if (!istype(M, /mob/living/carbon/human))
+	if (!ishuman(M))
 		to_chat(usr, "<span class='warning'>It doesn't look like [M.p_they()] can fit into this properly!</span>")
 		return FALSE // Can't decapitate non-humans
 
@@ -196,7 +196,7 @@
 	return ..(M, force, FALSE)
 
 /obj/structure/guillotine/post_buckle_mob(mob/living/M)
-	if (!istype(M, /mob/living/carbon/human))
+	if (!ishuman(M))
 		return
 
 	var/mob/living/carbon/human/H = M

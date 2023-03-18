@@ -286,7 +286,7 @@
 		return 1
 	var/safety = user.eyecheck()
 	safety = clamp( safety + eye_safety_modifier, -1,  2)
-	if(istype(user, /mob/living/carbon/human))
+	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
 		if(!E)
@@ -493,7 +493,7 @@
 
 /obj/item/weldingtool/tubefed/process(delta_time)
 	if(mounted_pack)
-		if(!istype(mounted_pack.loc,/mob/living/carbon/human))
+		if(!ishuman(mounted_pack.loc))
 			mounted_pack.return_nozzle()
 		else
 			var/mob/living/carbon/human/H = mounted_pack.loc
