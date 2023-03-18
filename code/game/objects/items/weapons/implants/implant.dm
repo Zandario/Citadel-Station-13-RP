@@ -703,11 +703,11 @@ the implant may become unstable and either pre-maturely inject the subject or si
 		hear(say_in_me.group[2])
 
 
-/obj/item/implant/sizecontrol/hear(var/msg)
+/obj/item/implant/sizecontrol/hear(msg)
 	if (malfunction)
 		return
 
-	if(istype(imp_in, /mob/living))
+	if(isliving(imp_in))
 		var/mob/living/H = imp_in
 		if(findtext(msg,"implant-toggle"))
 			active = !active
@@ -732,7 +732,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 
 
 /obj/item/implant/sizecontrol/emp_act(severity)
-	if(istype(imp_in, /mob/living))
+	if(isliving(imp_in))
 		var/newsize = pick(RESIZE_HUGE,RESIZE_BIG,RESIZE_NORMAL,RESIZE_SMALL,RESIZE_TINY,RESIZE_A_HUGEBIG,RESIZE_A_BIGNORMAL,RESIZE_A_NORMALSMALL,RESIZE_A_SMALLTINY)
 		var/mob/living/H = imp_in
 		H.resize(newsize)

@@ -48,7 +48,7 @@
 	update_icon()
 
 /obj/structure/closet/proc/take_contents()
-	// if(istype(loc, /mob/living))
+	// if(isliving(loc))
 	//	return // No collecting mob organs if spawned inside mob
 	// I'll leave this out, if someone dies to this from voring someone who made a closet go yell at a coder to
 	// fix the fact you can build closets inside living people, not try to make it work you numbskulls.

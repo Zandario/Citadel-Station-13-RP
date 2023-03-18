@@ -372,7 +372,7 @@ emp_act
 		var/throw_damage = O.throw_force * TT.get_damage_multiplier()
 
 		var/zone
-		if (istype(TT.thrower, /mob/living))
+		if (isliving(TT.thrower))
 			zone = check_zone(TT.target_zone)
 		else
 			zone = ran_zone(BP_TORSO,75)	//Hits a random part of the body, geared towards the chest

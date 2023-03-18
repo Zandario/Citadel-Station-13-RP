@@ -63,7 +63,7 @@
 	. = ..()
 	if(istype(mover, /mob/living/simple_mob/animal/giant_spider))
 		return TRUE
-	else if(istype(mover, /mob/living))
+	else if(isliving(mover))
 		if(prob(50))
 			to_chat(mover, SPAN_WARNING( "You get stuck in \the [src] for a moment."))
 			return FALSE

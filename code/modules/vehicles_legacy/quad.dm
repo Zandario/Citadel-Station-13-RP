@@ -124,7 +124,7 @@
 		if(isturf(T))
 			A.Move(T, dir)	//bump things away when hit
 
-	if(istype(A, /mob/living))
+	if(isliving(A))
 		var/mob/living/M = A
 		visible_message("<span class='danger'>[src] knocks over [M]!</span>")
 		M.apply_effects(2, 2)				// Knock people down for a short moment
@@ -183,7 +183,7 @@
 /obj/vehicle_old/train/trolley/trailer/proc/update_load()
 	if(load)
 		var/y_offset = load_offset_y
-		if(istype(load, /mob/living))
+		if(isliving(load))
 			y_offset = mob_offset_y
 		load.pixel_x = (initial(load.pixel_x) + 16 + load_offset_x + pixel_x) //Base location for the sprite, plus 16 to center it on the 'base' sprite of the trailer, plus the x shift of the trailer, then shift it by the same pixel_x as the trailer to track it.
 		load.pixel_y = (initial(load.pixel_y) + y_offset + pixel_y) //Same as the above.
@@ -225,7 +225,7 @@
 		if(isturf(T))
 			A.Move(T, dir)	//bump things away when hit
 
-	if(istype(A, /mob/living))
+	if(isliving(A))
 		var/mob/living/M = A
 		visible_message("<span class='danger'>[src] knocks over [M]!</span>")
 		M.apply_effects(1, 1)

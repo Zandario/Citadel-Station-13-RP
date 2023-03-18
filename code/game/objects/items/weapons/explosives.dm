@@ -85,7 +85,7 @@
 		if (istype(target, /turf/simulated/wall))
 			var/turf/simulated/wall/W = target
 			W.dismantle_wall(1,1,1)
-		else if(istype(target, /mob/living))
+		else if(isliving(target))
 			LEGACY_EX_ACT(target, 2, null) // c4 can't gib mobs anymore.
 		else
 			LEGACY_EX_ACT(target, 1, null)

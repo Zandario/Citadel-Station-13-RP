@@ -13,7 +13,7 @@ GLOBAL_LIST_BOILERPLATE(all_portals, /obj/effect/portal)
 	anchored = 1.0
 
 /obj/effect/portal/Bumped(mob/M as mob|obj)
-	if(ismob(M) && !istype(M, /mob/living))
+	if(ismob(M) && !isliving(M))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	teleport(M)
 
@@ -22,7 +22,7 @@ GLOBAL_LIST_BOILERPLATE(all_portals, /obj/effect/portal)
 	teleport(AM)
 
 /obj/effect/portal/attack_hand(mob/user, list/params)
-	if(ismob(user) && !istype(user,/mob/living))
+	if(ismob(user) && !isliving(user))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	spawn(0)
 		src.teleport(user)

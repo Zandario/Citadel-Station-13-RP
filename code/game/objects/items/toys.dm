@@ -163,8 +163,9 @@
 		else
 			to_chat(user, "<span class='warning'>It's already fully loaded.</span>")
 
-/obj/item/toy/crossbow/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
-	if(!isturf(target.loc) || target == user) return
+/obj/item/toy/crossbow/afterattack(atom/target, mob/user, flag)
+	if(!isturf(target.loc) || target == user)
+		return
 	if(flag) return
 
 	if (locate (/obj/structure/table, src.loc))
@@ -179,12 +180,15 @@
 
 		for(var/i=0, i<6, i++)
 			if (D)
-				if(D.loc == trg) break
+				if(D.loc == trg)
+					break
 				step_towards(D,trg)
 
 				for(var/mob/living/M in D.loc)
-					if(!istype(M,/mob/living)) continue
-					if(M == user) continue
+					if(!isliving(M))
+						continue
+					if(M == user)
+						continue
 					for(var/mob/O in viewers(world.view, D))
 						O.show_message(text("<span class='warning'>\The [] was hit by the foam dart!</span>", M), 1)
 					new /obj/item/toy/ammo/crossbow(M.loc)
@@ -192,7 +196,8 @@
 					return
 
 				for(var/atom/A in D.loc)
-					if(A == user) continue
+					if(A == user)
+						continue
 					if(A.density)
 						new /obj/item/toy/ammo/crossbow(A.loc)
 						qdel(D)

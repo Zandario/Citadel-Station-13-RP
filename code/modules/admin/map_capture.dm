@@ -46,7 +46,7 @@
 			if(A)
 				var/icon/img = get_flat_icon(A)
 				if(isicon(img))
-					if(istype(A, /mob/living) && A:lying)
+					if(isliving(A) && A:lying)
 						img.BecomeLying()
 					var/xoff = (A.x - tx) * 32
 					var/yoff = (A.y - ty) * 32

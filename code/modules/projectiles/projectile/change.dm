@@ -11,8 +11,8 @@
 /obj/item/projectile/change/on_hit(var/atom/change)
 	wabbajack(change)
 
-/obj/item/projectile/change/proc/wabbajack(var/mob/M)
-	if(istype(M, /mob/living) && M.stat != DEAD)
+/obj/item/projectile/change/proc/wabbajack(mob/M)
+	if(isliving(M) && M.stat != DEAD)
 		if(M.transforming)
 			return
 		if(M.has_brain_worms())

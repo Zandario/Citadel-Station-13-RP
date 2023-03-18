@@ -265,7 +265,7 @@ BLIND     // can't see anything
 	set name = "Switch Eyepatch"
 	set category = "Object"
 	set src in usr
-	if(!istype(usr, /mob/living)) return
+	if(!isliving(usr)) return
 	if(usr.stat) return
 
 	eye = !eye
@@ -279,7 +279,7 @@ BLIND     // can't see anything
 	set name = "Switch Eyepatch"
 	set category = "Object"
 	set src in usr
-	if(!istype(usr, /mob/living)) return
+	if(!isliving(usr)) return
 	if(usr.stat) return
 
 	eye = !eye

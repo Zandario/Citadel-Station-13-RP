@@ -286,7 +286,7 @@
 		return 1
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
-	if(!istype(usr, /mob/living) && !IsAdminGhost(usr))
+	if(!isliving(usr) && !IsAdminGhost(usr))
 		return
 	if (((usr.contents.Find(src) || (in_range(src, usr) && isturf(src.loc))) || (istype(usr, /mob/living/silicon))) || IsAdminGhost(usr))
 		//Authenticate

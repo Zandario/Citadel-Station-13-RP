@@ -17,18 +17,18 @@
 
 /obj/structure/portal_subtle/Bumped(atom/movable/AM)
 	. = ..()
-	if(ismob(AM) && !istype(AM, /mob/living))
+	if(ismob(AM) && !isliving(AM))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	teleport(AM)
 
 /obj/structure/portal_subtle/Crossed(atom/movable/AM)
 	. = ..()
-	if(ismob(AM) && !istype(AM, /mob/living))
+	if(ismob(AM) && !isliving(AM))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	teleport(AM)
 
 /obj/structure/portal_subtle/attack_hand(mob/user, list/params)
-	if(ismob(user) && !istype(user, /mob/living))
+	if(ismob(user) && !isliving(user))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	spawn(0)
 		src.teleport(user)
@@ -65,7 +65,7 @@
 	anchored = 1
 
 /obj/structure/portal_gateway/Bumped(mob/M as mob|obj)
-	if(ismob(M) && !(istype(M, /mob/living)))
+	if(ismob(M) && !(isliving(M)))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	var/obj/landmark/dest = pick(eventdestinations)
 	if(dest)

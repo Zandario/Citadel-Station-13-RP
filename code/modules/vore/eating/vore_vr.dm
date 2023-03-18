@@ -50,11 +50,10 @@
 		client_ckey = C.ckey
 		load_vore()
 
-//
-//	Check if an object is capable of eating things, based on vore_organs
-//
-/proc/is_vore_predator(var/mob/living/O)
-	if(istype(O,/mob/living))
+
+/// Check if an object is capable of eating things, based on vore_organs.
+/proc/is_vore_predator(mob/living/O)
+	if(isliving(O))
 		if(O.vore_organs.len > 0)
 			return TRUE
 

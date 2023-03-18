@@ -64,8 +64,8 @@
 	else
 		return buf.dna.SetUIValue(real_block,val)
 
-/obj/item/dnainjector/proc/inject(mob/M as mob, mob/user as mob)
-	if(istype(M,/mob/living))
+/obj/item/dnainjector/proc/inject(mob/M, mob/user)
+	if(isliving(M))
 		var/mob/living/L = M
 		L.afflict_radiation(RAD_MOB_AFFLICT_DNA_INJECTOR)
 		L.apply_damage(max(2,L.getCloneLoss()), CLONE)

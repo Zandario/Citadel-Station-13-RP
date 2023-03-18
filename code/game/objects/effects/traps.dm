@@ -174,7 +174,7 @@ Add those other swinging traps you mentioned above!
 	. = ..()
 	if(AM.is_incorporeal())
 		return
-	if (istype(AM, /mob/living))
+	if (isliving(AM))
 		var/mob/living/M = AM
 		var/damage = rand(min_damage, max_damage)
 		M.apply_damage(damage, BRUTE)
@@ -209,7 +209,7 @@ Add those other swinging traps you mentioned above!
 	. = ..()
 	if(AM.is_incorporeal())
 		return
-	if (istype(AM, /mob/living))
+	if (isliving(AM))
 		break_legs()
 		AM.visible_message("<span class='danger'>[AM] falls into the path of the piston!</span>", \
 						"<span class='userdanger'>Your leg is crushed by the piston!</span>")
@@ -264,7 +264,7 @@ Add those other swinging traps you mentioned above!
 	. = ..()
 	if(AM.is_incorporeal())
 		return
-	if (istype(AM, /mob/living))
+	if (isliving(AM))
 		var/mob/living/M = AM
 		var/damage = rand(min_damage, max_damage)
 		M.apply_damage(damage, TOX)
@@ -494,7 +494,7 @@ Add those other swinging traps you mentioned above!
 		return
 	else if (!tripped)
 		return
-	else if(istype(AM, /mob/living))
+	else if(isliving(AM))
 		var/mob/living/M = AM
 		var/damage = rand(min_damage, max_damage)
 		M.apply_damage(damage, BRUTE)
@@ -525,7 +525,7 @@ Add those other swinging traps you mentioned above!
 		return
 	else if (!tripped)
 		return
-	else if(istype(AM, /mob/living))
+	else if(isliving(AM))
 		var/mob/living/M = AM
 		var/damage = rand(min_damage, max_damage)
 		M.apply_damage(damage, BRUTE)
@@ -534,7 +534,7 @@ Add those other swinging traps you mentioned above!
 
 /* This is all per-tick processing stuff. It isn't working the way I want, so I'm reverting it.
 
-if (istype(AM, /mob/living))
+if (isliving(AM))
 		START_PROCESSING(SSfastprocess, src)
 		var/mob/living/M = AM
 		M.visible_message("<span class='danger'>[M] is slashed by the spinning blades!</span>", \
@@ -574,7 +574,7 @@ if (istype(AM, /mob/living))
 		return
 	else if (!tripped)
 		return
-	else if(istype(AM, /mob/living))
+	else if(isliving(AM))
 		var/mob/living/M = AM
 		var/damage = rand(min_damage, max_damage)
 		M.apply_damage(damage, BRUTE)
@@ -605,7 +605,7 @@ if (istype(AM, /mob/living))
 		return
 	else if (!tripped)
 		return
-	else if(istype(AM, /mob/living))
+	else if(isliving(AM))
 		var/mob/living/M = AM
 		var/damage = rand(min_damage, max_damage)
 		M.apply_damage(damage, BURN)
@@ -637,7 +637,7 @@ if (istype(AM, /mob/living))
 		return
 	else if (!tripped)
 		return
-	else if(istype(AM, /mob/living))
+	else if(isliving(AM))
 		var/mob/living/M = AM
 		var/list/throw_dirs = list(1, 2, 4, 8, 5, 6, 9, 10)
 		var/turf/T2 = get_step(AM, pick(throw_dirs))
@@ -743,7 +743,7 @@ if (istype(AM, /mob/living))
 		return
 	if(tripped)
 		return
-	if(istype(AM, /mob/living))
+	if(isliving(AM))
 		fire()
 		update_icon()
 		var/mob/living/M = AM

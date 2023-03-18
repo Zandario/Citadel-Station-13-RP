@@ -72,7 +72,7 @@
 			if (inside_belly.contents.len > 1)
 				dat += "You can see the following around you:<br>"
 				for (var/atom/movable/O in inside_belly)
-					if(istype(O,/mob/living))
+					if(isliving(O))
 						var/mob/living/M = O
 						//That's just you
 						if(M == user)
@@ -165,7 +165,7 @@
 			for(var/O in selected)
 
 				//Mobs can be absorbed, so treat them separately from everything else
-				if(istype(O,/mob/living))
+				if(isliving(O))
 					var/mob/living/M = O
 
 					//Absorbed gets special color OOoOOOOoooo
@@ -410,7 +410,7 @@
 			return TRUE
 		var/intent = "Examine"
 
-		if(istype(tgt,/mob/living))
+		if(isliving(tgt))
 			var/mob/living/M = tgt
 			intent = alert("What do you want to do to them?","Query","Examine","Help Out","Devour")
 			switch(intent)

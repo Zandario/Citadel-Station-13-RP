@@ -455,7 +455,7 @@
 			activate(0)
 		else			//Only start fires when its on and has enough fuel to actually keep working
 			var/turf/location = src.loc
-			if(istype(location, /mob/living))
+			if(isliving(location))
 				var/mob/living/M = location
 				if(M.is_holding(src))
 					location = get_turf(M)

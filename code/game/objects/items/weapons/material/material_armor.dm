@@ -92,7 +92,7 @@ Protectiveness | Armor %
 		return
 	var/turf/T = get_turf(src)
 	T.visible_message("<span class='danger'>\The [src] [material.destruction_desc]!</span>")
-	if(istype(loc, /mob/living))
+	if(isliving(loc))
 		var/mob/living/M = loc
 		if(material.shard_type == SHARD_SHARD) // Wearing glass armor is a bad idea.
 			var/obj/item/material/shard/S = material.place_shard(T)

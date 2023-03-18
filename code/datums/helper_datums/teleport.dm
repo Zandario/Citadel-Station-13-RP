@@ -167,7 +167,7 @@
 	var/list/bagholding = teleatom.search_contents_for(/obj/item/storage/backpack/holding)
 	if(bagholding.len)
 		precision = max(rand(1,100)*bagholding.len,100)
-		if(istype(teleatom, /mob/living))
+		if(isliving(teleatom))
 			var/mob/living/MM = teleatom
 			to_chat(MM, SPAN_DANGER("The Bluespace interface on your [teleatom] interferes with the teleport!"))
 	return TRUE
@@ -178,7 +178,7 @@
 		return FALSE
 
 	if(!!length(teleatom.search_contents_for(/obj/item/disk/nuclear)))
-		if(istype(teleatom, /mob/living))
+		if(isliving(teleatom))
 			var/mob/living/MM = teleatom
 			MM.visible_message(SPAN_DANGER("\The [MM] bounces off of the portal!"), SPAN_WARNING("Something you are carrying seems to be unable to pass through the portal. Better drop it if you want to go through."))
 		else
@@ -187,7 +187,7 @@
 	var/obstructed = 0
 	var/turf/dest_turf = get_turf(destination)
 	if(local && !(dest_turf.z in GLOB.using_map.player_levels))
-		if(istype(teleatom, /mob/living))
+		if(isliving(teleatom))
 			to_chat(teleatom, SPAN_WARNING("The portal refuses to carry you that far away!"))
 		return FALSE
 	else if(isbelly(destination.loc))

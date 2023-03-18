@@ -388,7 +388,7 @@
 					// force equip because no mercy
 					H.force_equip_to_slot_or_del(hc, SLOT_ID_HANDCUFFED, user = src)
 			busy = FALSE
-	else if(istype(M, /mob/living))
+	else if(isliving(M))
 		var/mob/living/L = M
 		L.adjustBruteLoss(xeno_harm_strength)
 		do_attack_animation(M)

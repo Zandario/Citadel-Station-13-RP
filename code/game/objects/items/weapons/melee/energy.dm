@@ -531,7 +531,7 @@
 /obj/item/melee/energy/blade/process(delta_time)
 	if(!creator || loc != creator || !creator.is_holding(src))
 		// Tidy up a bit.
-		if(istype(loc,/mob/living))
+		if(isliving(loc))
 			var/mob/living/carbon/human/host = loc
 			if(istype(host))
 				for(var/obj/item/organ/external/organ in host.organs)

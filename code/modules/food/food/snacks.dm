@@ -4297,7 +4297,7 @@ END CITADEL CHANGE */
 	. = ..()
 	if(AM.is_incorporeal())
 		return
-	if (istype(AM, /mob/living))
+	if (isliving(AM))
 		var/mob/living/M = AM
 		M.slip("the [src.name]",4)
 

@@ -593,7 +593,7 @@
 	max_storage_space = max(storage_space_used(),max_storage_space)
 
 /obj/item/storage/emp_act(severity)
-	if(!istype(src.loc, /mob/living))
+	if(!isliving(loc))
 		for(var/obj/O in contents)
 			O.emp_act(severity)
 	..()

@@ -1104,7 +1104,7 @@ About the new airlock wires panel:
 		return
 
 	if (attempt_vr(src,"attackby_vr",list(C, user))) return
-	if(istype(C, /mob/living))
+	if(isliving(C))
 		..()
 		return
 	if(!repairing && istype(C, /obj/item/weldingtool) && !( src.operating > 0 ) && src.density)

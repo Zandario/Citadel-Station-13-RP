@@ -97,7 +97,7 @@
 
 
 	for(var/datum/mind/possible_target in SSticker.minds)
-		if (istype(possible_target.current, /mob/living) && possible_target != src.mind)
+		if (isliving(possible_target.current) && possible_target != src.mind)
 			LAZYADD(targets,possible_target.current)
 
 	target = input("Select a creature!", "Speak to creature", null, null) as null|anything in targets

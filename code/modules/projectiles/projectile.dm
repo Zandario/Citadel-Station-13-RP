@@ -557,7 +557,7 @@
 
 	if(ismob(A))
 		var/mob/M = A
-		if(istype(A, /mob/living))
+		if(isliving(A))
 			//if they have a neck grab on someone, that person gets hit instead
 			var/obj/item/grab/G = locate() in M
 			if(G && G.state >= GRAB_NECK)
@@ -674,7 +674,7 @@
 
 	//admin logs
 	if(!no_attack_log)
-		if(ismob(firer) && istype(target_mob, /mob/living))
+		if(ismob(firer) && isliving(target_mob))
 			add_attack_logs(firer, target_mob, "Shot with \a [src.type] projectile")
 
 	//sometimes bullet_act() will want the projectile to continue flying

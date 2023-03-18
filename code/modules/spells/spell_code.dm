@@ -139,7 +139,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 
 		if(overlay)
 			var/location
-			if(istype(target,/mob/living))
+			if(isliving(target))
 				location = target.loc
 			else if(isturf(target))
 				location = target
@@ -155,7 +155,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 /spell/proc/after_cast(list/targets)
 	for(var/atom/target in targets)
 		var/location = get_turf(target)
-		if(istype(target,/mob/living) && message)
+		if(isliving(target) && message)
 			to_chat(target, "[message]")
 		if(sparks_spread)
 			var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread()

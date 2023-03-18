@@ -257,7 +257,7 @@
 		qdel(thrown)
 		return
 
-	if(istype(target, /mob/living))
+	if(isliving(target))
 		splatted = apply_special_effect(target,thrown)
 	else if(isturf(target))
 		splatted = 1
@@ -676,7 +676,7 @@
 	return (P ? P : 0)
 
 //Place the plant products at the feet of the user.
-/datum/seed/proc/harvest(var/mob/user,var/yield_mod,var/harvest_sample,var/force_amount)
+/datum/seed/proc/harvest(mob/user, yield_mod, harvest_sample, force_amount)
 
 	if(!user)
 		return
@@ -739,7 +739,7 @@
 				product.force = 1
 
 			//Handle spawning in living, mobile products (like dionaea).
-			if(istype(product,/mob/living))
+			if(isliving(product))
 				product.visible_message("<span class='notice'>The pod disgorges [product]!</span>")
 				handle_living_product(product)
 

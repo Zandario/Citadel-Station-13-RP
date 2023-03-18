@@ -85,7 +85,7 @@
 		return
 	if(metal)
 		return
-	if(slips && istype(AM, /mob/living))
+	if(slips && isliving(AM))
 		var/mob/living/M = AM
 		M.slip("the foam", 6)
 

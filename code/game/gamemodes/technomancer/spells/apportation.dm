@@ -46,7 +46,7 @@
 			log_and_message_admins("has stolen [I] with [src].")
 			qdel(src)
 		//Now let's try to teleport a living mob.
-		else if(istype(hit_atom, /mob/living))
+		else if(isliving(hit_atom))
 			var/mob/living/L = hit_atom
 			to_chat(L, "<span class='danger'>You are teleported towards \the [user].</span>")
 			var/datum/effect_system/spark_spread/s1 = new /datum/effect_system/spark_spread

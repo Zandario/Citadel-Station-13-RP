@@ -299,7 +299,7 @@
 			set_pin_data(IC_OUTPUT, 1, H.name)
 			set_pin_data(IC_OUTPUT, 2, H.desc)
 
-			if(istype(H, /mob/living))
+			if(isliving(H))
 				var/msg = H.examine(H)
 				if(msg)
 					set_pin_data(IC_OUTPUT, 2, msg)
@@ -498,7 +498,7 @@
 		O.data = null
 		if(!get_pin_data(IC_INPUT, 1)) // Check toggle.  We can just grab ref if false.
 			O.data = WEAKREF(assembly.loc)
-		else if(get_pin_data(IC_INPUT, 1) && istype(assembly.loc, /mob/living)) // Now check if someone's holding us.
+		else if(get_pin_data(IC_INPUT, 1) && isliving(assembly.loc)) // Now check if someone's holding us.
 			O.data = WEAKREF(assembly.loc)
 		istype(O.data, /obj/item/electronic_assembly/clothing) ? (O.data = WEAKREF(O.data)) : null
 		set_pin_data(IC_OUTPUT, 2, isturf(assembly.loc))

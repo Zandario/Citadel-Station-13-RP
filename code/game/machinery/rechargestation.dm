@@ -164,7 +164,7 @@
 			return
 		if (istype(O, /obj/item/grab) && get_dist(src,user)<2)
 			var/obj/item/grab/G = O
-			if(istype(G.affecting,/mob/living))
+			if(isliving(G.affecting))
 				var/mob/living/M = G.affecting
 				qdel(O)
 				go_in(M)

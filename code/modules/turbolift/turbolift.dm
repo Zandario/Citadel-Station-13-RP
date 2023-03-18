@@ -157,7 +157,7 @@
 		for(var/turf/T in destination)
 			set waitfor = FALSE		// no check ticks until we get better shuttlecode.
 			for(var/atom/movable/AM in T)
-				if(istype(AM, /mob/living))
+				if(isliving(AM))
 					var/mob/living/M = AM
 					M.gib()
 				else if(!(AM.atom_flags & ATOM_ABSTRACT) && !(istype(AM, /mob/observer)))

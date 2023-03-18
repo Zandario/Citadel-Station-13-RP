@@ -12,7 +12,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/whisperblade/action(atom/target)
 	if(!action_checks(target)) return
 
-	if(istype(target,/mob/living))
+	if(isliving(target))
 		var/mob/living/M = target
 		if(M.stat>1) return
 		if(chassis.occupant.a_intent == INTENT_HARM || istype(chassis.occupant,/mob/living/carbon/brain)) //No tactile feedback for brains
@@ -77,7 +77,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/infernoblade/action(atom/target)
 	if(!action_checks(target)) return
 
-	if(istype(target,/mob/living))
+	if(isliving(target))
 		var/mob/living/M = target
 		if(M.stat>1) return
 		if(chassis.occupant.a_intent == INTENT_HARM || istype(chassis.occupant,/mob/living/carbon/brain)) //No tactile feedback for brains

@@ -180,7 +180,7 @@
 
 	var/mob/user = usr
 	// todo: mobility flags
-	if(!istype(user, /mob/living)) return
+	if(!isliving(user)) return
 	if(user.stat) return
 
 	update_rolldown(TRUE)
@@ -209,7 +209,7 @@
 
 	var/mob/user = usr
 	// todo: mobility flags
-	if(!istype(user, /mob/living)) return
+	if(!isliving(user)) return
 	if(user.stat) return
 
 	update_rollsleeve(TRUE)

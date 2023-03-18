@@ -36,7 +36,7 @@
 		target = SAFEPICK(oview(1,src))
 	if(!melee_can_hit || !isatom(target))
 		return
-	if(istype(target, /mob/living))
+	if(isliving(target))
 		var/mob/living/M = target
 		if(src.occupant.a_intent == INTENT_HARM)
 			playsound(src, 'sound/weapons/punch4.ogg', 50, 1)

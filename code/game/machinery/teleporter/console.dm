@@ -143,7 +143,7 @@
 	set src in oview(1)
 	set desc = "ID Tag:"
 
-	if(machine_stat & (NOPOWER|BROKEN) || !istype(usr,/mob/living))
+	if(machine_stat & (NOPOWER|BROKEN) || !isliving(usr))
 		return
 	if(t)
 		id = t

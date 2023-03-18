@@ -92,7 +92,7 @@
 /turf/simulated/Entered(atom/A, atom/OL)
 	..()
 
-	if (istype(A,/mob/living))
+	if (isliving(A))
 		var/mob/living/M = A
 		if(M.lying)
 			return

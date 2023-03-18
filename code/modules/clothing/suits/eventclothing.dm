@@ -16,7 +16,7 @@
     set name = "Adjust Kimono"
     set category = "Object"
     set src in usr
-    if(!istype(usr, /mob/living)) //Standard checks for clothing verbs
+    if(!isliving(usr)) //Standard checks for clothing verbs
         return
     if(usr.stat)
         return
@@ -37,7 +37,7 @@
     set name = "Adjust Skirt"
     set category = "Object"
     set src in usr
-    if(!istype(usr, /mob/living)) //Standard checks for clothing verbs
+    if(!isliving(usr)) //Standard checks for clothing verbs
         return
     if(usr.stat)
         return
@@ -98,7 +98,7 @@
 	set name = "Hide Accessory"
 	set category = "Object"
 	set src in usr
-	if(!istype(usr, /mob/living)) return //Standard checks for clothing verbs
+	if(!isliving(usr)) return //Standard checks for clothing verbs
 	if(usr.stat) return
 	var/obj/item/clothing/accessory/A //obj for accessory we are targeting
 	if(LAZYLEN(accessories)) //If the list contains accessories - it is valid

@@ -190,10 +190,10 @@ var/sc_safecode5 = "[rand(0,9)]"
 	if(prob(25))
 		mezzer()
 
-/obj/machinery/singularity/narsie/sc_Narsie/consume(var/atom/A)
+/obj/machinery/singularity/narsie/sc_Narsie/consume(atom/A)
 	if(is_type_in_list(A, uneatable))
 		return 0
-	if (istype(A,/mob/living))
+	if (isliving(A))
 		var/mob/living/L = A
 		L.gib()
 	else if(istype(A,/obj/))

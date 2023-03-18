@@ -6,7 +6,7 @@
 	return 0
 
 /proc/issmall(A)
-	if(A && istype(A, /mob/living))
+	if(A && isliving(A))
 		var/mob/living/L = A
 		return L.mob_size <= MOB_SMALL
 	return 0
@@ -21,14 +21,14 @@
 	return TRUE
 
 /proc/istiny(A)
-	if(A && istype(A, /mob/living))
+	if(A && isliving(A))
 		var/mob/living/L = A
 		return L.mob_size <= MOB_TINY
 	return 0
 
 
 /proc/ismini(A)
-	if(A && istype(A, /mob/living))
+	if(A && isliving(A))
 		var/mob/living/L = A
 		return L.mob_size <= MOB_MINISCULE
 	return 0

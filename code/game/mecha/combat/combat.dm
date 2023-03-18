@@ -41,7 +41,7 @@
 		T = SAFEPICK(oview(1,src))
 	if(!melee_can_hit)
 		return
-	if(istype(T, /mob/living))
+	if(isliving(T))
 		var/mob/living/M = T
 		if(src.occupant.a_intent == INTENT_HARM || istype(src.occupant, /mob/living/carbon/brain)) //Brains cannot change intents; Exo-piloting brains lack any form of physical feedback for control, limiting the ability to 'play nice'.
 			playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
