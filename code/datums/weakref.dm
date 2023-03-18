@@ -1,6 +1,6 @@
 /proc/WEAKREF(datum/input)
-	if(istype(input) && !QDELETED(input))
-		if(istype(input, /datum/weakref))
+	if(isdatum(input) && !QDELETED(input))
+		if(isweakref(input))
 			return input
 
 		if(!input.weak_reference)
