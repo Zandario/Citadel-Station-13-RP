@@ -1,9 +1,9 @@
-/turf/simulated/floor/attackby(obj/item/C as obj, mob/user as mob)
+/turf/simulated/floor/attackby(obj/item/C, mob/user)
 
 	if(!C || !user)
 		return 0
 
-	if(isliving(user) && istype(C, /obj/item))
+	if(isliving(user) && isitem(C))
 		var/mob/living/L = user
 		if(L.a_intent != INTENT_HELP)
 			attack_tile(C, L) // Be on help intent if you want to decon something.
@@ -54,7 +54,7 @@
 		return
 
 	if(flooring)
-		if(istype(C, /obj/item))
+		if(isitem(C))
 			try_deconstruct_tile(C, user)
 			return
 		else if(istype(C, /obj/item/stack/cable_coil))

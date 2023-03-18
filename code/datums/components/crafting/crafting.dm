@@ -446,7 +446,7 @@
 	data["catalyst_text"] = catalyst_text
 
 	for(var/a in R.tools)
-		if(ispath(a, /obj/item))
+		if(isitem(a))
 			var/obj/item/b = a
 			tool_text += " [initial(b.name)],"
 		else

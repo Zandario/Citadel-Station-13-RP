@@ -130,7 +130,7 @@
 // This only works on broken doors or doors without power. Also allows repair with Plasteel.
 /obj/machinery/door/blast/attackby(obj/item/C as obj, mob/user as mob)
 	src.add_fingerprint(user, 0, C)
-	if(istype(C, /obj/item)) // For reasons unknown, sometimes C is actually not what it is advertised as, like a mob.
+	if(isitem(C)) // For reasons unknown, sometimes C is actually not what it is advertised as, like a mob.
 		if(C.pry == 1 && (user.a_intent != INTENT_HARM || (machine_stat & BROKEN))) // Can we pry it open with something, like a crowbar/fireaxe/lingblade?
 			if(istype(C,/obj/item/material/twohanded/fireaxe)) // Fireaxes need to be in both hands to pry.
 				var/obj/item/material/twohanded/fireaxe/F = C

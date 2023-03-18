@@ -65,13 +65,15 @@ var/list/gurgled_overlays = list(
 	if(gurgled)
 		decontaminate()
 
-/obj/structure/sink/attackby(obj/item/O as obj, mob/user as mob) //Wash the soggy item before it can interact with the sink.
+/obj/structure/sink/attackby(obj/item/O, mob/user) //Wash the soggy item before it can interact with the sink.
 	if(O.gurgled)
 		var/turf/location = user.loc
-		if(!isturf(location)) return
+		if(!isturf(location))
+			return
 
 		var/obj/item/I = O
-		if(!I || !istype(I,/obj/item)) return
+		if(!I || !isitem(I))
+			return
 
 		to_chat(usr, "<span class='notice'>You start washing \the [I].</span>")
 

@@ -249,7 +249,7 @@
 	user.attack_log += text("\[[time_stamp()]\] <font color=#4F49AF>Has used [src.name] on \ref[target]</font>")
 
 
-	if (istype(target, /obj/item) && !(istype(target, /obj/item/storage) && !istype(target,/obj/item/storage/box)))
+	if (isitem(target) && !(istype(target, /obj/item/storage) && !istype(target,/obj/item/storage/box)))
 		var/obj/item/O = target
 		if (src.amount > 1)
 			var/obj/item/smallDelivery/P = new /obj/item/smallDelivery(get_turf(O.loc))	//Aaannd wrap it up!

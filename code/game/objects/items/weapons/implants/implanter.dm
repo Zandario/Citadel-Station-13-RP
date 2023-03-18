@@ -125,7 +125,7 @@
 	if(!active)
 		to_chat(user, "<span class='warning'>Activate \the [src.name] first.</span>")
 		return
-	if(istype(I, /obj/item) && istype(imp, /obj/item/implant/compressed))
+	if(isitem(I) && istype(imp, /obj/item/implant/compressed))
 		var/obj/item/implant/compressed/c = imp
 		if (c.scanned)
 			to_chat(user, "<span class='warning'>Something is already scanned inside the implant!</span>")

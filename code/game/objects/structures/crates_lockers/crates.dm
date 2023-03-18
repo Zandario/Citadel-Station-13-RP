@@ -14,7 +14,7 @@
 
 /obj/structure/closet/crate/CanPass(atom/movable/AM, turf/T)
 	. = ..()
-	if(. || !istype(AM, /obj/item))
+	if(. || !isitem(AM))
 		return
 	var/obj/item/I = AM
 	return I.throwing

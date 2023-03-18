@@ -225,7 +225,7 @@
 	else if(water.energy < 5)
 		to_chat(user, "<span class='notice'>Your mouth feels dry. You should drink some water.</span>") //fixed annoying grammar and needless space
 		return
-	else if(istype(target,/obj/effect/debris/cleanable))
+	else if(istype(target, /obj/effect/debris/cleanable))
 		user.visible_message("[user] begins to lick off [target].", "<span class='notice'>You begin to lick off [target]...</span>")
 		if(do_after(user, 50, target = target))
 			to_chat(user, "<span class='notice'>You finish licking off [target].</span>")
@@ -233,8 +233,8 @@
 			qdel(target)
 			var/mob/living/silicon/robot/R = user
 			R.cell.charge += 50
-	else if(istype(target,/obj/item))
-		if(istype(target,/obj/item/trash))
+	else if(isitem(target))
+		if(istype(target, /obj/item/trash))
 			user.visible_message("[user] nibbles away at [target].", "<span class='notice'>You begin to nibble away at [target]...</span>")
 			if(do_after(user, 50, target = target))
 				user.visible_message("[user] finishes eating [target].", "<span class='notice'>You finish eating [target].</span>")
@@ -244,7 +244,7 @@
 				R.cell.charge += 250
 				water.use_charge(5)
 			return
-		if(istype(target,/obj/item/cell))
+		if(istype(target, /obj/item/cell))
 			user.visible_message("[user] begins cramming [target] down its throat.", "<span class='notice'>You begin cramming \the [target.name] down your throat...</span>")
 			if(do_after(user, 50, target = target))
 				user.visible_message("[user] finishes gulping down [target].", "<span class='notice'>You finish swallowing [target].</span>")

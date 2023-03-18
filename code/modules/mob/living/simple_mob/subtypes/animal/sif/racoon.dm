@@ -210,7 +210,7 @@
 	original_home_distance = max_home_distance
 
 /datum/ai_holder/simple_mob/intentional/sakimm/post_melee_attack(atom/A)
-	if(istype(A, /obj/item) && !holder.get_active_held_item() && holder.Adjacent(A))
+	if(isitem(A) && !holder.get_active_held_item() && holder.Adjacent(A))
 		var/obj/item/I = A
 		I.attack_hand(holder)
 		lose_target()
@@ -297,7 +297,7 @@
 		else
 			holder.a_intent = INTENT_HARM	// We can't disarm you, so we're going to hurt you.
 
-	else if(istype(A, /obj/item))
+	else if(isitem(A))
 		var/obj/item/I = A
 		if(istype(I, /obj/item/reagent_containers/food/snacks))	// If we can't pick it up, or it's edible, go to harm.
 			holder.a_intent = INTENT_HARM

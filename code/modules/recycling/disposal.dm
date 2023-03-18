@@ -467,7 +467,7 @@
 
 /obj/machinery/disposal/throw_impacted(atom/movable/AM, datum/thrownthing/TT)
 	. = ..()
-	if(istype(AM, /obj/item) && !istype(AM, /obj/item/projectile))
+	if(isitem(AM) && !istype(AM, /obj/item/projectile))
 		if(prob(75))
 			AM.forceMove(src)
 			visible_message("\The [AM] lands in \the [src].")
@@ -477,7 +477,7 @@
 /obj/machinery/disposal/CanAllowThrough(atom/movable/mover, turf/target)
 	if(istype(mover, /obj/item/projectile))
 		return 1
-	if (istype(mover,/obj/item) && mover.throwing)
+	if (isitem(mover) && mover.throwing)
 		var/obj/item/I = mover
 		if(istype(I, /obj/item/projectile))
 			return

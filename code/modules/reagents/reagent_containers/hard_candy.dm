@@ -30,7 +30,7 @@
 			if(ispath(trash,/obj/item))
 				var/obj/item/TrashItem = new trash(user)
 				user.put_in_hands(TrashItem)
-			else if(istype(trash,/obj/item))
+			else if(isitem(trash))
 				user.put_in_hands(trash)
 		qdel(src)
 

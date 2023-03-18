@@ -22,7 +22,7 @@ var/const/FINGERPRINT_COMPLETE = 6
 
 	if(!suit_fibers) suit_fibers = list()
 	var/fibertext
-	var/item_multiplier = istype(src,/obj/item)?1.2:1
+	var/item_multiplier = isitem(src) ? 1.2 : 1
 	var/suit_coverage = 0
 	if(istype(M.wear_suit, /obj/item/clothing))
 		var/obj/item/clothing/C = M.wear_suit

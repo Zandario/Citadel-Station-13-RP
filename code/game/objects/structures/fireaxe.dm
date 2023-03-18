@@ -38,7 +38,7 @@
 				to_chat(user, SPAN_CAUTION("You disable the locking modules."))
 				update_icon()
 			return
-		else if(istype(O, /obj/item))
+		else if(isitem(O))
 			var/obj/item/W = O
 			if(smashed || open)
 				if(open)

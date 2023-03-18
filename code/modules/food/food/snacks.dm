@@ -36,11 +36,11 @@
 		M.visible_message("<span class='notice'>[M] finishes eating \the [src].</span>","<span class='notice'>You finish eating \the [src].</span>")
 		M.temporarily_remove_from_inventory(src, INV_OP_FORCE | INV_OP_SHOULD_NOT_INTERCEPT | INV_OP_SILENT)
 		if(trash)
-			if(ispath(trash,/obj/item))
+			if(isitem(trash))
 				var/obj/item/TrashItem = new trash(M)
 				if(!M.put_in_hands(TrashItem))
 					TrashItem.forceMove(M.drop_location())
-			else if(istype(trash,/obj/item))
+			else if(isitem(trash))
 				M.put_in_hands(trash)
 		qdel(src)
 
@@ -4098,7 +4098,7 @@ END CITADEL CHANGE */
 			if(ispath(trash,/obj/item))
 				var/obj/item/TrashItem = new trash(feeder)
 				feeder.put_in_hands(TrashItem)
-			else if(istype(trash,/obj/item))
+			else if(isitem(trash))
 				feeder.put_in_hands(trash)
 		qdel(src)
 

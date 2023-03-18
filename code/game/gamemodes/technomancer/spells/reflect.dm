@@ -72,7 +72,7 @@
 
 				return PROJECTILE_CONTINUE // complete projectile permutation
 
-		else if(istype(damage_source, /obj/item))
+		else if(isitem(damage_source))
 			var/obj/item/W = damage_source
 			if(attacker)
 				W.melee_attack_chain(attacker)

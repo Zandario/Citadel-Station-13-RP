@@ -18,7 +18,7 @@
 	for(var/A in tile)
 		if(is_cleanable(A))
 			qdel(A)
-		else if(istype(A, /obj/item))
+		else if(isitem(A))
 			var/obj/item/I = A
 			SEND_SIGNAL(I, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
 			if(ismob(I.loc))

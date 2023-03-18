@@ -325,7 +325,7 @@
 			wrapped.force = force_holder
 		force_holder = null
 
-	else if(istype(target,/obj/item)) //Check that we're not pocketing a mob.
+	else if(isitem(target)) //Check that we're not pocketing a mob.
 
 		//...and that the item is not in a container.
 		if(!isturf(target.loc))
@@ -543,7 +543,7 @@
 		else
 			module_string += text("[O]: <A HREF=?src=\ref[src];act=\ref[O]>Activate</A><BR>")
 
-		if((istype(O,/obj/item) || istype(O,/obj/item)) && !(istype(O,/obj/item/stack/cable_coil)))
+		if((isitem(O) || isitem(O)) && !(istype(O, /obj/item/stack/cable_coil)))
 			tools += module_string
 		else
 			resources += module_string

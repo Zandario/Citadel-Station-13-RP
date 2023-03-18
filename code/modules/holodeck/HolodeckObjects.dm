@@ -224,7 +224,7 @@
 	if (src.operating == 1)
 		return
 
-	if(src.density && istype(I, /obj/item) && !istype(I, /obj/item/card))
+	if(src.density && isitem(I) && !istype(I, /obj/item/card))
 		var/aforce = I.force
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
 		visible_message("<font color='red'><B>[src] was hit by [I].</B></font>")
@@ -378,14 +378,14 @@
 		visible_message("<span class='warning'>[G.assailant] dunks [G.affecting] into the [src]!</span>", 3)
 		qdel(W)
 		return
-	else if (istype(W, /obj/item) && get_dist(src,user)<2)
+	else if (isitem(W) && get_dist(src,user)<2)
 		if(!user.attempt_insert_item_for_installation(W, src))
 			return
 		visible_message("<span class='notice'>[user] dunks [W] into the [src]!</span>", 3)
 		return
 
 /obj/structure/holohoop/CanAllowThrough(atom/movable/mover, turf/target)
-	if (istype(mover,/obj/item) && mover.throwing)
+	if (isitem(mover) && mover.throwing)
 		var/obj/item/I = mover
 		if(istype(I, /obj/item/projectile))
 			return TRUE

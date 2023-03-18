@@ -300,7 +300,7 @@
 
 		// Begin BS12 momentum-transfer code.
 		var/mass = 1.5
-		if(istype(O, /obj/item))
+		if(isitem(O))
 			var/obj/item/I = O
 			mass = I.w_class/THROWNOBJ_KNOCKBACK_DIVISOR
 		var/momentum = TT.speed * mass

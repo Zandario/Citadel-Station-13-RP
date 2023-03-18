@@ -126,29 +126,28 @@
 
 							new_machine.RefreshParts()
 							qdel(src)
-					else
-						if(istype(P, /obj/item))
-							for(var/I in req_components)
-								if(istype(P, text2path(I)) && (req_components[I] > 0))
-									playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, TRUE)
-									if(istype(P, /obj/item/stack/cable_coil))
-										var/obj/item/stack/cable_coil/CP = P
-										if(CP.get_amount() > 1)
-											var/camt = min(CP.amount, req_components[I]) // amount of cable to take, idealy amount required, but limited by amount provided
-											var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src)
-											CC.amount = camt
-											CC.update_icon()
-											CP.use(camt)
-											components += CC
-											req_components[I] -= camt
-											update_desc()
-											break
-									user.drop_item()
-									P.loc = src
-									components += P
-									req_components[I]--
-									update_desc()
-									break
-							to_chat(user, desc)
-							if(P && P.loc != src && !istype(P, /obj/item/stack/cable_coil))
-								to_chat(user, SPAN_WARNING("You cannot add that component to the machine!"))
+					else if(isitem(P))
+						for(var/I in req_components)
+							if(istype(P, text2path(I)) && (req_components[I] > 0))
+								playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, TRUE)
+								if(istype(P, /obj/item/stack/cable_coil))
+									var/obj/item/stack/cable_coil/CP = P
+									if(CP.get_amount() > 1)
+										var/camt = min(CP.amount, req_components[I]) // amount of cable to take, idealy amount required, but limited by amount provided
+										var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src)
+										CC.amount = camt
+										CC.update_icon()
+										CP.use(camt)
+										components += CC
+										req_components[I] -= camt
+										update_desc()
+										break
+								user.drop_item()
+								P.loc = src
+								components += P
+								req_components[I]--
+								update_desc()
+								break
+						to_chat(user, desc)
+						if(P && P.loc != src && !istype(P, /obj/item/stack/cable_coil))
+							to_chat(user, SPAN_WARNING("You cannot add that component to the machine!"))

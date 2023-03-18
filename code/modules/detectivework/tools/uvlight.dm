@@ -67,7 +67,7 @@
 						A.invisibility = 0
 						stored_alpha[A] = A.alpha
 						A.alpha = use_alpha
-					if(istype(A, /obj/item))
+					if(isitem(A))
 						var/obj/item/O = A
 						if(O.was_bloodied && !(O.blood_overlay in O.overlays))
 							O.add_overlay(O.blood_overlay)

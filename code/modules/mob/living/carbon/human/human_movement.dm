@@ -102,7 +102,7 @@
 	/* removed - kevinz000. A system will eventually be reintroduced to do this, but for the moment I'd rather this Not be a thing.
 	// Dragging heavy objects will also slow you down, similar to above.
 	if(pulling)
-		if(istype(pulling, /obj/item))
+		if(isitem(pulling))
 			var/obj/item/pulled = pulling
 			item_tally += max(pulled.slowdown, 0)
 		else if(ishuman(pulling))

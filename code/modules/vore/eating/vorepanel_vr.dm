@@ -457,7 +457,7 @@
 						to_chat(OB.owner,"<span class='warning'>Someone inside you has eaten someone else!</span>")
 						TB.nom_mob(M)
 
-		else if(istype(tgt,/obj/item))
+		else if(isitem(tgt))
 			var/obj/item/T = tgt
 			if(!(tgt in OB))
 				//Doesn't exist anymore, update.

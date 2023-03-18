@@ -119,7 +119,7 @@
 
 	if(!H.holstered)
 		var/obj/item/W = usr.get_active_held_item()
-		if(!istype(W, /obj/item))
+		if(!isitem(W))
 			to_chat(usr, "<span class='warning'>You need your weapon equipped to holster it.</span>")
 			return
 		H.holster(W, usr)

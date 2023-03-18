@@ -1095,7 +1095,7 @@
 					if(istype(A, /obj/effect))
 						if(istype(A, /obj/effect/rune) || istype(A, /obj/effect/debris/cleanable) || istype(A, /obj/effect/overlay))
 							qdel(A)
-					else if(istype(A, /obj/item))
+					else if(isitem(A))
 						var/obj/item/cleaned_item = A
 						cleaned_item.clean_blood()
 					else if(istype(A, /mob/living/carbon/human))

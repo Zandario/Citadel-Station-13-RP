@@ -414,7 +414,7 @@ emp_act
 
 
 		//thrown weapon embedded object code.
-		if(dtype == BRUTE && istype(O,/obj/item))
+		if(dtype == BRUTE && isitem(O))
 			var/obj/item/I = O
 			if (!is_robot_module(I))
 				var/sharp = is_sharp(I)
@@ -435,7 +435,7 @@ emp_act
 
 		// Begin BS12 momentum-transfer code.
 		var/mass = 1.5
-		if(istype(O, /obj/item))
+		if(isitem(O))
 			var/obj/item/I = O
 			mass = I.w_class/THROWNOBJ_KNOCKBACK_DIVISOR
 		var/momentum = TT.speed*mass

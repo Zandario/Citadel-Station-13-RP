@@ -126,13 +126,13 @@
 
 /obj/structure/simple_door/attackby(obj/item/W as obj, mob/user as mob)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	if(istype(W,/obj/item/pickaxe))
+	if(istype(W, /obj/item/pickaxe))
 		var/obj/item/pickaxe/digTool = W
 		visible_message("<span class='danger'>[user] starts digging [src]!</span>")
 		if(do_after(user,digTool.digspeed*hardness) && src)
 			visible_message("<span class='danger'>[user] finished digging [src]!</span>")
 			Dismantle()
-	else if(istype(W,/obj/item)) //not sure, can't not just weapons get passed to this proc?
+	else if(isitem(W)) //not sure, can't not just weapons get passed to this proc?
 		hardness -= W.force/10
 		visible_message("<span class='danger'>[user] hits [src] with [W]!</span>")
 		if(material == get_material_by_name("resin"))
@@ -142,7 +142,7 @@
 		else
 			playsound(src, 'sound/weapons/smash.ogg', 50, 1)
 		CheckHardness()
-	else if(istype(W,/obj/item/weldingtool))
+	else if(istype(W, /obj/item/weldingtool))
 		var/obj/item/weldingtool/WT = W
 		if(material.ignition_point && WT.remove_fuel(0, user))
 			TemperatureAct(150)

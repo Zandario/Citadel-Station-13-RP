@@ -962,7 +962,7 @@ About the new airlock wires panel:
 
 /obj/machinery/door/airlock/Bumped(atom/movable/mover, turf/target)
 	if (src.isElectrified())
-		if (istype(mover, /obj/item))
+		if (isitem(mover))
 			var/obj/item/i = mover
 			if(world.time > last_spark + 2 SECONDS)
 				if (i.matter && (MAT_STEEL in i.matter) && i.matter[MAT_STEEL] > 0)
@@ -1182,7 +1182,7 @@ About the new airlock wires panel:
 				spawn(0)	close(1)
 
 	// Check if we're using a crowbar or armblade, and if the airlock's unpowered for whatever reason (off, broken, etc).
-	else if(istype(C, /obj/item))
+	else if(isitem(C))
 		var/obj/item/W = C
 		if((W.pry == 1) && !arePowerSystemsOn())
 			if(locked)

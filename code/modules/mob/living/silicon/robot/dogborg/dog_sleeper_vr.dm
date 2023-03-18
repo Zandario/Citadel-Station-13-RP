@@ -68,7 +68,7 @@
 		if(is_type_in_list(target,GLOB.item_vore_blacklist))
 			to_chat(user, "<span class='warning'>You are hard-wired to not ingest this item.</span>")
 			return
-		if(istype(target, /obj/item) || istype(target, /obj/effect/decal/remains))
+		if(isitem(target) || istype(target, /obj/effect/decal/remains))
 			var/obj/target_obj = target
 			if(target_obj.w_class > ITEMSIZE_LARGE)
 				to_chat(user, "<span class='warning'>\The [target] is too large to fit into your [src.name]</span>")
@@ -78,7 +78,7 @@
 				target.forceMove(src)
 				user.visible_message("<span class='warning'>[hound.name]'s [src.name] groans lightly as [target.name] slips inside.</span>", "<span class='notice'>Your [src.name] groans lightly as [target] slips inside.</span>")
 				playsound(hound, gulpsound, vol = 60, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
-				if(analyzer && istype(target,/obj/item))
+				if(analyzer && isitem(target))
 					var/obj/item/tech_item = target
 					for(var/T in tech_item.origin_tech)
 						to_chat(user, "<span class='notice'>\The [tech_item] has level [tech_item.origin_tech[T]] in [CallTechName(T)].</span>")

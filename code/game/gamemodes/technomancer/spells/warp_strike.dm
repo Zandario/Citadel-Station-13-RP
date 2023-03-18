@@ -67,7 +67,7 @@
 				to_chat(user, "<span class='danger'>You can't use \the [I] while warping!</span>")
 				return
 
-			if(istype(I, /obj/item))
+			if(isitem(I))
 				var/obj/item/W = I
 				W.melee_attack_chain(chosen_target, user)
 				W.afterattack(chosen_target, user)
@@ -77,4 +77,3 @@
 		else
 			chosen_target.attack_hand(user)
 		log_and_message_admins("has warp striked [chosen_target].")
-

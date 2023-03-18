@@ -418,7 +418,7 @@
 /datum/reagent/acid/touch_obj(obj/O)
 	if(O.unacidable)
 		return
-	if((istype(O, /obj/item) || istype(O, /obj/effect/plant)) && (volume > meltdose))
+	if((isitem(O) || istype(O, /obj/effect/plant)) && (volume > meltdose))
 		var/obj/effect/debris/cleanable/molten_item/I = new/obj/effect/debris/cleanable/molten_item(O.loc)
 		I.desc = "Looks like this was \an [O] some time ago."
 		for(var/mob/M in viewers(5, O))

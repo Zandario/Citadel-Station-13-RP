@@ -248,7 +248,7 @@
 				return
 
 		//If it's a weapon, smash windoor. Unless it's an id card, agent card, ect.. then ignore it (Cards really shouldnt damage a door anyway)
-		if(src.density && istype(I, /obj/item) && !istype(I, /obj/item/card))
+		if(src.density && isitem(I) && !istype(I, /obj/item/card))
 			user.setClickCooldown(user.get_attack_speed(I))
 			var/aforce = I.force
 			playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
