@@ -286,7 +286,7 @@
 	if(usr.stat || usr.restrained() || src.flushing)
 		return
 
-	if(istype(src.loc, /turf))
+	if(isturf(src.loc))
 		usr.set_machine(src)
 
 		if(href_list["close"])

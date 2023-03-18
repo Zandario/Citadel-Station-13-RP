@@ -315,7 +315,7 @@ GLOBAL_LIST_EMPTY(buildholders)
 
 	switch(buildmode)
 		if(1) // Basic Build
-			if(istype(object,/turf) && pa.Find("left") && !pa.Find("alt") && !pa.Find("ctrl") )
+			if(isturf(object) && pa.Find("left") && !pa.Find("alt") && !pa.Find("ctrl") )
 				var/turf/T = object
 				if(istype(object,/turf/space) || istype(object, /turf/simulated/open))
 					T.ChangeTurf(/turf/simulated/floor/plating)
@@ -334,21 +334,21 @@ GLOBAL_LIST_EMPTY(buildholders)
 					T.ChangeTurf(/turf/simulated/wall/r_wall)
 					return
 			else if(pa.Find("right"))
-				if(istype(object, /turf))
+				if(isturf(object))
 					var/turf/T = object
 					log_admin("[key_name(usr)] tore away 1 [T] at [COORD(T)]")
 					T.ScrapeAway()
 					return
-				else if(istype(object,/obj))
+				else if(isobj(object))
 					var/turf/TC = get_turf(object)
 					log_admin("[key_name(usr)] deleted [object] at [COORD(TC)]")
 					qdel(object)
 					return
-			else if(istype(object,/turf) && pa.Find("alt") && pa.Find("left"))
+			else if(isturf(object) && pa.Find("alt") && pa.Find("left"))
 				var/turf/TC = get_turf(object)
 				log_admin("[key_name(usr)] made an airlock at [COORD(TC)]")
 				new/obj/machinery/door/airlock(get_turf(object))
-			else if(istype(object,/turf) && pa.Find("ctrl") && pa.Find("left"))
+			else if(isturf(object) && pa.Find("ctrl") && pa.Find("left"))
 				switch(holder.builddir.dir)
 					if(NORTH)
 						var/obj/structure/window/reinforced/WIN = new/obj/structure/window/reinforced(get_turf(object))
@@ -370,7 +370,7 @@ GLOBAL_LIST_EMPTY(buildholders)
 		if(2) // Adv. Build
 			if(pa.Find("left") && !pa.Find("ctrl"))
 				var/turf/TC = get_turf(object)
-				if(ispath(holder.buildmode.objholder,/turf))
+				if(ispath(holder.buildmode.objholder, /turf))
 					var/turf/T = get_turf(object)
 					T.ChangeTurf(holder.buildmode.objholder)
 				else

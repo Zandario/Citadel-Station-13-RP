@@ -45,7 +45,7 @@
 	if(!radioactivity)
 		return PROCESS_KILL
 
-	if(istype(loc, /turf))
+	if(isturf(loc))
 		radiation_pulse(src, radioactivity)
 
 /obj/item/fuel_assembly/Destroy()

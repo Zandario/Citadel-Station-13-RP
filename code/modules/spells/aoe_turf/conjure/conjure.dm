@@ -43,7 +43,7 @@ How they spawn stuff is decided by behaviour vars, which are explained below
 			targets -= spawn_place
 
 		var/atom/summoned_object
-		if(ispath(summoned_object_type,/turf))
+		if(ispath(summoned_object_type, /turf))
 			if(istype(get_turf(user),/turf/simulated/shuttle) || istype(spawn_place, /turf/simulated/shuttle))
 				to_chat(user, "<span class='warning'>You can't build things on shuttles!</span>")
 				continue
@@ -66,7 +66,7 @@ How they spawn stuff is decided by behaviour vars, which are explained below
 
 		if(duration)
 			spawn(duration)
-				if(summoned_object && !istype(summoned_object, /turf))
+				if(summoned_object && !isturf(summoned_object))
 					qdel(summoned_object)
 		conjure_animation(animation, spawn_place)
 	return

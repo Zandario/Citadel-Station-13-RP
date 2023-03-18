@@ -169,7 +169,7 @@
 
 /obj/effect/spider/spiderling/process(delta_time)
 	if(travelling_in_vent)
-		if(istype(src.loc, /turf))
+		if(isturf(src.loc))
 			travelling_in_vent = 0
 			entry_vent = null
 	else if(entry_vent)

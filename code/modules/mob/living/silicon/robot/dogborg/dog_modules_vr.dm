@@ -66,7 +66,7 @@
 	. = ..()
 	if(.)
 		return
-	if (!( istype(user.loc, /turf) ))
+	if (!isturf(user.loc))
 		return
 
 	var/datum/gas_mixture/environment = user.loc.return_air()

@@ -30,7 +30,7 @@
 		M.help_shake_act(user)
 
 /obj/item/holder/micro/update_state()
-	if(istype(loc,/turf) || !(held_mob) || !(held_mob.loc == src))
+	if(isturf(loc) || !(held_mob) || !(held_mob.loc == src))
 		qdel(src)
 
 /obj/item/holder/micro/Destroy()

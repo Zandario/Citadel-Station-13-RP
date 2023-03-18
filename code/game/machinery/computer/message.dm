@@ -288,7 +288,7 @@
 		return
 	if(!istype(usr, /mob/living) && !IsAdminGhost(usr))
 		return
-	if (((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon))) || IsAdminGhost(usr))
+	if (((usr.contents.Find(src) || (in_range(src, usr) && isturf(src.loc))) || (istype(usr, /mob/living/silicon))) || IsAdminGhost(usr))
 		//Authenticate
 		if (href_list["auth"])
 			if(auth)

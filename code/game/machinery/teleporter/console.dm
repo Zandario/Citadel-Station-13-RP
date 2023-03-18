@@ -56,7 +56,7 @@
 		if(!L)
 			L = locate("landmark*[C.data]") // use old stype
 
-		if(istype(L, /obj/landmark) && istype(L.loc, /turf))
+		if(istype(L, /obj/landmark) && isturf(L.loc))
 			if(!user.attempt_consume_item_for_construction(I))
 				return
 			to_chat(usr, "You insert the coordinates into the machine.")
@@ -152,7 +152,7 @@
 /proc/find_loc(obj/R)
 	if(!R)	return null
 	var/turf/T = R.loc
-	while(!istype(T, /turf))
+	while(!isturf(T))
 		T = T.loc
 		if(!T || istype(T, /area))	return null
 	return T

@@ -459,7 +459,7 @@
 				var/mob/living/M = location
 				if(M.is_holding(src))
 					location = get_turf(M)
-			if (istype(location, /turf))
+			if (isturf(location))
 				location.hotspot_expose(700, 5)
 
 /obj/item/melee/thermalcutter/afterattack(obj/O as obj, mob/user as mob, proximity)
@@ -487,7 +487,7 @@
 		if(isliving(O))
 			var/mob/living/L = O
 			L.IgniteMob()
-		if (istype(location, /turf))
+		if (isturf(location))
 			location.hotspot_expose(700, 50, 1)
 
 /obj/item/melee/thermalcutter/attack_self(mob/user)

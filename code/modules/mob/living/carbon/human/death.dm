@@ -19,7 +19,7 @@
 
 	for(var/obj/item/organ/I in internal_organs)
 		I.removed()
-		if(istype(loc,/turf))
+		if(isturf(loc))
 			I.throw_at_old(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),30)
 
 	//mirror should drop on gib

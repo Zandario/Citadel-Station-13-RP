@@ -101,20 +101,20 @@ steam.start() -- spawns the effect
 	. = ..()
 	playsound(src, "sparks", 100, 1)
 	var/turf/T = src.loc
-	if (istype(T, /turf))
+	if (isturf(T))
 		T.hotspot_expose(1000,100)
 	QDEL_IN(src, 5 SECONDS)
 
 /obj/effect/particle_effect/sparks/Destroy()
 	var/turf/T = src.loc
-	if (istype(T, /turf))
+	if (isturf(T))
 		T.hotspot_expose(1000,100)
 	return ..()
 
 /obj/effect/particle_effect/sparks/Move()
 	..()
 	var/turf/T = src.loc
-	if (istype(T, /turf))
+	if (isturf(T))
 		T.hotspot_expose(1000,100)
 	return
 

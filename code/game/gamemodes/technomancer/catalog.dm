@@ -282,7 +282,7 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 		to_chat(H, "\The [src] won't allow you to do that, as you don't own \the [src]!")
 		return
 
-	if(loc == H || (in_range(src, H) && istype(loc, /turf)))
+	if(loc == H || (in_range(src, H) && isturf(loc)))
 		H.set_machine(src)
 		if(href_list["tab_choice"])
 			tab = text2num(href_list["tab_choice"])
@@ -377,4 +377,3 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 				qdel(AM)
 				return
 	to_chat(user, "<span class='warn'>\The [src] is unable to refund \the [AM].</span>")
-

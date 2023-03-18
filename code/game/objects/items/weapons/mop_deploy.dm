@@ -34,7 +34,7 @@
 */
 /obj/item/mop_deploy/afterattack(atom/A, mob/user, proximity)
 	if(!proximity) return
-	if(istype(A, /turf) || istype(A, /obj/effect/debris/cleanable) || istype(A, /obj/effect/overlay) || istype(A, /obj/effect/rune))
+	if(isturf(A) || istype(A, /obj/effect/debris/cleanable) || istype(A, /obj/effect/overlay) || istype(A, /obj/effect/rune))
 		user.visible_message("<span class='warning'>[user] begins to clean \the [get_turf(A)].</span>")
 
 		if(do_after(user, 40))

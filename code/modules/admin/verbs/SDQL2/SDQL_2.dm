@@ -717,8 +717,8 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 	if(is_object_datatype(object))
 		if(!islist(object))
 			text_list += "<A HREF='?_src_=vars;[HrefToken(TRUE)];Vars=[REF(object)]'>[object.type] [REF(object)]</A>: [object]"
-			if(istype(object, /atom))
-				if(istype(object, /turf))
+			if(isatom(object))
+				if(isturf(object))
 					var/turf/T = object
 					text_list += " [ADMIN_COORDJMP(T)] <font color='gray'>at</font> [T.loc]"
 				else

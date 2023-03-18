@@ -143,7 +143,7 @@
 
 			for(var/T in curr_y)
 				rm_controller.dbg("ZM(pa): Doing entry [T] in Y-list [Iy].")
-				if(ispath(T,/turf))	// We're spawning a turf
+				if(ispath(T, /turf))	// We're spawning a turf
 					rm_controller.dbg("ZM(pa): Turf-generate mode.")
 
 					// Make sure we locate()'d a turf and not something else

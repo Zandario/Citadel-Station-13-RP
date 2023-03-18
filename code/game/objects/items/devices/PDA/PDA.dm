@@ -477,7 +477,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	var/mob/M = loc
 	if(M.stat || M.restrained() || M.paralysis || M.stunned || M.weakened)
 		return 0
-	if((src in M.contents) || ( istype(loc, /turf) && in_range(src, M) ))
+	if((src in M.contents) || ( isturf(loc) && in_range(src, M) ))
 		return 1
 	else
 		return 0
@@ -700,7 +700,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	var/datum/nanoui/ui = SSnanoui.get_open_ui(user, src, "main")
 	var/mob/living/U = usr
 	//Looking for master was kind of pointless since PDAs don't appear to have one.
-	//if ((src in U.contents) || ( istype(loc, /turf) && in_range(src, U) ) )
+	//if ((src in U.contents) || ( isturf(loc) && in_range(src, U) ) )
 	if (usr.stat == DEAD)
 		return 0
 	if(!can_use()) //Why reinvent the wheel? There's a proc that does exactly that.
@@ -1329,7 +1329,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 			to_chat(user, "<span class='notice'>Card scanned.</span>")
 		else
 			//Basic safety check. If either both objects are held by user or PDA is on ground and card is in hand.
-			if(((src in user.contents) && (C in user.contents)) || (istype(loc, /turf) && in_range(src, user) && (C in user.contents)) )
+			if(((src in user.contents) && (C in user.contents)) || (isturf(loc) && in_range(src, user) && (C in user.contents)) )
 				if(id_check(user, 2))
 					to_chat(user, "<span class='notice'>You put the ID into \the [src]'s slot.</span>")
 					updateSelfDialog()//Update self dialog on success.

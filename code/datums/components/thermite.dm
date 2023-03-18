@@ -22,7 +22,7 @@
 		)
 
 /datum/component/thermite/Initialize(_amount)
-	if(!istype(parent, /turf) || blacklist[parent.type])
+	if(!isturf(parent) || blacklist[parent.type])
 		return COMPONENT_INCOMPATIBLE
 
 	if(immunelist[parent.type])

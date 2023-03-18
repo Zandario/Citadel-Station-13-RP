@@ -597,7 +597,7 @@
 				direction = 3
 			if(WEST)
 				direction = 4
-		var/turf/simulated/T=get_turf(get_step(loc,dir))
+		var/turf/simulated/T = get_turf(get_step(loc,dir))
 		var/list/rstats = new /list(stats.len)
 		if(T && istype(T) && T.zone)
 			var/datum/gas_mixture/environment = T.return_air()
@@ -606,9 +606,9 @@
 					rstats[i] = environment.return_pressure()
 				else
 					rstats[i] = environment.vars[stats[i]]
-		else if(istype(T, /turf/simulated))
+		else if(issimulatedturf(T))
 			rstats = null // Exclude zone (wall, door, etc).
-		else if(istype(T, /turf))
+		else if(isturf(T))
 			// Should still work.  (/turf/return_air())
 			var/datum/gas_mixture/environment = T.return_air()
 			for(var/i=1;i<=stats.len;i++)

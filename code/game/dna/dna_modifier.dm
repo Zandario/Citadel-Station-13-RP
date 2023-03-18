@@ -438,10 +438,10 @@
 		// auto update every Master Controller tick
 		ui.set_auto_update(1)
 
-/obj/machinery/computer/scan_consolenew/Topic(href, href_list)
+/obj/machinery/computer/scan_consolenew/Topic(href, list/href_list)
 	if(..())
 		return 0 // don't update uis
-	if(!istype(usr.loc, /turf))
+	if(!isturf(usr.loc))
 		return 0 // don't update uis
 	if(!src || !src.connected)
 		return 0 // don't update uis

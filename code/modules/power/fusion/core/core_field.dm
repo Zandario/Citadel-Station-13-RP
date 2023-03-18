@@ -325,7 +325,7 @@ GLOBAL_VAR_INIT(max_fusion_air_heat, INFINITY)
 	Radiate()
 
 /obj/effect/fusion_em_field/proc/Radiate()
-	if(istype(loc, /turf))
+	if(isturf(loc))
 		var/empsev = max(1, min(3, CEILING(size/2, 1)))
 		for(var/atom/movable/AM in range(max(1,FLOOR(size/2, 1)), loc))
 

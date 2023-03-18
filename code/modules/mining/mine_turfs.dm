@@ -461,7 +461,7 @@
 			return
 
 		if (istype(W, /obj/item/pickaxe))
-			if(!istype(user.loc, /turf))
+			if(!isturf(user.loc))
 				return
 
 			var/obj/item/pickaxe/P = W
@@ -516,7 +516,7 @@
 				return
 
 		if (istype(W, /obj/item/melee/thermalcutter))
-			if(!istype(user.loc, /turf))
+			if(!isturf(user.loc))
 				return
 
 			var/obj/item/melee/thermalcutter/T = W

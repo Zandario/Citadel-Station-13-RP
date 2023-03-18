@@ -36,7 +36,7 @@
 
 /obj/machinery/am_shielding/proc/controllerscan(var/priorscan = 0)
 	//Make sure we are the only one here
-	if(!istype(src.loc, /turf))
+	if(!isturf(src.loc))
 		qdel(src)
 		return
 	for(var/obj/machinery/am_shielding/AMS in loc.contents)
@@ -200,7 +200,7 @@
 	matter = list(MAT_STEEL = 100)
 
 /obj/item/am_shielding_container/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/multitool) && istype(src.loc,/turf))
+	if(istype(I, /obj/item/multitool) && isturf(src.loc))
 		new/obj/machinery/am_shielding(src.loc)
 		qdel(src)
 		return

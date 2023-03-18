@@ -257,9 +257,9 @@
 		qdel(thrown)
 		return
 
-	if(istype(target,/mob/living))
+	if(istype(target, /mob/living))
 		splatted = apply_special_effect(target,thrown)
-	else if(istype(target,/turf))
+	else if(isturf(target))
 		splatted = 1
 		for(var/mob/living/M in target.contents)
 			apply_special_effect(M)

@@ -178,7 +178,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 
 //If underfloor, hide the cable
 /obj/structure/cable/hide(var/i)
-	if(istype(loc, /turf))
+	if(isturf(loc))
 		invisibility = i ? 101 : 0
 	update_icon()
 
@@ -632,7 +632,7 @@ GLOBAL_LIST_INIT(possible_cable_coil_colours, list(
 	var/mob/M = usr
 
 	if(ishuman(M) && !M.restrained() && !M.stat && !M.paralysis && ! M.stunned)
-		if(!istype(usr.loc,/turf)) return
+		if(!isturf(usr.loc)) return
 		if(src.amount <= 14)
 			to_chat(usr, "<span class='warning'>You need at least 15 lengths to make restraints!</span>")
 			return

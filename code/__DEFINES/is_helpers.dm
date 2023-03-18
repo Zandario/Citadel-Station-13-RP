@@ -14,13 +14,15 @@
 
 //Turfs
 
-#define isfloorturf(A) (istype(A, /turf/simulated/floor))
+#define issimulatedturf(T) (istype(T, /turf/simulated))
 
-#define isopenturf(A) istype(A, /turf/simulated/open)
+#define isfloorturf(T) (istype(T, /turf/simulated/floor))
 
-#define isspaceturf(A) istype(A, /turf/space)
+#define isopenturf(T) (istype(T, /turf/simulated/open))
 
-#define ismineralturf(A) istype(A, /turf/simulated/mineral)
+#define isspaceturf(T) (istype(T, /turf/space))
+
+#define ismineralturf(T) (istype(T, /turf/simulated/mineral))
 
 //Objs
 ///override the byond proc because it returns true on children of /atom/movable that aren't objs

@@ -8,7 +8,7 @@
 	if(!epicenter)
 		return
 
-	if(!istype(epicenter, /turf))
+	if(!isturf(epicenter))
 		epicenter = get_turf(epicenter.loc)
 
 	if(log)

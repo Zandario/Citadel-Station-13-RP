@@ -17,7 +17,7 @@
 	var/mob/living/simple_mob/illusion/illusion = null
 
 /obj/item/spell/illusion/on_ranged_cast(atom/hit_atom, mob/user)
-	if(istype(hit_atom, /atom/movable))
+	if(ismovable(hit_atom))
 		var/atom/movable/AM = hit_atom
 		if(pay_energy(100))
 			copied = AM
@@ -25,7 +25,7 @@
 			to_chat(user, "<span class='notice'>You've copied \the [AM]'s appearance.</span>")
 			SEND_SOUND(user, sound('sound/weapons/flash.ogg'))
 			return 1
-	else if(istype(hit_atom, /turf))
+	else if(isturf(hit_atom))
 		var/turf/T = hit_atom
 		if(!illusion)
 			if(!copied)

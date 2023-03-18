@@ -229,11 +229,11 @@
 	// todo: why the fuck are you guys doing snowflake collision code??
 	if(TIMER_COOLDOWN_CHECK(src, "fighter_collision"))
 		return
-	if(istype(obstacle, /obj) || istype(obstacle, /turf))
+	if(isobj(obstacle) || isturf(obstacle))
 		TIMER_COOLDOWN_START(src, "fighter_collision", 5 SECONDS)
 		occupant_message("<B><FONT COLOR=red SIZE=+1>Collision Alert!</B></FONT>")
 		take_damage(20, "brute")
-		playsound(src, 'sound/effects/grillehit.ogg', 50, 1)
+		playsound(src, 'sound/effects/grillehit.ogg', 50, TRUE)
 
 ////////////// Gunpod //////////////
 
