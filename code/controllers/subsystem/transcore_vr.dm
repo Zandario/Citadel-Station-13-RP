@@ -45,7 +45,7 @@ SUBSYSTEM_DEF(transcore)
 		current_run.len--
 
 		//Remove if not in a human anymore.
-		if(!imp || !isorgan(imp.loc))
+		if(!imp || !isexternalorgan(imp.loc))
 			implants -= imp
 			continue
 

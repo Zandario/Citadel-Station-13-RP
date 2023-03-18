@@ -428,7 +428,7 @@ This function restores all organs.
 
 /mob/living/carbon/human/proc/HealDamage(zone, brute, burn)
 	var/obj/item/organ/external/E = get_organ(zone)
-	if(istype(E, /obj/item/organ/external))
+	if(isexternalorgan(E))
 		if (E.heal_damage(brute, burn))
 			UpdateDamageIcon()
 			update_hud_med_health()
@@ -441,7 +441,7 @@ This function restores all organs.
 		log_world("## DEBUG: human/apply_damage() was called on [src], with [damage] damage, an armor value of [blocked], and a soak value of [soaked].")
 
 	var/obj/item/organ/external/organ = null
-	if(isorgan(def_zone))
+	if(isexternalorgan(def_zone))
 		organ = def_zone
 	else
 		if(!def_zone)	def_zone = ran_zone(def_zone)

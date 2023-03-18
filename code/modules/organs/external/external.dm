@@ -194,7 +194,7 @@
 		if(!istype(E))
 			continue
 		for(var/obj/item/I in E.contents)
-			if(istype(I,/obj/item/organ))
+			if(isorgan(I))
 				continue
 			removable_objects |= I
 	if(removable_objects.len)
@@ -210,7 +210,7 @@
 	. = ..()
 	if(in_range(usr, src) || istype(usr, /mob/observer/dead))
 		for(var/obj/item/I in contents)
-			if(istype(I, /obj/item/organ))
+			if(isorgan(I))
 				continue
 			. += "<span class='danger'>There is \a [I] sticking out of it.</span>"
 	return
@@ -931,7 +931,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(DROPLIMB_BURN)
 			new /obj/effect/debris/cleanable/ash(droploc)
 			for(var/obj/item/I in src)
-				if(I.w_class > ITEMSIZE_SMALL && !istype(I,/obj/item/organ))
+				if(I.w_class > ITEMSIZE_SMALL && !isorgan(I))
 					I.forceMove(droploc)
 			qdel(src)
 		if(DROPLIMB_BLUNT)

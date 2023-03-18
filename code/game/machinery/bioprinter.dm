@@ -244,7 +244,7 @@
 			new_species = SScharacters.resolve_species_name(/datum/species/human)
 		O.species = new_species
 
-	if(istype(O, /obj/item/organ/external) && !malfunctioned)
+	if(isexternalorgan(O) && !malfunctioned)
 		var/obj/item/organ/external/E = O
 		E.sync_colour_to_human(C)
 

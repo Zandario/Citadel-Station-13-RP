@@ -222,7 +222,7 @@
 		operating = 0
 		for (var/obj/thing in contents)
 			// There's a chance that the gibber will fail to destroy some evidence.
-			if(istype(thing,/obj/item/organ) && prob(80))
+			if(isorgan(thing) && prob(80))
 				qdel(thing)
 				continue
 			thing.forceMove(get_turf(thing)) // Drop it onto the turf for throwing.

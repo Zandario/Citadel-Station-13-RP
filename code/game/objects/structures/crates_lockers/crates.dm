@@ -374,14 +374,14 @@
 		newgas.temperature = target_temp
 	return newgas
 
-/obj/structure/closet/crate/freezer/Entered(var/atom/movable/AM)
-	if(istype(AM, /obj/item/organ))
+/obj/structure/closet/crate/freezer/Entered(atom/movable/AM)
+	if(isorgan(AM))
 		var/obj/item/organ/O = AM
 		O.preserve(CRATE_FREEZER_TRAIT)
 	..()
 
-/obj/structure/closet/crate/freezer/Exited(var/atom/movable/AM)
-	if(istype(AM, /obj/item/organ))
+/obj/structure/closet/crate/freezer/Exited(atom/movable/AM)
+	if(isorgan(AM))
 		var/obj/item/organ/O = AM
 		O.unpreserve(CRATE_FREEZER_TRAIT)
 	..()

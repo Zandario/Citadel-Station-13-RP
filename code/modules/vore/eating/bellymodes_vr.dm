@@ -77,7 +77,7 @@
 			if(item_digest_mode == IM_HOLD)
 				items_preserved |= I
 			else if(item_digest_mode == IM_DIGEST_FOOD)
-				if(istype(I,/obj/item/reagent_containers/food) || istype(I,/obj/item/organ))
+				if(istype(I,/obj/item/reagent_containers/food) || isorgan(I))
 					digest_item(I)
 				else
 					items_preserved |= I
@@ -126,7 +126,7 @@
 							if(item_digest_mode == IM_HOLD)
 								items_preserved |= I
 							else if(item_digest_mode == IM_DIGEST_FOOD)
-								if(istype(I,/obj/item/reagent_containers/food) || istype(I,/obj/item/organ))
+								if(istype(I,/obj/item/reagent_containers/food) || isorgan(I))
 									digest_item(I)
 								else
 									items_preserved |= I
@@ -149,7 +149,7 @@
 						if(item_digest_mode == IM_HOLD)
 							items_preserved |= I
 						else if(item_digest_mode == IM_DIGEST_FOOD)
-							if(istype(I,/obj/item/reagent_containers/food) || istype(I,/obj/item/organ))
+							if(istype(I,/obj/item/reagent_containers/food) || isorgan(I))
 								digest_item(I)
 							else
 								items_preserved |= I

@@ -71,7 +71,7 @@
 				if(ishuman(loc))
 					H = loc
 
-				if(istype(loc, /obj/item/organ))
+				if(isorgan(loc))
 					var/obj/item/organ/O = loc
 					if(O.owner)
 						H = O.owner

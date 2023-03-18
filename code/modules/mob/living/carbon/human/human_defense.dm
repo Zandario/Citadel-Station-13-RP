@@ -79,7 +79,7 @@ emp_act
 	var/total = 0
 
 	if(def_zone)
-		if(isorgan(def_zone))
+		if(isexternalorgan(def_zone))
 			return getarmor_organ(def_zone, type)
 		var/obj/item/organ/external/affecting = get_organ(def_zone)
 		if(affecting)
@@ -102,7 +102,7 @@ emp_act
 	var/total = 0
 
 	if(def_zone)
-		if(isorgan(def_zone))
+		if(isexternalorgan(def_zone))
 			return getsoak_organ(def_zone, type)
 		var/obj/item/organ/external/affecting = get_organ(def_zone)
 		if(affecting)

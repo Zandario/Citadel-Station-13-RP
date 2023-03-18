@@ -586,13 +586,13 @@
 	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
 
 /obj/item/storage/box/freezer/Entered(var/atom/movable/AM)
-	if(istype(AM, /obj/item/organ))
+	if(isorgan(AM))
 		var/obj/item/organ/O = AM
 		O.preserve(PORTABLE_FREEZER_TRAIT)
 	..()
 
 /obj/item/storage/box/freezer/Exited(var/atom/movable/AM)
-	if(istype(AM, /obj/item/organ))
+	if(isorgan(AM))
 		var/obj/item/organ/O = AM
 		O.unpreserve(PORTABLE_FREEZER_TRAIT)
 	..()

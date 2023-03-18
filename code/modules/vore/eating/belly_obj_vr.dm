@@ -417,19 +417,19 @@
 				var/obj/item/I = M.item_by_slot(slot)
 				if(I)
 					M.transfer_item_to_loc(I, src, INV_OP_FORCE)
-					if(contaminates || istype(I,/obj/item/card/id))
+					if(contaminates || istype(I, /obj/item/card/id))
 						I.gurgle_contaminate(contents, contamination_flavor, contamination_color) //We do an initial contamination pass to get stuff like IDs wet.
 					if(item_digest_mode == IM_HOLD)
 						items_preserved |= I
-					else if(item_digest_mode == IM_DIGEST_FOOD && !(istype(I,/obj/item/reagent_containers/food) || istype(I,/obj/item/organ)))
+					else if(item_digest_mode == IM_DIGEST_FOOD && !(istype(I, /obj/item/reagent_containers/food) || isorgan(I)))
 						items_preserved |= I
 			for(var/obj/item/I as anything in M.get_held_items())
 				M.transfer_item_to_loc(I, src, INV_OP_FORCE)
-				if(contaminates || istype(I,/obj/item/card/id))
+				if(contaminates || istype(I, /obj/item/card/id))
 					I.gurgle_contaminate(contents, contamination_flavor, contamination_color) //We do an initial contamination pass to get stuff like IDs wet.
 				if(item_digest_mode == IM_HOLD)
 					items_preserved |= I
-				else if(item_digest_mode == IM_DIGEST_FOOD && !(istype(I,/obj/item/reagent_containers/food) || istype(I,/obj/item/organ)))
+				else if(item_digest_mode == IM_DIGEST_FOOD && !(istype(I, /obj/item/reagent_containers/food) || isorgan(I)))
 					items_preserved |= I
 
 	//Reagent transfer

@@ -65,7 +65,8 @@
 
 #define is_reagent_container(OBJ) (istype(OBJ, /obj/item/reagent_containers))
 
-#define isorgan(OBJ)     (istype(OBJ, /obj/item/organ/external))
+#define isorgan(OBJ)         (istype(OBJ, /obj/item/organ))
+#define isexternalorgan(OBJ) (istype(OBJ, /obj/item/organ/external))
 
 #define ismachinery(OBJ) (istype(OBJ, /obj/machinery))
 #define isairlock(OBJ)   (istype(OBJ, /obj/machinery/door/airlock))

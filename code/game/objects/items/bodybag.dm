@@ -193,7 +193,7 @@
 		src.used = 1
 		inject_occupant(H)
 
-	if(istype(AM, /obj/item/organ))
+	if(isorgan(AM))
 		var/obj/item/organ/O = AM
 		O.preserve(STASIS_BAG_TRAIT)
 	..()
@@ -203,7 +203,7 @@
 		var/mob/living/carbon/human/H = AM
 		H.Stasis(0)
 
-	if(istype(AM, /obj/item/organ))
+	if(isorgan(AM))
 		var/obj/item/organ/O = AM
 		O.unpreserve(STASIS_BAG_TRAIT)
 	..()

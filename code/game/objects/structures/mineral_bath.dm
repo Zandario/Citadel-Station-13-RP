@@ -163,7 +163,7 @@
 
 /obj/structure/adherent_bath/proc/crystal_debrittle_crystals(mob/living/carbon/human/patient)
 	for(var/thing in patient.organs)
-		if(istype(thing, /obj/item/organ))
+		if(isorgan(thing))
 			var/obj/item/organ/O = thing
 			if(O.status & ORGAN_BRITTLE)
 				if(prob(50))
@@ -179,5 +179,3 @@ if(prob(50))//The mineral rich bath soaked into you to dissolve the implanted ob
 		E.status |= ORGAN_BRITTLE
 
 */
-
-
