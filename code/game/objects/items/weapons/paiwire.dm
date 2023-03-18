@@ -1,7 +1,7 @@
-/obj/item/pai_cable/proc/plugin(obj/machinery/M as obj, mob/user as mob)
+/obj/item/pai_cable/proc/plugin(obj/machinery/M, mob/user)
 	if(istype(M, /obj/machinery/door) || istype(M, /obj/machinery/camera))
 		// Can't hack secured_wires doors (vault, etc)
-		if(istype(M, /obj/machinery/door/airlock))
+		if(isairlock(M))
 			var/obj/machinery/door/airlock/A = M
 			if(A.secured_wires)
 				to_chat(user,"<span class='warning'>\The [M] doesn't have any acessible data ports for \the [src]!</span>")

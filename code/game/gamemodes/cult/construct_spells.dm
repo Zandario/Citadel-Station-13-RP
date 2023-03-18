@@ -195,7 +195,7 @@
 	for(var/turf/T in targets)
 		for(var/obj/machinery/door/door in T.contents)
 			spawn(1)
-				if(istype(door,/obj/machinery/door/airlock))
+				if(isairlock(door))
 					var/obj/machinery/door/airlock/AL = door
 					AL.locked = 0 //The spirits of the damned care not for your locks.
 					AL.welded = 0 //Or your welding tools.

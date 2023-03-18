@@ -89,8 +89,8 @@
 	T.ChangeTurf(/turf/simulated/floor/plating)
 	D.Open()
 
-/obj/item/projectile/magic/door/proc/OpenDoor(var/obj/machinery/door/D)
-	if(istype(D, /obj/machinery/door/airlock))
+/obj/item/projectile/magic/door/proc/OpenDoor(obj/machinery/door/D)
+	if(isairlock(D))
 		var/obj/machinery/door/airlock/A = D
 		A.locked = FALSE
 		D.open()
