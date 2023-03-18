@@ -190,7 +190,7 @@
 		if(istype(teleatom, /mob/living))
 			to_chat(teleatom, SPAN_WARNING("The portal refuses to carry you that far away!"))
 		return FALSE
-	else if(istype(destination.loc, /obj/belly))
+	else if(isbelly(destination.loc))
 		var/obj/belly/destination_belly = destination.loc
 		var/mob/living/telenommer = destination_belly.owner
 		if(istype(telenommer))
