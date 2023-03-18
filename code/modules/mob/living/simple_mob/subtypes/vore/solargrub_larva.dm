@@ -82,7 +82,7 @@ var/global/list/grub_machine_overlays = list()
 	if((. = ..()))
 		return
 
-	if(machine_effect && !istype(loc, /obj/machinery))
+	if(machine_effect && !ismachinery(loc))
 		QDEL_NULL(machine_effect)
 
 	if(power_drained >= 7 MEGAWATTS && prob(5))
@@ -93,7 +93,7 @@ var/global/list/grub_machine_overlays = list()
 	if((. = ..()))
 		return
 
-	if(istype(loc, /obj/machinery))
+	if(ismachinery(loc))
 		// to anyone who sees me on git blame, i'm not responsible for this shit code ~silicons
 		if(machine_effect && (air_master.current_cycle % 30))
 			for(var/mob/M in GLOB.player_list)
@@ -102,7 +102,7 @@ var/global/list/grub_machine_overlays = list()
 			sparks.start()
 
 /mob/living/simple_mob/animal/solargrub_larva/attack_target(atom/A)
-	if(istype(A, /obj/machinery) && !istype(A, /obj/machinery/atmospherics/component/unary/vent_pump))
+	if(ismachinery(A) && !istype(A, /obj/machinery/atmospherics/component/unary/vent_pump))
 		var/obj/machinery/M = A
 		if(is_type_in_list(M, ignored_machine_types))
 			return
@@ -141,9 +141,9 @@ var/global/list/grub_machine_overlays = list()
 	I.Blend(new /icon('icons/effects/alert.dmi', "_red"),ICON_MULTIPLY)
 	grub_machine_overlays[M.type] = I
 
-/mob/living/simple_mob/animal/solargrub_larva/proc/eject_from_machine(var/obj/machinery/M)
+/mob/living/simple_mob/animal/solargrub_larva/proc/eject_from_machine(obj/machinery/M)
 	if(!M)
-		if(istype(loc, /obj/machinery))
+		if(ismachinery(loc))
 			M = loc
 		else
 			return
@@ -252,7 +252,7 @@ var/global/list/grub_machine_overlays = list()
 	return
 
 /datum/ai_holder/simple_mob/solargrub_larva/post_melee_attack(atom/A)
-	if(istype(A, /obj/machinery) && !istype(A, /obj/machinery/atmospherics/component/unary/vent_pump))
+	if(ismachinery(A) && !istype(A, /obj/machinery/atmospherics/component/unary/vent_pump))
 		if(ignored_targets.len > 3)
 			ignored_targets.Cut(1,1)
 		ignored_targets += A
@@ -298,7 +298,7 @@ var/global/list/grub_machine_overlays = list()
 
 /obj/item/multitool/afterattack(obj/O, mob/user, proximity)
 	if(proximity)
-		if(istype(O, /obj/machinery))
+		if(ismachinery(O))
 			var/mob/living/simple_mob/animal/solargrub_larva/grub = locate() in O
 			if(grub)
 				grub.eject_from_machine(O)

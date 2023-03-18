@@ -165,9 +165,9 @@
 
 
 //general version
-/datum/recipe/proc/make(var/obj/container as obj)
+/datum/recipe/proc/make(obj/container)
 	var/obj/result_obj = new result(container)
-	if(istype(container, /obj/machinery))
+	if(ismachinery(container))
 		var/obj/machinery/machine = container
 		for (var/obj/O in ((machine.contents-result_obj - machine.component_parts) - machine.circuit))
 			O.reagents.trans_to_obj(result_obj, O.reagents.total_volume)

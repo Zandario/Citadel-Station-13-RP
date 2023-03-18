@@ -269,7 +269,7 @@
 		return 1
 
 	// I fucking hate R&D code. This typecheck spam would be totally unnecessary in a sane setup.
-	else if(istype(input_device,/obj/machinery))
+	else if(ismachinery(input_device))
 		var/datum/research/incoming_files
 		if(istype(input_device,/obj/machinery/computer/rdconsole))
 			var/obj/machinery/computer/rdconsole/input_machine = input_device

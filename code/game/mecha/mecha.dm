@@ -593,7 +593,7 @@
 		target = SAFEPICK(view(3,target))
 		if(!target)
 			return
-	if(istype(target, /obj/machinery))
+	if(ismachinery(target))
 		if (src.interface_action(target))
 			return
 	if(!target.Adjacent(src))

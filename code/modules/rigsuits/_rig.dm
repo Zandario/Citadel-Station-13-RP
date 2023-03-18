@@ -1084,7 +1084,7 @@
 		wearer_move_delay = world.time
 		return wearer.buckled.relaymove(wearer, direction)
 
-	if(istype(wearer.machine, /obj/machinery))
+	if(ismachinery(wearer.machine))
 		if(wearer.machine.relaymove(wearer, direction))
 			return
 

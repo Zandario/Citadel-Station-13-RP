@@ -109,7 +109,7 @@
 		if(istype(AM, /turf/simulated/wall))
 			var/turf/simulated/wall/wall = AM
 			wall.take_damage(20)
-		if(istype(AM, /obj/machinery))
+		if(ismachinery(AM))
 			var/obj/machinery/machinery = AM
 			machinery.attack_generic(src, 20)
 	..()
