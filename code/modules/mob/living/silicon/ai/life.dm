@@ -48,7 +48,7 @@
 		var/area/loc = null
 		if (isturf(T))
 			loc = T.loc
-			if (istype(loc, /area))
+			if (isarea(loc))
 				if (!loc.power_equip && !istype(src.loc,/obj/item) && !APU_power)
 					blind = 1
 

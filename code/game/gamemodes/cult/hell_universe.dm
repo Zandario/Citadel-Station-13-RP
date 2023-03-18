@@ -46,7 +46,7 @@ In short:
 
 /datum/universal_state/hell/proc/AreaSet()
 	for(var/area/A in GLOB.sortedAreas)
-		if(!istype(A,/area) || istype(A, /area/space))
+		if(!isarea(A) || istype(A, /area/space))
 			continue
 
 		A.updateicon()

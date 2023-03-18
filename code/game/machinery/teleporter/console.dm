@@ -150,9 +150,11 @@
 	return
 
 /proc/find_loc(obj/R)
-	if(!R)	return null
+	if(!R)
+		return null
 	var/turf/T = R.loc
 	while(!isturf(T))
 		T = T.loc
-		if(!T || istype(T, /area))	return null
+		if(!T || isarea(T))
+			return null
 	return T

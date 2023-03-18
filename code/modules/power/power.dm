@@ -287,25 +287,27 @@
 //power_source is a source of electricity, can be powercell, area, apc, cable, powernet or null
 //source is an object caused electrocuting (airlock, grille, etc)
 //No animations will be performed by this proc.
-/proc/electrocute_mob(mob/living/M as mob, var/power_source, var/obj/source, var/siemens_coeff = 1.0)
-	if(istype(M.loc,/obj/mecha))	return 0	//feckin mechs are dumb
-	if(issilicon(M))	return 0	//No more robot shocks from machinery
+/proc/electrocute_mob(mob/living/M, power_source, obj/source, siemens_coeff = 1.0)
+	if(istype(M.loc, /obj/mecha))
+		return 0 // Feckin mechs are dumb.
+	if(issilicon(M))
+		return 0 // No more robot shocks from machinery.
 	var/area/source_area
-	if(istype(power_source,/area))
+	if(isarea(power_source))
 		source_area = power_source
 		power_source = source_area.get_apc()
-	if(istype(power_source,/obj/structure/cable))
+	if(istype(power_source, /obj/structure/cable))
 		var/obj/structure/cable/Cable = power_source
 		power_source = Cable.powernet
 
 	var/datum/powernet/PN
 	var/obj/item/cell/cell
 
-	if(istype(power_source,/datum/powernet))
+	if(istype(power_source, /datum/powernet))
 		PN = power_source
-	else if(istype(power_source,/obj/item/cell))
+	else if(istype(power_source, /obj/item/cell))
 		cell = power_source
-	else if(istype(power_source,/obj/machinery/power/apc))
+	else if(istype(power_source, /obj/machinery/power/apc))
 		var/obj/machinery/power/apc/apc = power_source
 		cell = apc.cell
 		if (apc.terminal)
@@ -319,13 +321,14 @@
 	//If following checks determine user is protected we won't alarm for long.
 	if(PN)
 		PN.trigger_warning(5)
-	if(istype(M,/mob/living/carbon/human))
+	if(istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
 		if(H.species.siemens_coefficient <= 0)
 			return
 		if(H.gloves)
 			var/obj/item/clothing/gloves/G = H.gloves
-			if(G.siemens_coefficient == 0)	return 0		//to avoid spamming with insulated glvoes on
+			if(G.siemens_coefficient == 0)
+				return 0		//to avoid spamming with insulated glvoes on
 
 	//Checks again. If we are still here subject will be shocked, trigger standard 20 tick warning
 	//Since this one is longer it will override the original one.
@@ -352,7 +355,7 @@
 	var/drained_energy = drained_hp * 10000
 	if (source_area)
 		source_area.use_power_oneoff(drained_energy)
-	else if (istype(power_source,/datum/powernet))
+	else if (istype(power_source, /datum/powernet))
 		drained_energy = PN.draw_power(drained_energy * 0.001) * 1000
 	else if (istype(power_source, /obj/item/cell))
 		cell.use(DYNAMIC_W_TO_CELL_UNITS(drained_energy, 1))
