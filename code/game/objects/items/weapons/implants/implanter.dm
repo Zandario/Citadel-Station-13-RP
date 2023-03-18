@@ -130,7 +130,7 @@
 		if (c.scanned)
 			to_chat(user, "<span class='warning'>Something is already scanned inside the implant!</span>")
 			return
-		if(istype(I, /obj/item/storage))
+		if(isstorage(I))
 			to_chat(user, "<span class='warning'>You can't store [I] in this!</span>")
 			return
 		c.scanned = I

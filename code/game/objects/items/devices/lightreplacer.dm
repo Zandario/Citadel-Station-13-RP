@@ -104,7 +104,7 @@
 			return
 */
 
-	if(istype(W, /obj/item/storage))
+	if(isstorage(W))
 		var/obj/item/storage/S = W
 		var/found_lightbulbs = FALSE
 		var/replaced_something = TRUE

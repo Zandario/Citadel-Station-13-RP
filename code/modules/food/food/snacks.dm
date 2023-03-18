@@ -156,7 +156,7 @@
 		. += "<font color=#4F49AF>\The [src] was bitten multiple times!</font>"
 
 /obj/item/reagent_containers/food/snacks/attackby(obj/item/W, mob/user)
-	if(istype(W,/obj/item/storage))
+	if(isstorage(W))
 		. = ..() // -> item/attackby()
 		return
 
@@ -4672,7 +4672,7 @@ END CITADEL CHANGE */
 // Moved /bun/attackby() from /code/modules/food/food/snacks.dm
 /obj/item/reagent_containers/food/snacks/bun/attackby(obj/item/W as obj, mob/user as mob)
 	//i honestly should probably refactor this whole thing but idgaf
-	if(istype(W,/obj/item/storage))
+	if(isstorage(W))
 		. = ..() //if you want to bag a ton of buns idk i don't play chef
 		return
 

@@ -82,7 +82,7 @@
 		L += S.return_inv()
 	for(var/obj/item/gift/G in src)
 		L += G.gift
-		if (istype(G.gift, /obj/item/storage))
+		if (isstorage(G.gift))
 			L += G.gift:return_inv()
 	return L
 
@@ -305,7 +305,7 @@
 
 //This proc return 1 if the item can be picked up and 0 if it can't.
 //Set the stop_messages to stop it from printing messages
-/obj/item/storage/proc/can_be_inserted(obj/item/W as obj, stop_messages = 0)
+/obj/item/storage/proc/can_be_inserted(obj/item/W, stop_messages = FALSE)
 	if(!istype(W))
 		return //Not an item
 
@@ -342,7 +342,7 @@
 			to_chat(usr, "<span class='notice'>[src] is too full, make some space.</span>")
 		return 0
 
-	if(W.w_class >= src.w_class && (istype(W, /obj/item/storage)))
+	if(W.w_class >= src.w_class && (isstorage(W)))
 		if(!stop_messages)
 			to_chat(usr, "<span class='notice'>[src] cannot hold [W] as it's a storage item of the same size.</span>")
 		return 0 //To prevent the stacking of same sized storage items.
@@ -623,7 +623,7 @@
 	while (cur_atom && !(cur_atom in container.contents))
 		if (isarea(cur_atom))
 			return INFINITY
-		if (istype(cur_atom.loc, /obj/item/storage))
+		if (isstorage(cur_atom.loc))
 			depth++
 		cur_atom = cur_atom.loc
 
@@ -641,7 +641,7 @@
 	while (cur_atom && !isturf(cur_atom))
 		if (isarea(cur_atom))
 			return INFINITY
-		if (istype(cur_atom.loc, /obj/item/storage))
+		if (isstorage(cur_atom.loc))
 			depth++
 		cur_atom = cur_atom.loc
 

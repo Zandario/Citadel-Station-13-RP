@@ -132,7 +132,7 @@
 	. = ..()
 	if(islist(origin_tech))
 		origin_tech = typelist(NAMEOF(src, origin_tech), origin_tech)
-	if(istype(loc, /obj/item/storage))
+	if(isstorage(loc))
 		item_flags |= ITEM_IN_STORAGE
 	//Potential memory optimization: Making embed chance a getter if unset.
 	if(embed_chance == EMBED_CHANCE_UNSET)
@@ -363,13 +363,13 @@
 		R.activate_module(src)
 		R.hud_used.update_robot_modules_display()
 
-/obj/item/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/storage))
+/obj/item/attackby(obj/item/W, mob/user)
+	if(isstorage(W))
 		var/obj/item/storage/S = W
 		if(S.use_to_pickup)
 			if(S.collection_mode) //Mode is set to collect all items
-				if(isturf(src.loc))
-					S.gather_all(src.loc, user)
+				if(isturf(loc))
+					S.gather_all(loc, user)
 
 			else if(S.can_be_inserted(src))
 				S.handle_item_insertion(src, user)

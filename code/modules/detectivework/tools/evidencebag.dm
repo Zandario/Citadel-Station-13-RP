@@ -9,7 +9,7 @@
 	w_class = ITEMSIZE_SMALL
 	var/obj/item/stored_item = null
 
-/obj/item/evidencebag/OnMouseDropLegacy(var/obj/item/I as obj)
+/obj/item/evidencebag/OnMouseDropLegacy(obj/item/I)
 	if (!ishuman(usr))
 		return
 	if(!istype(I) || I.anchored)
@@ -22,7 +22,7 @@
 			return
 	else
 		//If it isn't on the floor. Do some checks to see if it's in our hands or a box. Otherwise give up.
-		if(istype(I.loc,/obj/item/storage))	//in a container.
+		if(isstorage(I.loc)) //in a container.
 			var/sdepth = I.storage_depth(user)
 			if (sdepth > MAX_STORAGE_REACH)
 				return	//too deeply nested to access

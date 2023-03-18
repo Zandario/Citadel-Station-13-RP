@@ -232,7 +232,7 @@
 	var/amount = 25.0
 
 
-/obj/item/packageWrap/afterattack(var/obj/target as obj, mob/user as mob, proximity)
+/obj/item/packageWrap/afterattack(obj/target, mob/user, proximity)
 	if(!proximity) return
 	if(!istype(target))	//this really shouldn't be necessary (but it is).	-Pete
 		return
@@ -248,8 +248,7 @@
 
 	user.attack_log += text("\[[time_stamp()]\] <font color=#4F49AF>Has used [src.name] on \ref[target]</font>")
 
-
-	if (isitem(target) && !(istype(target, /obj/item/storage) && !istype(target,/obj/item/storage/box)))
+	if (isitem(target) && !(isstorage(target) && !istype(target,/obj/item/storage/box)))
 		var/obj/item/O = target
 		if (src.amount > 1)
 			var/obj/item/smallDelivery/P = new /obj/item/smallDelivery(get_turf(O.loc))	//Aaannd wrap it up!

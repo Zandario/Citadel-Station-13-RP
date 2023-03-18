@@ -26,8 +26,8 @@
 	return 1
 
 
-/*/obj/item/grenade/afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
-	if (istype(target, /obj/item/storage)) return ..() // Trying to put it in a full container
+/*/obj/item/grenade/afterattack(atom/target, mob/user)
+	if (isstorage(target)) return ..() // Trying to put it in a full container
 	if (istype(target, /obj/item/gun/grenadelauncher)) return ..()
 	if((user.get_active_held_item() == src) && (!active) && (clown_check(user)) && target.loc != src.loc)
 		to_chat(user, "<span class='warning'>You prime the [name]! [det_time/10] seconds!</span>")

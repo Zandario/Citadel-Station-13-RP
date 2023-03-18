@@ -179,7 +179,7 @@
 		user.visible_message("[user] inserts \a [C] into [src].", "<span class='notice'>You insert \a [C] into [src].</span>")
 		playsound(src.loc, load_sound, 50, 1)
 
-	else if(istype(A, /obj/item/storage))
+	else if(isstorage(A))
 		var/obj/item/storage/storage = A
 		if(!(load_method & SINGLE_CASING))
 			return //incompatible

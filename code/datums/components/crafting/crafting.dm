@@ -156,7 +156,7 @@
 	var/list/present_qualities = list()
 	present_qualities |= contents["tool_behaviour"]
 	for(var/obj/item/I in a.contents)
-		if(istype(I, /obj/item/storage))
+		if(isstorage(I))
 			for(var/obj/item/SI in I.contents)
 				possible_tools += SI.type
 				if(SI.tool_behaviour)

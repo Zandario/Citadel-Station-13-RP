@@ -34,11 +34,11 @@
 	. = ..()
 	if(.) update_w_class()
 
-/obj/item/storage/bag/can_be_inserted(obj/item/W, stop_messages = 0)
+/obj/item/storage/bag/can_be_inserted(obj/item/W, stop_messages = FALSE)
 	var/mob/living/carbon/human/H = usr // if we're human, then we need to check if bag in a pocket
-	if(istype(src.loc, /obj/item/storage) || ishuman(H) && (H.l_store == src || H.r_store == src))
+	if(isstorage(loc) || ishuman(H) && (H.l_store == src || H.r_store == src))
 		if(!stop_messages)
-			to_chat(usr, SPAN_NOTICE("Take \the [src] out of [isobj(src.loc) ? "\the [src.loc]" : "the pocket"] first."))
+			to_chat(usr, SPAN_NOTICE("Take \the [src] out of [isobj(loc) ? "\the [loc]" : "the pocket"] first."))
 		return 0 //causes problems if the bag expands and becomes larger than src.loc can hold, so disallow it
 	. = ..()
 

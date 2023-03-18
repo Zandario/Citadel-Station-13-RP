@@ -35,9 +35,8 @@
 	RefreshParts()
 	update_icon()
 
-/obj/machinery/papershredder/attackby(var/obj/item/W, var/mob/user)
-
-	if(istype(W, /obj/item/storage))
+/obj/machinery/papershredder/attackby(obj/item/W, mob/user)
+	if(isstorage(W))
 		empty_bin(user, W)
 		return
 	else if(W.is_wrench())

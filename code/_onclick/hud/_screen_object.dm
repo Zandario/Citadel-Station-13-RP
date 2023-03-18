@@ -32,7 +32,7 @@
 
 /atom/movable/screen/close/Click()
 	if(master)
-		if(istype(master, /obj/item/storage))
+		if(isstorage(master))
 			var/obj/item/storage/S = master
 			S.close(usr)
 	return 1

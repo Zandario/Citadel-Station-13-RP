@@ -101,7 +101,7 @@ var/global/list/obj/item/communicator/all_communicators = list()
 	if(ismob(loc))
 		register_device(loc.name)
 		initialize_exonet(loc)
-	else if(istype(loc, /obj/item/storage))
+	else if(isstorage(loc))
 		var/obj/item/storage/S = loc
 		if(ismob(S.loc))
 			register_device(S.loc.name)

@@ -1122,7 +1122,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 		return FALSE
 	var/ignore_bags = get_pin_data(IC_INPUT, 1)
 	if(ignore_bags)
-		if(istype(A, /obj/item/storage))
+		if(isstorage(A))
 			return FALSE
 	set_pin_data(IC_OUTPUT, 1, WEAKREF(A))
 	push_data()
@@ -1384,7 +1384,7 @@ GLOBAL_DATUM_INIT(circuit_translation_context, /datum/translation_context/simple
 /obj/item/integrated_circuit/input/storage_examiner/do_work(ord)
 	if(ord == 1)
 		var/obj/item/storage = get_pin_data_as_type(IC_INPUT, 1, /obj/item)
-		if(!istype(storage,/obj/item/storage))
+		if(!isstorage(storage))
 			return
 
 		set_pin_data(IC_OUTPUT, 1, storage.contents.len)

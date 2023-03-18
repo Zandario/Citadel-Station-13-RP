@@ -290,7 +290,7 @@
 		if(equip_to_slot_if_possible(thing, SLOT_ID_BACK))
 			update_inv_hands()
 		return
-	if(!istype(equipped_back, /obj/item/storage)) // not a storage item
+	if(!isstorage(equipped_back)) // not a storage item
 		if(!thing)
 			equipped_back.attack_hand(src)
 		else
@@ -323,7 +323,7 @@
 		if(equip_to_slot_if_possible(thing, SLOT_ID_BELT))
 			update_inv_hands()
 		return
-	if(!istype(equipped_belt, /obj/item/storage)) // not a storage item
+	if(!isstorage(equipped_belt)) // not a storage item
 		if(!thing)
 			equipped_belt.attack_hand(src)
 		else
