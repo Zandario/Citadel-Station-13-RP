@@ -43,7 +43,7 @@
 	return
 
 /obj/item/implanter/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
-	if (!istype(target, /mob/living/carbon))
+	if (!iscarbon(target))
 		return ..()
 	if(active)
 		if (imp)

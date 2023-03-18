@@ -47,10 +47,10 @@
 #define IS_ROBOT 2
 #define IS_PAI 3
 
-/mob/living/silicon/say_understands(var/other,var/datum/language/speaking = null)
+/mob/living/silicon/say_understands(other, datum/language/speaking)
 	//These only pertain to common. Languages are handled by mob/say_understands()
 	if (!speaking)
-		if (istype(other, /mob/living/carbon))
+		if (iscarbon(other))
 			return 1
 		if (istype(other, /mob/living/silicon))
 			return 1

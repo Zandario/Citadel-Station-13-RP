@@ -339,7 +339,7 @@
 						to_chat(M, "<font color='red'>The floor lurches beneath you!</font>")
 						shake_camera(M, 10, 1)
 						// TODO - tossing?
-						if(istype(M, /mob/living/carbon))
+						if(iscarbon(M))
 							M.Weaken(3)
 							if(move_direction)
 								throw_a_mob(M,move_direction)

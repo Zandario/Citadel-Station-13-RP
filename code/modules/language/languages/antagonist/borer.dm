@@ -9,11 +9,11 @@
 	key = "" //!! THIS DOES NOT HAVE A LANGUAGE KEY IF YOU SOMEHOW MIRACULOUSLY GET ANTAGS WORKING ON RP BEFORE WE TRANSITION TO SS14 IN LIKE 2025 PUT ONE IN.
 	language_flags = LANGUAGE_RESTRICTED | LANGUAGE_HIVEMIND
 
-/datum/language/corticalborer/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
+/datum/language/corticalborer/broadcast(mob/living/speaker, message, speaker_mask)
 
 	var/mob/living/simple_mob/animal/borer/B
 
-	if(istype(speaker,/mob/living/carbon))
+	if(iscarbon(speaker))
 		var/mob/living/carbon/M = speaker
 		B = M.has_brain_worms()
 	else if(istype(speaker,/mob/living/simple_mob/animal/borer))

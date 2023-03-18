@@ -84,7 +84,7 @@
 					to_chat(user, "<span class='notice'>There is already a blood sample in this syringe.</span>")
 					return
 
-				if(istype(target, /mob/living/carbon))
+				if(iscarbon(target))
 					var/amount = reagents.available_volume()
 					var/mob/living/carbon/T = target
 					if(!T.dna)

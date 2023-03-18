@@ -126,10 +126,10 @@
 /mob/living/voice/speech_bubble_appearance()
 	return "comm"
 
-/mob/living/voice/say_understands(var/other,var/datum/language/speaking = null)
+/mob/living/voice/say_understands(other, datum/language/speaking)
 	//These only pertain to common. Languages are handled by mob/say_understands()
 	if (!speaking)
-		if (istype(other, /mob/living/carbon))
+		if (iscarbon(other))
 			return 1
 		if (istype(other, /mob/living/silicon))
 			return 1

@@ -284,7 +284,7 @@
 			to_chat(user, SPAN_WARNING("You momentarily forget how to use [src]."))
 			return TRUE
 
-	if(clicksound && istype(user, /mob/living/carbon))
+	if(clicksound && iscarbon(user))
 		playsound(src, clicksound, clickvol)
 
 	return ..()

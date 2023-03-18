@@ -8,14 +8,15 @@
 	if(stat == DEAD || paralysis || weakened || stunned || restrained())
 		return
 
-	if(istype(src.loc,/mob/living/carbon))
+	if(iscarbon(loc))
 		remove_verb(src, /mob/living/carbon/alien/diona/proc/merge)
 		return
 
 	var/list/choices = list()
-	for(var/mob/living/carbon/C in view(1,src))
+	for(var/mob/living/carbon/C in view(1, src))
 
-		if(!(src.Adjacent(C)) || !(C.client)) continue
+		if(!(Adjacent(C)) || !(C.client))
+			continue
 
 		if(istype(C,/mob/living/carbon/human))
 			var/mob/living/carbon/human/D = C
@@ -48,16 +49,16 @@
 	if(stat == DEAD || paralysis || weakened || stunned || restrained())
 		return
 
-	if(!(istype(src.loc,/mob/living/carbon)))
+	if(!(iscarbon(loc)))
 		remove_verb(src, /mob/living/carbon/alien/diona/proc/split)
 		return
 
-	to_chat(src.loc, "You feel a pang of loss as [src] splits away from your biomass.")
-	to_chat(src, "You wiggle out of the depths of [src.loc]'s biomass and plop to the ground.")
+	to_chat(loc, "You feel a pang of loss as [src] splits away from your biomass.")
+	to_chat(src, "You wiggle out of the depths of [loc]'s biomass and plop to the ground.")
 
-	var/mob/living/M = src.loc
+	var/mob/living/M = loc
 
-	src.loc = get_turf(src)
+	loc = get_turf(src)
 	remove_verb(src, /mob/living/carbon/alien/diona/proc/split)
 	add_verb(src, /mob/living/carbon/alien/diona/proc/merge)
 

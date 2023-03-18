@@ -370,7 +370,7 @@
 	src.visible_message("<font color='red'><b>[src] leans in close to [B]...</b></font>")
 	B.add_fingerprint(src)
 	add_attack_logs(src,B,"used bloodsuck() on [B]")
-	if(istype(B,/mob/living/carbon/human) && istype(src,/mob/living/carbon))
+	if(istype(B, /mob/living/carbon/human) && iscarbon(src))
 		if(do_after(src, 50, B)) //Five seconds seems best
 			if(!Adjacent(B)) return
 			if(!src.isSynthetic())
@@ -400,7 +400,7 @@
 			if(B.nutrition < 100)
 				B.apply_damage(15, BRUTE, BP_TORSO) // if they have nothing to give, this just harms them
 			B.bitten = 1 //debuff tracking for balance
-	else if(!istype(B,/mob/living/carbon) && src.isSynthetic() || istype(B,/mob/living/carbon) && B.isSynthetic() && src.isSynthetic()) // for synths to feed on robots and other synths
+	else if(!iscarbon(B) && isSynthetic() || iscarbon(B) && B.isSynthetic() && isSynthetic()) // for synths to feed on robots and other synths
 		if(do_after(src, 50, B))
 			if(!Adjacent(B)) return
 			src.visible_message("<font color='red'><b>[src] suddenly lunges at [B]!</b></font>")

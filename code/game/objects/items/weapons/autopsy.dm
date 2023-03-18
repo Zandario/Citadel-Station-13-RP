@@ -157,7 +157,7 @@
 	P.info = "<tt>[scan_data]</tt>"
 	P.icon_state = "paper_words"
 
-	if(istype(usr,/mob/living/carbon))
+	if(iscarbon(usr))
 		usr.put_in_hands(P)
 
 /obj/item/autopsy_scanner/do_surgery(mob/living/carbon/human/M, mob/living/user)

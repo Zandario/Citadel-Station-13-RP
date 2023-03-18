@@ -49,9 +49,9 @@
 		qdel(src)
 		return
 
-	if(istype(target, /mob/living/carbon))
+	if(iscarbon(target))
 		var/fullness = target.nutrition + (target.reagents.get_reagent_amount("nutriment") * 25)
-		if(target == user)								//If you're eating it yourself
+		if(target == user) //If you're eating it yourself
 			if(istype(target,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = target
 				if(!H.check_has_mouth())

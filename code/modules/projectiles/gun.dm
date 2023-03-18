@@ -651,14 +651,14 @@
 			P.dispersion = max(P.dispersion + M.accuracy_dispersion, 0)
 
 //does the actual launching of the projectile
-/obj/item/gun/proc/process_projectile(obj/projectile, mob/user, atom/target, var/target_zone, var/params=null)
+/obj/item/gun/proc/process_projectile(obj/projectile, mob/user, atom/target, target_zone, params)
 	var/obj/item/projectile/P = projectile
 	if(!istype(P))
 		return FALSE //default behaviour only applies to true projectiles
 
 	//shooting while in shock
 	var/forcespread
-	if(istype(user, /mob/living/carbon))
+	if(iscarbon(user))
 		var/mob/living/carbon/mob = user
 		if(mob.shock_stage > 120)
 			forcespread = rand(50, 50)

@@ -89,7 +89,7 @@
 		to_chat(user,"<span class='notice'>Your hands are full!</span>")
 		return
 
-	if(!istype(usr,/mob/living/carbon))
+	if(!iscarbon(usr))
 		return
 
 	if(!cards.len)

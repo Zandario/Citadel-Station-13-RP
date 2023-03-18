@@ -61,11 +61,11 @@
 	return ishuman(A)
 
 /proc/iscuffed(A)
-	if(istype(A, /mob/living/carbon))
+	if(iscarbon(A))
 		var/mob/living/carbon/C = A
 		if(C.handcuffed)
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 /proc/hassensorlevel(A, var/level)
 	var/mob/living/carbon/human/H = A
@@ -264,11 +264,11 @@ var/list/intents = list(INTENT_HELP,INTENT_DISARM,INTENT_GRAB,INTENT_HARM)
 				hud_used.action_intent.icon_state = INTENT_HELP
 
 /proc/is_blind(A)
-	if(istype(A, /mob/living/carbon))
+	if(iscarbon(A))
 		var/mob/living/carbon/C = A
 		if(C.sdisabilities & SDISABILITY_NERVOUS || C.blinded)
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 /proc/mobs_in_area(var/area/A)
 	var/list/mobs = new

@@ -96,7 +96,7 @@
 /obj/item/backup_implanter/attack_mob(mob/target, mob/user, clickchain_flags, list/params, mult, target_zone, intent)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
-	if (!istype(target, /mob/living/carbon))
+	if (!iscarbon(target))
 		return
 	if (user && imps.len)
 		target.visible_message("<span class='notice'>[user] is injecting a backup implant into [target].</span>")

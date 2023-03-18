@@ -129,7 +129,7 @@
 
 /mob/living/simple_mob/animal/sif/leech/do_special_attack(atom/A)
 	. = TRUE
-	if(istype(A, /mob/living/carbon))
+	if(iscarbon(A))
 		switch(a_intent)
 			if(INTENT_DISARM) // Poison
 				set_AI_busy(TRUE)

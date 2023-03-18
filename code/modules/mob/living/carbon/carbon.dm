@@ -253,7 +253,7 @@
 
 /mob/living/carbon/Bump(atom/A)
 	. = ..()
-	if(istype(A, /mob/living/carbon) && prob(10))
+	if(iscarbon(A) && prob(10))
 		spread_disease_to(A, "Contact")
 
 /mob/living/carbon/cannot_use_vents()

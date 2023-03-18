@@ -105,7 +105,7 @@
 	if((disable) || (last_flash && world.time < last_flash + 150))
 		return
 
-	if(istype(AM, /mob/living/carbon))
+	if(iscarbon(AM))
 		var/mob/living/carbon/M = AM
 		if((M.m_intent != "walk") && (anchored))
 			flash()

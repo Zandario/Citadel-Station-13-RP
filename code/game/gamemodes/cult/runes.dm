@@ -807,12 +807,14 @@ var/list/sacrificed = list()
 	var/mob/living/user = usr
 	var/list/mob/living/carbon/cultists = new
 	for(var/datum/mind/H in cult.current_antagonists)
-		if (istype(H.current,/mob/living/carbon))
-			cultists+=H.current
+		if (iscarbon(H.current))
+			cultists += H.current
+
 	var/list/mob/living/carbon/users = new
 	for(var/mob/living/carbon/C in orange(1,src))
 		if(iscultist(C) && !C.stat)
-			users+=C
+			users += C
+
 	var/dam = round(15 / users.len)
 	if(users.len>=3)
 		var/mob/living/carbon/cultist = input("Choose the one who you want to free", "Followers of Geometer") as null|anything in (cultists - users)
@@ -857,8 +859,9 @@ var/list/sacrificed = list()
 	var/mob/living/user = usr
 	var/list/mob/living/carbon/cultists = new
 	for(var/datum/mind/H in cult.current_antagonists)
-		if (istype(H.current,/mob/living/carbon))
-			cultists+=H.current
+		if (iscarbon(H.current))
+			cultists += H.current
+
 	var/list/mob/living/carbon/users = new
 	for(var/mob/living/carbon/C in orange(1,src))
 		if(iscultist(C) && !C.stat)
@@ -985,8 +988,8 @@ var/list/sacrificed = list()
 
 	// var/list/mob/living/carbon/cultists = new
 	// for(var/datum/mind/H in SSticker.mode.cult)
-	// 	if (istype(H.current,/mob/living/carbon))
-	// 		cultists+=H.current
+	// 	if (iscarbon(H.current))
+	// 		cultists += H.current
 
 	var/list/cultists = new //also, wording for it is old wording for obscure rune, which is now hide-see-blood.
 	var/list/victims = new

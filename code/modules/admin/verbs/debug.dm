@@ -620,8 +620,8 @@
 			to_chat(usr, jointext(GLOB.clients,","))
 
 // DNA2 - Admin Hax
-/client/proc/cmd_admin_toggle_block(var/mob/M,var/block)
-	if(istype(M, /mob/living/carbon))
+/client/proc/cmd_admin_toggle_block(mob/M, block)
+	if(iscarbon(M))
 		M.dna.SetSEState(block,!M.dna.GetSEState(block))
 		domutcheck(M,null,MUTCHK_FORCED)
 		M.update_mutations()

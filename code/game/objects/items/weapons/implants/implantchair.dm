@@ -113,7 +113,7 @@
 
 
 /obj/machinery/implantchair/proc/implant(mob/M)
-	if (!istype(M, /mob/living/carbon))
+	if (!iscarbon(M))
 		return
 	if(!implant_list.len)
 		return

@@ -154,7 +154,7 @@
 		chems_to_use = charge.charges
 
 	var/mob/living/carbon/target_mob
-	if(istype(target,/mob/living/carbon))
+	if(iscarbon(target))
 		target_mob = target
 	else
 		return 0

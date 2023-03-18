@@ -126,7 +126,7 @@
 	. = ..()
 	qdel(src)
 
-/obj/item/electric_hand/afterattack(var/atom/target, var/mob/living/carbon/human/user, proximity)
+/obj/item/electric_hand/afterattack(atom/target, mob/living/carbon/human/user, proximity)
 	if(!target)
 		return
 	if(!proximity)
@@ -139,7 +139,7 @@
 		siemens = gloves.siemens_coefficient
 
 	//Excuse the copypasta.
-	if(istype(target,/mob/living/carbon))
+	if(iscarbon(target))
 		var/mob/living/carbon/C = target
 
 		if(user.mind.changeling.chem_charges < shock_cost)

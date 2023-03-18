@@ -107,7 +107,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	else
 		. += "This one seems particularly lifeless. Perhaps it will regain some of its luster later..."
 
-/obj/item/organ/internal/brain/removed(var/mob/living/user)
+/obj/item/organ/internal/brain/removed(mob/living/user)
 
 	if(name == initial(name))
 		name = "\the [owner.real_name]'s [initial(name)]"
@@ -119,7 +119,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 
 	var/obj/item/organ/internal/brain/B = src
 	if(istype(B) && owner)
-		if(istype(owner, /mob/living/carbon))
+		if(iscarbon(owner))
 			B.transfer_identity(owner)
 
 	..()
