@@ -168,7 +168,7 @@
 			var/turf/simulated/wall/W = O
 			if(W.material.flags & MATERIAL_UNMELTABLE)
 				cannot_melt = 1
-		else if(istype(O, /turf/simulated/floor))
+		else if(isfloorturf(O))
 /*			var/turf/simulated/floor/F = O							//Turfs are qdel'd to space (Even asteroid tiles), will need to be touched by someone smarter than myself. -Mech
 			if(F.flooring && (F.flooring.flags & TURF_ACID_IMMUNE))
 */

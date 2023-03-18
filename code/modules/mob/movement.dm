@@ -446,7 +446,7 @@
 		if(istype(turf,/turf/space))
 			continue
 
-		if(istype(turf,/turf/simulated/floor)) // Floors don't count if they don't have gravity
+		if(isfloorturf(turf)) // Floors don't count if they don't have gravity
 			var/area/A = turf.loc
 			if(istype(A) && A.has_gravity == 0)
 				if(shoegrip == null)

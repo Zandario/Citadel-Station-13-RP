@@ -325,7 +325,7 @@ GLOBAL_LIST_EMPTY(buildholders)
 					log_admin("[key_name(usr)] created 1 plating at [COORD(T)]")
 					T.PlaceOnTop(/turf/simulated/floor/plating)
 					return
-				else if(istype(object,/turf/simulated/floor))
+				else if(isfloorturf(object))
 					log_admin("[key_name(usr)] created 1 wall at [COORD(T)]")
 					T.PlaceOnTop(/turf/simulated/wall)
 					return

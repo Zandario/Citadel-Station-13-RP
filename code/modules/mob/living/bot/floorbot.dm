@@ -206,7 +206,7 @@
 		return 0
 
 	if(emagged)
-		return (istype(A, /turf/simulated/floor))
+		return (isfloorturf(A))
 
 	if(!amount)
 		return 0
@@ -232,7 +232,7 @@
 	if(get_turf(A) != loc)
 		return
 
-	if(emagged && istype(A, /turf/simulated/floor))
+	if(emagged && isfloorturf(A))
 		var/turf/simulated/floor/F = A
 		busy = 1
 		update_icons()
@@ -269,7 +269,7 @@
 		target = null
 		busy = 0
 		update_icons()
-	else if(istype(A, /turf/simulated/floor))
+	else if(isfloorturf(A))
 		var/turf/simulated/floor/F = A
 		if(F.broken || F.burnt)
 			busy = 1

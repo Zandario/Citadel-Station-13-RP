@@ -160,7 +160,7 @@ var/list/flooring_cache = list()
 				is_linked = TRUE
 
 		//If we get here then its a normal floor
-		else if (istype(T, /turf/simulated/floor))
+		else if (isfloorturf(T))
 			var/turf/simulated/floor/t = T
 			//If the floor is the same as us,then we're linked,
 			if (t.flooring?.type == type)

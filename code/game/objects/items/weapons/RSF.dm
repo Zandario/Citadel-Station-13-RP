@@ -112,7 +112,7 @@ RSF
 		if(stored_matter <= 0)
 			return
 
-	if(!istype(A, /obj/structure/table) && !istype(A, /turf/simulated/floor))
+	if(!istype(A, /obj/structure/table) && !isfloorturf(A))
 		return
 
 	playsound(src, 'sound/machines/click.ogg', 10, 1)

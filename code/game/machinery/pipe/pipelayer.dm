@@ -149,8 +149,8 @@
 		amount_ejected += S.amount
 	return amount_ejected
 
-/obj/machinery/pipelayer/proc/dismantleFloor(var/turf/new_turf)
-	if(istype(new_turf, /turf/simulated/floor))
+/obj/machinery/pipelayer/proc/dismantleFloor(turf/new_turf)
+	if(isfloorturf(new_turf))
 		var/turf/simulated/floor/T = new_turf
 		if(!T.is_plating())
 			T.make_plating(!(T.broken || T.burnt))

@@ -232,7 +232,7 @@
 	if(!(ndir in GLOB.cardinal))
 		return
 	var/turf/T = get_turf(user)
-	if(!istype(T, /turf/simulated/floor))
+	if(!isfloorturf(T))
 		to_chat(user, "<span class='warning'>You cannot place \the [src] on this spot!</span>")
 		return
 	if(istype(user, /mob/living/silicon/robot)) //Robots cannot unequip/drop items, for Safety Reasons.

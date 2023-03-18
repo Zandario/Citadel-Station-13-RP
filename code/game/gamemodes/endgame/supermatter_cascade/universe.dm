@@ -17,7 +17,7 @@ var/global/universe_has_ended = 0
 		var/turf/simulated/wall/W=T
 		W.melt()
 		return
-	if(istype(T,/turf/simulated/floor))
+	if(isfloorturf(T))
 		var/turf/simulated/floor/F=T
 		// Burnt?
 		if(!F.burnt)

@@ -569,7 +569,7 @@
 		qdel(src)
 
 	// And hurt the floor.
-	if(istype(hit_atom, /turf/simulated/floor))
+	if(isfloorturf(hit_atom))
 		var/turf/simulated/floor/ground = hit_atom
 		ground.break_tile()
 

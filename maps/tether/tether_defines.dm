@@ -511,7 +511,7 @@ Allignment: Neutral to NanoTrasen. No Discount for services expected."}
 /obj/effect/step_trigger/zlevel_fall/Initialize(mapload)
 	. = ..()
 
-	if(istype(get_turf(src), /turf/simulated/floor))
+	if(isfloorturf(get_turf(src)))
 		src:target_z = z
 		return INITIALIZE_HINT_QDEL
 
