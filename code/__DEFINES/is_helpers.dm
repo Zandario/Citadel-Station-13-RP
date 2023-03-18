@@ -1,106 +1,123 @@
-// simple is_type and similar inline helpers
+/**
+ * Simple is_type and similar inline helpers.
+ */
+
+/**
+ *# Misc
+ */
 
 #define in_range(source, user) (get_dist(source, user) <= 1 && (get_step(source, 0)?:z) == (get_step(user, 0)?:z))
 
-#define isatom(A) (isloc(A))
+#define isclient(CLIENT) (istype(CLIENT, /client))
 
-#define isicon(A) (istype(A, /icon))
-#define isimage(A) (istype(A, /image))
+#define isicon(ICON)   (istype(ICON, /icon))
 
-#define isclient(A) (istype(A, /client))
+#define isimage(IMG)  (istype(IMG, /image))
 
-//Datums
 
-#define isdatum(D) (istype(D, /datum))
+/**
+ *# Datums
+ */
 
-#define isweakref(D) (istype(D, /datum/weakref))
+#define isdatum(THING)    (istype(THING, /datum))
 
-#define isTaurTail(A) (istype(A, /datum/sprite_accessory/tail/taur))
+#define isTaurTail(DATUM) (istype(DATUM, /datum/sprite_accessory/tail/taur))
 
-//Turfs
+#define isweakref(DATUM)  (istype(DATUM, /datum/weakref))
 
-#define issimulatedturf(T) (istype(T, /turf/simulated))
 
-#define isfloorturf(T) (istype(T, /turf/simulated/floor))
+/**
+ *# Atoms
+ */
 
-#define isopenturf(T) (istype(T, /turf/simulated/open))
+#define isatom(ATOM) (isloc(ATOM))
 
-#define isspaceturf(T) (istype(T, /turf/space))
 
-#define ismineralturf(T) (istype(T, /turf/simulated/mineral))
+/**
+ *# Areas
+ */
 
-//Objs
-///override the byond proc because it returns true on children of /atom/movable that aren't objs
-#define isobj(A) istype(A, /obj)
-#define isitem(A) (istype(A, /obj/item))
 
-#define isclothing(A) (istype(A, /obj/item/clothing))
+/**
+ *# Turfs
+ */
 
-#define isstorage(A)	istype(A, /obj/item/storage)
+#define issimulatedturf(TURF) (istype(TURF, /turf/simulated))
+#define isfloorturf(TURF)     (istype(TURF, /turf/simulated/floor))
+#define ismineralturf(TURF)   (istype(TURF, /turf/simulated/mineral))
+#define isopenturf(TURF)      (istype(TURF, /turf/simulated/open))
 
-#define isstructure(A) (istype(A, /obj/structure))
+#define isspaceturf(TURF)     (istype(TURF, /turf/space))
 
-#define ismachinery(A) (istype(A, /obj/machinery))
 
-#define ismecha(A) (istype(A, /obj/mecha))
+/**
+ *# Objs
+ */
 
-#define isvehicle(A) (istype(A, /obj/vehicle_old) || istype(A, /obj/vehicle) || istype(A, /obj/mecha))
+/// Override the byond proc because it returns true on children of /atom/movable that aren't objs.
+#define isobj(OBJ)       (istype(OBJ, /obj))
 
-#define isorgan(A) istype(A, /obj/item/organ/external)
+#define isbelly(OBJ)     (istype(OBJ, /obj/belly))
 
-#define isairlock(A) istype(A, /obj/machinery/door/airlock)
+#define isitem(OBJ)      (istype(OBJ, /obj/item))
+#define isclothing(OBJ)  (istype(OBJ, /obj/item/clothing))
+#define isstorage(OBJ)   (istype(OBJ, /obj/item/storage))
 
-#define isbelly(A) istype(A, /obj/belly)
+#define is_reagent_container(OBJ) (istype(OBJ, /obj/item/reagent_containers))
 
-#define is_reagent_container(O) (istype(O, /obj/item/reagent_containers))
+#define isorgan(OBJ)     (istype(OBJ, /obj/item/organ/external))
 
-//Areas
+#define ismachinery(OBJ) (istype(OBJ, /obj/machinery))
+#define isairlock(OBJ)   (istype(OBJ, /obj/machinery/door/airlock))
 
-//Mobs
+#define ismecha(OBJ)     (istype(OBJ, /obj/mecha))
 
-#define isAI(A) istype(A, /mob/living/silicon/ai)
+#define isstructure(OBJ) (istype(OBJ, /obj/structure))
 
-#define isalien(A) istype(A, /mob/living/carbon/alien)
+GLOBAL_LIST_INIT(vechicle_typepaths, typecacheof(list(
+	/obj/vehicle_old,
+	/obj/vehicle,
+	/obj/mecha,
+)))
 
-#define isanimal(A) istype(A, /mob/living/simple_animal)
+#define isvehicle(OBJ) (is_type_in_typecache(OBJ, GLOB.vechicle_typepaths))
 
-#define isbrain(A) istype(A, /mob/living/carbon/brain)
 
-#define iscarbon(A) istype(A, /mob/living/carbon)
 
-#define iscorgi(A) istype(A, /mob/living/simple_mob/animal/passive/dog/corgi)
+/**
+ *# Mobs
+ */
 
-#define isDrone(A) istype(A, /mob/living/silicon/robot/drone)
+#define isliving(MOB) (istype(MOB, /mob/living))
 
-#define isEye(A) istype(A, /mob/observer/eye)
+#define isbot(MOB)    (istype(MOB, /mob/living/bot))
 
-#define ishuman(A) istype(A, /mob/living/carbon/human)
+#define iscarbon(MOB) (istype(MOB, /mob/living/carbon))
+#define isalien(MOB)  (istype(MOB, /mob/living/carbon/alien))
+#define isbrain(MOB)  (istype(MOB, /mob/living/carbon/brain))
+#define ishuman(MOB)  (istype(MOB, /mob/living/carbon/human))
 
-#define isliving(A) istype(A, /mob/living)
+#define issilicon(MOB) (istype(MOB, /mob/living/silicon))
+#define isAI(MOB)      (istype(MOB, /mob/living/silicon/ai))
+#define ispAI(MOB)     (istype(MOB, /mob/living/silicon/pai))
+#define isrobot(MOB)   (istype(MOB, /mob/living/silicon/robot))
+#define isDrone(MOB)   (istype(MOB, /mob/living/silicon/robot/drone))
+#define isMatriarchDrone(MOB) (istype(MOB, /mob/living/silicon/robot/drone/construction/matriarch))
 
-#define isMatriarchDrone(A) istype(A, /mob/living/silicon/robot/drone/construction/matriarch)
+#define isanimal(MOB) (istype(MOB, /mob/living/simple_animal))
 
-#define ismouse(A) istype(A, /mob/living/simple_mob/animal/passive/mouse/)
+#define issimple(MOB) (istype(MOB, /mob/living/simple_mob))
+#define isxeno(MOB)   (istype(MOB, /mob/living/simple_mob/xeno))
+#define isslime(MOB)  (istype(MOB, /mob/living/simple_mob/slime))
+#define ismouse(MOB)  (istype(MOB, /mob/living/simple_mob/animal/passive/mouse))
+#define iscorgi(MOB)  (istype(MOB, /mob/living/simple_mob/animal/passive/dog/corgi))
 
-#define isnewplayer(A) istype(A, /mob/new_player)
+#define isnewplayer(MOB) (istype(MOB, /mob/new_player))
 
-#define isobserver(A) istype(A, /mob/observer/dead)
+#define isobserver(MOB) (istype(MOB, /mob/observer/dead))
+#define isEye(MOB)      (istype(MOB, /mob/observer/eye))
 
-#define ispAI(A) istype(A, /mob/living/silicon/pai)
-
-#define isrobot(A) istype(A, /mob/living/silicon/robot)
-
-#define issilicon(A) istype(A, /mob/living/silicon)
-
-#define isvoice(A) istype(A, /mob/living/voice)
-
-#define isslime(A) istype(A, /mob/living/simple_mob/slime)
-
-#define isbot(A) istype(A, /mob/living/bot)
-
-#define isxeno(A) istype(A, /mob/living/simple_mob/xeno)
-
-#define issimple(A) istype(A, /mob/living/simple_mob)
+#define isvoice(MOB) (istype(MOB, /mob/living/voice))
 
 /proc/is_species_type(atom/A, path)
 	if(!istype(A, /mob/living/carbon/human))
@@ -108,4 +125,4 @@
 	var/mob/living/carbon/human/H = A
 	return istype(H.species, path)
 
-#define fast_is_species_type(H, path)	istype(H.species, path)
+#define fast_is_species_type(H, path) (istype(H.species, path))
