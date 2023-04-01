@@ -6,22 +6,6 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "teshariinner"
 
-/datum/sprite_accessory/ears/tesharihigh
-	name = "Teshari upper ears (colorable)"
-	id = "ears_teshari_upper"
-	icon_state = "tesharihigh"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
-	extra_overlay = "tesharihighinner"
-
-/datum/sprite_accessory/ears/tesharilow
-	name = "Teshari lower ears (colorable)"
-	id = "ears_teshari_lower"
-	icon_state = "tesharilow"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
-	extra_overlay = "tesharilowinner"
-
 /datum/sprite_accessory/ears/tesh_pattern_ear_male
 	name = "Teshari male ear pattern (colorable)"
 	id = "ears_teshari_male"
