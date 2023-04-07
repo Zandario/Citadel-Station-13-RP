@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(lighting_wall_cache)
 GLOBAL_VAR(lights)
 
 /// Casts shadows from occluding objects for a given light.
-/atom/movable/light/proc/cast_light(force_cast)
+/atom/movable/lighting_overlay/proc/cast_light(force_cast)
 	if(!SSlighting.initialized && !force_cast)
 		GLOB.init_lights |= src
 		return

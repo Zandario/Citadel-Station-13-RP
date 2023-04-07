@@ -108,4 +108,3 @@
 	else
 		to_chat(user, "<span class='warning'>You can't afford the energy cost!</span>")
 		return 0
-

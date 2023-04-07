@@ -1,4 +1,4 @@
-/atom/movable/light
+/atom/movable/lighting_overlay
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	plane = LIGHTING_PLANE
 	layer = LIGHTING_BASE_LAYER
@@ -20,7 +20,7 @@
 	var/list/affecting_turfs = list()
 	var/list/temp_appearance
 
-/atom/movable/light/New(newholder)
+/atom/movable/lighting_overlay/New(newholder)
 	holder = newholder
 	if(istype(holder, /atom))
 		var/atom/A = holder
@@ -31,7 +31,12 @@
 		color = light_color
 	..(get_turf(holder))
 
-/atom/movable/light/Destroy()
+/atom/movable/lighting_overlay/Initialize(mapload)
+	. = ..()
+	if(holder)
+		follow_holder()
+
+/atom/movable/lighting_overlay/Destroy()
 	transform = null
 	appearance = null
 	overlays = null
@@ -47,17 +52,12 @@
 	affecting_turfs.Cut()
 	. = ..()
 
-/atom/movable/light/Initialize(mapload)
-	. = ..()
-	if(holder)
-		follow_holder()
-
 /**
  * Applies power value to size (via Scale()) and updates the current rotation (via Turn())
  * angle for directional lights. This is only ever called before cast_light() so affected turfs
  * are updated elsewhere.
  */
-/atom/movable/light/update_transform(newrange)
+/atom/movable/lighting_overlay/update_transform(newrange)
 	if(!isnull(newrange) && current_power != newrange)
 		current_power = newrange
 
@@ -65,14 +65,14 @@
  * Orients the light to the holder's (or the holder's holder) current dir.
  * Also updates rotation for directional lights when appropriate.
  */
-/atom/movable/light/proc/follow_holder_dir()
+/atom/movable/lighting_overlay/proc/follow_holder_dir()
 	if(holder.loc.loc && ismob(holder.loc))
 		set_dir(holder.loc.dir)
 	else
 		set_dir(holder.dir)
 
 /// Moves the light overlay to the holder's turf and updates bleeding values accordingly.
-/atom/movable/light/proc/follow_holder()
+/atom/movable/lighting_overlay/proc/follow_holder()
 	if(GLOB.lighting_update_lights)
 		if(holder && holder.loc)
 			follow_holder_dir()
@@ -88,7 +88,7 @@
 	else
 		GLOB.init_lights |= src
 
-/atom/movable/light/proc/set_dir(new_dir)
+/atom/movable/lighting_overlay/proc/set_dir(new_dir)
 	if(dir != new_dir)
 		dir = new_dir
 
@@ -107,29 +107,29 @@
 				pixel_x = -(world.icon_size * light_range) - (world.icon_size * light_range) + world.icon_size
 				pixel_y = -(world.icon_size * light_range) + (world.icon_size / 2)
 
-/atom/movable/light/proc/light_off()
+/atom/movable/lighting_overlay/proc/light_off()
 	alpha = 0
 
-/atom/movable/light/ex_act(severity)
+/atom/movable/lighting_overlay/ex_act(severity)
 	. = ..()
 	return FALSE
 
-/atom/movable/light/singularity_act()
+/atom/movable/lighting_overlay/singularity_act()
 	return
 
-/atom/movable/light/singularity_pull()
+/atom/movable/lighting_overlay/singularity_pull()
 	return
 
-/atom/movable/light/blob_act()
+/atom/movable/lighting_overlay/blob_act()
 	return
 
-/atom/movable/light/onTransitZ()
+/atom/movable/lighting_overlay/onTransitZ()
 	return
 
 /// Override here to prevent things accidentally moving around overlays.
-/atom/movable/light/forceMove(atom/destination, no_tp = FALSE, harderforce = FALSE)
+/atom/movable/lighting_overlay/forceMove(atom/destination, no_tp = FALSE, harderforce = FALSE)
 	if(harderforce)
 		. = ..()
 
-/atom/movable/light/set_light(l_range, l_power, l_color, l_type, fadeout)
+/atom/movable/lighting_overlay/set_light(l_range, l_power, l_color, l_type, fadeout)
 	return

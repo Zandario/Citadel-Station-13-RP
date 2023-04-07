@@ -295,5 +295,3 @@ LYTHIOS43C_TURF_CREATE_UN(/turf/unsimulated/mineral/icerock)
 	dir = EAST
 /turf/simulated/sky/lythios43c/moving/west
 	dir = WEST
-
-

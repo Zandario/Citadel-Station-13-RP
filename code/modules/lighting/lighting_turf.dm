@@ -11,10 +11,10 @@
 		if(!affectedlightcache || !affectedlightcache.len)
 			return lumcount // Either we're null or we aren't affected by any lights.
 		var/highestlightrange = 0
-		for(var/atom/movable/light/L in affectedlightcache)
+		for(var/atom/movable/lighting_overlay/L in affectedlightcache)
 			highestlightrange = max(highestlightrange, L.light_range)
 		var/list/objectsinview = view(highestlightrange, src)
-		for(var/atom/movable/light/L in affectedlightcache)
+		for(var/atom/movable/lighting_overlay/L in affectedlightcache)
 			if(!(L in objectsinview)) // On the player's end, we don't appear to be affected by this light, so dont even bother.
 				continue
 			lumcount += (max(L.light_range - get_dist(get_turf(L), src), 0.1)/L.light_range)*L.light_power
@@ -35,7 +35,7 @@
 	return blocks_light
 
 /turf/proc/force_light_update()
-	for(var/atom/movable/light/L in affecting_lights)
+	for(var/atom/movable/lighting_overlay/L in affecting_lights)
 		L.cast_light()
 
 /**

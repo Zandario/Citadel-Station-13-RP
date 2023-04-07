@@ -16,7 +16,7 @@ SUBSYSTEM_DEF(lighting)
 	return ..()
 
 /datum/controller/subsystem/lighting/Initialize(timeofday)
-	for(var/atom/movable/light/L in GLOB.init_lights)
+	for(var/atom/movable/lighting_overlay/L in GLOB.init_lights)
 		if(L && !QDELETED(L))
 			L.cast_light(TRUE)
 	GLOB.init_lights = null
@@ -32,7 +32,7 @@ SUBSYSTEM_DEF(lighting)
 	resuming = TRUE
 
 	while (currentrun_lights.len)
-		var/atom/movable/light/L = currentrun_lights[currentrun_lights.len]
+		var/atom/movable/lighting_overlay/L = currentrun_lights[currentrun_lights.len]
 		currentrun_lights.len--
 
 		if(L && !QDELETED(L))

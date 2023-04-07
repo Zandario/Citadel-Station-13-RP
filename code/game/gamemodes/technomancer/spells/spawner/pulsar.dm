@@ -59,10 +59,3 @@
 
 /obj/effect/temporary_effect/pulse/pulsar/on_pulse()
 	empulse(src, 1, 1, 2, 2, log = 1)
-
-
-
-
-
-
-
