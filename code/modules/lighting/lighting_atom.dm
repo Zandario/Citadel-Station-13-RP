@@ -1,5 +1,5 @@
 /atom
-	var/atom/movable/lighting_overlay/light_obj
+	var/atom/movable/lighting_overlay/lighting_overlay
 	var/light_type = LIGHT_SOFT
 	var/light_power = 1
 	var/light_range = 0
@@ -10,14 +10,13 @@
 
 /**
  * Updates all appropriate lighting values and then applies all changed values
- * to the objects light_obj overlay atom.
+ * to the objects lighting_overlay overlay atom.
  */
 /atom/proc/set_light(l_range, l_power, l_color, l_type, fadeout)
 
 	if(!loc)
-		if(light_obj)
-			qdel(light_obj)
-			light_obj = null
+		if(lighting_overlay)
+			QDEL_NULL(lighting_overlay)
 		return
 
 	// Update or retrieve our variable data.
@@ -40,50 +39,50 @@
 
 	/// Apply data and update light casting/bleed masking.
 	var/update_cast
-	if(!light_obj)
+	if(!lighting_overlay)
 		update_cast = TRUE
-		light_obj = new(src)
+		lighting_overlay = new(src)
 
-	if(light_obj.light_range != l_range)
+	if(lighting_overlay.light_range != l_range)
 		update_cast = TRUE
-		light_obj.light_range = l_range
+		lighting_overlay.light_range = l_range
 
-	if(light_obj.light_power != l_power)
+	if(lighting_overlay.light_power != l_power)
 		update_cast = TRUE
-		light_obj.light_power = l_power
+		lighting_overlay.light_power = l_power
 
-	if(light_obj.light_color != l_color)
+	if(lighting_overlay.light_color != l_color)
 		update_cast = TRUE
-		light_obj.light_color = l_color
-		light_obj.color = l_color
+		lighting_overlay.light_color = l_color
+		lighting_overlay.color = l_color
 
-	if(light_obj.current_power != l_range)
+	if(lighting_overlay.current_power != l_range)
 		update_cast = TRUE
-		light_obj.update_transform(l_range)
+		lighting_overlay.update_transform(l_range)
 
-	if(light_obj.light_type != l_type)
+	if(lighting_overlay.light_type != l_type)
 		update_cast = TRUE
-		light_obj.light_type = l_type
+		lighting_overlay.light_type = l_type
 
-	if(!light_obj.alpha)
+	if(!lighting_overlay.alpha)
 		update_cast = TRUE
 
 	// Makes sure the obj isn't somewhere weird (like inside the holder). Also calls bleed masking.
 	if(update_cast)
-		light_obj.follow_holder()
+		lighting_overlay.follow_holder()
 
 	// Rare enough that we can probably get away with calling animate().
 	if(fadeout)
-		animate(light_obj, alpha = 0, time = fadeout)
+		animate(lighting_overlay, alpha = 0, time = fadeout)
 
 /**
  * Destroys and removes a light.
  * Replaces previous system's kill_light().
  */
 /atom/proc/kill_light()
-	if(light_obj)
-		qdel(light_obj)
-		light_obj = null
+	if(lighting_overlay)
+		qdel(lighting_overlay)
+		lighting_overlay = null
 	return
 
 /**
@@ -105,8 +104,8 @@
 	set_light()
 
 /atom/proc/update_all_lights()
-	if(light_obj && !QDELETED(light_obj))
-		light_obj.follow_holder()
+	if(lighting_overlay && !QDELETED(lighting_overlay))
+		lighting_overlay.follow_holder()
 
 /atom/proc/update_contained_lights(list/specific_contents)
 	if(!specific_contents)
@@ -118,9 +117,9 @@
 				A.update_all_lights()
 
 /atom/Destroy()
-	if(light_obj)
-		qdel(light_obj)
-		light_obj = null
+	if(lighting_overlay)
+		qdel(lighting_overlay)
+		lighting_overlay = null
 	return ..()
 
 /atom/movable/setDir(newdir)

@@ -43,8 +43,8 @@
 	temp_appearance = null
 
 	if(holder)
-		if(holder.light_obj == src)
-			holder.light_obj = null
+		if(holder.lighting_overlay == src)
+			holder.lighting_overlay = null
 		holder = null
 	for(var/turf/T in affecting_turfs)
 		T.lumcount = -1

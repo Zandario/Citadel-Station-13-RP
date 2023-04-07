@@ -265,8 +265,8 @@
 	LAZYCLEARLIST(overlays)
 	LAZYNULL(managed_overlays)
 
-	if(light_obj)
-		QDEL_NULL(light_obj)
+	if(lighting_overlay)
+		QDEL_NULL(lighting_overlay)
 
 	if(smoothing_flags & SMOOTH_QUEUED)
 		SSicon_smooth.remove_from_queues(src)
